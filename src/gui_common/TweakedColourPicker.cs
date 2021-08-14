@@ -13,11 +13,14 @@ public class TweakedColourPicker : ColorPicker
     private CheckButton hsvCheckButton;
     private CheckButton rawCheckButton;
     private LineEdit hexColorEdit;
+    private HSeparator separator;
     private GridContainer presetsContainer;
     private Button addPresetButton;
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;
+    private bool presetsEnabled = true;
+    private bool presetsVisible = true;
 
     /// <summary>
     ///   Decide if user can toggle HSV CheckButton to switch HSV mode.
@@ -61,6 +64,7 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
+    [Export]
     public new bool HsvMode
     {
         get => base.HsvMode;
@@ -70,9 +74,11 @@ public class TweakedColourPicker : ColorPicker
                 return;
 
             base.HsvMode = value;
-            hsvCheckButton.Pressed = value;
+
             if (rawCheckButton == null)
                 return;
+
+            hsvCheckButton.Pressed = value;
 
             if (value)
                 rawCheckButton.Disabled = true;
@@ -81,6 +87,7 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
+    [Export]
     public new bool RawMode
     {
         get => base.RawMode;
@@ -90,15 +97,47 @@ public class TweakedColourPicker : ColorPicker
                 return;
 
             base.RawMode = value;
-            rawCheckButton.Pressed = value;
 
             if (hsvCheckButton == null)
                 return;
+
+            rawCheckButton.Pressed = value;
 
             if (value)
                 hsvCheckButton.Disabled = true;
             else if (hsvButtonEnabled)
                 hsvCheckButton.Disabled = false;
+        }
+    }
+
+    [Export]
+    public new bool PresetsEnabled
+    {
+        get => presetsEnabled;
+        set
+        {
+            presetsEnabled = value;
+
+            if (addPresetButton == null)
+                return;
+
+            addPresetButton.Disabled = !value;
+        }
+    }
+
+    [Export]
+    public new bool PresetsVisible
+    {
+        get => presetsVisible;
+        set
+        {
+            presetsVisible = value;
+
+            if (presetsContainer == null)
+                return;
+
+            separator.Visible = value;
+            presetsContainer.Visible = value;
         }
     }
 
@@ -108,25 +147,28 @@ public class TweakedColourPicker : ColorPicker
 
         presetScene = GD.Load<PackedScene>("res://src/gui_common/TweakedColorPickerPreset.tscn");
 
+        // Hide replaced native controls. Can't delete them because it will crash Godot.
         GetChild(4).GetChild<Control>(4).Hide();
         GetChild<Control>(5).Hide();
         GetChild<Control>(6).Hide();
         GetChild<Control>(7).Hide();
-        pickerButton = GetChild(1).GetChild<ToolButton>(1);
 
+        pickerButton = GetChild(1).GetChild<ToolButton>(1);
         hsvCheckButton = GetNode<CheckButton>("ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("ButtonsContainer/RawCheckButton");
         hexColorEdit = GetNode<LineEdit>("ButtonsContainer/HexColorEdit");
         hexColorEdit.Text = "ffffff";
-
+        separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<Button>("PresetContainer/AddPresetButton");
 
-        // Update button state.
+        // Update control state.
         HSVButtonEnabled = hsvButtonEnabled;
         RawButtonEnabled = rawButtonEnabled;
         HsvMode = base.HsvMode;
         RawMode = base.RawMode;
+        PresetsEnabled = presetsEnabled;
+        PresetsVisible = presetsVisible;
 
         // Load initial presets.
         foreach (var color in GetPresets())

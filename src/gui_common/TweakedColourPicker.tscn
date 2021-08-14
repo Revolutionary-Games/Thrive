@@ -4,10 +4,10 @@
 [ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 76.0
-margin_top = 76.0
-margin_right = 76.0
-margin_bottom = 76.0
+margin_left = 84.0
+margin_top = 84.0
+margin_right = 84.0
+margin_bottom = 84.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -53,7 +53,7 @@ max_length = 8
 context_menu_enabled = false
 shortcut_keys_enabled = false
 
-[node name="HSeparator3" type="HSeparator" parent="."]
+[node name="Separator" type="HSeparator" parent="."]
 margin_top = 536.0
 margin_right = 317.0
 margin_bottom = 540.0
