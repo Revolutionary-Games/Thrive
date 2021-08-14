@@ -282,11 +282,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         else
         {
             HUD.OnEnterStageTransition(true);
-
-            // If tutorial is disabled the patch name will not be prompted after the tutorial welcome message
-            // so we need to manually do it here
-            if (!TutorialState.Enabled)
-                HUD.PromptPatchInfo();
         }
     }
 
@@ -550,7 +545,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, new ActionEventArgs(HUD.PromptPatchInfo), this);
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 
     /// <summary>

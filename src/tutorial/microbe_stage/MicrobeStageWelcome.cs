@@ -7,8 +7,6 @@
     /// </summary>
     public class MicrobeStageWelcome : TutorialPhase
     {
-        private Action onHide;
-
         public MicrobeStageWelcome()
         {
             Exclusive = true;
@@ -29,8 +27,6 @@
             {
                 case TutorialEventType.EnteredMicrobeStage:
                 {
-                    onHide = ((ActionEventArgs)args)?.Data;
-
                     if (!HasBeenShown && CanTrigger)
                     {
                         Show();
@@ -42,12 +38,6 @@
             }
 
             return false;
-        }
-
-        public override void Hide()
-        {
-            base.Hide();
-            onHide?.Invoke();
         }
     }
 }
