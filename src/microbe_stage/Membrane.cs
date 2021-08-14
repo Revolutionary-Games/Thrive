@@ -28,11 +28,12 @@ public class Membrane : MeshInstance
     private Color tint = new Color(1, 1, 1, 1);
     private float dissolveEffectValue;
 
+    private Texture albedoTexture;
     private Texture normalTexture;
     private Texture damagedTexture;
     private Texture noiseTexture;
 
-    private string currentlyLoadedNormalTexture;
+    private string currentlyLoadedAlbedoTexture;
 
     private bool dirty = true;
     private bool radiusIsDirty = true;
@@ -372,19 +373,21 @@ public class Membrane : MeshInstance
     {
         // We must update the texture on already-existing membranes,
         // due to the membrane texture changing for the player microbe.
-        if (normalTexture != null && currentlyLoadedNormalTexture == Type.NormalTexture)
+        if (albedoTexture != null && currentlyLoadedAlbedoTexture == Type.AlbedoTexture)
             return;
 
+        albedoTexture = Type.LoadedAlbedoTexture;
         normalTexture = Type.LoadedNormalTexture;
         damagedTexture = Type.LoadedDamagedTexture;
 
         noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
-        MaterialToEdit.SetShaderParam("albedoTexture", normalTexture);
+        MaterialToEdit.SetShaderParam("albedoTexture", albedoTexture);
+        MaterialToEdit.SetShaderParam("normalTexture", normalTexture);
         MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);
         MaterialToEdit.SetShaderParam("dissolveTexture", noiseTexture);
 
-        currentlyLoadedNormalTexture = Type.NormalTexture;
+        currentlyLoadedAlbedoTexture = Type.AlbedoTexture;
     }
 
     private void ApplyDissolveEffect()
