@@ -52,6 +52,16 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _EnterTree()
+    {
+        InputDataList.InputsRemapped += OnInputsRemapped;
+    }
+
+    public override void _ExitTree()
+    {
+        InputDataList.InputsRemapped -= OnInputsRemapped;
+    }
+
     public override void _Ready()
     {
         // Make sure bbcode is enabled
@@ -305,5 +315,10 @@ public class CustomRichTextLabel : RichTextLabel
         }
 
         return output;
+    }
+
+    private void OnInputsRemapped(object sender, EventArgs arsg)
+    {
+        ParseCustomTags();
     }
 }
