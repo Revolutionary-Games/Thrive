@@ -393,6 +393,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// </summary>
     public void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 parentRotation)
     {
+        _ = masterRotation;
+
         if (to == currentShapesParent)
             return;
 
