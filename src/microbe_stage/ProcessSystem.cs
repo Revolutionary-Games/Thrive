@@ -389,12 +389,14 @@ public class ProcessSystem
             if (entry.Key.IsEnvironmental)
                 continue;
 
-            var inputRemoved = entry.Value * process.Rate * delta * environmentModifier * spaceConstraintModifier;
+            var inputRemoved = entry.Value * process.Rate * environmentModifier;
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
             // We don't multiply by delta here because we report the per-second values anyway. In the actual process
             // output numbers (computed after testing the speed), we need to multiply by inverse delta
-            currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * process.Rate * environmentModifier);
+            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
+
+            inputRemoved = inputRemoved * delta * spaceConstraintModifier;
 
             // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
             var availableAmount = bag.GetCompoundAmount(entry.Key);
@@ -429,10 +431,12 @@ public class ProcessSystem
             // For now lets assume compounds we produce are also useful
             bag.SetUseful(entry.Key);
 
-            var outputAdded = entry.Value * process.Rate * delta * environmentModifier * spaceConstraintModifier;
+            var outputAdded = entry.Value * process.Rate * environmentModifier;
 
             // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
-            currentProcessStatistics?.AddOutputAmount(entry.Key, entry.Value * process.Rate * environmentModifier);
+            currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
+
+            outputAdded = outputAdded * delta * spaceConstraintModifier;
 
             // if environmental right now this isn't released anywhere
             if (entry.Key.IsEnvironmental)
