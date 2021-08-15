@@ -1436,6 +1436,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     /// <summary>
     ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
+    ///   <a href="https://user-images.githubusercontent.com/30809803/129459294-1bc96ab2-bf4e-4269-a514-8c02ff37ff82.png">Visual explanation</a>
     /// </summary>
     /// <remarks>
     ///   <para>
