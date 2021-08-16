@@ -454,6 +454,8 @@ public static class Constants
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
 
+    public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.0005f;
+
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
@@ -577,6 +579,9 @@ public static class Constants
             AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
             0 :
             -42;
+
+    private const uint MinimumRunnableProcessFractionIsAboveEpsilon =
+        (MINIMUM_RUNNABLE_PROCESS_FRACTION > MathUtils.EPSILON) ? 0 : -42;
 
     // ReSharper restore UnreachableCode
 #pragma warning restore CA1823
