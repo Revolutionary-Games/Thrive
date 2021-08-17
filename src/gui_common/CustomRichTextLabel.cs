@@ -12,7 +12,7 @@ public class CustomRichTextLabel : RichTextLabel
     private string extendedBbcode;
 
     /// <summary>
-    ///   Custom Bbcodes exclusive for Thrive. Acts more like an extension to the built-in tags.
+    ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
     public enum ThriveBbCode
     {
@@ -29,11 +29,12 @@ public class CustomRichTextLabel : RichTextLabel
     }
 
     /// <summary>
-    ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound]glucose[/thrive:compound])
+    ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound type="glucose"]
+    ///   [/thrive:compound])
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     NOTE: including "thrive" namespace in the tag is a must, otherwise the custom parser wouldn't parse it.
+    ///     NOTE: including "thrive" namespace in a tag is a must, otherwise the custom parser wouldn't parse it.
     ///   </para>
     /// </remarks>
     [Export]
@@ -57,6 +58,16 @@ public class CustomRichTextLabel : RichTextLabel
         BbcodeEnabled = true;
     }
 
+    public override void _Draw()
+    {
+        // A workaround to get RichTextLabel's height properly update on tooltip size change
+        // See https://github.com/Revolutionary-Games/Thrive/issues/2236
+        // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
+#pragma warning disable CA2245 // Necessary for workaround
+        Invoke.Instance.Queue(() => BbcodeText = BbcodeText);
+#pragma warning restore CA2245
+    }
+
     /// <summary>
     ///   Parses ExtendedBbcode for any custom Thrive tags and applying the final result
     ///   into this RichTextLabel's bbcode text.
@@ -72,7 +83,7 @@ public class CustomRichTextLabel : RichTextLabel
         var isIteratingContent = false;
 
         // The index of a closing bracket in a last iterated opening tag, used
-        // to retrieve the tagged substring
+        // to retrieve the substring enclosed between start and end tag
         var lastStartingTagEndIndex = 0;
 
         for (int index = 0; index < extendedBbcode.Length; ++index)
@@ -110,7 +121,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                     if (character == '[' || index == extendedBbcode.Length - 1)
                     {
-                        // No closing bracket found, just write normally to the final string and abort trying to parse
+                        // No closing bracket found, just write normally into the final string and abort
+                        // trying to parse
                         result.Append($"[{currentTagBlock}");
                         isIteratingTag = false;
                     }
@@ -132,7 +144,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var leftHandSide = tagBlock.Split(":");
 
-                // Invalid tag syntax, probably not a thrive tag or missing a part
+                // Invalid bbcode syntax, probably not a thrive bbcode or missing a part
                 if (leftHandSide.Length != 2)
                 {
                     result.Append($"[{tagBlock}]");
@@ -143,7 +155,7 @@ public class CustomRichTextLabel : RichTextLabel
                 // Custom bbcode Thrive namespace
                 var bbcodeNamespace = leftHandSide[0];
 
-                // Not a thrive custom bbcode, don't parse this
+                // Not a thrive bbcode, don't parse this
                 if (!bbcodeNamespace.Contains("thrive"))
                 {
                     result.Append($"[{tagBlock}]");
@@ -171,7 +183,7 @@ public class CustomRichTextLabel : RichTextLabel
                         continue;
                     }
 
-                    // Finally try building the bbcode template for the tagged substring
+                    // Finally try building the bbcode template for the enclosed substring
 
                     var closingTagStartIndex = extendedBbcode.IndexOf("[", lastStartingTagEndIndex,
                         StringComparison.InvariantCulture);
@@ -189,7 +201,7 @@ public class CustomRichTextLabel : RichTextLabel
                     }
                     else
                     {
-                        // BBcode is not present in the enum
+                        // BBCode is not present in the enum
                         result.Append(input);
                         GD.PrintErr($"Failed parsing custom thrive bbcode: {bbcode}, it probably doesn't exist");
                     }
@@ -217,40 +229,61 @@ public class CustomRichTextLabel : RichTextLabel
     /// <summary>
     ///   Returns a templated bbcode string for the given custom tag.
     /// </summary>
-    /// <param name="input">The string tagged by custom tags</param>
+    /// <param name="input">The string enclosed by the custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
-    /// <param name="attributes">Attributes specifying an additional functionality to the bbcode.</param>
+    /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
     private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes = null)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
 
+        var simulationParameters = SimulationParameters.Instance;
+
         switch (bbcode)
         {
             case ThriveBbCode.Compound:
             {
-                if (!SimulationParameters.Instance.DoesCompoundExist(input))
-                {
-                    GD.Print($"Compound: \"{input}\" doesn't exist, referenced in bbcode");
-                    break;
-                }
-
-                var compound = SimulationParameters.Instance.GetCompound(input);
-
-                var name = compound.Name;
-
                 var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
-                // Parse attributes if there are any
-                if (pairs.TryGetValue("text", out string value))
+                // Used to fallback to the old method if type attribute is not specified. Should be removed in
+                // roughly 6 months to give time for translations to be updated
+                // TODO: remove this fallback once it makes sense to do so
+                // https://github.com/Revolutionary-Games/Thrive/issues/2434
+                var fallback = false;
+
+                var internalName = string.Empty;
+
+                if (pairs.TryGetValue("type", out string value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
 
-                    name = value.Substring(1, value.Length - 2);
+                    internalName = value.Substring(1, value.Length - 2);
                 }
 
-                output = $"[b]{name}[/b] [font=res://src/gui_common/fonts/" +
+                // Handle fallback
+                if (!string.IsNullOrEmpty(input) && string.IsNullOrEmpty(internalName))
+                {
+                    GD.Print("Compound type not specified in bbcode, fallback to using input as " +
+                        $"the internal name: {input}");
+                    internalName = input;
+                    fallback = true;
+                }
+
+                // Check compound existence and aborts if it's not valid
+                if (!simulationParameters.DoesCompoundExist(internalName))
+                {
+                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    break;
+                }
+
+                var compound = simulationParameters.GetCompound(internalName);
+
+                // Just use the default compound's display name if input text is not specified
+                if (!fallback && string.IsNullOrEmpty(input))
+                    input = compound.Name;
+
+                output = $"[b]{(fallback ? compound.Name : input)}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
                 break;

@@ -33,6 +33,9 @@ public class MicrobeSpecies : Species
         set => throw new NotImplementedException();
     }
 
+    [JsonIgnore]
+    public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
+
     public override void RepositionToOrigin()
     {
         var centerOfMass = Organelles.CenterOfMass;

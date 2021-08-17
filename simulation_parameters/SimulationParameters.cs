@@ -77,6 +77,10 @@ public class SimulationParameters : Node
         CheckForInvalidValues();
         ResolveValueRelationships();
 
+        // Apply translations here to ensure that initial translations are correct when the game starts.
+        // This is done this way to allow StartupActions to run before SimulationParameters are loaded
+        ApplyTranslations();
+
         GD.Print("SimulationParameters are good");
     }
 

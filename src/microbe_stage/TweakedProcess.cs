@@ -1,7 +1,9 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 ///   A concrete process that organelle does. Applies a modifier to the process
 /// </summary>
-public class TweakedProcess
+public class TweakedProcess : ICloneable
 {
     public float Rate;
 
@@ -12,4 +14,9 @@ public class TweakedProcess
     }
 
     public BioProcess Process { get; }
+
+    public object Clone()
+    {
+        return new TweakedProcess(Process, Rate);
+    }
 }
