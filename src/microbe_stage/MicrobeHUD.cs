@@ -917,6 +917,7 @@ public class MicrobeHUD : Node
 
     private void UpdateAbilitiesHotBar()
     {
+        engulfHotkey.Visible = !stage.Player.Species.MembraneType.CellWall;
         bindingModeHotkey.Visible = stage.Player.CanBind;
         fireToxinHotkey.Visible = stage.Player.AgentVacuoleCount > 0;
 
