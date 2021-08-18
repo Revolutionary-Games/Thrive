@@ -12,6 +12,9 @@ public class InputDataList : ICloneable
         Data = data;
     }
 
+    /// <summary>
+    ///   Triggered when (possibly) changed inputs are applied to the Godot input map
+    /// </summary>
     public static event EventHandler InputsRemapped;
 
     /// <summary>
