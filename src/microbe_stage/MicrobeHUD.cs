@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -603,19 +603,25 @@ public class MicrobeHUD : Node
         var sunlightPercentage = biome.Compounds[sunlight].Dissolved * 100;
         var averageTemperature = biome.AverageTemperature;
 
+        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
+
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
-        oxygenBar.GetNode<Label>("Value").Text = oxygenPercentage + "%";
+        oxygenBar.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, percentageFormat, oxygenPercentage);
 
         co2Bar.MaxValue = 100;
         co2Bar.Value = co2Percentage;
-        co2Bar.GetNode<Label>("Value").Text = co2Percentage + "%";
+        co2Bar.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, percentageFormat, co2Percentage);
 
         nitrogenBar.MaxValue = 100;
         nitrogenBar.Value = nitrogenPercentage;
-        nitrogenBar.GetNode<Label>("Value").Text = nitrogenPercentage + "%";
+        nitrogenBar.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, percentageFormat, nitrogenPercentage);
 
-        sunlightLabel.GetNode<Label>("Value").Text = sunlightPercentage + "%";
+        sunlightLabel.GetNode<Label>("Value").Text =
+            string.Format(CultureInfo.CurrentCulture, percentageFormat, sunlightPercentage);
         temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
 
         // TODO: pressure?

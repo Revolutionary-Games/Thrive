@@ -17,6 +17,7 @@ public static class SaveHelper
     {
         "0.5.3.0",
         "0.5.3.1",
+        "0.5.5.0-alpha",
     };
 
     public enum SaveOrder
@@ -119,6 +120,12 @@ public static class SaveHelper
     /// <param name="name">The name of the save to load</param>
     public static void LoadSave(string name)
     {
+        if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
+        {
+            GD.PrintErr("Can't load a save while a load or save is in progress");
+            return;
+        }
+
         GD.Print("Starting load of save: ", name);
         new InProgressLoad(name).Start();
     }
@@ -338,6 +345,12 @@ public static class SaveHelper
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
+        if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
+        {
+            GD.PrintErr("Can't start save while a load or save is in progress");
+            return;
+        }
+
         new InProgressSave(type, stateRoot, data =>
                 CreateSaveObject(gameState, data.Type),
             (inProgress, save) =>
