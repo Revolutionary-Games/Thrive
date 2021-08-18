@@ -496,13 +496,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
 
-            // Colony children shapes need reparenting to their master
-            // The shapes have to be reparented to their original microbe than to the master again
-            // maybe enigne bug
-            if (this != Colony.Master && Colony != null)
+            // Colony children shapes need re-parenting to their master
+            // The shapes have to be re-parented to their original microbe than to the master again
+            // maybe engine bug
+            if (Colony != null && this != Colony.Master)
             {
                 ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
-                ReParentShapes(Colony.Master, OffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
+                ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
             }
 
             // And recompute storage
@@ -614,7 +614,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     /// <param name="bodyShape">The shape that was hit</param>
     /// <returns>The actual microbe that was hit</returns>
-    public Microbe GetActualHitMicrobe(int bodyShape)
+    public Microbe GetMicrobeFromShape(int bodyShape)
     {
         if (Colony == null)
             return this;
@@ -1456,7 +1456,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 parent = ColonyParent;
             }
 
-            ReParentShapes(Colony.Master, OffsetRelativeToMaster(), parent.Rotation, Rotation);
+            ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), parent.Rotation, Rotation);
         }
         else
         {
@@ -1481,10 +1481,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
     {
-        return colony.ColonyMembers.First(m => m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID));
+        foreach (var m in colony.ColonyMembers)
+        {
+            if (m.organelles.Any(o => o.HasShape(ownerID)) || m.IsPilus(ownerID))
+                return m;
+        }
+
+        throw new InvalidOperationException();
     }
 
-    private Vector3 OffsetRelativeToMaster()
+    private Vector3 GetOffsetRelativeToMaster()
     {
         return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(
             Vector3.Down,
@@ -2402,9 +2408,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var touchedOwnerId = colonyLeader.ShapeFindOwner(bodyShape);
             var thisOwnerId = ShapeFindOwner(localShape);
 
-            var touchedMicrobe = colonyLeader.GetActualHitMicrobe(bodyShape);
+            var touchedMicrobe = colonyLeader.GetMicrobeFromShape(bodyShape);
 
-            var thisMicrobe = GetActualHitMicrobe(localShape);
+            var thisMicrobe = GetMicrobeFromShape(localShape);
 
             // TODO: does this need to check for disposed exception?
             if (touchedMicrobe.Dead || (Colony != null && Colony == touchedMicrobe.Colony))
@@ -2450,10 +2456,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (body is Microbe microbe)
         {
-            var thisMicrobe = GetActualHitMicrobe(localShape);
+            var hitMicrobe = GetMicrobeFromShape(localShape);
 
             // TODO: should this also check for pilus before removing the collision?
-            thisMicrobe.touchedMicrobes.Remove(microbe);
+            hitMicrobe.touchedMicrobes.Remove(microbe);
         }
     }
 
