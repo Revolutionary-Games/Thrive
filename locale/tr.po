@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-13 10:07+0300\n"
-"PO-Revision-Date: 2021-08-18 18:04+0000\n"
+"PO-Revision-Date: 2021-08-19 05:59+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -1897,9 +1897,10 @@ msgstr "Tilakoid"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]glucose[/thrive:compound] üretir. [thrive:"
-"compound]carbondioxide[/thrive:compound] konsantrasyonu ve [thrive:"
-"compound]sunlight[/thrive:compound] şiddeti ile doğru orantılıdır"
+"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thrive:"
+"compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] "
+"konsantrasyonu ve [thrive:compound type=\"sunlight\"]güneş "
+"ışığı[/thrive:compound] şiddeti ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -1915,11 +1916,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]hydrogensulfide[/thrive:compound]ü [thrive:"
-"compound]glucose[/thrive:compound]a dönüştürür. [thrive:"
-"compound]carbondioxide[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır. Ayrıca [thrive:compound]glucose[/thrive:compound]u [thrive:"
-"compound]atp[/thrive:compound]'ye dönüştürür"
+"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:compound] "
+"[thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. "
+"[thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] "
+"konsantrasyonu ile doğru orantılıdır. Ayrıca [thrive:compound type=\"glucose"
+"\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\""
+"]ATP'ye[/thrive:compound] dönüştürür"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -1934,10 +1936,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]iron[/thrive:compound]i [thrive:compound]atp[/thrive:"
-"compound]'ye dönüştürür. [thrive:compound]carbondioxide[/thrive:compound] "
-"ve [thrive:compound]oxygen[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır"
+"[thrive:compound type=\"iron\"]Demiri[/thrive:compound] [thrive:compound "
+"type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type="
+"\"carbondioxide\"]Karbondioksit[/thrive:compound] ve [thrive:compound type="
+"\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -1949,9 +1951,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]atp[/thrive:compound]'yi [thrive:compound]ammonia[/thrive:"
-"compound]a dönüştürür. [thrive:compound]nitrogen[/thrive:compound] "
-"konsantrasyonu ile doğru orantılıdır"
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
+"\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound type="
+"\"nitrogen\"]Azot[/thrive:compound] konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -1965,10 +1967,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]atp[/thrive:compound]'yi [thrive:compound]oxytoxy[/thrive:"
-"compound]'ye dönüştürür. [thrive:compound]oxygen[/thrive:compound] "
-"konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:"
-"input] tuşuna basıldığında toksin salabilir."
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
+"\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound "
+"type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru "
+"orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında "
+"toksin salabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -1979,8 +1982,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Hücrenin hareket hızını arttırmak için [thrive:compound]atp[/thrive:"
-"compound] kullanır"
+"Hücrenin hareket hızını arttırmak için [thrive:compound type=\"atp\""
+"]ATP[/thrive:compound] kullanır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2047,9 +2050,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]glucose[/thrive:compound]u [thrive:compound]atp[/thrive:"
-"compound]'ye dönüştürür. [thrive:compound]oxygen[/thrive:compound] "
-"konsantrasyonu ile doğru orantılıdır"
+"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] [thrive:compound "
+"type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type="
+"\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2064,9 +2067,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]glucose[/thrive:compound] üretir. [thrive:"
-"compound]carbondioxide[/thrive:compound] ve [thrive:compound]sunlight[/"
-"thrive:compound] şiddeti ile doğru orantılıdır"
+"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thrive:"
+"compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] ve [thrive:"
+"compound type=\"sunlight\"]güneş ışığı[/thrive:compound] şiddeti ile doğru "
+"orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2086,9 +2090,9 @@ msgstr "Termoplast"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]glucose[/thrive:compound] üretir. [thrive:"
-"compound]carbondioxide[/thrive:compound] konsantrasyonu ve sıcaklık ile "
-"doğru orantılıdır."
+"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. [thrive:"
+"compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] "
+"konsantrasyonu ve sıcaklık ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2109,10 +2113,10 @@ msgstr "İşlev yok"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]hydrogensulfide[/thrive:compound]ü [thrive:"
-"compound]glucose[/thrive:compound]a dönüştürür. [thrive:"
-"compound]carbondioxide[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır"
+"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:compound] "
+"[thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. "
+"[thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] "
+"konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2125,10 +2129,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]atp[/thrive:compound]'yi [thrive:compound]ammonia[/thrive:"
-"compound]a dönüştürür. [thrive:compound]nitrogen[/thrive:compound] ve "
-"[thrive:compound]oxygen[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır"
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
+"\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound type="
+"\"nitrogen\"]Azot[/thrive:compound] ve [thrive:compound type=\"oxygen\""
+"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2153,10 +2157,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound]atp[/thrive:compound]'yi [thrive:compound]oxytoxy[/thrive:"
-"compound]'ye dönüştürür. [thrive:compound]oxygen[/thrive:compound] "
-"konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:"
-"input] tuşuna basıldığında toksin salabilir."
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
+"\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound "
+"type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru "
+"orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında "
+"toksin salabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2257,10 +2262,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
-"GKAlarda ışık yanıp sönme efektlerini etkinleştirir (örn. editör butonu "
+"GKA'larda ışık yanıp sönme efektlerini etkinleştirir (örn. editör butonunun "
 "yanıp sönmesi).\n"
 "\n"
-"Eğer editör butondaki bölümlerin kaybolması gibi hatalar deneyimlerseniz , "
+"Eğer editör butonundaki bazı parçaların kaybolması gibi hatalar "
+"deneyimlerseniz,\n"
 "bunu kapatarak problemin çözülüp çözülmediğine bakabilirsiniz."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
@@ -2778,7 +2784,7 @@ msgstr "Yükleme Hatası"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr "Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
@@ -2847,14 +2853,10 @@ msgstr ""
 "istediğinden emin misin?"
 
 #: ../src/saving/SaveList.cs:281
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, "
-"hücrede geniş çapta depo olarak kullanılan daha küçük zarsı yapılar olan "
-"ve birbiriyle birleşen birkaç kesecikten oluşur. Kofulun içi; moleküller, "
-"enzimler, katılar ve diğer maddeleri içeren suyla doludur. Şekilleri "
-"değişken ve hücreler arasında değişiklik gösterir."
+"Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -2904,31 +2906,29 @@ msgstr "Seçilen kayıt uyumsuz"
 #: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu "
-"görünüyor.\n"
+"Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu görünüyor.\n"
+"Ayrıca, bu kaydı yükseltmek için kayıt yükseltici yok.\n"
 "Thrive hala yapım aşamasında olduğu için kayıt uyumluluğu bu aşamada büyük "
-"bir öncelik değil. Bu böyle olduğu için, eski kayıt dosyalarını "
-"güncellemeye yarayan oyuna gömülü bir kayıt dönüştürücü yok."
+"bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt "
+"yükseltici bulunmuyor."
 
 #: ../src/saving/SaveList.tscn:183
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
-msgstr "Seçilen kayıt uyumsuz"
+msgstr "Seçilen kayıt yükseltilebilir"
 
 #: ../src/saving/SaveList.tscn:192
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, "
-"hücrede geniş çapta depo olarak kullanılan daha küçük zarsı yapılar olan "
-"ve birbiriyle birleşen birkaç kesecikten oluşur. Kofulun içi; moleküller, "
-"enzimler, katılar ve diğer maddeleri içeren suyla doludur. Şekilleri "
-"değişken ve hücreler arasında değişiklik gösterir."
+"Seçilen kayıt Thrive'ın eski bir sürümüne ait, ancak bu kayıt "
+"yükseltilebilir.\n"
+"Yükseltmeden önce, henüz oluşturulmamışsa, yedek bir dosya oluşturulacak.\n"
+"Eğer yükseltme işlemini atlarsan, kayıt normal bir şekilde yüklenmeye "
+"çalışılacak.\n"
+"Bu kayıt yükseltilmeye çalışılsın mı?"
 
 #: ../src/saving/SaveList.tscn:207
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Kaydetme başarısız"
+msgstr "Kayıt yükseltme başarısız"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
@@ -2979,8 +2979,8 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:218
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, "
-"sıralanan kayıtları kalıcı olarak silmek istediğinden emin misin?\n"
+"Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, aşağıdaki "
+"kayıtları kalıcı olarak silmek istediğinden emin misin?\n"
 "- {0} Otomatik kayıt\n"
 "- {1} Çabuk kayıt"
 
