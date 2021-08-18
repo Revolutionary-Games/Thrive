@@ -75,6 +75,9 @@
                     if (compounds.ContainsKey(glucose) &&
                         compounds[glucose] >= Constants.GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE)
                     {
+                        // Disable tutorial in case glucose was collected before the tutorial triggered
+                        CanTrigger = false;
+
                         // Tutorial is now complete
                         Hide();
                         return true;
