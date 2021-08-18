@@ -319,7 +319,7 @@ public class CustomRichTextLabel : RichTextLabel
         return output;
     }
 
-    private void OnInputsRemapped(object sender, EventArgs arsg)
+    private void OnInputsRemapped(object sender, EventArgs args)
     {
         ParseCustomTags();
     }
