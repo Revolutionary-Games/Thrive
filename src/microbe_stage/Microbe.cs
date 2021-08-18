@@ -1316,13 +1316,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-    public void OnDestroyed()
+    public override void _ExitTree()
     {
         if (IsPlayerMicrobe)
-        {
             CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
-        }
 
+        base._ExitTree();
+    }
+
+    public void OnDestroyed()
+    {
         Colony?.RemoveFromColony(this);
 
         AliveMarker.Alive = false;
