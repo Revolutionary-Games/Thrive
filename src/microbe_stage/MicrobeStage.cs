@@ -284,6 +284,13 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             HUD.OnEnterStageTransition(true);
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
         }
+
+        // If this is a new game, place the player's starting glucose a little bit away
+        if (!IsLoadedFromSave)
+        {
+            Player.Compounds.Compounds[glucose] = Player.Compounds.Capacity * 0.3f;
+            Clouds.AddCloud(glucose, 50000.0f, new Vector3(5.0f, 0.0f, 0.0f));
+        }
     }
 
     public void OnFinishLoading(Save save)
