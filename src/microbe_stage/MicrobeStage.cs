@@ -289,7 +289,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (!IsLoadedFromSave)
         {
             Player.Compounds.Compounds[glucose] = Player.Compounds.Capacity * 0.3f;
-            Clouds.AddCloud(glucose, 50000.0f, new Vector3(7.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(glucose, 50000.0f, new Vector3(15.0f, 0.0f, 0.0f));
         }
     }
 
