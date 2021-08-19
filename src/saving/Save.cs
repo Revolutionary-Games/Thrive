@@ -5,6 +5,7 @@ using Godot;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Directory = Godot.Directory;
 using File = Godot.File;
 
@@ -133,6 +134,41 @@ public class Save
         return save;
     }
 
+    public static (SaveInformation, JObject, Image) LoadJSONStructureFromFile(string saveName)
+    {
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+        var (infoStr, saveStr, screenshotData) = LoadDataFromFile(target, true, true, true);
+
+        if (string.IsNullOrEmpty(infoStr))
+            throw new IOException("couldn't find info content in save");
+
+        if (string.IsNullOrEmpty(saveStr))
+            throw new IOException("couldn't find save content in save file");
+
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr);
+
+        // Don't use the normal deserialization as we don't want to actually create the game state, instead we want
+        // a JSON structure
+        var saveResult = JObject.Parse(saveStr);
+
+        var imageResult = new Image();
+
+        if (screenshotData?.Length > 0)
+        {
+            imageResult.LoadPngFromBuffer(screenshotData);
+        }
+
+        return (infoResult, saveResult, imageResult);
+    }
+
+    public static void WriteSaveJSONToFile(SaveInformation saveInfo, JObject saveStructure, Image screenshot,
+        string saveName)
+    {
+        var serialized = saveStructure.ToString(Formatting.None);
+
+        WriteRawSaveDataToFile(saveInfo, serialized, screenshot, saveName);
+    }
+
     /// <summary>
     ///   Writes this save to disk.
     /// </summary>
@@ -141,28 +177,47 @@ public class Save
     /// </remarks>
     public void SaveToFile()
     {
-        FileHelpers.MakeSureDirectoryExists(Constants.SAVE_FOLDER);
-        var target = SaveFileInfo.SaveNameToPath(Name);
+        WriteRawSaveDataToFile(Info, ThriveJsonConverter.Instance.SerializeObject(this), Screenshot, Name);
+    }
 
-        var justInfo = ThriveJsonConverter.Instance.SerializeObject(Info);
-        var serialized = ThriveJsonConverter.Instance.SerializeObject(this);
+    /// <summary>
+    ///   Destroys the save game states. Use if not attaching the loaded save to the scene tree
+    /// </summary>
+    public void DestroyGameStates()
+    {
+        GameState = MainGameState.Invalid;
+
+        MicrobeStage?.QueueFree();
+        MicrobeStage = null;
+
+        MicrobeEditor?.QueueFree();
+        MicrobeEditor = null;
+    }
+
+    private static void WriteRawSaveDataToFile(SaveInformation saveInfo, string saveContent, Image screenshot,
+        string saveName)
+    {
+        FileHelpers.MakeSureDirectoryExists(Constants.SAVE_FOLDER);
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+
+        var justInfo = ThriveJsonConverter.Instance.SerializeObject(saveInfo);
 
         string tempScreenshot = null;
 
-        if (Screenshot != null)
+        if (screenshot != null)
         {
+            // TODO: if in the future Godot allows converting images to in-memory PNGs that should be used here
             tempScreenshot = PathUtils.Join(Constants.SAVE_FOLDER, "tmp.png");
-            if (Screenshot.SavePng(tempScreenshot) != Error.Ok)
+            if (screenshot.SavePng(tempScreenshot) != Error.Ok)
             {
                 GD.PrintErr("Failed to save screenshot for inclusion in save");
-                Screenshot = null;
                 tempScreenshot = null;
             }
         }
 
         try
         {
-            WriteDataToSaveFile(target, justInfo, serialized, tempScreenshot);
+            WriteDataToSaveFile(target, justInfo, saveContent, tempScreenshot);
         }
         finally
         {

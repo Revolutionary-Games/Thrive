@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:39+0700\n"
-"PO-Revision-Date: 2021-07-26 15:56+0000\n"
-"Last-Translator: TomDev03 <chumbosilva200@gmail.com>\n"
+"POT-Creation-Date: 2021-08-13 10:07+0300\n"
+"PO-Revision-Date: 2021-08-13 05:59+0000\n"
+"Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -17,46 +17,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"W,A,S,D e o rato para te moveres. E para disparar OxiToxi NT se tiveres um "
-"vacúolo de toxinas. G para ativar o modo de engolfar."
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] e o rato para te moveres. [thrive:"
+"input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound] se tiveres um vacúolo de toxinas. [thrive:"
+"input]g_toggle_engulf[/thrive:input] para ativar o modo de engolfar."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"A tua célula usa ATP como fonte de energia, se este se esgotar morrerás."
+"A tua célula usa [thrive:compound type=\"atp\"][/thrive:compound] como "
+"fonte de energia, se este se esgotar morrerás."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Para desbloqueares o editor e te reproduzires necessitas de recolher "
-"Amoníaco (Nuvem Laranja) e Fosfato (Nuvem Púrpura)."
+"[thrive:compound type=\"ammonia\"][/thrive:compound] (Nuvem Laranja) e "
+"[thrive:compound type=\"phosphates\"][/thrive:compound] (Nuvem Púrpura)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Também podes engolfar células, bactérias, pedaços de ferro e pedaços de "
-"células menores do que tu pressionando G. Isto custará ATP adicional e "
-"abrandar-te-á. Não te esqueças de premir G uma segunda vez para parar de "
-"engolfar."
+"células menores do que tu pressionando "
+"[thrive:input]g_toggle_engulf[/thrive:input]. Isto custará [thrive:compound "
+"type=\"atp\"][/thrive:compound] adicional e abrandar-te-á. Não te esqueças "
+"de pressionar [thrive:input]g_toggle_engulf[/thrive:input] uma segunda vez "
+"para parar de engolfar."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulação custa ATP, o que significa que quanto maior for a tua "
-"célula, mais Mitocôndrias, Metabolossomas ou Rusticianina (ou citoplasma, "
-"o qual realiza a Glicólise) necessitas para evitar perder ATP quando te "
-"encontrares estacionário."
+"Osmorregulação custa [thrive:compound type=\"atp\"][/thrive:compound], o que "
+"significa que quanto maior for a tua célula, mais Mitocôndrias, "
+"Metabolossomas ou Rusticianina (ou citoplasma, o qual realiza a Glicólise) "
+"necessitas para evitar perder [thrive:compound type=\"atp\""
+"][/thrive:compound] quando te encontrares parado."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -70,21 +79,25 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "As várias nuvens de compostos são:\n"
 "\n"
-"Branco – Glicose\n"
-"Amarelo – Sulfureto de Hidrogénio\n"
-"Laranja – Amoníaco\n"
-"Roxo – Fosfato\n"
-"Castanho Ferrugem – Ferro\n"
+"Branco – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Amarelo – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Laranja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Roxo – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Castanho Ferrugem – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"Glicose produz ATP"
+"[thrive:compound type=\"glucose\"][/thrive:compound] produz [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
+#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"Sulfureto de Hidrogénio pode ser convertido em glicose através de "
-"quimioplastos e proteínas quimiossintetizantes. Ferro pode ser convertido "
-"em ATP via rusticianina."
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pode ser "
+"convertido em [thrive:compound type=\"glucose\"][/thrive:compound] através "
+"de quimioplastos e proteínas quimiossintetizantes. [thrive:compound type="
+"\"iron\"][/thrive:compound] pode ser convertido em [thrive:compound type="
+"\"atp\"][/thrive:compound] via rusticianina."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
@@ -127,60 +140,73 @@ msgstr ""
 "multicelularidade (ainda ausente no jogo)."
 
 #: ../simulation_parameters/common/help_texts.json:62
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estruturas Procariotas\n"
 "\n"
-"Metabolossomas: Produz ATP a partir de glicose\n"
+"Metabolossomas: Produz [thrive:compound type=\"atp\"][/thrive:compound] a "
+"partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Proteínas Quimiossintetizantes: Produz metade da quantidade de glicose a "
-"partir de Sulfureto de Hidrogénio que um quimioplasto produziria, mas "
-"também realiza glicólise, ocupa 1 Hexágono\n"
-"\n"
-"Tilacoides: Produz 1/3 da quantidade de glicose que um cloroplasto normal "
+"Proteínas Quimiossintetizantes: Produz metade da quantidade de [thrive:"
+"compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound "
+"type=\"hydrogensulfide\"][/thrive:compound] que um quimioplasto "
 "produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
 "\n"
-"Rusticianina: Converte ferro em ATP\n"
+"Tilacoides: Produz 1/3 da quantidade de [thrive:compound type=\"glucose\"]"
+"[/thrive:compound] que um cloroplasto normal produziria, mas também "
+"realiza glicólise, ocupa 1 Hexágono\n"
 "\n"
-"Nitrogenase: Converte nitrogénio atmosférico e ATP em amoníaco "
-"anaerobicamente\n"
+"Rusticianina: Converte [thrive:compound type=\"iron\"][/thrive:compound] "
+"em [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Nitrogenase: Converte nitrogénio atmosférico e [thrive:compound type=\"atp"
+"\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] anaerobicamente\n"
 "\n"
 "Citoplasma: Tem capacidade de armazenamento e realiza glicólise (Produz "
-"pequenas quatidades de ATP)"
+"pequenas quatidades de [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Organelos Externo\n"
+"Organelos Externos\n"
 "\n"
-"Flagelo: Move a tua célula mais rapidamente ao consumir ATP\n"
+"Flagelo: Move a tua célula mais rapidamente ao consumir [thrive:compound "
+"type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Pilo: Pode ser usado para apunhalar outras células"
 
 #: ../simulation_parameters/common/help_texts.json:70
+#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Organelos Limitados por Membrana\n"
 "\n"
 "Núcleo: Ocupa 11 hexágonos e permite a evolução de organelos limitados por "
-"membrana. Também duplica o tamanho da tua célula. (apenas pode ser "
-"evoluído uma única vez)\n"
+"membrana. Também duplica o tamanho da tua célula (apenas pode ser evoluído "
+"uma única vez)\n"
 "\n"
 "Agente de Adesão: Permite a ligação com outras células\n"
 "\n"
-"Mitocôndria: Produz ATP a partir de glicose e O2 atmosférico. Bastante "
-"mais eficiente que o citoplasma\n"
+"Mitocôndria: Produz [thrive:compound type=\"atp\"][/thrive:compound] a "
+"partir de [thrive:compound type=\"glucose\"][/thrive:compound] e O2 "
+"atmosférico. Bastante mais eficiente que o citoplasma\n"
 "\n"
-"Cloroplasto: Produz glicose a partir de luz solar e CO2 atmosférico\n"
+"Cloroplasto: Produz [thrive:compound type=\"glucose\"][/thrive:compound] a "
+"partir de luz solar e CO2 atmosférico\n"
 "\n"
-"Quimioplasto: Produz glicose a partir de Sulfureto de Hidrogénio\n"
+"Quimioplasto: Produz [thrive:compound type=\"glucose\"][/thrive:compound] "
+"a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Plastídeo Fixador de Nitrogénio: Produz amoníaco a partir de ATP e "
-"Nitrogénio e Oxigénio atmosférico\n"
+"Plastídeo Fixador de Nitrogénio: Produz [thrive:compound type=\"ammonia\""
+"][/thrive:compound] a partir de [thrive:compound type=\"atp\""
+"][/thrive:compound], Nitrogénio e Oxigénio atmosférico\n"
 "\n"
 "Vacúolo: Armazena 15 compostos coletados\n"
 "\n"
-"Vacúolo de Toxinas: Produz toxinas (denominadas OxiToxi NT)"
+"Vacúolo de Toxinas: Produz toxinas (denominadas [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -191,7 +217,9 @@ msgstr ""
 "na sessão de mutação atual reembolsa os PM dos mesmos. Tu podes mover ou "
 "remover completamente um organelo ao clicar no mesmo com o botão direito "
 "do rato e ao selecionar a ação apropriada do menu pop-up. Também é "
-"possível rodar organelos enquanto os colocas com A e D."
+"possível rodar organelos enquanto os colocas com [thrive:"
+"input]e_rotate_left[/thrive:input] e [thrive:input]e_rotate_right[/thrive:"
+"input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -231,8 +259,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 "Curiosidade, na vida real os procariotas possuem algo chamado "
-"Biocompartimentos, que atuam como organelos, e são de facto chamados "
-"organelos poliédricos."
+"Biocompartimentos, que atuam como organelos, sendo até chamados organelos "
+"poliédricos."
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
@@ -288,7 +316,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Eis uma dica, tu podes en[g]olfar pedaços, de ferro ou outros."
+msgstr "Eis uma dica, tu podes engolfar pedaços, de ferro ou outros."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -399,7 +427,6 @@ msgstr "Disparar toxina"
 
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2041
-#, fuzzy
 msgid "TOGGLE_ENGULF"
 msgstr "Engolfar"
 
@@ -585,44 +612,44 @@ msgid "EPIPELAGIC"
 msgstr "Zona Epipelágica"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:153
-#: ../simulation_parameters/microbe_stage/biomes.json:365
-#: ../simulation_parameters/microbe_stage/biomes.json:497
-#: ../simulation_parameters/microbe_stage/biomes.json:705
-#: ../simulation_parameters/microbe_stage/biomes.json:917
-#: ../simulation_parameters/microbe_stage/biomes.json:1129
-#: ../simulation_parameters/microbe_stage/biomes.json:1257
-#: ../simulation_parameters/microbe_stage/biomes.json:1389
-#: ../simulation_parameters/microbe_stage/biomes.json:1539
-#: ../simulation_parameters/microbe_stage/biomes.json:1671
+#: ../simulation_parameters/microbe_stage/biomes.json:168
+#: ../simulation_parameters/microbe_stage/biomes.json:395
+#: ../simulation_parameters/microbe_stage/biomes.json:542
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1509
+#: ../simulation_parameters/microbe_stage/biomes.json:1674
+#: ../simulation_parameters/microbe_stage/biomes.json:1821
 msgid "FLOATING_HAZARD"
 msgstr "Perigo Flutufante"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:170
-#: ../simulation_parameters/microbe_stage/biomes.json:382
-#: ../simulation_parameters/microbe_stage/biomes.json:514
-#: ../simulation_parameters/microbe_stage/biomes.json:722
-#: ../simulation_parameters/microbe_stage/biomes.json:934
-#: ../simulation_parameters/microbe_stage/biomes.json:1146
-#: ../simulation_parameters/microbe_stage/biomes.json:1274
-#: ../simulation_parameters/microbe_stage/biomes.json:1406
-#: ../simulation_parameters/microbe_stage/biomes.json:1556
-#: ../simulation_parameters/microbe_stage/biomes.json:1688
+#: ../simulation_parameters/microbe_stage/biomes.json:185
+#: ../simulation_parameters/microbe_stage/biomes.json:412
+#: ../simulation_parameters/microbe_stage/biomes.json:559
+#: ../simulation_parameters/microbe_stage/biomes.json:782
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1236
+#: ../simulation_parameters/microbe_stage/biomes.json:1379
+#: ../simulation_parameters/microbe_stage/biomes.json:1526
+#: ../simulation_parameters/microbe_stage/biomes.json:1691
+#: ../simulation_parameters/microbe_stage/biomes.json:1838
 msgid "SMALL_IRON_CHUNK"
 msgstr "Pequeno Pedaço de Ferro"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:285
-#: ../simulation_parameters/microbe_stage/biomes.json:417
-#: ../simulation_parameters/microbe_stage/biomes.json:549
-#: ../simulation_parameters/microbe_stage/biomes.json:757
-#: ../simulation_parameters/microbe_stage/biomes.json:969
-#: ../simulation_parameters/microbe_stage/biomes.json:1181
-#: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:1459
-#: ../simulation_parameters/microbe_stage/biomes.json:1591
-#: ../simulation_parameters/microbe_stage/biomes.json:1723
+#: ../simulation_parameters/microbe_stage/biomes.json:300
+#: ../simulation_parameters/microbe_stage/biomes.json:447
+#: ../simulation_parameters/microbe_stage/biomes.json:594
+#: ../simulation_parameters/microbe_stage/biomes.json:817
+#: ../simulation_parameters/microbe_stage/biomes.json:1044
+#: ../simulation_parameters/microbe_stage/biomes.json:1271
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1579
+#: ../simulation_parameters/microbe_stage/biomes.json:1726
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "BIG_IRON_CHUNK"
 msgstr "Grande Pedaço de Ferro"
 
@@ -630,51 +657,51 @@ msgstr "Grande Pedaço de Ferro"
 msgid "VOLCANIC_VENT"
 msgstr "Fonte hidrotermal"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:205
-#: ../simulation_parameters/microbe_stage/biomes.json:572
-#: ../simulation_parameters/microbe_stage/biomes.json:780
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1746
+#: ../simulation_parameters/microbe_stage/biomes.json:220
+#: ../simulation_parameters/microbe_stage/biomes.json:617
+#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:1067
+#: ../simulation_parameters/microbe_stage/biomes.json:1896
 msgid "MARINE_SNOW"
 msgstr "Neve marinha"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:354
+#: ../simulation_parameters/microbe_stage/biomes.json:369
 msgid "TIDEPOOL"
 msgstr "Poça de Maré"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:486
+#: ../simulation_parameters/microbe_stage/biomes.json:516
 msgid "BATHYPELAGIC"
 msgstr "Zona Batipelágica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:698
+#: ../simulation_parameters/microbe_stage/biomes.json:743
 msgid "ABYSSOPELAGIC"
 msgstr "Zona Abissopelágica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:906
+#: ../simulation_parameters/microbe_stage/biomes.json:966
 msgid "MESOPELAGIC"
 msgstr "Zona Mesopelágica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1118
+#: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
 msgstr "Litoral"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1250
+#: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
 msgstr "Caverna Subaquática"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1378
+#: ../simulation_parameters/microbe_stage/biomes.json:1483
 msgid "ICESHELF"
 msgstr "Plataforma de Gelo"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1441
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "ICESHARD"
 msgstr "Fragmento de Gelo"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1528
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
 msgid "ESTUARY"
 msgstr "Estuário"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1660
+#: ../simulation_parameters/microbe_stage/biomes.json:1795
 msgid "SEA_FLOOR"
 msgstr "Fundo Oceânico"
 
@@ -684,25 +711,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3037
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
 msgid "AMMONIA"
 msgstr "Amoníaco"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3112
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3006
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfureto de Hidrogénio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3072
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3076
 msgid "GLUCOSE"
 msgstr "Glicose"
 
@@ -713,28 +740,28 @@ msgstr "OxiToxi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3147
 msgid "IRON"
 msgstr "Ferro"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2842
 msgid "OXYGEN"
 msgstr "Oxigénio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2892
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2896
 msgid "CARBON_DIOXIDE"
 msgstr "Dióxido de Carbono"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2869
 msgid "NITROGEN"
 msgstr "Nitrogénio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3318
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2718
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2722
 msgid "SUNLIGHT"
 msgstr "Luz Solar"
 
@@ -867,7 +894,6 @@ msgid "FINISHED"
 msgstr "Concluído."
 
 #: ../src/auto-evo/AutoEvoRun.cs:118
-#, fuzzy
 msgid "NOT_RUNNING"
 msgstr "Não está a decorrer."
 
@@ -1014,22 +1040,18 @@ msgid "KEY_STANDBY"
 msgstr "Standby"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
-#, fuzzy
 msgid "KEY_OPENURL"
 msgstr "Abrir URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
-#, fuzzy
 msgid "KEY_HOMEPAGE"
 msgstr "Homepage"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
-#, fuzzy
 msgid "KEY_FAVORITES"
 msgstr "Favoritos"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
-#, fuzzy
 msgid "KEY_PRINT"
 msgstr "Print Screen"
 
@@ -1398,7 +1420,7 @@ msgstr "Sair"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor livre para micróbios"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1415,235 +1437,243 @@ msgstr ""
 "severamente e pode causar problemas. Experimente atualizar os drivers da "
 "placa gráfica e/ou forçar a utilização da placa gráfica da AMD ou Nvidia."
 
-#: ../src/general/OptionsMenu.tscn:128
+#: ../src/general/OptionsMenu.cs:758
+msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
+msgstr "Dispositivo de saída padrão"
+
+#: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
-#: ../src/general/OptionsMenu.tscn:139
+#: ../src/general/OptionsMenu.tscn:140
 msgid "SOUND"
 msgstr "Som"
 
-#: ../src/general/OptionsMenu.tscn:150
+#: ../src/general/OptionsMenu.tscn:151
 msgid "PERFORMANCE"
 msgstr "Desempenho"
 
-#: ../src/general/OptionsMenu.tscn:161
+#: ../src/general/OptionsMenu.tscn:162
 msgid "INPUTS"
 msgstr "Teclado"
 
-#: ../src/general/OptionsMenu.tscn:172
+#: ../src/general/OptionsMenu.tscn:173
 msgid "MISC"
 msgstr "Diversos"
 
-#: ../src/general/OptionsMenu.tscn:205
+#: ../src/general/OptionsMenu.tscn:206
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "FULLSCREEN"
 msgstr "Fullscreen"
 
-#: ../src/general/OptionsMenu.tscn:235
+#: ../src/general/OptionsMenu.tscn:236
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores mais altos pioram o desempenho)"
 
-#: ../src/general/OptionsMenu.tscn:272
+#: ../src/general/OptionsMenu.tscn:273
 msgid "RESOLUTION"
 msgstr "Resolução:"
 
-#: ../src/general/OptionsMenu.tscn:285
+#: ../src/general/OptionsMenu.tscn:286
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:321
+#: ../src/general/OptionsMenu.tscn:322
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correção de cor para daltónicos:"
 
-#: ../src/general/OptionsMenu.tscn:353
+#: ../src/general/OptionsMenu.tscn:354
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberração Cromática:"
 
-#: ../src/general/OptionsMenu.tscn:380
+#: ../src/general/OptionsMenu.tscn:381
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostrar barra de habilidades"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Ativar efeitos de luz da interface gráfica"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:483
-#: ../src/general/OptionsMenu.tscn:516 ../src/general/OptionsMenu.tscn:549
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
+#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
+#: ../src/general/OptionsMenu.tscn:583
 msgid "MUTE"
 msgstr "Silenciar"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:457
 msgid "MUSIC_VOLUME"
 msgstr "Volume da música"
 
-#: ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:490
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume Ambiente"
 
-#: ../src/general/OptionsMenu.tscn:522
+#: ../src/general/OptionsMenu.tscn:523
 msgid "SFX_VOLUME"
 msgstr "Volume de Efeitos"
 
-#: ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:556
 msgid "GUI_VOLUME"
 msgstr "Volume da GUI"
 
-#: ../src/general/OptionsMenu.tscn:600
+#: ../src/general/OptionsMenu.tscn:601
+msgid "AUDIO_OUTPUT_DEVICE"
+msgstr "Dispositivo de saída de áudio:"
+
+#: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
 msgstr "Idioma:"
 
-#: ../src/general/OptionsMenu.tscn:615 ../src/general/OptionsMenu.tscn:1037
+#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
 msgid "RESET"
 msgstr "Repor"
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:652
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Ajude a traduzir o jogo"
 
-#: ../src/general/OptionsMenu.tscn:650
+#: ../src/general/OptionsMenu.tscn:678
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:693
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Intervalo mínimo da\n"
 "simulação de nuvens:"
 
-#: ../src/general/OptionsMenu.tscn:672 ../src/general/OptionsMenu.tscn:714
+#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valores mais altos melhoram o desempenho)"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:735
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor da Resolução de Nuvens:"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:777
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Utilizar auto-evo durante o jogo"
 
-#: ../src/general/OptionsMenu.tscn:822
+#: ../src/general/OptionsMenu.tscn:850
 msgid "RESET_INPUTS"
 msgstr "Repor Entradas"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:878
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Reproduzir o vídeo de introdução"
 
-#: ../src/general/OptionsMenu.tscn:859
+#: ../src/general/OptionsMenu.tscn:887
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Jogar a Introdução ao Micróbio num Novo Jogo"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:896
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Guardar automaticamente durante o jogo"
 
-#: ../src/general/OptionsMenu.tscn:879
+#: ../src/general/OptionsMenu.tscn:907
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Quantidade de jogos guardados automaticamente a manter:"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:935
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Quantidade de jogos guardados rapidamente a manter:"
 
-#: ../src/general/OptionsMenu.tscn:933
+#: ../src/general/OptionsMenu.tscn:961
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriais (em novos jogos)"
 
-#: ../src/general/OptionsMenu.tscn:941
+#: ../src/general/OptionsMenu.tscn:969
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriais (no jogo atual)"
 
-#: ../src/general/OptionsMenu.tscn:957
+#: ../src/general/OptionsMenu.tscn:985
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Chaves de Cheats ativadas"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:997
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use um username personalizado"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "CUSTOM_USERNAME"
 msgstr "Username personalizado:"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1034
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Abrir pasta de capturas de ecrã"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1042
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Abrir pasta de Logs"
 
-#: ../src/general/OptionsMenu.tscn:1049 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Gravar"
 
-#: ../src/general/OptionsMenu.tscn:1066
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Repor Definições por Defeito"
 
-#: ../src/general/OptionsMenu.tscn:1078
+#: ../src/general/OptionsMenu.tscn:1106
 msgid "RESET_TO_DEFAULTS"
 msgstr "Repor as definições por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Tem a certeza que deseja repor todas as definições por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1101
+#: ../src/general/OptionsMenu.tscn:1129
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Repor as entradas por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1110
+#: ../src/general/OptionsMenu.tscn:1138
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Tem certeza de que deseja repor as definições do teclado por defeito?"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "CLOSE_OPTIONS"
 msgstr "Fechar as opções?"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1172
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Existem alterações não guardadas que serão perdidas.\n"
 "Desejas continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1166
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "SAVE_AND_CONTINUE"
 msgstr "Gravar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1175
+#: ../src/general/OptionsMenu.tscn:1203
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1191
+#: ../src/general/OptionsMenu.tscn:1219
 msgid "CANCEL"
 msgstr "Cancelar"
 
-#: ../src/general/OptionsMenu.tscn:1203 ../src/general/OptionsMenu.tscn:1226
-#: ../src/general/OptionsMenu.tscn:1250
+#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
+#: ../src/general/OptionsMenu.tscn:1278
 msgid "ERROR"
 msgstr "Erro"
 
-#: ../src/general/OptionsMenu.tscn:1212 ../src/general/OptionsMenu.tscn:1251
+#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Erro: Falha ao gravar as novas definições no ficheiro de configuração."
@@ -1657,7 +1687,7 @@ msgid "SAVE_GAME"
 msgstr "Gravar Jogo"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2146
 msgid "STATISTICS"
 msgstr "Estatísticas"
 
@@ -1690,12 +1720,12 @@ msgstr "{0} m"
 msgid "PER_SECOND_SLASH"
 msgstr "/segundo"
 
-#: ../src/gui_common/CompoundAmount.cs:166
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:246
+#: ../src/gui_common/CompoundAmount.cs:168
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:943
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:961
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2081,7 +2111,7 @@ msgstr ""
 "de glicose aumenta com a concentração de dióxido de carbono e temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1339
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:188
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:172
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Sem processos"
 
@@ -2243,7 +2273,7 @@ msgstr ""
 "desaparece."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2655
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2659
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Temperatura"
@@ -2348,9 +2378,9 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2330
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2966
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
@@ -2447,164 +2477,164 @@ msgstr "Mapa de Regiões"
 msgid "ORGANISM_STATISTICS"
 msgstr "Estatísticas de Organismo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:671
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
 msgid "SPEED_COLON"
 msgstr "Velocidade:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:701
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:703
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:731
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:733
 msgid "SIZE_COLON"
 msgstr "Tamanho:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:752
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
 msgid "GENERATION_COLON"
 msgstr "Geração:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:796
 msgid "ATP_BALANCE"
 msgstr "Saldo ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1000
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1002
 msgid "MUTATION_POINTS"
 msgstr "Pontos de Mutação"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1135
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1137
 msgid "STRUCTURE"
 msgstr "Estrutura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1157
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
 msgid "MEMBRANE"
 msgstr "Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1180
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
 msgid "BEHAVIOR"
 msgstr "Comportamento"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1232
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1234
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Procurar..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1239
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1241
 msgid "STRUCTURAL"
 msgstr "Estrutural"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1275
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1277
 msgid "PROTEINS"
 msgstr "Proteínas"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1351
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
 msgid "EXTERNAL"
 msgstr "Externo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1405
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
 msgid "ORGANELLES"
 msgstr "Organelos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1552
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
 msgid "MEMBRANE_TYPES"
 msgstr "Tipos de Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1622
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1626
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidez / Rigidez"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1661
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1665
 msgid "COLOUR"
 msgstr "Cor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1804
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nome da espécie..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1840
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCELAR AÇÃO"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1850
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1854
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRMAR"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1860
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Saldo ATP negativo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1872
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1876
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "O micróbio não está a produzir ATP suficiente para sobreviver!\n"
 "Deseja continuar?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1883
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Organelos desconectados"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1899
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Existem organelos colocados que não estão conectadas aos restantes "
 "organelos.\n"
 "Conecte todos os organelos entre si ou reverta as alterações feitas."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1999
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2008
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2012
 msgid "FOOD_CHAIN"
 msgstr "Cadeia alimentar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2021
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2025
 msgid "TIMELINE"
 msgstr "Linha temporal"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2074
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2078
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados da auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2097
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efeitos externos:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2151
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2155
 msgid "SPECIES_POPULATION"
 msgstr "População das Espécies"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2184
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2614
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2188
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2618
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condições físicas"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2797
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2292
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2801
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gases Atmosféricos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2381
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2385
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3310
 msgid "NEXT_CAPITAL"
 msgstr "PRÓXIMO"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2496
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2500
 msgid "SELECT_A_PATCH"
 msgstr "Seleciona uma região para mostrar detalhes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2531
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2535
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOCALIZAÇÃO ATUAL"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "PRESSURE"
 msgstr "Pressão"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3226
 msgid "SPECIES_PRESENT"
 msgstr "Espécies presentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3283
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Mover para esta região"
 
@@ -2622,11 +2652,11 @@ msgid "MEGA_YEARS"
 msgstr "milhões de anos"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:836
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:837
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
 msgid "YEARS"
 msgstr "anos"
 
@@ -2655,23 +2685,23 @@ msgstr "Movimento Base"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:841
 msgid "SPECIES_LIST"
 msgstr "Lista de Espécies"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:867
 msgid "FREEBUILDING"
 msgstr "Modo livre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:934
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:952
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:939
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:957
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m abaixo do nível do mar"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:978
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:996
 msgid "WITH_POPULATION"
 msgstr "{0} com população: {1}"
 
@@ -2714,46 +2744,50 @@ msgstr ""
 "Parabéns, ganhaste esta versão do Thrive! Podes continuar a jogar depois "
 "deste ecrã fechar se desejares, ou começar um novo jogo num novo mundo."
 
-#: ../src/saving/InProgressLoad.cs:76 ../src/saving/InProgressLoad.cs:95
-#: ../src/saving/InProgressLoad.cs:140
+#: ../src/saving/InProgressLoad.cs:77 ../src/saving/InProgressLoad.cs:96
+#: ../src/saving/InProgressLoad.cs:145
 msgid "LOADING_GAME"
 msgstr "A carregar o jogo"
 
-#: ../src/saving/InProgressLoad.cs:78
+#: ../src/saving/InProgressLoad.cs:79
 msgid "READING_SAVE_DATA"
 msgstr "A ler dados guardados"
 
-#: ../src/saving/InProgressLoad.cs:97
+#: ../src/saving/InProgressLoad.cs:98
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "A criar objetos a partir do jogo guardado"
 
-#: ../src/saving/InProgressLoad.cs:104
+#: ../src/saving/InProgressLoad.cs:107
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Ocorreu um erro ao carregar os dados guardados"
 
-#: ../src/saving/InProgressLoad.cs:128
+#: ../src/saving/InProgressLoad.cs:133
 msgid "SAVE_IS_INVALID"
 msgstr "O jogo guardado é inválido"
 
-#: ../src/saving/InProgressLoad.cs:129
+#: ../src/saving/InProgressLoad.cs:134
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "O jogo guardado tem um estado de jogo inválido"
 
-#: ../src/saving/InProgressLoad.cs:142
+#: ../src/saving/InProgressLoad.cs:147
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "A processar objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:155
+#: ../src/saving/InProgressLoad.cs:162
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Ocorreu um erro durante o processamento de objetos carregados"
 
-#: ../src/saving/InProgressLoad.cs:161
+#: ../src/saving/InProgressLoad.cs:168
 msgid "LOAD_FINISHED"
 msgstr "Carregamento terminado"
 
-#: ../src/saving/InProgressLoad.cs:184
+#: ../src/saving/InProgressLoad.cs:191
 msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
+
+#: ../src/saving/InProgressLoad.cs:220
+msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
+msgstr ""
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
@@ -2791,11 +2825,11 @@ msgstr "Substituir o jogo guardado existente:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Substituir o jogo guardado existente?"
 
-#: ../src/saving/SaveHelper.cs:378
+#: ../src/saving/SaveHelper.cs:379
 msgid "SAVING_SUCCEEDED"
 msgstr "Guardado com sucesso"
 
-#: ../src/saving/SaveHelper.cs:388
+#: ../src/saving/SaveHelper.cs:389
 msgid "SAVING_FAILED"
 msgstr "Falha ao gravar! Ocorreu um erro"
 
@@ -2815,32 +2849,38 @@ msgstr "Guardar rapidamente"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
-#: ../src/saving/SaveList.cs:171
+#: ../src/saving/SaveList.cs:187
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Apagar este jogo guardado não pode ser revertido, tens a certeza que "
 "desejas apagar permanentemente {0}?"
 
-#: ../src/saving/SaveList.tscn:47 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.cs:281
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"Atualizar o jogo guardado selecionado falhou devido ao seguinte erro:\n"
+"{0}"
+
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr "A carregar..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr "Apagar este jogo guardado?"
 
-#: ../src/saving/SaveList.tscn:84 ../src/saving/SaveList.tscn:108
+#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Carregar jogo guardado incompatível?"
 
-#: ../src/saving/SaveList.tscn:93
+#: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo guardado é de uma versão mais recente do Thrive e muito "
 "provavelmente incompatível.\n"
 "Quer tentar carregar o jogo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:117
+#: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo guardado é de uma versão antiga do Thrive e pode ser "
@@ -2851,11 +2891,11 @@ msgstr ""
 "têm uma prioridade alta no momento.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:132
+#: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
 msgstr "Carregar jogo guardado inválido?"
 
-#: ../src/saving/SaveList.tscn:141
+#: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Não foi possível carregar as informações guardadas neste arquivo.\n"
@@ -2863,18 +2903,40 @@ msgstr ""
 "recente que não é compreendido por esta versão do Thrive.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:156
+#: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "O jogo guardado selecionado é incompatível"
 
-#: ../src/saving/SaveList.tscn:166
+#: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Foi detetado que o jogo guardado selecionado é incompatível com esta "
+"Foi detetado que o jogo guardado selecionado é incompatível com a atual "
 "versão do Thrive.\n"
-"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade "
-"de jogos guardados não é uma prioridade alta, como tal, não existe um "
-"conversor de jogos guardados para atualizar jogos guardados antigos."
+"Não existe nenhum atualizador de jogos guardados para atualizar este jogo "
+"guardado.\n"
+"Como o Thrive ainda está no início do desenvolvimento, a compatibilidade de "
+"jogos guardados não é uma prioridade alta, como tal, não existe um conversor "
+"de jogos guardados para todas as versões."
+
+#: ../src/saving/SaveList.tscn:183
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "O jogo guardado selecionado é incompatível"
+
+#: ../src/saving/SaveList.tscn:192
+#, fuzzy
+msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+msgstr ""
+"O jogo guardado selecionado é de uma versão anterior do Thrive, mas pode ser "
+"atualizado.\n"
+"Um ficheiro reserva irá ser criado antes da atualização, se ainda não "
+"existir.\n"
+"Se saltar a atualização, o ficheiro guardado irá ser tentado lido "
+"normalmente. \n"
+"Tentar atualizar este ficheiro guardado?"
+
+#: ../src/saving/SaveList.tscn:207
+msgid "SAVE_UPGRADE_FAILED"
+msgstr "Falha ao atualizar o jogo guardado"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
