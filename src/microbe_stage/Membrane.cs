@@ -220,9 +220,12 @@ public class Membrane : MeshInstance
     }
 
     /// <summary>
-    ///   Finds the position of external organelles based on its "internal" location.
+    ///   Finds the point on the membrane nearest to the given point.
     /// </summary>
     /// <remarks>
+    ///   <para>
+    ///     Used for finding out where to put an external organelle.
+    ///   </para>
     ///   <para>
     ///     The returned Vector is in world coordinates (x, 0, z) and
     ///     not in internal membrane coordinates (x, y, 0). This is so
@@ -230,7 +233,7 @@ public class Membrane : MeshInstance
     ///     everywhere this is used.
     ///   </para>
     /// </remarks>
-    public Vector3 GetExternalOrganelle(float x, float y)
+    public Vector3 GetVectorTowardsNearestPointOfMembrane(float x, float y)
     {
         // Calculate now if dirty to make flagella positioning only have to be done once
         // NOTE: that flagella position should only be read once all organelles that are
