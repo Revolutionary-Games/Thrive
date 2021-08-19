@@ -2392,6 +2392,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var touchedOwnerId = colonyLeader.ShapeFindOwner(bodyShape);
             var thisOwnerId = ShapeFindOwner(localShape);
 
+            // This can happen during the binding process
+            if (thisOwnerId == 0)
+                return;
+
             var touchedMicrobe = colonyLeader.GetMicrobeFromShape(bodyShape);
 
             var thisMicrobe = GetMicrobeFromShape(localShape);
@@ -2442,10 +2446,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             Microbe hitMicrobe;
 
-            // The two microbes stopped contact because they bound.
+            // The two microbes stopped contact because they bound, but re-parenting is not complete yet.
             // Due to shape re-parenting localShape is no longer valid and we should remove the touchedMicrobe
-            // from the colony master (to whom we made contact)
-            if (Colony != null && Colony == microbe.Colony)
+            // from the colony master (to whom we made contact).
+            if (Colony != null && Colony == microbe.Colony && GetParent() != microbe.GetParent())
                 hitMicrobe = microbe;
             else
                 hitMicrobe = GetMicrobeFromShape(localShape);
