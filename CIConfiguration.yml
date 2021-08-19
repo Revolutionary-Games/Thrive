@@ -5,7 +5,6 @@ jobs:
     image: thrive/godot-ci:v10
     cache:
       loadFrom:
-
         - v3-{Branch}-build
         - v3-master-build
       writeTo: v2-{Branch}-build
