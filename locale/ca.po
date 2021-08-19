@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-13 10:07+0300\n"
-"PO-Revision-Date: 2021-06-22 20:42+0000\n"
+"PO-Revision-Date: 2021-08-18 16:41+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ca/>\n"
@@ -17,50 +17,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Fes servir les tecles W,A,S,D i el ratolí per moure't per la pantalla. "
-"Clica la tecla E per a disparar la toxina OxyToxy NT; per fer-ho, cal que "
-"tinguis un vacúol de toxines. Clica la tecla G per a activar el mode "
-"d'engolir."
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive"
+":input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_ri"
+"ght[/thrive:input] i fer servir el ratolí per canviar la orientació. "
+"[thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. "
+"[thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"La vostra cèl·lula fa servir els nucleòtids ATP com a font d'energia; si "
-"se li n'esgoten totes les reserves, es morirà."
+"La teva cèl·lula fa servir [thrive:compound type=\"atp\"][/thrive:compound] "
+"com a font d'energia, si se li acaba es morirà."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Per tal de desbloquejar l'editor i reproduïr-vos, heu de recol·lectar "
-"Amoníac (núvols de color taronja) i Fosfats (núvols de color violeta)."
+"Per desbloquejar l'editor i reproduïr-vos heu de recol·lectar [thrive:"
+"compound type=\"ammonia\"][/thrive:compound] (Núvol Taronja) i [thrive:"
+"compound type=\"phosphates\"][/thrive:compound] (Núvol Violeta)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"També pots engolir cèl·lules, bocins de cèl·lules i trossos de ferro, "
-"sempre que siguin més petits que la teva cèl·lula. Per fer-ho, clica la "
-"tecla G per a activar el mode d'engolir. Això farà que gastis més ATP i "
-"que et moguis més a poc a poc. No t'oblidis, per tant, de tornar a clicar "
-"la tecla G una altra vegada per a desactivar el mode d'engolir."
+"També pots engolir cèl·lules, bacteris, fragments de Ferro i fragments de "
+"cèl·lules mortes prement [thrive:input]g_toggle_engulf[/thrive:input]. Això "
+"comporta un cost afegit [thrive:compound type=\"atp\"][/thrive:compound] i "
+"et farà més lent. No t'oblidis de prèmer "
+"[thrive:input]g_toggle_engulf[/thrive:input] una segona vegada per deixar "
+"d'engolir."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"L'osmoregulació consumeix molt ATP. Per tant, com més gran sigui la teva "
-"cèl·lula, més orgànuls (com els Mitocondris) o proteïnes (com el "
-"Metabolosoma i la Rusticianina) o citoplasma necessitaràs per tal de no "
-"perdre ATP quan estigueu quiets."
+"L'Osmoregulació comporta un cost en [thrive:compound type=\"atp\""
+"][/thrive:compound], de manera que, com més gran és la teva cèl·lula, més "
+"Mitocondris, Metabolosomes o Rusticianina (o Citoplasma, que duu a terme la "
+"Glicòlisi) necessites per evitar morir [thrive:compound type=\"atp\""
+"][/thrive:compound] quan estàs quiet."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -72,23 +77,26 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"Els núvols que et pots trobar contenen els següents compostos:\n"
+"Els diferents núvols de compostos són:\n"
 "\n"
-"Blanc - Glucosa\n"
-"Groc - Àcid Sulfhídric\n"
-"Taronja - Amoníac\n"
-"Violeta - Fosfats\n"
-"Marró bru - Ferro\n"
+"Blanc – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Groc – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Taronja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Violeta – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Marró rovellat – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"La Glucosa produeix ATP"
+"[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound "
+"type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"L'Àcid Sulfhídric pot ser transformat en Glucosa mitjançant Quimioplasts i "
-"Proteïnes Quimiosintetitzadores. El Ferro pot ser transformat en ATP "
-"mitjançant Rusticianina."
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pot ser "
+"transformat en [thrive:compound type=\"glucose\"][/thrive:compound] per "
+"mitjà de Quimioplasts i Proteïnes Quimiosintetitzadores. [thrive:compound "
+"type=\"iron\"][/thrive:compound] pot ser transformat per mitjà de la "
+"proteïna Rusticianina en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
