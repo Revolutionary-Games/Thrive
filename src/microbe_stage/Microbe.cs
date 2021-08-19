@@ -1439,7 +1439,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     /// <summary>
     ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
-    ///   <a href="https://user-images.githubusercontent.com/30809803/129459294-1bc96ab2-bf4e-4269-a514-8c02ff37ff82.png">Visual explanation</a>
+    ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
+    ///     Visual explanation
+    ///   </a>
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -1460,15 +1462,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // A vector from me to the parent
         var vectorToParent = -vectorFromParent;
 
+        // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right would be nice
         // This vector represents the vectorToParent as if I had no rotation.
         // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
         // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
         var vectorToParentWithoutRotation = vectorToParent.Rotated(Vector3.Down, Rotation.y);
 
-        // This vector represents the vectorFromParent as if he had no rotation.
+        // This vector represents the vectorFromParent as if the parent had no rotation.
         var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
 
-        // Calculates the vector from the parents' center to his membrane towards me with canceled out rotation.
+        // Calculates the vector from the center of the parent's membrane towards me with canceled out rotation.
         // This gets added to the vector calculated one call before.
         var correctedVectorFromParent = ColonyParent.Membrane
             .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
