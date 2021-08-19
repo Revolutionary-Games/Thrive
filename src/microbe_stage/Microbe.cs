@@ -2449,7 +2449,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // The two microbes stopped contact because they bound, but re-parenting is not complete yet.
             // Due to shape re-parenting localShape is no longer valid and we should remove the touchedMicrobe
             // from the colony master (to whom we made contact).
-            if (Colony != null && Colony == microbe.Colony && !(microbe.GetParent() is Microbe && GetParent() is Microbe))
+            if (Colony != null && Colony == microbe.Colony &&
+                !(microbe.GetParent() is Microbe && GetParent() is Microbe))
                 hitMicrobe = this;
             else
                 hitMicrobe = GetMicrobeFromShape(localShape);
