@@ -33,7 +33,7 @@ void fragment(){
     
     vec4 normalmap = texture(normalTexture, UV);
     vec3 normals = vec3 (normalmap.r * 2.0 - 1.0, normalmap.g * 2.0 - 1.0, 
-    normalmap.b * 2.0 - 1.0);
+        normalmap.b * 2.0 - 1.0);
 
     float y = normals.y;
     normals.y = -normals.z;
@@ -41,7 +41,7 @@ void fragment(){
 
     vec4 damaged = texture(damagedTexture, UV);
     vec4 final = vec4 ((((albedo.rgb * healthFraction) + 
-        (damaged.rbg * (1.f - healthFraction))) * tint.rgb), albedo.a);
+        (damaged.rbg * (1.f - healthFraction))) * tint.rgb), mix(damaged.a, albedo.a, 1.0));
 
     vec4 dissolveTex = texture(dissolveTexture, UV);
 
