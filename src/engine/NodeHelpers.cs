@@ -97,13 +97,16 @@ public static class NodeHelpers
     /// </remarks>
     public static void ReParent(this Node node, Node newParent)
     {
-        if (node.GetParent() == null)
+        lock (node.GetParent())
         {
-            GD.PrintErr("Node needs parent to be re-parented");
-            return;
-        }
+            if (node.GetParent() == null)
+            {
+                GD.PrintErr("Node needs parent to be re-parented");
+                return;
+            }
 
-        node.GetParent().RemoveChild(node);
-        newParent.AddChild(node);
+            node.GetParent().RemoveChild(node);
+            newParent.AddChild(node);
+        }
     }
 }
