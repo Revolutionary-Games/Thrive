@@ -396,6 +396,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         if (to == currentShapesParent)
             return;
 
+        // TODO: we are in trouble if ever the hex count mismatches with the shapes. It's fine if this can never happen
+        // but a more bulletproof way would be to add code to at least detect and try to recover if there is no
+        // matching hex for a shape
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
         var hexes = Definition.GetRotatedHexes(Orientation).ToArray();
 
         for (int i = 0; i < shapes.Count; i++)
@@ -403,6 +407,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             Vector3 shapePosition = ShapeTruePosition(hexes[i]);
             if (ParentMicrobe.Colony != null)
             {
+                // TODO: quaternion usage would be good here
+                // https://github.com/Revolutionary-Games/Thrive/issues/2504
                 shapePosition = shapePosition.Rotated(Vector3.Up, parentRotation.y);
                 if (ParentMicrobe.ColonyParent != ParentMicrobe.Colony.Master)
                     shapePosition = shapePosition.Rotated(Vector3.Up, masterRotation.y);
@@ -496,6 +502,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             // This is needed to actually add the shape
             to.ShapeOwnerAddShape(ownerId, shape);
+
+            // TODO: merge this common logic with ReParentShapes to a helper method
+            // https://github.com/Revolutionary-Games/Thrive/issues/2504
 
             // The shape is in our parent so the final position is our
             // offset plus the hex offset

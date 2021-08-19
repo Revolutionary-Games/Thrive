@@ -97,6 +97,15 @@ public static class NodeHelpers
     /// </remarks>
     public static void ReParent(this Node node, Node newParent)
     {
+        // TODO: remove this lock from here. This shouldn't even help at all, unless Godot runs physics callbacks
+        // concurrently. I'm pretty sure that is not the case so this shouldn't even help at all as this won't prevent
+        // the same thread from going in here at all. If it turns out that Godot *does* run physics callbacks from
+        // multiple threads, we need to investigate all of our callbacks and move to using Invoke for any that do
+        // non-thread safe operations or ones that affect Godot node trees.
+        // After reading through the callbacks, this *might* be caused by re-parenting happening during a physics
+        // callback causing a nested call for contact end callbacks as the re-parenting operation removes the node
+        // from a scene, which presumably triggers the end contact callbacks.
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
         lock (node.GetParent())
         {
             if (node.GetParent() == null)
