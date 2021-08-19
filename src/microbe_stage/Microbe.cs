@@ -605,9 +605,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var touchedOwnerId = ShapeFindOwner(bodyShape);
 
-        // Not found. TODO: should we report an error here?
+        // Not found
         if (touchedOwnerId == 0)
-            return this;
+            throw new ArgumentException($"Could not find shape with id {bodyShape}");
 
         return GetColonyMemberWithShapeOwner(touchedOwnerId, Colony);
     }
