@@ -1135,7 +1135,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+15"
+ModifierValue = "+1"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1786,7 +1786,7 @@ margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "STORAGE"
-ModifierValue = "+6"
+ModifierValue = "+8"
 ModifierValueColor = Color( 0, 1, 0, 1 )
 ModifierIcon = ExtResource( 12 )
 
@@ -1796,7 +1796,7 @@ margin_right = 24.0
 margin_bottom = 18.0
 custom_fonts/font = ExtResource( 26 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
-text = "+6"
+text = "+8"
 
 [node name="Name" type="Label" parent="GroupHolder/organelleSelection/vacuole/MarginContainer/VBoxContainer/ModifierList/storage"]
 margin_left = 28.0
