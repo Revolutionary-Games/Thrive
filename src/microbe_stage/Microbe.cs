@@ -597,7 +597,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   Gets the actually hit microbe (potentially in a colony)
     /// </summary>
     /// <param name="bodyShape">The shape that was hit</param>
-    /// <returns>The actual microbe that was hit</returns>
+    /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
     public Microbe GetMicrobeFromShape(int bodyShape)
     {
         if (Colony == null)
@@ -607,7 +607,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Not found
         if (touchedOwnerId == 0)
-            throw new ArgumentException($"Could not find shape with id {bodyShape}");
+            return null;
 
         return GetColonyMemberWithShapeOwner(touchedOwnerId, Colony);
     }
@@ -2392,13 +2392,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             var touchedOwnerId = colonyLeader.ShapeFindOwner(bodyShape);
             var thisOwnerId = ShapeFindOwner(localShape);
 
-            // This can happen during the binding process
-            if (thisOwnerId == 0)
-                return;
-
             var touchedMicrobe = colonyLeader.GetMicrobeFromShape(bodyShape);
 
             var thisMicrobe = GetMicrobeFromShape(localShape);
+
+            // bodyShape or localShape are invalid. This can happen during re-parenting
+            if (touchedMicrobe == null || thisMicrobe == null)
+                return;
 
             // TODO: does this need to check for disposed exception?
             if (touchedMicrobe.Dead || (Colony != null && Colony == touchedMicrobe.Colony))
@@ -2449,8 +2449,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // The two microbes stopped contact because they bound, but re-parenting is not complete yet.
             // Due to shape re-parenting localShape is no longer valid and we should remove the touchedMicrobe
             // from the colony master (to whom we made contact).
-            if (Colony != null && Colony == microbe.Colony && GetParent() != microbe.GetParent())
-                hitMicrobe = microbe;
+            if (Colony != null && Colony == microbe.Colony && !(microbe.GetParent() is Microbe && GetParent() is Microbe))
+                hitMicrobe = this;
             else
                 hitMicrobe = GetMicrobeFromShape(localShape);
 

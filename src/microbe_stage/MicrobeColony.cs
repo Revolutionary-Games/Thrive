@@ -94,7 +94,6 @@ public class MicrobeColony
         microbe.Colony = this;
         microbe.ColonyChildren = new List<Microbe>();
 
-        master.OnColonyMemberAdded(microbe);
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
     }
 }
