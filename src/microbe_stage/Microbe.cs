@@ -2495,23 +2495,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (body is Microbe microbe)
         {
-            Microbe hitMicrobe;
-
-            // The two microbes stopped contact because they bound, but re-parenting is not complete yet.
-            // Due to shape re-parenting localShape is no longer valid and we should remove the touchedMicrobe
-            // from the colony master (to whom we made contact).
-            // TODO: is it *really* necessary to check if the parent nodes are microbe instances. This seems very
-            // hacky thing to me - hhyyrylainen
+            // GetMicrobeFromShape returns null when it was provided an invalid shape id.
+            // This can happen when re-parenting is in progress.
             // https://github.com/Revolutionary-Games/Thrive/issues/2504
-            if (Colony != null && Colony == microbe.Colony &&
-                !(microbe.GetParent() is Microbe && GetParent() is Microbe))
-            {
-                hitMicrobe = this;
-            }
-            else
-            {
-                hitMicrobe = GetMicrobeFromShape(localShape);
-            }
+            var hitMicrobe = GetMicrobeFromShape(localShape) ?? this;
 
             // TODO: should this also check for pilus before removing the collision?
             hitMicrobe.touchedMicrobes.Remove(microbe);
