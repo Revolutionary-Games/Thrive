@@ -1344,13 +1344,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-    public void OnDestroyed()
+    public override void _ExitTree()
     {
         if (IsPlayerMicrobe)
-        {
             CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
-        }
 
+        base._ExitTree();
+    }
+
+    public void OnDestroyed()
+    {
         Colony?.RemoveFromColony(this);
 
         AliveMarker.Alive = false;
@@ -1489,23 +1492,65 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (ColonyParent == null)
             return;
 
-        var oldRotation = Rotation;
-        var vectorToParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
+        var newTransform = GetNewRelativeTransform();
+
+        Rotation = newTransform.rotation;
+        Translation = newTransform.translation;
+
         ChangeNodeParent(ColonyParent);
+    }
 
-        var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
-        var vectorToMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+    /// <summary>
+    ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
+    ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
+    ///     Visual explanation
+    ///   </a>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Storing the old global translation and rotation, re-parenting and then reapplying the stored values is
+    ///     worse than this code because this code utilizes GetVectorTowardsNearestPointOfMembrane. This reduces the
+    ///     visual gap between the microbes in a colony.
+    ///   </para>
+    /// </remarks>
+    /// <returns>Returns relative translation and rotation</returns>
+    private (Vector3 translation, Vector3 rotation) GetNewRelativeTransform()
+    {
+        // Gets the global rotation of the parent
+        var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
 
-        vectorToParentRotated = (-vectorToParent).Rotated(Vector3.Down, ColonyParent.Rotation.y);
-        var parentVectorToItsMembrane =
-            ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+        // A vector from the parent to me
+        var vectorFromParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
 
-        var requiredDistance = vectorToMembrane.Length() + parentVectorToItsMembrane.Length();
+        // A vector from me to the parent
+        var vectorToParent = -vectorFromParent;
 
-        var offset = vectorToParent.Normalized() * requiredDistance;
+        // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right would be nice
+        // This vector represents the vectorToParent as if I had no rotation.
+        // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
+        // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
+        var vectorToParentWithoutRotation = vectorToParent.Rotated(Vector3.Down, Rotation.y);
 
-        Rotation = oldRotation - ColonyParent.Rotation;
-        Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
+        // This vector represents the vectorFromParent as if the parent had no rotation.
+        var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+
+        // Calculates the vector from the center of the parent's membrane towards me with canceled out rotation.
+        // This gets added to the vector calculated one call before.
+        var correctedVectorFromParent = ColonyParent.Membrane
+            .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
+                vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
+
+        // Calculates the vector from my center to my membrane towards the parent.
+        // This vector gets rotated back to cancel out the rotation applied two calls above.
+        // -= to negate the vector, so that the two membrane vectors amplify
+        correctedVectorFromParent -= Membrane
+            .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x, vectorToParentWithoutRotation.z)
+            .Rotated(Vector3.Up, Rotation.y);
+
+        // Rotated because the rotational scope is different.
+        var newTranslation = correctedVectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+
+        return (newTranslation, Rotation - globalParentRotation);
     }
 
     private void SetScaleFromSpecies()
@@ -2317,7 +2362,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // The back of the microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
-        var membraneCoords = Membrane.GetExternalOrganelle(exit.x, exit.z);
+        var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
 
         // Get the distance to eject the compounds
         var ejectionDistance = Membrane.EncompassingCircleRadius;
