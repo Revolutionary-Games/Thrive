@@ -477,6 +477,16 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void MoveToEditor()
     {
+        // Might be related to saving but somehow the editor button can be enabled while in a colony
+        // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button becoming
+        // disabled properly
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
+        if (Player.Colony != null)
+        {
+            GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
+            return;
+        }
+
         // Increase the population by the constant for the player reproducing
         var playerSpecies = GameWorld.PlayerSpecies;
         GameWorld.AlterSpeciesPopulation(
