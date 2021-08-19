@@ -423,6 +423,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             var shapeOwner = microbe.ShapeFindOwner(bodyShape);
 
             // This can happen when a microbe unbinds while also touching a floating chunk
+            // TODO: Do something more elegant to stop the error messages in the log
             if (shapeOwner == 0)
             {
                 touchingMicrobes.Remove(microbe);
