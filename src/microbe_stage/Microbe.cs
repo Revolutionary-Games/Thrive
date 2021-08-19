@@ -480,6 +480,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
 
+            // Colony children shapes need re-parenting to their master
+            // The shapes have to be re-parented to their original microbe then to the master again
+            // maybe engine bug
+            if (Colony != null && this != Colony.Master)
+            {
+                ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
+                ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
+            }
+
             // And recompute storage
             RecomputeOrganelleCapacity();
 
@@ -582,6 +591,25 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             Membrane.Type.BaseWigglyness) * 0.2f;
         Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (Species.MembraneRigidity /
             Membrane.Type.MovementWigglyness) * 0.2f;
+    }
+
+    /// <summary>
+    ///   Gets the actually hit microbe (potentially in a colony)
+    /// </summary>
+    /// <param name="bodyShape">The shape that was hit</param>
+    /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
+    public Microbe GetMicrobeFromShape(int bodyShape)
+    {
+        if (Colony == null)
+            return this;
+
+        var touchedOwnerId = ShapeFindOwner(bodyShape);
+
+        // Not found
+        if (touchedOwnerId == 0)
+            return null;
+
+        return GetColonyMemberWithShapeOwner(touchedOwnerId, Colony);
     }
 
     /// <summary>
@@ -1385,6 +1413,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
+            Mode = ModeEnum.Rigid;
+
             return;
         }
 
@@ -1394,11 +1424,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RemoveCollisionExceptionWith(microbe);
     }
 
+    internal void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 microbeRotation)
+    {
+        // TODO: if microbeRotation is the rotation of *this* instance we should use the variable here directly
+        // An object doesn't need to be told its own member variable in a method...
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
+        foreach (var organelle in organelles)
+            organelle.ReParentShapes(to, offset, masterRotation, microbeRotation);
+    }
+
     internal void OnColonyMemberAdded(Microbe microbe)
     {
         if (microbe == this)
         {
             OnIGotAddedToColony();
+
+            var parent = this;
+            if (Colony.Master != this)
+            {
+                Mode = ModeEnum.Static;
+                parent = ColonyParent;
+            }
+
+            ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), parent.Rotation, Rotation);
         }
         else
         {
@@ -1419,6 +1467,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_KILL"));
+    }
+
+    private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    {
+        foreach (var microbe in colony.ColonyMembers)
+        {
+            if (microbe.organelles.Any(o => o.HasShape(ownerID)) || microbe.IsPilus(ownerID))
+                return microbe;
+        }
+
+        // TODO: I really hope there is no way to hit this. I would really hate to reduce the game stability due to
+        // possibly bogus ownerID values that sometimes seem to come from Godot
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
+        throw new InvalidOperationException();
+    }
+
+    private Vector3 GetOffsetRelativeToMaster()
+    {
+        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
+            Colony.Master.Rotation.y);
     }
 
     private void OnIGotAddedToColony()
@@ -2369,14 +2437,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         _ = bodyID;
 
-        if (body is Microbe microbe)
+        if (body is Microbe colonyLeader)
         {
-            // TODO: does this need to check for disposed exception?
-            if (microbe.Dead || (Colony != null && Colony == microbe.Colony))
+            var touchedOwnerId = colonyLeader.ShapeFindOwner(bodyShape);
+            var thisOwnerId = ShapeFindOwner(localShape);
+
+            var touchedMicrobe = colonyLeader.GetMicrobeFromShape(bodyShape);
+
+            var thisMicrobe = GetMicrobeFromShape(localShape);
+
+            // bodyShape or localShape are invalid. This can happen during re-parenting
+            if (touchedMicrobe == null || thisMicrobe == null)
                 return;
 
-            bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
-            bool oursIsPilus = IsPilus(ShapeFindOwner(localShape));
+            // TODO: does this need to check for disposed exception?
+            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            if (touchedMicrobe.Dead || (Colony != null && Colony == touchedMicrobe.Colony))
+                return;
+
+            bool otherIsPilus = touchedMicrobe.IsPilus(touchedOwnerId);
+            bool oursIsPilus = thisMicrobe.IsPilus(thisOwnerId);
 
             // Pilus logic
             if (otherIsPilus && oursIsPilus)
@@ -2390,20 +2470,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 // Us attacking the other microbe, or it is attacking us
 
                 // Disallow cannibalism
-                if (microbe.Species == Species)
+                if (touchedMicrobe.Species == thisMicrobe.Species)
                     return;
 
-                var target = otherIsPilus ? this : microbe;
+                var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
 
                 target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
                 return;
             }
 
             // Pili don't stop engulfing
-            if (touchedMicrobes.Add(microbe))
+            if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
-                CheckStartEngulfingOnCandidates();
-                CheckBinding();
+                thisMicrobe.CheckStartEngulfingOnCandidates();
+                thisMicrobe.CheckBinding();
             }
         }
     }
@@ -2412,12 +2492,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         _ = bodyID;
         _ = bodyShape;
-        _ = localShape;
 
         if (body is Microbe microbe)
         {
+            Microbe hitMicrobe;
+
+            // The two microbes stopped contact because they bound, but re-parenting is not complete yet.
+            // Due to shape re-parenting localShape is no longer valid and we should remove the touchedMicrobe
+            // from the colony master (to whom we made contact).
+            // TODO: is it *really* necessary to check if the parent nodes are microbe instances. This seems very
+            // hacky thing to me - hhyyrylainen
+            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            if (Colony != null && Colony == microbe.Colony &&
+                !(microbe.GetParent() is Microbe && GetParent() is Microbe))
+            {
+                hitMicrobe = this;
+            }
+            else
+            {
+                hitMicrobe = GetMicrobeFromShape(localShape);
+            }
+
             // TODO: should this also check for pilus before removing the collision?
-            touchedMicrobes.Remove(microbe);
+            hitMicrobe.touchedMicrobes.Remove(microbe);
         }
     }
 
@@ -2545,7 +2642,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void StopEngulfingOnTarget(Microbe microbe)
     {
-        if (Colony == null || Colony != microbe.Colony)
+        if (IsInstanceValid(microbe) && (Colony == null || Colony != microbe.Colony))
             RemoveCollisionExceptionWith(microbe);
 
         microbe.hostileEngulfer = null;
