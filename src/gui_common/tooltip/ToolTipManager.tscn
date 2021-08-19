@@ -1045,24 +1045,18 @@ Description = "PREDATORY_PILUS_DESCRIPTION"
 MutationPointCost = 30
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/pilus" index="0"]
-margin_bottom = 160.0
+margin_bottom = 240.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer" index="0"]
-margin_bottom = 144.0
-
-[node name="CustomRichTextLabel" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="1"]
-visible = false
-
-[node name="ProcessList" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="2"]
-visible = false
+margin_bottom = 228.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="3"]
-margin_top = 42.0
-margin_bottom = 62.0
+margin_bottom = 158.0
 
-[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList" index="0"]
+[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList" index="2"]
+margin_top = 48.0
 margin_right = 318.0
-margin_bottom = 20.0
+margin_bottom = 68.0
 mouse_filter = 2
 script = ExtResource( 21 )
 DisplayName = "OSMOREGULATION_COST"
@@ -1096,11 +1090,12 @@ mouse_filter = 2
 expand = true
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="4"]
-visible = false
+margin_top = 173.0
+margin_bottom = 177.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="5"]
-margin_top = 77.0
-margin_bottom = 94.0
+margin_top = 192.0
+margin_bottom = 209.0
 
 [node name="cilia" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
