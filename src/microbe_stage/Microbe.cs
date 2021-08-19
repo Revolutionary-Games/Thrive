@@ -2440,7 +2440,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (body is Microbe microbe)
         {
-            var hitMicrobe = GetMicrobeFromShape(localShape);
+            Microbe hitMicrobe;
+
+            // The two microbes stopped contact because they bound.
+            // Due to shape re-parenting localShape is no longer valid and we should remove the touchedMicrobe
+            // from the colony master (to whom we made contact)
+            if (Colony != null && Colony == microbe.Colony)
+                hitMicrobe = microbe;
+            else
+                hitMicrobe = GetMicrobeFromShape(localShape);
 
             // TODO: should this also check for pilus before removing the collision?
             hitMicrobe.touchedMicrobes.Remove(microbe);
