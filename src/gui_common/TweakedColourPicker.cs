@@ -11,9 +11,11 @@ public class TweakedColourPicker : ColorPicker
     /// <summary>
     ///   This is where presets are stored after a color picker exited scene tree.
     /// <remarks>
-    ///   KeyValuePair:
-    ///     first parameter (string) is the string format of NodePath;
-    ///     second parameter (Color[]) is the preset colors to be stored.
+    ///   KeyValuePair&lt;GetPath(), GetPresets()&gt;:
+    ///   <ul>
+    ///     <li> First parameter (string) is the string format of NodePath; </li>
+    ///     <li> Second parameter (Color[]) is the preset colors to be stored. </li>
+    ///   </ul>
     /// </remarks>
     /// </summary>
     private static readonly List<KeyValuePair<string, Color[]>> PresetsStorage
