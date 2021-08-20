@@ -196,11 +196,6 @@ public class TweakedColourPicker : ColorPicker
     {
         pickerButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_PICK_COLOR");
         addPresetButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_ADD_PRESET");
-        TweakedColorPickerPreset.HintTooltipBase = TranslationServer.Translate("COLOR") + ": #{0}\n"
-            + TranslationServer.Translate("LEFT_MOUSE") + ": "
-            + TranslationServer.Translate("COLOR_PICKER_SELECT_PRESET") + "\n"
-            + TranslationServer.Translate("RIGHT_MOUSE") + ": "
-            + TranslationServer.Translate("COLOR_PICKER_DELETE_PRESET");
     }
 
     private void UpdateButtonsState()
@@ -311,8 +306,6 @@ public class TweakedColorPickerPreset : ColorRect
     [Signal]
     public delegate void OnPresetDeleted(TweakedColorPickerPreset preset);
 
-    public static string HintTooltipBase { get; set; }
-
     public override void _Notification(int what)
     {
         if (what == NotificationTranslationChanged)
@@ -339,6 +332,7 @@ public class TweakedColorPickerPreset : ColorRect
 
     private void UpdateTooltip()
     {
-        HintTooltip = string.Format(CultureInfo.CurrentCulture, HintTooltipBase, Color.ToHtml());
+        HintTooltip = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("COLOR_PICKER_PRESET_TOOLTIP"), Color.ToHtml());
     }
 }
