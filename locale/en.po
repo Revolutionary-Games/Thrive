@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-20 11:46+0800\n"
+"POT-Creation-Date: 2021-08-21 07:03+0800\n"
 "PO-Revision-Date: 2021-08-20 11:47+0800\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1726,29 +1726,70 @@ msgstr ""
 "version.\n"
 "Please load the save manually through the menu."
 
-#: ../src/gui_common/TweakedColourPicker.cs:197
+#: ../src/gui_common/TweakedColourPicker.cs:211
 msgid "COLOR_PICKER_PICK_COLOR"
 msgstr "Pick a color from window"
 
-#: ../src/gui_common/TweakedColourPicker.cs:198
+#: ../src/gui_common/TweakedColourPicker.cs:212
 msgid "COLOR_PICKER_ADD_PRESET"
 msgstr "Add current color as a preset"
 
-#: ../src/gui_common/TweakedColourPicker.cs:336
+#: ../src/gui_common/TweakedColourPicker.cs:213
+msgid "COLOR_PICKER_HSV_BUTTON_TOOLTIP"
+msgstr "Switch HSV (Hue, Saturation, Value) mode on or off.\n"
+"Can't be truned on when in Raw mode."
+
+#: ../src/gui_common/TweakedColourPicker.cs:214
+msgid "COLOR_PICKER_RAW_BUTTON_TOOLTIP"
+msgstr "Switch Raw mode on or off.\n"
+"In Raw mode you can make the color\n"
+"R, G, B component values to go beyond 1.0.\n"
+"Can't be turned on in HSV mode."
+
+#: ../src/gui_common/TweakedColourPicker.cs:218
+msgid "COLOR_PICKER_H_TOOLTIP"
+msgstr "Hue value, portion of color"
+
+#: ../src/gui_common/TweakedColourPicker.cs:219
+msgid "COLOR_PICKER_S_TOOLTIP"
+msgstr "Saturation value, the amount of gray in a particular color"
+
+#: ../src/gui_common/TweakedColourPicker.cs:220
+msgid "COLOR_PICKER_V_TOOLTIP"
+msgstr "Value (brightness) value, brightness or intensity of the color"
+
+#: ../src/gui_common/TweakedColourPicker.cs:224
+msgid "COLOR_PICKER_R_TOOLTIP"
+msgstr "Red channel value of the color"
+
+#: ../src/gui_common/TweakedColourPicker.cs:225
+msgid "COLOR_PICKER_G_TOOLTIP"
+msgstr "Green channel value of the color"
+
+#: ../src/gui_common/TweakedColourPicker.cs:226
+msgid "COLOR_PICKER_B_TOOLTIP"
+msgstr "Blue channel value of the color"
+
+#: ../src/gui_common/TweakedColourPicker.cs:229
+msgid "COLOR_PICKER_A_TOOLTIP"
+msgstr "Alpha value of the color"
+
+#: ../src/gui_common/TweakedColourPicker.cs:366
 msgid "COLOR_PICKER_PRESET_TOOLTIP"
-msgstr "Color: #{0}\n"
+msgstr ""
+"Color: #{0}\n"
 "Left mouse: Use this preset\n"
 "Right mouse: Delete this preset"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:29
+#: ../src/gui_common/TweakedColourPicker.tscn:30
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:38
+#: ../src/gui_common/TweakedColourPicker.tscn:39
 msgid "RAW"
 msgstr "Raw"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:45
+#: ../src/gui_common/TweakedColourPicker.tscn:46
 msgid "#"
 msgstr "#"
 
