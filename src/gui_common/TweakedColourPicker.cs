@@ -276,42 +276,18 @@ public class TweakedColourPicker : ColorPicker
     }
 
     /// <summary>
-    ///   Called when HexColorEdit's text has changed (because of user input / color select). In this function,
-    ///   the input has been confirmed, so if we find something wrong (such as illegal input), we should delete it
-    ///   and set the text to a legal modified one. And because caret position is set to 0 after a '.Text = ""', we
-    ///   need to manually adjust the caret position to avoid strange behavior.
+    ///   Called when (keyboard) entered in hexColorEdit.
+    ///   Set Color when text is valid; reset if not.
+    ///   Because text_entered signal requires a string parameter but focus_exited zero, wrote lite this.
     /// </summary>
-    /// <param name="color">HexColorEdit's text content</param>
-    private void OnHexColorChanged(string color)
+    /// <param name="color">Current hexColorEditor text</param>
+    private void OnHexColorChanged(string color = null)
     {
-        // Get initial caret position
-        var caretPosition = hexColorEdit.CaretPosition;
-
-        // Enum color text
-        for (int i = 0; i < color.Length; i++)
-        {
-            // Legal characters are "0123456789abcdefABCDEF"
-            if (!(color[i] >= '0' && color[i] <= '9') && !(color[i] >= 'A' && color[i] <= 'F') &&
-                !(color[i] >= 'a' && color[i] <= 'f'))
-            {
-                // Remove this character, and when enum to the next, index should not change.
-                color = color.Remove(i--, 1);
-
-                // Cursor position should always be after the thing he keyed in
-                caretPosition--;
-            }
-        }
-
-        // If some changes has been made
-        if (hexColorEdit.Text != color)
-        {
-            hexColorEdit.Text = color;
-            hexColorEdit.CaretPosition = caretPosition;
-        }
-
-        // If color is valid
-        if (color.Length == 6 || color.Length == 8)
+        color ??= hexColorEdit.Text;
+        if (color.IsValidHtmlColor())
             Color = new Color(color);
+        else
+            hexColorEdit.Text = Color.ToHtml();
     }
 
     public class TweakedColorPickerPreset : ColorRect
