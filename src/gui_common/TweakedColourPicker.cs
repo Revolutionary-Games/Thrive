@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -6,11 +8,18 @@ using Godot;
 /// </summary>
 public class TweakedColourPicker : ColorPicker
 {
+    /// <summary>
+    ///   This is where presets are stored after a color picker exited scene tree.
+    /// <remarks>
+    ///   KeyValuePair:
+    ///     first parameter (string) is the string format of NodePath;
+    ///     second parameter (Color[]) is the preset colors to be stored.
+    /// </remarks>
+    /// </summary>
     private static readonly List<KeyValuePair<string, Color[]>> PresetsStorage
         = new List<KeyValuePair<string, Color[]>>();
 
     private readonly List<TweakedColorPickerPreset> presets = new List<TweakedColorPickerPreset>();
-    private PackedScene presetScene;
 
     private ToolButton pickerButton;
     private CheckButton hsvCheckButton;
@@ -35,14 +44,7 @@ public class TweakedColourPicker : ColorPicker
         set
         {
             hsvButtonEnabled = value;
-
-            if (hsvCheckButton == null)
-                return;
-
-            if (hsvButtonEnabled == false)
-                hsvCheckButton.Disabled = true;
-            else if (RawMode == false)
-                hsvCheckButton.Disabled = false;
+            UpdateButtonsState();
         }
     }
 
@@ -56,14 +58,7 @@ public class TweakedColourPicker : ColorPicker
         set
         {
             rawButtonEnabled = value;
-
-            if (rawCheckButton == null)
-                return;
-
-            if (rawButtonEnabled == false)
-                rawCheckButton.Disabled = true;
-            else if (HsvMode == false)
-                rawCheckButton.Disabled = false;
+            UpdateButtonsState();
         }
     }
 
@@ -77,16 +72,7 @@ public class TweakedColourPicker : ColorPicker
                 return;
 
             base.HsvMode = value;
-
-            if (rawCheckButton == null)
-                return;
-
-            hsvCheckButton.Pressed = value;
-
-            if (value)
-                rawCheckButton.Disabled = true;
-            else if (rawButtonEnabled)
-                rawCheckButton.Disabled = false;
+            UpdateButtonsState();
         }
     }
 
@@ -100,16 +86,7 @@ public class TweakedColourPicker : ColorPicker
                 return;
 
             base.RawMode = value;
-
-            if (hsvCheckButton == null)
-                return;
-
-            rawCheckButton.Pressed = value;
-
-            if (value)
-                hsvCheckButton.Disabled = true;
-            else if (hsvButtonEnabled)
-                hsvCheckButton.Disabled = false;
+            UpdateButtonsState();
         }
     }
 
@@ -148,8 +125,6 @@ public class TweakedColourPicker : ColorPicker
     {
         base._Ready();
 
-        presetScene = GD.Load<PackedScene>("res://src/gui_common/TweakedColorPickerPreset.tscn");
-
         // Hide replaced native controls. Can't delete them because it will crash Godot.
         GetChild(4).GetChild<Control>(4).Hide();
         GetChild<Control>(5).Hide();
@@ -160,33 +135,23 @@ public class TweakedColourPicker : ColorPicker
         hsvCheckButton = GetNode<CheckButton>("ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("ButtonsContainer/RawCheckButton");
         hexColorEdit = GetNode<LineEdit>("ButtonsContainer/HexColorEdit");
-        hexColorEdit.Text = "ffffff";
+        hexColorEdit.Text = Color.ToHtml();
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<Button>("PresetContainer/AddPresetButton");
 
         // Update control state.
-        HSVButtonEnabled = hsvButtonEnabled;
-        RawButtonEnabled = rawButtonEnabled;
-        HsvMode = base.HsvMode;
-        RawMode = base.RawMode;
+        UpdateButtonsState();
         PresetsEnabled = presetsEnabled;
         PresetsVisible = presetsVisible;
 
-        // Load initial presets.
-        foreach (var presetsStored in PresetsStorage)
-        {
-            if (presetsStored.Key == GetPath())
-            {
-                foreach (var color in presetsStored.Value)
-                    AddPreset(color);
+        // Load presets.
+        var presetsStored = PresetsStorage.First(p => p.Key == GetPath());
+        foreach (var color in presetsStored.Value)
+            AddPreset(color);
+        PresetsStorage.Remove(presetsStored);
 
-                PresetsStorage.Remove(presetsStored);
-                break;
-            }
-        }
-
-        Translate();
+        UpdateTooltips();
     }
 
     public override void _ExitTree()
@@ -200,37 +165,31 @@ public class TweakedColourPicker : ColorPicker
     public override void _Notification(int what)
     {
         if (what == NotificationTranslationChanged)
-            Translate();
+            UpdateTooltips();
 
         base._Notification(what);
     }
 
     public new void AddPreset(Color color)
     {
-        foreach (var knownPreset in presets)
-        {
-            if (knownPreset.Color == color)
-                return;
-        }
+        if (presets.Any(knownPreset => knownPreset.Color == color))
+            return;
 
-        AddPresetLocal(color);
+        // Add preset locally
+        var preset = new TweakedColorPickerPreset(this, color);
+        presets.Add(preset);
+        presetsContainer.AddChild(preset);
 
+        // Add preset to base class
         base.AddPreset(color);
     }
 
     public new void ErasePreset(Color color)
     {
-        foreach (var preset in presets)
-        {
-            if (preset.Color == color)
-            {
-                OnPresetDeleted(preset);
-                break;
-            }
-        }
+        OnPresetDeleted(presets.First(p => p.Color == color));
     }
 
-    private void Translate()
+    private void UpdateTooltips()
     {
         pickerButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_PICK_COLOR");
         addPresetButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_ADD_PRESET");
@@ -241,14 +200,16 @@ public class TweakedColourPicker : ColorPicker
             + TranslationServer.Translate("COLOR_PICKER_DELETE_PRESET");
     }
 
-    private void AddPresetLocal(Color color)
+    private void UpdateButtonsState()
     {
-        var preset = presetScene.Instance<TweakedColorPickerPreset>();
-        preset.Color = color;
-        preset.Connect(nameof(TweakedColorPickerPreset.OnPresetSelected), this, nameof(OnPresetSelected));
-        preset.Connect(nameof(TweakedColorPickerPreset.OnPresetDeleted), this, nameof(OnPresetDeleted));
-        presets.Add(preset);
-        presetsContainer.AddChild(preset);
+        if (hsvCheckButton == null)
+            return;
+
+        hsvCheckButton.Pressed = HsvMode;
+        rawCheckButton.Pressed = RawMode;
+
+        hsvCheckButton.Disabled = !hsvButtonEnabled || RawMode;
+        rawCheckButton.Disabled = !rawButtonEnabled || HsvMode;
     }
 
     private void OnAddPresetButtonPressed()
@@ -259,6 +220,7 @@ public class TweakedColourPicker : ColorPicker
     private void OnPresetSelected(Color color)
     {
         Color = color;
+        OnColorChanged(color);
     }
 
     private void OnPresetDeleted(TweakedColorPickerPreset preset)
@@ -284,27 +246,96 @@ public class TweakedColourPicker : ColorPicker
         hexColorEdit.Text = color.a8 == 255 ? color.ToHtml(false) : color.ToHtml(true);
     }
 
+    /// <summary>
+    ///   Called when HexColorEdit's text has changed (because of user input / color select). In this function,
+    ///   the input has been confirmed, so if we find something wrong (such as illegal input), we should delete it
+    ///   and set the text to a legal modified one. And because caret position is set to 0 after a '.Text = ""', we
+    ///   need to manually adjust the caret position to avoid strange behavior.
+    /// </summary>
+    /// <param name="color">HexColorEdit's text content</param>
     private void OnHexColorChanged(string color)
     {
+        // Get initial caret position
         var caretPosition = hexColorEdit.CaretPosition;
 
+        // Enum color text
         for (int i = 0; i < color.Length; i++)
         {
+            // Legal characters are "0123456789abcdefABCDEF"
             if (!(color[i] >= '0' && color[i] <= '9') && !(color[i] >= 'A' && color[i] <= 'F') &&
                 !(color[i] >= 'a' && color[i] <= 'f'))
             {
-                color = color.Remove(i, 1);
-                i--;
+                // Remove this character, and when enum to the next, index should not change.
+                color = color.Remove(i--, 1);
+
+                // Cursor position should always be after the thing he keyed in
+                caretPosition--;
             }
         }
 
+        // If some changes has been made
         if (hexColorEdit.Text != color)
         {
             hexColorEdit.Text = color;
-            hexColorEdit.CaretPosition = caretPosition - 1;
+            hexColorEdit.CaretPosition = caretPosition;
         }
 
+        // If color is valid
         if (color.Length == 6 || color.Length == 8)
             Color = new Color(color);
+    }
+}
+
+public class TweakedColorPickerPreset : ColorRect
+{
+    public TweakedColorPickerPreset(TweakedColourPicker owner, Color color)
+    {
+        Connect(nameof(OnPresetSelected), owner, nameof(OnPresetSelected));
+        Connect(nameof(OnPresetDeleted), owner, nameof(OnPresetDeleted));
+        Connect("gui_input", this, nameof(OnPresetGUIInput));
+
+        Color = color;
+        MarginTop = MarginBottom = MarginLeft = MarginRight = 6.0f;
+        RectMinSize = new Vector2(20, 20);
+        SizeFlagsHorizontal = 8;
+        SizeFlagsVertical = 4;
+        UpdateTooltip();
+    }
+
+    [Signal]
+    public delegate void OnPresetSelected(Color color);
+
+    [Signal]
+    public delegate void OnPresetDeleted(TweakedColorPickerPreset preset);
+
+    public static string HintTooltipBase { get; set; }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+            UpdateTooltip();
+
+        base._Notification(what);
+    }
+
+    private void OnPresetGUIInput(InputEvent inputEvent)
+    {
+        if (inputEvent is InputEventMouseButton { Pressed: true } mouseEvent)
+        {
+            switch ((ButtonList)mouseEvent.ButtonIndex)
+            {
+                case ButtonList.Left:
+                    EmitSignal(nameof(OnPresetSelected), Color);
+                    break;
+                case ButtonList.Right:
+                    EmitSignal(nameof(OnPresetDeleted), this);
+                    break;
+            }
+        }
+    }
+
+    private void UpdateTooltip()
+    {
+        HintTooltip = string.Format(CultureInfo.CurrentCulture, HintTooltipBase, Color.ToHtml());
     }
 }
