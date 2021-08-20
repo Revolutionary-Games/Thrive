@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
+[ext_resource path="res://assets/textures/cross.png" type="Texture" id=3]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -62,8 +67,11 @@ margin_bottom = 572.0
 columns = 12
 
 [node name="AddPresetButton" type="Button" parent="PresetContainer"]
+margin_right = 28.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 28, 32 )
-text = "+"
+icon = ExtResource( 3 )
+expand_icon = true
 
 [connection signal="color_changed" from="." to="." method="OnColorChanged"]
 [connection signal="toggled" from="ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
