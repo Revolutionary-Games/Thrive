@@ -137,7 +137,6 @@ public class TweakedColourPicker : ColorPicker
         hsvCheckButton = GetNode<CheckButton>("ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("ButtonsContainer/RawCheckButton");
         hexColorEdit = GetNode<LineEdit>("ButtonsContainer/HexColorEdit");
-        hexColorEdit.Text = Color.ToHtml();
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<Button>("PresetContainer/AddPresetButton");
@@ -146,6 +145,7 @@ public class TweakedColourPicker : ColorPicker
         UpdateButtonsState();
         PresetsEnabled = presetsEnabled;
         PresetsVisible = presetsVisible;
+        OnColorChanged(Color);
 
         // Load presets.
         if (PresetsStorage.Exists(p => p.Key == GetPath()))
