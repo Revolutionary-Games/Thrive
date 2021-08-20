@@ -1048,12 +1048,12 @@ MutationPointCost = 30
 margin_bottom = 240.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer" index="0"]
-margin_bottom = 228.0
+margin_bottom = 224.0
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 158.0
 
-[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList" index="2"]
+[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer/ModifierList" index="0"]
 margin_top = 48.0
 margin_right = 318.0
 margin_bottom = 68.0
@@ -1090,10 +1090,12 @@ mouse_filter = 2
 expand = true
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="4"]
+visible = false
 margin_top = 173.0
 margin_bottom = 177.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="5"]
+visible = false
 margin_top = 192.0
 margin_bottom = 209.0
 
