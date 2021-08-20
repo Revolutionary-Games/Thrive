@@ -151,7 +151,7 @@ public class TweakedColourPicker : ColorPicker
         hexColorEdit = GetNode<LineEdit>("ButtonsContainer/HexColorEdit");
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
-        addPresetButton = GetNode<Button>("PresetContainer/AddPresetButton");
+        addPresetButton = GetNode<Button>("PresetButtonContainer/AddPresetButton");
 
         // Update control state.
         UpdateButtonsState();

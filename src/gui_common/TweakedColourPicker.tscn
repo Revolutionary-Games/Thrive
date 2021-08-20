@@ -5,10 +5,6 @@
 [ext_resource path="res://assets/textures/cross.png" type="Texture" id=3]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 12.0
-margin_bottom = 12.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -65,12 +61,20 @@ rect_min_size = Vector2( 0, 8 )
 margin_top = 544.0
 margin_right = 317.0
 margin_bottom = 576.0
+rect_min_size = Vector2( 0, 32 )
 columns = 12
 
-[node name="AddPresetButton" type="Button" parent="PresetContainer"]
-margin_right = 28.0
+[node name="PresetButtonContainer" type="HBoxContainer" parent="."]
+margin_top = 575.0
+margin_right = 30.0
+margin_bottom = 607.0
+
+[node name="AddPresetButton" type="Button" parent="PresetButtonContainer"]
+margin_right = 30.0
 margin_bottom = 32.0
-rect_min_size = Vector2( 28, 32 )
+rect_min_size = Vector2( 30, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
 icon = ExtResource( 3 )
 expand_icon = true
 
@@ -78,4 +82,4 @@ expand_icon = true
 [connection signal="toggled" from="ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
 [connection signal="toggled" from="ButtonsContainer/RawCheckButton" to="." method="OnRawButtonToggled"]
 [connection signal="text_changed" from="ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
-[connection signal="pressed" from="PresetContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]
+[connection signal="pressed" from="PresetButtonContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]
