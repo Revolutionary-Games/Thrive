@@ -146,10 +146,13 @@ public class TweakedColourPicker : ColorPicker
         PresetsVisible = presetsVisible;
 
         // Load presets.
-        var presetsStored = PresetsStorage.First(p => p.Key == GetPath());
-        foreach (var color in presetsStored.Value)
-            AddPreset(color);
-        PresetsStorage.Remove(presetsStored);
+        if (PresetsStorage.Exists(p => p.Key == GetPath()))
+        {
+            var presetsStored = PresetsStorage.First(p => p.Key == GetPath());
+            foreach (var color in presetsStored.Value)
+                AddPreset(color);
+            PresetsStorage.Remove(presetsStored);
+        }
 
         UpdateTooltips();
     }
@@ -220,7 +223,7 @@ public class TweakedColourPicker : ColorPicker
     private void OnPresetSelected(Color color)
     {
         Color = color;
-        OnColorChanged(color);
+        EmitSignal("color_changed", Color);
     }
 
     private void OnPresetDeleted(TweakedColorPickerPreset preset)
