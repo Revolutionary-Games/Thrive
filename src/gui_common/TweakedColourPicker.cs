@@ -146,9 +146,9 @@ public class TweakedColourPicker : ColorPicker
         sliderBOrV = baseControl.GetChild(2).GetChild<HSlider>(1);
         sliderA = baseControl.GetChild(3).GetChild<HSlider>(1);
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
-        hsvCheckButton = GetNode<CheckButton>("ButtonsContainer/HSVCheckButton");
-        rawCheckButton = GetNode<CheckButton>("ButtonsContainer/RawCheckButton");
-        hexColorEdit = GetNode<LineEdit>("ButtonsContainer/HexColorEdit");
+        hsvCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/HSVCheckButton");
+        rawCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/RawCheckButton");
+        hexColorEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HexColorEdit");
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<Button>("PresetButtonContainer/AddPresetButton");

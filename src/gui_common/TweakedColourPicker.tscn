@@ -5,10 +5,7 @@
 [ext_resource path="res://assets/textures/cross.png" type="Texture" id=3]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 4.0
-margin_bottom = 4.0
+margin_bottom = 12.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -16,12 +13,19 @@ __meta__ = {
 "_editor_description_": "A color picker with thrive theme and extended usage."
 }
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+[node name="MarginButtonsContainer" type="MarginContainer" parent="."]
 margin_top = 494.0
 margin_right = 317.0
-margin_bottom = 536.0
+margin_bottom = 541.0
+custom_constants/margin_top = 5
 
-[node name="HSVCheckButton" type="CheckButton" parent="ButtonsContainer"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="MarginButtonsContainer"]
+margin_top = 5.0
+margin_right = 317.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+
+[node name="HSVCheckButton" type="CheckButton" parent="MarginButtonsContainer/ButtonsContainer"]
 margin_right = 110.0
 margin_bottom = 42.0
 shortcut_in_tooltip = false
@@ -29,7 +33,7 @@ action_mode = 0
 keep_pressed_outside = true
 text = "HSV"
 
-[node name="RawCheckButton" type="CheckButton" parent="ButtonsContainer"]
+[node name="RawCheckButton" type="CheckButton" parent="MarginButtonsContainer/ButtonsContainer"]
 margin_left = 114.0
 margin_right = 228.0
 margin_bottom = 42.0
@@ -38,14 +42,14 @@ action_mode = 0
 keep_pressed_outside = true
 text = "RAW"
 
-[node name="Label" type="Label" parent="ButtonsContainer"]
+[node name="Label" type="Label" parent="MarginButtonsContainer/ButtonsContainer"]
 margin_left = 232.0
 margin_top = 10.0
 margin_right = 244.0
 margin_bottom = 32.0
 text = "#"
 
-[node name="HexColorEdit" type="LineEdit" parent="ButtonsContainer"]
+[node name="HexColorEdit" type="LineEdit" parent="MarginButtonsContainer/ButtonsContainer"]
 margin_left = 248.0
 margin_right = 317.0
 margin_bottom = 42.0
@@ -56,26 +60,27 @@ context_menu_enabled = false
 shortcut_keys_enabled = false
 
 [node name="Separator" type="HSeparator" parent="."]
-margin_top = 536.0
+margin_top = 541.0
 margin_right = 317.0
-margin_bottom = 544.0
+margin_bottom = 549.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="PresetContainer" type="GridContainer" parent="."]
-margin_top = 544.0
+margin_top = 549.0
 margin_right = 317.0
-margin_bottom = 576.0
-rect_min_size = Vector2( 0, 32 )
+margin_bottom = 549.0
 columns = 12
 
-[node name="PresetButtonContainer" type="HBoxContainer" parent="."]
-margin_top = 576.0
+[node name="PresetButtonContainer" type="MarginContainer" parent="."]
+margin_top = 549.0
 margin_right = 317.0
-margin_bottom = 608.0
+margin_bottom = 586.0
+custom_constants/margin_top = 5
 
 [node name="AddPresetButton" type="Button" parent="PresetButtonContainer"]
+margin_top = 5.0
 margin_right = 30.0
-margin_bottom = 32.0
+margin_bottom = 37.0
 rect_min_size = Vector2( 30, 0 )
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -83,8 +88,8 @@ icon = ExtResource( 3 )
 expand_icon = true
 
 [connection signal="color_changed" from="." to="." method="OnColorChanged"]
-[connection signal="toggled" from="ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
-[connection signal="toggled" from="ButtonsContainer/RawCheckButton" to="." method="OnRawButtonToggled"]
-[connection signal="focus_exited" from="ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
-[connection signal="text_entered" from="ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
+[connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
+[connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/RawCheckButton" to="." method="OnRawButtonToggled"]
+[connection signal="focus_exited" from="MarginButtonsContainer/ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
+[connection signal="text_entered" from="MarginButtonsContainer/ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
 [connection signal="pressed" from="PresetButtonContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]
