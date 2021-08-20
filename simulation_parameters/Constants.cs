@@ -454,7 +454,7 @@ public static class Constants
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
 
-    public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.0005f;
+    public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
