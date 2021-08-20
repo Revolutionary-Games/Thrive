@@ -1041,7 +1041,7 @@ margin_bottom = 209.0
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
 DisplayName = "PREDATORY_PILUS"
-Description = "PREDATORY_PILUS_DESCRIPTION"
+ProcessesDescription = "PREDATORY_PILUS_DESCRIPTION"
 MutationPointCost = 30
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/pilus" index="0"]
