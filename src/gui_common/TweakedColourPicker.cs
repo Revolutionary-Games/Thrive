@@ -23,6 +23,10 @@ public class TweakedColourPicker : ColorPicker
 
     private readonly List<TweakedColorPickerPreset> presets = new List<TweakedColorPickerPreset>();
 
+    private HSlider sliderRH;
+    private HSlider sliderGS;
+    private HSlider sliderBV;
+    private HSlider sliderAA;
     private ToolButton pickerButton;
     private CheckButton hsvCheckButton;
     private CheckButton rawCheckButton;
@@ -75,6 +79,9 @@ public class TweakedColourPicker : ColorPicker
 
             base.HsvMode = value;
             UpdateButtonsState();
+
+            // Update HSV sliders' tooltips
+            UpdateTooltips();
         }
     }
 
@@ -133,6 +140,11 @@ public class TweakedColourPicker : ColorPicker
         GetChild<Control>(6).Hide();
         GetChild<Control>(7).Hide();
 
+        var baseControl = GetChild(4);
+        sliderRH = baseControl.GetChild(0).GetChild<HSlider>(1);
+        sliderGS = baseControl.GetChild(1).GetChild<HSlider>(1);
+        sliderBV = baseControl.GetChild(2).GetChild<HSlider>(1);
+        sliderAA = baseControl.GetChild(3).GetChild<HSlider>(1);
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
         hsvCheckButton = GetNode<CheckButton>("ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("ButtonsContainer/RawCheckButton");
@@ -198,6 +210,23 @@ public class TweakedColourPicker : ColorPicker
     {
         pickerButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_PICK_COLOR");
         addPresetButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_ADD_PRESET");
+        hsvCheckButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_HSV_TOOLTIP");
+        rawCheckButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_RAW_TOOLTIP");
+
+        if (HsvMode)
+        {
+            sliderRH.HintTooltip = TranslationServer.Translate("COLOR_PICKER_H_TOOLTIP");
+            sliderGS.HintTooltip = TranslationServer.Translate("COLOR_PICKER_S_TOOLTIP");
+            sliderBV.HintTooltip = TranslationServer.Translate("COLOR_PICKER_V_TOOLTIP");
+        }
+        else
+        {
+            sliderRH.HintTooltip = TranslationServer.Translate("COLOR_PICKER_R_TOOLTIP");
+            sliderGS.HintTooltip = TranslationServer.Translate("COLOR_PICKER_G_TOOLTIP");
+            sliderBV.HintTooltip = TranslationServer.Translate("COLOR_PICKER_B_TOOLTIP");
+        }
+
+        sliderAA.HintTooltip = TranslationServer.Translate("COLOR_PICKER_A_TOOLTIP");
     }
 
     private void UpdateButtonsState()
