@@ -4,15 +4,11 @@
 [ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 88.0
-margin_top = 88.0
-margin_right = 88.0
-margin_bottom = 88.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "A color picker with a custom theme."
+"_editor_description_": "A color picker with thrive theme and extended usage."
 }
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="."]
@@ -46,8 +42,9 @@ text = "#"
 
 [node name="HexColorEdit" type="LineEdit" parent="ButtonsContainer"]
 margin_left = 248.0
-margin_right = 304.0
+margin_right = 317.0
 margin_bottom = 42.0
+size_flags_horizontal = 3
 align = 1
 max_length = 8
 context_menu_enabled = false
@@ -65,8 +62,7 @@ margin_bottom = 572.0
 columns = 12
 
 [node name="AddPresetButton" type="Button" parent="PresetContainer"]
-margin_right = 20.0
-margin_bottom = 32.0
+rect_min_size = Vector2( 28, 32 )
 text = "+"
 
 [connection signal="color_changed" from="." to="." method="OnColorChanged"]

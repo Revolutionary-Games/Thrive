@@ -284,57 +284,57 @@ public class TweakedColourPicker : ColorPicker
         if (color.Length == 6 || color.Length == 8)
             Color = new Color(color);
     }
-}
 
-public class TweakedColorPickerPreset : ColorRect
-{
-    public TweakedColorPickerPreset(TweakedColourPicker owner, Color color)
+    public class TweakedColorPickerPreset : ColorRect
     {
-        Connect(nameof(OnPresetSelected), owner, nameof(OnPresetSelected));
-        Connect(nameof(OnPresetDeleted), owner, nameof(OnPresetDeleted));
-        Connect("gui_input", this, nameof(OnPresetGUIInput));
-
-        Color = color;
-        MarginTop = MarginBottom = MarginLeft = MarginRight = 6.0f;
-        RectMinSize = new Vector2(20, 20);
-        SizeFlagsHorizontal = 8;
-        SizeFlagsVertical = 4;
-        UpdateTooltip();
-    }
-
-    [Signal]
-    public delegate void OnPresetSelected(Color color);
-
-    [Signal]
-    public delegate void OnPresetDeleted(TweakedColorPickerPreset preset);
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-            UpdateTooltip();
-
-        base._Notification(what);
-    }
-
-    private void OnPresetGUIInput(InputEvent inputEvent)
-    {
-        if (inputEvent is InputEventMouseButton { Pressed: true } mouseEvent)
+        public TweakedColorPickerPreset(TweakedColourPicker owner, Color color)
         {
-            switch ((ButtonList)mouseEvent.ButtonIndex)
+            Connect(nameof(OnPresetSelected), owner, nameof(OnPresetSelected));
+            Connect(nameof(OnPresetDeleted), owner, nameof(OnPresetDeleted));
+            Connect("gui_input", this, nameof(OnPresetGUIInput));
+
+            Color = color;
+            MarginTop = MarginBottom = MarginLeft = MarginRight = 6.0f;
+            RectMinSize = new Vector2(20, 20);
+            SizeFlagsHorizontal = 8;
+            SizeFlagsVertical = 4;
+            UpdateTooltip();
+        }
+
+        [Signal]
+        public delegate void OnPresetSelected(Color color);
+
+        [Signal]
+        public delegate void OnPresetDeleted(TweakedColorPickerPreset preset);
+
+        public override void _Notification(int what)
+        {
+            if (what == NotificationTranslationChanged)
+                UpdateTooltip();
+
+            base._Notification(what);
+        }
+
+        private void OnPresetGUIInput(InputEvent inputEvent)
+        {
+            if (inputEvent is InputEventMouseButton { Pressed: true } mouseEvent)
             {
-                case ButtonList.Left:
-                    EmitSignal(nameof(OnPresetSelected), Color);
-                    break;
-                case ButtonList.Right:
-                    EmitSignal(nameof(OnPresetDeleted), this);
-                    break;
+                switch ((ButtonList)mouseEvent.ButtonIndex)
+                {
+                    case ButtonList.Left:
+                        EmitSignal(nameof(OnPresetSelected), Color);
+                        break;
+                    case ButtonList.Right:
+                        EmitSignal(nameof(OnPresetDeleted), this);
+                        break;
+                }
             }
         }
-    }
 
-    private void UpdateTooltip()
-    {
-        HintTooltip = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("COLOR_PICKER_PRESET_TOOLTIP"), Color.ToHtml());
+        private void UpdateTooltip()
+        {
+            HintTooltip = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("COLOR_PICKER_PRESET_TOOLTIP"), Color.ToHtml());
+        }
     }
 }
