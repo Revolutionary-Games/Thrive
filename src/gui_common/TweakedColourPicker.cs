@@ -4,17 +4,17 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Tweaked color picker defines some custom ColorPicker functions.
+///   Tweaked colour picker defines some custom ColorPicker functions.
 /// </summary>
 public class TweakedColourPicker : ColorPicker
 {
     /// <summary>
-    ///   This is where presets are stored after a color picker exited scene tree.
+    ///   This is where presets are stored after a colour picker exited scene tree.
     /// <remarks>
     ///   KeyValuePair&lt;GetPath(), GetPresets()&gt;:
     ///   <ul>
     ///     <li> First parameter (string) is the string format of NodePath; </li>
-    ///     <li> Second parameter (Color[]) is the preset colors to be stored. </li>
+    ///     <li> Second parameter (Color[]) is the preset colours to be stored. </li>
     ///   </ul>
     /// </remarks>
     /// </summary>
@@ -33,7 +33,7 @@ public class TweakedColourPicker : ColorPicker
     private LineEdit hexColorEdit;
     private HSeparator separator;
     private GridContainer presetsContainer;
-    private Button addPresetButton;
+    private TextureButton addPresetButton;
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;
@@ -151,7 +151,7 @@ public class TweakedColourPicker : ColorPicker
         hexColorEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HexColorEdit");
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
-        addPresetButton = GetNode<Button>("PresetButtonContainer/AddPresetButton");
+        addPresetButton = GetNode<TextureButton>("PresetButtonContainer/AddPresetButton");
 
         // Update control state.
         UpdateButtonsState();
@@ -163,8 +163,8 @@ public class TweakedColourPicker : ColorPicker
         if (PresetsStorage.Exists(p => p.Key == GetPath()))
         {
             var presetsStored = PresetsStorage.First(p => p.Key == GetPath());
-            foreach (var color in presetsStored.Value)
-                AddPreset(color);
+            foreach (var colour in presetsStored.Value)
+                AddPreset(colour);
             PresetsStorage.Remove(presetsStored);
         }
 
@@ -187,46 +187,46 @@ public class TweakedColourPicker : ColorPicker
         base._Notification(what);
     }
 
-    public new void AddPreset(Color color)
+    public new void AddPreset(Color colour)
     {
-        if (presets.Any(knownPreset => knownPreset.Color == color))
+        if (presets.Any(knownPreset => knownPreset.Color == colour))
             return;
 
         // Add preset locally
-        var preset = new TweakedColorPickerPreset(this, color);
+        var preset = new TweakedColorPickerPreset(this, colour);
         presets.Add(preset);
         presetsContainer.AddChild(preset);
 
         // Add preset to base class
-        base.AddPreset(color);
+        base.AddPreset(colour);
     }
 
-    public new void ErasePreset(Color color)
+    public new void ErasePreset(Color colour)
     {
-        OnPresetDeleted(presets.First(p => p.Color == color));
+        OnPresetDeleted(presets.First(p => p.Color == colour));
     }
 
     private void UpdateTooltips()
     {
-        pickerButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_PICK_COLOR");
-        addPresetButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_ADD_PRESET");
-        hsvCheckButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_HSV_BUTTON_TOOLTIP");
-        rawCheckButton.HintTooltip = TranslationServer.Translate("COLOR_PICKER_RAW_BUTTON_TOOLTIP");
+        pickerButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_PICK_COLOUR");
+        addPresetButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_ADD_PRESET");
+        hsvCheckButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_HSV_BUTTON_TOOLTIP");
+        rawCheckButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_RAW_BUTTON_TOOLTIP");
 
         if (HsvMode)
         {
-            sliderROrH.HintTooltip = TranslationServer.Translate("COLOR_PICKER_H_TOOLTIP");
-            sliderGOrS.HintTooltip = TranslationServer.Translate("COLOR_PICKER_S_TOOLTIP");
-            sliderBOrV.HintTooltip = TranslationServer.Translate("COLOR_PICKER_V_TOOLTIP");
+            sliderROrH.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_H_TOOLTIP");
+            sliderGOrS.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_S_TOOLTIP");
+            sliderBOrV.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_V_TOOLTIP");
         }
         else
         {
-            sliderROrH.HintTooltip = TranslationServer.Translate("COLOR_PICKER_R_TOOLTIP");
-            sliderGOrS.HintTooltip = TranslationServer.Translate("COLOR_PICKER_G_TOOLTIP");
-            sliderBOrV.HintTooltip = TranslationServer.Translate("COLOR_PICKER_B_TOOLTIP");
+            sliderROrH.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_R_TOOLTIP");
+            sliderGOrS.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_G_TOOLTIP");
+            sliderBOrV.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_B_TOOLTIP");
         }
 
-        sliderA.HintTooltip = TranslationServer.Translate("COLOR_PICKER_A_TOOLTIP");
+        sliderA.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_A_TOOLTIP");
     }
 
     private void UpdateButtonsState()
@@ -246,10 +246,10 @@ public class TweakedColourPicker : ColorPicker
         AddPreset(Color);
     }
 
-    private void OnPresetSelected(Color color)
+    private void OnPresetSelected(Color colour)
     {
-        Color = color;
-        EmitSignal("color_changed", Color);
+        Color = colour;
+        EmitSignal("colour_changed", Color);
     }
 
     private void OnPresetDeleted(TweakedColorPickerPreset preset)
@@ -270,9 +270,9 @@ public class TweakedColourPicker : ColorPicker
         RawMode = isOn;
     }
 
-    private void OnColorChanged(Color color)
+    private void OnColorChanged(Color colour)
     {
-        hexColorEdit.Text = color.a8 == 255 ? color.ToHtml(false) : color.ToHtml(true);
+        hexColorEdit.Text = colour.a8 == 255 ? colour.ToHtml(false) : colour.ToHtml(true);
     }
 
     /// <summary>
@@ -280,25 +280,25 @@ public class TweakedColourPicker : ColorPicker
     ///   Set Color when text is valid; reset if not.
     ///   Because text_entered signal requires a string parameter but focus_exited zero, wrote lite this.
     /// </summary>
-    /// <param name="color">Current hexColorEditor text</param>
-    private void OnHexColorChanged(string color = null)
+    /// <param name="colour">Current hexColorEditor text</param>
+    private void OnHexColorChanged(string colour = null)
     {
-        color ??= hexColorEdit.Text;
-        if (color.IsValidHtmlColor())
-            Color = new Color(color);
+        colour ??= hexColorEdit.Text;
+        if (colour.IsValidHtmlColor())
+            Color = new Color(colour);
         else
             hexColorEdit.Text = Color.ToHtml();
     }
 
     public class TweakedColorPickerPreset : ColorRect
     {
-        public TweakedColorPickerPreset(TweakedColourPicker owner, Color color)
+        public TweakedColorPickerPreset(TweakedColourPicker owner, Color colour)
         {
             Connect(nameof(OnPresetSelected), owner, nameof(OnPresetSelected));
             Connect(nameof(OnPresetDeleted), owner, nameof(OnPresetDeleted));
             Connect("gui_input", this, nameof(OnPresetGUIInput));
 
-            Color = color;
+            Color = colour;
             MarginTop = MarginBottom = MarginLeft = MarginRight = 6.0f;
             RectMinSize = new Vector2(20, 20);
             SizeFlagsHorizontal = 8;
@@ -307,7 +307,7 @@ public class TweakedColourPicker : ColorPicker
         }
 
         [Signal]
-        public delegate void OnPresetSelected(Color color);
+        public delegate void OnPresetSelected(Color colour);
 
         [Signal]
         public delegate void OnPresetDeleted(TweakedColorPickerPreset preset);
@@ -339,7 +339,7 @@ public class TweakedColourPicker : ColorPicker
         private void UpdateTooltip()
         {
             HintTooltip = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("COLOR_PICKER_PRESET_TOOLTIP"), Color.ToHtml());
+                TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP"), Color.ToHtml());
         }
     }
 }

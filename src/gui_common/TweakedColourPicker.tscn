@@ -96,6 +96,6 @@ expand = true
 [connection signal="color_changed" from="." to="." method="OnColorChanged"]
 [connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
 [connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/RawCheckButton" to="." method="OnRawButtonToggled"]
-[connection signal="focus_exited" from="MarginButtonsContainer/ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
+[connection signal="focus_exited" from="MarginButtonsContainer/ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged" binds= [ "null" ]]
 [connection signal="text_entered" from="MarginButtonsContainer/ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
 [connection signal="pressed" from="PresetButtonContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]
