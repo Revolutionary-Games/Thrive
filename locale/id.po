@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-13 10:07+0300\n"
-"PO-Revision-Date: 2021-08-18 16:41+0000\n"
+"PO-Revision-Date: 2021-08-21 08:26+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/id/>\n"
@@ -279,9 +279,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Berikut tipsnya, bakteri bisa lebih kuat dari yang terlihat, mungkin mereka "
-"terlihat kecil, tetapi beberapa dari mereka dapat menggali kedalam selmu dan "
-"membunuh selmu dengan cara tersebut!"
+"Berikut tipsnya, bakteri bisa lebih kuat dari apa yang terlihat, mungkin "
+"mereka terlihat kecil, tetapi beberapa dari mereka dapat menggali kedalam "
+"selmu dan membunuh selmu dengan cara tersebut!"
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
@@ -315,13 +315,14 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Berikut tipsnya, kamu bisa menelan potongan, besi atau lainnya."
+msgstr "Berikut tipsnya, kamu bisa menelan potongan besi atau lainnya."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Berikut tipsnya, bersiaplah sebelum menambahkan nukleus pada selmu. Organel "
-"tersebut sangatlah mahal! Dalam sisi pemeliharaan dan biaya organel."
+"Berikut tipsnya, persiapkanlah sebelum menambahkan nukleus pada selmu. "
+"Organel tersebut sangatlah mahal! Dalam sisi ongkos perawatan dan biaya "
+"organel."
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
@@ -332,9 +333,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"Fakta Menarik, Stentor adalah ciliata yang dapat meregangkan dirinya sendiri "
-"dan menangkap mangsanya dari mulut berbentuk seperti terompet yang menarik "
-"mangsa kedalamnya dengan menimbulkan arus air dengan cilia."
+"Fakta Menarik, Stentor adalah ciliata yang dapat meregangkan dirinya dan "
+"menangkap mangsa dari mulut yang berbentuk seperti terompet dengan cara "
+"menarik mangsanya dengan menimbulkan arus air dengan cilia."
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
@@ -350,15 +351,15 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Berikut tipsnya, hati-hati dengan sel yang lebih besar dan bakteria besar, "
-"tidak seru rasanya kalau kamu dicerna, dan mereka akan memakanmu."
+"Berikut tipsnya, Hati-hati dengan sel yang lebih besar dan bakteria besar, "
+"tidak seru rasanya kalau dicerna, dan mereka akan memakanmu."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "Kepala tim suara Thrive telah membuat banyak lagu yang masih belum "
 "dimasukkan ke dalam game. Kamu dapat mendengar lagu-lagu tersebut, atau "
-"tonton streamingnya menyusun lagu di kanal YouTubenya, Oliver Lugg."
+"tonton streaming menyusun lagu di kanal YouTubenya, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
@@ -2288,7 +2289,7 @@ msgstr "Suhu"
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.tscn:95
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:81
 msgid "N_A_MP"
-msgstr "N/A PM"
+msgstr "N/A MP"
 
 #: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
@@ -2647,7 +2648,7 @@ msgstr "Pindah ke Daerah Ini"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
-msgstr "PM Tak Terhingga"
+msgstr "MP Tak Terhingga"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
@@ -2715,7 +2716,7 @@ msgstr "{0} dengan populasi: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
 msgid "MP_COST"
-msgstr "{0} PM"
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
 msgid "DELETE"
@@ -3085,7 +3086,7 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "Ini editor sel dimana kamu bisa menambahkan atau menghapis organele dari "
-"spesiesmu dengan memakai poin mutasi (PM).\n"
+"spesiesmu dengan memakai poin mutasi (MP).\n"
 "\n"
 "Kamu juga bisa mengubah ciri lain dari spesiesmu di tab berbeda di editor "
 "sel.\n"
@@ -3097,8 +3098,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Menghapus organele juga memakai PM dikarenakan sebagai mutasi pada "
-"spesiesmu, kecuali jika mereka ditambah saat sesi editor sekarang ini.\n"
+"Menghapus organele juga memakai MP dikarenakan sebagai mutasi pada "
+"spesiesmu, kecuali jika ditambah pada saat sesi editor sekarang ini.\n"
 "\n"
 "Kamu bisa klik kanan pada organel untuk menampilkan menu organel dan memilih "
 "opsi hapus untuk menghapus organel tersebut.\n"
