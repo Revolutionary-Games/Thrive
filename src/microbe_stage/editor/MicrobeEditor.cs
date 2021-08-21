@@ -965,38 +965,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public float CalculateSpeed()
     {
-        float microbeMass = Constants.MICROBE_BASE_MASS;
-
-        float organelleMovementForce = 0;
-
-        Vector3 forwardsDirection = new Vector3(0, 0, -1);
-
-        foreach (var organelle in editedMicrobeOrganelles.Organelles)
-        {
-            microbeMass += organelle.Definition.Mass;
-
-            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
-            {
-                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
-                    - Hex.AxialToCartesian(organelle.Position)).Normalized();
-
-                float directionFactor = organelleDirection.Dot(forwardsDirection);
-
-                // Flagella pointing backwards don't slow you down
-                directionFactor = Math.Max(directionFactor, 0);
-
-                organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement.Momentum / 100.0f
-                    * directionFactor;
-            }
-        }
-
-        float baseMovementForce = Constants.CELL_BASE_THRUST *
-            (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
-
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
-
-        return finalSpeed;
+        return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles, Membrane, Rigidity);
     }
 
     public float CalculateHitpoints()
@@ -1248,14 +1217,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         patch ??= CurrentPatch;
 
         gui.UpdateEnergyBalance(
-            ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome, membrane));
+            ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane));
     }
 
     private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)
     {
         patch ??= CurrentPatch;
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Biome);
+        var result = ProcessSystem
+            .ComputeCompoundBalance(organelles, patch.Biome);
 
         gui.UpdateCompoundBalances(result);
     }
