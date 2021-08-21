@@ -285,9 +285,13 @@ public class TweakedColourPicker : ColorPicker
     {
         colour ??= hexColorEdit.Text;
         if (colour.IsValidHtmlColor())
+        {
             Color = new Color(colour);
+        }
         else
+        {
             hexColorEdit.Text = Color.ToHtml();
+        }
     }
 
     public class TweakedColorPickerPreset : ColorRect

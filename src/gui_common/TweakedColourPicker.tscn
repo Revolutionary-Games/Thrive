@@ -6,10 +6,10 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=4]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 4.0
-margin_bottom = 16.0
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 12.0
+margin_bottom = 24.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -18,9 +18,9 @@ __meta__ = {
 }
 
 [node name="MarginButtonsContainer" type="MarginContainer" parent="."]
-margin_top = 664.0
+margin_top = 494.0
 margin_right = 317.0
-margin_bottom = 711.0
+margin_bottom = 541.0
 custom_constants/margin_top = 5
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="MarginButtonsContainer"]
@@ -30,55 +30,58 @@ margin_bottom = 47.0
 size_flags_horizontal = 3
 
 [node name="HSVCheckButton" type="CheckButton" parent="MarginButtonsContainer/ButtonsContainer"]
-margin_right = 110.0
+margin_right = 101.0
 margin_bottom = 42.0
+theme = ExtResource( 1 )
 shortcut_in_tooltip = false
 action_mode = 0
 keep_pressed_outside = true
 text = "HSV"
 
 [node name="RawCheckButton" type="CheckButton" parent="MarginButtonsContainer/ButtonsContainer"]
-margin_left = 114.0
-margin_right = 228.0
+margin_left = 105.0
+margin_right = 209.0
 margin_bottom = 42.0
+theme = ExtResource( 1 )
 shortcut_in_tooltip = false
 action_mode = 0
 keep_pressed_outside = true
 text = "RAW"
 
 [node name="Label" type="Label" parent="MarginButtonsContainer/ButtonsContainer"]
-margin_left = 232.0
+margin_left = 213.0
 margin_top = 10.0
-margin_right = 244.0
+margin_right = 225.0
 margin_bottom = 32.0
 text = "#"
 
 [node name="HexColorEdit" type="LineEdit" parent="MarginButtonsContainer/ButtonsContainer"]
-margin_left = 248.0
+margin_left = 229.0
 margin_right = 317.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
+theme = ExtResource( 1 )
 align = 1
 max_length = 8
 context_menu_enabled = false
 shortcut_keys_enabled = false
 
 [node name="Separator" type="HSeparator" parent="."]
-margin_top = 711.0
+margin_top = 541.0
 margin_right = 317.0
-margin_bottom = 719.0
+margin_bottom = 549.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="PresetContainer" type="GridContainer" parent="."]
-margin_top = 719.0
+margin_top = 549.0
 margin_right = 317.0
-margin_bottom = 719.0
+margin_bottom = 549.0
 columns = 12
 
 [node name="PresetButtonContainer" type="MarginContainer" parent="."]
-margin_top = 719.0
+margin_top = 549.0
 margin_right = 317.0
-margin_bottom = 754.0
+margin_bottom = 584.0
 custom_constants/margin_top = 5
 
 [node name="AddPresetButton" type="TextureButton" parent="PresetButtonContainer"]
