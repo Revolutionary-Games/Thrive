@@ -55,7 +55,7 @@ margin_right = 225.0
 margin_bottom = 32.0
 text = "#"
 
-[node name="HexColorEdit" type="LineEdit" parent="MarginButtonsContainer/ButtonsContainer"]
+[node name="HexColourEdit" type="LineEdit" parent="MarginButtonsContainer/ButtonsContainer"]
 margin_left = 229.0
 margin_right = 317.0
 margin_bottom = 42.0
@@ -96,9 +96,9 @@ texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
 expand = true
 
-[connection signal="color_changed" from="." to="." method="OnColorChanged"]
+[connection signal="color_changed" from="." to="." method="OnColourChanged"]
 [connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
 [connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/RawCheckButton" to="." method="OnRawButtonToggled"]
-[connection signal="focus_exited" from="MarginButtonsContainer/ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged" binds= [ "null" ]]
-[connection signal="text_entered" from="MarginButtonsContainer/ButtonsContainer/HexColorEdit" to="." method="OnHexColorChanged"]
+[connection signal="focus_exited" from="MarginButtonsContainer/ButtonsContainer/HexColourEdit" to="." method="OnHexColourChanged" binds= [ "-" ]]
+[connection signal="text_entered" from="MarginButtonsContainer/ButtonsContainer/HexColourEdit" to="." method="OnHexColourChanged"]
 [connection signal="pressed" from="PresetButtonContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]

@@ -21,7 +21,7 @@ public class TweakedColourPicker : ColorPicker
     private static readonly List<KeyValuePair<string, Color[]>> PresetsStorage
         = new List<KeyValuePair<string, Color[]>>();
 
-    private readonly List<TweakedColorPickerPreset> presets = new List<TweakedColorPickerPreset>();
+    private readonly List<TweakedColourPickerPreset> presets = new List<TweakedColourPickerPreset>();
 
     private HSlider sliderROrH;
     private HSlider sliderGOrS;
@@ -30,7 +30,7 @@ public class TweakedColourPicker : ColorPicker
     private ToolButton pickerButton;
     private CheckButton hsvCheckButton;
     private CheckButton rawCheckButton;
-    private LineEdit hexColorEdit;
+    private LineEdit hexColourEdit;
     private HSeparator separator;
     private GridContainer presetsContainer;
     private TextureButton addPresetButton;
@@ -148,7 +148,7 @@ public class TweakedColourPicker : ColorPicker
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
         hsvCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/RawCheckButton");
-        hexColorEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HexColorEdit");
+        hexColourEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HexColourEdit");
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<TextureButton>("PresetButtonContainer/AddPresetButton");
@@ -157,7 +157,7 @@ public class TweakedColourPicker : ColorPicker
         UpdateButtonsState();
         PresetsEnabled = presetsEnabled;
         PresetsVisible = presetsVisible;
-        OnColorChanged(Color);
+        OnColourChanged(Color);
 
         // Load presets.
         if (PresetsStorage.Exists(p => p.Key == GetPath()))
@@ -193,7 +193,7 @@ public class TweakedColourPicker : ColorPicker
             return;
 
         // Add preset locally
-        var preset = new TweakedColorPickerPreset(this, colour);
+        var preset = new TweakedColourPickerPreset(this, colour);
         presets.Add(preset);
         presetsContainer.AddChild(preset);
 
@@ -252,7 +252,7 @@ public class TweakedColourPicker : ColorPicker
         EmitSignal("colour_changed", Color);
     }
 
-    private void OnPresetDeleted(TweakedColorPickerPreset preset)
+    private void OnPresetDeleted(TweakedColourPickerPreset preset)
     {
         presets.Remove(preset);
         presetsContainer.RemoveChild(preset);
@@ -270,33 +270,35 @@ public class TweakedColourPicker : ColorPicker
         RawMode = isOn;
     }
 
-    private void OnColorChanged(Color colour)
+    private void OnColourChanged(Color colour)
     {
-        hexColorEdit.Text = colour.a8 == 255 ? colour.ToHtml(false) : colour.ToHtml(true);
+        hexColourEdit.Text = colour.a8 == 255 ? colour.ToHtml(false) : colour.ToHtml(true);
     }
 
     /// <summary>
-    ///   Called when (keyboard) entered in hexColorEdit.
+    ///   Called when (keyboard) entered in hexColourEdit.
     ///   Set Color when text is valid; reset if not.
     ///   Because text_entered signal requires a string parameter but focus_exited zero, wrote lite this.
     /// </summary>
-    /// <param name="colour">Current hexColorEditor text</param>
-    private void OnHexColorChanged(string colour = null)
+    /// <param name="colour">Current hexColourEditor text</param>
+    private void OnHexColourChanged(string colour = "-")
     {
-        colour ??= hexColorEdit.Text;
+        if (colour == "-")
+            colour = hexColourEdit.Text;
+
         if (colour.IsValidHtmlColor())
         {
             Color = new Color(colour);
         }
         else
         {
-            hexColorEdit.Text = Color.ToHtml();
+            hexColourEdit.Text = Color.ToHtml();
         }
     }
 
-    public class TweakedColorPickerPreset : ColorRect
+    public class TweakedColourPickerPreset : ColorRect
     {
-        public TweakedColorPickerPreset(TweakedColourPicker owner, Color colour)
+        public TweakedColourPickerPreset(TweakedColourPicker owner, Color colour)
         {
             Connect(nameof(OnPresetSelected), owner, nameof(OnPresetSelected));
             Connect(nameof(OnPresetDeleted), owner, nameof(OnPresetDeleted));
@@ -314,7 +316,7 @@ public class TweakedColourPicker : ColorPicker
         public delegate void OnPresetSelected(Color colour);
 
         [Signal]
-        public delegate void OnPresetDeleted(TweakedColorPickerPreset preset);
+        public delegate void OnPresetDeleted(TweakedColourPickerPreset preset);
 
         public override void _Notification(int what)
         {
