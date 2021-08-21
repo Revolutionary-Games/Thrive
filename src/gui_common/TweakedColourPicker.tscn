@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
-[ext_resource path="res://assets/textures/cross.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=4]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_bottom = 12.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 16.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -14,9 +18,9 @@ __meta__ = {
 }
 
 [node name="MarginButtonsContainer" type="MarginContainer" parent="."]
-margin_top = 494.0
+margin_top = 664.0
 margin_right = 317.0
-margin_bottom = 541.0
+margin_bottom = 711.0
 custom_constants/margin_top = 5
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="MarginButtonsContainer"]
@@ -60,32 +64,34 @@ context_menu_enabled = false
 shortcut_keys_enabled = false
 
 [node name="Separator" type="HSeparator" parent="."]
-margin_top = 541.0
+margin_top = 711.0
 margin_right = 317.0
-margin_bottom = 549.0
+margin_bottom = 719.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="PresetContainer" type="GridContainer" parent="."]
-margin_top = 549.0
+margin_top = 719.0
 margin_right = 317.0
-margin_bottom = 549.0
+margin_bottom = 719.0
 columns = 12
 
 [node name="PresetButtonContainer" type="MarginContainer" parent="."]
-margin_top = 549.0
+margin_top = 719.0
 margin_right = 317.0
-margin_bottom = 586.0
+margin_bottom = 754.0
 custom_constants/margin_top = 5
 
-[node name="AddPresetButton" type="Button" parent="PresetButtonContainer"]
+[node name="AddPresetButton" type="TextureButton" parent="PresetButtonContainer"]
 margin_top = 5.0
 margin_right = 30.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 30, 0 )
+margin_bottom = 35.0
+rect_min_size = Vector2( 30, 30 )
 size_flags_horizontal = 0
 size_flags_vertical = 4
-icon = ExtResource( 3 )
-expand_icon = true
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+expand = true
 
 [connection signal="color_changed" from="." to="." method="OnColorChanged"]
 [connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/HSVCheckButton" to="." method="OnHSVButtonToggled"]
