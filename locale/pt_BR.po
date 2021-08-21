@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-13 10:07+0300\n"
-"PO-Revision-Date: 2021-08-13 05:59+0000\n"
+"PO-Revision-Date: 2021-08-18 16:41+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1208,7 +1208,6 @@ msgid "LAUNCHA"
 msgstr "Launch A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
-#, fuzzy
 msgid "LAUNCHB"
 msgstr "Launch B"
 
@@ -2768,7 +2767,7 @@ msgstr "Erro ao carregar"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Não foi possível liberar recursos já livres: {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
