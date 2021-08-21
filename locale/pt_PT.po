@@ -2848,8 +2848,9 @@ msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
 #: ../src/saving/InProgressLoad.cs:220
+#, fuzzy
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Erro ao libertar recursos carregados: {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"

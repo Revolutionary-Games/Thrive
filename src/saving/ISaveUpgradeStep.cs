@@ -46,24 +46,35 @@
             // prone to accidentally miss a version
             return new Dictionary<string, ISaveUpgradeStep>
             {
+                { "0.5.4.0-rc1", new UpgradeJustVersionNumber("0.5.4.0") },
                 { "0.5.4.0", new UpgradeStep054To055() },
+                { "0.5.5.0-alpha", new UpgradeJustVersionNumber("0.5.5.0-rc1") },
+                { "0.5.5.0-rc1", new UpgradeJustVersionNumber("0.5.5.0") },
             };
         }
     }
 
-    internal class UpgradeStep054To055 : BaseJSONUpgradeStep
+    internal class UpgradeStep054To055 : BaseRecursiveJSONWalkerStep
     {
         protected override string VersionAfter => "0.5.5.0-alpha";
 
-        protected override void PerformUpgradeOnJSON(JObject saveData)
+        protected override void RecursivelyUpdateObjectProperties(JObject jObject)
         {
-            foreach (var entry in saveData.Properties())
+            base.RecursivelyUpdateObjectProperties(jObject);
+
+            foreach (var entry in jObject.Properties())
             {
-                RecursivelyUpdateMembraneValues(entry);
+                if (entry.Name == "DespawnRadiusSqr")
+                {
+                    // This modifies the object so this is done in a separate loop that is broken when hit
+                    GD.Print("Updating property name at ", entry.Path);
+                    entry.Replace(new JProperty("DespawnRadiusSquared", entry.Value));
+                    break;
+                }
             }
         }
 
-        private void RecursivelyUpdateMembraneValues(JProperty property)
+        protected override void CheckAndUpdateProperty(JProperty property)
         {
             if (property.Name.Contains("Membrane") || property.Name.Contains("membrane"))
             {
@@ -71,9 +82,46 @@
                     property.Value.ToObject<string>() == "calcium_carbonate")
                 {
                     GD.Print("Updating value at ", property.Path);
-
-                    // TODO: does this actually stick?
                     property.Value = "calciumCarbonate";
+                }
+            }
+        }
+    }
+
+    internal abstract class BaseRecursiveJSONWalkerStep : BaseJSONUpgradeStep
+    {
+        protected override void PerformUpgradeOnJSON(JObject saveData)
+        {
+            RecursivelyUpdateObjectProperties(saveData);
+        }
+
+        protected virtual void RecursivelyUpdateObjectProperties(JObject jObject)
+        {
+            if (jObject == null)
+                throw new JsonException("Null JSON object passed to looping properties");
+
+            foreach (var entry in jObject.Properties())
+            {
+                RecursivelyUpdateValues(entry);
+            }
+        }
+
+        protected abstract void CheckAndUpdateProperty(JProperty property);
+
+        private void RecursivelyUpdateValues(JProperty property)
+        {
+            CheckAndUpdateProperty(property);
+
+            if (property.Value.Type == JTokenType.Array)
+            {
+                var listObject = property.Value as JArray;
+                if (listObject == null)
+                    throw new JsonException("Child array convert to array type failed");
+
+                foreach (var entry in listObject)
+                {
+                    if (entry.Type == JTokenType.Object)
+                        RecursivelyUpdateObjectProperties(entry as JObject);
                 }
             }
 
@@ -84,10 +132,7 @@
             if (valueObject == null)
                 throw new JsonException("Child object convert to object type failed");
 
-            foreach (var entry in valueObject.Properties())
-            {
-                RecursivelyUpdateMembraneValues(entry);
-            }
+            RecursivelyUpdateObjectProperties(valueObject);
         }
     }
 

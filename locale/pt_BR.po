@@ -1208,7 +1208,6 @@ msgid "LAUNCHA"
 msgstr "Launch A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
-#, fuzzy
 msgid "LAUNCHB"
 msgstr "Launch B"
 
@@ -2830,7 +2829,7 @@ msgstr "Erro ao carregar"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Não foi possível liberar recursos já livres: {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"

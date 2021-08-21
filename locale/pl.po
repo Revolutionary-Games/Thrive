@@ -16,48 +16,56 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n"
-"%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.5.3\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"W,A,S,D oraz mysz aby się poruszać. E aby strzelać OxyToxy NT jeśli "
-"posiadasz toksyczną wakuolę . G aby przełączać tryb połykania ."
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive"
+":input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_ri"
+"ght[/thrive:input] oraz mysz aby się poruszać. "
+"[thrive:input]g_fire_toxin[/thrive:input] aby strzelać[thrive:compound type="
+"\"oxytoxy\"][/thrive:compound] jeśli posiadasz toksyczną wakuolę . "
+"[thrive:input]g_toggle_engulf[/thrive:input] aby przełączać tryb połykania ."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Twoja komórka używa ATP jako jej źródła energii, jeśli się wyczerpie, "
-"umrzesz."
+"Twoja komórka używa [thrive:compound type=\"atp\"][/thrive:compound] jako "
+"jej źródła energii, jeśli się wyczerpie, umrzesz."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Aby odblokować edytor i się rozmnożyć musisz zbierać Amoniak (Pomarańczowe "
-"Chmury) i Fosforan (Fioletowe Chmury)."
+"Aby odblokować edytor i się rozmnożyć musisz zbierać [thrive:compound type="
+"\"ammonia\"][/thrive:compound] (Pomarańczowe Chmury) i [thrive:compound type="
+"\"phosphates\"][/thrive:compound] (Fioletowe Chmury)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Możesz również połykać komórki, bakterie, odłamki żelaza i kawałki komórek "
-"mniejsze od ciebie naciskając G. Będzie to kosztować dodatkowe ATP i cię "
-"spowolni. Nie zapomnij nacisnąć G drugi raz aby przestać połykać."
+"mniejsze od ciebie naciskając [thrive:input]g_toggle_engulf[/thrive:input]. "
+"Będzie to kosztować dodatkowe [thrive:compound type=\"atp\""
+"][/thrive:compound] i cię spowolni. Nie zapomnij nacisnąć "
+"[thrive:input]g_toggle_engulf[/thrive:input] drugi raz aby przestać połykać."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulacja kosztuje ATP, co oznacza że im większa twoja komórka, tym "
-"więcej Mitochondriów, Metabolosomów lub Rusticyjaniny (lub cytoplazmy, "
-"która dokonuje Glikozy) będziesz potrzebować by uniknąć tracenia ATP "
-"stojąc w miejscu."
+"Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co "
+"oznacza że im większa twoja komórka, tym więcej Mitochondriów, Metabolosomów "
+"lub Rusticyjaniny (lub cytoplazmy, która dokonuje Glikozy) będziesz "
+"potrzebować by uniknąć tracenia [thrive:compound type=\"atp\""
+"][/thrive:compound] stojąc w miejscu."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -71,21 +79,24 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Różne chmury związków to:\n"
 "\n"
-"Białe – Glukoza\n"
-"Żółte – Siarkowodór\n"
-"Pomarańczowe – Amoniak\n"
-"Fioletowe – Fosforan\n"
-"Rdzawo-Brązowe – Żelazo\n"
+"Białe – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Żółte – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Pomarańczowe – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Fioletowe – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Rdzawo-Brązowe – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"Z Glukozy wytwarza się ATP"
+"[thrive:compound type=\"glucose\"][/thrive:compound] wytwarza [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"Siarkowodór może zostać przetworzony w glukozę przez chemoplasty i "
-"proteiny chemosyntezujące. Żelazo może zostać przetworzone przez "
-"rustycyjaninę w ATP."
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] może zostać "
+"przetworzony w [thrive:compound type=\"glucose\"][/thrive:compound] przez "
+"chemoplasty i proteiny chemosyntezujące. [thrive:compound type=\"iron\""
+"][/thrive:compound] może zostać przetworzone przez rustycyjaninę w [thrive:"
+"compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
@@ -131,27 +142,34 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Struktury Prokariotyczne\n"
 "\n"
-"Metabolosomy: Produkują ATP z glukozy\n"
+"Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z "
+"[thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Białka chemosyntezujące: Produkują o połowę mniej glukozy z Siarkowodoru "
-"niż chemoplast, ale dokonują również glikozy, i zajmują 1 Hex\n"
+"Białka chemosyntezujące: Produkują o połowę mniej [thrive:compound type="
+"\"glucose\"][/thrive:compound] z [thrive:compound type=\"hydrogensulfide\""
+"][/thrive:compound] niż chemoplast, ale dokonują również glikozy, i zajmują "
+"1 Hex\n"
 "\n"
-"Tylakoidy: Produkują 1/3 glukozy ile normalny chloroplast, ale dokonują "
-"również glikozy, oraz zajmują 1 Hex\n"
+"Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"][/thrive:compound]"
+" ile normalny chloroplast, ale dokonują również glikozy, oraz zajmują 1 Hex\n"
 "\n"
-"Rusticyjanina: Przetwarza żelazo w ATP\n"
+"Rusticyjanina: Przetwarza [thrive:compound type=\"iron\"][/thrive:compound] "
+"w [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Azotaza: Przetwarza beztlenowo azot atmosferyczny i ATP w amoniak.\n"
+"Azotaza: Przetwarza beztlenowo azot atmosferyczny i [thrive:compound type="
+"\"atp\"][/thrive:compound] w [thrive:compound type=\"ammonia\""
+"][/thrive:compound].\n"
 "\n"
 "Cytoplazma: Posiada miejsce magazynowe i dokonuje glikozy (Produkuje małe "
-"ilości ATP)"
+"ilości [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Organelle Zewnętrzne\n"
 "\n"
-"Wić: Porusza twoją komórkę szybciej używając ATP\n"
+"Wić: Porusza twoją komórkę szybciej używając [thrive:compound type=\"atp\""
+"][/thrive:compound]\n"
 "\n"
 "Pilus: Może być użyty do kłucia innych komórek"
 
@@ -166,31 +184,36 @@ msgstr ""
 "\n"
 "Czynnik Wiążący: Pozwala na wiązanie się z innymi komórkami.\n"
 "\n"
-"Mitochondrium: Produkuje ATP z glukozy i atmosferycznego O2 o wiele "
-"wydajniej niż cytoplazma\n"
+"Mitochondrium: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] z "
+"[thrive:compound type=\"glucose\"][/thrive:compound] i atmosferycznego O2 o "
+"wiele wydajniej niż cytoplazma\n"
 "\n"
-"Chloroplast: Wytwarza glukozę ze światła słonecznego i atmosferycznego "
-"CO2\n"
+"Chloroplast: Wytwarza [thrive:compound type=\"glucose\"][/thrive:compound] "
+"ze światła słonecznego i atmosferycznego CO2\n"
 "\n"
-"Chemoplast: Wytwarza glukozę z Siarkowodoru\n"
+"Chemoplast: Wytwarza [thrive:compound type=\"glucose\"][/thrive:compound] z "
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Plastyd Wiążący Azot: Wytwarza amoniak z ATP i atmosferycznych Azotu oraz "
-"Tlenu\n"
+"Plastyd Wiążący Azot: Wytwarza [thrive:compound type=\"ammonia\""
+"][/thrive:compound] z [thrive:compound type=\"atp\"][/thrive:compound] i "
+"atmosferycznych Azotu oraz Tlenu\n"
 "\n"
 "Wakuola: Przechowuje 15 zebranych substancji chemicznych.\n"
 "\n"
-"Toksyczna Wakuola: Produkuje toksyny (nazwane OxyToksy NT)"
+"Toksyczna Wakuola: Produkuje toksyny (nazwane [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Każdej generacji masz 100 punktów mutacji (PM) do wydania, i każda zmiana "
-"(lub mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli "
-"kosztuje PM. Usuwanie organelli które były dodane w obecnej generacji "
-"zwraca PM za tą organellę. Możesz przesunąć lub całkowicie usunąć "
-"organellę klikając na nią prawym przyciskiem i wybierając właściwą "
-"czynność z wyskakującego menu. Możesz obracać swoje organelle podczas "
-"dodawania ich używając klawiszy A i D."
+"Każdej generacji masz 100 punktów mutacji (PM) do wydania, i każda zmiana ("
+"lub mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli "
+"kosztuje PM. Usuwanie organelli które były dodane w obecnej generacji zwraca "
+"PM za tą organellę. Możesz przesunąć lub całkowicie usunąć organellę "
+"klikając na nią prawym przyciskiem i wybierając właściwą czynność z "
+"wyskakującego menu. Możesz obracać swoje organelle podczas dodawania ich "
+"używając klawiszy [thrive:input]e_rotate_left[/thrive:input] i "
+"[thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -287,7 +310,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Porada, możesz połykać[g] kawałki, żelaza lub inne."
+msgstr "Porada, możesz połykać kawałki, żelaza lub inne."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -953,7 +976,7 @@ msgstr "Pauza"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Wyczyść"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
@@ -1031,7 +1054,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Spacja"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 #, fuzzy
@@ -1145,9 +1168,8 @@ msgid "MEDIASTOP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "poprzedni:"
+msgstr "Poprzedni"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
@@ -1290,9 +1312,8 @@ msgid "KP9"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
-#, fuzzy
 msgid "UNKNOWN"
-msgstr "Nieznany myszy"
+msgstr "Nieznany"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -1422,7 +1443,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:758
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Domyślne urządzenie wyjściowe"
 
 #: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
@@ -1481,9 +1502,8 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Aberracja chromatyczna:"
 
 #: ../src/general/OptionsMenu.tscn:381
-#, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Umiejętności"
+msgstr "Pokaż Pasek Umiejętności"
 
 #: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
@@ -1517,7 +1537,7 @@ msgstr "Głośność interfejsu"
 
 #: ../src/general/OptionsMenu.tscn:601
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Wyjściowe urządzenie audio:"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
@@ -1794,11 +1814,8 @@ msgstr "Nie można pokazać więcej niż {0} zbiorów danych!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:940
 #: ../src/gui_common/charts/line/LineChart.cs:968
-#, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
-"Usunięcie tego zapisu nie może zostać odwrócone, czy jesteś pewien że "
-"chcesz permamentnie usunąć {0}?"
+msgstr "Nie można wyświetlić mniej niż {0} zbioru(ów) danych!"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -1873,10 +1890,10 @@ msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Płynne wnętrze komórki. Cytoplazma to podstawowa mikstura jonów, białek, i "
 "innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki. "
-"Jedną z jej funkcji jest Fermentacja, przemiana glukozy w energię ATP. Dla "
-"komórek którym brakuje organelli do bardziej zaawansowanych metabolizmów, "
-"to na tym polegają dla energii. Jest również używana aby przechowywać "
-"molekuły i zwiększać rozmiar komórki."
+"Jedną z jej funkcji jest glikoza, przemiana glukozy w energię ATP. Dla "
+"komórek którym brakuje organelli do bardziej zaawansowanych metabolizmów, to "
+"na tym polegają dla energii. Jest również używana aby przechowywać molekuły "
+"i zwiększać rozmiar komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:344
@@ -1924,74 +1941,67 @@ msgstr "Koszt Osmoregulacji"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Zmienia [thrive:compound]glukoza[/thrive:compound] w [thrive:compound]atp[/"
-"thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound]tlen[/"
-"thrive:compound]"
+"Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolosomy to grupy protein zamknięte w proteinowych powłokach. Potrafią "
-"przetwarzać glukozę w ATP o wiele szybciej niż cytoplazma w procesie "
-"zwanym Oddychaniem Tlenowym. Jednak żeby funkcjonować potrzebują tlenu, i "
-"niższe stężenie tlenu w otoczeniu spowalnia ich szybkość produkcji ATP. "
-"Przez to, że metabolosomy są zanurzone bezpośrednio w cytoplazmie, "
-"otaczający płyn dokonuje fermentacji."
+"przetwarzać glukozę w ATP o wiele szybciej niż cytoplazma w procesie zwanym "
+"Oddychaniem Tlenowym. Jednak żeby funkcjonować potrzebują tlenu, i niższe "
+"stężenie tlenu w otoczeniu spowalnia ich szybkość produkcji ATP. Przez to, "
+"że metabolosomy są zanurzone bezpośrednio w cytoplazmie, otaczający płyn "
+"dokonuje glikozy."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
 msgid "THYLAKOID"
 msgstr "Tylakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Białka chemosyntezującę są małymi grupami białek które umieją przemieniać "
-"siarkowodór, wodę i dwutlenek węgla (jako gas) na glukozę w procesie "
-"nazywającym się chemosynthezą siarkowodoru. Tempo produkcji glukozy "
-"skaluje się z koncentracją dwutlenku węgla. Dlatego że białka "
-"chemosyntezującę są zawieszone bez pośrednio w cytoplazmie, otaczający "
-"płyn wykonuje fermentację."
+"Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
+"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\""
+"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "Tylakoidy to grupy białek i foto sensytywnych pigmentów. Te pigmenty mogą "
-"użyć energii światła do produkcji glukozy z wody i gazowego dwutlenku "
-"węgla w procesie zwanym Fotosyntezą. Te pigmenty nadają im również "
-"wyróżniający się kolor. Szybkość produkcji skaluje się z koncentracją "
-"dwutlenku węgla, oraz intensywnością światła. Ponieważ tylakoidy "
-"zawieszone są bezpośrednio w cytoplazmie, otaczający płyn dokonuje "
-"fermentacji."
+"użyć energii światła do produkcji glukozy z wody i gazowego dwutlenku węgla "
+"w procesie zwanym Fotosyntezą. Te pigmenty nadają im również wyróżniający "
+"się kolor. Szybkość produkcji skaluje się z koncentracją dwutlenku węgla, "
+"oraz intensywnością światła. Ponieważ tylakoidy zawieszone są bezpośrednio w "
+"cytoplazmie, otaczający płyn dokonuje glikozy."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Białka chemosyntezującę są małymi grupami białek które umieją przemieniać "
-"siarkowodór, wodę i dwutlenek węgla (jako gas) na glukozę w procesie "
-"nazywającym się chemosynthezą siarkowodoru. Tempo produkcji glukozy "
-"skaluje się z koncentracją dwutlenku węgla. Dlatego że białka "
-"chemosyntezującę są zawieszone bez pośrednio w cytoplazmie, otaczający "
-"płyn wykonuje fermentację."
+"Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
+"Zmienia też [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Białka chemosyntezującę są małymi grupami białek które umieją przemieniać "
 "siarkowodór, wodę i dwutlenek węgla (jako gas) na glukozę w procesie "
-"nazywającym się chemosynthezą siarkowodoru. Tempo produkcji glukozy "
-"skaluje się z koncentracją dwutlenku węgla. Dlatego że białka "
-"chemosyntezującę są zawieszone bez pośrednio w cytoplazmie, otaczający "
-"płyn wykonuje fermentację."
+"nazywającym się chemosynthezą siarkowodoru. Tempo produkcji glukozy skaluje "
+"się z koncentracją dwutlenku węgla. Dlatego że białka chemosyntezującę są "
+"zawieszone bez pośrednio w cytoplazmie, otaczający płyn wykonuje glikozę."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:544
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Rusticyjanina to białko mogące użyć gazowego dwutlenku węgla i tlenu do "
-"utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, "
-"nazywany Oddychaniem Żelaza, uwalnia energię którą komórka może zebrać."
+"Przekształca [thrive:compound type=\"iron\"][/thrive:compound] w [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:545
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2001,14 +2011,11 @@ msgstr ""
 "nazywany Oddychaniem Żelaza, uwalnia energię którą komórka może zebrać."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:641
-#, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Nitrogenaza to białko mogące użyć gazowego azotu i energii komórkowej w "
-"formie ATP do produkcji amoniaku, kluczowego składnika dla wzrostu "
-"komórki. Ten proces nazywany jest Beztlenowym Wiązaniem Azotu. Ponieważ "
-"nitrogenaza jest zawieszona bezpośrednio w cytoplazmie, otaczający płyn "
-"dokonuje fermentacji."
+"Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:642
 msgid "NITROGENASE_DESCRIPTION"
@@ -2020,15 +2027,12 @@ msgstr ""
 "dokonuje fermentacji."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:739
-#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Metabolosomy to grupy protein zamknięte w proteinowych powłokach. Potrafią "
-"przetwarzać glukozę w ATP o wiele szybciej niż cytoplazma w procesie "
-"zwanym Oddychaniem Tlenowym. Jednak żeby funkcjonować potrzebują tlenu, i "
-"niższe stężenie tlenu w otoczeniu spowalnia ich szybkość produkcji ATP. "
-"Przez to, że metabolosomy są zanurzone bezpośrednio w cytoplazmie, "
-"otaczający płyn dokonuje fermentacji."
+"Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny "
+"naciskając [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "OXYTOXISOME_DESC"
@@ -2037,12 +2041,10 @@ msgstr ""
 "toksycznego czynnika OxyToksy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:836
-#, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Flagellum (l.m. flagella) to wicio-podobny zbiór białek wysunięty z "
-"membrany komórki który używa ATP do falowania i poruszania komórki w danym "
-"kierunku."
+"Używa [thrive:compound type=\"atp\"][/thrive:compound] do zwiększenia "
+"prędkości komórki"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:837
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2070,14 +2072,12 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr "Do zaimplementowania."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1010
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Nitrogenaza to białko mogące użyć gazowego azotu i energii komórkowej w "
-"formie ATP do produkcji amoniaku, kluczowego składnika dla wzrostu "
-"komórki. Ten proces nazywany jest Beztlenowym Wiązaniem Azotu. Ponieważ "
-"nitrogenaza jest zawieszona bezpośrednio w cytoplazmie, otaczający płyn "
-"dokonuje fermentacji."
+"Naciśnij [thrive:input]g_toggle_binding[/thrive:input] aby przełączyć tryb "
+"wiązania. W trybie wiązania możesz dołączać inne komórki twojego gatunku do "
+"swojej kolonii wpływając w nie. Aby opuścić kolonię naciśnij "
+"[thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
 #, fuzzy
@@ -2092,10 +2092,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1057
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Pozwala na ewolucję bardziej złożonych,\n"
-"membranowych organelli. Utrzymanie\n"
-"kosztuje dużo ATP. Jest to nieodwracalna\n"
-"ewolucja."
+"Pozwala na ewolucję bardziej złożonych, membranowych organelli. Utrzymanie "
+"kosztuje dużo ATP. Jest to nieodwracalna ewolucja."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
 msgid "NUCLEUS_DESCRIPTION"
@@ -2112,16 +2110,11 @@ msgstr ""
 "utrzymania."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1154
-#, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to "
-"stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest "
-"prokariotem ,który został przyswojony do użytku przez eukariotycznego "
-"hosta. Potrafi przekształcać glukozę w ATP znacznie efektywniej niż "
-"cytoplazma w procesie zwanym Oddychaniem Komórkowym. Jednak wymaga tlenu "
-"do funkcjonowania, i niższe poziomy tlenu w otoczeniu spowalniają tempo "
-"produkcji ATP."
+"Przekształca [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1155
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2135,19 +2128,12 @@ msgstr ""
 "produkcji ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
-#, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne "
-"pigmenty ułożone razem w membranowych workach. Jest prokariotem, który "
-"został przyswojony do użytku przez eukariotycznego hosta.Chloroplast to "
-"struktura z podwójną membraną zawierająca fotosensytywne pigmenty ułożone "
-"razem w membranowych kieszeniach. Jest prokariotem, który został "
-"przyswojony do użytku przez eukariotycznego hosta. Pigmenty w "
-"chloroplaście mogą używać energii światła do produkcji glukozy z wody i "
-"gazowego dwutlenku węgla w procesie zwanym Fotosyntezą. Te pigmenty dają "
-"mu też wyróżniający się kolor. Tempo produkci glukozy skaluje się ze "
-"stężeniem dwutlenku węgla i intensywnością światła."
+"Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
+"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\""
+"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2168,21 +2154,16 @@ msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1322
-#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Termoplast jest strukturą z podwójną membraną zawierającą termosensytywne "
-"pigmenty ułożone razem w membranowych workach. Jest prokariotem, który "
-"został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w "
-"termoplaście mogą używać energii z różnic temperatur w otoczeniu do "
-"produkcji glukozy z wody i gazowego dwutlenku węgla w procesie zwanym "
-"Termosyntezą. Tempo produkcji glukozy skaluje się ze stężeniem dwutlenku "
-"węgla i temperaturą."
+"Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
+"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] i temperatury."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1323
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
-"Termoplast jest strukturą z podwójną membraną zawierającą termosensytywne "
+"Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne "
 "pigmenty ułożone razem w membranowych workach. Jest prokariotem, który "
 "został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w "
 "termoplaście mogą używać energii z różnic temperatur w otoczeniu do "
@@ -2192,18 +2173,15 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1339
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:172
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Dodaj organellę"
+msgstr "Brak procesów"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
-#, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Chemoplast to struktura z podwójną membraną zawierająca protieny mogące "
-"przekształcić siarkowoór,wodę i gazowy dwutlenek węgla w glukozę w "
-"procesie zwanym Chemosyntezą Siarkowodoru. Tempo produkcji glukozy skaluje "
-"się ze stężeniem dwutlenku węgla."
+"Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1438
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2214,13 +2192,12 @@ msgstr ""
 "się ze stężeniem dwutlenku węgla."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1521
-#, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Plastyd Wiążący Azot to białko używające gazowego azotu i tlenu oraz "
-"energii komórkowej w formie ATP do produkcji amoniaku, składnika "
-"kluczowego dla wzrostu komórek. Ten proces nazywa się Tlenowe Wiązanie "
-"Azotu."
+"Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound "
+"type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2252,12 +2229,12 @@ msgstr ""
 "komórkami."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1716
-#, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Toksyczna wakuola to wakuola zmodyfikowana do specyficznej produkcji, "
-"magazynowania i uwalniania toksyn oxytoxy. Więcej toksycznych wakuoli "
-"zwiększa tempo z którym można wypuszczać toksyny."
+"Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Może wypuszczać toksyny "
+"po naciśnięciu [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1717
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2352,16 +2329,12 @@ msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3303
-#, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
-"Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to "
-"stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest "
-"prokariotem ,który został przyswojony do użytku przez eukariotycznego "
-"hosta. Potrafi przekształcać glukozę w ATP znacznie efektywniej niż "
-"cytoplazma w procesie zwanym Oddychaniem Komórkowym. Jednak wymaga tlenu "
-"do funkcjonowania, i niższe poziomy tlenu w otoczeniu spowalniają tempo "
-"produkcji ATP."
+"Włącza blaski świetlne na interfejsach (np. błysk przycisku edytora).\n"
+"\n"
+"Jeśli doświadczysz błędu gdzie część przycisku edytora znika,\n"
+"spróbuj wyłączyć to ustawienie żeby sprawdzić czy problem zniknie."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3313
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
@@ -2376,7 +2349,7 @@ msgstr "N/A MP"
 
 #: ../src/microbe_stage/Microbe.cs:939
 msgid "DEATH"
-msgstr ""
+msgstr "śmierć"
 
 #: ../src/microbe_stage/Microbe.cs:1411
 msgid "SUCCESSFUL_SCAVENGE"
@@ -2409,9 +2382,10 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
-#, fuzzy
 msgid "PLAYER_SPEED"
-msgstr "gracz zginął"
+msgstr ""
+"Gracz\n"
+"Prędkość"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 #, fuzzy
@@ -2645,7 +2619,7 @@ msgstr "Nazwa gatunku..."
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1841
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "POTWIERDŹ"
+msgstr "ANULUJ AKCJĘ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1855
 msgid "CONFIRM_CAPITAL"
@@ -2722,7 +2696,7 @@ msgstr "AKTUALNA LOKALIZACJA"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
 #, fuzzy
 msgid "PRESSURE"
-msgstr "Ciśn."
+msgstr "Ciśnienie"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
 msgid "SPECIES_PRESENT"
@@ -2948,15 +2922,10 @@ msgstr ""
 "chcesz permamentnie usunąć {0}?"
 
 #: ../src/saving/SaveList.cs:281
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. "
-"Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko "
-"używanych w komórkach do magazynowania, które są ze sobą połączone. "
-"Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i "
-"inne substancje. Ich kształt jest płynny i może się różnić między "
-"komórkami."
+"Aktualizacja wybranego zapisu zawiodła przez następujący błąd:\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -3012,20 +2981,18 @@ msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "Wybrany zapis jest niekompatybilny"
 
 #: ../src/saving/SaveList.tscn:192
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. "
-"Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko "
-"używanych w komórkach do magazynowania, które są ze sobą połączone. "
-"Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i "
-"inne substancje. Ich kształt jest płynny i może się różnić między "
-"komórkami."
+"Wybrany zapis jest ze starszej wersji Thrive, ale może zostać zaktualizowany."
+"\n"
+"Zapasowy plik zostanie stworzony przed aktualizacją, jeśli jeszcze nie "
+"istnieje.\n"
+"Jeśli pominiesz aktualizację, nastąpi próba wczytania zapisu normalnie.\n"
+"Spróbować aktualizacji tego zapisu?"
 
 #: ../src/saving/SaveList.tscn:207
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Zapisywanie się nie udało"
+msgstr "Aktualizacja zapisu się nie powiodła"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
@@ -3122,7 +3089,7 @@ msgstr "Błąd zapisu"
 
 #: ../src/saving/SaveStatusOverlay.tscn:183
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Skopiuj Błąd Do Schowka"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
@@ -3200,13 +3167,13 @@ msgstr ""
 "potrzebujesz."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle poprzez "
-"zebranie wystarczająco dużo amoniaku i fosforanów.\n"
-"Patrz na wskaźnik w prawym dolnym rogu żeby sprawdzić ile jeszcze "
-"potrzebujesz."
+"Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii "
+"aby ich odseparować.\n"
+"\n"
+"Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć "
+"klawisz 'odwiąż wszystkie'."
 
 #, fuzzy
 #~ msgid "COLOR"
