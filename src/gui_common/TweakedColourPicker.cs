@@ -140,6 +140,7 @@ public class TweakedColourPicker : ColorPicker
         GetChild<Control>(6).Hide();
         GetChild<Control>(7).Hide();
 
+        // Get controls
         var baseControl = GetChild(4);
         sliderROrH = baseControl.GetChild(0).GetChild<HSlider>(1);
         sliderGOrS = baseControl.GetChild(1).GetChild<HSlider>(1);
@@ -148,10 +149,15 @@ public class TweakedColourPicker : ColorPicker
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
         hsvCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/RawCheckButton");
-        hexColourEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HexColourEdit");
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<TextureButton>("PresetButtonContainer/AddPresetButton");
+
+        // Init custom nodes
+        hexColourEdit = new TweakedColourPickerHtmlEdit();
+        GetNode("MarginButtonsContainer/ButtonsContainer").AddChild(hexColourEdit);
+        hexColourEdit.Connect(nameof(TweakedColourPickerHtmlEdit.OnHtmlColourChanged), this,
+            nameof(OnHtmlColourChanged));
 
         // Update control state.
         UpdateButtonsState();
@@ -249,7 +255,7 @@ public class TweakedColourPicker : ColorPicker
     private void OnPresetSelected(Color colour)
     {
         Color = colour;
-        EmitSignal("colour_changed", Color);
+        EmitSignal("color_changed", Color);
     }
 
     private void OnPresetDeleted(TweakedColourPickerPreset preset)
@@ -275,28 +281,12 @@ public class TweakedColourPicker : ColorPicker
         hexColourEdit.Text = colour.a8 == 255 ? colour.ToHtml(false) : colour.ToHtml(true);
     }
 
-    /// <summary>
-    ///   Called when (keyboard) entered in hexColourEdit.
-    ///   Set Color when text is valid; reset if not.
-    ///   Because text_entered signal requires a string parameter but focus_exited zero, wrote lite this.
-    /// </summary>
-    /// <param name="colour">Current hexColourEditor text</param>
-    private void OnHexColourChanged(string colour = "-")
+    private void OnHtmlColourChanged(Color colour)
     {
-        if (colour == "-")
-            colour = hexColourEdit.Text;
-
-        if (colour.IsValidHtmlColor())
-        {
-            Color = new Color(colour);
-        }
-        else
-        {
-            hexColourEdit.Text = Color.ToHtml();
-        }
+        Color = colour;
     }
 
-    public class TweakedColourPickerPreset : ColorRect
+    private class TweakedColourPickerPreset : ColorRect
     {
         public TweakedColourPickerPreset(TweakedColourPicker owner, Color colour)
         {
@@ -346,6 +336,52 @@ public class TweakedColourPicker : ColorPicker
         {
             HintTooltip = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP"), Color.ToHtml());
+        }
+    }
+
+    private class TweakedColourPickerHtmlEdit : LineEdit
+    {
+        public TweakedColourPickerHtmlEdit()
+        {
+            Align = AlignEnum.Center;
+            MaxLength = 8;
+            ContextMenuEnabled = false;
+            SizeFlagsHorizontal = 3;
+        }
+
+        [Signal]
+        public delegate void OnHtmlColourChanged(Color colour);
+
+        /// <summary>
+        ///   Handle input events (especially key events)
+        /// </summary>
+        /// <param name="event">Input event</param>
+        public override void _Input(InputEvent @event)
+        {
+            // If event is not key event, and if Control is pressed then it's a shortcut, use default handler
+            if (!(@event is InputEventKey keyEvent) || keyEvent.Control)
+            {
+                base._Input(@event);
+                return;
+            }
+
+            var chr = (char)keyEvent.Unicode;
+
+            // if the key-in character is not valid, cancel this event.
+            // \u0000: Control keys (such as Backspace, arrow keys, etc)
+            if ("0123456789abcdefABCDEF\u0000".Find(chr) == -1)
+            {
+                GetTree().SetInputAsHandled();
+                return;
+            }
+
+            base._Input(keyEvent);
+
+            // Then it will be a valid HTML color
+            if (Text.Length == 6 || Text.Length == 8)
+            {
+                EmitSignal(nameof(OnHtmlColourChanged), new Color(Text));
+            }
         }
     }
 }
