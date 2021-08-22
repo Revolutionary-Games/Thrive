@@ -393,8 +393,8 @@ public static class Constants
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     // Personality Mutation
-    public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
-    public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
+    public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
+    public const float MIN_SPECIES_PERSONALITY_MUTATION = -40.0f;
 
     // Genus splitting and name mutation
     public const int MUTATION_WORD_EDIT = 10;
