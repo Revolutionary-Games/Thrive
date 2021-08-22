@@ -347,6 +347,7 @@ public class TweakedColourPicker : ColorPicker
             MaxLength = 8;
             ContextMenuEnabled = false;
             SizeFlagsHorizontal = 3;
+            Connect("focus_exited", this, nameof(FocusExited));
         }
 
         [Signal]
@@ -382,6 +383,11 @@ public class TweakedColourPicker : ColorPicker
             {
                 EmitSignal(nameof(OnHtmlColourChanged), new Color(Text));
             }
+        }
+
+        private void FocusExited()
+        {
+            Select(0, 0);
         }
     }
 }
