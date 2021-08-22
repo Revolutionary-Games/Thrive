@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.cs" type="Script" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/plusButtonDisabled.png" type="Texture" id=5]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 12.0
-margin_bottom = 24.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 32.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -19,13 +20,13 @@ __meta__ = {
 
 [node name="MarginButtonsContainer" type="MarginContainer" parent="."]
 margin_top = 494.0
-margin_right = 317.0
+margin_right = 299.0
 margin_bottom = 541.0
 custom_constants/margin_top = 5
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="MarginButtonsContainer"]
 margin_top = 5.0
-margin_right = 317.0
+margin_right = 299.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
 
@@ -57,7 +58,7 @@ text = "#"
 
 [node name="HexColourEdit" type="LineEdit" parent="MarginButtonsContainer/ButtonsContainer"]
 margin_left = 229.0
-margin_right = 317.0
+margin_right = 299.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
@@ -68,19 +69,19 @@ shortcut_keys_enabled = false
 
 [node name="Separator" type="HSeparator" parent="."]
 margin_top = 541.0
-margin_right = 317.0
+margin_right = 299.0
 margin_bottom = 549.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="PresetContainer" type="GridContainer" parent="."]
 margin_top = 549.0
-margin_right = 317.0
+margin_right = 299.0
 margin_bottom = 549.0
 columns = 12
 
 [node name="PresetButtonContainer" type="MarginContainer" parent="."]
 margin_top = 549.0
-margin_right = 317.0
+margin_right = 299.0
 margin_bottom = 584.0
 custom_constants/margin_top = 5
 
@@ -94,6 +95,7 @@ size_flags_vertical = 4
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 5 )
 expand = true
 
 [connection signal="color_changed" from="." to="." method="OnColourChanged"]
