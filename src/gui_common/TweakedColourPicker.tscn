@@ -7,10 +7,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonDisabled.png" type="Texture" id=5]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 24.0
-margin_bottom = 36.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -38,21 +34,27 @@ shortcut_in_tooltip = false
 action_mode = 0
 keep_pressed_outside = true
 text = "HSV"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="RawCheckButton" type="CheckButton" parent="MarginButtonsContainer/ButtonsContainer"]
 margin_left = 105.0
-margin_right = 209.0
+margin_right = 207.0
 margin_bottom = 42.0
 theme = ExtResource( 1 )
 shortcut_in_tooltip = false
 action_mode = 0
 keep_pressed_outside = true
-text = "RAW"
+text = "Raw"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HtmlColourStart" type="Label" parent="MarginButtonsContainer/ButtonsContainer"]
-margin_left = 213.0
+margin_left = 211.0
 margin_top = 10.0
-margin_right = 225.0
+margin_right = 223.0
 margin_bottom = 32.0
 text = "#"
 __meta__ = {
@@ -60,7 +62,7 @@ __meta__ = {
 }
 
 [node name="HtmlColourEdit" type="LineEdit" parent="MarginButtonsContainer/ButtonsContainer"]
-margin_left = 229.0
+margin_left = 227.0
 margin_right = 299.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
