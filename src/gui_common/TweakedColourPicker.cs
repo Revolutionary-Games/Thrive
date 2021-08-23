@@ -277,11 +277,11 @@ public class TweakedColourPicker : ColorPicker
     }
 
     /// <summary>
-    ///   Called when (keyboard) entered in HtmlColourEdit or from OnHtmlColorEditFocusExited.
+    ///   Called when (keyboard) entered in HtmlColourEdit or from OnHtmlColourEditFocusExited.
     ///   Set Color when text is valid; reset if not.
     /// </summary>
     /// <param name="colour">Current htmlColourEditor text</param>
-    private void OnHtmlColourChanged(string colour)
+    private void OnHtmlColourEditEntered(string colour)
     {
         if (colour.IsValidHtmlColor())
         {
@@ -294,11 +294,11 @@ public class TweakedColourPicker : ColorPicker
     }
 
     /// <summary>
-    ///   Called when focus exited HtmlColorEdit.
+    ///   Called when focus exited HtmlColourEdit.
     /// </summary>
-    private void OnHtmlColorEditFocusExited()
+    private void OnHtmlColourEditFocusExited()
     {
-        OnHtmlColourChanged(htmlColourEdit.Text);
+        OnHtmlColourEditEntered(htmlColourEdit.Text);
         htmlColourEdit.Deselect();
     }
 
