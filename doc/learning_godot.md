@@ -13,7 +13,9 @@ since that is the language used by Thrive.
 
 The [Class Reference](https://docs.godotengine.org/en/stable/classes/index.html)
 is a resource that should be used often by programmers, it contains information
-on all of the properties, methods and signals of each of Godot's nodes.
+on all of the properties, methods and signals of each of Godot's nodes. By using
+an IDE that works well with Godot you can see the class reference directly in the
+IDE while coding.
 
 If you learn better with videos [GDQuest](https://www.youtube.com/c/Gdquest/videos)
 is a well known and high quality Godot tutorial channel. In addition there
