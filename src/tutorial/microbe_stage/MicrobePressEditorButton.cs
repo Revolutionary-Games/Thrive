@@ -3,15 +3,15 @@
     using System;
 
     /// <summary>
-    ///   Tells the player how to reproduce if they have taken a long while
+    ///   Tells the player to press the editor button if it has been enabled too long
     /// </summary>
-    public class MicrobeReproduction : TutorialPhase
+    public class MicrobePressEditorButton : TutorialPhase
     {
-        public override string ClosedByName { get; } = "MicrobeReproduction";
+        public override string ClosedByName { get; } = "MicrobeEditorPress";
 
         public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
-            gui.ReproductionTutorialVisible = ShownCurrently;
+            gui.EditorButtonTutorialVisible = ShownCurrently;
         }
 
         public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
@@ -19,7 +19,7 @@
         {
             switch (eventType)
             {
-                case TutorialEventType.MicrobePlayerSpawned:
+                case TutorialEventType.MicrobePlayerReadyToEdit:
                 {
                     if (!Complete && !ProcessWhileHidden)
                     {
@@ -30,9 +30,6 @@
                     break;
                 }
 
-                case TutorialEventType.MicrobePlayerReadyToEdit:
-                    Inhibit();
-                    break;
                 case TutorialEventType.EnteredMicrobeEditor:
                     Inhibit();
                     break;
@@ -49,7 +46,8 @@
 
         protected override void OnProcess(TutorialState overallState, float delta)
         {
-            if (Time > Constants.MICROBE_REPRODUCTION_TUTORIAL_DELAY && !HasBeenShown && !overallState.TutorialActive())
+            if (Time > Constants.MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY && !HasBeenShown &&
+                !overallState.TutorialActive())
             {
                 Show();
             }
