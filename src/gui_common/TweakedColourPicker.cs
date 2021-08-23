@@ -4,7 +4,7 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Tweaked colour picker defines some custom ColorPicker functions.
+///   Tweaked colour picker allows for tooltip texts translations and has a customized theming.
 /// </summary>
 public class TweakedColourPicker : ColorPicker
 {
