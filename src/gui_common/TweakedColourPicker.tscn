@@ -7,10 +7,10 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonDisabled.png" type="Texture" id=5]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 4.0
-margin_bottom = 4.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 8.0
+margin_bottom = 8.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -74,7 +74,6 @@ theme = ExtResource( 1 )
 align = 1
 max_length = 8
 context_menu_enabled = false
-shortcut_keys_enabled = false
 
 [node name="Separator" type="HSeparator" parent="."]
 margin_top = 541.0
