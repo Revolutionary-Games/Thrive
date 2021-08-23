@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -10,16 +11,13 @@ public class TweakedColourPicker : ColorPicker
 {
     /// <summary>
     ///   This is where presets are stored after a colour picker exited scene tree.
-    /// <remarks>
-    ///   KeyValuePair&lt;GetPath(), GetPresets()&gt;:
-    ///   <ul>
-    ///     <li> First parameter (string) is the string format of NodePath; </li>
-    ///     <li> Second parameter (Color[]) is the preset colours to be stored. </li>
-    ///   </ul>
-    /// </remarks>
+    ///   <remarks>
+    ///     The Key is the string format of NodePath; <br />
+    ///     The Value is the preset colours to be stored.
+    ///   </remarks>
     /// </summary>
-    private static readonly List<KeyValuePair<string, Color[]>> PresetsStorage
-        = new List<KeyValuePair<string, Color[]>>();
+    private static readonly Dictionary<string, Color[]> PresetsStorage
+        = new Dictionary<string, Color[]>();
 
     private readonly List<TweakedColourPickerPreset> presets = new List<TweakedColourPickerPreset>();
 
@@ -135,13 +133,13 @@ public class TweakedColourPicker : ColorPicker
         base._Ready();
 
         // Hide replaced native controls. Can't delete them because it will crash Godot.
-        GetChild(4).GetChild<Control>(4).Hide();
+        var baseControl = GetChild(4);
+        baseControl.GetChild<Control>(4).Hide();
         GetChild<Control>(5).Hide();
         GetChild<Control>(6).Hide();
         GetChild<Control>(7).Hide();
 
         // Get controls
-        var baseControl = GetChild(4);
         sliderROrH = baseControl.GetChild(0).GetChild<HSlider>(1);
         sliderGOrS = baseControl.GetChild(1).GetChild<HSlider>(1);
         sliderBOrV = baseControl.GetChild(2).GetChild<HSlider>(1);
@@ -161,12 +159,16 @@ public class TweakedColourPicker : ColorPicker
         OnColourChanged(Color);
 
         // Load presets.
-        if (PresetsStorage.Exists(p => p.Key == GetPath()))
+        if (PresetsStorage.Any(p => p.Key == GetPath()))
         {
             var presetsStored = PresetsStorage.First(p => p.Key == GetPath());
             foreach (var colour in presetsStored.Value)
                 AddPreset(colour);
-            PresetsStorage.Remove(presetsStored);
+        }
+        else
+        {
+            // Always ensure there is one so when exiting we just modify it instead of having to check.
+            PresetsStorage.Add(GetPath(), Array.Empty<Color>());
         }
 
         UpdateTooltips();
@@ -175,7 +177,7 @@ public class TweakedColourPicker : ColorPicker
     public override void _ExitTree()
     {
         // Store presets.
-        PresetsStorage.Add(new KeyValuePair<string, Color[]>(GetPath(), GetPresets()));
+        PresetsStorage[GetPath()] = GetPresets();
 
         base._ExitTree();
     }
@@ -273,7 +275,7 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnColourChanged(Color colour)
     {
-        htmlColourEdit.Text = colour.a8 == 255 ? colour.ToHtml(false) : colour.ToHtml(true);
+        htmlColourEdit.Text = colour.ToHtml();
     }
 
     /// <summary>
