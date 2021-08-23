@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-21 20:25+0800\n"
+"POT-Creation-Date: 2021-08-23 15:52+0800\n"
 "PO-Revision-Date: 2021-08-20 11:47+0800\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1726,21 +1726,21 @@ msgstr ""
 "version.\n"
 "Please load the save manually through the menu."
 
-#: ../src/gui_common/TweakedColourPicker.cs:211
+#: ../src/gui_common/TweakedColourPicker.cs:212
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Pick a colour from window"
 
-#: ../src/gui_common/TweakedColourPicker.cs:212
+#: ../src/gui_common/TweakedColourPicker.cs:213
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Add current colour as a preset"
 
-#: ../src/gui_common/TweakedColourPicker.cs:213
+#: ../src/gui_common/TweakedColourPicker.cs:214
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Switch HSV (Hue, Saturation, Value) mode on or off.\n"
 "Can't be turned on when in raw mode."
 
-#: ../src/gui_common/TweakedColourPicker.cs:214
+#: ../src/gui_common/TweakedColourPicker.cs:215
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Switch raw mode on or off.\n"
@@ -1748,52 +1748,48 @@ msgstr ""
 "colour values to go beyond 1.0.\n"
 "Can't be turned on in HSV mode."
 
-#: ../src/gui_common/TweakedColourPicker.cs:218
+#: ../src/gui_common/TweakedColourPicker.cs:219
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Hue value, portion of colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:219
+#: ../src/gui_common/TweakedColourPicker.cs:220
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Saturation value, the amount of gray in a particular colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:220
+#: ../src/gui_common/TweakedColourPicker.cs:221
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) value, brightness or intensity of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:224
+#: ../src/gui_common/TweakedColourPicker.cs:225
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Red channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:225
+#: ../src/gui_common/TweakedColourPicker.cs:226
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Green channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:226
+#: ../src/gui_common/TweakedColourPicker.cs:227
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Blue channel value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:229
+#: ../src/gui_common/TweakedColourPicker.cs:230
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Alpha value of the colour"
 
-#: ../src/gui_common/TweakedColourPicker.cs:342
+#: ../src/gui_common/TweakedColourPicker.cs:354
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Color: #{0}\n"
 "Left mouse: Use this preset\n"
 "Right mouse: Delete this preset"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:38
+#: ../src/gui_common/TweakedColourPicker.tscn:40
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:47
+#: ../src/gui_common/TweakedColourPicker.tscn:50
 msgid "RAW"
 msgstr "Raw"
-
-#: ../src/gui_common/TweakedColourPicker.tscn:54
-msgid "#"
-msgstr "#"
 
 #: ../src/gui_common/charts/line/LineChart.cs:931
 #: ../src/gui_common/charts/line/LineChart.cs:960
@@ -3243,6 +3239,9 @@ msgstr ""
 "\n"
 "To leave the colony entirely you can click on your own cell or press the "
 "unbind all key."
+
+#~ msgid "#"
+#~ msgstr "#"
 
 #~ msgid "TURNS"
 #~ msgstr "Turns"

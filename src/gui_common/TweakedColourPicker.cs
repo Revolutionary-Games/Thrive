@@ -30,7 +30,7 @@ public class TweakedColourPicker : ColorPicker
     private ToolButton pickerButton;
     private CheckButton hsvCheckButton;
     private CheckButton rawCheckButton;
-    private LineEdit hexColourEdit;
+    private LineEdit htmlColourEdit;
     private HSeparator separator;
     private GridContainer presetsContainer;
     private TextureButton addPresetButton;
@@ -149,7 +149,7 @@ public class TweakedColourPicker : ColorPicker
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
         hsvCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/HSVCheckButton");
         rawCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/RawCheckButton");
-        hexColourEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HexColourEdit");
+        htmlColourEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HtmlColourEdit");
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<TextureButton>("PresetButtonContainer/AddPresetButton");
@@ -273,28 +273,33 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnColourChanged(Color colour)
     {
-        hexColourEdit.Text = colour.a8 == 255 ? colour.ToHtml(false) : colour.ToHtml(true);
+        htmlColourEdit.Text = colour.a8 == 255 ? colour.ToHtml(false) : colour.ToHtml(true);
     }
 
     /// <summary>
-    ///   Called when (keyboard) entered in hexColourEdit.
+    ///   Called when (keyboard) entered in HtmlColourEdit or from OnHtmlColorEditFocusExited.
     ///   Set Color when text is valid; reset if not.
-    ///   Because text_entered signal requires a string parameter but focus_exited zero, wrote lite this.
     /// </summary>
-    /// <param name="colour">Current hexColourEditor text</param>
-    private void OnHtmlColourChanged(string colour = "-")
+    /// <param name="colour">Current htmlColourEditor text</param>
+    private void OnHtmlColourChanged(string colour)
     {
-        if (colour == "-")
-            colour = hexColourEdit.Text;
-
         if (colour.IsValidHtmlColor())
         {
             Color = new Color(colour);
         }
         else
         {
-            hexColourEdit.Text = Color.ToHtml();
+            htmlColourEdit.Text = Color.ToHtml();
         }
+    }
+
+    /// <summary>
+    ///   Called when focus exited HtmlColorEdit.
+    /// </summary>
+    private void OnHtmlColorEditFocusExited()
+    {
+        OnHtmlColourChanged(htmlColourEdit.Text);
+        htmlColourEdit.Deselect();
     }
 
     private class TweakedColourPickerPreset : ColorRect
@@ -329,17 +334,17 @@ public class TweakedColourPicker : ColorPicker
 
         private void OnPresetGUIInput(InputEvent inputEvent)
         {
-            if (inputEvent is InputEventMouseButton { Pressed: true } mouseEvent)
+            if (!(inputEvent is InputEventMouseButton { Pressed: true } mouseEvent))
+                return;
+
+            switch ((ButtonList)mouseEvent.ButtonIndex)
             {
-                switch ((ButtonList)mouseEvent.ButtonIndex)
-                {
-                    case ButtonList.Left:
-                        EmitSignal(nameof(OnPresetSelected), Color);
-                        break;
-                    case ButtonList.Right:
-                        EmitSignal(nameof(OnPresetDeleted), this);
-                        break;
-                }
+                case ButtonList.Left:
+                    EmitSignal(nameof(OnPresetSelected), Color);
+                    break;
+                case ButtonList.Right:
+                    EmitSignal(nameof(OnPresetDeleted), this);
+                    break;
             }
         }
 
