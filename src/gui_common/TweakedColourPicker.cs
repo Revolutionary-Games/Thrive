@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -12,12 +11,12 @@ public class TweakedColourPicker : ColorPicker
     /// <summary>
     ///   This is where presets are stored after a colour picker exited scene tree.
     ///   <remarks>
-    ///     The Key is the string format of NodePath; <br />
-    ///     The Value is the preset colours to be stored.
+    ///     The Key is the group name; <br />
+    ///     The Value is the preset storage.
     ///   </remarks>
     /// </summary>
-    private static readonly Dictionary<string, Color[]> PresetsStorage
-        = new Dictionary<string, Color[]>();
+    private static readonly Dictionary<string, PresetGroupStorage> PresetsStorage
+        = new Dictionary<string, PresetGroupStorage>();
 
     private readonly List<TweakedColourPickerPreset> presets = new List<TweakedColourPickerPreset>();
 
@@ -37,6 +36,15 @@ public class TweakedColourPicker : ColorPicker
     private bool rawButtonEnabled = true;
     private bool presetsEnabled = true;
     private bool presetsVisible = true;
+
+    private PresetGroupStorage groupStorage;
+
+    private delegate void AddPresetDelegate(Color colour);
+
+    private delegate void DeletePresetDelegate(Color colour);
+
+    [Export]
+    public string PresetGroup { get; private set; } = "default";
 
     /// <summary>
     ///   Decide if user can toggle HSV CheckButton to switch HSV mode.
@@ -66,6 +74,12 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
+    /// <summary>
+    ///   Change the picker's HSV mode.
+    ///   <remarks>
+    ///     This is named not HSVMode because this hides a Godot property to avoid break custom functions.
+    ///   </remarks>
+    /// </summary>
     [Export]
     public new bool HsvMode
     {
@@ -83,6 +97,9 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
+    /// <summary>
+    ///   Change the picker's raw mode.
+    /// </summary>
     [Export]
     public new bool RawMode
     {
@@ -97,6 +114,12 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
+    /// <summary>
+    ///   Decide if user can edit the presets.
+    ///   <remarks>
+    ///     This is not named to PresetsEditable because it also hides a Godot property.
+    ///   </remarks>
+    /// </summary>
     [Export]
     public new bool PresetsEnabled
     {
@@ -112,6 +135,9 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
+    /// <summary>
+    ///   Decide if the presets and the add preset button is visible.
+    /// </summary>
     [Export]
     public new bool PresetsVisible
     {
@@ -125,6 +151,7 @@ public class TweakedColourPicker : ColorPicker
 
             separator.Visible = value;
             presetsContainer.Visible = value;
+            addPresetButton.Visible = value;
         }
     }
 
@@ -159,26 +186,29 @@ public class TweakedColourPicker : ColorPicker
         OnColourChanged(Color);
 
         // Load presets.
-        if (PresetsStorage.Any(p => p.Key == GetPath()))
+        if (PresetsStorage.TryGetValue(PresetGroup, out groupStorage))
         {
-            var presetsStored = PresetsStorage.First(p => p.Key == GetPath());
-            foreach (var colour in presetsStored.Value)
-                AddPreset(colour);
+            foreach (var colour in groupStorage.Colours)
+                GroupAddPreset(colour);
         }
         else
         {
-            // Always ensure there is one so when exiting we just modify it instead of having to check.
-            PresetsStorage.Add(GetPath(), Array.Empty<Color>());
+            // Always ensure there is one so then we just modify it instead of having to check.
+            groupStorage = new PresetGroupStorage { Colours = GetPresets().ToList() };
+            PresetsStorage.Add(PresetGroup, groupStorage);
         }
+
+        // Add current preset handlers to preset group
+        groupStorage.AddPreset += GroupAddPreset;
+        groupStorage.ErasePreset += GroupErasePreset;
 
         UpdateTooltips();
     }
 
     public override void _ExitTree()
     {
-        // Store presets.
-        PresetsStorage[GetPath()] = GetPresets();
-
+        groupStorage.AddPreset -= GroupAddPreset;
+        groupStorage.ErasePreset -= GroupErasePreset;
         base._ExitTree();
     }
 
@@ -192,9 +222,23 @@ public class TweakedColourPicker : ColorPicker
 
     public new void AddPreset(Color colour)
     {
-        if (presets.Any(knownPreset => knownPreset.Color == colour))
+        if (groupStorage.Colours.Contains(colour))
             return;
 
+        groupStorage.Colours.Add(colour);
+
+        // Broadcast to all group numbers.
+        groupStorage.AddPreset(colour);
+    }
+
+    public new void ErasePreset(Color colour)
+    {
+        groupStorage.Colours.Remove(colour);
+        groupStorage.ErasePreset(colour);
+    }
+
+    private void GroupAddPreset(Color colour)
+    {
         // Add preset locally
         var preset = new TweakedColourPickerPreset(this, colour);
         presets.Add(preset);
@@ -204,9 +248,13 @@ public class TweakedColourPicker : ColorPicker
         base.AddPreset(colour);
     }
 
-    public new void ErasePreset(Color colour)
+    private void GroupErasePreset(Color colour)
     {
-        OnPresetDeleted(presets.First(p => p.Color == colour));
+        var preset = presets.First(p => p.Color == colour);
+        presets.Remove(preset);
+        presetsContainer.RemoveChild(preset);
+        preset.QueueFree();
+        base.ErasePreset(colour);
     }
 
     private void UpdateTooltips()
@@ -246,6 +294,9 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnAddPresetButtonPressed()
     {
+        if (!presetsEnabled)
+            return;
+
         AddPreset(Color);
     }
 
@@ -253,14 +304,6 @@ public class TweakedColourPicker : ColorPicker
     {
         Color = colour;
         EmitSignal("colour_changed", Color);
-    }
-
-    private void OnPresetDeleted(TweakedColourPickerPreset preset)
-    {
-        presets.Remove(preset);
-        presetsContainer.RemoveChild(preset);
-        base.ErasePreset(preset.Color);
-        preset.QueueFree();
     }
 
     private void OnHSVButtonToggled(bool isOn)
@@ -306,12 +349,15 @@ public class TweakedColourPicker : ColorPicker
 
     private class TweakedColourPickerPreset : ColorRect
     {
+        private readonly TweakedColourPicker owner;
+
         public TweakedColourPickerPreset(TweakedColourPicker owner, Color colour)
         {
-            Connect(nameof(OnPresetSelected), owner, nameof(OnPresetSelected));
-            Connect(nameof(OnPresetDeleted), owner, nameof(OnPresetDeleted));
+            Connect(nameof(OnPresetSelected), owner, nameof(owner.OnPresetSelected));
+            Connect(nameof(OnPresetDeleted), owner, nameof(owner.ErasePreset));
             Connect("gui_input", this, nameof(OnPresetGUIInput));
 
+            this.owner = owner;
             Color = colour;
             MarginTop = MarginBottom = MarginLeft = MarginRight = 6.0f;
             RectMinSize = new Vector2(20, 20);
@@ -345,7 +391,10 @@ public class TweakedColourPicker : ColorPicker
                     EmitSignal(nameof(OnPresetSelected), Color);
                     break;
                 case ButtonList.Right:
-                    EmitSignal(nameof(OnPresetDeleted), this);
+                    if (!owner.PresetsEnabled)
+                        break;
+
+                    EmitSignal(nameof(OnPresetDeleted), Color);
                     break;
             }
         }
@@ -355,5 +404,14 @@ public class TweakedColourPicker : ColorPicker
             HintTooltip = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP"), Color.ToHtml());
         }
+    }
+
+    private class PresetGroupStorage
+    {
+        public AddPresetDelegate AddPreset { get; set; }
+
+        public DeletePresetDelegate ErasePreset { get; set; }
+
+        public List<Color> Colours { get; set; }
     }
 }
