@@ -365,7 +365,7 @@ public class TweakedColourPicker : ColorPicker
             base._Notification(what);
         }
 
-        public override void _Input(InputEvent inputEvent)
+        public override void _GuiInput(InputEvent inputEvent)
         {
             if (inputEvent is InputEventMouseButton { Pressed: true } mouseEvent)
             {
@@ -383,7 +383,7 @@ public class TweakedColourPicker : ColorPicker
                 }
             }
 
-            base._Input(inputEvent);
+            base._GuiInput(inputEvent);
         }
 
         private void UpdateTooltip()
