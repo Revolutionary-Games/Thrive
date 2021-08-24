@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-23 22:15+0800\n"
+"POT-Creation-Date: 2021-08-24 10:09+0800\n"
 "PO-Revision-Date: 2021-04-20 08:07+0000\n"
 "Last-Translator: Pajoš <fractvival@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -1693,60 +1693,60 @@ msgstr ""
 "Uložená verze, kterou se pokoušíte načíst, neodpovídá verzi hry.\n"
 "Načti ji ručně přes menu."
 
-#: ../src/gui_common/TweakedColourPicker.cs:214
+#: ../src/gui_common/TweakedColourPicker.cs:263
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:215
+#: ../src/gui_common/TweakedColourPicker.cs:264
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:216
+#: ../src/gui_common/TweakedColourPicker.cs:265
 #, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:217
+#: ../src/gui_common/TweakedColourPicker.cs:266
 #, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:221
+#: ../src/gui_common/TweakedColourPicker.cs:270
 #, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:222
+#: ../src/gui_common/TweakedColourPicker.cs:271
 #, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:223
+#: ../src/gui_common/TweakedColourPicker.cs:272
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:227
+#: ../src/gui_common/TweakedColourPicker.cs:276
 #, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:228
+#: ../src/gui_common/TweakedColourPicker.cs:277
 #, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:229
+#: ../src/gui_common/TweakedColourPicker.cs:278
 #, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:232
+#: ../src/gui_common/TweakedColourPicker.cs:281
 #, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Přidat nové tlačítko"
 
-#: ../src/gui_common/TweakedColourPicker.cs:356
+#: ../src/gui_common/TweakedColourPicker.cs:392
 #, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "Přidat nové tlačítko"
@@ -3097,12 +3097,13 @@ msgstr "Kopírovat chybu do schránky"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:279
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
 msgid "TUTORIAL"
 msgstr "Tutoriál"
 
@@ -3191,7 +3192,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "Mám to"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, "
@@ -3206,15 +3207,15 @@ msgstr ""
 "možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly "
 "ostatním druhům mikrobů."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
 msgid "SHOW_TUTORIALS"
 msgstr "Zobrazit tutoriál"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
 msgid "BEGIN_THRIVING"
 msgstr "Začít prosperovat"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Chceš-li ovládat buňku, použij klávesy zobrazené v blízkosti buňky (střed "
@@ -3222,7 +3223,7 @@ msgstr ""
 "\n"
 "Chceš-li pokračovat, vyzkoušejte na několik sekund všechny klávesy."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Sbírej glukózu (bílé mraky) pohybem na ní.\n"
@@ -3230,7 +3231,7 @@ msgstr ""
 "naživu.\n"
 "Následuj čáru vedoucí z tvé buňky do blízké glukózy."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Dávej pozor na svou zdravotní lištu vedle lišty ATP (vpravo dole).\n"
@@ -3238,7 +3239,7 @@ msgstr ""
 "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
 "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:301
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely "
@@ -3246,7 +3247,23 @@ msgstr ""
 "Podívej se na indikátor v pravém dolním rohu a uvidíš, kolik toho ještě "
 "potřebuješ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
+#, fuzzy
+msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, "
+"což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední "
+"univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny "
+"možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly "
+"ostatním druhům mikrobů."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-23 22:15+0800\n"
+"POT-Creation-Date: 2021-08-24 10:09+0800\n"
 "PO-Revision-Date: 2021-08-08 14:42+0000\n"
 "Last-Translator: George Fel <george.fel@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -1727,60 +1727,60 @@ msgstr ""
 "à la version du jeu.\n"
 "Chargez la sauvegarde manuellement à partir du menu."
 
-#: ../src/gui_common/TweakedColourPicker.cs:214
+#: ../src/gui_common/TweakedColourPicker.cs:263
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:215
+#: ../src/gui_common/TweakedColourPicker.cs:264
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:216
+#: ../src/gui_common/TweakedColourPicker.cs:265
 #, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:217
+#: ../src/gui_common/TweakedColourPicker.cs:266
 #, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:221
+#: ../src/gui_common/TweakedColourPicker.cs:270
 #, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:222
+#: ../src/gui_common/TweakedColourPicker.cs:271
 #, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:223
+#: ../src/gui_common/TweakedColourPicker.cs:272
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:227
+#: ../src/gui_common/TweakedColourPicker.cs:276
 #, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:228
+#: ../src/gui_common/TweakedColourPicker.cs:277
 #, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:229
+#: ../src/gui_common/TweakedColourPicker.cs:278
 #, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:232
+#: ../src/gui_common/TweakedColourPicker.cs:281
 #, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/gui_common/TweakedColourPicker.cs:356
+#: ../src/gui_common/TweakedColourPicker.cs:392
 #, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
@@ -3125,12 +3125,13 @@ msgstr "Copier l'Erreur"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:279
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
 msgid "TUTORIAL"
 msgstr "Tutoriel"
 
@@ -3226,7 +3227,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "Bien reçu"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Sur une planète distante et étrangère, des éternités d'activité volcanique "
@@ -3243,15 +3244,15 @@ msgstr ""
 "n'importe quel composant que vous pourrez trouver et évoluer à chaque "
 "génération en étant en compétition contre d'autres espèces de microbes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
 msgid "SHOW_TUTORIALS"
 msgstr "Montrer les tutoriels"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
 msgid "BEGIN_THRIVING"
 msgstr "Commencer à Prospérer"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Pour contrôler votre cellule utilisez les touches affichées près de votre "
@@ -3260,7 +3261,7 @@ msgstr ""
 "\n"
 "Essayez toutes les touches pendant quelques secondes pour continuer."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Collectez du glucose (nuages blanc) en vous déplaçant dessus.\n"
@@ -3268,7 +3269,7 @@ msgstr ""
 "en vie.\n"
 "Suivez la ligne entre votre cellule et le glucose le plus proche."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Gardez un œil sur votre barre de santé près de votre barre d'ATP (en bas à "
@@ -3277,14 +3278,32 @@ msgstr ""
 "Vous régénérez votre santé tant que vous avez de l'ATP.\n"
 "Faites en sorte de collecter assez de glucose pour produire de l'ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:301
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Afin de vous reproduire vous devez dupliquer tous vos organites en "
 "collectant assez d'ammoniaque et de phosphates.\n"
 "Regardez l'indicateur en bas à droite pour voir combien il vous en manque."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
+#, fuzzy
+msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique "
+"et d'impacts de météores on mené au développement d'un nouveau phénomène "
+"dans l'univers.\n"
+"\n"
+"Vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan. Vous êtes "
+"le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette "
+"planète.\n"
+"\n"
+"Pour survivre dans un monde hostile, vous aurez besoin de collecter "
+"n'importe quel composant que vous pourrez trouver et évoluer à chaque "
+"génération en étant en compétition contre d'autres espèces de microbes."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "You have entered Unlink mode. In this mode, you can click on colony "

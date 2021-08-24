@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-23 22:15+0800\n"
+"POT-Creation-Date: 2021-08-24 10:09+0800\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -1729,60 +1729,60 @@ msgstr ""
 "Верзија спремишта које покушавате да учитате не одговара верзији игре.\n"
 "Молимо вас учитајте спремање ручно кроз мени."
 
-#: ../src/gui_common/TweakedColourPicker.cs:214
+#: ../src/gui_common/TweakedColourPicker.cs:263
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:215
+#: ../src/gui_common/TweakedColourPicker.cs:264
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:216
+#: ../src/gui_common/TweakedColourPicker.cs:265
 #, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:217
+#: ../src/gui_common/TweakedColourPicker.cs:266
 #, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:221
+#: ../src/gui_common/TweakedColourPicker.cs:270
 #, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:222
+#: ../src/gui_common/TweakedColourPicker.cs:271
 #, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:223
+#: ../src/gui_common/TweakedColourPicker.cs:272
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:227
+#: ../src/gui_common/TweakedColourPicker.cs:276
 #, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:228
+#: ../src/gui_common/TweakedColourPicker.cs:277
 #, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:229
+#: ../src/gui_common/TweakedColourPicker.cs:278
 #, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:232
+#: ../src/gui_common/TweakedColourPicker.cs:281
 #, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
 
-#: ../src/gui_common/TweakedColourPicker.cs:356
+#: ../src/gui_common/TweakedColourPicker.cs:392
 #, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "Додајте ново везивање тастера"
@@ -3159,12 +3159,13 @@ msgstr "Копирај Грешку у Међуспремник"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:279
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
 msgid "TUTORIAL"
 msgstr "Приручник"
 
@@ -3256,7 +3257,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "Схватио сам"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "На далекој ванземаљској планети, еони вулканске активности и удара метеора "
@@ -3271,15 +3272,15 @@ msgstr ""
 "једињења која можете пронаћи и да еволуирате сваку генерацију да би се "
 "такмичили против других врста микроба."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
 msgid "SHOW_TUTORIALS"
 msgstr "Прикажи туторијале"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
 msgid "BEGIN_THRIVING"
 msgstr "Почните Просперирати"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "За контролу ћелије користите тастере приказане у близини ћелије (центар "
@@ -3287,7 +3288,7 @@ msgstr ""
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Сакупљајте глукозу (бели облаци) премештањем преко њих.\n"
@@ -3295,7 +3296,7 @@ msgstr ""
 "жива.\n"
 "Пратите линију од ћелије до оближње глукозе."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Припазите на своју здравствену траку поред ATP траке (доле десно).\n"
@@ -3303,7 +3304,7 @@ msgstr ""
 "Обнављате здравље док имате ATP.\n"
 "Обавезно сакупите довољно глукозе за производњу ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:301
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Да бисте се репродуковали, потребно је да дуплирате све своје органеле "
@@ -3311,7 +3312,23 @@ msgstr ""
 "Погледајте индикатор у доњем десном углу да бисте видели колико вам још "
 "треба."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
+#, fuzzy
+msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgstr ""
+"На далекој ванземаљској планети, еони вулканске активности и удара метеора "
+"довели су до развоја новог феномена у свемиру.\n"
+"\n"
+"Живот.\n"
+"\n"
+"Једноставни микроби бораве у дубоким пределима океана. Ви сте последњи "
+"универзални заједнички предак (LUCA) на овој планети.\n"
+"\n"
+"Да бисте преживели у овом непријатељском свету, мораћете да сакупите сва "
+"једињења која можете пронаћи и да еволуирате сваку генерацију да би се "
+"такмичили против других врста микроба."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""

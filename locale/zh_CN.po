@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-23 22:15+0800\n"
+"POT-Creation-Date: 2021-08-24 10:09+0800\n"
 "PO-Revision-Date: 2021-08-13 10:26+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1676,21 +1676,21 @@ msgstr ""
 "你尝试载入的存档版本跟游戏版本不搭。\n"
 "请在主菜单手动载入存档。"
 
-#: ../src/gui_common/TweakedColourPicker.cs:214
+#: ../src/gui_common/TweakedColourPicker.cs:263
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "在窗口中取色"
 
-#: ../src/gui_common/TweakedColourPicker.cs:215
+#: ../src/gui_common/TweakedColourPicker.cs:264
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "将当前颜色加入预设"
 
-#: ../src/gui_common/TweakedColourPicker.cs:216
+#: ../src/gui_common/TweakedColourPicker.cs:265
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "切换HSV（色调、饱和度、明度）模式。\n"
 "在原始模式下无法启用。"
 
-#: ../src/gui_common/TweakedColourPicker.cs:217
+#: ../src/gui_common/TweakedColourPicker.cs:266
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "切换原始模式。\n"
@@ -1698,35 +1698,35 @@ msgstr ""
 "色值调整到大于1.0。\n"
 "在HSV模式下无法启用。"
 
-#: ../src/gui_common/TweakedColourPicker.cs:221
+#: ../src/gui_common/TweakedColourPicker.cs:270
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "H值，决定色调"
 
-#: ../src/gui_common/TweakedColourPicker.cs:222
+#: ../src/gui_common/TweakedColourPicker.cs:271
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "S值，决定饱和度"
 
-#: ../src/gui_common/TweakedColourPicker.cs:223
+#: ../src/gui_common/TweakedColourPicker.cs:272
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "V值，决定明度"
 
-#: ../src/gui_common/TweakedColourPicker.cs:227
+#: ../src/gui_common/TweakedColourPicker.cs:276
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "红通道值，决定颜色里有多少红色"
 
-#: ../src/gui_common/TweakedColourPicker.cs:228
+#: ../src/gui_common/TweakedColourPicker.cs:277
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "绿通道值，决定颜色里有多少绿色"
 
-#: ../src/gui_common/TweakedColourPicker.cs:229
+#: ../src/gui_common/TweakedColourPicker.cs:278
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "蓝通道值，决定颜色里有多少蓝色"
 
-#: ../src/gui_common/TweakedColourPicker.cs:232
+#: ../src/gui_common/TweakedColourPicker.cs:281
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "不透明度"
 
-#: ../src/gui_common/TweakedColourPicker.cs:356
+#: ../src/gui_common/TweakedColourPicker.cs:392
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "颜色：#{0}\n"
@@ -2957,12 +2957,13 @@ msgstr "将错误复制到剪贴板"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:42
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:126
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:209
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:244
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:279
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:314
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
 msgid "TUTORIAL"
 msgstr "教程"
 
@@ -3039,7 +3040,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "明白了"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:73
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
@@ -3052,29 +3053,29 @@ msgstr ""
 "要在这个艰难的世界存活下来，你将需要收集各种化合物并不断进化，才能跟其它的"
 "微生物竞争。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
 msgid "SHOW_TUTORIALS"
 msgstr "显示教程"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
 msgid "BEGIN_THRIVING"
 msgstr "开始游戏"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:147
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
 "\n"
 "尝试所有按键几秒钟以继续。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:230
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通过移动到白色的云上来收集葡萄糖。\n"
 "你需要葡萄糖才能产生能量并存活。\n"
 "请跟随显示的线到最近的葡萄糖云中。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
@@ -3082,13 +3083,27 @@ msgstr ""
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:300
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:301
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
+#, fuzzy
+msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgstr ""
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
+"\n"
+"生命。\n"
+"\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先"
+"（LUCA）。\n"
+"\n"
+"要在这个艰难的世界存活下来，你将需要收集各种化合物并不断进化，才能跟其它的"
+"微生物竞争。"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
