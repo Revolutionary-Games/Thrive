@@ -254,6 +254,7 @@ public class TweakedColourPicker : ColorPicker
         presets.Remove(preset);
         presetsContainer.RemoveChild(preset);
         preset.QueueFree();
+
         base.ErasePreset(colour);
     }
 
@@ -298,12 +299,6 @@ public class TweakedColourPicker : ColorPicker
             return;
 
         AddPreset(Color);
-    }
-
-    private void OnPresetSelected(Color colour)
-    {
-        Color = colour;
-        EmitSignal("colour_changed", Color);
     }
 
     private void OnHSVButtonToggled(bool isOn)
@@ -353,10 +348,6 @@ public class TweakedColourPicker : ColorPicker
 
         public TweakedColourPickerPreset(TweakedColourPicker owner, Color colour)
         {
-            Connect(nameof(OnPresetSelected), owner, nameof(owner.OnPresetSelected));
-            Connect(nameof(OnPresetDeleted), owner, nameof(owner.ErasePreset));
-            Connect("gui_input", this, nameof(OnPresetGUIInput));
-
             this.owner = owner;
             Color = colour;
             MarginTop = MarginBottom = MarginLeft = MarginRight = 6.0f;
@@ -366,12 +357,6 @@ public class TweakedColourPicker : ColorPicker
             UpdateTooltip();
         }
 
-        [Signal]
-        public delegate void OnPresetSelected(Color colour);
-
-        [Signal]
-        public delegate void OnPresetDeleted(TweakedColourPickerPreset preset);
-
         public override void _Notification(int what)
         {
             if (what == NotificationTranslationChanged)
@@ -380,23 +365,25 @@ public class TweakedColourPicker : ColorPicker
             base._Notification(what);
         }
 
-        private void OnPresetGUIInput(InputEvent inputEvent)
+        public override void _Input(InputEvent inputEvent)
         {
-            if (!(inputEvent is InputEventMouseButton { Pressed: true } mouseEvent))
-                return;
-
-            switch ((ButtonList)mouseEvent.ButtonIndex)
+            if (inputEvent is InputEventMouseButton { Pressed: true } mouseEvent)
             {
-                case ButtonList.Left:
-                    EmitSignal(nameof(OnPresetSelected), Color);
-                    break;
-                case ButtonList.Right:
-                    if (!owner.PresetsEnabled)
+                switch ((ButtonList)mouseEvent.ButtonIndex)
+                {
+                    case ButtonList.Left:
+                        owner.Color = Color;
                         break;
+                    case ButtonList.Right:
+                        if (!owner.PresetsEnabled)
+                            break;
 
-                    EmitSignal(nameof(OnPresetDeleted), Color);
-                    break;
+                        owner.ErasePreset(Color);
+                        break;
+                }
             }
+
+            base._Input(inputEvent);
         }
 
         private void UpdateTooltip()
