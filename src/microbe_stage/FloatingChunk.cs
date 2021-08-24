@@ -242,7 +242,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         // Check contacts
         foreach (var microbe in touchingMicrobes)
         {
-            // TODO: is it possible that this throws the disposed exception?
             if (microbe == null)
                 continue;
 
