@@ -409,9 +409,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             {
                 // TODO: quaternion usage would be good here
                 // https://github.com/Revolutionary-Games/Thrive/issues/2504
-                shapePosition = shapePosition.Rotated(Vector3.Up, parentRotation.y);
-                if (ParentMicrobe.ColonyParent != ParentMicrobe.Colony.Master)
-                    shapePosition = shapePosition.Rotated(Vector3.Up, masterRotation.y);
+                var parent =  ParentMicrobe;
+                while(parent != ParentMicrobe.Colony.Master)
+                {
+                    shapePosition = shapePosition.Rotated(Vector3.Up, parent.Rotation.y);
+                    parent  = parent.ColonyParent;
+                }
+                
             }
 
             // Scale for bacteria physics.
