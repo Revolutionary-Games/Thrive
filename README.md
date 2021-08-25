@@ -55,7 +55,7 @@ Thrive is written in C# with a few helper scripts written in ruby. In
 order to work on the C# you need to compile Thrive yourself. You can
 find instructions for how to do that in the [setup
 instructions][setupguide]. And if you've never used Godot before
-please read [learning Godot](LEARNING_GODOT.md).
+please read [learning Godot](learninggodot).
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.
@@ -66,7 +66,7 @@ Binary files should be committed using [Git LFS][lfs].
 To work on the art assets you will want to install Godot and work on
 the project files with it. Instructions for that are the same as for
 programmers: [setup instructions][setupguide]. And if you've never
-used Godot before please read [learning Godot](doc/learning_godot.md).
+used Godot before please read [learning Godot](learninggodot).
 
 Alternatively some art assets can be worked on without having a
 working copy of the Godot project, but then you need to rely on other
@@ -94,3 +94,4 @@ There are extra instructions for how to import models here: [import tool][import
 [asprimer]: doc/angelscript_primer.md "AngelScript primer"
 [importtutorial]: https://wiki.revolutionarygamesstudio.com/wiki/How_to_Import_Assets "How to import assets"
 [lfs]: https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS
+[learninggodot]: doc/learning_godot.md
