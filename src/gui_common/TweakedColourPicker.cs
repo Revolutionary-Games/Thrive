@@ -455,14 +455,13 @@ public class TweakedColourPicker : ColorPicker
 
             colours.Add(colour);
 
-            // ?. is no used because we can make sure that at least one delegate is added when this get called.
-            AddPresetDelegate.Invoke(colour);
+            AddPresetDelegate?.Invoke(colour);
         }
 
         public void ErasePreset(Color colour)
         {
             colours.Remove(colour);
-            ErasePresetDelegate.Invoke(colour);
+            ErasePresetDelegate?.Invoke(colour);
         }
 
         public IEnumerator<Color> GetEnumerator()
