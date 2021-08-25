@@ -119,6 +119,20 @@ public abstract class TutorialPhase
         ProcessWhileHidden = true;
     }
 
+    /// <summary>
+    ///   Inhibits this tutorial from processing or being shown in the future. And also hides if shown currently
+    /// </summary>
+    public void Inhibit()
+    {
+        HasBeenShown = true;
+        ProcessWhileHidden = false;
+
+        if (ShownCurrently)
+        {
+            Hide();
+        }
+    }
+
     public virtual Vector3 GetPositionGuidance()
     {
         throw new NotImplementedException("child class didn't override position guidance");
