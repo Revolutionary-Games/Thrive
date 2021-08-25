@@ -77,7 +77,7 @@ public class TweakedColourPicker : ColorPicker
     /// <summary>
     ///   Change the picker's HSV mode.
     ///   <remarks>
-    ///     This is named not HSVMode because this hides a Godot property to avoid break custom functions.
+    ///     This is not named HSVMode because this hides a Godot property to avoid breaking custom functions.
     ///   </remarks>
     /// </summary>
     [Export]
