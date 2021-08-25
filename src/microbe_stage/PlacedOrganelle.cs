@@ -391,7 +391,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// <summary>
     ///  Re-parents the organelle shape to the "to" microbe.
     /// </summary>
-    public void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 parentRotation)
+    public void ReParentShapes(Microbe to, Vector3 offset)
     {
         if (to == currentShapesParent)
             return;
@@ -409,13 +409,12 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             {
                 // TODO: quaternion usage would be good here
                 // https://github.com/Revolutionary-Games/Thrive/issues/2504
-                var parent =  ParentMicrobe;
-                while(parent != ParentMicrobe.Colony.Master)
+                var parent = ParentMicrobe;
+                while (parent != ParentMicrobe.Colony.Master)
                 {
                     shapePosition = shapePosition.Rotated(Vector3.Up, parent.Rotation.y);
-                    parent  = parent.ColonyParent;
+                    parent = parent.ColonyParent;
                 }
-                
             }
 
             // Scale for bacteria physics.

@@ -485,8 +485,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // maybe engine bug
             if (Colony != null && this != Colony.Master)
             {
-                ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
-                ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
+                ReParentShapes(this, Vector3.Zero);
+                ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
             }
 
             // And recompute storage
@@ -1424,13 +1424,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RemoveCollisionExceptionWith(microbe);
     }
 
-    internal void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 microbeRotation)
+    internal void ReParentShapes(Microbe to, Vector3 offset)
     {
         // TODO: if microbeRotation is the rotation of *this* instance we should use the variable here directly
         // An object doesn't need to be told its own member variable in a method...
         // https://github.com/Revolutionary-Games/Thrive/issues/2504
         foreach (var organelle in organelles)
-            organelle.ReParentShapes(to, offset, masterRotation, Rotation);
+            organelle.ReParentShapes(to, offset);
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
@@ -1446,7 +1446,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 parent = ColonyParent;
             }
 
-            ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), parent.Rotation, Rotation);
+            ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
 
             // Readding collision exception because the bodies shapes got update
             AddCollisionExceptionWith(Colony.Master);
