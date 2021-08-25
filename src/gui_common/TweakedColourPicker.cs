@@ -19,6 +19,10 @@ public class TweakedColourPicker : ColorPicker
     private static readonly Dictionary<string, PresetGroupStorage> PresetsStorage
         = new Dictionary<string, PresetGroupStorage>();
 
+    /// <summary>
+    ///   This is the local storage of its preset children
+    ///   so that we don't need to call GetChildren() when deleting one.
+    /// </summary>
     private readonly List<TweakedColourPickerPreset> presets = new List<TweakedColourPickerPreset>();
 
     private HSlider sliderROrH;
@@ -35,7 +39,7 @@ public class TweakedColourPicker : ColorPicker
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;
-    private bool presetsEnabled = true;
+    private bool presetsEditable = true;
     private bool presetsVisible = true;
 
     private PresetGroupStorage groupStorage;
@@ -78,7 +82,8 @@ public class TweakedColourPicker : ColorPicker
     /// <summary>
     ///   Change the picker's HSV mode.
     ///   <remarks>
-    ///     This is not named HSVMode because this hides a Godot property to avoid breaking custom functions.
+    ///     This is not named HSVMode because this hides a Godot property to ensure that
+    ///     when switching HSV mode the buttons get properly updated.
     ///   </remarks>
     /// </summary>
     [Export]
@@ -117,17 +122,14 @@ public class TweakedColourPicker : ColorPicker
 
     /// <summary>
     ///   Decide if user can edit the presets.
-    ///   <remarks>
-    ///     This is not named to PresetsEditable because this also hides a Godot property.
-    ///   </remarks>
     /// </summary>
     [Export]
-    public new bool PresetsEnabled
+    public bool PresetsEditable
     {
-        get => presetsEnabled;
+        get => presetsEditable;
         set
         {
-            presetsEnabled = value;
+            presetsEditable = value;
 
             if (addPresetButton == null)
                 return;
@@ -138,6 +140,7 @@ public class TweakedColourPicker : ColorPicker
 
     /// <summary>
     ///   Decide if the presets and the add preset button is visible.
+    ///   Completely hides the native one to avoid hidden native controls reappearing.
     /// </summary>
     [Export]
     public new bool PresetsVisible
@@ -156,7 +159,13 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
-    // Have to disable this warning because this hides Godot property Color to emit a signal when changing its color.
+    /// <summary>
+    ///   Change the TweakedColourPicker's current colour.
+    ///   <remarks>
+    ///     Have to disable warning CA1721 because this hides Godot property Color
+    ///     to emit a signal when changing its color. This can't be renamed.
+    ///   </remarks>
+    /// </summary>
 #pragma warning disable CA1721
     public new Color Color
 #pragma warning restore CA1721
@@ -168,6 +177,12 @@ public class TweakedColourPicker : ColorPicker
             EmitSignal("color_changed", value);
         }
     }
+
+    /// <summary>
+    ///   Hide Godot property PresetsEnabled to avoid unexpected changes
+    ///   which may cause the hidden native buttons reappear.
+    /// </summary>
+    private new bool PresetsEnabled { get => PresetsEditable; set => PresetsEditable = value; }
 
     public override void _Ready()
     {
@@ -195,7 +210,7 @@ public class TweakedColourPicker : ColorPicker
 
         // Update control state.
         UpdateButtonsState();
-        PresetsEnabled = presetsEnabled;
+        PresetsEditable = presetsEditable;
         PresetsVisible = presetsVisible;
         OnColourChanged(Color);
 
@@ -203,7 +218,7 @@ public class TweakedColourPicker : ColorPicker
         if (PresetsStorage.TryGetValue(PresetGroup, out groupStorage))
         {
             foreach (var colour in groupStorage)
-                GroupAddPreset(colour);
+                OnGroupAddPreset(colour);
         }
         else
         {
@@ -213,16 +228,16 @@ public class TweakedColourPicker : ColorPicker
         }
 
         // Add current preset handlers to preset group
-        groupStorage.AddPresetDelegate += GroupAddPreset;
-        groupStorage.ErasePresetDelegate += GroupErasePreset;
+        groupStorage.AddPresetDelegate += OnGroupAddPreset;
+        groupStorage.ErasePresetDelegate += OnGroupErasePreset;
 
         UpdateTooltips();
     }
 
     public override void _ExitTree()
     {
-        groupStorage.AddPresetDelegate -= GroupAddPreset;
-        groupStorage.ErasePresetDelegate -= GroupErasePreset;
+        groupStorage.AddPresetDelegate -= OnGroupAddPreset;
+        groupStorage.ErasePresetDelegate -= OnGroupErasePreset;
         base._ExitTree();
     }
 
@@ -234,18 +249,28 @@ public class TweakedColourPicker : ColorPicker
         base._Notification(what);
     }
 
+    /// <summary>
+    ///   Adds a preset to the group this picker is in.
+    ///   If this preset already exists, no act will be taken.
+    /// </summary>
+    /// <param name="colour">Colour of the preset to be added</param>
     public new void AddPreset(Color colour)
     {
         // Broadcast to all group numbers.
         groupStorage.AddPreset(colour);
     }
 
+    /// <summary>
+    ///   Deletes a preset from the group this picker is in.
+    ///   If no such preset exists, no act will be taken.
+    /// </summary>
+    /// <param name="colour">Colour of the preset to be removed</param>
     public new void ErasePreset(Color colour)
     {
         groupStorage.ErasePreset(colour);
     }
 
-    private void GroupAddPreset(Color colour)
+    private void OnGroupAddPreset(Color colour)
     {
         // Add preset locally
         var preset = new TweakedColourPickerPreset(this, colour);
@@ -256,7 +281,7 @@ public class TweakedColourPicker : ColorPicker
         base.AddPreset(colour);
     }
 
-    private void GroupErasePreset(Color colour)
+    private void OnGroupErasePreset(Color colour)
     {
         var preset = presets.First(p => p.Color == colour);
         presets.Remove(preset);
@@ -303,7 +328,7 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnAddPresetButtonPressed()
     {
-        if (!presetsEnabled)
+        if (!presetsEditable)
             return;
 
         AddPreset(Color);
@@ -358,6 +383,8 @@ public class TweakedColourPicker : ColorPicker
         {
             this.owner = owner;
             Color = colour;
+
+            // Init the GUI part of the ColorRect
             MarginTop = MarginBottom = MarginLeft = MarginRight = 6.0f;
             RectMinSize = new Vector2(20, 20);
             SizeFlagsHorizontal = (int)SizeFlags.ShrinkEnd;
@@ -384,7 +411,7 @@ public class TweakedColourPicker : ColorPicker
                         owner.Color = Color;
                         break;
                     case ButtonList.Right:
-                        if (!owner.PresetsEnabled)
+                        if (!owner.PresetsEditable)
                             break;
 
                         GetTree().SetInputAsHandled();
@@ -422,6 +449,8 @@ public class TweakedColourPicker : ColorPicker
                 return;
 
             colours.Add(colour);
+
+            // ?. is no used because we can make sure that at least one delegate is added when this get called.
             AddPresetDelegate.Invoke(colour);
         }
 
