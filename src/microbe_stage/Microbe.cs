@@ -1430,7 +1430,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // An object doesn't need to be told its own member variable in a method...
         // https://github.com/Revolutionary-Games/Thrive/issues/2504
         foreach (var organelle in organelles)
-            organelle.ReParentShapes(to, offset, masterRotation, microbeRotation);
+            organelle.ReParentShapes(to, offset, masterRotation, Rotation);
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
@@ -1447,6 +1447,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             }
 
             ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), parent.Rotation, Rotation);
+
+            // Readding collision exception because the bodies shapes got update
+            AddCollisionExceptionWith(Colony.Master);
+            ColonyParent.AddCollisionExceptionWith(this);
         }
         else
         {
