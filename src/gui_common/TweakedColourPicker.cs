@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -201,7 +202,7 @@ public class TweakedColourPicker : ColorPicker
         // Load presets.
         if (PresetsStorage.TryGetValue(PresetGroup, out groupStorage))
         {
-            foreach (var colour in groupStorage.Colours)
+            foreach (var colour in groupStorage)
                 GroupAddPreset(colour);
         }
         else
@@ -379,15 +380,15 @@ public class TweakedColourPicker : ColorPicker
                 switch ((ButtonList)mouseEvent.ButtonIndex)
                 {
                     case ButtonList.Left:
-                        owner.Color = Color;
                         GetTree().SetInputAsHandled();
+                        owner.Color = Color;
                         break;
                     case ButtonList.Right:
                         if (!owner.PresetsEnabled)
                             break;
 
-                        owner.ErasePreset(Color);
                         GetTree().SetInputAsHandled();
+                        owner.ErasePreset(Color);
                         break;
                 }
             }
@@ -402,32 +403,42 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
-    private class PresetGroupStorage
+    private class PresetGroupStorage : IEnumerable<Color>
     {
+        private readonly List<Color> colours;
+
         public PresetGroupStorage(IEnumerable<Color> colours)
         {
-            Colours = colours.ToList();
+            this.colours = colours.ToList();
         }
 
         public AddPresetDelegate AddPresetDelegate { get; set; }
 
         public DeletePresetDelegate ErasePresetDelegate { get; set; }
 
-        public List<Color> Colours { get; }
-
         public void AddPreset(Color colour)
         {
-            if (Colours.Contains(colour))
+            if (colours.Contains(colour))
                 return;
 
-            Colours.Add(colour);
-            AddPresetDelegate(colour);
+            colours.Add(colour);
+            AddPresetDelegate.Invoke(colour);
         }
 
         public void ErasePreset(Color colour)
         {
-            Colours.Remove(colour);
-            ErasePresetDelegate(colour);
+            colours.Remove(colour);
+            ErasePresetDelegate.Invoke(colour);
+        }
+
+        public IEnumerator<Color> GetEnumerator()
+        {
+            return colours.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
