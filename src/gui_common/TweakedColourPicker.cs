@@ -117,7 +117,7 @@ public class TweakedColourPicker : ColorPicker
     /// <summary>
     ///   Decide if user can edit the presets.
     ///   <remarks>
-    ///     This is not named to PresetsEditable because it also hides a Godot property.
+    ///     This is not named to PresetsEditable because this also hides a Godot property.
     ///   </remarks>
     /// </summary>
     [Export]
