@@ -30,8 +30,8 @@ public class TweakedColourPicker : ColorPicker
     private HSlider sliderBOrV;
     private HSlider sliderA;
     private ToolButton pickerButton;
-    private CheckButton hsvCheckButton;
-    private CheckButton rawCheckButton;
+    private CheckBox hsvCheckBox;
+    private CheckBox rawCheckBox;
     private LineEdit htmlColourEdit;
     private HSeparator separator;
     private GridContainer presetsContainer;
@@ -52,7 +52,7 @@ public class TweakedColourPicker : ColorPicker
     public string PresetGroup { get; private set; } = "default";
 
     /// <summary>
-    ///   Decide if user can toggle HSV CheckButton to switch HSV mode.
+    ///   Decide if user can toggle HSV CheckBox to switch HSV mode.
     /// </summary>
     [Export]
     public bool HSVButtonEnabled
@@ -66,7 +66,7 @@ public class TweakedColourPicker : ColorPicker
     }
 
     /// <summary>
-    ///   Decide if user can toggle raw CheckButton to switch raw mode.
+    ///   Decide if user can toggle raw CheckBox to switch raw mode.
     /// </summary>
     [Export]
     public bool RawButtonEnabled
@@ -201,8 +201,8 @@ public class TweakedColourPicker : ColorPicker
         sliderBOrV = baseControl.GetChild(2).GetChild<HSlider>(1);
         sliderA = baseControl.GetChild(3).GetChild<HSlider>(1);
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
-        hsvCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/HSVCheckButton");
-        rawCheckButton = GetNode<CheckButton>("MarginButtonsContainer/ButtonsContainer/RawCheckButton");
+        hsvCheckBox = GetNode<CheckBox>("MarginButtonsContainer/ButtonsContainer/HSVCheckBox");
+        rawCheckBox = GetNode<CheckBox>("MarginButtonsContainer/ButtonsContainer/RawCheckBox");
         htmlColourEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HtmlColourEdit");
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
@@ -295,8 +295,8 @@ public class TweakedColourPicker : ColorPicker
     {
         pickerButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_PICK_COLOUR");
         addPresetButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_ADD_PRESET");
-        hsvCheckButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_HSV_BUTTON_TOOLTIP");
-        rawCheckButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_RAW_BUTTON_TOOLTIP");
+        hsvCheckBox.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_HSV_BUTTON_TOOLTIP");
+        rawCheckBox.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_RAW_BUTTON_TOOLTIP");
 
         if (HsvMode)
         {
@@ -316,14 +316,14 @@ public class TweakedColourPicker : ColorPicker
 
     private void UpdateButtonsState()
     {
-        if (hsvCheckButton == null)
+        if (hsvCheckBox == null)
             return;
 
-        hsvCheckButton.Pressed = HsvMode;
-        rawCheckButton.Pressed = RawMode;
+        hsvCheckBox.Pressed = HsvMode;
+        rawCheckBox.Pressed = RawMode;
 
-        hsvCheckButton.Disabled = !hsvButtonEnabled || RawMode;
-        rawCheckButton.Disabled = !rawButtonEnabled || HsvMode;
+        hsvCheckBox.Disabled = !hsvButtonEnabled || RawMode;
+        rawCheckBox.Disabled = !rawButtonEnabled || HsvMode;
     }
 
     private void OnAddPresetButtonPressed()

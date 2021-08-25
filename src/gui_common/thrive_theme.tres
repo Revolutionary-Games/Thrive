@@ -77,7 +77,7 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=39]
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
@@ -377,7 +377,7 @@ Button/styles/hover = SubResource( 3 )
 Button/styles/normal = SubResource( 4 )
 Button/styles/pressed = SubResource( 5 )
 CheckBox/colors/font_color = Color( 1, 1, 1, 1 )
-CheckBox/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+CheckBox/colors/font_color_disabled = Color( 0.666667, 0.666667, 0.666667, 1 )
 CheckBox/colors/font_color_hover = Color( 1, 1, 1, 1 )
 CheckBox/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
 CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
@@ -388,7 +388,7 @@ CheckBox/icons/checked = ExtResource( 5 )
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
 CheckBox/icons/unchecked = ExtResource( 6 )
-CheckBox/styles/disabled = SubResource( 6 )
+CheckBox/styles/disabled = SubResource( 39 )
 CheckBox/styles/focus = SubResource( 7 )
 CheckBox/styles/hover = SubResource( 8 )
 CheckBox/styles/hover_pressed = SubResource( 9 )
