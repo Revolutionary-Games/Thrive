@@ -407,16 +407,21 @@ public class TweakedColourPicker : ColorPicker
                 switch ((ButtonList)mouseEvent.ButtonIndex)
                 {
                     case ButtonList.Left:
+                    {
                         GetTree().SetInputAsHandled();
                         owner.Color = Color;
-                        break;
+                        return;
+                    }
+
                     case ButtonList.Right:
+                    {
                         if (!owner.PresetsEditable)
                             break;
 
                         GetTree().SetInputAsHandled();
                         owner.ErasePreset(Color);
-                        break;
+                        return;
+                    }
                 }
             }
 
