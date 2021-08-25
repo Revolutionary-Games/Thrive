@@ -155,6 +155,19 @@ public class TweakedColourPicker : ColorPicker
         }
     }
 
+    // Have to disable this warning because this hides Godot property Color to emit a signal when changing its color.
+#pragma warning disable CA1721
+    public new Color Color
+#pragma warning restore CA1721
+    {
+        get => base.Color;
+        set
+        {
+            base.Color = value;
+            EmitSignal("color_changed", value);
+        }
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -194,21 +207,21 @@ public class TweakedColourPicker : ColorPicker
         else
         {
             // Always ensure there is one so then we just modify it instead of having to check.
-            groupStorage = new PresetGroupStorage { Colours = GetPresets().ToList() };
+            groupStorage = new PresetGroupStorage(GetPresets());
             PresetsStorage.Add(PresetGroup, groupStorage);
         }
 
         // Add current preset handlers to preset group
-        groupStorage.AddPreset += GroupAddPreset;
-        groupStorage.ErasePreset += GroupErasePreset;
+        groupStorage.AddPresetDelegate += GroupAddPreset;
+        groupStorage.ErasePresetDelegate += GroupErasePreset;
 
         UpdateTooltips();
     }
 
     public override void _ExitTree()
     {
-        groupStorage.AddPreset -= GroupAddPreset;
-        groupStorage.ErasePreset -= GroupErasePreset;
+        groupStorage.AddPresetDelegate -= GroupAddPreset;
+        groupStorage.ErasePresetDelegate -= GroupErasePreset;
         base._ExitTree();
     }
 
@@ -222,18 +235,12 @@ public class TweakedColourPicker : ColorPicker
 
     public new void AddPreset(Color colour)
     {
-        if (groupStorage.Colours.Contains(colour))
-            return;
-
-        groupStorage.Colours.Add(colour);
-
         // Broadcast to all group numbers.
         groupStorage.AddPreset(colour);
     }
 
     public new void ErasePreset(Color colour)
     {
-        groupStorage.Colours.Remove(colour);
         groupStorage.ErasePreset(colour);
     }
 
@@ -352,8 +359,8 @@ public class TweakedColourPicker : ColorPicker
             Color = colour;
             MarginTop = MarginBottom = MarginLeft = MarginRight = 6.0f;
             RectMinSize = new Vector2(20, 20);
-            SizeFlagsHorizontal = 8;
-            SizeFlagsVertical = 4;
+            SizeFlagsHorizontal = (int)SizeFlags.ShrinkEnd;
+            SizeFlagsVertical = (int)SizeFlags.ShrinkCenter;
             UpdateTooltip();
         }
 
@@ -373,12 +380,14 @@ public class TweakedColourPicker : ColorPicker
                 {
                     case ButtonList.Left:
                         owner.Color = Color;
+                        GetTree().SetInputAsHandled();
                         break;
                     case ButtonList.Right:
                         if (!owner.PresetsEnabled)
                             break;
 
                         owner.ErasePreset(Color);
+                        GetTree().SetInputAsHandled();
                         break;
                 }
             }
@@ -395,10 +404,30 @@ public class TweakedColourPicker : ColorPicker
 
     private class PresetGroupStorage
     {
-        public AddPresetDelegate AddPreset { get; set; }
+        public PresetGroupStorage(IEnumerable<Color> colours)
+        {
+            Colours = colours.ToList();
+        }
 
-        public DeletePresetDelegate ErasePreset { get; set; }
+        public AddPresetDelegate AddPresetDelegate { get; set; }
 
-        public List<Color> Colours { get; set; }
+        public DeletePresetDelegate ErasePresetDelegate { get; set; }
+
+        public List<Color> Colours { get; }
+
+        public void AddPreset(Color colour)
+        {
+            if (Colours.Contains(colour))
+                return;
+
+            Colours.Add(colour);
+            AddPresetDelegate(colour);
+        }
+
+        public void ErasePreset(Color colour)
+        {
+            Colours.Remove(colour);
+            ErasePresetDelegate(colour);
+        }
     }
 }
