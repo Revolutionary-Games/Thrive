@@ -61,7 +61,7 @@ public class TweakedColourPicker : ColorPicker
     }
 
     /// <summary>
-    ///   Decide if user can toggle Raw CheckButton to switch Raw mode.
+    ///   Decide if user can toggle raw CheckButton to switch raw mode.
     /// </summary>
     [Export]
     public bool RawButtonEnabled
