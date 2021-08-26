@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -41,12 +42,20 @@ public class TweakedColourPicker : ColorPicker
     private bool rawButtonEnabled = true;
     private bool presetsEditable = true;
     private bool presetsVisible = true;
+    private PickerMode mode;
 
     private PresetGroupStorage groupStorage;
 
     private delegate void AddPresetDelegate(Color colour);
 
     private delegate void DeletePresetDelegate(Color colour);
+
+    private enum PickerMode
+    {
+        Rgb,
+        Hsv,
+        Raw,
+    }
 
     [Export]
     public string PresetGroup { get; private set; } = "default";
@@ -92,10 +101,9 @@ public class TweakedColourPicker : ColorPicker
         get => base.HsvMode;
         set
         {
-            if (value && RawMode)
-                return;
+            mode = value ? PickerMode.Hsv : PickerMode.Rgb;
+            UpdatePickerMode();
 
-            base.HsvMode = value;
             UpdateButtonsState();
 
             // Update HSV sliders' tooltips
@@ -112,11 +120,12 @@ public class TweakedColourPicker : ColorPicker
         get => base.RawMode;
         set
         {
-            if (value && HsvMode)
-                return;
+            mode = value ? PickerMode.Raw : PickerMode.Rgb;
+            UpdatePickerMode();
 
             base.RawMode = value;
             UpdateButtonsState();
+            UpdateTooltips();
         }
     }
 
@@ -324,6 +333,38 @@ public class TweakedColourPicker : ColorPicker
 
         hsvCheckBox.Disabled = !hsvButtonEnabled || RawMode;
         rawCheckBox.Disabled = !rawButtonEnabled || HsvMode;
+    }
+
+    private void UpdatePickerMode()
+    {
+        switch (mode)
+        {
+            case PickerMode.Rgb:
+            {
+                base.HsvMode = false;
+                base.RawMode = false;
+                break;
+            }
+
+            case PickerMode.Hsv:
+            {
+                base.RawMode = false;
+                base.HsvMode = true;
+                break;
+            }
+
+            case PickerMode.Raw:
+            {
+                base.HsvMode = false;
+                base.RawMode = true;
+                break;
+            }
+
+            default:
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 
     private void OnAddPresetButtonPressed()
