@@ -264,6 +264,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (state == value)
                 return;
 
+            // Engulfing is not legal for microbes will cell walls
+            if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
+                return;
+
             state = value;
             if (Colony != null)
                 Colony.State = value;
