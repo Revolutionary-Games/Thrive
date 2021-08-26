@@ -1439,16 +1439,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             OnIGotAddedToColony();
 
-            var parent = this;
             if (Colony.Master != this)
             {
                 Mode = ModeEnum.Static;
-                parent = ColonyParent;
             }
 
             ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
 
-            // Readding collision exception because the bodies shapes got update
+            // Readding collision exception because the bodies shapes got updated
             AddCollisionExceptionWith(Colony.Master);
             ColonyParent.AddCollisionExceptionWith(this);
         }
