@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-21 20:45+0300\n"
-"PO-Revision-Date: 2021-05-09 17:45+0000\n"
-"Last-Translator: rob-katt <gabbe.carlin@gmail.com>\n"
+"POT-Creation-Date: 2021-08-13 10:07+0300\n"
+"PO-Revision-Date: 2021-08-23 16:43+0000\n"
+"Last-Translator: mattealex <mattias304@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -399,11 +399,11 @@ msgstr "Växla uppslukarläge av och på"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Lösgör alla"
 
 #: ../simulation_parameters/common/input_options.json:58
 msgid "PERFORM_UNBINDING"
-msgstr ""
+msgstr "Utför lösgörande"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -469,7 +469,7 @@ msgstr "Nollställ kamera"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Avbryt denna handling"
 
 #: ../simulation_parameters/common/input_options.json:139
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -727,17 +727,17 @@ msgstr "Solljus"
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1987
 msgid "NORMAL"
-msgstr ""
+msgstr "Normal"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:20
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2155
 msgid "DOUBLE"
-msgstr ""
+msgstr "Dubbel"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:37
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2319
 msgid "CELLULOSE"
-msgstr ""
+msgstr "Cellulosa"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:54
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
@@ -747,7 +747,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/membranes.json:71
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
 msgid "CALCIUM_CARBONATE"
-msgstr ""
+msgstr "Kalciumkarbonat"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:88
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3057
@@ -877,7 +877,7 @@ msgstr "befolkning:"
 
 #: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
-msgstr ""
+msgstr "dog ut i {0}"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
@@ -905,7 +905,7 @@ msgstr "befolkning i platser:"
 
 #: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "dog ut på planeten"
 
 #: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
 msgid "LOADING"
@@ -936,23 +936,23 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr ""
+msgstr "Inmata"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
-msgstr ""
+msgstr "Ta bort"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr ""
+msgstr "Pausa"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Rensa"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
-msgstr ""
+msgstr "Hem"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
@@ -965,7 +965,7 @@ msgstr "Rör dig vänster"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr ""
+msgstr "Upp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 #, fuzzy
@@ -993,7 +993,7 @@ msgstr "Backåt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Stopp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
@@ -1009,7 +1009,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "Öppen URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
@@ -1017,7 +1017,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
-msgstr ""
+msgstr "Favoriter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
@@ -1034,7 +1034,7 @@ msgstr "Backåt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 #, fuzzy
@@ -2283,7 +2283,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
-msgstr ""
+msgstr "Ingen AI"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 msgid "PLAYER_SPEED"
@@ -2291,7 +2291,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
-msgstr ""
+msgstr "Duplicera Spelare"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:514
 msgid "MICROBE_PATCH_LABEL"
@@ -2303,23 +2303,23 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:714
 msgid "PLAYER_CELL"
-msgstr ""
+msgstr "spelarcell"
 
 #: ../src/microbe_stage/MicrobeStage.cs:494
 msgid "PLAYER_REPRODUCED"
-msgstr ""
+msgstr "spelare fortplantad"
 
 #: ../src/microbe_stage/MicrobeStage.cs:651
 msgid "PLAYER_DIED"
-msgstr ""
+msgstr "spelare dog"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:440
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "Vid Muspekare:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:465
 msgid "NOTHING_HERE"
-msgstr ""
+msgstr "Ingenting här"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "COMPOUNDS_COLON"
@@ -2331,11 +2331,11 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:609
 msgid "ENVIRONMENT"
-msgstr ""
+msgstr "Miljö"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:876
 msgid "TEMPERATURE_SHORT"
-msgstr ""
+msgstr "Temp."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:932
 msgid "LIGHT"
@@ -2343,7 +2343,7 @@ msgstr "Ljus"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:987
 msgid "PRESSURE_SHORT"
-msgstr ""
+msgstr "Tryck"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2330
@@ -2358,7 +2358,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1706
 msgid "POPULATION_CAPITAL"
-msgstr ""
+msgstr "INVÅNARE:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_VENTS"
@@ -2394,7 +2394,7 @@ msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:149
 msgid "PATCH_CAVE"
-msgstr ""
+msgstr "Grotta"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:150
 msgid "PATCH_ICE_SHELF"
@@ -2406,11 +2406,11 @@ msgstr ""
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:117
 msgid "UNBIND_HELP_TEXT"
-msgstr ""
+msgstr "Lösgöringsläge"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:15
 msgid "PROCESS_PANEL_TITLE"
-msgstr ""
+msgstr "Cellprocesser"
 
 #: ../src/microbe_stage/editor/CompoundBalanceDisplay.tscn:22
 msgid "COMPOUND_BALANCE_TITLE"
@@ -2435,7 +2435,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:509
 msgid "REPORT"
-msgstr ""
+msgstr "Rapportera"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:530
 msgid "PATCH_MAP"
@@ -2443,7 +2443,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:610
 msgid "ORGANISM_STATISTICS"
-msgstr ""
+msgstr "Organismstatistik"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
 msgid "SPEED_COLON"
@@ -2598,7 +2598,7 @@ msgstr "NUVARANDE PLATS"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "PRESSURE"
-msgstr ""
+msgstr "Tryck"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3226
 msgid "SPECIES_PRESENT"
@@ -2691,44 +2691,50 @@ msgstr "Rörelse"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
-msgstr ""
+msgstr "Modifiera"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
-msgstr ""
+msgstr "UTROTNING"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
+"Precis som 99% av alla arter som någonsin har existerat, har din art "
+"utrotats. Andra kommer att fortsätta frodas och upprätthålla din niche, men "
+"det blir inte du som gör. Du kommer att glömmas, ett misslyckats experiment "
+"i evolutionen."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
-msgstr ""
+msgstr "DU HAR FRODATS!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
 msgstr ""
+"Grattis, du har vunnit denna version av Thrive! Du kan fortsätta spela efter "
+"denna skärm stängs ner om du vill, eller starta nytt spel i en annan värld."
 
 #: ../src/saving/InProgressLoad.cs:77 ../src/saving/InProgressLoad.cs:96
 #: ../src/saving/InProgressLoad.cs:145
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "Laddar Spel"
 
 #: ../src/saving/InProgressLoad.cs:79
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Läser sparad data"
 
 #: ../src/saving/InProgressLoad.cs:98
 msgid "CREATING_OBJECTS_FROM_SAVE"
-msgstr ""
+msgstr "skapar objekt från sparfil"
 
 #: ../src/saving/InProgressLoad.cs:107
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
+msgstr "Ett undantag har uppstått medan sparad data laddades"
 
 #: ../src/saving/InProgressLoad.cs:133
 msgid "SAVE_IS_INVALID"
-msgstr ""
+msgstr "Sparfil är ogiltig"
 
 #: ../src/saving/InProgressLoad.cs:134
 msgid "SAVE_HAS_INVALID_GAME_STATE"
@@ -2744,11 +2750,11 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:168
 msgid "LOAD_FINISHED"
-msgstr ""
+msgstr "Färdigladdat"
 
 #: ../src/saving/InProgressLoad.cs:191
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Laddningsfel"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
@@ -2756,11 +2762,11 @@ msgstr ""
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
-msgstr ""
+msgstr "Sparar..."
 
 #: ../src/saving/InProgressSave.cs:195
 msgid "SAVE_FAILED"
-msgstr ""
+msgstr "Sparande misslyckades"
 
 #: ../src/saving/InProgressSave.cs:196
 msgid "ERROR_SAVING"
@@ -2772,23 +2778,23 @@ msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:30
 msgid "CREATE_NEW_SAVE"
-msgstr ""
+msgstr "Skapa Ny Sparfil"
 
 #: ../src/saving/NewSaveMenu.tscn:47
 msgid "NAME"
-msgstr ""
+msgstr "Namn:"
 
 #: ../src/saving/NewSaveMenu.tscn:65
 msgid "EXTRA_OPTIONS"
-msgstr ""
+msgstr "Extra Inställningar"
 
 #: ../src/saving/NewSaveMenu.tscn:83
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr ""
+msgstr "Skriv över aktuell sparfil:"
 
 #: ../src/saving/NewSaveMenu.tscn:118
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr ""
+msgstr "Skriv över aktuell sparfil?"
 
 #: ../src/saving/SaveHelper.cs:379
 msgid "SAVING_SUCCEEDED"
@@ -2800,7 +2806,7 @@ msgstr ""
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
-msgstr ""
+msgstr "Instruktionsbok"
 
 #: ../src/saving/SaveInformation.cs:22
 msgid "SAVE_AUTOSAVE"
@@ -2812,7 +2818,7 @@ msgstr ""
 
 #: ../src/saving/SaveInformation.cs:34
 msgid "SAVE_INVALID"
-msgstr ""
+msgstr "Ogiltig"
 
 #: ../src/saving/SaveList.cs:187
 msgid "SAVE_DELETE_WARNING"
@@ -2830,7 +2836,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
-msgstr ""
+msgstr "Laddar..."
 
 #: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
@@ -3049,6 +3055,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:301
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
+"För att kunna utföra fortplantning behöver du duplicera alla dina organeller "
+"genom att insamla tillräckligt med ammoniak och fosfater.\n"
+"Se indikatorn längst ned i högra hörn för att visa mängden kvar som krävs."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
 #, fuzzy
