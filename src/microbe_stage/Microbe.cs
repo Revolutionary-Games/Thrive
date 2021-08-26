@@ -1426,9 +1426,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     internal void ReParentShapes(Microbe to, Vector3 offset)
     {
-        // TODO: if microbeRotation is the rotation of *this* instance we should use the variable here directly
-        // An object doesn't need to be told its own member variable in a method...
-        // https://github.com/Revolutionary-Games/Thrive/issues/2504
         foreach (var organelle in organelles)
             organelle.ReParentShapes(to, offset);
     }
