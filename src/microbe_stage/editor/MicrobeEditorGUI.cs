@@ -948,7 +948,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         reportTabPatchNameLabel.Text = patch;
     }
 
-    internal void UpdateRigiditySliderState(int mutationPoints)
+    public void UpdateRigiditySliderState(int mutationPoints)
     {
         if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelle == null)
         {
