@@ -1258,6 +1258,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdatePlayerPatch(targetPatch);
         }
 
+        gui.UpdateRigiditySliderState(MutationPoints);
+
         // Setup the display cell
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
