@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Environment = System.Environment;
@@ -124,6 +125,21 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath RunAutoEvoDuringGameplayPath;
 
+    [Export]
+    public NodePath DetectedCPUCountPath;
+
+    [Export]
+    public NodePath ActiveThreadCountPath;
+
+    [Export]
+    public NodePath AssumeHyperthreadingPath;
+
+    [Export]
+    public NodePath UseManualThreadCountPath;
+
+    [Export]
+    public NodePath ThreadCountSliderPath;
+
     // Inputs tab.
     [Export]
     public NodePath InputsTabPath;
@@ -225,6 +241,11 @@ public class OptionsMenu : ControlWithInput
     private VBoxContainer cloudResolutionTitle;
     private OptionButton cloudResolution;
     private CheckBox runAutoEvoDuringGameplay;
+    private Label detectedCPUCount;
+    private Label activeThreadCount;
+    private CheckBox assumeHyperthreading;
+    private CheckBox useManualThreadCount;
+    private Slider threadCountSlider;
 
     // Inputs tab
     private Control inputsTab;
@@ -339,6 +360,11 @@ public class OptionsMenu : ControlWithInput
         cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
         runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
+        detectedCPUCount = GetNode<Label>(DetectedCPUCountPath);
+        activeThreadCount = GetNode<Label>(ActiveThreadCountPath);
+        assumeHyperthreading = GetNode<CheckBox>(AssumeHyperthreadingPath);
+        useManualThreadCount = GetNode<CheckBox>(UseManualThreadCountPath);
+        threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -370,6 +396,7 @@ public class OptionsMenu : ControlWithInput
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
+        assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
     }
 
     public override void _Notification(int what)
@@ -470,6 +497,12 @@ public class OptionsMenu : ControlWithInput
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
+        assumeHyperthreading.Pressed = settings.AssumeCPUHasHyperthreading;
+        useManualThreadCount.Pressed = settings.UseManualThreadCount;
+        threadCountSlider.Value = settings.ThreadCount;
+        threadCountSlider.Editable = settings.UseManualThreadCount;
+
+        UpdateDetectedCPUCount();
 
         // Input
         BuildInputRebindControls();
@@ -803,6 +836,27 @@ public class OptionsMenu : ControlWithInput
         return true;
     }
 
+    private void UpdateDetectedCPUCount()
+    {
+        detectedCPUCount.Text = TaskExecutor.CPUCount.ToString(CultureInfo.CurrentCulture);
+
+        if (Settings.Instance.UseManualThreadCount)
+        {
+            activeThreadCount.Text = Settings.Instance.ThreadCount.Value.ToString(CultureInfo.CurrentCulture);
+        }
+        else
+        {
+            int threads = TaskExecutor.GetWantedThreadCount(Settings.Instance.AssumeCPUHasHyperthreading,
+                Settings.Instance.RunAutoEvoDuringGamePlay);
+
+            activeThreadCount.Text = threads.ToString(CultureInfo.CurrentCulture);
+            threadCountSlider.Value = threads;
+        }
+
+        threadCountSlider.MinValue = TaskExecutor.MinimumThreadCount;
+        threadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
+    }
+
     private void OnResetPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -1073,6 +1127,37 @@ public class OptionsMenu : ControlWithInput
         Settings.Instance.RunAutoEvoDuringGamePlay.Value = pressed;
 
         UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnHyperthreadingToggled(bool pressed)
+    {
+        Settings.Instance.AssumeCPUHasHyperthreading.Value = pressed;
+        Settings.Instance.ApplyThreadSettings();
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnManualThreadsToggled(bool pressed)
+    {
+        Settings.Instance.UseManualThreadCount.Value = pressed;
+        Settings.Instance.ApplyThreadSettings();
+
+        threadCountSlider.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnManualThreadCountChanged(float value)
+    {
+        int threads = Mathf.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
+        Settings.Instance.ThreadCount.Value = threads;
+        Settings.Instance.ApplyThreadSettings();
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
     }
 
     // Input Callbacks

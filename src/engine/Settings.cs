@@ -167,6 +167,21 @@ public class Settings
     /// </summary>
     public SettingValue<bool> RunAutoEvoDuringGamePlay { get; set; } = new SettingValue<bool>(true);
 
+    /// <summary>
+    ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
+    /// </summary>
+    public SettingValue<bool> AssumeCPUHasHyperthreading { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Only if this is true the ThreadCount will be followed
+    /// </summary>
+    public SettingValue<bool> UseManualThreadCount { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Manually set number of background threads to use. Needs to be at least 2 if RunAutoEvoDuringGamePlay is true
+    /// </summary>
+    public SettingValue<int> ThreadCount { get; set; } = new SettingValue<int>(4);
+
     // Misc Properties
 
     /// <summary>
@@ -554,6 +569,15 @@ public class Settings
         AudioServer.Device = audioOutputDevice;
 
         GD.Print("Set audio output device to: ", audioOutputDevice);
+    }
+
+    /// <summary>
+    ///   Applies thread count settings, not necessary to call on startup as TaskExecutor reads the values itself from
+    ///   us when starting
+    /// </summary>
+    public void ApplyThreadSettings()
+    {
+        TaskExecutor.Instance.ReApplyThreadCount();
     }
 
     /// <summary>
