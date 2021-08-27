@@ -409,7 +409,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
                 return;
 
-            touchingMicrobes.Add(microbe.GetMicrobeFromShape(bodyShape));
+            microbe = microbe.GetMicrobeFromShape(bodyShape);
+            if (microbe != null)
+                touchingMicrobes.Add(microbe);
         }
     }
 
