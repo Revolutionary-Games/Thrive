@@ -256,7 +256,7 @@ class DevBuildUploader
       puts "Deleting build that server already had: #{file}"
       begin
         File.unlick file
-      rescue Error => e
+      rescue StandardError => e
         error "Failed to delete file: #{e}"
       end
     end
