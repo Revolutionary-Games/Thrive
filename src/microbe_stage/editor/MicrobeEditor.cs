@@ -1258,8 +1258,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdatePlayerPatch(targetPatch);
         }
 
-        gui.UpdateRigiditySliderState(MutationPoints);
-
         // Setup the display cell
         previewMicrobe = (Microbe)microbeScene.Instance();
         previewMicrobe.IsForPreviewOnly = true;
@@ -1286,6 +1284,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
 
         gui.UpdateReportTabPatchName(TranslationServer.Translate(CurrentPatch.Name));
+
+        gui.UpdateRigiditySliderState(MutationPoints);
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;
