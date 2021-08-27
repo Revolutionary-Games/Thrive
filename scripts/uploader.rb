@@ -255,7 +255,7 @@ class DevBuildUploader
     @already_upload_to_delete.each do |file|
       puts "Deleting build that server already had: #{file}"
       begin
-        File.unlick file
+        File.unlink file
       rescue StandardError => e
         error "Failed to delete file: #{e}"
       end
