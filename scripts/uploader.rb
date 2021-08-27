@@ -30,6 +30,7 @@ class DevBuildUploader
 
     @dehydrated_to_upload = []
     @devbuilds_to_upload = []
+    @already_upload_to_delete = []
 
     @access_key = ENV.fetch('THRIVE_DEVCENTER_ACCESS_KEY', nil)
 
@@ -60,6 +61,7 @@ class DevBuildUploader
 
     perform_uploads
     success 'DevBuild upload finished.'
+    delete_already_existing
   end
 
   private
@@ -157,7 +159,10 @@ class DevBuildUploader
                     }.to_json)
     end
 
-    return unless data['upload']
+    unless data['upload']
+      @already_upload_to_delete.append archive_file if @delete
+      return
+    end
 
     puts "Server doesn't have it."
     @devbuilds_to_upload.append({ file: archive_file, version: version, platform: platform,
@@ -244,5 +249,16 @@ class DevBuildUploader
     end
 
     raise 'HTTP request ran out of retries'
+  end
+
+  def delete_already_existing
+    @already_upload_to_delete.each do |file|
+      puts "Deleting build that server already had: #{file}"
+      begin
+        File.unlick file
+      rescue Error => e
+        error "Failed to delete file: #{e}"
+      end
+    end
   end
 end
