@@ -2545,7 +2545,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-    private bool isBindingForbidden(Microbe other)
+    private bool IsBindingForbidden(Microbe other)
     {
         // Cannot hijack the player, other species or other colonies (TODO: yet)
         return other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species;
@@ -2566,7 +2566,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // We check here if we can bind, not to waste computational power with Invoke,
         // although we'll still have to recheck it later.
-        if (isBindingForbidden(other))
+        if (IsBindingForbidden(other))
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
@@ -2591,7 +2591,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // A frame has passed since last check, so we get sure nothing got changed in between.
         // We don't pass other to the *invoked* method for computational purposes.
-        if (isBindingForbidden(other))
+        if (IsBindingForbidden(other))
             return;
 
         touchedMicrobes.Remove(other);
