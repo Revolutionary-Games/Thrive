@@ -2545,6 +2545,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
+    private bool isBindingAllowed(Microbe other)
+    {
+        // Cannot hijack the player, other species or other colonies (TODO: yet)
+        return other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species;
+    }
+
     private void CheckBinding()
     {
         if (State != MicrobeState.Binding)
@@ -2558,8 +2564,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var other = touchedMicrobes.FirstOrDefault();
 
-        // Cannot hijack the player, other species or other colonies (TODO: yet)
-        if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
+        if (!isBindingAllowed(other))
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
@@ -2582,10 +2587,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
-        // Cannot hijack the player, other species or other colonies (TODO: yet)
-        // A frame has passed since last check, so we get sure nothing get changed in between.
-        //TODO separate method
-        if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
+        // A frame has passed since last check, so we get sure nothing got changed in between.
+        if (!isBindingAllowed(other))
             return;
 
         touchedMicrobes.Remove(other);
