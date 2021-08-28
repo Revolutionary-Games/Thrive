@@ -1780,13 +1780,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
 
-        // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
-        // ReSharper disable StringLiteralTypo
         temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
-
         sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
-
-        // ReSharper restore StringLiteralTypo
     }
 
     private void OnSpeciesNameTextChanged(string newText)
