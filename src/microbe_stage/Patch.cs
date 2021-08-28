@@ -80,6 +80,35 @@ public class Patch
     }
 
     /// <summary>
+    /// Checks all neighbors recursively to find all connected patch nodes
+    /// </summary>
+    /// <returns>A <see cref="List{T}"/> of <see cref="Patch"/> connected to this node by some means</returns>
+    public List<Patch> GetAllConnectedPatches()
+    {
+        List<Patch> resultList = new List<Patch>();
+        CollectNeighbors(this, ref resultList);
+
+        return resultList;
+    }
+
+    /// <summary>
+    /// Adds all neighbors recursively to the referenced <see cref="List"/>
+    /// </summary>
+    /// <param name="patch">The <see cref="Patch"/> to start from</param>
+    /// <param name="list">The <see cref="List{T}"/> to add to</param>
+    public void CollectNeighbors(Patch patch, ref List<Patch> list)
+    {
+        foreach (var neighbour in patch.Adjacent)
+        {
+            if (!list.Contains(neighbour))
+            {
+                list.Add(neighbour);
+                CollectNeighbors(neighbour, ref list);
+            }
+        }
+    }
+
+    /// <summary>
     ///   Looks for a species with the specified name in this patch
     /// </summary>
     public Species FindSpeciesByID(uint id)
