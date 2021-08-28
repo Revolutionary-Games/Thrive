@@ -33,6 +33,7 @@ public class TweakedColourPicker : ColorPicker
     private ToolButton pickerButton;
     private CheckBox hsvCheckBox;
     private CheckBox rawCheckBox;
+    private Label htmlColourStart;
     private LineEdit htmlColourEdit;
     private HSeparator separator;
     private GridContainer presetsContainer;
@@ -120,6 +121,10 @@ public class TweakedColourPicker : ColorPicker
         set
         {
             mode = value ? PickerMode.Raw : PickerMode.Rgb;
+
+            if (value == false)
+                ValidateRgbColor();
+
             base.RawMode = value;
             UpdateButtonsState();
             UpdateTooltips();
@@ -209,6 +214,7 @@ public class TweakedColourPicker : ColorPicker
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
         hsvCheckBox = GetNode<CheckBox>("MarginButtonsContainer/ButtonsContainer/HSVCheckBox");
         rawCheckBox = GetNode<CheckBox>("MarginButtonsContainer/ButtonsContainer/RawCheckBox");
+        htmlColourStart = GetNode<Label>("MarginButtonsContainer/ButtonsContainer/HtmlColourStart");
         htmlColourEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HtmlColourEdit");
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
@@ -297,6 +303,23 @@ public class TweakedColourPicker : ColorPicker
         base.ErasePreset(colour);
     }
 
+    /// <summary>
+    ///   When return from raw mode make sure the three values are within RGB standard. (Maximum value 1)
+    /// </summary>
+    private void ValidateRgbColor()
+    {
+        var colour = Color;
+
+        if (colour.r > 1)
+            colour.r = 1;
+        if (colour.g > 1)
+            colour.g = 1;
+        if (colour.b > 1)
+            colour.b = 1;
+
+        Color = colour;
+    }
+
     private void UpdateTooltips()
     {
         pickerButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_PICK_COLOUR");
@@ -378,6 +401,21 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnColourChanged(Color colour)
     {
+        // Hide HtmlColourEdit color change when Raw mode is on and any color value is above 1.0
+        if (mode == PickerMode.Raw)
+        {
+            if (colour.IsRaw())
+            {
+                htmlColourStart.Visible = false;
+                htmlColourEdit.Visible = false;
+            }
+            else
+            {
+                htmlColourStart.Visible = true;
+                htmlColourEdit.Visible = true;
+            }
+        }
+
         htmlColourEdit.Text = colour.ToHtml();
     }
 
@@ -463,7 +501,8 @@ public class TweakedColourPicker : ColorPicker
         private void UpdateTooltip()
         {
             HintTooltip = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP"), Color.ToHtml());
+                TranslationServer.Translate("COLOUR_PICKER_PRESET_TOOLTIP"),
+                Color.IsRaw() ? "argb(" + Color + ")" : "#" + Color.ToHtml());
         }
     }
 
