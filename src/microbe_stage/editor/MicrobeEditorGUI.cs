@@ -314,7 +314,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private ProgressBar mutationPointsSubtractBar;
 
     private Slider rigiditySlider;
-    private ColorPicker membraneColorPicker;
+    private TweakedColourPicker membraneColorPicker;
 
     private TextureButton undoButton;
     private TextureButton redoButton;
@@ -448,7 +448,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
 
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
+        membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
         menuButton = GetNode<TextureButton>(MenuButtonPath);
         helpButton = GetNode<TextureButton>(HelpButtonPath);
