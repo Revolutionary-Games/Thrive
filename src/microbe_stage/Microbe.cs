@@ -2588,6 +2588,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // A frame has passed since last check, so we get sure nothing got changed in between.
+        // We don't pass other to the *invoked* method for computational purposes.
         if (!isBindingAllowed(other))
             return;
 
