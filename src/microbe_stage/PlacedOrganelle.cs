@@ -409,15 +409,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             if (ParentMicrobe.Colony != null)
             {
                 var parent = ParentMicrobe;
-                
+
                 // Get the rotation of all colony ancestors up to master
                 while (parent != ParentMicrobe.Colony.Master)
                 {
                     rotation *= new Quat(parent.Rotation);
                     parent = parent.ColonyParent;
-                    
                 }
             }
+
             rotation = rotation.Normalized();
 
             // Transform the vector with the rotation quaternion

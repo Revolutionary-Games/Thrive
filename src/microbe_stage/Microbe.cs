@@ -491,7 +491,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 ReParentShapes(this, Vector3.Zero);
                 ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
                 Colony.Master.AddCollisionExceptionWith(this);
-                this.AddCollisionExceptionWith(Colony.Master);
+                AddCollisionExceptionWith(Colony.Master);
                 Mode = ModeEnum.Static;
             }
 
