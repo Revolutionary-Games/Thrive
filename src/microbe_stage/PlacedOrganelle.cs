@@ -428,7 +428,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
                 shapePosition *= 0.5f;
 
             shapePosition += offset;
-            
+
             var transform = new Transform(Quat.Identity, shapePosition);
 
             var ownerId = shapes[i];
