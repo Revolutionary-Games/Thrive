@@ -80,7 +80,7 @@ public class Patch
     }
 
     /// <summary>
-    /// Checks all neighbors recursively to find all connected patch nodes
+    ///   Checks all neighbors recursively to find all connected patch nodes
     /// </summary>
     /// <returns>A <see cref="HashSet{T}"/> of <see cref="Patch"/> connected to this node by some means</returns>
     public HashSet<Patch> GetAllConnectedPatches()
