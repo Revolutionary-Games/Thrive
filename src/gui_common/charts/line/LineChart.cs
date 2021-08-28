@@ -577,7 +577,8 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void RenderChart()
     {
-        if (dataSets == null || dataSets.Count <= 0)
+        // Handle empty or entirely hidden datasets
+        if (dataSets?.All(d => !d.Value.Draw) == true)
         {
             DrawNoDataText();
             return;
@@ -701,7 +702,7 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void DrawNoDataText()
     {
-        var font = GetFont("lato_small", "Label");
+        var font = GetFont("jura_small", "Label");
         var translated = TranslationServer.Translate("NO_DATA_TO_SHOW");
 
         var position = new Vector2(
