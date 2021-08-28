@@ -2582,6 +2582,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
+        // Cannot hijack the player, other species or other colonies (TODO: yet)
+        // A frame has passed since last check, so we get sure nothing get changed in between.
+        //TODO separate method
+        if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
+            return;
+
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
