@@ -82,28 +82,28 @@ public class Patch
     /// <summary>
     /// Checks all neighbors recursively to find all connected patch nodes
     /// </summary>
-    /// <returns>A <see cref="List{T}"/> of <see cref="Patch"/> connected to this node by some means</returns>
-    public List<Patch> GetAllConnectedPatches()
+    /// <returns>A <see cref="HashSet{T}"/> of <see cref="Patch"/> connected to this node by some means</returns>
+    public HashSet<Patch> GetAllConnectedPatches()
     {
-        List<Patch> resultList = new List<Patch>();
-        CollectNeighbors(this, ref resultList);
+        HashSet<Patch> resultSet = new HashSet<Patch>();
+        CollectNeighbors(this, ref resultSet);
 
-        return resultList;
+        return resultSet;
     }
 
     /// <summary>
-    /// Adds all neighbors recursively to the referenced <see cref="List"/>
+    /// Adds all neighbors recursively to the referenced <see cref="HashSet{T}"/>
     /// </summary>
     /// <param name="patch">The <see cref="Patch"/> to start from</param>
-    /// <param name="list">The <see cref="List{T}"/> to add to</param>
-    public void CollectNeighbors(Patch patch, ref List<Patch> list)
+    /// <param name="set">The <see cref="HashSet{T}"/> to add to</param>
+    public void CollectNeighbors(Patch patch, ref HashSet<Patch> set)
     {
         foreach (var neighbour in patch.Adjacent)
         {
-            if (!list.Contains(neighbour))
+            if (!set.Contains(neighbour))
             {
-                list.Add(neighbour);
-                CollectNeighbors(neighbour, ref list);
+                set.Add(neighbour);
+                CollectNeighbors(neighbour, ref set);
             }
         }
     }
