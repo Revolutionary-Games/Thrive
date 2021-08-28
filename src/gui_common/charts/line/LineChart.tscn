@@ -25,6 +25,7 @@ margin_top = -720.0
 margin_right = 1280.0
 grow_horizontal = 0
 grow_vertical = 0
+rect_min_size = Vector2( 0, 70 )
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -67,12 +68,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="yAxisLabel" type="Label" parent="VBoxContainer"]
-margin_right = 9.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 0, 15 )
 size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 7 )
-text = "y"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -86,7 +85,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 1268.0
+margin_right = 1276.0
 margin_bottom = 697.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -96,7 +95,7 @@ custom_constants/margin_left = 2
 
 [node name="ChartContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/MarginContainer"]
 margin_left = 2.0
-margin_right = 1258.0
+margin_right = 1266.0
 margin_bottom = 697.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -130,7 +129,7 @@ custom_styles/separator = SubResource( 2 )
 
 [node name="Drawer" type="Control" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
 margin_left = 3.0
-margin_right = 1256.0
+margin_right = 1264.0
 margin_bottom = 697.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -145,33 +144,33 @@ mouse_filter = 2
 [node name="Abscissa" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer"]
 margin_left = 3.0
 margin_top = 695.0
-margin_right = 1256.0
+margin_right = 1264.0
 margin_bottom = 699.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa"]
-margin_right = 1253.0
+margin_right = 1261.0
 margin_bottom = 4.0
 mouse_filter = 2
 size_flags_horizontal = 3
 custom_constants/separation = 0
 
 [node name="Line" type="HSeparator" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer"]
-margin_right = 1253.0
+margin_right = 1261.0
 margin_bottom = 4.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer"]
 margin_top = 4.0
-margin_right = 1253.0
+margin_right = 1261.0
 margin_bottom = 4.0
 mouse_filter = 2
 custom_constants/separation = -7
 
 [node name="Labels" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer"]
-margin_right = 1253.0
+margin_right = 1261.0
 mouse_filter = 2
 size_flags_horizontal = 3
 theme = SubResource( 1 )
@@ -184,14 +183,13 @@ margin_bottom = 697.0
 mouse_filter = 2
 
 [node name="xAxisLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 1272.0
+margin_left = 1280.0
 margin_top = 682.0
 margin_right = 1280.0
 margin_bottom = 697.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 7 )
-text = "x"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }

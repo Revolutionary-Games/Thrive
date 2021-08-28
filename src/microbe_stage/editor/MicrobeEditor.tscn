@@ -2151,7 +2151,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 45.0
 margin_right = 303.0
-margin_bottom = 107.0
+margin_bottom = 139.0
 DisplayName = "SPECIES_POPULATION"
 
 [node name="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="0"]
@@ -2162,18 +2162,18 @@ margin_right = 303.0
 
 [node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation" index="1"]
 margin_right = 303.0
-margin_bottom = 62.0
+margin_bottom = 94.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip" index="0"]
 margin_right = 303.0
-margin_bottom = 38.0
+margin_bottom = 70.0
 
 [node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 303.0
-margin_bottom = 38.0
+margin_bottom = 70.0
 ChartName = "Species Population"
 XAxisTicks = 5
 YAxisTicks = 6
@@ -2182,9 +2182,9 @@ LegendMode = 1
 [node name="PhysicalConditions" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 122.0
+margin_top = 154.0
 margin_right = 303.0
-margin_bottom = 210.0
+margin_bottom = 274.0
 DisplayName = "PHYSICAL_CONDITIONS"
 TitleLabelPath = NodePath("../PhysicalConditions/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../PhysicalConditions/HBoxContainer/Buttons/minusButton")
@@ -2201,11 +2201,11 @@ margin_right = 303.0
 
 [node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions" index="1"]
 margin_right = 303.0
-margin_bottom = 88.0
+margin_bottom = 120.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip" index="0"]
 margin_right = 303.0
-margin_bottom = 64.0
+margin_bottom = 96.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="0"]
 margin_right = 303.0
@@ -2257,7 +2257,7 @@ anchor_top = 0.0
 anchor_bottom = 0.0
 margin_top = 26.0
 margin_right = 303.0
-margin_bottom = 64.0
+margin_bottom = 96.0
 HorizontalLabelPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/xAxisLabel")
 VerticalLabelPath = NodePath("../Temperature/VBoxContainer/yAxisLabel")
 VerticalTicksContainerPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
@@ -2286,9 +2286,9 @@ YAxisTicks = 6
 [node name="AtmosphericGasses" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 225.0
+margin_top = 289.0
 margin_right = 303.0
-margin_bottom = 287.0
+margin_bottom = 383.0
 DisplayName = "ATMOSPHERIC_GASSES"
 TitleLabelPath = NodePath("../AtmosphericGasses/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../AtmosphericGasses/HBoxContainer/Buttons/minusButton")
@@ -2305,18 +2305,18 @@ margin_right = 303.0
 
 [node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" index="1"]
 margin_right = 303.0
-margin_bottom = 62.0
+margin_bottom = 94.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip" index="0"]
 margin_right = 303.0
-margin_bottom = 38.0
+margin_bottom = 70.0
 
 [node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 303.0
-margin_bottom = 38.0
+margin_bottom = 70.0
 ChartName = "Atmospheric Gasses"
 XAxisTicks = 5
 YAxisTicks = 6
@@ -2324,9 +2324,9 @@ YAxisTicks = 6
 [node name="Compounds" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 302.0
+margin_top = 398.0
 margin_right = 303.0
-margin_bottom = 364.0
+margin_bottom = 492.0
 DisplayName = "COMPOUNDS"
 TitleLabelPath = NodePath("../Compounds/HBoxContainer/Title")
 CollapseButtonPath = NodePath("../Compounds/HBoxContainer/Buttons/minusButton")
@@ -2343,18 +2343,18 @@ margin_right = 303.0
 
 [node name="Clip" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" index="1"]
 margin_right = 303.0
-margin_bottom = 62.0
+margin_bottom = 94.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip" index="0"]
 margin_right = 303.0
-margin_bottom = 38.0
+margin_bottom = 70.0
 
 [node name="LineChart" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds/Clip/GridContainer" index="0" instance=ExtResource( 103 )]
 anchor_top = 0.0
 anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 303.0
-margin_bottom = 38.0
+margin_bottom = 70.0
 ChartName = "Compounds"
 XAxisTicks = 5
 YAxisTicks = 6

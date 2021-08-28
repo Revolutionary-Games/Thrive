@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-21 20:45+0300\n"
+"POT-Creation-Date: 2021-08-28 20:34+0700\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -1711,7 +1711,7 @@ msgstr "/sekundo"
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -1726,16 +1726,21 @@ msgstr ""
 "ludversio.\n"
 "Bonvolu ŝargi la konservadon permane per la menuo."
 
-#: ../src/gui_common/charts/line/LineChart.cs:931
-#: ../src/gui_common/charts/line/LineChart.cs:960
+#: ../src/gui_common/charts/line/LineChart.cs:707
+#: ../src/gui_common/charts/line/LineChart.cs:709
+msgid "NO_DATA_TO_SHOW"
+msgstr ""
+
+#: ../src/gui_common/charts/line/LineChart.cs:947
+#: ../src/gui_common/charts/line/LineChart.cs:976
 #, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
 "volas por ĉiam forigi {0}?"
 
-#: ../src/gui_common/charts/line/LineChart.cs:940
-#: ../src/gui_common/charts/line/LineChart.cs:968
+#: ../src/gui_common/charts/line/LineChart.cs:956
+#: ../src/gui_common/charts/line/LineChart.cs:984
 #, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
@@ -2326,23 +2331,23 @@ msgstr "Temperaturo"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:967
+#: ../src/microbe_stage/Microbe.cs:978
 msgid "DEATH"
 msgstr "morto"
 
-#: ../src/microbe_stage/Microbe.cs:1462
+#: ../src/microbe_stage/Microbe.cs:1473
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "sukcesa ordaranĝado"
 
-#: ../src/microbe_stage/Microbe.cs:1469
+#: ../src/microbe_stage/Microbe.cs:1480
 msgid "SUCCESSFUL_KILL"
 msgstr "sukcesa"
 
-#: ../src/microbe_stage/Microbe.cs:1895
+#: ../src/microbe_stage/Microbe.cs:1906
 msgid "REPRODUCED"
 msgstr "reproduktis"
 
-#: ../src/microbe_stage/Microbe.cs:2039
+#: ../src/microbe_stage/Microbe.cs:2050
 msgid "ESCAPE_ENGULFING"
 msgstr "eskapu englutadon"
 
@@ -2493,7 +2498,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Kunmetaĵaj Ekvilibro"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1318
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
@@ -2501,11 +2506,11 @@ msgstr "Ŝarĝante Mikrobredaktilon"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Atendante aŭtomata evolucion:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2251
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Aŭtomata evolucio malsukcesis"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Lanĉa stato:"
 
@@ -2739,15 +2744,15 @@ msgstr "Listo de Specioj"
 msgid "FREEBUILDING"
 msgstr "Libera konstruado"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
 msgid "BIOME_LABEL"
 msgstr "Biomo: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sub marnivelo"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "WITH_POPULATION"
 msgstr "{0} kun loĝantaro: {1}"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-21 20:45+0300\n"
+"POT-Creation-Date: 2021-08-28 20:34+0700\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio."
@@ -1710,7 +1710,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -1724,13 +1724,18 @@ msgstr ""
 "Verzija spremišta koje pokušavate da učitate ne odgovara verziji igre.\n"
 "Molimo vas učitajte spremanje ručno kroz meni."
 
-#: ../src/gui_common/charts/line/LineChart.cs:931
-#: ../src/gui_common/charts/line/LineChart.cs:960
+#: ../src/gui_common/charts/line/LineChart.cs:707
+#: ../src/gui_common/charts/line/LineChart.cs:709
+msgid "NO_DATA_TO_SHOW"
+msgstr ""
+
+#: ../src/gui_common/charts/line/LineChart.cs:947
+#: ../src/gui_common/charts/line/LineChart.cs:976
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:940
-#: ../src/gui_common/charts/line/LineChart.cs:968
+#: ../src/gui_common/charts/line/LineChart.cs:956
+#: ../src/gui_common/charts/line/LineChart.cs:984
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
@@ -2322,24 +2327,24 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "- МП"
 
-#: ../src/microbe_stage/Microbe.cs:967
+#: ../src/microbe_stage/Microbe.cs:978
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1462
+#: ../src/microbe_stage/Microbe.cs:1473
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "uspešno okupljanje"
 
-#: ../src/microbe_stage/Microbe.cs:1469
+#: ../src/microbe_stage/Microbe.cs:1480
 msgid "SUCCESSFUL_KILL"
 msgstr "uspešno ubistvo"
 
-#: ../src/microbe_stage/Microbe.cs:1895
+#: ../src/microbe_stage/Microbe.cs:1906
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Proizvodi"
 
-#: ../src/microbe_stage/Microbe.cs:2039
+#: ../src/microbe_stage/Microbe.cs:2050
 msgid "ESCAPE_ENGULFING"
 msgstr "pobegne od gutanja"
 
@@ -2490,7 +2495,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1318
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -2498,11 +2503,11 @@ msgstr "Učitavanje Uređivača Mikroba"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čeka se automatska-evolucija:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2251
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Automatska-evolucija nije uspela"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status pokretanja:"
 
@@ -2734,15 +2739,15 @@ msgstr ""
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "WITH_POPULATION"
 msgstr ""
 

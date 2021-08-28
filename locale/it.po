@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-21 20:45+0300\n"
+"POT-Creation-Date: 2021-08-28 20:34+0700\n"
 "PO-Revision-Date: 2021-08-18 16:41+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -1717,7 +1717,7 @@ msgstr "al secondo"
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1732,13 +1732,18 @@ msgstr ""
 "a quella del gioco.\n"
 "Carica il salvataggio manualmente dal menù."
 
-#: ../src/gui_common/charts/line/LineChart.cs:931
-#: ../src/gui_common/charts/line/LineChart.cs:960
+#: ../src/gui_common/charts/line/LineChart.cs:707
+#: ../src/gui_common/charts/line/LineChart.cs:709
+msgid "NO_DATA_TO_SHOW"
+msgstr ""
+
+#: ../src/gui_common/charts/line/LineChart.cs:947
+#: ../src/gui_common/charts/line/LineChart.cs:976
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Impossibile mostrare più di {0} set di dati!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:940
-#: ../src/gui_common/charts/line/LineChart.cs:968
+#: ../src/gui_common/charts/line/LineChart.cs:956
+#: ../src/gui_common/charts/line/LineChart.cs:984
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Impossibile mostrare meno di {0} set di dati!"
 
@@ -2283,23 +2288,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.cs:967
+#: ../src/microbe_stage/Microbe.cs:978
 msgid "DEATH"
 msgstr "morte"
 
-#: ../src/microbe_stage/Microbe.cs:1462
+#: ../src/microbe_stage/Microbe.cs:1473
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "rovistamento riuscito"
 
-#: ../src/microbe_stage/Microbe.cs:1469
+#: ../src/microbe_stage/Microbe.cs:1480
 msgid "SUCCESSFUL_KILL"
 msgstr "uccisione riuscita"
 
-#: ../src/microbe_stage/Microbe.cs:1895
+#: ../src/microbe_stage/Microbe.cs:1906
 msgid "REPRODUCED"
 msgstr "si è riprodotto"
 
-#: ../src/microbe_stage/Microbe.cs:2039
+#: ../src/microbe_stage/Microbe.cs:2050
 msgid "ESCAPE_ENGULFING"
 msgstr "fuga dalla fagocitosi"
 
@@ -2449,7 +2454,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bilancio dei Composti"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1318
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Caricando l'Editor Microbico"
 
@@ -2457,11 +2462,11 @@ msgstr "Caricando l'Editor Microbico"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Aspettando l'Auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2251
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-evo non ha funzionato"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Stato dell'Auto-evo:"
 
@@ -2693,15 +2698,15 @@ msgstr "Lista delle Specie"
 msgid "FREEBUILDING"
 msgstr "Modifica Libera"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sotto il livello del mare"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "WITH_POPULATION"
 msgstr "{0} con popolazione: {1}"
 

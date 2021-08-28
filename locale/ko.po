@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-21 20:45+0300\n"
+"POT-Creation-Date: 2021-08-28 20:34+0700\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -1683,7 +1683,7 @@ msgstr "/초"
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -1697,16 +1697,21 @@ msgstr ""
 "현재 세이브 파일 버전이 게임 버전과 일치하지 않습니다.\n"
 "메뉴에서 수동으로 세이브를 불러와주시기 바랍니다."
 
-#: ../src/gui_common/charts/line/LineChart.cs:931
-#: ../src/gui_common/charts/line/LineChart.cs:960
+#: ../src/gui_common/charts/line/LineChart.cs:707
+#: ../src/gui_common/charts/line/LineChart.cs:709
+msgid "NO_DATA_TO_SHOW"
+msgstr ""
+
+#: ../src/gui_common/charts/line/LineChart.cs:947
+#: ../src/gui_common/charts/line/LineChart.cs:976
 #, fuzzy
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습"
 "니까?"
 
-#: ../src/gui_common/charts/line/LineChart.cs:940
-#: ../src/gui_common/charts/line/LineChart.cs:968
+#: ../src/gui_common/charts/line/LineChart.cs:956
+#: ../src/gui_common/charts/line/LineChart.cs:984
 #, fuzzy
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
@@ -2243,24 +2248,24 @@ msgstr "온도"
 msgid "N_A_MP"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/Microbe.cs:967
+#: ../src/microbe_stage/Microbe.cs:978
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1462
+#: ../src/microbe_stage/Microbe.cs:1473
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1469
+#: ../src/microbe_stage/Microbe.cs:1480
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1895
+#: ../src/microbe_stage/Microbe.cs:1906
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "생산"
 
-#: ../src/microbe_stage/Microbe.cs:2039
+#: ../src/microbe_stage/Microbe.cs:2050
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
@@ -2420,7 +2425,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1318
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
@@ -2428,11 +2433,11 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2251
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
@@ -2667,15 +2672,15 @@ msgstr "존재하는 종"
 msgid "FREEBUILDING"
 msgstr "자유 구성"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "WITH_POPULATION"
 msgstr "{0} 의 개체수: {1}"
 

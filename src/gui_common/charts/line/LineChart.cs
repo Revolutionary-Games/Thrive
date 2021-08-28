@@ -577,8 +577,11 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void RenderChart()
     {
-        if (dataSets.Count <= 0)
+        if (dataSets == null || dataSets.Count <= 0)
+        {
+            DrawNoDataText();
             return;
+        }
 
         DrawOrdinateLines();
         UpdateLineSegments();
@@ -691,6 +694,19 @@ public class LineChart : VBoxContainer
         mouseCollider.RectRotation = Mathf.Rad2Deg(firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate));
 
         mouseCollider.Visible = dataSets[datasetName].Draw;
+    }
+
+    /// <summary>
+    ///   Draws a text on the chart clarifying that there's no data to show to the user.
+    /// </summary>
+    private void DrawNoDataText()
+    {
+        var font = GetFont("lato_small", "Label");
+
+        var position = new Vector2((drawArea.RectSize.x - font.GetStringSize(
+            TranslationServer.Translate("NO_DATA_TO_SHOW")).x) / 2, drawArea.RectSize.y / 2);
+
+        drawArea.DrawString(font, position, TranslationServer.Translate("NO_DATA_TO_SHOW"));
     }
 
     /// <summary>
