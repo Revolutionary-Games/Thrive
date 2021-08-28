@@ -7,10 +7,10 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonDisabled.png" type="Texture" id=5]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 28.0
-margin_top = 28.0
-margin_right = 28.0
-margin_bottom = 28.0
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 36.0
+margin_bottom = 36.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -19,9 +19,9 @@ __meta__ = {
 }
 
 [node name="MarginButtonsContainer" type="MarginContainer" parent="."]
-margin_top = 494.0
+margin_top = 499.0
 margin_right = 299.0
-margin_bottom = 526.0
+margin_bottom = 531.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
@@ -100,28 +100,28 @@ max_length = 8
 context_menu_enabled = false
 
 [node name="Separator" type="HSeparator" parent="."]
-margin_top = 526.0
+margin_top = 531.0
 margin_right = 299.0
-margin_bottom = 534.0
+margin_bottom = 539.0
 rect_min_size = Vector2( 0, 8 )
 
 [node name="PresetContainer" type="GridContainer" parent="."]
-margin_top = 534.0
+margin_top = 539.0
 margin_right = 299.0
-margin_bottom = 534.0
+margin_bottom = 539.0
 columns = 12
 
 [node name="PresetButtonContainer" type="MarginContainer" parent="."]
-margin_top = 534.0
+margin_top = 539.0
 margin_right = 299.0
 margin_bottom = 569.0
 custom_constants/margin_top = 5
 
 [node name="AddPresetButton" type="TextureButton" parent="PresetButtonContainer"]
 margin_top = 5.0
-margin_right = 30.0
-margin_bottom = 35.0
-rect_min_size = Vector2( 30, 30 )
+margin_right = 25.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture_normal = ExtResource( 3 )
