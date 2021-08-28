@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-21 20:45+0300\n"
-"PO-Revision-Date: 2021-08-18 16:41+0000\n"
+"PO-Revision-Date: 2021-08-28 18:00+0000\n"
 "Last-Translator: TomDev03 <tomascsilvapro@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -90,7 +90,6 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pode ser "
@@ -2790,7 +2789,6 @@ msgid "ERROR_LOADING"
 msgstr "Erro ao carregar"
 
 #: ../src/saving/InProgressLoad.cs:220
-#, fuzzy
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Erro ao libertar recursos carregados: {0}"
 
@@ -2928,11 +2926,10 @@ msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "O jogo guardado selecionado é incompatível"
 
 #: ../src/saving/SaveList.tscn:192
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"O jogo guardado selecionado é de uma versão anterior do Thrive, mas pode "
-"ser atualizado.\n"
+"O jogo guardado selecionado é de uma versão anterior do Thrive, mas pode ser "
+"atualizado.\n"
 "Um ficheiro reserva irá ser criado antes da atualização, se ainda não "
 "existir.\n"
 "Se saltar a atualização, o ficheiro guardado irá ser tentado lido "
@@ -3203,19 +3200,14 @@ msgstr ""
 "necessitas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
-#, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Num planeta alienígena distante, eras de atividades vulcânicas e impactos "
-"de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
+"Acumulaste recursos suficientes para dividires a tua célula.\n"
 "\n"
-"A vida.\n"
+"Agora estás pronto para editares a tua espécie.\n"
 "\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o "
-"último ancestral comum (LUCA) no planeta.\n"
-"\n"
-"Para sobreviver neste mundo hostil, precisarás de acumular compostos e "
-"evoluir para competir contra outras espécies de micróbios."
+"Para entrares no editor, pressiona o botão do editor que está a piscar no "
+"canto inferior direito."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
