@@ -473,20 +473,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (ColonyChildren != null)
             {
                 foreach (var child in ColonyChildren)
+                {
                     AddChild(child);
+                }
             }
 
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
 
+
             // Colony children shapes need re-parenting to their master
-            // The shapes have to be re-parented to their original microbe then to the master again
-            // maybe engine bug
+            // The shapes have to be re-parented to their original microbe then to the master again,maybe engine bug
+            // Also readd to the collision exception and change the mode to static as it should be
             if (Colony != null && this != Colony.Master)
             {
                 ReParentShapes(this, Vector3.Zero);
                 ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
+                Colony.Master.AddCollisionExceptionWith(this);
+                this.AddCollisionExceptionWith(Colony.Master);
+                Mode = ModeEnum.Static;
             }
 
             // And recompute storage
@@ -1445,7 +1451,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             // Readding collision exception because the bodies shapes got updated
             AddCollisionExceptionWith(Colony.Master);
-            ColonyParent.AddCollisionExceptionWith(this);
+            Colony.Master.AddCollisionExceptionWith(this);
         }
         else
         {
