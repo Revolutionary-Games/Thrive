@@ -92,7 +92,7 @@ public class Patch
     }
 
     /// <summary>
-    /// Adds all neighbors recursively to the referenced <see cref="HashSet{T}"/>
+    ///   Adds all neighbors recursively to the referenced <see cref="HashSet{T}"/>
     /// </summary>
     /// <param name="patch">The <see cref="Patch"/> to start from</param>
     /// <param name="set">The <see cref="HashSet{T}"/> to add to</param>
