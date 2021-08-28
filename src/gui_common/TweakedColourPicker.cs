@@ -402,19 +402,7 @@ public class TweakedColourPicker : ColorPicker
     private void OnColourChanged(Color colour)
     {
         // Hide HtmlColourEdit color change when Raw mode is on and any color value is above 1.0
-        if (mode == PickerMode.Raw)
-        {
-            if (colour.IsRaw())
-            {
-                htmlColourStart.Visible = false;
-                htmlColourEdit.Visible = false;
-            }
-            else
-            {
-                htmlColourStart.Visible = true;
-                htmlColourEdit.Visible = true;
-            }
-        }
+        htmlColourStart.Visible = htmlColourEdit.Visible = !(mode == PickerMode.Raw && colour.IsRaw());
 
         htmlColourEdit.Text = colour.ToHtml();
     }
