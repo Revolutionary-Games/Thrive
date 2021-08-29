@@ -578,7 +578,7 @@ public class LineChart : VBoxContainer
     private void RenderChart()
     {
         // Handle empty or entirely hidden datasets
-        if (dataSets?.All(d => d.Value.Draw != true) != false)
+        if (dataSets == null || VisibleDataSets <= 0)
         {
             DrawNoDataText();
             return;
@@ -799,6 +799,11 @@ public class LineChart : VBoxContainer
 
         horizontalLabelsContainer.QueueFreeChildren();
         verticalLabelsContainer.QueueFreeChildren();
+
+        // If no data is visible, don't create the labels as it will just have zero values
+        // and be potentially confusing to look at
+        if (VisibleDataSets <= 0)
+            return;
 
         // Populate the rows
         for (int i = 0; i < XAxisTicks; i++)
