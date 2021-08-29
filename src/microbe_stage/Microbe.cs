@@ -2574,24 +2574,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void BeginBind()
     {
-        var other = touchedMicrobes.FirstOrDefault();
+        var other = touchedMicrobes.FirstOrDefault(CanBindToMicrobe);
 
         if (other == null)
         {
-            GD.PrintErr("Touched microbe has disappeared before binding could start");
+            GD.PrintErr("Touched eligible microbe has disappeared before binding could start");
             return;
         }
-
-        if (other.Colony != null)
-        {
-            GD.PrintErr("Can't bind to a cell that is suddenly in a colony");
-            return;
-        }
-
-        // A frame has passed since last check, so we get sure nothing got changed in between.
-        // We don't pass other to the *invoked* method for computational purposes.
-        if (!CanBindToMicrobe(other))
-            return;
 
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
