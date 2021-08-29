@@ -578,7 +578,7 @@ public class LineChart : VBoxContainer
     private void RenderChart()
     {
         // Handle empty or entirely hidden datasets
-        if (dataSets?.All(d => !d.Value.Draw) == true)
+        if (dataSets?.All(d => d.Value.Draw != true) != false)
         {
             DrawNoDataText();
             return;
