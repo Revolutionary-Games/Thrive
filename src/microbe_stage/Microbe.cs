@@ -2562,7 +2562,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
-        var other = touchedMicrobes.FirstOrDefault(CanBindToMicrobe);
+        var other = touchedMicrobes.FirstOrDefault();
 
         // We check here if we can bind, not to waste computational power with Invoke,
         // although we'll still have to recheck it later.
