@@ -2562,11 +2562,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
-        var other = touchedMicrobes.FirstOrDefault();
+        var other = touchedMicrobes.FirstOrDefault(CanBindToMicrobe);
 
-        // We check here if we can bind, not to waste computational power with Invoke,
-        // although we'll still have to recheck it later.
-        if (!CanBindToMicrobe(other))
+        // If there is no touching microbe that can bind, no need to invoke binding.
+        if (other == null)
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
