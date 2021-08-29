@@ -30,6 +30,7 @@ class DevBuildUploader
 
     @dehydrated_to_upload = []
     @devbuilds_to_upload = []
+    @already_uploaded_to_delete = []
 
     @access_key = ENV.fetch('THRIVE_DEVCENTER_ACCESS_KEY', nil)
 
@@ -60,6 +61,7 @@ class DevBuildUploader
 
     perform_uploads
     success 'DevBuild upload finished.'
+    delete_already_existing
   end
 
   private
@@ -78,7 +80,7 @@ class DevBuildUploader
 
     info 'Uploading devbuilds'
     Parallel.map(things_to_upload, in_threads: @parallel) do |obj|
-      upload(*obj, delete: @delete)
+      upload(*obj[0..2], delete: @delete, meta: obj[3])
     end
 
     success 'Done uploading'
@@ -127,7 +129,7 @@ class DevBuildUploader
       onError "failed to receive upload url, response: #{data}" unless data['upload_url']
 
       result.append [build[:file], data['upload_url'],
-                     data['verify_token']]
+                     data['verify_token'], build[:meta_file]]
     end
 
     result
@@ -157,12 +159,15 @@ class DevBuildUploader
                     }.to_json)
     end
 
-    return unless data['upload']
+    unless data['upload']
+      @already_uploaded_to_delete.append [archive_file, file] if @delete
+      return
+    end
 
     puts "Server doesn't have it."
     @devbuilds_to_upload.append({ file: archive_file, version: version, platform: platform,
                                   branch: branch, dehydrated_objects: dehydrated_objects,
-                                  build_zip_hash:
+                                  meta_file: file, build_zip_hash:
                                     SHA3::Digest::SHA256.file(archive_file).hexdigest })
 
     # Determine related objects to upload
@@ -192,7 +197,7 @@ class DevBuildUploader
   end
 
   # Does the whole upload process
-  def upload(file, url, token, delete: false)
+  def upload(file, url, token, delete: false, meta: nil)
     file_size = (File.size(file).to_f / 2**20).round(2)
     puts "Uploading file #{file} " \
          "with size of #{file_size} MiB"
@@ -210,6 +215,7 @@ class DevBuildUploader
 
     puts "Deleting successfully uploaded file: #{file}"
     File.unlink file
+    File.unlink meta if meta
   end
 
   # Puts file to storage URL
@@ -244,5 +250,21 @@ class DevBuildUploader
     end
 
     raise 'HTTP request ran out of retries'
+  end
+
+  def delete_already_existing
+    @already_uploaded_to_delete.uniq.each do |file, meta|
+      puts "Deleting build that server already had: #{file}"
+      begin
+        File.unlink file
+      rescue StandardError => e
+        error "Failed to delete file: #{e}"
+      end
+      begin
+        File.unlink meta
+      rescue StandardError => e
+        error "Failed to delete file: #{e}"
+      end
+    end
   end
 end

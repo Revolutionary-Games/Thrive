@@ -393,8 +393,8 @@ public static class Constants
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     // Personality Mutation
-    public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
-    public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
+    public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
+    public const float MIN_SPECIES_PERSONALITY_MUTATION = -40.0f;
 
     // Genus splitting and name mutation
     public const int MUTATION_WORD_EDIT = 10;
@@ -440,6 +440,7 @@ public static class Constants
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 180;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
+    public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
 
     /// <summary>
     ///   Used to limit how often the hover indicator panel are
@@ -454,7 +455,7 @@ public static class Constants
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
 
-    public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.0005f;
+    public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
 
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;

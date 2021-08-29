@@ -264,6 +264,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (state == value)
                 return;
 
+            // Engulfing is not legal for microbes will cell walls
+            if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
+            {
+                GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
+                return;
+            }
+
             state = value;
             if (Colony != null)
                 Colony.State = value;
@@ -777,6 +784,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // Disallow cannibalism
         if (target.Species == Species)
+            return false;
+
+        // Membranes with Cell Wall cannot engulf
+        if (Membrane.Type.CellWall)
             return false;
 
         // Needs to be big enough to engulf
