@@ -665,7 +665,7 @@ public class MicrobeHUD : Node
                 stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z) + "\n";
         }
 
-        if (stage.CompoundsAtMouse.Count == 0)
+        if (stage.HoverInfo.HoveredCompounds.Count == 0)
         {
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = false;
         }
@@ -674,7 +674,7 @@ public class MicrobeHUD : Node
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = true;
 
             // Create for each compound the information in GUI
-            foreach (var entry in stage.CompoundsAtMouse)
+            foreach (var entry in stage.HoverInfo.HoveredCompounds)
             {
                 // It is not useful to show trace amounts of a compound, so those are skipped
                 if (entry.Value < 0.1)
@@ -699,7 +699,7 @@ public class MicrobeHUD : Node
         }
 
         // Show the species name of hovered cells
-        foreach (var entry in stage.MicrobesAtMouse)
+        foreach (var entry in stage.HoverInfo.HoveredMicrobes)
         {
             // TODO: Combine cells of same species within mouse over
             // into a single line with total number of them
@@ -719,14 +719,7 @@ public class MicrobeHUD : Node
 
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
-        if (stage.CompoundsAtMouse.Count > 0 || hoveredCellsContainer.GetChildCount() > 0)
-        {
-            nothingHere.Hide();
-        }
-        else
-        {
-            nothingHere.Show();
-        }
+        nothingHere.Visible = !stage.HoverInfo.IsHoveringAnyEntity;
     }
 
     /// <summary>
