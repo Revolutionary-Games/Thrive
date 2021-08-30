@@ -9,7 +9,7 @@ public class MicrobeColony
 {
     private Microbe.MicrobeState state;
 
-    public MicrobeColony(Microbe master)
+    private MicrobeColony(Microbe master)
     {
         Master = master;
         master.ColonyChildren = new List<Microbe>();
@@ -48,7 +48,7 @@ public class MicrobeColony
         ColonyCompounds.DistributeCompoundSurplus();
     }
 
-    internal void CreateColonyForMicrobe(Microbe microbe)
+    public void CreateColonyForMicrobe(Microbe microbe)
     {
         microbe.Colony = new MicrobeColony(microbe);
         microbe.OnColonyMemberAdded(microbe);
