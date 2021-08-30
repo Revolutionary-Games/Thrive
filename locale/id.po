@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 10:09+0800\n"
+"POT-Creation-Date: 2021-08-30 09:45+0800\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: Rizky Pramudya <rizkypramudyacj@outlook.co.id>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -515,8 +515,8 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Batal tindakan ini"
 
 #: ../simulation_parameters/common/input_options.json:139
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:14
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:14
 msgid "CHEATS"
 msgstr "Cheats"
 
@@ -712,25 +712,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3042
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
 msgid "AMMONIA"
 msgstr "Amonia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3113
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3082
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogen Sulfida"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3077
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3046
 msgid "GLUCOSE"
 msgstr "Glukosa"
 
@@ -741,28 +741,28 @@ msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3117
 msgid "IRON"
 msgstr "Besi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2812
 msgid "OXYGEN"
 msgstr "Oksigen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2897
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
 msgid "CARBON_DIOXIDE"
 msgstr "Karbon Dioksida"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2870
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2839
 msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3466
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
 msgid "SUNLIGHT"
 msgstr "Sinar Matahari"
 
@@ -1373,27 +1373,19 @@ msgid "ART_BY"
 msgstr "Seni oleh {0}"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/microbe_stage/ProcessPanel.tscn:76
+#: ../src/microbe_stage/ProcessPanel.tscn:72
 msgid "CLOSE"
 msgstr "Tutup"
-
-#: ../src/general/MainMenu.cs:359
-msgid "OK"
-msgstr "OK"
-
-#: ../src/general/MainMenu.cs:360
-msgid "Cancel"
-msgstr "Batal"
 
 #: ../src/general/MainMenu.tscn:146
 msgid "NEW_GAME"
 msgstr "Permainan Baru"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Muat Permainan"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:95
 msgid "OPTIONS"
 msgstr "Pilihan"
 
@@ -1421,286 +1413,282 @@ msgstr "Keluar"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Mikroba Bangun-bebas"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
-#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1058
+#: ../src/general/PauseMenu.tscn:135 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "Kembali"
 
-#: ../src/general/MainMenu.tscn:349
-msgid "GLES2_MODE_WARNING"
-msgstr "Peringatan Mode GLES2"
-
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:350
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Kamu menjalankan Thrive dengan GLES2. Ini belum teruji secara penuh dan "
 "mungkin akan menyebabkan masalah. Coba perbarui driver dan/atau paksa "
 "grafik AMD atau Nvidia anda untuk digunakan menjalankan Thrive."
 
-#: ../src/general/OptionsMenu.cs:758
+#: ../src/general/MainMenu.tscn:351
+msgid "GLES2_MODE_WARNING"
+msgstr "Peringatan Mode GLES2"
+
+#: ../src/general/OptionsMenu.cs:754
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Perangkat output bawaan"
 
-#: ../src/general/OptionsMenu.tscn:129
+#: ../src/general/OptionsMenu.tscn:133
 msgid "GRAPHICS"
 msgstr "Grafik"
 
-#: ../src/general/OptionsMenu.tscn:140
+#: ../src/general/OptionsMenu.tscn:144
 msgid "SOUND"
 msgstr "Suara"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:155
 msgid "PERFORMANCE"
 msgstr "Performa"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:166
 msgid "INPUTS"
 msgstr "Input"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:177
 msgid "MISC"
 msgstr "Ragam"
 
-#: ../src/general/OptionsMenu.tscn:206
+#: ../src/general/OptionsMenu.tscn:210
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
 msgstr "Layar penuh"
 
-#: ../src/general/OptionsMenu.tscn:236
+#: ../src/general/OptionsMenu.tscn:240
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multisampel:"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:247
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(Nilai tinggi memperburuk performa)"
 
-#: ../src/general/OptionsMenu.tscn:273
+#: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Resolusi:"
 
-#: ../src/general/OptionsMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:290
 msgid "AUTO"
 msgstr "otomatis"
 
-#: ../src/general/OptionsMenu.tscn:296
+#: ../src/general/OptionsMenu.tscn:300
 msgid "MAX_FPS"
 msgstr "FPS Maks:"
 
-#: ../src/general/OptionsMenu.tscn:322
+#: ../src/general/OptionsMenu.tscn:326
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Koreksi Buta Warna:"
 
-#: ../src/general/OptionsMenu.tscn:354
+#: ../src/general/OptionsMenu.tscn:358
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberasi Kromatik:"
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:385
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Tampilkan Bilah Kemampuan Sel"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:394
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Aktifkan Efek Cahaya GUI"
 
-#: ../src/general/OptionsMenu.tscn:416
+#: ../src/general/OptionsMenu.tscn:420
 msgid "MASTER_VOLUME"
 msgstr "Volume master"
 
-#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
-#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
-#: ../src/general/OptionsMenu.tscn:583
+#: ../src/general/OptionsMenu.tscn:447 ../src/general/OptionsMenu.tscn:488
+#: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:587
 msgid "MUTE"
 msgstr "Bisu"
 
-#: ../src/general/OptionsMenu.tscn:457
+#: ../src/general/OptionsMenu.tscn:461
 msgid "MUSIC_VOLUME"
 msgstr "Volume musik"
 
-#: ../src/general/OptionsMenu.tscn:490
+#: ../src/general/OptionsMenu.tscn:494
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume lingkungan"
 
-#: ../src/general/OptionsMenu.tscn:523
+#: ../src/general/OptionsMenu.tscn:527
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
-#: ../src/general/OptionsMenu.tscn:556
+#: ../src/general/OptionsMenu.tscn:560
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
-#: ../src/general/OptionsMenu.tscn:601
+#: ../src/general/OptionsMenu.tscn:605
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Perangkat output audio:"
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:632
 msgid "LANGUAGE"
 msgstr "Bahasa:"
 
-#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:647 ../src/general/OptionsMenu.tscn:1069
 msgid "RESET"
 msgstr "Setel ulang"
 
-#: ../src/general/OptionsMenu.tscn:652
+#: ../src/general/OptionsMenu.tscn:656
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Bantu Alih Bahasa Permainan"
 
-#: ../src/general/OptionsMenu.tscn:678
+#: ../src/general/OptionsMenu.tscn:682
 msgid "COMPOUND_CLOUDS"
 msgstr "Awan senyawa"
 
-#: ../src/general/OptionsMenu.tscn:693
+#: ../src/general/OptionsMenu.tscn:697
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Interval Minimum Simulasi\n"
 "Awan:"
 
-#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:704 ../src/general/OptionsMenu.tscn:746
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(Nilai tinggi menambah performa)"
 
-#: ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:739
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Pembagi Resolusi Awan:"
 
-#: ../src/general/OptionsMenu.tscn:777
+#: ../src/general/OptionsMenu.tscn:781
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Jalankan auto-evo selama berlangsungnya permainan"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:854
 msgid "RESET_INPUTS"
 msgstr "Setel Ulang Input"
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:882
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Putar video pengantar"
 
-#: ../src/general/OptionsMenu.tscn:887
+#: ../src/general/OptionsMenu.tscn:891
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Putar Video Pengantar Mikroba saat Permainan Baru"
 
-#: ../src/general/OptionsMenu.tscn:896
+#: ../src/general/OptionsMenu.tscn:900
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Save otomatis ketika bermain"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:911
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Jumlah save otomatis tersimpan:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:939
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Jumlah save cepat tersimpan:"
 
-#: ../src/general/OptionsMenu.tscn:961
+#: ../src/general/OptionsMenu.tscn:965
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tampilkan tutorial (di permainan baru)"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:973
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tampilkan tutorial (di permainan saat ini)"
 
-#: ../src/general/OptionsMenu.tscn:985
+#: ../src/general/OptionsMenu.tscn:989
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Aktifkan tombol cheat"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1001
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gunakan nama pengguna kustom"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1012
 msgid "CUSTOM_USERNAME"
 msgstr "Nama Pengguna Kustom:"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1038
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Buka Folder Tangkapan Layar"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1046
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Buka Folder Catatan"
 
-#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1081 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Simpan"
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1098
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Semula"
 
-#: ../src/general/OptionsMenu.tscn:1106
-msgid "RESET_TO_DEFAULTS"
-msgstr "Setel ulang ke semula?"
-
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Apakah kamu yakin ingin menyetel ulang SEMUA pengaturan ke nilai semula?"
 
-#: ../src/general/OptionsMenu.tscn:1129
-msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "Setel ulang input ke semula?"
+#: ../src/general/OptionsMenu.tscn:1110
+msgid "RESET_TO_DEFAULTS"
+msgstr "Setel ulang ke semula?"
 
-#: ../src/general/OptionsMenu.tscn:1138
+#: ../src/general/OptionsMenu.tscn:1118
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Apakah kamu yakin ingin menyetel ulang pengaturan input ke nilai semula?"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1119
+msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Setel ulang input ke semula?"
+
+#: ../src/general/OptionsMenu.tscn:1128
 msgid "CLOSE_OPTIONS"
 msgstr "Tutup pilihan?"
 
-#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Kamu memiliki perubahan yang belum tersimpan yang akan dibuang.\n"
 "Apakah kamu ingin lanjut?"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1167
 msgid "SAVE_AND_CONTINUE"
 msgstr "Simpan dan lanjut"
 
-#: ../src/general/OptionsMenu.tscn:1203
+#: ../src/general/OptionsMenu.tscn:1177
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Buang dan lanjut"
 
-#: ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 msgid "CANCEL"
 msgstr "Batal"
 
-#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1214
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
-msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "Error: Gagal menyimpan pengaturan baru ke file konfigurasi."
-
-#: ../src/general/PauseMenu.tscn:58
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "Lanjutkan"
 
-#: ../src/general/PauseMenu.tscn:65
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "Simpan Permainan"
 
-#: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2147
+#: ../src/general/PauseMenu.tscn:81
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2116
 msgid "STATISTICS"
 msgstr "Statistika"
 
-#: ../src/general/PauseMenu.tscn:87
+#: ../src/general/PauseMenu.tscn:88
 msgid "HELP"
 msgstr "Bantuan"
 
-#: ../src/general/PauseMenu.tscn:101
+#: ../src/general/PauseMenu.tscn:102
 msgid "RETURN_TO_MENU"
 msgstr "Kembali ke Menu"
 
-#: ../src/general/PauseMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:109
 msgid "EXIT"
 msgstr "Keluar"
 
@@ -1726,76 +1714,76 @@ msgstr "/detik"
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/gui_common/QuickLoadHandler.tscn:18
+#: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Simpanan memiliki versi yang berbeda"
 
-#: ../src/gui_common/QuickLoadHandler.tscn:19
+#: ../src/gui_common/QuickLoadHandler.tscn:21
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 "Versi simpanan yang ingin kamu muat tidak sama dengan versi permainan saat "
 "ini.\n"
 "Mohon muat simpanan secara manual dari menu."
 
-#: ../src/gui_common/TweakedColourPicker.cs:263
+#: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:264
+#: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:265
+#: ../src/gui_common/TweakedColourPicker.cs:327
 #, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/gui_common/TweakedColourPicker.cs:266
+#: ../src/gui_common/TweakedColourPicker.cs:328
 #, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr "Tambah keybind baru"
 
-#: ../src/gui_common/TweakedColourPicker.cs:270
+#: ../src/gui_common/TweakedColourPicker.cs:332
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:271
+#: ../src/gui_common/TweakedColourPicker.cs:333
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:272
+#: ../src/gui_common/TweakedColourPicker.cs:334
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:276
+#: ../src/gui_common/TweakedColourPicker.cs:338
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:277
+#: ../src/gui_common/TweakedColourPicker.cs:339
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:278
+#: ../src/gui_common/TweakedColourPicker.cs:340
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:281
+#: ../src/gui_common/TweakedColourPicker.cs:343
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:392
+#: ../src/gui_common/TweakedColourPicker.cs:492
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:40
+#: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:53
+#: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
 msgstr ""
 
@@ -1808,6 +1796,15 @@ msgstr "Tidak diperbolehkan menampilkan lebih dari {0} dataset!"
 #: ../src/gui_common/charts/line/LineChart.cs:968
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Tidak diperbolehkan menampilkan kurang dari {0} dataset!"
+
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:119
+msgid "OK"
+msgstr "OK"
+
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:110
+msgid "COPY_ERROR_TO_CLIPBOARD"
+msgstr "Salin Error ke Clipboard"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2347,7 +2344,7 @@ msgstr ""
 "tidak terjadi lagi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3461
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2629
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Suhu"
@@ -2357,45 +2354,45 @@ msgstr "Suhu"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.cs:967
+#: ../src/microbe_stage/Microbe.cs:978
 msgid "DEATH"
 msgstr "mati"
 
-#: ../src/microbe_stage/Microbe.cs:1462
+#: ../src/microbe_stage/Microbe.cs:1473
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "sukses mencari sumber daya"
 
-#: ../src/microbe_stage/Microbe.cs:1469
+#: ../src/microbe_stage/Microbe.cs:1480
 msgid "SUCCESSFUL_KILL"
 msgstr "sukses memburu"
 
-#: ../src/microbe_stage/Microbe.cs:1895
+#: ../src/microbe_stage/Microbe.cs:1906
 msgid "REPRODUCED"
 msgstr "bereproduksi"
 
-#: ../src/microbe_stage/Microbe.cs:2039
+#: ../src/microbe_stage/Microbe.cs:2050
 msgid "ESCAPE_ENGULFING"
 msgstr "lolos dari penelanan"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 msgid "INFINITE_COMPOUNDS"
 msgstr "Jumlah Senyawa Tak Terhingga"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:43
 msgid "GODMODE"
 msgstr "Mode Kebal"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:53
 msgid "NO_AI"
 msgstr "Nonaktifkan AI (kecerdasan buatan)"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:70
 msgid "PLAYER_SPEED"
 msgstr ""
 "Kecepatan\n"
 "Pemain"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:91
 msgid "PLAYER_DUPLICATE"
 msgstr "Gandakan Pemain"
 
@@ -2452,8 +2449,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Tekanan"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2300
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2936
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "Senyawa"
@@ -2514,7 +2511,7 @@ msgstr "Dasar Laut Pangonia"
 msgid "UNBIND_HELP_TEXT"
 msgstr "Mode Lepas"
 
-#: ../src/microbe_stage/ProcessPanel.tscn:15
+#: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
 msgstr "Proses Sel"
 
@@ -2523,7 +2520,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Keseimbangan Senyawa"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1318
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
@@ -2531,11 +2528,11 @@ msgstr "Memuat Editor Mikroba"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Menunggu auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2251
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo gagal bekerja"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status auto-evo:"
 
@@ -2631,88 +2628,80 @@ msgstr "BATAL TINDAKAN"
 msgid "CONFIRM_CAPITAL"
 msgstr "KONFIRMASI"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1865
-msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Keseimbangan ATP Negatif"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1877
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobamu tidak menghasilkan ATP yang cukup untuk bertahan hidup!\n"
 "Lanjut?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1888
-msgid "DISCONNECTED_ORGANELLES"
-msgstr "Organel Terputus"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1900
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1871
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Ada organel yang tidak tersambung dengan yang lainnya.\n"
 "Mohon untuk menyambung semua organel dengan yang lainnya atau batal "
 "perubahanmu."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1969
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1982
 msgid "FOOD_CHAIN"
 msgstr "Rantai Makanan"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2026
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
 msgid "TIMELINE"
 msgstr "Alur Waktu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2079
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2048
 msgid "AUTO_EVO_RESULTS"
 msgstr "Hasil auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2098
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2067
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efek eksternal:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2125
 msgid "SPECIES_POPULATION"
 msgstr "Populasi Spesies"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2189
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2619
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2588
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Kondisi Fisik"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2293
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2262
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2771
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gas Atmosfer"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2386
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3311
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3280
 msgid "NEXT_CAPITAL"
 msgstr "LANJUT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2501
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2470
 msgid "SELECT_A_PATCH"
 msgstr "Pilih daerah untuk menampilkan rincian"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2536
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOKASI SEKARANG"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2665
 msgid "PRESSURE"
 msgstr "Tekanan"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
 msgid "SPECIES_PRESENT"
 msgstr "Spesies yang Ada"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3284
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3253
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Pindah ke Daerah Ini"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:26
 msgid "INFINITE_MP"
 msgstr "PM Tak Terhingga"
 
@@ -2766,15 +2755,15 @@ msgstr "Daftar Spesies"
 msgid "FREEBUILDING"
 msgstr "Bangun-bebas"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m di bawah permukaan laut"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "WITH_POPULATION"
 msgstr "{0} dengan populasi: {1}"
 
@@ -2895,7 +2884,7 @@ msgstr "Pilihan Ekstra"
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Timpa save yang sudah ada:"
 
-#: ../src/saving/NewSaveMenu.tscn:118
+#: ../src/saving/NewSaveMenu.tscn:115
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Timpa save yang sudah ada?"
 
@@ -2935,26 +2924,26 @@ msgstr ""
 "Gagal memperbarui save karena error berikut:\n"
 "{0}"
 
-#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Memuat..."
 
-#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:60 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Hapus Save Ini?"
 
-#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
-msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "Muat save tidak kompatibel?"
-
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:67
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Save ini berasal dari versi Thrive yang lebih baru dan kemungkinan besar "
 "tidak lagi kompatibel.\n"
 "Apakah kamu ingin tetap memuat save ini?"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+msgid "LOAD_INCOMPATIBLE_SAVE"
+msgstr "Muat save tidak kompatibel?"
+
+#: ../src/saving/SaveList.tscn:75
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Save ini berasal dari versi Thrive lama dan mungkin tidak lagi "
@@ -2965,11 +2954,7 @@ msgstr ""
 "utama.\n"
 "Apakah kamu ingin tetap memuat save ini?"
 
-#: ../src/saving/SaveList.tscn:134
-msgid "LOAD_INVALID_SAVE"
-msgstr "Muat save tidak valid?"
-
-#: ../src/saving/SaveList.tscn:143
+#: ../src/saving/SaveList.tscn:83
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Informasi save tidak dapat dimuat dari file ini.\n"
@@ -2977,11 +2962,11 @@ msgstr ""
 "Thrive saat ini.\n"
 "Apakah kamu ingin tetap memuat save ini?"
 
-#: ../src/saving/SaveList.tscn:158
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr "Save terpilih tidak kompatibel"
+#: ../src/saving/SaveList.tscn:84
+msgid "LOAD_INVALID_SAVE"
+msgstr "Muat save tidak valid?"
 
-#: ../src/saving/SaveList.tscn:168
+#: ../src/saving/SaveList.tscn:92
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Save yang terpilih untuk dimuat dikenal tidak kompatibel dengan versi "
@@ -2991,11 +2976,11 @@ msgstr ""
 "bukanlah prioritas utama, dengan demikian tidak semua versi memiliki save "
 "upgrader."
 
-#: ../src/saving/SaveList.tscn:183
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
-msgstr "Save terpilih dapat diperbarui"
+#: ../src/saving/SaveList.tscn:93
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+msgstr "Save terpilih tidak kompatibel"
 
-#: ../src/saving/SaveList.tscn:192
+#: ../src/saving/SaveList.tscn:102
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Save terpilih berasal dari versi Thrive lama, tetapi dapat diperbarui.\n"
@@ -3003,45 +2988,49 @@ msgstr ""
 "Jika kamu melewati pembaruan, save akan dicoba dimuat secara normal.\n"
 "Coba untuk perbarui save ini?"
 
-#: ../src/saving/SaveList.tscn:207
+#: ../src/saving/SaveList.tscn:103
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "Save terpilih dapat diperbarui"
+
+#: ../src/saving/SaveList.tscn:114
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Pembaruan save gagal"
 
-#: ../src/saving/SaveListItem.tscn:131
+#: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
 msgstr "Dibuat pada:"
 
-#: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
-#: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
-#: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
+#: ../src/saving/SaveListItem.tscn:137 ../src/saving/SaveListItem.tscn:156
+#: ../src/saving/SaveListItem.tscn:175 ../src/saving/SaveListItem.tscn:198
+#: ../src/saving/SaveListItem.tscn:227 ../src/saving/SaveListItem.tscn:246
 msgid "DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/saving/SaveListItem.tscn:150
+#: ../src/saving/SaveListItem.tscn:149
 msgid "TYPE"
 msgstr "Jenis:"
 
-#: ../src/saving/SaveListItem.tscn:169
+#: ../src/saving/SaveListItem.tscn:168
 msgid "DESCRIPTION"
 msgstr "Deskripsi:"
 
-#: ../src/saving/SaveListItem.tscn:192
+#: ../src/saving/SaveListItem.tscn:191
 msgid "VERSION"
 msgstr "Versi:"
 
-#: ../src/saving/SaveListItem.tscn:221
+#: ../src/saving/SaveListItem.tscn:220
 msgid "BY"
 msgstr "Oleh:"
 
-#: ../src/saving/SaveListItem.tscn:240
+#: ../src/saving/SaveListItem.tscn:239
 msgid "CREATED_ON_PLATFORM"
 msgstr "Dibuat di Platform:"
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:55
+#: ../src/saving/SaveListItem.tscn:271 ../src/saving/SaveManagerGUI.tscn:55
 msgid "LOAD"
 msgstr "Muat"
 
-#: ../src/saving/SaveListItem.tscn:292
+#: ../src/saving/SaveListItem.tscn:278
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin "
@@ -3089,39 +3078,31 @@ msgstr "Ruang terpakai:"
 msgid "SELECTED_COLON"
 msgstr "Terpilih:"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:185
 msgid "DELETE_SELECTED_SAVES"
 msgstr "Hapus save terpilih?"
 
-#: ../src/saving/SaveManagerGUI.tscn:211
+#: ../src/saving/SaveManagerGUI.tscn:192
 msgid "DELETE_OLD_SAVES"
 msgstr "Hapus save lama?"
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
-msgid "SAVING_ERROR"
-msgstr "Kesalahan Menyimpan"
-
-#: ../src/saving/SaveStatusOverlay.tscn:183
-msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr "Salin Error ke Clipboard"
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:110
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:196
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:63
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Selamat Datang ke Editor Mikroba.\n"
@@ -3136,7 +3117,7 @@ msgstr ""
 "Untuk pindah ke tab editor selanjutnya, tekan tombol lanjut di sebelah "
 "kanan bawah."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Ini adalah peta daerah.\n"
@@ -3152,7 +3133,7 @@ msgstr ""
 "\n"
 "Pilih daerah untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:137
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "Ini editor sel dimana kamu bisa menambahkan atau menghapis organele dari "
@@ -3165,7 +3146,7 @@ msgstr ""
 "pilihan yang baik). Kemudian klik kiri disebelah hex yang ditampilkan di "
 "pertengahan layar untuk menambahkan organel pada spesiesmu."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:176
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Menghapus organele juga memakai PM dikarenakan sebagai mutasi pada "
@@ -3179,7 +3160,7 @@ msgstr ""
 "\n"
 "Klik tombol undo untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:217
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Ketika memilih organel mana untuk ditambahkan, perhatikan proses organel "
@@ -3193,7 +3174,7 @@ msgstr ""
 "\n"
 "Tekan tombol redo (disebelah tombol undo) untuk lanjut."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "Itulah dasar-dasar untuk menyunting spesiesmu. Kamu dapat memeriksa tab "
@@ -3207,11 +3188,11 @@ msgstr ""
 "\n"
 "Semoga beruntung!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:278
 msgid "GOT_IT"
 msgstr "Baiklah"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:78
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan "
@@ -3227,15 +3208,15 @@ msgstr ""
 "yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan "
 "spesies mikroba lain."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
 msgid "SHOW_TUTORIALS"
 msgstr "Tampilkan tutorial"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
 msgid "BEGIN_THRIVING"
 msgstr "Mulai Berkembang"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:154
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "Untuk mengendalikan selmu gunakan tombol-tombol yang tertampil dekat selmu "
@@ -3243,7 +3224,7 @@ msgstr ""
 "\n"
 "Coba semua tombol selama beberapa detik untuk lanjut."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Kumpulkan glukosa (awan putih) dengan bergerak ke atas mereka.\n"
@@ -3251,7 +3232,7 @@ msgstr ""
 "hidup.\n"
 "Ikuti garis yang membujur dari selmu ke glukosa terdekat."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Perhatikan bilah health di sebelah bilah ATP (kanan bawah).\n"
@@ -3259,7 +3240,7 @@ msgstr ""
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:301
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Agar dapat reproduksi kamu butuh menggandakan semua organelmu dengan "
@@ -3267,7 +3248,7 @@ msgstr ""
 "Lihat indikator di kanan bawah untuk melihat berapa banyak yang kamu "
 "perlukan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3284,7 +3265,7 @@ msgstr ""
 "yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan "
 "spesies mikroba lain."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota "
@@ -3292,3 +3273,18 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri "
 "atau tekan tombol unbind all."
+
+#~ msgid "Cancel"
+#~ msgstr "Batal"
+
+#~ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+#~ msgstr "Error: Gagal menyimpan pengaturan baru ke file konfigurasi."
+
+#~ msgid "NEGATIVE_ATP_BALANCE"
+#~ msgstr "Keseimbangan ATP Negatif"
+
+#~ msgid "DISCONNECTED_ORGANELLES"
+#~ msgstr "Organel Terputus"
+
+#~ msgid "SAVING_ERROR"
+#~ msgstr "Kesalahan Menyimpan"

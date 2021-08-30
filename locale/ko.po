@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 10:09+0800\n"
+"POT-Creation-Date: 2021-08-30 09:45+0800\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -449,8 +449,8 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:139
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:14
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:14
 msgid "CHEATS"
 msgstr "치트"
 
@@ -647,25 +647,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3042
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
 msgid "AMMONIA"
 msgstr "암모니아"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3113
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3082
 msgid "PHOSPHATE"
 msgstr "인산염"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
 msgid "HYDROGEN_SULFIDE"
 msgstr "황화수소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3077
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3046
 msgid "GLUCOSE"
 msgstr "포도당"
 
@@ -676,28 +676,28 @@ msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3117
 msgid "IRON"
 msgstr "철"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2812
 msgid "OXYGEN"
 msgstr "산소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2897
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
 msgid "CARBON_DIOXIDE"
 msgstr "이산화탄소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2870
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2839
 msgid "NITROGEN"
 msgstr "질소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3466
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
 msgid "SUNLIGHT"
 msgstr "햇빛"
 
@@ -1330,27 +1330,19 @@ msgid "ART_BY"
 msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/microbe_stage/ProcessPanel.tscn:76
+#: ../src/microbe_stage/ProcessPanel.tscn:72
 msgid "CLOSE"
 msgstr "닫기"
-
-#: ../src/general/MainMenu.cs:359
-msgid "OK"
-msgstr "확인"
-
-#: ../src/general/MainMenu.cs:360
-msgid "Cancel"
-msgstr "취소"
 
 #: ../src/general/MainMenu.tscn:146
 msgid "NEW_GAME"
 msgstr "새 게임"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
+#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "불러오기"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
+#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:95
 msgid "OPTIONS"
 msgstr "설정"
 
@@ -1378,286 +1370,282 @@ msgstr "종료"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
-#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1058
+#: ../src/general/PauseMenu.tscn:135 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr "뒤로가기"
 
-#: ../src/general/MainMenu.tscn:349
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 모드 경고"
-
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:350
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생"
 "할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래"
 "픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
-#: ../src/general/OptionsMenu.cs:758
+#: ../src/general/MainMenu.tscn:351
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2 모드 경고"
+
+#: ../src/general/OptionsMenu.cs:754
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:129
+#: ../src/general/OptionsMenu.tscn:133
 msgid "GRAPHICS"
 msgstr "그래픽"
 
-#: ../src/general/OptionsMenu.tscn:140
+#: ../src/general/OptionsMenu.tscn:144
 msgid "SOUND"
 msgstr "소리"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:155
 msgid "PERFORMANCE"
 msgstr "성능"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:166
 msgid "INPUTS"
 msgstr "입력"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:177
 msgid "MISC"
 msgstr "기타"
 
-#: ../src/general/OptionsMenu.tscn:206
+#: ../src/general/OptionsMenu.tscn:210
 msgid "VSYNC"
 msgstr "수직동기화"
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
 msgstr "전체화면"
 
-#: ../src/general/OptionsMenu.tscn:236
+#: ../src/general/OptionsMenu.tscn:240
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "멀티샘플 안티-앨리어싱:"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:247
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(값이 커질수록 성능이 저하됩니다)"
 
-#: ../src/general/OptionsMenu.tscn:273
+#: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "해상도:"
 
-#: ../src/general/OptionsMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:290
 msgid "AUTO"
 msgstr "자동"
 
-#: ../src/general/OptionsMenu.tscn:296
+#: ../src/general/OptionsMenu.tscn:300
 msgid "MAX_FPS"
 msgstr "최대 FPS:"
 
-#: ../src/general/OptionsMenu.tscn:322
+#: ../src/general/OptionsMenu.tscn:326
 msgid "COLOURBLIND_CORRECTION"
 msgstr "색맹 교정:"
 
-#: ../src/general/OptionsMenu.tscn:354
+#: ../src/general/OptionsMenu.tscn:358
 msgid "CHROMATIC_ABERRATION"
 msgstr "색수차:"
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:385
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "능력"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:394
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "외부 효과:"
 
-#: ../src/general/OptionsMenu.tscn:416
+#: ../src/general/OptionsMenu.tscn:420
 msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
-#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
-#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
-#: ../src/general/OptionsMenu.tscn:583
+#: ../src/general/OptionsMenu.tscn:447 ../src/general/OptionsMenu.tscn:488
+#: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:587
 msgid "MUTE"
 msgstr "음소거"
 
-#: ../src/general/OptionsMenu.tscn:457
+#: ../src/general/OptionsMenu.tscn:461
 msgid "MUSIC_VOLUME"
 msgstr "음악 음량"
 
-#: ../src/general/OptionsMenu.tscn:490
+#: ../src/general/OptionsMenu.tscn:494
 msgid "AMBIANCE_VOLUME"
 msgstr "배경 음량"
 
-#: ../src/general/OptionsMenu.tscn:523
+#: ../src/general/OptionsMenu.tscn:527
 msgid "SFX_VOLUME"
 msgstr "효과음 음량"
 
-#: ../src/general/OptionsMenu.tscn:556
+#: ../src/general/OptionsMenu.tscn:560
 msgid "GUI_VOLUME"
 msgstr "GUI 음량"
 
-#: ../src/general/OptionsMenu.tscn:601
+#: ../src/general/OptionsMenu.tscn:605
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:632
 msgid "LANGUAGE"
 msgstr "언어:"
 
-#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:647 ../src/general/OptionsMenu.tscn:1069
 msgid "RESET"
 msgstr "초기화"
 
-#: ../src/general/OptionsMenu.tscn:652
+#: ../src/general/OptionsMenu.tscn:656
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "게임을 번역하는 것을 도와주세요"
 
-#: ../src/general/OptionsMenu.tscn:678
+#: ../src/general/OptionsMenu.tscn:682
 msgid "COMPOUND_CLOUDS"
 msgstr "화합물 구름"
 
-#: ../src/general/OptionsMenu.tscn:693
+#: ../src/general/OptionsMenu.tscn:697
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "최소 구름 시뮬레이션\n"
 "간격:"
 
-#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:704 ../src/general/OptionsMenu.tscn:746
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(높은 값일수록 더 나은 성능)"
 
-#: ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:739
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "구름 해상도 인자:"
 
-#: ../src/general/OptionsMenu.tscn:777
+#: ../src/general/OptionsMenu.tscn:781
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "게임 플레이 중 자동 진화 실행"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:854
 msgid "RESET_INPUTS"
 msgstr "키 설정 초기화"
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:882
 msgid "PLAY_INTRO_VIDEO"
 msgstr "인트로 영상 재생"
 
-#: ../src/general/OptionsMenu.tscn:887
+#: ../src/general/OptionsMenu.tscn:891
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "새 게임 시 미생물 인트로 재생"
 
-#: ../src/general/OptionsMenu.tscn:896
+#: ../src/general/OptionsMenu.tscn:900
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "진행 중 자동 저장"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:911
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "저장할 수 있는 자동저장 갯수:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:939
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "저장할 수 있는 빠른저장 갯수:"
 
-#: ../src/general/OptionsMenu.tscn:961
+#: ../src/general/OptionsMenu.tscn:965
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "튜토리얼 보기(새 게임 시작 시)"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:973
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "튜토리얼 보기(현재 진행중인 게임)"
 
-#: ../src/general/OptionsMenu.tscn:985
+#: ../src/general/OptionsMenu.tscn:989
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "치트 키 활성화"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1001
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1012
 msgid "CUSTOM_USERNAME"
 msgstr "임의 사용자 이름:"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1038
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "스크린샷 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1046
 msgid "OPEN_LOGS_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1081 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "저장"
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1098
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "기본값"
 
-#: ../src/general/OptionsMenu.tscn:1106
-msgid "RESET_TO_DEFAULTS"
-msgstr "기본값으로 초기화하시겠습니까?"
-
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1109
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1129
-msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
+#: ../src/general/OptionsMenu.tscn:1110
+msgid "RESET_TO_DEFAULTS"
+msgstr "기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1138
+#: ../src/general/OptionsMenu.tscn:1118
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1119
+msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
+
+#: ../src/general/OptionsMenu.tscn:1128
 msgid "CLOSE_OPTIONS"
 msgstr "설정을 종료합니까?"
 
-#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
 "계속하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1167
 msgid "SAVE_AND_CONTINUE"
 msgstr "저장 및 계속"
 
-#: ../src/general/OptionsMenu.tscn:1203
+#: ../src/general/OptionsMenu.tscn:1177
 msgid "DISCARD_AND_CONTINUE"
 msgstr "취소 및 계속"
 
-#: ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 msgid "CANCEL"
 msgstr "취소"
 
-#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1214
 msgid "ERROR"
 msgstr "오류"
 
-#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
-msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하였습니다."
-
-#: ../src/general/PauseMenu.tscn:58
+#: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
 msgstr "재개"
 
-#: ../src/general/PauseMenu.tscn:65
+#: ../src/general/PauseMenu.tscn:66
 msgid "SAVE_GAME"
 msgstr "저장"
 
-#: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2147
+#: ../src/general/PauseMenu.tscn:81
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2116
 msgid "STATISTICS"
 msgstr "상태"
 
-#: ../src/general/PauseMenu.tscn:87
+#: ../src/general/PauseMenu.tscn:88
 msgid "HELP"
 msgstr "도움말"
 
-#: ../src/general/PauseMenu.tscn:101
+#: ../src/general/PauseMenu.tscn:102
 msgid "RETURN_TO_MENU"
 msgstr "메뉴로 돌아가기"
 
-#: ../src/general/PauseMenu.tscn:108
+#: ../src/general/PauseMenu.tscn:109
 msgid "EXIT"
 msgstr "종료"
 
@@ -1683,83 +1671,83 @@ msgstr "/초"
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/gui_common/QuickLoadHandler.tscn:18
+#: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "다른 버전에서 저장됨"
 
-#: ../src/gui_common/QuickLoadHandler.tscn:19
+#: ../src/gui_common/QuickLoadHandler.tscn:21
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 "현재 세이브 파일 버전이 게임 버전과 일치하지 않습니다.\n"
 "메뉴에서 수동으로 세이브를 불러와주시기 바랍니다."
 
-#: ../src/gui_common/TweakedColourPicker.cs:263
+#: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:264
+#: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:265
+#: ../src/gui_common/TweakedColourPicker.cs:327
 #, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:266
+#: ../src/gui_common/TweakedColourPicker.cs:328
 #, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:270
+#: ../src/gui_common/TweakedColourPicker.cs:332
 #, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:271
+#: ../src/gui_common/TweakedColourPicker.cs:333
 #, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:272
+#: ../src/gui_common/TweakedColourPicker.cs:334
 #, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:276
+#: ../src/gui_common/TweakedColourPicker.cs:338
 #, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:277
+#: ../src/gui_common/TweakedColourPicker.cs:339
 #, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:278
+#: ../src/gui_common/TweakedColourPicker.cs:340
 #, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:281
+#: ../src/gui_common/TweakedColourPicker.cs:343
 #, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.cs:392
+#: ../src/gui_common/TweakedColourPicker.cs:492
 #, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:40
+#: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:53
+#: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
 msgstr ""
 
@@ -1778,6 +1766,15 @@ msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 {0} 을 삭제하시겠습"
 "니까?"
+
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:119
+msgid "OK"
+msgstr "확인"
+
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:110
+msgid "COPY_ERROR_TO_CLIPBOARD"
+msgstr "클립보드에 오류 복사"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2299,7 +2296,7 @@ msgstr ""
 "으면 ATP 생산 속도가 느려집니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3461
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2629
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "온도"
@@ -2309,46 +2306,46 @@ msgstr "온도"
 msgid "N_A_MP"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/Microbe.cs:967
+#: ../src/microbe_stage/Microbe.cs:978
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1462
+#: ../src/microbe_stage/Microbe.cs:1473
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "사냥 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1469
+#: ../src/microbe_stage/Microbe.cs:1480
 msgid "SUCCESSFUL_KILL"
 msgstr "처치 성공"
 
-#: ../src/microbe_stage/Microbe.cs:1895
+#: ../src/microbe_stage/Microbe.cs:1906
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "생산"
 
-#: ../src/microbe_stage/Microbe.cs:2039
+#: ../src/microbe_stage/Microbe.cs:2050
 msgid "ESCAPE_ENGULFING"
 msgstr "삼키기 탈출"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:33
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "화합물"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:43
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:53
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:70
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "플레이어 사망함"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:91
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "플레이어 사망함"
@@ -2406,8 +2403,8 @@ msgid "PRESSURE_SHORT"
 msgstr "압력."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2300
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2936
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "화합물"
@@ -2476,7 +2473,7 @@ msgstr "Pangonian 해저"
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/ProcessPanel.tscn:15
+#: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
 msgstr "세포 진행률"
 
@@ -2486,7 +2483,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1318
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
@@ -2494,11 +2491,11 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2251
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2253
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2254
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
@@ -2596,89 +2593,81 @@ msgstr "확인"
 msgid "CONFIRM_CAPITAL"
 msgstr "확인"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1865
-msgid "NEGATIVE_ATP_BALANCE"
-msgstr "부정적 ATP 균형"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1877
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "미생물이 생존에 필요한 만큼의 ATP를 생산하지 않습니다!\n"
 "계속하시겠습니까?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1888
-msgid "DISCONNECTED_ORGANELLES"
-msgstr "단절된 세포기관"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1900
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1871
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
 "배치된 모든 세포 기관을 서로 연결하거나 변경을 취소하세요."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1969
 msgid "AUTO_EVO"
 msgstr "자동 진화"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1982
 msgid "FOOD_CHAIN"
 msgstr "먹이 사슬"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2026
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
 msgid "TIMELINE"
 msgstr "연대"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2079
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2048
 msgid "AUTO_EVO_RESULTS"
 msgstr "자동 진화 결과:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2098
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2067
 msgid "EXTERNAL_EFFECTS"
 msgstr "외부 효과:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2125
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "종:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2189
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2619
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2588
 msgid "PHYSICAL_CONDITIONS"
 msgstr "물리적 상태"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2293
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2262
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2771
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "ATMOSPHERIC_GASSES"
 msgstr "대기 가스"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2386
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3311
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3280
 msgid "NEXT_CAPITAL"
 msgstr "다음"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2501
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2470
 msgid "SELECT_A_PATCH"
 msgstr "세부 사항을 표시할 파편을 선택하십시오"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2536
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "현재 위치"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2665
 #, fuzzy
 msgid "PRESSURE"
 msgstr "압력."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
 msgid "SPECIES_PRESENT"
 msgstr "존재하는 종"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3284
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3253
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "해당 파편으로 이동"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:26
 msgid "INFINITE_MP"
 msgstr ""
 
@@ -2733,15 +2722,15 @@ msgstr "존재하는 종"
 msgid "FREEBUILDING"
 msgstr "자유 구성"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "WITH_POPULATION"
 msgstr "{0} 의 개체수: {1}"
 
@@ -2862,7 +2851,7 @@ msgstr "추가 설정"
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "저장 덮어쓰기:"
 
-#: ../src/saving/NewSaveMenu.tscn:118
+#: ../src/saving/NewSaveMenu.tscn:115
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "덮어쓰겠습니까?"
 
@@ -2905,25 +2894,25 @@ msgstr ""
 "졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물"
 "로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "불러오는 중..."
 
-#: ../src/saving/SaveList.tscn:63 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveList.tscn:60 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "이 저장을 삭제합니까?"
 
-#: ../src/saving/SaveList.tscn:86 ../src/saving/SaveList.tscn:110
-msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "호환되지 않는 저장을 불러옵니까?"
-
-#: ../src/saving/SaveList.tscn:95
+#: ../src/saving/SaveList.tscn:67
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "이 저장은 이후 버전 Thrive의 것이며 호환되지 않을 수도 있습니다.\n"
 "그래도 불러오시겠습니까?"
 
-#: ../src/saving/SaveList.tscn:119
+#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+msgid "LOAD_INCOMPATIBLE_SAVE"
+msgstr "호환되지 않는 저장을 불러옵니까?"
+
+#: ../src/saving/SaveList.tscn:75
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "이 저장은 이전 버전 Thrive의 것이며 호환되지 않을 수 있습니다.\n"
@@ -2931,34 +2920,29 @@ msgstr ""
 "문제를 보고하더라도, 지금 당장 해결되지 않을 것입니다.\n"
 "그래도 불러오시겠습니까?"
 
-#: ../src/saving/SaveList.tscn:134
-msgid "LOAD_INVALID_SAVE"
-msgstr "유효하지 않은 저장을 불러오시겠습니까?"
-
-#: ../src/saving/SaveList.tscn:143
+#: ../src/saving/SaveList.tscn:83
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "이 파일로부터 저장 정보를 불러올 수 없습니다.\n"
 "변형되었거나 현재 버전의 Thrive에서 불러올 수 없는 형식의 저장입니다.\n"
 "그래도 저장을 불러오시겠습니까?"
 
-#: ../src/saving/SaveList.tscn:158
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr "선택된 저장은 호환되지 않습니다"
+#: ../src/saving/SaveList.tscn:84
+msgid "LOAD_INVALID_SAVE"
+msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/saving/SaveList.tscn:168
+#: ../src/saving/SaveList.tscn:92
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "선택된 저장은 이 버전의 Thrive와 호환되지 않을 것입니다.\n"
 "Thrive의 개발은 한참 진행 중 이며 저장 간 호환은 우선적이지 않으므로, 이전 "
 "버전의 저장을 변환하는 것은 지원되지 않습니다."
 
-#: ../src/saving/SaveList.tscn:183
-#, fuzzy
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#: ../src/saving/SaveList.tscn:93
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "선택된 저장은 호환되지 않습니다"
 
-#: ../src/saving/SaveList.tscn:192
+#: ../src/saving/SaveList.tscn:102
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
@@ -2967,46 +2951,51 @@ msgstr ""
 "졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물"
 "로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/saving/SaveList.tscn:207
+#: ../src/saving/SaveList.tscn:103
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "선택된 저장은 호환되지 않습니다"
+
+#: ../src/saving/SaveList.tscn:114
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "저장 실패"
 
-#: ../src/saving/SaveListItem.tscn:131
+#: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
 msgstr "로 생성됨:"
 
-#: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
-#: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
-#: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
+#: ../src/saving/SaveListItem.tscn:137 ../src/saving/SaveListItem.tscn:156
+#: ../src/saving/SaveListItem.tscn:175 ../src/saving/SaveListItem.tscn:198
+#: ../src/saving/SaveListItem.tscn:227 ../src/saving/SaveListItem.tscn:246
 msgid "DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/saving/SaveListItem.tscn:150
+#: ../src/saving/SaveListItem.tscn:149
 msgid "TYPE"
 msgstr "유형:"
 
-#: ../src/saving/SaveListItem.tscn:169
+#: ../src/saving/SaveListItem.tscn:168
 msgid "DESCRIPTION"
 msgstr "설명:"
 
-#: ../src/saving/SaveListItem.tscn:192
+#: ../src/saving/SaveListItem.tscn:191
 msgid "VERSION"
 msgstr "버전:"
 
-#: ../src/saving/SaveListItem.tscn:221
+#: ../src/saving/SaveListItem.tscn:220
 msgid "BY"
 msgstr "요인:"
 
-#: ../src/saving/SaveListItem.tscn:240
+#: ../src/saving/SaveListItem.tscn:239
 msgid "CREATED_ON_PLATFORM"
 msgstr "생성된 매체:"
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:55
+#: ../src/saving/SaveListItem.tscn:271 ../src/saving/SaveManagerGUI.tscn:55
 msgid "LOAD"
 msgstr "불러오기"
 
-#: ../src/saving/SaveListItem.tscn:292
+#: ../src/saving/SaveListItem.tscn:278
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠"
@@ -3054,39 +3043,31 @@ msgstr "사용된 용량:"
 msgid "SELECTED_COLON"
 msgstr "선택됨:"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:185
 msgid "DELETE_SELECTED_SAVES"
 msgstr "선택된 저장을 삭제합니까?"
 
-#: ../src/saving/SaveManagerGUI.tscn:211
+#: ../src/saving/SaveManagerGUI.tscn:192
 msgid "DELETE_OLD_SAVES"
 msgstr "이전 저장을 삭제합니까?"
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
-msgid "SAVING_ERROR"
-msgstr "저장 오류"
-
-#: ../src/saving/SaveStatusOverlay.tscn:183
-msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr "클립보드에 오류 복사"
-
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:36
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:73
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:110
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:196
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
 msgid "TUTORIAL"
 msgstr "튜토리얼"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:60
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:63
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "미생물 편집기에 어서오세요.\n"
@@ -3098,7 +3079,7 @@ msgstr ""
 "\n"
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:102
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "이것은 파편 지도 입니다.\n"
@@ -3111,7 +3092,7 @@ msgstr ""
 "\n"
 "파편을 선택하여 진행하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:137
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "이 세포 편집기에서 변이 점수(MP)를 소모하여 당신의 종에 세포 기관을 추가하"
@@ -3123,7 +3104,7 @@ msgstr ""
 "리고 화면 중앙에 표시된 세포칸 옆을 마우스 왼쪽 버튼으로 클릭해서 세포 기관"
 "을 종에 추가하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:176
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "세포 기관 제거 또한 종의 변이이므로 MP를 소모합니다. 마우스 오른쪽 클릭으"
@@ -3134,7 +3115,7 @@ msgstr ""
 "\n"
 "되돌리기 버튼을 눌러 진행하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:217
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "추가할 세포 기관을 고를 땐, 툴팁의 세포 기관이 어떤 일을 하고 어떤 화합물"
@@ -3146,7 +3127,7 @@ msgstr ""
 "\n"
 "다시 실행 버튼(되돌리기 버튼 근처)을 눌러 진행하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "이것은 종 편집의 기초 단계입니다. 다른 세포 편집기 탭에서 더 많은 설정을 확"
@@ -3158,11 +3139,11 @@ msgstr ""
 "\n"
 "행운을 빕니다!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:278
 msgid "GOT_IT"
 msgstr "알겠습니다"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:78
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 "
@@ -3176,15 +3157,15 @@ msgstr ""
 "이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화"
 "하여 다른 미생물들과 경쟁해야 합니다."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:103
 msgid "SHOW_TUTORIALS"
 msgstr "튜토리얼 보기"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:112
 msgid "BEGIN_THRIVING"
 msgstr "Thrive 시작"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:154
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "세포 주위에 보이는 키 (화면 중앙)로 세포를 움직이고 마우스로 방향을 조절하"
@@ -3192,14 +3173,14 @@ msgstr ""
 "\n"
 "모든 키로 수 초간 움직여서 진행하세요."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:231
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "이동하여 포도당 (흰색 구름)을 수집하세요.\n"
 "당신의 세포는 살아남기 위한 에너지를 만들기 위해 포도당이 필요합니다.\n"
 "선을 따라 움직여 세포 근처의 포도당으로 이동하세요."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:268
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "ATP 막대 옆의 생명력 막대를 주시하세요(오른쪽 아래).\n"
@@ -3207,14 +3188,14 @@ msgstr ""
 "ATP가 있다면 재생할 것입니다.\n"
 "ATP를 만들기 위하여 충분한 포도당을 수집하세요."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:301
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "번식하기 위해선 충분한 암모니아와 인산염을 모아 모든 세포 기관을 복제해야 "
 "합니다.\n"
 "오른쪽 아래의 창에서 얼마나 필요한지 알아보세요."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3229,7 +3210,7 @@ msgstr ""
 "이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화"
 "하여 다른 미생물들과 경쟁해야 합니다."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -3237,6 +3218,21 @@ msgstr ""
 "세요.\n"
 "\n"
 "모든 키로 수 초간 움직여서 진행하세요."
+
+#~ msgid "Cancel"
+#~ msgstr "취소"
+
+#~ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+#~ msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하였습니다."
+
+#~ msgid "NEGATIVE_ATP_BALANCE"
+#~ msgstr "부정적 ATP 균형"
+
+#~ msgid "DISCONNECTED_ORGANELLES"
+#~ msgstr "단절된 세포기관"
+
+#~ msgid "SAVING_ERROR"
+#~ msgstr "저장 오류"
 
 #, fuzzy
 #~ msgid "COLOR"

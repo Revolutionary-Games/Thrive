@@ -53,77 +53,69 @@ align = 1
 margin_right = 1270.0
 
 [node name="DeleteSaveConfirmDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-visible = false
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 81.0
+margin_bottom = 74.0
 rect_min_size = Vector2( 450, 70 )
 WindowTitle = "DELETE_THIS_SAVE"
 
 [node name="LoadNewerSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-visible = false
-margin_top = 85.0
+margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 162.0
+margin_bottom = 74.0
 rect_min_size = Vector2( 600, 70 )
-WindowTitle = "LOAD_INCOMPATIBLE_SAVE"
 DialogText = "NEWER_VERSION_LOADING_WARNING"
+WindowTitle = "LOAD_INCOMPATIBLE_SAVE"
 
 [node name="LoadOlderSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-visible = false
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 81.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 700, 0 )
-WindowTitle = "LOAD_INCOMPATIBLE_SAVE"
 DialogText = "OLDER_VERSION_LOADING_WARNING"
+WindowTitle = "LOAD_INCOMPATIBLE_SAVE"
 
 [node name="LoadInvalidSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-visible = false
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 81.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 600, 0 )
-WindowTitle = "LOAD_INVALID_SAVE"
 DialogText = "LOAD_INVALID_SAVE_WARNING"
+WindowTitle = "LOAD_INVALID_SAVE"
 
 [node name="LoadKnownIncompatibleDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-visible = false
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 81.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 700, 0 )
 HideCancelButton = true
-WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE"
 DialogText = "LOAD_INCOMPATIBLE_SAVE_WARNING"
+WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE"
 
-[node name="UpgradeSelectedSaveDialog" instance=ExtResource( 3 ) parent="MarginContainer/VBoxContainer"]
-visible = false
+[node name="UpgradeSelectedSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 4.0
 margin_right = 600.0
-margin_bottom = 88.0
+margin_bottom = 74.0
 rect_min_size = Vector2( 600, 70 )
 size_flags_horizontal = 0
 size_flags_vertical = 5
-window_title = "SELECTED_SAVE_IS_UPGRADEABLE"
 DialogText = "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+WindowTitle = "SELECTED_SAVE_IS_UPGRADEABLE"
 
-[node name="SaveUpgradeFailedDialog"  instance=ExtResource( 3 ) parent="MarginContainer/VBoxContainer"]
-margin_left = 280.0
+[node name="SaveUpgradeFailedDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
+margin_left = 235.0
 margin_top = 4.0
-margin_right = 1080.0
-margin_bottom = 466.0
+margin_right = 1035.0
+margin_bottom = 404.0
 rect_min_size = Vector2( 800, 300 )
 size_flags_horizontal = 4
 size_flags_vertical = 5
-window_title = "SAVE_UPGRADE_FAILED"
 HideCancelButton = true
+WindowTitle = "SAVE_UPGRADE_FAILED"
 
 [node name="Container" type="ScrollContainer" parent="MarginContainer/VBoxContainer/SaveUpgradeFailedDialog"]
-margin_left = 10.0
-margin_top = 10.0
 margin_right = 800.0
-margin_bottom = 410.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 790, 400 )
 size_flags_horizontal = 3
 __meta__ = {

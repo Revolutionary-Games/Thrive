@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A custom reimplementation of ConfirmationDialog and AcceptDialog combined into one.
