@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -348,21 +348,15 @@ border_width_right = 3
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=38]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 10.0
-content_margin_bottom = 15.0
-bg_color = Color( 0.054902, 0.145098, 0.168627, 0.941176 )
-border_width_left = 1
-border_width_top = 23
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 0.941176 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_top = 20.0
+bg_color = Color( 0, 0, 0, 0.588235 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxFlat" id=39]
 bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
@@ -475,6 +469,7 @@ ColorPickerButton/styles/hover = null
 ColorPickerButton/styles/normal = null
 ColorPickerButton/styles/pressed = null
 Dialogs/constants/button_margin = 42
+Dialogs/constants/custom_margin = 15
 Dialogs/constants/margin = 10
 FileDialog/colors/files_disabled = Color( 0, 0, 0, 1 )
 FileDialog/colors/folder_icon_modulate = Color( 0, 0, 0, 1 )
@@ -613,7 +608,7 @@ OptionButton/styles/focus = null
 OptionButton/styles/hover = SubResource( 23 )
 OptionButton/styles/normal = SubResource( 24 )
 OptionButton/styles/pressed = SubResource( 25 )
-Panel/styles/panel = null
+Panel/styles/panel = SubResource( 26 )
 PanelContainer/styles/panel = SubResource( 26 )
 PopupDialog/styles/panel = null
 PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )

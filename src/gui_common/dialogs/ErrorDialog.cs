@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   A dialog popup dedicated for showing error messages.
+///   A dialog popup dedicated for showing error and Exception messages.
 /// </summary>
 [Tool]
 public class ErrorDialog : CustomDialog

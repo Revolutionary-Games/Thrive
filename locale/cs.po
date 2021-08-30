@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 09:45+0800\n"
+"POT-Creation-Date: 2021-08-30 16:30+0700\n"
 "PO-Revision-Date: 2021-04-20 08:07+0000\n"
 "Last-Translator: Pajoš <fractvival@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -410,7 +410,7 @@ msgid "ZOOM_IN"
 msgstr "Přiblížit"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:551
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:548
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -661,25 +661,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3010
 msgid "AMMONIA"
 msgstr "Amoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3081
 msgid "PHOSPHATE"
 msgstr "Fosfát"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sirovodík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3046
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3045
 msgid "GLUCOSE"
 msgstr "Glukóza"
 
@@ -690,28 +690,28 @@ msgstr "OxyToxyn NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3116
 msgid "IRON"
 msgstr "Železo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2812
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
 msgid "OXYGEN"
 msgstr "Kyslík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
 msgid "CARBON_DIOXIDE"
 msgstr "Oxid uhličitý"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2839
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
 msgid "NITROGEN"
 msgstr "Dusík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3466
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2691
 msgid "SUNLIGHT"
 msgstr "Sluneční svit"
 
@@ -1372,16 +1372,16 @@ msgstr "Editor mikrobů"
 msgid "BACK"
 msgstr "Zpět"
 
-#: ../src/general/MainMenu.tscn:350
+#: ../src/general/MainMenu.tscn:349
+msgid "GLES2_MODE_WARNING"
+msgstr "Varování režimu GLES2"
+
+#: ../src/general/MainMenu.tscn:351
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Používáš OpenGLES2. Toto je nevyzkoušené a může způsobovat problémy. Zkus "
 "aktualizovat grafické ovladače nebo vynutit použití AMD nebo Nvidia "
 "grafiky pro spuštění Thrive."
-
-#: ../src/general/MainMenu.tscn:351
-msgid "GLES2_MODE_WARNING"
-msgstr "Varování režimu GLES2"
 
 #: ../src/general/OptionsMenu.cs:754
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1597,28 +1597,32 @@ msgstr "Resetovat ovládání ?"
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1148
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Máš neuložené změny, které budou zahozeny.\n"
 "Mám pokračovat?"
 
-#: ../src/general/OptionsMenu.tscn:1167
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "SAVE_AND_CONTINUE"
 msgstr "Uložit a pokračovat"
 
-#: ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/OptionsMenu.tscn:1181
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Zahodit a pokračovat"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1198
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 msgid "CANCEL"
 msgstr "Zrušit"
 
-#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1214
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1219
 msgid "ERROR"
 msgstr "Chyba"
+
+#: ../src/general/OptionsMenu.tscn:1220
+msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+msgstr "Chyba: Nepodařilo se uložit nové nastavení."
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -1629,7 +1633,7 @@ msgid "SAVE_GAME"
 msgstr "Uložit hru"
 
 #: ../src/general/PauseMenu.tscn:81
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2116
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2115
 msgid "STATISTICS"
 msgstr "Statistiky"
 
@@ -2324,7 +2328,7 @@ msgstr ""
 "prostředí zpomalí rychlost jeho produkce ATP."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3461
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2628
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Teplota"
@@ -2430,8 +2434,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Stiskni."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2300
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2936
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2299
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
@@ -2517,169 +2521,177 @@ msgstr "Automatickou evoluci se nepodařilo spustit"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "stav:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:509
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:506
 msgid "REPORT"
 msgstr "Zpráva"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:530
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:527
 msgid "PATCH_MAP"
 msgstr "Mapa lokací"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:610
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:607
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:670
 msgid "SPEED_COLON"
 msgstr "Rychlost:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:703
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:700
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:730
 msgid "SIZE_COLON"
 msgstr "Velikost:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:751
 msgid "GENERATION_COLON"
 msgstr "Generace:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:796
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:793
 msgid "ATP_BALANCE"
 msgstr "ATP Balanc"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:999
 msgid "MUTATION_POINTS"
 msgstr "Body mutace"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1137
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1134
 msgid "STRUCTURE"
 msgstr "Struktura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1156
 msgid "MEMBRANE"
 msgstr "Membrána"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1179
 msgid "BEHAVIOR"
 msgstr "Vlastnosti"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1234
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1231
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Vyhledat..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1241
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1238
 msgid "STRUCTURAL"
 msgstr "Strukturální"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1277
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1274
 msgid "PROTEINS"
 msgstr "Bílkoviny"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1350
 msgid "EXTERNAL"
 msgstr "Povrchové"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1404
 msgid "ORGANELLES"
 msgstr "Organely"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1553
 msgid "MEMBRANE_TYPES"
 msgstr "Typy membrán"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1626
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1623
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Tekutost / Tuhost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1662
 msgid "COLOUR"
 msgstr "Barva"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Jméno druhu..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1838
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "POTVRDIT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1855
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
 msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1861
+msgid "NEGATIVE_ATP_BALANCE"
+msgstr "Záporný balanc ATP"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1862
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Tvůj mikrob NEPRODUKUJE dostatek ATP, aby přežil!\n"
 "Chceš pokračovat?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1871
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1868
+msgid "DISCONNECTED_ORGANELLES"
+msgstr "Odpojené organely"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1870
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Jsou zde umístěny organely, které nejsou spojeny se zbytkem.\n"
 "Propoj všechny umístěné organely navzájem nebo zruš změny."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1969
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1968
 msgid "AUTO_EVO"
 msgstr "Automatická evoluce"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1982
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1981
 msgid "FOOD_CHAIN"
 msgstr "Potravní řetězec"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1994
 msgid "TIMELINE"
 msgstr "Časová osa"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2048
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2047
 msgid "AUTO_EVO_RESULTS"
 msgstr "Výsledek automatické evoluce:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2067
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2066
 msgid "EXTERNAL_EFFECTS"
 msgstr "Vedlejší účinky:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2125
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2124
 msgid "SPECIES_POPULATION"
 msgstr "Populace druhů"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2588
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2157
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2587
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fyzické podmínky"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2262
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2771
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2261
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2770
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosférické plyny"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3280
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2354
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
 msgid "NEXT_CAPITAL"
 msgstr "DALŠÍ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2470
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2469
 msgid "SELECT_A_PATCH"
 msgstr "Vyber si cestu aby jsi viděl detaily zde"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2504
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUÁLNÍ POZICE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
 #, fuzzy
 msgid "PRESSURE"
 msgstr "Stiskni."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3195
 msgid "SPECIES_PRESENT"
 msgstr "Přítomné druhy"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3253
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3252
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Přesunout na toto místo"
 
@@ -2899,7 +2911,7 @@ msgstr ""
 "Smazání této uložené pozice nemůže být navráceno, jsi si jistý/á že chceš "
 "navždy smazat {0}?"
 
-#: ../src/saving/SaveList.cs:281
+#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
@@ -2909,26 +2921,26 @@ msgstr ""
 "která obsahuje molekuly, enzymy, pevné látky a další látky. Jejich tvar je "
 "tekutý a může se mezi buňkami lišit."
 
-#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Načítání..."
 
-#: ../src/saving/SaveList.tscn:60 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Smazat tuto uloženou pozici?"
 
-#: ../src/saving/SaveList.tscn:67
+#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+msgid "LOAD_INCOMPATIBLE_SAVE"
+msgstr "Načíst nekompatibilní uloženou pozici?"
+
+#: ../src/saving/SaveList.tscn:69
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Toto uložení pochází z novější verze a je velmi pravděpodobně "
 "nekompatibilní.\n"
 "Chceš přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
-msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "Načíst nekompatibilní uloženou pozici?"
-
-#: ../src/saving/SaveList.tscn:75
+#: ../src/saving/SaveList.tscn:77
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Toto uložení pochází ze staré verze a může být nekompatibilní.\n"
@@ -2938,7 +2950,11 @@ msgstr ""
 "nemají nejvyšší prioritu.\n"
 "Chceš přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:83
+#: ../src/saving/SaveList.tscn:84
+msgid "LOAD_INVALID_SAVE"
+msgstr "Načíst neplatné uložení?"
+
+#: ../src/saving/SaveList.tscn:85
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Z tohoto souboru nelze načíst informace o uložení.\n"
@@ -2946,11 +2962,11 @@ msgstr ""
 "tato verze nerozumí.\n"
 "Chceš přesto zkusit načíst uložení?"
 
-#: ../src/saving/SaveList.tscn:84
-msgid "LOAD_INVALID_SAVE"
-msgstr "Načíst neplatné uložení?"
-
 #: ../src/saving/SaveList.tscn:92
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+msgstr "Vybrané uložení je nekompatibilní"
+
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O vybraném uložení, které se má načíst, je známo, že je nekompatibilní s "
@@ -2959,11 +2975,12 @@ msgstr ""
 "vysokou prioritu, protože neexistuje žádný vestavěný převodník ukládání, "
 "který by upgradoval staré uložení."
 
-#: ../src/saving/SaveList.tscn:93
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#: ../src/saving/SaveList.tscn:103
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "Vybrané uložení je nekompatibilní"
 
-#: ../src/saving/SaveList.tscn:102
+#: ../src/saving/SaveList.tscn:104
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
@@ -2973,12 +2990,7 @@ msgstr ""
 "která obsahuje molekuly, enzymy, pevné látky a další látky. Jejich tvar je "
 "tekutý a může se mezi buňkami lišit."
 
-#: ../src/saving/SaveList.tscn:103
-#, fuzzy
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
-msgstr "Vybrané uložení je nekompatibilní"
-
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:111
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Chyba ukládání"
@@ -3078,13 +3090,13 @@ msgstr "Smazat stará uložení?"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:196
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:47
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:133
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 msgid "TUTORIAL"
 msgstr "Tutoriál"
 
@@ -3220,7 +3232,7 @@ msgstr ""
 "Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
 "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely "
@@ -3228,7 +3240,7 @@ msgstr ""
 "Podívej se na indikátor v pravém dolním rohu a uvidíš, kolik toho ještě "
 "potřebuješ."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3244,7 +3256,7 @@ msgstr ""
 "možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly "
 "ostatním druhům mikrobů."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -3255,15 +3267,6 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Ukončit"
-
-#~ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-#~ msgstr "Chyba: Nepodařilo se uložit nové nastavení."
-
-#~ msgid "NEGATIVE_ATP_BALANCE"
-#~ msgstr "Záporný balanc ATP"
-
-#~ msgid "DISCONNECTED_ORGANELLES"
-#~ msgstr "Odpojené organely"
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "Chyba ukládání"

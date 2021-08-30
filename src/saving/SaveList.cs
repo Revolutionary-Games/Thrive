@@ -57,7 +57,7 @@ public class SaveList : ScrollContainer
     private CustomConfirmationDialog loadInvalidConfirmDialog;
     private CustomConfirmationDialog loadIncompatibleDialog;
     private CustomConfirmationDialog upgradeSaveDialog;
-    private CustomConfirmationDialog upgradeFailedDialog;
+    private ErrorDialog upgradeFailedDialog;
 
     private PackedScene listItemScene;
 
@@ -89,7 +89,7 @@ public class SaveList : ScrollContainer
         loadInvalidConfirmDialog = GetNode<CustomConfirmationDialog>(LoadInvalidSaveDialogPath);
         loadIncompatibleDialog = GetNode<CustomConfirmationDialog>(LoadIncompatibleDialogPath);
         upgradeSaveDialog = GetNode<CustomConfirmationDialog>(UpgradeSaveDialogPath);
-        upgradeFailedDialog = GetNode<CustomConfirmationDialog>(UpgradeFailedDialogPath);
+        upgradeFailedDialog = GetNode<ErrorDialog>(UpgradeFailedDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -277,8 +277,7 @@ public class SaveList : ScrollContainer
         }
         catch (Exception e)
         {
-            upgradeFailedDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVE_UPGRADE_FAILED_DESCRIPTION"), e);
+            upgradeFailedDialog.ExceptionInfo = e.Message;
             upgradeFailedDialog.PopupCenteredShrink();
 
             GD.PrintErr("Save upgrade failed: ", e);

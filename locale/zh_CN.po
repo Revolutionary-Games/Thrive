@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 09:45+0800\n"
+"POT-Creation-Date: 2021-08-30 16:30+0700\n"
 "PO-Revision-Date: 2021-08-13 10:26+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -404,7 +404,7 @@ msgid "ZOOM_IN"
 msgstr "放大"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:551
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:548
 msgid "EDITOR"
 msgstr "编辑器"
 
@@ -655,25 +655,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3010
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3081
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3046
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3045
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
@@ -684,28 +684,28 @@ msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3116
 msgid "IRON"
 msgstr "铁"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2812
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
 msgid "OXYGEN"
 msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2839
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
 msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3466
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2691
 msgid "SUNLIGHT"
 msgstr "阳光"
 
@@ -1360,15 +1360,15 @@ msgstr "微生物阶段自由编辑器"
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/general/MainMenu.tscn:350
+#: ../src/general/MainMenu.tscn:349
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2模式警告"
+
+#: ../src/general/MainMenu.tscn:351
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应"
 "该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
-
-#: ../src/general/MainMenu.tscn:351
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2模式警告"
 
 #: ../src/general/OptionsMenu.cs:754
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1580,28 +1580,32 @@ msgstr "将输入重置为默认值？"
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1148
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改将被丢弃。\n"
 "你想继续吗？"
 
-#: ../src/general/OptionsMenu.tscn:1167
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存并继续"
 
-#: ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/OptionsMenu.tscn:1181
 msgid "DISCARD_AND_CONTINUE"
 msgstr "放弃更改并继续"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1198
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1214
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1219
 msgid "ERROR"
 msgstr "错误"
+
+#: ../src/general/OptionsMenu.tscn:1220
+msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+msgstr "错误：无法将新设置保存到配置文件。"
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -1612,7 +1616,7 @@ msgid "SAVE_GAME"
 msgstr "保存游戏"
 
 #: ../src/general/PauseMenu.tscn:81
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2116
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2115
 msgid "STATISTICS"
 msgstr "统计数据"
 
@@ -2206,7 +2210,7 @@ msgstr ""
 "可以试试关闭这个选项，有可能可以解决问题。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3461
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2628
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "温度"
@@ -2311,8 +2315,8 @@ msgid "PRESSURE_SHORT"
 msgstr "压力"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2300
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2936
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2299
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "化合物"
@@ -2398,167 +2402,175 @@ msgstr "Auto-evo未能正常运行"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:509
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:506
 msgid "REPORT"
 msgstr "报告"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:530
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:527
 msgid "PATCH_MAP"
 msgstr "地区图"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:610
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:607
 msgid "ORGANISM_STATISTICS"
 msgstr "生物数据"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:670
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:703
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:700
 msgid "HP_COLON"
 msgstr "生命上限："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:730
 msgid "SIZE_COLON"
 msgstr "大小："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:751
 msgid "GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:796
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:793
 msgid "ATP_BALANCE"
 msgstr "ATP开支"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:999
 msgid "MUTATION_POINTS"
 msgstr "变异点（MP）"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1137
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1134
 msgid "STRUCTURE"
 msgstr "结构"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1156
 msgid "MEMBRANE"
 msgstr "细胞膜"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1179
 msgid "BEHAVIOR"
 msgstr "行为"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1234
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1231
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1241
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1238
 msgid "STRUCTURAL"
 msgstr "结构"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1277
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1274
 msgid "PROTEINS"
 msgstr "蛋白质"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1350
 msgid "EXTERNAL"
 msgstr "外部"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1404
 msgid "ORGANELLES"
 msgstr "细胞器"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1553
 msgid "MEMBRANE_TYPES"
 msgstr "细胞膜类型"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1626
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1623
 msgid "FLUIDITY_RIGIDITY"
 msgstr "流动性/刚性"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1662
 msgid "COLOUR"
 msgstr "颜色"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "物种名…"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1838
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1855
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
 msgid "CONFIRM_CAPITAL"
 msgstr "确认"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1861
+msgid "NEGATIVE_ATP_BALANCE"
+msgstr "ATP开支为负"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1862
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "你的微生物没办法产出足以维持生存的量的ATP！\n"
 "你确定要继续吗？"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1871
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1868
+msgid "DISCONNECTED_ORGANELLES"
+msgstr "未连接的细胞器"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1870
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1969
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1968
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1982
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1981
 msgid "FOOD_CHAIN"
 msgstr "食物链"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1994
 msgid "TIMELINE"
 msgstr "时间线"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2048
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2047
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo结果："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2067
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2066
 msgid "EXTERNAL_EFFECTS"
 msgstr "外部影响："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2125
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2124
 msgid "SPECIES_POPULATION"
 msgstr "该物种的生物数量"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2588
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2157
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2587
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理条件"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2262
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2771
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2261
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2770
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大气气体"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3280
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2354
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
 msgid "NEXT_CAPITAL"
 msgstr "下一个"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2470
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2469
 msgid "SELECT_A_PATCH"
 msgstr "选择一个地区以显示详细"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2504
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
 msgid "PRESSURE"
 msgstr "压力"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3195
 msgid "SPECIES_PRESENT"
 msgstr "存在的物种"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3253
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3252
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
@@ -2775,31 +2787,31 @@ msgstr "存档无效"
 msgid "SAVE_DELETE_WARNING"
 msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
 
-#: ../src/saving/SaveList.cs:281
+#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "更新此存档失败，错误：\n"
 "{0}"
 
-#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "载入中……"
 
-#: ../src/saving/SaveList.tscn:60 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "删除这个存档？"
-
-#: ../src/saving/SaveList.tscn:67
-msgid "NEWER_VERSION_LOADING_WARNING"
-msgstr ""
-"这个存档是来自更新版本的Thrive的并且很可能不兼容。\n"
-"你确定要强行载入这个存档吗？"
 
 #: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "载入不兼容的存档？"
 
-#: ../src/saving/SaveList.tscn:75
+#: ../src/saving/SaveList.tscn:69
+msgid "NEWER_VERSION_LOADING_WARNING"
+msgstr ""
+"这个存档是来自更新版本的Thrive的并且很可能不兼容。\n"
+"你确定要强行载入这个存档吗？"
+
+#: ../src/saving/SaveList.tscn:77
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "这个存档是来自于更老版本的Thrive的，有可能不兼容。\n"
@@ -2807,7 +2819,11 @@ msgstr ""
 "你很可能会碰上各种问题，但它们不会是我们的首要解决对象。\n"
 "你确定要强行载入这个存档吗？"
 
-#: ../src/saving/SaveList.tscn:83
+#: ../src/saving/SaveList.tscn:84
+msgid "LOAD_INVALID_SAVE"
+msgstr "载入无效的存档？"
+
+#: ../src/saving/SaveList.tscn:85
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "无法从这个文件中载入存档信息。\n"
@@ -2815,11 +2831,11 @@ msgstr ""
 "式。\n"
 "你确定要强行载入这个存档吗？"
 
-#: ../src/saving/SaveList.tscn:84
-msgid "LOAD_INVALID_SAVE"
-msgstr "载入无效的存档？"
-
 #: ../src/saving/SaveList.tscn:92
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+msgstr "选择的存档不兼容"
+
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "被选中的存档已知会跟这个版本的Thrive不兼容。\n"
@@ -2827,11 +2843,11 @@ msgstr ""
 "由于Thrive尚在早期开发中，存档兼容性并不是首要目标。目前的存档转换器也不能"
 "支持所有版本的存档。"
 
-#: ../src/saving/SaveList.tscn:93
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
-msgstr "选择的存档不兼容"
+#: ../src/saving/SaveList.tscn:103
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgstr "选中的存档无法更新"
 
-#: ../src/saving/SaveList.tscn:102
+#: ../src/saving/SaveList.tscn:104
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "被选中的存档是来自于旧版本的Thrive的，但是可以被更新。\n"
@@ -2839,11 +2855,7 @@ msgstr ""
 "如果你想跳过此更新的话，游戏会尝试直接加载存档。\n"
 "要更新此存档吗？"
 
-#: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
-msgstr "选中的存档无法更新"
-
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:111
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "存档更新失败"
 
@@ -2938,13 +2950,13 @@ msgstr "删除旧存档？"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:196
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:47
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:133
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 msgid "TUTORIAL"
 msgstr "教程"
 
@@ -3064,13 +3076,13 @@ msgstr ""
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3084,7 +3096,7 @@ msgstr ""
 "要在这个艰难的世界存活下来，你将需要收集各种化合物并不断进化，才能跟其它的"
 "微生物竞争。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
@@ -3093,15 +3105,6 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "取消"
-
-#~ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-#~ msgstr "错误：无法将新设置保存到配置文件。"
-
-#~ msgid "NEGATIVE_ATP_BALANCE"
-#~ msgstr "ATP开支为负"
-
-#~ msgid "DISCONNECTED_ORGANELLES"
-#~ msgstr "未连接的细胞器"
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "存档错误"

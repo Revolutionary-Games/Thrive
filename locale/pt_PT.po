@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 09:45+0800\n"
+"POT-Creation-Date: 2021-08-30 16:30+0700\n"
 "PO-Revision-Date: 2021-08-13 05:59+0000\n"
 "Last-Translator: Bruno Agostinho <dinomen111@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -460,7 +460,7 @@ msgid "ZOOM_IN"
 msgstr "Ampliar"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:551
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:548
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -711,25 +711,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1222
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3010
 msgid "AMMONIA"
 msgstr "Amoníaco"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1276
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3081
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1330
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfureto de Hidrogénio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1168
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3046
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3045
 msgid "GLUCOSE"
 msgstr "Glicose"
 
@@ -740,28 +740,28 @@ msgstr "OxiToxi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1384
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3116
 msgid "IRON"
 msgstr "Ferro"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2812
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
 msgid "OXYGEN"
 msgstr "Oxigénio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2866
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2865
 msgid "CARBON_DIOXIDE"
 msgstr "Dióxido de Carbono"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2839
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
 msgid "NITROGEN"
 msgstr "Nitrogénio"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3466
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2691
 msgid "SUNLIGHT"
 msgstr "Luz Solar"
 
@@ -1418,16 +1418,16 @@ msgstr "Editor livre para micróbios"
 msgid "BACK"
 msgstr "Voltar"
 
-#: ../src/general/MainMenu.tscn:350
+#: ../src/general/MainMenu.tscn:349
+msgid "GLES2_MODE_WARNING"
+msgstr "Aviso do modo GLES2"
+
+#: ../src/general/MainMenu.tscn:351
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Estás a executar o Thrive com GLES2. Esta versão não foi testada "
 "severamente e pode causar problemas. Experimente atualizar os drivers da "
 "placa gráfica e/ou forçar a utilização da placa gráfica da AMD ou Nvidia."
-
-#: ../src/general/MainMenu.tscn:351
-msgid "GLES2_MODE_WARNING"
-msgstr "Aviso do modo GLES2"
 
 #: ../src/general/OptionsMenu.cs:754
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1642,28 +1642,33 @@ msgstr "Repor as entradas por defeito?"
 msgid "CLOSE_OPTIONS"
 msgstr "Fechar as opções?"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1148
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Existem alterações não guardadas que serão perdidas.\n"
 "Desejas continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1167
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "SAVE_AND_CONTINUE"
 msgstr "Gravar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/OptionsMenu.tscn:1181
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1198
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
 msgid "CANCEL"
 msgstr "Cancelar"
 
-#: ../src/general/OptionsMenu.tscn:1205 ../src/general/OptionsMenu.tscn:1214
+#: ../src/general/OptionsMenu.tscn:1209 ../src/general/OptionsMenu.tscn:1219
 msgid "ERROR"
 msgstr "Erro"
+
+#: ../src/general/OptionsMenu.tscn:1220
+msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+msgstr ""
+"Erro: Falha ao gravar as novas definições no ficheiro de configuração."
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -1674,7 +1679,7 @@ msgid "SAVE_GAME"
 msgstr "Gravar Jogo"
 
 #: ../src/general/PauseMenu.tscn:81
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2116
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2115
 msgid "STATISTICS"
 msgstr "Estatísticas"
 
@@ -2339,7 +2344,7 @@ msgstr ""
 "desaparece."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3461
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2628
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Temperatura"
@@ -2444,8 +2449,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1070
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2300
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2936
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2299
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "Compostos"
@@ -2531,168 +2536,176 @@ msgstr "A auto-evo falhou"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estados de execução:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:509
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:506
 msgid "REPORT"
 msgstr "Relatório"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:530
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:527
 msgid "PATCH_MAP"
 msgstr "Mapa de Regiões"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:610
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:607
 msgid "ORGANISM_STATISTICS"
 msgstr "Estatísticas de Organismo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:670
 msgid "SPEED_COLON"
 msgstr "Velocidade:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:703
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:700
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:733
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:730
 msgid "SIZE_COLON"
 msgstr "Tamanho:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:751
 msgid "GENERATION_COLON"
 msgstr "Geração:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:796
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:793
 msgid "ATP_BALANCE"
 msgstr "Saldo ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:999
 msgid "MUTATION_POINTS"
 msgstr "Pontos de Mutação"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1137
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1134
 msgid "STRUCTURE"
 msgstr "Estrutura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1156
 msgid "MEMBRANE"
 msgstr "Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1179
 msgid "BEHAVIOR"
 msgstr "Comportamento"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1234
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1231
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Procurar..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1241
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1238
 msgid "STRUCTURAL"
 msgstr "Estrutural"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1277
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1274
 msgid "PROTEINS"
 msgstr "Proteínas"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1350
 msgid "EXTERNAL"
 msgstr "Externo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1404
 msgid "ORGANELLES"
 msgstr "Organelos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1553
 msgid "MEMBRANE_TYPES"
 msgstr "Tipos de Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1626
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1623
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidez / Rigidez"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1662
 msgid "COLOUR"
 msgstr "Cor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nome da espécie..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1838
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCELAR AÇÃO"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1855
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRMAR"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1864
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1861
+msgid "NEGATIVE_ATP_BALANCE"
+msgstr "Saldo ATP negativo"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1862
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "O micróbio não está a produzir ATP suficiente para sobreviver!\n"
 "Deseja continuar?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1871
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1868
+msgid "DISCONNECTED_ORGANELLES"
+msgstr "Organelos desconectados"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1870
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Existem organelos colocados que não estão conectadas aos restantes "
 "organelos.\n"
 "Conecte todos os organelos entre si ou reverta as alterações feitas."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1969
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1968
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1982
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1981
 msgid "FOOD_CHAIN"
 msgstr "Cadeia alimentar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1994
 msgid "TIMELINE"
 msgstr "Linha temporal"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2048
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2047
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados da auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2067
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2066
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efeitos externos:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2125
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2124
 msgid "SPECIES_POPULATION"
 msgstr "População das Espécies"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2588
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2157
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2587
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condições físicas"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2262
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2771
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2261
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2770
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gases Atmosféricos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2355
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3280
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2354
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
 msgid "NEXT_CAPITAL"
 msgstr "PRÓXIMO"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2470
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2469
 msgid "SELECT_A_PATCH"
 msgstr "Seleciona uma região para mostrar detalhes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2505
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2504
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOCALIZAÇÃO ATUAL"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
 msgid "PRESSURE"
 msgstr "Pressão"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3195
 msgid "SPECIES_PRESENT"
 msgstr "Espécies presentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3253
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3252
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Mover para esta região"
 
@@ -2914,32 +2927,32 @@ msgstr ""
 "Apagar este jogo guardado não pode ser revertido, tens a certeza que "
 "desejas apagar permanentemente {0}?"
 
-#: ../src/saving/SaveList.cs:281
+#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Atualizar o jogo guardado selecionado falhou devido ao seguinte erro:\n"
 "{0}"
 
-#: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "A carregar..."
 
-#: ../src/saving/SaveList.tscn:60 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Apagar este jogo guardado?"
 
-#: ../src/saving/SaveList.tscn:67
+#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+msgid "LOAD_INCOMPATIBLE_SAVE"
+msgstr "Carregar jogo guardado incompatível?"
+
+#: ../src/saving/SaveList.tscn:69
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo guardado é de uma versão mais recente do Thrive e muito "
 "provavelmente incompatível.\n"
 "Quer tentar carregar o jogo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
-msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "Carregar jogo guardado incompatível?"
-
-#: ../src/saving/SaveList.tscn:75
+#: ../src/saving/SaveList.tscn:77
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo guardado é de uma versão antiga do Thrive e pode ser "
@@ -2950,7 +2963,11 @@ msgstr ""
 "têm uma prioridade alta no momento.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:83
+#: ../src/saving/SaveList.tscn:84
+msgid "LOAD_INVALID_SAVE"
+msgstr "Carregar jogo guardado inválido?"
+
+#: ../src/saving/SaveList.tscn:85
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Não foi possível carregar as informações guardadas neste arquivo.\n"
@@ -2958,11 +2975,11 @@ msgstr ""
 "recente que não é compreendido por esta versão do Thrive.\n"
 "Queres tentar carregar o jogo guardado mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:84
-msgid "LOAD_INVALID_SAVE"
-msgstr "Carregar jogo guardado inválido?"
-
 #: ../src/saving/SaveList.tscn:92
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+msgstr "O jogo guardado selecionado é incompatível"
+
+#: ../src/saving/SaveList.tscn:94
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Foi detetado que o jogo guardado selecionado é incompatível com a atual "
@@ -2973,11 +2990,11 @@ msgstr ""
 "de jogos guardados não é uma prioridade alta, como tal, não existe um "
 "conversor de jogos guardados para todas as versões."
 
-#: ../src/saving/SaveList.tscn:93
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#: ../src/saving/SaveList.tscn:103
+msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "O jogo guardado selecionado é incompatível"
 
-#: ../src/saving/SaveList.tscn:102
+#: ../src/saving/SaveList.tscn:104
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
@@ -2989,11 +3006,7 @@ msgstr ""
 "normalmente. \n"
 "Tentar atualizar este ficheiro guardado?"
 
-#: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
-msgstr "O jogo guardado selecionado é incompatível"
-
-#: ../src/saving/SaveList.tscn:114
+#: ../src/saving/SaveList.tscn:111
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Falha ao atualizar o jogo guardado"
 
@@ -3094,13 +3107,13 @@ msgstr "Apagar jogos guardados antigos?"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:196
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:47
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:133
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -3240,7 +3253,7 @@ msgstr ""
 "Tu regeneras saúde enquanto tiveres ATP.\n"
 "Certifica-te de que consegues glicose suficiente para produzires ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:302
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:305
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "De modo a te reproduzires necessitas de duplicar todos os teus organelos "
@@ -3248,7 +3261,7 @@ msgstr ""
 "Observa o indicador no canto inferior esquerdo para veres de quanto "
 "necessitas."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:335
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3263,7 +3276,7 @@ msgstr ""
 "Para sobreviver neste mundo hostil, precisarás de acumular compostos e "
 "evoluir para competir contra outras espécies de micróbios."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:368
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Entraste no modo de desvinculação. Neste modo podes clicar num membro da "
@@ -3274,16 +3287,6 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"
-
-#~ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-#~ msgstr ""
-#~ "Erro: Falha ao gravar as novas definições no ficheiro de configuração."
-
-#~ msgid "NEGATIVE_ATP_BALANCE"
-#~ msgstr "Saldo ATP negativo"
-
-#~ msgid "DISCONNECTED_ORGANELLES"
-#~ msgstr "Organelos desconectados"
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "Erro ao gravar"

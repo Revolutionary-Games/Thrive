@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/saving/SaveList.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=4]
 
 [node name="SaveList" type="ScrollContainer"]
 anchor_right = 1.0
@@ -55,72 +56,60 @@ margin_right = 1270.0
 [node name="DeleteSaveConfirmDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 74.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 450, 70 )
 WindowTitle = "DELETE_THIS_SAVE"
 
 [node name="LoadNewerSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 74.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 600, 70 )
-DialogText = "NEWER_VERSION_LOADING_WARNING"
 WindowTitle = "LOAD_INCOMPATIBLE_SAVE"
+DialogText = "NEWER_VERSION_LOADING_WARNING"
 
 [node name="LoadOlderSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 59.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 700, 0 )
-DialogText = "OLDER_VERSION_LOADING_WARNING"
 WindowTitle = "LOAD_INCOMPATIBLE_SAVE"
+DialogText = "OLDER_VERSION_LOADING_WARNING"
 
 [node name="LoadInvalidSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 59.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 600, 0 )
-DialogText = "LOAD_INVALID_SAVE_WARNING"
 WindowTitle = "LOAD_INVALID_SAVE"
+DialogText = "LOAD_INVALID_SAVE_WARNING"
 
 [node name="LoadKnownIncompatibleDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 4.0
 margin_right = 1270.0
-margin_bottom = 59.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 700, 0 )
+WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE"
 HideCancelButton = true
 DialogText = "LOAD_INCOMPATIBLE_SAVE_WARNING"
-WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE"
 
 [node name="UpgradeSelectedSaveDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
 margin_top = 4.0
 margin_right = 600.0
-margin_bottom = 74.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 600, 70 )
 size_flags_horizontal = 0
 size_flags_vertical = 5
-DialogText = "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 WindowTitle = "SELECTED_SAVE_IS_UPGRADEABLE"
+DialogText = "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 
-[node name="SaveUpgradeFailedDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 3 )]
-margin_left = 235.0
+[node name="SaveUpgradeFailedDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
+visible = false
 margin_top = 4.0
-margin_right = 1035.0
-margin_bottom = 404.0
-rect_min_size = Vector2( 800, 300 )
-size_flags_horizontal = 4
-size_flags_vertical = 5
-HideCancelButton = true
+margin_right = 1270.0
+margin_bottom = 89.0
 WindowTitle = "SAVE_UPGRADE_FAILED"
-
-[node name="Container" type="ScrollContainer" parent="MarginContainer/VBoxContainer/SaveUpgradeFailedDialog"]
-margin_right = 800.0
-margin_bottom = 400.0
-rect_min_size = Vector2( 790, 400 )
-size_flags_horizontal = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+ErrorMessage = "SAVE_UPGRADE_FAILED_DESCRIPTION"
 
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]
