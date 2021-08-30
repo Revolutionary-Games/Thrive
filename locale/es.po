@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 10:09+0800\n"
-"PO-Revision-Date: 2021-06-30 09:42+0000\n"
-"Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
+"PO-Revision-Date: 2021-08-29 18:21+0000\n"
+"Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -35,7 +35,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Tu célula usa ATP como fuente de energía. Si se acaba, la célula muere."
+"Tu célula usa [thrive:compound type=\"atp\"][/thrive:compound] como su "
+"fuente de energía. Si se acaba, morirá."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
@@ -359,9 +360,8 @@ msgid "MOVEMENT"
 msgstr "Movimiento Base"
 
 #: ../simulation_parameters/common/input_options.json:10
-#, fuzzy
 msgid "MOVE_LEFT"
-msgstr "Movimiento Base"
+msgstr "Moverse a la izquierda"
 
 #: ../simulation_parameters/common/input_options.json:14
 msgid "MOVE_RIGHT"
@@ -514,9 +514,8 @@ msgid "MISCELLANEOUS"
 msgstr "Diverso"
 
 #: ../simulation_parameters/common/input_options.json:172
-#, fuzzy
 msgid "TOGGLE_FPS"
-msgstr "No puede engullir"
+msgstr "Cambiar visibilidad de FPS"
 
 #: ../simulation_parameters/common/input_options.json:176
 msgid "QUICK_SAVE"
@@ -1159,123 +1158,123 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Lanzar 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Lanzar 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Lanzar 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Lanzar 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Lanzar 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Lanzar 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Lanzar 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Lanzar 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Lanzar 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Lanzar A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Lanzar B"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Lanzar C"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Lanzar D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Lanzar E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Lanzar F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Num *"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Num /"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Num -"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Num ."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KPADD"
-msgstr ""
+msgstr "Num +"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
-msgstr ""
+msgstr "Num 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP1"
-msgstr ""
+msgstr "Num 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP2"
-msgstr ""
+msgstr "Num 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP3"
-msgstr ""
+msgstr "Num 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP4"
-msgstr ""
+msgstr "Num 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP5"
-msgstr ""
+msgstr "Num 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP6"
-msgstr ""
+msgstr "Num 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "KP7"
-msgstr ""
+msgstr "Num 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:225
 msgid "KP8"
-msgstr ""
+msgstr "Num 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:226
 msgid "KP9"
-msgstr ""
+msgstr "Num 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
@@ -1372,7 +1371,7 @@ msgstr "Herramientas"
 
 #: ../src/general/MainMenu.tscn:192
 msgid "VIEW_SOURCE_CODE"
-msgstr "Ver código fuente"
+msgstr "Ver Código Fuente"
 
 #: ../src/general/MainMenu.tscn:204
 msgid "EXTRAS"
@@ -1585,11 +1584,11 @@ msgstr "Nombre Personalizado:"
 
 #: ../src/general/OptionsMenu.tscn:1034
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr "Abrir la carpeta de capturas de pantalla"
+msgstr "Abrir Carpeta de Capturas de Pantalla"
 
 #: ../src/general/OptionsMenu.tscn:1042
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Abrir la carpeta de registros"
+msgstr "Abrir carpeta de registros"
 
 #: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -2322,6 +2321,7 @@ msgstr "Agregar nueva tecla personalizada"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3446
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
+"Este valor solo se aplica a nuevos juegos empezados tras cambiar esta opción"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3451
 #, fuzzy
@@ -2348,7 +2348,7 @@ msgstr "N/A PM"
 
 #: ../src/microbe_stage/Microbe.cs:967
 msgid "DEATH"
-msgstr ""
+msgstr "muerte"
 
 #: ../src/microbe_stage/Microbe.cs:1462
 msgid "SUCCESSFUL_SCAVENGE"
@@ -2374,11 +2374,11 @@ msgstr "Compuestos"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "GODMODE"
-msgstr ""
+msgstr "Modo Dios"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
-msgstr ""
+msgstr "Sin IA"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 #, fuzzy
@@ -2866,7 +2866,7 @@ msgstr "Error al cargar"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". No pudo liberar recursos ya cargados: {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
