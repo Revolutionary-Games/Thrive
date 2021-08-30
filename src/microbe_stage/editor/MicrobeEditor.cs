@@ -1021,7 +1021,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (patch == playerPatchOnEntry)
             return true;
 
-        // We are freebuilding so check if the target patch is connected by any means
+        // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
         if (FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
             return true;
 
