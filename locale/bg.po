@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 16:30+0700\n"
+"POT-Creation-Date: 2021-08-30 16:48+0700\n"
 "PO-Revision-Date: 2021-08-13 05:59+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -2916,12 +2916,6 @@ msgstr ""
 "Изтриването на записа не може да бъде отменено, сигурни ли сте, че искате "
 "да изтриете {0}?"
 
-#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
-msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"Надграждането на записа е неуспешно, поради следната грешка:\n"
-"{0}"
-
 #: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Зареждане..."
@@ -2986,6 +2980,12 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:111
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Надграждането на записа е неуспешно"
+
+#: ../src/saving/SaveList.tscn:112
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"Надграждането на записа е неуспешно, поради следната грешка:\n"
+"{0}"
 
 #: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
@@ -3089,7 +3089,7 @@ msgstr "Изтрийте старите записи?"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Упътване"
 
@@ -3230,7 +3230,7 @@ msgstr ""
 "направят те се нуждаят от амоняк и фосфат.\n"
 "Наблюдавайте показателите долу вдясно."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3245,7 +3245,7 @@ msgstr ""
 "За да оцелеете в този враждебен свят, трябва да приспособите и да "
 "еволюирате Вашите създания."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:375
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вие сте в режим на отделяне. В този режим, може да натиснете с мишката "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 16:30+0700\n"
+"POT-Creation-Date: 2021-08-30 16:48+0700\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -2973,16 +2973,6 @@ msgstr ""
 "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите "
 "трајно избрисати {0}?"
 
-#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
-#, fuzzy
-msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"Вакуола је унутрашња мембранска органела која се користи за складиштење у "
-"ћелији. Састоје се од неколико везикула, мањих опнастих структура које се "
-"широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је "
-"водом која се користи да садржи молекуле, ензиме, чврсте материје и друге "
-"супстанце. Њихов облик је течан и може се разликовати између ћелија."
-
 #: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Учитавање..."
@@ -3055,6 +3045,16 @@ msgstr ""
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Сачување није успело"
+
+#: ../src/saving/SaveList.tscn:112
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"Вакуола је унутрашња мембранска органела која се користи за складиштење у "
+"ћелији. Састоје се од неколико везикула, мањих опнастих структура које се "
+"широко користе у ћелијама за складиштење, а које су се стопиле. Испуњен је "
+"водом која се користи да садржи молекуле, ензиме, чврсте материје и друге "
+"супстанце. Њихов облик је течан и може се разликовати између ћелија."
 
 #: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
@@ -3158,7 +3158,7 @@ msgstr "Избришете старе Сачуваје?"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Приручник"
 
@@ -3305,7 +3305,7 @@ msgstr ""
 "Погледајте индикатор у доњем десном углу да бисте видели колико вам још "
 "треба."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3321,7 +3321,7 @@ msgstr ""
 "једињења која можете пронаћи и да еволуирате сваку генерацију да би се "
 "такмичили против других врста микроба."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:375
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""

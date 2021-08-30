@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 16:30+0700\n"
+"POT-Creation-Date: 2021-08-30 16:48+0700\n"
 "PO-Revision-Date: 2021-04-28 19:41+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -2729,11 +2729,6 @@ msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Šī faila dzēšanu nevar atcelt. Vai tiešām vēlies neatgriezeniski dzēst {0}?"
 
-#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
-#, fuzzy
-msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr "Saglabāšana neizdevās"
-
 #: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr ""
@@ -2785,6 +2780,11 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:111
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
+msgstr "Saglabāšana neizdevās"
+
+#: ../src/saving/SaveList.tscn:112
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Saglabāšana neizdevās"
 
 #: ../src/saving/SaveListItem.tscn:130
@@ -2881,7 +2881,7 @@ msgstr "Izdzēst vecos saglabāšanas failus?"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Tutoriāls"
 
@@ -2941,14 +2941,14 @@ msgstr ""
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
 "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:375
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""

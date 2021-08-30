@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 16:30+0700\n"
+"POT-Creation-Date: 2021-08-30 16:48+0700\n"
 "PO-Revision-Date: 2021-08-20 11:47+0800\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -2904,10 +2904,6 @@ msgstr ""
 "Deleting this save cannot be undone, are you sure you want to permanently "
 "delete {0}?"
 
-#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
-msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr "Upgrading the specified save failed due to the following error:"
-
 #: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Loading..."
@@ -2977,6 +2973,10 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:111
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Save upgrade failed"
+
+#: ../src/saving/SaveList.tscn:112
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr "Upgrading the specified save failed due to the following error:"
 
 #: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
@@ -3080,7 +3080,7 @@ msgstr "Delete old Saves?"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -3223,7 +3223,7 @@ msgstr ""
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "You have collected enough resources for your cell to divide.\n"
@@ -3232,7 +3232,7 @@ msgstr ""
 "\n"
 "To enter the editor press the flashing editor button in the bottom right."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:375
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "You have entered unbind mode. In this mode you can click on colony members "

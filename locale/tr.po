@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 16:30+0700\n"
+"POT-Creation-Date: 2021-08-30 16:48+0700\n"
 "PO-Revision-Date: 2021-07-16 17:42+0000\n"
 "Last-Translator: angelbisector <m.eypoglu@gmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -2925,12 +2925,6 @@ msgstr ""
 "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek "
 "istediğinden emin misin?"
 
-#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
-msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:\n"
-"{0}"
-
 #: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Yükleniyor..."
@@ -3003,6 +2997,12 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:111
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Kayıt yükseltme başarısız"
+
+#: ../src/saving/SaveList.tscn:112
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:\n"
+"{0}"
 
 #: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
@@ -3106,7 +3106,7 @@ msgstr "Eski Kayıtları sil?"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
@@ -3250,7 +3250,7 @@ msgstr ""
 "organellerini ikiye katlaman gerekir.\n"
 "Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki göstergeye bak."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3266,7 +3266,7 @@ msgstr ""
 "Bu hasım dünyada hayatta kalmak için, bulabildiğin her bileşiği toplaman "
 "ve diğerleriyle rekabet etmek için her defasında evrimleşmen gerekiyor."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:375
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Bağ çözme moduna girdin. Bu modda, bağını çözmek istediğin koloni "

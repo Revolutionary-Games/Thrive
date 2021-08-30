@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 16:30+0700\n"
+"POT-Creation-Date: 2021-08-30 16:48+0700\n"
 "PO-Revision-Date: 2021-06-22 20:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -2957,17 +2957,6 @@ msgstr ""
 "L'acció d'eliminar aquest arxiu de guardat és irreversible, esteu segur "
 "que voleu eliminar permanentment l'arxiu {0}?"
 
-#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
-#, fuzzy
-msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"El Vacúol és un orgànul intern que consisteix en una membrana capaç "
-"d'emmagatzemar una certa quantitat de nutrients. Està format per un cert "
-"nombre de vesícules, que són unes petites estructures membranoses que han "
-"estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota "
-"mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No "
-"són estructures rígides, sinò que la seva forma pot canviar amb el temps."
-
 #: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Carregant..."
@@ -3044,6 +3033,17 @@ msgstr ""
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Acció de guardat fallida"
+
+#: ../src/saving/SaveList.tscn:112
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"El Vacúol és un orgànul intern que consisteix en una membrana capaç "
+"d'emmagatzemar una certa quantitat de nutrients. Està format per un cert "
+"nombre de vesícules, que són unes petites estructures membranoses que han "
+"estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota "
+"mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No "
+"són estructures rígides, sinò que la seva forma pot canviar amb el temps."
 
 #: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
@@ -3149,7 +3149,7 @@ msgstr "Eliminar arxiu(s) de guardat antic(s)?"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -3326,7 +3326,7 @@ msgstr ""
 "Estigueu atents a l'indicador a la part inferior dreta per veure quina "
 "quantitat d'Amoníac i Fosfats et falta encara."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3353,7 +3353,7 @@ msgstr ""
 "aquestes espècies hauran evolucionat a partir del darrer avantpassat "
 "universal comú."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:375
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Has entrar en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre "

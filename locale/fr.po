@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-30 16:30+0700\n"
+"POT-Creation-Date: 2021-08-30 16:48+0700\n"
 "PO-Revision-Date: 2021-08-08 14:42+0000\n"
 "Last-Translator: George Fel <george.fel@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -2931,17 +2931,6 @@ msgstr ""
 "Supprimer cette sauvegarde ne peut pas être défait, êtes-vous sûr de "
 "vouloir détruire {0} de manière permanente?"
 
-#: ../src/saving/SaveList.cs:281 ../src/saving/SaveList.tscn:112
-#, fuzzy
-msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
-"La vacuole est un organite de la membrane interne utilisé pour stocker "
-"dans la cellule. Ils sont composé de plusieurs vésicules, des structures "
-"membranaires plus petites grandement utilisé dans les cellules pour le "
-"stockage, qui ont fusionné ensemble. Elle est rempli d'eau qui est utilisé "
-"pour contenir des molécules, des enzymes, des solides et autres "
-"substances. Leur forme est fluide et peut varier selon les cellules."
-
 #: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Chargement..."
@@ -3019,6 +3008,17 @@ msgstr ""
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Sauvegarde Échouée"
+
+#: ../src/saving/SaveList.tscn:112
+#, fuzzy
+msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
+msgstr ""
+"La vacuole est un organite de la membrane interne utilisé pour stocker "
+"dans la cellule. Ils sont composé de plusieurs vésicules, des structures "
+"membranaires plus petites grandement utilisé dans les cellules pour le "
+"stockage, qui ont fusionné ensemble. Elle est rempli d'eau qui est utilisé "
+"pour contenir des molécules, des enzymes, des solides et autres "
+"substances. Leur forme est fluide et peut varier selon les cellules."
 
 #: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
@@ -3124,7 +3124,7 @@ msgstr "Supprimer les anciennes Sauvegardes?"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:283
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:321
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:355
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:356
 msgid "TUTORIAL"
 msgstr "Tutoriel"
 
@@ -3278,7 +3278,7 @@ msgstr ""
 "collectant assez d'ammoniaque et de phosphates.\n"
 "Regardez l'indicateur en bas à droite pour voir combien il vous en manque."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:341
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:342
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -3296,7 +3296,7 @@ msgstr ""
 "n'importe quel composant que vous pourrez trouver et évoluer à chaque "
 "génération en étant en compétition contre d'autres espèces de microbes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:374
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:375
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "You have entered Unlink mode. In this mode, you can click on colony "
