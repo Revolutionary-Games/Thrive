@@ -9,6 +9,7 @@ public class MicrobeColony
 {
     private Microbe.MicrobeState state;
 
+    [JsonConstructor]
     private MicrobeColony(Microbe master)
     {
         Master = master;
