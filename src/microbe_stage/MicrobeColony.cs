@@ -102,5 +102,4 @@ public class MicrobeColony
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
     }
-
 }
