@@ -39,6 +39,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public NodePath ReproductionTutorialPath;
 
     [Export]
+    public NodePath EditorButtonTutorialPath;
+
+    [Export]
     public NodePath UnbindTutorialPath;
 
     private CustomDialog microbeWelcomeMessage;
@@ -51,6 +54,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomDialog glucoseTutorial;
     private CustomDialog stayingAlive;
     private CustomDialog reproductionTutorial;
+    private CustomDialog editorButtonTutorial;
     private CustomDialog unbindTutorial;
 
     public ITutorialInput EventReceiver { get; set; }
@@ -164,6 +168,25 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool EditorButtonTutorialVisible
+    {
+        get => editorButtonTutorial.Visible;
+        set
+        {
+            if (value == editorButtonTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                editorButtonTutorial.Show();
+            }
+            else
+            {
+                editorButtonTutorial.ClosePopup();
+            }
+        }
+    }
+
     public bool UnbindTutorialVisible
     {
         get => unbindTutorial.Visible;
@@ -231,6 +254,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         glucoseTutorial = GetNode<CustomDialog>(GlucoseTutorialPath);
         stayingAlive = GetNode<CustomDialog>(StayingAlivePath);
         reproductionTutorial = GetNode<CustomDialog>(ReproductionTutorialPath);
+        editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
     }
 

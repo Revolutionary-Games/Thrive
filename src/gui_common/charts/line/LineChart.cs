@@ -372,7 +372,7 @@ public class LineChart : VBoxContainer
 
                 toolTip.DisplayDelay = 0;
                 toolTip.HideOnMousePress = false;
-                toolTip.UseFadeIn = false;
+                toolTip.TransitionType = ToolTipTransitioning.Immediate;
 
                 point.RegisterToolTipForControl(toolTip);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
@@ -803,7 +803,7 @@ public class LineChart : VBoxContainer
             var label = new Label
             {
                 SizeFlagsVertical = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Center,
+                Align = Label.AlignEnum.Right,
                 Valign = Label.VAlign.Center,
             };
 

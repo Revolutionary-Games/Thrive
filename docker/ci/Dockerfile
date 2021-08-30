@@ -6,7 +6,7 @@ RUN git lfs install
 RUN gem install os colorize rubyzip json sha3 httparty parallel nokogiri
 
 # Jetbrains CLI tools
-RUN wget https://download.jetbrains.com/resharper/dotUltimate.2021.1.3/JetBrains.ReSharper.CommandLineTools.2021.1.3.zip \
+RUN wget https://download.jetbrains.com/resharper/dotUltimate.2021.2/JetBrains.ReSharper.CommandLineTools.2021.2.zip \
     -O jetbrains.zip && unzip jetbrains.zip -d /usr/bin && rm -rf jetbrains.zip && chmod +x /usr/bin/*.sh
 
 # Godot install

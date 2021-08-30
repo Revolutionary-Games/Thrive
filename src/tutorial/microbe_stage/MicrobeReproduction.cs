@@ -54,16 +54,5 @@
                 Show();
             }
         }
-
-        private void Inhibit()
-        {
-            HasBeenShown = true;
-            ProcessWhileHidden = false;
-
-            if (ShownCurrently)
-            {
-                Hide();
-            }
-        }
     }
 }

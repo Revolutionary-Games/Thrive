@@ -21,6 +21,8 @@ LoadNewerSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadNewerSaveD
 LoadOlderSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadOlderSaveDialog")
 LoadInvalidSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadInvalidSaveDialog")
 LoadIncompatibleDialogPath = NodePath("MarginContainer/VBoxContainer/LoadKnownIncompatibleDialog")
+UpgradeSaveDialogPath = NodePath("MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog")
+UpgradeFailedDialogPath = NodePath("MarginContainer/VBoxContainer/SaveUpgradeFailedDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1280.0
@@ -95,7 +97,42 @@ HideCancelButton = true
 WindowTitle = "SELECTED_SAVE_IS_INCOMPATIBLE"
 DialogText = "LOAD_INCOMPATIBLE_SAVE_WARNING"
 
+[node name="UpgradeSelectedSaveDialog" instance=ExtResource( 3 ) parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 4.0
+margin_right = 600.0
+margin_bottom = 88.0
+rect_min_size = Vector2( 600, 70 )
+size_flags_horizontal = 0
+size_flags_vertical = 5
+window_title = "SELECTED_SAVE_IS_UPGRADEABLE"
+DialogText = "SAVE_IS_UPGRADEABLE_DESCRIPTION"
+
+[node name="SaveUpgradeFailedDialog"  instance=ExtResource( 3 ) parent="MarginContainer/VBoxContainer"]
+margin_left = 280.0
+margin_top = 4.0
+margin_right = 1080.0
+margin_bottom = 466.0
+rect_min_size = Vector2( 800, 300 )
+size_flags_horizontal = 4
+size_flags_vertical = 5
+window_title = "SAVE_UPGRADE_FAILED"
+HideCancelButton = true
+
+[node name="Container" type="ScrollContainer" parent="MarginContainer/VBoxContainer/SaveUpgradeFailedDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 800.0
+margin_bottom = 410.0
+rect_min_size = Vector2( 790, 400 )
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]
 [connection signal="Confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmLoadInvalid"]
+[connection signal="Confirmed" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnAcceptSaveUpgrade"]
+[connection signal="popup_hide" from="MarginContainer/VBoxContainer/UpgradeSelectedSaveDialog" to="." method="OnSaveUpgradeClosed"]
