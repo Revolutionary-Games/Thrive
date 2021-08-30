@@ -44,7 +44,7 @@ public class PlayerHoverInfo : Node
 
             // Find only cells that have the mouse
             // position within their membrane
-            if (distance > microbe.RadiusSquared + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
+            if (distance > microbe.RadiusSquared + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED)
                 continue;
 
             microbe.IsHoveredOver = true;
