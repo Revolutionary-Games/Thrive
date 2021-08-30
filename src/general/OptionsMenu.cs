@@ -194,27 +194,27 @@ public class OptionsMenu : ControlWithInput
 
     // Graphics tab
     private Control graphicsTab;
-    private CheckBox vsync;
-    private CheckBox fullScreen;
+    private CustomCheckBox vsync;
+    private CustomCheckBox fullScreen;
     private OptionButton msaaResolution;
     private OptionButton colourblindSetting;
-    private CheckBox chromaticAberrationToggle;
+    private CustomCheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
-    private CheckBox displayAbilitiesHotBarToggle;
-    private CheckBox guiLightEffectsToggle;
+    private CustomCheckBox displayAbilitiesHotBarToggle;
+    private CustomCheckBox guiLightEffectsToggle;
 
     // Sound tab
     private Control soundTab;
     private Slider masterVolume;
-    private CheckBox masterMuted;
+    private CustomCheckBox masterMuted;
     private Slider musicVolume;
-    private CheckBox musicMuted;
+    private CustomCheckBox musicMuted;
     private Slider ambianceVolume;
-    private CheckBox ambianceMuted;
+    private CustomCheckBox ambianceMuted;
     private Slider sfxVolume;
-    private CheckBox sfxMuted;
+    private CustomCheckBox sfxMuted;
     private Slider guiVolume;
-    private CheckBox guiMuted;
+    private CustomCheckBox guiMuted;
     private OptionButton audioOutputDeviceSelection;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
@@ -224,7 +224,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton cloudInterval;
     private VBoxContainer cloudResolutionTitle;
     private OptionButton cloudResolution;
-    private CheckBox runAutoEvoDuringGameplay;
+    private CustomCheckBox runAutoEvoDuringGameplay;
 
     // Inputs tab
     private Control inputsTab;
@@ -232,17 +232,17 @@ public class OptionsMenu : ControlWithInput
 
     // Misc tab
     private Control miscTab;
-    private CheckBox playIntro;
-    private CheckBox playMicrobeIntro;
-    private CheckBox cheats;
-    private CheckBox tutorialsEnabledOnNewGame;
-    private CheckBox autoSave;
+    private CustomCheckBox playIntro;
+    private CustomCheckBox playMicrobeIntro;
+    private CustomCheckBox cheats;
+    private CustomCheckBox tutorialsEnabledOnNewGame;
+    private CustomCheckBox autoSave;
     private SpinBox maxAutoSaves;
     private SpinBox maxQuickSaves;
-    private CheckBox customUsernameEnabled;
+    private CustomCheckBox customUsernameEnabled;
     private LineEdit customUsername;
 
-    private CheckBox tutorialsEnabled;
+    private CustomCheckBox tutorialsEnabled;
 
     // Confirmation Boxes
     private AcceptDialog backConfirmationBox;
@@ -306,27 +306,27 @@ public class OptionsMenu : ControlWithInput
 
         // Graphics
         graphicsTab = GetNode<Control>(GraphicsTabPath);
-        vsync = GetNode<CheckBox>(VSyncPath);
-        fullScreen = GetNode<CheckBox>(FullScreenPath);
+        vsync = GetNode<CustomCheckBox>(VSyncPath);
+        fullScreen = GetNode<CustomCheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
-        chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
+        chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
-        displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
-        guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
+        displayAbilitiesHotBarToggle = GetNode<CustomCheckBox>(DisplayAbilitiesBarTogglePath);
+        guiLightEffectsToggle = GetNode<CustomCheckBox>(GUILightEffectsTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
         masterVolume = GetNode<Slider>(MasterVolumePath);
-        masterMuted = GetNode<CheckBox>(MasterMutedPath);
+        masterMuted = GetNode<CustomCheckBox>(MasterMutedPath);
         musicVolume = GetNode<Slider>(MusicVolumePath);
-        musicMuted = GetNode<CheckBox>(MusicMutedPath);
+        musicMuted = GetNode<CustomCheckBox>(MusicMutedPath);
         ambianceVolume = GetNode<Slider>(AmbianceVolumePath);
-        ambianceMuted = GetNode<CheckBox>(AmbianceMutedPath);
+        ambianceMuted = GetNode<CustomCheckBox>(AmbianceMutedPath);
         sfxVolume = GetNode<Slider>(SFXVolumePath);
-        sfxMuted = GetNode<CheckBox>(SFXMutedPath);
+        sfxMuted = GetNode<CustomCheckBox>(SFXMutedPath);
         guiVolume = GetNode<Slider>(GUIVolumePath);
-        guiMuted = GetNode<CheckBox>(GUIMutedPath);
+        guiMuted = GetNode<CustomCheckBox>(GUIMutedPath);
         audioOutputDeviceSelection = GetNode<OptionButton>(AudioOutputDeviceSelectionPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
@@ -338,7 +338,7 @@ public class OptionsMenu : ControlWithInput
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
-        runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
+        runAutoEvoDuringGameplay = GetNode<CustomCheckBox>(RunAutoEvoDuringGameplayPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -347,15 +347,15 @@ public class OptionsMenu : ControlWithInput
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
-        playIntro = GetNode<CheckBox>(PlayIntroPath);
-        playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
-        tutorialsEnabledOnNewGame = GetNode<CheckBox>(TutorialsEnabledOnNewGamePath);
-        cheats = GetNode<CheckBox>(CheatsPath);
-        autoSave = GetNode<CheckBox>(AutoSavePath);
+        playIntro = GetNode<CustomCheckBox>(PlayIntroPath);
+        playMicrobeIntro = GetNode<CustomCheckBox>(PlayMicrobeIntroPath);
+        tutorialsEnabledOnNewGame = GetNode<CustomCheckBox>(TutorialsEnabledOnNewGamePath);
+        cheats = GetNode<CustomCheckBox>(CheatsPath);
+        autoSave = GetNode<CustomCheckBox>(AutoSavePath);
         maxAutoSaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuickSaves = GetNode<SpinBox>(MaxQuickSavesPath);
-        tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
-        customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
+        tutorialsEnabled = GetNode<CustomCheckBox>(TutorialsEnabledPath);
+        customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
         backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);

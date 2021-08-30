@@ -5,11 +5,11 @@ public class MicrobeEditorCheatMenu : CheatMenu
     [Export]
     public NodePath InfiniteMpPath;
 
-    private CheckBox infiniteMp;
+    private CustomCheckBox infiniteMp;
 
     public override void _Ready()
     {
-        infiniteMp = GetNode<CheckBox>(InfiniteMpPath);
+        infiniteMp = GetNode<CustomCheckBox>(InfiniteMpPath);
         base._Ready();
     }
 

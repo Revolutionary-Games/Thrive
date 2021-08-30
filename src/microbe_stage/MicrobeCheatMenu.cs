@@ -20,17 +20,17 @@ public class MicrobeCheatMenu : CheatMenu
     [Export]
     public NodePath PlayerDividePath;
 
-    private CheckBox infiniteCompounds;
-    private CheckBox godMode;
-    private CheckBox disableAI;
+    private CustomCheckBox infiniteCompounds;
+    private CustomCheckBox godMode;
+    private CustomCheckBox disableAI;
     private Slider speed;
     private Button playerDivide;
 
     public override void _Ready()
     {
-        infiniteCompounds = GetNode<CheckBox>(InfiniteCompoundsPath);
-        godMode = GetNode<CheckBox>(GodModePath);
-        disableAI = GetNode<CheckBox>(DisableAIPath);
+        infiniteCompounds = GetNode<CustomCheckBox>(InfiniteCompoundsPath);
+        godMode = GetNode<CustomCheckBox>(GodModePath);
+        disableAI = GetNode<CustomCheckBox>(DisableAIPath);
         speed = GetNode<Slider>(SpeedSliderPath);
         playerDivide = GetNode<Button>(PlayerDividePath);
 
