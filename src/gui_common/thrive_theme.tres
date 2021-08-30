@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=49 format=2]
+[gd_resource type="Theme" load_steps=50 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=11]
 
@@ -697,12 +698,12 @@ TextEdit/styles/completion = null
 TextEdit/styles/focus = SubResource( 30 )
 TextEdit/styles/normal = SubResource( 31 )
 TextEdit/styles/read_only = SubResource( 32 )
-ToolButton/colors/font_color = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-ToolButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color = Color( 1, 1, 1, 1 )
+ToolButton/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+ToolButton/colors/font_color_hover = Color( 1, 1, 1, 1 )
+ToolButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 ToolButton/constants/hseparation = 3
-ToolButton/fonts/font = null
+ToolButton/fonts/font = ExtResource( 9 )
 ToolButton/styles/disabled = null
 ToolButton/styles/focus = null
 ToolButton/styles/hover = null
