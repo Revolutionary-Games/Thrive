@@ -71,6 +71,22 @@ public class Patch
     public BiomeConditions Biome => currentSnapshot.Biome;
 
     /// <summary>
+    ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
+    /// </summary>
+    /// <param name="patch">The <see cref="Patch"/> to start from</param>
+    /// <param name="set">The <see cref="HashSet{T}"/> to add to</param>
+    public static void CollectNeighbours(Patch patch, HashSet<Patch> set)
+    {
+        foreach (var neighbour in patch.Adjacent)
+        {
+            if (set.Add(neighbour))
+            {
+                CollectNeighbours(neighbour, set);
+            }
+        }
+    }
+
+    /// <summary>
     ///   Adds a connection to patch
     /// </summary>
     /// <returns>True if this was new, false if already added</returns>
@@ -89,22 +105,6 @@ public class Patch
         CollectNeighbours(this, resultSet);
 
         return resultSet;
-    }
-
-    /// <summary>
-    ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
-    /// </summary>
-    /// <param name="patch">The <see cref="Patch"/> to start from</param>
-    /// <param name="set">The <see cref="HashSet{T}"/> to add to</param>
-    public void CollectNeighbours(Patch patch, HashSet<Patch> set)
-    {
-        foreach (var neighbour in patch.Adjacent)
-        {
-            if (set.Add(neighbour))
-            {
-                CollectNeighbours(neighbour, set);
-            }
-        }
     }
 
     /// <summary>
