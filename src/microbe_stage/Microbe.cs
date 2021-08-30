@@ -2591,7 +2591,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (Colony == null)
         {
             Colony = new MicrobeColony(this);
-            OnIGotAddedToColony();
+            OnColonyMemberAdded(this);
             GD.Print("Created a new colony");
         }
 
