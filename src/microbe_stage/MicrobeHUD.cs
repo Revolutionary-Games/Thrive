@@ -719,7 +719,7 @@ public class MicrobeHUD : Node
 
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
-        nothingHere.Visible = !stage.HoverInfo.IsHoveringAnyEntity;
+        nothingHere.Visible = !stage.HoverInfo.IsHoveringOverAnything;
     }
 
     /// <summary>

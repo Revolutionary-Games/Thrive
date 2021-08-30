@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   A system that manages reading what the player is hovering over.
+///   A system that manages detecting what the player is hovering over with the cursor.
 /// </summary>
 public class PlayerHoverInfo : Node
 {
@@ -17,9 +17,9 @@ public class PlayerHoverInfo : Node
     /// <summary>
     ///   All microbes the user is hovering over.
     /// </summary>
-    public List<Microbe> HoveredMicrobes { get; private set; } = new List<Microbe>();
+    public List<Microbe> HoveredMicrobes { get; } = new List<Microbe>();
 
-    public bool IsHoveringAnyEntity => HoveredCompounds.Count > 0 || HoveredMicrobes.Count > 0;
+    public bool IsHoveringOverAnything => HoveredCompounds.Count > 0 || HoveredMicrobes.Count > 0;
 
     public void Init(MicrobeCamera camera, CompoundCloudSystem cloudSystem)
     {
@@ -31,24 +31,24 @@ public class PlayerHoverInfo : Node
     {
         HoveredCompounds = cloudSystem.GetAllAvailableAt(camera.CursorWorldPos);
 
-        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
+        var allMicrobes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
 
-        foreach (var microbe in HoveredMicrobes)
-            microbe.IsHoveredOver = false;
+        foreach (var hoveredMicrobe in HoveredMicrobes)
+            hoveredMicrobe.IsHoveredOver = false;
 
         HoveredMicrobes.Clear();
 
-        foreach (Microbe entry in microbes)
+        foreach (Microbe microbe in allMicrobes)
         {
-            var distance = (entry.GlobalTransform.origin - camera.CursorWorldPos).Length();
+            var distance = (microbe.GlobalTransform.origin - camera.CursorWorldPos).LengthSquared();
 
             // Find only cells that have the mouse
             // position within their membrane
-            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
+            if (distance > microbe.RadiusSquared + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
                 continue;
 
-            entry.IsHoveredOver = true;
-            HoveredMicrobes.Add(entry);
+            microbe.IsHoveredOver = true;
+            HoveredMicrobes.Add(microbe);
         }
     }
 }
