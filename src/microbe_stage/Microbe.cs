@@ -2590,8 +2590,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Create a colony if there isn't one yet
         if (Colony == null)
         {
-            Colony = new MicrobeColony(this);
-            OnColonyMemberAdded(this);
+            Colony.CreateColonyForMicrobe(this);
             GD.Print("Created a new colony");
         }
 

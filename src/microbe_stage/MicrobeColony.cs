@@ -48,6 +48,12 @@ public class MicrobeColony
         ColonyCompounds.DistributeCompoundSurplus();
     }
 
+    internal void CreateColonyForMicrobe(Microbe microbe)
+    {
+        microbe.Colony = new MicrobeColony(microbe);
+        microbe.OnColonyMemberAdded(microbe);
+    }
+
     public void RemoveFromColony(Microbe microbe)
     {
         if (microbe?.Colony == null)
@@ -96,4 +102,5 @@ public class MicrobeColony
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
     }
+
 }
