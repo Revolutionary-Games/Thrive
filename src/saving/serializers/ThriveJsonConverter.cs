@@ -349,12 +349,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         if (refId is { Type: JTokenType.String })
         {
-            var refValue = refId.Value<string>();
-
-            if (refValue == null)
-                throw new JsonException($"{REF_PROPERTY} read as string failed");
-
-            return serializer.ReferenceResolver.ResolveReference(serializer, refValue);
+            return serializer.ReferenceResolver.ResolveReference(serializer, refId.ValueNotNull<string>());
         }
 
         var objId = item[ID_PROPERTY];
@@ -366,12 +361,7 @@ public abstract class BaseThriveConverter : JsonConverter
         {
             if (serializer.TypeNameHandling != TypeNameHandling.None)
             {
-                var typeValue = type.Value<string>();
-
-                if (typeValue == null)
-                    throw new JsonException($"{TYPE_PROPERTY} read as string failed");
-
-                var parts = typeValue.Split(',').Select(p => p.Trim()).ToList();
+                var parts = type.ValueNotNull<string>().Split(',').Select(p => p.Trim()).ToList();
 
                 if (parts.Count != 2 && parts.Count != 1)
                     throw new JsonException($"invalid {TYPE_PROPERTY} format");
@@ -396,12 +386,7 @@ public abstract class BaseThriveConverter : JsonConverter
         // Store the instance before loading properties to not break on recursive references
         if (objId is { Type: JTokenType.String })
         {
-            var idValue = objId.Value<string>();
-
-            if (idValue == null)
-                throw new JsonException($"{ID_PROPERTY} read as string failed");
-
-            serializer.ReferenceResolver.AddReference(serializer, idValue, instance);
+            serializer.ReferenceResolver.AddReference(serializer, objId.ValueNotNull<string>(), instance);
         }
 
         RunPrePropertyDeserializeActions(instance);
