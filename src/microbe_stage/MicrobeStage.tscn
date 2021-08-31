@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -83,6 +83,7 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/parts/BindingAgentIcon.png" type="Texture" id=82]
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=83]
+[ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -328,6 +329,10 @@ shadow_enabled = true
 
 [node name="GuidanceLine" parent="World" instance=ExtResource( 75 )]
 visible = false
+
+[node name="PlayerHoverInfo" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 84 )
 
 [node name="PlayerMicrobeInput" type="Node" parent="."]
 script = ExtResource( 7 )

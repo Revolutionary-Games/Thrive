@@ -487,6 +487,13 @@ public static class Constants
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
 
     /// <summary>
+    ///   Squared value of <see cref="MICROBE_HOVER_DETECTION_EXTRA_RADIUS"/>.
+    ///   Specifically for use with LengthSquared.
+    /// </summary>
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED =
+        MICROBE_HOVER_DETECTION_EXTRA_RADIUS * MICROBE_HOVER_DETECTION_EXTRA_RADIUS;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";
