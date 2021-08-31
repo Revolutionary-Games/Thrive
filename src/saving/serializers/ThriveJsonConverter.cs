@@ -382,9 +382,6 @@ public abstract class BaseThriveConverter : JsonConverter
             CreateDeserializedInstance(reader, objectType, serializer, item, out var alreadyConsumedItems) :
             CreateDeserializedFromScene(objectType, out alreadyConsumedItems);
 
-        if (instance == null)
-            throw new JsonException($"instanciation ended with a null instance for current type: {objectType}");
-
         // Store the instance before loading properties to not break on recursive references
         if (objId != null)
         {
