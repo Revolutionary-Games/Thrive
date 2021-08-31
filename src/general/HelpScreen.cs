@@ -113,7 +113,7 @@ public class HelpScreen : Control
             {
                 GD.PrintErr("Help text doesn't have a column set, couldn't be added into the container");
 
-                // Queued as otherwise help text's ExtendedBbcode would be aplied on a disposed object
+                // Queued as otherwise help text's ExtendedBbcode would be applied on a disposed object
                 Invoke.Instance.Queue(helpBox.DetachAndQueueFree);
             }
         }

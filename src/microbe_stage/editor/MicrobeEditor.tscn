@@ -634,10 +634,12 @@ margin_top = 5.0
 margin_right = 268.0
 margin_bottom = 360.0
 rect_min_size = Vector2( 263, 355 )
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer"]
 margin_right = 254.0
 margin_bottom = 234.0
+mouse_filter = 1
 custom_constants/margin_right = 5
 custom_constants/margin_top = 0
 custom_constants/margin_left = 3
@@ -1401,7 +1403,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 518.0
 margin_right = 302.0
-margin_bottom = 859.0
+margin_bottom = 966.0
 DisplayName = "ORGANELLES"
 Columns = 3
 TitleLabelPath = NodePath("../Organelle/HBoxContainer/Title")
@@ -1419,7 +1421,7 @@ margin_right = 302.0
 
 [node name="Clip" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle" index="1"]
 margin_right = 302.0
-margin_bottom = 341.0
+margin_bottom = 448.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip" index="0"]
 margin_right = 302.0
@@ -1435,28 +1437,31 @@ SelectionGroup = SubResource( 19 )
 [node name="bindingAgent" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="1" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
-margin_right = 98.0
-SelectionGroup = SubResource( 19 )
-
-[node name="mitochondrion" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="2" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
 SelectionGroup = SubResource( 19 )
 
-[node name="chloroplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="3" groups=[
+[node name="mitochondrion" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="2" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_right = 302.0
 SelectionGroup = SubResource( 19 )
 
-[node name="thermoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="4" groups=[
+[node name="chloroplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="3" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_top = 107.0
 margin_right = 98.0
+margin_bottom = 210.0
+SelectionGroup = SubResource( 19 )
+
+[node name="thermoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="4" groups=[
+"PlaceablePartSelectionElement",
+] instance=ExtResource( 12 )]
+margin_left = 102.0
+margin_top = 107.0
+margin_right = 200.0
 margin_bottom = 210.0
 MPCost = 40
 PartIcon = ExtResource( 11 )
@@ -1467,22 +1472,13 @@ SelectionGroup = SubResource( 19 )
 [node name="chemoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="5" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
-margin_left = 102.0
-margin_top = 107.0
-margin_right = 200.0
-margin_bottom = 210.0
-SelectionGroup = SubResource( 19 )
-
-[node name="nitrogenfixingplastid" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="6" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_top = 107.0
 margin_right = 302.0
 margin_bottom = 210.0
 SelectionGroup = SubResource( 19 )
 
-[node name="vacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="7" groups=[
+[node name="nitrogenfixingplastid" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="6" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_top = 214.0
@@ -1490,7 +1486,7 @@ margin_right = 98.0
 margin_bottom = 317.0
 SelectionGroup = SubResource( 19 )
 
-[node name="oxytoxy" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="8" groups=[
+[node name="vacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="7" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 102.0
@@ -1499,13 +1495,21 @@ margin_right = 200.0
 margin_bottom = 317.0
 SelectionGroup = SubResource( 19 )
 
-[node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=[
+[node name="oxytoxy" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="8" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_top = 214.0
 margin_right = 302.0
 margin_bottom = 317.0
+SelectionGroup = SubResource( 19 )
+
+[node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=[
+"PlaceablePartSelectionElement",
+] instance=ExtResource( 12 )]
+margin_top = 321.0
+margin_right = 98.0
+margin_bottom = 424.0
 PartIcon = ExtResource( 10 )
 PartName = "BIOLUMINESCENT_VACUOLE"
 Locked = true
@@ -1530,8 +1534,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
-margin_right = 318.0
-margin_bottom = 799.0
+margin_right = 327.0
+margin_bottom = 897.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -1540,8 +1544,8 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
-margin_right = 308.0
-margin_bottom = 799.0
+margin_right = 317.0
+margin_bottom = 897.0
 custom_constants/separation = 15
 
 [node name="MembraneTypes" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
@@ -1593,7 +1597,7 @@ SelectionGroup = SubResource( 21 )
 ] instance=ExtResource( 12 )]
 SelectionGroup = SubResource( 21 )
 
-[node name="calcium_carbonate" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="4" groups=[
+[node name="calciumCarbonate" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="4" groups=[
 "MembraneSelectionElement",
 ] instance=ExtResource( 12 )]
 SelectionGroup = SubResource( 21 )
@@ -1670,10 +1674,11 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 314.0
-margin_bottom = 512.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 322.0
+margin_bottom = 520.0
+RawButtonEnabled = false
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
@@ -3427,6 +3432,8 @@ __meta__ = {
 [connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/TopRight" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/TopRight" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]

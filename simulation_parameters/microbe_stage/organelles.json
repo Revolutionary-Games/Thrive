@@ -373,7 +373,7 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 6
+                "capacity": 8
             }
         },
         "prokaryoteChance": 0,
@@ -470,13 +470,13 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 5
+                "capacity": 1
             },
             "bindingAgent": {}
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 0,
-        "mass": 0.9,
+        "mass": 0.1,
         "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
         "name": "BINDING_AGENT",
         "iconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
@@ -606,7 +606,7 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 4
             },
             "nucleus": {}
         },
