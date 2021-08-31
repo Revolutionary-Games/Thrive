@@ -610,7 +610,7 @@ end
 def run_inspect_code
   return if skip_jetbrains?
 
-  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
+  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml', '--build']
 
   params.append "--include=#{@includes.join(';')}" if @includes
 
