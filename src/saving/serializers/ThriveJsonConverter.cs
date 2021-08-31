@@ -347,9 +347,9 @@ public abstract class BaseThriveConverter : JsonConverter
         // Detect ref to already loaded object
         var refId = item[REF_PROPERTY];
 
-        if (refId != null)
+        if (refId is { Type: JTokenType.String })
         {
-            return serializer.ReferenceResolver.ResolveReference(serializer, refId.Value<string>());
+            return serializer.ReferenceResolver.ResolveReference(serializer, refId.ValueNotNull<string>());
         }
 
         var objId = item[ID_PROPERTY];
@@ -357,13 +357,14 @@ public abstract class BaseThriveConverter : JsonConverter
         // Detect dynamic typing
         var type = item[TYPE_PROPERTY];
 
-        if (type != null)
+        if (type is { Type: JTokenType.String })
         {
             if (serializer.TypeNameHandling != TypeNameHandling.None)
             {
-                var parts = type.Value<string>().Split(',').Select(p => p.Trim()).ToList();
+                var parts = type.ValueNotNull<string>().Split(',').Select(p => p.Trim()).ToList();
+
                 if (parts.Count != 2 && parts.Count != 1)
-                    throw new JsonException("invalid $type format");
+                    throw new JsonException($"invalid {TYPE_PROPERTY} format");
 
                 // Change to loading the other type
                 objectType = serializer.SerializationBinder.BindToType(
@@ -383,9 +384,9 @@ public abstract class BaseThriveConverter : JsonConverter
             CreateDeserializedFromScene(objectType, out alreadyConsumedItems);
 
         // Store the instance before loading properties to not break on recursive references
-        if (objId != null)
+        if (objId is { Type: JTokenType.String })
         {
-            serializer.ReferenceResolver.AddReference(serializer, objId.Value<string>(), instance);
+            serializer.ReferenceResolver.AddReference(serializer, objId.ValueNotNull<string>(), instance);
         }
 
         RunPrePropertyDeserializeActions(instance);
