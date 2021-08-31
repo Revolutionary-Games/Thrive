@@ -40,11 +40,11 @@ public class PlayerHoverInfo : Node
 
         foreach (Microbe microbe in allMicrobes)
         {
-            var distance = (microbe.GlobalTransform.origin - camera.CursorWorldPos).LengthSquared();
+            var distanceSquared = (microbe.GlobalTransform.origin - camera.CursorWorldPos).LengthSquared();
 
             // Find only cells that have the mouse
             // position within their membrane
-            if (distance > microbe.RadiusSquared + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED)
+            if (distanceSquared > microbe.RadiusSquared + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED)
                 continue;
 
             microbe.IsHoveredOver = true;
