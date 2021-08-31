@@ -49,7 +49,7 @@ public class MicrobeColony
         ColonyCompounds.DistributeCompoundSurplus();
     }
 
-    public void CreateColonyForMicrobe(Microbe microbe)
+    public static void CreateColonyForMicrobe(Microbe microbe)
     {
         microbe.Colony = new MicrobeColony(microbe);
         microbe.OnColonyMemberAdded(microbe);
