@@ -577,8 +577,12 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void RenderChart()
     {
-        if (dataSets.Count <= 0)
+        // Handle empty or entirely hidden datasets
+        if (dataSets == null || VisibleDataSets <= 0)
+        {
+            DrawNoDataText();
             return;
+        }
 
         DrawOrdinateLines();
         UpdateLineSegments();
@@ -694,6 +698,22 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
+    ///   Draws a text on the chart clarifying that there's no data to show to the user.
+    /// </summary>
+    private void DrawNoDataText()
+    {
+        var font = GetFont("jura_small", "Label");
+        var translated = TranslationServer.Translate("NO_DATA_TO_SHOW");
+
+        // Values are rounded to make the font not be blurry
+        var position = new Vector2(
+            Mathf.Round((drawArea.RectSize.x - font.GetStringSize(translated).x) / 2),
+            Mathf.Round(drawArea.RectSize.y / 2));
+
+        drawArea.DrawString(font, position, translated);
+    }
+
+    /// <summary>
     ///   Sets the y coordinate for all of the given dataset's points at the bottom of the chart.
     ///   This is used to animate the lines rising from the bottom.
     /// </summary>
@@ -781,6 +801,11 @@ public class LineChart : VBoxContainer
 
         horizontalLabelsContainer.QueueFreeChildren();
         verticalLabelsContainer.QueueFreeChildren();
+
+        // If no data is visible, don't create the labels as it will just have zero values
+        // and be potentially confusing to look at
+        if (VisibleDataSets <= 0)
+            return;
 
         // Populate the rows
         for (int i = 0; i < XAxisTicks; i++)
