@@ -2591,6 +2591,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (Colony == null)
         {
             MicrobeColony.CreateColonyForMicrobe(this);
+
+            if (Colony == null)
+            {
+                GD.PrintErr("An issue occured during colony creation!");
+                return;
+            }
+
             GD.Print("Created a new colony");
         }
 
