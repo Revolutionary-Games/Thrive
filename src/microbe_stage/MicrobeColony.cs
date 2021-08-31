@@ -42,17 +42,17 @@ public class MicrobeColony
     [JsonProperty]
     public Microbe Master { get; private set; }
 
+    public static void CreateColonyForMicrobe(Microbe microbe)
+    {
+        microbe.Colony = new MicrobeColony(microbe);
+        microbe.OnColonyMemberAdded(microbe);
+    }
+
     public void Process(float delta)
     {
         _ = delta;
 
         ColonyCompounds.DistributeCompoundSurplus();
-    }
-
-    public static void CreateColonyForMicrobe(Microbe microbe)
-    {
-        microbe.Colony = new MicrobeColony(microbe);
-        microbe.OnColonyMemberAdded(microbe);
     }
 
     public void RemoveFromColony(Microbe microbe)
