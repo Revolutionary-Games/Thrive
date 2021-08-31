@@ -721,6 +721,9 @@ public abstract class BaseThriveConverter : JsonConverter
             early.ResolveNodeReferences();
         }
 
+        if (instance == null)
+            throw new JsonException($"instanciation ended with a null instance for current type: {objectType}");
+
         return instance;
     }
 
