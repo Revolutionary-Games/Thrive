@@ -705,8 +705,10 @@ public class LineChart : VBoxContainer
         var font = GetFont("jura_small", "Label");
         var translated = TranslationServer.Translate("NO_DATA_TO_SHOW");
 
+        // Values are rounded to make the font not be blurry
         var position = new Vector2(
-            (drawArea.RectSize.x - font.GetStringSize(translated).x) / 2, drawArea.RectSize.y / 2);
+            Mathf.Round((drawArea.RectSize.x - font.GetStringSize(translated).x) / 2),
+            Mathf.Round(drawArea.RectSize.y / 2));
 
         drawArea.DrawString(font, position, translated);
     }
