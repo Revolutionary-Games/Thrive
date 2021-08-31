@@ -669,7 +669,8 @@ public abstract class BaseThriveConverter : JsonConverter
         ConstructorInfo constructor = null;
 
         // We specifically allow for private constructors to be used here
-        var potentialConstructors = objectType.GetConstructors().Concat(objectType.GetConstructors(BindingFlags.NonPublic));
+        var potentialConstructors = objectType.GetConstructors().Concat(
+            objectType.GetConstructors(BindingFlags.NonPublic));
 
         foreach (var candidate in potentialConstructors)
         {
