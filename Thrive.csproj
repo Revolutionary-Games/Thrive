@@ -69,6 +69,7 @@
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
     <Compile Include="src\general\IEntity.cs" />
+    <Compile Include="src\general\JSONHelpers.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
+    <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />

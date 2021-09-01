@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-24 10:09+0800\n"
+"POT-Creation-Date: 2021-09-01 00:50+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.9.1\n"
+"Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
@@ -240,17 +240,17 @@ msgid "ABILITIES"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2052
+#: ../src/microbe_stage/MicrobeStage.tscn:2057
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2041
+#: ../src/microbe_stage/MicrobeStage.tscn:2046
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2062
+#: ../src/microbe_stage/MicrobeStage.tscn:2067
 msgid "TOGGLE_BINDING"
 msgstr ""
 
@@ -529,36 +529,36 @@ msgid "ATP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1222
+#: ../src/microbe_stage/MicrobeStage.tscn:1227
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3042
 msgid "AMMONIA"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1276
+#: ../src/microbe_stage/MicrobeStage.tscn:1281
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3113
 msgid "PHOSPHATE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1330
+#: ../src/microbe_stage/MicrobeStage.tscn:1335
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1168
+#: ../src/microbe_stage/MicrobeStage.tscn:1173
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3077
 msgid "GLUCOSE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1516
+#: ../src/microbe_stage/MicrobeStage.tscn:1521
 msgid "OXYTOXY_NT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1384
+#: ../src/microbe_stage/MicrobeStage.tscn:1389
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
 msgid "IRON"
 msgstr ""
@@ -1530,7 +1530,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeHUD.cs:606
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -1542,69 +1542,73 @@ msgstr ""
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:263
+#: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:264
+#: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:265
+#: ../src/gui_common/TweakedColourPicker.cs:327
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:266
+#: ../src/gui_common/TweakedColourPicker.cs:328
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:270
+#: ../src/gui_common/TweakedColourPicker.cs:332
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:271
+#: ../src/gui_common/TweakedColourPicker.cs:333
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:272
+#: ../src/gui_common/TweakedColourPicker.cs:334
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:276
+#: ../src/gui_common/TweakedColourPicker.cs:338
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:277
+#: ../src/gui_common/TweakedColourPicker.cs:339
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:278
+#: ../src/gui_common/TweakedColourPicker.cs:340
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:281
+#: ../src/gui_common/TweakedColourPicker.cs:343
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:392
+#: ../src/gui_common/TweakedColourPicker.cs:492
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:40
+#: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:53
+#: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:931
-#: ../src/gui_common/charts/line/LineChart.cs:960
+#: ../src/gui_common/charts/line/LineChart.cs:706
+msgid "NO_DATA_TO_SHOW"
+msgstr ""
+
+#: ../src/gui_common/charts/line/LineChart.cs:956
+#: ../src/gui_common/charts/line/LineChart.cs:985
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:940
-#: ../src/gui_common/charts/line/LineChart.cs:968
+#: ../src/gui_common/charts/line/LineChart.cs:965
+#: ../src/gui_common/charts/line/LineChart.cs:993
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
@@ -1961,23 +1965,23 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:967
+#: ../src/microbe_stage/Microbe.cs:984
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1462
+#: ../src/microbe_stage/Microbe.cs:1479
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1469
+#: ../src/microbe_stage/Microbe.cs:1486
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1895
+#: ../src/microbe_stage/Microbe.cs:1912
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:2039
+#: ../src/microbe_stage/Microbe.cs:2056
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2013,58 +2017,58 @@ msgstr ""
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:494
+#: ../src/microbe_stage/MicrobeStage.cs:485
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:651
+#: ../src/microbe_stage/MicrobeStage.cs:614
 msgid "PLAYER_DIED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:440
+#: ../src/microbe_stage/MicrobeStage.tscn:445
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:465
+#: ../src/microbe_stage/MicrobeStage.tscn:470
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:490
+#: ../src/microbe_stage/MicrobeStage.tscn:495
 msgid "COMPOUNDS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:528
+#: ../src/microbe_stage/MicrobeStage.tscn:533
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:609
+#: ../src/microbe_stage/MicrobeStage.tscn:614
 msgid "ENVIRONMENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:876
+#: ../src/microbe_stage/MicrobeStage.tscn:881
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:932
+#: ../src/microbe_stage/MicrobeStage.tscn:937
 msgid "LIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:987
+#: ../src/microbe_stage/MicrobeStage.tscn:992
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1070
+#: ../src/microbe_stage/MicrobeStage.tscn:1075
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1454
+#: ../src/microbe_stage/MicrobeStage.tscn:1459
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1706
+#: ../src/microbe_stage/MicrobeStage.tscn:1711
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -2125,7 +2129,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1322
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
@@ -2133,11 +2137,11 @@ msgstr ""
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2251
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2257
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2258
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -2363,15 +2367,15 @@ msgstr ""
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "WITH_POPULATION"
 msgstr ""
 

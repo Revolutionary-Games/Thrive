@@ -324,6 +324,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
+    ///   Returns a squared value of <see cref="Radius"/>.
+    /// </summary>
+    [JsonIgnore]
+    public float RadiusSquared => Radius * Radius;
+
+    /// <summary>
     ///   Returns true when this microbe can enable binding mode
     /// </summary>
     public bool CanBind => organelles.Any(p => p.IsBindingAgent) || Colony != null;
