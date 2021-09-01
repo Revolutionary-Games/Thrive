@@ -1075,12 +1075,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// <summary>
     ///   Hides the organelle popup menu.
     /// </summary>
-    /// <returns>False if the organelle menu was already hidden, true otherwise.</returns>
-    public bool HideOrganelleMenu()
+    public void HideOrganelleMenu()
     {
-        bool visible = organelleMenu.Visible;
         organelleMenu.Visible = false;
-        return visible;
     }
 
     public void OnMovePressed()

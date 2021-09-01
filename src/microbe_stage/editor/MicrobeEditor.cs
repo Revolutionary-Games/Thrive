@@ -902,7 +902,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (organelle == null)
             return;
 
+        gui.HideOrganelleMenu();
+
         StartOrganelleMove(organelle);
+
+        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
+        gui.UpdateCancelButtonVisibility();
     }
 
     /// <summary>
@@ -990,14 +995,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Removes the organelle under the cursor
     /// </summary>
     [RunOnKeyDown("e_delete")]
-    public void DeleteOrganelle()
+    public void RemoveOrganelleAtMouse()
     {
-        if (gui.HideOrganelleMenu())
-        {
-            return;
-        }
-
         GetMouseHex(out int q, out int r);
+
+        var organelle = editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r));
+
+        if (organelle == null)
+            return;
+        gui.HideOrganelleMenu();
+
         RemoveOrganelle(new Hex(q, r));
     }
 
