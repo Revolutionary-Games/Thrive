@@ -17,7 +17,6 @@ public class FloatingChunkFoodSource : FoodSource
 
         if (patch.Biome.Chunks.ContainsKey("marineSnow"))
         {
-            GD.Print("BIOME " + patch.BiomeTemplate.Name + " HAS FLOATING CHUNKS");
             ChunkConfiguration chunk = patch.Biome.Chunks["marineSnow"];
             chunkSize = chunk.Size;
             totalEnergy = chunk.Compounds[glucose].Amount * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
