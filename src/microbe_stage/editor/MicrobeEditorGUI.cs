@@ -1073,7 +1073,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Hides the organelle popup menu.
+    ///   Hide the organelle popup menu
     /// </summary>
     public void HideOrganelleMenu()
     {

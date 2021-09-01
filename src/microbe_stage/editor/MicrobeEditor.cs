@@ -886,7 +886,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Begin organelle movement for the organelle under the cursor
     /// </summary>
     [RunOnKeyDown("e_move")]
-    public void StartOrganelleMoveAtMouse()
+    public void StartOrganelleMoveAtCursor()
     {
         // Can't move an organelle while already moving one
         if (MovingOrganelle != null)
@@ -992,10 +992,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Removes the organelle under the cursor
+    ///   Remove the organelle under the cursor
     /// </summary>
     [RunOnKeyDown("e_delete")]
-    public void RemoveOrganelleAtMouse()
+    public void RemoveOrganelleAtCursor()
     {
         GetMouseHex(out int q, out int r);
 
