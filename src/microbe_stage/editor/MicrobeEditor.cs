@@ -883,6 +883,29 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
+    ///   Begin organelle movement for the organelle under the cursor
+    /// </summary>
+    [RunOnKeyDown("e_move")]
+    public void StartOrganelleMoveAtMouse()
+    {
+        // Can't move an organelle while already moving one
+        if (MovingOrganelle != null)
+        {
+            gui.OnActionBlockedWhileMoving();
+            return;
+        }
+
+        GetMouseHex(out int q, out int r);
+
+        var organelle = editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r));
+
+        if (organelle == null)
+            return;
+
+        StartOrganelleMove(organelle);
+    }
+
+    /// <summary>
     ///   Cancels the current editor action
     /// </summary>
     /// <returns>True when the input is consumed</returns>
