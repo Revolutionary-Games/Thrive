@@ -9,15 +9,18 @@ public class FloatingChunkFoodSource : FoodSource
 
     private Patch patch;
     private float totalEnergy;
-    private SortedDictionary<float, float> chunkValueBySize = new SortedDictionary<float, float>();
+    private float chunkSize;
 
     public FloatingChunkFoodSource(Patch patch)
     {
         this.patch = patch;
 
-        if (patch.Biome.Chunks.ContainsKey("MARINE_SNOW"))
+        if (patch.Biome.Chunks.ContainsKey("marineSnow"))
         {
             GD.Print("BIOME " + patch.BiomeTemplate.Name + " HAS FLOATING CHUNKS");
+            ChunkConfiguration chunk = patch.Biome.Chunks["marineSnow"];
+            chunkSize = chunk.Size;
+            totalEnergy = chunk.Compounds[glucose].Amount * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
         }
     }
 
@@ -25,48 +28,20 @@ public class FloatingChunkFoodSource : FoodSource
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-
         var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         var predatorSpeed = microbeSpecies.BaseSpeed;
         predatorSpeed += ProcessSystem
             .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
                 microbeSpecies.MembraneType).FinalBalance;
 
-        return 0.0f;
-        /*// It's great if you can engulf this prey, but only if you can catch it
-        var engulfScore = 0.0f;
-        if (predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
+        var score = predatorSpeed * species.Activity;
+
+        if (predatorSize < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
         {
-            engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+            score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        engulfScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
-
-        var pilusScore = 0.0f;
-        var oxytoxyScore = 0.0f;
-        foreach (var organelle in microbeSpecies.Organelles)
-        {
-            if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
-            {
-                pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
-                continue;
-            }
-
-            foreach (var process in organelle.Definition.RunnableProcesses)
-            {
-                if (process.Process.Outputs.ContainsKey(oxytoxy))
-                {
-                    oxytoxyScore += process.Process.Outputs[oxytoxy] * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
-                }
-            }
-        }
-
-        // Pili are much more useful if the microbe can close to melee
-        pilusScore *= predatorSpeed;
-
-        // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-        return behaviorScore * (pilusScore + engulfScore + predatorSize + oxytoxyScore);*/
+        return score;
     }
 
     public override float TotalEnergyAvailable()
