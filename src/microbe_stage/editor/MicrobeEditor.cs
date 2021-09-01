@@ -999,14 +999,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         GetMouseHex(out int q, out int r);
 
-        var organelle = editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r));
+        Hex mouseHex = new Hex(q, r);
+
+        var organelle = editedMicrobeOrganelles.GetOrganelleAt(mouseHex);
 
         if (organelle == null)
             return;
 
         gui.HideOrganelleMenu();
 
-        RemoveOrganelle(new Hex(q, r));
+        RemoveOrganelle(mouseHex);
     }
 
     public float CalculateSpeed()
