@@ -5,7 +5,6 @@ using Godot;
 public class FloatingChunkFoodSource : FoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private Patch patch;
     private float totalEnergy;
