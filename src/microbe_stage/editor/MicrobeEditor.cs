@@ -904,21 +904,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         return false;
     }
 
-    /// <summary>
-    ///   Removes the organelle under the cursor
-    /// </summary>
-    [RunOnKeyDown("e_delete")]
-    public void DeleteOrganelle()
-    {
-        if (gui.HideOrganelleMenu())
-        {
-            return;
-        }
-
-        GetMouseHex(out int q, out int r);
-        RemoveOrganelle(new Hex(q, r));
-    }
-
     public void RemoveOrganelle(Hex hex)
     {
         int q = hex.Q;
@@ -976,6 +961,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 break;
             }
         }
+    }
+
+    /// <summary>
+    ///   Removes the organelle under the cursor
+    /// </summary>
+    [RunOnKeyDown("e_delete")]
+    public void DeleteOrganelle()
+    {
+        if (gui.HideOrganelleMenu())
+        {
+            return;
+        }
+
+        GetMouseHex(out int q, out int r);
+        RemoveOrganelle(new Hex(q, r));
     }
 
     public float CalculateSpeed()
