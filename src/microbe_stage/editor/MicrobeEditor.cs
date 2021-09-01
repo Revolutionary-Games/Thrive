@@ -1003,6 +1003,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (organelle == null)
             return;
+
         gui.HideOrganelleMenu();
 
         RemoveOrganelle(new Hex(q, r));
