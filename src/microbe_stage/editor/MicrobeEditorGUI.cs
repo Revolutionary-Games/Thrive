@@ -1072,6 +1072,17 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         organelleMenu.EnableMoveOption = editor.MicrobeSize > 1;
     }
 
+    /// <summary>
+    ///   Hides the organelle popup menu.
+    /// </summary>
+    /// <returns>False if the organelle menu was already hidden, true otherwise.</returns>
+    public bool HideOrganelleMenu()
+    {
+        bool showPopup = organelleMenu.ShowPopup;
+        organelleMenu.ShowPopup = false;
+        return showPopup;
+    }
+
     public void OnMovePressed()
     {
         editor.StartOrganelleMove(organelleMenu.SelectedOrganelle);

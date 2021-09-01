@@ -910,6 +910,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_delete")]
     public void DeleteOrganelle()
     {
+        if (gui.HideOrganelleMenu())
+        {
+            return;
+        }
+
         GetMouseHex(out int q, out int r);
         RemoveOrganelle(new Hex(q, r));
     }
