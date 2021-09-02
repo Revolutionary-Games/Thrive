@@ -44,6 +44,8 @@ public class PatchManager
     /// </returns>
     public bool ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
     {
+        var patchIsChanged = false;
+
         if (previousPatch != currentPatch && despawnAllowed)
         {
             if (previousPatch != null)
@@ -64,10 +66,9 @@ public class PatchManager
 
             // Clear compounds
             compoundCloudSystem.EmptyAllClouds();
-        }
 
-        // Hacky previous patch storing. Used to return whether patch is changed
-        var storedPreviousPatch = previousPatch;
+            patchIsChanged = true;
+        }
 
         previousPatch = currentPatch;
 
@@ -90,7 +91,7 @@ public class PatchManager
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
 
-        return storedPreviousPatch != currentPatch;
+        return patchIsChanged;
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)

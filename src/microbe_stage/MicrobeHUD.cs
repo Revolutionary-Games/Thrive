@@ -517,7 +517,7 @@ public class MicrobeHUD : Node
         patchLabel.Text = patchName;
     }
 
-    public void PromptPatchInfo()
+    public void PopupPatchInfo()
     {
         patchOverlayAnimator.Play("FadeInOut");
     }
