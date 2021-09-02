@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-24 10:09+0800\n"
-"PO-Revision-Date: 2021-08-31 18:14+0000\n"
+"PO-Revision-Date: 2021-09-03 06:12+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -1738,65 +1738,64 @@ msgstr "Campiona un colore dalla finestra di gioco"
 
 #: ../src/gui_common/TweakedColourPicker.cs:264
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Aggiungi ai colori personalizzati"
 
 #: ../src/gui_common/TweakedColourPicker.cs:265
-#, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr ""
+"Accendi/spegni la modalità HSV (Hue, Saturation, Value).\n"
+"Non compatibile con la modalità raw."
 
 #: ../src/gui_common/TweakedColourPicker.cs:266
-#, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr ""
+"Accendi/spegni la modalità raw.\n"
+"In modalità raw puoi impostare\n"
+"i valori di R, G e B oltre 1.0.\n"
+"Non compatibile con la modalità HSV."
 
 #: ../src/gui_common/TweakedColourPicker.cs:270
-#, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr "H: hue (tonalità), è la porzione di colore"
 
 #: ../src/gui_common/TweakedColourPicker.cs:271
-#, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr "S: saturation (saturazione), è la quantità di grigio nel colore"
 
 #: ../src/gui_common/TweakedColourPicker.cs:272
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr "V: value (valore), è la luminosità/intensità del colore"
 
 #: ../src/gui_common/TweakedColourPicker.cs:276
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr "Valore di rosso nel colore"
 
 #: ../src/gui_common/TweakedColourPicker.cs:277
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr "Valore di verde nel colore"
 
 #: ../src/gui_common/TweakedColourPicker.cs:278
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr "Valore di blu nel colore"
 
 #: ../src/gui_common/TweakedColourPicker.cs:281
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr "Valore alpha (di trasparenza) del colore"
 
 #: ../src/gui_common/TweakedColourPicker.cs:392
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "Aggiungi tasto"
+msgstr ""
+"Colore: {0}\n"
+"Tasto sinistro: Usa questo colore personalizzato\n"
+"Tasto destro: Elimina questo colore personalizzato"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:40
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:53
 msgid "RAW"
-msgstr ""
+msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:931
 #: ../src/gui_common/charts/line/LineChart.cs:960
