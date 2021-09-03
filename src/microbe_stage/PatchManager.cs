@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Manages applying patch data and setting up spawns
 /// </summary>
-public class PatchManager
+public class PatchManager : IChildPropertiesLoadCallback
 {
     private SpawnSystem spawnSystem;
     private ProcessSystem processSystem;
@@ -17,6 +17,11 @@ public class PatchManager
 
     [JsonProperty]
     private Patch previousPatch;
+
+    /// <summary>
+    ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
+    /// </summary>
+    private bool skipDespawn;
 
     // Currently active spawns
     private List<CreatedSpawner> chunkSpawners = new List<CreatedSpawner>();
@@ -37,6 +42,11 @@ public class PatchManager
 
     public GameProperties CurrentGame { get; set; }
 
+    public void OnNoPropertiesLoaded()
+    {
+        skipDespawn = true;
+    }
+
     /// <summary>
     ///   Applies all patch related settings that are needed to be
     ///   set. Like different spawners, despawning old entities if the
@@ -44,7 +54,7 @@ public class PatchManager
     /// </summary>
     public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
     {
-        if (previousPatch != currentPatch)
+        if (previousPatch != currentPatch && !skipDespawn)
         {
             if (previousPatch != null)
             {
@@ -67,6 +77,7 @@ public class PatchManager
         }
 
         previousPatch = currentPatch;
+        skipDespawn = false;
 
         GD.Print("Applying patch (", TranslationServer.Translate(currentPatch.Name), ") settings");
 
