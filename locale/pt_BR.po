@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-03 11:36+0300\n"
+"POT-Creation-Date: 2021-09-03 15:51+0300\n"
 "PO-Revision-Date: 2021-08-13 05:59+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -1400,7 +1400,7 @@ msgstr "Sair"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor de Micróbio Livre"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1164
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1172
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1417,264 +1417,277 @@ msgstr ""
 "problemas. Tente atualizar seus drivers de vídeo e/ou forçar o uso do AMD "
 "ou Nvidia."
 
-#: ../src/general/OptionsMenu.cs:791
+#: ../src/general/OptionsMenu.cs:798
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Serviço padrão de saída"
 
-#: ../src/general/OptionsMenu.tscn:134
+#: ../src/general/OptionsMenu.cs:838
+msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
+msgstr ""
+
+#: ../src/general/OptionsMenu.cs:842
+msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
+msgstr ""
+
+#: ../src/general/OptionsMenu.cs:846
+#, fuzzy
+msgid "LANGUAGE_TRANSLATION_PROGRESS"
+msgstr "Ajude a traduzir o jogo"
+
+#: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
-#: ../src/general/OptionsMenu.tscn:145
+#: ../src/general/OptionsMenu.tscn:146
 msgid "SOUND"
 msgstr "Som"
 
-#: ../src/general/OptionsMenu.tscn:156
+#: ../src/general/OptionsMenu.tscn:157
 msgid "PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/OptionsMenu.tscn:167
+#: ../src/general/OptionsMenu.tscn:168
 msgid "INPUTS"
 msgstr "Entradas"
 
-#: ../src/general/OptionsMenu.tscn:178
+#: ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "Diversos"
 
-#: ../src/general/OptionsMenu.tscn:211
+#: ../src/general/OptionsMenu.tscn:212
 msgid "VSYNC"
 msgstr "Sincronização vertical"
 
-#: ../src/general/OptionsMenu.tscn:219
+#: ../src/general/OptionsMenu.tscn:220
 msgid "FULLSCREEN"
 msgstr "Tela Cheia"
 
-#: ../src/general/OptionsMenu.tscn:241
+#: ../src/general/OptionsMenu.tscn:242
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:248
+#: ../src/general/OptionsMenu.tscn:249
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores mais altos diminuem a performance)"
 
-#: ../src/general/OptionsMenu.tscn:278
+#: ../src/general/OptionsMenu.tscn:279
 msgid "RESOLUTION"
 msgstr "Resolução:"
 
-#: ../src/general/OptionsMenu.tscn:291
+#: ../src/general/OptionsMenu.tscn:292
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:301
+#: ../src/general/OptionsMenu.tscn:302
 msgid "MAX_FPS"
 msgstr "FPS máximo:"
 
-#: ../src/general/OptionsMenu.tscn:327
+#: ../src/general/OptionsMenu.tscn:328
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correção de Cor (daltonismo):"
 
-#: ../src/general/OptionsMenu.tscn:359
+#: ../src/general/OptionsMenu.tscn:360
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberração Cromática:"
 
-#: ../src/general/OptionsMenu.tscn:386
+#: ../src/general/OptionsMenu.tscn:387
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Exibir Barra de Habilidades"
 
-#: ../src/general/OptionsMenu.tscn:395
+#: ../src/general/OptionsMenu.tscn:396
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efeitos de luz na interface"
 
-#: ../src/general/OptionsMenu.tscn:421
+#: ../src/general/OptionsMenu.tscn:422
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
-#: ../src/general/OptionsMenu.tscn:448 ../src/general/OptionsMenu.tscn:489
-#: ../src/general/OptionsMenu.tscn:522 ../src/general/OptionsMenu.tscn:555
-#: ../src/general/OptionsMenu.tscn:588
+#: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:490
+#: ../src/general/OptionsMenu.tscn:523 ../src/general/OptionsMenu.tscn:556
+#: ../src/general/OptionsMenu.tscn:589
 msgid "MUTE"
 msgstr "Silenciar"
 
-#: ../src/general/OptionsMenu.tscn:462
+#: ../src/general/OptionsMenu.tscn:463
 msgid "MUSIC_VOLUME"
 msgstr "Volume da Música"
 
-#: ../src/general/OptionsMenu.tscn:495
+#: ../src/general/OptionsMenu.tscn:496
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume do Ambiente"
 
-#: ../src/general/OptionsMenu.tscn:528
+#: ../src/general/OptionsMenu.tscn:529
 msgid "SFX_VOLUME"
 msgstr "Volume dos Efeitos Sonoros"
 
-#: ../src/general/OptionsMenu.tscn:561
+#: ../src/general/OptionsMenu.tscn:562
 msgid "GUI_VOLUME"
 msgstr "Volume da Interface"
 
-#: ../src/general/OptionsMenu.tscn:606
+#: ../src/general/OptionsMenu.tscn:607
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de saída de aúdio:"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:632
 msgid "LANGUAGE"
 msgstr "Idioma:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1175
+#: ../src/general/OptionsMenu.tscn:647 ../src/general/OptionsMenu.tscn:1183
 msgid "RESET"
 msgstr "Configuração padrão"
 
-#: ../src/general/OptionsMenu.tscn:657
+#: ../src/general/OptionsMenu.tscn:665
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Ajude a traduzir o jogo"
 
-#: ../src/general/OptionsMenu.tscn:683
+#: ../src/general/OptionsMenu.tscn:691
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
 
-#: ../src/general/OptionsMenu.tscn:698
+#: ../src/general/OptionsMenu.tscn:706
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Intervalo Mínimo da Simulação \n"
 "de Nuvens:"
 
-#: ../src/general/OptionsMenu.tscn:705 ../src/general/OptionsMenu.tscn:747
+#: ../src/general/OptionsMenu.tscn:713 ../src/general/OptionsMenu.tscn:755
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valores mais altos melhoram a performance)"
 
-#: ../src/general/OptionsMenu.tscn:740
+#: ../src/general/OptionsMenu.tscn:748
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor da Resolução de Nuvens:"
 
-#: ../src/general/OptionsMenu.tscn:782
+#: ../src/general/OptionsMenu.tscn:790
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Usar a auto-evo durante o jogo"
 
-#: ../src/general/OptionsMenu.tscn:802
+#: ../src/general/OptionsMenu.tscn:810
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "Selecionado:"
 
-#: ../src/general/OptionsMenu.tscn:819
+#: ../src/general/OptionsMenu.tscn:827
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Salvar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:846
+#: ../src/general/OptionsMenu.tscn:854
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:859
+#: ../src/general/OptionsMenu.tscn:867
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:960
+#: ../src/general/OptionsMenu.tscn:968
 msgid "RESET_INPUTS"
 msgstr "Redefinir entradas"
 
-#: ../src/general/OptionsMenu.tscn:988
+#: ../src/general/OptionsMenu.tscn:996
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Reproduzir o vídeo de introdução"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1005
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Reproduzir a introdução do Estágio Microbial em novo jogo"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1014
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvamento automático durante o jogo"
 
-#: ../src/general/OptionsMenu.tscn:1017
+#: ../src/general/OptionsMenu.tscn:1025
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Quantidade de salvamentos automáticos para manter:"
 
-#: ../src/general/OptionsMenu.tscn:1045
+#: ../src/general/OptionsMenu.tscn:1053
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Quantidade de salvamentos rápidos para manter:"
 
-#: ../src/general/OptionsMenu.tscn:1071
+#: ../src/general/OptionsMenu.tscn:1079
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriais (em novos jogos)"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriais (no jogo atual)"
 
-#: ../src/general/OptionsMenu.tscn:1095
+#: ../src/general/OptionsMenu.tscn:1103
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheats ativados"
 
-#: ../src/general/OptionsMenu.tscn:1107
+#: ../src/general/OptionsMenu.tscn:1115
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar um nome personalizado"
 
-#: ../src/general/OptionsMenu.tscn:1118
+#: ../src/general/OptionsMenu.tscn:1126
 msgid "CUSTOM_USERNAME"
 msgstr "Nome Personalizado:"
 
-#: ../src/general/OptionsMenu.tscn:1144
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Abrir a pasta de capturas de tela"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Abrir pasta de logs"
 
-#: ../src/general/OptionsMenu.tscn:1187 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1195 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Salvar"
 
-#: ../src/general/OptionsMenu.tscn:1204
+#: ../src/general/OptionsMenu.tscn:1212
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Padrão"
 
-#: ../src/general/OptionsMenu.tscn:1216
+#: ../src/general/OptionsMenu.tscn:1224
 msgid "RESET_TO_DEFAULTS"
 msgstr "Redefinir para as configurações padrão?"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1233
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Redefinir TODAS as configurações para os valores padrão?"
 
-#: ../src/general/OptionsMenu.tscn:1239
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Redefinir entradas para configurações padrão?"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1256
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Deseja redefinir as entradas para as configurações padrão?"
 
-#: ../src/general/OptionsMenu.tscn:1262
+#: ../src/general/OptionsMenu.tscn:1270
 msgid "CLOSE_OPTIONS"
 msgstr "Fechar opções?"
 
-#: ../src/general/OptionsMenu.tscn:1282
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Você tem mudanças não salvas que serão descartadas.\n"
 "Deseja continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1304
+#: ../src/general/OptionsMenu.tscn:1312
 msgid "SAVE_AND_CONTINUE"
 msgstr "Salvar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1321
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar e continuar"
 
-#: ../src/general/OptionsMenu.tscn:1329
+#: ../src/general/OptionsMenu.tscn:1337
 msgid "CANCEL"
 msgstr "Cancelar"
 
-#: ../src/general/OptionsMenu.tscn:1341 ../src/general/OptionsMenu.tscn:1364
-#: ../src/general/OptionsMenu.tscn:1388
+#: ../src/general/OptionsMenu.tscn:1349 ../src/general/OptionsMenu.tscn:1372
+#: ../src/general/OptionsMenu.tscn:1396
 msgid "ERROR"
 msgstr "Erro"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1389
+#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1397
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Erro: Falha ao salvar as novas opções para o arquivo de configurações."
@@ -2367,23 +2380,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.cs:984
+#: ../src/microbe_stage/Microbe.cs:982
 msgid "DEATH"
 msgstr "morte"
 
-#: ../src/microbe_stage/Microbe.cs:1479
+#: ../src/microbe_stage/Microbe.cs:1483
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "busca de recursos bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.cs:1486
+#: ../src/microbe_stage/Microbe.cs:1490
 msgid "SUCCESSFUL_KILL"
 msgstr "caça bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.cs:1912
+#: ../src/microbe_stage/Microbe.cs:1916
 msgid "REPRODUCED"
 msgstr "reproduziu"
 
-#: ../src/microbe_stage/Microbe.cs:2056
+#: ../src/microbe_stage/Microbe.cs:2060
 msgid "ESCAPE_ENGULFING"
 msgstr "escapou de predação"
 
