@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-01 00:50+0700\n"
-"PO-Revision-Date: 2021-08-27 14:24+0000\n"
+"PO-Revision-Date: 2021-08-31 18:14+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -1733,69 +1733,68 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Избиране на цвят от прозореца на играта"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Добавяне на текущия цвят като шаблон"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
-#, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr ""
+"Превключване на ОНС (oттенък, наситеност и стойност).\n"
+"Не може да се използва заедно с необработените цветове."
 
 #: ../src/gui_common/TweakedColourPicker.cs:328
-#, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr ""
+"Превключване на необработените цветове.\n"
+"Стойностите на Ч, З, С\n"
+"може да надвишат 1,0.\n"
+"Не може да се използва заедно с ОНС."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
-#, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Оттенък – част от цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
-#, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Наситеност – количеството на сивото в цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност (яркост) – интензивността на цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност на червеното"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност на зеленото"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност на синьото"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност на прозрачността"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr ""
+"Цвят: {0}\n"
+"Ляв бутон: Използване на шаблона\n"
+"Десен бутон: Изтриване на шаблона"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "ОНС"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "НЦ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
