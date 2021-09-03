@@ -137,6 +137,9 @@ public class ChemicalEquation : VBoxContainer
         {
             if (perSecondLabel != null)
                 perSecondLabel.Text = TranslationServer.Translate("PER_SECOND_SLASH");
+
+            if (environmentSeparator != null)
+                environmentSeparator.Text = GetEnvironmentLabelText();
         }
     }
 
@@ -260,7 +263,7 @@ public class ChemicalEquation : VBoxContainer
             {
                 environmentSeparator = new Label
                 {
-                    Text = "@",
+                    Text = GetEnvironmentLabelText(),
                     RectMinSize = new Vector2(30, 20),
                     Align = Label.AlignEnum.Center,
                 };
@@ -288,5 +291,10 @@ public class ChemicalEquation : VBoxContainer
             if (environmentSection != null)
                 environmentSection.Visible = false;
         }
+    }
+
+    private string GetEnvironmentLabelText()
+    {
+        return TranslationServer.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
     }
 }
