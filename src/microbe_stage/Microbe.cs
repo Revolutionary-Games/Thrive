@@ -462,8 +462,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Setup tracking running processes
             ProcessStatistics = new ProcessStatistics();
 
-            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
-
             GD.Print("Player Microbe spawned");
         }
 
@@ -1359,6 +1357,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 OnReproductionStatus(this, true);
             }
         }
+    }
+
+    public override void _EnterTree()
+    {
+        if (IsPlayerMicrobe)
+            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
     }
 
     public override void _ExitTree()
