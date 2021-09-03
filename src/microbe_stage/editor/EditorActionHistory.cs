@@ -63,7 +63,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                     case MicrobeActionInterferenceMode.CancelsOut:
                         cache.RemoveAt(compareIndex);
                         cache.RemoveAt(compareToIndex);
-                        compareIndex--;
+                        compareIndex -= 2;
                         copyLength -= 2;
                         break;
                     default:

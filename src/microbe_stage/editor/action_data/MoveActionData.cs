@@ -34,7 +34,9 @@ public class MoveActionData : MicrobeEditorActionData
         }
 
         // If this organelle got placed in this session
-        if (other is PlacementActionData placementActionData && placementActionData.Organelle == Organelle)
+        if (other is PlacementActionData placementActionData &&
+            placementActionData.Organelle.Definition == Organelle.Definition &&
+            placementActionData.Location == OldLocation)
             return MicrobeActionInterferenceMode.Combinable;
 
         return MicrobeActionInterferenceMode.NoInterference;
