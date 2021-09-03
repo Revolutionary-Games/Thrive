@@ -99,6 +99,9 @@ public static class Constants
     /// </summary>
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
 
+    public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
+    public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
+
     /// <summary>
     ///   How often the microbe AI processes each microbe
     /// </summary>
