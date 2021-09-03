@@ -299,7 +299,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         patchManager.CurrentGame = CurrentGame;
 
-        UpdatePatchSettings();
+        UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
     }
@@ -510,7 +510,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void OnReturnFromEditor()
     {
-        UpdatePatchSettings(true);
+        UpdatePatchSettings();
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -624,12 +624,11 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
     }
 
-    private void UpdatePatchSettings(bool returningFromEditor = false)
+    private void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch) &&
-            returningFromEditor)
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch) && promptPatchNameChange)
         {
             HUD.PopupPatchInfo();
         }
