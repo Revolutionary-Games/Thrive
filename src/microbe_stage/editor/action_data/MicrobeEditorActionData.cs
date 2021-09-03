@@ -16,7 +16,8 @@ public abstract class MicrobeEditorActionData
 
     /// <summary>
     ///   Combines two actions to one if possible.
-    ///   Call <see cref="MicrobeEditorActionData.GetInterferenceModeWith"/> first and check if it returns <see cref="MicrobeActionInterferenceMode.Combinable"/>
+    ///   Call <see cref="MicrobeEditorActionData.GetInterferenceModeWith"/> first and check if it returns
+    ///   <see cref="MicrobeActionInterferenceMode.Combinable"/>
     /// </summary>
     /// <param name="other">The action this should be combined with</param>
     /// <returns>Returns the combined action</returns>
