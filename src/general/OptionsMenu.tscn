@@ -69,6 +69,7 @@ GUIMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBox
 AudioOutputDeviceSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/AudioOutputDevicesButton")
 LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
 ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
+LanguageProgressLabelPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/LanguageProgress")
 PerformanceTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance")
 CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval")
 CloudResolutionTitlePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer")
@@ -601,15 +602,13 @@ margin_right = 648.0
 margin_bottom = 370.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
-margin_right = 66.0
+margin_right = 208.0
 margin_bottom = 22.0
 text = "AUDIO_OUTPUT_DEVICE"
 align = 1
 
 [node name="AudioOutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
-anchor_left = -0.00308642
-anchor_right = -0.00308642
-margin_left = 70.0
+margin_left = 212.0
 margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
@@ -650,10 +649,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+[node name="LanguageProgress" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
 margin_top = 426.0
 margin_right = 648.0
-margin_bottom = 458.0
+margin_bottom = 448.0
+text = "Language progress % goes here"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+margin_top = 458.0
+margin_right = 648.0
+margin_bottom = 490.0
 text = "OPEN_TRANSLATION_SITE"
 
 [node name="Performance" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
