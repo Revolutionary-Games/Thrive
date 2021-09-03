@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Manages applying patch data and setting up spawns
@@ -13,8 +14,8 @@ public class PatchManager
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
-    private GameProperties currentGame;
 
+    [JsonProperty]
     private Patch previousPatch;
 
     // Currently active spawns
@@ -31,17 +32,19 @@ public class PatchManager
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
-        this.currentGame = currentGame;
+        CurrentGame = currentGame;
     }
+
+    public GameProperties CurrentGame { get; set; }
 
     /// <summary>
     ///   Applies all patch related settings that are needed to be
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
     {
-        if (previousPatch != currentPatch && despawnAllowed)
+        if (previousPatch != currentPatch)
         {
             if (previousPatch != null)
             {
@@ -149,7 +152,7 @@ public class PatchManager
                 {
                     var spawner = new CreatedSpawner(name);
                     spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                        compoundCloudSystem, currentGame);
+                        compoundCloudSystem, CurrentGame);
 
                     spawnSystem.AddSpawnType(spawner.Spawner, density,
                         Constants.MICROBE_SPAWN_RADIUS);
