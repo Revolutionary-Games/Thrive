@@ -264,6 +264,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (state == value)
                 return;
 
+            // Engulfing is not legal for microbes will cell walls
+            if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
+            {
+                GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
+                return;
+            }
+
             state = value;
             if (Colony != null)
                 Colony.State = value;
@@ -315,6 +322,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return radius;
         }
     }
+
+    /// <summary>
+    ///   Returns a squared value of <see cref="Radius"/>.
+    /// </summary>
+    [JsonIgnore]
+    public float RadiusSquared => Radius * Radius;
 
     /// <summary>
     ///   Returns true when this microbe can enable binding mode
@@ -777,6 +790,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // Disallow cannibalism
         if (target.Species == Species)
+            return false;
+
+        // Membranes with Cell Wall cannot engulf
+        if (Membrane.Type.CellWall)
             return false;
 
         // Needs to be big enough to engulf
@@ -2534,6 +2551,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
+    private bool CanBindToMicrobe(Microbe other)
+    {
+        // Cannot hijack the player, other species or other colonies (TODO: yet)
+        return !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
+    }
+
     private void CheckBinding()
     {
         if (State != MicrobeState.Binding)
@@ -2545,10 +2568,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
-        var other = touchedMicrobes.FirstOrDefault();
+        var other = touchedMicrobes.FirstOrDefault(CanBindToMicrobe);
 
-        // Cannot hijack the player, other species or other colonies (TODO: yet)
-        if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
+        // If there is no touching microbe that can bind, no need to invoke binding.
+        if (other == null)
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
@@ -2557,17 +2580,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void BeginBind()
     {
-        var other = touchedMicrobes.FirstOrDefault();
+        var other = touchedMicrobes.FirstOrDefault(CanBindToMicrobe);
 
         if (other == null)
         {
-            GD.PrintErr("Touched microbe has disappeared before binding could start");
-            return;
-        }
-
-        if (other.Colony != null)
-        {
-            GD.PrintErr("Can't bind to a cell that is suddenly in a colony");
+            GD.PrintErr("Touched eligible microbe has disappeared before binding could start");
             return;
         }
 
