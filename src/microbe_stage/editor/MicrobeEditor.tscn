@@ -347,6 +347,7 @@ texture = ExtResource( 89 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
 [node name="MicrobeEditor" type="Node"]
+pause_mode = 2
 process_priority = -1
 script = ExtResource( 2 )
 __meta__ = {
@@ -1534,8 +1535,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
-margin_right = 327.0
-margin_bottom = 897.0
+margin_right = 318.0
+margin_bottom = 889.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -1544,8 +1545,8 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
-margin_right = 317.0
-margin_bottom = 897.0
+margin_right = 308.0
+margin_bottom = 889.0
 custom_constants/separation = 15
 
 [node name="MembraneTypes" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
@@ -1674,10 +1675,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 322.0
-margin_bottom = 520.0
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 326.0
+margin_bottom = 524.0
 RawButtonEnabled = false
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
