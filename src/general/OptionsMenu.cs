@@ -109,6 +109,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath ResetLanguageButtonPath;
 
+    [Export]
+    public NodePath LanguageProgressLabelPath;
+
     // Performance tab.
     [Export]
     public NodePath PerformanceTabPath;
@@ -234,6 +237,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton audioOutputDeviceSelection;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
+    private Label languageProgressLabel;
 
     // Performance tab
     private Control performanceTab;
@@ -351,6 +355,8 @@ public class OptionsMenu : ControlWithInput
         audioOutputDeviceSelection = GetNode<OptionButton>(AudioOutputDeviceSelectionPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
+        languageProgressLabel = GetNode<Label>(LanguageProgressLabelPath);
+
         LoadLanguages();
         LoadAudioOutputDevices();
 
@@ -492,6 +498,7 @@ public class OptionsMenu : ControlWithInput
         // Hide or show the reset language button based on the selected language
         resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
             settings.SelectedLanguage.Value != Settings.DefaultLanguage;
+        UpdateCurrentLanguageProgress();
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
@@ -809,6 +816,37 @@ public class OptionsMenu : ControlWithInput
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
             languageSelection.AddItem(locale + " - " + native);
         }
+    }
+
+    private void UpdateCurrentLanguageProgress()
+    {
+        if (!SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress
+            .TryGetValue(TranslationServer.GetLocale(), out float progress))
+        {
+            GD.PrintErr("Unknown progress for current locale");
+            progress = -1;
+        }
+        else
+        {
+            progress *= 100;
+        }
+
+        string textFormat;
+
+        if (progress >= 0 && progress < Constants.TRANSLATION_VERY_INCOMPLETE_THRESHOLD)
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW");
+        }
+        else if (progress >= 0 && progress < Constants.TRANSLATION_INCOMPLETE_THRESHOLD)
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS_LOW");
+        }
+        else
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS");
+        }
+
+        languageProgressLabel.Text = string.Format(CultureInfo.CurrentCulture, textFormat, Mathf.Floor(progress));
     }
 
     /*
@@ -1278,6 +1316,7 @@ public class OptionsMenu : ControlWithInput
 
         Settings.Instance.ApplyLanguageSettings();
         UpdateResetSaveButtonState();
+        UpdateCurrentLanguageProgress();
     }
 
     private void OnResetLanguagePressed()
@@ -1288,6 +1327,7 @@ public class OptionsMenu : ControlWithInput
         Settings.Instance.ApplyLanguageSettings();
         UpdateSelectedLanguage(Settings.Instance);
         UpdateResetSaveButtonState();
+        UpdateCurrentLanguageProgress();
     }
 
     private void OnTranslationSitePressed()

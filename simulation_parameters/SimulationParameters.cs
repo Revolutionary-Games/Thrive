@@ -23,6 +23,7 @@ public class SimulationParameters : Node
     private readonly AutoEvoConfiguration autoEvoConfiguration;
     private readonly List<NamedInputGroup> inputGroups;
     private readonly Dictionary<string, Gallery> gallery;
+    private readonly TranslationsInfo translationsInfo;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -71,6 +72,9 @@ public class SimulationParameters : Node
             LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/auto-evo_parameters.json");
 
         gallery = LoadRegistry<Gallery>("res://simulation_parameters/common/gallery.json");
+
+        translationsInfo =
+            LoadDirectObject<TranslationsInfo>("res://simulation_parameters/common/translations_info.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -189,6 +193,11 @@ public class SimulationParameters : Node
     public Gallery GetGallery(string name)
     {
         return gallery[name];
+    }
+
+    public TranslationsInfo GetTranslationsInfo()
+    {
+        return translationsInfo;
     }
 
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
@@ -344,6 +353,7 @@ public class SimulationParameters : Node
 
         NameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
+        translationsInfo.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()
