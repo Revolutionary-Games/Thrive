@@ -15,6 +15,7 @@ require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
 require_relative 'scripts/check_file_list'
 require_relative 'scripts/po_helpers'
+require_relative 'scripts/json_helpers'
 
 MAX_LINE_LENGTH = 120
 DUPLICATE_THRESHOLD = 105
@@ -228,7 +229,7 @@ end
 def handle_json_file(path)
   digest_before = Digest::MD5.hexdigest File.read(path, encoding: 'utf-8')
 
-  if runSystemSafe('jsonlint', '-i', path, '--indent', '    ') != 0
+  unless jsonlint_on_file(path)
     OUTPUT_MUTEX.synchronize do
       error 'JSONLint failed on file'
     end

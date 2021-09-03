@@ -6,6 +6,7 @@ require 'json'
 require_relative '../RubySetupSystem/RubyCommon'
 
 require_relative 'po_helpers'
+require_relative 'json_helpers'
 
 TOP_LEVEL_FILE_FOR_FOLDER_DETECT = 'Thrive.sln'
 
@@ -73,7 +74,7 @@ def calculate_stats_for(path)
     end
   end
 
-  if !last_already_blank && (last_msgstr.strip.empty? || next_fuzzy)
+  if !last_already_blank && (last_msgstr.strip.empty? || fuzzy)
     puts "Last is fuzzy or blank (#{next_fuzzy}) #{last_msgstr}"
     blank_translations += 1
   end
@@ -97,7 +98,7 @@ def run
   stats = { TranslationProgress: progress }
 
   Dir["#{base_path}locale/**/*.po"].each do |f|
-  # Dir["#{base_path}locale/**/frm.po"].each do |f|
+    # Dir["#{base_path}locale/**/frm.po"].each do |f|
     value = calculate_stats_for f
     puts "Progress of #{f}: #{value * 100}%"
     progress[File.basename(f, File.extname(f))] = value
@@ -105,9 +106,12 @@ def run
 
   json_file = "#{base_path}simulation_parameters/common/translations_info.json"
 
-  File.write json_file,             JSON.generate(stats)
+  File.write json_file, JSON.generate(stats)
 
-  runOpen3Checked("jsonlint", "-i", json_file)
+  unless jsonlint_on_file(json_file)
+    puts 'Failed to run jsonlint'
+    exit 2
+  end
 end
 
 run
