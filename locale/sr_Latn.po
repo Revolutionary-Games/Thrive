@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 00:50+0700\n"
+"POT-Creation-Date: 2021-09-03 11:36+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio."
@@ -719,7 +719,7 @@ msgid "NITROGEN"
 msgstr "Azot"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3466
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3473
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
 msgid "SUNLIGHT"
 msgstr "Sunčeva Svetlost"
@@ -1399,7 +1399,7 @@ msgstr "Odustati"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1164
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1417,248 +1417,269 @@ msgstr ""
 "i / ili prisilite AMD ili Nvidia grafiku da se koristi za pokretanje "
 "programa Thrive."
 
-#: ../src/general/OptionsMenu.cs:758
+#: ../src/general/OptionsMenu.cs:791
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:129
+#: ../src/general/OptionsMenu.tscn:134
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:140
+#: ../src/general/OptionsMenu.tscn:145
 msgid "SOUND"
 msgstr "Zvuk"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:156
 msgid "PERFORMANCE"
 msgstr "Performanse"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:167
 msgid "INPUTS"
 msgstr "Unosi"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:178
 msgid "MISC"
 msgstr "Ostalo"
 
-#: ../src/general/OptionsMenu.tscn:206
+#: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:219
 msgid "FULLSCREEN"
 msgstr "Ceo ekran"
 
-#: ../src/general/OptionsMenu.tscn:236
+#: ../src/general/OptionsMenu.tscn:241
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:248
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(veće vrednosti pogoršavaju performanse)"
 
-#: ../src/general/OptionsMenu.tscn:273
+#: ../src/general/OptionsMenu.tscn:278
 msgid "RESOLUTION"
 msgstr "Rezolucija:"
 
-#: ../src/general/OptionsMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:291
 msgid "AUTO"
 msgstr "automatski"
 
-#: ../src/general/OptionsMenu.tscn:296
+#: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
 msgstr "Maksimalni FPS:"
 
-#: ../src/general/OptionsMenu.tscn:322
+#: ../src/general/OptionsMenu.tscn:327
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Korekcija daltonista:"
 
-#: ../src/general/OptionsMenu.tscn:354
+#: ../src/general/OptionsMenu.tscn:359
 msgid "CHROMATIC_ABERRATION"
 msgstr "Hromatske aberacije:"
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:386
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Sposobnosti"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:395
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Spoljni efekti:"
 
-#: ../src/general/OptionsMenu.tscn:416
+#: ../src/general/OptionsMenu.tscn:421
 msgid "MASTER_VOLUME"
 msgstr "Glavna jačina zvuka"
 
-#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
-#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
-#: ../src/general/OptionsMenu.tscn:583
+#: ../src/general/OptionsMenu.tscn:448 ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:522 ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:588
 msgid "MUTE"
 msgstr "Priguši zvuk"
 
-#: ../src/general/OptionsMenu.tscn:457
+#: ../src/general/OptionsMenu.tscn:462
 msgid "MUSIC_VOLUME"
 msgstr "Jačina muzike"
 
-#: ../src/general/OptionsMenu.tscn:490
+#: ../src/general/OptionsMenu.tscn:495
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambijenta jačina zvuka"
 
-#: ../src/general/OptionsMenu.tscn:523
+#: ../src/general/OptionsMenu.tscn:528
 msgid "SFX_VOLUME"
 msgstr "Tom od zvučnih efekata"
 
-#: ../src/general/OptionsMenu.tscn:556
+#: ../src/general/OptionsMenu.tscn:561
 msgid "GUI_VOLUME"
 msgstr "Tom od interfejs"
 
-#: ../src/general/OptionsMenu.tscn:601
+#: ../src/general/OptionsMenu.tscn:606
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:633
 msgid "LANGUAGE"
 msgstr "Jezik:"
 
-#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1175
 msgid "RESET"
 msgstr "Resetovati"
 
-#: ../src/general/OptionsMenu.tscn:652
+#: ../src/general/OptionsMenu.tscn:657
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:678
+#: ../src/general/OptionsMenu.tscn:683
 msgid "COMPOUND_CLOUDS"
 msgstr "Oblak jedinjenja"
 
-#: ../src/general/OptionsMenu.tscn:693
+#: ../src/general/OptionsMenu.tscn:698
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Minimum Interval od Simulacije\n"
 "Oblaka:"
 
-#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:705 ../src/general/OptionsMenu.tscn:747
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(veće vrednosti poboljšavaju performanse)"
 
-#: ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:740
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Delitelj Oblačne Rezolucije:"
 
-#: ../src/general/OptionsMenu.tscn:777
+#: ../src/general/OptionsMenu.tscn:782
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Pokrenite automatsku-evoluciju tokom igranja"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:802
+msgid "DETECTED_CPU_COUNT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:819
+#, fuzzy
+msgid "ACTIVE_THREAD_COUNT"
+msgstr "Sačuvaj i nastavi"
+
+#: ../src/general/OptionsMenu.tscn:834
+msgid "ASSUME_HYPERTHREADING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:846
+msgid "USE_MANUAL_THREAD_COUNT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:859
+msgid "THREADS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:960
 msgid "RESET_INPUTS"
 msgstr "Resetujte Unosi"
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:988
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Pusti uvodni video"
 
-#: ../src/general/OptionsMenu.tscn:887
+#: ../src/general/OptionsMenu.tscn:997
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Pustite uvodni video za mikrobe na Novoj Igri"
 
-#: ../src/general/OptionsMenu.tscn:896
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatsko čuvanje tokom igre"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:1017
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Količina automatskog čuvanja da zadržati:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:1045
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Količina brzog čuvanja da zadržati:"
 
-#: ../src/general/OptionsMenu.tscn:961
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Prikaži vodiče (u novim igrama)"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:1079
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Prikaži vodiče (u trenutnoj igri)"
 
-#: ../src/general/OptionsMenu.tscn:985
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Uključi tasteri za varanja"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1107
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Koristite prilagođeno korisničko ime"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1118
 msgid "CUSTOM_USERNAME"
 msgstr "Korisničko ime:"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1187 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Sačuvati"
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1204
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Podrazumevane vrednosti"
 
-#: ../src/general/OptionsMenu.tscn:1106
+#: ../src/general/OptionsMenu.tscn:1216
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetuj do početnog?"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1225
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Da li ste sigurni da želite da vratite SVA podešavanja na podrazumevane "
 "vrednosti?"
 
-#: ../src/general/OptionsMenu.tscn:1129
+#: ../src/general/OptionsMenu.tscn:1239
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetovati unose na podrazumevane vrednosti?"
 
-#: ../src/general/OptionsMenu.tscn:1138
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Da li ste sigurni da želite da vratite postavke unosa na podrazumevane "
 "vrednosti?"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1262
 msgid "CLOSE_OPTIONS"
 msgstr "Zatvoriti opcije?"
 
-#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/OptionsMenu.tscn:1282
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Imate nesačuvane promene koje će biti odbačene.\n"
 "Da li želite da nastavite?"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "SAVE_AND_CONTINUE"
 msgstr "Sačuvaj i nastavi"
 
-#: ../src/general/OptionsMenu.tscn:1203
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Odbaci i nastavi"
 
-#: ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1329
 msgid "CANCEL"
 msgstr "Otkazati"
 
-#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1341 ../src/general/OptionsMenu.tscn:1364
+#: ../src/general/OptionsMenu.tscn:1388
 msgid "ERROR"
 msgstr "Greška"
 
-#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1389
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Greška: Nije uspelo čuvanje novih postavki u konfiguracionoj datoteci."
@@ -1701,8 +1722,12 @@ msgid "KILO_ABBREVIATION"
 msgstr ""
 
 #: ../src/gui_common/ChemicalEquation.cs:139
-#: ../src/gui_common/ChemicalEquation.cs:176
+#: ../src/gui_common/ChemicalEquation.cs:179
 msgid "PER_SECOND_SLASH"
+msgstr ""
+
+#: ../src/gui_common/ChemicalEquation.cs:298
+msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
@@ -2369,7 +2394,7 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3452
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
@@ -2381,7 +2406,11 @@ msgstr ""
 "potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u "
 "okolini usporiće brzinu njegove proizvodnje ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3461
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
+msgid "ASSUME_HYPERTHREADING_TOOLTIP"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
@@ -2568,11 +2597,11 @@ msgstr "Učitavanje Uređivača Mikroba"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čeka se automatska-evolucija:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2257
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2272
 msgid "AUTO_EVO_FAILED"
 msgstr "Automatska-evolucija nije uspela"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2258
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2273
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status pokretanja:"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 00:50+0700\n"
-"PO-Revision-Date: 2021-07-23 08:24+0000\n"
+"POT-Creation-Date: 2021-09-03 11:36+0300\n"
+"PO-Revision-Date: 2021-08-31 18:14+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -450,7 +450,7 @@ msgstr "Palauta kameran alkusijainti"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Peruuta nykyinen toimenpide"
 
 #: ../simulation_parameters/common/input_options.json:139
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -699,7 +699,7 @@ msgid "NITROGEN"
 msgstr "Typpi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3466
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3473
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
 msgid "SUNLIGHT"
 msgstr "Auringonvalo"
@@ -756,7 +756,7 @@ msgstr "Protoplasma"
 #: ../simulation_parameters/microbe_stage/organelles.json:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:519
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "Kemosyntetisoivat proteiinit"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:811
@@ -955,7 +955,7 @@ msgstr "Alas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr ""
+msgstr "Valikko"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
@@ -967,7 +967,7 @@ msgstr "Takaisin"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Stop"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
@@ -975,15 +975,15 @@ msgstr "Virkistä"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Hae"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Valmiustila"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "Avaa osoite"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
@@ -999,7 +999,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Välilyönti"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
@@ -1099,11 +1099,11 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Toista"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Pysäytä"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIAPREVIOUS"
@@ -1111,7 +1111,7 @@ msgstr "Media edellinen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Seuraava kappale"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
@@ -1311,7 +1311,7 @@ msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Taidetta, jonka tekijä on {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1362,7 +1362,7 @@ msgstr "Lopeta"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrobien vapaa rakentelu"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1164
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
@@ -1376,244 +1376,266 @@ msgstr "GLES2-moodi Varoitus"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:758
+#: ../src/general/OptionsMenu.cs:791
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Oletus ulostulolaite"
 
-#: ../src/general/OptionsMenu.tscn:129
+#: ../src/general/OptionsMenu.tscn:134
 msgid "GRAPHICS"
 msgstr "Grafiikat"
 
-#: ../src/general/OptionsMenu.tscn:140
+#: ../src/general/OptionsMenu.tscn:145
 msgid "SOUND"
 msgstr "Ääni"
 
-#: ../src/general/OptionsMenu.tscn:151
+#: ../src/general/OptionsMenu.tscn:156
 msgid "PERFORMANCE"
 msgstr "Suorituskyky"
 
-#: ../src/general/OptionsMenu.tscn:162
+#: ../src/general/OptionsMenu.tscn:167
 msgid "INPUTS"
 msgstr "Syötteet"
 
-#: ../src/general/OptionsMenu.tscn:173
+#: ../src/general/OptionsMenu.tscn:178
 msgid "MISC"
 msgstr "Muut"
 
-#: ../src/general/OptionsMenu.tscn:206
+#: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
 msgstr "Pystysynkronointi"
 
-#: ../src/general/OptionsMenu.tscn:214
+#: ../src/general/OptionsMenu.tscn:219
 msgid "FULLSCREEN"
 msgstr "Koko näyttö"
 
-#: ../src/general/OptionsMenu.tscn:236
+#: ../src/general/OptionsMenu.tscn:241
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Monen näytteen reunanpehmennys:"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:248
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(suuremmat arvot heikentävät suorituskykyä)"
 
-#: ../src/general/OptionsMenu.tscn:273
+#: ../src/general/OptionsMenu.tscn:278
 msgid "RESOLUTION"
 msgstr "Tarkkuus:"
 
-#: ../src/general/OptionsMenu.tscn:286
+#: ../src/general/OptionsMenu.tscn:291
 msgid "AUTO"
 msgstr "automaattinen"
 
-#: ../src/general/OptionsMenu.tscn:296
+#: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
 
-#: ../src/general/OptionsMenu.tscn:322
+#: ../src/general/OptionsMenu.tscn:327
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Värisokeuden korjaus:"
 
-#: ../src/general/OptionsMenu.tscn:354
+#: ../src/general/OptionsMenu.tscn:359
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaattinen vääristymä:"
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:386
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Kyvyt"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:395
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Ulkoiset vaikutukset:"
 
-#: ../src/general/OptionsMenu.tscn:416
+#: ../src/general/OptionsMenu.tscn:421
 msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
-#: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
-#: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
-#: ../src/general/OptionsMenu.tscn:583
+#: ../src/general/OptionsMenu.tscn:448 ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:522 ../src/general/OptionsMenu.tscn:555
+#: ../src/general/OptionsMenu.tscn:588
 msgid "MUTE"
 msgstr "Mykistä"
 
-#: ../src/general/OptionsMenu.tscn:457
+#: ../src/general/OptionsMenu.tscn:462
 msgid "MUSIC_VOLUME"
 msgstr "Musiikin voimakkuus"
 
-#: ../src/general/OptionsMenu.tscn:490
+#: ../src/general/OptionsMenu.tscn:495
 msgid "AMBIANCE_VOLUME"
 msgstr "Tunnelmaäänet"
 
-#: ../src/general/OptionsMenu.tscn:523
+#: ../src/general/OptionsMenu.tscn:528
 msgid "SFX_VOLUME"
 msgstr "Efektien voimakkuus"
 
-#: ../src/general/OptionsMenu.tscn:556
+#: ../src/general/OptionsMenu.tscn:561
 msgid "GUI_VOLUME"
 msgstr "Käyttöliittymä"
 
-#: ../src/general/OptionsMenu.tscn:601
+#: ../src/general/OptionsMenu.tscn:606
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Äänen ulostulolaite:"
 
-#: ../src/general/OptionsMenu.tscn:628
+#: ../src/general/OptionsMenu.tscn:633
 msgid "LANGUAGE"
 msgstr "Kieli:"
 
-#: ../src/general/OptionsMenu.tscn:643 ../src/general/OptionsMenu.tscn:1065
+#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1175
 msgid "RESET"
 msgstr "Kumoa muutokset"
 
-#: ../src/general/OptionsMenu.tscn:652
+#: ../src/general/OptionsMenu.tscn:657
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Auta pelin kääntämisessä"
 
-#: ../src/general/OptionsMenu.tscn:678
+#: ../src/general/OptionsMenu.tscn:683
 msgid "COMPOUND_CLOUDS"
 msgstr "Yhdistepilvet"
 
-#: ../src/general/OptionsMenu.tscn:693
+#: ../src/general/OptionsMenu.tscn:698
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Pienin pilvien päivitys\n"
 "aikajakso:"
 
-#: ../src/general/OptionsMenu.tscn:700 ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:705 ../src/general/OptionsMenu.tscn:747
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(suuremmat arvot lisäävät suorituskykyä)"
 
-#: ../src/general/OptionsMenu.tscn:735
+#: ../src/general/OptionsMenu.tscn:740
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Pilvien resoluutioiden jakaja:"
 
-#: ../src/general/OptionsMenu.tscn:777
+#: ../src/general/OptionsMenu.tscn:782
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Suorita auto-evo pelin aikana"
 
-#: ../src/general/OptionsMenu.tscn:850
+#: ../src/general/OptionsMenu.tscn:802
+#, fuzzy
+msgid "DETECTED_CPU_COUNT"
+msgstr "Valittu:"
+
+#: ../src/general/OptionsMenu.tscn:819
+#, fuzzy
+msgid "ACTIVE_THREAD_COUNT"
+msgstr "Tallenna ja jatka"
+
+#: ../src/general/OptionsMenu.tscn:834
+msgid "ASSUME_HYPERTHREADING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:846
+msgid "USE_MANUAL_THREAD_COUNT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:859
+msgid "THREADS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:960
 msgid "RESET_INPUTS"
 msgstr "Palauta syötteet oletuksiksi"
 
-#: ../src/general/OptionsMenu.tscn:878
+#: ../src/general/OptionsMenu.tscn:988
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Näytä introvideo"
 
-#: ../src/general/OptionsMenu.tscn:887
+#: ../src/general/OptionsMenu.tscn:997
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Näytä mikrobi-intro aloitettaessa uusi peli"
 
-#: ../src/general/OptionsMenu.tscn:896
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Tallenna automaattisesti"
 
-#: ../src/general/OptionsMenu.tscn:907
+#: ../src/general/OptionsMenu.tscn:1017
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Paikat automaattitallenuksille:"
 
-#: ../src/general/OptionsMenu.tscn:935
+#: ../src/general/OptionsMenu.tscn:1045
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Paikat nopeille tallennuksille:"
 
-#: ../src/general/OptionsMenu.tscn:961
+#: ../src/general/OptionsMenu.tscn:1071
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Näytä tutoriaalit (uusissa peleissä)"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:1079
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näytä tutoriaalit (nykyisessä pelissä)"
 
-#: ../src/general/OptionsMenu.tscn:985
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Huijauskoodit aktiivisia"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1107
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Käytä annettua käyttäjänimeä"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1118
 msgid "CUSTOM_USERNAME"
 msgstr "Valittu käyttäjänimi:"
 
-#: ../src/general/OptionsMenu.tscn:1034
+#: ../src/general/OptionsMenu.tscn:1144
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Avaa Näyttökuva kansio"
 
-#: ../src/general/OptionsMenu.tscn:1042
+#: ../src/general/OptionsMenu.tscn:1152
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "Avaa lokien kansio"
 
-#: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1187 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Tallenna"
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1204
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Palauta oletukset"
 
-#: ../src/general/OptionsMenu.tscn:1106
+#: ../src/general/OptionsMenu.tscn:1216
 msgid "RESET_TO_DEFAULTS"
 msgstr "Palauta oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1225
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:1129
+#: ../src/general/OptionsMenu.tscn:1239
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Palauta näppäimien oletukset?"
 
-#: ../src/general/OptionsMenu.tscn:1138
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Haluatko varmasti korvata syötteiden asetukset oletusarvoilla?"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1262
 msgid "CLOSE_OPTIONS"
 msgstr "Sulje asetukset?"
 
-#: ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/OptionsMenu.tscn:1282
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
 "Haluatko jatkaa?"
 
-#: ../src/general/OptionsMenu.tscn:1194
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "SAVE_AND_CONTINUE"
 msgstr "Tallenna ja jatka"
 
-#: ../src/general/OptionsMenu.tscn:1203
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Hylkää ja jatka"
 
-#: ../src/general/OptionsMenu.tscn:1219
+#: ../src/general/OptionsMenu.tscn:1329
 msgid "CANCEL"
 msgstr "Peruuta"
 
-#: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
-#: ../src/general/OptionsMenu.tscn:1278
+#: ../src/general/OptionsMenu.tscn:1341 ../src/general/OptionsMenu.tscn:1364
+#: ../src/general/OptionsMenu.tscn:1388
 msgid "ERROR"
 msgstr "Virhe"
 
-#: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1389
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Virhe: Uusien asetusten tallentaminen tiedostoon epäonnistui."
 
@@ -1644,20 +1666,24 @@ msgstr "Poistu"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} mrd."
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} milj."
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} k"
 
 #: ../src/gui_common/ChemicalEquation.cs:139
-#: ../src/gui_common/ChemicalEquation.cs:176
+#: ../src/gui_common/ChemicalEquation.cs:179
 msgid "PER_SECOND_SLASH"
 msgstr "/sekunti"
+
+#: ../src/gui_common/ChemicalEquation.cs:298
+msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
@@ -1666,7 +1692,7 @@ msgstr "/sekunti"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1680,11 +1706,11 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Valitse väri pelin ikkunasta"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Lisää nykyinen väri palettiin"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
 #, fuzzy
@@ -1738,11 +1764,11 @@ msgstr "Lisää uusi syöte"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "Raaka"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
@@ -1823,6 +1849,8 @@ msgstr "Terveys"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
+"Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] "
+"[thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1940,6 +1968,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
+"Käyttää [thrive:compound type=\"atp\"]ATP:ta[/thrive:compound] lisätäkseen "
+"solun liikkumisnopeutta"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2118,12 +2148,18 @@ msgstr "Lisää uusi syöte"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3446
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
+"Tämä arvo vaikuttaa vain uusiin peleihin, jotka on aloitettu tämän "
+"muuttamisen jälkeen"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3451
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3452
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3461
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
+msgid "ASSUME_HYPERTHREADING_TOOLTIP"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
@@ -2136,7 +2172,7 @@ msgstr "- MP"
 
 #: ../src/microbe_stage/Microbe.cs:984
 msgid "DEATH"
-msgstr ""
+msgstr "kuolema"
 
 #: ../src/microbe_stage/Microbe.cs:1479
 msgid "SUCCESSFUL_SCAVENGE"
@@ -2164,7 +2200,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
-msgstr ""
+msgstr "Ei tekoälyä"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 msgid "PLAYER_SPEED"
@@ -2309,11 +2345,11 @@ msgstr "Ladataan Mikrobieditoria"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Odotetaan auto-evoa:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2257
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2272
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2258
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2273
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
 
@@ -2493,11 +2529,11 @@ msgstr "Siirry tälle alueelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
-msgstr ""
+msgstr "Loputon MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
+msgstr "Glukoosin määrä on vähentynyt {0}:iin edellisestä määrästä."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
@@ -2523,7 +2559,7 @@ msgstr "ATP:n TUOTANTO ON LIIAN ALHAINEN!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
+msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
@@ -2535,7 +2571,7 @@ msgstr "Perus liikkuminen"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr ""
+msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "SPECIES_LIST"
@@ -2561,11 +2597,11 @@ msgstr "{0} populaatiolla: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
 msgid "DELETE"
-msgstr ""
+msgstr "Poista"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
 msgid "MOVE"
@@ -2573,7 +2609,7 @@ msgstr "Siirrä"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
-msgstr ""
+msgstr "Muokkaa"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2641,7 +2677,7 @@ msgstr "Virhe ladattaessa"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Virhe vapautettaessa jo ladattuja resursseja: {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
