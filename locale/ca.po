@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-03 11:36+0300\n"
-"PO-Revision-Date: 2021-08-29 18:21+0000\n"
+"PO-Revision-Date: 2021-09-03 13:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ca/>\n"
@@ -1443,7 +1443,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:791
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Aparell d'output per defecte"
 
 #: ../src/general/OptionsMenu.tscn:134
 msgid "GRAPHICS"
@@ -1502,14 +1502,12 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Aberració cromàtica:"
 
 #: ../src/general/OptionsMenu.tscn:386
-#, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Habilitats"
+msgstr "Mostrar Barra d'Habilitats"
 
 #: ../src/general/OptionsMenu.tscn:395
-#, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Efectes externs:"
+msgstr "Permetre Efectes de Llum en el GUI"
 
 #: ../src/general/OptionsMenu.tscn:421
 msgid "MASTER_VOLUME"
@@ -1539,7 +1537,7 @@ msgstr "Volum de la interfície GUI"
 
 #: ../src/general/OptionsMenu.tscn:606
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Aparell d'output d'audio:"
 
 #: ../src/general/OptionsMenu.tscn:633
 msgid "LANGUAGE"
@@ -1576,26 +1574,24 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Activa la simulació auto-evo durant el joc"
 
 #: ../src/general/OptionsMenu.tscn:802
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Seleccionat:"
+msgstr "Detectat compte CPU:"
 
 #: ../src/general/OptionsMenu.tscn:819
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Guardar i continuar"
+msgstr "Fils actuals:"
 
 #: ../src/general/OptionsMenu.tscn:834
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Assumir que la CPU té activat el hyperthreading"
 
 #: ../src/general/OptionsMenu.tscn:846
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Manualment establir nombre de fils del fons"
 
 #: ../src/general/OptionsMenu.tscn:859
 msgid "THREADS"
-msgstr ""
+msgstr "Fils:"
 
 #: ../src/general/OptionsMenu.tscn:960
 msgid "RESET_INPUTS"
