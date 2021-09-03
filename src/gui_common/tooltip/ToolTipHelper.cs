@@ -51,7 +51,7 @@ public static class ToolTipHelper
     }
 
     /// <summary>
-    ///   Removes stored callback data for the given tooltip.
+    ///   Disconnects signal connections and removes stored callback data for the given tooltip.
     /// </summary>
     public static void UnRegisterToolTipForControl(this Control control, ICustomToolTip tooltip)
     {
@@ -59,6 +59,12 @@ public static class ToolTipHelper
             return;
 
         var data = GetToolTipCallbackData(control, tooltip);
+
+        control.Disconnect("mouse_entered", data, nameof(ToolTipCallbackData.OnMouseEnter));
+        control.Disconnect("mouse_exited", data, nameof(ToolTipCallbackData.OnMouseExit));
+        control.Disconnect("hide", data, nameof(ToolTipCallbackData.OnMouseExit));
+        control.Disconnect("tree_exiting", data, nameof(ToolTipCallbackData.OnExitingTree));
+
         ToolTipCallbacks.Remove(data);
     }
 

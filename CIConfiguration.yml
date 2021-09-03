@@ -2,15 +2,15 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v9
+    image: thrive/godot-ci:v11
     cache:
       loadFrom:
-        - v1-{Branch}-build
-        - v1-master-build
-      writeTo: v1-{Branch}-build
+        - v3-{Branch}-build
+        - v3-master-build
+      writeTo: v2-{Branch}-build
       shared:
         .git/lfs: v2-lfs
-        .import: v1-import
+        .import: v3-import
         builds: v1-builds
     steps:
       # This is here to reimport assets, but this build would fail due to missing nuget packages
@@ -30,7 +30,7 @@ jobs:
           name: Upload devbuilds
           command: ./upload_devbuilds.rb
   jetbrains:
-    image: thrive/godot-ci:v9
+    image: thrive/godot-ci:v11
     cache:
       loadFrom:
         - v1-{Branch}-jetbrains

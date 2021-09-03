@@ -213,7 +213,7 @@ public class MainMenu : NodeWithInput
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
             0.3f :
             0.5f, false);
-        TransitionManager.Instance.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.StartTransitions(null);
 
         // Start music after the video
         StartMusic();

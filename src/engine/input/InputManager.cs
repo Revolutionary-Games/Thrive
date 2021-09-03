@@ -14,6 +14,7 @@ using Godot;
 /// </remarks>
 public class InputManager : Node
 {
+    private static readonly List<WeakReference> DestroyedListeners = new List<WeakReference>();
     private static InputManager staticInstance;
 
     /// <summary>
@@ -153,7 +154,6 @@ public class InputManager : Node
         if (method == null)
             return true;
 
-        var disposed = new List<WeakReference>();
         var instances = staticInstance.attributes[attribute];
         var result = false;
 
@@ -179,7 +179,7 @@ public class InputManager : Node
                 if (!instance.IsAlive)
                 {
                     // if the WeakReference is no longer valid
-                    disposed.Add(instance);
+                    DestroyedListeners.Add(instance);
                     continue;
                 }
 
@@ -201,7 +201,7 @@ public class InputManager : Node
                         GD.PrintErr("Failed to perform input method invoke: ", e);
                     }
 
-                    disposed.Add(instance);
+                    DestroyedListeners.Add(instance);
                     continue;
                 }
 
@@ -221,7 +221,8 @@ public class InputManager : Node
             }
         }
 
-        disposed.ForEach(p => instances.Remove(p));
+        DestroyedListeners.ForEach(p => instances.Remove(p));
+        DestroyedListeners.Clear();
 
         return result;
     }
@@ -273,7 +274,7 @@ public class InputManager : Node
             PauseMode = PauseModeEnum.Process,
             WaitTime = 1,
         };
-        timer.Connect("timeout", this, "ClearExpiredReferences");
+        timer.Connect("timeout", this, nameof(ClearExpiredReferences));
         AddChild(timer);
     }
 

@@ -183,9 +183,11 @@ public class TaskExecutor
                     }
 
                     // Make sure task exceptions aren't ignored.
-                    // Could perhaps in the future find some other way to handle this
+                    // TODO: it used to be that not all places properly waited for tasks, that's why this code is here
+                    // but now some places actually want to handle the task exceptions themselves, so this should
+                    // be removed after making sure no places ignore the exceptions
                     if (command.Task.Exception != null)
-                        throw command.Task.Exception;
+                        GD.Print("Background task caused an exception: ", command.Task.Exception);
                 }
                 else
                 {

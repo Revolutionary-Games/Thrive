@@ -62,7 +62,7 @@ public class ScreenFade : CanvasLayer, ITransition
         rect = GetNode<ColorRect>("Control/Rect");
         fader = GetNode<Tween>("Control/Fader");
 
-        fader.Connect("tween_all_completed", this, "OnFinished");
+        fader.Connect("tween_all_completed", this, nameof(OnFinished));
 
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;

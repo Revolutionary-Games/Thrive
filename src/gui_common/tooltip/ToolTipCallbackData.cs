@@ -5,9 +5,9 @@
 /// </summary>
 public class ToolTipCallbackData : Reference
 {
-    public ToolTipCallbackData(Control tooltipable, ICustomToolTip tooltip)
+    public ToolTipCallbackData(Control toolTipable, ICustomToolTip tooltip)
     {
-        ToolTipable = tooltipable;
+        ToolTipable = toolTipable;
         ToolTip = tooltip;
     }
 

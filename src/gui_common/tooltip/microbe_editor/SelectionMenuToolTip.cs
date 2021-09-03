@@ -48,18 +48,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// </summary>
     private List<ModifierInfoLabel> modifierInfos = new List<ModifierInfoLabel>();
 
-    public Vector2 Position
-    {
-        get => RectPosition;
-        set => RectPosition = value;
-    }
-
-    public Vector2 Size
-    {
-        get => RectSize;
-        set => RectSize = value;
-    }
-
     [Export]
     public string DisplayName
     {
@@ -116,17 +104,13 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     [Export]
     public float DisplayDelay { get; set; } = 0.0f;
 
-    public bool ToolTipVisible
-    {
-        get => Visible;
-        set => Visible = value;
-    }
-
     public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.FollowMousePosition;
+
+    public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
 
     public bool HideOnMousePress { get; set; }
 
-    public Node ToolTipNode => this;
+    public Control ToolTipNode => this;
 
     public override void _Ready()
     {
@@ -256,16 +240,6 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 modifier.AdjustValueColor(deltaValue);
             }
         }
-    }
-
-    public void OnDisplay()
-    {
-        Show();
-    }
-
-    public void OnHide()
-    {
-        Hide();
     }
 
     private void UpdateName()

@@ -133,6 +133,9 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
+    public SettingValue<string> SelectedAudioOutputDevice { get; set; } =
+        new SettingValue<string>(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
+
     public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
 
     // Performance Properties
@@ -471,6 +474,7 @@ public class Settings
             ApplyInputSettings();
         }
 
+        ApplyAudioOutputDeviceSettings();
         ApplyLanguageSettings();
         ApplyWindowSettings();
     }
@@ -530,6 +534,26 @@ public class Settings
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
+    }
+
+    /// <summary>
+    ///   Applies current output device settings to the audio system
+    /// </summary>
+    public void ApplyAudioOutputDeviceSettings()
+    {
+        var audioOutputDevice = SelectedAudioOutputDevice.Value;
+        if (string.IsNullOrEmpty(audioOutputDevice))
+        {
+            audioOutputDevice = Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME;
+        }
+
+        // If the selected output device is invalid Godot resets AudioServer.Device to Default.
+        // It seems like there is some kind of threading going on. The getter of AudioServer.Device
+        // only returns the new value after some time, therefore we can't check if the output device
+        // got applied successfully.
+        AudioServer.Device = audioOutputDevice;
+
+        GD.Print("Set audio output device to: ", audioOutputDevice);
     }
 
     /// <summary>

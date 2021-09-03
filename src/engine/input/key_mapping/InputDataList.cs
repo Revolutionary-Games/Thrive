@@ -13,6 +13,11 @@ public class InputDataList : ICloneable
     }
 
     /// <summary>
+    ///   Triggered when (possibly) changed inputs are applied to the Godot input map
+    /// </summary>
+    public static event EventHandler InputsRemapped;
+
+    /// <summary>
     ///   The key map, key is the godot action name and the list contains the keys that are used to trigger that action
     /// </summary>
     public Dictionary<string, List<SpecifiedInputKey>> Data { get; }
@@ -54,5 +59,7 @@ public class InputDataList : ICloneable
                 InputMap.ActionAddEvent(action.Key, inputEvent.ToInputEvent());
             }
         }
+
+        InputsRemapped?.Invoke(this, EventArgs.Empty);
     }
 }

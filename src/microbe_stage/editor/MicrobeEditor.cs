@@ -752,7 +752,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 // Update rigidity slider in case it was disabled
                 // TODO: could come up with a bit nicer design here
                 int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
-                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                gui.UpdateRigiditySlider(intRigidity);
 
                 // Re-enable undo/redo button
                 UpdateUndoRedoButtons();
@@ -813,7 +813,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (MovingOrganelle != null)
         {
             gui.OnActionBlockedWhileMoving();
-            gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+            gui.UpdateRigiditySlider(intRigidity);
             return;
         }
 
@@ -827,7 +827,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             int stepsLeft = MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
             if (stepsLeft < 1)
             {
-                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                gui.UpdateRigiditySlider(intRigidity);
                 return;
             }
 
@@ -968,38 +968,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public float CalculateSpeed()
     {
-        float microbeMass = Constants.MICROBE_BASE_MASS;
-
-        float organelleMovementForce = 0;
-
-        Vector3 forwardsDirection = new Vector3(0, 0, -1);
-
-        foreach (var organelle in editedMicrobeOrganelles.Organelles)
-        {
-            microbeMass += organelle.Definition.Mass;
-
-            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
-            {
-                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
-                    - Hex.AxialToCartesian(organelle.Position)).Normalized();
-
-                float directionFactor = organelleDirection.Dot(forwardsDirection);
-
-                // Flagella pointing backwards don't slow you down
-                directionFactor = Math.Max(directionFactor, 0);
-
-                organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement.Momentum / 100.0f
-                    * directionFactor;
-            }
-        }
-
-        float baseMovementForce = Constants.CELL_BASE_THRUST *
-            (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
-
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
-
-        return finalSpeed;
+        return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles, Membrane, Rigidity);
     }
 
     public float CalculateHitpoints()
@@ -1053,6 +1022,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Can return to the patch the player started in, as a way to "undo" the change
         if (patch == playerPatchOnEntry)
+            return true;
+
+        // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
+        if (FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
             return true;
 
         // Can't move if out of moves
@@ -1110,6 +1083,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         mutationPointsCache = null;
         gui.UpdateMutationPointsBar();
+        gui.UpdateRigiditySliderState(MutationPoints);
     }
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
@@ -1242,14 +1216,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         patch ??= CurrentPatch;
 
         gui.UpdateEnergyBalance(
-            ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome, membrane));
+            ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane));
     }
 
     private void CalculateCompoundBalanceInPatch(List<OrganelleTemplate> organelles, Patch patch = null)
     {
         patch ??= CurrentPatch;
 
-        var result = ProcessSystem.ComputeCompoundBalance(organelles.Select(i => i.Definition), patch.Biome);
+        var result = ProcessSystem
+            .ComputeCompoundBalance(organelles, patch.Biome);
 
         gui.UpdateCompoundBalances(result);
     }
@@ -1307,6 +1282,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
 
         gui.UpdateReportTabPatchName(TranslationServer.Translate(CurrentPatch.Name));
+
+        gui.UpdateRigiditySliderState(MutationPoints);
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;
@@ -2227,8 +2204,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void OnRigidityChanged()
     {
-        gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
-            MutationPoints);
+        gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
@@ -2334,6 +2310,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
 
+        // Update populations before recording conditions - should not affect per-patch population
+        CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
+
         // Needs to be before the remove extinct species call, so that extinct species could still be stored
         // for reference in patch history (e.g. displaying it as zero on the species population chart)
         foreach (var entry in CurrentGame.GameWorld.Map.Patches)
@@ -2349,8 +2328,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
         }
-
-        CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();
