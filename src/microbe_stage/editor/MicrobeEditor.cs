@@ -749,7 +749,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 // Update rigidity slider in case it was disabled
                 // TODO: could come up with a bit nicer design here
                 int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
-                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                gui.UpdateRigiditySlider(intRigidity);
 
                 // Re-enable undo/redo button
                 UpdateUndoRedoButtons();
@@ -810,7 +810,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (MovingOrganelle != null)
         {
             gui.OnActionBlockedWhileMoving();
-            gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+            gui.UpdateRigiditySlider(intRigidity);
             return;
         }
 
@@ -824,7 +824,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             int stepsLeft = MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
             if (stepsLeft < 1)
             {
-                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                gui.UpdateRigiditySlider(intRigidity);
                 return;
             }
 
@@ -1021,6 +1021,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (patch == playerPatchOnEntry)
             return true;
 
+        // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
+        if (FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
+            return true;
+
         // Can't move if out of moves
         if (!canStillMove)
             return false;
@@ -1083,6 +1087,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         MutationPoints = (MutationPoints + change).Clamp(0, Constants.BASE_MUTATION_POINTS);
 
         gui.UpdateMutationPointsBar();
+        gui.UpdateRigiditySliderState(MutationPoints);
     }
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
@@ -1283,6 +1288,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
 
         gui.UpdateReportTabPatchName(TranslationServer.Translate(CurrentPatch.Name));
+
+        gui.UpdateRigiditySliderState(MutationPoints);
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;
@@ -1542,8 +1549,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
                     if (!canPlace)
                     {
-                        // Store the material to put it back later
-                        hoverOverriddenMaterials[placed] = placed.MaterialOverride;
+                        // This check is here so that if there are multiple hover hexes overlapping this hex, then
+                        // we do actually remember the original material
+                        if (!hoverOverriddenMaterials.ContainsKey(placed))
+                        {
+                            // Store the material to put it back later
+                            hoverOverriddenMaterials[placed] = placed.MaterialOverride;
+                        }
 
                         // Mark as invalid
                         placed.MaterialOverride = invalidMaterial;
@@ -1551,6 +1563,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                         showModel = false;
                     }
 
+                    break;
+                }
+            }
+
+            // Or if there is already a hover hex at this position
+            for (int i = 0; i < usedHoverHex; ++i)
+            {
+                if ((pos - hoverHexes[i].Translation).LengthSquared() < 0.001f)
+                {
+                    duplicate = true;
                     break;
                 }
             }
@@ -2189,8 +2211,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void OnRigidityChanged()
     {
-        gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
-            MutationPoints);
+        gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());

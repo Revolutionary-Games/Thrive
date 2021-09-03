@@ -2,7 +2,8 @@
     "single": {
         "name": "NORMAL",
         "cellWall": false,
-        "normalTexture": "res://assets/textures/FresnelGradient.png",
+        "albedoTexture": "res://assets/textures/FresnelGradient.png",
+        "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/FresnelGradientDamaged.png",
         "movementFactor": 1.1,
         "baseWigglyness": 1,
@@ -18,7 +19,8 @@
     "double": {
         "name": "DOUBLE",
         "cellWall": false,
-        "normalTexture": "res://assets/textures/DoubleCellMembrane.png",
+        "albedoTexture": "res://assets/textures/DoubleCellMembrane.png",
+        "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/DoubleCellMembraneDamaged.png",
         "movementFactor": 1,
         "baseWigglyness": 0.9,
@@ -34,7 +36,8 @@
     "cellulose": {
         "name": "CELLULOSE",
         "cellWall": true,
-        "normalTexture": "res://assets/textures/CellWallGradient.png",
+        "albedoTexture": "res://assets/textures/CellWallGradient.png",
+        "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/CellWallGradientDamaged.png",
         "movementFactor": 0.9,
         "baseWigglyness": 0.25,
@@ -50,7 +53,8 @@
     "chitin": {
         "name": "CHITIN",
         "cellWall": true,
-        "normalTexture": "res://assets/textures/ChitinCellWallGradient.png",
+        "albedoTexture": "res://assets/textures/ChitinCellWallGradient.png",
+        "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/ChitinCellWallGradientDamaged.png",
         "movementFactor": 0.9,
         "baseWigglyness": 0.4,
@@ -66,7 +70,8 @@
     "calciumCarbonate": {
         "name": "CALCIUM_CARBONATE",
         "cellWall": true,
-        "normalTexture": "res://assets/textures/CalciumCarboMembrane.png",
+        "albedoTexture": "res://assets/textures/CalciumCarboMembrane.png",
+        "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/CalciumCarboMembraneDamaged.png",
         "movementFactor": 0.8,
         "baseWigglyness": 0.3,
@@ -82,7 +87,8 @@
     "silica": {
         "name": "SILICA",
         "cellWall": true,
-        "normalTexture": "res://assets/textures/SilicaMembrane.png",
+        "albedoTexture": "res://assets/textures/SilicaMembrane.png",
+        "normalTexture": "res://assets/textures/MembraneNormals.png",
         "damagedTexture": "res://assets/textures/SilicaMembraneDamaged.png",
         "movementFactor": 0.8,
         "baseWigglyness": 0.25,

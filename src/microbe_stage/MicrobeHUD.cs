@@ -673,7 +673,7 @@ public class MicrobeHUD : Node
                 stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z) + "\n";
         }
 
-        if (stage.CompoundsAtMouse.Count == 0)
+        if (stage.HoverInfo.HoveredCompounds.Count == 0)
         {
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = false;
         }
@@ -682,22 +682,22 @@ public class MicrobeHUD : Node
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = true;
 
             // Create for each compound the information in GUI
-            foreach (var entry in stage.CompoundsAtMouse)
+            foreach (var compound in stage.HoverInfo.HoveredCompounds)
             {
                 // It is not useful to show trace amounts of a compound, so those are skipped
-                if (entry.Value < 0.1)
+                if (compound.Value < 0.1)
                     continue;
 
                 var hBox = new HBoxContainer();
                 var compoundName = new Label();
                 var compoundValue = new Label();
 
-                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(entry.Key.InternalName, 20, 20);
+                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(compound.Key.InternalName, 20, 20);
 
                 compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
-                compoundName.Text = entry.Key.Name;
+                compoundName.Text = compound.Key.Name;
 
-                compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", entry.Value);
+                compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", compound.Value);
 
                 hBox.AddChild(compoundIcon);
                 hBox.AddChild(compoundName);
@@ -707,7 +707,7 @@ public class MicrobeHUD : Node
         }
 
         // Show the species name of hovered cells
-        foreach (var entry in stage.MicrobesAtMouse)
+        foreach (var microbe in stage.HoverInfo.HoveredMicrobes)
         {
             // TODO: Combine cells of same species within mouse over
             // into a single line with total number of them
@@ -716,9 +716,9 @@ public class MicrobeHUD : Node
             microbeText.Valign = Label.VAlign.Center;
             hoveredCellsContainer.AddChild(microbeText);
 
-            microbeText.Text = entry.Species.FormattedName;
+            microbeText.Text = microbe.Species.FormattedName;
 
-            if (entry.IsPlayerMicrobe)
+            if (microbe.IsPlayerMicrobe)
                 microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
         }
 
@@ -727,14 +727,7 @@ public class MicrobeHUD : Node
 
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
-        if (stage.CompoundsAtMouse.Count > 0 || hoveredCellsContainer.GetChildCount() > 0)
-        {
-            nothingHere.Hide();
-        }
-        else
-        {
-            nothingHere.Show();
-        }
+        nothingHere.Visible = !stage.HoverInfo.IsHoveringOverAnything;
     }
 
     /// <summary>
@@ -931,6 +924,7 @@ public class MicrobeHUD : Node
 
     private void UpdateAbilitiesHotBar()
     {
+        engulfHotkey.Visible = !stage.Player.Species.MembraneType.CellWall;
         bindingModeHotkey.Visible = stage.Player.CanBind;
         fireToxinHotkey.Visible = stage.Player.AgentVacuoleCount > 0;
 

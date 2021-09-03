@@ -12,6 +12,7 @@ public class MembraneType : IRegistryType
     public string Name;
 
     public string IconPath;
+    public string AlbedoTexture;
     public string NormalTexture;
     public string DamagedTexture;
     public float MovementFactor = 1.0f;
@@ -25,6 +26,7 @@ public class MembraneType : IRegistryType
     public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
 
+    public Texture LoadedAlbedoTexture;
     public Texture LoadedNormalTexture;
     public Texture LoadedDamagedTexture;
 
@@ -38,15 +40,16 @@ public class MembraneType : IRegistryType
 
     public void Check(string name)
     {
-        if (string.IsNullOrEmpty(NormalTexture) || string.IsNullOrEmpty(DamagedTexture))
+        if (string.IsNullOrEmpty(AlbedoTexture) || string.IsNullOrEmpty(NormalTexture)
+            || string.IsNullOrEmpty(DamagedTexture))
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Empty normal or damaged texture");
+                "Empty albedo, normal, or damaged texture");
         }
 
         var directory = new Directory();
 
-        string[] membranes = { NormalTexture, DamagedTexture };
+        string[] membranes = { AlbedoTexture, NormalTexture, DamagedTexture };
 
         foreach (var resource in membranes)
         {
@@ -67,6 +70,7 @@ public class MembraneType : IRegistryType
     /// </summary>
     public void Resolve()
     {
+        LoadedAlbedoTexture = GD.Load<Texture>(AlbedoTexture);
         LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
         LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
 

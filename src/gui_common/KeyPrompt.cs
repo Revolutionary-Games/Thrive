@@ -41,6 +41,7 @@ public class KeyPrompt : TextureRect
 
         // TODO: should this rather happen in _Ready and unregister happen in dispose?
         KeyPromptHelper.IconsChanged += OnIconsChanged;
+        InputDataList.InputsRemapped += OnIconsChanged;
         Refresh();
     }
 
@@ -49,6 +50,7 @@ public class KeyPrompt : TextureRect
         base._ExitTree();
 
         KeyPromptHelper.IconsChanged -= OnIconsChanged;
+        InputDataList.InputsRemapped -= OnIconsChanged;
     }
 
     /// <summary>
