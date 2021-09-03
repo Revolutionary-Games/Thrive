@@ -238,6 +238,7 @@
     <Compile Include="src\microbe_stage\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
+    <Compile Include="src\saving\IChildPropertiesLoadCallback.cs" />
     <Compile Include="src\saving\IGodotEarlyNodeResolve.cs" />
     <Compile Include="src\saving\ILoadableGameState.cs" />
     <Compile Include="src\saving\InProgressLoad.cs" />

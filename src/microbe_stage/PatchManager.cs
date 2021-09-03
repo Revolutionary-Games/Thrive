@@ -2,20 +2,26 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Manages applying patch data and setting up spawns
 /// </summary>
-public class PatchManager
+public class PatchManager : IChildPropertiesLoadCallback
 {
     private SpawnSystem spawnSystem;
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
     private DirectionalLight worldLight;
-    private GameProperties currentGame;
 
+    [JsonProperty]
     private Patch previousPatch;
+
+    /// <summary>
+    ///   Used to detect when an old save is loaded and we can't rely on the new logic for despawning things
+    /// </summary>
+    private bool skipDespawn;
 
     // Currently active spawns
     private List<CreatedSpawner> chunkSpawners = new List<CreatedSpawner>();
@@ -31,7 +37,14 @@ public class PatchManager
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
         this.worldLight = worldLight;
-        this.currentGame = currentGame;
+        CurrentGame = currentGame;
+    }
+
+    public GameProperties CurrentGame { get; set; }
+
+    public void OnNoPropertiesLoaded()
+    {
+        skipDespawn = true;
     }
 
     /// <summary>
@@ -39,9 +52,9 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
     {
-        if (previousPatch != currentPatch && despawnAllowed)
+        if (previousPatch != currentPatch && !skipDespawn)
         {
             if (previousPatch != null)
             {
@@ -64,6 +77,7 @@ public class PatchManager
         }
 
         previousPatch = currentPatch;
+        skipDespawn = false;
 
         GD.Print("Applying patch (", TranslationServer.Translate(currentPatch.Name), ") settings");
 
@@ -149,7 +163,7 @@ public class PatchManager
                 {
                     var spawner = new CreatedSpawner(name);
                     spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                        compoundCloudSystem, currentGame);
+                        compoundCloudSystem, CurrentGame);
 
                     spawnSystem.AddSpawnType(spawner.Spawner, density,
                         Constants.MICROBE_SPAWN_RADIUS);
