@@ -1021,6 +1021,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (patch == playerPatchOnEntry)
             return true;
 
+        // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
+        if (FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
+            return true;
+
         // Can't move if out of moves
         if (!canStillMove)
             return false;

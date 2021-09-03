@@ -18,4 +18,14 @@ public static class ColorUtils
 
         return false;
     }
+
+    /// <summary>
+    ///   Check if the colour is a raw one (have values greater than 1.0)
+    /// </summary>
+    /// <param name="colour">Current colour</param>
+    /// <returns>If the current colour is a raw one</returns>
+    public static bool IsRaw(this Color colour)
+    {
+        return colour.r > 1 || colour.g > 1 || colour.b > 1;
+    }
 }

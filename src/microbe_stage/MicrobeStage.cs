@@ -95,23 +95,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [JsonProperty]
     public Microbe Player { get; private set; }
 
+    [JsonIgnore]
+    public PlayerHoverInfo HoverInfo { get; private set; }
+
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
     [JsonProperty]
     public GameProperties CurrentGame { get; set; }
-
-    /// <summary>
-    ///   All compounds the user is hovering over
-    /// </summary>
-    [JsonIgnore]
-    public Dictionary<Compound, float> CompoundsAtMouse { get; private set; }
-
-    /// <summary>
-    ///   All microbes the user is hovering over
-    /// </summary>
-    [JsonIgnore]
-    public List<Microbe> MicrobesAtMouse { get; private set; } = new List<Microbe>();
 
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
@@ -204,6 +195,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
+        HoverInfo.Init(Camera, Clouds);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
@@ -225,6 +217,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         world = GetNode<Node>("World");
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
         tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
+        HoverInfo = GetNode<PlayerHoverInfo>("PlayerHoverInfo");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
@@ -366,8 +359,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
         microbeAISystem.Process(delta);
-
-        UpdateMouseHover();
 
         if (gameOver)
         {
@@ -557,34 +548,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         TransitionFinished = true;
         TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
-    }
-
-    /// <summary>
-    ///   Updates CompoundsAtMouse and MicrobesAtMouse
-    /// </summary>
-    private void UpdateMouseHover()
-    {
-        CompoundsAtMouse = Clouds.GetAllAvailableAt(Camera.CursorWorldPos);
-
-        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
-
-        foreach (var microbe in MicrobesAtMouse)
-            microbe.IsHoveredOver = false;
-
-        MicrobesAtMouse.Clear();
-
-        foreach (Microbe entry in microbes)
-        {
-            var distance = (entry.GlobalTransform.origin - Camera.CursorWorldPos).Length();
-
-            // Find only cells that have the mouse
-            // position within their membrane
-            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
-                continue;
-
-            entry.IsHoveredOver = true;
-            MicrobesAtMouse.Add(entry);
-        }
     }
 
     [DeserializedCallbackAllowed]
