@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-03 21:28+0700\n"
-"PO-Revision-Date: 2021-08-31 18:14+0000\n"
+"POT-Creation-Date: 2021-09-04 15:39+0700\n"
+"PO-Revision-Date: 2021-09-03 13:42+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -1575,26 +1575,24 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Автоматична еволюция по време на игра"
 
 #: ../src/general/OptionsMenu.tscn:810
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Избрани:"
+msgstr "Ядра:"
 
 #: ../src/general/OptionsMenu.tscn:827
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Запазване на промените"
+msgstr "Текущи нишки:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Автоматично определяне на броя на нишките"
 
 #: ../src/general/OptionsMenu.tscn:854
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Ръчно определяне на броя на нишките"
 
 #: ../src/general/OptionsMenu.tscn:867
 msgid "THREADS"
-msgstr ""
+msgstr "Нишки:"
 
 #: ../src/general/OptionsMenu.tscn:968
 msgid "RESET_INPUTS"
@@ -1749,7 +1747,7 @@ msgstr "/в секунда"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "при"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
@@ -1837,7 +1835,7 @@ msgstr "НЦ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Няма данни за показване"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2377,6 +2375,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Автоматичното определяне на броя на нишките е неуспешно.\n"
+"От това зависи броя на нишките по подразбиране, понеже хипернишковата "
+"технология не е по-бърза от физическите ядра на процесора."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660

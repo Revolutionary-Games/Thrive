@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-03 21:28+0700\n"
-"PO-Revision-Date: 2021-08-31 18:14+0000\n"
+"POT-Creation-Date: 2021-09-04 15:39+0700\n"
+"PO-Revision-Date: 2021-09-03 09:33+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/he/>\n"
@@ -1551,26 +1551,24 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "הפעל התפתחות אוטומטית במהלך המשחק"
 
 #: ../src/general/OptionsMenu.tscn:810
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "נבחרו:"
+msgstr "זוהה ספירת מעבד:"
 
 #: ../src/general/OptionsMenu.tscn:827
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "שמור והמשך"
+msgstr "נושאים נוכחים:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "נניח שלמעבד יכול להפעיל מרבה-נושאים"
 
 #: ../src/general/OptionsMenu.tscn:854
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "הגדר ידנית את מספר נושאי הרקע"
 
 #: ../src/general/OptionsMenu.tscn:867
 msgid "THREADS"
-msgstr ""
+msgstr "נושאים:"
 
 #: ../src/general/OptionsMenu.tscn:968
 msgid "RESET_INPUTS"
@@ -1811,7 +1809,7 @@ msgstr "\"טרי\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "אין מידע להציג"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2314,6 +2312,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"זה לא ניתן להציג אם מרבה-נושאים פועל או לא.\n"
+"זה משפיע על מספר ברירת מחדל של הנושאים במרבה-נושאים כנושא שאינו מהיר כלבית "
+"מעבד אמיתי."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
