@@ -14,6 +14,7 @@ public class CustomCheckBox : Button
     private Texture pressedClicked;
 
     private bool pressing;
+    private DrawMode lastDrawMode;
 
     public override void _Ready()
     {
@@ -54,7 +55,12 @@ public class CustomCheckBox : Button
             return;
         }
 
-        Icon = GetDrawMode() switch
+        var currentDrawMode = GetDrawMode();
+
+        if (lastDrawMode == currentDrawMode)
+            return;
+
+        Icon = currentDrawMode switch
         {
             DrawMode.Disabled => Pressed ? pressedNormal : unpressedNormal,
             DrawMode.Normal => unpressedNormal,
@@ -63,5 +69,7 @@ public class CustomCheckBox : Button
             DrawMode.HoverPressed => pressedHovered,
             _ => throw new NotImplementedException(),
         };
+
+        lastDrawMode = currentDrawMode;
     }
 }
