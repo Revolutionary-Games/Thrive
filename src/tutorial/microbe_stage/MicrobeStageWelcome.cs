@@ -7,6 +7,8 @@
     /// </summary>
     public class MicrobeStageWelcome : TutorialPhase
     {
+        private Action patchNamePopup;
+
         public MicrobeStageWelcome()
         {
             Exclusive = true;
@@ -27,6 +29,8 @@
             {
                 case TutorialEventType.EnteredMicrobeStage:
                 {
+                    patchNamePopup = ((CallbackEventArgs)args)?.Data;
+
                     if (!HasBeenShown && CanTrigger)
                     {
                         Show();
@@ -38,6 +42,12 @@
             }
 
             return false;
+        }
+
+        public override void Hide()
+        {
+            patchNamePopup?.Invoke();
+            base.Hide();
         }
     }
 }
