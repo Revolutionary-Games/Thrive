@@ -49,6 +49,8 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
 
+    public const float CLOUD_CHEAT_DENSITY = 16000.0f;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>
@@ -98,6 +100,9 @@ public static class Constants
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
+
+    public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
+    public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
     /// <summary>
     ///   How often the microbe AI processes each microbe
@@ -485,6 +490,13 @@ public static class Constants
     ///   over smaller microbes.
     /// </summary>
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
+
+    /// <summary>
+    ///   Squared value of <see cref="MICROBE_HOVER_DETECTION_EXTRA_RADIUS"/>.
+    ///   Specifically for use with LengthSquared.
+    /// </summary>
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED =
+        MICROBE_HOVER_DETECTION_EXTRA_RADIUS * MICROBE_HOVER_DETECTION_EXTRA_RADIUS;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning

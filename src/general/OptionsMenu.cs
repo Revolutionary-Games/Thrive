@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Environment = System.Environment;
@@ -108,6 +109,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath ResetLanguageButtonPath;
 
+    [Export]
+    public NodePath LanguageProgressLabelPath;
+
     // Performance tab.
     [Export]
     public NodePath PerformanceTabPath;
@@ -123,6 +127,21 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath RunAutoEvoDuringGameplayPath;
+
+    [Export]
+    public NodePath DetectedCPUCountPath;
+
+    [Export]
+    public NodePath ActiveThreadCountPath;
+
+    [Export]
+    public NodePath AssumeHyperthreadingPath;
+
+    [Export]
+    public NodePath UseManualThreadCountPath;
+
+    [Export]
+    public NodePath ThreadCountSliderPath;
 
     // Inputs tab.
     [Export]
@@ -218,6 +237,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton audioOutputDeviceSelection;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
+    private Label languageProgressLabel;
 
     // Performance tab
     private Control performanceTab;
@@ -225,6 +245,11 @@ public class OptionsMenu : ControlWithInput
     private VBoxContainer cloudResolutionTitle;
     private OptionButton cloudResolution;
     private CustomCheckBox runAutoEvoDuringGameplay;
+    private Label detectedCPUCount;
+    private Label activeThreadCount;
+    private CustomCheckBox assumeHyperthreading;
+    private CustomCheckBox useManualThreadCount;
+    private Slider threadCountSlider;
 
     // Inputs tab
     private Control inputsTab;
@@ -330,6 +355,8 @@ public class OptionsMenu : ControlWithInput
         audioOutputDeviceSelection = GetNode<OptionButton>(AudioOutputDeviceSelectionPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
+        languageProgressLabel = GetNode<Label>(LanguageProgressLabelPath);
+
         LoadLanguages();
         LoadAudioOutputDevices();
 
@@ -339,6 +366,11 @@ public class OptionsMenu : ControlWithInput
         cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
         runAutoEvoDuringGameplay = GetNode<CustomCheckBox>(RunAutoEvoDuringGameplayPath);
+        detectedCPUCount = GetNode<Label>(DetectedCPUCountPath);
+        activeThreadCount = GetNode<Label>(ActiveThreadCountPath);
+        assumeHyperthreading = GetNode<CustomCheckBox>(AssumeHyperthreadingPath);
+        useManualThreadCount = GetNode<CustomCheckBox>(UseManualThreadCountPath);
+        threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -370,6 +402,7 @@ public class OptionsMenu : ControlWithInput
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
+        assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
     }
 
     public override void _Notification(int what)
@@ -465,11 +498,18 @@ public class OptionsMenu : ControlWithInput
         // Hide or show the reset language button based on the selected language
         resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
             settings.SelectedLanguage.Value != Settings.DefaultLanguage;
+        UpdateCurrentLanguageProgress();
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
+        assumeHyperthreading.Pressed = settings.AssumeCPUHasHyperthreading;
+        useManualThreadCount.Pressed = settings.UseManualThreadCount;
+        threadCountSlider.Value = settings.ThreadCount;
+        threadCountSlider.Editable = settings.UseManualThreadCount;
+
+        UpdateDetectedCPUCount();
 
         // Input
         BuildInputRebindControls();
@@ -778,6 +818,37 @@ public class OptionsMenu : ControlWithInput
         }
     }
 
+    private void UpdateCurrentLanguageProgress()
+    {
+        if (!SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress
+            .TryGetValue(TranslationServer.GetLocale(), out float progress))
+        {
+            GD.PrintErr("Unknown progress for current locale");
+            progress = -1;
+        }
+        else
+        {
+            progress *= 100;
+        }
+
+        string textFormat;
+
+        if (progress >= 0 && progress < Constants.TRANSLATION_VERY_INCOMPLETE_THRESHOLD)
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW");
+        }
+        else if (progress >= 0 && progress < Constants.TRANSLATION_INCOMPLETE_THRESHOLD)
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS_LOW");
+        }
+        else
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS");
+        }
+
+        languageProgressLabel.Text = string.Format(CultureInfo.CurrentCulture, textFormat, Mathf.Floor(progress));
+    }
+
     /*
       GUI Control Callbacks
     */
@@ -801,6 +872,27 @@ public class OptionsMenu : ControlWithInput
 
         EmitSignal(nameof(OnOptionsClosed));
         return true;
+    }
+
+    private void UpdateDetectedCPUCount()
+    {
+        detectedCPUCount.Text = TaskExecutor.CPUCount.ToString(CultureInfo.CurrentCulture);
+
+        if (Settings.Instance.UseManualThreadCount)
+        {
+            activeThreadCount.Text = Settings.Instance.ThreadCount.Value.ToString(CultureInfo.CurrentCulture);
+        }
+        else
+        {
+            int threads = TaskExecutor.GetWantedThreadCount(Settings.Instance.AssumeCPUHasHyperthreading,
+                Settings.Instance.RunAutoEvoDuringGamePlay);
+
+            activeThreadCount.Text = threads.ToString(CultureInfo.CurrentCulture);
+            threadCountSlider.Value = threads;
+        }
+
+        threadCountSlider.MinValue = TaskExecutor.MinimumThreadCount;
+        threadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
     }
 
     private void OnResetPressed()
@@ -1073,6 +1165,37 @@ public class OptionsMenu : ControlWithInput
         Settings.Instance.RunAutoEvoDuringGamePlay.Value = pressed;
 
         UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnHyperthreadingToggled(bool pressed)
+    {
+        Settings.Instance.AssumeCPUHasHyperthreading.Value = pressed;
+        Settings.Instance.ApplyThreadSettings();
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnManualThreadsToggled(bool pressed)
+    {
+        Settings.Instance.UseManualThreadCount.Value = pressed;
+        Settings.Instance.ApplyThreadSettings();
+
+        threadCountSlider.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnManualThreadCountChanged(float value)
+    {
+        int threads = Mathf.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
+        Settings.Instance.ThreadCount.Value = threads;
+        Settings.Instance.ApplyThreadSettings();
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
     }
 
     // Input Callbacks
@@ -1193,6 +1316,7 @@ public class OptionsMenu : ControlWithInput
 
         Settings.Instance.ApplyLanguageSettings();
         UpdateResetSaveButtonState();
+        UpdateCurrentLanguageProgress();
     }
 
     private void OnResetLanguagePressed()
@@ -1203,6 +1327,7 @@ public class OptionsMenu : ControlWithInput
         Settings.Instance.ApplyLanguageSettings();
         UpdateSelectedLanguage(Settings.Instance);
         UpdateResetSaveButtonState();
+        UpdateCurrentLanguageProgress();
     }
 
     private void OnTranslationSitePressed()
