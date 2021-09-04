@@ -1,27 +1,28 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   A customized check box that changes icon when hovered / clicked.
 /// </summary>
-public class CustomCheckBox : ToolButton
+public class CustomCheckBox : Button
 {
     private Texture unpressedNormal;
-    private Texture unpressedHover;
-    private Texture unpressedClick;
+    private Texture unpressedHovered;
+    private Texture unpressedClicked;
     private Texture pressedNormal;
-    private Texture pressedHover;
-    private Texture pressedClick;
+    private Texture pressedHovered;
+    private Texture pressedClicked;
 
     private bool pressing;
 
     public override void _Ready()
     {
-        unpressedNormal = GD.Load<Texture>("res://assets/textures/gui/bevel/checkA.png");
-        unpressedHover = GD.Load<Texture>("res://assets/textures/gui/bevel/checkAhover.png");
-        unpressedClick = GD.Load<Texture>("res://assets/textures/gui/bevel/checkAclick.png");
-        pressedNormal = GD.Load<Texture>("res://assets/textures/gui/bevel/checkB.png");
-        pressedHover = GD.Load<Texture>("res://assets/textures/gui/bevel/checkBhover.png");
-        pressedClick = GD.Load<Texture>("res://assets/textures/gui/bevel/checkBclick.png");
+        unpressedNormal = GetIcon("UnpressedNormal", "CheckBox");
+        unpressedHovered = GetIcon("UnpressedHovered", "CheckBox");
+        unpressedClicked = GetIcon("UnpressedClicked", "CheckBox");
+        pressedNormal = GetIcon("PressedNormal", "CheckBox");
+        pressedHovered = GetIcon("PressedHovered", "CheckBox");
+        pressedClicked = GetIcon("PressedClicked", "CheckBox");
     }
 
     public override void _Process(float delta)
@@ -47,35 +48,20 @@ public class CustomCheckBox : ToolButton
 
     private void UpdateIcon()
     {
-        if (Pressed)
+        if (pressing && ActionMode == ActionModeEnum.Release)
         {
-            if (Disabled)
-            {
-                Icon = pressedNormal;
-            }
-            else if (pressing)
-            {
-                Icon = pressedClick;
-            }
-            else
-            {
-                Icon = IsHovered() ? pressedHover : pressedNormal;
-            }
+            Icon = Pressed ? pressedClicked : unpressedClicked;
+            return;
         }
-        else
+
+        Icon = GetDrawMode() switch
         {
-            if (Disabled)
-            {
-                Icon = unpressedNormal;
-            }
-            else if (pressing)
-            {
-                Icon = unpressedClick;
-            }
-            else
-            {
-                Icon = IsHovered() ? unpressedHover : unpressedNormal;
-            }
-        }
+            DrawMode.Disabled => Pressed ? pressedNormal : unpressedNormal,
+            DrawMode.Normal => unpressedNormal,
+            DrawMode.Hover => unpressedHovered,
+            DrawMode.Pressed => pressedNormal,
+            DrawMode.HoverPressed => pressedHovered,
+            _ => throw new NotImplementedException(),
+        };
     }
 }

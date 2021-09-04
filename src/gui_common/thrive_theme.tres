@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=50 format=2]
+[gd_resource type="Theme" load_steps=54 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/checkAclick.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=15]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -82,23 +86,9 @@ corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 0, 0.435294, 0.52549, 0.588235 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 3.0
-expand_margin_right = 3.0
+[sub_resource type="StyleBoxEmpty" id=39]
 
-[sub_resource type="StyleBoxFlat" id=9]
-bg_color = Color( 0, 0.435294, 0.52549, 0.588235 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 3.0
-expand_margin_right = 3.0
+[sub_resource type="StyleBoxEmpty" id=40]
 
 [sub_resource type="StyleBoxEmpty" id=10]
 
@@ -372,6 +362,7 @@ Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
 Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
 Button/constants/hseparation = 2
 Button/fonts/font = ExtResource( 8 )
+Button/icons/CheckBoxUnpressed = null
 Button/styles/disabled = SubResource( 1 )
 Button/styles/focus = SubResource( 2 )
 Button/styles/hover = SubResource( 3 )
@@ -385,14 +376,20 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = ExtResource( 8 )
-CheckBox/icons/checked = ExtResource( 5 )
+CheckBox/icons/PressedClicked = ExtResource( 13 )
+CheckBox/icons/PressedHovered = ExtResource( 15 )
+CheckBox/icons/PressedNormal = ExtResource( 5 )
+CheckBox/icons/UnpressedClicked = ExtResource( 14 )
+CheckBox/icons/UnpressedHovered = ExtResource( 12 )
+CheckBox/icons/UnpressedNormal = ExtResource( 6 )
+CheckBox/icons/checked = null
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
-CheckBox/icons/unchecked = ExtResource( 6 )
+CheckBox/icons/unchecked = null
 CheckBox/styles/disabled = SubResource( 6 )
 CheckBox/styles/focus = SubResource( 7 )
-CheckBox/styles/hover = SubResource( 8 )
-CheckBox/styles/hover_pressed = SubResource( 9 )
+CheckBox/styles/hover = SubResource( 39 )
+CheckBox/styles/hover_pressed = SubResource( 40 )
 CheckBox/styles/normal = SubResource( 10 )
 CheckBox/styles/pressed = SubResource( 11 )
 CheckButton/colors/font_color = Color( 1, 1, 1, 1 )
