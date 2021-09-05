@@ -2256,7 +2256,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         ready = true;
         LoadingScreen.Instance.Hide();
-        PauseMode = PauseModeEnum.Inherit;
 
         GD.Print("Elapsing time on editor entry");
 
