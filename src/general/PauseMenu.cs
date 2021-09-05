@@ -64,6 +64,16 @@ public class PauseMenu : ControlWithInput
     /// </summary>
     public GameProperties GameProperties { get; set; }
 
+    /// <summary>
+    ///   If true the user may not open or close the pause menu.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Does not automatically close the pause menu when set to true.
+    ///   </para>
+    /// </remarks>
+    public bool PausingBlocked { get; set; }
+
     private ActiveMenuType ActiveMenu
     {
         get
@@ -118,6 +128,9 @@ public class PauseMenu : ControlWithInput
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
     public bool EscapeKeyPressed()
     {
+        if (PausingBlocked)
+            return false;
+
         if (Visible)
         {
             ActiveMenu = ActiveMenuType.Primary;
@@ -138,13 +151,19 @@ public class PauseMenu : ControlWithInput
     }
 
     [RunOnKeyDown("help")]
-    public void ShowHelpPressed()
+    public bool ShowHelpPressed()
     {
+        if (PausingBlocked)
+            return false;
+
         if (NoExclusiveTutorialActive())
         {
             EmitSignal(nameof(OnOpenWithKeyPress));
             ShowHelpScreen();
+            return true;
         }
+
+        return false;
     }
 
     public void ShowHelpScreen()
@@ -177,6 +196,9 @@ public class PauseMenu : ControlWithInput
 
     private void ClosePressed()
     {
+        if (PausingBlocked)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnClosed));
     }
