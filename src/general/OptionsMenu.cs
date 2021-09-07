@@ -182,7 +182,7 @@ public class OptionsMenu : ControlWithInput
     public NodePath TutorialsEnabledPath;
 
     [Export]
-    public NodePath ScreenshotDirWarningBoxPath;
+    public NodePath ScreenshotDirectoryWarningBoxPath;
 
     [Export]
     public NodePath DefaultsConfirmationBoxPath;
@@ -273,7 +273,7 @@ public class OptionsMenu : ControlWithInput
     private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
-    private AcceptDialog screenshotDirWarningBox;
+    private AcceptDialog screenshotDirectoryWarningBox;
     private AcceptDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
     private AcceptDialog errorAcceptBox;
@@ -394,7 +394,7 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
-        screenshotDirWarningBox = GetNode<AcceptDialog>(ScreenshotDirWarningBoxPath);
+        screenshotDirectoryWarningBox = GetNode<AcceptDialog>(ScreenshotDirectoryWarningBoxPath);
         backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
@@ -1284,7 +1284,7 @@ public class OptionsMenu : ControlWithInput
         
         if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER)) != 0)
         {
-            screenshotDirWarningBox.PopupCenteredShrink();
+            screenshotDirectoryWarningBox.PopupCenteredShrink();
         };
     }
 
