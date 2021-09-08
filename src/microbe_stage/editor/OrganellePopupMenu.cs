@@ -113,8 +113,8 @@ public class OrganellePopupMenu : PopupPanel
         base._ExitTree();
     }
 
-    [RunOnKey("e_delete")]
-    private void OnDeletePressed()
+    [RunOnKeyDown("e_delete", Priority = 1)]
+    public void OnDeletePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -123,8 +123,8 @@ public class OrganellePopupMenu : PopupPanel
         Hide();
     }
 
-    [RunOnKey("e_move")]
-    private void OnMovePressed()
+    [RunOnKeyDown("e_move", Priority = 1)]
+    public void OnMovePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
