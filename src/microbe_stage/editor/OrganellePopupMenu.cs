@@ -101,6 +101,19 @@ public class OrganellePopupMenu : PopupPanel
         UpdateMoveButton();
     }
 
+    public override void _EnterTree()
+    {
+        InputManager.RegisterReceiver(this);
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        InputManager.UnregisterReceiver(this);
+        base._ExitTree();
+    }
+
+    [RunOnKey("e_delete")]
     private void OnDeletePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -110,6 +123,7 @@ public class OrganellePopupMenu : PopupPanel
         Hide();
     }
 
+    [RunOnKey("e_move")]
     private void OnMovePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
