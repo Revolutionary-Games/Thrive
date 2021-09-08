@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-04 15:39+0700\n"
-"PO-Revision-Date: 2021-08-13 05:59+0000\n"
-"Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
+"PO-Revision-Date: 2021-09-08 14:51+0000\n"
+"Last-Translator: Davi Augusto Pinto Araújo <davi.augusto.araujo@hotmail.com>"
+"\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1424,15 +1425,16 @@ msgstr "Serviço padrão de saída"
 #: ../src/general/OptionsMenu.cs:838
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+"Esta tradução está muito incompleta ({0}% concluída), por favor, nos ajude "
+"com ela!"
 
 #: ../src/general/OptionsMenu.cs:842
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Esta tradução ainda está em andamento ({0}% completa)"
 
 #: ../src/general/OptionsMenu.cs:846
-#, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Ajude a traduzir o jogo"
+msgstr "Esta linguagem está {0}% completa"
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
@@ -1500,7 +1502,7 @@ msgstr "Habilitar efeitos de luz na interface"
 
 #: ../src/general/OptionsMenu.tscn:422
 msgid "MASTER_VOLUME"
-msgstr "Volume principal"
+msgstr "Volume Principal"
 
 #: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:490
 #: ../src/general/OptionsMenu.tscn:523 ../src/general/OptionsMenu.tscn:556
@@ -1563,26 +1565,24 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Usar a auto-evo durante o jogo"
 
 #: ../src/general/OptionsMenu.tscn:810
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Selecionado:"
+msgstr "Número de CPU detectados:"
 
 #: ../src/general/OptionsMenu.tscn:827
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Salvar e continuar"
+msgstr "Tarefas atuais:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Assumir que o hiperprocessamento de CPU está habilitado"
 
 #: ../src/general/OptionsMenu.tscn:854
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Definir número de tarefas de fundo manualmente"
 
 #: ../src/general/OptionsMenu.tscn:867
 msgid "THREADS"
-msgstr ""
+msgstr "Tarefas:"
 
 #: ../src/general/OptionsMenu.tscn:968
 msgid "RESET_INPUTS"
@@ -1736,7 +1736,7 @@ msgstr "/segundo"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
@@ -1760,73 +1760,72 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Escolher uma cor da janela do jogo"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Adicionar cor atual como uma predefinição"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
-#, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr ""
+"Alternar o modo HSV (Matiz, Saturação, Valor) entre ligado ou desligado.\n"
+"Não pode ser ligado no modo bruto."
 
 #: ../src/gui_common/TweakedColourPicker.cs:328
-#, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr ""
+"Alternar o modo bruto entre ligado e desligado.\n"
+"No modo bruto você pode fazer os valores\n"
+"de cor R, G, B ultrapassarem 1.0.\n"
+"Não pode ser ligado no modo HSV."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
-#, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr "Valor de matiz, porção de cor"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
-#, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr "Valor de saturação, a quantidade de cinza em uma cor específica"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr "Valor de valor (brilho), brilho ou intensidade da cor"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr "Valor do canal vermelho da cor"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr "Valor do canal verde da cor"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr "Valor do canal azul da cor"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr "Valor do canal alfa da cor"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "Adicionar uma nova tecla"
+msgstr ""
+"Cor:{0}\n"
+"Botão esquerdo: Utilizar esta predefinição\n"
+"Botão direito: Deletar esta predefinição"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "Bruto"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Nenhum Dado a Exibir"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2368,6 +2367,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Não é possível detectar automaticamente se o hiperprocessamento está "
+"habilitado ou não.\n"
+"Isso afeta o número padrão de processos, já que as tarefas de "
+"hiperprocessamento não são tão rápidas quanto núcleos de CPU de verdade."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
@@ -3002,10 +3005,11 @@ msgstr "O jogo salvo selecionado é incompatível"
 #: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"O jogo salvo selecionado não é compatível com esta versão de Thrive.\n"
+"O jogo salvo a ser carregado não é compatível com esta versão de Thrive.\n"
+"E não há atualizador de jogo salvo para atualizar este jogo salvo.\n"
 "Como Thrive está em desenvolvimento inicial, a compatibilidade entre "
-"salvamentos não é prioridade, já que não há um conversor para atualizar os "
-"arquivos."
+"salvamentos não é prioridade, já que não há um atualizador para todas as "
+"versões."
 
 #: ../src/saving/SaveList.tscn:183
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
@@ -3281,19 +3285,14 @@ msgstr ""
 "Olhe para o indicador no canto inferior esquerdo para ver o quanto precisa."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
-#, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Em um planeta distante, éons de atividades vulcânicas e impactos de "
-"meteoros causaram o desenvolvimento de um novo fenômeno no universo.\n"
+"Você coletou recursos o bastante para sua célula dividir-se.\n"
 "\n"
-"A vida.\n"
+"Agora você está pronto para editar sua espécie.\n"
 "\n"
-"Micróbios simples moram nas regiões mais profundas do oceano. Você é o "
-"último ancestral comum (LUCA) no planeta.\n"
-"\n"
-"Para sobreviver neste mundo hostil, você precisará coletar compostos e "
-"evoluir para competir contra outras espécies de micróbios."
+"Para entrar no editor, aperte o botão do editor piscando no canto inferior "
+"direito."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
