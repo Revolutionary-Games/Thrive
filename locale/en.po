@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-04 15:39+0700\n"
+"POT-Creation-Date: 2021-09-09 08:50+1000\n"
 "PO-Revision-Date: 2021-09-03 15:48+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1408,9 +1408,9 @@ msgstr "Quit"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1173
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:119
+#: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Back"
 
@@ -1425,275 +1425,275 @@ msgstr ""
 "to cause issues. Try to update your video drivers and/or force AMD or "
 "Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/OptionsMenu.cs:798
+#: ../src/general/OptionsMenu.cs:803
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:843
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "This translation is very incomplete ({0}% done) please help us with it!"
 
-#: ../src/general/OptionsMenu.cs:842
+#: ../src/general/OptionsMenu.cs:847
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "This language is still a work in progress ({0}% complete)"
 
-#: ../src/general/OptionsMenu.cs:846
+#: ../src/general/OptionsMenu.cs:851
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "This language is {0}% complete"
 
-#: ../src/general/OptionsMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:136
 msgid "GRAPHICS"
 msgstr "Graphics"
 
-#: ../src/general/OptionsMenu.tscn:146
+#: ../src/general/OptionsMenu.tscn:147
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:157
+#: ../src/general/OptionsMenu.tscn:158
 msgid "PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/OptionsMenu.tscn:168
+#: ../src/general/OptionsMenu.tscn:169
 msgid "INPUTS"
 msgstr "Inputs"
 
-#: ../src/general/OptionsMenu.tscn:179
+#: ../src/general/OptionsMenu.tscn:180
 msgid "MISC"
 msgstr "Misc"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:213
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:221
 msgid "FULLSCREEN"
 msgstr "FullScreen"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:249
+#: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(higher values worsen performance)"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:280
 msgid "RESOLUTION"
 msgstr "Resolution:"
 
-#: ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.tscn:293
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:302
+#: ../src/general/OptionsMenu.tscn:303
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:328
+#: ../src/general/OptionsMenu.tscn:329
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Colourblind Correction:"
 
-#: ../src/general/OptionsMenu.tscn:360
+#: ../src/general/OptionsMenu.tscn:361
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:388
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Display Abilities Bar"
 
-#: ../src/general/OptionsMenu.tscn:396
+#: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Enable GUI Light Effects"
 
-#: ../src/general/OptionsMenu.tscn:422
+#: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
 
-#: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:490
-#: ../src/general/OptionsMenu.tscn:523 ../src/general/OptionsMenu.tscn:556
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
+#: ../src/general/OptionsMenu.tscn:590
 msgid "MUTE"
 msgstr "Mute"
 
-#: ../src/general/OptionsMenu.tscn:463
+#: ../src/general/OptionsMenu.tscn:464
 msgid "MUSIC_VOLUME"
 msgstr "Music Volume"
 
-#: ../src/general/OptionsMenu.tscn:496
+#: ../src/general/OptionsMenu.tscn:497
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance Volume"
 
-#: ../src/general/OptionsMenu.tscn:529
+#: ../src/general/OptionsMenu.tscn:530
 msgid "SFX_VOLUME"
 msgstr "SFX Volume"
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:563
 msgid "GUI_VOLUME"
 msgstr "GUI Volume"
 
-#: ../src/general/OptionsMenu.tscn:607
+#: ../src/general/OptionsMenu.tscn:608
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio output device:"
 
-#: ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:633
 msgid "LANGUAGE"
 msgstr "Language:"
 
-#: ../src/general/OptionsMenu.tscn:647 ../src/general/OptionsMenu.tscn:1183
+#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:666
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help Translate The Game"
 
-#: ../src/general/OptionsMenu.tscn:691
+#: ../src/general/OptionsMenu.tscn:692
 msgid "COMPOUND_CLOUDS"
 msgstr "Compound clouds"
 
-#: ../src/general/OptionsMenu.tscn:706
+#: ../src/general/OptionsMenu.tscn:707
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Cloud Simulation Minimum\n"
 "Interval:"
 
-#: ../src/general/OptionsMenu.tscn:713 ../src/general/OptionsMenu.tscn:755
+#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(higher values increase performance)"
 
-#: ../src/general/OptionsMenu.tscn:748
+#: ../src/general/OptionsMenu.tscn:749
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Cloud Resolution Divisor:"
 
-#: ../src/general/OptionsMenu.tscn:790
+#: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Run auto-evo during gameplay"
 
-#: ../src/general/OptionsMenu.tscn:810
+#: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
 msgstr "Detected CPU count:"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:828
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Current threads:"
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assume CPU has hyperthreading enabled"
 
-#: ../src/general/OptionsMenu.tscn:854
+#: ../src/general/OptionsMenu.tscn:855
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manually set number of background threads"
 
-#: ../src/general/OptionsMenu.tscn:867
+#: ../src/general/OptionsMenu.tscn:868
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/OptionsMenu.tscn:968
+#: ../src/general/OptionsMenu.tscn:969
 msgid "RESET_INPUTS"
 msgstr "Reset Inputs"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Play intro video"
 
-#: ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Play Microbe Intro on New Game"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave during the game"
 
-#: ../src/general/OptionsMenu.tscn:1025
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Amount of autosaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:1053
+#: ../src/general/OptionsMenu.tscn:1054
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Amount of quicksaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Show tutorials (in new games)"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1088
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Show tutorials (in current game)"
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1104
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat keys enabled"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "CUSTOM_USERNAME"
 msgstr "Custom Username:"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1153
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open Screenshot Folder"
 
-#: ../src/general/OptionsMenu.tscn:1160
+#: ../src/general/OptionsMenu.tscn:1161
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open Logs Folder"
 
-#: ../src/general/OptionsMenu.tscn:1195 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Save"
 
-#: ../src/general/OptionsMenu.tscn:1212
+#: ../src/general/OptionsMenu.tscn:1213
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaults"
 
-#: ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1225
 msgid "RESET_TO_DEFAULTS"
 msgstr "Reset to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1233
+#: ../src/general/OptionsMenu.tscn:1234
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Are you sure you want to reset ALL settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Reset inputs to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1257
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Are you sure you want to reset the input settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1270
+#: ../src/general/OptionsMenu.tscn:1271
 msgid "CLOSE_OPTIONS"
 msgstr "Close options?"
 
-#: ../src/general/OptionsMenu.tscn:1290
+#: ../src/general/OptionsMenu.tscn:1291
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "You have unsaved changes that will be discarded.\n"
 "Do you wish to continue?"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "SAVE_AND_CONTINUE"
 msgstr "Save and continue"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Discard and continue"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: ../src/general/OptionsMenu.tscn:1349 ../src/general/OptionsMenu.tscn:1372
-#: ../src/general/OptionsMenu.tscn:1396
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
+#: ../src/general/OptionsMenu.tscn:1397
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Failed to save new settings to configuration file."
 
@@ -3061,7 +3061,7 @@ msgstr "By:"
 msgid "CREATED_ON_PLATFORM"
 msgstr "Created on Platform:"
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:55
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
 msgstr "Load"
 
@@ -3071,13 +3071,13 @@ msgstr ""
 "Deleting this save cannot be undone, are you sure you want to permanently "
 "delete this?"
 
-#: ../src/saving/SaveManagerGUI.cs:206
+#: ../src/saving/SaveManagerGUI.cs:214
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Deleting the selected save(s) cannot be undone, are you sure you want to "
 "permanently delete {0} save(s)?"
 
-#: ../src/saving/SaveManagerGUI.cs:218
+#: ../src/saving/SaveManagerGUI.cs:226
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Deleting all old Auto and Quick saves cannot be undone, are you sure you "
@@ -3085,39 +3085,39 @@ msgstr ""
 " - {0} Auto save(s)\n"
 " - {1} Quick save(s)"
 
-#: ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Refresh"
 
-#: ../src/saving/SaveManagerGUI.tscn:77
+#: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
 msgstr "Delete Selected"
 
-#: ../src/saving/SaveManagerGUI.tscn:86
+#: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Clean Up Old Saves"
 
-#: ../src/saving/SaveManagerGUI.tscn:98
+#: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Open Save Directory"
 
-#: ../src/saving/SaveManagerGUI.tscn:131
+#: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
 msgstr "Total saves:"
 
-#: ../src/saving/SaveManagerGUI.tscn:151
+#: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
 msgstr "Space used:"
 
-#: ../src/saving/SaveManagerGUI.tscn:171
+#: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
 msgstr "Selected:"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:189
 msgid "DELETE_SELECTED_SAVES"
 msgstr "Delete selected Save(s)?"
 
-#: ../src/saving/SaveManagerGUI.tscn:211
+#: ../src/saving/SaveManagerGUI.tscn:212
 msgid "DELETE_OLD_SAVES"
 msgstr "Delete old Saves?"
 

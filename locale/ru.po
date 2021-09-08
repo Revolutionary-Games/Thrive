@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-04 15:39+0700\n"
+"POT-Creation-Date: 2021-09-09 08:50+1000\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -1417,9 +1417,9 @@ msgstr "Выйти"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробный Креативный Редактор"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1173
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:119
+#: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
 
@@ -1434,282 +1434,292 @@ msgstr ""
 "проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD "
 "или Nvidia видеокарты для запуска Thrive."
 
-#: ../src/general/OptionsMenu.cs:798
+#: ../src/general/OptionsMenu.cs:803
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода по умолчанию"
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:843
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:842
+#: ../src/general/OptionsMenu.cs:847
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:846
+#: ../src/general/OptionsMenu.cs:851
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Помогите Перевести Эту Игру"
 
-#: ../src/general/OptionsMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:136
 msgid "GRAPHICS"
 msgstr "Графика"
 
-#: ../src/general/OptionsMenu.tscn:146
+#: ../src/general/OptionsMenu.tscn:147
 msgid "SOUND"
 msgstr "Звук"
 
-#: ../src/general/OptionsMenu.tscn:157
+#: ../src/general/OptionsMenu.tscn:158
 msgid "PERFORMANCE"
 msgstr "Производительность"
 
-#: ../src/general/OptionsMenu.tscn:168
+#: ../src/general/OptionsMenu.tscn:169
 msgid "INPUTS"
 msgstr "Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:179
+#: ../src/general/OptionsMenu.tscn:180
 msgid "MISC"
 msgstr "Дополнительное"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:213
 msgid "VSYNC"
 msgstr "Вертикальная синхронизация"
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:221
 msgid "FULLSCREEN"
 msgstr "Полный экран"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Множественная выборка сглаживания:"
 
-#: ../src/general/OptionsMenu.tscn:249
+#: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(высокие значения ухудшают производительность)"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:280
 msgid "RESOLUTION"
 msgstr "Разрешение:"
 
-#: ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.tscn:293
 msgid "AUTO"
 msgstr "авто"
 
-#: ../src/general/OptionsMenu.tscn:302
+#: ../src/general/OptionsMenu.tscn:303
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
-#: ../src/general/OptionsMenu.tscn:328
+#: ../src/general/OptionsMenu.tscn:329
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Цветокоррекция для Дальтоников:"
 
-#: ../src/general/OptionsMenu.tscn:360
+#: ../src/general/OptionsMenu.tscn:361
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматическая Аберрация:"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:388
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Показать Панель Способностей"
 
-#: ../src/general/OptionsMenu.tscn:396
+#: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Включает эффекты мигания света на GUI"
 
-#: ../src/general/OptionsMenu.tscn:422
+#: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
 msgstr "Основная громкость"
 
-#: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:490
-#: ../src/general/OptionsMenu.tscn:523 ../src/general/OptionsMenu.tscn:556
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
+#: ../src/general/OptionsMenu.tscn:590
 msgid "MUTE"
 msgstr "Заглушить"
 
-#: ../src/general/OptionsMenu.tscn:463
+#: ../src/general/OptionsMenu.tscn:464
 msgid "MUSIC_VOLUME"
 msgstr "Громкость музыки"
 
-#: ../src/general/OptionsMenu.tscn:496
+#: ../src/general/OptionsMenu.tscn:497
 msgid "AMBIANCE_VOLUME"
 msgstr "Громкость Окружения"
 
-#: ../src/general/OptionsMenu.tscn:529
+#: ../src/general/OptionsMenu.tscn:530
 msgid "SFX_VOLUME"
 msgstr "Громкость Звуковых Эффектов"
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:563
 msgid "GUI_VOLUME"
 msgstr "Громкость GUI (интерфейса)"
 
-#: ../src/general/OptionsMenu.tscn:607
+#: ../src/general/OptionsMenu.tscn:608
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Устройство вывода звука:"
 
-#: ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:633
 msgid "LANGUAGE"
 msgstr "Язык:"
 
-#: ../src/general/OptionsMenu.tscn:647 ../src/general/OptionsMenu.tscn:1183
+#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
 msgid "RESET"
 msgstr "Сбросить"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:666
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Помогите Перевести Эту Игру"
 
-#: ../src/general/OptionsMenu.tscn:691
+#: ../src/general/OptionsMenu.tscn:692
 msgid "COMPOUND_CLOUDS"
 msgstr "Облака из Компонентов"
 
-#: ../src/general/OptionsMenu.tscn:706
+#: ../src/general/OptionsMenu.tscn:707
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Минимум Симуляции Облаков\n"
 "Интервал:"
 
-#: ../src/general/OptionsMenu.tscn:713 ../src/general/OptionsMenu.tscn:755
+#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(высокие значения могут ухудшить производительность)"
 
-#: ../src/general/OptionsMenu.tscn:748
+#: ../src/general/OptionsMenu.tscn:749
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитель Разрешения Облаков:"
 
-#: ../src/general/OptionsMenu.tscn:790
+#: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать авто-эво во время игры"
 
-#: ../src/general/OptionsMenu.tscn:810
+#: ../src/general/OptionsMenu.tscn:811
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "Выбрано:"
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:828
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Сохранить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:854
+#: ../src/general/OptionsMenu.tscn:855
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:867
+#: ../src/general/OptionsMenu.tscn:868
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:968
+#: ../src/general/OptionsMenu.tscn:969
 msgid "RESET_INPUTS"
 msgstr "Сбросить Клавиши"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Проигрывать начальное видео"
 
-#: ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Проигрывать Вступление Микроба при Новой Игре"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
 
-#: ../src/general/OptionsMenu.tscn:1025
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Количество записей автосохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1053
+#: ../src/general/OptionsMenu.tscn:1054
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Количество записей быстрого сохранения:"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Показывать туториал (в новых играх)"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1088
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показать туториал (в текущей игре)"
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1104
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Чит-коды включены"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "CUSTOM_USERNAME"
 msgstr "Кастомное Имя Пользователя:"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1153
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Открыть Папку со Скриншотами"
 
-#: ../src/general/OptionsMenu.tscn:1160
+#: ../src/general/OptionsMenu.tscn:1161
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Открыть Папку с Логами"
 
-#: ../src/general/OptionsMenu.tscn:1195 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Сохранить"
 
-#: ../src/general/OptionsMenu.tscn:1212
+#: ../src/general/OptionsMenu.tscn:1213
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "По умолчанию"
 
-#: ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1225
 msgid "RESET_TO_DEFAULTS"
 msgstr "Сбросить по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1233
+#: ../src/general/OptionsMenu.tscn:1234
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Вы действительно хотите сбросить ВСЕ настройки до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Восстановить до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1257
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Вы действительно хотите сбросить настройки клавиш до значений по умолчанию?"
 
-#: ../src/general/OptionsMenu.tscn:1270
+#: ../src/general/OptionsMenu.tscn:1271
 msgid "CLOSE_OPTIONS"
 msgstr "Закрыть настройки?"
 
-#: ../src/general/OptionsMenu.tscn:1290
+#: ../src/general/OptionsMenu.tscn:1291
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Вы имеете не сохранённые изменения, которые можете потерять.\n"
 "Вы хотите продолжить?"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "SAVE_AND_CONTINUE"
 msgstr "Сохранить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Отменить и продолжить"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "CANCEL"
 msgstr "Отмена"
 
-#: ../src/general/OptionsMenu.tscn:1349 ../src/general/OptionsMenu.tscn:1372
-#: ../src/general/OptionsMenu.tscn:1396
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
+#: ../src/general/OptionsMenu.tscn:1397
 msgid "ERROR"
 msgstr "Ошибка"
 
-#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Ошибка: Не удалось сохранить новые настройки в конфигурационном файле."
+
+#: ../src/general/OptionsMenu.tscn:1407
+#, fuzzy
+msgid "NO_SCREENSHOT_DIRECTORY"
+msgstr "Открыть Папку со Скриншотами"
+
+#: ../src/general/OptionsMenu.tscn:1416
+#, fuzzy
+msgid "TRY_TAKING_SOME_SCREENSHOTS"
+msgstr "Сделать изображение экрана"
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
@@ -3087,7 +3097,7 @@ msgstr "Создано:"
 msgid "CREATED_ON_PLATFORM"
 msgstr "Создано на платформе:"
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:55
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
 msgstr "Загрузить"
 
@@ -3097,13 +3107,13 @@ msgstr ""
 "Удаление этого сохранение будет невозможно отменить, вы действительно "
 "хотите перманентно удалить это сохранение?"
 
-#: ../src/saving/SaveManagerGUI.cs:206
+#: ../src/saving/SaveManagerGUI.cs:214
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Удаление выбранного(ых) сохранения(й) будет невозможно отменить, вы "
 "действительно хотите перманентно удалить {0} сохранение(ий)?"
 
-#: ../src/saving/SaveManagerGUI.cs:218
+#: ../src/saving/SaveManagerGUI.cs:226
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Удаление всех старых Авто и Быстрых сохранений невозможно отменить, вы "
@@ -3111,41 +3121,51 @@ msgstr ""
 " - {0} Авто сохранение(я)\n"
 " - {1} Быстрое(ые) сохранение(я)"
 
-#: ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Обновить"
 
-#: ../src/saving/SaveManagerGUI.tscn:77
+#: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
 msgstr "Удалить Выбранные"
 
-#: ../src/saving/SaveManagerGUI.tscn:86
+#: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Очистить Старые Сохранения"
 
-#: ../src/saving/SaveManagerGUI.tscn:98
+#: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr "Открыть Папку Сохранений"
 
-#: ../src/saving/SaveManagerGUI.tscn:131
+#: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
 msgstr "Всего сохранений:"
 
-#: ../src/saving/SaveManagerGUI.tscn:151
+#: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
 msgstr "Использовано места:"
 
-#: ../src/saving/SaveManagerGUI.tscn:171
+#: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
 msgstr "Выбрано:"
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:189
 msgid "DELETE_SELECTED_SAVES"
 msgstr "Удалить выбранное(ые) Сохранение(я)?"
 
-#: ../src/saving/SaveManagerGUI.tscn:211
+#: ../src/saving/SaveManagerGUI.tscn:212
 msgid "DELETE_OLD_SAVES"
 msgstr "Удалить старые Сохранения?"
+
+#: ../src/saving/SaveManagerGUI.tscn:232
+#, fuzzy
+msgid "NO_SAVE_DIRECTORY"
+msgstr "Открыть Папку Сохранений"
+
+#: ../src/saving/SaveManagerGUI.tscn:239
+#, fuzzy
+msgid "TRY_NEW_GAME"
+msgstr "Новая Игра"
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"

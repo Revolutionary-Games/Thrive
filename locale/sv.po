@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-04 15:39+0700\n"
+"POT-Creation-Date: 2021-09-09 08:50+1000\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: mattealex <mattias304@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/"
@@ -1399,9 +1399,9 @@ msgstr "Lämna"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrob Fri Byggredigerare"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1173
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:119
+#: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Backåt"
 
@@ -1416,285 +1416,295 @@ msgstr ""
 "troligen att orsaka problem. Försök att updatera dina video drivers och/"
 "eller tvinga AMD eller Nvidia grafik för att använda till att köra Thrive."
 
-#: ../src/general/OptionsMenu.cs:798
+#: ../src/general/OptionsMenu.cs:803
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:843
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:842
+#: ../src/general/OptionsMenu.cs:847
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:846
+#: ../src/general/OptionsMenu.cs:851
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Hjälp Översätta Spelet"
 
-#: ../src/general/OptionsMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:136
 msgid "GRAPHICS"
 msgstr "Grafik"
 
-#: ../src/general/OptionsMenu.tscn:146
+#: ../src/general/OptionsMenu.tscn:147
 msgid "SOUND"
 msgstr "Ljud"
 
-#: ../src/general/OptionsMenu.tscn:157
+#: ../src/general/OptionsMenu.tscn:158
 msgid "PERFORMANCE"
 msgstr "Uppförande"
 
-#: ../src/general/OptionsMenu.tscn:168
+#: ../src/general/OptionsMenu.tscn:169
 msgid "INPUTS"
 msgstr "InputS"
 
-#: ../src/general/OptionsMenu.tscn:179
+#: ../src/general/OptionsMenu.tscn:180
 msgid "MISC"
 msgstr "B.l.a"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:213
 msgid "VSYNC"
 msgstr "VSynk"
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:221
 msgid "FULLSCREEN"
 msgstr "Fullskärm"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multispel anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:249
+#: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(högre värden försämrar spelhastighet)"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:280
 msgid "RESOLUTION"
 msgstr "Upplösning:"
 
-#: ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.tscn:293
 msgid "AUTO"
 msgstr "automatiskt"
 
-#: ../src/general/OptionsMenu.tscn:302
+#: ../src/general/OptionsMenu.tscn:303
 msgid "MAX_FPS"
 msgstr "Max Frames Per Sekund:"
 
-#: ../src/general/OptionsMenu.tscn:328
+#: ../src/general/OptionsMenu.tscn:329
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Färgblindhets Rättning:"
 
-#: ../src/general/OptionsMenu.tscn:360
+#: ../src/general/OptionsMenu.tscn:361
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromatisk Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:388
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Förmågor"
 
-#: ../src/general/OptionsMenu.tscn:396
+#: ../src/general/OptionsMenu.tscn:397
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Externa effekter:"
 
-#: ../src/general/OptionsMenu.tscn:422
+#: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
 msgstr "Huvudvolym"
 
-#: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:490
-#: ../src/general/OptionsMenu.tscn:523 ../src/general/OptionsMenu.tscn:556
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
+#: ../src/general/OptionsMenu.tscn:590
 msgid "MUTE"
 msgstr "Tyst"
 
-#: ../src/general/OptionsMenu.tscn:463
+#: ../src/general/OptionsMenu.tscn:464
 msgid "MUSIC_VOLUME"
 msgstr "Musikvolym"
 
-#: ../src/general/OptionsMenu.tscn:496
+#: ../src/general/OptionsMenu.tscn:497
 msgid "AMBIANCE_VOLUME"
 msgstr "Omgivningsvolym"
 
-#: ../src/general/OptionsMenu.tscn:529
+#: ../src/general/OptionsMenu.tscn:530
 msgid "SFX_VOLUME"
 msgstr "SFX Volym"
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:563
 msgid "GUI_VOLUME"
 msgstr "GUI-volym"
 
-#: ../src/general/OptionsMenu.tscn:607
+#: ../src/general/OptionsMenu.tscn:608
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:633
 msgid "LANGUAGE"
 msgstr "Språk:"
 
-#: ../src/general/OptionsMenu.tscn:647 ../src/general/OptionsMenu.tscn:1183
+#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
 msgid "RESET"
 msgstr "Nollställ"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:666
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Hjälp Översätta Spelet"
 
-#: ../src/general/OptionsMenu.tscn:691
+#: ../src/general/OptionsMenu.tscn:692
 msgid "COMPOUND_CLOUDS"
 msgstr "Molekylmoln"
 
-#: ../src/general/OptionsMenu.tscn:706
+#: ../src/general/OptionsMenu.tscn:707
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Molnsimulerings minimala\n"
 "interval:"
 
-#: ../src/general/OptionsMenu.tscn:713 ../src/general/OptionsMenu.tscn:755
+#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(högre värden ökar spelhastighet)"
 
-#: ../src/general/OptionsMenu.tscn:748
+#: ../src/general/OptionsMenu.tscn:749
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Molnupplösnings Divisor:"
 
-#: ../src/general/OptionsMenu.tscn:790
+#: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Kör auto-evo under spelgång"
 
-#: ../src/general/OptionsMenu.tscn:810
+#: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:828
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Spara och fortsätt"
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:854
+#: ../src/general/OptionsMenu.tscn:855
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:867
+#: ../src/general/OptionsMenu.tscn:868
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:968
+#: ../src/general/OptionsMenu.tscn:969
 msgid "RESET_INPUTS"
 msgstr "Nollställ Inputs"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Spela introvideo"
 
-#: ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Spela Mikrobintro i ett nytt spel"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autospara i spelet"
 
-#: ../src/general/OptionsMenu.tscn:1025
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Mängd autosparningar ska behållas:"
 
-#: ../src/general/OptionsMenu.tscn:1053
+#: ../src/general/OptionsMenu.tscn:1054
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Mängd snabbsparningar att behålla:"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Visa hjälp (i nya spel)"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1088
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Visa hjälp (i nuvarande spel)"
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1104
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Fuskknappar på"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Använd ett anpassat användarnamn"
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "CUSTOM_USERNAME"
 msgstr "Anpassat Användarnamn:"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1153
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Öppna Skärmbildsmapp"
 
-#: ../src/general/OptionsMenu.tscn:1160
+#: ../src/general/OptionsMenu.tscn:1161
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Öppna Logmapp"
 
-#: ../src/general/OptionsMenu.tscn:1195 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Spara"
 
-#: ../src/general/OptionsMenu.tscn:1212
+#: ../src/general/OptionsMenu.tscn:1213
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Default"
 
-#: ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1225
 msgid "RESET_TO_DEFAULTS"
 msgstr "Nollställ till default?"
 
-#: ../src/general/OptionsMenu.tscn:1233
+#: ../src/general/OptionsMenu.tscn:1234
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Är du säker på att du vill nollställa ALLA inställningar till default "
 "värden?"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Nollställ kontroller till default?"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1257
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Är du säker på att du vill nollställa kontrollinställningarna till default "
 "värden?"
 
-#: ../src/general/OptionsMenu.tscn:1270
+#: ../src/general/OptionsMenu.tscn:1271
 msgid "CLOSE_OPTIONS"
 msgstr "Stäng inställningar?"
 
-#: ../src/general/OptionsMenu.tscn:1290
+#: ../src/general/OptionsMenu.tscn:1291
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Du har osparade ändringar som kommer bli raderade.\n"
 "Vill du fortsätta?"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "SAVE_AND_CONTINUE"
 msgstr "Spara och fortsätt"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Radera och fortsätt"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "CANCEL"
 msgstr "Avbryt"
 
-#: ../src/general/OptionsMenu.tscn:1349 ../src/general/OptionsMenu.tscn:1372
-#: ../src/general/OptionsMenu.tscn:1396
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
+#: ../src/general/OptionsMenu.tscn:1397
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Error: Misslyckades att spara nya intällningar till konfigurationsfil."
+
+#: ../src/general/OptionsMenu.tscn:1407
+#, fuzzy
+msgid "NO_SCREENSHOT_DIRECTORY"
+msgstr "Öppna Skärmbildsmapp"
+
+#: ../src/general/OptionsMenu.tscn:1416
+#, fuzzy
+msgid "TRY_TAKING_SOME_SCREENSHOTS"
+msgstr "Ta ett screenshot"
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
@@ -3023,7 +3033,7 @@ msgstr ""
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:55
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
 msgstr ""
 
@@ -3031,49 +3041,58 @@ msgstr ""
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:206
+#: ../src/saving/SaveManagerGUI.cs:214
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:218
+#: ../src/saving/SaveManagerGUI.cs:226
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:77
+#: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:86
+#: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:98
+#: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:131
+#: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:151
+#: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:171
+#: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:189
 msgid "DELETE_SELECTED_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:211
+#: ../src/saving/SaveManagerGUI.tscn:212
 msgid "DELETE_OLD_SAVES"
 msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:232
+msgid "NO_SAVE_DIRECTORY"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:239
+#, fuzzy
+msgid "TRY_NEW_GAME"
+msgstr "Nytt spel"
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
