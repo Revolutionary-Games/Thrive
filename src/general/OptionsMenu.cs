@@ -1283,9 +1283,7 @@ public class OptionsMenu : ControlWithInput
         GUICommon.Instance.PlayButtonPressSound();
 
         if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER)).Equals(Error.FileNotFound))
-        {
             screenshotDirectoryWarningBox.PopupCenteredShrink();
-        }
     }
 
     private void OnCustomUsernameEnabledToggled(bool pressed)
