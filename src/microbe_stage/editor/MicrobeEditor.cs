@@ -902,8 +902,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (organelle == null)
             return;
 
-        gui.HideOrganelleMenu();
-
         StartOrganelleMove(organelle);
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
@@ -1005,8 +1003,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (organelle == null)
             return;
-
-        gui.HideOrganelleMenu();
 
         RemoveOrganelle(mouseHex);
     }

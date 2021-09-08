@@ -114,23 +114,39 @@ public class OrganellePopupMenu : PopupPanel
     }
 
     [RunOnKeyDown("e_delete", Priority = 1)]
-    public void OnDeletePressed()
+    public bool OnDeletePressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        if(Visible)
+        {
+            GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(DeletePressed));
+            EmitSignal(nameof(DeletePressed));
 
-        Hide();
+            Hide();
+
+            return true;
+        }
+
+        // Return false to indicate that the key input wasn't handled.
+        return false;
     }
 
     [RunOnKeyDown("e_move", Priority = 1)]
-    public void OnMovePressed()
+    public bool OnMovePressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        if(Visible)
+        {
+            GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(MovePressed));
+            EmitSignal(nameof(MovePressed));
 
-        Hide();
+            Hide();
+
+            return true;
+        }
+
+        // Return false to indicate that the key input wasn't handled.
+        return false;
     }
 
     private void OnModifyPressed()
