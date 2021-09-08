@@ -116,7 +116,7 @@ public class OrganellePopupMenu : PopupPanel
     [RunOnKeyDown("e_delete", Priority = 1)]
     public bool OnDeleteKeyPressed()
     {
-        if(Visible)
+        if (Visible)
         {
             EmitSignal(nameof(DeletePressed));
 
@@ -132,7 +132,7 @@ public class OrganellePopupMenu : PopupPanel
     [RunOnKeyDown("e_move", Priority = 1)]
     public bool OnMoveKeyPressed()
     {
-        if (visible)
+        if (Visible)
         {
             EmitSignal(nameof(MovePressed));
 
