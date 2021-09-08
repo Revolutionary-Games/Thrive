@@ -114,12 +114,10 @@ public class OrganellePopupMenu : PopupPanel
     }
 
     [RunOnKeyDown("e_delete", Priority = 1)]
-    public bool OnDeletePressed()
+    public bool OnDeleteKeyPressed()
     {
         if(Visible)
         {
-            GUICommon.Instance.PlayButtonPressSound();
-
             EmitSignal(nameof(DeletePressed));
 
             Hide();
@@ -131,13 +129,21 @@ public class OrganellePopupMenu : PopupPanel
         return false;
     }
 
-    [RunOnKeyDown("e_move", Priority = 1)]
-    public bool OnMovePressed()
+    
+    private void OnDeletePressed()
     {
-        if(Visible)
-        {
-            GUICommon.Instance.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
 
+        EmitSignal(nameof(DeletePressed));
+
+        Hide();
+    }
+
+    [RunOnKeyDown("e_move", Priority = 1)]
+    public bool OnMoveKeyPressed()
+    {
+        if (visible)
+        {
             EmitSignal(nameof(MovePressed));
 
             Hide();
@@ -147,6 +153,15 @@ public class OrganellePopupMenu : PopupPanel
 
         // Return false to indicate that the key input wasn't handled.
         return false;
+    }
+
+    private void OnMovePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(nameof(MovePressed));
+
+        Hide();
     }
 
     private void OnModifyPressed()
