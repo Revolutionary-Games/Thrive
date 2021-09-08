@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-04 15:39+0700\n"
-"PO-Revision-Date: 2021-08-26 15:50+0000\n"
-"Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
+"PO-Revision-Date: 2021-09-06 14:53+0000\n"
+"Last-Translator: Span Staans <spaansstan@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -24,29 +24,38 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Gebruik WASD en de muis om te bewegen, E om OxyToxy te schieten en G om "
-"Overspoelmodus aan te zetten."
+"Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left"
+"[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g"
+"_move_right[/thrive:input] en de muis om te bewegen. "
+"[thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound] te schieten als je een vergif vacuole hebt. "
+"[thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit "
+"te zetten."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Je cel gebruikt ATP als energie. Als je geen ATP meer hebt, sterft je cel."
+"Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als "
+"energiebron, als het opraakt ga je dood."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Om de editor te ontgrendelen en om jezelf voort te planten, heb je "
-"ammoniak (oranje wolken) en fosfaat (paarse wolken) nodig."
+"Om de editor te ontgrendelen en voort te planten moet je [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type="
+"\"phosphates\"][/thrive:compound] (Paarse Wolk) verzamelen."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Je kan andere cellen, bacteriën en ijzer deeltjes opnemen die kleiner zijn "
-"dan jezelf door op G te drukken. Dit gebruikt extra ATP en maakt je "
-"langzamer. Vergeet niet nog een keer op G te drukken om te stoppen."
+"Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou opnemen "
+"door op [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit "
+"gebruikt extra [thrive:compound type=\"atp\"][/thrive:compound] en maakt je "
+"langzamer. Vergeet niet nog een keer op "
+"[thrive:input]g_toggle_engulf[/thrive:input] te drukken om te stoppen."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
@@ -731,7 +740,7 @@ msgstr "Cellulose"
 #: ../simulation_parameters/microbe_stage/membranes.json:54
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "CHITIN"
-msgstr "Chitin"
+msgstr "Chitine"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:71
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
@@ -912,7 +921,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
-msgstr "Vooruit"
+msgstr "Voorwaarts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
@@ -932,7 +941,7 @@ msgstr "Delete"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr "Pauze"
+msgstr "Pauzeer"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
@@ -948,7 +957,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
-msgstr "links"
+msgstr "Links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 #, fuzzy
@@ -961,11 +970,11 @@ msgstr "Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr "omlaag"
+msgstr "Omlaag"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr "menu"
+msgstr "Menu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
@@ -1009,7 +1018,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr "Ruimte"
+msgstr "Spatie"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 #, fuzzy
