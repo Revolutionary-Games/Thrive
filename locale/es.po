@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-04 15:39+0700\n"
-"PO-Revision-Date: 2021-08-29 18:21+0000\n"
+"PO-Revision-Date: 2021-09-06 00:51+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/es/>\n"
@@ -1416,7 +1416,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:842
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Este idioma es aún un trabajo en progreso ({0}% completado)"
 
 #: ../src/general/OptionsMenu.cs:846
 #, fuzzy
@@ -1563,15 +1563,15 @@ msgstr "Guardar y continuar"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Asume que la CPU tiene «hyperthreading» habilitado"
 
 #: ../src/general/OptionsMenu.tscn:854
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Ajustar manualmente el número de hilos en segundo plano"
 
 #: ../src/general/OptionsMenu.tscn:867
 msgid "THREADS"
-msgstr ""
+msgstr "Hilos:"
 
 #: ../src/general/OptionsMenu.tscn:968
 msgid "RESET_INPUTS"
@@ -1755,7 +1755,7 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Añadir color actual como predeterminado"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
 #, fuzzy
@@ -1817,7 +1817,7 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Sin Datos que Mostrar"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
