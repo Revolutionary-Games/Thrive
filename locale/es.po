@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-08-29 18:21+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -3109,13 +3109,13 @@ msgstr "Cargar"
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Eliminar esta partida es irreversible, eliminar permanentemente?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Eliminar la(s) partida(s) seleccionada(s) es irreversible, eliminar {0} "
 "partida(s)?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Eliminar todos los autoguardados y guardados rápidos es irreversible, "
@@ -3165,9 +3165,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Abrir Directorio de Guardado"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Nueva Partida"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3357,6 +3356,10 @@ msgstr ""
 "el centro de la pantalla, y el ratón para controlar la orientación.\n"
 "\n"
 "Prueba todas las teclas por unos segundos para continuar."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nueva Partida"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Región: {0}"

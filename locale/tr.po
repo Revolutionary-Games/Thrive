@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-07-16 17:42+0000\n"
 "Last-Translator: angelbisector <m.eypoglu@gmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -3096,13 +3096,13 @@ msgstr ""
 "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek "
 "istediğinden emin misin?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Seçili kayıtları silme işlemi geri alınamaz, {0} kaydı kalıcı olarak "
 "silmek istediğinden emin misin?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, "
@@ -3152,9 +3152,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Kayıt Dizinini Aç"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Yeni Oyun"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3344,6 +3343,10 @@ msgstr ""
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin "
 "bağını çöz\" tuşuna basabilirsin."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Yeni Oyun"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Arazi: {0}"

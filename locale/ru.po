@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -3107,13 +3107,13 @@ msgstr ""
 "Удаление этого сохранение будет невозможно отменить, вы действительно "
 "хотите перманентно удалить это сохранение?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Удаление выбранного(ых) сохранения(й) будет невозможно отменить, вы "
 "действительно хотите перманентно удалить {0} сохранение(ий)?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Удаление всех старых Авто и Быстрых сохранений невозможно отменить, вы "
@@ -3163,9 +3163,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Открыть Папку Сохранений"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Новая Игра"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3357,6 +3356,10 @@ msgstr ""
 "\n"
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную "
 "клетку или нажать клавишу \"Отвязать всех\"."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Новая Игра"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Биом: {0}"

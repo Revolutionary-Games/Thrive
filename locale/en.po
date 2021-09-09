@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-09-03 15:48+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -3071,13 +3071,13 @@ msgstr ""
 "Deleting this save cannot be undone, are you sure you want to permanently "
 "delete this?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Deleting the selected save(s) cannot be undone, are you sure you want to "
 "permanently delete {0} save(s)?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Deleting all old Auto and Quick saves cannot be undone, are you sure you "
@@ -3126,8 +3126,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "No saves directory found"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-msgid "TRY_NEW_GAME"
-msgstr "Try starting a new game!"
+msgid "TRY_MAKING_A_SAVE"
+msgstr "Try making a save!"
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"

@@ -199,7 +199,7 @@ public class SaveManagerGUI : Control
 
     private void OpenSaveDirectoryPressed()
     {
-        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER)).Equals(Error.FileNotFound))
+        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER)) == Error.FileNotFound)
             saveDirectoryWarningDialog.PopupCenteredShrink();
     }
 

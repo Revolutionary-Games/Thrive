@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -3147,13 +3147,13 @@ msgstr ""
 "Брисање овог чувања не може се опозвати. Да ли сте сигурни да желите "
 "трајно да га избришете?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Брисање изабраних сачуваних ставки не може се поништити. Да ли сте сигурни "
 "да желите трајно избрисати {0} сачуване датотеке?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Брисање свих старих аутоматских и брзих чувања не може се поништити. Да ли "
@@ -3203,9 +3203,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Нова игра"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3398,6 +3397,10 @@ msgstr ""
 "екрана) и мишем за контролу оријентације ћелије.\n"
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Нова игра"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Зона: {0}"

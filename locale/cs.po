@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-04-20 08:07+0000\n"
 "Last-Translator: Pajoš <fractvival@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -3086,13 +3086,13 @@ msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Smazání vybraných uložení nelze vrátit zpět. Opravdu chceš trvale smazat "
 "{0} ?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Smazání všech starých automatických a rychlých uložení nelze vrátit zpět. "
@@ -3142,9 +3142,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Otevřít složku uložení"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Nová hra"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3334,6 +3333,10 @@ msgstr ""
 "obrazovky) a myš pro ovládání orientace buňky.\n"
 "\n"
 "Chceš-li pokračovat, vyzkoušejte na několik sekund všechny klávesy."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nová hra"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Místo: {0}"

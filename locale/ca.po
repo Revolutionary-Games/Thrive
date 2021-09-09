@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-09-03 13:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -3133,14 +3133,14 @@ msgstr ""
 "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur "
 "que el voleu eliminar permanentment?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "L'acció d'eliminar els arxius de guardat seleccionats és irreversible. "
 "Esteu segur que voleu eliminar permanentment el següent nombre d'arxius: "
 "{0}?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "L'acció d'eliminar tots els arxius de guardat automàtic i ràpid és "
@@ -3191,9 +3191,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Obrir el directori de guardats"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Nova partida"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3410,6 +3409,10 @@ msgstr ""
 "\n"
 "Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia "
 "cèl·lula o pressionar la tecla per desunir-les a totes."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nova partida"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Indret: {0}"

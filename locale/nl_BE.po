@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -3180,14 +3180,14 @@ msgstr ""
 "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden "
 "gemaakt. Weet je zeker dat je dit definitief wilt verwijderen?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Het verwijderen van het/de geselecteerde opgeslagen bestand(en) kan niet "
 "ongedaan worden gemaakt. Ben je zeker dat je {0} opgeslagen bestand(en) "
 "definitief wilt verwijderen?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Het verwijderen van alle automatisch en snel opgeslagen bestanden kan niet "
@@ -3238,9 +3238,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Open adresboek van opgeslagen bestanden"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Nieuw Spel"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3386,6 +3385,10 @@ msgstr "Microbe Vrij Bouwen in de \"Editor\""
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nieuw Spel"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Plek: {0}"

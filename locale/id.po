@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2020-12-22 07:32+0000\n"
 "Last-Translator: Rizky Pramudya <rizkypramudyacj@outlook.co.id>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -3100,13 +3100,13 @@ msgstr ""
 "Save yang terhapus tidak akan bisa dikembalikan, apakah kamu yakin ingin "
 "menghapus ini secara permanen?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Save yang terpilih untuk dihapus tidak akan bisa dikembalikan, apakah kamu "
 "yakin ingin menghapus {0} save secara permanen?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Semua save otomatis dan save cepat lawas yang akan dihapus tidak akan bisa "
@@ -3156,9 +3156,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Buka Direktori Save"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Permainan Baru"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3355,6 +3354,10 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri "
 "atau tekan tombol unbind all."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Permainan Baru"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Daerah: {0}"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-08-29 18:21+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -3099,13 +3099,13 @@ msgstr ""
 "Apagar o jogo guardado não pode ser revertido, tens a certeza que o "
 "desejas apagar permanentemente?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Apagar o(s) jogo(s) selecionado(s) não pode ser revertido, tens a certeza "
 "que desejas apagar permanentemente {0} jogo(s)?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Apagar todos os jogos antigos guardados automática e rapidamente não pode "
@@ -3156,9 +3156,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Abrir a pasta dos jogos guardados"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Novo Jogo"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3346,6 +3345,10 @@ msgstr ""
 "\n"
 "Para abandonar a colónia totalmente podes clicar na tua própria célula ou "
 "pressionar o botão Desvincular tudo."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Novo Jogo"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Região: {0}"

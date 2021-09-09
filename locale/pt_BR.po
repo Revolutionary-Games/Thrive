@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-08-13 05:59+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -3075,13 +3075,13 @@ msgstr ""
 "Apagar este jogo salvo é irreversível, você tem certeza que quer apagar "
 "permanentemente este arquivo?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Apagar o(s) jogo(s) salvo(s) é irreversível, você tem certeza que quer "
 "apagar {0} aquivo(s) permanentemente?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Apagar todos os salvamentos automáticos e rápidos é irreversível, você "
@@ -3131,9 +3131,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Abrir Diretório de Salvamentos"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Novo Jogo"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3323,6 +3322,10 @@ msgstr ""
 "\n"
 "Para sair da colônia você pode clicar em sua própria célula ou apertar a "
 "tecla “desconectar todos”."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Novo Jogo"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Região: {0}"

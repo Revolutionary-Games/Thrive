@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -3146,13 +3146,13 @@ msgstr ""
 "Forigi ĉi tiun konservadon ne povas esti malfarita, ĉu vi certas, ke vi "
 "volas forigi ĉi tion por ĉiam?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Forigi la elektitajn konservojn ne povas esti malfarita, ĉu vi certas, ke "
 "vi volas por ĉiam forigi {0} konservado(j)n?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Forigi ĉiujn malnovajn Aŭtomatajn kaj Rapidajn konservdojn ne povas esti "
@@ -3202,9 +3202,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Malfermu Konservadan Adresaron"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Nova ludo"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3398,6 +3397,10 @@ msgstr ""
 "(centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nova ludo"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Loko: {0}"

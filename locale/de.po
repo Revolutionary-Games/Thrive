@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-08-25 08:37+0000\n"
 "Last-Translator: intothi <Christoph.Thum@posteo.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -3133,14 +3133,14 @@ msgstr ""
 "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, "
 "bist du sicher, dass du ihn dauerhaft löschen willst?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Das Löschen des/der ausgewählten Spielstandes/Spielständen kann nicht "
 "rückgängig gemacht werden. Bist du sicher, dass du die {0} Speicherung(en) "
 "dauerhaft löschen möchten?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Das Löschen aller alten Auto- und Schnellspeicherungen kann nicht "
@@ -3191,9 +3191,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Speicherverzeichnis öffnen"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Neues Spiel"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3396,6 +3395,10 @@ msgstr ""
 "\n"
 "Um die Kolonie ganz zu verlassen, können Sie auf Ihre eigene Zelle klicken "
 "oder [thrive:input]g_unbind_all[/thrive:input] drücken."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Neues Spiel"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Gebiet: {0}"

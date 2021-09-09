@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-09-03 10:32+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -3096,13 +3096,13 @@ msgstr ""
 "Eliminare questo salvataggio è irreversibile. Sei sicuro di volerlo "
 "eliminare definitivamente?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Eliminare i file selezionati è un'azione irreversibile. Sei sicuro di "
 "voler eliminare definitivamente {0} salvataggi(o)?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Eliminare tutti i vecchi salvataggi automatici e rapidi è un'azione "
@@ -3152,9 +3152,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Apri la Cartella dei Salvataggi"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Nuova Partita"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3337,6 +3336,10 @@ msgstr ""
 "\n"
 "Per abbandonare interamente la colonia, clicca sulla tua stessa cellula, "
 "oppure premi il tasto per slegare tutti."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nuova Partita"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Zona: {0}"

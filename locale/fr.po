@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-08-08 14:42+0000\n"
 "Last-Translator: George Fel <george.fel@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -3112,14 +3112,14 @@ msgstr ""
 "Supprimer cette sauvegarde est définitif, êtes-vous sûr de vouloir la "
 "supprimer définitivement ?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Supprimer la(les) sauvegarde(s) sélectionnée(s) ne peut pas être défait, "
 "êtes-vous sûr que vous voulez supprimer {0} sauvegarde(s) de manière "
 "permanente?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Supprimer toutes les anciennes Auto sauvegardes et Rapides ne peut être "
@@ -3170,9 +3170,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Ouvrir le Dossier de Sauvegarde"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Nouvelle partie"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3374,6 +3373,10 @@ msgstr ""
 "\n"
 "To leave the colony completely, you can click on your own cell or press "
 "the Ungroup All button."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nouvelle partie"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Patch: {0}"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-09 08:50+1000\n"
+"POT-Creation-Date: 2021-09-09 21:04+1000\n"
 "PO-Revision-Date: 2021-09-03 13:42+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -3079,13 +3079,13 @@ msgstr ""
 "Изтриването на този запис не може да бъде отменено, сигурни ли сте, че "
 "искате да го изтриете?"
 
-#: ../src/saving/SaveManagerGUI.cs:214
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 "Изтриването на {0} запис(а) не може да бъде отменено, сигурни ли сте, че "
 "искате да го направите?"
 
-#: ../src/saving/SaveManagerGUI.cs:226
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Изтриването на старите автоматични и бързи записи не може да бъде "
@@ -3135,9 +3135,8 @@ msgid "NO_SAVE_DIRECTORY"
 msgstr "Отваряне на директорията с записи"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
-#, fuzzy
-msgid "TRY_NEW_GAME"
-msgstr "Нова игра"
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"
@@ -3318,6 +3317,10 @@ msgstr ""
 "\n"
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
 "Вашата клетка или да натиснете съответния клавиш."
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Нова игра"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Зона: „{0}“"
