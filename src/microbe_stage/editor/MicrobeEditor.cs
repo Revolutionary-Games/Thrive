@@ -883,6 +883,32 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
+    ///   Begin organelle movement for the organelle under the cursor
+    /// </summary>
+    [RunOnKeyDown("e_move")]
+    public void StartOrganelleMoveAtCursor()
+    {
+        // Can't move an organelle while already moving one
+        if (MovingOrganelle != null)
+        {
+            gui.OnActionBlockedWhileMoving();
+            return;
+        }
+
+        GetMouseHex(out int q, out int r);
+
+        var organelle = editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r));
+
+        if (organelle == null)
+            return;
+
+        StartOrganelleMove(organelle);
+
+        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
+        gui.UpdateCancelButtonVisibility();
+    }
+
+    /// <summary>
     ///   Cancels the current editor action
     /// </summary>
     /// <returns>True when the input is consumed</returns>
@@ -961,6 +987,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 break;
             }
         }
+    }
+
+    /// <summary>
+    ///   Remove the organelle under the cursor
+    /// </summary>
+    [RunOnKeyDown("e_delete")]
+    public void RemoveOrganelleAtCursor()
+    {
+        GetMouseHex(out int q, out int r);
+
+        Hex mouseHex = new Hex(q, r);
+
+        var organelle = editedMicrobeOrganelles.GetOrganelleAt(mouseHex);
+
+        if (organelle == null)
+            return;
+
+        RemoveOrganelle(mouseHex);
     }
 
     public float CalculateSpeed()
