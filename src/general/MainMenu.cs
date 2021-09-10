@@ -29,6 +29,12 @@ public class MainMenu : NodeWithInput
     public NodePath FreebuildButtonPath;
 
     [Export]
+    public NodePath CreditsContainerPath;
+
+    [Export]
+    public NodePath CreditsScrollPath;
+
+    [Export]
     public NodePath GLES2PopupPath;
 
     public Array MenuArray;
@@ -40,6 +46,9 @@ public class MainMenu : NodeWithInput
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
     private SaveManagerGUI saves;
+
+    private Control creditsContainer;
+    private CreditsScroll credits;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -134,6 +143,8 @@ public class MainMenu : NodeWithInput
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
+        creditsContainer = GetNode<Control>(CreditsContainerPath);
+        credits = GetNode<CreditsScroll>(CreditsScrollPath);
 
         MenuArray?.Clear();
 
@@ -339,6 +350,30 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromLoadGame()
     {
         saves.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void CreditsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the credits view
+        credits.Restart();
+        creditsContainer.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromCredits()
+    {
+        creditsContainer.Visible = false;
+        credits.Pause();
 
         SetCurrentMenu(0, false);
 
