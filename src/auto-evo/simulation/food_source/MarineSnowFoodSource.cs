@@ -34,7 +34,8 @@ public class MarineSnowFoodSource : FoodSource
         var score = predatorSpeed * species.Activity;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
-        if (microbeSpecies.MembraneType.CellWall || microbeSpecies.BaseSize < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
+        if (microbeSpecies.MembraneType.CellWall ||
+            microbeSpecies.BaseSize < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
         {
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }

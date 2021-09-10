@@ -39,7 +39,8 @@ public class HeterotrophicFoodSource : FoodSource
 
         // It's great if you can engulf this prey, but only if you can catch it
         var engulfScore = 0.0f;
-        if (microbeSpecies.BaseSize / prey.BaseSize > Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
+        if (microbeSpecies.BaseSize / prey.BaseSize >
+            Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
         {
             engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
         }
