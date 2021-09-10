@@ -14,9 +14,9 @@ public class MarineSnowFoodSource : FoodSource
         this.patch = patch;
         biomeConditions = patch.Biome;
 
-        if (patch.Biome.Chunks.ContainsKey("marineSnow"))
+        ChunkConfiguration chunk;
+        if (patch.Biome.Chunks.TryGetValue("marineSnow", out chunk))
         {
-            ChunkConfiguration chunk = patch.Biome.Chunks["marineSnow"];
             chunkSize = chunk.Size;
             totalEnergy = chunk.Compounds[glucose].Amount * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
         }
@@ -26,12 +26,6 @@ public class MarineSnowFoodSource : FoodSource
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
-        if (microbeSpecies.IsBacteria)
-        {
-            predatorSize /= 2;
-        }
-
         var predatorSpeed = microbeSpecies.BaseSpeed;
         predatorSpeed += ProcessSystem
             .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
@@ -40,7 +34,7 @@ public class MarineSnowFoodSource : FoodSource
         var score = predatorSpeed * species.Activity;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
-        if (microbeSpecies.MembraneType.CellWall || predatorSize < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
+        if (microbeSpecies.MembraneType.CellWall || microbeSpecies.BaseSize < chunkSize * Constants.ENGULF_SIZE_RATIO_REQ)
         {
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }

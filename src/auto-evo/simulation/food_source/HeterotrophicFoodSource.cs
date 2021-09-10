@@ -25,14 +25,13 @@ public class HeterotrophicFoodSource : FoodSource
         var microbeSpecies = (MicrobeSpecies)species;
 
         // No cannibalism
-        if (species == prey)
+        if (microbeSpecies == prey)
         {
             return 0.0f;
         }
 
         var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
-        var predatorSize = microbeSpecies.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         var predatorSpeed = microbeSpecies.BaseSpeed;
         predatorSpeed += ProcessSystem
             .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
@@ -40,7 +39,7 @@ public class HeterotrophicFoodSource : FoodSource
 
         // It's great if you can engulf this prey, but only if you can catch it
         var engulfScore = 0.0f;
-        if (predatorSize / preySize > Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
+        if (microbeSpecies.BaseSize / prey.BaseSize > Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
         {
             engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
         }
@@ -70,7 +69,7 @@ public class HeterotrophicFoodSource : FoodSource
         pilusScore *= predatorSpeed;
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-        return behaviorScore * (pilusScore + engulfScore + predatorSize + oxytoxyScore);
+        return behaviorScore * (pilusScore + engulfScore + microbeSpecies.BaseSize + oxytoxyScore);
     }
 
     public override float TotalEnergyAvailable()
