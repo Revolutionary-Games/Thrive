@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
-"PO-Revision-Date: 2021-07-23 08:24+0000\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
+"PO-Revision-Date: 2021-08-31 18:14+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -450,7 +450,7 @@ msgstr "Palauta kameran alkusijainti"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Peruuta nykyinen toimenpide"
 
 #: ../simulation_parameters/common/input_options.json:135
 #, fuzzy
@@ -766,7 +766,7 @@ msgstr "Protoplasma"
 #: ../simulation_parameters/microbe_stage/organelles.json:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:519
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "Kemosyntetisoivat proteiinit"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:811
@@ -965,7 +965,7 @@ msgstr "Alas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr ""
+msgstr "Valikko"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
@@ -977,7 +977,7 @@ msgstr "Takaisin"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Stop"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
@@ -985,15 +985,15 @@ msgstr "Virkistä"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Hae"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Valmiustila"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "Avaa osoite"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
@@ -1009,7 +1009,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Välilyönti"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
@@ -1109,11 +1109,11 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Toista"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Pysäytä"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIAPREVIOUS"
@@ -1121,7 +1121,7 @@ msgstr "Media edellinen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Seuraava kappale"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
@@ -1321,7 +1321,7 @@ msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Taidetta, jonka tekijä on {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1388,7 +1388,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:758
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Oletus ulostulolaite"
 
 #: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
@@ -1484,7 +1484,7 @@ msgstr "Käyttöliittymä"
 
 #: ../src/general/OptionsMenu.tscn:601
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Äänen ulostulolaite:"
 
 #: ../src/general/OptionsMenu.tscn:628
 msgid "LANGUAGE"
@@ -1496,7 +1496,7 @@ msgstr "Kumoa muutokset"
 
 #: ../src/general/OptionsMenu.tscn:652
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Auta pelin kääntämisessä"
 
 #: ../src/general/OptionsMenu.tscn:678
 msgid "COMPOUND_CLOUDS"
@@ -1570,7 +1570,7 @@ msgstr "Avaa Näyttökuva kansio"
 
 #: ../src/general/OptionsMenu.tscn:1042
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "Avaa lokien kansio"
 
 #: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -1654,15 +1654,15 @@ msgstr "Poistu"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} mrd."
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} milj."
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} k"
 
 #: ../src/gui_common/ChemicalEquation.cs:139
 #: ../src/gui_common/ChemicalEquation.cs:176
@@ -1676,7 +1676,7 @@ msgstr "/sekunti"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1690,11 +1690,11 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Valitse väri pelin ikkunasta"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Lisää nykyinen väri palettiin"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
 #, fuzzy
@@ -1748,11 +1748,11 @@ msgstr "Lisää uusi syöte"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "Raaka"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
@@ -1833,6 +1833,8 @@ msgstr "Terveys"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
+"Muuntaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound] "
+"[thrive:compound type=\"atp\"]ATP:ksi[/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1950,6 +1952,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
+"Käyttää [thrive:compound type=\"atp\"]ATP:ta[/thrive:compound] lisätäkseen "
+"solun liikkumisnopeutta"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2128,6 +2132,8 @@ msgstr "Lisää uusi syöte"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3446
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
+"Tämä arvo vaikuttaa vain uusiin peleihin, jotka on aloitettu tämän "
+"muuttamisen jälkeen"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3451
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
@@ -2146,7 +2152,7 @@ msgstr "- MP"
 
 #: ../src/microbe_stage/Microbe.cs:984
 msgid "DEATH"
-msgstr ""
+msgstr "kuolema"
 
 #: ../src/microbe_stage/Microbe.cs:1479
 msgid "SUCCESSFUL_SCAVENGE"
@@ -2174,7 +2180,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
-msgstr ""
+msgstr "Ei tekoälyä"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 msgid "PLAYER_SPEED"
@@ -2311,7 +2317,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Yhdisteiden tasapainopisteet"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ladataan Mikrobieditoria"
 
@@ -2319,11 +2325,11 @@ msgstr "Ladataan Mikrobieditoria"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Odotetaan auto-evoa:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
 
@@ -2503,11 +2509,11 @@ msgstr "Siirry tälle alueelle"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
-msgstr ""
+msgstr "Loputon MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
+msgstr "Glukoosin määrä on vähentynyt {0}:iin edellisestä määrästä."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
@@ -2533,7 +2539,7 @@ msgstr "ATP:n TUOTANTO ON LIIAN ALHAINEN!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr ""
+msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
@@ -2545,7 +2551,7 @@ msgstr "Perus liikkuminen"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr ""
+msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "SPECIES_LIST"
@@ -2568,14 +2574,14 @@ msgid "WITH_POPULATION"
 msgstr "{0} populaatiolla: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
-msgstr ""
+msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
 msgid "DELETE"
-msgstr ""
+msgstr "Poista"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
 msgid "MOVE"
@@ -2583,7 +2589,7 @@ msgstr "Siirrä"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
-msgstr ""
+msgstr "Muokkaa"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2651,7 +2657,7 @@ msgstr "Virhe ladattaessa"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Virhe vapautettaessa jo ladattuja resursseja: {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
@@ -2957,6 +2963,34 @@ msgstr "Mikrobien vapaa rakentelu"
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Mikrobien vapaa rakentelu"
+
+#, fuzzy
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "Auta pelin kääntämisessä"
+
+#, fuzzy
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Valittu:"
+
+#, fuzzy
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Tallenna ja jatka"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "Avaa Näyttökuva kansio"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Ota ruudunkaappaus"
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "Avaa tallennusten kansio"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Uusi Peli"
 
 #, fuzzy
 #~ msgid "COLOR"

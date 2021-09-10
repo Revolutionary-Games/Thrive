@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -2541,7 +2541,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка Микробного Редактора"
 
@@ -2549,11 +2549,11 @@ msgstr "Загрузка Микробного Редактора"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
@@ -2799,8 +2799,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} из популяции: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -3308,6 +3308,34 @@ msgstr ""
 "\n"
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную "
 "клетку или нажать клавишу \"Отвязать всех\"."
+
+#, fuzzy
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "Помогите Перевести Эту Игру"
+
+#, fuzzy
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Выбрано:"
+
+#, fuzzy
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Сохранить и продолжить"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "Открыть Папку со Скриншотами"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Сделать изображение экрана"
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "Открыть Папку Сохранений"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Новая Игра"
 
 #, fuzzy
 #~ msgid "COLOR"

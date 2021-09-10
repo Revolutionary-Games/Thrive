@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
 "PO-Revision-Date: 2021-04-20 08:07+0000\n"
 "Last-Translator: Pajoš <fractvival@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -2518,7 +2518,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balanc sloučenin"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
@@ -2526,11 +2526,11 @@ msgstr "Načítání editoru mikrobů"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čekání na automatickou evoluci:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Automatickou evoluci se nepodařilo spustit"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "stav:"
 
@@ -2775,8 +2775,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} s populací: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -3285,6 +3285,34 @@ msgstr ""
 "obrazovky) a myš pro ovládání orientace buňky.\n"
 "\n"
 "Chceš-li pokračovat, vyzkoušejte na několik sekund všechny klávesy."
+
+#, fuzzy
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "Pomoz nám zlepšit překlad"
+
+#, fuzzy
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Vybráno:"
+
+#, fuzzy
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Uložit a pokračovat"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "Otevřít screenshoty"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Udělat screenshot"
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "Otevřít složku uložení"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nová hra"
 
 #, fuzzy
 #~ msgid "COLOR"

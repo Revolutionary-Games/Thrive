@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
-"PO-Revision-Date: 2020-12-22 07:32+0000\n"
-"Last-Translator: Rizky Pramudya <rizkypramudyacj@outlook.co.id>\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
+"PO-Revision-Date: 2021-09-08 14:51+0000\n"
+"Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/id/>\n"
 "Language: id\n"
@@ -1753,11 +1753,11 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Pilih warna dari jendela game"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Tambahkan warna kini sebagai prasetel"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
 #, fuzzy
@@ -1771,47 +1771,50 @@ msgstr "Tambah keybind baru"
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "Nilai rona, porsi warna"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "Nilai saturasi, jumlah abu-abu dari sebuah warna"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgstr "Nilai kecerahan, kecerahan atau intensitas dari warna"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+msgstr "Nilai kemerahan dari warna"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgstr "Nilai kehijauan dari warna"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "Nilai kebiruan dari warna"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "Nilai alpha dari warna"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"Warna: {0}\n"
+"Mouse kiri: Gunakan prasetel ini\n"
+"Mouse kanan: Hapus prasetel ini"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Tidak Ada Data Untuk Ditampilkan"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2537,7 +2540,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Keseimbangan Senyawa"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
@@ -2545,11 +2548,11 @@ msgstr "Memuat Editor Mikroba"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Menunggu auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo gagal bekerja"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status auto-evo:"
 
@@ -2793,8 +2796,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} dengan populasi: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} PM"
 
@@ -3229,7 +3232,7 @@ msgstr "Baiklah"
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan "
-"tumbukan meteor menyebabkan perkembangan sebuah fenomena yang baru di alam "
+"tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam "
 "semesta.\n"
 "\n"
 "Kehidupan.\n"
@@ -3282,21 +3285,14 @@ msgstr ""
 "perlukan."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
-#, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan "
-"tumbukan meteor menyebabkan perkembangan sebuah fenomena yang baru di alam "
-"semesta.\n"
+"Kamu telah mengumpulkan sumber daya yang cukup untuk dapat membelah diri.\n"
 "\n"
-"Kehidupan.\n"
+"Kamu sekarang sudah siap untuk menyunting spesiesmu.\n"
 "\n"
-"Mikroba-mikroba sederhana bermukim di wilayah dalam lautan. Kamu adalah "
-"leluhur universal terakhir (LUA) di planet ini.\n"
-"\n"
-"Untuk bertahan hidup di dunia ini, kamu perlu mengumpulkan tiap senyawa "
-"yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan "
-"spesies mikroba lain."
+"Untuk memasuki editor tekan tombol editor yang sedang berpendar di kanan "
+"bawah."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
@@ -3306,3 +3302,58 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri "
 "atau tekan tombol unbind all."
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
+#~ msgstr ""
+#~ "Terjemahan ini sangat belum lengkap ({0}% selesai) tolong bantu kami "
+#~ "menerjemahkannya!"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
+#~ msgstr "Terjemahan ini masih dalam tahap pengerjaan ({0}% selesai)"
+
+#, fuzzy
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "Bantu Alih Bahasa Permainan"
+
+#, fuzzy
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Terpilih:"
+
+#, fuzzy
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Simpan dan lanjut"
+
+#~ msgid "ASSUME_HYPERTHREADING"
+#~ msgstr "Asumsikan hyperthreading diaktifkan pada CPU"
+
+#~ msgid "USE_MANUAL_THREAD_COUNT"
+#~ msgstr "Atur jumlah background thread secara manual"
+
+#~ msgid "THREADS"
+#~ msgstr "Threads:"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "Buka Folder Tangkapan Layar"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Ambil tangkapan layar"
+
+#~ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+#~ msgstr "@"
+
+#~ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
+#~ msgstr ""
+#~ "Tidak dapat dideteksi secara otomatis apakah hyperthreading aktif atau "
+#~ "tidak.\n"
+#~ "Ini memengaruhi jumlah default thread karena thread dari hyperthreading "
+#~ "tidak secepat inti CPU asli."
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "Buka Direktori Save"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Permainan Baru"

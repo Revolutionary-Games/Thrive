@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -2573,7 +2573,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Kunmetaĵaj Ekvilibro"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
@@ -2581,11 +2581,11 @@ msgstr "Ŝarĝante Mikrobredaktilon"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Atendante aŭtomata evolucion:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Aŭtomata evolucio malsukcesis"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Lanĉa stato:"
 
@@ -2832,8 +2832,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} kun loĝantaro: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -3349,6 +3349,34 @@ msgstr ""
 "(centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
+
+#, fuzzy
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "Helpu Traduki La Ludon"
+
+#, fuzzy
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Elektita(j):"
+
+#, fuzzy
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Konservu kaj"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "Malfermu Ekrankopian Dosierujon"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Prenu ekrankopion"
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "Malfermu Konservadan Adresaron"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nova ludo"
 
 #, fuzzy
 #~ msgid "COLOR"

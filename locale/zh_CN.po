@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
-"PO-Revision-Date: 2021-08-29 18:21+0000\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
+"PO-Revision-Date: 2021-09-10 07:05+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1688,7 +1688,7 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr "在窗口中取色"
+msgstr "在游戏窗口中取色"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
@@ -1749,11 +1749,11 @@ msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "没有数据可显示"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2399,7 +2399,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
 
@@ -2407,11 +2407,11 @@ msgstr "载入微生物编辑器中"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo中："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
@@ -2654,8 +2654,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} 有生物数： {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} 变异点"
 
@@ -3118,6 +3118,54 @@ msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
 "为了离开细胞群你可以点击你自己的细胞或点击“解除所有连接”键。"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
+#~ msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
+#~ msgstr "此翻译仍在开发中（已完成 {0}%）"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "此翻译已完成 {0}%"
+
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "检测到的CPU数量："
+
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "当前线程："
+
+#~ msgid "ASSUME_HYPERTHREADING"
+#~ msgstr "假设CPU启用了超线程"
+
+#~ msgid "USE_MANUAL_THREAD_COUNT"
+#~ msgstr "手动设置后台线程数"
+
+#~ msgid "THREADS"
+#~ msgstr "线程："
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "打开截图存放文件夹"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "截图"
+
+#~ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+#~ msgstr "@"
+
+#~ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
+#~ msgstr ""
+#~ "它无法自动检测超线程是否被启用。\n"
+#~ "这会影响默认线程数，因为超线程线程不如真正的CPU内核快。"
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "打开存档文件夹"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "新游戏"
 
 #, fuzzy
 #~ msgid "COLOR"

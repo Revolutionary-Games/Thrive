@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
-"PO-Revision-Date: 2021-09-01 02:17-0400\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
+"PO-Revision-Date: 2021-09-10 06:30-0400\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -1503,7 +1503,7 @@ msgstr "Enable GUI Light Effects"
 
 #: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
-msgstr "Master volume"
+msgstr "Master Volume"
 
 #: ../src/general/OptionsMenu.tscn:443 ../src/general/OptionsMenu.tscn:484
 #: ../src/general/OptionsMenu.tscn:517 ../src/general/OptionsMenu.tscn:550
@@ -1513,7 +1513,7 @@ msgstr "Mute"
 
 #: ../src/general/OptionsMenu.tscn:457
 msgid "MUSIC_VOLUME"
-msgstr "Music volume"
+msgstr "Music Volume"
 
 #: ../src/general/OptionsMenu.tscn:490
 msgid "AMBIANCE_VOLUME"
@@ -1736,7 +1736,7 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr "Pick a colour from window"
+msgstr "Pick a colour from the game window"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
@@ -1787,7 +1787,7 @@ msgstr "Alpha channel value of the colour"
 #: ../src/gui_common/TweakedColourPicker.cs:492
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
-"Color: {0}\n"
+"Colour: {0}\n"
 "Left mouse: Use this preset\n"
 "Right mouse: Delete this preset"
 
@@ -2509,7 +2509,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
@@ -2517,11 +2517,11 @@ msgstr "Loading Microbe Editor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
@@ -2765,8 +2765,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -3262,6 +3262,53 @@ msgstr ""
 "To leave the colony entirely you can click on your own cell or press the "
 "unbind all key."
 
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
+#~ msgstr ""
+#~ "This translation is very incomplete ({0}% done) please help us with it!"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
+#~ msgstr "This language is still a work in progress ({0}% complete)"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "This language is {0}% complete"
+
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Detected CPU count:"
+
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Current threads:"
+
+#~ msgid "ASSUME_HYPERTHREADING"
+#~ msgstr "Assume CPU has hyperthreading enabled"
+
+#~ msgid "USE_MANUAL_THREAD_COUNT"
+#~ msgstr "Manually set number of background threads"
+
+#~ msgid "THREADS"
+#~ msgstr "Threads:"
+
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "No screenshot directory found"
+
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Try taking some screenshots!"
+
+#~ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+#~ msgstr "@"
+
+#~ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
+#~ msgstr ""
+#~ "It cannot be automatically detected if hyperthreading is enabled or "
+#~ "not.\n"
+#~ "This affects the default number of threads as hyperthreading threads "
+#~ "aren't as fast as real CPU cores."
+
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "No saves directory found"
+
+#~ msgid "TRY_MAKING_A_SAVE"
+#~ msgstr "Try making a save!"
+
 #~ msgid "#"
 #~ msgstr "#"
 
@@ -3583,9 +3630,6 @@ msgstr ""
 
 #~ msgid "ONEHALF"
 #~ msgstr "½"
-
-#~ msgid "THREEQUARTERS"
-#~ msgstr "¾"
 
 #~ msgid "QUESTIONDOWN"
 #~ msgstr "¿"

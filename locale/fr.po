@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
-"PO-Revision-Date: 2021-08-08 14:42+0000\n"
-"Last-Translator: George Fel <george.fel@hotmail.com>\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
+"PO-Revision-Date: 2021-09-06 00:51+0000\n"
+"Last-Translator: Felecarp <felecarp@suboxide.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.5.3\n"
+"X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -43,12 +43,13 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Vous pouvez aussi absorber des cellules, des bactéries, des morceaux de "
-"fer et de cellules qui sont plus petit que vous en pressant G. Cela vous "
-"coûtera plus d'ATP et vous ralentira. N'oubliez pas de presser G une "
+"fer, ainsi que des morceaux de cellules qui sont plus petit que vous en "
+"pressant [thrive:input]g_toggle_engulf[/thrive:input]. Cela vous coûtera "
+"plus d'[thrive:compound type=\"atp\"][/thrive:compound] et vous ralentira. "
+"N'oubliez pas de presser [thrive:input]g_toggle_engulf[/thrive:input] une "
 "seconde fois pour arrêter d'absorber."
 
 #: ../simulation_parameters/common/help_texts.json:22
@@ -140,10 +141,10 @@ msgstr ""
 "\n"
 "Protéines Chimiosyntétisantes : Produisent à demi-efficacité du "
 "chimioplaste du glucose à partir de Sulfure d'Hydrogène, mais réalisent "
-"aussi la glycolyse, prennent un Hexagone\n"
+"aussi la glycolyse, occupent un Hexagone\n"
 "\n"
 "Thylacoïdes : Produisent à 1/3 de l'efficacité de glucose par rapport à un "
-"chloroplaste normal, mais réalisent aussi la glycolyse, et prennent un "
+"chloroplaste normal, mais réalisent aussi la glycolyse, et occupent un "
 "Hexagone.\n"
 "\n"
 "Rusticyanine : Convertissent le fer en ATP\n"
@@ -168,36 +169,43 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Membranaires organites\n"
 "\n"
-"Noyau : prend 11 hexagones et permet l'évolution des organites liés à la "
+"Noyau : occupe 11 hexagones et permet l'évolution d'organites liés à la "
 "membrane, et double également la taille de votre cellule (ne peut être "
 "évolué qu'une seule fois)\n"
 "\n"
 "Agent de liaison : permet la liaison avec d'autres cellules\n"
 "\n"
-"Mitochondrie : produit de l'ATP à partir du glucose et de l'O2 "
-"atmosphérique beaucoup plus efficacement que le cytoplasme\n"
+"Mitochondrie : produit de l'[thrive:compound type=\"atp\"][/thrive:"
+"compound] à partir du [thrive:compound type=\"glucose\"][/thrive:compound] "
+"et de l'O2 atmosphérique beaucoup plus efficacement que le cytoplasme\n"
 "\n"
-"Chloroplaste : fabrique du glucose à partir de la lumière du soleil et du "
-"CO2 atmosphérique\n"
+"Chloroplaste : produit du [thrive:compound type=\"glucose\"][/thrive:"
+"compound] à partir de la lumière du soleil et du CO2 atmosphérique\n"
 "\n"
-"Chemoplast : fabrique du glucose à partir de sulfure d'hydrogène\n"
+"Chemoplast : produit du [thrive:compound type=\"glucose\"][/thrive:"
+"compound] à partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:"
+"compound]\n"
 "\n"
-"Plastide fixateur d'azote : fabrique de l'ammoniac à partir d'ATP et "
-"d'azote et d'oxygène atmosphériques\n"
+"Plastide fixateur d'azote : produit de l'[thrive:compound type=\"ammonia\"]"
+"[/thrive:compound] à partir d'[thrive:compound type=\"atp\"][/thrive:"
+"compound] et d'azote et d'oxygène atmosphériques\n"
 "\n"
-"Vacuole : stocke 15 composés collectés"
+"Vacuole : stocke 15 composés collectés\n"
+"\n"
+"Vacuole à toxines : produit des toxines (appelées [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "À chaque génération, vous avez 100 points de mutation (PM) à dépenser, et "
 "chaque changement (ou mutation) coûtera une certaine quantité de ces PM. "
 "Ajouter ou retirer des organites coûte des PM. Cependant, retirer les "
-"organites placées lors de cette mutation les rembourse. Vous pouvez "
+"organites placées lors de cette mutation vous les restituent. Vous pouvez "
 "déplacer ou retirer une organite en faisant un clic droit dessus et en "
 "sélectionnant l'action voulue. Vous pouvez faire tourner vos organites "
-"lors du placement avec A et D."
+"lors du placement avec [thrive:input]e_rotate_left[/thrive:input] et "
+"[thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1434,7 +1442,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:758
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Périphérique de sortie par défaut"
 
 #: ../src/general/OptionsMenu.tscn:129
 msgid "GRAPHICS"
@@ -1739,11 +1747,11 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Choisir une couleur pour la fenêtre"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Ajouter cette couleur à la palette"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
 #, fuzzy
@@ -1756,9 +1764,8 @@ msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
-#, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Teinte de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
 #, fuzzy
@@ -1796,8 +1803,9 @@ msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
+#, fuzzy
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
@@ -1882,8 +1890,8 @@ msgstr "Santé"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme [thrive:compound]glucose[/thrive:compound] en [thrive:"
-"compound]atp[/thrive:compound]"
+"Transforme [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -1946,9 +1954,9 @@ msgstr "Coût en osmorégulation"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme [thrive:compound]glucose[/thrive:compound] en [thrive:"
-"compound]atp[/thrive:compound]. Effet proportionnel avec la concentration "
-"en [thrive:compound]dioxygène[/thrive:compound]"
+"Transforme [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Effet proportionnel avec la "
+"concentration en [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -1988,11 +1996,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme le [thrive:compound]sulfure d'hydrogène[/thrive:compound] en "
-"[thrive:compound]glucose[/thrive:compound]. Effet proportionnel avec la "
-"concentration en [thrive:compound]dioxyde de carbone[/thrive:compound]. "
-"Transforme aussi le [thrive:compound]glucose[/thrive:compound] en [thrive:"
-"compound]atp[/thrive:compound]"
+"Transforme le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
+"en [thrive:compound type=\"glucose\"][/thrive:compound]. Effet "
+"proportionnel avec la concentration en [thrive:compound type="
+"\"carbondioxide\"][/thrive:compound]. Transforme aussi le [thrive:compound "
+"type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -2008,10 +2017,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:617
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme le [thrive:compound]iron[/thrive:compound] en [thrive:"
-"compound]atp[/thrive:compound]. Taux proportionnels à la concentration de "
-"[thrive:compound]carbondioxide[/thrive:compound] et d'[thrive:"
-"compound]oxygen[/thrive:compound]"
+"Transforme le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la "
+"concentration de [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:618
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2537,7 +2546,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Chargement de l'Éditeur de Microbes"
 
@@ -2545,11 +2554,11 @@ msgstr "Chargement de l'Éditeur de Microbes"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Attente pour l'auto-évo :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 
@@ -2793,8 +2802,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} avec population : {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -2804,7 +2813,7 @@ msgstr "Supprimer"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
 msgid "MOVE"
-msgstr "Bouge toi"
+msgstr "Déplacer"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
@@ -2876,7 +2885,7 @@ msgstr "Erreur de Chargement"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Echec de la libération des ressources déjà chargées : {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
@@ -3226,16 +3235,16 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Ceci sont les bases de l'édition de votre espèce. Vous pouvez les autres "
-"onglets de l'éditeur de cellule pour plus d'options.\n"
+"Voila les bases de l'édition de votre espèce. Vous pouvez consulter les "
+"autres onglets de l'éditeur de cellule pour plus d'options.\n"
 "\n"
-"Vous pouvez renommer votre espèce en cliquant sur le nom actuel de votre "
-"espèce et en changeant le texte.\n"
+"Vous pouvez renommer votre espèce en cliquant sur son nom et en changeant "
+"le texte.\n"
 "\n"
-"Au début vous devriez garder votre cellule petite et aller vers les "
+"Au début, vous devriez garder votre cellule petite et migrer vers les "
 "parcelles en surface.\n"
 "\n"
-"Bonne chance!"
+"Bonne chance !"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:261
 msgid "GOT_IT"
@@ -3325,6 +3334,51 @@ msgstr ""
 "\n"
 "To leave the colony completely, you can click on your own cell or press "
 "the Ungroup All button."
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
+#~ msgstr ""
+#~ "Cette traduction est très incomplète ({0}% effectué). Aidez-nous à la "
+#~ "terminer !"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
+#~ msgstr "Cette langue est encore en cours de rédaction ({0}% effectué)"
+
+#, fuzzy
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "Aidez nous à traduire le jeu"
+
+#, fuzzy
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Sélectionné :"
+
+#, fuzzy
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Sauvegarder et continuer"
+
+#~ msgid "ASSUME_HYPERTHREADING"
+#~ msgstr "Suppose que l'hyper-threading est activé sur le CPU"
+
+#~ msgid "THREADS"
+#~ msgstr "Threads :"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "Ouvrir le dossier de captures d'écran"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Prendre une capture d'écran"
+
+#~ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+#~ msgstr "@"
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "Ouvrir le Dossier de Sauvegarde"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nouvelle partie"
 
 #, fuzzy
 #~ msgid "COLOR"

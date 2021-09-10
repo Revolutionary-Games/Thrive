@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
-"PO-Revision-Date: 2021-08-27 14:24+0000\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
+"PO-Revision-Date: 2021-09-04 10:48+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -1743,73 +1743,72 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Избиране на цвят от прозореца на играта"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Добавяне на текущия цвят като шаблон"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
-#, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr ""
+"Превключване на ОНС (oттенък, наситеност и стойност).\n"
+"Не може да се използва заедно с необработените цветове."
 
 #: ../src/gui_common/TweakedColourPicker.cs:328
-#, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr ""
+"Превключване на необработените цветове.\n"
+"Стойностите на Ч, З, С\n"
+"може да надвишат 1,0.\n"
+"Не може да се използва заедно с ОНС."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
-#, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Оттенък – част от цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
-#, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Наситеност – количеството на сивото в цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност (яркост) – интензивността на цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност на червеното"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност на зеленото"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност на синьото"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr "Стойност на прозрачността"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "Добавяне на нов клавиш"
+msgstr ""
+"Цвят: {0}\n"
+"Ляв бутон: Използване на шаблона\n"
+"Десен бутон: Изтриване на шаблона"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "ОНС"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "НЦ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Няма данни за показване"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2523,7 +2522,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
@@ -2531,11 +2530,11 @@ msgstr "Зареждане на микробния редактор"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Изчакване на автоматичната еволюция:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Автоматичната еволюция не успя да стартира"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "състояние:"
 
@@ -2778,8 +2777,8 @@ msgid "WITH_POPULATION"
 msgstr "{0}: {1} индивида"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} МТ"
 
@@ -3269,6 +3268,55 @@ msgstr ""
 "\n"
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
 "Вашата клетка или да натиснете съответния клавиш."
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
+#~ msgstr "Този превод е в начален етап на разработка и е завършен на {0} %!"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
+#~ msgstr "Този превод е в процес на разработка и е завършен на {0} %"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "Този превод е завършен на {0} %"
+
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Ядра:"
+
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Текущи нишки:"
+
+#~ msgid "ASSUME_HYPERTHREADING"
+#~ msgstr "Автоматично определяне на броя на нишките"
+
+#~ msgid "USE_MANUAL_THREAD_COUNT"
+#~ msgstr "Ръчно определяне на броя на нишките"
+
+#~ msgid "THREADS"
+#~ msgstr "Нишки:"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "Отваряне на папката със снимки"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Снимка на екрана"
+
+#~ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+#~ msgstr "при"
+
+#~ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
+#~ msgstr ""
+#~ "Проверката за хипернишковата технология е неуспешна.\n"
+#~ "Броят на нишките по подразбиране зависи от това, понеже хипернишките са "
+#~ "по-бавни от физическите ядра на процесора."
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "Отваряне на директорията с записи"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Нова игра"
 
 #, fuzzy
 #~ msgid "COLOR"

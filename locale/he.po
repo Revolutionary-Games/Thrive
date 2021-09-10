@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
-"PO-Revision-Date: 2021-08-26 15:50+0000\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
+"PO-Revision-Date: 2021-09-06 00:51+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/he/>\n"
@@ -1717,73 +1717,72 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "בחר צבע מחלון המשחק"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "הוסף את הצבע הנוכחי כקבוע"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
-#, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr ""
+"שנה HSV (גוון, רוויה וערך) למצב כבוי או דלוק.\n"
+"לא ניתן להדליק מצב \"טרי\"."
 
 #: ../src/gui_common/TweakedColourPicker.cs:328
-#, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr ""
+"חלף מצב \"טרי\" כבוי או דלוק.\n"
+"במצב \"טרי\" אתה יכול לעשות את R,G,B\n"
+"ערך הצבע יכול ללכת מעל 1.0.\n"
+"לא ניתן להדליק את מצב HSV."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
-#, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr "ערך הגוון, חלק מהצבע"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
-#, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr "ערך הרוויה, הכמות צבע האפור בצבע מסוים"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr "ערך הבהירות, עוצמת הצבע"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr "ערך הצבע האדום בצבע הנתון"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr "ערך הצבע הירוק בצבע הנתון"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr "ערך הצבע הכחול בצבע הנתון"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr "ערך האלפא בצבע הנתון"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "הוסף מקשר חדש"
+msgstr ""
+"צבע: {0}\n"
+"עכבר שמאלי: להשתמש בקבוע זה\n"
+"עכבר ימני: מחק קבוע זה"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "\"טרי\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "אין מידע להציג"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2460,7 +2459,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "מאזן תרכובות"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "טוען עורך המיקרובי"
 
@@ -2468,11 +2467,11 @@ msgstr "טוען עורך המיקרובי"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -2715,8 +2714,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} עם אוכלוסיה: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} נקמ\"ו"
 
@@ -3200,6 +3199,55 @@ msgstr ""
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל"
 "\"."
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
+#~ msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה תעזרו לנו עם זה!"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
+#~ msgstr "תרגום זה עדין בשלבי הכנה ({0}% הושלם)"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "שפה זו היינו {0}% הושלם"
+
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "זוהה ספירת מעבד:"
+
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "נושאים נוכחים:"
+
+#~ msgid "ASSUME_HYPERTHREADING"
+#~ msgstr "נניח שלמעבד יכול להפעיל מרבה-נושאים"
+
+#~ msgid "USE_MANUAL_THREAD_COUNT"
+#~ msgstr "הגדר ידנית את מספר נושאי הרקע"
+
+#~ msgid "THREADS"
+#~ msgstr "נושאים:"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "פתח תיקיית צילומי מסך"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "צלם מסך"
+
+#~ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+#~ msgstr "@"
+
+#~ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
+#~ msgstr ""
+#~ "זה לא ניתן להציג אם מרבה-נושאים פועל או לא.\n"
+#~ "זה משפיע על מספר ברירת מחדל של הנושאים במרבה-נושאים כנושא שאינו מהיר "
+#~ "כלבית מעבד אמיתי."
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "פתח ספריית שמירות"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "משחק חדש"
 
 #, fuzzy
 #~ msgid "COLOR"

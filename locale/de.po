@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-01 02:11-0400\n"
-"PO-Revision-Date: 2021-08-25 08:37+0000\n"
-"Last-Translator: intothi <Christoph.Thum@posteo.de>\n"
+"POT-Creation-Date: 2021-09-10 06:26-0400\n"
+"PO-Revision-Date: 2021-09-04 10:48+0000\n"
+"Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -293,7 +293,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 "Kleiner Tipp: du kannst andere Arten bis zur Ausrottung jagen, wenn du "
-"nicht vorsichtig genug sind. Arten können auch von anderen Arten bis zur "
+"nicht vorsichtig genug bist. Arten können auch von anderen Arten bis zur "
 "Ausrottung gejagt werden."
 
 #: ../simulation_parameters/common/help_texts.json:153
@@ -933,7 +933,7 @@ msgstr "Population:"
 
 #: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
-msgstr "ist in {0} ausgestorben"
+msgstr "wurde in {0} ausgelöscht"
 
 #: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
@@ -961,7 +961,7 @@ msgstr "Population in Gebieten:"
 
 #: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr "auf dem Planeten ausgestorben"
+msgstr "wurde ausgelöscht"
 
 #: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
 msgid "LOADING"
@@ -1765,73 +1765,72 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Wähle eine Farbe aus dem Spielfenster"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Aktuelle Farbe als Voreinstellung hinzufügen"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
-#, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr ""
+"Schaltet den HSV-Modus (Farbwert, Farbsättigung, Hellwert) ein oder aus.\n"
+"Kann im Roh-Modus nicht eingeschaltet werden."
 
 #: ../src/gui_common/TweakedColourPicker.cs:328
-#, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr ""
+"Schalten Sie den Roh-Modus ein oder aus.\n"
+"Im Roh-Modus können Sie die R-, G- und B\n"
+"Farbwerte über 1,0 hinausgehen.\n"
+"Im HSV-Modus kann dieser Modus nicht aktiviert werden."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
-#, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Farbtonwert, Anteil der Farbe"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
-#, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Sättigungswert, der Anteil an Grau in einer bestimmten Farbe"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Hellwert, Helligkeit oder Intensität der Farbe"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Rotkanalwert der Farbe"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Grünkanalwert der Farbe"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Blaukanalwert der Farbe"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr "Alphakanalwert der Farbe"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "Eingabemethode hinzufügen"
+msgstr ""
+"Farbe: {0}\n"
+"Linke Maus: Diese Voreinstellung verwenden\n"
+"Rechte Maus: Diese Voreinstellung löschen"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "Roh"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Keine Daten zu zeigen"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2516,7 +2515,7 @@ msgstr "Pangonische Schlote"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr "pangonisches Mesopelagial"
+msgstr "Pangonisch-mesopelagisch"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:143
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
@@ -2567,7 +2566,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Verbindungsbalance"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Lade Mikrobeneditor"
 
@@ -2575,11 +2574,11 @@ msgstr "Lade Mikrobeneditor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Warte für auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2305
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2301
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo fehlgeschlagen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2302
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Laufstatus:"
 
@@ -2823,8 +2822,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} mit Population: {1}"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -2907,6 +2906,7 @@ msgstr "Fehler beim Laden"
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
+". Die bereits geladenen Ressourcen konnten nicht freigegeben werden: {0}"
 
 #: ../src/saving/InProgressSave.cs:165
 msgid "SAVING"
@@ -2976,7 +2976,10 @@ msgstr ""
 
 #: ../src/saving/SaveList.cs:281
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr "Upgraden der Speicherung schlug fehl wegen: {0}"
+msgstr ""
+"Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden "
+"Fehlers fehlgeschlagen:\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -3323,21 +3326,15 @@ msgstr ""
 "benötigen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
-#, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Auf einem weit entfernten fremden Planeten haben Äonen vulkanischer "
-"Aktivität und Meteoriteneinschläge zur Entwicklung eines neuen Phänomens "
-"im Universum geführt.\n"
+"Du hast genügend Ressourcen gesammelt, damit sich deine Zelle teilen "
+"kann.\n"
 "\n"
-"Leben.\n"
+"Du können nun deine Spezies bearbeiten.\n"
 "\n"
-"Einfache Mikroben leben in den tiefen Regionen des Ozeans. Du bist der "
-"Urvorfahr auf diesem Planeten.\n"
-"\n"
-"Um in dieser lebensfeindlichen Welt zu überleben, musst du alle "
-"Verbindungen die du finden kannst sammeln und jede Generation "
-"weiterentwickeln, um gegen die anderen Mikrobenarten anzutreten."
+"Um den Editor zu öffnen, drücke auf die blinkende Schaltfläche unten "
+"rechts."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
@@ -3347,6 +3344,58 @@ msgstr ""
 "\n"
 "Um die Kolonie ganz zu verlassen, können Sie auf Ihre eigene Zelle klicken "
 "oder [thrive:input]g_unbind_all[/thrive:input] drücken."
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
+#~ msgstr ""
+#~ "Diese Übersetzung ist sehr unvollständig ({0}% fertig). Bitte helfe uns "
+#~ "dabei!"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
+#~ msgstr "Diese Übersetzung ist noch in Arbeit ({0}% vollständig)"
+
+#~ msgid "LANGUAGE_TRANSLATION_PROGRESS"
+#~ msgstr "Diese Übersetzung ist zu {0}% vollständig"
+
+#~ msgid "DETECTED_CPU_COUNT"
+#~ msgstr "Ermittelte CPU-Anzahl:"
+
+#~ msgid "ACTIVE_THREAD_COUNT"
+#~ msgstr "Aktuelle Threads:"
+
+#~ msgid "ASSUME_HYPERTHREADING"
+#~ msgstr "Annehmen, dass die CPU Hyperthreading hat"
+
+#~ msgid "USE_MANUAL_THREAD_COUNT"
+#~ msgstr "Anzahl der Hintergrund-Threads manuell einstellen"
+
+#~ msgid "THREADS"
+#~ msgstr "Threads:"
+
+#, fuzzy
+#~ msgid "NO_SCREENSHOT_DIRECTORY"
+#~ msgstr "Bildschirmfoto-Ordner öffnen"
+
+#, fuzzy
+#~ msgid "TRY_TAKING_SOME_SCREENSHOTS"
+#~ msgstr "Screenshot aufnehmen"
+
+#~ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+#~ msgstr "@"
+
+#~ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
+#~ msgstr ""
+#~ "Es kann nicht automatisch erkannt werden, ob Hyperthreading aktiviert "
+#~ "ist.\n"
+#~ "Dies wirkt sich auf die Standardanzahl von Threads aus, da "
+#~ "Hyperthreading-Threads nicht so schnell sind wie echte CPU-Kerne."
+
+#, fuzzy
+#~ msgid "NO_SAVE_DIRECTORY"
+#~ msgstr "Speicherverzeichnis öffnen"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Neues Spiel"
 
 #, fuzzy
 #~ msgid "COLOR"
