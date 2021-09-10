@@ -657,7 +657,7 @@ end
 def run_cleanup_code
   return if skip_jetbrains?
 
-  old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+  old_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
   params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
 
@@ -665,7 +665,7 @@ def run_cleanup_code
 
   runOpen3Checked(*params)
 
-  new_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+  new_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
   return if new_diff == old_diff
 
