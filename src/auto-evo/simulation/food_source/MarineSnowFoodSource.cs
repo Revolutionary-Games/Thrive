@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-public class FloatingChunkFoodSource : FoodSource
+public class MarineSnowFoodSource : FoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
@@ -9,7 +9,7 @@ public class FloatingChunkFoodSource : FoodSource
     private float totalEnergy;
     private float chunkSize;
 
-    public FloatingChunkFoodSource(Patch patch)
+    public MarineSnowFoodSource(Patch patch)
     {
         this.patch = patch;
         biomeConditions = patch.Biome;

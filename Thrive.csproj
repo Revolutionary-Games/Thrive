@@ -24,7 +24,7 @@
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
-    <Compile Include="src\auto-evo\simulation\food_source\FloatingChunkFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\MarineSnowFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
@@ -321,7 +321,6 @@
     <Folder Include="shaders\" />
     <Folder Include="src\microbe_stage\organelle_components\" />
     <Folder Include="src\auto-evo\steps\" />
-    <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
