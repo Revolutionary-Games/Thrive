@@ -21,6 +21,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
+    <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
@@ -339,6 +340,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="export_presets.cfg" />
+    <Content Include="simulation_parameters\common\credits.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />

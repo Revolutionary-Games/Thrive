@@ -5,6 +5,8 @@ public class CreditsScroll : Container
     private bool scrolling = true;
     private float scrollOffset;
 
+    private GameCredits credits;
+
     private Label label;
 
     [Export]
@@ -12,6 +14,8 @@ public class CreditsScroll : Container
 
     public override void _Ready()
     {
+        credits = SimulationParameters.Instance.GetCredits();
+
         label = new Label
         {
             Text = "Stuff...",
