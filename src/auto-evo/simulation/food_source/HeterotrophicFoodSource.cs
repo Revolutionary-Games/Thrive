@@ -7,7 +7,6 @@ public class HeterotrophicFoodSource : FoodSource
     private MicrobeSpecies prey;
     private Patch patch;
     private float preySpeed;
-    private float preySize;
     private float totalEnergy;
 
     public HeterotrophicFoodSource(Patch patch, MicrobeSpecies prey)
@@ -15,7 +14,6 @@ public class HeterotrophicFoodSource : FoodSource
         this.prey = prey;
         this.patch = patch;
         preySpeed = prey.BaseSpeed;
-        preySize = prey.Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount);
         patch.SpeciesInPatch.TryGetValue(prey, out long population);
         totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
     }

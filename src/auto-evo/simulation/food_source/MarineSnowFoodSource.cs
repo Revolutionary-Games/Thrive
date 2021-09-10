@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-public class MarineSnowFoodSource : FoodSource
+﻿public class MarineSnowFoodSource : FoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
@@ -14,8 +12,7 @@ public class MarineSnowFoodSource : FoodSource
         this.patch = patch;
         biomeConditions = patch.Biome;
 
-        ChunkConfiguration chunk;
-        if (patch.Biome.Chunks.TryGetValue("marineSnow", out chunk))
+        if (patch.Biome.Chunks.TryGetValue("marineSnow", out ChunkConfiguration chunk))
         {
             chunkSize = chunk.Size;
             totalEnergy = chunk.Compounds[glucose].Amount * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
