@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-04 15:39+0700\n"
-"PO-Revision-Date: 2021-08-26 15:50+0000\n"
+"POT-Creation-Date: 2021-09-10 07:23-0400\n"
+"PO-Revision-Date: 2021-09-08 14:51+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/nl/>\n"
@@ -24,37 +24,48 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Gebruik WASD en de muis om te bewegen, E om OxyToxy te schieten en G om "
-"Overspoelmodus aan te zetten."
+"Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. "
+"[thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. "
+"[thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en "
+"uit te zetten."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Je cel gebruikt ATP als energie. Als je geen ATP meer hebt, sterft je cel."
+"Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als "
+"energiebron, als het opraakt ga je dood."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Om de editor te ontgrendelen en om jezelf voort te planten, heb je "
-"ammoniak (oranje wolken) en fosfaat (paarse wolken) nodig."
+"Om de editor te ontgrendelen en voort te planten moet je [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type="
+"\"phosphates\"][/thrive:compound] (Paarse Wolk) verzamelen."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Je kan andere cellen, bacteriën en ijzer deeltjes opnemen die kleiner zijn "
-"dan jezelf door op G te drukken. Dit gebruikt extra ATP en maakt je "
-"langzamer. Vergeet niet nog een keer op G te drukken om te stoppen."
+"Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou opnemen "
+"door op [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit "
+"gebruikt extra [thrive:compound type=\"atp\"][/thrive:compound] en maakt "
+"je langzamer. Vergeet niet nog een keer op [thrive:input]g_toggle_engulf[/"
+"thrive:input] te drukken om te stoppen."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulatie kost ATP. Dat betekent, hoe groter je cel is, hoe meer "
-"mitochondriën, metabolosomen of rusticyanine je nodig hebt om te kunnen "
-"overleven."
+"Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound]. Dat "
+"betekent dat hoe groter je cel is, hoe meer mitochondriën, metabolosomen "
+"of rusticyanine (of cytoplasma, dat aan glycolyse doet) je nodig hebt om "
+"te voorkomen dat je [thrive:compound type=\"atp\"][/thrive:compound] "
+"verliest als je stilstaat."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -66,23 +77,26 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"De verschillende wolken met benodigdheden zijn:\n"
+"De verschillende wolken met chemicaliën zijn:\n"
 "\n"
-"Wit - Glucose\n"
-"Geel - Waterstofsulfide\n"
-"Oranje - Ammoniak\n"
-"Paars - Fosfaat\n"
-"Roestbruin - IJzer\n"
+"Wit - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Geel - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Oranje - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Paars - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Roestbruin - [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"Glucose maakt ATP"
+"[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"Waterstofsulfide can worden omgezet naar glucose door middel van "
-"chemoplasten en chemosynthese eiwitten. IJzer kan worden omgezet naar ATP "
-"via rusticyanine."
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden "
+"omgezet naar [thrive:compound type=\"glucose\"][/thrive:compound] met "
+"chemoplasten en chemosynthesende eiwitten. [thrive:compound type=\"iron\"]"
+"[/thrive:compound] kan met rusticyanin worden omgezet in [thrive:compound "
+"type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
@@ -99,8 +113,9 @@ msgstr "Voor nu, als je populatie naar nul zakt, sterf je uit."
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Maar als je voor twintig generaties met 300 populatie overleeft, win je de "
-"game. Nadat je hebt gewonnen kan je nog verder spelen als je dat wilt."
+"Maar als je voor twintig generaties met 300 populatie overleeft, win je "
+"deze versie van het spel. Nadat je hebt gewonnen kan je nog verder spelen "
+"als je dat wilt."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
@@ -110,70 +125,94 @@ msgstr ""
 "de editor komt, evolueren zij zich ook."
 
 #: ../simulation_parameters/common/help_texts.json:54
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"Gebruik WASD en de muis om te bewegen, E om OxyToxy te schieten en G om "
-"Overspoelmodus aan te zetten."
+"Door te binden met andere cellen kan je een kolonie maken waar de cellen "
+"hun grondstoffen die ze absorberen en produceren delen. Om met een andere "
+"cel te kunnen binden heb je een bindings-middel organel nodig en tegen een "
+"cel aan bewegen in bindings-modus. Je kan alleen binden met cellen van "
+"jouw eigen soort. Je kan niet delen of de editor in gaan in een kolonie "
+"(voor nu). Om in de editor te komen moet je eerst de kolonie uit wanneer "
+"je genoeg chemicaliën hebt. Grote kolonies zijn de weg naar meercellige "
+"organismes (nog niet in het spel)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"Procaryote samenstellingen\n"
+"Procaryote Structuren\n"
 "\n"
-"Metabolosomen: produceren ATP uit glucose\n"
+"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] "
+"van [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Chemosynthese-eiwitten: produceert de helft van de glucose uit "
-"waterstofsulfide als een chemoplast, maar voert ook glycolise uit. Neemt 1 "
-"Hex in beslag\n"
+"Chemosynthese-eiwitten: Produceert half keer zoveel [thrive:compound type="
+"\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide"
+"\"][/thrive:compound] als een chemoplast, maar voert ook glycolise uit, en "
+"neemt 1 Hex in beslag\n"
 "\n"
-"Thylakoïden: produceert 1/3 van de hoeveelheid glucose als een normale "
-"chloroplast, maar voert ook glycolise uit. Neemt 1 Hex in beslag\n"
+"Thylakoïden: Produceert 1/3 van de hoeveelheid [thrive:compound type="
+"\"glucose\"][/thrive:compound] dan een normale chloroplast, maar voert ook "
+"glycolise uit. Neemt 1 Hex in beslag\n"
 "\n"
-"Rusticyanine: zet ijzer om in ATP\n"
+"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in "
+"[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenase: zet stikstof uit de atmosfeer en ATP anaeroob om in ammoniak\n"
+"Nitrogenase: Zet atmosferische stikstof en [thrive:compound type=\"atp\"][/"
+"thrive:compound] anaeroob om in [thrive:compound type=\"ammonia\"][/thrive:"
+"compound]\n"
 "\n"
-"Cytoplasma: heeft opslagruimte en voert glycolyse uit (produceert een "
-"kleine hoeveelheid ATP)"
+"Cytoplasma: Bevat opslagruimte en voert glycolyse uit (Produceert kleine "
+"hoeveelheden [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Externe organellen\n"
+"Externe Organellen\n"
 "\n"
-"Flagellum: maakt het bewegen sneller door ATP te verbruiken\n"
+"Flagellum: Maakt bewegen sneller door [thrive:compound type=\"atp\"][/"
+"thrive:compound] te verbruiken\n"
 "\n"
-"Pilus: kan worden gebruikt om andere cellen mee te steken"
+"Pilus: Kan worden gebruikt om andere cellen te steken"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Membraangebonden organellen\n"
+"Membraangebonden Organellen\n"
 "\n"
-"Kern: neemt elf hexes in beslag en zorgt ervoor dat andere "
-"membraangebonden organellen kunnen evolueren, en verdubbelt de grootte van "
-"je cel (kan maar één keer geëvolueerd worden)\n"
+"Celkern: Neemt 11 hexen in beslag en geeft toegang tot andere "
+"membraangebonden organellen, ook verdubbelt de grootte van je cel (kan "
+"maar één keer geëvolueerd worden)\n"
 "\n"
-"Mitochondrion: produceert ATP veel efficiënter uit glucose en "
-"atmosferische O2 dan cytoplasma\n"
+"Bindings Middel: Geeft de mogelijkheid om te binden met andere cellen\n"
 "\n"
-"Chloroplast: maakt glucose uit zonlicht en CO2\n"
+"Mitochondrion: Produceert [thrive:compound type=\"atp\"][/thrive:compound] "
+"van [thrive:compound type=\"glucose\"][/thrive:compound] en atmosferische "
+"O2 veel efficiënter dan cytoplasma\n"
 "\n"
-"Chemoplast: maakt glucose uit waterstofsulfide\n"
+"Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] "
+"van zonlicht en atmosferische CO2\n"
 "\n"
-"Stikstof fixerende plastid: maakt ammoniak uit ATP, stikstof en zuurstof\n"
+"Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] van "
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Vacuole: slaat vijftien verzamelde samenstellingen op\n"
+"Stikstof Fixerende Plastide: Maakt [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] van [thrive:compound type=\"atp\"][/thrive:compound], "
+"atmosferische Stikstof en Zuurstof\n"
 "\n"
-"Toxine vacuolen: produceert toxine (OxyToxy NT genoemd)"
+"Vacuole: Slaat vijftien verzamelde chemicaliën op\n"
+"\n"
+"Toxine vacuolen: Produceert toxine ( [thrive:compound type=\"oxytoxy\"][/"
+"thrive:compound] genoemd)"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke "
-"verandering kost een beetje MP. Je kan een organelle verplaatsen of "
-"verwijderen met rechtsklik. Je kan organellen ook draaien met A en D."
+"verandering (of mutatie) kost een hoeveelheid MP. Het toevoegen en "
+"verwijderen van organellen kost MP, maar het terug draaien van "
+"veranderingen kost niks als deze verandering in de huidige mutatie sessie "
+"plaats hebben gevonden. Je kan een organel verplaatsen of verwijderen met "
+"rechtsklik. Je kan organellen ook draaien met [thrive:input]e_rotate_left[/"
+"thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -264,11 +303,10 @@ msgstr ""
 "kost wel veel meer ATP"
 
 #: ../simulation_parameters/common/help_texts.json:168
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
-"Een tip, je kan stukken overspoelen zoals ijzer of organel van dode cellen "
-"door op G te drukken."
+"Tip, je kan stukken zoals ijzer of organellen van dode cellen overspoelen "
+"door op \"G\" te drukken."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -377,18 +415,16 @@ msgstr "Overspoelen"
 
 #: ../simulation_parameters/common/input_options.json:46
 #: ../src/microbe_stage/MicrobeStage.tscn:2112
-#, fuzzy
 msgid "TOGGLE_BINDING"
-msgstr "Overspoelen"
+msgstr "Binden aan/uit"
 
 #: ../simulation_parameters/common/input_options.json:50
-#, fuzzy
 msgid "TOGGLE_UNBINDING"
-msgstr "Overspoelen"
+msgstr "Ontbinden aan/uit"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Ontbind al"
 
 #: ../simulation_parameters/common/input_options.json:58
 msgid "PERFORM_UNBINDING"
@@ -460,58 +496,67 @@ msgstr "Reset de camera"
 msgid "CANCEL_CURRENT_ACTION"
 msgstr "Annuleer huidige actie"
 
+#: ../simulation_parameters/common/input_options.json:135
+#, fuzzy
+msgid "DELETE_ORGANELLE"
+msgstr "Plaats organellen"
+
 #: ../simulation_parameters/common/input_options.json:139
+#, fuzzy
+msgid "MOVE_ORGANELLE"
+msgstr "Verwijder organellen"
+
+#: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Cheats"
 
-#: ../simulation_parameters/common/input_options.json:143
+#: ../simulation_parameters/common/input_options.json:151
 msgid "ENABLE_EDITOR"
 msgstr "Schakel de editor in"
 
-#: ../simulation_parameters/common/input_options.json:147
+#: ../simulation_parameters/common/input_options.json:155
 msgid "SPAWN_GLUCOSE"
 msgstr "Spawn glucose"
 
-#: ../simulation_parameters/common/input_options.json:151
+#: ../simulation_parameters/common/input_options.json:159
 msgid "SPAWN_AMMONIA"
 msgstr "Spawn ammoniak"
 
-#: ../simulation_parameters/common/input_options.json:155
+#: ../simulation_parameters/common/input_options.json:163
 msgid "SPAWN_PHOSPHATES"
 msgstr "Spawn fosfaat"
 
-#: ../simulation_parameters/common/input_options.json:159
-#, fuzzy
+#: ../simulation_parameters/common/input_options.json:167
 msgid "CHEAT_MENU"
-msgstr "Cheats"
+msgstr "Cheat Menu"
 
-#: ../simulation_parameters/common/input_options.json:168
+#: ../simulation_parameters/common/input_options.json:176
 msgid "MISCELLANEOUS"
 msgstr "Overig"
 
-#: ../simulation_parameters/common/input_options.json:172
+#: ../simulation_parameters/common/input_options.json:180
 msgid "TOGGLE_FPS"
 msgstr "FPS-Teller"
 
-#: ../simulation_parameters/common/input_options.json:176
+#: ../simulation_parameters/common/input_options.json:184
 msgid "QUICK_SAVE"
 msgstr "Snel opslaan"
 
-#: ../simulation_parameters/common/input_options.json:180
+#: ../simulation_parameters/common/input_options.json:188
 msgid "QUICK_LOAD"
 msgstr "Snel laden"
 
-#: ../simulation_parameters/common/input_options.json:184
+#: ../simulation_parameters/common/input_options.json:192
 msgid "TAKE_SCREENSHOT"
 msgstr "Maak een screenshot"
 
-#: ../simulation_parameters/common/input_options.json:188
+#: ../simulation_parameters/common/input_options.json:196
 msgid "SHOW_HELP"
 msgstr "Open hulp"
 
-#: ../simulation_parameters/common/input_options.json:192
+#: ../simulation_parameters/common/input_options.json:200
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Fullscreen"
 
@@ -731,7 +776,7 @@ msgstr "Cellulose"
 #: ../simulation_parameters/microbe_stage/membranes.json:54
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "CHITIN"
-msgstr "Chitin"
+msgstr "Chitine"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:71
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
@@ -815,11 +860,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1121
-#, fuzzy
 msgid "BINDING_AGENT"
-msgstr ""
-"Er is een fout met {0}.\n"
-"Wil je de invoer van {1} verwijderen?"
+msgstr "Bindings-middel"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
@@ -912,7 +954,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
-msgstr "Vooruit"
+msgstr "Voorwaarts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
@@ -924,7 +966,7 @@ msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr ""
+msgstr "Insert"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
@@ -932,26 +974,25 @@ msgstr "Delete"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr "Pauze"
+msgstr "Pauzeer"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Clear"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
-msgstr ""
+msgstr "Home"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
-msgstr ""
+msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
-msgstr "links"
+msgstr "Links"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
-#, fuzzy
 msgid "KEY_UP"
 msgstr "Omhoog"
 
@@ -961,11 +1002,11 @@ msgstr "Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr "omlaag"
+msgstr "Omlaag"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr "menu"
+msgstr "Menu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
@@ -977,48 +1018,47 @@ msgstr "Terug"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Stop"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr ""
+msgstr "Verversen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Zoek"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Stand-by"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "Open URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
-msgstr ""
+msgstr "Home-pagina"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
-msgstr ""
+msgstr "Favorieten"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Print-Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr "Ruimte"
+msgstr "Spatie"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "Terug"
+msgstr "Backslash"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 #, fuzzy
@@ -1044,11 +1084,11 @@ msgstr "Beweeg omlaag"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Capslock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Numlock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
@@ -1381,9 +1421,9 @@ msgstr "Stop"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1172
+#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1173
 #: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:119
+#: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Terug"
 
@@ -1397,279 +1437,289 @@ msgstr ""
 "Je gebruikt Thrive met GLES2. Dit is niet getest en veroorzaakt problemen. "
 "Update je drivers of gebruik een AMD of Nvidia videokaart met Thrive."
 
-#: ../src/general/OptionsMenu.cs:798
+#: ../src/general/OptionsMenu.cs:803
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:843
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:842
+#: ../src/general/OptionsMenu.cs:847
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:846
+#: ../src/general/OptionsMenu.cs:851
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Help met vertalen"
 
-#: ../src/general/OptionsMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:136
 msgid "GRAPHICS"
 msgstr "Kwaliteit"
 
-#: ../src/general/OptionsMenu.tscn:146
+#: ../src/general/OptionsMenu.tscn:147
 msgid "SOUND"
 msgstr "Geluid"
 
-#: ../src/general/OptionsMenu.tscn:157
+#: ../src/general/OptionsMenu.tscn:158
 msgid "PERFORMANCE"
 msgstr "Prestatie"
 
-#: ../src/general/OptionsMenu.tscn:168
+#: ../src/general/OptionsMenu.tscn:169
 msgid "INPUTS"
 msgstr "Invoer"
 
-#: ../src/general/OptionsMenu.tscn:179
+#: ../src/general/OptionsMenu.tscn:180
 msgid "MISC"
 msgstr "Overig"
 
-#: ../src/general/OptionsMenu.tscn:212
+#: ../src/general/OptionsMenu.tscn:213
 msgid "VSYNC"
 msgstr "vSync"
 
-#: ../src/general/OptionsMenu.tscn:220
+#: ../src/general/OptionsMenu.tscn:221
 msgid "FULLSCREEN"
 msgstr "Fullscreen"
 
-#: ../src/general/OptionsMenu.tscn:242
+#: ../src/general/OptionsMenu.tscn:243
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-Aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:249
+#: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(hogere instelling verlaagt de prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:279
+#: ../src/general/OptionsMenu.tscn:280
 msgid "RESOLUTION"
 msgstr "Resolutie:"
 
-#: ../src/general/OptionsMenu.tscn:292
+#: ../src/general/OptionsMenu.tscn:293
 msgid "AUTO"
 msgstr "Automatisch"
 
-#: ../src/general/OptionsMenu.tscn:302
+#: ../src/general/OptionsMenu.tscn:303
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
-#: ../src/general/OptionsMenu.tscn:328
+#: ../src/general/OptionsMenu.tscn:329
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Kleurenblindheid-correctie:"
 
-#: ../src/general/OptionsMenu.tscn:360
+#: ../src/general/OptionsMenu.tscn:361
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
-#: ../src/general/OptionsMenu.tscn:387
+#: ../src/general/OptionsMenu.tscn:388
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Capaciteiten"
 
-#: ../src/general/OptionsMenu.tscn:396
+#: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:422
+#: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
 msgstr "Volume"
 
-#: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:490
-#: ../src/general/OptionsMenu.tscn:523 ../src/general/OptionsMenu.tscn:556
-#: ../src/general/OptionsMenu.tscn:589
+#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
+#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
+#: ../src/general/OptionsMenu.tscn:590
 msgid "MUTE"
 msgstr "Demp"
 
-#: ../src/general/OptionsMenu.tscn:463
+#: ../src/general/OptionsMenu.tscn:464
 msgid "MUSIC_VOLUME"
 msgstr "Volume muziek"
 
-#: ../src/general/OptionsMenu.tscn:496
+#: ../src/general/OptionsMenu.tscn:497
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume omgeving"
 
-#: ../src/general/OptionsMenu.tscn:529
+#: ../src/general/OptionsMenu.tscn:530
 msgid "SFX_VOLUME"
 msgstr "Volume SFX"
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:563
 msgid "GUI_VOLUME"
 msgstr "Volume GUI"
 
-#: ../src/general/OptionsMenu.tscn:607
+#: ../src/general/OptionsMenu.tscn:608
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:632
+#: ../src/general/OptionsMenu.tscn:633
 msgid "LANGUAGE"
 msgstr "Taal:"
 
-#: ../src/general/OptionsMenu.tscn:647 ../src/general/OptionsMenu.tscn:1183
+#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:665
+#: ../src/general/OptionsMenu.tscn:666
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help met vertalen"
 
-#: ../src/general/OptionsMenu.tscn:691
+#: ../src/general/OptionsMenu.tscn:692
 msgid "COMPOUND_CLOUDS"
 msgstr "Samenstellings-wolken"
 
-#: ../src/general/OptionsMenu.tscn:706
+#: ../src/general/OptionsMenu.tscn:707
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Wolksimulatie minimum\n"
 "interval:"
 
-#: ../src/general/OptionsMenu.tscn:713 ../src/general/OptionsMenu.tscn:755
+#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(hogere instelling verlaagt de prestatie)"
 
-#: ../src/general/OptionsMenu.tscn:748
+#: ../src/general/OptionsMenu.tscn:749
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Wolk resolutiedeler:"
 
-#: ../src/general/OptionsMenu.tscn:790
+#: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Voer auto-evo uit tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:810
+#: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:827
+#: ../src/general/OptionsMenu.tscn:828
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Opslaan en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:854
+#: ../src/general/OptionsMenu.tscn:855
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:867
+#: ../src/general/OptionsMenu.tscn:868
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:968
+#: ../src/general/OptionsMenu.tscn:969
 msgid "RESET_INPUTS"
 msgstr "Reset invoer"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Speel intro"
 
-#: ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:1006
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Speel intro bij nieuw spel"
 
-#: ../src/general/OptionsMenu.tscn:1014
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sla automatisch op tijdens het spelen"
 
-#: ../src/general/OptionsMenu.tscn:1025
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Aantal automatische savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:1053
+#: ../src/general/OptionsMenu.tscn:1054
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Aantal savegames om te bewaren:"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1080
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Laat tutorial zien bij nieuw spel"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1088
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Laat tutorial zien in huidig spel"
 
-#: ../src/general/OptionsMenu.tscn:1103
+#: ../src/general/OptionsMenu.tscn:1104
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat-toetsen ingeschakeld"
 
-#: ../src/general/OptionsMenu.tscn:1115
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
 
-#: ../src/general/OptionsMenu.tscn:1126
+#: ../src/general/OptionsMenu.tscn:1127
 msgid "CUSTOM_USERNAME"
 msgstr "Gebruikersnaam:"
 
-#: ../src/general/OptionsMenu.tscn:1152
+#: ../src/general/OptionsMenu.tscn:1153
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open screenshots"
 
-#: ../src/general/OptionsMenu.tscn:1160
+#: ../src/general/OptionsMenu.tscn:1161
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open logs"
 
-#: ../src/general/OptionsMenu.tscn:1195 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Sla op"
 
-#: ../src/general/OptionsMenu.tscn:1212
+#: ../src/general/OptionsMenu.tscn:1213
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Standaard"
 
-#: ../src/general/OptionsMenu.tscn:1224
+#: ../src/general/OptionsMenu.tscn:1225
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetten naar standaard?"
 
-#: ../src/general/OptionsMenu.tscn:1233
+#: ../src/general/OptionsMenu.tscn:1234
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Weet je zeker dat je ALLE instellingen wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1248
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Invoer resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1256
+#: ../src/general/OptionsMenu.tscn:1257
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Weet je zeker dat je de invoer wilt resetten?"
 
-#: ../src/general/OptionsMenu.tscn:1270
+#: ../src/general/OptionsMenu.tscn:1271
 msgid "CLOSE_OPTIONS"
 msgstr "Opties sluiten?"
 
-#: ../src/general/OptionsMenu.tscn:1290
+#: ../src/general/OptionsMenu.tscn:1291
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen instellingen.\n"
 "Doorgaan?"
 
-#: ../src/general/OptionsMenu.tscn:1312
+#: ../src/general/OptionsMenu.tscn:1313
 msgid "SAVE_AND_CONTINUE"
 msgstr "Opslaan en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1321
+#: ../src/general/OptionsMenu.tscn:1322
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuleren en doorgaan"
 
-#: ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1338
 msgid "CANCEL"
 msgstr "Annuleer"
 
-#: ../src/general/OptionsMenu.tscn:1349 ../src/general/OptionsMenu.tscn:1372
-#: ../src/general/OptionsMenu.tscn:1396
+#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
+#: ../src/general/OptionsMenu.tscn:1397
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ../src/general/OptionsMenu.tscn:1358 ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
+
+#: ../src/general/OptionsMenu.tscn:1407
+#, fuzzy
+msgid "NO_SCREENSHOT_DIRECTORY"
+msgstr "Open screenshots"
+
+#: ../src/general/OptionsMenu.tscn:1416
+#, fuzzy
+msgid "TRY_TAKING_SOME_SCREENSHOTS"
+msgstr "Maak een screenshot"
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
@@ -2253,7 +2303,7 @@ msgstr "Hergeproduceerd"
 
 #: ../src/microbe_stage/Microbe.cs:2060
 msgid "ESCAPE_ENGULFING"
-msgstr ""
+msgstr "Stop Fagocytose"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "INFINITE_COMPOUNDS"
@@ -2297,15 +2347,15 @@ msgstr "Bij Cursor:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:515
 msgid "NOTHING_HERE"
-msgstr ""
+msgstr "Niets hier"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:540
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "Chemicaliën:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:578
 msgid "SPECIES_COLON"
-msgstr ""
+msgstr "Soorten:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:659
 msgid "ENVIRONMENT"
@@ -2313,7 +2363,7 @@ msgstr "Omgeving"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:926
 msgid "TEMPERATURE_SHORT"
-msgstr ""
+msgstr "Temp."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:982
 msgid "LIGHT"
@@ -2321,14 +2371,14 @@ msgstr "Licht"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1037
 msgid "PRESSURE_SHORT"
-msgstr ""
+msgstr "Druk"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1120
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
-msgstr ""
+msgstr "Verbindingen"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1504
 msgid "AGENTS"
@@ -2340,7 +2390,7 @@ msgstr "POPULATIE:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:141
 msgid "PATCH_PANGONIAN_VENTS"
-msgstr ""
+msgstr "Pangoonische Bronnen"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:142
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
@@ -2395,7 +2445,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1322
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe-editor Laden"
 
@@ -2403,11 +2453,11 @@ msgstr "Microbe-editor Laden"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten op auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2272
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo mislukt"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2273
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2317
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "uitvoeringsstatus:"
 
@@ -2649,8 +2699,8 @@ msgid "WITH_POPULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:163
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:182
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr ""
 
@@ -2894,7 +2944,7 @@ msgstr ""
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:55
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
 msgstr ""
 
@@ -2902,48 +2952,56 @@ msgstr ""
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:206
+#: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:218
+#: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:68
+#: ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:77
+#: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:86
+#: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:98
+#: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:131
+#: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:151
+#: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:171
+#: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:188
+#: ../src/saving/SaveManagerGUI.tscn:189
 msgid "DELETE_SELECTED_SAVES"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:211
+#: ../src/saving/SaveManagerGUI.tscn:212
 msgid "DELETE_OLD_SAVES"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:232
+msgid "NO_SAVE_DIRECTORY"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:239
+msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
@@ -3035,6 +3093,10 @@ msgstr "Microbe vrij bouwen"
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe vrij bouwen"
+
+#, fuzzy
+#~ msgid "TRY_NEW_GAME"
+#~ msgstr "Nieuw spel"
 
 #~ msgid "MICROBE_PATCH_LABEL"
 #~ msgstr "Patch: {0}"
