@@ -205,7 +205,7 @@ public class InputManager : Node
                     continue;
                 }
 
-                if (invokeResult != null && invokeResult is bool asBool)
+                if (invokeResult is bool asBool)
                 {
                     thisInstanceResult = asBool;
                 }
@@ -244,6 +244,12 @@ public class InputManager : Node
 
         foreach (var entry in attributes)
         {
+            // Skip attributes that have no active listener objects (if this is a key down)
+            // TODO: only CallMethod currently removes the invalid references from the list so the object might be dead
+            // already and we don't know that yet
+            if (isDown && entry.Value.Count < 1)
+                continue;
+
             var attribute = entry.Key;
 
             if (unhandledInput || !attribute.OnlyUnhandled)
