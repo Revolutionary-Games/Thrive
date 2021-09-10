@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Godot;
 
 public class CreditsScroll : Container
 {
-    private const float GameNameEndOffset = 340;
+    private const float GameNameEndOffset = 370;
     private const float GameNameInvisibleOffset = 1200;
 
     private const int OffsetAfterTeamName = 10;
@@ -177,7 +178,7 @@ public class CreditsScroll : Container
 
     private void LoadCurrentDevelopers()
     {
-        int offset = (int)RectSize.y + 50 + (int)smoothOffset;
+        int offset = 10 + (int)smoothOffset;
 
         // TODO: use different fonts for different parts
         var currentLabel = new DynamicPart(offset)
@@ -191,6 +192,8 @@ public class CreditsScroll : Container
         offset += (int)currentLabel.RectSize.y + 50;
 
         // TODO: team leads
+
+        var builder = new StringBuilder(500);
 
         // Team members
         foreach (var pair in credits.Developers.Current)
@@ -206,20 +209,30 @@ public class CreditsScroll : Container
 
             offset += (int)teamNameLabel.RectSize.y + OffsetAfterTeamName;
 
+            // Combine the names to a single list for probably more efficiency
+            // If past team leads need to be marked might need to use rich text label or some other approach there
+
+            bool first = true;
+
             foreach (var member in pair.Value)
             {
-                var memberLabel = new DynamicPart(offset)
-                {
-                    Text = member.Name,
-                    RectMinSize = new Vector2(RectSize.x, 0),
-                    Align = Label.AlignEnum.Center,
-                };
-                AddDynamicItem(memberLabel);
+                if (!first)
+                    builder.Append('\n');
 
-                offset += (int)memberLabel.RectSize.y + OffsetBetweenNames;
+                first = false;
+                builder.Append(member.Name);
             }
 
-            offset += ExtraOffsetAfterTeam;
+            var memberLabel = new DynamicPart(offset)
+            {
+                Text = builder.ToString(),
+                RectMinSize = new Vector2(RectSize.x, 0),
+                Align = Label.AlignEnum.Center,
+            };
+            AddDynamicItem(memberLabel);
+            builder.Clear();
+
+            offset += (int)memberLabel.RectSize.y + ExtraOffsetAfterTeam;
         }
     }
 
@@ -235,7 +248,7 @@ public class CreditsScroll : Container
     {
         AddChild(part);
         dynamicParts.Add(part);
-        part.CurrentScroll = smoothOffset;
+        part.UpdatePosition(smoothOffset, RectSize.y);
     }
 
     private void UpdateDynamicItems()
@@ -244,7 +257,7 @@ public class CreditsScroll : Container
 
         foreach (var part in dynamicParts)
         {
-            part.CurrentScroll = smoothOffset;
+            part.UpdatePosition(smoothOffset, height);
 
             if (!part.HasBeenVisible && part.RectPosition.y < height)
             {
@@ -278,18 +291,15 @@ public class CreditsScroll : Container
             this.startPosition = startPosition;
         }
 
-        public float CurrentScroll
-        {
-            set
-            {
-                RectPosition = new Vector2(RectPosition.x, startPosition - value);
-            }
-        }
-
         public bool HasBeenVisible { get; set; }
 
         public Action OnBecomeVisible { get; set; }
 
         public Action OnEnded { get; set; }
+
+        public void UpdatePosition(float currentScroll, float containerHeight)
+        {
+            RectPosition = new Vector2(RectPosition.x, containerHeight + startPosition - currentScroll);
+        }
     }
 }
