@@ -37,7 +37,8 @@ public class MicrobeSpecies : Species
     public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
 
     [JsonIgnore]
-    public float BaseSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount) * (IsBacteria ? 0.5f : 1.0f);
+    public float BaseSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
+        * (IsBacteria ? 0.5f : 1.0f);
 
     public override void RepositionToOrigin()
     {
