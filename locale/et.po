@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-03 15:51+0300\n"
+"POT-Creation-Date: 2021-09-10 17:25+0300\n"
 "PO-Revision-Date: 2021-03-31 14:40+0000\n"
 "Last-Translator: Thor Andreas Laan <thor.a.laan@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/"
@@ -1358,61 +1358,61 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:359
+#: ../src/general/MainMenu.cs:394
 msgid "OK"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:360
+#: ../src/general/MainMenu.cs:395
 msgid "Cancel"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:146
+#: ../src/general/MainMenu.tscn:149
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
+#: ../src/general/MainMenu.tscn:162 ../src/general/PauseMenu.tscn:72
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
+#: ../src/general/MainMenu.tscn:173 ../src/general/PauseMenu.tscn:94
 msgid "OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:181
+#: ../src/general/MainMenu.tscn:184
 msgid "TOOLS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:192
+#: ../src/general/MainMenu.tscn:195
 msgid "VIEW_SOURCE_CODE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:207
 msgid "EXTRAS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:216
+#: ../src/general/MainMenu.tscn:218
 msgid "CREDITS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:227
+#: ../src/general/MainMenu.tscn:229
 msgid "QUIT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:249
+#: ../src/general/MainMenu.tscn:251
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1172
-#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:119
+#: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:1172 ../src/general/PauseMenu.tscn:134
+#: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:119
 msgid "BACK"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:382
 msgid "GLES2_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:395
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
@@ -1736,6 +1736,22 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:185
+msgid "CURRENT_DEVELOPERS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.tscn:41
+msgid "BY_REVOLUTIONARY_GAMES"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.tscn:48
+msgid "DEVELOPMENT_SUPPORTED_BY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.tscn:56
+msgid "DEVELOPERS"
 msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
@@ -2235,11 +2251,11 @@ msgstr ""
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:485
+#: ../src/microbe_stage/MicrobeStage.cs:490
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:614
+#: ../src/microbe_stage/MicrobeStage.cs:610
 msgid "PLAYER_DIED"
 msgstr ""
 

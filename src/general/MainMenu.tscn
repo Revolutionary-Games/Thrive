@@ -328,7 +328,7 @@ __meta__ = {
 }
 
 [node name="CreditsScroll" parent="CreditsView" instance=ExtResource( 11 )]
-ScrollSpeed = 20.0
+AutoStart = false
 
 [node name="Back" type="Button" parent="CreditsView"]
 anchor_top = 0.931
@@ -409,4 +409,5 @@ __meta__ = {
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
