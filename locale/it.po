@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-09 21:04+1000\n"
-"PO-Revision-Date: 2021-09-03 10:32+0000\n"
+"PO-Revision-Date: 2021-09-06 00:51+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -1435,15 +1435,15 @@ msgstr "Dispositivo di output audio di default"
 #: ../src/general/OptionsMenu.cs:843
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+"Questa traduzione è molto incompleta (siamo al {0}%). Perfavore, aiutaci!"
 
 #: ../src/general/OptionsMenu.cs:847
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Questa traduzione è in corso d'opera (siamo al {0}%)"
 
 #: ../src/general/OptionsMenu.cs:851
-#, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Aiuta a tradurre il gioco"
+msgstr "Questa traduzione è completa al {0}%"
 
 #: ../src/general/OptionsMenu.tscn:136
 msgid "GRAPHICS"
@@ -1574,26 +1574,24 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Esegui auto-evo in gioco"
 
 #: ../src/general/OptionsMenu.tscn:811
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Selezionati:"
+msgstr "Numero di CPU rilevate:"
 
 #: ../src/general/OptionsMenu.tscn:828
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Salva e continua"
+msgstr "Thread attuali:"
 
 #: ../src/general/OptionsMenu.tscn:843
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Presupponi che la CPU abbia attivato l'hyperthreading"
 
 #: ../src/general/OptionsMenu.tscn:855
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Imposta manualmente il numero di thread in background"
 
 #: ../src/general/OptionsMenu.tscn:868
 msgid "THREADS"
-msgstr ""
+msgstr "Thread:"
 
 #: ../src/general/OptionsMenu.tscn:969
 msgid "RESET_INPUTS"
@@ -1629,7 +1627,7 @@ msgstr "Mostra i tutorial (nella partita attuale)"
 
 #: ../src/general/OptionsMenu.tscn:1104
 msgid "CHEAT_KEYS_ENABLED"
-msgstr "Trucchi abilitati"
+msgstr "Abilita trucchi"
 
 #: ../src/general/OptionsMenu.tscn:1116
 msgid "USE_A_CUSTOM_USERNAME"
@@ -1759,7 +1757,7 @@ msgstr "al secondo"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
@@ -1848,7 +1846,7 @@ msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Nessun dato da mostrare"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2147,7 +2145,7 @@ msgstr ""
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "Permette l'evoluzione degli organuli membranosi. Consuma molta ATP. Questa "
-"evoluzione è irreversibile."
+"mutazione è irreversibile."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1206
 msgid "NUCLEUS_DESCRIPTION"
@@ -2393,6 +2391,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Impossibile stabilire automaticamente se l'hyperthreading è attivo.\n"
+"Siccome i thread di hyperthreading non sono veloci quanto veri core di CPU, "
+"ciò influenza il numero di thread di default."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
@@ -2569,7 +2570,7 @@ msgstr "Bilancio dei Composti"
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1322
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "Caricando l'Editor Microbico"
+msgstr "Caricamento dell'Editor Microbico"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
@@ -2866,7 +2867,7 @@ msgstr ""
 #: ../src/saving/InProgressLoad.cs:77 ../src/saving/InProgressLoad.cs:96
 #: ../src/saving/InProgressLoad.cs:145
 msgid "LOADING_GAME"
-msgstr "Caricamento Partita"
+msgstr "Caricamento della Partita"
 
 #: ../src/saving/InProgressLoad.cs:79
 msgid "READING_SAVE_DATA"
