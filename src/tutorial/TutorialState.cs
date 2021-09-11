@@ -51,6 +51,9 @@ public class TutorialState : ITutorialInput
     public MicrobeReproduction MicrobeReproduction { get; private set; } = new MicrobeReproduction();
 
     [JsonProperty]
+    public MicrobePressEditorButton MicrobePressEditorButton { get; private set; } = new MicrobePressEditorButton();
+
+    [JsonProperty]
     public MicrobeUnbind MicrobeUnbind { get; private set; } = new MicrobeUnbind();
 
     [JsonProperty]
@@ -331,6 +334,7 @@ public class TutorialState : ITutorialInput
             GlucoseCollecting,
             MicrobeStayingAlive,
             MicrobeReproduction,
+            MicrobePressEditorButton,
             MicrobeUnbind,
             EditorWelcome,
             PatchMap,

@@ -49,6 +49,8 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
 
+    public const float CLOUD_CHEAT_DENSITY = 16000.0f;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>
@@ -80,9 +82,27 @@ public static class Constants
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
 
     /// <summary>
+    ///   Radius of the zone where the player is considered immobile as he remains inside.
+    ///   Used to not overgenerate when the player doesn't move.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The value is squared for faster computation.
+    ///   </para>
+    ///   <para>
+    ///     The non-squared radius should roughly be (1-MIN_SPAWN_RADIUS_RATIO)*max(spawn_radius), as defined above,
+    ///     to make spawn zone match when moving.
+    ///   </para>
+    /// </remarks>
+    public const int PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED = 100;
+
+    /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
+
+    public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
+    public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
 
     /// <summary>
     ///   How often the microbe AI processes each microbe
@@ -337,8 +357,9 @@ public static class Constants
 
     // Mutation Variables
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
-    public const float MUTATION_CREATION_RATE = 0.15f;
-    public const float MUTATION_DELETION_RATE = 0.03f;
+    public const float MUTATION_CREATION_RATE = 0.25f;
+    public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
+    public const float MUTATION_DELETION_RATE = 0.05f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
     // Max fear and aggression and activity
@@ -367,12 +388,18 @@ public static class Constants
     // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
     public const float AI_COMPOUND_BIAS = -10.0f;
 
+    /// <summary>
+    ///   Threshold to not be stuck in tiny local maxima during gradient ascent algorithms.
+    /// </summary>
+    public const float AI_GRADIENT_DETECTION_THRESHOLD = 0.005f;
+
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
+    public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
 
     // Personality Mutation
-    public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
-    public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
+    public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
+    public const float MIN_SPECIES_PERSONALITY_MUTATION = -40.0f;
 
     // Genus splitting and name mutation
     public const int MUTATION_WORD_EDIT = 10;
@@ -382,25 +409,26 @@ public static class Constants
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
     ///   etc. for which is the most beneficial
     /// </summary>
-    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 10;
+    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 15;
 
     /// <summary>
     ///   Populations of species that are under this will be killed off by auto-evo
     /// </summary>
     public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
+    // Auto evo population algorithm tweak variables
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
-
-    // Auto evo population algorithm tweak variables
-    public const float AUTO_EVO_ATP_USE_SCORE_DIVISOR = 300;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR = 1;
-    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 1;
-    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 1;
-    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.5f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 6000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
+    public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
+    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 1.0f;
+    public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
@@ -410,13 +438,14 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
-    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 15.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 17.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
     public const float TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL = 0.2f;
     public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 180;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
+    public const float MICROBE_EDITOR_BUTTON_TUTORIAL_DELAY = 20;
 
     /// <summary>
     ///   Used to limit how often the hover indicator panel are
@@ -426,13 +455,29 @@ public static class Constants
 
     public const float TOOLTIP_OFFSET = 20;
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
-    public const float TOOLTIP_FADE_SPEED = 0.02f;
+    public const float TOOLTIP_FADE_SPEED = 0.25f;
 
     public const float EDITOR_ARROW_OFFSET = 3.5f;
     public const float EDITOR_ARROW_INTERPOLATE_SPEED = 0.5f;
 
+    public const float MINIMUM_RUNNABLE_PROCESS_FRACTION = 0.00001f;
+
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
+
+    /// <summary>
+    ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
+    ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>
+    /// </summary>
+    public const int MAIN_MENU_CANCEL_PRIORITY = -3;
+
+    /// <summary>
+    ///   Pause menu has lower cancel priority to avoid handling canceling being in the menu if a an open sub menu
+    ///   has special actions it needs to do
+    /// </summary>
+    public const int PAUSE_MENU_CANCEL_PRIORITY = -2;
+
+    public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
@@ -445,6 +490,13 @@ public static class Constants
     ///   over smaller microbes.
     /// </summary>
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
+
+    /// <summary>
+    ///   Squared value of <see cref="MICROBE_HOVER_DETECTION_EXTRA_RADIUS"/>.
+    ///   Specifically for use with LengthSquared.
+    /// </summary>
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED =
+        MICROBE_HOVER_DETECTION_EXTRA_RADIUS * MICROBE_HOVER_DETECTION_EXTRA_RADIUS;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
@@ -489,10 +541,17 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
 
+    public const string EXPLICIT_PATH_PREFIX = "file://";
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     public const string LOGS_FOLDER_NAME = "logs";
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
+
+    /// <summary>
+    ///   Internal Godot name for the default audio output device
+    /// </summary>
+    public const string DEFAULT_AUDIO_OUTPUT_DEVICE_NAME = "Default";
 
     /// <summary>
     ///   This is just here to make it easier to debug saves
@@ -511,6 +570,7 @@ public static class Constants
 
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
+    public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
 
     public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
 
@@ -529,6 +589,9 @@ public static class Constants
             AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
             0 :
             -42;
+
+    private const uint MinimumRunnableProcessFractionIsAboveEpsilon =
+        (MINIMUM_RUNNABLE_PROCESS_FRACTION > MathUtils.EPSILON) ? 0 : -42;
 
     // ReSharper restore UnreachableCode
 #pragma warning restore CA1823

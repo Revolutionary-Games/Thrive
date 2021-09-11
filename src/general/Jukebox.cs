@@ -175,7 +175,7 @@ public class Jukebox : Node
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
-        player.Connect("finished", this, "OnSomeTrackEnded");
+        player.Connect("finished", this, nameof(OnSomeTrackEnded));
 
         var created = new AudioPlayer(player);
 
@@ -193,16 +193,27 @@ public class Jukebox : Node
 
     private void PlayTrack(AudioPlayer player, TrackList.Track track, string trackBus, float fromPosition = 0)
     {
+        bool changedTrack = false;
+
         if (player.CurrentTrack != track.ResourcePath)
         {
             var stream = GD.Load<AudioStream>(track.ResourcePath);
 
             player.Player.Stream = stream;
             player.CurrentTrack = track.ResourcePath;
+
+            changedTrack = true;
+        }
+
+        if (player.Bus != trackBus)
+        {
             player.Bus = trackBus;
+            changedTrack = true;
+        }
 
+        if (changedTrack || !player.Playing)
+        {
             player.Player.Play(fromPosition);
-
             GD.Print("Jukebox: starting track: ", track.ResourcePath, " position: ", fromPosition);
         }
     }
@@ -395,15 +406,25 @@ public class Jukebox : Node
         else
         {
             var random = new Random();
-
-            // Make sure same random track is not played twice in a row
             int nextIndex;
 
-            do
+            if (mode == TrackList.Order.Random)
+            {
+                // Make sure same random track is not played twice in a row
+                do
+                {
+                    nextIndex = random.Next(0, list.Tracks.Count);
+                }
+                while (nextIndex == list.LastPlayedIndex && list.Tracks.Count > 1);
+            }
+            else if (mode == TrackList.Order.EntirelyRandom)
             {
                 nextIndex = random.Next(0, list.Tracks.Count);
             }
-            while (nextIndex == list.LastPlayedIndex && list.Tracks.Count > 1);
+            else
+            {
+                throw new InvalidOperationException("Unknown track list order type");
+            }
 
             PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex], list.TrackBus);
             list.LastPlayedIndex = nextIndex;

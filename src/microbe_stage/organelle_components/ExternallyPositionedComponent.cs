@@ -47,7 +47,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         if (delta == new Vector3(0, 0, 0))
             delta = defaultVisualPos;
         Vector3 exit = middle - delta;
-        var membraneCoords = organelle.ParentMicrobe.Membrane.GetExternalOrganelle(exit.x,
+        var membraneCoords = organelle.ParentMicrobe.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
             exit.z);
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {

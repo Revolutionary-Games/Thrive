@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    labels:
+      - "review"
+      - "dependencies"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "Revolutionary-Games/programming"

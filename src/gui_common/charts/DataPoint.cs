@@ -14,6 +14,7 @@ public class DataPoint : Control
 {
     private Texture graphMarkerCircle;
     private Texture graphMarkerCross;
+    private Texture graphMarkerSkull;
 
     private bool isMouseOver;
 
@@ -37,6 +38,7 @@ public class DataPoint : Control
     {
         Circle,
         Cross,
+        Skull,
     }
 
     /// <summary>
@@ -93,6 +95,7 @@ public class DataPoint : Control
     {
         graphMarkerCircle = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
         graphMarkerCross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+        graphMarkerSkull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
         Connect("mouse_entered", this, nameof(OnMouseEnter));
         Connect("mouse_exited", this, nameof(OnMouseExit));
@@ -136,6 +139,18 @@ public class DataPoint : Control
 
                 DrawTextureRect(graphMarkerCross, new Rect2(
                     (RectSize / 2) - (vectorSize / 2), vectorSize), false, color);
+                break;
+            }
+
+            case MarkerIcon.Skull:
+            {
+                var colour = MarkerColour;
+
+                if (isMouseOver)
+                    colour = MarkerColour.Lightened(0.5f);
+
+                DrawTextureRect(graphMarkerSkull, new Rect2(
+                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, colour);
                 break;
             }
 

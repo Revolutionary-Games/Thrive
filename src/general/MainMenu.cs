@@ -7,7 +7,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Class managing the main menu and everything in it
 /// </summary>
-public class MainMenu : Node
+public class MainMenu : NodeWithInput
 {
     /// <summary>
     ///   Index of the current menu.
@@ -35,8 +35,6 @@ public class MainMenu : Node
     public TextureRect Background;
 
     public bool IsReturningToMenu;
-
-    private readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
 
     private TextureRect thriveLogo;
     private OptionsMenu options;
@@ -101,6 +99,32 @@ public class MainMenu : Node
     }
 
     /// <summary>
+    ///   This is when ESC is pressed. Main menu priority is lower than Options Menu
+    ///   to avoid capturing ESC presses in the Options Menu.
+    /// </summary>
+    [RunOnKeyDown("ui_cancel", Priority = Constants.MAIN_MENU_CANCEL_PRIORITY)]
+    public bool OnEscapePressed()
+    {
+        // In a sub menu (that doesn't have its own class)
+        if (CurrentMenuIndex != 0 && CurrentMenuIndex < uint.MaxValue)
+        {
+            SetCurrentMenu(0);
+
+            // Handled, stop here.
+            return true;
+        }
+
+        if (CurrentMenuIndex == uint.MaxValue && saves.Visible)
+        {
+            OnReturnFromLoadGame();
+            return true;
+        }
+
+        // Not handled, pass through.
+        return false;
+    }
+
+    /// <summary>
     ///   Setup the main menu.
     /// </summary>
     private void RunMenuSetup()
@@ -132,8 +156,7 @@ public class MainMenu : Node
         SwitchMenu();
 
         // Easter egg message
-        thriveLogo.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"), toolTipCallbacks);
+        thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
@@ -190,7 +213,7 @@ public class MainMenu : Node
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
             0.3f :
             0.5f, false);
-        TransitionManager.Instance.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.StartTransitions(null);
 
         // Start music after the video
         StartMusic();

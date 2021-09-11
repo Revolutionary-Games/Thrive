@@ -94,6 +94,14 @@ public class InputEventItem : Node
         {
             UpdateButtonText();
         }
+
+        // ESC must not be re-assignable or removable, otherwise it can't be added back because ESC is the only key
+        // reserved this way to serve as the way to cancel a rebind action.
+        if (AssociatedEvent?.Code == (uint)KeyList.Escape)
+        {
+            button.Disabled = true;
+            xButton.Disabled = true;
+        }
     }
 
     /// <summary>
@@ -131,7 +139,7 @@ public class InputEventItem : Node
         // Hacky custom button press detection
         if (@event is InputEventMouseButton mouseEvent)
         {
-            if (xButton.IsHovered())
+            if (xButton.IsHovered() && !xButton.Disabled)
             {
                 Delete();
 
@@ -141,7 +149,7 @@ public class InputEventItem : Node
                 return;
             }
 
-            if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed)
+            if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed && !button.Disabled)
             {
                 OnButtonPressed(mouseEvent);
                 return;

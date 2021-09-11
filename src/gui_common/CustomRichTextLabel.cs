@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Godot;
 
@@ -11,9 +12,9 @@ public class CustomRichTextLabel : RichTextLabel
     private string extendedBbcode;
 
     /// <summary>
-    ///   Custom Bbcode tags exclusive for Thrive. Acts more like an extension to the built-in tags.
+    ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
-    public enum ThriveBbCodeTag
+    public enum ThriveBbCode
     {
         /// <summary>
         ///   Turns compound internal name string into a bolded display name and an icon next to it.
@@ -28,11 +29,12 @@ public class CustomRichTextLabel : RichTextLabel
     }
 
     /// <summary>
-    ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound]glucose[/thrive:compound])
+    ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound type="glucose"]
+    ///   [/thrive:compound])
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     NOTE: including "thrive" namespace in the tag is a must, otherwise the custom parser wouldn't parse it.
+    ///     NOTE: including "thrive" namespace in a tag is a must, otherwise the custom parser wouldn't parse it.
     ///   </para>
     /// </remarks>
     [Export]
@@ -50,27 +52,50 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputDataList.InputsRemapped += OnInputsRemapped;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputDataList.InputsRemapped -= OnInputsRemapped;
+    }
+
     public override void _Ready()
     {
         // Make sure bbcode is enabled
         BbcodeEnabled = true;
     }
 
+    public override void _Draw()
+    {
+        // A workaround to get RichTextLabel's height properly update on tooltip size change
+        // See https://github.com/Revolutionary-Games/Thrive/issues/2236
+        // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
+#pragma warning disable CA2245 // Necessary for workaround
+        Invoke.Instance.Queue(() => BbcodeText = BbcodeText);
+#pragma warning restore CA2245
+    }
+
     /// <summary>
-    ///   Parses a custom tagged substring into a templated bbcode.
+    ///   Parses ExtendedBbcode for any custom Thrive tags and applying the final result
+    ///   into this RichTextLabel's bbcode text.
     /// </summary>
     private void ParseCustomTags()
     {
         var result = new StringBuilder(extendedBbcode.Length);
         var currentTagBlock = new StringBuilder(50);
 
-        var tagStack = new Stack<string>();
+        var tagStack = new Stack<List<string>>();
 
         var isIteratingTag = false;
         var isIteratingContent = false;
 
         // The index of a closing bracket in a last iterated opening tag, used
-        // to retrieve the tagged substring
+        // to retrieve the substring enclosed between start and end tag
         var lastStartingTagEndIndex = 0;
 
         for (int index = 0; index < extendedBbcode.Length; ++index)
@@ -108,7 +133,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                     if (character == '[' || index == extendedBbcode.Length - 1)
                     {
-                        // No closing bracket found, just write normally to the final string and abort trying to parse
+                        // No closing bracket found, just write normally into the final string and abort
+                        // trying to parse
                         result.Append($"[{currentTagBlock}");
                         isIteratingTag = false;
                     }
@@ -120,7 +146,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var tagBlock = currentTagBlock.ToString();
 
-                // Namespace divisor not found
+                // Bbcode delimiter not found
                 if (!tagBlock.Contains(":"))
                 {
                     result.Append($"[{tagBlock}]");
@@ -128,59 +154,68 @@ public class CustomRichTextLabel : RichTextLabel
                     continue;
                 }
 
-                var splitTagBlock = tagBlock.Split(":");
+                var leftHandSide = tagBlock.Split(":");
 
-                // Invalid tag syntax, probably not a thrive tag or missing a part
-                if (splitTagBlock.Length != 2)
+                // Invalid bbcode syntax, probably not a thrive bbcode or missing a part
+                if (leftHandSide.Length != 2)
                 {
                     result.Append($"[{tagBlock}]");
                     isIteratingTag = false;
                     continue;
                 }
 
-                var tagNamespace = splitTagBlock[0];
-                var tagIdentifier = splitTagBlock[1];
+                // Custom bbcode Thrive namespace
+                var bbcodeNamespace = leftHandSide[0];
 
-                // Not a thrive custom tag, don't parse this
-                if (!tagNamespace.Contains("thrive"))
+                // Not a thrive bbcode, don't parse this
+                if (!bbcodeNamespace.Contains("thrive"))
                 {
                     result.Append($"[{tagBlock}]");
                     isIteratingTag = false;
                     continue;
                 }
 
-                // Tag seems okay, next step is to try parse the tagged substring and closing tag
+                // The bbcode (and its attributes if this is an opening tag)
+                var splitTagBlock = StringUtils.SplitByWhitespace(leftHandSide[1], true);
+
+                // Tag seems okay, next step is to try parse the content and the closing tag
 
                 // Is a closing tag
-                if (tagNamespace.BeginsWith("/"))
+                if (bbcodeNamespace.StartsWith("/", StringComparison.InvariantCulture))
                 {
+                    var chunks = tagStack.Peek();
+
+                    var bbcode = chunks[0];
+
                     // Closing tag doesn't match opening tag or vice versa, aborting parsing
-                    if (tagStack.Count == 0 || tagStack.Peek() != tagIdentifier)
+                    if (tagStack.Count == 0 || bbcode != splitTagBlock[0])
                     {
                         result.Append($"[{tagBlock}]");
                         isIteratingTag = false;
                         continue;
                     }
 
-                    // Finally try building the bbcode template for the tagged substring
+                    // Finally try building the bbcode template for the enclosed substring
 
-                    var closingTagStartIndex = extendedBbcode.Find("[", lastStartingTagEndIndex);
+                    var closingTagStartIndex = extendedBbcode.IndexOf("[", lastStartingTagEndIndex,
+                        StringComparison.InvariantCulture);
 
-                    var input = extendedBbcode.Substr(
+                    var input = extendedBbcode.Substring(
                         lastStartingTagEndIndex + 1, closingTagStartIndex - lastStartingTagEndIndex - 1);
 
-                    ThriveBbCodeTag parsedTag;
-
-                    if (Enum.TryParse(tagStack.Peek(), true, out parsedTag))
+                    if (Enum.TryParse(bbcode, true, out ThriveBbCode parsedTag))
                     {
+                        // Leave out bbcode, all that's left should be the attributes
+                        var attributes = chunks.Skip(1).ToList();
+
                         // Success!
-                        result.Append(BuildTemplateForTag(input, parsedTag));
+                        result.Append(BuildTemplateForTag(input, parsedTag, attributes));
                     }
                     else
                     {
-                        // Tag is not present in the enum
+                        // BBCode is not present in the enum
                         result.Append(input);
-                        GD.PrintErr($"Failed parsing custom thrive tag: {tagStack.Peek()}, it probably doesn't exist");
+                        GD.PrintErr($"Failed parsing custom thrive bbcode: {bbcode}, it probably doesn't exist");
                     }
 
                     isIteratingContent = false;
@@ -189,7 +224,7 @@ public class CustomRichTextLabel : RichTextLabel
                 else
                 {
                     isIteratingContent = true;
-                    tagStack.Push(tagIdentifier);
+                    tagStack.Push(splitTagBlock);
                 }
 
                 lastStartingTagEndIndex = index;
@@ -206,48 +241,86 @@ public class CustomRichTextLabel : RichTextLabel
     /// <summary>
     ///   Returns a templated bbcode string for the given custom tag.
     /// </summary>
-    /// <param name="input">The string tagged by custom tags</param>
-    /// <param name="tag">Custom Thrive bbcode-styled tags</param>
-    private string BuildTemplateForTag(string input, ThriveBbCodeTag tag)
+    /// <param name="input">The string enclosed by the custom tags</param>
+    /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
+    /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
+    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes = null)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
 
-        switch (tag)
-        {
-            case ThriveBbCodeTag.Compound:
-            {
-                if (SimulationParameters.Instance.DoesCompoundExist(input))
-                {
-                    var compound = SimulationParameters.Instance.GetCompound(input);
+        var simulationParameters = SimulationParameters.Instance;
 
-                    output = $"[b]{compound.Name}[/b] [font=res://src/gui_common/fonts/" +
-                        $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
-                }
-                else
+        switch (bbcode)
+        {
+            case ThriveBbCode.Compound:
+            {
+                var pairs = StringUtils.ParseKeyValuePairs(attributes);
+
+                // Used to fallback to the old method if type attribute is not specified. Should be removed in
+                // roughly 6 months to give time for translations to be updated
+                // TODO: remove this fallback once it makes sense to do so
+                // https://github.com/Revolutionary-Games/Thrive/issues/2434
+                var fallback = false;
+
+                var internalName = string.Empty;
+
+                if (pairs.TryGetValue("type", out string value))
                 {
-                    GD.Print($"Compound: \"{input}\" doesn't exist, referenced in bbcode");
+                    if (!value.StartsAndEndsWith("\""))
+                        break;
+
+                    internalName = value.Substring(1, value.Length - 2);
                 }
+
+                // Handle fallback
+                if (!string.IsNullOrEmpty(input) && string.IsNullOrEmpty(internalName))
+                {
+                    GD.Print("Compound type not specified in bbcode, fallback to using input as " +
+                        $"the internal name: {input}");
+                    internalName = input;
+                    fallback = true;
+                }
+
+                // Check compound existence and aborts if it's not valid
+                if (!simulationParameters.DoesCompoundExist(internalName))
+                {
+                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    break;
+                }
+
+                var compound = simulationParameters.GetCompound(internalName);
+
+                // Just use the default compound's display name if input text is not specified
+                if (!fallback && string.IsNullOrEmpty(input))
+                    input = compound.Name;
+
+                output = $"[b]{(fallback ? compound.Name : input)}[/b] [font=res://src/gui_common/fonts/" +
+                    $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
                 break;
             }
 
-            case ThriveBbCodeTag.Input:
+            case ThriveBbCode.Input:
             {
-                if (InputMap.HasAction(input))
-                {
-                    output = "[font=res://src/gui_common/fonts/BBCode-Image-VerticalCenterAlign-9.tres]" +
-                        $"[img=30]{KeyPromptHelper.GetPathForAction(input)}[/img][/font]";
-                }
-                else
+                if (!InputMap.HasAction(input))
                 {
                     GD.Print($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
+                    break;
                 }
+
+                output = "[font=res://src/gui_common/fonts/BBCode-Image-VerticalCenterAlign-9.tres]" +
+                    $"[img=30]{KeyPromptHelper.GetPathForAction(input)}[/img][/font]";
 
                 break;
             }
         }
 
         return output;
+    }
+
+    private void OnInputsRemapped(object sender, EventArgs args)
+    {
+        ParseCustomTags();
     }
 }

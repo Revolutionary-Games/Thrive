@@ -15,13 +15,13 @@ public abstract class Spawner
     ///   Squared spawn distance for faster computations when spawning
     /// </summary>
     /// <value>The spawn radius sqr.</value>
-    public int SpawnRadiusSqr { get; set; }
+    public int SpawnRadiusSquared { get; set; }
 
     /// <summary>
     ///   Squared minimum spawn distance allowed
     /// </summary>
     /// <value>The minimum allowed spawn radius sqr.</value>
-    public float MinSpawnRadiusSqr { get; set; }
+    public float MinSpawnRadiusSquared { get; set; }
 
     /// <summary>
     ///   How much stuff spawns
@@ -45,6 +45,6 @@ public abstract class Spawner
 
     public void SetFrequencyFromDensity(float spawnDensity)
     {
-        SpawnFrequency = (int)(spawnDensity * SpawnRadiusSqr * 4);
+        SpawnFrequency = (int)(spawnDensity * SpawnRadiusSquared * 4);
     }
 }

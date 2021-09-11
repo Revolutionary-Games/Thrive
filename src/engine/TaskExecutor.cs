@@ -21,7 +21,6 @@ public class TaskExecutor
 
     private bool running = true;
     private int currentThreadCount;
-    private bool assumeHyperThreading = true;
 
     /// <summary>
     ///   For naming the created threads.
@@ -40,34 +39,17 @@ public class TaskExecutor
         }
         else
         {
-            var logicalCPUs = Environment.ProcessorCount;
-
-            int targetTaskCount = logicalCPUs;
-
-            // No platform independent way to get this in c#
-            if (assumeHyperThreading && logicalCPUs % 2 == 0)
-                targetTaskCount /= 2;
-
-            // Actually it might make more sense to run auto evo as tasks to
-            // only take up resources when it is running
-            // // One thread for auto-evo
-            // targetTaskCount -= 1;
-
-            // There needs to be 2 threads as when auto-evo is running it hogs one thread
-            if (targetTaskCount < 2)
-            {
-                ParallelTasks = 2;
-            }
-            else
-            {
-                ParallelTasks = targetTaskCount;
-            }
+            ReApplyThreadCount();
         }
 
         // Mono doesn't have this for some reason
         // Thread.CurrentThread.Name = "main";
         GD.Print("TaskExecutor started with parallel job count: ", ParallelTasks);
     }
+
+    public static int CPUCount => Environment.ProcessorCount;
+    public static int MinimumThreadCount => Settings.Instance.RunAutoEvoDuringGamePlay.Value ? 2 : 1;
+    public static int MaximumThreadCount => CPUCount;
 
     public static TaskExecutor Instance => SingletonInstance;
 
@@ -89,6 +71,36 @@ public class TaskExecutor
                 SpawnThread();
             }
         }
+    }
+
+    /// <summary>
+    ///   Computes how many threads there should be by default
+    /// </summary>
+    /// <param name="hyperthreading">
+    ///   True if hyperthreading is on. There is no platform independent way to get this in C#.
+    /// </param>
+    /// <param name="autoEvoDuringGameplay">If true, reserves extra (minimum thread) for auto-evo</param>
+    /// <returns>The number of threads to use</returns>
+    public static int GetWantedThreadCount(bool hyperthreading, bool autoEvoDuringGameplay)
+    {
+        int targetTaskCount = CPUCount;
+
+        // The divisible by 2 check here makes sure there are 2n number of threads (where n is the number of real cores
+        // this holds for desktop hyperthreading where there's always 2 threads per core)
+        if (hyperthreading && targetTaskCount % 2 == 0)
+            targetTaskCount /= 2;
+
+        int max = MaximumThreadCount;
+        if (targetTaskCount > max)
+            targetTaskCount = max;
+
+        // There needs to be 2 threads as when auto-evo is running it hogs one thread
+        if (autoEvoDuringGameplay && targetTaskCount < 2)
+        {
+            targetTaskCount = 2;
+        }
+
+        return targetTaskCount;
     }
 
     /// <summary>
@@ -140,6 +152,21 @@ public class TaskExecutor
         ParallelTasks = 0;
     }
 
+    public void ReApplyThreadCount()
+    {
+        var settings = Settings.Instance;
+
+        if (settings.UseManualThreadCount.Value)
+        {
+            ParallelTasks = Mathf.Clamp(settings.ThreadCount.Value, MinimumThreadCount, MaximumThreadCount);
+        }
+        else
+        {
+            ParallelTasks = GetWantedThreadCount(settings.AssumeCPUHasHyperthreading.Value,
+                settings.RunAutoEvoDuringGamePlay.Value);
+        }
+    }
+
     private void SpawnThread()
     {
         var thread = new Thread(RunExecutorThread);
@@ -183,9 +210,11 @@ public class TaskExecutor
                     }
 
                     // Make sure task exceptions aren't ignored.
-                    // Could perhaps in the future find some other way to handle this
+                    // TODO: it used to be that not all places properly waited for tasks, that's why this code is here
+                    // but now some places actually want to handle the task exceptions themselves, so this should
+                    // be removed after making sure no places ignore the exceptions
                     if (command.Task.Exception != null)
-                        throw command.Task.Exception;
+                        GD.Print("Background task caused an exception: ", command.Task.Exception);
                 }
                 else
                 {

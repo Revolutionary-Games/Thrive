@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 using Environment = System.Environment;
@@ -7,7 +8,7 @@ using Environment = System.Environment;
 /// <summary>
 ///   Handles the logic for the options menu GUI.
 /// </summary>
-public class OptionsMenu : Control
+public class OptionsMenu : ControlWithInput
 {
     /*
       GUI Control Paths
@@ -59,6 +60,12 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ChromaticAberrationTogglePath;
 
+    [Export]
+    public NodePath DisplayAbilitiesBarTogglePath;
+
+    [Export]
+    public NodePath GUILightEffectsTogglePath;
+
     // Sound tab.
     [Export]
     public NodePath SoundTabPath;
@@ -93,6 +100,18 @@ public class OptionsMenu : Control
     [Export]
     public NodePath GUIMutedPath;
 
+    [Export]
+    public NodePath AudioOutputDeviceSelectionPath;
+
+    [Export]
+    public NodePath LanguageSelectionPath;
+
+    [Export]
+    public NodePath ResetLanguageButtonPath;
+
+    [Export]
+    public NodePath LanguageProgressLabelPath;
+
     // Performance tab.
     [Export]
     public NodePath PerformanceTabPath;
@@ -101,10 +120,28 @@ public class OptionsMenu : Control
     public NodePath CloudIntervalPath;
 
     [Export]
+    public NodePath CloudResolutionTitlePath;
+
+    [Export]
     public NodePath CloudResolutionPath;
 
     [Export]
     public NodePath RunAutoEvoDuringGameplayPath;
+
+    [Export]
+    public NodePath DetectedCPUCountPath;
+
+    [Export]
+    public NodePath ActiveThreadCountPath;
+
+    [Export]
+    public NodePath AssumeHyperthreadingPath;
+
+    [Export]
+    public NodePath UseManualThreadCountPath;
+
+    [Export]
+    public NodePath ThreadCountSliderPath;
 
     // Inputs tab.
     [Export]
@@ -145,16 +182,13 @@ public class OptionsMenu : Control
     public NodePath TutorialsEnabledPath;
 
     [Export]
+    public NodePath ScreenshotDirectoryWarningBoxPath;
+
+    [Export]
     public NodePath DefaultsConfirmationBoxPath;
 
     [Export]
     public NodePath ErrorAcceptBoxPath;
-
-    [Export]
-    public NodePath LanguageSelectionPath;
-
-    [Export]
-    public NodePath ResetLanguageButtonPath;
 
     [Export]
     public NodePath CustomUsernameEnabledPath;
@@ -165,6 +199,10 @@ public class OptionsMenu : Control
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
+
+    private static readonly List<string> AudioOutputDevicesCache = AudioServer
+        .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
+        .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
     private Button resetButton;
     private Button saveButton;
@@ -184,6 +222,8 @@ public class OptionsMenu : Control
     private OptionButton colourblindSetting;
     private CheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
+    private CheckBox displayAbilitiesHotBarToggle;
+    private CheckBox guiLightEffectsToggle;
 
     // Sound tab
     private Control soundTab;
@@ -197,14 +237,22 @@ public class OptionsMenu : Control
     private CheckBox sfxMuted;
     private Slider guiVolume;
     private CheckBox guiMuted;
+    private OptionButton audioOutputDeviceSelection;
     private OptionButton languageSelection;
     private Button resetLanguageButton;
+    private Label languageProgressLabel;
 
     // Performance tab
     private Control performanceTab;
     private OptionButton cloudInterval;
+    private VBoxContainer cloudResolutionTitle;
     private OptionButton cloudResolution;
     private CheckBox runAutoEvoDuringGameplay;
+    private Label detectedCPUCount;
+    private Label activeThreadCount;
+    private CheckBox assumeHyperthreading;
+    private CheckBox useManualThreadCount;
+    private Slider threadCountSlider;
 
     // Inputs tab
     private Control inputsTab;
@@ -225,6 +273,7 @@ public class OptionsMenu : Control
     private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
+    private AcceptDialog screenshotDirectoryWarningBox;
     private AcceptDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
     private AcceptDialog errorAcceptBox;
@@ -269,6 +318,7 @@ public class OptionsMenu : Control
     }
 
     private static List<string> Languages => LanguagesCache;
+    private static List<string> AudioOutputDevices => AudioOutputDevicesCache;
 
     public override void _Ready()
     {
@@ -291,6 +341,8 @@ public class OptionsMenu : Control
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
+        displayAbilitiesHotBarToggle = GetNode<CheckBox>(DisplayAbilitiesBarTogglePath);
+        guiLightEffectsToggle = GetNode<CheckBox>(GUILightEffectsTogglePath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -304,15 +356,25 @@ public class OptionsMenu : Control
         sfxMuted = GetNode<CheckBox>(SFXMutedPath);
         guiVolume = GetNode<Slider>(GUIVolumePath);
         guiMuted = GetNode<CheckBox>(GUIMutedPath);
+        audioOutputDeviceSelection = GetNode<OptionButton>(AudioOutputDeviceSelectionPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
-        LoadLanguages(languageSelection);
+        languageProgressLabel = GetNode<Label>(LanguageProgressLabelPath);
+
+        LoadLanguages();
+        LoadAudioOutputDevices();
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
+        cloudResolutionTitle = GetNode<VBoxContainer>(CloudResolutionTitlePath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
         runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
+        detectedCPUCount = GetNode<Label>(DetectedCPUCountPath);
+        activeThreadCount = GetNode<Label>(ActiveThreadCountPath);
+        assumeHyperthreading = GetNode<CheckBox>(AssumeHyperthreadingPath);
+        useManualThreadCount = GetNode<CheckBox>(UseManualThreadCountPath);
+        threadCountSlider = GetNode<Slider>(ThreadCountSliderPath);
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
@@ -332,6 +394,7 @@ public class OptionsMenu : Control
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
+        screenshotDirectoryWarningBox = GetNode<AcceptDialog>(ScreenshotDirectoryWarningBoxPath);
         backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
@@ -341,6 +404,10 @@ public class OptionsMenu : Control
         // We're only utilizing the AcceptDialog's auto resize functionality,
         // so hide the default Ok button since it's not needed
         backConfirmationBox.GetOk().Hide();
+
+        cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
+        guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
+        assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
     }
 
     public override void _Notification(int what)
@@ -348,6 +415,7 @@ public class OptionsMenu : Control
         if (what == NotificationTranslationChanged)
         {
             BuildInputRebindControls();
+            UpdateDefaultAudioOutputDeviceText();
         }
     }
 
@@ -415,6 +483,8 @@ public class OptionsMenu : Control
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
+        displayAbilitiesHotBarToggle.Pressed = settings.DisplayAbilitiesHotBar;
+        guiLightEffectsToggle.Pressed = settings.GUILightEffectsEnabled;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -428,15 +498,23 @@ public class OptionsMenu : Control
         guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
         UpdateSelectedLanguage(settings);
+        UpdateSelectedAudioOutputDevice(settings);
 
         // Hide or show the reset language button based on the selected language
         resetLanguageButton.Visible = settings.SelectedLanguage.Value != null &&
             settings.SelectedLanguage.Value != Settings.DefaultLanguage;
+        UpdateCurrentLanguageProgress();
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
+        assumeHyperthreading.Pressed = settings.AssumeCPUHasHyperthreading;
+        useManualThreadCount.Pressed = settings.UseManualThreadCount;
+        threadCountSlider.Value = settings.ThreadCount;
+        threadCountSlider.Editable = settings.UseManualThreadCount;
+
+        UpdateDetectedCPUCount();
 
         // Input
         BuildInputRebindControls();
@@ -455,6 +533,34 @@ public class OptionsMenu : Control
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+    }
+
+    [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
+    public bool OnEscapePressed()
+    {
+        // Only handle keypress when visible
+        if (!Visible)
+            return false;
+
+        if (InputGroupList.WasListeningForInput)
+        {
+            // Listening for Inputs, should not do anything and should not pass through
+            return true;
+        }
+
+        if (!Exit())
+        {
+            // We are prevented from exiting, consume this input
+            return true;
+        }
+
+        // If it is opened from InGame then let pause menu hide too.
+        if (optionsMode == OptionsMode.InGame)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -692,14 +798,60 @@ public class OptionsMenu : Control
         saveButton.Disabled = result;
     }
 
-    private void LoadLanguages(OptionButton optionButton)
+    private void UpdateDefaultAudioOutputDeviceText()
+    {
+        audioOutputDeviceSelection.SetItemText(0, TranslationServer.Translate("DEFAULT_AUDIO_OUTPUT_DEVICE"));
+    }
+
+    private void LoadAudioOutputDevices()
+    {
+        foreach (var audioOutputDevice in AudioOutputDevices)
+        {
+            audioOutputDeviceSelection.AddItem(audioOutputDevice);
+        }
+
+        UpdateDefaultAudioOutputDeviceText();
+    }
+
+    private void LoadLanguages()
     {
         foreach (var locale in Languages)
         {
             var currentCulture = Settings.GetCultureInfo(locale);
             var native = Settings.GetLanguageNativeNameOverride(locale) ?? currentCulture.NativeName;
-            optionButton.AddItem(locale + " - " + native);
+            languageSelection.AddItem(locale + " - " + native);
         }
+    }
+
+    private void UpdateCurrentLanguageProgress()
+    {
+        if (!SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress
+            .TryGetValue(TranslationServer.GetLocale(), out float progress))
+        {
+            GD.PrintErr("Unknown progress for current locale");
+            progress = -1;
+        }
+        else
+        {
+            progress *= 100;
+        }
+
+        string textFormat;
+
+        if (progress >= 0 && progress < Constants.TRANSLATION_VERY_INCOMPLETE_THRESHOLD)
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW");
+        }
+        else if (progress >= 0 && progress < Constants.TRANSLATION_INCOMPLETE_THRESHOLD)
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS_LOW");
+        }
+        else
+        {
+            textFormat = TranslationServer.Translate("LANGUAGE_TRANSLATION_PROGRESS");
+        }
+
+        languageProgressLabel.Text = string.Format(CultureInfo.CurrentCulture, textFormat, Mathf.Floor(progress));
     }
 
     /*
@@ -710,15 +862,42 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        Exit();
+    }
+
+    private bool Exit()
+    {
         // If any settings have been changed, show a dialogue asking if the changes should be kept or
         // discarded.
         if (!CompareSettings())
         {
             backConfirmationBox.PopupCenteredShrink();
-            return;
+            return false;
         }
 
         EmitSignal(nameof(OnOptionsClosed));
+        return true;
+    }
+
+    private void UpdateDetectedCPUCount()
+    {
+        detectedCPUCount.Text = TaskExecutor.CPUCount.ToString(CultureInfo.CurrentCulture);
+
+        if (Settings.Instance.UseManualThreadCount)
+        {
+            activeThreadCount.Text = Settings.Instance.ThreadCount.Value.ToString(CultureInfo.CurrentCulture);
+        }
+        else
+        {
+            int threads = TaskExecutor.GetWantedThreadCount(Settings.Instance.AssumeCPUHasHyperthreading,
+                Settings.Instance.RunAutoEvoDuringGamePlay);
+
+            activeThreadCount.Text = threads.ToString(CultureInfo.CurrentCulture);
+            threadCountSlider.Value = threads;
+        }
+
+        threadCountSlider.MinValue = TaskExecutor.MinimumThreadCount;
+        threadCountSlider.MaxValue = TaskExecutor.MaximumThreadCount;
     }
 
     private void OnResetPressed()
@@ -876,6 +1055,20 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnDisplayAbilitiesHotBarToggled(bool toggle)
+    {
+        Settings.Instance.DisplayAbilitiesHotBar.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnGUILightEffectsToggled(bool toggle)
+    {
+        Settings.Instance.GUILightEffectsEnabled.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
     // Sound Button Callbacks
     private void OnMasterVolumeChanged(float value)
     {
@@ -977,6 +1170,37 @@ public class OptionsMenu : Control
         Settings.Instance.RunAutoEvoDuringGamePlay.Value = pressed;
 
         UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnHyperthreadingToggled(bool pressed)
+    {
+        Settings.Instance.AssumeCPUHasHyperthreading.Value = pressed;
+        Settings.Instance.ApplyThreadSettings();
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnManualThreadsToggled(bool pressed)
+    {
+        Settings.Instance.UseManualThreadCount.Value = pressed;
+        Settings.Instance.ApplyThreadSettings();
+
+        threadCountSlider.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
+    }
+
+    private void OnManualThreadCountChanged(float value)
+    {
+        int threads = Mathf.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
+        Settings.Instance.ThreadCount.Value = threads;
+        Settings.Instance.ApplyThreadSettings();
+
+        UpdateResetSaveButtonState();
+        UpdateDetectedCPUCount();
     }
 
     // Input Callbacks
@@ -1057,7 +1281,9 @@ public class OptionsMenu : Control
     private void OnOpenScreenshotFolder()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
+
+        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER)) == Error.FileNotFound)
+            screenshotDirectoryWarningBox.PopupCenteredShrink();
     }
 
     private void OnCustomUsernameEnabledToggled(bool pressed)
@@ -1082,6 +1308,14 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnAudioOutputDeviceSettingSelected(int item)
+    {
+        Settings.Instance.SelectedAudioOutputDevice.Value = AudioOutputDevices[item];
+
+        Settings.Instance.ApplyAudioOutputDeviceSettings();
+        UpdateResetSaveButtonState();
+    }
+
     private void OnLanguageSettingSelected(int item)
     {
         Settings.Instance.SelectedLanguage.Value = Languages[item];
@@ -1089,6 +1323,7 @@ public class OptionsMenu : Control
 
         Settings.Instance.ApplyLanguageSettings();
         UpdateResetSaveButtonState();
+        UpdateCurrentLanguageProgress();
     }
 
     private void OnResetLanguagePressed()
@@ -1099,12 +1334,19 @@ public class OptionsMenu : Control
         Settings.Instance.ApplyLanguageSettings();
         UpdateSelectedLanguage(Settings.Instance);
         UpdateResetSaveButtonState();
+        UpdateCurrentLanguageProgress();
     }
 
     private void OnTranslationSitePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
         OS.ShellOpen("https://translate.revolutionarygamesstudio.com/engage/thrive/");
+    }
+
+    private void UpdateSelectedAudioOutputDevice(Settings settings)
+    {
+        audioOutputDeviceSelection.Selected = AudioOutputDevices.IndexOf(settings.SelectedAudioOutputDevice.Value ??
+            Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
     }
 
     private void UpdateSelectedLanguage(Settings settings)

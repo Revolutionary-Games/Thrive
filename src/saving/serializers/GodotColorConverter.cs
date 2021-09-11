@@ -47,7 +47,9 @@ public class GodotColorConverter : JsonConverter
 
             // ReSharper restore AssignNullToNotNullAttribute
         }
-        catch (NullReferenceException e)
+        catch (Exception e) when (
+            e is NullReferenceException ||
+            e is ArgumentNullException)
         {
             throw new JsonException("can't read Color (missing property)", e);
         }
