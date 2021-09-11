@@ -61,12 +61,11 @@ public class CustomCheckBox : Button
             };
         }
 
-        if (lastCheckState == currentCheckState)
-            return;
-
-        UpdateIcon();
-
-        lastCheckState = currentCheckState;
+        if (lastCheckState != currentCheckState)
+        {
+            UpdateIcon();
+            lastCheckState = currentCheckState;
+        }
 
         base._Process(delta);
     }
