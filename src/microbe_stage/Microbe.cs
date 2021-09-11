@@ -639,13 +639,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
-        if (amountAvailable < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+        // Emit as much as you have, but don't start the cooldown if that's zero
+        float amountEmitted = Math.Min(amountAvailable / Constants.MINIMUM_AGENT_EMISSION_AMOUNT, 1.0f);
+        if (amountEmitted < MathUtils.EPSILON)
             return;
+
+        Compounds.TakeCompound(agentType, amountEmitted * Constants.MINIMUM_AGENT_EMISSION_AMOUNT);
 
         // The cooldown time is inversely proportional to the amount of agent vacuoles.
         AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / AgentVacuoleCount;
-
-        Compounds.TakeCompound(agentType, Constants.MINIMUM_AGENT_EMISSION_AMOUNT);
 
         float ejectionDistance = Membrane.EncompassingCircleRadius +
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
@@ -662,7 +664,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var position = Translation + (direction * ejectionDistance);
 
-        SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+        SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
             SpawnHelpers.LoadAgentScene(), this);
 
