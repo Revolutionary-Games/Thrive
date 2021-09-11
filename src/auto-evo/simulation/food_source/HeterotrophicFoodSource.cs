@@ -69,6 +69,12 @@ public class HeterotrophicFoodSource : FoodSource
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed;
 
+        // predators are less likely to use toxin against larger prey, unless they are opportunistic
+        if (preySize > predatorSize)
+        {
+            oxytoxyScore *= microbeSpecies.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        }
+
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
         return behaviorScore * (pilusScore + engulfScore + predatorSize + oxytoxyScore);
     }
