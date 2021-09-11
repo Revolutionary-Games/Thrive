@@ -75,7 +75,7 @@ public class CustomCheckBox : Button
     {
         // Only when button's press state changes does Godot call _Pressed(), so to show a different icon when clicked,
         // we have to capture mouse event.
-        if (@event is InputEventMouseButton { ButtonIndex: (int)ButtonList.Left } mouseEvent)
+        if (@event is InputEventMouseButton mouseEvent && (mouseEvent.ButtonIndex & ButtonMask) != 0)
         {
             pressing = mouseEvent.Pressed;
         }
