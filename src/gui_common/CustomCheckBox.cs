@@ -14,7 +14,19 @@ public class CustomCheckBox : Button
     private Texture pressedClicked;
 
     private bool pressing;
-    private DrawMode lastDrawMode;
+    private CheckState lastCheckState;
+    private CheckState currentCheckState;
+
+    private enum CheckState
+    {
+        UnpressedNormal,
+        UnpressedHovered,
+        UnpressedClicked,
+        PressedNormal,
+        PressedHovered,
+        PressedClicked,
+        Disabled,
+    }
 
     public override void _Ready()
     {
@@ -24,6 +36,7 @@ public class CustomCheckBox : Button
         pressedNormal = GetIcon("PressedNormal", "CheckBox");
         pressedHovered = GetIcon("PressedHovered", "CheckBox");
         pressedClicked = GetIcon("PressedClicked", "CheckBox");
+        UpdateIcon();
     }
 
     public override void _Process(float delta)
@@ -31,7 +44,30 @@ public class CustomCheckBox : Button
         if (!Visible)
             return;
 
+        if (pressing)
+        {
+            currentCheckState = Pressed ? CheckState.PressedClicked : CheckState.UnpressedClicked;
+        }
+        else
+        {
+            currentCheckState = GetDrawMode() switch
+            {
+                DrawMode.Disabled => CheckState.Disabled,
+                DrawMode.Normal => CheckState.UnpressedNormal,
+                DrawMode.Hover => CheckState.UnpressedHovered,
+                DrawMode.Pressed => CheckState.PressedNormal,
+                DrawMode.HoverPressed => CheckState.PressedHovered,
+                _ => throw new ArgumentOutOfRangeException(GetDrawMode().ToString()),
+            };
+        }
+
+        if (lastCheckState == currentCheckState)
+            return;
+
         UpdateIcon();
+
+        lastCheckState = currentCheckState;
+
         base._Process(delta);
     }
 
@@ -49,27 +85,16 @@ public class CustomCheckBox : Button
 
     private void UpdateIcon()
     {
-        if (pressing && ActionMode == ActionModeEnum.Release)
+        Icon = currentCheckState switch
         {
-            Icon = Pressed ? pressedClicked : unpressedClicked;
-            return;
-        }
-
-        var currentDrawMode = GetDrawMode();
-
-        if (lastDrawMode == currentDrawMode)
-            return;
-
-        Icon = currentDrawMode switch
-        {
-            DrawMode.Disabled => Pressed ? pressedNormal : unpressedNormal,
-            DrawMode.Normal => unpressedNormal,
-            DrawMode.Hover => unpressedHovered,
-            DrawMode.Pressed => pressedNormal,
-            DrawMode.HoverPressed => pressedHovered,
-            _ => throw new NotImplementedException(),
+            CheckState.Disabled => Pressed ? pressedNormal : unpressedNormal,
+            CheckState.UnpressedNormal => unpressedNormal,
+            CheckState.UnpressedHovered => unpressedHovered,
+            CheckState.UnpressedClicked => unpressedClicked,
+            CheckState.PressedNormal => pressedNormal,
+            CheckState.PressedHovered => pressedHovered,
+            CheckState.PressedClicked => pressedClicked,
+            _ => throw new ArgumentOutOfRangeException(),
         };
-
-        lastDrawMode = currentDrawMode;
     }
 }
