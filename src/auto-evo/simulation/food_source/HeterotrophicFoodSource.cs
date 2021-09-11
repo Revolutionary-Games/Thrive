@@ -35,7 +35,7 @@
 
         // It's great if you can engulf this prey, but only if you can catch it
         var engulfScore = 0.0f;
-        if (microbeSpecies.BaseSize / prey.BaseSize >
+        if (microbeSpecies.BaseHexSize / prey.BaseHexSize >
             Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
         {
             engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
@@ -66,7 +66,7 @@
         pilusScore *= predatorSpeed;
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-        return behaviorScore * (pilusScore + engulfScore + microbeSpecies.BaseSize + oxytoxyScore);
+        return behaviorScore * (pilusScore + engulfScore + microbeSpecies.BaseHexSize + oxytoxyScore);
     }
 
     public override float TotalEnergyAvailable()
