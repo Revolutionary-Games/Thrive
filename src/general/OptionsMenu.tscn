@@ -84,6 +84,7 @@ MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/V
 MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
 BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
 TutorialsEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/TutorialsEnabled")
+ScreenshotDirectoryWarningBoxPath = NodePath("CenterContainer/NoDirectoryDialog")
 DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
 CustomUsernameEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled")
@@ -1104,7 +1105,7 @@ margin_right = 651.0
 margin_bottom = 381.0
 size_flags_horizontal = 3
 
-[node name="ScreeshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4"]
+[node name="ScreenshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4"]
 margin_right = 323.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
@@ -1356,6 +1357,29 @@ popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 
+[node name="NoDirectoryDialog" type="AcceptDialog" parent="CenterContainer"]
+margin_left = 340.0
+margin_top = 318.0
+margin_right = 940.0
+margin_bottom = 402.0
+rect_min_size = Vector2( 600, 0 )
+popup_exclusive = true
+window_title = "NO_SCREENSHOT_DIRECTORY"
+
+[node name="DialogText" type="Label" parent="CenterContainer/NoDirectoryDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 590.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "TRY_TAKING_SOME_SCREENSHOTS"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= [ "Performance" ]]
@@ -1400,7 +1424,7 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled" to="." method="OnCustomUsernameEnabledToggled"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4/ScreeshotFolder" to="." method="OnOpenScreenshotFolder"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4/ScreenshotFolder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
