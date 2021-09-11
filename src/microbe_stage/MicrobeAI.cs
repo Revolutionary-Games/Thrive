@@ -567,7 +567,7 @@ public class MicrobeAI
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
         return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5f && CanShootToxin())
+            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
             || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
