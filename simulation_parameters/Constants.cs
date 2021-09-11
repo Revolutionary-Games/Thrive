@@ -163,9 +163,9 @@ public static class Constants
     public const float AGENT_EMISSION_COOLDOWN = 2.0f;
 
     /// <summary>
-    ///   The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
+    ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
-    public const float MINIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
+    public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
 
     /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.

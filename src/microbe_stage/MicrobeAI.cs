@@ -390,7 +390,7 @@ public class MicrobeAI
         microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
-        if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+        if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
         {
             LaunchToxin(target);
 
@@ -573,7 +573,7 @@ public class MicrobeAI
 
     private bool CanShootToxin()
     {
-        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
     }
 
     private float DistanceFromMe(Vector3 target)
