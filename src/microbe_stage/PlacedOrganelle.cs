@@ -45,6 +45,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     public OrganelleDefinition Definition { get; set; }
+
     public Hex Position { get; set; }
 
     public int Orientation { get; set; }
@@ -197,6 +198,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     {
         if (Definition == null)
             throw new Exception("PlacedOrganelle has no definition set");
+
         if (ParentMicrobe != null)
             throw new InvalidOperationException("PlacedOrganelle is already in a microbe");
 
