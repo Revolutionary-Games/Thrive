@@ -790,6 +790,17 @@ public abstract class BaseThriveConverter : JsonConverter
             throw new JsonSerializationException("Copy only child properties target is null");
         }
 
+        // If no new data, don't apply anything
+        if (newData == null)
+        {
+            // But to support detecting if that is the case we have an interface to give the instance the info that
+            // it didn't get the properties
+            if (target is IChildPropertiesLoadCallback callbackReceiver)
+                callbackReceiver.OnNoPropertiesLoaded();
+
+            return;
+        }
+
         // Need to register for deletion the orphaned Godot object
         if (newData is Node node)
         {
