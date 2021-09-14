@@ -670,7 +670,7 @@ public abstract class BaseThriveConverter : JsonConverter
         ConstructorInfo constructor = null;
 
         // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
-        var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic).Where(
+        var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Where(
             c => c.CustomAttributes.Any(a => a.AttributeType == typeof(JsonConstructorAttribute)));
 
         var potentialConstructors = objectType.GetConstructors().Concat(
