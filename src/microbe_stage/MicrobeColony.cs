@@ -43,8 +43,8 @@ public class MicrobeColony
     public Microbe Master { get; private set; }
 
     /// <summary>
-    ///   Creates a colony for a microbe, with this microbe as the master,
-    ///   and handles related updates (like icrobe's colony and access to the editor button).
+    ///   Creates a colony for a microbe, with the given microbe as the master,
+    ///   and handles related updates (like microbe's colony and access to the editor button).
     /// </summary>
     /// <remarks> Should be used instead of the colony constructor, unless for loading from Json.</remarks>
     public static void CreateColonyForMicrobe(Microbe microbe)
