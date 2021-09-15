@@ -4,6 +4,7 @@
 
     private MicrobeSpecies prey;
     private Patch patch;
+    private float preyHexSize;
     private float preySpeed;
     private float totalEnergy;
 
@@ -11,6 +12,7 @@
     {
         this.prey = prey;
         this.patch = patch;
+        preyHexSize = prey.BaseHexSize;
         preySpeed = prey.BaseSpeed;
         patch.SpeciesInPatch.TryGetValue(prey, out long population);
         totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
@@ -35,7 +37,7 @@
 
         // It's great if you can engulf this prey, but only if you can catch it
         var engulfScore = 0.0f;
-        if (microbeSpecies.BaseHexSize / prey.BaseHexSize >
+        if (microbeSpecies.BaseHexSize / preyHexSize >
             Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
         {
             engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
