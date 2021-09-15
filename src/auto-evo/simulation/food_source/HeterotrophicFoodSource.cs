@@ -21,6 +21,7 @@
     public override float FitnessScore(Species species)
     {
         var microbeSpecies = (MicrobeSpecies)species;
+        var microbeSpeciesHexSize = microbeSpecies.BaseHexSize
 
         // No cannibalism
         if (microbeSpecies == prey)
@@ -37,7 +38,7 @@
 
         // It's great if you can engulf this prey, but only if you can catch it
         var engulfScore = 0.0f;
-        if (microbeSpecies.BaseHexSize / preyHexSize >
+        if (microbeSpeciesHexSize / preyHexSize >
             Constants.ENGULF_SIZE_RATIO_REQ && !microbeSpecies.MembraneType.CellWall)
         {
             engulfScore = Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
@@ -68,7 +69,7 @@
         pilusScore *= predatorSpeed;
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-        return behaviorScore * (pilusScore + engulfScore + microbeSpecies.BaseHexSize + oxytoxyScore);
+        return behaviorScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
     }
 
     public override float TotalEnergyAvailable()
