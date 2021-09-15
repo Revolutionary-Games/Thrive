@@ -21,7 +21,6 @@
     public override float FitnessScore(Species species)
     {
         var microbeSpecies = (MicrobeSpecies)species;
-        var microbeSpeciesHexSize = microbeSpecies.BaseHexSize
 
         // No cannibalism
         if (microbeSpecies == prey)
@@ -31,6 +30,7 @@
 
         var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
+        var microbeSpeciesHexSize = microbeSpecies.BaseHexSize;
         var predatorSpeed = microbeSpecies.BaseSpeed;
         predatorSpeed += ProcessSystem
             .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
