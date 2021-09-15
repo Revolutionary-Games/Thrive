@@ -573,7 +573,8 @@ public class MicrobeAI
 
     private bool CanShootToxin()
     {
-        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >=
+            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
     private float DistanceFromMe(Vector3 target)
