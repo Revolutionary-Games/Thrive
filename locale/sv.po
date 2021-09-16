@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-10 07:23-0400\n"
-"PO-Revision-Date: 2021-08-23 16:43+0000\n"
-"Last-Translator: mattealex <mattias304@hotmail.com>\n"
+"PO-Revision-Date: 2021-09-12 07:51+0000\n"
+"Last-Translator: Liam Hallberg <tairuu00@gmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
@@ -752,7 +752,7 @@ msgstr "Cellulosa"
 #: ../simulation_parameters/microbe_stage/membranes.json:54
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "CHITIN"
-msgstr ""
+msgstr "Kitin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:71
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
@@ -762,7 +762,7 @@ msgstr "Kalciumkarbonat"
 #: ../simulation_parameters/microbe_stage/membranes.json:88
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3057
 msgid "SILICA"
-msgstr ""
+msgstr "Kiseldioxid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
@@ -932,17 +932,16 @@ msgstr ""
 "Vill du ta bort inputen från {1}?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
-#, fuzzy
 msgid "KEY_FORWARD"
-msgstr "Rör dig framåt"
+msgstr "Framåt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
-msgstr ""
+msgstr "Tab"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
 msgid "KEY_ENTER"
-msgstr ""
+msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
@@ -966,12 +965,11 @@ msgstr "Hem"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
-msgstr ""
+msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
-#, fuzzy
 msgid "KEY_LEFT"
-msgstr "Rör dig vänster"
+msgstr "Vänster"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
@@ -989,7 +987,7 @@ msgstr "Scrolla ner"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr ""
+msgstr "Meny"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 #, fuzzy
@@ -1007,11 +1005,11 @@ msgstr "Stopp"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr ""
+msgstr "Uppdatera"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Sök"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
@@ -1035,7 +1033,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Blanksteg"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 #, fuzzy
@@ -1053,7 +1051,7 @@ msgstr "Backåt"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
-msgstr ""
+msgstr "Numpad Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
@@ -1061,16 +1059,15 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "Page Up"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
-#, fuzzy
 msgid "PAGEDOWN"
-msgstr "Panorera neråt"
+msgstr "Page down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Capslock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
@@ -1097,50 +1094,44 @@ msgid "HYPERR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
-#, fuzzy
 msgid "DIRECTIONL"
-msgstr "Upplösning:"
+msgstr "Vänster"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
-#, fuzzy
 msgid "DIRECTIONR"
-msgstr "Upplösning:"
+msgstr "Höger"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "SFX Volym"
+msgstr "Sänk Volymen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "SFX Volym"
+msgstr "Stäng av volymen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "SFX Volym"
+msgstr "Öka Volymen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr ""
+msgstr "Basboost"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr ""
+msgstr "Öka Bas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr ""
+msgstr "Sänk Bas"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
-msgstr ""
+msgstr "Öka Treble"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Scrolla ner"
+msgstr "Sänk Treble"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
@@ -1165,11 +1156,11 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "Mail"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "Media"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
@@ -1237,68 +1228,67 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Numpad Multiplicera"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Numpad Dividera"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Numpad Minus"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Numpad Del"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KPADD"
-msgstr ""
+msgstr "Numpad Plus"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
-msgstr ""
+msgstr "Numpad 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP1"
-msgstr ""
+msgstr "Numpad 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP2"
-msgstr ""
+msgstr "Numpad 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP3"
-msgstr ""
+msgstr "Numpad 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP4"
-msgstr ""
+msgstr "Numpad 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP5"
-msgstr ""
+msgstr "Numpad 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP6"
-msgstr ""
+msgstr "Numpad 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "KP7"
-msgstr ""
+msgstr "Numpad 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:225
 msgid "KP8"
-msgstr ""
+msgstr "Numpad 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:226
 msgid "KP9"
-msgstr ""
+msgstr "Numpad 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
-#, fuzzy
 msgid "UNKNOWN"
-msgstr "Okänd mus"
+msgstr "Okänd"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
@@ -1314,31 +1304,31 @@ msgstr "SHIFT"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
-msgstr "Vänster mus"
+msgstr "Vänster musknapp"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
-msgstr "Höger mus"
+msgstr "Högerklick"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
-msgstr "Mitten mus"
+msgstr "Skroll klick"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
-msgstr "Scrolla up"
+msgstr "Skrolla up"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
-msgstr "Scrolla ner"
+msgstr "Skrolla ner"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
-msgstr "Hjul vänster"
+msgstr "Skrolla vänster"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
-msgstr "Hjul höger"
+msgstr "Skrolla Höger"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
@@ -1354,11 +1344,11 @@ msgstr "Okänd mus"
 
 #: ../src/general/Gallery.cs:70
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Konst av {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
@@ -1367,7 +1357,7 @@ msgstr "Stäng"
 
 #: ../src/general/MainMenu.cs:359
 msgid "OK"
-msgstr "Ok"
+msgstr "OK"
 
 #: ../src/general/MainMenu.cs:360
 msgid "Cancel"
