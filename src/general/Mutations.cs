@@ -236,10 +236,12 @@ public class Mutations
                     else
                     {
                         // Duplicate an existing organelle, but only if there are any organelles where that is legal
-                        var organellesThatCanBeDuplicated = parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
+                        var organellesThatCanBeDuplicated =
+                            parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
                         if (organellesThatCanBeDuplicated.Any())
                         {
-                            AddNewOrganelle(mutatedOrganelles, organellesThatCanBeDuplicated.ToList().Random(random).Definition);
+                            AddNewOrganelle(mutatedOrganelles, 
+                                organellesThatCanBeDuplicated.ToList().Random(random).Definition);
                         }
                         else
                         {
