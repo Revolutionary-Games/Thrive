@@ -247,6 +247,7 @@ public static class SpawnHelpers
 
         worldRoot.AddChild(agent);
         agent.Translation = location + (direction * 1.5f);
+        agent.Scale = new Vector3(amount, amount, amount);
 
         agent.ApplyCentralImpulse(normalizedDirection *
             Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
