@@ -240,7 +240,7 @@ public class Mutations
                             parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
                         if (organellesThatCanBeDuplicated.Any())
                         {
-                            AddNewOrganelle(mutatedOrganelles, 
+                            AddNewOrganelle(mutatedOrganelles,
                                 organellesThatCanBeDuplicated.ToList().Random(random).Definition);
                         }
                         else
