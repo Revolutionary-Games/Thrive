@@ -22,6 +22,7 @@ DeleteSelectedButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/Delete
 DeleteOldButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteOld")
 DeleteSelectedConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog")
 DeleteOldConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteOldConfirmDialog")
+SaveDirectoryWarningDialogPath = NodePath("CenterContainer/VBoxContainer/SaveDirectoryWarningDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -102,14 +103,14 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 41.0
 margin_right = 1000.0
-margin_bottom = 561.0
+margin_bottom = 473.0
 size_flags_vertical = 3
 SelectableItems = true
 
 [node name="BottomBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 565.0
+margin_top = 477.0
 margin_right = 1000.0
-margin_bottom = 600.0
+margin_bottom = 512.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_right = 100.0
@@ -219,6 +220,24 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 4 )
 align = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveDirectoryWarningDialog" type="AcceptDialog" parent="CenterContainer/VBoxContainer"]
+visible = true
+margin_top = 516.0
+margin_right = 1000.0
+margin_bottom = 600.0
+window_title = "NO_SAVE_DIRECTORY"
+
+[node name="DialogText" type="Label" parent="CenterContainer/VBoxContainer/SaveDirectoryWarningDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 990.0
+margin_bottom = 32.0
+text = "TRY_MAKING_A_SAVE"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
