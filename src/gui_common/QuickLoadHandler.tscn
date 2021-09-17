@@ -11,12 +11,12 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-DifferentVersionDialogPath = NodePath("CustomConfirmationDialog")
+DifferentVersionDialogPath = NodePath("DifferentVersionDialog")
 
-[node name="CustomConfirmationDialog" parent="." instance=ExtResource( 2 )]
+[node name="DifferentVersionDialog" parent="." instance=ExtResource( 2 )]
 margin_right = 570.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 570, 0 )
-WindowTitle = "SAVE_HAS_DIFFERENT_VERSION"
 DialogText = "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 HideCancelButton = true
+WindowTitle = "SAVE_HAS_DIFFERENT_VERSION"

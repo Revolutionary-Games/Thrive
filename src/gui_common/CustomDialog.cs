@@ -67,6 +67,23 @@ public class CustomDialog : Popup, ICustomPopup
     [Export]
     public bool ExclusiveAllowCloseOnEscape { get; private set; } = true;
 
+    public new bool Visible
+    {
+        get => base.Visible;
+        set
+        {
+            if (value)
+            {
+                base.Visible = true;
+            }
+            else
+            {
+                // Execute possible closing animation
+                ClosePopup();
+            }
+        }
+    }
+
     public override void _EnterTree()
     {
         // To make popup rect readjustment react to window resizing
@@ -249,10 +266,15 @@ public class CustomDialog : Popup, ICustomPopup
             contentSize.x + margin * 2), contentSize.y + margin * 2);
     }
 
+    public new void Hide()
+    {
+        Visible = false;
+    }
+
     public void ClosePopup()
     {
         // TODO: implement hide animation
-        Hide();
+        base.Hide();
     }
 
     /// <summary>

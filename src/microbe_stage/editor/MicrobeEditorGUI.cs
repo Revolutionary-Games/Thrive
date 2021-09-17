@@ -1233,6 +1233,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     internal void ConfirmFinishEditingPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
