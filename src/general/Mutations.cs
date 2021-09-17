@@ -241,7 +241,7 @@ public class Mutations
                         if (organellesThatCanBeDuplicated.Any())
                         {
                             AddNewOrganelle(mutatedOrganelles,
-                                organellesThatCanBeDuplicated.ToList().Random(random).Definition);
+                                organellesThatCanBeDuplicated.Random(random).Definition);
                         }
                         else
                         {
