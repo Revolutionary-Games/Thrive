@@ -24,7 +24,7 @@ Prerequisites
 Godot mono version
 ------------------
 
-The currently used Godot version is __3.3.2 mono__. The regular version
+The currently used Godot version is __3.3.3 mono__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -453,7 +453,7 @@ sudo npm install -g jsonlint
 Download from:
 https://www.jetbrains.com/resharper/download/#section=commandline
 unzip and add to PATH. Currently used version is:
-JetBrains.ReSharper.CommandLineTools.2021.2
+JetBrains.ReSharper.CommandLineTools.2021.2.1
 
 NOTE: there is more documentation on the install process here:
 https://www.jetbrains.com/help/resharper/InspectCode.html

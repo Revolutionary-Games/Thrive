@@ -8,14 +8,17 @@ require 'find'
 require 'digest'
 require 'nokogiri'
 require 'set'
+require 'os'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
 require_relative 'scripts/check_file_list'
+require_relative 'scripts/po_helpers'
+require_relative 'scripts/json_helpers'
 
 MAX_LINE_LENGTH = 120
-DUPLICATE_THRESSHOLD = 105
+DUPLICATE_THRESHOLD = 105
 
 LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
 
@@ -27,10 +30,6 @@ VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localizati
 DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
 
 LOCALE_TEMP_SUFFIX = '.temp_check'
-MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
-FUZZY_TRANSLATION_REGEX = /^#, fuzzy/.freeze
-PLAIN_QUOTED_MESSAGE = /^"(.*)"/.freeze
-GETTEXT_HEADER_NAME = /^([\w-]+):\s+/.freeze
 TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
 NODE_NAME_REGEX = /\[node\s+name="([^"]+)"/.freeze
 NODE_NAME_UPPERCASE_REQUIRED_LENGTH = 25
@@ -230,7 +229,7 @@ end
 def handle_json_file(path)
   digest_before = Digest::MD5.hexdigest File.read(path, encoding: 'utf-8')
 
-  if runSystemSafe('jsonlint', '-i', path, '--indent', '    ') != 0
+  unless jsonlint_on_file(path)
     OUTPUT_MUTEX.synchronize do
       error 'JSONLint failed on file'
     end
@@ -610,7 +609,7 @@ end
 def run_inspect_code
   return if skip_jetbrains?
 
-  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
+  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml', '--build']
 
   params.append "--include=#{@includes.join(';')}" if @includes
 
@@ -658,7 +657,7 @@ end
 def run_cleanup_code
   return if skip_jetbrains?
 
-  old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+  old_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
   params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
 
@@ -666,7 +665,7 @@ def run_cleanup_code
 
   runOpen3Checked(*params)
 
-  new_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+  new_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
   return if new_diff == old_diff
 
@@ -688,7 +687,7 @@ def run_duplicate_finder
   return if skip_jetbrains?
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
-            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=false',
+            "--discard-cost=#{DUPLICATE_THRESHOLD}", '--discard-literals=false',
             '--exclude-by-comment="NO_DUPLICATE_CHECK"', 'Thrive.csproj']
 
   # Duplicate code needs to always process all files to detect code
@@ -737,54 +736,6 @@ def cleanup_temp_check_locales
   Dir['locale/**/*' + LOCALE_TEMP_SUFFIX].each do |f|
     File.unlink f
   end
-end
-
-def find_next_msg_id(reader)
-  loop do
-    line = reader.gets
-
-    if line.nil?
-      # File ended
-      return nil
-    end
-
-    matches = line.match(MSG_ID_REGEX)
-
-    return matches[1] if matches
-  end
-end
-
-def read_gettext_header_order(reader)
-  expected_header_msg = find_next_msg_id reader
-
-  onError 'File ended when looking for gettext header' if expected_header_msg.nil?
-
-  if expected_header_msg != ''
-    error 'Could not find gettext header, expected blank msg id, ' \
-          "but got: #{expected_header_msg}"
-    return ['header not found...']
-  end
-
-  headers = []
-
-  # Read content lines
-  loop do
-    line = reader.gets
-
-    break if line.nil?
-
-    break if line.strip.empty?
-
-    matches = line.match(PLAIN_QUOTED_MESSAGE)
-
-    next unless matches
-
-    matches = matches[1].match(GETTEXT_HEADER_NAME)
-
-    headers.push matches[1] if matches
-  end
-
-  headers
 end
 
 def run_localization_checks

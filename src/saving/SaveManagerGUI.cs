@@ -37,6 +37,9 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath DeleteOldConfirmDialogPath;
 
+    [Export]
+    public NodePath SaveDirectoryWarningDialogPath;
+
     private SaveList saveList;
     private Label selectedItemCount;
     private Label totalSaveCount;
@@ -46,6 +49,7 @@ public class SaveManagerGUI : Control
     private Button deleteOldButton;
     private CustomConfirmationDialog deleteSelectedConfirmDialog;
     private CustomConfirmationDialog deleteOldConfirmDialog;
+    private CustomConfirmationDialog saveDirectoryWarningDialog;
 
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
@@ -88,6 +92,7 @@ public class SaveManagerGUI : Control
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
         deleteSelectedConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteSelectedConfirmDialogPath);
         deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
+        saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
@@ -194,7 +199,8 @@ public class SaveManagerGUI : Control
 
     private void OpenSaveDirectoryPressed()
     {
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER));
+        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER)) == Error.FileNotFound)
+            saveDirectoryWarningDialog.PopupCenteredShrink();
     }
 
     private void DeleteSelectedButtonPressed()
