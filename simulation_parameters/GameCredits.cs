@@ -95,10 +95,13 @@ public class GameCredits : IRegistryType
 
     public class PatronsList
     {
+        [JsonProperty]
         public List<string> VIPPatrons { get; set; }
 
+        [JsonProperty]
         public List<string> DevBuildPatrons { get; set; }
 
+        [JsonProperty]
         public List<string> SupporterPatrons { get; set; }
     }
 }

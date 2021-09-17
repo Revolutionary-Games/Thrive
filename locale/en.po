@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-10 17:25+0300\n"
-"PO-Revision-Date: 2021-09-10 17:26+0300\n"
+"POT-Creation-Date: 2021-09-17 16:36+0300\n"
+"PO-Revision-Date: 2021-09-17 14:59+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -1752,19 +1752,140 @@ msgstr "@"
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/gui_common/CreditsScroll.cs:185
+#: ../src/gui_common/CreditsScroll.cs:229
+msgid "LEAD_DEVELOPERS"
+msgstr "Lead Developers"
+
+#: ../src/gui_common/CreditsScroll.cs:235
+msgid "LEAD_PROGRAMMER"
+msgstr "Lead Programmer"
+
+#: ../src/gui_common/CreditsScroll.cs:236
+msgid "LEAD_PROGRAMMERS"
+msgstr "Lead Programmers"
+
+#: ../src/gui_common/CreditsScroll.cs:241
+msgid "LEAD_THEORIST"
+msgstr "Lead Theorist"
+
+#: ../src/gui_common/CreditsScroll.cs:242
+msgid "LEAD_THEORISTS"
+msgstr "Lead Theorists"
+
+#: ../src/gui_common/CreditsScroll.cs:247
+msgid "LEAD_ARTIST"
+msgstr "Lead Artist"
+
+#: ../src/gui_common/CreditsScroll.cs:248
+msgid "LEAD_ARTISTS"
+msgstr "Lead Artists"
+
+#: ../src/gui_common/CreditsScroll.cs:253
+msgid "SOUND_TEAM_LEAD"
+msgstr "Sound Team Lead"
+
+#: ../src/gui_common/CreditsScroll.cs:254
+msgid "SOUND_TEAM_LEADS"
+msgstr "Sound Team Leads"
+
+#: ../src/gui_common/CreditsScroll.cs:259
+msgid "LEAD_OUTREACH_PERSON"
+msgstr "Lead Outreach Person"
+
+#: ../src/gui_common/CreditsScroll.cs:260
+msgid "LEAD_OUTREACH_PEOPLE"
+msgstr "Lead Outreach People"
+
+#: ../src/gui_common/CreditsScroll.cs:265
+msgid "LEAD_GAME_DESIGNER"
+msgstr "Lead Game Designer"
+
+#: ../src/gui_common/CreditsScroll.cs:266
+msgid "LEAD_GAME_DESIGNERS"
+msgstr "Lead Game Designers"
+
+#: ../src/gui_common/CreditsScroll.cs:271
+msgid "LEAD_TESTER"
+msgstr "Lead Tester"
+
+#: ../src/gui_common/CreditsScroll.cs:272
+msgid "LEAD_TESTERS"
+msgstr "Lead Testers"
+
+#: ../src/gui_common/CreditsScroll.cs:277
+msgid "LEAD_PROJECT_MANAGER"
+msgstr "Lead Project Manager"
+
+#: ../src/gui_common/CreditsScroll.cs:278
+msgid "LEAD_PROJECT_MANAGERS"
+msgstr "Lead Project Managers"
+
+#: ../src/gui_common/CreditsScroll.cs:285
 msgid "CURRENT_DEVELOPERS"
 msgstr "Current Developers"
 
-#: ../src/gui_common/CreditsScroll.tscn:41
+#: ../src/gui_common/CreditsScroll.cs:301
+msgid "PAST_DEVELOPERS"
+msgstr "Past Developers"
+
+#: ../src/gui_common/CreditsScroll.cs:317
+msgid "OUTSIDE_CONTRIBUTORS"
+msgstr "Outside Contributors"
+
+#: ../src/gui_common/CreditsScroll.cs:320
+msgid "YOU_CAN_MAKE_PULL_REQUEST"
+msgstr ""
+"Thrive is an open source project. \n"
+"You can contribute a pull request without applying to the team."
+
+#: ../src/gui_common/CreditsScroll.cs:337
+msgid "PATRONS"
+msgstr "Patrons"
+
+#: ../src/gui_common/CreditsScroll.cs:341
+msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
+msgstr "You can support Thrive on Patreon to support future development"
+
+#: ../src/gui_common/CreditsScroll.cs:346
+msgid "VIP_PATRONS"
+msgstr "VIP Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:347
+msgid "DEV_BUILD_PATRONS"
+msgstr "Devbuilds Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:349
+msgid "SUPPORTER_PATRONS"
+msgstr "Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:359
+msgid "DONATIONS"
+msgstr "Donations"
+
+#: ../src/gui_common/CreditsScroll.cs:382
+msgid "TRANSLATORS"
+msgstr "Translators"
+
+#: ../src/gui_common/CreditsScroll.cs:397
+msgid "USED_LIBRARIES_LICENSES"
+msgstr "Licenses And Used Libraries"
+
+#: ../src/gui_common/CreditsScroll.cs:489
+msgid "THANKS_FOR_PLAYING"
+msgstr ""
+"Thank you for playing!\n"
+"\n"
+"If you enjoyed the game, please tell your friends about us."
+
+#: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "By Revolutionary Games Studio"
 
-#: ../src/gui_common/CreditsScroll.tscn:48
+#: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Development Supported By Revolutionary Games Studio ry"
 
-#: ../src/gui_common/CreditsScroll.tscn:56
+#: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
 msgstr "Developers"
 
@@ -3452,9 +3573,6 @@ msgstr ""
 
 #~ msgid "PARENRIGHT"
 #~ msgstr ")"
-
-#~ msgid "ASTERISK"
-#~ msgstr "*"
 
 #~ msgid "PLUS"
 #~ msgstr "+"
