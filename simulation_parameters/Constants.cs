@@ -49,6 +49,8 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
 
+    public const float CLOUD_CHEAT_DENSITY = 16000.0f;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>
@@ -424,9 +426,11 @@ public static class Constants
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
+    public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
+    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
@@ -436,7 +440,7 @@ public static class Constants
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
-    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 15.0f;
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 17.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
     public const float TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL = 0.2f;
     public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;

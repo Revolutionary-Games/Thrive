@@ -144,6 +144,7 @@
                 new CompoundFoodSource(patch, Glucose),
                 new CompoundFoodSource(patch, HydrogenSulfide),
                 new CompoundFoodSource(patch, Iron),
+                new MarineSnowFoodSource(patch),
             };
 
             foreach (var currentSpecies in species)
