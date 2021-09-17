@@ -883,6 +883,32 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
+    ///   Begin organelle movement for the organelle under the cursor
+    /// </summary>
+    [RunOnKeyDown("e_move")]
+    public void StartOrganelleMoveAtCursor()
+    {
+        // Can't move an organelle while already moving one
+        if (MovingOrganelle != null)
+        {
+            gui.OnActionBlockedWhileMoving();
+            return;
+        }
+
+        GetMouseHex(out int q, out int r);
+
+        var organelle = editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r));
+
+        if (organelle == null)
+            return;
+
+        StartOrganelleMove(organelle);
+
+        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
+        gui.UpdateCancelButtonVisibility();
+    }
+
+    /// <summary>
     ///   Cancels the current editor action
     /// </summary>
     /// <returns>True when the input is consumed</returns>
@@ -963,6 +989,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
+    /// <summary>
+    ///   Remove the organelle under the cursor
+    /// </summary>
+    [RunOnKeyDown("e_delete")]
+    public void RemoveOrganelleAtCursor()
+    {
+        GetMouseHex(out int q, out int r);
+
+        Hex mouseHex = new Hex(q, r);
+
+        var organelle = editedMicrobeOrganelles.GetOrganelleAt(mouseHex);
+
+        if (organelle == null)
+            return;
+
+        RemoveOrganelle(mouseHex);
+    }
+
     public float CalculateSpeed()
     {
         return MicrobeInternalCalculations.CalculateSpeed(editedMicrobeOrganelles, Membrane, Rigidity);
@@ -1019,6 +1063,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Can return to the patch the player started in, as a way to "undo" the change
         if (patch == playerPatchOnEntry)
+            return true;
+
+        // If we are freebuilding, check if the target patch is connected by any means, then it is allowed
+        if (FreeBuilding && CurrentPatch.GetAllConnectedPatches().Contains(patch))
             return true;
 
         // Can't move if out of moves
@@ -1545,8 +1593,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
                     if (!canPlace)
                     {
-                        // Store the material to put it back later
-                        hoverOverriddenMaterials[placed] = placed.MaterialOverride;
+                        // This check is here so that if there are multiple hover hexes overlapping this hex, then
+                        // we do actually remember the original material
+                        if (!hoverOverriddenMaterials.ContainsKey(placed))
+                        {
+                            // Store the material to put it back later
+                            hoverOverriddenMaterials[placed] = placed.MaterialOverride;
+                        }
 
                         // Mark as invalid
                         placed.MaterialOverride = invalidMaterial;
@@ -1554,6 +1607,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                         showModel = false;
                     }
 
+                    break;
+                }
+            }
+
+            // Or if there is already a hover hex at this position
+            for (int i = 0; i < usedHoverHex; ++i)
+            {
+                if ((pos - hoverHexes[i].Translation).LengthSquared() < 0.001f)
+                {
+                    duplicate = true;
                     break;
                 }
             }

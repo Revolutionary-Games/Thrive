@@ -3448,9 +3448,16 @@ DisplayDelay = 0.5
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="guiLightEffects" parent="GroupHolder/options" instance=ExtResource( 1 )]
+visible = false
 Description = "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 DisplayDelay = 0.5
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="assumeHyperthreading" parent="GroupHolder/options" instance=ExtResource( 1 )]
+visible = false
+Description = "ASSUME_HYPERTHREADING_TOOLTIP"
+DisplayDelay = 0.5
+DescriptionLabelPath = NodePath("../addInputButton/cloudResolution/MarginContainer/VBoxContainer/Description")
 
 [node name="chartLegendPhysicalConditions" type="Control" parent="GroupHolder"]
 margin_right = 40.0

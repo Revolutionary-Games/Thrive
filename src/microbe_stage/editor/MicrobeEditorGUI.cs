@@ -314,7 +314,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private ProgressBar mutationPointsSubtractBar;
 
     private Slider rigiditySlider;
-    private ColorPicker membraneColorPicker;
+    private TweakedColourPicker membraneColorPicker;
 
     private TextureButton undoButton;
     private TextureButton redoButton;
@@ -448,7 +448,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
 
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
+        membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
         menuButton = GetNode<TextureButton>(MenuButtonPath);
         helpButton = GetNode<TextureButton>(HelpButtonPath);
@@ -1780,13 +1780,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
 
-        // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
-        // ReSharper disable StringLiteralTypo
         temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
-
         sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
-
-        // ReSharper restore StringLiteralTypo
     }
 
     private void OnSpeciesNameTextChanged(string newText)
