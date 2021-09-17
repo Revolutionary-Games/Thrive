@@ -23,6 +23,9 @@ public class CustomConfirmationDialog : CustomDialog
     [Signal]
     public delegate void Confirmed();
 
+    /// <summary>
+    ///   If true, turns this dialog into its AcceptDialog form (only Ok button visible).
+    /// </summary>
     [Export]
     public bool HideCancelButton
     {
