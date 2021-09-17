@@ -17,7 +17,7 @@ DONATIONS_PAGE = 'https://wiki.revolutionarygamesstudio.com/wiki/Donations'
 # +31 is here to guarantee donations made in the last day of a month will be included properly
 DONATION_DISPLAY_CUTOFF = (365 + 31) * 60 * 60 * 24
 
-FILE_DOWNLOAD_OLDNESS = 60 * 60 * 24
+FILE_AGE_THRESHOLD = 60 * 60 * 24
 
 PATRONS_FILE = 'scripts/patrons.json'
 PATRONS_DOWNLOAD = 'https://dev.revolutionarygamesstudio.com/admin/patreon'
@@ -28,7 +28,7 @@ TRANSLATORS_EXTRA_INSTRUCTIONS = 'set start date to 1.1.2015 and end date to cur
 
 def check_file(path, download_url, extra = nil)
   if File.exist? path
-    if (Time.now - File.mtime(path)).to_i > FILE_DOWNLOAD_OLDNESS
+    if (Time.now - File.mtime(path)).to_i > FILE_AGE_THRESHOLD
       puts 'The download file is too old. Please get a newer version'
     else
       return
