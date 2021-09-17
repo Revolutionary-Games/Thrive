@@ -5,7 +5,9 @@ using Godot;
 
 public class CreditsScroll : Container
 {
-    private const float GameNameEndOffset = 370;
+    private const bool ShowAssociationName = true;
+
+    private const float GameNameEndOffset = 395;
     private const float GameNameInvisibleOffset = 1200;
 
     private const int OffsetAfterTeamName = 10;
@@ -57,12 +59,24 @@ public class CreditsScroll : Container
     [Export]
     public NodePath DevelopersHeadingPath { get; set; }
 
+    [Export]
+    public Font TeamNameFont { get; set; }
+
+    [Export]
+    public Font SectionNameFont { get; set; }
+
     public override void _Ready()
     {
         logo = GetNode<Control>(LogoPath);
         revolutionaryGames = GetNode<Control>(RevolutionaryGamesPath);
         supportedBy = GetNode<Control>(SupportedByPath);
         developersHeading = GetNode<Control>(DevelopersHeadingPath);
+
+        if (TeamNameFont == null)
+            throw new InvalidOperationException($"{nameof(TeamNameFont)} not set");
+
+        if (SectionNameFont == null)
+            throw new InvalidOperationException($"{nameof(SectionNameFont)} not set");
 
         credits = SimulationParameters.Instance.GetCredits();
 
@@ -160,7 +174,7 @@ public class CreditsScroll : Container
 
         logo.Visible = true;
         revolutionaryGames.Visible = true;
-        supportedBy.Visible = true;
+        supportedBy.Visible = ShowAssociationName;
         developersHeading.Visible = true;
 
         UpdateStaticItemPositions();
@@ -180,13 +194,13 @@ public class CreditsScroll : Container
     {
         int offset = 10 + (int)smoothOffset;
 
-        // TODO: use different fonts for different parts
         var currentLabel = new DynamicPart(offset)
         {
             Text = TranslationServer.Translate("CURRENT_DEVELOPERS"),
             RectMinSize = new Vector2(RectSize.x, 0),
             Align = Label.AlignEnum.Center,
         };
+        currentLabel.AddFontOverride("font", SectionNameFont);
         AddDynamicItem(currentLabel);
 
         offset += (int)currentLabel.RectSize.y + 50;
@@ -205,6 +219,7 @@ public class CreditsScroll : Container
                 RectMinSize = new Vector2(RectSize.x, 0),
                 Align = Label.AlignEnum.Center,
             };
+            teamNameLabel.AddFontOverride("font", TeamNameFont);
             AddDynamicItem(teamNameLabel);
 
             offset += (int)teamNameLabel.RectSize.y + OffsetAfterTeamName;
@@ -241,7 +256,7 @@ public class CreditsScroll : Container
         logo.RectPosition = new Vector2(0, RectSize.y - smoothOffset);
         revolutionaryGames.RectPosition = new Vector2(0, RectSize.y - smoothOffset + 200);
         supportedBy.RectPosition = new Vector2(0, RectSize.y - smoothOffset + 250);
-        developersHeading.RectPosition = new Vector2(0, RectSize.y - smoothOffset + 300);
+        developersHeading.RectPosition = new Vector2(0, RectSize.y - smoothOffset + 325);
     }
 
     private void AddDynamicItem(DynamicPart part)
