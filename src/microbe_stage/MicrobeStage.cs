@@ -370,7 +370,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             // Player is extinct and has lost the game
             // Show the game lost popup if not already visible
             HUD.ShowExtinctionBox();
-
+            Jukebox.Instance.PlayCategory("Extinction");
             return;
         }
 
