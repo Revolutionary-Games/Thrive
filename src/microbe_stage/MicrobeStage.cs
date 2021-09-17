@@ -306,8 +306,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     public void StartMusic()
     {
-        Jukebox.Instance.PlayingCategory = "MicrobeStage";
-        Jukebox.Instance.Resume();
+        Jukebox.Instance.PlayCategory("MicrobeStage");
     }
 
     /// <summary>
