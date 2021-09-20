@@ -76,8 +76,7 @@ public class MainMenu : NodeWithInput
 
     public void StartMusic()
     {
-        Jukebox.Instance.PlayingCategory = "Menu";
-        Jukebox.Instance.Resume();
+        Jukebox.Instance.PlayCategory("Menu");
     }
 
     /// <summary>
