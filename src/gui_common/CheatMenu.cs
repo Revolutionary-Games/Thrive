@@ -31,7 +31,7 @@ public abstract class CheatMenu : CustomDialog
             }
             else
             {
-                ClosePopup();
+                Hide();
             }
         }
     }

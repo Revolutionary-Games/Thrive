@@ -117,7 +117,7 @@ public class CustomConfirmationDialog : CustomDialog
         GUICommon.Instance.PlayButtonPressSound();
 
         if (HideOnOk)
-            ClosePopup();
+            Hide();
 
         EmitSignal(nameof(Confirmed));
     }
@@ -125,6 +125,6 @@ public class CustomConfirmationDialog : CustomDialog
     private void OnCancelPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        ClosePopup();
+        Hide();
     }
 }

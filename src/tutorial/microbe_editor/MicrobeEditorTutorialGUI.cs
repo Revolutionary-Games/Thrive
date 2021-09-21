@@ -55,7 +55,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                editorEntryReport.ClosePopup();
+                editorEntryReport.Hide();
             }
         }
     }
@@ -74,7 +74,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                patchMap.ClosePopup();
+                patchMap.Hide();
             }
         }
     }
@@ -93,7 +93,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorIntroduction.ClosePopup();
+                cellEditorIntroduction.Hide();
             }
         }
     }
@@ -112,7 +112,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorUndo.ClosePopup();
+                cellEditorUndo.Hide();
             }
         }
     }
@@ -131,7 +131,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorRedo.ClosePopup();
+                cellEditorRedo.Hide();
             }
         }
     }
@@ -150,7 +150,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorClosingWords.ClosePopup();
+                cellEditorClosingWords.Hide();
             }
         }
     }

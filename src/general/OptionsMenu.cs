@@ -948,7 +948,7 @@ public class OptionsMenu : ControlWithInput
         if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
-            backConfirmationBox.ClosePopup();
+            backConfirmationBox.Hide();
             errorAcceptBox.PopupCenteredShrink();
 
             return;
@@ -956,7 +956,7 @@ public class OptionsMenu : ControlWithInput
 
         // Copy over the new saved settings.
         savedSettings = Settings.Instance.Clone();
-        backConfirmationBox.ClosePopup();
+        backConfirmationBox.Hide();
 
         UpdateResetSaveButtonState();
         EmitSignal(nameof(OnOptionsClosed));
@@ -974,7 +974,7 @@ public class OptionsMenu : ControlWithInput
             tutorialsEnabled.Pressed = savedTutorialsEnabled;
         }
 
-        backConfirmationBox.ClosePopup();
+        backConfirmationBox.Hide();
 
         UpdateResetSaveButtonState();
         EmitSignal(nameof(OnOptionsClosed));
@@ -982,7 +982,7 @@ public class OptionsMenu : ControlWithInput
 
     private void BackCancelSelected()
     {
-        backConfirmationBox.ClosePopup();
+        backConfirmationBox.Hide();
     }
 
     private void InputDefaultsConfirm()

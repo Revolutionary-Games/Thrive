@@ -120,6 +120,6 @@ public class ErrorDialog : CustomDialog
 
     private void OnClosePressed()
     {
-        ClosePopup();
+        Hide();
     }
 }

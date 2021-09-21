@@ -89,14 +89,7 @@ public class GUICommon : NodeWithInput
             return false;
         }
 
-        if (customPopup != null)
-        {
-            customPopup.ClosePopup();
-        }
-        else
-        {
-            popup.Hide();
-        }
+        popup.Hide();
 
         return true;
     }
