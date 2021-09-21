@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-10 07:23-0400\n"
-"PO-Revision-Date: 2021-09-04 10:48+0000\n"
+"POT-Creation-Date: 2021-09-17 17:10+0300\n"
+"PO-Revision-Date: 2021-09-16 11:34+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
 "Deine Zelle verwendet [thrive:compound type=\"atp\"][/thrive:compound] als "
-"Energiequelle. Wenn sie leer ist, stirbst du."
+"Energiequelle. Wenn sie ausgeht, stirbst du."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
@@ -66,7 +66,7 @@ msgstr ""
 "Osmoregulation kostet [thrive:compound type=\"atp\"][/thrive:compound], "
 "was bedeutet, dass je größer deine Zelle ist, desto mehr Mitochondrien, "
 "Metabolosomen oder Rusticyanin (oder Zytoplasma, welches Glukose "
-"herstellt) benötigst du, um kein [thrive:compound type=\"atp\"][/thrive:"
+"herstellt) benötigt werden, um kein [thrive:compound type=\"atp\"][/thrive:"
 "compound] zu verlieren, selbst, wenn du still stehst."
 
 #: ../simulation_parameters/common/help_texts.json:26
@@ -111,7 +111,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Wenn deine Population auf Null sinkt, stirbst du aus."
+msgstr "Wenn deine Population auf Null sinkt, stirbst du derzeit noch aus."
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -1394,61 +1394,61 @@ msgstr "Grafiken von {0}"
 msgid "CLOSE"
 msgstr "Schließen"
 
-#: ../src/general/MainMenu.cs:359
+#: ../src/general/MainMenu.cs:394
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:360
+#: ../src/general/MainMenu.cs:395
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: ../src/general/MainMenu.tscn:146
+#: ../src/general/MainMenu.tscn:149
 msgid "NEW_GAME"
 msgstr "Neues Spiel"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:72
+#: ../src/general/MainMenu.tscn:162 ../src/general/PauseMenu.tscn:72
 msgid "LOAD_GAME"
 msgstr "Spiel laden"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:94
+#: ../src/general/MainMenu.tscn:173 ../src/general/PauseMenu.tscn:94
 msgid "OPTIONS"
 msgstr "Einstellungen"
 
-#: ../src/general/MainMenu.tscn:181
+#: ../src/general/MainMenu.tscn:184
 msgid "TOOLS"
 msgstr "Werkzeuge"
 
-#: ../src/general/MainMenu.tscn:192
+#: ../src/general/MainMenu.tscn:195
 msgid "VIEW_SOURCE_CODE"
 msgstr "Quellcode anschauen"
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:207
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:216
+#: ../src/general/MainMenu.tscn:218
 msgid "CREDITS"
 msgstr "Abspann"
 
-#: ../src/general/MainMenu.tscn:227
+#: ../src/general/MainMenu.tscn:229
 msgid "QUIT"
 msgstr "Verlassen"
 
-#: ../src/general/MainMenu.tscn:249
+#: ../src/general/MainMenu.tscn:251
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1173
-#: ../src/general/PauseMenu.tscn:134 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Zurück"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:382
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-Modus-Warnung"
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:395
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird "
@@ -1668,11 +1668,11 @@ msgstr "Eigener Nutzername:"
 
 #: ../src/general/OptionsMenu.tscn:1153
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr "Bildschirmfoto-Ordner öffnen"
+msgstr "Bildschirmfotoverzeichnis öffnen"
 
 #: ../src/general/OptionsMenu.tscn:1161
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Logs-Ordner öffnen"
+msgstr "Logverzeichnis öffnen"
 
 #: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -1736,14 +1736,12 @@ msgstr ""
 "fehlgeschlagen."
 
 #: ../src/general/OptionsMenu.tscn:1407
-#, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Bildschirmfoto-Ordner öffnen"
+msgstr "Kein Bildschirmfotoverzeichnis gefunden"
 
 #: ../src/general/OptionsMenu.tscn:1416
-#, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Screenshot aufnehmen"
+msgstr "Versuche ein paar Screenshots zu machen!"
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
@@ -1799,6 +1797,140 @@ msgstr "@"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
+
+#: ../src/gui_common/CreditsScroll.cs:228
+msgid "LEAD_DEVELOPERS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:234
+msgid "LEAD_PROGRAMMER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:235
+msgid "LEAD_PROGRAMMERS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:240
+msgid "LEAD_THEORIST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:241
+msgid "LEAD_THEORISTS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:246
+msgid "LEAD_ARTIST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:247
+msgid "LEAD_ARTISTS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:252
+msgid "SOUND_TEAM_LEAD"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:253
+msgid "SOUND_TEAM_LEADS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:258
+msgid "LEAD_OUTREACH_PERSON"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:259
+msgid "LEAD_OUTREACH_PEOPLE"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:264
+msgid "LEAD_GAME_DESIGNER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:265
+msgid "LEAD_GAME_DESIGNERS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:270
+msgid "LEAD_TESTER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:271
+msgid "LEAD_TESTERS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:276
+msgid "LEAD_PROJECT_MANAGER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:277
+msgid "LEAD_PROJECT_MANAGERS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:284
+msgid "CURRENT_DEVELOPERS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:300
+msgid "PAST_DEVELOPERS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:316
+msgid "OUTSIDE_CONTRIBUTORS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:319
+msgid "YOU_CAN_MAKE_PULL_REQUEST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:334
+msgid "PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:338
+msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:341
+msgid "VIP_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:342
+msgid "DEV_BUILD_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:344
+msgid "SUPPORTER_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:354
+#, fuzzy
+msgid "DONATIONS"
+msgstr "Einstellungen"
+
+#: ../src/gui_common/CreditsScroll.cs:377
+#, fuzzy
+msgid "TRANSLATORS"
+msgstr "Hilf das Spiel zu übersetzen"
+
+#: ../src/gui_common/CreditsScroll.cs:391
+msgid "USED_LIBRARIES_LICENSES"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:485
+msgid "THANKS_FOR_PLAYING"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.tscn:45
+msgid "BY_REVOLUTIONARY_GAMES"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.tscn:52
+msgid "DEVELOPMENT_SUPPORTED_BY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.tscn:60
+msgid "DEVELOPERS"
+msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -3202,13 +3334,12 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Alte Speicherstände löschen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:232
-#, fuzzy
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Speicherverzeichnis öffnen"
+msgstr "Kein Speicherverzeichnis gefunden"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Versuche das Spiel zu speichern!"
 
 #: ../src/saving/SaveStatusOverlay.tscn:121
 msgid "SAVING_ERROR"

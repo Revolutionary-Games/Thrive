@@ -21,9 +21,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
+    <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\MarineSnowFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="src\gui_common\CompoundAmount.cs" />
     <Compile Include="src\gui_common\CompoundListBox.cs" />
     <Compile Include="src\gui_common\CustomCheckBox.cs" />
+    <Compile Include="src\gui_common\CreditsScroll.cs" />
     <Compile Include="src\gui_common\CustomDropDown.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
@@ -339,6 +342,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="export_presets.cfg" />
+    <Content Include="simulation_parameters\common\credits.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
