@@ -1197,8 +1197,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void StartMusic()
     {
-        Jukebox.Instance.PlayingCategory = "MicrobeEditor";
-        Jukebox.Instance.Resume();
+        Jukebox.Instance.PlayCategory("MicrobeEditor");
     }
 
     /// <summary>

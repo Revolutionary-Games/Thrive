@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-17 22:15+0700\n"
+"POT-Creation-Date: 2021-09-21 18:55+0700\n"
 "PO-Revision-Date: 2021-09-10 07:24-0400\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1372,56 +1372,56 @@ msgstr "Art by {0}"
 msgid "CLOSE"
 msgstr "Close"
 
-#: ../src/general/MainMenu.tscn:146
+#: ../src/general/MainMenu.tscn:149
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:159 ../src/general/PauseMenu.tscn:73
+#: ../src/general/MainMenu.tscn:162 ../src/general/PauseMenu.tscn:73
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-#: ../src/general/MainMenu.tscn:170 ../src/general/PauseMenu.tscn:95
+#: ../src/general/MainMenu.tscn:173 ../src/general/PauseMenu.tscn:95
 msgid "OPTIONS"
 msgstr "Options"
 
-#: ../src/general/MainMenu.tscn:181
+#: ../src/general/MainMenu.tscn:184
 msgid "TOOLS"
 msgstr "Tools"
 
-#: ../src/general/MainMenu.tscn:192
+#: ../src/general/MainMenu.tscn:195
 msgid "VIEW_SOURCE_CODE"
 msgstr "View Source Code"
 
-#: ../src/general/MainMenu.tscn:204
+#: ../src/general/MainMenu.tscn:207
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:216
+#: ../src/general/MainMenu.tscn:218
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/general/MainMenu.tscn:227
+#: ../src/general/MainMenu.tscn:229
 msgid "QUIT"
 msgstr "Quit"
 
-#: ../src/general/MainMenu.tscn:249
+#: ../src/general/MainMenu.tscn:251
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/general/MainMenu.tscn:309 ../src/general/OptionsMenu.tscn:1177
-#: ../src/general/PauseMenu.tscn:135 ../src/saving/NewSaveMenu.tscn:108
-#: ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:135
+#: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Back"
 
-#: ../src/general/MainMenu.tscn:349
+#: ../src/general/MainMenu.tscn:382
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "You are running Thrive with GLES2. This is severely untested and is likely "
 "to cause issues. Try to update your video drivers and/or force AMD or "
 "Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/MainMenu.tscn:351
+#: ../src/general/MainMenu.tscn:384
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
@@ -1759,6 +1759,143 @@ msgstr "@"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
+
+#: ../src/gui_common/CreditsScroll.cs:228
+msgid "LEAD_DEVELOPERS"
+msgstr "Lead Developers"
+
+#: ../src/gui_common/CreditsScroll.cs:234
+msgid "LEAD_PROGRAMMER"
+msgstr "Lead Programmer"
+
+#: ../src/gui_common/CreditsScroll.cs:235
+msgid "LEAD_PROGRAMMERS"
+msgstr "Lead Programmers"
+
+#: ../src/gui_common/CreditsScroll.cs:240
+msgid "LEAD_THEORIST"
+msgstr "Lead Theorist"
+
+#: ../src/gui_common/CreditsScroll.cs:241
+msgid "LEAD_THEORISTS"
+msgstr "Lead Theorists"
+
+#: ../src/gui_common/CreditsScroll.cs:246
+msgid "LEAD_ARTIST"
+msgstr "Lead Artist"
+
+#: ../src/gui_common/CreditsScroll.cs:247
+msgid "LEAD_ARTISTS"
+msgstr "Lead Artists"
+
+#: ../src/gui_common/CreditsScroll.cs:252
+msgid "SOUND_TEAM_LEAD"
+msgstr "Sound Team Lead"
+
+#: ../src/gui_common/CreditsScroll.cs:253
+msgid "SOUND_TEAM_LEADS"
+msgstr "Sound Team Leads"
+
+#: ../src/gui_common/CreditsScroll.cs:258
+msgid "LEAD_OUTREACH_PERSON"
+msgstr "Lead Outreach Person"
+
+#: ../src/gui_common/CreditsScroll.cs:259
+msgid "LEAD_OUTREACH_PEOPLE"
+msgstr "Lead Outreach People"
+
+#: ../src/gui_common/CreditsScroll.cs:264
+msgid "LEAD_GAME_DESIGNER"
+msgstr "Lead Game Designer"
+
+#: ../src/gui_common/CreditsScroll.cs:265
+msgid "LEAD_GAME_DESIGNERS"
+msgstr "Lead Game Designers"
+
+#: ../src/gui_common/CreditsScroll.cs:270
+msgid "LEAD_TESTER"
+msgstr "Lead Tester"
+
+#: ../src/gui_common/CreditsScroll.cs:271
+msgid "LEAD_TESTERS"
+msgstr "Lead Testers"
+
+#: ../src/gui_common/CreditsScroll.cs:276
+msgid "LEAD_PROJECT_MANAGER"
+msgstr "Lead Project Manager"
+
+#: ../src/gui_common/CreditsScroll.cs:277
+msgid "LEAD_PROJECT_MANAGERS"
+msgstr "Lead Project Managers"
+
+#: ../src/gui_common/CreditsScroll.cs:284
+msgid "CURRENT_DEVELOPERS"
+msgstr "Current Developers"
+
+#: ../src/gui_common/CreditsScroll.cs:300
+msgid "PAST_DEVELOPERS"
+msgstr "Past Developers"
+
+#: ../src/gui_common/CreditsScroll.cs:316
+msgid "OUTSIDE_CONTRIBUTORS"
+msgstr "Outside Contributors"
+
+#: ../src/gui_common/CreditsScroll.cs:319
+msgid "YOU_CAN_MAKE_PULL_REQUEST"
+msgstr ""
+"Thrive is an open source project. \n"
+"You can contribute a pull request without applying to the team."
+
+#: ../src/gui_common/CreditsScroll.cs:334
+msgid "PATRONS"
+msgstr "Patrons"
+
+#: ../src/gui_common/CreditsScroll.cs:338
+msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
+msgstr "You can support Thrive on Patreon to support future development"
+
+#: ../src/gui_common/CreditsScroll.cs:341
+msgid "VIP_PATRONS"
+msgstr "VIP Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:342
+msgid "DEV_BUILD_PATRONS"
+msgstr "Devbuilds Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:344
+msgid "SUPPORTER_PATRONS"
+msgstr "Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:354
+msgid "DONATIONS"
+msgstr "Donations"
+
+#: ../src/gui_common/CreditsScroll.cs:377
+msgid "TRANSLATORS"
+msgstr "Translators"
+
+#: ../src/gui_common/CreditsScroll.cs:391
+msgid "USED_LIBRARIES_LICENSES"
+msgstr "Licenses And Used Libraries"
+
+#: ../src/gui_common/CreditsScroll.cs:485
+msgid "THANKS_FOR_PLAYING"
+msgstr ""
+"Thank you for playing!\n"
+"\n"
+"If you enjoyed the game, please tell your friends about us."
+
+#: ../src/gui_common/CreditsScroll.tscn:45
+msgid "BY_REVOLUTIONARY_GAMES"
+msgstr "By Revolutionary Games Studio"
+
+#: ../src/gui_common/CreditsScroll.tscn:52
+msgid "DEVELOPMENT_SUPPORTED_BY"
+msgstr "Development Supported By Revolutionary Games Studio ry"
+
+#: ../src/gui_common/CreditsScroll.tscn:60
+msgid "DEVELOPERS"
+msgstr "Developers"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -2558,7 +2695,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
@@ -2566,11 +2703,11 @@ msgstr "Loading Microbe Editor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2317
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
@@ -3458,9 +3595,6 @@ msgstr ""
 
 #~ msgid "PARENRIGHT"
 #~ msgstr ")"
-
-#~ msgid "ASTERISK"
-#~ msgstr "*"
 
 #~ msgid "PLUS"
 #~ msgstr "+"
