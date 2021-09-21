@@ -14,7 +14,6 @@ public class CustomCheckBox : Button
     private Texture pressedClicked;
 
     private bool pressing;
-    private CheckState lastCheckState;
     private CheckState currentCheckState;
 
     private enum CheckState
@@ -39,11 +38,8 @@ public class CustomCheckBox : Button
         UpdateIcon();
     }
 
-    public override void _Process(float delta)
+    public override void _Draw()
     {
-        if (!Visible)
-            return;
-
         if (pressing)
         {
             currentCheckState = Pressed ? CheckState.PressedClicked : CheckState.UnpressedClicked;
@@ -61,13 +57,9 @@ public class CustomCheckBox : Button
             };
         }
 
-        if (lastCheckState != currentCheckState)
-        {
-            UpdateIcon();
-            lastCheckState = currentCheckState;
-        }
+        Invoke.Instance.Queue(UpdateIcon);
 
-        base._Process(delta);
+        base._Draw();
     }
 
     public override void _GuiInput(InputEvent @event)
@@ -75,7 +67,10 @@ public class CustomCheckBox : Button
         // Only when button's press state changes does Godot call _Pressed(), so to show a different icon when clicked,
         // we have to capture mouse event.
         if (@event is InputEventMouseButton mouseEvent)
+        {
             pressing = (mouseEvent.ButtonMask & ButtonMask) != 0;
+            _Draw();
+        }
 
         base._GuiInput(@event);
     }

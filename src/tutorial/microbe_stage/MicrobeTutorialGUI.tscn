@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=5]
 
 [node name="MicrobeTutorialGUI" type="Control"]
@@ -70,6 +71,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
 margin_right = 420.0
 margin_bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
 text = "MICROBE_STAGE_INITIAL"
 autowrap = true
 
