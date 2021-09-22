@@ -1887,8 +1887,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
-            (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
-                && organelle.Definition.ChanceToCreate != 0))
+            (organelle.Definition.RequiresNucleus && !HasNucleus))
             return false;
 
         organelle.PlacedThisSession = true;
