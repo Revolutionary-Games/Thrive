@@ -235,7 +235,18 @@ public class Mutations
                     }
                     else
                     {
-                        AddNewOrganelle(mutatedOrganelles, parentOrganelles.Organelles.Random(random).Definition);
+                        // Duplicate an existing organelle, but only if there are any organelles where that is legal
+                        var organellesThatCanBeDuplicated =
+                            parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
+                        if (organellesThatCanBeDuplicated.Any())
+                        {
+                            AddNewOrganelle(mutatedOrganelles,
+                                organellesThatCanBeDuplicated.Random(random).Definition);
+                        }
+                        else
+                        {
+                            AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                        }
                     }
                 }
             }
