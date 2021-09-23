@@ -1885,7 +1885,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private bool AddOrganelle(OrganelleTemplate organelle)
     {
         // 1 - you put a unique organelle (means only one instance allowed) but you already have it
-        // 2 - you put organelle that requires nucleus but you don't have one
+        // 2 - you put an organelle that requires nucleus but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.RequiresNucleus && !HasNucleus))
             return false;
