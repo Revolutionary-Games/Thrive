@@ -196,19 +196,19 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 case "mobility":
                     deltaValue = membraneType.MovementFactor - referenceMembrane.MovementFactor;
                     break;
-                case "osmoregulation_cost":
+                case "osmoregulationCost":
                     deltaValue = membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor;
                     break;
-                case "resource_absorption_speed":
+                case "resourceAbsorptionSpeed":
                     deltaValue = membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor;
                     break;
                 case "health":
                     deltaValue = membraneType.Hitpoints - referenceMembrane.Hitpoints;
                     break;
-                case "physical_resistance":
+                case "physicalResistance":
                     deltaValue = membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance;
                     break;
-                case "toxin_resistance":
+                case "toxinResistance":
                     deltaValue = membraneType.ToxinResistance - referenceMembrane.ToxinResistance;
                     break;
             }
@@ -231,7 +231,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                         (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
             }
 
-            if (modifier.Name == "osmoregulation_cost")
+            if (modifier.Name == "osmoregulationCost")
             {
                 modifier.AdjustValueColor(deltaValue, true);
             }
