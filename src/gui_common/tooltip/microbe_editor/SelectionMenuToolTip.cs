@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -211,6 +212,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 case "toxinResistance":
                     deltaValue = membraneType.ToxinResistance - referenceMembrane.ToxinResistance;
                     break;
+                default:
+                    throw new Exception("Invalid modifier name");
             }
 
             // All stats with +0 value that are not part of the selected membrane is made hidden
