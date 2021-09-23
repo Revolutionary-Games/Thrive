@@ -69,7 +69,7 @@
         pilusScore *= predatorSpeed;
 
         // predators are less likely to use toxin against larger prey, unless they are opportunistic
-        if (preySize > predatorSize)
+        if (preyHexSize > microbeSpeciesHexSize)
         {
             oxytoxyScore *= microbeSpecies.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
