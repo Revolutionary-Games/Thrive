@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-17 17:10+0300\n"
+"POT-Creation-Date: 2021-09-24 10:22+0300\n"
 "PO-Revision-Date: 2021-08-31 18:14+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -424,7 +424,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Lisää soluelin"
 
 #: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
+#, fuzzy
+msgid "OPEN_ORGANELLE_MENU"
 msgstr "Poista soluelin"
 
 #: ../simulation_parameters/common/input_options.json:111
@@ -1328,11 +1329,11 @@ msgstr "Taidetta, jonka tekijä on {0}"
 msgid "CLOSE"
 msgstr "Sulje"
 
-#: ../src/general/MainMenu.cs:394
+#: ../src/general/MainMenu.cs:393
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:395
+#: ../src/general/MainMenu.cs:394
 msgid "Cancel"
 msgstr "Peruuta"
 
@@ -2500,7 +2501,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Yhdisteiden tasapainopisteet"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ladataan Mikrobieditoria"
 
@@ -2508,11 +2509,11 @@ msgstr "Ladataan Mikrobieditoria"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Odotetaan auto-evoa:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2317
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
 
@@ -3155,6 +3156,9 @@ msgstr "Mikrobien vapaa rakentelu"
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Mikrobien vapaa rakentelu"
+
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "Poista soluelin"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"

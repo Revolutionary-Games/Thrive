@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-17 17:10+0300\n"
+"POT-Creation-Date: 2021-09-24 10:22+0300\n"
 "PO-Revision-Date: 2021-09-06 00:51+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -452,7 +452,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Colocar orgánulos"
 
 #: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
+#, fuzzy
+msgid "OPEN_ORGANELLE_MENU"
 msgstr "Quitar orgánulos"
 
 #: ../simulation_parameters/common/input_options.json:111
@@ -1355,11 +1356,11 @@ msgstr "Arte por {0}"
 msgid "CLOSE"
 msgstr "Cerrar"
 
-#: ../src/general/MainMenu.cs:394
+#: ../src/general/MainMenu.cs:393
 msgid "OK"
 msgstr "OK"
 
-#: ../src/general/MainMenu.cs:395
+#: ../src/general/MainMenu.cs:394
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -2713,7 +2714,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Cargando Editor de Microbio"
 
@@ -2721,11 +2722,11 @@ msgstr "Cargando Editor de Microbio"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Esperando auto-evolución:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evolución falló"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2317
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estado de auto-evolución:"
 
@@ -3500,6 +3501,9 @@ msgstr ""
 "el centro de la pantalla, y el ratón para controlar la orientación.\n"
 "\n"
 "Prueba todas las teclas por unos segundos para continuar."
+
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "Quitar orgánulos"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"

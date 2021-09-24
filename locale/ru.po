@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-17 17:10+0300\n"
+"POT-Creation-Date: 2021-09-24 10:22+0300\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -482,7 +482,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Разместить органеллу"
 
 #: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
+#, fuzzy
+msgid "OPEN_ORGANELLE_MENU"
 msgstr "Убрать органеллу"
 
 #: ../simulation_parameters/common/input_options.json:111
@@ -1383,11 +1384,11 @@ msgstr "Картина от {0}"
 msgid "CLOSE"
 msgstr "Закрыть"
 
-#: ../src/general/MainMenu.cs:394
+#: ../src/general/MainMenu.cs:393
 msgid "OK"
 msgstr "ОК"
 
-#: ../src/general/MainMenu.cs:395
+#: ../src/general/MainMenu.cs:394
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -2724,7 +2725,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка Микробного Редактора"
 
@@ -2732,11 +2733,11 @@ msgstr "Загрузка Микробного Редактора"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2317
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
@@ -3500,6 +3501,9 @@ msgstr ""
 "\n"
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную "
 "клетку или нажать клавишу \"Отвязать всех\"."
+
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "Убрать органеллу"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"
