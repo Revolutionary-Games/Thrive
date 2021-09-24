@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 09:45+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-09-03 13:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -486,7 +486,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Col·locar orgànul"
 
 #: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
+#, fuzzy
+msgid "OPEN_ORGANELLE_MENU"
 msgstr "Suprimir orgànul"
 
 #: ../simulation_parameters/common/input_options.json:111
@@ -515,14 +516,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancel·la l'acció actual"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Col·locar orgànul"
+msgstr "Eliminar orgànul"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Suprimir orgànul"
+msgstr "Moure orgànul"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -1458,15 +1457,16 @@ msgstr "Aparell d'output per defecte"
 #: ../src/general/OptionsMenu.cs:843
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+"Aquesta traducció encara és incomplerta ({0}% traduït) siusplau ajuda'ns a "
+"completar-la!"
 
 #: ../src/general/OptionsMenu.cs:847
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Aquesta llengua encara és una feina en progrés ({0}% completat)"
 
 #: ../src/general/OptionsMenu.cs:851
-#, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Ajuda'ns a traduïr el joc"
+msgstr "Aquest idioma s'ha traduït al {0}%"
 
 #: ../src/general/OptionsMenu.tscn:136
 msgid "GRAPHICS"
@@ -1730,14 +1730,12 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: No s'ha pogut guardar la nova configuració."
 
 #: ../src/general/OptionsMenu.tscn:1407
-#, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Obrir la carpeta de captures de pantalla"
+msgstr "No s'ha trobat cap directori de captures de pantalla"
 
 #: ../src/general/OptionsMenu.tscn:1416
-#, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Fer una captura de pantalla"
+msgstr "Intenta fer algunes captures de pantalla!"
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
@@ -1783,16 +1781,16 @@ msgstr "/segon"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:614
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/gui_common/CreditsScroll.cs:228
 msgid "LEAD_DEVELOPERS"
@@ -1941,73 +1939,72 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Tria un color a partir de la finestra del joc"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Afegir color actual com a plantilla"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
-#, fuzzy
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr ""
+"Activar o desactivar el mode HSV (Hue, Saturació, Valor).\n"
+"No es pot activar quan està en mode \"raw\"."
 
 #: ../src/gui_common/TweakedColourPicker.cs:328
-#, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr ""
+"Activar o desactivar el mode \"raw\".\n"
+"En el mode \"raw\" pots fer que els valors R, G, B\n"
+"de color vagin més enllà de 1.0.\n"
+"No es pot activar si el mode HSV està activat."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
-#, fuzzy
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr "Hue valor, porció de color"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
-#, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr "Valor de saturació, la quantitat de gris en un color particular"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr "Valor (brillantor) valor, brillantor o intensitat del color"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr "Canal vermell valor del color"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr "Canal verd valor del color"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr "Canal blau valor del color"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr "Canal alpha valor del color"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "Afegir una nova vinculació de tecla"
+msgstr ""
+"Color: {0}\n"
+"Ratolí esquerra: Fes servir aquest predefinit\n"
+"Ratolí dret: Elimina aquest predefinit"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:67
 msgid "RAW"
-msgstr ""
+msgstr "\"Raw\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "No hi ha dades a mostrar"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2390,7 +2387,7 @@ msgstr ""
 "Carboni i la Temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:172
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Cap procés"
 
@@ -2546,19 +2543,21 @@ msgstr ""
 "la opció"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3452
-#, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
-"És el pal de paller de la generació d'energia per la cèl·lula. Els "
-"Mitocondris són una estructura de membrana doble curulla de proteïnes i "
-"enzims. En realitat, és un petit organisme procariota que ha estat engolit "
-"i assimilat per la cèl·lula eucariota, que actua com un hoste. Produeix "
-"grans quantitats d'ATP, a partir de Glucosa i Oxigen, amb una gran "
-"eficiència, per mitjà d'un procés anomenat Respiració Aeròbica."
+"Permet els efectes de llum intermitent als GUIs (e.g llum intermitent del "
+"botó d'editor).\n"
+"\n"
+"Si experimentes un bug on parts del botó de l'editor desapareixen,\n"
+"pots intentar desactivant això per veure si el problema s'arregla."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"No pot ser automàticament detectat si el \"hyperthreading\" està activat o "
+"no.\n"
+"Això afecta el nombre de \"threads\" per defecte ja que el "
+"\"hyperthreading threads\" no són tan ràpids com els núclis CPU reals."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
@@ -2741,11 +2740,11 @@ msgstr "S'està carregant l'Editor de Microbi"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "S'està esperant l'algorisme auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
 msgid "AUTO_EVO_FAILED"
 msgstr "L'algorisme auto-evo ha tingut un error"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "estat d'execució:"
 
@@ -3079,17 +3078,17 @@ msgstr "Error durant la càrrega"
 
 #: ../src/saving/InProgressLoad.cs:220
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
-msgstr ""
+msgstr ". Ha fallat en alliberar recursos ja carregats: {0}"
 
-#: ../src/saving/InProgressSave.cs:172
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "Guardant..."
 
-#: ../src/saving/InProgressSave.cs:202
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Acció de guardat fallida"
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Error amb l'acció de guardat"
 
@@ -3160,15 +3159,10 @@ msgstr ""
 "que voleu eliminar permanentment l'arxiu {0}?"
 
 #: ../src/saving/SaveList.cs:281
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"El Vacúol és un orgànul intern que consisteix en una membrana capaç "
-"d'emmagatzemar una certa quantitat de nutrients. Està format per un cert "
-"nombre de vesícules, que són unes petites estructures membranoses que han "
-"estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota "
-"mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No "
-"són estructures rígides, sinò que la seva forma pot canviar amb el temps."
+"Actualitzar l'arxiu de guardat especificat degut al següent error:\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -3227,25 +3221,23 @@ msgstr ""
 "no s'ha implementat un programa convertidor d'arxius de guardat."
 
 #: ../src/saving/SaveList.tscn:183
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
-msgstr "L'arxiu de guardat seleccionat és incompatible"
+msgstr "L'arxiu de guardat seleccionar es pot actualitzar"
 
 #: ../src/saving/SaveList.tscn:192
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"El Vacúol és un orgànul intern que consisteix en una membrana capaç "
-"d'emmagatzemar una certa quantitat de nutrients. Està format per un cert "
-"nombre de vesícules, que són unes petites estructures membranoses que han "
-"estat fusionades. El Vacúol està farcit d'Aigua, on hi ha, suspeses, tota "
-"mena de mol·lècules, enzimes, partícules sòlides i altres substàncies. No "
-"són estructures rígides, sinò que la seva forma pot canviar amb el temps."
+"L'arxiu de guardat seleccionat és d'una versió més antiga de Thrive, però "
+"es pot actualitzar.\n"
+"Es crearà una còpia de seguretat abans de l'actualització, si no ha estat "
+"prèviament creada.\n"
+"Si et saltes l'actualització, s'intentarà carregar l'arxiu de guardat amb "
+"normalitat.\n"
+"Intentar actualitzar aquest arxiu de guardat?"
 
 #: ../src/saving/SaveList.tscn:207
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Acció de guardat fallida"
+msgstr "Actualització d'arxiu de guardat fallida"
 
 #: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
@@ -3340,13 +3332,12 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Eliminar arxiu(s) de guardat antic(s)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:232
-#, fuzzy
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Obrir el directori de guardats"
+msgstr "No s'ha trobar el directori d'arxius de guardat"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Intenta guardar una partida!"
 
 #: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
@@ -3563,6 +3554,9 @@ msgstr ""
 "\n"
 "Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia "
 "cèl·lula o pressionar la tecla per desunir-les a totes."
+
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "Suprimir orgànul"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"

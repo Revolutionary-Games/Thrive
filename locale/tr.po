@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 09:45+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-09-10 07:05+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -484,7 +484,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Organel yerleştir"
 
 #: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
+#, fuzzy
+msgid "OPEN_ORGANELLE_MENU"
 msgstr "Organel sil"
 
 #: ../simulation_parameters/common/input_options.json:111
@@ -513,14 +514,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Mevcut eylemi iptal et"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Organel yerleştir"
+msgstr "Organeli sil"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Organel sil"
+msgstr "Organeli taşı"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -558,7 +557,7 @@ msgstr "FPS göstergesini aç"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "QUICK_SAVE"
-msgstr "Çabuk kayıt"
+msgstr "Çabuk kaydetme"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "QUICK_LOAD"
@@ -1723,14 +1722,12 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Hata: Yeni ayarlar konfigürasyon dosyasına kaydedilemedi."
 
 #: ../src/general/OptionsMenu.tscn:1407
-#, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Ekran Görüntüsünün Kaydedildiği Klasörü Aç"
+msgstr "Ekran görüntüsü dizini bulunamadı"
 
 #: ../src/general/OptionsMenu.tscn:1416
-#, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Ekran görüntüsü al"
+msgstr "Bir ekran görüntüsü almayı dene!"
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
@@ -1775,12 +1772,11 @@ msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
-#, fuzzy
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:614
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
@@ -1790,137 +1786,144 @@ msgstr "%{0}"
 
 #: ../src/gui_common/CreditsScroll.cs:228
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Baş Oyun Geliştiricileri"
 
 #: ../src/gui_common/CreditsScroll.cs:234
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Baş Programcı"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Baş Programcılar"
 
 #: ../src/gui_common/CreditsScroll.cs:240
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Baş Teorisyen"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Baş Teorisyenler"
 
 #: ../src/gui_common/CreditsScroll.cs:246
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Baş Sanatçı"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Baş Sanatçılar"
 
 #: ../src/gui_common/CreditsScroll.cs:252
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Ses Ekip Başı"
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Ses Ekip Başları"
 
 #: ../src/gui_common/CreditsScroll.cs:258
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Baş Destek Şahsı"
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Baş Destek Şahısları"
 
 #: ../src/gui_common/CreditsScroll.cs:264
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "Baş Oyun Tasarımcısı"
 
 #: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "Baş Oyun Tasarımcıları"
 
 #: ../src/gui_common/CreditsScroll.cs:270
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "Oyunu Test Eden"
 
 #: ../src/gui_common/CreditsScroll.cs:271
 msgid "LEAD_TESTERS"
-msgstr ""
+msgstr "Oyunu Test Edenler"
 
 #: ../src/gui_common/CreditsScroll.cs:276
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Baş Proje Yöneticisi"
 
 #: ../src/gui_common/CreditsScroll.cs:277
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "Baş Proje Yöneticileri"
 
 #: ../src/gui_common/CreditsScroll.cs:284
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Mevcut Oyun Geliştiricileri"
 
 #: ../src/gui_common/CreditsScroll.cs:300
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Eski Oyun Geliştiricileri"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Katkıda Bulunanlar"
 
 #: ../src/gui_common/CreditsScroll.cs:319
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive açık kaynak kodlu bir projedir.\n"
+"Oyun ekibine başvurmadan, bir çekme isteği göndererek oyuna katkıda "
+"bulunabilirsin."
 
 #: ../src/gui_common/CreditsScroll.cs:334
 msgid "PATRONS"
-msgstr ""
+msgstr "Yardımcılar"
 
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
+"Gelecekte oyunun geliştirilmesine yardımcı olmak için Thrive'ı Patreon "
+"üzerinden destekleyebilirsin"
 
 #: ../src/gui_common/CreditsScroll.cs:341
 msgid "VIP_PATRONS"
-msgstr ""
+msgstr "VIP Destekçiler"
 
 #: ../src/gui_common/CreditsScroll.cs:342
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Geliştirme Sürümü Destekçileri"
 
 #: ../src/gui_common/CreditsScroll.cs:344
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Destekçiler"
 
 #: ../src/gui_common/CreditsScroll.cs:354
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Ayarlar"
+msgstr "Yardımlar"
 
 #: ../src/gui_common/CreditsScroll.cs:377
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Oyunun Çevrilmesine Yardımcı Ol"
+msgstr "Çevirmenler"
 
 #: ../src/gui_common/CreditsScroll.cs:391
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Lisanslar ve Kullanılan Kitaplıklar"
 
 #: ../src/gui_common/CreditsScroll.cs:485
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Oynadığın için teşekkür ederiz!\n"
+"\n"
+"Eğer oyunu beğendiysen, lütfen arkadaşlarına bizden bahset."
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Revolutionary Games Studio Tarafından"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
+"Oyunun Geliştirilmesi Revolutionary Games Studio Tarafından Desteklenmiştir"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Oyun Geliştiricileri"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -2374,7 +2377,7 @@ msgstr ""
 "orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:172
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "İşlev yok"
 
@@ -2726,11 +2729,11 @@ msgstr "Mikrop Editörü Yükleniyor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Oto-evrim bekleniyor:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
 msgid "AUTO_EVO_FAILED"
 msgstr "Oto-evrim çalıştırılamadı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
@@ -3058,15 +3061,15 @@ msgstr "Yükleme Hatası"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
 
-#: ../src/saving/InProgressSave.cs:172
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "Kaydediliyor..."
 
-#: ../src/saving/InProgressSave.cs:202
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Kaydetme başarısız"
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
@@ -3157,7 +3160,7 @@ msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Bu kayıt Thrive'ın yeni bir sürümüne ait ve uyumsuz olması oldukça "
 "muhtemel.\n"
-"Yine de kaydı yüklemeyi denemek istiyor musun?"
+"Yine de kaydı yüklemeyi denemek ister misin?"
 
 #: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
@@ -3167,7 +3170,7 @@ msgstr ""
 "değil.\n"
 "Karşılaştığın sorunları rapor edebilirsin ancak bunlar şu anda en büyük "
 "öncelik değil.\n"
-"Yine de kaydı yüklemeyi denemek istiyor musun?"
+"Yine de kaydı yüklemeyi denemek ister misin?"
 
 #: ../src/saving/SaveList.tscn:134
 msgid "LOAD_INVALID_SAVE"
@@ -3179,7 +3182,7 @@ msgstr ""
 "Kayıt bilgisi bu dosyadan yüklenemedi.\n"
 "Bu kayıt büyük ihtimalle bozuk ya da mevcut Thrive sürümü tarafından "
 "bilinmeyen yeni bir formatta yazılmış.\n"
-"Yine de kaydı yüklemeyi denemek istiyor musun?"
+"Yine de kaydı yüklemeyi denemek ister misin?"
 
 #: ../src/saving/SaveList.tscn:158
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
@@ -3285,7 +3288,7 @@ msgstr "Kayıt Dizinini Aç"
 
 #: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
-msgstr "Toplam kayıt:"
+msgstr "Toplam kaydetme:"
 
 #: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
@@ -3297,20 +3300,19 @@ msgstr "Seçilen:"
 
 #: ../src/saving/SaveManagerGUI.tscn:189
 msgid "DELETE_SELECTED_SAVES"
-msgstr "Seçili Kayıtları sil?"
+msgstr "Seçili Kayıtlar silinsin mi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:212
 msgid "DELETE_OLD_SAVES"
-msgstr "Eski Kayıtları sil?"
+msgstr "Eski Kayıtlar silinsin mi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:232
-#, fuzzy
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Kayıt Dizinini Aç"
+msgstr "Kayıt dizini bulunamadı"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Kaydetmeyi dene!"
 
 #: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
@@ -3493,6 +3495,9 @@ msgstr ""
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin "
 "bağını çöz\" tuşuna basabilirsin."
+
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "Organel sil"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"
