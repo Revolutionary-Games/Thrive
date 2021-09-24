@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 22:46+0700\n"
+"POT-Creation-Date: 2021-09-24 22:59+0700\n"
 "PO-Revision-Date: 2021-08-31 18:14+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1950,7 +1950,6 @@ msgid "OK"
 msgstr "OK"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
-#: ../src/saving/SaveStatusOverlay.tscn:195
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopioi virhe leikepöydälle"
 
@@ -3079,10 +3078,6 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/saving/SaveStatusOverlay.tscn:133
-msgid "SAVING_ERROR"
-msgstr "Virhe tallennettaessa"
-
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
@@ -3167,6 +3162,9 @@ msgstr "Mikrobien vapaa rakentelu"
 
 #~ msgid "Cancel"
 #~ msgstr "Peruuta"
+
+#~ msgid "SAVING_ERROR"
+#~ msgstr "Virhe tallennettaessa"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Poista soluelin"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 22:46+0700\n"
+"POT-Creation-Date: 2021-09-24 22:59+0700\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -512,14 +512,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Отменить текущие действие"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Разместить органеллу"
+msgstr "Удалить органеллу"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Убрать органеллу"
+msgstr "Разместить органеллу"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:14
@@ -1444,15 +1442,16 @@ msgstr "Устройство вывода по умолчанию"
 #: ../src/general/OptionsMenu.cs:839
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+"Этот перевод в процессе разработки (завершён на {0}%). Пожалуйста, "
+"помогите нам с этим!"
 
 #: ../src/general/OptionsMenu.cs:843
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Этот язык всё ещё находится в стадии разработки ({0}% завершено)"
 
 #: ../src/general/OptionsMenu.cs:847
-#, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Помогите Перевести Эту Игру"
+msgstr "Этот язык на {0}% завершён"
 
 #: ../src/general/OptionsMenu.tscn:140
 msgid "GRAPHICS"
@@ -1520,7 +1519,7 @@ msgstr "Включает эффекты мигания света на GUI"
 
 #: ../src/general/OptionsMenu.tscn:427
 msgid "MASTER_VOLUME"
-msgstr "Основная громкость"
+msgstr "Основной звук"
 
 #: ../src/general/OptionsMenu.tscn:454 ../src/general/OptionsMenu.tscn:495
 #: ../src/general/OptionsMenu.tscn:528 ../src/general/OptionsMenu.tscn:561
@@ -1583,18 +1582,16 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Запускать авто-эво во время игры"
 
 #: ../src/general/OptionsMenu.tscn:815
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Выбрано:"
+msgstr "Число обнаруженных ядер процессора:"
 
 #: ../src/general/OptionsMenu.tscn:832
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Сохранить и продолжить"
+msgstr "Текущие задачи:"
 
 #: ../src/general/OptionsMenu.tscn:847
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Предположим, что в процессоре включена гиперпоточность"
 
 #: ../src/general/OptionsMenu.tscn:859
 msgid "USE_MANUAL_THREAD_COUNT"
@@ -2010,7 +2007,6 @@ msgid "OK"
 msgstr "ОК"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
-#: ../src/saving/SaveStatusOverlay.tscn:195
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копировать Ошибку в Буфер Обмена"
 
@@ -3323,10 +3319,6 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Открыть Папку Сохранений"
 
-#: ../src/saving/SaveStatusOverlay.tscn:133
-msgid "SAVING_ERROR"
-msgstr "Ошибка Сохранения"
-
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
@@ -3512,6 +3504,9 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Отмена"
+
+#~ msgid "SAVING_ERROR"
+#~ msgstr "Ошибка Сохранения"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Убрать органеллу"

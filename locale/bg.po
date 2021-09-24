@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 22:46+0700\n"
+"POT-Creation-Date: 2021-09-24 22:59+0700\n"
 "PO-Revision-Date: 2021-09-12 07:51+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -506,14 +506,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Анулиране на текущото действие"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Добавяне на органел"
+msgstr "Премахване на органел"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Премахване на органел"
+msgstr "Преместване на органел"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:14
@@ -1770,138 +1768,140 @@ msgstr "{0} %"
 
 #: ../src/gui_common/CreditsScroll.cs:228
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Водещи разработчици"
 
 #: ../src/gui_common/CreditsScroll.cs:234
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Водещ програмист"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Водещи програмисти"
 
 #: ../src/gui_common/CreditsScroll.cs:240
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Водещ теоретик"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Водещи теоретици"
 
 #: ../src/gui_common/CreditsScroll.cs:246
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Водещ артист"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Водещи артисти"
 
 #: ../src/gui_common/CreditsScroll.cs:252
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Водещ композитор"
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Водещи композитори"
 
 #: ../src/gui_common/CreditsScroll.cs:258
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Водещ представител"
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Водещи представители"
 
 #: ../src/gui_common/CreditsScroll.cs:264
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "Водещ дизайнер"
 
 #: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "Водещи дизайнери"
 
 #: ../src/gui_common/CreditsScroll.cs:270
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "Водещ изпитател"
 
 #: ../src/gui_common/CreditsScroll.cs:271
-#, fuzzy
 msgid "LEAD_TESTERS"
-msgstr "*"
+msgstr "Водещи изпитатели"
 
 #: ../src/gui_common/CreditsScroll.cs:276
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Водещ ръководител"
 
 #: ../src/gui_common/CreditsScroll.cs:277
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "Водещи ръководители"
 
 #: ../src/gui_common/CreditsScroll.cs:284
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Текущи разработчици"
 
 #: ../src/gui_common/CreditsScroll.cs:300
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Бивши разработчици"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Външни сътрудници"
 
 #: ../src/gui_common/CreditsScroll.cs:319
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"„Thrive“ е проект с отворен код.\n"
+"Може да направите своя принос, без да сте част от екипа на проекта."
 
 #: ../src/gui_common/CreditsScroll.cs:334
 msgid "PATRONS"
-msgstr ""
+msgstr "Покровители"
 
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Може да подкрепите „Thrive“ в „Patreon“"
 
 #: ../src/gui_common/CreditsScroll.cs:341
 msgid "VIP_PATRONS"
-msgstr ""
+msgstr "Значими поддръжници"
 
 #: ../src/gui_common/CreditsScroll.cs:342
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Вътрешни поддръжници"
 
 #: ../src/gui_common/CreditsScroll.cs:344
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Поддръжници"
 
 #: ../src/gui_common/CreditsScroll.cs:354
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Настройки"
+msgstr "Дарения"
 
 #: ../src/gui_common/CreditsScroll.cs:377
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Допринасяне към превода"
+msgstr "Преводачи"
 
 #: ../src/gui_common/CreditsScroll.cs:391
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Лицензи и използвани материали"
 
 #: ../src/gui_common/CreditsScroll.cs:485
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Благодарим Ви за отделеното време!\n"
+"\n"
+"Ще се радваме да споделите за „Thrive“ и на Вашите приятели."
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "От „Revolutionary Games Studio“"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Разработката се поддържа от „Revolutionary Games Studio“ ry"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Разработчици"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -1998,7 +1998,6 @@ msgid "OK"
 msgstr "ОК"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
-#: ../src/saving/SaveStatusOverlay.tscn:195
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копиране на грешката в клипборда"
 
@@ -3292,10 +3291,6 @@ msgstr "Трябва да направите поне един запис!"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Папката с записи не съществува"
 
-#: ../src/saving/SaveStatusOverlay.tscn:133
-msgid "SAVING_ERROR"
-msgstr "Грешка при запазването"
-
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
@@ -3470,6 +3465,9 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Отказ"
+
+#~ msgid "SAVING_ERROR"
+#~ msgstr "Грешка при запазването"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Премахване на органел"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 22:46+0700\n"
+"POT-Creation-Date: 2021-09-24 22:59+0700\n"
 "PO-Revision-Date: 2021-09-08 14:51+0000\n"
 "Last-Translator: Davi Augusto Pinto Araújo <davi.augusto.araujo@hotmail."
 "com>\n"
@@ -496,14 +496,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Cancelar ação atual"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Colocar organela"
+msgstr "Remover organela"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Remover organela"
+msgstr "Mover organela"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:14
@@ -1696,14 +1694,12 @@ msgstr ""
 "Erro: Falha ao salvar as novas opções para o arquivo de configurações."
 
 #: ../src/general/OptionsMenu.tscn:1347
-#, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Capturar tela"
+msgstr "Tente fazer algumas capturas de tela!"
 
 #: ../src/general/OptionsMenu.tscn:1349
-#, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Abrir a pasta de capturas de tela"
+msgstr "O diretório de capturas de tela não foi encontrado"
 
 #: ../src/general/PauseMenu.tscn:59
 msgid "RESUME"
@@ -1960,7 +1956,7 @@ msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Cor:{0}\n"
 "Botão esquerdo: Utilizar esta predefinição\n"
-"Botão direito: Deletar esta predefinição"
+"Botão direito: Remover esta predefinição"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
 msgid "HSV"
@@ -1990,7 +1986,6 @@ msgid "OK"
 msgstr "OK"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
-#: ../src/saving/SaveStatusOverlay.tscn:195
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar erro para a Área de Transferência"
 
@@ -3288,16 +3283,11 @@ msgstr "Apagar salvamentos antigos?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Tente salvar um jogo!"
 
 #: ../src/saving/SaveManagerGUI.tscn:201
-#, fuzzy
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Abrir Diretório de Salvamentos"
-
-#: ../src/saving/SaveStatusOverlay.tscn:133
-msgid "SAVING_ERROR"
-msgstr "Erro ao Salvar"
+msgstr "O diretório de salvamentos não foi encontrado"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
@@ -3477,6 +3467,9 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"
+
+#~ msgid "SAVING_ERROR"
+#~ msgstr "Erro ao Salvar"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Remover organela"
