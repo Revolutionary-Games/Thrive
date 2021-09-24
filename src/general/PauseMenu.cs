@@ -64,15 +64,7 @@ public class PauseMenu : ControlWithInput
     /// </summary>
     public GameProperties GameProperties { get; set; }
 
-    /// <summary>
-    ///   If true the user may not open or close the pause menu.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Does not automatically close the pause menu when set to true.
-    ///   </para>
-    /// </remarks>
-    public bool PausingBlocked { get; set; }
+    public bool MicrobeEditorNotReady { get; set; }
 
     private ActiveMenuType ActiveMenu
     {
@@ -109,6 +101,25 @@ public class PauseMenu : ControlWithInput
         }
     }
 
+    /// <summary>
+    ///   If true the user may not open or close the pause menu.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Does not automatically close the pause menu when set to true.
+    ///   </para>
+    /// </remarks>
+    public bool IsPausingBlocked()
+    {
+        if (MicrobeEditorNotReady)
+            return true;
+
+        if (TransitionManager.Instance.HasTransitionInProgress)
+            return true;
+
+        return false;
+    }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -128,7 +139,7 @@ public class PauseMenu : ControlWithInput
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
     public bool EscapeKeyPressed()
     {
-        if (PausingBlocked)
+        if (IsPausingBlocked())
             return false;
 
         if (Visible)
@@ -153,7 +164,7 @@ public class PauseMenu : ControlWithInput
     [RunOnKeyDown("help")]
     public bool ShowHelpPressed()
     {
-        if (PausingBlocked)
+        if (IsPausingBlocked())
             return false;
 
         if (NoExclusiveTutorialActive())
@@ -196,7 +207,7 @@ public class PauseMenu : ControlWithInput
 
     private void ClosePressed()
     {
-        if (PausingBlocked)
+        if (IsPausingBlocked())
             return;
 
         GUICommon.Instance.PlayButtonPressSound();
