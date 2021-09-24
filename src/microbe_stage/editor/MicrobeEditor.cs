@@ -423,7 +423,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         set
         {
             ready = value;
-            pauseMenu.MicrobeEditorNotReady = !value;
+            pauseMenu.GameLoading = !value;
         }
     }
 

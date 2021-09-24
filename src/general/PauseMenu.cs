@@ -64,7 +64,7 @@ public class PauseMenu : ControlWithInput
     /// </summary>
     public GameProperties GameProperties { get; set; }
 
-    public bool MicrobeEditorNotReady { get; set; }
+    public bool GameLoading { get; set; }
 
     private ActiveMenuType ActiveMenu
     {
@@ -111,7 +111,7 @@ public class PauseMenu : ControlWithInput
     /// </remarks>
     public bool IsPausingBlocked()
     {
-        if (MicrobeEditorNotReady)
+        if (GameLoading)
             return true;
 
         if (TransitionManager.Instance.HasTransitionInProgress)
