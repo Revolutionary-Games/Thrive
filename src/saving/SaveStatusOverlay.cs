@@ -70,10 +70,13 @@ public class SaveStatusOverlay : Control
     ///   If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused)
     /// </param>
     /// <param name="onClosed">Callback for when the dialog is closed</param>
+    /// <param name="allowExceptionCopy">
+    ///   If true allows the user to copy the error, should be on if exception is an exception
+    /// </param>
     public void ShowError(string title, string message, string exception, bool returnToMenu = false,
-        Action onClosed = null)
+        Action onClosed = null, bool allowExceptionCopy = true)
     {
-        errorDialog.ShowError(title, message, exception, returnToMenu, onClosed);
+        errorDialog.ShowError(title, message, exception, returnToMenu, onClosed, allowExceptionCopy);
     }
 
     public override void _Process(float delta)

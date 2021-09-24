@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-21 18:55+0700\n"
+"POT-Creation-Date: 2021-09-24 22:46+0700\n"
 "PO-Revision-Date: 2021-08-31 18:14+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -424,7 +424,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Lisää soluelin"
 
 #: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
+#, fuzzy
+msgid "OPEN_ORGANELLE_MENU"
 msgstr "Poista soluelin"
 
 #: ../simulation_parameters/common/input_options.json:111
@@ -1642,11 +1643,11 @@ msgid "DISCARD_AND_CONTINUE"
 msgstr "Hylkää ja jatka"
 
 #: ../src/general/OptionsMenu.tscn:1317
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:64
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 msgid "CANCEL"
 msgstr "Peruuta"
 
-#: ../src/general/OptionsMenu.tscn:1328 ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1328 ../src/general/OptionsMenu.tscn:1337
 msgid "ERROR"
 msgstr "Virhe"
 
@@ -1711,7 +1712,7 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:614
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
@@ -1943,12 +1944,13 @@ msgstr "Ei ole lupaa näyttää enempää kuin {0} dataosaa!"
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Ei ole lupaa näyttää vähempää kuin {0} datajoukko(ja)!"
 
-#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:51
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:119
+#: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:118
 msgid "OK"
 msgstr "OK"
 
-#: ../src/gui_common/dialogs/ErrorDialog.tscn:110
+#: ../src/gui_common/dialogs/ErrorDialog.tscn:109
+#: ../src/saving/SaveStatusOverlay.tscn:195
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopioi virhe leikepöydälle"
 
@@ -2214,7 +2216,7 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:172
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Lisää soluelin"
@@ -2509,11 +2511,11 @@ msgstr "Ladataan Mikrobieditoria"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Odotetaan auto-evoa:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "suorituksen status:"
 
@@ -2843,15 +2845,15 @@ msgstr "Virhe ladattaessa"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Virhe vapautettaessa jo ladattuja resursseja: {0}"
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "Tallennetaan..."
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Tallennus epäonnistui"
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Virhe tallennettaessa"
 
@@ -2879,11 +2881,21 @@ msgstr "Korvaa aikaisempi tallennus:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Korvaa aikaisempi tallennus?"
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+#, fuzzy
+msgid "SAVING_NOT_POSSIBLE"
+msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
+
+#: ../src/saving/SaveHelper.cs:383
+#, fuzzy
+msgid "PLAYER_EXTINCT"
+msgstr "pelaaja kuoli"
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr "Tallennus onnistui"
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
@@ -3067,12 +3079,16 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:42
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:80
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:119
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:154
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:196
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:234
+#: ../src/saving/SaveStatusOverlay.tscn:133
+msgid "SAVING_ERROR"
+msgstr "Virhe tallennettaessa"
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:41
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:118
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:153
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:195
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:233
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:47
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:133
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
@@ -3152,8 +3168,8 @@ msgstr "Mikrobien vapaa rakentelu"
 #~ msgid "Cancel"
 #~ msgstr "Peruuta"
 
-#~ msgid "SAVING_ERROR"
-#~ msgstr "Virhe tallennettaessa"
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "Poista soluelin"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"

@@ -23,6 +23,7 @@ public class ErrorDialog : CustomDialog
     private Label extraDescriptionLabel;
     private Label exceptionLabel;
     private VBoxContainer exceptionBox;
+    private Control copyException;
 
     /// <summary>
     ///   The main error message.
@@ -65,6 +66,7 @@ public class ErrorDialog : CustomDialog
         exceptionLabel = GetNode<Label>(
             "VBoxContainer/ExceptionBox/PanelContainer/MarginContainer/ScrollContainer/Exception");
         exceptionBox = GetNode<VBoxContainer>("VBoxContainer/ExceptionBox");
+        copyException = GetNode<Control>("VBoxContainer/ExceptionBox/CopyErrorButton");
 
         UpdateMessage();
         UpdateException();
@@ -74,11 +76,12 @@ public class ErrorDialog : CustomDialog
     ///   Helper for showing the error dialog with extra callback.
     /// </summary>
     public void ShowError(string title, string message, string exception, bool returnToMenu = false,
-        Action onClosed = null)
+        Action onClosed = null, bool allowExceptionCopy = true)
     {
         WindowTitle = title;
         ErrorMessage = message;
         ExceptionInfo = exception;
+        copyException.Visible = allowExceptionCopy;
         this.PopupCenteredShrink();
 
         onDismissReturnToMenu = returnToMenu;
