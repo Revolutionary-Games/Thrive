@@ -85,7 +85,7 @@ public class SaveStatusOverlay : Control
     /// <param name="message">Message to show</param>
     /// <param name="exception">Extra / exception info to show</param>
     /// <param name="returnToMenu">
-    ///    If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused)
+    ///   If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused)
     /// </param>
     /// <param name="onClosed">Callback for when the dialog is closed</param>
     /// <param name="allowExceptionCopy">
