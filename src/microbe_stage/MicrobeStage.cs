@@ -28,6 +28,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private SpawnSystem spawner;
 
     private MicrobeAISystem microbeAISystem;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager;
 
     private DirectionalLight worldLight;
@@ -231,6 +234,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
+        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
+            worldLight, CurrentGame);
 
         NodeReferencesResolved = true;
     }
@@ -263,19 +268,18 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Clouds.Init(FluidSystem);
 
-        CreatePatchManagerIfNeeded();
+        patchManager.CurrentGame = CurrentGame;
 
         StartMusic();
 
         if (IsLoadedFromSave)
         {
             HUD.OnEnterStageTransition(false);
-            UpdatePatchSettings(true);
+            UpdatePatchSettings();
         }
         else
         {
             HUD.OnEnterStageTransition(true);
-            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
         }
     }
 
@@ -293,17 +297,16 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         CurrentGame = GameProperties.StartNewMicrobeGame();
 
-        CreatePatchManagerIfNeeded();
+        patchManager.CurrentGame = CurrentGame;
 
-        UpdatePatchSettings(false);
+        UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
     }
 
     public void StartMusic()
     {
-        Jukebox.Instance.PlayingCategory = "MicrobeStage";
-        Jukebox.Instance.Resume();
+        Jukebox.Instance.PlayCategory("MicrobeStage");
     }
 
     /// <summary>
@@ -368,6 +371,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             // Show the game lost popup if not already visible
             HUD.ShowExtinctionBox();
 
+            Jukebox.Instance.PlayCategory("Extinction");
             return;
         }
 
@@ -506,7 +510,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void OnReturnFromEditor()
     {
-        UpdatePatchSettings(false);
+        UpdatePatchSettings();
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -547,7 +551,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+        TutorialState.SendEvent(
+            TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
     }
 
     [DeserializedCallbackAllowed]
@@ -592,15 +597,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
     }
 
-    private void CreatePatchManagerIfNeeded()
-    {
-        if (patchManager != null)
-            return;
-
-        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame);
-    }
-
     /// <summary>
     ///   Handles respawning the player and checking for extinction
     /// </summary>
@@ -628,9 +624,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
     }
 
-    private void UpdatePatchSettings(bool isLoading)
+    private void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
+        // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
+        // going back to the stage
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch) && promptPatchNameChange)
+        {
+            HUD.PopupPatchInfo();
+        }
 
         HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -189,28 +190,33 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         foreach (var modifier in modifierInfos)
         {
-            var deltaValue = 0.0f;
+            float deltaValue;
 
             switch (modifier.Name)
             {
                 case "mobility":
                     deltaValue = membraneType.MovementFactor - referenceMembrane.MovementFactor;
                     break;
-                case "osmoregulation_cost":
+                case "osmoregulationCost":
                     deltaValue = membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor;
                     break;
-                case "resource_absorption_speed":
+                case "resourceAbsorptionSpeed":
                     deltaValue = membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor;
                     break;
                 case "health":
                     deltaValue = membraneType.Hitpoints - referenceMembrane.Hitpoints;
                     break;
-                case "physical_resistance":
+                case "physicalResistance":
                     deltaValue = membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance;
                     break;
-                case "toxin_resistance":
+                case "toxinResistance":
                     deltaValue = membraneType.ToxinResistance - referenceMembrane.ToxinResistance;
                     break;
+                case "canEngulf":
+                    deltaValue = 0;
+                    break;
+                default:
+                    throw new Exception("Invalid modifier name");
             }
 
             // All stats with +0 value that are not part of the selected membrane is made hidden
@@ -231,7 +237,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                         (deltaValue * 100).ToString("F0", CultureInfo.CurrentCulture));
             }
 
-            if (modifier.Name == "osmoregulation_cost")
+            if (modifier.Name == "osmoregulationCost")
             {
                 modifier.AdjustValueColor(deltaValue, true);
             }

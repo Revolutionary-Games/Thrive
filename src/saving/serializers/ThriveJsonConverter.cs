@@ -669,7 +669,14 @@ public abstract class BaseThriveConverter : JsonConverter
         // Find a constructor we can call
         ConstructorInfo constructor = null;
 
-        foreach (var candidate in objectType.GetConstructors())
+        // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
+        var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Where(
+            c => c.CustomAttributes.Any(a => a.AttributeType == typeof(JsonConstructorAttribute)));
+
+        var potentialConstructors = objectType.GetConstructors().Concat(
+            privateJsonConstructors);
+
+        foreach (var candidate in potentialConstructors)
         {
             if (candidate.ContainsGenericParameters)
                 continue;
@@ -781,6 +788,17 @@ public abstract class BaseThriveConverter : JsonConverter
         if (target == null)
         {
             throw new JsonSerializationException("Copy only child properties target is null");
+        }
+
+        // If no new data, don't apply anything
+        if (newData == null)
+        {
+            // But to support detecting if that is the case we have an interface to give the instance the info that
+            // it didn't get the properties
+            if (target is IChildPropertiesLoadCallback callbackReceiver)
+                callbackReceiver.OnNoPropertiesLoaded();
+
+            return;
         }
 
         // Need to register for deletion the orphaned Godot object

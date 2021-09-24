@@ -462,8 +462,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Setup tracking running processes
             ProcessStatistics = new ProcessStatistics();
 
-            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
-
             GD.Print("Player Microbe spawned");
         }
 
@@ -1359,6 +1357,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 OnReproductionStatus(this, true);
             }
         }
+    }
+
+    public override void _EnterTree()
+    {
+        if (IsPlayerMicrobe)
+            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
     }
 
     public override void _ExitTree()
@@ -2596,7 +2600,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Create a colony if there isn't one yet
         if (Colony == null)
         {
-            Colony = new MicrobeColony(this);
+            MicrobeColony.CreateColonyForMicrobe(this);
+
+            if (Colony == null)
+            {
+                GD.PrintErr("An issue occured during colony creation!");
+                return;
+            }
+
             GD.Print("Created a new colony");
         }
 
