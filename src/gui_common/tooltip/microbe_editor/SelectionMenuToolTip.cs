@@ -190,7 +190,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     {
         foreach (var modifier in modifierInfos)
         {
-            var deltaValue = 0.0f;
+            float deltaValue;
 
             switch (modifier.Name)
             {
@@ -211,6 +211,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     break;
                 case "toxinResistance":
                     deltaValue = membraneType.ToxinResistance - referenceMembrane.ToxinResistance;
+                    break;
+                case "canEngulf":
+                    deltaValue = 0;
                     break;
                 default:
                     throw new Exception("Invalid modifier name");
