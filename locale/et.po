@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:00+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-03-31 14:40+0000\n"
 "Last-Translator: Thor Andreas Laan <thor.a.laan@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/"
@@ -2824,15 +2824,15 @@ msgstr ""
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2860,11 +2860,19 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+msgid "SAVING_NOT_POSSIBLE"
+msgstr ""
+
+#: ../src/saving/SaveHelper.cs:383
+msgid "PLAYER_EXTINCT"
+msgstr ""
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr ""
 
@@ -3039,11 +3047,11 @@ msgstr ""
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
+#: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:183
+#: ../src/saving/SaveStatusOverlay.tscn:184
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 

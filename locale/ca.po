@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:00+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-09-03 13:42+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -3080,15 +3080,15 @@ msgstr "Error durant la càrrega"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Ha fallat en alliberar recursos ja carregats: {0}"
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "Guardant..."
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Acció de guardat fallida"
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Error amb l'acció de guardat"
 
@@ -3118,11 +3118,21 @@ msgstr "Sobreescriure l'arxiu de guardat existent:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Voleu sobreescriure l'arxiu de guardat actual?"
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+#, fuzzy
+msgid "SAVING_NOT_POSSIBLE"
+msgstr "Acció de guardat fallida! Hi ha hagut un problema"
+
+#: ../src/saving/SaveHelper.cs:383
+#, fuzzy
+msgid "PLAYER_EXTINCT"
+msgstr "Jugador Duplicat"
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr "Acció de guardat exitosa"
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr "Acció de guardat fallida! Hi ha hagut un problema"
 
@@ -3329,11 +3339,11 @@ msgstr "No s'ha trobar el directori d'arxius de guardat"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Intenta guardar una partida!"
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
+#: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
 msgstr "Error en l'acció de guardat"
 
-#: ../src/saving/SaveStatusOverlay.tscn:183
+#: ../src/saving/SaveStatusOverlay.tscn:184
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar l'Error al Porta-Retalls"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:00+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -3064,15 +3064,15 @@ msgstr "Ошибка Загрузки"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Не удалось освободить уже загруженные ресурсы: {0}"
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "Сохранение..."
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Сохранение не удалось"
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Ошибка Сохранения"
 
@@ -3100,11 +3100,21 @@ msgstr "Перезаписать существующее сохранение:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Перезаписать существующее сохранение?"
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+#, fuzzy
+msgid "SAVING_NOT_POSSIBLE"
+msgstr "Сохранение не удалось! Бывает же"
+
+#: ../src/saving/SaveHelper.cs:383
+#, fuzzy
+msgid "PLAYER_EXTINCT"
+msgstr "Клонировать Игрока"
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr "Сохранение успешно"
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr "Сохранение не удалось! Бывает же"
 
@@ -3308,11 +3318,11 @@ msgstr "Открыть Папку Сохранений"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
+#: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
 msgstr "Ошибка Сохранения"
 
-#: ../src/saving/SaveStatusOverlay.tscn:183
+#: ../src/saving/SaveStatusOverlay.tscn:184
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копировать Ошибку в Буфер Обмена"
 

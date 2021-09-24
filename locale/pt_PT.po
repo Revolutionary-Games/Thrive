@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:00+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-08-29 18:21+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -3056,15 +3056,15 @@ msgstr "Erro ao carregar"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Erro ao libertar recursos carregados: {0}"
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "A gravar..."
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Falha ao guardar"
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Erro ao gravar"
 
@@ -3092,11 +3092,21 @@ msgstr "Substituir o jogo guardado existente:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Substituir o jogo guardado existente?"
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+#, fuzzy
+msgid "SAVING_NOT_POSSIBLE"
+msgstr "Falha ao gravar! Ocorreu um erro"
+
+#: ../src/saving/SaveHelper.cs:383
+#, fuzzy
+msgid "PLAYER_EXTINCT"
+msgstr "Duplicar Jogador"
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr "Guardado com sucesso"
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr "Falha ao gravar! Ocorreu um erro"
 
@@ -3304,11 +3314,11 @@ msgstr "Abrir a pasta dos jogos guardados"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
+#: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
 msgstr "Erro ao gravar"
 
-#: ../src/saving/SaveStatusOverlay.tscn:183
+#: ../src/saving/SaveStatusOverlay.tscn:184
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar Erro para a Área de Transferência"
 
