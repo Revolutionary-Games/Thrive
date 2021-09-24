@@ -21,12 +21,16 @@ public class SaveStatusOverlay : Control
     [Export]
     public NodePath ExceptionPath;
 
+    [Export]
+    public NodePath CopyExceptionPath;
+
     private static SaveStatusOverlay instance;
 
     private Label statusLabel;
     private AnimationPlayer animationPlayer;
     private Label extraDescriptionLabel;
     private Label exceptionLabel;
+    private Control copyException;
 
     private WindowDialog errorDialog;
 
@@ -55,6 +59,7 @@ public class SaveStatusOverlay : Control
         errorDialog = GetNode<WindowDialog>(ErrorDialogPath);
         extraDescriptionLabel = GetNode<Label>(ExtraErrorDescriptionPath);
         exceptionLabel = GetNode<Label>(ExceptionPath);
+        copyException = GetNode<Control>(CopyExceptionPath);
 
         Visible = false;
         hidden = true;
@@ -80,15 +85,19 @@ public class SaveStatusOverlay : Control
     /// <param name="message">Message to show</param>
     /// <param name="exception">Extra / exception info to show</param>
     /// <param name="returnToMenu">
-    ///   If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused)
+    ///    If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused)
     /// </param>
     /// <param name="onClosed">Callback for when the dialog is closed</param>
+    /// <param name="allowExceptionCopy">
+    ///   If true allows the user to copy the error, should be on if exception is an exception
+    /// </param>
     public void ShowError(string title, string message, string exception, bool returnToMenu = false,
-        Action onClosed = null)
+        Action onClosed = null, bool allowExceptionCopy = true)
     {
         errorDialog.WindowTitle = title;
         extraDescriptionLabel.Text = message;
         exceptionLabel.Text = exception;
+        copyException.Visible = allowExceptionCopy;
         errorDialog.PopupCenteredShrink();
 
         onDialogDismissReturnToMenu = returnToMenu;

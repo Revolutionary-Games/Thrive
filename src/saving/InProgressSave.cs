@@ -30,7 +30,13 @@ public class InProgressSave : IDisposable
 
     private bool success;
     private string message;
+
+    /// <summary>
+    ///   Failure exception or description. Depends on exceptionIsException
+    /// </summary>
     private string exception;
+
+    private bool exceptionIsException = true;
 
     private bool disposed;
 
@@ -80,11 +86,12 @@ public class InProgressSave : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    internal void ReportStatus(bool success, string message, string exception = "")
+    internal void ReportStatus(bool success, string message, string exception = "", bool isException = true)
     {
         this.success = success;
         this.message = message;
         this.exception = exception;
+        exceptionIsException = isException;
     }
 
     protected virtual void Dispose(bool disposing)
@@ -194,7 +201,7 @@ public class InProgressSave : IDisposable
                 {
                     SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_FAILED"));
                     SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_SAVING"),
-                        message, exception);
+                        message, exception, false, null, exceptionIsException);
                 }
 
                 IsSaving = false;
