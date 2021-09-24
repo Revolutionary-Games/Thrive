@@ -399,6 +399,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private CompoundBalanceDisplay compoundBalance;
 
+    private IEnumerable<(Hex hex, int orientation)> mouseHoverHexes;
+
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
 
@@ -422,6 +424,26 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     public bool IsLoadedFromSave { get; set; }
+
+    [JsonIgnore]
+    public IEnumerable<(Hex hex, int orientation)> MouseHoverHexes
+    {
+        get
+        {
+            return mouseHoverHexes;
+        }
+        set
+        {
+            if (mouseHoverHexes == null && value == null)
+                return;
+
+            if (mouseHoverHexes != null && value != null && mouseHoverHexes.SequenceEqual(value))
+                return;
+
+            mouseHoverHexes = value;
+            UpdateMutationPointsBar();
+        }
+    }
 
     public override void _Ready()
     {
@@ -859,7 +881,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
-            editor.MutationPoints - editor.CalculateCurrentOrganelleCost();
+            editor.MutationPoints - editor.CalculateCurrentOrganelleCost(MouseHoverHexes);
 
         GUICommon.Instance.TweenBarValue(
             mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);

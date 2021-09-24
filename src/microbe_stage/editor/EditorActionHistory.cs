@@ -6,29 +6,43 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 {
     private List<MicrobeEditorActionData> cache;
 
+    public int WhatWouldActionsCost(List<MicrobeEditorActionData> actions)
+    {
+        var result = 0;
+
+        foreach (var action in actions)
+        {
+            result += WhatWouldActionCost(action);
+            cache.Add(action);
+        }
+
+        cache.RemoveRange(cache.Count - actions.Count, actions.Count);
+
+        return result;
+    }
+
     public int WhatWouldActionCost(MicrobeEditorActionData action)
     {
-        int actionCost = action.CalculateCost();
-        int result = actionCost;
-        foreach (var historyAction in cache ??= GetActionHistorySinceLastNewMicrobePress())
+        int result = 0;
+
+        for (var i = 0; i < (cache ??= GetActionHistorySinceLastNewMicrobePress()).Count; ++i)
         {
-            switch (action.GetInterferenceModeWith(historyAction))
+            switch (action.GetInterferenceModeWith(cache[i]))
             {
                 case MicrobeActionInterferenceMode.Combinable:
-                    result -= actionCost;
-                    result -= historyAction.CalculateCost();
-                    result += action.Combine(historyAction).CalculateCost();
+                    result -= cache[i].CalculateCost();
+                    action = action.Combine(cache[i]);
                     break;
                 case MicrobeActionInterferenceMode.CancelsOut:
-                    result -= actionCost;
-                    result -= historyAction.CalculateCost();
+                    result -= cache[i].CalculateCost();
                     return result;
                 case MicrobeActionInterferenceMode.ReplacesOther:
-                    result -= historyAction.CalculateCost();
+                    result -= cache[i].CalculateCost();
                     break;
             }
         }
 
+        result += action.CalculateCost();
         return result;
     }
 

@@ -17,9 +17,13 @@ public class OrganellePopupMenu : PopupPanel
     [Export]
     public NodePath MoveButtonPath;
 
+    [Export]
+    public NodePath MicrobeEditorPath;
+
     private Label selectedOrganelleNameLabel;
     private Button deleteButton;
     private Button moveButton;
+    private MicrobeEditor microbeEditor;
 
     private bool showPopup;
     private OrganelleTemplate selectedOrganelle;
@@ -95,6 +99,7 @@ public class OrganellePopupMenu : PopupPanel
         selectedOrganelleNameLabel = GetNode<Label>(SelectedOrganelleNameLabelPath);
         deleteButton = GetNode<Button>(DeleteButtonPath);
         moveButton = GetNode<Button>(MoveButtonPath);
+        microbeEditor = GetNode<MicrobeEditor>(MicrobeEditorPath);
 
         UpdateOrganelleNameLabel();
         UpdateDeleteButton();
@@ -201,13 +206,21 @@ public class OrganellePopupMenu : PopupPanel
         if (deleteButton == null)
             return;
 
+        float mpCost;
+        if (SelectedOrganelle == null)
+        {
+            mpCost = 0;
+        }
+        else
+        {
+            mpCost = microbeEditor.History.WhatWouldActionCost(
+                new RemoveActionData(SelectedOrganelle, SelectedOrganelle.Position, SelectedOrganelle.Orientation));
+        }
+
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("MP_COST"),
-            (SelectedOrganelle != null && SelectedOrganelle.PlacedThisSession) ?
-                "+" + SelectedOrganelle.Definition.MPCost :
-                "-" + Constants.ORGANELLE_REMOVE_COST);
+            TranslationServer.Translate("MP_COST"), mpCost > 0 ? "+" + mpCost : "-" + -mpCost);
 
         deleteButton.Disabled = !EnableDeleteOption;
     }
@@ -217,14 +230,23 @@ public class OrganellePopupMenu : PopupPanel
         if (moveButton == null)
             return;
 
+        float mpCost;
+        if (SelectedOrganelle == null)
+        {
+            mpCost = 0;
+        }
+        else
+        {
+            mpCost = microbeEditor.History.WhatWouldActionCost(
+                new MoveActionData(SelectedOrganelle, SelectedOrganelle.Position, SelectedOrganelle.Position,
+                    SelectedOrganelle.Orientation, SelectedOrganelle.Orientation));
+        }
+
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
-        // The organelle is free to move if it was added (placed) this session or already moved this session
-        bool isFreeToMove = SelectedOrganelle != null && (SelectedOrganelle.MovedThisSession ||
-            SelectedOrganelle.PlacedThisSession);
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("MP_COST"),
-            isFreeToMove ? "-0" : "-" + Constants.ORGANELLE_MOVE_COST.ToString(CultureInfo.CurrentCulture));
+            mpCost.ToString(CultureInfo.CurrentCulture));
 
         moveButton.Disabled = !EnableMoveOption;
     }
