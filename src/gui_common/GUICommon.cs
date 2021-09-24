@@ -74,6 +74,9 @@ public class GUICommon : Node
     /// </summary>
     public void PlayButtonPressSound()
     {
+        if (AudioSource.Playing)
+            return;
+
         AudioSource.Stream = buttonPressSound;
         AudioSource.Play();
     }
@@ -83,6 +86,9 @@ public class GUICommon : Node
     /// </summary>
     public void PlayCustomSound(AudioStream sound)
     {
+        if (AudioSource.Playing)
+            return;
+
         AudioSource.Stream = sound;
         AudioSource.Play();
     }
