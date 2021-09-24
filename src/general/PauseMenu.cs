@@ -207,9 +207,6 @@ public class PauseMenu : ControlWithInput
 
     private void ClosePressed()
     {
-        if (IsPausingBlocked())
-            return;
-
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnClosed));
     }
