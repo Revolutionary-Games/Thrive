@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 10:22+0300\n"
+"POT-Creation-Date: 2021-09-24 14:00+0300\n"
 "PO-Revision-Date: 2021-09-24 10:52+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 "
+"&& n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
@@ -28,9 +28,9 @@ msgstr ""
 "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
 "thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
 "input]g_move_right[/thrive:input] והעכבר בשביל לנוע. [thrive:"
-"input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type=\"oxytoxy"
-"\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:input]g_toggle_engulf[/"
-"thrive:input] בשביל להחליף למצב בליעה."
+"input]g_fire_toxin[/thrive:input] בשביל לירות[thrive:compound type="
+"\"oxytoxy\"][/thrive:compound] אם יש לך חלולית רעלן. [thrive:"
+"input]g_toggle_engulf[/thrive:input] בשביל להחליף למצב בליעה."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -43,9 +43,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"בשביל לפתוח את העורך ולהתרבות, אתה צריך לצבור [thrive:compound type=\"ammonia"
-"\"][/thrive:compound] (הענן הכתום) ו[thrive:compound type=\"phosphates\"][/"
-"thrive:compound] (הענן הסגול)."
+"בשביל לפתוח את העורך ולהתרבות, אתה צריך לצבור [thrive:compound type="
+"\"ammonia\"][/thrive:compound] (הענן הכתום) ו[thrive:compound type="
+"\"phosphates\"][/thrive:compound] (הענן הסגול)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
@@ -53,18 +53,18 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "אתה יכול גם לבלוע תאים, חיידקים, גושי ברזל וחלקי תא אשר קטנים ממך על ידי "
 "לחיצה על [thrive:input]g_toggle_engulf[/thrive:input]. מצב זה עולה "
-"additional [thrive:compound type=\"atp\"][/thrive:compound] נוסף ויאט אותך. "
-"אל תשכח ללחוץ שנית על [thrive:input]g_toggle_engulf[/thrive:input] על מנת "
-"להפסיק את מצב הבליעה."
+"additional [thrive:compound type=\"atp\"][/thrive:compound] נוסף ויאט "
+"אותך. אל תשכח ללחוץ שנית על [thrive:input]g_toggle_engulf[/thrive:input] "
+"על מנת להפסיק את מצב הבליעה."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "ויסות אוסמטי עולה [thrive:compound type=\"atp\"][/thrive:compound], מה שזה "
-"אומר שככל שהתא שלך גדול יותר, כך יותר מיטוכונדריה, מטבולוזומים או רוסטיצינין "
-"(או ציטופלזמה, שעושה גליקוליזה) אתה צריך על מנת למנוע איבוד של [thrive:"
-"compound type=\"atp\"][/thrive:compound] בזמן שאתה נח."
+"אומר שככל שהתא שלך גדול יותר, כך יותר מיטוכונדריה, מטבולוזומים או "
+"רוסטיצינין (או ציטופלזמה, שעושה גליקוליזה) אתה צריך על מנת למנוע איבוד של "
+"[thrive:compound type=\"atp\"][/thrive:compound] בזמן שאתה נח."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -84,17 +84,17 @@ msgstr ""
 "סגול - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "חום חלוד - [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] מייצר [thrive:compound "
-"type=\"atp\"][/thrive:compound]"
+"[thrive:compound type=\"glucose\"][/thrive:compound] מייצר [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"ניתן להמיר [thrive:compound type=\"hydrogensulfide\"] ל[thrive:compound type="
-"\"glucose\"][/thrive:compound] באמצעות כימופלסטים וחלבונים כימוסנתזיים. ניתן "
-"להמיר [thrive:compound type=\"iron\"][/thrive:compound] באמצעות רוסטיציאנין "
-"ל[thrive:compound type=\"atp\"][/thrive:compound]."
+"ניתן להמיר [thrive:compound type=\"hydrogensulfide\"] ל[thrive:compound "
+"type=\"glucose\"][/thrive:compound] באמצעות כימופלסטים וחלבונים "
+"כימוסנתזיים. ניתן להמיר [thrive:compound type=\"iron\"][/thrive:compound] "
+"באמצעות רוסטיציאנין ל[thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
@@ -118,37 +118,37 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"שים לב שגם המתחרים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים גם "
-"כן."
+"שים לב שגם המתחרים שלך מתפתחים לצדך. בכל פעם שאתה נכנס לעורך, הם מתפתחים "
+"גם כן."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"על ידי קשירה עם תאים אחרי, אתה יכול ליצור מושבת תאים בה התאים חולקים תרכובות "
-"שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, אתה צריך שהיה לך "
-"אברון מקשר ולעבור דרכם אחרי שנכנסת למצב קישור. אתה יכול לקשר רק עם תאים "
-"מהמין שלך. בזמן שאתה במושבה, אתה לא יכול לחלק את התאים שלך ולהיכנס לעורך "
-"(נכון לעכשיו). בשביל להיכנס לעורך, ראשית אתה חייב לעזוב את המושבה וכשיש לך "
-"מספיק תרכובות, אז תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך ליצירת רב-"
-"תאים (עדין לא במשחק)."
+"על ידי קשירה עם תאים אחרי, אתה יכול ליצור מושבת תאים בה התאים חולקים "
+"תרכובות שהם ספגו ומייצרים זה עם זה. על מנת ליצור חיבור עם תא אחר, אתה צריך "
+"שהיה לך אברון מקשר ולעבור דרכם אחרי שנכנסת למצב קישור. אתה יכול לקשר רק עם "
+"תאים מהמין שלך. בזמן שאתה במושבה, אתה לא יכול לחלק את התאים שלך ולהיכנס "
+"לעורך (נכון לעכשיו). בשביל להיכנס לעורך, ראשית אתה חייב לעזוב את המושבה "
+"וכשיש לך מספיק תרכובות, אז תוכל להיכנס לעורך. מושבות תאים גדולות הם הדרך "
+"ליצירת רב-תאים (עדין לא במשחק)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "מבנים פרוקריוטיים\n"
 "\n"
-"מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:"
-"compound type=\"glucose\"][/thrive:compound]\n"
+"מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] "
+"מ[thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"][/"
-"thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:"
+"חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"]"
+"[/thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:"
 "compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
 "\n"
 "תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\"][/thrive:"
 "compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה אחד\n"
 "\n"
-"רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:"
-"compound type=\"atp\"][/thrive:compound]\n"
+"רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] "
+"ל[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
 "ניטרוגנאז: ממיר חנקן אטמוספרי ו [thrive:compound type=\"atp\"][/thrive:"
 "compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound] באופן "
@@ -162,8 +162,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "אברונים חיצוניים\n"
 "\n"
-"שוטון: מזיז את התא שלך מהר יותר על ידי צריכת [thrive:compound type=\"atp\"][/"
-"thrive:compound]\n"
+"שוטון: מזיז את התא שלך מהר יותר על ידי צריכת [thrive:compound type=\"atp\"]"
+"[/thrive:compound]\n"
 "\n"
 "פילוס: ניתן להשתמש בו בשביל לדקור תאים אחרים"
 
@@ -177,9 +177,9 @@ msgstr ""
 "\n"
 "מקשר: מאפשר התחברות עם תאים אחרים\n"
 "\n"
-"מיטוכונדריון: מפיק [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:"
-"compound type=\"glucose\"][/thrive:compound] וחמצן אטמוספרי באופן יותר יעיל "
-"מציטופלזמה\n"
+"מיטוכונדריון: מפיק [thrive:compound type=\"atp\"][/thrive:compound] "
+"מ[thrive:compound type=\"glucose\"][/thrive:compound] וחמצן אטמוספרי באופן "
+"יותר יעיל מציטופלזמה\n"
 "\n"
 "כלורופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] מאור "
 "שמש ופחמן דו חמצני אטמוספרי\n"
@@ -187,8 +187,9 @@ msgstr ""
 "כימופלסט: מייצר [thrive:compound type=\"glucose\"][/thrive:compound] "
 "מ[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"פלסטיד מקבע חנקן: מייצר [thrive:compound type=\"ammonia\"][/thrive:compound] "
-"מ[thrive:compound type=\"atp\"][/thrive:compound] ומחמצן וחנקן אטמוספרי\n"
+"פלסטיד מקבע חנקן: מייצר [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] מ[thrive:compound type=\"atp\"][/thrive:compound] ומחמצן וחנקן "
+"אטמוספרי\n"
 "\n"
 "חלולית: מאחסן 15 תרכובות שנאספו\n"
 "\n"
@@ -201,17 +202,17 @@ msgstr ""
 "בכל דור, נוצרים 100 נקודות מוטציה (נקמ\"ו) שניתן לבזבז, ועל כל שינוי (או "
 "מוטציה) יעלה סכום מסוים מהנקמ\"ו. הוספה או הוסרה של אברונים עולים נקמ\"ו, "
 "אבל הסרה של אברונים שנוספו בסיבוב המוטציה נוכחית מחזיר את העלות של אותם "
-"אברונים. ניתן להזיז או להסיר לחלוטין אברון על ידי הלחצן הימני עליו ולבחור את "
-"הפעולה הרצויה מהרשימה נפתחת. ניתן לסובב את אברון במקשים [thrive:"
+"אברונים. ניתן להזיז או להסיר לחלוטין אברון על ידי הלחצן הימני עליו ולבחור "
+"את הפעולה הרצויה מהרשימה נפתחת. ניתן לסובב את אברון במקשים [thrive:"
 "input]e_rotate_left[/thrive:input] ו[thrive:input]e_rotate_right[/thrive:"
 "input] בזמן שמזיזים אותם."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"בכל פעם שאתה מתרבה, אתה נכנס לעורך המיקרובי. שם תוכל לבצע שינוי במין שלך (על "
-"ידי הוספה, העברה או הסרה של אברונים) בכדי להגדיל את הצלחת המין שלך. כל ביקור "
-"בעורך בשלב המיקרובי מייצג 100 מיליון שנות אבולוציה."
+"בכל פעם שאתה מתרבה, אתה נכנס לעורך המיקרובי. שם תוכל לבצע שינוי במין שלך "
+"(על ידי הוספה, העברה או הסרה של אברונים) בכדי להגדיל את הצלחת המין שלך. כל "
+"ביקור בעורך בשלב המיקרובי מייצג 100 מיליון שנות אבולוציה."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
@@ -232,8 +233,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "הנה טיפ: ויסות אוסמטי עולה ATP 1 לשנייה על כל משושה שהתא שלך מכיל, ועל כל "
-"משושה ריק של ציטופלזמה מייצר ATP 5 לשנייה גם כן, כלומר שאם אתה מאבד ATP בגלל "
-"ויסות אוסמטי, רק הוסף עוד משושי ציטופלזמה או הסר אברון כלשהו."
+"משושה ריק של ציטופלזמה מייצר ATP 5 לשנייה גם כן, כלומר שאם אתה מאבד ATP "
+"בגלל ויסות אוסמטי, רק הוסף עוד משושי ציטופלזמה או הסר אברון כלשהו."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
@@ -286,8 +287,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"הנה טיפ: ככל שיש לך יותר שוטונים, כך אתה זז מהר יותר, ורוום ורוום!!, אבל זה "
-"גם עולה יותר ATP"
+"הנה טיפ: ככל שיש לך יותר שוטונים, כך אתה זז מהר יותר, ורוום ורוום!!, אבל "
+"זה גם עולה יותר ATP"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
@@ -306,7 +307,8 @@ msgstr "עובדה משעשעת: הידעת שיש יותר מ8000 מינים ש
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "עובדה משעשעת: הסטנטור (Stentor) היא ריסנית היכולה למתוח את עצמה ולתפוס טרף "
-"במעין פה בצורת חצוצרה אשר שואב את הטרף פנימה על ידי יצירת זרמי מים עם הריסים."
+"במעין פה בצורת חצוצרה אשר שואב את הטרף פנימה על ידי יצירת זרמי מים עם "
+"הריסים."
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
@@ -320,13 +322,15 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "הנה טיפ: תזהר מתאים וחיידקים גדולים, זה לא כיף להתעכל, והם יאכלו אותך."
+msgstr ""
+"הנה טיפ: תזהר מתאים וחיידקים גדולים, זה לא כיף להתעכל, והם יאכלו אותך."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"מוביל צוות המוזיקה של Thrive יצר מלא שירים שטרם נוספו למשחק! ניתן לשמוע אותם "
-"או לצפות בסרטונים של המלחין בערוץ היוטיוב שלו: \"אוליבר לאוג\" (Oliver Lugg)."
+"מוביל צוות המוזיקה של Thrive יצר מלא שירים שטרם נוספו למשחק! ניתן לשמוע "
+"אותם או לצפות בסרטונים של המלחין בערוץ היוטיוב שלו: \"אוליבר לאוג"
+"\" (Oliver Lugg)."
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
@@ -337,13 +341,14 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"בThrive נועד להיות הדמיה של כוכב חייזרי, ולכן הגיוני שרוב היצורים היו דומים "
-"אחד לשני עקב אבולוציה שמתרחש סביבם. נראה אותכם אם תוכלו לזהות אותם!"
+"בThrive נועד להיות הדמיה של כוכב חייזרי, ולכן הגיוני שרוב היצורים היו "
+"דומים אחד לשני עקב אבולוציה שמתרחש סביבם. נראה אותכם אם תוכלו לזהות אותם!"
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"עובדה משעשעת: צוות Thrive מדי פעם עושים פודקאסטים (הֶסְכֵּתות), כדאי לבדוק אותם!"
+"עובדה משעשעת: צוות Thrive מדי פעם עושים פודקאסטים (הֶסְכֵּתות), כדאי לבדוק "
+"אותם!"
 
 #: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_26"
@@ -352,8 +357,8 @@ msgstr "עובדה משעשעת: Thrive נעשתה באמצעות מנוע \"God
 #: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"עובדה משעשעת: אחד מאבות טיפוס הראשונים שנתן לשחק, נוצר על ידי המתכנת המדהים "
-"שלנו: \"untrustedlife\"!"
+"עובדה משעשעת: אחד מאבות טיפוס הראשונים שנתן לשחק, נוצר על ידי המתכנת "
+"המדהים שלנו: \"untrustedlife\"!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1342,15 +1347,16 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "ציור מאת {0}"
 
-#: ../src/general/HelpScreen.tscn:107 ../src/microbe_stage/ProcessPanel.tscn:76
+#: ../src/general/HelpScreen.tscn:107
+#: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
 msgstr "סגור"
 
-#: ../src/general/MainMenu.cs:393 ../src/general/MainMenu.cs:394
+#: ../src/general/MainMenu.cs:393
 msgid "OK"
 msgstr "בסדר"
 
-#: ../src/general/MainMenu.cs:394 ../src/general/MainMenu.cs:395
+#: ../src/general/MainMenu.cs:394
 msgid "Cancel"
 msgstr "ביטול"
 
@@ -1733,7 +1739,7 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:614
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
@@ -2030,17 +2036,17 @@ msgstr "חיים"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound "
-"type=\"atp\"][/thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "הקרביים הדביקים של התא. הציטופלזמה היא התערובת בסיסית של יונים, חלבונים "
-"ותרכובות אחרות המומסים במים הממלאים את פנים התא. אחד התפקידים שהוא מבצע הוא "
-"גליקליזה, המרת הגלוקוז לאנרגיית ATP. לתאים שחסרים האברונים למטבוליזם מתקדמת "
-"יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון מולקולות בתא "
-"ולגדילתו."
+"ותרכובות אחרות המומסים במים הממלאים את פנים התא. אחד התפקידים שהוא מבצע "
+"הוא גליקליזה, המרת הגלוקוז לאנרגיית ATP. לתאים שחסרים האברונים למטבוליזם "
+"מתקדמת יותר, מסתמכים על תהליך התסיסה ליצור אנרגיה. הוא גם משומש לאחסון "
+"מולקולות בתא ולגדילתו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:344
@@ -2092,18 +2098,18 @@ msgstr "עלות ויסות אוסמטי"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound "
-"type=\"atp\"][/thrive:compound]. בהתאם לריכוז של ה[thrive:compound type="
-"\"oxygen\"][/thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]. בהתאם לריכוז של ה[thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
-"מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר גלוקוז "
-"ל- ATP בקצב גבוה ביותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא נשימה "
-"אירובית. יחד עם זאת, הוא דורש חמצן כדי לתפקד, ורמות חמצן נמוכות יותר בסביבה "
-"יאטו את קצב ייצור שלו. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם "
-"מבצעים גליקליזה ברמה מסוימת."
+"מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר "
+"גלוקוז ל- ATP בקצב גבוה ביותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא "
+"נשימה אירובית. יחד עם זאת, הוא דורש חמצן כדי לתפקד, ורמות חמצן נמוכות יותר "
+"בסביבה יאטו את קצב ייצור שלו. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל "
+"שמסביבם מבצעים גליקליזה ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
 msgid "THYLAKOID"
@@ -2112,18 +2118,18 @@ msgstr "תילקואיד"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז של "
-"[thrive:compound type=\"carbondioxide\"][/thrive:compound] ועוצמת ה[thrive:"
-"compound type=\"sunlight\"][/thrive:compound]"
+"מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ועוצמת "
+"ה[thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"תילקואידים הם מקבצי חלבונים ופיגמנטים רגישים לאור. הפיגמנטים מסוגלים להשתמש "
-"באנרגיית האור כדי לייצר גלוקוז ממים ופחמן דו חמצני במצב צבירה גזי בתהליך "
-"שנקרא פוטוסינתזה. פיגמנטים אלו הם גם מה שמעניק להם צבע ייחודי. קצב ייצור "
-"הגלוקוז מתרחש בהתאם לריכוז פחמן הדו חמצני ועוצמת האור. מכיוון שהתילקואידים "
-"צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקליזה ברמה מסוימת."
+"תילקואידים הם מקבצי חלבונים ופיגמנטים רגישים לאור. הפיגמנטים מסוגלים "
+"להשתמש באנרגיית האור כדי לייצר גלוקוז ממים ופחמן דו חמצני במצב צבירה גזי "
+"בתהליך שנקרא פוטוסינתזה. פיגמנטים אלו הם גם מה שמעניק להם צבע ייחודי. קצב "
+"ייצור הגלוקוז מתרחש בהתאם לריכוז פחמן הדו חמצני ועוצמת האור. מכיוון "
+"שהתילקואידים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקליזה ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
@@ -2131,16 +2137,17 @@ msgstr ""
 "הופך [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] ל[thrive:"
 "compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוז של [thrive:"
 "compound type=\"carbondioxide\"][/thrive:compound]. בנוסף הופך [thrive:"
-"compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"]"
-"[/thrive:compound]"
+"compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "חלבונים כימוסינתזיים הם מקבצים קטנים של חלבונים בציטופלזמה המסוגלים להמיר "
 "מימן גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא \"כימוסינתזה של מימן "
-"גופרתי\". קצב ייצור הגלוקוז מתאזן עם ריכוז הפחמן הדו חמצני. מכיוון שהחלבונים "
-"הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקוליזה ברמה מסוימת."
+"גופרתי\". קצב ייצור הגלוקוז מתאזן עם ריכוז הפחמן הדו חמצני. מכיוון "
+"שהחלבונים הכימוסינתזיים צפים בציטופלזמה, הנוזל שמסביבם מבצעים גליקוליזה "
+"ברמה מסוימת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:617
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -2153,15 +2160,16 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:618
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
-"רוסטיצינין הוא חלבון המסוגל להשתמש בפחמן דו חמצני ובחמצן כדי לחמצן ברזל ממצב "
-"כימי אחד למשנהו. תהליך זה, הנקרא נשימת ברזל, משחרר אנרגיה שהתא מסוגל לקצור."
+"רוסטיצינין הוא חלבון המסוגל להשתמש בפחמן דו חמצני ובחמצן כדי לחמצן ברזל "
+"ממצב כימי אחד למשנהו. תהליך זה, הנקרא נשימת ברזל, משחרר אנרגיה שהתא מסוגל "
+"לקצור."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type="
-"\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type="
-"\"nitrogen\"][/thrive:compound]"
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"nitrogen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:715
 msgid "NITROGENASE_DESCRIPTION"
@@ -2174,16 +2182,16 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:812
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type="
-"\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type="
-"\"oxygen\"][/thrive:compound].ניתן לשחררו על ידי [thrive:input]g_fire_toxin[/"
-"thrive:input]."
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"oxygen\"][/thrive:compound].ניתן לשחררו על ידי [thrive:"
+"input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:813
 msgid "OXYTOXISOME_DESC"
 msgstr ""
-"מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ\"ט"
-"\"."
+"מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ"
+"\"ט\"."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -2196,8 +2204,8 @@ msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "השוטון (ברבים: שוטונים) הוא צרור סיבי חלבון דמוי שוט המשתרע מקרום התא אשר "
 "משתמש ב- ATP כדי לגלול ולהניע את התא לכיוון מסוים. מקומו של השוטון קובע את "
-"כיוונו שממנו מספק דחף לתנועת התא. כיוון הדחף מנוגד לכיוון שהשוטון פונה, למשל "
-"שוטון שמונח בכיוון השמאל של התא יספק דחף לימין."
+"כיוונו שממנו מספק דחף לתנועת התא. כיוון הדחף מנוגד לכיוון שהשוטון פונה, "
+"למשל שוטון שמונח בכיוון השמאל של התא יספק דחף לימין."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:927
 msgid "SPEED"
@@ -2229,8 +2237,9 @@ msgstr ""
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "מאפשר להתחבר לתאים אחרים. זהו הצד הראשון לכיוון רב-תאים. בזמן שאתה חלק "
-"ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה חלק "
-"ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא שלך."
+"ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה "
+"חלק ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא "
+"שלך."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1205
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2241,45 +2250,46 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1206
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
-"המאפיין המגדיר של תאים אוקריוטים. הגרעין כולל גם את הרטיקולום האנדופלזמי ואת "
-"גוף הגולגי. זוהי התפתחות של תאים פרוקריוטיים לפתח מערכת של קרומים פנימיים, "
-"הנעשית על ידי הטמעת פרוקריוט נוסף בתוכם. זה מאפשר להם למלא או להדוף את "
-"התהליכים השונים שקורים בתוך התא ולמנוע מהם לחפוף בינם. זה מאפשר לאברונים "
-"החדשים שבעלי קרום להיות הרבה יותר מורכבים, יעילים ומתמחים מאשר אם היו צפים "
-"חופשיים בציטופלזמה.יחד עם זאת, זה כרוך במחיר של הפיכת התא להרבה יותר גדול "
-"ולדרישה רבה יותר אנרגיה להחזקתו."
+"המאפיין המגדיר של תאים אוקריוטים. הגרעין כולל גם את הרטיקולום האנדופלזמי "
+"ואת גוף הגולגי. זוהי התפתחות של תאים פרוקריוטיים לפתח מערכת של קרומים "
+"פנימיים, הנעשית על ידי הטמעת פרוקריוט נוסף בתוכם. זה מאפשר להם למלא או "
+"להדוף את התהליכים השונים שקורים בתוך התא ולמנוע מהם לחפוף בינם. זה מאפשר "
+"לאברונים החדשים שבעלי קרום להיות הרבה יותר מורכבים, יעילים ומתמחים מאשר אם "
+"היו צפים חופשיים בציטופלזמה.יחד עם זאת, זה כרוך במחיר של הפיכת התא להרבה "
+"יותר גדול ולדרישה רבה יותר אנרגיה להחזקתו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1302
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound "
-"type=\"atp\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type="
-"\"oxygen\"][/thrive:compound]"
+"הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:"
+"compound type=\"atp\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:"
+"compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1303
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
-"תחנת הכוח של התא. המיטוכונדריון (ברבים: מיטוכונדריה) הוא אברון בעל קרום כפול "
-"שמלא בחלבונים ואנזימים. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי "
-"שלו. הוא מסוגל להמיר גלוקוז ל- ATP ביעילות גבוהה בהרבה ממה שניתן לעשות "
-"בציטופלזמה בתהליך הנקרא נשימה אירובית. עם זאת, הוא דורש חמצן כדי לתפקד, "
-"ורמות חמצן נמוכות יותר בסביבה יאטו את קצב ייצור ה- ATP שלו."
+"תחנת הכוח של התא. המיטוכונדריון (ברבים: מיטוכונדריה) הוא אברון בעל קרום "
+"כפול שמלא בחלבונים ואנזימים. זהו פרוקריוט שהוטמע לשימוש על ידי המארח "
+"האוקריוטי שלו. הוא מסוגל להמיר גלוקוז ל- ATP ביעילות גבוהה בהרבה ממה שניתן "
+"לעשות בציטופלזמה בתהליך הנקרא נשימה אירובית. עם זאת, הוא דורש חמצן כדי "
+"לתפקד, ורמות חמצן נמוכות יותר בסביבה יאטו את קצב ייצור ה- ATP שלו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של "
-"[thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל עוצמת "
+"מייצר[thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל עוצמת "
 "ה[thrive:compound type=\"sunlight\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
-"הכלורופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לאור הנערמים בשקיות "
-"קרומיות. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי שלו. הפיגמנטים "
-"בכלורופלסט מסוגלים להשתמש באנרגיית האור כדי לייצר גלוקוז ממים ופחמן דו חמצני "
-"בתהליך הנקרא פוטוסינתזה. הפיגמנטים הללו הם גם מה שמעניקים לו את הצבע ייחודי. "
-"קצב ייצור הגלוקוז שלו משתנה עם ריכוז הפחמן הדו חמצני ועוצמת האור."
+"הכלורופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לאור הנערמים "
+"בשקיות קרומיות. זהו פרוקריוט שהוטמע לשימוש על ידי המארח האוקריוטי שלו. "
+"הפיגמנטים בכלורופלסט מסוגלים להשתמש באנרגיית האור כדי לייצר גלוקוז ממים "
+"ופחמן דו חמצני בתהליך הנקרא פוטוסינתזה. הפיגמנטים הללו הם גם מה שמעניקים "
+"לו את הצבע ייחודי. קצב ייצור הגלוקוז שלו משתנה עם ריכוז הפחמן הדו חמצני "
+"ועוצמת האור."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1469
 msgid "THERMOPLAST"
@@ -2288,8 +2298,9 @@ msgstr "תרמופלסט"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1470
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של "
-"[thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל הטמפרטורה."
+"מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו "
+"של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל "
+"הטמפרטורה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1471
 msgid "THERMOPLAST_DESCRIPTION"
@@ -2301,7 +2312,7 @@ msgstr ""
 "הדו חמצני והטמפרטורה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:172
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "אין תהליכים"
 
@@ -2315,24 +2326,24 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
-"הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר מימן גופרתי, "
-"מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא כימוסינתזה מימן גופרתי. קצב ייצור "
-"הגלוקוז שלו משתנה עם ריכוז פחמן הדו חמצני."
+"הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר מימן "
+"גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא כימוסינתזה מימן גופרתי. "
+"קצב ייצור הגלוקוז שלו משתנה עם ריכוז פחמן הדו חמצני."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type="
-"\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type="
-"\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:"
-"compound]"
+"הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound "
+"type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
-"פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש בחנקן ,חמצן ובאנרגיה תאית בצורת ATP "
-"כדי לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע חנקן "
-"אירובי."
+"פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש בחנקן ,חמצן ובאנרגיה תאית בצורת "
+"ATP כדי לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע "
+"חנקן אירובי."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1767
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
@@ -2349,10 +2360,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1864
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"הופך[thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type="
-"\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type="
-"\"oxygen\"][/thrive:compound]. ניתן לשחרר את הרעלן על ידי לחיצה על [thrive:"
-"input]g_fire_toxin[/thrive:input]."
+"הופך[thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound "
+"type=\"oxygen\"][/thrive:compound]. ניתן לשחרר את הרעלן על ידי לחיצה על "
+"[thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2368,8 +2379,8 @@ msgstr "חלולית של ביולומינסנציה"
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "הצורה הבסיסית ביותר של הקרום, מספק מעט הגנה מפני נזק וצריך יותר אנרגיה כדי "
-"לא לעוות. היתרון בכך שהוא מאפשר לתא לנוע ולקלוט חומרים מזינים במהירות גדולה "
-"יותר."
+"לא לעוות. היתרון בכך שהוא מאפשר לתא לנוע ולקלוט חומרים מזינים במהירות "
+"גדולה יותר."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2249
@@ -2390,9 +2401,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2320
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"לקרום זה יש שכבה קשה, התורמת להגנה טובה יותר מפני נזק כולל ובמיוחד מפני נזק "
-"פיזי. זה גם עולה פחות אנרגיה כדי לשמור על צורתו, אך אינו יכול לספוג משאבים "
-"במהירות וגם איטי יותר."
+"לקרום זה יש שכבה קשה, התורמת להגנה טובה יותר מפני נזק כולל ובמיוחד מפני "
+"נזק פיזי. זה גם עולה פחות אנרגיה כדי לשמור על צורתו, אך אינו יכול לספוג "
+"משאבים במהירות וגם איטי יותר."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2951
@@ -2411,8 +2422,8 @@ msgstr "לא יכול לבלוע"
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "לקרום זה יש דופן קשיח, מה שאומר שיש לו הגנות טובות יותר מפני נזק כולל "
-"ובמיוחד מפני נזק מרעלים. זהו גם עולה פחות אנרגיה כדי לשמור על צורתו, יחד עם "
-"זאת, הוא איטי יותר ואינו מסוגל לספוג משאבים במהירות."
+"ובמיוחד מפני נזק מרעלים. זהו גם עולה פחות אנרגיה כדי לשמור על צורתו, יחד "
+"עם זאת, הוא איטי יותר ואינו מסוגל לספוג משאבים במהירות."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2718
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2985
@@ -2423,16 +2434,16 @@ msgstr "עמידות לרעלים"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2790
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"לממברנה זו יש קליפה חזקה העשויה מסידן פחמתי. הוא מסוגל בקלות לעמוד בפני נזק "
-"ודורש פחות אנרגיה כדי לא לעוות. החסרונות זה שמעטפת כה כבדה עד שהיא גורמת לתא "
-"לנוע באטיות הרבה יותר וגם לוקח יותר זמן לספוג משאבים."
+"לממברנה זו יש קליפה חזקה העשויה מסידן פחמתי. הוא מסוגל בקלות לעמוד בפני "
+"נזק ודורש פחות אנרגיה כדי לא לעוות. החסרונות זה שמעטפת כה כבדה עד שהיא "
+"גורמת לתא לנוע באטיות הרבה יותר וגם לוקח יותר זמן לספוג משאבים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
-"לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי ועמיד "
-"מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. עם זאת, "
-"הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
+"לקרום זה יש קיר חזק העשוי מצורן. מה שמאפשר לו לעמוד היטב עם הנזק הכללי "
+"ועמיד מאוד בפני נזקים פיזיים. זהו גם דורש פחות אנרגיה כדי לשמור על צורתו. "
+"עם זאת, הוא מאט את התא בצורה רצינית והתא סופג משאבים בקצב מופחת."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
@@ -2631,7 +2642,6 @@ msgstr "מאזן תרכובות"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "טוען עורך המיקרובי"
 
@@ -2639,13 +2649,11 @@ msgstr "טוען עורך המיקרובי"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2317
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 
@@ -2912,8 +2920,8 @@ msgstr "נכחד"
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
-"כמו 99% מכל המינים שחיו אי פעם, אתה נכחדת. אחרים יחליפו וישגשגו במקומך. אבל "
-"אתה תישכח, ניסוי כושל של האבולוציה."
+"כמו 99% מכל המינים שחיו אי פעם, אתה נכחדת. אחרים יחליפו וישגשגו במקומך. "
+"אבל אתה תישכח, ניסוי כושל של האבולוציה."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
@@ -3033,8 +3041,8 @@ msgstr "לא תקף"
 #: ../src/saving/SaveList.cs:187
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-"מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק לצמיתות "
-"את {0}?"
+"מחיקת שמירה זו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק "
+"לצמיתות את {0}?"
 
 #: ../src/saving/SaveList.cs:281
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
@@ -3089,8 +3097,8 @@ msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "השמירה שנבחרה לטעינה ידועה שלא מתאימה לגרסה זו של Thrive.\n"
 "ואין שדרוג שמירה לשמירה זו.\n"
-"בגלל שThrive עדין בשלבי פיתוח ראשונים, התאמה שמירות אינו בעדיפות גבוהה, ובשל "
-"כך ,אין שדרוג שמירה לכל הגרסאות."
+"בגלל שThrive עדין בשלבי פיתוח ראשונים, התאמה שמירות אינו בעדיפות גבוהה, "
+"ובשל כך ,אין שדרוג שמירה לכל הגרסאות."
 
 #: ../src/saving/SaveList.tscn:183
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
@@ -3151,8 +3159,8 @@ msgstr ""
 #: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
-"מחיקת שמירות שנבחרו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק את "
-"{0} לצמיתות ?"
+"מחיקת שמירות שנבחרו היינו פעולה בלתי הפיכה, האם אתה בטוח שאתה רוצה למחוק "
+"את {0} לצמיתות ?"
 
 #: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
@@ -3251,21 +3259,22 @@ msgstr ""
 "אתה יכול ללחוץ על האזורים בעזרת העכבר ולבחור אותם על מנת לראות פרטים ומידע "
 "עליהם בצד ימין.\n"
 "\n"
-"אם בחרת באזור שנמצא ליד האזור שאתה נמצא בו , אתה יכול לבחור על הכפתור מימין "
-"בשביל לעבור לשם. זה מאפשר לאוכלוסיה שלך לנוע לאזורים חדשים.\n"
+"אם בחרת באזור שנמצא ליד האזור שאתה נמצא בו , אתה יכול לבחור על הכפתור "
+"מימין בשביל לעבור לשם. זה מאפשר לאוכלוסיה שלך לנוע לאזורים חדשים.\n"
 "\n"
 "תבחר באזור מסוים בשביל להמשיך."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"זה עורך המיקרובי או התא, איפה שאתה יכול להוסיף או להסיר אברונים מהמין שלך על "
-"ידי תשלום בנקודות מוטציה (נקמ\"ו).\n"
+"זה עורך המיקרובי או התא, איפה שאתה יכול להוסיף או להסיר אברונים מהמין שלך "
+"על ידי תשלום בנקודות מוטציה (נקמ\"ו).\n"
 "\n"
 "אתה גם יכול לשנות מאפיינים אחרים של המין שלך בלשוניות האחרות של הערוך.\n"
 "\n"
 "בשביל להמשיך, בחר אברון מהחלונית שמשמאל (ציטופלזמה היינו התחלה טובה). ואז "
-"לחץ לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין שלך."
+"לחץ לחיצה שמאלית ליד המשושה שמוצג במרכז במסך בשביל להוסיף את האברון למין "
+"שלך."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
@@ -3314,8 +3323,8 @@ msgstr "הבנתי"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"על כוכב חייזרי מרוחק,לאחר עידנים של פעילות געשית ופגיעות של מטאוריטים, החלה "
-"לצוץ תופעה חדשה ביקום:\n"
+"על כוכב חייזרי מרוחק,לאחר עידנים של פעילות געשית ופגיעות של מטאוריטים, "
+"החלה לצוץ תופעה חדשה ביקום:\n"
 "\n"
 "חיים.\n"
 "\n"
@@ -3375,15 +3384,14 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"אתהנכנסת ל\"מצב שחרר\". בזמן שאתה במצב זה אתה יכול ללחוץ על חברי המושבה שלך "
-"על מנת להשתחרר מהם.\n"
+"אתהנכנסת ל\"מצב שחרר\". בזמן שאתה במצב זה אתה יכול ללחוץ על חברי המושבה "
+"שלך על מנת להשתחרר מהם.\n"
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש \"שחרר הכל"
 "\"."
 
-#: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
-msgstr "הסר אברון"
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "הסר אברון"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"
