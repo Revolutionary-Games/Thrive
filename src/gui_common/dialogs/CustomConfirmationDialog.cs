@@ -16,6 +16,7 @@ public class CustomConfirmationDialog : CustomDialog
     private string cancelText = "CANCEL";
 
     private Label dialogLabel;
+    private HBoxContainer buttonsContainer;
     private Button confirmButton;
     private Button cancelButton;
     private Control cancelEndSpacer;
@@ -90,9 +91,16 @@ public class CustomConfirmationDialog : CustomDialog
     public override void _Ready()
     {
         dialogLabel = GetNode<Label>("VBoxContainer/Label");
-        confirmButton = GetNode<Button>("VBoxContainer/VBoxContainer/ConfirmButton");
-        cancelButton = GetNode<Button>("VBoxContainer/VBoxContainer/CancelButton");
-        cancelEndSpacer = GetNode<Control>("VBoxContainer/VBoxContainer/Spacer3");
+        buttonsContainer = GetNode<HBoxContainer>("VBoxContainer/HBoxContainer");
+        confirmButton = GetNode<Button>("VBoxContainer/HBoxContainer/ConfirmButton");
+        cancelButton = GetNode<Button>("VBoxContainer/HBoxContainer/CancelButton");
+        cancelEndSpacer = GetNode<Control>("VBoxContainer/HBoxContainer/Spacer3");
+
+        if ((bool)ProjectSettings.GetSetting("gui/common/swap_ok_cancel"))
+        {
+            buttonsContainer.MoveChild(confirmButton, 1);
+            buttonsContainer.MoveChild(cancelButton, 3);
+        }
 
         UpdateLabel();
         UpdateButtons();

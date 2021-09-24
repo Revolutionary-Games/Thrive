@@ -11,7 +11,7 @@ public class TutorialDialog : CustomDialog
     ///   Tweakable delay to make tutorial sequences flow more naturally.
     /// </summary>
     [Export]
-    public float ShowDelay { get; set; } = 1.0f;
+    public float ShowDelay { get; set; } = 0.7f;
 
     public override void _Ready()
     {

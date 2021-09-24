@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.392157 )
@@ -18,7 +18,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="ErrorDialog" type="Popup"]
-visible = true
 margin_right = 54.0
 margin_bottom = 75.0
 theme = ExtResource( 2 )
@@ -30,10 +29,10 @@ __meta__ = {
 Resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 44.0
-margin_bottom = 65.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 49.0
+margin_bottom = 70.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 5
@@ -106,7 +105,7 @@ margin_right = 610.0
 margin_bottom = 543.0
 size_flags_horizontal = 4
 size_flags_vertical = 9
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "COPY_ERROR_TO_CLIPBOARD"
 
 [node name="OkButton" type="Button" parent="VBoxContainer"]
@@ -115,7 +114,7 @@ margin_right = 34.0
 margin_bottom = 55.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
-custom_fonts/font = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 text = "OK"
 
 [connection signal="popup_hide" from="." to="." method="OnErrorDialogDismissed"]

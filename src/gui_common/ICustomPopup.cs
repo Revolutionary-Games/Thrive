@@ -9,5 +9,5 @@ public interface ICustomPopup
     ///   If true and <see cref="Popup.PopupExclusive"/> is true, pressing ESC key will close
     ///   the popup.
     /// </summary>
-    bool ExclusiveAllowCloseOnEscape { get; }
+    bool ExclusiveAllowCloseOnEscape { get; set; }
 }

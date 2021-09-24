@@ -5,7 +5,7 @@
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 
 [node name="MicrobeEditorTutorialGUI" type="Control"]
@@ -38,8 +38,8 @@ margin_bottom = 176.0
 rect_min_size = Vector2( 360, 360 )
 rect_pivot_offset = Vector2( 180, 180 )
 script = ExtResource( 7 )
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="EditorEntryReport"]
 anchor_right = 1.0
@@ -76,8 +76,8 @@ rect_min_size = Vector2( 350, 350 )
 rect_pivot_offset = Vector2( 175, 175 )
 theme = null
 script = ExtResource( 7 )
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
 ShowDelay = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PatchMapTutorial"]
@@ -115,8 +115,8 @@ rect_min_size = Vector2( 350, 350 )
 rect_pivot_offset = Vector2( 175, 175 )
 theme = null
 script = ExtResource( 7 )
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorIntro"]
 anchor_right = 1.0
@@ -150,8 +150,8 @@ rect_min_size = Vector2( 290, 342 )
 rect_pivot_offset = Vector2( 145, 171 )
 theme = null
 script = ExtResource( 7 )
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
 ShowDelay = 0.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
@@ -192,8 +192,8 @@ rect_min_size = Vector2( 370, 370 )
 rect_pivot_offset = Vector2( 185, 185 )
 theme = null
 script = ExtResource( 7 )
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="RedoTutorial"]
 anchor_right = 1.0
@@ -230,8 +230,8 @@ rect_min_size = Vector2( 370, 370 )
 rect_pivot_offset = Vector2( 185, 185 )
 theme = null
 script = ExtResource( 7 )
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords"]
 anchor_right = 1.0

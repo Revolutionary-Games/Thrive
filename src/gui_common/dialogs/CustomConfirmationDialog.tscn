@@ -2,72 +2,73 @@
 
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=4]
 
 [node name="CustomConfirmationDialog" type="Popup"]
-margin_right = 131.0
-margin_bottom = 77.0
+margin_right = 163.0
+margin_bottom = 97.0
 theme = ExtResource( 2 )
 popup_exclusive = true
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+DialogText = ""
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 126.0
-margin_bottom = 77.0
+margin_right = 148.0
+margin_bottom = 82.0
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 111.0
+margin_right = 133.0
 margin_bottom = 20.0
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
 align = 1
 valign = 1
 autowrap = true
 
-[node name="VBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 35.0
-margin_right = 111.0
-margin_bottom = 62.0
+margin_right = 133.0
+margin_bottom = 67.0
 
-[node name="Spacer" type="Control" parent="VBoxContainer/VBoxContainer"]
-margin_bottom = 27.0
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[node name="ConfirmButton" type="Button" parent="VBoxContainer/VBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 margin_left = 4.0
-margin_right = 35.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 4 )
+margin_right = 41.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
 text = "OK"
 
-[node name="Spacer2" type="Control" parent="VBoxContainer/VBoxContainer"]
-margin_left = 39.0
-margin_right = 39.0
-margin_bottom = 27.0
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 45.0
+margin_right = 45.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[node name="CancelButton" type="Button" parent="VBoxContainer/VBoxContainer"]
-margin_left = 43.0
-margin_right = 107.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 4 )
+[node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 49.0
+margin_right = 129.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
 text = "CANCEL"
 
-[node name="Spacer3" type="Control" parent="VBoxContainer/VBoxContainer"]
-margin_left = 111.0
-margin_right = 111.0
-margin_bottom = 27.0
+[node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 133.0
+margin_right = 133.0
+margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/ConfirmButton" to="." method="OnConfirmPressed"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer/CancelButton" to="." method="OnCancelPressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ConfirmButton" to="." method="OnConfirmPressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]

@@ -43,7 +43,7 @@ public class GUICommon : NodeWithInput
     public Tween Tween { get; }
 
     /// <summary>
-    ///   Checks whether the top-most modal on stack is an exclusive popup.
+    ///   Checks whether the top-most modal on the modal stack is an exclusive popup.
     /// </summary>
     public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
 
@@ -75,7 +75,7 @@ public class GUICommon : NodeWithInput
     }
 
     /// <summary>
-    ///   Closes any currently active exclusive modal popup.
+    ///   Closes any currently active exclusive modal popups.
     /// </summary>
     [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]
     public bool HideCurrentlyActiveExclusivePopup()

@@ -482,7 +482,7 @@ public static class Constants
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
-    ///   Popups have a highest priority to ensure it can react first.
+    ///   Popups have a highest priority to ensure they can react first.
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
 

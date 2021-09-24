@@ -1,4 +1,32 @@
-﻿using System;
+﻿/*************************************************************************/
+/*              This file is substantially derived from:                 */
+/*                           GODOT ENGINE                                */
+/*                      https://godotengine.org                          */
+/*************************************************************************/
+/* Copyright (c) 2007-2021 Juan Linietsky, Ariel Manzur.                 */
+/* Copyright (c) 2014-2021 Godot Engine contributors (cf. AUTHORS.md).   */
+
+/* Permission is hereby granted, free of charge, to any person obtaining */
+/* a copy of this software and associated documentation files (the       */
+/* "Software"), to deal in the Software without restriction, including   */
+/* without limitation the rights to use, copy, modify, merge, publish,   */
+/* distribute, sublicense, and/or sell copies of the Software, and to    */
+/* permit persons to whom the Software is furnished to do so, subject to */
+/* the following conditions:                                             */
+
+/* The above copyright notice and this permission notice shall be        */
+/* included in all copies or substantial portions of the Software.       */
+
+/* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,       */
+/* EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF    */
+/* MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.*/
+/* IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY  */
+/* CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,  */
+/* TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE     */
+/* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                */
+/*************************************************************************/
+
+using System;
 using Godot;
 
 /// <summary>
@@ -7,7 +35,7 @@ using Godot;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     This uses Tool attribute to make this class be run in the Godot editor for real-time feedback as this class
+///     This uses Tool attribute to make this class be run in the Godot editor for live feedback as this class
 ///     handles UI visuals extensively through code. Not necessary but very helpful when editing scenes involving
 ///     any custom dialogs.
 ///   </para>
@@ -16,6 +44,7 @@ using Godot;
 public class CustomDialog : Popup, ICustomPopup
 {
     private string windowTitle;
+    private string translatedWindowTitle;
 
     private bool closeHovered;
 
@@ -25,6 +54,18 @@ public class CustomDialog : Popup, ICustomPopup
     private TextureButton closeButton;
 
     private DragType dragType = DragType.None;
+
+    private StyleBox customPanel;
+    private StyleBox titleBarPanel;
+    private StyleBox closeButtonHighlight;
+
+    private Font titleFont;
+    private Color titleColor;
+
+    private int titleBarHeight;
+    private int titleHeight;
+    private int scaleBorderSize;
+    private int customMargin;
 
     [Flags]
     private enum DragType
@@ -46,7 +87,12 @@ public class CustomDialog : Popup, ICustomPopup
         get => windowTitle;
         set
         {
+            if (windowTitle == value)
+                return;
+
             windowTitle = value;
+            translatedWindowTitle = TranslationServer.Translate(value);
+
             MinimumSizeChanged();
             Update();
         }
@@ -65,13 +111,23 @@ public class CustomDialog : Popup, ICustomPopup
     public bool BoundToScreenArea { get; set; } = true;
 
     [Export]
-    public bool ExclusiveAllowCloseOnEscape { get; private set; } = true;
+    public bool ExclusiveAllowCloseOnEscape { get; set; } = true;
 
     public override void _EnterTree()
     {
         // To make popup rect readjustment react to window resizing
         if (!GetTree().Root.IsConnected("size_changed", this, nameof(OnViewportResized)))
             GetTree().Root.Connect("size_changed", this, nameof(OnViewportResized));
+
+        customPanel = GetStylebox("custom_panel", "WindowDialog");
+        titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
+        titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
+        titleFont = GetFont("custom_title_font", "WindowDialog");
+        titleHeight = GetConstant("custom_title_height", "WindowDialog");
+        titleColor = GetColor("custom_title_color", "WindowDialog");
+        closeButtonHighlight = GetStylebox("custom_close_highlight", "WindowDialog");
+        scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
+        customMargin = GetConstant("custom_margin", "Dialogs");
 
         SetupCloseButton();
         UpdateChildRects();
@@ -118,37 +174,26 @@ public class CustomDialog : Popup, ICustomPopup
 
     public override void _Draw()
     {
-        var panel = GetStylebox("custom_panel", "WindowDialog");
-        var titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
-        var titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
-
         // Draw background panels
-        DrawStyleBox(panel, new Rect2(
+        DrawStyleBox(customPanel, new Rect2(
             new Vector2(0, -titleBarHeight), new Vector2(RectSize.x, RectSize.y + titleBarHeight)));
 
         DrawStyleBox(titleBarPanel, new Rect2(
             new Vector2(3, -titleBarHeight + 3), new Vector2(RectSize.x - 6, titleBarHeight - 3)));
 
         // Draw title in the title bar
-        var titleFont = GetFont("custom_title_font", "WindowDialog");
-        var titleHeight = GetConstant("custom_title_height", "WindowDialog");
-        var titleColor = GetColor("custom_title_color", "WindowDialog");
-
-        var translated = TranslationServer.Translate(WindowTitle);
-
         var fontHeight = titleFont.GetHeight() - titleFont.GetDescent() * 2;
 
         var titlePosition = new Vector2(
-            (RectSize.x - titleFont.GetStringSize(translated).x) / 2, (-titleHeight + fontHeight) / 2);
+            (RectSize.x - titleFont.GetStringSize(translatedWindowTitle).x) / 2, (-titleHeight + fontHeight) / 2);
 
-        DrawString(titleFont, titlePosition, translated, titleColor, (int)(RectSize.x - panel.GetMinimumSize().x));
+        DrawString(titleFont, titlePosition, translatedWindowTitle, titleColor,
+            (int)(RectSize.x - customPanel.GetMinimumSize().x));
 
         // Draw close button highlight
         if (closeHovered)
         {
-            var highlight = GetStylebox("custom_close_highlight", "WindowDialog");
-
-            DrawStyleBox(highlight, closeButton.GetRect());
+            DrawStyleBox(closeButtonHighlight, closeButton.GetRect());
         }
     }
 
@@ -195,8 +240,6 @@ public class CustomDialog : Popup, ICustomPopup
     {
         var rect = new Rect2(Vector2.Zero, RectSize);
 
-        var titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
-
         // Enlarge upwards for title bar
         var adjustedRect = new Rect2(
             new Vector2(rect.Position.x, rect.Position.y - titleBarHeight),
@@ -205,11 +248,9 @@ public class CustomDialog : Popup, ICustomPopup
         // Inflate by the resizable border thickness
         if (Resizable)
         {
-            var scaleborderSize = GetConstant("custom_scaleborder_size", "WindowDialog");
-
             adjustedRect = new Rect2(
-                new Vector2(adjustedRect.Position.x - scaleborderSize, adjustedRect.Position.y - scaleborderSize),
-                new Vector2(adjustedRect.Size.x + scaleborderSize * 2, adjustedRect.Size.y + scaleborderSize * 2));
+                new Vector2(adjustedRect.Position.x - scaleBorderSize, adjustedRect.Position.y - scaleBorderSize),
+                new Vector2(adjustedRect.Size.x + scaleBorderSize * 2, adjustedRect.Size.y + scaleBorderSize * 2));
         }
 
         return adjustedRect.HasPoint(point);
@@ -221,11 +262,8 @@ public class CustomDialog : Popup, ICustomPopup
     /// </summary>
     public override Vector2 _GetMinimumSize()
     {
-        var margin = GetConstant("custom_margin", "Dialogs");
-        var font = GetFont("custom_title_font", "WindowDialog");
-
         var buttonWidth = closeButton?.GetCombinedMinimumSize().x;
-        var titleWidth = font.GetStringSize(TranslationServer.Translate(windowTitle)).x;
+        var titleWidth = titleFont.GetStringSize(TranslationServer.Translate(windowTitle)).x;
         var buttonArea = buttonWidth + (buttonWidth / 2);
 
         var contentSize = Vector2.Zero;
@@ -244,9 +282,9 @@ public class CustomDialog : Popup, ICustomPopup
                 Mathf.Max(childMinSize.y, contentSize.y));
         }
 
-        // Redecide whether the largest rect is the default elements' or the contents'
+        // Re-decide whether the largest rect is the default elements' or the contents'
         return new Vector2(Mathf.Max(2 * buttonArea.GetValueOrDefault() + titleWidth,
-            contentSize.x + margin * 2), contentSize.y + margin * 2);
+            contentSize.x + customMargin * 2), contentSize.y + customMargin * 2);
     }
 
     /// <summary>
@@ -275,23 +313,20 @@ public class CustomDialog : Popup, ICustomPopup
 
         if (Resizable)
         {
-            var scaleborderSize = GetConstant("custom_scaleborder_size", "WindowDialog");
-            var titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
-
-            if (position.y < (-titleBarHeight + scaleborderSize))
+            if (position.y < (-titleBarHeight + scaleBorderSize))
             {
                 result = DragType.ResizeTop;
             }
-            else if (position.y >= (RectSize.y - scaleborderSize))
+            else if (position.y >= (RectSize.y - scaleBorderSize))
             {
                 result = DragType.ResizeBottom;
             }
 
-            if (position.x < scaleborderSize)
+            if (position.x < scaleBorderSize)
             {
                 result |= DragType.ResizeLeft;
             }
-            else if (position.x >= (RectSize.x - scaleborderSize))
+            else if (position.x >= (RectSize.x - scaleBorderSize))
             {
                 result |= DragType.ResizeRight;
             }
@@ -401,8 +436,6 @@ public class CustomDialog : Popup, ICustomPopup
         var screenSize = GetViewport()?.GetVisibleRect().Size;
         var screenSizeValue = screenSize.GetValueOrDefault();
 
-        var titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
-
         // Clamp position to ensure window stays inside the screen
         RectPosition = new Vector2(
             Mathf.Clamp(RectPosition.x, 0, screenSizeValue.x - RectSize.x),
@@ -447,10 +480,8 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void UpdateChildRects()
     {
-        var margin = GetConstant("custom_margin", "Dialogs");
-
-        var childPos = new Vector2(margin, margin);
-        var childSize = new Vector2(RectSize.x - margin * 2, RectSize.y - margin * 2);
+        var childPos = new Vector2(customMargin, customMargin);
+        var childSize = new Vector2(RectSize.x - customMargin * 2, RectSize.y - customMargin * 2);
 
         for (int i = 0; i < GetChildCount(); ++i)
         {
