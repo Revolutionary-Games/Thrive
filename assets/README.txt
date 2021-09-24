@@ -1,5 +1,5 @@
-License Info
-============
+Asset License Info
+==================
 
 With some exceptions, all assets in the assets folder
 and subfolders use a Creative Commons license as defined
