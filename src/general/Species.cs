@@ -80,6 +80,9 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
+    [JsonIgnore]
+    public bool IsExtinct => Population <= 0;
+
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
     /// </summary>
