@@ -147,6 +147,7 @@ margin_bottom = 47.0
 rect_min_size = Vector2( 230, 0 )
 text = "MICROBE_STAGE_CONTROL_TEXT"
 autowrap = true
+custom_fonts/font = ExtResource( 4 )
 
 [node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
 visible = false
@@ -229,6 +230,7 @@ margin_bottom = 47.0
 rect_min_size = Vector2( 230, 0 )
 text = "MICROBE_STAGE_COLLECT_TEXT"
 autowrap = true
+custom_fonts/font = ExtResource( 4 )
 
 [node name="StayingAliveTutorial" type="WindowDialog" parent="."]
 anchor_left = 0.5
@@ -261,6 +263,7 @@ scroll_horizontal_enabled = false
 margin_right = 230.0
 margin_bottom = 47.0
 rect_min_size = Vector2( 230, 0 )
+custom_fonts/font = ExtResource( 4 )
 text = "MICROBE_STAGE_HEALTH_TEXT"
 autowrap = true
 
@@ -296,6 +299,7 @@ margin_right = 230.0
 margin_bottom = 47.0
 rect_min_size = Vector2( 230, 0 )
 text = "MICROBE_STAGE_REPRODUCE_TEXT"
+custom_fonts/font = ExtResource( 4 )
 autowrap = true
 
 [node name="EditorButtonTutorial" type="WindowDialog" parent="ReproductionTutorial"]
@@ -330,6 +334,7 @@ margin_right = 230.0
 margin_bottom = 47.0
 rect_min_size = Vector2( 230, 0 )
 text = "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+custom_fonts/font = ExtResource( 4 )
 autowrap = true
 
 [node name="UnbindTutorial" type="WindowDialog" parent="."]
@@ -364,6 +369,7 @@ margin_right = 230.0
 margin_bottom = 47.0
 rect_min_size = Vector2( 230, 0 )
 text = "MICROBE_STAGE_UNBIND_TEXT"
+custom_fonts/font = ExtResource( 4 )
 autowrap = true
 
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
