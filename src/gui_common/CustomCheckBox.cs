@@ -86,7 +86,7 @@ public class CustomCheckBox : Button
             CheckState.PressedNormal => pressedNormal,
             CheckState.PressedHovered => pressedHovered,
             CheckState.PressedClicked => pressedClicked,
-            _ => throw new ArgumentOutOfRangeException(),
+            _ => throw new ArgumentOutOfRangeException(nameof(currentCheckState)),
         };
     }
 }
