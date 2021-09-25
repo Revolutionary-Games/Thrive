@@ -263,7 +263,7 @@ public class CustomDialog : Popup, ICustomPopup
     public override Vector2 _GetMinimumSize()
     {
         var buttonWidth = closeButton?.GetCombinedMinimumSize().x;
-        var titleWidth = titleFont.GetStringSize(TranslationServer.Translate(windowTitle)).x;
+        var titleWidth = titleFont?.GetStringSize(TranslationServer.Translate(windowTitle)).x;
         var buttonArea = buttonWidth + (buttonWidth / 2);
 
         var contentSize = Vector2.Zero;
@@ -283,7 +283,7 @@ public class CustomDialog : Popup, ICustomPopup
         }
 
         // Re-decide whether the largest rect is the default elements' or the contents'
-        return new Vector2(Mathf.Max(2 * buttonArea.GetValueOrDefault() + titleWidth,
+        return new Vector2(Mathf.Max(2 * buttonArea.GetValueOrDefault() + titleWidth.GetValueOrDefault(),
             contentSize.x + customMargin * 2), contentSize.y + customMargin * 2);
     }
 
