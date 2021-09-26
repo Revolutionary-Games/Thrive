@@ -48,6 +48,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   Init can call _Ready if it hasn't been called yet
     /// </summary>
     private bool onReadyCalled;
+    private bool onRemakeCalled = false;
+    private bool onUnbindCalled = false;
 
     /// <summary>
     ///   The organelles in this microbe
@@ -79,6 +81,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     [JsonProperty]
     private bool wasBeingEngulfed;
+
+    /// <summary>
+    ///   List of colony children of player microbe positions, needed when the colony is remade at load
+    /// </summary>
+    private List<Transform> colonyChildrenTransform;
 
     /// <summary>
     ///   Tracks other Microbes that are within the engulf area and are ignoring collisions with this body.
@@ -616,7 +623,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
     public Microbe GetMicrobeFromShape(int bodyShape)
     {
-        if (Colony == null)
+        if (Colony == null || (IsLoadedFromSave && !onRemakeCalled && IsPlayerMicrobe))
             return this;
 
         var touchedOwnerId = ShapeFindOwner(bodyShape);
@@ -1233,6 +1240,46 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _Process(float delta)
     {
+        // Remake the clony after destroying it
+        if (!onRemakeCalled && IsPlayerMicrobe && onUnbindCalled)
+            RemakeColony();
+        
+        // First destroy the colony and save its members
+        if(IsLoadedFromSave &&  !onUnbindCalled && IsPlayerMicrobe)
+        {
+            // Lists with colony members and their parents needed to remake the colony
+            var list = new List<Microbe>();
+            var colList = new List<Microbe>(Colony.ColonyMembers);
+            colList.Remove(this);
+            
+            // Save the colony members parents
+            foreach (var member in colList)
+            {
+                list.Add(member.ColonyParent);
+                
+                // Save the position of colony members parents before unbind
+                // Neded to remake the colony as it was before
+                if(Colony.Master.colonyChildrenTransform == null)
+                {
+                    Colony.Master.colonyChildrenTransform = new List<Transform>(); 
+                    Colony.Master.colonyChildrenTransform.Add(Colony.Master.GlobalTransform);
+                }
+                Colony.Master.colonyChildrenTransform.Add(member.GlobalTransform);
+
+            }
+            
+            UnbindAll();
+
+            // Reassign the parents to their microbes
+            for (int i = 0; i < list.Count; i++)
+            {
+                colList[i].ColonyParent = list[i];
+            }
+
+            ColonyChildren = colList;
+            onUnbindCalled = true;
+        }
+
         // Updates the listener if this is the player owned microbe.
         if (listener != null)
         {
@@ -1410,6 +1457,37 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // TODO: should movement also be applied here?
 
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
+    }
+
+    /// <summary>
+    ///   Remake the colony, only needed after load
+    /// </summary>
+    public void RemakeColony()
+    {
+        var col = new List<Microbe>(ColonyChildren);
+        var sem = 0;
+
+        // Check if the pili of colony members have been formed
+        foreach (var member in col)
+        {
+            foreach (var organelle in member.organelles)
+                if (organelle.Definition.Name == "Predatory Pilus" && member.pilusPhysicsShapes.Count == 0)
+                    sem = 1;
+        }
+
+        // Keep the colony members in place until the pili update.
+        for (int i = 0; i< col.Count; i++)
+            col[i].GlobalTransform = colonyChildrenTransform[i+1];
+        GlobalTransform = colonyChildrenTransform[0];
+        
+        // Wait for the pili of colony members to update to the true position
+        if(sem == 0 )
+        {
+            MicrobeColony.CreateColonyForMicrobe(this);
+            foreach (var member in col){
+                Colony.AddToColony(member, member.ColonyParent); GD.Print("bind");}
+            onRemakeCalled = true;
+        }
     }
 
     /// <summary>
