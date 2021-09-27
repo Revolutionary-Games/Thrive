@@ -22,10 +22,11 @@ public class PilusComponent : ExternallyPositionedComponent
         Vector3 membraneCoords)
     {
 
-        // If the parent is in a colony we dont redo the shape, otherwise collsion breaks 
+        // If the parent is in a colony we dont redo the shape, otherwise collsion breaks
         if (organelle.ParentMicrobe.Colony != null && !NeedsUpdateAnyway())
             return;
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+        organelle.OrganelleGraphics.Transform = new Transform(rotation
+            ,membraneCoords);
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         Vector3 membranePointDirection = (membraneCoords - middle).Normalized();

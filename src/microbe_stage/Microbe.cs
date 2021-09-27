@@ -1243,15 +1243,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Remake the clony after destroying it
         if (!onRemakeCalled && IsPlayerMicrobe && onUnbindCalled)
             RemakeColony();
-        
+
         // First destroy the colony and save its members
-        if(IsLoadedFromSave &&  !onUnbindCalled && IsPlayerMicrobe)
+        if (IsLoadedFromSave && !onUnbindCalled && IsPlayerMicrobe)
         {
             // Lists with colony members and their parents needed to remake the colony
             var list = new List<Microbe>();
             var colList = new List<Microbe>(Colony.ColonyMembers);
             colList.Remove(this);
-            
+
             // Save the colony members parents
             foreach (var member in colList)
             {
@@ -1259,15 +1259,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 
                 // Save the position of colony members parents before unbind
                 // Neded to remake the colony as it was before
-                if(Colony.Master.colonyChildrenTransform == null)
+                if (Colony.Master.colonyChildrenTransform == null)
                 {
-                    Colony.Master.colonyChildrenTransform = new List<Transform>(); 
+                    Colony.Master.colonyChildrenTransform = new List<Transform>();
                     Colony.Master.colonyChildrenTransform.Add(Colony.Master.GlobalTransform);
                 }
                 Colony.Master.colonyChildrenTransform.Add(member.GlobalTransform);
 
             }
-            
+
             UnbindAll();
 
             // Reassign the parents to their microbes
@@ -1471,7 +1471,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         foreach (var member in col)
         {
             foreach (var organelle in member.organelles)
-                if (organelle.Definition.Name == "Predatory Pilus" && member.pilusPhysicsShapes.Count == 0)
+                if (organelle.HasComponent<PilusComponent>() && member.pilusPhysicsShapes.Count == 0)
                     sem = 1;
         }
 
@@ -1479,9 +1479,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         for (int i = 0; i< col.Count; i++)
             col[i].GlobalTransform = colonyChildrenTransform[i+1];
         GlobalTransform = colonyChildrenTransform[0];
-        
+
         // Wait for the pili of colony members to update to the true position
-        if(sem == 0 )
+        if (sem == 0)
         {
             MicrobeColony.CreateColonyForMicrobe(this);
             foreach (var member in col){
