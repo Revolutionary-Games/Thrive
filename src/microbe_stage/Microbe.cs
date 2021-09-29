@@ -1009,7 +1009,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public void PlaySoundEffect(string effect)
     {
         // TODO: make these sound objects only be loaded once
-        var sound = GD.Load<AudioStream>(effect);
+        var sound = (AudioStreamOGGVorbis)GD.Load<AudioStream>(effect);
+        sound.Loop = false;
 
         // Find a player not in use or create a new one if none are available.
         var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
