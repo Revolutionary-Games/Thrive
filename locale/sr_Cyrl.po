@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-17 17:10+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -445,7 +445,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Поставите органелу"
 
 #: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
+#, fuzzy
+msgid "OPEN_ORGANELLE_MENU"
 msgstr "Макните органелу"
 
 #: ../simulation_parameters/common/input_options.json:111
@@ -1370,11 +1371,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr "Затвори"
 
-#: ../src/general/MainMenu.cs:394
+#: ../src/general/MainMenu.cs:393
 msgid "OK"
 msgstr "У реду"
 
-#: ../src/general/MainMenu.cs:395
+#: ../src/general/MainMenu.cs:394
 msgid "Cancel"
 msgstr "Отказати"
 
@@ -1769,7 +1770,7 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:614
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
@@ -2407,7 +2408,7 @@ msgstr ""
 "концентрацијом угљен-диоксида и температуром."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:172
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Поставите органелу"
@@ -2756,7 +2757,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Учитавање Уређивача Микроба"
 
@@ -2764,11 +2765,11 @@ msgstr "Учитавање Уређивача Микроба"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Чека се аутоматска-еволуција:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
 msgid "AUTO_EVO_FAILED"
 msgstr "Аутоматска-еволуција није успела"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2317
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус покретања:"
 
@@ -3101,15 +3102,15 @@ msgstr "Грешка при учитавању"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "Сачуване..."
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Сачување није успело"
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Грешка при чувању"
 
@@ -3137,11 +3138,21 @@ msgstr "Препиши постојеће чување:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Желите ли да препишете постојеће чување?"
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+#, fuzzy
+msgid "SAVING_NOT_POSSIBLE"
+msgstr "Чување није успело! Догоди се изузетак"
+
+#: ../src/saving/SaveHelper.cs:383
+#, fuzzy
+msgid "PLAYER_EXTINCT"
+msgstr "играч је умро"
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr "Чување је успело"
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr "Чување није успело! Догоди се изузетак"
 
@@ -3349,11 +3360,11 @@ msgstr "Отворите Сачувај Директоријум"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
+#: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
 msgstr "Грешка при Чувању"
 
-#: ../src/saving/SaveStatusOverlay.tscn:183
+#: ../src/saving/SaveStatusOverlay.tscn:184
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Копирај Грешку у Међуспремник"
 
@@ -3540,6 +3551,9 @@ msgstr ""
 "екрана) и мишем за контролу оријентације ћелије.\n"
 "\n"
 "Покушајте неколико тастера неколико секунди да бисте наставили."
+
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "Макните органелу"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"

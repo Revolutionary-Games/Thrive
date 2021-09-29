@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-17 17:10+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -420,7 +420,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "세포 기관 배치"
 
 #: ../simulation_parameters/common/input_options.json:107
-msgid "REMOVE_ORGANELLE"
+#, fuzzy
+msgid "OPEN_ORGANELLE_MENU"
 msgstr "세포 기관 제거"
 
 #: ../simulation_parameters/common/input_options.json:111
@@ -1344,11 +1345,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr "닫기"
 
-#: ../src/general/MainMenu.cs:394
+#: ../src/general/MainMenu.cs:393
 msgid "OK"
 msgstr "확인"
 
-#: ../src/general/MainMenu.cs:395
+#: ../src/general/MainMenu.cs:394
 msgid "Cancel"
 msgstr "취소"
 
@@ -1738,7 +1739,7 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:614
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
@@ -2337,7 +2338,7 @@ msgstr ""
 "에 따라 달라집니다."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:172
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "세포 기관 배치"
@@ -2683,7 +2684,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
@@ -2691,11 +2692,11 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2316
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2317
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
@@ -3027,15 +3028,15 @@ msgstr "불러오기 오류"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "저장 중..."
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "저장 실패"
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "저장 오류"
 
@@ -3063,11 +3064,21 @@ msgstr "저장 덮어쓰기:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "덮어쓰겠습니까?"
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+#, fuzzy
+msgid "SAVING_NOT_POSSIBLE"
+msgstr "저장 실패! 예외 발생"
+
+#: ../src/saving/SaveHelper.cs:383
+#, fuzzy
+msgid "PLAYER_EXTINCT"
+msgstr "플레이어 사망함"
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr "저장 성공"
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr "저장 실패! 예외 발생"
 
@@ -3268,11 +3279,11 @@ msgstr "저장 폴더 열기"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
+#: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
 msgstr "저장 오류"
 
-#: ../src/saving/SaveStatusOverlay.tscn:183
+#: ../src/saving/SaveStatusOverlay.tscn:184
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "클립보드에 오류 복사"
 
@@ -3443,6 +3454,9 @@ msgstr ""
 "세요.\n"
 "\n"
 "모든 키로 수 초간 움직여서 진행하세요."
+
+#~ msgid "REMOVE_ORGANELLE"
+#~ msgstr "세포 기관 제거"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"
