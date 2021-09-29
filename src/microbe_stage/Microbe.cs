@@ -670,11 +670,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
         {
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin-low.ogg");
+            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-release-toxin-low.ogg");
         }
         else
         {
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
     }
 
@@ -746,7 +746,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // TODO: Replace this take damage sound with a more appropriate one.
 
             // Play the toxin sound
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
             // Divide damage by toxin resistance
             amount /= Species.MembraneType.ToxinResistance;
@@ -754,7 +754,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         else if (source == "pilus")
         {
             // Play the pilus sound
-            PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg");
+            PlaySoundEffectOnce("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg");
 
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
@@ -765,7 +765,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // TODO: Replace this take damage sound with a more appropriate one.
 
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
+            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
 
             // Divide damage by physical resistance
             amount /= Species.MembraneType.PhysicalResistance;
@@ -774,7 +774,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // TODO: Replace this take damage sound with a more appropriate one.
 
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
 
         Hitpoints -= amount;
@@ -997,7 +997,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             OnReproductionStatus?.Invoke(this, false);
         }
 
-        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-death-2.ogg");
 
         // Disable collisions
         CollisionLayer = 0;
@@ -1006,16 +1006,25 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Some pre-death actions are going to be run now
     }
 
-    public void PlaySoundEffect(string effect)
+    public void PlaySoundEffectOnce(string effect)
+    {
+        PlaySoundEffect(effect, false);
+    }
+
+    public void PlaySoundEffectOnLoop(string effect)
+    {
+        PlaySoundEffect(effect, true);
+    }
+
+    public void PlaySoundEffect(string effect, bool loop)
     {
         // TODO: make these sound objects only be loaded once
         var sound = GD.Load<AudioStream>(effect);
 
-        // .ogg sounds loop by default, but we never want to do that
-        if (sound is AudioStreamOGGVorbis)
+        // set looping property for .ogg files
+        if (sound is AudioStreamOGGVorbis oggSound)
         {
-            var oggSound = (AudioStreamOGGVorbis)sound;
-            oggSound.Loop = false;
+            oggSound.Loop = loop;
         }
 
         // Find a player not in use or create a new one if none are available.
@@ -1136,7 +1145,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Play the split sound
-        PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");
+        PlaySoundEffectOnce("res://assets/sounds/soundeffects/reproduction.ogg");
     }
 
     /// <summary>
