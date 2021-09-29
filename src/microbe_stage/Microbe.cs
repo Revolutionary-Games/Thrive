@@ -1016,39 +1016,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         PlaySoundEffect(effect, true);
     }
 
-    private void PlaySoundEffect(string effect, bool loop)
-    {
-        // TODO: make these sound objects only be loaded once
-        var sound = GD.Load<AudioStream>(effect);
-
-        // set looping property for .ogg files
-        if (sound is AudioStreamOGGVorbis oggSound)
-        {
-            oggSound.Loop = loop;
-        }
-
-        // Find a player not in use or create a new one if none are available.
-        var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
-
-        if (player == null)
-        {
-            // If we hit the player limit just return and ignore the sound.
-            if (otherAudioPlayers.Count >= Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY)
-                return;
-
-            player = new AudioStreamPlayer3D();
-            player.UnitDb = 50.0f;
-            player.MaxDistance = 100.0f;
-            player.Bus = "SFX";
-
-            AddChild(player);
-            otherAudioPlayers.Add(player);
-        }
-
-        player.Stream = sound;
-        player.Play();
-    }
-
     /// <summary>
     ///   Resets the compounds to be the ones this species spawns with. Called by spawn helpers
     /// </summary>
@@ -1513,6 +1480,39 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_KILL"));
+    }
+
+    private void PlaySoundEffect(string effect, bool loop)
+    {
+        // TODO: make these sound objects only be loaded once
+        var sound = GD.Load<AudioStream>(effect);
+
+        // set looping property for .ogg files
+        if (sound is AudioStreamOGGVorbis oggSound)
+        {
+            oggSound.Loop = loop;
+        }
+
+        // Find a player not in use or create a new one if none are available.
+        var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
+
+        if (player == null)
+        {
+            // If we hit the player limit just return and ignore the sound.
+            if (otherAudioPlayers.Count >= Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY)
+                return;
+
+            player = new AudioStreamPlayer3D();
+            player.UnitDb = 50.0f;
+            player.MaxDistance = 100.0f;
+            player.Bus = "SFX";
+
+            AddChild(player);
+            otherAudioPlayers.Add(player);
+        }
+
+        player.Stream = sound;
+        player.Play();
     }
 
     private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
