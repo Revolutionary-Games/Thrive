@@ -1016,7 +1016,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         PlaySoundEffect(effect, true);
     }
 
-    public void PlaySoundEffect(string effect, bool loop)
+    private void PlaySoundEffect(string effect, bool loop)
     {
         // TODO: make these sound objects only be loaded once
         var sound = GD.Load<AudioStream>(effect);
