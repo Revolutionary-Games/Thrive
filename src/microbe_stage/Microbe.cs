@@ -668,7 +668,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             position, direction, GetStageAsParent(),
             SpawnHelpers.LoadAgentScene(), this);
 
-        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+        if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin-low.ogg");
+        } 
+        else
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+        }
     }
 
     /// <summary>
