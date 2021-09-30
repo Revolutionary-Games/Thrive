@@ -1340,7 +1340,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
-        float rigidity, float aggression, float opportunism, float fear, float activity, float focus)
+        float rigidity, int aggression, int opportunism, int fear, int activity, int focus)
     {
         speciesNameEdit.Text = name;
         membraneColorPicker.Color = colour;
@@ -1369,7 +1369,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    internal void UpdateBehaviourSlider(BehaviouralValue type, float value)
+    internal void UpdateBehaviourSlider(BehaviouralValue type, int value)
     {
         switch (type)
         {
@@ -1500,7 +1500,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    private void OnBehaviourValueChanged(float value, string behaviourName)
+    private void OnBehaviourValueChanged(int value, string behaviourName)
     {
         if (!Enum.TryParse(behaviourName, out BehaviouralValue behaviourValue))
             throw new ArgumentException($"{behaviourName} is not a valid BehaviouralValue");

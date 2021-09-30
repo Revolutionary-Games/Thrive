@@ -249,19 +249,19 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [JsonProperty]
-    public float Aggression { get; private set; }
+    public int Aggression { get; private set; }
 
     [JsonProperty]
-    public float Opportunism { get; private set; }
+    public int Opportunism { get; private set; }
 
     [JsonProperty]
-    public float Fear { get; private set; }
+    public int Fear { get; private set; }
 
     [JsonProperty]
-    public float Activity { get; private set; }
+    public int Activity { get; private set; }
 
     [JsonProperty]
-    public float Focus { get; private set; }
+    public int Focus { get; private set; }
 
     /// <summary>
     ///   Selected membrane type for the species
@@ -808,7 +808,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             organelleRot = 5;
     }
 
-    public float GetBehaviouralValue(BehaviouralValue type)
+    public int GetBehaviouralValue(BehaviouralValue type)
     {
         return type switch
         {
@@ -837,10 +837,17 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateMembraneButtons(Membrane.InternalName);
     }
 
-    public void SetBehavioural(BehaviouralValue type, float value)
+    public void SetBehavioural(BehaviouralValue type, int value)
     {
+        gui.UpdateBehaviourSlider(type, value);
+
+        var oldValue = GetBehaviouralValue(type);
+
+        if (value == oldValue)
+            return;
+
         var action = new MicrobeEditorAction(this, 0, DoBehaviourChangeAction, UndoBehaviourChangeAction,
-            new BehaviourChangeActionData(value, GetBehaviouralValue(type), type));
+            new BehaviourChangeActionData(value, oldValue, type));
 
         EnqueueAction(action);
     }
@@ -1190,7 +1197,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         cameraFollow.Translation += vector;
     }
 
-    private void SetBehaviouralValue(BehaviouralValue type, float value)
+    private void SetBehaviouralValue(BehaviouralValue type, int value)
     {
         switch (type)
         {
