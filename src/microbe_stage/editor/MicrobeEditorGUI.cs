@@ -30,10 +30,16 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath AppearanceTabButtonPath;
 
     [Export]
+    public NodePath BehaviourTabButtonPath;
+
+    [Export]
     public NodePath StructureTabPath;
 
     [Export]
     public NodePath AppearanceTabPath;
+
+    [Export]
+    public NodePath BehaviourTabPath;
 
     [Export]
     public NodePath SizeLabelPath;
@@ -297,9 +303,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     // Selection menu tab selector buttons
     private Button structureTabButton;
     private Button appearanceTabButton;
+    private Button behaviourTabButton;
 
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
+    private PanelContainer behaviourTab;
 
     private Label sizeLabel;
     private Label speedLabel;
@@ -434,6 +442,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
         appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
+
+        behaviourTab = GetNode<PanelContainer>(BehaviourTabPath);
+        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
 
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
@@ -1527,6 +1538,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         // Hide all
         structureTab.Hide();
         appearanceTab.Hide();
+        behaviourTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -1544,6 +1556,14 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
                 editor.MicrobePreviewMode = true;
+                break;
+            }
+
+            case SelectionMenuTab.Behaviour:
+            {
+                behaviourTab.Show();
+                behaviourTabButton.Pressed = true;
+                editor.MicrobePreviewMode = false;
                 break;
             }
 
