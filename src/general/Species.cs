@@ -83,6 +83,43 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public bool IsExtinct => Population <= 0;
 
+    public float GetBehaviouralValue(BehaviouralValue type)
+    {
+        return type switch
+        {
+            BehaviouralValue.Activity => Activity,
+            BehaviouralValue.Aggression => Aggression,
+            BehaviouralValue.Fear => Fear,
+            BehaviouralValue.Focus => Focus,
+            BehaviouralValue.Opportunism => Opportunism,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValue {type} is not valid"),
+        };
+    }
+
+    public void SetBehaviouralValue(BehaviouralValue type, float value)
+    {
+        switch (type)
+        {
+            case BehaviouralValue.Activity:
+                Activity = value;
+                break;
+            case BehaviouralValue.Aggression:
+                Aggression = value;
+                break;
+            case BehaviouralValue.Opportunism:
+                Opportunism = value;
+                break;
+            case BehaviouralValue.Fear:
+                Fear = value;
+                break;
+            case BehaviouralValue.Focus:
+                Focus = value;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValue {type} is not valid");
+        }
+    }
+
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
     /// </summary>

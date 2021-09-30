@@ -246,6 +246,21 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath RigiditySliderPath;
 
     [Export]
+    public NodePath AggressionSliderPath;
+
+    [Export]
+    public NodePath OpportunismSliderPath;
+
+    [Export]
+    public NodePath FearSliderPath;
+
+    [Export]
+    public NodePath ActivitySliderPath;
+
+    [Export]
+    public NodePath FocusSliderPath;
+
+    [Export]
     public NodePath NegativeAtpPopupPath;
 
     [Export]
@@ -323,6 +338,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private Slider rigiditySlider;
     private TweakedColourPicker membraneColorPicker;
+
+    private Slider aggressionSlider;
+    private Slider opportunismSlider;
+    private Slider fearSlider;
+    private Slider activitySlider;
+    private Slider focusSlider;
 
     private TextureButton undoButton;
     private TextureButton redoButton;
@@ -460,6 +481,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
+
+        aggressionSlider = GetNode<Slider>(AggressionSliderPath);
+        opportunismSlider = GetNode<Slider>(OpportunismSliderPath);
+        fearSlider = GetNode<Slider>(FearSliderPath);
+        activitySlider = GetNode<Slider>(ActivitySliderPath);
+        focusSlider = GetNode<Slider>(FocusSliderPath);
 
         menuButton = GetNode<TextureButton>(MenuButtonPath);
         helpButton = GetNode<TextureButton>(HelpButtonPath);
@@ -1313,7 +1340,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
-        float rigidity)
+        float rigidity, float aggression, float opportunism, float fear, float activity, float focus)
     {
         speciesNameEdit.Text = name;
         membraneColorPicker.Color = colour;
@@ -1325,6 +1352,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         SetMembraneTooltips(membrane);
 
         UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+
+        UpdateBehaviourSlider(BehaviouralValue.Aggression, aggression);
+        UpdateBehaviourSlider(BehaviouralValue.Opportunism, opportunism);
+        UpdateBehaviourSlider(BehaviouralValue.Fear, fear);
+        UpdateBehaviourSlider(BehaviouralValue.Activity, activity);
+        UpdateBehaviourSlider(BehaviouralValue.Focus, focus);
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -1333,6 +1366,30 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         foreach (var selection in membraneSelectionElements.Values)
         {
             selection.Selected = selection.Name == membrane;
+        }
+    }
+
+    internal void UpdateBehaviourSlider(BehaviouralValue type, float value)
+    {
+        switch (type)
+        {
+            case BehaviouralValue.Activity:
+                activitySlider.Value = value;
+                break;
+            case BehaviouralValue.Aggression:
+                aggressionSlider.Value = value;
+                break;
+            case BehaviouralValue.Opportunism:
+                opportunismSlider.Value = value;
+                break;
+            case BehaviouralValue.Fear:
+                fearSlider.Value = value;
+                break;
+            case BehaviouralValue.Focus:
+                focusSlider.Value = value;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValue {type} is not valid");
         }
     }
 
@@ -1445,24 +1502,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private void OnBehaviourValueChanged(float value, string behaviourName)
     {
-        switch (behaviourName)
-        {
-            case "Aggression":
-                editor.SetAggression(value);
-                break;
-            case "Opportunism":
-                editor.SetOpportunism(value);
-                break;
-            case "Fear":
-                editor.SetFear(value);
-                break;
-            case "Activity":
-                editor.SetActivity(value);
-                break;
-            case "Focus":
-                editor.SetFocus(value);
-                break;
-        }
+        if (!Enum.TryParse(behaviourName, out BehaviouralValue behaviourValue))
+            throw new ArgumentException($"{behaviourName} is not a valid BehaviouralValue");
+
+        editor.SetBehavioural(behaviourValue, value);
     }
 
     private void OnRigidityChanged(int value)

@@ -66,6 +66,21 @@ public class MembraneActionData : IMicrobeEditorActionData
 }
 
 [JSONAlwaysDynamicType]
+public class BehaviourChangeActionData : IMicrobeEditorActionData
+{
+    public float NewValue;
+    public float OldValue;
+    public BehaviouralValue Type;
+
+    public BehaviourChangeActionData(float newValue, float oldValue, BehaviouralValue type)
+    {
+        NewValue = newValue;
+        OldValue = oldValue;
+        Type = type;
+    }
+}
+
+[JSONAlwaysDynamicType]
 public class RigidityChangeActionData : IMicrobeEditorActionData
 {
     public float NewRigidity;
