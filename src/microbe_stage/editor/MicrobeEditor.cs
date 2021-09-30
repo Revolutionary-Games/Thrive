@@ -803,6 +803,26 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateMembraneButtons(Membrane.InternalName);
     }
 
+    public void SetAggression(float value)
+    {
+    }
+
+    public void SetOpportunism(float value)
+    {
+    }
+
+    public void SetFear(float value)
+    {
+    }
+
+    public void SetActivity(float value)
+    {
+    }
+
+    public void SetFocus(float value)
+    {
+    }
+
     public void SetRigidity(int rigidity)
     {
         int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);

@@ -1443,6 +1443,28 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
+    private void OnBehaviourValueChanged(float value, string behaviourName)
+    {
+        switch (behaviourName)
+        {
+            case "Aggression":
+                editor.SetAggression(value);
+                break;
+            case "Opportunism":
+                editor.SetOpportunism(value);
+                break;
+            case "Fear":
+                editor.SetFear(value);
+                break;
+            case "Activity":
+                editor.SetActivity(value);
+                break;
+            case "Focus":
+                editor.SetFocus(value);
+                break;
+        }
+    }
+
     private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
