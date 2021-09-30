@@ -1774,7 +1774,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             .Select(o => (MicrobeEditorActionData)new PlacementActionData(o, o.Position, o.Orientation))
             .ToList());
 
-        if (cost > MutationPoints)
+        if (cost > MutationPoints && !FreeBuilding)
         {
             gui.OnInsufficientMp();
             return false;
