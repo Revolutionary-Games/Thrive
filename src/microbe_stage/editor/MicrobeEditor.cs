@@ -1479,6 +1479,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         Rigidity = species.MembraneRigidity;
         Colour = species.Colour;
 
+        Aggression = (int)species.Aggression;
+        Opportunism = (int)species.Opportunism;
+        Fear = (int)species.Fear;
+        Activity = (int)species.Activity;
+        Focus = (int)species.Focus;
+
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
         {
