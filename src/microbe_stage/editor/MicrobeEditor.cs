@@ -1539,39 +1539,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 effectiveSymmetry = MicrobeSymmetry.None;
             }
 
-            List<(Hex hex, int orientation)> hexes = new List<(Hex hex, int orientation)>();
-
-            switch (effectiveSymmetry)
-            {
-                case MicrobeSymmetry.None:
-                {
-                    hexes.Add((new Hex(q, r), organelleRot));
-                    break;
-                }
-
-                case MicrobeSymmetry.XAxisSymmetry:
-                {
-                    hexes.Add((new Hex(-1 * q, r + q), 6 + (-1 * organelleRot)));
-                    goto case MicrobeSymmetry.None;
-                }
-
-                case MicrobeSymmetry.FourWaySymmetry:
-                {
-                    hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
-                    hexes.Add((new Hex(q, -1 * (r + q)), 9 + (-1 * organelleRot) % 6));
-                    goto case MicrobeSymmetry.XAxisSymmetry;
-                }
-
-                case MicrobeSymmetry.SixWaySymmetry:
-                {
-                    hexes.Add((new Hex(-1 * r, r + q), (organelleRot + 1) % 6));
-                    hexes.Add((new Hex(-1 * (r + q), q), (organelleRot + 2) % 6));
-                    hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
-                    hexes.Add((new Hex(r, -1 * (r + q)), (organelleRot + 4) % 6));
-                    hexes.Add((new Hex(r + q, -1 * q), (organelleRot + 5) % 6));
-                    goto case MicrobeSymmetry.None;
-                }
-            }
+            List<(Hex hex, int orientation)> hexes = GetHexesWithSymmetryMode(q, r);
 
             foreach (var (hex, orientation) in hexes)
             {
@@ -1729,15 +1697,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         membraneOrganellePositionsAreDirty = false;
     }
 
-    /// <summary>
-    ///   Places an organelle of the specified type under the cursor
-    ///   and also applies symmetry to place multiple at once.
-    /// </summary>
-    /// <returns>True when at least one organelle got placed</returns>
-    private bool AddOrganelle(string organelleType)
+    private List<(Hex hex, int orientation)> GetHexesWithSymmetryMode(int q, int r)
     {
-        GetMouseHex(out int q, out int r);
-
         var hexes = new List<(Hex hex, int orientation)>();
 
         switch (Symmetry)
@@ -1781,7 +1742,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
                 hexes.Add((new Hex(r, -1 * (r + q)), (organelleRot + 4) % 6));
                 hexes.Add((new Hex(r + q, -1 * q), (organelleRot + 5) % 6));
-
                 goto case MicrobeSymmetry.None;
             }
 
@@ -1790,6 +1750,20 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 throw new Exception("unimplemented symmetry in AddOrganelle");
             }
         }
+
+        return hexes;
+    }
+
+    /// <summary>
+    ///   Places an organelle of the specified type under the cursor
+    ///   and also applies symmetry to place multiple at once.
+    /// </summary>
+    /// <returns>True when at least one organelle got placed</returns>
+    private bool AddOrganelle(string organelleType)
+    {
+        GetMouseHex(out int q, out int r);
+
+        var hexes = GetHexesWithSymmetryMode(q, r);
 
         var organelleDefinition = GetOrganelleDefinition(organelleType);
 
