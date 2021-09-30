@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/gui_common/CustomCheckBox.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -28,6 +29,7 @@ custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_constants/hseparation = 5
 toggle_mode = true
 shortcut_in_tooltip = false
+icon = ExtResource( 3 )
 flat = true
 align = 0
 script = ExtResource( 1 )

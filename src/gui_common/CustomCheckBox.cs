@@ -40,7 +40,7 @@ public class CustomCheckBox : Button
 
     public override void _Draw()
     {
-        if (pressing)
+        if (pressing && !Disabled)
         {
             currentCheckState = Pressed ? CheckState.PressedClicked : CheckState.UnpressedClicked;
         }
