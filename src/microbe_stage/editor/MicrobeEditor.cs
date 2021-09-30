@@ -249,19 +249,19 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [JsonProperty]
-    public int Aggression { get; private set; }
+    public float Aggression { get; private set; }
 
     [JsonProperty]
-    public int Opportunism { get; private set; }
+    public float Opportunism { get; private set; }
 
     [JsonProperty]
-    public int Fear { get; private set; }
+    public float Fear { get; private set; }
 
     [JsonProperty]
-    public int Activity { get; private set; }
+    public float Activity { get; private set; }
 
     [JsonProperty]
-    public int Focus { get; private set; }
+    public float Focus { get; private set; }
 
     /// <summary>
     ///   Selected membrane type for the species
@@ -808,7 +808,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             organelleRot = 5;
     }
 
-    public int GetBehaviouralValue(BehaviouralValue type)
+    public float GetBehaviouralValue(BehaviouralValue type)
     {
         return type switch
         {
@@ -837,13 +837,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateMembraneButtons(Membrane.InternalName);
     }
 
-    public void SetBehavioural(BehaviouralValue type, int value)
+    public void SetBehavioural(BehaviouralValue type, float value)
     {
         gui.UpdateBehaviourSlider(type, value);
 
         var oldValue = GetBehaviouralValue(type);
 
-        if (value == oldValue)
+        if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
 
         var action = new MicrobeEditorAction(this, 0, DoBehaviourChangeAction, UndoBehaviourChangeAction,
@@ -1197,7 +1197,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         cameraFollow.Translation += vector;
     }
 
-    private void SetBehaviouralValue(BehaviouralValue type, int value)
+    private void SetBehaviouralValue(BehaviouralValue type, float value)
     {
         switch (type)
         {
@@ -1479,11 +1479,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         Rigidity = species.MembraneRigidity;
         Colour = species.Colour;
 
-        Aggression = (int)species.Aggression;
-        Opportunism = (int)species.Opportunism;
-        Fear = (int)species.Fear;
-        Activity = (int)species.Activity;
-        Focus = (int)species.Focus;
+        Aggression = species.Aggression;
+        Opportunism = species.Opportunism;
+        Fear = species.Fear;
+        Activity = species.Activity;
+        Focus = species.Focus;
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
