@@ -114,7 +114,7 @@ public class PauseMenu : ControlWithInput
         if (GameLoading)
             return true;
 
-        if (TransitionManager.Instance.HasTransitionInProgress)
+        if (TransitionManager.Instance.HasQueuedTransitions)
             return true;
 
         return false;
