@@ -2058,26 +2058,37 @@ msgid "HEALTH"
 msgstr "Health"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:220
-#, fuzzy
 msgid "AGGRESSION_EXPLANATION"
-msgstr "Aggression"
+msgstr ""
+"Aggressive microbes will chase down pray over greater distances\n"
+"and are more likely to fight predators when being attacked."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:227
-#, fuzzy
 msgid "OPPORTUNISM_EXPLANATION"
-msgstr "Opportunism"
+msgstr ""
+"Opportunistic microbes will compete with rivals over chunks\n"
+"and will try to hunt down pray with toxins if it can't engulf it.\n"
+"Unopportunistic might not put itself in danger over chunks."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:234
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Fearsome microbes will flee over greater distances\n"
+"and are more likely to flee from predators in general.\n"
+"Brave cells are not intimidated by nearby predators\n"
+"and will more likely attack back."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:241
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Active microbes will ruble and tumble when nothing interesting happens.\n"
+"Sessile microbes will be stationary and wait for the environment to change."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:248
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Focused microbes will seek down chunks or pray over greater distances\n"
+"and might be much more ambitious over chunks."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
