@@ -1852,6 +1852,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private void RegisterTooltips()
     {
         rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
+        aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
+        opportunismSlider.RegisterToolTipForControl("opportunismSlider", "editor");
+        fearSlider.RegisterToolTipForControl("fearSlider", "editor");
+        activitySlider.RegisterToolTipForControl("activitySlider", "editor");
+        focusSlider.RegisterToolTipForControl("focusSlider", "editor");
         helpButton.RegisterToolTipForControl("helpButton");
         symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
         undoButton.RegisterToolTipForControl("undoButton", "editor");
