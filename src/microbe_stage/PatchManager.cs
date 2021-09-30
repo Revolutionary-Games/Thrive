@@ -52,8 +52,13 @@ public class PatchManager : IChildPropertiesLoadCallback
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
+    /// <returns>
+    ///   True if the patch is changed from the previous one. False if the patch is not changed.
+    /// </returns>
+    public bool ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
     {
+        var patchIsChanged = false;
+
         if (previousPatch != currentPatch && !skipDespawn)
         {
             if (previousPatch != null)
@@ -74,6 +79,8 @@ public class PatchManager : IChildPropertiesLoadCallback
 
             // Clear compounds
             compoundCloudSystem.EmptyAllClouds();
+
+            patchIsChanged = true;
         }
 
         previousPatch = currentPatch;
@@ -97,6 +104,8 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
+
+        return patchIsChanged;
     }
 
     private void HandleChunkSpawns(BiomeConditions biome)

@@ -280,7 +280,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         else
         {
             HUD.OnEnterStageTransition(true);
-            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
         }
     }
 
@@ -300,15 +299,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         patchManager.CurrentGame = CurrentGame;
 
-        UpdatePatchSettings();
+        UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
     }
 
     public void StartMusic()
     {
-        Jukebox.Instance.PlayingCategory = "MicrobeStage";
-        Jukebox.Instance.Resume();
+        Jukebox.Instance.PlayCategory("MicrobeStage");
     }
 
     /// <summary>
@@ -373,6 +371,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             // Show the game lost popup if not already visible
             HUD.ShowExtinctionBox();
 
+            Jukebox.Instance.PlayCategory("Extinction");
             return;
         }
 
@@ -552,7 +551,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+        TutorialState.SendEvent(
+            TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
     }
 
     [DeserializedCallbackAllowed]
@@ -624,11 +624,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
     }
 
-    private void UpdatePatchSettings()
+    private void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch) && promptPatchNameChange)
+        {
+            HUD.PopupPatchInfo();
+        }
 
         HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
