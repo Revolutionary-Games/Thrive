@@ -17,13 +17,13 @@ https://community.revolutionarygamesstudio.com/
 A clear and concise description of what the bug is.
 
 **To Reproduce**
-Steps to reproduce the behavior:
+Steps to reproduce the behaviour:
 1. Go to '...'
 2. Click on new game / something else '....'
 3. Play and do '....'
 4. See error
 
-**Expected behavior**
+**Expected behaviour**
 A clear and concise description of what you expected to happen, instead of what actually
 happened.
 

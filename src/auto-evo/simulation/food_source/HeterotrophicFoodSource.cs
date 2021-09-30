@@ -28,7 +28,7 @@
             return 0.0f;
         }
 
-        var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var behaviourScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
         var microbeSpeciesHexSize = microbeSpecies.BaseHexSize;
         var predatorSpeed = microbeSpecies.BaseSpeed;
@@ -69,7 +69,7 @@
         pilusScore *= predatorSpeed;
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-        return behaviorScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+        return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
     }
 
     public override float TotalEnergyAvailable()

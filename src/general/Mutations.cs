@@ -152,7 +152,7 @@ public class Mutations
 
     private void MutateBehaviour(MicrobeSpecies parent, MicrobeSpecies mutated)
     {
-        // Variables used in AI to determine general behavior mutate these
+        // Variables used in AI to determine general behaviour mutate these
         float aggression = parent.Aggression + random.Next(
             Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION);

@@ -25,7 +25,7 @@ public abstract class Species : ICloneable
 
     public Color Colour = new Color(1, 1, 1);
 
-    // Behavior properties
+    // Behaviour properties
     public float Aggression = 100.0f;
     public float Opportunism = 100.0f;
     public float Fear = 100.0f;
@@ -142,7 +142,7 @@ public abstract class Species : ICloneable
         // genus;
         // epithet;
 
-        // Behavior properties
+        // Behaviour properties
         Aggression = mutation.Aggression;
         Opportunism = mutation.Opportunism;
         Fear = mutation.Fear;
