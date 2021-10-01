@@ -369,6 +369,8 @@ public static class Constants
     public const float MAX_SPECIES_FOCUS = 400.0f;
     public const float MAX_SPECIES_OPPORTUNISM = 400.0f;
 
+    public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
+
     // Bacterial Colony configuration
     public const int MIN_BACTERIAL_COLONY_SIZE = 2;
     public const int MAX_BACTERIAL_COLONY_SIZE = 6;

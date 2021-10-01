@@ -121,7 +121,7 @@
         ///     to
         ///     "1": {
         ///       ...
-        ///       "BehaviouralValues": {
+        ///       "Behaviour": {
         ///         "Aggression": 126.188889,
         ///         "Opportunism": 34.3588943,
         ///         "Fear": 52.6969757,
@@ -148,7 +148,7 @@
             activity.Remove();
             focus.Remove();
 
-            (property.Value as JObject)?.Add("BehaviouralValues",
+            (property.Value as JObject)?.Add("Behaviour",
                 new JObject(aggression, opportunism, fear, activity, focus));
         }
     }

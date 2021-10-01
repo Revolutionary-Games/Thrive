@@ -28,7 +28,7 @@
             return 0.0f;
         }
 
-        var behaviourScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
         var microbeSpeciesHexSize = microbeSpecies.BaseHexSize;
         var predatorSpeed = microbeSpecies.BaseSpeed;

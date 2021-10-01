@@ -1340,7 +1340,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
-        float rigidity, Dictionary<BehaviouralValue, float> behaviouralValues)
+        float rigidity, BehaviourDictionary behaviour)
     {
         speciesNameEdit.Text = name;
         membraneColorPicker.Color = colour;
@@ -1353,7 +1353,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
-        UpdateAllBehaviouralSliders(behaviouralValues);
+        UpdateAllBehaviouralSliders(behaviour);
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -1365,9 +1365,9 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    internal void UpdateAllBehaviouralSliders(Dictionary<BehaviouralValue, float> behaviouralValues)
+    internal void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
     {
-        foreach (var pair in behaviouralValues)
+        foreach (var pair in behaviour)
             UpdateBehaviourSlider(pair.Key, pair.Value);
     }
 

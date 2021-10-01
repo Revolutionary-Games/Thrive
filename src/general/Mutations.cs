@@ -153,29 +153,29 @@ public class Mutations
     private void MutateBehaviour(MicrobeSpecies parent, MicrobeSpecies mutated)
     {
         // Variables used in AI to determine general behaviour mutate these
-        float aggression = parent.Aggression + random.Next(
+        float aggression = parent.Behaviour.Aggression + random.Next(
             Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-        float fear = parent.Fear + random.Next(
+        float fear = parent.Behaviour.Fear + random.Next(
             Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-        float activity = parent.Activity + random.Next(
+        float activity = parent.Behaviour.Activity + random.Next(
             Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-        float focus = parent.Focus + random.Next(
+        float focus = parent.Behaviour.Focus + random.Next(
             Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-        float opportunism = parent.Opportunism + random.Next(
+        float opportunism = parent.Behaviour.Opportunism + random.Next(
             Constants.MIN_SPECIES_PERSONALITY_MUTATION,
             Constants.MAX_SPECIES_PERSONALITY_MUTATION);
 
         // Make sure not over or under our scales
         // This used to be a method as well
-        mutated.Aggression = aggression.Clamp(0.0f, Constants.MAX_SPECIES_AGGRESSION);
-        mutated.Fear = fear.Clamp(0.0f, Constants.MAX_SPECIES_FEAR);
-        mutated.Activity = activity.Clamp(0.0f, Constants.MAX_SPECIES_ACTIVITY);
-        mutated.Focus = focus.Clamp(0.0f, Constants.MAX_SPECIES_FOCUS);
-        mutated.Opportunism = opportunism.Clamp(0.0f, Constants.MAX_SPECIES_OPPORTUNISM);
+        mutated.Behaviour.Aggression = aggression.Clamp(0.0f, Constants.MAX_SPECIES_AGGRESSION);
+        mutated.Behaviour.Fear = fear.Clamp(0.0f, Constants.MAX_SPECIES_FEAR);
+        mutated.Behaviour.Activity = activity.Clamp(0.0f, Constants.MAX_SPECIES_ACTIVITY);
+        mutated.Behaviour.Focus = focus.Clamp(0.0f, Constants.MAX_SPECIES_FOCUS);
+        mutated.Behaviour.Opportunism = opportunism.Clamp(0.0f, Constants.MAX_SPECIES_OPPORTUNISM);
     }
 
     /// <summary>

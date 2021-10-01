@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -28,8 +27,7 @@ public abstract class Species : ICloneable
 
     // Behaviour properties
     [JsonProperty]
-    public Dictionary<BehaviouralValue, float> BehaviouralValues = Enum.GetValues(typeof(BehaviouralValue))
-        .Cast<BehaviouralValue>().ToDictionary(bv => bv, _ => 100.0f);
+    public BehaviourDictionary Behaviour = new BehaviourDictionary();
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
@@ -47,41 +45,6 @@ public abstract class Species : ICloneable
     protected Species(uint id)
     {
         ID = id;
-    }
-
-    [JsonIgnore]
-    public float Activity
-    {
-        get => BehaviouralValues[BehaviouralValue.Activity];
-        set => BehaviouralValues[BehaviouralValue.Activity] = value;
-    }
-
-    [JsonIgnore]
-    public float Aggression
-    {
-        get => BehaviouralValues[BehaviouralValue.Aggression];
-        set => BehaviouralValues[BehaviouralValue.Aggression] = value;
-    }
-
-    [JsonIgnore]
-    public float Fear
-    {
-        get => BehaviouralValues[BehaviouralValue.Fear];
-        set => BehaviouralValues[BehaviouralValue.Fear] = value;
-    }
-
-    [JsonIgnore]
-    public float Focus
-    {
-        get => BehaviouralValues[BehaviouralValue.Focus];
-        set => BehaviouralValues[BehaviouralValue.Focus] = value;
-    }
-
-    [JsonIgnore]
-    public float Opportunism
-    {
-        get => BehaviouralValues[BehaviouralValue.Opportunism];
-        set => BehaviouralValues[BehaviouralValue.Opportunism] = value;
     }
 
     /// <summary>
@@ -177,7 +140,7 @@ public abstract class Species : ICloneable
         // epithet;
 
         // Behaviour properties
-        BehaviouralValues = mutation.BehaviouralValues;
+        Behaviour = (BehaviourDictionary)mutation.Behaviour.Clone();
     }
 
     /// <summary>
@@ -223,10 +186,12 @@ public abstract class Species : ICloneable
         foreach (var entry in InitialCompounds)
             species.InitialCompounds[entry.Key] = entry.Value;
 
+        foreach (var entry in Behaviour)
+            species.Behaviour[entry.Key] = entry.Value;
+
         species.Genus = Genus;
         species.Epithet = Epithet;
         species.Colour = Colour;
-        species.BehaviouralValues = BehaviouralValues;
         species.Population = Population;
         species.Generation = Generation;
         species.ID = ID;

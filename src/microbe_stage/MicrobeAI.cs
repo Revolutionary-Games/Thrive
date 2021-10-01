@@ -67,11 +67,11 @@ public class MicrobeAI
         compoundsSearchWeights = new Dictionary<Compound, float>();
     }
 
-    private float SpeciesAggression => microbe.Species.Aggression;
-    private float SpeciesFear => microbe.Species.Fear;
-    private float SpeciesActivity => microbe.Species.Activity;
-    private float SpeciesFocus => microbe.Species.Focus;
-    private float SpeciesOpportunism => microbe.Species.Opportunism;
+    private float SpeciesAggression => microbe.Species.Behaviour.Aggression;
+    private float SpeciesFear => microbe.Species.Behaviour.Fear;
+    private float SpeciesActivity => microbe.Species.Behaviour.Activity;
+    private float SpeciesFocus => microbe.Species.Behaviour.Focus;
+    private float SpeciesOpportunism => microbe.Species.Behaviour.Opportunism;
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
