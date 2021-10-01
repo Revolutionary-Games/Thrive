@@ -93,6 +93,7 @@
     internal class UpgradeStep055To056 : BaseRecursiveJSONWalkerStep
     {
         protected override string VersionAfter => "0.5.6.0-alpha";
+
         protected override void CheckAndUpdateProperty(JProperty property)
         {
             if ((property.Parent?.Parent as JProperty)?.Name == "worldSpecies")
