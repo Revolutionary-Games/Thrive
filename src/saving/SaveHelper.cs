@@ -17,6 +17,7 @@ public static class SaveHelper
     {
         "0.5.3.0",
         "0.5.3.1",
+        "0.5.5.0-alpha",
     };
 
     public enum SaveOrder
@@ -356,6 +357,9 @@ public static class SaveHelper
             {
                 copyInfoToSave.Invoke(save);
 
+                if (PreventSavingIfExtinct(inProgress, save))
+                    return;
+
                 PerformSave(inProgress, save);
             }, saveName).Start();
     }
@@ -368,6 +372,16 @@ public static class SaveHelper
             Info = { Type = type },
             Screenshot = ScreenShotTaker.Instance.TakeScreenshot(),
         };
+    }
+
+    private static bool PreventSavingIfExtinct(InProgressSave inProgress, Save save)
+    {
+        if (!save.SavedProperties.GameWorld.PlayerSpecies.IsExtinct)
+            return false;
+
+        inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
+            TranslationServer.Translate("PLAYER_EXTINCT"), false);
+        return true;
     }
 
     private static void PerformSave(InProgressSave inProgress, Save save)

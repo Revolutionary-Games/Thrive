@@ -58,6 +58,8 @@ public class ThriveJsonConverter : IDisposable
             // to not use this
             new BaseNodeConverter(context),
 
+            new EntityReferenceConverter(),
+
             // Converter for all types with a specific few attributes for this to be enabled
             new DefaultThriveJSONConverter(context),
         };
@@ -347,9 +349,9 @@ public abstract class BaseThriveConverter : JsonConverter
         // Detect ref to already loaded object
         var refId = item[REF_PROPERTY];
 
-        if (refId != null)
+        if (refId is { Type: JTokenType.String })
         {
-            return serializer.ReferenceResolver.ResolveReference(serializer, refId.Value<string>());
+            return serializer.ReferenceResolver.ResolveReference(serializer, refId.ValueNotNull<string>());
         }
 
         var objId = item[ID_PROPERTY];
@@ -357,13 +359,14 @@ public abstract class BaseThriveConverter : JsonConverter
         // Detect dynamic typing
         var type = item[TYPE_PROPERTY];
 
-        if (type != null)
+        if (type is { Type: JTokenType.String })
         {
             if (serializer.TypeNameHandling != TypeNameHandling.None)
             {
-                var parts = type.Value<string>().Split(',').Select(p => p.Trim()).ToList();
+                var parts = type.ValueNotNull<string>().Split(',').Select(p => p.Trim()).ToList();
+
                 if (parts.Count != 2 && parts.Count != 1)
-                    throw new JsonException("invalid $type format");
+                    throw new JsonException($"invalid {TYPE_PROPERTY} format");
 
                 // Change to loading the other type
                 objectType = serializer.SerializationBinder.BindToType(
@@ -383,9 +386,9 @@ public abstract class BaseThriveConverter : JsonConverter
             CreateDeserializedFromScene(objectType, out alreadyConsumedItems);
 
         // Store the instance before loading properties to not break on recursive references
-        if (objId != null)
+        if (objId is { Type: JTokenType.String })
         {
-            serializer.ReferenceResolver.AddReference(serializer, objId.Value<string>(), instance);
+            serializer.ReferenceResolver.AddReference(serializer, objId.ValueNotNull<string>(), instance);
         }
 
         RunPrePropertyDeserializeActions(instance);
@@ -668,7 +671,14 @@ public abstract class BaseThriveConverter : JsonConverter
         // Find a constructor we can call
         ConstructorInfo constructor = null;
 
-        foreach (var candidate in objectType.GetConstructors())
+        // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
+        var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Where(
+            c => c.CustomAttributes.Any(a => a.AttributeType == typeof(JsonConstructorAttribute)));
+
+        var potentialConstructors = objectType.GetConstructors().Concat(
+            privateJsonConstructors);
+
+        foreach (var candidate in potentialConstructors)
         {
             if (candidate.ContainsGenericParameters)
                 continue;
@@ -780,6 +790,17 @@ public abstract class BaseThriveConverter : JsonConverter
         if (target == null)
         {
             throw new JsonSerializationException("Copy only child properties target is null");
+        }
+
+        // If no new data, don't apply anything
+        if (newData == null)
+        {
+            // But to support detecting if that is the case we have an interface to give the instance the info that
+            // it didn't get the properties
+            if (target is IChildPropertiesLoadCallback callbackReceiver)
+                callbackReceiver.OnNoPropertiesLoaded();
+
+            return;
         }
 
         // Need to register for deletion the orphaned Godot object

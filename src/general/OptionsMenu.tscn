@@ -66,10 +66,20 @@ SFXVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBo
 SFXMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted")
 GUIVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume")
 GUIMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted")
+AudioOutputDeviceSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/AudioOutputDevicesButton")
+LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
+ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
+LanguageProgressLabelPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/LanguageProgress")
 PerformanceTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance")
 CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval")
+CloudResolutionTitlePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer")
 CloudResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution")
 RunAutoEvoDuringGameplayPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay")
+DetectedCPUCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3/HBoxContainer/CPUCount")
+ActiveThreadCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3/HBoxContainer2/ConfiguredThreads")
+AssumeHyperthreadingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading")
+UseManualThreadCountPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount")
+ThreadCountSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs")
 InputGroupListPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList")
 MiscTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc")
@@ -82,10 +92,9 @@ MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/V
 MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
 BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
 TutorialsEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/TutorialsEnabled")
+ScreenshotDirectoryWarningBoxPath = NodePath("CenterContainer/NoDirectoryDialog")
 DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
-LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
-ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 CustomUsernameEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled")
 CustomUsernamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername")
 
@@ -382,7 +391,6 @@ text = "DISPLAY_ABILITIES_BAR"
 margin_top = 293.0
 margin_right = 286.0
 margin_bottom = 315.0
-hint_tooltip = "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 pressed = true
@@ -390,10 +398,10 @@ text = "ENABLE_GUI_LIGHT_EFFECTS"
 
 [node name="Sound" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 664.0
-margin_bottom = 584.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 679.0
+margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -402,8 +410,8 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Sound"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 633.0
-margin_bottom = 553.0
+margin_right = 663.0
+margin_bottom = 583.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -589,10 +597,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+[node name="HBoxContainer7" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
 margin_top = 348.0
 margin_right = 648.0
 margin_bottom = 370.0
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
+margin_right = 208.0
+margin_bottom = 22.0
+text = "AUDIO_OUTPUT_DEVICE"
+align = 1
+
+[node name="AudioOutputDevicesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7"]
+margin_left = 212.0
+margin_right = 648.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+margin_top = 380.0
+margin_right = 648.0
+margin_bottom = 384.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+margin_top = 394.0
+margin_right = 648.0
+margin_bottom = 416.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6"]
 margin_right = 99.0
@@ -617,18 +650,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
-margin_top = 380.0
+[node name="LanguageProgress" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+margin_top = 426.0
 margin_right = 648.0
-margin_bottom = 412.0
+margin_bottom = 448.0
+text = "Language progress % goes here"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="TranslationSiteButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
+margin_top = 458.0
+margin_right = 648.0
+margin_bottom = 490.0
 text = "OPEN_TRANSLATION_SITE"
 
 [node name="Performance" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 664.0
-margin_bottom = 584.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 679.0
+margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -637,8 +679,8 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Performance"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 633.0
-margin_bottom = 553.0
+margin_right = 663.0
+margin_bottom = 583.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -704,8 +746,6 @@ margin_bottom = 42.0
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_right = 274.0
 margin_bottom = 22.0
-hint_tooltip = "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-mouse_filter = 0
 text = "CLOUD_RESOLUTION_DIVISOR"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
@@ -749,6 +789,111 @@ size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 pressed = true
 text = "RUN_AUTO_EVO_DURING_GAMEPLAY"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 182.0
+margin_right = 648.0
+margin_bottom = 186.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 196.0
+margin_right = 648.0
+margin_bottom = 218.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3"]
+margin_right = 415.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3/HBoxContainer"]
+margin_right = 208.0
+margin_bottom = 22.0
+text = "DETECTED_CPU_COUNT"
+
+[node name="CPUCount" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3/HBoxContainer"]
+margin_left = 212.0
+margin_right = 224.0
+margin_bottom = 22.0
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3"]
+margin_left = 419.0
+margin_right = 648.0
+margin_bottom = 22.0
+alignment = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3/HBoxContainer2"]
+margin_right = 213.0
+margin_bottom = 22.0
+text = "ACTIVE_THREAD_COUNT"
+
+[node name="ConfiguredThreads" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer3/HBoxContainer2"]
+margin_left = 217.0
+margin_right = 229.0
+margin_bottom = 22.0
+text = "0"
+
+[node name="AssumeHyperthreading" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 228.0
+margin_right = 268.0
+margin_bottom = 250.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 2 )
+pressed = true
+text = "ASSUME_HYPERTHREADING"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UseManualThreadCount" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 260.0
+margin_right = 292.0
+margin_bottom = 282.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 2 )
+pressed = true
+text = "USE_MANUAL_THREAD_COUNT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer"]
+margin_top = 292.0
+margin_right = 648.0
+margin_bottom = 314.0
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4"]
+margin_right = 85.0
+margin_bottom = 22.0
+text = "THREADS"
+align = 1
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4"]
+margin_left = 89.0
+margin_right = 94.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 5, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4"]
+margin_left = 98.0
+margin_right = 648.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer"]
+margin_right = 550.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 0, 1 )
+
+[node name="ThreadCountSlider" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer"]
+margin_top = 5.0
+margin_right = 550.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 64.0
+value = 2.0
+rounded = true
 
 [node name="Inputs" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
@@ -1000,7 +1145,7 @@ margin_right = 651.0
 margin_bottom = 381.0
 size_flags_horizontal = 3
 
-[node name="ScreeshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4"]
+[node name="ScreenshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4"]
 margin_right = 323.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
@@ -1252,6 +1397,29 @@ popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 
+[node name="NoDirectoryDialog" type="AcceptDialog" parent="CenterContainer"]
+margin_left = 340.0
+margin_top = 318.0
+margin_right = 940.0
+margin_bottom = 402.0
+rect_min_size = Vector2( 600, 0 )
+popup_exclusive = true
+window_title = "NO_SCREENSHOT_DIRECTORY"
+
+[node name="DialogText" type="Label" parent="CenterContainer/NoDirectoryDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 590.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 5 )
+text = "TRY_TAKING_SOME_SCREENSHOTS"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= [ "Performance" ]]
@@ -1275,12 +1443,16 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted" to="." method="OnSFXMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume" to="." method="OnGUIVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted" to="." method="OnGUIMutedToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer7/AudioOutputDevicesButton" to="." method="OnAudioOutputDeviceSettingSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton" to="." method="OnLanguageSettingSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton" to="." method="OnResetLanguagePressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/TranslationSiteButton" to="." method="OnTranslationSitePressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay" to="." method="OnAutoEvoToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/AssumeHyperthreading" to="." method="OnHyperthreadingToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/UseManualThreadCount" to="." method="OnManualThreadsToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Performance/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider" to="." method="OnManualThreadCountChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/HBoxContainer/ResetInputsButton" to="CenterContainer/VBoxContainer/PanelContainer/Inputs/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/InputGroupList" method="OnResetInputs"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
@@ -1292,7 +1464,7 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled" to="." method="OnCustomUsernameEnabledToggled"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4/ScreeshotFolder" to="." method="OnOpenScreenshotFolder"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4/ScreenshotFolder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]

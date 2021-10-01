@@ -133,6 +133,9 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
+    public SettingValue<string> SelectedAudioOutputDevice { get; set; } =
+        new SettingValue<string>(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
+
     public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
 
     // Performance Properties
@@ -163,6 +166,21 @@ public class Settings
     ///   taking up one of the background threads.
     /// </summary>
     public SettingValue<bool> RunAutoEvoDuringGamePlay { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
+    /// </summary>
+    public SettingValue<bool> AssumeCPUHasHyperthreading { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Only if this is true the ThreadCount will be followed
+    /// </summary>
+    public SettingValue<bool> UseManualThreadCount { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Manually set number of background threads to use. Needs to be at least 2 if RunAutoEvoDuringGamePlay is true
+    /// </summary>
+    public SettingValue<int> ThreadCount { get; set; } = new SettingValue<int>(4);
 
     // Misc Properties
 
@@ -471,6 +489,7 @@ public class Settings
             ApplyInputSettings();
         }
 
+        ApplyAudioOutputDeviceSettings();
         ApplyLanguageSettings();
         ApplyWindowSettings();
     }
@@ -530,6 +549,35 @@ public class Settings
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
+    }
+
+    /// <summary>
+    ///   Applies current output device settings to the audio system
+    /// </summary>
+    public void ApplyAudioOutputDeviceSettings()
+    {
+        var audioOutputDevice = SelectedAudioOutputDevice.Value;
+        if (string.IsNullOrEmpty(audioOutputDevice))
+        {
+            audioOutputDevice = Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME;
+        }
+
+        // If the selected output device is invalid Godot resets AudioServer.Device to Default.
+        // It seems like there is some kind of threading going on. The getter of AudioServer.Device
+        // only returns the new value after some time, therefore we can't check if the output device
+        // got applied successfully.
+        AudioServer.Device = audioOutputDevice;
+
+        GD.Print("Set audio output device to: ", audioOutputDevice);
+    }
+
+    /// <summary>
+    ///   Applies thread count settings, not necessary to call on startup as TaskExecutor reads the values itself from
+    ///   us when starting
+    /// </summary>
+    public void ApplyThreadSettings()
+    {
+        TaskExecutor.Instance.ReApplyThreadCount();
     }
 
     /// <summary>

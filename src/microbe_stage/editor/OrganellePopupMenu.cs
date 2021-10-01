@@ -101,6 +101,50 @@ public class OrganellePopupMenu : PopupPanel
         UpdateMoveButton();
     }
 
+    public override void _EnterTree()
+    {
+        InputManager.RegisterReceiver(this);
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        InputManager.UnregisterReceiver(this);
+        base._ExitTree();
+    }
+
+    [RunOnKeyDown("e_delete", Priority = 1)]
+    public bool OnDeleteKeyPressed()
+    {
+        if (Visible)
+        {
+            EmitSignal(nameof(DeletePressed));
+
+            Hide();
+
+            return true;
+        }
+
+        // Return false to indicate that the key input wasn't handled.
+        return false;
+    }
+
+    [RunOnKeyDown("e_move", Priority = 1)]
+    public bool OnMoveKeyPressed()
+    {
+        if (Visible)
+        {
+            EmitSignal(nameof(MovePressed));
+
+            Hide();
+
+            return true;
+        }
+
+        // Return false to indicate that the key input wasn't handled.
+        return false;
+    }
+
     private void OnDeletePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();

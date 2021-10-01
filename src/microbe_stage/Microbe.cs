@@ -75,7 +75,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private bool previousEngulfMode;
 
     [JsonProperty]
-    private Microbe hostileEngulfer;
+    private EntityReference<Microbe> hostileEngulfer = new EntityReference<Microbe>();
 
     [JsonProperty]
     private bool wasBeingEngulfed;
@@ -264,6 +264,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             if (state == value)
                 return;
 
+            // Engulfing is not legal for microbes will cell walls
+            if (value == MicrobeState.Engulf && Membrane.Type.CellWall)
+            {
+                GD.PrintErr("Illegal Action: microbe attempting to engulf with a membrane that does not allow it!");
+                return;
+            }
+
             state = value;
             if (Colony != null)
                 Colony.State = value;
@@ -317,6 +324,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     }
 
     /// <summary>
+    ///   Returns a squared value of <see cref="Radius"/>.
+    /// </summary>
+    [JsonIgnore]
+    public float RadiusSquared => Radius * Radius;
+
+    /// <summary>
     ///   Returns true when this microbe can enable binding mode
     /// </summary>
     public bool CanBind => organelles.Any(p => p.IsBindingAgent) || Colony != null;
@@ -328,7 +341,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public Spatial OrganelleParent { get; private set; }
 
     [JsonProperty]
-    public int DespawnRadiusSqr { get; set; }
+    public int DespawnRadiusSquared { get; set; }
 
     /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
@@ -338,7 +351,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public bool IsForPreviewOnly { get; set; }
 
     [JsonIgnore]
-    public Node SpawnedNode => this;
+    public Node EntityNode => this;
 
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
@@ -449,8 +462,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Setup tracking running processes
             ProcessStatistics = new ProcessStatistics();
 
-            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
-
             GD.Print("Player Microbe spawned");
         }
 
@@ -458,12 +469,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         var engulfDetector = GetNode<Area>("EngulfDetector");
         engulfShape = (SphereShape)engulfDetector.GetNode<CollisionShape>("EngulfShape").Shape;
 
-        engulfDetector.Connect("body_entered", this, "OnBodyEnteredEngulfArea");
-        engulfDetector.Connect("body_exited", this, "OnBodyExitedEngulfArea");
+        engulfDetector.Connect("body_entered", this, nameof(OnBodyEnteredEngulfArea));
+        engulfDetector.Connect("body_exited", this, nameof(OnBodyExitedEngulfArea));
 
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-        Connect("body_shape_entered", this, "OnContactBegin");
-        Connect("body_shape_exited", this, "OnContactEnd");
+        Connect("body_shape_entered", this, nameof(OnContactBegin));
+        Connect("body_shape_exited", this, nameof(OnContactEnd));
 
         Mass = Constants.MICROBE_BASE_MASS;
 
@@ -479,6 +490,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
+
+            // Colony children shapes need re-parenting to their master
+            // The shapes have to be re-parented to their original microbe then to the master again
+            // maybe engine bug
+            if (Colony != null && this != Colony.Master)
+            {
+                ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
+                ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
+            }
 
             // And recompute storage
             RecomputeOrganelleCapacity();
@@ -582,6 +602,25 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             Membrane.Type.BaseWigglyness) * 0.2f;
         Membrane.MovementWigglyNess = Membrane.Type.MovementWigglyness - (Species.MembraneRigidity /
             Membrane.Type.MovementWigglyness) * 0.2f;
+    }
+
+    /// <summary>
+    ///   Gets the actually hit microbe (potentially in a colony)
+    /// </summary>
+    /// <param name="bodyShape">The shape that was hit</param>
+    /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
+    public Microbe GetMicrobeFromShape(int bodyShape)
+    {
+        if (Colony == null)
+            return this;
+
+        var touchedOwnerId = ShapeFindOwner(bodyShape);
+
+        // Not found
+        if (touchedOwnerId == 0)
+            return null;
+
+        return GetColonyMemberWithShapeOwner(touchedOwnerId, Colony);
     }
 
     /// <summary>
@@ -749,6 +788,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // Disallow cannibalism
         if (target.Species == Species)
+            return false;
+
+        // Membranes with Cell Wall cannot engulf
+        if (Membrane.Type.CellWall)
             return false;
 
         // Needs to be big enough to engulf
@@ -1316,13 +1359,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
-    public void OnDestroyed()
+    public override void _EnterTree()
     {
         if (IsPlayerMicrobe)
-        {
-            CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
-        }
+            CheatManager.OnPlayerDuplicationCheatUsed += OnPlayerDuplicationCheat;
+    }
 
+    public override void _ExitTree()
+    {
+        if (IsPlayerMicrobe)
+            CheatManager.OnPlayerDuplicationCheatUsed -= OnPlayerDuplicationCheat;
+
+        base._ExitTree();
+    }
+
+    public void OnDestroyed()
+    {
         Colony?.RemoveFromColony(this);
 
         AliveMarker.Alive = false;
@@ -1382,6 +1434,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RevertNodeParent();
             ai?.ResetAI();
 
+            Mode = ModeEnum.Rigid;
+
             return;
         }
 
@@ -1391,11 +1445,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             RemoveCollisionExceptionWith(microbe);
     }
 
+    internal void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 microbeRotation)
+    {
+        // TODO: if microbeRotation is the rotation of *this* instance we should use the variable here directly
+        // An object doesn't need to be told its own member variable in a method...
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
+        foreach (var organelle in organelles)
+            organelle.ReParentShapes(to, offset, masterRotation, microbeRotation);
+    }
+
     internal void OnColonyMemberAdded(Microbe microbe)
     {
         if (microbe == this)
         {
             OnIGotAddedToColony();
+
+            var parent = this;
+            if (Colony.Master != this)
+            {
+                Mode = ModeEnum.Static;
+                parent = ColonyParent;
+            }
+
+            ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), parent.Rotation, Rotation);
         }
         else
         {
@@ -1418,6 +1490,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             TranslationServer.Translate("SUCCESSFUL_KILL"));
     }
 
+    private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    {
+        foreach (var microbe in colony.ColonyMembers)
+        {
+            if (microbe.organelles.Any(o => o.HasShape(ownerID)) || microbe.IsPilus(ownerID))
+                return microbe;
+        }
+
+        // TODO: I really hope there is no way to hit this. I would really hate to reduce the game stability due to
+        // possibly bogus ownerID values that sometimes seem to come from Godot
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
+        throw new InvalidOperationException();
+    }
+
+    private Vector3 GetOffsetRelativeToMaster()
+    {
+        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
+            Colony.Master.Rotation.y);
+    }
+
     private void OnIGotAddedToColony()
     {
         State = MicrobeState.Normal;
@@ -1426,23 +1518,65 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (ColonyParent == null)
             return;
 
-        var oldRotation = Rotation;
-        var vectorToParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
+        var newTransform = GetNewRelativeTransform();
+
+        Rotation = newTransform.rotation;
+        Translation = newTransform.translation;
+
         ChangeNodeParent(ColonyParent);
+    }
 
-        var vectorToParentRotated = vectorToParent.Rotated(Vector3.Down, Rotation.y);
-        var vectorToMembrane = Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+    /// <summary>
+    ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
+    ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
+    ///     Visual explanation
+    ///   </a>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Storing the old global translation and rotation, re-parenting and then reapplying the stored values is
+    ///     worse than this code because this code utilizes GetVectorTowardsNearestPointOfMembrane. This reduces the
+    ///     visual gap between the microbes in a colony.
+    ///   </para>
+    /// </remarks>
+    /// <returns>Returns relative translation and rotation</returns>
+    private (Vector3 translation, Vector3 rotation) GetNewRelativeTransform()
+    {
+        // Gets the global rotation of the parent
+        var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
 
-        vectorToParentRotated = (-vectorToParent).Rotated(Vector3.Down, ColonyParent.Rotation.y);
-        var parentVectorToItsMembrane =
-            ColonyParent.Membrane.GetExternalOrganelle(vectorToParentRotated.x, vectorToParentRotated.y);
+        // A vector from the parent to me
+        var vectorFromParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
 
-        var requiredDistance = vectorToMembrane.Length() + parentVectorToItsMembrane.Length();
+        // A vector from me to the parent
+        var vectorToParent = -vectorFromParent;
 
-        var offset = vectorToParent.Normalized() * requiredDistance;
+        // TODO: using quaternions here instead of assuming that rotating about the up/down axis is right would be nice
+        // This vector represents the vectorToParent as if I had no rotation.
+        // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
+        // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
+        var vectorToParentWithoutRotation = vectorToParent.Rotated(Vector3.Down, Rotation.y);
 
-        Rotation = oldRotation - ColonyParent.Rotation;
-        Translation = offset.Rotated(Vector3.Down, ColonyParent.Rotation.y);
+        // This vector represents the vectorFromParent as if the parent had no rotation.
+        var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+
+        // Calculates the vector from the center of the parent's membrane towards me with canceled out rotation.
+        // This gets added to the vector calculated one call before.
+        var correctedVectorFromParent = ColonyParent.Membrane
+            .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
+                vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
+
+        // Calculates the vector from my center to my membrane towards the parent.
+        // This vector gets rotated back to cancel out the rotation applied two calls above.
+        // -= to negate the vector, so that the two membrane vectors amplify
+        correctedVectorFromParent -= Membrane
+            .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x, vectorToParentWithoutRotation.z)
+            .Rotated(Vector3.Up, Rotation.y);
+
+        // Rotated because the rotational scope is different.
+        var newTranslation = correctedVectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
+
+        return (newTranslation, Rotation - globalParentRotation);
     }
 
     private void SetScaleFromSpecies()
@@ -1928,21 +2062,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Check whether we should not be being engulfed anymore
-        if (hostileEngulfer != null)
+        var hostile = hostileEngulfer.Value;
+        if (hostile != null)
         {
-            try
+            // Dead things can't engulf us
+            if (hostile.Dead)
             {
-                // Dead things can't engulf us
-                if (hostileEngulfer.Dead)
-                {
-                    hostileEngulfer = null;
-                    IsBeingEngulfed = false;
-                }
-            }
-            catch (ObjectDisposedException)
-            {
-                // Something that's disposed can't engulf us
-                hostileEngulfer = null;
+                hostileEngulfer.Value = null;
                 IsBeingEngulfed = false;
             }
         }
@@ -1976,7 +2102,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Apply engulf effect (which will cause damage in their process call) to the cells we are engulfing
         foreach (var microbe in attemptingToEngulf)
         {
-            microbe.hostileEngulfer = this;
+            microbe.hostileEngulfer.Value = this;
             microbe.IsBeingEngulfed = true;
         }
     }
@@ -1988,13 +2114,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         wasBeingEngulfed = false;
         IsBeingEngulfed = false;
 
-        if (hostileEngulfer != null)
+        if (hostileEngulfer.Value != null)
         {
             // Currently unused
             // hostileEngulfer.isCurrentlyEngulfing = false;
         }
 
-        hostileEngulfer = null;
+        hostileEngulfer.Value = null;
     }
 
     private void HandleOsmoregulation(float delta)
@@ -2057,8 +2183,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (Membrane.DissolveEffectValue >= 1)
         {
-            OnDestroyed();
-            this.DetachAndQueueFree();
+            this.DestroyDetachAndQueueFree();
         }
     }
 
@@ -2254,7 +2379,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         // The back of the microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
-        var membraneCoords = Membrane.GetExternalOrganelle(exit.x, exit.z);
+        var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
 
         // Get the distance to eject the compounds
         var ejectionDistance = Membrane.EncompassingCircleRadius;
@@ -2324,14 +2449,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         _ = bodyID;
 
-        if (body is Microbe microbe)
+        if (body is Microbe colonyLeader)
         {
-            // TODO: does this need to check for disposed exception?
-            if (microbe.Dead || (Colony != null && Colony == microbe.Colony))
+            var touchedOwnerId = colonyLeader.ShapeFindOwner(bodyShape);
+            var thisOwnerId = ShapeFindOwner(localShape);
+
+            var touchedMicrobe = colonyLeader.GetMicrobeFromShape(bodyShape);
+
+            var thisMicrobe = GetMicrobeFromShape(localShape);
+
+            // bodyShape or localShape are invalid. This can happen during re-parenting
+            if (touchedMicrobe == null || thisMicrobe == null)
                 return;
 
-            bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
-            bool oursIsPilus = IsPilus(ShapeFindOwner(localShape));
+            // TODO: does this need to check for disposed exception?
+            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            if (touchedMicrobe.Dead || (Colony != null && Colony == touchedMicrobe.Colony))
+                return;
+
+            bool otherIsPilus = touchedMicrobe.IsPilus(touchedOwnerId);
+            bool oursIsPilus = thisMicrobe.IsPilus(thisOwnerId);
 
             // Pilus logic
             if (otherIsPilus && oursIsPilus)
@@ -2345,20 +2482,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 // Us attacking the other microbe, or it is attacking us
 
                 // Disallow cannibalism
-                if (microbe.Species == Species)
+                if (touchedMicrobe.Species == thisMicrobe.Species)
                     return;
 
-                var target = otherIsPilus ? this : microbe;
+                var target = otherIsPilus ? thisMicrobe : touchedMicrobe;
 
                 target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
                 return;
             }
 
             // Pili don't stop engulfing
-            if (touchedMicrobes.Add(microbe))
+            if (thisMicrobe.touchedMicrobes.Add(touchedMicrobe))
             {
-                CheckStartEngulfingOnCandidates();
-                CheckBinding();
+                thisMicrobe.CheckStartEngulfingOnCandidates();
+                thisMicrobe.CheckBinding();
             }
         }
     }
@@ -2367,12 +2504,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         _ = bodyID;
         _ = bodyShape;
-        _ = localShape;
 
         if (body is Microbe microbe)
         {
+            // GetMicrobeFromShape returns null when it was provided an invalid shape id.
+            // This can happen when re-parenting is in progress.
+            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+            var hitMicrobe = GetMicrobeFromShape(localShape) ?? this;
+
             // TODO: should this also check for pilus before removing the collision?
-            touchedMicrobes.Remove(microbe);
+            hitMicrobe.touchedMicrobes.Remove(microbe);
         }
     }
 
@@ -2405,6 +2546,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
     }
 
+    private bool CanBindToMicrobe(Microbe other)
+    {
+        // Cannot hijack the player, other species or other colonies (TODO: yet)
+        return !other.IsPlayerMicrobe && other.Colony == null && other.Species == Species;
+    }
+
     private void CheckBinding()
     {
         if (State != MicrobeState.Binding)
@@ -2416,10 +2563,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             return;
         }
 
-        var other = touchedMicrobes.FirstOrDefault();
+        var other = touchedMicrobes.FirstOrDefault(CanBindToMicrobe);
 
-        // Cannot hijack the player, other species or other colonies (TODO: yet)
-        if (other?.IsPlayerMicrobe != false || other.Colony != null || other.Species != Species)
+        // If there is no touching microbe that can bind, no need to invoke binding.
+        if (other == null)
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
@@ -2428,17 +2575,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     private void BeginBind()
     {
-        var other = touchedMicrobes.FirstOrDefault();
+        var other = touchedMicrobes.FirstOrDefault(CanBindToMicrobe);
 
         if (other == null)
         {
-            GD.PrintErr("Touched microbe has disappeared before binding could start");
-            return;
-        }
-
-        if (other.Colony != null)
-        {
-            GD.PrintErr("Can't bind to a cell that is suddenly in a colony");
+            GD.PrintErr("Touched eligible microbe has disappeared before binding could start");
             return;
         }
 
@@ -2450,7 +2591,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Create a colony if there isn't one yet
         if (Colony == null)
         {
-            Colony = new MicrobeColony(this);
+            MicrobeColony.CreateColonyForMicrobe(this);
+
+            if (Colony == null)
+            {
+                GD.PrintErr("An issue occured during colony creation!");
+                return;
+            }
+
             GD.Print("Created a new colony");
         }
 
@@ -2494,15 +2642,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void StartEngulfingTarget(Microbe microbe)
     {
         AddCollisionExceptionWith(microbe);
-        microbe.hostileEngulfer = this;
+        microbe.hostileEngulfer.Value = this;
         microbe.IsBeingEngulfed = true;
     }
 
     private void StopEngulfingOnTarget(Microbe microbe)
     {
-        if (Colony == null || Colony != microbe.Colony)
+        if (IsInstanceValid(microbe) && (Colony == null || Colony != microbe.Colony))
             RemoveCollisionExceptionWith(microbe);
 
-        microbe.hostileEngulfer = null;
+        microbe.hostileEngulfer.Value = null;
     }
 }

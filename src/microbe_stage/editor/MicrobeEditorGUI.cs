@@ -268,9 +268,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
     private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
-    private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
-    private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
-
     private EnergyBalanceInfo energyBalanceInfo;
 
     [JsonProperty]
@@ -317,7 +314,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private ProgressBar mutationPointsSubtractBar;
 
     private Slider rigiditySlider;
-    private ColorPicker membraneColorPicker;
+    private TweakedColourPicker membraneColorPicker;
 
     private TextureButton undoButton;
     private TextureButton redoButton;
@@ -451,7 +448,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
 
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
+        membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
 
         menuButton = GetNode<TextureButton>(MenuButtonPath);
         helpButton = GetNode<TextureButton>(HelpButtonPath);
@@ -654,14 +651,11 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     public void UpdateEnergyBalanceToolTips(EnergyBalanceInfo energyBalance)
     {
-        // Clear previous callbacks
-        processesTooltipCallbacks.Clear();
-
         foreach (var subBar in atpProductionBar.SubBars)
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
 
-            subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
+            subBar.RegisterToolTipForControl(tooltip);
 
             tooltip.Description = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION"),
@@ -673,7 +667,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesConsumption");
 
-            subBar.RegisterToolTipForControl(tooltip, processesTooltipCallbacks);
+            subBar.RegisterToolTipForControl(tooltip);
 
             string displayName;
 
@@ -799,15 +793,41 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
 
                 var extinctInPatch = entry.Value <= 0;
+                var extinctEverywhere = false;
+
+                // We test if the species info was recorded before using it.
+                // This is especially for compatibility with older versions, to avoid crashed due to an invalid key.
+                // TODO: Use a proper save upgrade (e.g. summing population to generate info).
+                if (snapshot.RecordedSpeciesInfo.TryGetValue(entry.Key, out SpeciesInfo speciesInfo))
+                {
+                    extinctEverywhere = speciesInfo.Population <= 0;
+                }
 
                 // Clamp population number so it doesn't go into the negatives
                 var population = extinctInPatch ? 0 : entry.Value;
 
+                var iconType = DataPoint.MarkerIcon.Circle;
+                var iconSize = 7;
+
+                if (extinctInPatch)
+                {
+                    if (extinctEverywhere)
+                    {
+                        iconType = DataPoint.MarkerIcon.Skull;
+                        iconSize = 28;
+                    }
+                    else
+                    {
+                        iconType = DataPoint.MarkerIcon.Cross;
+                        iconSize = 12;
+                    }
+                }
+
                 var dataPoint = new DataPoint
                 {
                     Value = new Vector2((float)snapshot.TimePeriod, population),
-                    Size = extinctInPatch ? 12 : 7,
-                    IconType = extinctInPatch ? DataPoint.MarkerIcon.Cross : DataPoint.MarkerIcon.Circle,
+                    Size = iconSize,
+                    IconType = iconType,
                     MarkerColour = dataset.DataColour,
                 };
 
@@ -926,6 +946,18 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public void UpdateReportTabPatchName(string patch)
     {
         reportTabPatchNameLabel.Text = patch;
+    }
+
+    public void UpdateRigiditySliderState(int mutationPoints)
+    {
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelle == null)
+        {
+            rigiditySlider.Editable = true;
+        }
+        else
+        {
+            rigiditySlider.Editable = false;
+        }
     }
 
     /// <summary>
@@ -1281,8 +1313,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         UpdateMembraneButtons(membrane.InternalName);
         SetMembraneTooltips(membrane);
 
-        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
-            editor.MutationPoints);
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -1294,17 +1325,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    internal void UpdateRigiditySlider(int value, int mutationPoints)
+    internal void UpdateRigiditySlider(int value)
     {
-        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelle == null)
-        {
-            rigiditySlider.Editable = true;
-        }
-        else
-        {
-            rigiditySlider.Editable = false;
-        }
-
         rigiditySlider.Value = value;
         SetRigiditySliderTooltip(value);
     }
@@ -1372,8 +1394,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         foreach (var entry in organelleSelections)
         {
             // Special case with registering the tooltip here for item with no associated organelle
-            entry.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
-                entry.Name, "organelleSelection"), tooltipCallbacks);
+            entry.RegisterToolTipForControl(entry.Name, "organelleSelection");
 
             if (!SimulationParameters.Instance.DoesOrganelleExist(entry.Name))
             {
@@ -1393,8 +1414,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         foreach (var entry in membraneSelections)
         {
             // Special case with registering the tooltip here for item with no associated membrane
-            entry.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(
-                entry.Name, "membraneSelection"), tooltipCallbacks);
+            entry.RegisterToolTipForControl(entry.Name, "membraneSelection");
 
             if (!SimulationParameters.Instance.DoesMembraneExist(entry.Name))
             {
@@ -1746,41 +1766,22 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     /// </summary>
     private void RegisterTooltips()
     {
-        var toolTipManager = ToolTipManager.Instance;
-
-        rigiditySlider.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("rigiditySlider", "editor"), tooltipCallbacks);
-        helpButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("helpButton"), tooltipCallbacks);
-        symmetryButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("symmetryButton", "editor"), tooltipCallbacks);
-        undoButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("undoButton", "editor"), tooltipCallbacks);
-        redoButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("redoButton", "editor"), tooltipCallbacks);
-        newCellButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("newCellButton", "editor"), tooltipCallbacks);
-        timeIndicator.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("timeIndicator", "editor"), tooltipCallbacks);
-        finishButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("finishButton", "editor"), tooltipCallbacks);
-        cancelButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("cancelButton", "editor"), tooltipCallbacks);
-        menuButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("menuButton"), tooltipCallbacks);
+        rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
+        helpButton.RegisterToolTipForControl("helpButton");
+        symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
+        undoButton.RegisterToolTipForControl("undoButton", "editor");
+        redoButton.RegisterToolTipForControl("redoButton", "editor");
+        newCellButton.RegisterToolTipForControl("newCellButton", "editor");
+        timeIndicator.RegisterToolTipForControl("timeIndicator", "editor");
+        finishButton.RegisterToolTipForControl("finishButton", "editor");
+        cancelButton.RegisterToolTipForControl("cancelButton", "editor");
+        menuButton.RegisterToolTipForControl("menuButton");
 
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
 
-        // TODO: fix the short name used in chartLegendPhysicalConditions (abbreviated in the string literal below)
-        // ReSharper disable StringLiteralTypo
-        temperatureButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("temperature", "chartLegendPhysConds"), tooltipCallbacks);
-
-        sunlightButton.RegisterToolTipForControl(
-            toolTipManager.GetToolTip("sunlight", "chartLegendPhysConds"), tooltipCallbacks);
-
-        // ReSharper restore StringLiteralTypo
+        temperatureButton.RegisterToolTipForControl("temperature", "chartLegendPhysicalConditions");
+        sunlightButton.RegisterToolTipForControl("sunlight", "chartLegendPhysicalConditions");
     }
 
     private void OnSpeciesNameTextChanged(string newText)

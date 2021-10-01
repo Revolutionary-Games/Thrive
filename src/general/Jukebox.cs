@@ -81,6 +81,16 @@ public class Jukebox : Node
     }
 
     /// <summary>
+    ///   Starts playing tracks from the provided category
+    /// </summary>
+    /// <param name="category">category from music_tracks.json</param>
+    public void PlayCategory(string category)
+    {
+        PlayingCategory = category;
+        Resume();
+    }
+
+    /// <summary>
     ///   Unpauses currently playing songs
     /// </summary>
     public void Resume()
@@ -175,7 +185,7 @@ public class Jukebox : Node
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
-        player.Connect("finished", this, "OnSomeTrackEnded");
+        player.Connect("finished", this, nameof(OnSomeTrackEnded));
 
         var created = new AudioPlayer(player);
 

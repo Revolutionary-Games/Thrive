@@ -29,11 +29,12 @@ public class CustomRichTextLabel : RichTextLabel
     }
 
     /// <summary>
-    ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound]glucose[/thrive:compound])
+    ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound type="glucose"]
+    ///   [/thrive:compound])
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     NOTE: including "thrive" namespace in the tag is a must, otherwise the custom parser wouldn't parse it.
+    ///     NOTE: including "thrive" namespace in a tag is a must, otherwise the custom parser wouldn't parse it.
     ///   </para>
     /// </remarks>
     [Export]
@@ -51,10 +52,32 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputDataList.InputsRemapped += OnInputsRemapped;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputDataList.InputsRemapped -= OnInputsRemapped;
+    }
+
     public override void _Ready()
     {
         // Make sure bbcode is enabled
         BbcodeEnabled = true;
+    }
+
+    public override void _Draw()
+    {
+        // A workaround to get RichTextLabel's height properly update on tooltip size change
+        // See https://github.com/Revolutionary-Games/Thrive/issues/2236
+        // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
+#pragma warning disable CA2245 // Necessary for workaround
+        Invoke.Instance.Queue(() => BbcodeText = BbcodeText);
+#pragma warning restore CA2245
     }
 
     /// <summary>
@@ -110,7 +133,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                     if (character == '[' || index == extendedBbcode.Length - 1)
                     {
-                        // No closing bracket found, just write normally to the final string and abort trying to parse
+                        // No closing bracket found, just write normally into the final string and abort
+                        // trying to parse
                         result.Append($"[{currentTagBlock}");
                         isIteratingTag = false;
                     }
@@ -132,7 +156,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var leftHandSide = tagBlock.Split(":");
 
-                // Invalid tag syntax, probably not a thrive tag or missing a part
+                // Invalid bbcode syntax, probably not a thrive bbcode or missing a part
                 if (leftHandSide.Length != 2)
                 {
                     result.Append($"[{tagBlock}]");
@@ -143,7 +167,7 @@ public class CustomRichTextLabel : RichTextLabel
                 // Custom bbcode Thrive namespace
                 var bbcodeNamespace = leftHandSide[0];
 
-                // Not a thrive custom bbcode, don't parse this
+                // Not a thrive bbcode, don't parse this
                 if (!bbcodeNamespace.Contains("thrive"))
                 {
                     result.Append($"[{tagBlock}]");
@@ -171,7 +195,7 @@ public class CustomRichTextLabel : RichTextLabel
                         continue;
                     }
 
-                    // Finally try building the bbcode template for the tagged substring
+                    // Finally try building the bbcode template for the enclosed substring
 
                     var closingTagStartIndex = extendedBbcode.IndexOf("[", lastStartingTagEndIndex,
                         StringComparison.InvariantCulture);
@@ -217,9 +241,9 @@ public class CustomRichTextLabel : RichTextLabel
     /// <summary>
     ///   Returns a templated bbcode string for the given custom tag.
     /// </summary>
-    /// <param name="input">The string tagged by custom tags</param>
+    /// <param name="input">The string enclosed by the custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
-    /// <param name="attributes">Attributes specifying an additional functionality to the bbcode.</param>
+    /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
     private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes = null)
     {
         // Defaults to input so if something fails output returns unchanged
@@ -293,5 +317,10 @@ public class CustomRichTextLabel : RichTextLabel
         }
 
         return output;
+    }
+
+    private void OnInputsRemapped(object sender, EventArgs args)
+    {
+        ParseCustomTags();
     }
 }

@@ -146,7 +146,22 @@
         "name": "VOLCANIC_VENT",
         "background": "vent",
         "icon": "res://assets/textures/gui/bevel/vents.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 0.972,
+                "g": 0.788,
+                "b": 0.788,
+                "a": 1
+            },
+            "energy": 0.8,
+            "specular": 0.5,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "conditions": {
             "chunks": {
                 "floatingToxin": {
@@ -354,7 +369,22 @@
         "name": "TIDEPOOL",
         "background": "tidepool",
         "icon": "res://assets/textures/gui/bevel/tidepool.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 0.972,
+                "g": 0.96,
+                "b": 0.788,
+                "a": 1
+            },
+            "energy": 1,
+            "specular": 0.6,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -486,7 +516,22 @@
         "name": "BATHYPELAGIC",
         "background": "bathypelagic",
         "icon": "res://assets/textures/gui/bevel/bathy.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "energy": 0.2,
+            "specular": 0.5,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "eyeAdaptation": {
             "min": 0.003,
             "max": 1.5
@@ -698,7 +743,22 @@
         "name": "ABYSSOPELAGIC",
         "background": "abyssopelagic",
         "icon": "res://assets/textures/gui/bevel/abyss.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "energy": 0.01,
+            "specular": 0.45,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "conditions": {
             "chunks": {
                 "floatingToxin": {
@@ -906,7 +966,22 @@
         "name": "MESOPELAGIC",
         "background": "mesopelagic",
         "icon": "res://assets/textures/gui/bevel/mesopelagic.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "energy": 0.3,
+            "specular": 0.5,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "eyeAdaptation": {
             "min": 0.003,
             "max": 1.7
@@ -1118,7 +1193,22 @@
         "name": "COASTAL",
         "background": "coastal",
         "icon": "res://assets/textures/gui/bevel/shallow.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 1,
+                "g": 0.992,
+                "b": 0.819,
+                "a": 1
+            },
+            "energy": 1,
+            "specular": 0.5,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -1250,7 +1340,22 @@
         "name": "UNDERWATERCAVE",
         "background": "cave",
         "icon": "res://assets/textures/gui/bevel/cave.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "energy": 0.4,
+            "specular": 0.5,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "conditions": {
             "chunks": {
                 "floatingToxin": {
@@ -1378,7 +1483,22 @@
         "name": "ICESHELF",
         "background": "iceshelf",
         "icon": "res://assets/textures/gui/bevel/iceshelf.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "energy": 0.4,
+            "specular": 0.5,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -1528,7 +1648,22 @@
         "name": "ESTUARY",
         "background": "estuary",
         "icon": "res://assets/textures/gui/bevel/estuary.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 0.882,
+                "g": 0.552,
+                "b": 0.298,
+                "a": 1
+            },
+            "energy": 1,
+            "specular": 0.5,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -1660,7 +1795,22 @@
         "name": "SEA_FLOOR",
         "background": "seafloor",
         "icon": "res://assets/textures/gui/bevel/bathyFloor.png",
-        "sunlight": {},
+        "sunlight": {
+            "colour": {
+                "r": 1,
+                "g": 1,
+                "b": 1,
+                "a": 1
+            },
+            "energy": 0.05,
+            "specular": 0.4,
+            "shadows": true,
+            "direction": {
+                "x": 0.25,
+                "y": -0.3,
+                "z": 0.75
+            }
+        },
         "eyeAdaptation": {
             "min": 0.003,
             "max": 1

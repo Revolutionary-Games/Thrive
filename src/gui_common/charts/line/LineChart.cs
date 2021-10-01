@@ -110,8 +110,6 @@ public class LineChart : VBoxContainer
     private string xAxisName;
     private string yAxisName;
 
-    private List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
-
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
     /// </summary>
@@ -374,9 +372,9 @@ public class LineChart : VBoxContainer
 
                 toolTip.DisplayDelay = 0;
                 toolTip.HideOnMousePress = false;
-                toolTip.UseFadeIn = false;
+                toolTip.TransitionType = ToolTipTransitioning.Immediate;
 
-                point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
+                point.RegisterToolTipForControl(toolTip);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
 
                 drawArea.AddChild(point);
@@ -416,8 +414,6 @@ public class LineChart : VBoxContainer
     /// </summary>
     public void ClearChart()
     {
-        toolTipCallbacks.Clear();
-
         foreach (var data in dataSets)
         {
             ToolTipManager.Instance.ClearToolTips("chartMarkers" + ChartName + data.Key);
@@ -530,7 +526,7 @@ public class LineChart : VBoxContainer
             toolTip.DisplayName = data.Key;
             toolTip.Description = data.Key;
 
-            icon.RegisterToolTipForControl(toolTip, toolTipCallbacks);
+            icon.RegisterToolTipForControl(toolTip);
             ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + ChartName);
         }
     }
@@ -581,8 +577,12 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void RenderChart()
     {
-        if (dataSets.Count <= 0)
+        // Handle empty or entirely hidden datasets
+        if (dataSets == null || VisibleDataSets <= 0)
+        {
+            DrawNoDataText();
             return;
+        }
 
         DrawOrdinateLines();
         UpdateLineSegments();
@@ -669,7 +669,7 @@ public class LineChart : VBoxContainer
             tooltip.Description = datasetName;
             tooltip.DisplayDelay = 0.5f;
 
-            newCollisionRect.RegisterToolTipForControl(tooltip, toolTipCallbacks);
+            newCollisionRect.RegisterToolTipForControl(tooltip);
             ToolTipManager.Instance.AddToolTip(tooltip, "chartMarkers");
 
             dataLine.CollisionBoxes[firstPoint] = newCollisionRect;
@@ -695,6 +695,22 @@ public class LineChart : VBoxContainer
         mouseCollider.RectRotation = Mathf.Rad2Deg(firstPoint.Coordinate.AngleToPoint(secondPoint.Coordinate));
 
         mouseCollider.Visible = dataSets[datasetName].Draw;
+    }
+
+    /// <summary>
+    ///   Draws a text on the chart clarifying that there's no data to show to the user.
+    /// </summary>
+    private void DrawNoDataText()
+    {
+        var font = GetFont("jura_small", "Label");
+        var translated = TranslationServer.Translate("NO_DATA_TO_SHOW");
+
+        // Values are rounded to make the font not be blurry
+        var position = new Vector2(
+            Mathf.Round((drawArea.RectSize.x - font.GetStringSize(translated).x) / 2),
+            Mathf.Round(drawArea.RectSize.y / 2));
+
+        drawArea.DrawString(font, position, translated);
     }
 
     /// <summary>
@@ -786,6 +802,11 @@ public class LineChart : VBoxContainer
         horizontalLabelsContainer.QueueFreeChildren();
         verticalLabelsContainer.QueueFreeChildren();
 
+        // If no data is visible, don't create the labels as it will just have zero values
+        // and be potentially confusing to look at
+        if (VisibleDataSets <= 0)
+            return;
+
         // Populate the rows
         for (int i = 0; i < XAxisTicks; i++)
         {
@@ -807,7 +828,7 @@ public class LineChart : VBoxContainer
             var label = new Label
             {
                 SizeFlagsVertical = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Center,
+                Align = Label.AlignEnum.Right,
                 Valign = Label.VAlign.Center,
             };
 

@@ -29,6 +29,12 @@ public class MainMenu : NodeWithInput
     public NodePath FreebuildButtonPath;
 
     [Export]
+    public NodePath CreditsContainerPath;
+
+    [Export]
+    public NodePath CreditsScrollPath;
+
+    [Export]
     public NodePath GLES2PopupPath;
 
     public Array MenuArray;
@@ -36,12 +42,13 @@ public class MainMenu : NodeWithInput
 
     public bool IsReturningToMenu;
 
-    private readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
-
     private TextureRect thriveLogo;
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
     private SaveManagerGUI saves;
+
+    private Control creditsContainer;
+    private CreditsScroll credits;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -69,8 +76,7 @@ public class MainMenu : NodeWithInput
 
     public void StartMusic()
     {
-        Jukebox.Instance.PlayingCategory = "Menu";
-        Jukebox.Instance.Resume();
+        Jukebox.Instance.PlayCategory("Menu");
     }
 
     /// <summary>
@@ -136,6 +142,8 @@ public class MainMenu : NodeWithInput
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
+        creditsContainer = GetNode<Control>(CreditsContainerPath);
+        credits = GetNode<CreditsScroll>(CreditsScrollPath);
 
         MenuArray?.Clear();
 
@@ -158,8 +166,7 @@ public class MainMenu : NodeWithInput
         SwitchMenu();
 
         // Easter egg message
-        thriveLogo.RegisterToolTipForControl(
-            ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"), toolTipCallbacks);
+        thriveLogo.RegisterToolTipForControl("thriveLogoEasterEgg", "mainMenu");
 
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
@@ -216,7 +223,7 @@ public class MainMenu : NodeWithInput
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, IsReturningToMenu ?
             0.3f :
             0.5f, false);
-        TransitionManager.Instance.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.StartTransitions(null);
 
         // Start music after the video
         StartMusic();
@@ -342,6 +349,30 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromLoadGame()
     {
         saves.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void CreditsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the credits view
+        credits.Restart();
+        creditsContainer.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromCredits()
+    {
+        creditsContainer.Visible = false;
+        credits.Pause();
 
         SetCurrentMenu(0, false);
 

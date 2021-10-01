@@ -80,6 +80,9 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
+    [JsonIgnore]
+    public bool IsExtinct => Population <= 0;
+
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
     /// </summary>
@@ -153,6 +156,20 @@ public abstract class Species : ICloneable
     public void BecomePlayerSpecies()
     {
         PlayerSpecies = true;
+    }
+
+    /// <summary>
+    ///   Gets info specific to the species for storing into a new container class.
+    ///   Used for patch snapshots, but could be expanded
+    /// </summary>
+    /// <remarks>TODO: Check overlap with ClonePropertiesTo</remarks>
+    public SpeciesInfo RecordSpeciesInfo()
+    {
+        return new SpeciesInfo
+        {
+            ID = ID,
+            Population = Population,
+        };
     }
 
     /// <summary>

@@ -229,7 +229,25 @@ public class Mutations
             {
                 if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
                 {
-                    AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                    if (random.Next(0.0f, 1.0f) < Constants.MUTATION_NEW_ORGANELLE_CHANCE)
+                    {
+                        AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                    }
+                    else
+                    {
+                        // Duplicate an existing organelle, but only if there are any organelles where that is legal
+                        var organellesThatCanBeDuplicated =
+                            parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
+                        if (organellesThatCanBeDuplicated.Any())
+                        {
+                            AddNewOrganelle(mutatedOrganelles,
+                                organellesThatCanBeDuplicated.Random(random).Definition);
+                        }
+                        else
+                        {
+                            AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                        }
+                    }
                 }
             }
 
@@ -360,7 +378,7 @@ public class Mutations
 
         if (random.Next(0, 101) < 50)
         {
-            return simulation.GetMembrane("calcium_carbonate");
+            return simulation.GetMembrane("calciumCarbonate");
         }
 
         return simulation.GetMembrane("silica");
