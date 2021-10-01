@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Godot;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -104,6 +105,18 @@
             {
                 RecursivelyUpdateValues(entry);
             }
+
+            DetectAndUpdateKeysThatAreJSON(jObject);
+        }
+
+        protected virtual void DetectAndUpdateKeysThatAreJSON(JObject jObject)
+        {
+            foreach (var entry in jObject.Properties().Where(e =>
+                e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
+                e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
+            {
+                UpdateJSONPropertyKey(entry);
+            }
         }
 
         protected abstract void CheckAndUpdateProperty(JProperty property);
@@ -133,6 +146,21 @@
                 throw new JsonException("Child object convert to object type failed");
 
             RecursivelyUpdateObjectProperties(valueObject);
+        }
+
+        private void UpdateJSONPropertyKey(JProperty property)
+        {
+            var data = JObject.Parse(property.Name);
+
+            RecursivelyUpdateObjectProperties(data);
+
+            var newData = data.ToString(Formatting.None);
+
+            if (newData != property.Name)
+            {
+                GD.Print("Updating JSON data in a key at: ", property.Path);
+                property.Replace(new JProperty(newData, property.Value));
+            }
         }
     }
 

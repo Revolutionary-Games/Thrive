@@ -37,7 +37,6 @@ public class TransitionManager : NodeWithInput
     public List<ITransition> TransitionSequence { get; } = new List<ITransition>();
 
     public bool HasQueuedTransitions => TransitionSequence.Count > 0;
-    public bool HasTransitionInProgress => TransitionSequence.Any(ts => IsInstanceValid((Node)ts));
 
     [RunOnKeyDown("ui_cancel", OnlyUnhandled = false)]
     public bool CancelTransitionPressed()

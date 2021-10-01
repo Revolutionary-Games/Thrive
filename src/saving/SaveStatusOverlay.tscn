@@ -74,6 +74,7 @@ AnimationPlayerPath = NodePath("CenterContainer/AnimationPlayer")
 ErrorDialogPath = NodePath("CenterContainer2/ErrorPopup")
 ExtraErrorDescriptionPath = NodePath("CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer/ExtraErrorDescription")
 ExceptionPath = NodePath("CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer/Exception")
+CopyExceptionPath = NodePath("CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2/CopyErrorButton")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -181,5 +182,6 @@ margin_bottom = 32.0
 size_flags_horizontal = 5
 size_flags_vertical = 9
 text = "COPY_ERROR_TO_CLIPBOARD"
+
 [connection signal="popup_hide" from="CenterContainer2/ErrorPopup" to="." method="OnErrorDialogDismissed"]
 [connection signal="pressed" from="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]

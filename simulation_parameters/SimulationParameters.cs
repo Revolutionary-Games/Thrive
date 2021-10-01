@@ -24,6 +24,7 @@ public class SimulationParameters : Node
     private readonly List<NamedInputGroup> inputGroups;
     private readonly Dictionary<string, Gallery> gallery;
     private readonly TranslationsInfo translationsInfo;
+    private readonly GameCredits gameCredits;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -75,6 +76,9 @@ public class SimulationParameters : Node
 
         translationsInfo =
             LoadDirectObject<TranslationsInfo>("res://simulation_parameters/common/translations_info.json");
+
+        gameCredits =
+            LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -198,6 +202,11 @@ public class SimulationParameters : Node
     public TranslationsInfo GetTranslationsInfo()
     {
         return translationsInfo;
+    }
+
+    public GameCredits GetCredits()
+    {
+        return gameCredits;
     }
 
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
@@ -354,6 +363,7 @@ public class SimulationParameters : Node
         NameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
         translationsInfo.Check(string.Empty);
+        gameCredits.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()

@@ -119,7 +119,7 @@ public class PauseMenu : ControlWithInput
             if (NoExclusiveTutorialActive())
                 return true;
 
-            if (TransitionManager.Instance.HasTransitionInProgress)
+            if (TransitionManager.Instance.HasQueuedTransitions)
                 return true;
 
             return false;

@@ -36,6 +36,15 @@ public class MicrobeSpecies : Species
     [JsonIgnore]
     public float BaseSpeed => MicrobeInternalCalculations.CalculateSpeed(Organelles, MembraneType, MembraneRigidity);
 
+    /// <summary>
+    ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
+    ///   they haven't duplicated any organelles. This is related to <see cref="Microbe.EngulfSize"/> and the math
+    ///   should always match between these two.
+    /// </summary>
+    [JsonIgnore]
+    public float BaseHexSize => Organelles.Organelles.Sum(organelle => organelle.Definition.HexCount)
+        * (IsBacteria ? 0.5f : 1.0f);
+
     public override void RepositionToOrigin()
     {
         var centerOfMass = Organelles.CenterOfMass;
