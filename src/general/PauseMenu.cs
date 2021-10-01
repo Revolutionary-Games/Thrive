@@ -66,6 +66,31 @@ public class PauseMenu : ControlWithInput
 
     public bool GameLoading { get; set; }
 
+    /// <summary>
+    ///   If true the user may not open or close the pause menu.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Does not automatically close the pause menu when set to true.
+    ///   </para>
+    /// </remarks>
+    public bool IsPausingBlocked
+    {
+        get
+        {
+            if (GameLoading)
+                return true;
+
+            if (NoExclusiveTutorialActive())
+                return true;
+
+            if (TransitionManager.Instance.HasQueuedTransitions)
+                return true;
+
+            return false;
+        }
+    }
+
     private ActiveMenuType ActiveMenu
     {
         get
@@ -98,31 +123,6 @@ public class PauseMenu : ControlWithInput
                     GetControlFromMenuEnum(value).Show();
                     break;
             }
-        }
-    }
-
-    /// <summary>
-    ///   If true the user may not open or close the pause menu.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Does not automatically close the pause menu when set to true.
-    ///   </para>
-    /// </remarks>
-    public bool IsPausingBlocked
-    {
-        get
-        {
-            if (GameLoading)
-                return true;
-
-            if (NoExclusiveTutorialActive())
-                return true;
-
-            if (TransitionManager.Instance.HasQueuedTransitions)
-                return true;
-
-            return false;
         }
     }
 
