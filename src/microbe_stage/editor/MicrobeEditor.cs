@@ -725,6 +725,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (History.Redo())
         {
+            DirtyMutationPointsCache();
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorRedo, EventArgs.Empty, this);
         }
 
@@ -739,6 +740,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (History.Undo())
         {
+            DirtyMutationPointsCache();
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo, EventArgs.Empty, this);
         }
 
@@ -850,7 +852,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
-        DirtyMutationPointsCache();
     }
 
     /// <summary>
@@ -2019,7 +2020,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedMicrobeOrganelles.Clear();
         editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
             new Hex(0, 0), 0));
-        DirtyMutationPointsCache();
 
         OnPostNewMicrobeChange();
     }
@@ -2077,8 +2077,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateSpeed(CalculateSpeed());
 
         UpdateCellVisualization();
-
-        DirtyMutationPointsCache();
     }
 
     private void UpdatePatchDependentBalanceData()
@@ -2217,8 +2215,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             previewMicrobe.Membrane.Dirty = true;
             previewMicrobe.ApplyMembraneWigglyness();
         }
-
-        DirtyMutationPointsCache();
     }
 
     [DeserializedCallbackAllowed]
@@ -2246,8 +2242,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
-
-        DirtyMutationPointsCache();
     }
 
     /// <summary>
@@ -2273,6 +2267,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         History.AddAction(action);
+        DirtyMutationPointsCache();
 
         UpdateUndoRedoButtons();
         return true;
