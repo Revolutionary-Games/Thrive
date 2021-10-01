@@ -109,15 +109,21 @@ public class PauseMenu : ControlWithInput
     ///     Does not automatically close the pause menu when set to true.
     ///   </para>
     /// </remarks>
-    public bool IsPausingBlocked()
+    public bool IsPausingBlocked
     {
-        if (GameLoading)
-            return true;
+        get
+        {
+            if (GameLoading)
+                return true;
 
-        if (TransitionManager.Instance.HasTransitionInProgress)
-            return true;
+            if (NoExclusiveTutorialActive())
+                return true;
 
-        return false;
+            if (TransitionManager.Instance.HasTransitionInProgress)
+                return true;
+
+            return false;
+        }
     }
 
     public override void _EnterTree()
@@ -139,9 +145,6 @@ public class PauseMenu : ControlWithInput
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
     public bool EscapeKeyPressed()
     {
-        if (IsPausingBlocked())
-            return false;
-
         if (Visible)
         {
             ActiveMenu = ActiveMenuType.Primary;
@@ -151,30 +154,22 @@ public class PauseMenu : ControlWithInput
             return true;
         }
 
-        if (NoExclusiveTutorialActive())
-        {
-            EmitSignal(nameof(OnOpenWithKeyPress));
-            return true;
-        }
+        if (IsPausingBlocked)
+            return false;
 
-        // Not handled, pass through.
-        return false;
+        EmitSignal(nameof(OnOpenWithKeyPress));
+        return true;
     }
 
     [RunOnKeyDown("help")]
     public bool ShowHelpPressed()
     {
-        if (IsPausingBlocked())
+        if (IsPausingBlocked)
             return false;
 
-        if (NoExclusiveTutorialActive())
-        {
-            EmitSignal(nameof(OnOpenWithKeyPress));
-            ShowHelpScreen();
-            return true;
-        }
-
-        return false;
+        EmitSignal(nameof(OnOpenWithKeyPress));
+        ShowHelpScreen();
+        return true;
     }
 
     public void ShowHelpScreen()
