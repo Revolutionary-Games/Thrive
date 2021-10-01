@@ -129,18 +129,16 @@ public abstract class Species : ICloneable
         InitialCompounds.Clear();
 
         foreach (var entry in mutation.InitialCompounds)
-        {
             InitialCompounds.Add(entry.Key, entry.Value);
-        }
+
+        foreach (var entry in mutation.Behaviour)
+            Behaviour[entry.Key] = entry.Value;
 
         Colour = mutation.Colour;
 
         // These don't mutate for a species
         // genus;
         // epithet;
-
-        // Behaviour properties
-        Behaviour = (BehaviourDictionary)mutation.Behaviour.Clone();
     }
 
     /// <summary>
