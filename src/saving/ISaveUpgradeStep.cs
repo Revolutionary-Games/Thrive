@@ -95,14 +95,14 @@
         protected override string VersionAfter => "0.5.6.0-alpha";
         protected override void CheckAndUpdateProperty(JProperty property)
         {
-            if (property.Name == "Aggression")
+            if ((property.Parent?.Parent as JProperty)?.Name == "worldSpecies")
             {
                 UpgradeBehaviouralValues(property);
             }
         }
 
         /// <summary>
-        ///   Updates the behavioural values. Triggers on the Aggression property
+        ///   Updates the behavioural values. Triggers on a specific species
         /// </summary>
         /// <param name="property">Should be the Aggression property</param>
         /// <remarks>
@@ -133,23 +133,15 @@
         /// </remarks>
         private void UpgradeBehaviouralValues(JProperty property)
         {
-            var parentObject = property.Parent as JObject;
-            var parentProperty = parentObject?.Parent as JProperty;
-            var grandparentObject = parentProperty?.Parent as JObject;
-            var grandparentProperty = grandparentObject?.Parent as JProperty;
+            var children = property.Value.Children<JProperty>();
 
-            if (!(grandparentProperty is { Name: "worldSpecies" }))
-                return;
+            var aggression = children.First(p => p.Name == "Aggression");
+            var opportunism = children.First(p => p.Name == "Opportunism");
+            var fear = children.First(p => p.Name == "Fear");
+            var activity = children.First(p => p.Name == "Activity");
+            var focus = children.First(p => p.Name == "Focus");
 
-            var siblings = parentObject.Children<JProperty>();
-
-            var aggression = property;
-            var opportunism = siblings.First(p => p.Name == "Opportunism");
-            var fear = siblings.First(p => p.Name == "Fear");
-            var activity = siblings.First(p => p.Name == "Activity");
-            var focus = siblings.First(p => p.Name == "Focus");
-
-            parentObject.Add("BehaviouralValues", JObject.FromObject(new
+            (property.Value as JObject)?.Add("BehaviouralValues", JObject.FromObject(new
             {
                 Aggression = aggression.Value,
                 Opportunism = opportunism.Value,
