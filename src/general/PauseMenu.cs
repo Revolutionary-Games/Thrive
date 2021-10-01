@@ -81,7 +81,8 @@ public class PauseMenu : ControlWithInput
             if (GameLoading)
                 return true;
 
-            if (NoExclusiveTutorialActive())
+            // Block if exclusive tutorial is active
+            if (!NoExclusiveTutorialActive())
                 return true;
 
             if (TransitionManager.Instance.HasQueuedTransitions)
