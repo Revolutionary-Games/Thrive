@@ -51,6 +51,7 @@
                 { "0.5.4.0", new UpgradeStep054To055() },
                 { "0.5.5.0-alpha", new UpgradeJustVersionNumber("0.5.5.0-rc1") },
                 { "0.5.5.0-rc1", new UpgradeJustVersionNumber("0.5.5.0") },
+                { "0.5.5.0", new UpgradeStep055To056() },
             };
         }
     }
@@ -86,6 +87,82 @@
                     property.Value = "calciumCarbonate";
                 }
             }
+        }
+    }
+
+    internal class UpgradeStep055To056 : BaseRecursiveJSONWalkerStep
+    {
+        protected override string VersionAfter => "0.5.6.0-alpha";
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            if (property.Name == "Aggression")
+            {
+                UpgradeBehaviouralValues(property);
+            }
+        }
+
+        /// <summary>
+        ///   Updates the behavioural values. Triggers on the Aggression property
+        /// </summary>
+        /// <param name="property">Should be the Aggression property</param>
+        /// <remarks>
+        ///   <para>
+        ///     Changes a json like
+        ///     "1": {
+        ///       ...
+        ///       "Aggression": 126.188889,
+        ///       "Opportunism": 34.3588943,
+        ///       "Fear": 52.6969757,
+        ///       "Activity": 74.67135,
+        ///       "Focus": 111.778221,
+        ///       ...
+        ///     }
+        ///     to
+        ///     "1": {
+        ///       ...
+        ///       "BehaviouralValues": {
+        ///         "Aggression": 126.188889,
+        ///         "Opportunism": 34.3588943,
+        ///         "Fear": 52.6969757,
+        ///         "Activity": 74.67135,
+        ///         "Focus": 111.778221
+        ///       },
+        ///       ...
+        ///     }
+        ///   </para>
+        /// </remarks>
+        private void UpgradeBehaviouralValues(JProperty property)
+        {
+            var parentObject = property.Parent as JObject;
+            var parentProperty = parentObject?.Parent as JProperty;
+            var grandparentObject = parentProperty?.Parent as JObject;
+            var grandparentProperty = grandparentObject?.Parent as JProperty;
+
+            if (!(grandparentProperty is { Name: "worldSpecies" }))
+                return;
+
+            var siblings = parentObject.Children<JProperty>();
+
+            var aggression = property;
+            var opportunism = siblings.First(p => p.Name == "Opportunism");
+            var fear = siblings.First(p => p.Name == "Fear");
+            var activity = siblings.First(p => p.Name == "Activity");
+            var focus = siblings.First(p => p.Name == "Focus");
+
+            parentObject.Add("BehaviouralValues", JObject.FromObject(new
+            {
+                Aggression = aggression.Value,
+                Opportunism = opportunism.Value,
+                Fear = fear.Value,
+                Activity = activity.Value,
+                Focus = focus.Value,
+            }));
+
+            aggression.Remove();
+            opportunism.Remove();
+            fear.Remove();
+            activity.Remove();
+            focus.Remove();
         }
     }
 

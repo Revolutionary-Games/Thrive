@@ -75,6 +75,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     private float rigidity;
 
+    [JsonProperty]
+    private Dictionary<BehaviouralValue, float> behaviouralValues;
+
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -249,7 +252,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [JsonProperty]
-    public Dictionary<BehaviouralValue, float> BehaviouralValues { get; private set; }
+    public Dictionary<BehaviouralValue, float> BehaviouralValues
+    {
+        get => behaviouralValues ??= editedSpecies?.BehaviouralValues;
+        private set => behaviouralValues = value;
+    }
 
     /// <summary>
     ///   Selected membrane type for the species
