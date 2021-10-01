@@ -249,19 +249,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [JsonProperty]
-    public float Aggression { get; private set; }
-
-    [JsonProperty]
-    public float Opportunism { get; private set; }
-
-    [JsonProperty]
-    public float Fear { get; private set; }
-
-    [JsonProperty]
-    public float Activity { get; private set; }
-
-    [JsonProperty]
-    public float Focus { get; private set; }
+    public Dictionary<BehaviouralValue, float> BehaviouralValues { get; private set; }
 
     /// <summary>
     ///   Selected membrane type for the species
@@ -579,11 +567,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedSpecies.Colour = Colour;
         editedSpecies.MembraneRigidity = Rigidity;
 
-        editedSpecies.Aggression = Aggression;
-        editedSpecies.Opportunism = Opportunism;
-        editedSpecies.Fear = Fear;
-        editedSpecies.Activity = Activity;
-        editedSpecies.Focus = Focus;
+        editedSpecies.BehaviouralValues = BehaviouralValues;
 
         // Move patches
         if (targetPatch != null)
@@ -808,19 +792,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             organelleRot = 5;
     }
 
-    public float GetBehaviouralValue(BehaviouralValue type)
-    {
-        return type switch
-        {
-            BehaviouralValue.Activity => Activity,
-            BehaviouralValue.Aggression => Aggression,
-            BehaviouralValue.Opportunism => Opportunism,
-            BehaviouralValue.Fear => Fear,
-            BehaviouralValue.Focus => Focus,
-            _ => throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValue {type} is not valid"),
-        };
-    }
-
     public void SetMembrane(string membraneName)
     {
         var membrane = SimulationParameters.Instance.GetMembrane(membraneName);
@@ -841,7 +812,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         gui.UpdateBehaviourSlider(type, value);
 
-        var oldValue = GetBehaviouralValue(type);
+        var oldValue = BehaviouralValues[type];
 
         if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
@@ -1197,30 +1168,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         cameraFollow.Translation += vector;
     }
 
-    private void SetBehaviouralValue(BehaviouralValue type, float value)
-    {
-        switch (type)
-        {
-            case BehaviouralValue.Activity:
-                Activity = value;
-                break;
-            case BehaviouralValue.Aggression:
-                Aggression = value;
-                break;
-            case BehaviouralValue.Fear:
-                Fear = value;
-                break;
-            case BehaviouralValue.Focus:
-                Focus = value;
-                break;
-            case BehaviouralValue.Opportunism:
-                Opportunism = value;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValue {type} is not valid");
-        }
-    }
-
     /// <summary>
     ///   Sets up the editor when entering
     /// </summary>
@@ -1479,11 +1426,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         Rigidity = species.MembraneRigidity;
         Colour = species.Colour;
 
-        Aggression = species.Aggression;
-        Opportunism = species.Opportunism;
-        Fear = species.Fear;
-        Activity = species.Activity;
-        Focus = species.Focus;
+        BehaviouralValues = species.BehaviouralValues;
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
@@ -1515,7 +1458,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
-        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity, Aggression, Opportunism, Fear, Activity, Focus);
+        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity, BehaviouralValues);
         gui.UpdateGeneration(species.Generation);
         gui.UpdateHitpoints(CalculateHitpoints());
     }
@@ -2316,7 +2259,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         var data = (BehaviourChangeActionData)action.Data;
 
-        SetBehaviouralValue(data.Type, data.NewValue);
+        BehaviouralValues[data.Type] = data.NewValue;
         gui.UpdateBehaviourSlider(data.Type, data.NewValue);
     }
 
@@ -2325,7 +2268,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         var data = (BehaviourChangeActionData)action.Data;
 
-        SetBehaviouralValue(data.Type, data.OldValue);
+        BehaviouralValues[data.Type] = data.OldValue;
         gui.UpdateBehaviourSlider(data.Type, data.OldValue);
     }
 

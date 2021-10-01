@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -26,11 +27,9 @@ public abstract class Species : ICloneable
     public Color Colour = new Color(1, 1, 1);
 
     // Behaviour properties
-    public float Aggression = 100.0f;
-    public float Opportunism = 100.0f;
-    public float Fear = 100.0f;
-    public float Activity = 100.0f;
-    public float Focus = 100.0f;
+    [JsonProperty]
+    public Dictionary<BehaviouralValue, float> BehaviouralValues = Enum.GetValues(typeof(BehaviouralValue))
+        .Cast<BehaviouralValue>().ToDictionary(bv => bv, _ => 100.0f);
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
@@ -48,6 +47,41 @@ public abstract class Species : ICloneable
     protected Species(uint id)
     {
         ID = id;
+    }
+
+    [JsonIgnore]
+    public float Activity
+    {
+        get => BehaviouralValues[BehaviouralValue.Activity];
+        set => BehaviouralValues[BehaviouralValue.Activity] = value;
+    }
+
+    [JsonIgnore]
+    public float Aggression
+    {
+        get => BehaviouralValues[BehaviouralValue.Aggression];
+        set => BehaviouralValues[BehaviouralValue.Aggression] = value;
+    }
+
+    [JsonIgnore]
+    public float Fear
+    {
+        get => BehaviouralValues[BehaviouralValue.Fear];
+        set => BehaviouralValues[BehaviouralValue.Fear] = value;
+    }
+
+    [JsonIgnore]
+    public float Focus
+    {
+        get => BehaviouralValues[BehaviouralValue.Focus];
+        set => BehaviouralValues[BehaviouralValue.Focus] = value;
+    }
+
+    [JsonIgnore]
+    public float Opportunism
+    {
+        get => BehaviouralValues[BehaviouralValue.Opportunism];
+        set => BehaviouralValues[BehaviouralValue.Opportunism] = value;
     }
 
     /// <summary>
@@ -143,11 +177,7 @@ public abstract class Species : ICloneable
         // epithet;
 
         // Behaviour properties
-        Aggression = mutation.Aggression;
-        Opportunism = mutation.Opportunism;
-        Fear = mutation.Fear;
-        Activity = mutation.Activity;
-        Focus = mutation.Focus;
+        BehaviouralValues = mutation.BehaviouralValues;
     }
 
     /// <summary>
@@ -196,11 +226,7 @@ public abstract class Species : ICloneable
         species.Genus = Genus;
         species.Epithet = Epithet;
         species.Colour = Colour;
-        species.Aggression = Aggression;
-        species.Opportunism = Opportunism;
-        species.Fear = Fear;
-        species.Activity = Activity;
-        species.Focus = Focus;
+        species.BehaviouralValues = BehaviouralValues;
         species.Population = Population;
         species.Generation = Generation;
         species.ID = ID;
