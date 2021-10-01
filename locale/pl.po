@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:00+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-07-21 12:42+0000\n"
 "Last-Translator: Filip Szot <filip.szot08@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -3064,15 +3064,15 @@ msgstr "Błąd wczytywania"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "Zapisywanie..."
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Zapisywanie się nie udało"
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Błąd zapisu"
 
@@ -3100,11 +3100,21 @@ msgstr "Nadpisz istniejący zapis:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Nadpisać istniejący zapis?"
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+#, fuzzy
+msgid "SAVING_NOT_POSSIBLE"
+msgstr "Zapis nie zadziałał! Pojawił się błąd"
+
+#: ../src/saving/SaveHelper.cs:383
+#, fuzzy
+msgid "PLAYER_EXTINCT"
+msgstr "gracz zginął"
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr "Powodzenie zapisu"
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr "Zapis nie zadziałał! Pojawił się błąd"
 
@@ -3301,11 +3311,11 @@ msgstr "Otwórz folder zapisów"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
+#: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
 msgstr "Błąd zapisu"
 
-#: ../src/saving/SaveStatusOverlay.tscn:183
+#: ../src/saving/SaveStatusOverlay.tscn:184
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Skopiuj Błąd Do Schowka"
 

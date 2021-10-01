@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:00+0300\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
 "PO-Revision-Date: 2021-09-06 00:51+0000\n"
 "Last-Translator: Felecarp <felecarp@suboxide.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -3073,15 +3073,15 @@ msgstr "Erreur de Chargement"
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Echec de la libération des ressources déjà chargées : {0}"
 
-#: ../src/saving/InProgressSave.cs:165
+#: ../src/saving/InProgressSave.cs:173
 msgid "SAVING"
 msgstr "Sauvegarde..."
 
-#: ../src/saving/InProgressSave.cs:195
+#: ../src/saving/InProgressSave.cs:203
 msgid "SAVE_FAILED"
 msgstr "Sauvegarde Échouée"
 
-#: ../src/saving/InProgressSave.cs:196
+#: ../src/saving/InProgressSave.cs:204
 msgid "ERROR_SAVING"
 msgstr "Erreur de Sauvegarde"
 
@@ -3109,11 +3109,21 @@ msgstr "Réécriture sur la sauvegarde existante :"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Réécrire la sauvegarde existante?"
 
-#: ../src/saving/SaveHelper.cs:379
+#: ../src/saving/SaveHelper.cs:382
+#, fuzzy
+msgid "SAVING_NOT_POSSIBLE"
+msgstr "Sauvegarde échoué! Une exception a eu lieu"
+
+#: ../src/saving/SaveHelper.cs:383
+#, fuzzy
+msgid "PLAYER_EXTINCT"
+msgstr "joueur en double"
+
+#: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
-#: ../src/saving/SaveHelper.cs:389
+#: ../src/saving/SaveHelper.cs:402
 msgid "SAVING_FAILED"
 msgstr "Sauvegarde échoué! Une exception a eu lieu"
 
@@ -3329,11 +3339,11 @@ msgstr "Ouvrir le Dossier de Sauvegarde"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:121
+#: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
 msgstr "Erreur de Sauvegarde"
 
-#: ../src/saving/SaveStatusOverlay.tscn:183
+#: ../src/saving/SaveStatusOverlay.tscn:184
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copier l'Erreur"
 
