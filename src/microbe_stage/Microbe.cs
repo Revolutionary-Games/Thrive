@@ -640,11 +640,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
         // Emit as much as you have, but don't start the cooldown if that's zero
-        float amountEmitted = Math.Min(amountAvailable / Constants.MAXIMUM_AGENT_EMISSION_AMOUNT, 1.0f);
+        float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
         if (amountEmitted < MathUtils.EPSILON)
             return;
 
-        Compounds.TakeCompound(agentType, amountEmitted * Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
+        Compounds.TakeCompound(agentType, amountEmitted);
 
         // The cooldown time is inversely proportional to the amount of agent vacuoles.
         AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / AgentVacuoleCount;

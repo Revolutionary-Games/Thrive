@@ -130,7 +130,7 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
 
-    public const float OXYTOXY_DAMAGE = 30.0f;
+    public const float OXYTOXY_DAMAGE = 15.0f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
