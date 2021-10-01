@@ -67,7 +67,7 @@ public class PauseMenu : ControlWithInput
     public bool GameLoading { get; set; }
 
     /// <summary>
-    ///   If true the user may not open or close the pause menu.
+    ///   If true the user may not open the pause menu.
     /// </summary>
     /// <remarks>
     ///   <para>
