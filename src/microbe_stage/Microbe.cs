@@ -875,7 +875,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                SpawnHelpers.SpawnAgent(props, 1.0f, Constants.EMITTED_AGENT_LIFETIME,
+                SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT, Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetStageAsParent(),
                     agentScene, this);
 
