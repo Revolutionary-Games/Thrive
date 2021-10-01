@@ -141,20 +141,14 @@
             var activity = children.First(p => p.Name == "Activity");
             var focus = children.First(p => p.Name == "Focus");
 
-            (property.Value as JObject)?.Add("BehaviouralValues", JObject.FromObject(new
-            {
-                Aggression = aggression.Value,
-                Opportunism = opportunism.Value,
-                Fear = fear.Value,
-                Activity = activity.Value,
-                Focus = focus.Value,
-            }));
-
             aggression.Remove();
             opportunism.Remove();
             fear.Remove();
             activity.Remove();
             focus.Remove();
+
+            (property.Value as JObject)?.Add("BehaviouralValues",
+                new JObject(aggression, opportunism, fear, activity, focus));
         }
     }
 
