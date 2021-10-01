@@ -428,10 +428,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     [JsonIgnore]
     public IEnumerable<(Hex hex, int orientation)> MouseHoverHexes
     {
-        get
-        {
-            return mouseHoverHexes;
-        }
+        get => mouseHoverHexes;
         set
         {
             if (mouseHoverHexes == null && value == null)
