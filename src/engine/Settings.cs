@@ -221,14 +221,6 @@ public class Settings
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
-    ///   The current controls of the game.
-    ///   It stores the godot actions like g_move_left and
-    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
-    /// </summary>
-    public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(GetDefaultControls());
-
-    /// <summary>
     ///   If false username will be set to System username
     /// </summary>
     public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
@@ -237,6 +229,23 @@ public class Settings
     ///   Username that the user can choose
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+
+    /// <summary>
+    ///   The Db value to be added to the master audio bus
+    /// </summary>
+    public SettingValue<float> JSONDebugMode { get; set; } = new SettingValue<float>(0.0f);
+
+    // Input properties
+
+    /// <summary>
+    ///   The current controls of the game.
+    ///   It stores the godot actions like g_move_left and
+    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
+    /// </summary>
+    public SettingValue<InputDataList> CurrentControls { get; set; } =
+        new SettingValue<InputDataList>(GetDefaultControls());
+
+    // Computed properties from other settings
 
     [JsonIgnore]
     public string ActiveUsername =>
