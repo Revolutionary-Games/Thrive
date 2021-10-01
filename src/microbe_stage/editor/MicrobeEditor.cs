@@ -1522,8 +1522,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             OrganelleDefinition shownOrganelle;
 
-            var effectiveSymmetry = Symmetry;
-
+            List<(Hex hex, int orientation)> hexes;
             if (MovingOrganelle == null)
             {
                 // Can place stuff at all?
@@ -1531,15 +1530,19 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                     GetOrganelleDefinition(ActiveActionName), new Hex(q, r), organelleRot));
 
                 shownOrganelle = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
+
+                hexes = GetHexesWithSymmetryMode(q, r);
             }
             else
             {
                 isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), organelleRot, MovingOrganelle);
                 shownOrganelle = MovingOrganelle.Definition;
-                effectiveSymmetry = MicrobeSymmetry.None;
-            }
 
-            List<(Hex hex, int orientation)> hexes = GetHexesWithSymmetryMode(q, r);
+                hexes = new List<(Hex hex, int orientation)>
+                {
+                    (new Hex(q, r), organelleRot),
+                };
+            }
 
             foreach (var (hex, orientation) in hexes)
             {
