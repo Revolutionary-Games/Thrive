@@ -235,7 +235,7 @@ public static class SpawnHelpers
     /// </summary>
     public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
         float lifetime, Vector3 location, Vector3 direction,
-        Node worldRoot, PackedScene agentScene, Node emitter)
+        Node worldRoot, PackedScene agentScene, IEntity emitter)
     {
         var normalizedDirection = direction.Normalized();
 
@@ -243,7 +243,7 @@ public static class SpawnHelpers
         agent.Properties = properties;
         agent.Amount = amount;
         agent.TimeToLiveRemaining = lifetime;
-        agent.Emitter = emitter;
+        agent.Emitter = new EntityReference<IEntity>(emitter);
 
         worldRoot.AddChild(agent);
         agent.Translation = location + (direction * 1.5f);
