@@ -12,6 +12,7 @@ public class PlayerMigration : IRunStep
     public SpeciesMigration Migration { get; }
 
     public int TotalSteps => 1;
+
     public bool RunStep(RunResults results)
     {
         results.AddMigrationResultForSpecies(Player, Migration);
