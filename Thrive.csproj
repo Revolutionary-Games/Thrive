@@ -32,6 +32,7 @@
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
+    <Compile Include="src\engine\EntityReference.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\FileDropHandler.cs" />
     <Compile Include="src\engine\FullScreenToggle.cs" />
@@ -280,6 +281,7 @@
     <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
+    <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />
@@ -344,7 +346,7 @@
       <Version>1.3.3</Version>
     </PackageReference>
     <PackageReference Include="Nito.Collections.Deque">
-      <Version>1.1.0</Version>
+      <Version>1.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
