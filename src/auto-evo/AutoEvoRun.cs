@@ -235,32 +235,38 @@ public class AutoEvoRun
     /// <param name="constant">The population change amount (constant part).</param>
     /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
-    public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType)
+    /// <param name="patch">The patch where this effect happened.</param>
+    public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
+        Patch patch)
     {
-        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType));
+        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch));
     }
 
     /// <summary>
     ///   Makes a summary of external effects
     /// </summary>
     /// <returns>The summary of external effects.</returns>
-    public string MakeSummaryOfExternalEffects()
+    public string MakeSummaryOfExternalEffects(Patch patch)
     {
         var combinedExternalEffects = new Dictionary<Tuple<Species, string>, long>();
 
         foreach (var entry in ExternalEffects)
         {
+            if (entry.Patch != patch)
+                continue;
+
             var key = new Tuple<Species, string>(entry.Species, entry.EventType);
+            var speciesPopulation = entry.Patch.GetSpeciesPopulation(entry.Species);
 
             if (combinedExternalEffects.ContainsKey(key))
             {
                 combinedExternalEffects[key] +=
-                    entry.Constant + (long)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
+                    entry.Constant + (long)(speciesPopulation * entry.Coefficient) - speciesPopulation;
             }
             else
             {
                 combinedExternalEffects[key] =
-                    entry.Constant + (int)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
+                    entry.Constant + (int)(speciesPopulation * entry.Coefficient) - speciesPopulation;
             }
         }
 
@@ -374,10 +380,10 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
+                    runSteps.Enqueue(new FindBestMutation(parameters.World, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
-                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key,
+                    runSteps.Enqueue(new FindBestMigration(parameters.World, speciesEntry.Key,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
                 }
@@ -388,7 +394,7 @@ public class AutoEvoRun
         // the player edits their species the other species they are competing
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
-        runSteps.Enqueue(new CalculatePopulation(map));
+        runSteps.Enqueue(new CalculatePopulation(parameters.World));
 
         // Adjust auto-evo results for player species
         // NOTE: currently the population change is random so it is canceled out for

@@ -2317,9 +2317,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
         else
         {
-            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true,
-                run.ExternalEffects);
-            autoEvoExternal = run.MakeSummaryOfExternalEffects();
+            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map.CurrentPatch, CurrentGame.GameWorld.Map,
+                true, run.ExternalEffects);
+            autoEvoExternal = run.MakeSummaryOfExternalEffects(CurrentGame.GameWorld.Map.CurrentPatch);
 
             gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
         }
@@ -2354,9 +2354,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
 
         CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
-
-        // Update populations before recording conditions - should not affect per-patch population
-        CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
 
         // Needs to be before the remove extinct species call, so that extinct species could still be stored
         // for reference in patch history (e.g. displaying it as zero on the species population chart)

@@ -8,15 +8,15 @@
     /// </summary>
     public class FindBestMigration : VariantTryingStep
     {
-        private PatchMap map;
+        private GameWorld world;
         private Species species;
 
         private Random random = new Random();
 
-        public FindBestMigration(PatchMap map, Species species, int migrationsToTry, bool allowNoMigration)
+        public FindBestMigration(GameWorld world, Species species, int migrationsToTry, bool allowNoMigration)
             : base(migrationsToTry, allowNoMigration)
         {
-            this.map = map;
+            this.world = world;
             this.species = species;
         }
 
@@ -32,7 +32,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(world, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             PopulationSimulation.Simulate(config);
 
@@ -49,7 +49,7 @@
             if (migration == null)
                 return new AttemptResult(null, -1);
 
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(world, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
             // TODO: this could be faster to just simulate the source and
@@ -82,7 +82,7 @@
                 --attemptsLeft;
 
                 // Randomly select starting patch
-                var entry = map.Patches.Where(pair => pair.Value.SpeciesInPatch.ContainsKey(species))
+                var entry = world.Map.Patches.Where(pair => pair.Value.SpeciesInPatch.ContainsKey(species))
                     .OrderBy(_ => random.Next()).Take(1).ToList();
 
                 if (entry.Count > 0)

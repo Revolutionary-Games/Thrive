@@ -519,7 +519,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Check win conditions
         if (!CurrentGame.FreeBuild && Player.Species.Generation >= 20 &&
-            Player.Species.Population >= 300 && !wonOnce)
+            GameWorld.GetGlobalSpeciesPopulation(Player.Species) >= 300 && !wonOnce)
         {
             HUD.ToggleWinBox();
             wonOnce = true;
@@ -613,7 +613,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         HUD.HintText = string.Empty;
 
         // Respawn if not extinct (or freebuild)
-        if (playerSpecies.Population <= 0 && !CurrentGame.FreeBuild)
+        if (GameWorld.IsPlayerExtinct() && !CurrentGame.FreeBuild)
         {
             gameOver = true;
         }

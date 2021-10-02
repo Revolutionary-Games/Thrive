@@ -155,7 +155,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         {
             var species = entry.Key;
 
-            if (species.Population <= 0)
+            if (CurrentGame.GameWorld.IsSpeciesExtinctInPatch(species, patch))
             {
                 GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
@@ -163,7 +163,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
             var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
                 Math.Min(Constants.MAX_SPAWN_DENSITY,
-                    species.Population * 5));
+                    CurrentGame.GameWorld.GetSpeciesPopulationInPatch(species, patch) * 5));
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 

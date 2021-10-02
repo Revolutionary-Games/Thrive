@@ -8,12 +8,14 @@
     /// </summary>
     public class SimulationConfiguration
     {
-        public SimulationConfiguration(PatchMap initialConditions, int steps = 1)
+        public SimulationConfiguration(GameWorld world, int steps = 1)
         {
-            OriginalMap = initialConditions;
+            OriginalMap = world.Map;
+            World = world;
             StepsLeft = Math.Max(1, steps);
         }
 
+        public GameWorld World { get; }
         public PatchMap OriginalMap { get; }
         public int StepsLeft { get; set; }
 

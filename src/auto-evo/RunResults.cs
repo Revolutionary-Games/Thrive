@@ -171,11 +171,11 @@
         /// <summary>
         ///   Prints to log a summary of the results
         /// </summary>
-        public void PrintSummary(PatchMap previousPopulations = null)
+        public void PrintSummary(Patch patch, PatchMap previousPopulations = null)
         {
             GD.Print("Start of auto-evo results summary (entries: ", results.Count, ")");
 
-            GD.Print(MakeSummary(previousPopulations));
+            GD.Print(MakeSummary(patch, previousPopulations));
 
             GD.Print("End of results summary");
         }
@@ -183,17 +183,18 @@
         /// <summary>
         ///   Makes summary text
         /// </summary>
+        /// <param name="patch">The patch for which the summary should be generated</param>
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
-        /// <param name="playerReadable">if true ids are removed from the output</param>
-        /// <param name="effects">if not null these effects are applied to the population numbers</param>
-        public string MakeSummary(PatchMap previousPopulations = null,
+        /// <param name="playerReadable">If true ids are removed from the output</param>
+        /// <param name="effects">If not null these effects are applied to the population numbers</param>
+        public string MakeSummary(Patch patch, PatchMap previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect> effects = null)
         {
             const bool resolveMoves = true;
 
             var builder = new StringBuilder(500);
 
-            string PatchString(Patch patch)
+            string PatchString()
             {
                 var builder2 = new StringBuilder(80);
 
@@ -208,12 +209,12 @@
                 return builder2.ToString();
             }
 
-            void OutputPopulationForPatch(Species species, Patch patch, long population)
+            void OutputPopulationForPatch(Species species, long population)
             {
                 if (population > 0)
                 {
                     builder.Append("  ");
-                    builder.Append(PatchString(patch));
+                    builder.Append(PatchString());
                     builder.Append(' ');
                     builder.Append(TranslationServer.Translate("POPULATION"));
                     builder.Append(' ');
@@ -223,7 +224,7 @@
                 {
                     builder.Append("   ");
                     builder.Append(string.Format(CultureInfo.CurrentCulture,
-                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString(patch)));
+                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString()));
                 }
 
                 if (previousPopulations != null)
@@ -294,6 +295,9 @@
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {
+                    if (patchPopulation.Key != patch)
+                        continue;
+
                     long adjustedPopulation = patchPopulation.Value;
 
                     if (resolveMoves)
@@ -310,9 +314,10 @@
                         {
                             if (effect.Species == entry.Species)
                             {
+                                var speciesPopulation = effect.Patch.GetSpeciesPopulation(effect.Species);
                                 adjustedPopulation +=
-                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
-                                    - effect.Species.Population;
+                                    effect.Constant + (long)(speciesPopulation * effect.Coefficient)
+                                    - speciesPopulation;
                             }
                         }
                     }
@@ -336,7 +341,7 @@
                     }
 
                     if (include)
-                        OutputPopulationForPatch(entry.Species, patchPopulation.Key, adjustedPopulation);
+                        OutputPopulationForPatch(entry.Species, adjustedPopulation);
                 }
 
                 // Also print new patches the species moved to (as the moves don't get
@@ -360,8 +365,7 @@
 
                         if (!found)
                         {
-                            OutputPopulationForPatch(entry.Species, to,
-                                CountSpeciesSpreadPopulation(entry.Species, to));
+                            OutputPopulationForPatch(entry.Species, CountSpeciesSpreadPopulation(entry.Species, to));
                         }
                     }
                 }

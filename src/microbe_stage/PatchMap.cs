@@ -12,7 +12,7 @@ public class PatchMap
     private Patch currentPatch;
 
     /// <summary>
-    ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
+    ///   The list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
     [JsonProperty]
     public Dictionary<int, Patch> Patches { get; private set; } = new Dictionary<int, Patch>();
@@ -171,34 +171,6 @@ public class PatchMap
         }
 
         return null;
-    }
-
-    /// <summary>
-    ///   Updates the global population numbers in Species
-    /// </summary>
-    public void UpdateGlobalPopulations()
-    {
-        var seenPopulations = new Dictionary<Species, long>();
-
-        foreach (var entry in Patches)
-        {
-            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
-            {
-                Species species = speciesEntry.Key;
-
-                if (!seenPopulations.ContainsKey(species))
-                    seenPopulations[species] = 0;
-
-                if (speciesEntry.Value > 0)
-                    seenPopulations[species] += speciesEntry.Value;
-            }
-        }
-
-        // Apply the populations after calculating them
-        foreach (var entry in seenPopulations)
-        {
-            entry.Key.SetPopulationFromPatches(entry.Value);
-        }
     }
 
     /// <summary>

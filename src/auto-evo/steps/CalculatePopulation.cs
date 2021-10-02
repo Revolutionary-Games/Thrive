@@ -5,11 +5,11 @@
     /// </summary>
     public class CalculatePopulation : IRunStep
     {
-        private readonly PatchMap map;
+        private readonly GameWorld world;
 
-        public CalculatePopulation(PatchMap map)
+        public CalculatePopulation(GameWorld world)
         {
-            this.map = map;
+            this.world = world;
         }
 
         public int TotalSteps => 1;
@@ -17,7 +17,7 @@
         public bool RunStep(RunResults results)
         {
             // ReSharper disable RedundantArgumentDefaultValue
-            var config = new SimulationConfiguration(map, 1) { Results = results };
+            var config = new SimulationConfiguration(world, 1) { Results = results };
 
             // ReSharper restore RedundantArgumentDefaultValue
 

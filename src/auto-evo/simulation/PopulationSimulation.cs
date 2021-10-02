@@ -78,7 +78,7 @@
                         }
 
                         if (useGlobal)
-                            currentPopulation = currentSpecies.Population;
+                            currentPopulation = parameters.World.GetGlobalSpeciesPopulation(currentSpecies);
                     }
 
                     // Apply migrations

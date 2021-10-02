@@ -32,17 +32,6 @@ public abstract class Species : ICloneable
     public float Activity = 100.0f;
     public float Focus = 100.0f;
 
-    /// <summary>
-    ///   This is the global population (the sum of population in all patches)
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     Changing this has no effect as this is set after auto-evo
-    ///     from the per patch populations.
-    ///   </para>
-    /// </remarks>
-    public long Population = 1;
-
     public int Generation = 1;
 
     protected Species(uint id)
@@ -80,49 +69,10 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
-    [JsonIgnore]
-    public bool IsExtinct => Population <= 0;
-
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
     /// </summary>
     public abstract void RepositionToOrigin();
-
-    public void SetPopulationFromPatches(long population)
-    {
-        if (population < 0)
-        {
-            Population = 0;
-        }
-        else
-        {
-            Population = population;
-        }
-    }
-
-    /// <summary>
-    ///   Immediate population change (from the player dying)
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This should be made sure to not affect auto-evo. As long
-    ///     as auto-evo uses the per patch population numbers this
-    ///     doesn't affect that.
-    ///   </para>
-    ///   <para>
-    ///     In addition to this an external population effect needs to
-    ///     be sent to auto-evo, otherwise this effect disappears when
-    ///     auto-evo finishes.
-    ///   </para>
-    /// </remarks>
-    public void ApplyImmediatePopulationChange(long constant, float coefficient)
-    {
-        Population = (long)(Population * coefficient);
-        Population += constant;
-
-        if (Population < 0)
-            Population = 0;
-    }
 
     /// <summary>
     ///   Apply properties from the mutation that are mutable
@@ -168,7 +118,6 @@ public abstract class Species : ICloneable
         return new SpeciesInfo
         {
             ID = ID,
-            Population = Population,
         };
     }
 
@@ -201,7 +150,6 @@ public abstract class Species : ICloneable
         species.Fear = Fear;
         species.Activity = Activity;
         species.Focus = Focus;
-        species.Population = Population;
         species.Generation = Generation;
         species.ID = ID;
         species.PlayerSpecies = PlayerSpecies;

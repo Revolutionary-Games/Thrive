@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -48,9 +49,6 @@ public class GameWorld
 
         if (!Map.Verify())
             throw new ArgumentException("generated patch map with settings is not valid");
-
-        // Apply initial populations
-        Map.UpdateGlobalPopulations();
     }
 
     /// <summary>
@@ -124,6 +122,67 @@ public class GameWorld
 
         species.Organelles.Add(new OrganelleTemplate(
             SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
+    }
+
+    /// <summary>
+    ///   Gets the global population of a species.
+    /// </summary>
+    /// <returns>Returns the sum of the populations in all patches</returns>
+    public long GetGlobalSpeciesPopulation(Species species)
+    {
+        return Map.Patches.Sum(p => GetSpeciesPopulationInPatch(species, p.Value));
+    }
+
+    /// <summary>
+    ///   Gets the local population of a species.
+    /// </summary>
+    /// <returns>Returns the population of the species in a patch.</returns>
+    public long GetSpeciesPopulationInPatch(Species species, Patch patch)
+    {
+        return patch.SpeciesInPatch.ContainsKey(species) ? patch.SpeciesInPatch[species] : 0;
+    }
+
+    /// <summary>
+    ///   Immediately sets the population of a species in a patch
+    /// </summary>
+    public void SetSpeciesPopulationInPatch(Species species, Patch patch, long value)
+    {
+        if (value <= 0)
+        {
+            patch.SpeciesInPatch.Remove(species);
+            return;
+        }
+
+        if (patch.SpeciesInPatch.ContainsKey(species))
+            patch.SpeciesInPatch[species] = value;
+        else
+            patch.SpeciesInPatch.Add(species, value);
+    }
+
+    /// <summary>
+    ///   Immediate population change (from the player dying)
+    /// </summary>
+    public void ApplyImmediatePopulationChange(Species species, Patch patch, long constant, float coefficient)
+    {
+        var newPopulation = (long)(GetSpeciesPopulationInPatch(species, patch) * coefficient);
+        newPopulation += constant;
+
+        SetSpeciesPopulationInPatch(species, patch, newPopulation);
+    }
+
+    public bool IsPlayerExtinct()
+    {
+        return IsSpeciesExtinct(PlayerSpecies);
+    }
+
+    public bool IsSpeciesExtinct(Species species)
+    {
+        return GetGlobalSpeciesPopulation(species) <= 0;
+    }
+
+    public bool IsSpeciesExtinctInPatch(Species species, Patch patch)
+    {
+        return GetSpeciesPopulationInPatch(species, patch) <= 0;
     }
 
     /// <summary>
@@ -259,12 +318,12 @@ public class GameWorld
 
             GD.Print("Applying immediate population effect " +
                 "(should only be used for the player dying)");
-            species.ApplyImmediatePopulationChange(constant, coefficient);
+            ApplyImmediatePopulationChange(species, Map.CurrentPatch, constant, coefficient);
         }
 
         CreateRunIfMissing();
 
-        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description);
+        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, Map.CurrentPatch);
     }
 
     public void RemoveSpecies(Species species)

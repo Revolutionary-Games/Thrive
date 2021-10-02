@@ -5,15 +5,15 @@
     /// </summary>
     public class FindBestMutation : VariantTryingStep
     {
-        private PatchMap map;
+        private GameWorld world;
         private Species species;
 
         private Mutations mutations = new Mutations();
 
-        public FindBestMutation(PatchMap map, Species species, int mutationsToTry, bool allowNoMutation)
+        public FindBestMutation(GameWorld world, Species species, int mutationsToTry, bool allowNoMutation)
             : base(mutationsToTry, allowNoMutation)
         {
-            this.map = map;
+            this.world = world;
             this.species = species;
         }
 
@@ -24,7 +24,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(world, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             PopulationSimulation.Simulate(config);
 
@@ -38,7 +38,7 @@
             var mutated = (MicrobeSpecies)species.Clone();
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated);
 
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(world, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.ExcludedSpecies.Add(species);
             config.ExtraSpecies.Add(mutated);
