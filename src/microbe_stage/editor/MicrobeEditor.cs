@@ -1806,8 +1806,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             });
     }
 
-    private IEnumerable<MicrobeEditorAction> GetReplacedCytoplasmRemoveAction(
-        IEnumerable<OrganelleTemplate> organelles)
+    private IEnumerable<MicrobeEditorAction> GetReplacedCytoplasmRemoveAction(IEnumerable<OrganelleTemplate> organelles)
     {
         return GetReplacedCytoplasmRemoveActionData(organelles)
             .Select(o => new MicrobeEditorAction(this, DoOrganelleRemoveAction,

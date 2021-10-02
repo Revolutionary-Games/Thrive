@@ -57,6 +57,7 @@ public abstract class ActionHistory<T>
             action.Undo();
         }
         while (actionIndex > 0 && actions[actionIndex - 1].IsSubAction);
+
         return true;
     }
 
