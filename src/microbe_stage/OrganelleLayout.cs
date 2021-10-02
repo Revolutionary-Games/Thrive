@@ -65,6 +65,11 @@ public class OrganelleLayout<T> : ICollection<T>
     public T this[int index] => Organelles[index];
 
     /// <summary>
+    ///   Access organelle by hex
+    /// </summary>
+    public T this[Hex hex] => Organelles.FirstOrDefault(p => p.Position == hex);
+
+    /// <summary>
     ///   Adds a new organelle to this layout. Throws if overlaps or can't be placed
     /// </summary>
     public void Add(T organelle)

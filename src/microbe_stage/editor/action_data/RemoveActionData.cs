@@ -5,6 +5,11 @@ public class RemoveActionData : MicrobeEditorActionData
     public Hex Location;
     public int Orientation;
 
+    /// <summary>
+    ///   Used for replacing Cytoplasm. If true this action is free.
+    /// </summary>
+    public bool GotReplaced;
+
     public RemoveActionData(OrganelleTemplate organelle, Hex location, int orientation)
     {
         Organelle = organelle;
@@ -37,7 +42,7 @@ public class RemoveActionData : MicrobeEditorActionData
 
     public override int CalculateCost()
     {
-        return Constants.ORGANELLE_REMOVE_COST;
+        return GotReplaced ? 0 : Constants.ORGANELLE_REMOVE_COST;
     }
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)

@@ -1774,9 +1774,19 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var organelleTemplates = hexes
             .Select(hex => new OrganelleTemplate(organelleDefinition, hex.hex, hex.orientation)).ToList();
 
-        var cost = History.WhatWouldActionsCost(organelleTemplates
-            .Select(o => (MicrobeEditorActionData)new PlacementActionData(o, o.Position, o.Orientation))
-            .ToList());
+        var replacedCytoplasmRemovalActionData = organelleTemplates
+            .SelectMany(ot => organelleDefinition.Hexes.Select(hex => hex + ot.Position))
+            .Select(hex => editedMicrobeOrganelles[hex])
+            .Where(o => o?.Definition?.InternalName == "cytoplasm")
+            .Select(o => (MicrobeEditorActionData)new RemoveActionData(o, o.Position, o.Orientation)
+            {
+                GotReplaced = true,
+            });
+
+        var placementActionData = organelleTemplates
+            .Select(o => (MicrobeEditorActionData)new PlacementActionData(o, o.Position, o.Orientation));
+
+        var cost = History.WhatWouldActionsCost(replacedCytoplasmRemovalActionData.Concat(placementActionData).ToList());
 
         if (cost > MutationPoints && !FreeBuilding)
         {
