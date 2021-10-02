@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -62,6 +63,12 @@ public abstract class Species : ICloneable
     /// </summary>
     [JsonProperty]
     public bool PlayerSpecies { get; private set; }
+
+    /// <summary>
+    ///   The last migration the player made. Gets applied on the next AutoEvo run. Only relevant for player species.
+    /// </summary>
+    [JsonProperty]
+    public SpeciesMigration LastPlayerMigration { get; set; }
 
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;

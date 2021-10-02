@@ -613,7 +613,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         HUD.HintText = string.Empty;
 
         // Respawn if not extinct (or freebuild)
-        if (GameWorld.IsPlayerExtinct() && !CurrentGame.FreeBuild)
+        if (GameWorld.IsSpeciesExtinctInPatch(playerSpecies, GameWorld.Map.CurrentPatch) && !CurrentGame.FreeBuild)
         {
             gameOver = true;
         }

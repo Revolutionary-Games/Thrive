@@ -323,7 +323,7 @@ public class GameWorld
 
         CreateRunIfMissing();
 
-        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, Map.CurrentPatch);
+        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, Map.CurrentPatch, immediate);
     }
 
     public void RemoveSpecies(Species species)

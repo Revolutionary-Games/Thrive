@@ -236,10 +236,11 @@ public class AutoEvoRun
     /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
     /// <param name="patch">The patch where this effect happened.</param>
+    /// <param name="playerDeath">Is this a player died effect and therefore instant?</param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
-        Patch patch)
+        Patch patch, bool playerDeath)
     {
-        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch));
+        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch, playerDeath));
     }
 
     /// <summary>
@@ -375,8 +376,13 @@ public class AutoEvoRun
 
                 // The player species doesn't get random mutations. And also doesn't
                 // spread automatically
-                if (speciesEntry.Key.PlayerSpecies)
+                if (speciesEntry.Key.PlayerSpecies && speciesEntry.Key.LastPlayerMigration != null)
                 {
+                    runSteps.Enqueue(new PlayerMigration(speciesEntry.Key, speciesEntry.Key.LastPlayerMigration));
+                    map.CurrentPatch.UpdateSpeciesPopulation(speciesEntry.Key,
+                        map.CurrentPatch.GetSpeciesPopulation(speciesEntry.Key) -
+                        speciesEntry.Key.LastPlayerMigration.Population);
+                    speciesEntry.Key.LastPlayerMigration = null;
                 }
                 else
                 {

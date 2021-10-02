@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Text;
     using Godot;
 
@@ -71,6 +72,9 @@
 
                 foreach (var spreadEntry in entry.Value.SpreadToPatches)
                 {
+                    if (spreadEntry.OnlyVisual)
+                        continue;
+
                     var from = world.Map.GetPatch(spreadEntry.From.ID);
                     var to = world.Map.GetPatch(spreadEntry.To.ID);
 
@@ -240,8 +244,35 @@
 
             foreach (var entry in results.Values)
             {
-                if (patch.GetSpeciesPopulation(entry.Species) <= 0 &&
+                var playerDied = effects?.Any(e => e.PlayerDeath) == true;
+
+                long adjustedPopulation = entry.NewPopulationInPatches[patch];
+
+                if (resolveMoves)
+                {
+                    adjustedPopulation +=
+                        CountSpeciesSpreadPopulation(entry.Species, patch);
+                }
+
+                // Apply external effects
+                if (effects != null && previousPopulations != null &&
+                    previousPopulations.CurrentPatch.ID == patch.ID)
+                {
+                    foreach (var effect in effects)
+                    {
+                        if (effect.Species == entry.Species)
+                        {
+                            var speciesPopulation = effect.Patch.GetSpeciesPopulation(effect.Species);
+                            adjustedPopulation +=
+                                effect.Constant + (long)(speciesPopulation * effect.Coefficient)
+                                - speciesPopulation;
+                        }
+                    }
+                }
+
+                if (adjustedPopulation <= 0 &&
                     previousPopulations?.GetPatch(patch.ID).GetSpeciesPopulation(entry.Species) <= 0 &&
+                    !playerDied &&
                     GetGlobalPopulation(entry.Species, resolveMoves) > 0)
                     continue;
 
@@ -298,56 +329,26 @@
                 builder.Append(TranslationServer.Translate("RUN_RESULT_POP_IN_PATCHES"));
                 builder.Append('\n');
 
-                foreach (var patchPopulation in entry.NewPopulationInPatches)
+                // As the populations are added to all patches, even when the species is not there, we remove those
+                // from output if there is currently no population in a patch and there isn't one in
+                // previousPopulations
+                var include = false;
+
+                if (adjustedPopulation > 0)
                 {
-                    if (patchPopulation.Key != patch)
-                        continue;
-
-                    long adjustedPopulation = patchPopulation.Value;
-
-                    if (resolveMoves)
-                    {
-                        adjustedPopulation +=
-                            CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
-                    }
-
-                    // Apply external effects
-                    if (effects != null && previousPopulations != null &&
-                        previousPopulations.CurrentPatch.ID == patchPopulation.Key.ID)
-                    {
-                        foreach (var effect in effects)
-                        {
-                            if (effect.Species == entry.Species)
-                            {
-                                var speciesPopulation = effect.Patch.GetSpeciesPopulation(effect.Species);
-                                adjustedPopulation +=
-                                    effect.Constant + (long)(speciesPopulation * effect.Coefficient)
-                                    - speciesPopulation;
-                            }
-                        }
-                    }
-
-                    // As the populations are added to all patches, even when the species is not there, we remove those
-                    // from output if there is currently no population in a patch and there isn't one in
-                    // previousPopulations
-                    var include = false;
-
-                    if (adjustedPopulation > 0)
+                    include = true;
+                }
+                else
+                {
+                    if (previousPopulations?.GetPatch(patch.ID).GetSpeciesPopulation(entry.Species) >
+                        0 || playerDied)
                     {
                         include = true;
                     }
-                    else
-                    {
-                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
-                            0)
-                        {
-                            include = true;
-                        }
-                    }
-
-                    if (include)
-                        OutputPopulationForPatch(entry.Species, adjustedPopulation);
                 }
+
+                if (include)
+                    OutputPopulationForPatch(entry.Species, adjustedPopulation);
 
                 // Also print new patches the species moved to (as the moves don't get
                 // included in newPopulationInPatches
