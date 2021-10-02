@@ -1777,19 +1777,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var organelleTemplates = hexes
             .Select(hex => new OrganelleTemplate(organelleDefinition, hex.hex, hex.orientation)).ToList();
 
-        var replacedCytoplasmRemovalActionData = GetReplacedCytoplasmRemoveActionData(organelleTemplates);
-
-        var placementActionData = organelleTemplates
-            .Select(o => (MicrobeEditorActionData)new PlacementActionData(o, o.Position, o.Orientation));
-
-        var cost = History.WhatWouldActionsCost(replacedCytoplasmRemovalActionData.Concat(placementActionData).ToList());
-
-        if (cost > MutationPoints && !FreeBuilding)
-        {
-            gui.OnInsufficientMp();
-            return false;
-        }
-
         bool placedSomething = false;
 
         foreach (var ot in organelleTemplates)
@@ -1800,7 +1787,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
     {
-        return organelles.SelectMany(o => o.Definition.Hexes.Select(hex => hex + o.Position))
+        return organelles
+            .Where(o => o.Definition.InternalName != "cytoplasm")
+            .SelectMany(o => o.Definition.Hexes.Select(hex => hex + o.Position))
             .Select(hex => editedMicrobeOrganelles[hex])
             .Where(o => o?.Definition?.InternalName == "cytoplasm");
     }
@@ -1920,11 +1909,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             (organelle.Definition.RequiresNucleus && !HasNucleus))
             return false;
 
+        var replacedCytoplasm = GetReplacedCytoplasmRemoveActionData(new[] { organelle });
+
         var action = new MicrobeEditorAction(this,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle, organelle.Position,
                 organelle.Orientation));
 
-        EnqueueAction(action);
+        EnqueueAction(action, replacedCytoplasm);
         return true;
     }
 
@@ -2270,10 +2261,16 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Perform all actions through this to make undo and redo work
     /// </summary>
     /// <returns>True when the action was successful</returns>
-    private bool EnqueueAction(MicrobeEditorAction action)
+    /// <param name="sideActions">
+    ///   Actions to perform before the main action can be performed. Used to tweak MP calculation.
+    ///   Does not affect history.
+    /// </param>
+    private bool EnqueueAction(MicrobeEditorAction action, IEnumerable<MicrobeEditorActionData> sideActions = null)
     {
+        var actions = (sideActions ?? new List<MicrobeEditorActionData>()).Append(action.Data);
+
         // A sanity check to not let an action proceed if we don't have enough mutation points
-        if (History.WhatWouldActionCost(action.Data) > MutationPoints)
+        if (History.WhatWouldActionsCost(actions.ToList()) > MutationPoints)
         {
             // Flash the MP bar and play sound
             gui.OnInsufficientMp();
