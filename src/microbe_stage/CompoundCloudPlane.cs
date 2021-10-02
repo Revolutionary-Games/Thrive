@@ -494,7 +494,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (generousAmount < MathUtils.EPSILON)
                 continue;
 
-            float freeSpace = storage.Capacity - storage.GetCompoundAmount(Compounds[i]);
+            float freeSpace = storage.BagCapacity - storage.GetCompoundAmount(Compounds[i]);
 
             float multiplier = 1.0f * rate;
 

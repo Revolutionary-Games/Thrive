@@ -1612,7 +1612,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
             foreach (var usefulCompound in usefulCompounds)
-                Compounds.AddCompound(usefulCompound, Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
+                Compounds.AddCompound(usefulCompound, Compounds.BagCapacity - Compounds.GetCompoundAmount(usefulCompound));
         }
     }
 
@@ -1643,10 +1643,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             {
                 amountToVent -= EjectCompound(type, amountToVent);
             }
-            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.Capacity)
+            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.BagCapacity)
             {
                 // Vent the part that went over
-                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.Capacity);
+                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.BagCapacity);
 
                 amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent));
             }
@@ -2247,7 +2247,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
-        Compounds.Capacity = organellesCapacity;
+        Compounds.BagCapacity = organellesCapacity;
     }
 
     [DeserializedCallbackAllowed]
@@ -2265,7 +2265,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
 
-        Compounds.Capacity = organellesCapacity;
+        Compounds.BagCapacity = organellesCapacity;
     }
 
     /// <summary>
@@ -2349,7 +2349,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void RecomputeOrganelleCapacity()
     {
         organellesCapacity = organelles.Sum(o => o.StorageCapacity);
-        Compounds.Capacity = organellesCapacity;
+        Compounds.BagCapacity = organellesCapacity;
     }
 
     /// <summary>
