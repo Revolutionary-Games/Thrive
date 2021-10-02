@@ -12,6 +12,9 @@ public abstract class ReversibleAction
     [JsonProperty]
     public bool Performed { get; private set; }
 
+    [JsonIgnore]
+    public abstract bool IsSubAction { get; }
+
     /// <summary>
     ///   Does this action
     /// </summary>

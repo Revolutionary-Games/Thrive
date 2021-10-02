@@ -6,6 +6,11 @@
 public abstract class MicrobeEditorActionData
 {
     /// <summary>
+    ///   If true this action is only a sub-action to the next one and should be skipped when undoing
+    /// </summary>
+    public virtual bool IsSubAction => false;
+
+    /// <summary>
     ///   Does this action cancel out with the <paramref name="other"/> action?
     /// </summary>
     /// <returns>

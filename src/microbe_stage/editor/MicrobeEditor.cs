@@ -1806,6 +1806,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             });
     }
 
+    private IEnumerable<MicrobeEditorAction> GetReplacedCytoplasmRemoveAction(
+        IEnumerable<OrganelleTemplate> organelles)
+    {
+        return GetReplacedCytoplasmRemoveActionData(organelles)
+            .Select(o => new MicrobeEditorAction(this, DoOrganelleRemoveAction,
+                UndoOrganelleRemoveAction, o));
+    }
+
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
@@ -1912,7 +1920,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             (organelle.Definition.RequiresNucleus && !HasNucleus))
             return false;
 
-        var replacedCytoplasm = GetReplacedCytoplasmRemoveActionData(new[] { organelle });
+        var replacedCytoplasm = GetReplacedCytoplasmRemoveAction(new[] { organelle });
 
         var action = new MicrobeEditorAction(this,
             DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle, organelle.Position,
@@ -2265,17 +2273,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     /// <returns>True when the action was successful</returns>
     /// <param name="action">The main action that will go into the history</param>
-    /// <param name="sideActions">
-    ///   Actions to perform before the main action can be performed. Used to tweak MP calculation.
-    ///   Does not affect history.
-    /// </param>
-    private bool EnqueueAction(MicrobeEditorAction action, IEnumerable<MicrobeEditorActionData> sideActions = null)
+    /// <param name="sideActions">Actions to perform before the main action can be performed</param>
+    private bool EnqueueAction(MicrobeEditorAction action, IEnumerable<MicrobeEditorAction> sideActions = null)
     {
-        var actions = (sideActions ?? new List<MicrobeEditorActionData>()).Append(action.Data);
+        var actions = (sideActions ?? new List<MicrobeEditorAction>()).Append(action).ToList();
 
         // A sanity check to not let an action proceed if we don't have enough mutation points
         if (!(FreeBuilding || CheatManager.InfiniteMP) &&
-            History.WhatWouldActionsCost(actions.ToList()) > MutationPoints)
+            History.WhatWouldActionsCost(actions.Select(p => p.Data).ToList()) > MutationPoints)
         {
             // Flash the MP bar and play sound
             gui.OnInsufficientMp();
@@ -2290,7 +2295,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return false;
         }
 
-        History.AddAction(action);
+        foreach (var a in actions)
+            History.AddAction(a);
+
         DirtyMutationPointsCache();
 
         UpdateUndoRedoButtons();

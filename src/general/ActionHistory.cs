@@ -34,8 +34,14 @@ public abstract class ActionHistory<T>
         if (!CanRedo())
             return false;
 
-        var action = actions[actionIndex++];
-        action.Perform();
+        T action;
+        do
+        {
+            action = actions[actionIndex++];
+            action.Perform();
+        }
+        while (action.IsSubAction);
+
         return true;
     }
 
@@ -44,8 +50,13 @@ public abstract class ActionHistory<T>
         if (!CanUndo())
             return false;
 
-        var action = actions[--actionIndex];
-        action.Undo();
+        T action;
+        do
+        {
+            action = actions[--actionIndex];
+            action.Undo();
+        }
+        while (actionIndex > 0 && actions[actionIndex - 1].IsSubAction);
         return true;
     }
 

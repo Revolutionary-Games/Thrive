@@ -17,6 +17,8 @@ public class RemoveActionData : MicrobeEditorActionData
         Orientation = orientation;
     }
 
+    public override bool IsSubAction => GotReplaced;
+
     public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
     {
         // If this organelle got placed in this session on the same position

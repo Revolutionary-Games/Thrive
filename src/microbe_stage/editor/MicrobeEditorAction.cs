@@ -47,6 +47,8 @@ public class MicrobeEditorAction : ReversibleAction
     [JsonIgnore]
     public bool IsMoveAction => Data is MoveActionData;
 
+    public override bool IsSubAction => Data.IsSubAction;
+
     public override void DoAction()
     {
         redo(this);
