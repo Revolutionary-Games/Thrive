@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using ICSharpCode.SharpZipLib;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -1793,11 +1792,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         return organelles
             .Where(o => o.Definition.InternalName != "cytoplasm")
             .SelectMany(o => o.Definition.Hexes.Select(hex => hex + o.Position))
-            .Select(hex => editedMicrobeOrganelles[hex])
+            .Select(hex => editedMicrobeOrganelles.GetByHex(hex))
             .Where(o => o?.Definition?.InternalName == "cytoplasm");
     }
 
-    private IEnumerable<RemoveActionData> GetReplacedCytoplasmRemoveActionData(IEnumerable<OrganelleTemplate> organelles)
+    private IEnumerable<RemoveActionData> GetReplacedCytoplasmRemoveActionData(
+        IEnumerable<OrganelleTemplate> organelles)
     {
         return GetReplacedCytoplasm(organelles)
             .Select(o => new RemoveActionData(o, o.Position, o.Orientation)
@@ -2264,6 +2264,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Perform all actions through this to make undo and redo work
     /// </summary>
     /// <returns>True when the action was successful</returns>
+    /// <param name="action">The main action that will go into the history</param>
     /// <param name="sideActions">
     ///   Actions to perform before the main action can be performed. Used to tweak MP calculation.
     ///   Does not affect history.
