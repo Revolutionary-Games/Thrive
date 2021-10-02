@@ -566,6 +566,7 @@ public class MicrobeHUD : Node
         patchExtinctionBox = (PatchExtinctionBox)patchExtinctionBoxScene.Instance();
         patchExtinctionBox.Map = map;
         patchExtinctionBox.PlayerSpecies = playerSpecies;
+        patchExtinctionBox.GoToNewPatch = GoToNewPatch;
 
         winExtinctBoxHolder.AddChild(patchExtinctionBox);
     }
@@ -651,6 +652,17 @@ public class MicrobeHUD : Node
         temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
 
         // TODO: pressure?
+    }
+
+    /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    private void GoToNewPatch(Patch patch)
+    {
+        winExtinctBoxHolder.RemoveChild(patchExtinctionBox);
+        winExtinctBoxHolder.Hide();
+        patchExtinctionBox = null;
+        stage.GoToNewPatch(patch);
     }
 
     /// <summary>

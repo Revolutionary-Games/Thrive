@@ -18,6 +18,7 @@ public class PatchExtinctionBox : PanelContainer
 
     public PatchMap Map { get; set; }
     public Species PlayerSpecies { get; set; }
+    public Action<Patch> GoToNewPatch { get; set; }
 
     public override void _Ready()
     {
@@ -40,6 +41,7 @@ public class PatchExtinctionBox : PanelContainer
 
     private void NewPatchSelected(Patch patch)
     {
+        GoToNewPatch?.Invoke(patch);
         animationPlayer.PlayBackwards();
     }
 

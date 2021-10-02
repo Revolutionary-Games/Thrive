@@ -483,6 +483,19 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     }
 
     /// <summary>
+    ///   Called when the player died out in a patch and selected a new one
+    /// </summary>
+    public void GoToNewPatch(Patch patch)
+    {
+        CurrentGame.GameWorld.Map.CurrentPatch = patch;
+        UpdatePatchSettings();
+        playerExtinctInCurrentPatch = false;
+
+        // Auto save is wanted once possible
+        wantsToSave = true;
+    }
+
+    /// <summary>
     ///   Switches to the editor
     /// </summary>
     public void MoveToEditor()
