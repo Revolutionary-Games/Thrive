@@ -232,6 +232,8 @@ public class MicrobeHUD : Node
     private AnimationPlayer patchOverlayAnimator;
     private TextureButton editorButton;
     private Node extinctionBox;
+    private PatchExtinctionBox patchExtinctionBox;
+    private PackedScene patchExtinctionBoxScene;
     private Node winBox;
     private Tween panelsTween;
     private Control winExtinctBoxHolder;
@@ -285,6 +287,8 @@ public class MicrobeHUD : Node
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
 
         winExtinctBoxHolder = GetNode<Control>("WinExtinctBoxHolder");
+
+        patchExtinctionBoxScene = GD.Load<PackedScene>("res://src/microbe_stage/gui/PatchExtinctionBox.tscn");
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
@@ -550,6 +554,18 @@ public class MicrobeHUD : Node
 
         extinctionBox = ExtinctionBoxScene.Instance();
         winExtinctBoxHolder.AddChild(extinctionBox);
+    }
+
+    public void ShowPatchExtinctionBox(PatchMap map)
+    {
+        if (patchExtinctionBox != null)
+            return;
+
+        winExtinctBoxHolder.Show();
+
+        patchExtinctionBox = (PatchExtinctionBox)patchExtinctionBoxScene.Instance();
+        patchExtinctionBox.Map = map;
+        winExtinctBoxHolder.AddChild(patchExtinctionBox);
     }
 
     public void ToggleWinBox()

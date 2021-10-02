@@ -58,6 +58,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [JsonProperty]
     private bool gameOver;
 
+    /// <summary>
+    ///   True when the player is extinct in the current patch. The player can still move to another patch.
+    /// </summary>
+    [JsonProperty]
+    private bool playerExtinctInCurrentPatch;
+
     [JsonProperty]
     private bool wonOnce;
 
@@ -375,6 +381,15 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
         }
 
+        if (playerExtinctInCurrentPatch)
+        {
+            guidanceLine.Visible = false;
+
+            HUD.ShowPatchExtinctionBox(GameWorld.Map);
+
+            return;
+        }
+
         if (Player != null)
         {
             spawner.Process(delta, Player.Translation, Player.Rotation);
@@ -612,16 +627,24 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         HUD.HintText = string.Empty;
 
-        // Respawn if not extinct (or freebuild)
-        if (GameWorld.IsSpeciesExtinctInPatch(playerSpecies, GameWorld.Map.CurrentPatch) && !CurrentGame.FreeBuild)
+        if (!CurrentGame.FreeBuild)
         {
-            gameOver = true;
+            // Respawn if not extinct (or freebuild)
+            if (GameWorld.IsPlayerExtinct())
+            {
+                gameOver = true;
+                return;
+            }
+
+            if (GameWorld.IsSpeciesExtinctInPatch(playerSpecies, GameWorld.Map.CurrentPatch))
+            {
+                playerExtinctInCurrentPatch = true;
+                return;
+            }
         }
-        else
-        {
-            // Player is not extinct, so can respawn
-            SpawnPlayer();
-        }
+
+        // Player is not extinct, so can respawn
+        SpawnPlayer();
     }
 
     private void UpdatePatchSettings(bool promptPatchNameChange = true)
