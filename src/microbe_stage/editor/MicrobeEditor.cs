@@ -1046,12 +1046,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (mouseHoverHexes == null)
             return organelleDefinition.MPCost * GetPositionsOfSymmetryMode(Symmetry);
 
-        var organelleTemplate = new OrganelleTemplate(organelleDefinition, new Hex(0, 0), 0);
+        var organelleTemplate = mouseHoverHexes
+            .Select(hex => new OrganelleTemplate(organelleDefinition, hex.hex, hex.orientation)).ToList();
 
-        return History.WhatWouldActionsCost(
-            mouseHoverHexes
-                .Select(p => (MicrobeEditorActionData)new PlacementActionData(organelleTemplate, p.hex, p.orientation))
-                .ToList());
+        var placementActionData = organelleTemplate
+            .Select(p => (MicrobeEditorActionData)new PlacementActionData(p, p.Position, p.Orientation));
+
+        var replacedCytoplasm = GetReplacedCytoplasmRemoveActionData(organelleTemplate);
+
+        return History.WhatWouldActionsCost(replacedCytoplasm.Concat(placementActionData).ToList());
     }
 
     /// <summary>
@@ -1774,14 +1777,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var organelleTemplates = hexes
             .Select(hex => new OrganelleTemplate(organelleDefinition, hex.hex, hex.orientation)).ToList();
 
-        var replacedCytoplasmRemovalActionData = organelleTemplates
-            .SelectMany(ot => organelleDefinition.Hexes.Select(hex => hex + ot.Position))
-            .Select(hex => editedMicrobeOrganelles[hex])
-            .Where(o => o?.Definition?.InternalName == "cytoplasm")
-            .Select(o => (MicrobeEditorActionData)new RemoveActionData(o, o.Position, o.Orientation)
-            {
-                GotReplaced = true,
-            });
+        var replacedCytoplasmRemovalActionData = GetReplacedCytoplasmRemoveActionData(organelleTemplates);
 
         var placementActionData = organelleTemplates
             .Select(o => (MicrobeEditorActionData)new PlacementActionData(o, o.Position, o.Orientation));
@@ -1800,6 +1796,22 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             PlaceIfPossible(ot, ref placedSomething);
 
         return placedSomething;
+    }
+
+    private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
+    {
+        return organelles.SelectMany(o => o.Definition.Hexes.Select(hex => hex + o.Position))
+            .Select(hex => editedMicrobeOrganelles[hex])
+            .Where(o => o?.Definition?.InternalName == "cytoplasm");
+    }
+
+    private IEnumerable<RemoveActionData> GetReplacedCytoplasmRemoveActionData(IEnumerable<OrganelleTemplate> organelles)
+    {
+        return GetReplacedCytoplasm(organelles)
+            .Select(o => new RemoveActionData(o, o.Position, o.Orientation)
+            {
+                GotReplaced = true,
+            });
     }
 
     /// <summary>
