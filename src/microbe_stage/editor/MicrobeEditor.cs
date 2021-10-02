@@ -1469,7 +1469,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         mutationPointsCache = History.CalculateMutationPointsLeft();
 
         if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
-            throw new ValueOutOfRangeException($"Invalid MP amount: {mutationPointsCache}");
+        {
+            GD.PrintErr("Warning: Invalid MP amount: ", mutationPointsCache, "\n",
+                "This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
+        }
 
         gui.UpdateMutationPointsBar();
 
@@ -2270,7 +2273,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var actions = (sideActions ?? new List<MicrobeEditorActionData>()).Append(action.Data);
 
         // A sanity check to not let an action proceed if we don't have enough mutation points
-        if (History.WhatWouldActionsCost(actions.ToList()) > MutationPoints)
+        if (!(FreeBuilding || CheatManager.InfiniteMP) &&
+            History.WhatWouldActionsCost(actions.ToList()) > MutationPoints)
         {
             // Flash the MP bar and play sound
             gui.OnInsufficientMp();
