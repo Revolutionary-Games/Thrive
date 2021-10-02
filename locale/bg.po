@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
-"PO-Revision-Date: 2021-09-12 07:51+0000\n"
+"POT-Creation-Date: 2021-10-01 13:57+0300\n"
+"PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Georgi Georgiev (Жоро) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -215,9 +215,10 @@ msgstr ""
 "премахването на органели струва МТ, но премахването на органели, които са "
 "добавени в текущата сесия на редактора, връща тяхната стойност. Може да "
 "преместите или премахнете органелите като натиснете с десния бутон на "
-"мишката върху тях. Може да ги завъртите, преди добавяне, чрез натискане на "
-"[thrive:input]e_rotate_left[/thrive:input] или [thrive:"
-"input]e_rotate_right[/thrive:input]."
+"мишката върху тях и изберете съответното действие в контекстното меню. "
+"Може да ги завъртите, преди добавяне, чрез натискане на [thrive:"
+"input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/"
+"thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -370,7 +371,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"Забавен факт е, че екипът на „Thrive“ прави аудио конференции от време на "
+"Забавен факт е, че екипът на „Thrive“ излъчва конференции от време на "
 "време, може да им хвърлите едно око!"
 
 #: ../simulation_parameters/common/help_texts.json:201
@@ -476,9 +477,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Добавяне на органел"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Премахване на органел"
+msgstr "Контекстно меню"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_LEFT"
@@ -503,7 +503,7 @@ msgstr "Нулиране на камерата"
 #: ../simulation_parameters/common/input_options.json:131
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:79
 msgid "CANCEL_CURRENT_ACTION"
-msgstr "Анулиране на текущото действие"
+msgstr "Анулиране на действието"
 
 #: ../simulation_parameters/common/input_options.json:135
 msgid "DELETE_ORGANELLE"
@@ -908,7 +908,7 @@ msgstr "Започната"
 #: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
-"популацията на „{0}“ се промени с {1} индивида, поради {2} на създанията"
+"популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
 
 #: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
@@ -1866,7 +1866,7 @@ msgstr "Покровители"
 
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "Може да подкрепите „Thrive“ в „Patreon“"
+msgstr "Може да подкрепите бъдещата разработка на „Thrive“ в „Patreon“"
 
 #: ../src/gui_common/CreditsScroll.cs:341
 msgid "VIP_PATRONS"
@@ -3082,14 +3082,12 @@ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Презапишете съществуващия запис?"
 
 #: ../src/saving/SaveHelper.cs:382
-#, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
-msgstr "Запазването е неуспешно! Отчетена е грешка"
+msgstr "Запазването в момента не е възможно поради:"
 
 #: ../src/saving/SaveHelper.cs:383
-#, fuzzy
 msgid "PLAYER_EXTINCT"
-msgstr "Удвояване"
+msgstr "Измиране на създанията"
 
 #: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
@@ -3124,7 +3122,7 @@ msgstr ""
 #: ../src/saving/SaveList.cs:281
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"Надграждането на записа е неуспешно, поради следната грешка:\n"
+"Надграждането на записа е неуспешно поради следната грешка:\n"
 "{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
@@ -3229,14 +3227,14 @@ msgstr "Зареждане"
 #: ../src/saving/SaveListItem.tscn:292
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
-"Изтриването на този запис не може да бъде отменено, сигурни ли сте, че "
-"искате да го изтриете?"
+"Изтриването не може да бъде отменено, сигурни ли сте, че искате да "
+"изтриете този запис?"
 
 #: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
-"Изтриването на {0} запис(а) не може да бъде отменено, сигурни ли сте, че "
-"искате да го направите?"
+"Изтриването не може да бъде отменено, сигурни ли сте, че искате да "
+"изтриете {0} запис(а)?"
 
 #: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
@@ -3256,7 +3254,7 @@ msgstr "Изтриване на избраните"
 
 #: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr "Изчистване на стари записи"
+msgstr "Изтриване на старите записи"
 
 #: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
@@ -3361,7 +3359,7 @@ msgstr ""
 "текущата сесия на редактора.\n"
 "\n"
 "Може да премахнете органелите като натиснете с десния бутон на мишката "
-"върху тях.\n"
+"върху тях и изберете „Премахване“ в контекстното меню.\n"
 "\n"
 "Ако направите грешка, може да отмените Вашите промени в редактора.\n"
 "\n"
@@ -3469,9 +3467,6 @@ msgstr ""
 "\n"
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
 "Вашата клетка или да натиснете съответния клавиш."
-
-#~ msgid "REMOVE_ORGANELLE"
-#~ msgstr "Премахване на органел"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"
