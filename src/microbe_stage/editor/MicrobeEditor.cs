@@ -1470,8 +1470,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (mutationPointsCache.Value < 0 || mutationPointsCache > Constants.BASE_MUTATION_POINTS)
         {
-            GD.PrintErr("Warning: Invalid MP amount: ", mutationPointsCache, "\n",
-                "This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
+            GD.PrintErr("Warning: Invalid MP amount: ", mutationPointsCache,
+                " This should only happen if the user disabled the Infinite MP cheat while having mutated too much.");
         }
 
         gui.UpdateMutationPointsBar();
