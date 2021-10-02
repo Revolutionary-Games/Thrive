@@ -943,9 +943,22 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         externalEffectsLabel.Text = external;
     }
 
-    public void UpdateReportTabPatchName(string patch)
+    public void UpdateReportTabPatch(Patch patch)
     {
-        reportTabPatchNameLabel.Text = patch;
+        reportTabPatchNameLabel.Text = patch.Name;
+
+        if (editor.AutoEvoReports.ContainsKey(patch))
+        {
+            var (summary, externalEffects) = editor.AutoEvoReports[patch];
+            UpdateAutoEvoResults(summary, externalEffects);
+        }
+        else
+        {
+            UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
+                TranslationServer.Translate("AUTO_EVO_RUN_STATUS"));
+        }
+
+        UpdateReportTabStatistics(patch);
     }
 
     public void UpdateRigiditySliderState(int mutationPoints)
@@ -1020,9 +1033,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
 
-        UpdateReportTabStatistics(patch);
-
-        UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
+        UpdateReportTabPatch(patch);
     }
 
     /// <summary>
@@ -1759,6 +1770,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
+
+        UpdateReportTabPatch(patch);
     }
 
     /// <summary>

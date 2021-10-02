@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -169,12 +170,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     [JsonProperty]
     private int organelleRot;
-
-    [JsonProperty]
-    private string autoEvoSummary;
-
-    [JsonProperty]
-    private string autoEvoExternal;
 
     [JsonProperty]
     private string activeActionName;
@@ -415,6 +410,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; }
+
+    public Dictionary<Patch, (string summary, string externalEffects)> AutoEvoReports { get; set; }
 
     public override void _Ready()
     {
@@ -1329,8 +1326,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.SetMap(CurrentGame.GameWorld.Map);
 
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
-
-        gui.UpdateReportTabPatchName(TranslationServer.Translate(CurrentPatch.Name));
 
         gui.UpdateRigiditySliderState(MutationPoints);
 
@@ -2309,24 +2304,20 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Get summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
 
-        if (run?.Results == null)
+        AutoEvoReports = new Dictionary<Patch, (string summary, string externalEffects)>();
+        if (run?.Results != null)
         {
-            gui.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
-                TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " +
-                (run != null ? run.Status : string.Empty));
+            foreach (var patch in CurrentGame.GameWorld.Map.Patches.Values)
+            {
+                var summary = run.Results.MakeSummary(patch, CurrentGame.GameWorld.Map, true, run.ExternalEffects);
+                var externalEffects = run.MakeSummaryOfExternalEffects(patch);
+                AutoEvoReports.Add(patch, (summary, externalEffects));
+            }
         }
-        else
-        {
-            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map.CurrentPatch, CurrentGame.GameWorld.Map,
-                true, run.ExternalEffects);
-            autoEvoExternal = run.MakeSummaryOfExternalEffects(CurrentGame.GameWorld.Map.CurrentPatch);
 
-            gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
-        }
+        gui.UpdateReportTabPatch(CurrentPatch);
 
         ApplyAutoEvoResults();
-
-        gui.UpdateReportTabStatistics(CurrentPatch);
 
         FadeIn();
     }
@@ -2336,14 +2327,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (ready != true)
             throw new InvalidOperationException("loaded editor isn't in the ready state");
 
-        gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
-
         gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
         // Make absolutely sure the current game doesn't have an auto-evo run
         CurrentGame.GameWorld.ResetAutoEvoRun();
-
-        gui.UpdateReportTabStatistics(CurrentPatch);
 
         FadeIn();
     }

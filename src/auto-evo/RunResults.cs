@@ -240,6 +240,11 @@
 
             foreach (var entry in results.Values)
             {
+                if (patch.GetSpeciesPopulation(entry.Species) <= 0 &&
+                    previousPopulations?.GetPatch(patch.ID).GetSpeciesPopulation(entry.Species) <= 0 &&
+                    GetGlobalPopulation(entry.Species, resolveMoves) > 0)
+                    continue;
+
                 builder.Append(playerReadable ? entry.Species.FormattedName : entry.Species.FormattedIdentifier);
                 builder.Append(":\n");
 
