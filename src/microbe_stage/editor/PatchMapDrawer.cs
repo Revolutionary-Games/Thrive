@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -22,8 +23,10 @@ public class PatchMapDrawer : Control
     [Export]
     public Color ConnectionColour = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
+    [Export]
+    public ShaderMaterial MonochromeMaterial;
+
     private PatchMap map;
-    private bool dirty = true;
 
     private PackedScene nodeScene;
 
@@ -39,9 +42,10 @@ public class PatchMapDrawer : Control
         set
         {
             map = value;
-            dirty = true;
-
             playerPatch ??= Map.CurrentPatch;
+
+            RebuildMapNodes();
+            Update();
         }
     }
 
@@ -89,16 +93,6 @@ public class PatchMapDrawer : Control
         }
     }
 
-    public override void _Process(float delta)
-    {
-        if (dirty)
-        {
-            RebuildMapNodes();
-            Update();
-            dirty = false;
-        }
-    }
-
     /// <summary>
     ///   Custom drawing, draws the lines between map nodes
     /// </summary>
@@ -118,6 +112,17 @@ public class PatchMapDrawer : Control
                 DrawNodeLink(start, end);
             }
         }
+    }
+
+    /// <summary>
+    ///   Makes a patch monochrome and not selectable.
+    /// </summary>
+    public void SetPatchEnabledStatus(Patch patch, bool enabled)
+    {
+        var node = nodes.First(p => p.Patch.ID == patch.ID);
+        node.Enabled = enabled;
+        if (SelectedPatch == patch && !enabled)
+            SelectedPatch = null;
     }
 
     private Vector2 Center(Vector2 pos)
@@ -151,6 +156,8 @@ public class PatchMapDrawer : Control
 
             node.Patch = entry.Value;
             node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
+
+            node.MonochromeShader = MonochromeMaterial;
 
             node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
 

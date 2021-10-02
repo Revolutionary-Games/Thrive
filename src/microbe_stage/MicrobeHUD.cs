@@ -556,7 +556,7 @@ public class MicrobeHUD : Node
         winExtinctBoxHolder.AddChild(extinctionBox);
     }
 
-    public void ShowPatchExtinctionBox(PatchMap map)
+    public void ShowPatchExtinctionBox(PatchMap map, Species playerSpecies)
     {
         if (patchExtinctionBox != null)
             return;
@@ -565,6 +565,8 @@ public class MicrobeHUD : Node
 
         patchExtinctionBox = (PatchExtinctionBox)patchExtinctionBoxScene.Instance();
         patchExtinctionBox.Map = map;
+        patchExtinctionBox.PlayerSpecies = playerSpecies;
+
         winExtinctBoxHolder.AddChild(patchExtinctionBox);
     }
 

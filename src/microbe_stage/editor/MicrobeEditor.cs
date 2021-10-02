@@ -628,7 +628,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             UpdatePatchDependentBalanceData();
             gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
-            gui.UpdatePatchDetails(CurrentPatch);
+            gui.UpdateReportTabPatch(CurrentPatch);
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
 

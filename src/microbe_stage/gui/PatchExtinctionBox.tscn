@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/microbe_stage/PatchExtinctionBox.cs" type="Script" id=4]
+[ext_resource path="res://src/microbe_stage/gui/PatchPanel.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 0.196078 )
+bg_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
@@ -25,6 +26,7 @@ tracks/0/keys = {
 }
 
 [node name="ExtinctionBox" type="PanelContainer"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 0.000457764
@@ -34,7 +36,9 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
-PatchMapDrawerPath = NodePath("MarginContainer/VBoxContainer/MarginContainer/PatchMapDrawer")
+PatchMapDrawerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/PatchMapDrawer")
+PatchPanelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PatchPanel")
+AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 1280.0
@@ -69,20 +73,40 @@ align = 1
 valign = 1
 autowrap = true
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
-margin_left = 260.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 98.0
-margin_right = 720.0
+margin_right = 980.0
 margin_bottom = 617.0
-size_flags_horizontal = 4
 size_flags_vertical = 3
-custom_constants/margin_right = 460
 
-[node name="PatchMapDrawer" parent="MarginContainer/VBoxContainer/MarginContainer" instance=ExtResource( 3 )]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 260.0
+margin_right = 370.0
+margin_bottom = 519.0
+size_flags_horizontal = 6
+size_flags_vertical = 3
+custom_constants/margin_right = 110
+
+[node name="PatchMapDrawer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_bottom = 519.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 DrawDefaultMapIfEmpty = false
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 634.0
+margin_right = 980.0
+margin_bottom = 519.0
+custom_constants/margin_top = 15
+custom_constants/margin_bottom = 45
+
+[node name="PatchPanel" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource( 5 )]
+margin_left = 0.0
+margin_top = 15.0
+margin_right = 346.0
+margin_bottom = 474.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"

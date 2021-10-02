@@ -385,7 +385,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             guidanceLine.Visible = false;
 
-            HUD.ShowPatchExtinctionBox(GameWorld.Map);
+            HUD.ShowPatchExtinctionBox(GameWorld.Map, GameWorld.PlayerSpecies);
 
             return;
         }

@@ -30,6 +30,24 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     public Patch Patch { get; set; }
 
+    public ShaderMaterial MonochromeShader { get; set; }
+
+    /// <summary>
+    ///   Display the icon in monochrome and make it not selectable or highlightable.
+    ///   Setting this to true also removes current selection.
+    /// </summary>
+    public bool Enabled
+    {
+        get => iconRect.Material == null;
+        set
+        {
+            iconRect.Material = value ? null : MonochromeShader;
+            if (!value)
+                Selected = false;
+            UpdateSelectHighlightRing();
+        }
+    }
+
     public Action<PatchMapNode> SelectCallback { get; set; }
 
     public Texture PatchIcon
@@ -88,6 +106,9 @@ public class PatchMapNode : MarginContainer
 
     public override void _GuiInput(InputEvent @event)
     {
+        if (!Enabled)
+            return;
+
         if (@event is InputEventMouseButton mouse)
         {
             if (mouse.Pressed)
@@ -120,7 +141,10 @@ public class PatchMapNode : MarginContainer
         if (highlightPanel == null)
             return;
 
-        highlightPanel.Visible = Highlighted || Selected;
+        if (Enabled)
+            highlightPanel.Visible = Highlighted || Selected;
+        else
+            highlightPanel.Visible = false;
     }
 
     private void UpdateMarkRing()

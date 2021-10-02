@@ -147,85 +147,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     public NodePath MapDrawerPath;
 
     [Export]
-    public NodePath PatchNothingSelectedPath;
-
-    [Export]
-    public NodePath PatchDetailsPath;
-
-    [Export]
-    public NodePath PatchNamePath;
-
-    [Export]
     public NodePath ReportTabPatchNamePath;
-
-    [Export]
-    public NodePath PatchPlayerHerePath;
-
-    [Export]
-    public NodePath PatchBiomePath;
-
-    [Export]
-    public NodePath PatchDepthPath;
-
-    [Export]
-    public NodePath PatchTemperaturePath;
-
-    [Export]
-    public NodePath PatchPressurePath;
-
-    [Export]
-    public NodePath PatchLightPath;
-
-    [Export]
-    public NodePath PatchOxygenPath;
-
-    [Export]
-    public NodePath PatchNitrogenPath;
-
-    [Export]
-    public NodePath PatchCO2Path;
-
-    [Export]
-    public NodePath PatchHydrogenSulfidePath;
-
-    [Export]
-    public NodePath PatchAmmoniaPath;
-
-    [Export]
-    public NodePath PatchGlucosePath;
-
-    [Export]
-    public NodePath PatchPhosphatePath;
-
-    [Export]
-    public NodePath PatchIronPath;
-
-    [Export]
-    public NodePath SpeciesCollapsibleBoxPath;
-
-    [Export]
-    public NodePath MoveToPatchButtonPath;
-
-    [Export]
-    public NodePath PatchTemperatureSituationPath;
-
-    [Export]
-    public NodePath PatchLightSituationPath;
-
-    [Export]
-    public NodePath PatchHydrogenSulfideSituationPath;
-
-    [Export]
-    public NodePath PatchGlucoseSituationPath;
-
-    [Export]
-    public NodePath PatchIronSituationPath;
-
-    [Export]
-    public NodePath PatchAmmoniaSituationPath;
-
-    [Export]
-    public NodePath PatchPhosphateSituationPath;
 
     [Export]
     public NodePath SpeedIndicatorPath;
@@ -254,16 +176,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
-    private readonly Compound nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-    private readonly Compound oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-    private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    [Export]
+    public NodePath PatchPanelPath;
 
     private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
     private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
@@ -348,33 +262,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private LineChart speciesPopulationChart;
 
     private PatchMapDrawer mapDrawer;
-    private Control patchNothingSelected;
-    private Control patchDetails;
-    private Control patchPlayerHere;
-    private Label patchName;
-    private Label patchBiome;
-    private Label patchDepth;
-    private Label patchTemperature;
-    private Label patchPressure;
-    private Label patchLight;
-    private Label patchOxygen;
-    private Label patchNitrogen;
-    private Label patchCO2;
-    private Label patchHydrogenSulfide;
-    private Label patchAmmonia;
-    private Label patchGlucose;
-    private Label patchPhosphate;
-    private Label patchIron;
-    private CollapsibleList speciesListBox;
-    private Button moveToPatchButton;
-
-    private TextureRect patchTemperatureSituation;
-    private TextureRect patchLightSituation;
-    private TextureRect patchHydrogenSulfideSituation;
-    private TextureRect patchGlucoseSituation;
-    private TextureRect patchIronSituation;
-    private TextureRect patchAmmoniaSituation;
-    private TextureRect patchPhosphateSituation;
 
     private TextureRect speedIndicator;
     private TextureRect hpIndicator;
@@ -398,6 +285,8 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     private TextureButton helpButton;
 
     private CompoundBalanceDisplay compoundBalance;
+
+    private PatchPanel patchPanel;
 
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
@@ -472,25 +361,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
         mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
-        patchNothingSelected = GetNode<Control>(PatchNothingSelectedPath);
-        patchDetails = GetNode<Control>(PatchDetailsPath);
-        patchName = GetNode<Label>(PatchNamePath);
-        patchPlayerHere = GetNode<Control>(PatchPlayerHerePath);
-        patchBiome = GetNode<Label>(PatchBiomePath);
-        patchDepth = GetNode<Label>(PatchDepthPath);
-        patchTemperature = GetNode<Label>(PatchTemperaturePath);
-        patchPressure = GetNode<Label>(PatchPressurePath);
-        patchLight = GetNode<Label>(PatchLightPath);
-        patchOxygen = GetNode<Label>(PatchOxygenPath);
-        patchNitrogen = GetNode<Label>(PatchNitrogenPath);
-        patchCO2 = GetNode<Label>(PatchCO2Path);
-        patchHydrogenSulfide = GetNode<Label>(PatchHydrogenSulfidePath);
-        patchAmmonia = GetNode<Label>(PatchAmmoniaPath);
-        patchGlucose = GetNode<Label>(PatchGlucosePath);
-        patchPhosphate = GetNode<Label>(PatchPhosphatePath);
-        patchIron = GetNode<Label>(PatchIronPath);
-        speciesListBox = GetNode<CollapsibleList>(SpeciesCollapsibleBoxPath);
-        moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
 
         physicalConditionsIconLegends = GetNode<HBoxContainer>(PhysicalConditionsIconLegendPath);
@@ -499,14 +369,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         atmosphericGassesChart = GetNode<LineChart>(AtmosphericGassesChartPath);
         compoundsChart = GetNode<LineChart>(CompoundsChartPath);
         speciesPopulationChart = GetNode<LineChart>(SpeciesPopulationChartPath);
-
-        patchTemperatureSituation = GetNode<TextureRect>(PatchTemperatureSituationPath);
-        patchLightSituation = GetNode<TextureRect>(PatchLightSituationPath);
-        patchHydrogenSulfideSituation = GetNode<TextureRect>(PatchHydrogenSulfideSituationPath);
-        patchGlucoseSituation = GetNode<TextureRect>(PatchGlucoseSituationPath);
-        patchIronSituation = GetNode<TextureRect>(PatchIronSituationPath);
-        patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
-        patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
 
         speedIndicator = GetNode<TextureRect>(SpeedIndicatorPath);
         hpIndicator = GetNode<TextureRect>(HpIndicatorPath);
@@ -529,11 +391,15 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
         menu = GetNode<PauseMenu>(MenuPath);
 
+        patchPanel = GetNode<PatchPanel>(PatchPanelPath);
+
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        patchPanel.OnMoveToPatchClicked = MoveToPatchClicked;
 
         SetupMicrobePartSelections();
         UpdateMicrobePartSelections();
@@ -974,69 +840,6 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Updates patch-specific GUI elements with data from a patch
-    /// </summary>
-    public void UpdatePatchDetails(Patch patch)
-    {
-        patchName.Text = TranslationServer.Translate(patch.Name);
-
-        // Biome: {0}
-        patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("BIOME_LABEL"),
-            patch.BiomeTemplate.Name);
-
-        // {0}-{1}m below sea level
-        patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("BELOW_SEA_LEVEL"),
-            patch.Depth[0], patch.Depth[1]);
-        patchPlayerHere.Visible = editor.CurrentPatch == patch;
-
-        var percentageFormat = TranslationServer.Translate("PERCENTAGE_VALUE");
-
-        // Atmospheric gasses
-        patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
-        patchPressure.Text = "20 bar";
-        patchLight.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(patch, sunlight.InternalName)) + " lx";
-        patchOxygen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(patch, oxygen.InternalName));
-        patchNitrogen.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(patch, nitrogen.InternalName));
-        patchCO2.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(patch, carbondioxide.InternalName));
-
-        // Compounds
-        patchHydrogenSulfide.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(patch, hydrogensulfide.InternalName), 3));
-        patchAmmonia.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(patch, ammonia.InternalName), 3));
-        patchGlucose.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(patch, glucose.InternalName), 3));
-        patchPhosphate.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            Math.Round(GetCompoundAmount(patch, phosphates.InternalName), 3));
-        patchIron.Text = string.Format(CultureInfo.CurrentCulture, percentageFormat,
-            GetCompoundAmount(patch, iron.InternalName));
-
-        // Refresh species list
-        speciesListBox.ClearItems();
-
-        foreach (var species in patch.SpeciesInPatch.Keys)
-        {
-            var speciesLabel = new Label();
-            speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
-            speciesLabel.Autowrap = true;
-            speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
-                patch.GetSpeciesPopulation(species));
-            speciesListBox.AddItem(speciesLabel);
-        }
-
-        UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
-
-        UpdateReportTabPatch(patch);
-    }
-
-    /// <summary>
     ///   Updates the values of all part selections from their associated part types.
     /// </summary>
     public void UpdateMicrobePartSelections()
@@ -1453,12 +1256,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         editor.Colour = color;
     }
 
-    private void MoveToPatchClicked()
+    private void MoveToPatchClicked(Patch patch)
     {
-        var target = mapDrawer.SelectedPatch;
+        if (editor.IsPatchMoveValid(patch))
+            editor.SetPlayerPatch(patch);
 
-        if (editor.IsPatchMoveValid(target))
-            editor.SetPlayerPatch(target);
+        patchPanel.CurrentPatch = patch;
     }
 
     private void SetEditorTab(string tab)
@@ -1636,140 +1439,20 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
     }
 
-    /// <remarks>
-    ///   TODO: this function should be cleaned up by generalizing the adding
-    ///   the increase or decrease icons in order to remove the duplicated
-    ///   logic here
-    /// </remarks>
-    private void UpdateConditionDifferencesBetweenPatches(Patch selectedPatch, Patch currentPatch)
-    {
-        var nextCompound = selectedPatch.Biome.AverageTemperature;
-
-        if (nextCompound > currentPatch.Biome.AverageTemperature)
-        {
-            patchTemperatureSituation.Texture = increaseIcon;
-        }
-        else if (nextCompound < currentPatch.Biome.AverageTemperature)
-        {
-            patchTemperatureSituation.Texture = decreaseIcon;
-        }
-        else
-        {
-            patchTemperatureSituation.Texture = null;
-        }
-
-        nextCompound = selectedPatch.Biome.Compounds[sunlight].Dissolved;
-
-        if (nextCompound > currentPatch.Biome.Compounds[sunlight].Dissolved)
-        {
-            patchLightSituation.Texture = increaseIcon;
-        }
-        else if (nextCompound < currentPatch.Biome.Compounds[sunlight].Dissolved)
-        {
-            patchLightSituation.Texture = decreaseIcon;
-        }
-        else
-        {
-            patchLightSituation.Texture = null;
-        }
-
-        nextCompound = GetCompoundAmount(selectedPatch, hydrogensulfide.InternalName);
-
-        if (nextCompound > GetCompoundAmount(currentPatch, hydrogensulfide.InternalName))
-        {
-            patchHydrogenSulfideSituation.Texture = increaseIcon;
-        }
-        else if (nextCompound < GetCompoundAmount(currentPatch, hydrogensulfide.InternalName))
-        {
-            patchHydrogenSulfideSituation.Texture = decreaseIcon;
-        }
-        else
-        {
-            patchHydrogenSulfideSituation.Texture = null;
-        }
-
-        nextCompound = GetCompoundAmount(selectedPatch, glucose.InternalName);
-
-        if (nextCompound > GetCompoundAmount(currentPatch, glucose.InternalName))
-        {
-            patchGlucoseSituation.Texture = increaseIcon;
-        }
-        else if (nextCompound < GetCompoundAmount(currentPatch, glucose.InternalName))
-        {
-            patchGlucoseSituation.Texture = decreaseIcon;
-        }
-        else
-        {
-            patchGlucoseSituation.Texture = null;
-        }
-
-        nextCompound = GetCompoundAmount(selectedPatch, iron.InternalName);
-
-        if (nextCompound > GetCompoundAmount(currentPatch, iron.InternalName))
-        {
-            patchIronSituation.Texture = increaseIcon;
-        }
-        else if (nextCompound < GetCompoundAmount(currentPatch, iron.InternalName))
-        {
-            patchIronSituation.Texture = decreaseIcon;
-        }
-        else
-        {
-            patchIronSituation.Texture = null;
-        }
-
-        nextCompound = GetCompoundAmount(selectedPatch, ammonia.InternalName);
-
-        if (nextCompound > GetCompoundAmount(currentPatch, ammonia.InternalName))
-        {
-            patchAmmoniaSituation.Texture = increaseIcon;
-        }
-        else if (nextCompound < GetCompoundAmount(currentPatch, ammonia.InternalName))
-        {
-            patchAmmoniaSituation.Texture = decreaseIcon;
-        }
-        else
-        {
-            patchAmmoniaSituation.Texture = null;
-        }
-
-        nextCompound = GetCompoundAmount(selectedPatch, phosphates.InternalName);
-
-        if (nextCompound > GetCompoundAmount(currentPatch, phosphates.InternalName))
-        {
-            patchPhosphateSituation.Texture = increaseIcon;
-        }
-        else if (nextCompound < GetCompoundAmount(currentPatch, phosphates.InternalName))
-        {
-            patchPhosphateSituation.Texture = decreaseIcon;
-        }
-        else
-        {
-            patchPhosphateSituation.Texture = null;
-        }
-    }
-
     private void UpdateShownPatchDetails()
     {
         var patch = mapDrawer.SelectedPatch;
 
-        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorPatchSelected, new PatchEventArgs(patch), this);
+        patchPanel.CurrentPatch = editor.CurrentPatch;
+        patchPanel.IsPatchMoveValid = editor.IsPatchMoveValid(patch);
+        patchPanel.Patch = patch;
 
         if (patch == null)
-        {
-            patchDetails.Visible = false;
-            patchNothingSelected.Visible = true;
-
             return;
-        }
 
-        patchDetails.Visible = true;
-        patchNothingSelected.Visible = false;
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorPatchSelected, new PatchEventArgs(patch), this);
 
-        UpdatePatchDetails(patch);
-
-        // Enable move to patch button if this is a valid move
-        moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
+        UpdateReportTabPatch(patch);
 
         UpdateReportTabPatch(patch);
     }
