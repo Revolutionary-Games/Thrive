@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-03 13:52+0200\n"
-"PO-Revision-Date: 2021-09-10 11:36+0000\n"
+"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -404,7 +404,7 @@ msgid "ZOOM_IN"
 msgstr "放大"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:558
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:551
 msgid "EDITOR"
 msgstr "编辑器"
 
@@ -429,9 +429,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "放置细胞器"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "移除细胞器"
+msgstr "打开细胞器菜单"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_LEFT"
@@ -664,25 +663,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1272
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3341
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3042
 msgid "AMMONIA"
 msgstr "氨"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3412
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3113
 msgid "PHOSPHATE"
 msgstr "磷酸盐"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1380
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1218
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3376
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3077
 msgid "GLUCOSE"
 msgstr "葡萄糖"
 
@@ -693,73 +692,73 @@ msgstr "氧化毒素"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1434
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
 msgid "IRON"
 msgstr "铁"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3142
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
 msgid "OXYGEN"
 msgstr "氧"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2897
 msgid "CARBON_DIOXIDE"
 msgstr "二氧化碳"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3169
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2870
 msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3473
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
 msgid "SUNLIGHT"
 msgstr "阳光"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2022
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1987
 msgid "NORMAL"
 msgstr "普通"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:20
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2190
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2155
 msgid "DOUBLE"
 msgstr "双层"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:37
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2354
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2319
 msgid "CELLULOSE"
 msgstr "纤维素"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:54
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2589
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2554
 msgid "CHITIN"
 msgstr "几丁质"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:71
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2824
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2789
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸钙"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:88
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3092
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3057
 msgid "SILICA"
 msgstr "二氧化硅"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:23
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1078
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1043
 msgid "PREDATORY_PILUS"
 msgstr "掠食性菌毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:53
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:651
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:616
 msgid "RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:86
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:748
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:713
 msgid "NITROGENASE"
 msgstr "固氮酶"
 
@@ -768,12 +767,12 @@ msgid "PROTOPLASM"
 msgstr "原生质"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:554
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:519
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化学合成蛋白"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:186
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:846
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:811
 msgid "OXYTOXISOME"
 msgstr "毒素体"
 
@@ -782,57 +781,57 @@ msgid "THYLAKOIDS"
 msgstr "类囊体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:251
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:360
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:325
 msgid "METABOLOSOMES"
 msgstr "代谢体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1703
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1668
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "固氮质体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
 msgid "CHEMOPLAST"
 msgstr "化学质体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:356
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:943
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:908
 msgid "FLAGELLUM"
 msgstr "鞭毛"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1801
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1766
 msgid "VACUOLE"
 msgstr "液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:418
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1336
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1301
 msgid "MITOCHONDRION"
 msgstr "线粒体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1898
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1863
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1156
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1121
 msgid "BINDING_AGENT"
 msgstr "连接器"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1420
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1385
 msgid "CHLOROPLAST"
 msgstr "叶绿体"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:553
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:262
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:227
 msgid "CYTOPLASM"
 msgstr "细胞质"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:618
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1239
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1204
 msgid "NUCLEUS"
 msgstr "细胞核"
 
@@ -1673,7 +1672,7 @@ msgid "SAVE_GAME"
 msgstr "保存游戏"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2446
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2147
 msgid "STATISTICS"
 msgstr "统计数据"
 
@@ -1713,9 +1712,9 @@ msgstr "@"
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:614
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1811,7 +1810,7 @@ msgstr "赞助人"
 
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "你可以在 Patreon 上支持 Thrive 以支持未来的发展"
+msgstr "你可以在 Patreon 上支持 Thrive 未来的发展"
 
 #: ../src/gui_common/CreditsScroll.cs:341
 msgid "VIP_PATRONS"
@@ -1986,52 +1985,32 @@ msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr "更刚性的细胞膜有助于抵挡伤害，但是也会让细胞更难移动。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:146
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2049
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2217
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2616
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2849
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3119
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2014
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2182
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2346
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2581
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2814
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3084
 msgid "MOBILITY"
 msgstr "移动能力"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:181
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2152
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2317
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2484
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2719
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2952
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3222
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2117
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2282
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2684
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3187
 msgid "HEALTH"
 msgstr "生命上限"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:220
-msgid "AGGRESSION_EXPLANATION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:227
-msgid "OPPORTUNISM_EXPLANATION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:234
-msgid "FEAR_EXPLANATION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:241
-msgid "ACTIVITY_EXPLANATION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:248
-msgid "FOCUS_EXPLANATION"
-msgstr ""
-
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:263
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:"
 "compound type=\"atp\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "胶质的细胞内容。细胞质是溶解在水中的离子，蛋白质和其它物质的基本混合物，这"
@@ -2039,61 +2018,61 @@ msgstr ""
 "对于那些缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它"
 "同样还能用来储存收集到的化合物以使细胞大小成长。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:476
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:573
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:670
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:767
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:865
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1000
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1169
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1258
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1350
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1434
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1533
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1633
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1722
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1820
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1917
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:246
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:344
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:538
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:635
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:732
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:830
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:965
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1134
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1223
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1315
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1399
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1498
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1598
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1687
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1785
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
 msgid "STORAGE"
 msgstr "存储"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:319
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:417
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:514
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:611
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:708
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:805
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:903
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1038
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1097
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1207
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1296
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1388
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1472
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1571
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1671
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1760
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1858
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1955
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2084
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2251
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2416
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2651
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2884
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3154
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:284
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:382
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:479
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:576
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:673
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:770
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:868
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1003
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1062
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1172
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1261
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1353
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1437
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1536
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1636
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1725
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1823
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1920
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2049
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2216
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2381
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2616
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2849
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3119
 msgid "OSMOREGULATION_COST"
 msgstr "渗透调节消耗"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:361
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:"
 "compound type=\"atp\"][/thrive:compound]。速率取决于[thrive:compound type="
 "\"oxygen\"][/thrive:compound]浓度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:362
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "代谢体是一大堆被蛋白质壳包裹住的蛋白质。通过有氧呼吸它们可以以比细胞质快得"
@@ -2101,18 +2080,18 @@ msgstr ""
 "ATP产出减速。由于代谢体是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一"
 "些糖酵解。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:457
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:422
 msgid "THYLAKOID"
 msgstr "类囊体"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:458
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率取决于"
 "[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与[thrive:"
 "compound type=\"sunlight\"][/thrive:compound]强度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:459
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 "类囊体是一大堆蛋白质和光敏色素的集合体。这些色素可以通过光合作用将阳光中的"
@@ -2120,7 +2099,7 @@ msgstr ""
 "因。它们产出葡萄糖的速度取决于二氧化碳的浓度和光的亮度。由于类囊体是直接悬"
 "浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:555
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]转换成"
@@ -2129,14 +2108,14 @@ msgstr ""
 "[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound "
 "type=\"atp\"][/thrive:compound]"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:556
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "化学合成蛋白是一小堆细胞质中的蛋白质，它们可以将硫化氢，水和二氧化碳通过硫"
 "化氢化能合成转换成葡萄糖。葡萄糖产出速率取决于二氧化碳的浓度。由于化学合成"
 "蛋白是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些糖酵解。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:652
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:617
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound "
@@ -2144,27 +2123,27 @@ msgstr ""
 "\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/"
 "thrive:compound]的浓度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:653
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:618
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "铁硫菌蓝蛋白能够利用二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这"
 "个过程被称作铁呼吸，从中产出可被细胞收集的能量。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:749
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:714
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound "
 "type=\"ammonia\"][/thrive:compound]。速率取决于[thrive:compound type="
 "\"nitrogen\"][/thrive:compound]的浓度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:715
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被"
 "称作厌氧固氮。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行"
 "一些糖酵解。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:847
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:812
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound "
@@ -2172,61 +2151,61 @@ msgstr ""
 "\"oxygen\"][/thrive:compound]浓度。可以通过按下[thrive:input]g_fire_toxin[/"
 "thrive:input]来释放毒素。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:848
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:813
 msgid "OXYTOXISOME_DESC"
 msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:944
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
 "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:945
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿一个方向起伏并推动细胞。鞭"
 "毛的位置决定其推力的方向，推力方向跟鞭毛的朝向是相反的。举例说，如果将鞭毛"
 "放在细胞的左侧，那么它就会在细胞往右侧移动时提供推力。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:962
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:927
 msgid "SPEED"
 msgstr "速度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1079
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1044
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "用来捅其它细胞。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1139
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1104
 msgid "CILIA"
 msgstr "纤毛"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1140
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1610
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1997
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1105
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1962
 msgid "TO_BE_IMPLEMENTED"
 msgstr "仍在开发中。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1157
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1122
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 "按[thrive:input]g_toggle_binding[/thrive:input]来切换连接模式。在连接模式"
 "中，通过接触同种细胞，你可以让它成为你的细胞群的一员。要离开细胞群，按"
 "[thrive:input]g_unbind_all[/thrive:input]。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1158
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1123
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "允许与其他细胞连接。这是迈向多细胞的第一步。在连接形成的细胞群中，资源是共"
 "享的。在细胞群中你无法进入细胞编辑器，你需要在收集足够的物质后离开细胞群再"
 "分裂。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1240
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1205
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "允许进化一些更加复杂的膜细胞器。需要非常多的\n"
 "ATP维护。此进化无法被撤销。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1241
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1206
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 "真核细胞的定义特征。你看见的这个细胞核同时还包括了内质网和高尔基体。这种进"
@@ -2235,28 +2214,28 @@ msgstr ""
 "细胞器比那些直接浮在细胞质里的玩意要复杂，高效与专业的多。无论如何，它也会"
 "让细胞变得更大并需要消耗超多的ATP维护。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1302
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:"
 "compound type=\"atp\"][/thrive:compound]。速率取决于[thrive:compound type="
 "\"oxygen\"][/thrive:compound]的浓度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1338
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1303
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 "细胞的发电厂。线粒体是一种充满了蛋白质和酶的双层膜结构。它是一种被其真核宿"
 "主同化的原核生物。能够通过有氧呼吸以比细胞质高得多的效率将葡萄糖转换成ATP。"
 "不管怎样，它需要氧气才能运作，环境中的氧气浓度太低会使ATP的产出速度减慢。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1421
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率取决于"
 "[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:"
 "compound type=\"sunlight\"][/thrive:compound]强度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1422
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "叶绿体是一种双层膜结构，包含在膜囊中堆叠起来的光敏色素。它是一种被其真核宿"
@@ -2264,42 +2243,42 @@ msgstr ""
 "糖。这些色素也是赋予其独特颜色的原因。产出葡萄糖的速率取决于二氧化碳的浓度"
 "和光的强度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1504
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1469
 msgid "THERMOPLAST"
 msgstr "热能体"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1505
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1470
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率取决于"
 "[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与温度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1506
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1471
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主"
 "同化的原核生物。热能体中的色素可以通过热合成用温差把水和二氧化碳合成成葡萄"
 "糖。合成葡萄糖的速率取决于二氧化碳的浓度与温度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1522
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "无功能"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]转换成"
 "[thrive:compound type=\"glucose\"][/thrive:compound]。速率取决于[thrive:"
 "compound type=\"carbondioxide\"][/thrive:compound]的浓度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "化学质体是一种双层膜结构，其中包含的蛋白质可以通过硫化氢化学合成将硫化氢，"
 "水和二氧化碳转换成葡萄糖。葡萄糖的产出速率取决于二氧化碳的浓度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1704
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound "
@@ -2307,24 +2286,24 @@ msgstr ""
 "\"nitrogen\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:"
 "compound]的浓度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1705
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，氨对细胞生长至关重要。这个"
 "过程被称为有氧固氮。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1802
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1767
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "增加细胞的存储空间。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1803
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1768
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 "液泡是一种用于存储的内膜细胞器。它由好几个通常用于储存的，被固定在一起的囊"
 "泡组成。它装满了水，用于容纳分子，酶，固体和其他物质。它的形状是流性的，所"
 "以不同细胞间形状可以不同。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1899
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1864
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound "
@@ -2332,89 +2311,89 @@ msgstr ""
 "\"oxygen\"][/thrive:compound]的浓度。按[thrive:input]g_fire_toxin[/thrive:"
 "input]以释放毒素。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1900
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快"
 "释放毒素的速度。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1996
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1961
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物发光液泡"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2023
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1988
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是"
 "能允许细胞更轻松的移动与吸收营养。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2284
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2450
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2685
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2918
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3188
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2249
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2415
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2650
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2883
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3153
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "物质吸收速度"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2191
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2156
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "有两层的细胞膜，对伤害有更好的防护能力，也不需要花费那么多能量避免变形。不"
 "管怎样，它也会减缓细胞的移动速度，并降低其吸收营养的速率。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2355
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2320
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也"
 "不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2518
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2986
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3256
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2951
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3221
 msgid "PHYSICAL_RESISTANCE"
 msgstr "物防"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2552
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2787
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3054
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2517
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2752
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3019
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3289
 msgid "CANNOT_ENGULF"
 msgstr "无法进入吞噬模式"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2590
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是毒抗。同时也"
 "不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2753
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3020
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3290
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2718
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2985
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3255
 msgid "TOXIN_RESISTANCE"
 msgstr "毒抗"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2825
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2790
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "这个细胞膜额外配置了一层碳酸钙组成的强力外壳。它非常能抵挡伤害并花费很少的"
 "能量抵抗变形。只不过这么沉重的外壳，细胞也别想有什么移动与吸收能力了。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 "这个细胞膜额外配置了一层二氧化硅外壳。各方面都有更好的防御力，尤其是物防高"
 "的惊人。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3475
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "添加新的绑定键位"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3446
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr "这个数值只对你改变选项后新开的存档有效"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3487
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3452
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "启用GUI的闪烁特效。（比如说编辑器里按钮的闪烁）\n"
@@ -2422,15 +2401,15 @@ msgstr ""
 "如果你遇到编辑器按钮部分消失的问题，\n"
 "可以试试关闭这个选项，有可能可以解决问题。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "它无法自动检测超线程是否被启用。\n"
 "这会影响默认线程数，因为超线程线程不如真正的CPU内核快。"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2959
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "温度"
 
@@ -2530,9 +2509,9 @@ msgid "PRESSURE_SHORT"
 msgstr "压力"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1120
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2630
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3266
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "化合物"
 
@@ -2600,232 +2579,192 @@ msgstr "细胞生理过程"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:605
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1392
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:607
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo中："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2361
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2362
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:516
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:509
 msgid "REPORT"
 msgstr "报告"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:537
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:530
 msgid "PATCH_MAP"
 msgstr "地区图"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:616
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:610
 msgid "ORGANISM_STATISTICS"
 msgstr "生物数据"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:679
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
 msgid "SPEED_COLON"
 msgstr "速度："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:709
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:703
 msgid "HP_COLON"
 msgstr "生命上限："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:739
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:733
 msgid "SIZE_COLON"
 msgstr "大小："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:760
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
 msgid "GENERATION_COLON"
 msgstr "世代："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:796
 msgid "ATP_BALANCE"
 msgstr "ATP开支"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1008
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1002
 msgid "MUTATION_POINTS"
 msgstr "变异点（MP）"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1143
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1137
 msgid "STRUCTURE"
 msgstr "结构"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1165
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
 msgid "MEMBRANE"
 msgstr "细胞膜"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1187
-msgid "BEHAVIOUR"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
+msgid "BEHAVIOR"
 msgstr "行为"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1240
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1234
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "搜索…"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1247
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1241
 msgid "STRUCTURAL"
 msgstr "结构"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1283
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1277
 msgid "PROTEINS"
 msgstr "蛋白质"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1359
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
 msgid "EXTERNAL"
 msgstr "外部"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1413
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
 msgid "ORGANELLES"
 msgstr "细胞器"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1562
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
 msgid "MEMBRANE_TYPES"
 msgstr "细胞膜类型"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1647
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1626
 msgid "FLUIDITY_RIGIDITY"
 msgstr "流动性/刚性"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1686
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1665
 msgid "COLOUR"
 msgstr "颜色"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1749
-msgid "PEACEFUL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1766
-msgid "AGGRESSIVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
-msgid "CAUTIOUS"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1818
-msgid "OPPORTUNISTIC"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
-msgid "BRAVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1869
-msgid "FEARFUL"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1903
-msgid "SESSILE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1920
-msgid "ACTIVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1954
-msgid "RESPONSIVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1971
-msgid "FOCUSED"
-msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2103
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "物种名…"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2139
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1841
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "取消"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2153
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1855
 msgid "CONFIRM_CAPITAL"
 msgstr "确认"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2163
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1865
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "ATP开支为负"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2175
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1877
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "你的微生物没办法产出足以维持生存的量的ATP！\n"
 "你确定要继续吗？"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2186
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1888
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "未连接的细胞器"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2198
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1900
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "有一些细胞器没有连接到其它细胞器上。\n"
 "请把所有细胞器连接起来，或者删掉未连接的细胞器。"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2299
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2312
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
 msgid "FOOD_CHAIN"
 msgstr "食物链"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2325
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2026
 msgid "TIMELINE"
 msgstr "时间线"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2378
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2079
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo结果："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2397
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2098
 msgid "EXTERNAL_EFFECTS"
 msgstr "外部影响："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2455
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
 msgid "SPECIES_POPULATION"
 msgstr "该物种的生物数量"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2488
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2918
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2619
 msgid "PHYSICAL_CONDITIONS"
 msgstr "物理条件"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2592
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3101
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2293
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2802
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "ATMOSPHERIC_GASSES"
 msgstr "大气气体"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2685
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3610
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2386
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3311
 msgid "NEXT_CAPITAL"
 msgstr "下一个"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2800
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2501
 msgid "SELECT_A_PATCH"
 msgstr "选择一个地区以显示详细"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2835
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2536
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "目前位置"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
 msgid "PRESSURE"
 msgstr "压力"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3526
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
 msgid "SPECIES_PRESENT"
 msgstr "存在的物种"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3583
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3284
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
@@ -2833,65 +2772,65 @@ msgstr "移动到这个地区"
 msgid "INFINITE_MP"
 msgstr "无限变异点"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "环境中的葡萄糖已减少到原先量的{0}。"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
 msgstr "百万年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:625
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:883
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:845
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "YEARS"
 msgstr "年"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "ATP_PRODUCTION"
 msgstr "ATP产出"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP产出不足！"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:699
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}： +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
 msgstr "渗透调节"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "BASE_MOVEMENT"
 msgstr "移动需求"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "SPECIES_LIST"
 msgstr "物种列表"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:913
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:875
 msgid "FREEBUILDING"
 msgstr "自由编辑器"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1015
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
 msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "WITH_POPULATION"
 msgstr "{0} 有生物数： {1}"
 
@@ -3015,14 +2954,12 @@ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "覆写已有的存档？"
 
 #: ../src/saving/SaveHelper.cs:382
-#, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
-msgstr "保存失败！发生了一个异常"
+msgstr "当前情况下无法保存："
 
 #: ../src/saving/SaveHelper.cs:383
-#, fuzzy
 msgid "PLAYER_EXTINCT"
-msgstr "玩家分裂"
+msgstr "玩家已灭绝"
 
 #: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
