@@ -6,6 +6,15 @@
 public static class NodeHelpers
 {
     /// <summary>
+    ///   Properly destroys a game entity. In addition to the normal Godot Free, Destroy must be called
+    /// </summary>
+    public static void DestroyDetachAndQueueFree(this IEntity entity)
+    {
+        entity.OnDestroyed();
+        entity.EntityNode.DetachAndQueueFree();
+    }
+
+    /// <summary>
     ///   Safely frees a Node. Detaches from parent if attached to not leave disposed objects in scene tree.
     ///   This should always be preferred over Free, except when multiple children should be deleted.
     ///   For that see <see cref="NodeHelpers.FreeChildren"/>
