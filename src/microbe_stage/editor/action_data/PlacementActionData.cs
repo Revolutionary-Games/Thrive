@@ -37,7 +37,6 @@ public class PlacementActionData : MicrobeEditorActionData
                 return MicrobeActionInterferenceMode.ReplacesOther;
         }
 
-
         if (other is PlacementActionData placementActionData &&
             ReplacedCytoplasm?.Contains(placementActionData.Organelle) == true)
             return MicrobeActionInterferenceMode.ReplacesOther;
