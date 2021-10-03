@@ -55,7 +55,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
         var copyLength = (cache ??= GetActionHistorySinceLastNewMicrobePress()).Count;
         for (int compareToIndex = 0; compareToIndex < copyLength - 1; compareToIndex++)
         {
-            for (int compareIndex = compareToIndex + 1; compareIndex < copyLength; compareIndex++)
+            for (int compareIndex = copyLength - 1; compareIndex > compareToIndex; compareIndex--)
             {
                 switch (cache[compareIndex].GetInterferenceModeWith(cache[compareToIndex]))
                 {
@@ -63,21 +63,22 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                         break;
                     case MicrobeActionInterferenceMode.Combinable:
                         var combinedValue = cache[compareIndex].Combine(cache[compareToIndex]);
-                        cache.RemoveAt(compareIndex--);
+                        cache.RemoveAt(compareIndex);
                         cache.RemoveAt(compareToIndex);
                         cache.Insert(compareToIndex, combinedValue);
                         copyLength--;
+                        compareIndex = copyLength;
                         break;
                     case MicrobeActionInterferenceMode.ReplacesOther:
                         cache.RemoveAt(compareToIndex);
-                        compareIndex = compareToIndex;
                         copyLength--;
+                        compareIndex = copyLength;
                         break;
                     case MicrobeActionInterferenceMode.CancelsOut:
                         cache.RemoveAt(compareIndex);
                         cache.RemoveAt(compareToIndex);
-                        compareIndex = 0;
                         copyLength -= 2;
+                        compareIndex = copyLength;
                         break;
                     default:
                         throw new NotImplementedException();

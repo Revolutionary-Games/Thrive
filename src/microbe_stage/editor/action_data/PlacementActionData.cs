@@ -28,8 +28,15 @@ public class PlacementActionData : MicrobeEditorActionData
             return MicrobeActionInterferenceMode.Combinable;
         }
 
-        if (other is MoveActionData moveActionData && ReplacedCytoplasm?.Contains(moveActionData.Organelle) == true)
-            return MicrobeActionInterferenceMode.ReplacesOther;
+        if (other is MoveActionData moveActionData)
+        {
+            if (moveActionData.OldLocation == Location)
+                return MicrobeActionInterferenceMode.Combinable;
+
+            if (ReplacedCytoplasm?.Contains(moveActionData.Organelle) == true)
+                return MicrobeActionInterferenceMode.ReplacesOther;
+        }
+
 
         if (other is PlacementActionData placementActionData &&
             ReplacedCytoplasm?.Contains(placementActionData.Organelle) == true)
@@ -45,8 +52,13 @@ public class PlacementActionData : MicrobeEditorActionData
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
-        var removeActionData = (RemoveActionData)other;
-        return new MoveActionData(removeActionData.Organelle, removeActionData.Location, Location,
-            removeActionData.Orientation, Orientation);
+        if (other is RemoveActionData removeActionData)
+        {
+            return new MoveActionData(removeActionData.Organelle, removeActionData.Location, Location,
+                removeActionData.Orientation, Orientation);
+        }
+
+        var moveActionData = (MoveActionData)other;
+        return new PlacementActionData(Organelle, moveActionData.NewLocation, moveActionData.NewRotation);
     }
 }

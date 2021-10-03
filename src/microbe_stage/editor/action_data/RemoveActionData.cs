@@ -37,7 +37,7 @@ public class RemoveActionData : MicrobeEditorActionData
         if (other is MoveActionData moveActionData &&
             moveActionData.Organelle.Definition == Organelle.Definition &&
             moveActionData.NewLocation == Location)
-            return MicrobeActionInterferenceMode.ReplacesOther;
+            return MicrobeActionInterferenceMode.Combinable;
 
         return MicrobeActionInterferenceMode.NoInterference;
     }
@@ -49,11 +49,16 @@ public class RemoveActionData : MicrobeEditorActionData
 
     protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
     {
-        var placementActionData = (PlacementActionData)other;
-        return new MoveActionData(placementActionData.Organelle,
-            Location,
-            placementActionData.Location,
-            Orientation,
-            placementActionData.Orientation);
+        if (other is PlacementActionData placementActionData)
+        {
+            return new MoveActionData(placementActionData.Organelle,
+                Location,
+                placementActionData.Location,
+                Orientation,
+                placementActionData.Orientation);
+        }
+
+        var moveActionData = (MoveActionData)other;
+        return new RemoveActionData(Organelle, moveActionData.OldLocation, moveActionData.OldRotation);
     }
 }
