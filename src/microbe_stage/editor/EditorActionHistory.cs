@@ -63,10 +63,9 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                         break;
                     case MicrobeActionInterferenceMode.Combinable:
                         var combinedValue = cache[compareIndex].Combine(cache[compareToIndex]);
-                        cache.RemoveAt(compareIndex);
+                        cache.RemoveAt(compareIndex--);
                         cache.RemoveAt(compareToIndex);
-                        compareIndex--;
-                        cache.Insert(compareIndex--, combinedValue);
+                        cache.Insert(compareToIndex, combinedValue);
                         copyLength--;
                         break;
                     case MicrobeActionInterferenceMode.ReplacesOther:
@@ -77,7 +76,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                     case MicrobeActionInterferenceMode.CancelsOut:
                         cache.RemoveAt(compareIndex);
                         cache.RemoveAt(compareToIndex);
-                        compareIndex -= 2;
+                        compareIndex = 0;
                         copyLength -= 2;
                         break;
                     default:
