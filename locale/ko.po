@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-30 20:21+0200\n"
+"POT-Creation-Date: 2021-10-03 13:52+0200\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -658,25 +658,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1272
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3281
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3341
 msgid "AMMONIA"
 msgstr "암모니아"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3352
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3412
 msgid "PHOSPHATE"
 msgstr "인산염"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1380
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3246
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
 msgid "HYDROGEN_SULFIDE"
 msgstr "황화수소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1218
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3316
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3376
 msgid "GLUCOSE"
 msgstr "포도당"
 
@@ -687,28 +687,28 @@ msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1434
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3387
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
 msgid "IRON"
 msgstr "철"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3142
 msgid "OXYGEN"
 msgstr "산소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3136
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
 msgid "CARBON_DIOXIDE"
 msgstr "이산화탄소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3109
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3169
 msgid "NITROGEN"
 msgstr "질소"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3022
 msgid "SUNLIGHT"
 msgstr "햇빛"
 
@@ -1701,7 +1701,7 @@ msgid "SAVE_GAME"
 msgstr "저장"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2386
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2446
 msgid "STATISTICS"
 msgstr "상태"
 
@@ -2521,7 +2521,7 @@ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2899
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2959
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
 msgid "TEMPERATURE"
 msgstr "온도"
@@ -2624,8 +2624,8 @@ msgid "PRESSURE_SHORT"
 msgstr "압력."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1120
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2570
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3206
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2630
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3266
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
 msgid "COMPOUNDS"
 msgstr "화합물"
@@ -2703,20 +2703,20 @@ msgstr "세포 진행률"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:614
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1438
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:605
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1392
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:616
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:607
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2405
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2361
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2406
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2362
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
@@ -2728,44 +2728,44 @@ msgstr "보고"
 msgid "PATCH_MAP"
 msgstr "파편 지도"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:616
 msgid "ORGANISM_STATISTICS"
 msgstr "생체 상태창"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:679
 msgid "SPEED_COLON"
 msgstr "속도:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:710
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:709
 msgid "HP_COLON"
 msgstr "생명력:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:740
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:739
 msgid "SIZE_COLON"
 msgstr "크기:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:761
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:760
 msgid "GENERATION_COLON"
 msgstr "세대:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:803
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:802
 msgid "ATP_BALANCE"
 msgstr "ATP 균형"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1009
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1008
 msgid "MUTATION_POINTS"
 msgstr "변이 점수"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1144
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1143
 msgid "STRUCTURE"
 msgstr "구조"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1166
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1165
 #, fuzzy
 msgid "MEMBRANE"
 msgstr "세포막 유형"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1188
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1187
 msgid "BEHAVIOUR"
 msgstr "행동"
 
@@ -2802,117 +2802,137 @@ msgid "COLOUR"
 msgstr "색"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1749
-msgid "AGGRESSION"
+msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1788
-msgid "OPPORTUNISM"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1766
+msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1827
-msgid "FEAR"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
+msgid "CAUTIOUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1866
-msgid "ACTIVITY"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1818
+msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1905
-msgid "FOCUS"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
+msgid "BRAVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2044
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1869
+msgid "FEARFUL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1903
+msgid "SESSILE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1920
+msgid "ACTIVE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1954
+msgid "RESPONSIVE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1971
+msgid "FOCUSED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2103
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "종 명칭..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2080
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2139
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "확인"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2094
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2153
 msgid "CONFIRM_CAPITAL"
 msgstr "확인"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2104
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2163
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "부정적 ATP 균형"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2116
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2175
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "미생물이 생존에 필요한 만큼의 ATP를 생산하지 않습니다!\n"
 "계속하시겠습니까?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2127
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2186
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "단절된 세포기관"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2139
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2198
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
 "배치된 모든 세포 기관을 서로 연결하거나 변경을 취소하세요."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2239
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2299
 msgid "AUTO_EVO"
 msgstr "자동 진화"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2312
 msgid "FOOD_CHAIN"
 msgstr "먹이 사슬"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2265
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2325
 msgid "TIMELINE"
 msgstr "연대"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2318
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2378
 msgid "AUTO_EVO_RESULTS"
 msgstr "자동 진화 결과:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2337
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2397
 msgid "EXTERNAL_EFFECTS"
 msgstr "외부 효과:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2395
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2455
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "종:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2858
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2918
 msgid "PHYSICAL_CONDITIONS"
 msgstr "물리적 상태"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2532
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2592
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3101
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
 msgid "ATMOSPHERIC_GASSES"
 msgstr "대기 가스"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2625
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2685
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3610
 msgid "NEXT_CAPITAL"
 msgstr "다음"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2740
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2800
 msgid "SELECT_A_PATCH"
 msgstr "세부 사항을 표시할 파편을 선택하십시오"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2835
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "현재 위치"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2995
 #, fuzzy
 msgid "PRESSURE"
 msgstr "압력."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3466
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3526
 msgid "SPECIES_PRESENT"
 msgstr "존재하는 종"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3523
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3583
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "해당 파편으로 이동"
 
