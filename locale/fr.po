@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-09-24 14:14+0300\n"
-"PO-Revision-Date: 2021-09-06 00:51+0000\n"
-"Last-Translator: Felecarp <felecarp@suboxide.org>\n"
+"PO-Revision-Date: 2021-10-05 19:11+0000\n"
+"Last-Translator: Damien <contact@dvilleneuve.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1594,9 +1594,8 @@ msgid "DETECTED_CPU_COUNT"
 msgstr "Sélectionné :"
 
 #: ../src/general/OptionsMenu.tscn:828
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Sauvegarder et continuer"
+msgstr "Threads actuels :"
 
 #: ../src/general/OptionsMenu.tscn:843
 msgid "ASSUME_HYPERTHREADING"
@@ -1964,24 +1963,20 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Valeur du canal rouge de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Valeur du canal vert de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Valeur du canal bleu de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Valeur du canal de transparence de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
 #, fuzzy
@@ -1999,7 +1994,7 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Aucune donnée à afficher"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2251,8 +2246,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Utilise [thrive:compound]atp[/thrive:compound] pour augmenter la vitesse "
-"de déplacement de la cellule"
+"Utilise de l'[thrive:compound type=\"atp\"][/thrive:compound] pour augmenter "
+"la vitesse de déplacement de la cellule"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2323,14 +2318,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1302
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"La centrale de la cellule. La mitochondrie est une structure à double "
-"membrane remplis de protéines et d'enzymes. C'est un procaryote qui a été "
-"assimilé pour être utilisé par son hôte eucaryote. Elle est capable de "
-"convertir du glucose en ATP avec une bien meilleure efficacité que ce qui "
-"peut être fait dans le cytoplasme avec le procédé appelé Respiration "
-"Aérobique. Cependant, elle a besoin d'oxygène pour fonctionner, et de "
-"faibles niveaux d'oxygènes dans l'environnement vont ralentir son taux de "
-"production d'ATP"
+"Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la "
+"concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1303
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2347,10 +2337,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produit [thrive:compound] glucose [/thrive:compound]. Échelles de taux "
-"avec concentration de [thrive:compound] dioxyde de carbone [/thrive:"
-"compound] et intensité de [thrive:compound] lumière solaire [/thrive:"
-"compound]"
+"Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux "
+"proportionnels à la concentration de [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] et à l'intensité de [thrive:compound type=\"sunlight\""
+"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2394,11 +2384,10 @@ msgstr "Aucune action"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le chimioplaste est une structure à double membrane contenant des "
-"protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde "
-"de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de "
-"Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la "
-"concentration en dioxyde de carbone"
+"Transforme l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnels à "
+"la concentration de [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2412,10 +2401,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme [thrive:compound]atp[/thrive:compound] en [thrive:"
-"compound]ammoniac[/thrive:compound]. Échelles de taux avec concentration "
-"de [thrive:compound]azote[/thrive:compound] et [thrive:compound]oxygène[/"
-"thrive:compound]"
+"Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la "
+"concentration d'[thrive:compound type=\"nitrogen\"][/thrive:compound] et "
+"d'[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2442,10 +2431,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1864
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme l'[thrive:compound]atp[/thrive:compound] en [thrive:"
-"compound]oxytoxy[/thrive:compound]. Taux proportionnel à la concentration "
-"d'[thrive:compound]oxygène[thrive:compound]. Peut libérer des toxines en "
-"appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
+"Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la "
+"concentration d'[thrive:compound type=\"oxygen\"][thrive:compound]. Peut "
+"libérer des toxines en appuyant sur "
+"[thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3150,15 +3140,10 @@ msgstr ""
 "vouloir détruire {0} de manière permanente?"
 
 #: ../src/saving/SaveList.cs:281
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"La vacuole est un organite de la membrane interne utilisé pour stocker "
-"dans la cellule. Ils sont composé de plusieurs vésicules, des structures "
-"membranaires plus petites grandement utilisé dans les cellules pour le "
-"stockage, qui ont fusionné ensemble. Elle est rempli d'eau qui est utilisé "
-"pour contenir des molécules, des enzymes, des solides et autres "
-"substances. Leur forme est fluide et peut varier selon les cellules."
+"La mise à jour de la sauvegarde a échouée à cause de cette erreur :\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -3223,15 +3208,14 @@ msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "La sauvegarde sélectionnée est incompatible"
 
 #: ../src/saving/SaveList.tscn:192
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"La vacuole est un organite de la membrane interne utilisé pour stocker "
-"dans la cellule. Ils sont composé de plusieurs vésicules, des structures "
-"membranaires plus petites grandement utilisé dans les cellules pour le "
-"stockage, qui ont fusionné ensemble. Elle est rempli d'eau qui est utilisé "
-"pour contenir des molécules, des enzymes, des solides et autres "
-"substances. Leur forme est fluide et peut varier selon les cellules."
+"La sauvegarde sélectionnée provient d'une version plus ancienne de Thrive, "
+"mais elle peut être mise à jour.\n"
+"Une copie sera créée avant la procédure, si elle n'est pas déjà présente.\n"
+"Si vous passer cette étape, Thrive essaiera de charger la sauvegarde "
+"normalement.\n"
+"Voulez-vous effectuer la mise à jour de cette sauvegarde ?"
 
 #: ../src/saving/SaveList.tscn:207
 #, fuzzy
