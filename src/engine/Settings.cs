@@ -547,6 +547,12 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
+        if (Engine.EditorHint)
+        {
+            // Do not apply FullScreen to Godot Editor.
+            return;
+        }
+
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
     }
