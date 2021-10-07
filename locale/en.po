@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-01 13:57+0300\n"
+"POT-Creation-Date: 2021-10-08 00:53+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -409,17 +409,17 @@ msgid "ABILITIES"
 msgstr "Abilities"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2102
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2091
+#: ../src/microbe_stage/MicrobeStage.tscn:2109
 msgid "TOGGLE_ENGULF"
 msgstr "Toggle engulf"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2112
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "TOGGLE_BINDING"
 msgstr "Toggle binding"
 
@@ -1714,6 +1714,7 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Try taking some screenshots!"
 
 #: ../src/general/PauseMenu.tscn:58
+#: ../src/microbe_stage/MicrobeStage.tscn:1637
 msgid "RESUME"
 msgstr "Resume"
 
@@ -2633,7 +2634,39 @@ msgstr "Compounds"
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1756
+#: ../src/microbe_stage/MicrobeStage.tscn:1604
+msgid "MICROBE_MENU_BUTTON_TOOLTIP"
+msgstr "Main menu"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
+msgid "PAUSE"
+msgstr "Pause"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1651
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Compounds"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1667
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr "Chemicals"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
+msgid "STATISTICS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Statistics"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1695
+msgid "SEARCH_BUTTON_MICROBE_TOOLTIP"
+msgstr "Search"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1709
+msgid "QUESTION_MARK_BUTTON_MICROBE_TOOLTIP"
+msgstr "Help"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
+msgid "SUICIDE_BUTTON_MICROBE_TOOLTIP"
+msgstr "Suicide"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1774
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -2693,20 +2726,20 @@ msgstr "Cell Processes"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 

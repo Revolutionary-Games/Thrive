@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-08 00:53+0200\n"
 "PO-Revision-Date: 2021-10-01 10:30+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -401,17 +401,17 @@ msgid "ABILITIES"
 msgstr "Habilidades"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2102
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "FIRE_TOXIN"
 msgstr "Disparar toxina"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2091
+#: ../src/microbe_stage/MicrobeStage.tscn:2109
 msgid "TOGGLE_ENGULF"
 msgstr "Engolir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2112
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "TOGGLE_BINDING"
 msgstr "Ativar modo de ligação"
 
@@ -1709,6 +1709,7 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Tente fazer algumas capturas de tela!"
 
 #: ../src/general/PauseMenu.tscn:58
+#: ../src/microbe_stage/MicrobeStage.tscn:1637
 msgid "RESUME"
 msgstr "Retomar"
 
@@ -2634,7 +2635,54 @@ msgstr "Compostos"
 msgid "AGENTS"
 msgstr "Agentes"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1756
+#: ../src/microbe_stage/MicrobeStage.tscn:1604
+#, fuzzy
+msgid "MICROBE_MENU_BUTTON_TOOLTIP"
+msgstr "Adicionar uma nova tecla"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#, fuzzy
+msgid "PAUSE"
+msgstr "Pausar"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#, fuzzy
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Alternar o modo HSV (Matiz, Saturação, Valor) entre ligado ou desligado.\n"
+"Não pode ser ligado no modo bruto."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1667
+#, fuzzy
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Alternar o modo bruto entre ligado e desligado.\n"
+"No modo bruto você pode fazer os valores\n"
+"de cor R, G, B ultrapassarem 1.0.\n"
+"Não pode ser ligado no modo HSV."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
+#, fuzzy
+msgid "STATISTICS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Adicionar uma nova tecla"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1695
+#, fuzzy
+msgid "SEARCH_BUTTON_MICROBE_TOOLTIP"
+msgstr "Adicionar uma nova tecla"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1709
+msgid "QUESTION_MARK_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#, fuzzy
+msgid "SUICIDE_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Alternar o modo HSV (Matiz, Saturação, Valor) entre ligado ou desligado.\n"
+"Não pode ser ligado no modo bruto."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1774
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAÇÃO:"
 
@@ -2694,20 +2742,20 @@ msgstr "Processos"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compostos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Carregando Editor de Micróbios"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Esperando pela auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
 msgid "AUTO_EVO_FAILED"
 msgstr "A auto-evo falhou"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Estado da auto-evo:"
 

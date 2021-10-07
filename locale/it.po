@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-08 00:53+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Giacomo Volta <furbogiaco@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -412,17 +412,17 @@ msgid "ABILITIES"
 msgstr "Abilità"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2102
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "FIRE_TOXIN"
 msgstr "Lancia tossina"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2091
+#: ../src/microbe_stage/MicrobeStage.tscn:2109
 msgid "TOGGLE_ENGULF"
 msgstr "Attiva/disattiva fagocitosi"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2112
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "TOGGLE_BINDING"
 msgstr "Attiva la modalità di legatura"
 
@@ -1720,6 +1720,7 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Prova a scattare qualche screenshot!"
 
 #: ../src/general/PauseMenu.tscn:58
+#: ../src/microbe_stage/MicrobeStage.tscn:1637
 msgid "RESUME"
 msgstr "Riprendi"
 
@@ -2651,7 +2652,54 @@ msgstr "Composti"
 msgid "AGENTS"
 msgstr "Agenti"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1756
+#: ../src/microbe_stage/MicrobeStage.tscn:1604
+#, fuzzy
+msgid "MICROBE_MENU_BUTTON_TOOLTIP"
+msgstr "Aggiungi tasto"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#, fuzzy
+msgid "PAUSE"
+msgstr "Tasto Pausa"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#, fuzzy
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Accendi/spegni la modalità HSV (Hue, Saturation, Value).\n"
+"Non compatibile con la modalità raw."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1667
+#, fuzzy
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Accendi/spegni la modalità raw.\n"
+"In modalità raw puoi impostare\n"
+"i valori di R, G e B oltre 1.0.\n"
+"Non compatibile con la modalità HSV."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
+#, fuzzy
+msgid "STATISTICS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Aggiungi tasto"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1695
+#, fuzzy
+msgid "SEARCH_BUTTON_MICROBE_TOOLTIP"
+msgstr "Aggiungi tasto"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1709
+msgid "QUESTION_MARK_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#, fuzzy
+msgid "SUICIDE_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Accendi/spegni la modalità HSV (Hue, Saturation, Value).\n"
+"Non compatibile con la modalità raw."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1774
 msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
 
@@ -2711,20 +2759,20 @@ msgstr "Processi Cellulari"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bilancio dei Composti"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Caricamento dell'Editor Microbico"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Aspettando l'Auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-evo non ha funzionato"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Stato dell'Auto-evo:"
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-08 00:53+0200\n"
 "PO-Revision-Date: 2021-10-05 19:11+0000\n"
 "Last-Translator: Arya Rouinsard <shigasaa@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -414,17 +414,17 @@ msgid "ABILITIES"
 msgstr "Capacités"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2102
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "FIRE_TOXIN"
 msgstr "Tirer des toxines"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2091
+#: ../src/microbe_stage/MicrobeStage.tscn:2109
 msgid "TOGGLE_ENGULF"
 msgstr "Activer Engloutir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2112
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "TOGGLE_BINDING"
 msgstr "Activer relieur"
 
@@ -1729,6 +1729,7 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Essayez de prendre une capture d'écran!"
 
 #: ../src/general/PauseMenu.tscn:58
+#: ../src/microbe_stage/MicrobeStage.tscn:1637
 msgid "RESUME"
 msgstr "Reprendre"
 
@@ -2247,8 +2248,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Utilise de l'[thrive:compound type=\"atp\"][/thrive:compound] pour augmenter "
-"la vitesse de déplacement de la cellule"
+"Utilise de l'[thrive:compound type=\"atp\"][/thrive:compound] pour "
+"augmenter la vitesse de déplacement de la cellule"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2339,9 +2340,9 @@ msgstr ""
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux "
-"proportionnels à la concentration de [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound] et à l'intensité de [thrive:compound type=\"sunlight\""
-"][/thrive:compound]"
+"proportionnels à la concentration de [thrive:compound type=\"carbondioxide"
+"\"][/thrive:compound] et à l'intensité de [thrive:compound type=\"sunlight"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2385,10 +2386,10 @@ msgstr "Aucune action"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnels à "
-"la concentration de [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound]"
+"Transforme l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
+"en [thrive:compound type=\"glucose\"][/thrive:compound]. Taux "
+"proportionnels à la concentration de [thrive:compound type=\"carbondioxide"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2435,8 +2436,8 @@ msgstr ""
 "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la "
 "concentration d'[thrive:compound type=\"oxygen\"][thrive:compound]. Peut "
-"libérer des toxines en appuyant sur "
-"[thrive:input]g_fire_toxin[/thrive:input]."
+"libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:"
+"input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2662,7 +2663,46 @@ msgstr "Composés"
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1756
+#: ../src/microbe_stage/MicrobeStage.tscn:1604
+#, fuzzy
+msgid "MICROBE_MENU_BUTTON_TOOLTIP"
+msgstr "Ajouter un nouveau raccourci clavier"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#, fuzzy
+msgid "PAUSE"
+msgstr "Pause"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#, fuzzy
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Ajouter un nouveau raccourci clavier"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1667
+#, fuzzy
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr "Ajouter un nouveau raccourci clavier"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
+#, fuzzy
+msgid "STATISTICS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Ajouter un nouveau raccourci clavier"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1695
+#, fuzzy
+msgid "SEARCH_BUTTON_MICROBE_TOOLTIP"
+msgstr "Ajouter un nouveau raccourci clavier"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1709
+msgid "QUESTION_MARK_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#, fuzzy
+msgid "SUICIDE_BUTTON_MICROBE_TOOLTIP"
+msgstr "Ajouter un nouveau raccourci clavier"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1774
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION :"
 
@@ -2722,20 +2762,20 @@ msgstr "Processus cellulaires"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Chargement de l'Éditeur de Microbes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Attente pour l'auto-évo :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 

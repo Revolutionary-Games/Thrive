@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-08 00:53+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Ribi2110 <ribert2110@yahoo.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -422,17 +422,17 @@ msgid "ABILITIES"
 msgstr "Habilitats"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2102
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "FIRE_TOXIN"
 msgstr "Llançar les toxines"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2091
+#: ../src/microbe_stage/MicrobeStage.tscn:2109
 msgid "TOGGLE_ENGULF"
 msgstr "Activar el mode d'engolir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2112
+#: ../src/microbe_stage/MicrobeStage.tscn:2130
 msgid "TOGGLE_BINDING"
 msgstr "Activar el mode d'unió"
 
@@ -1738,6 +1738,7 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Intenta fer algunes captures de pantalla!"
 
 #: ../src/general/PauseMenu.tscn:58
+#: ../src/microbe_stage/MicrobeStage.tscn:1637
 msgid "RESUME"
 msgstr "Reprendre"
 
@@ -2671,7 +2672,54 @@ msgstr "Compostos"
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1756
+#: ../src/microbe_stage/MicrobeStage.tscn:1604
+#, fuzzy
+msgid "MICROBE_MENU_BUTTON_TOOLTIP"
+msgstr "Afegir una nova vinculació de tecla"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#, fuzzy
+msgid "PAUSE"
+msgstr "Pausa"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#, fuzzy
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Activar o desactivar el mode HSV (Hue, Saturació, Valor).\n"
+"No es pot activar quan està en mode \"raw\"."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1667
+#, fuzzy
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Activar o desactivar el mode \"raw\".\n"
+"En el mode \"raw\" pots fer que els valors R, G, B\n"
+"de color vagin més enllà de 1.0.\n"
+"No es pot activar si el mode HSV està activat."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
+#, fuzzy
+msgid "STATISTICS_BUTTON_MICROBE_TOOLTIP"
+msgstr "Afegir una nova vinculació de tecla"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1695
+#, fuzzy
+msgid "SEARCH_BUTTON_MICROBE_TOOLTIP"
+msgstr "Afegir una nova vinculació de tecla"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1709
+msgid "QUESTION_MARK_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#, fuzzy
+msgid "SUICIDE_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Activar o desactivar el mode HSV (Hue, Saturació, Valor).\n"
+"No es pot activar quan està en mode \"raw\"."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1774
 msgid "POPULATION_CAPITAL"
 msgstr "POBLACIÓ:"
 
@@ -2731,20 +2779,20 @@ msgstr "Processos de la Cèl·lula"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Equilibri de Compostos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "S'està carregant l'Editor de Microbi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "S'està esperant l'algorisme auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
 msgid "AUTO_EVO_FAILED"
 msgstr "L'algorisme auto-evo ha tingut un error"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "estat d'execució:"
 
