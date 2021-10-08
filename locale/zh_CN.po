@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-08 00:53+0200\n"
+"POT-Creation-Date: 2021-10-08 23:03+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -365,17 +365,17 @@ msgid "ABILITIES"
 msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2120
+#: ../src/microbe_stage/MicrobeStage.tscn:2110
 msgid "FIRE_TOXIN"
 msgstr "发射毒素"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2109
+#: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
 msgstr "切换吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "TOGGLE_BINDING"
 msgstr "切换连接模式"
 
@@ -1664,7 +1664,6 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "试着截一些图吧！"
 
 #: ../src/general/PauseMenu.tscn:58
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
 msgid "RESUME"
 msgstr "返回"
 
@@ -2520,24 +2519,24 @@ msgstr "化合物"
 msgid "AGENTS"
 msgstr "物质"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1604
+#: ../src/microbe_stage/MicrobeStage.tscn:1605
 #, fuzzy
-msgid "MICROBE_MENU_BUTTON_TOOLTIP"
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "添加新的绑定键位"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1623
-#, fuzzy
-msgid "PAUSE"
-msgstr "暂停键"
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+msgid "PAUSE_TOOLTIP"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#: ../src/microbe_stage/MicrobeStage.tscn:1649
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 "切换HSV（色调、饱和度、明度）模式。\n"
 "在原始模式下无法启用。"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1667
+#: ../src/microbe_stage/MicrobeStage.tscn:1664
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
@@ -2546,28 +2545,19 @@ msgstr ""
 "色值调整到大于1.0。\n"
 "在HSV模式下无法启用。"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1681
+#: ../src/microbe_stage/MicrobeStage.tscn:1701
 #, fuzzy
-msgid "STATISTICS_BUTTON_MICROBE_TOOLTIP"
+msgid "HELP_BUTTON_TOOLTIP"
 msgstr "添加新的绑定键位"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1695
+#: ../src/microbe_stage/MicrobeStage.tscn:1713
 #, fuzzy
-msgid "SEARCH_BUTTON_MICROBE_TOOLTIP"
-msgstr "添加新的绑定键位"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1709
-msgid "QUESTION_MARK_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
-#, fuzzy
-msgid "SUICIDE_BUTTON_MICROBE_TOOLTIP"
+msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 "切换HSV（色调、饱和度、明度）模式。\n"
 "在原始模式下无法启用。"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1774
+#: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "POPULATION_CAPITAL"
 msgstr "生物数量："
 

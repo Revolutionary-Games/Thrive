@@ -7,13 +7,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-08 23:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.0\n"
 
@@ -240,17 +240,17 @@ msgid "ABILITIES"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2102
+#: ../src/microbe_stage/MicrobeStage.tscn:2110
 msgid "FIRE_TOXIN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2091
+#: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2112
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "TOGGLE_BINDING"
 msgstr ""
 
@@ -1194,7 +1194,8 @@ msgstr ""
 msgid "ART_BY"
 msgstr ""
 
-#: ../src/general/HelpScreen.tscn:107 ../src/microbe_stage/ProcessPanel.tscn:76
+#: ../src/general/HelpScreen.tscn:107
+#: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
 msgstr ""
 
@@ -2252,7 +2253,32 @@ msgstr ""
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1756
+#: ../src/microbe_stage/MicrobeStage.tscn:1605
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+msgid "PAUSE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1649
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1664
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1701
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1713
+msgid "SUICIDE_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -2312,20 +2338,20 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 

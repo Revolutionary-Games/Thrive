@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-08 00:53+0200\n"
+"POT-Creation-Date: 2021-10-08 23:03+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Giacomo Volta <furbogiaco@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -412,17 +412,17 @@ msgid "ABILITIES"
 msgstr "Abilità"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2120
+#: ../src/microbe_stage/MicrobeStage.tscn:2110
 msgid "FIRE_TOXIN"
 msgstr "Lancia tossina"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2109
+#: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
 msgstr "Attiva/disattiva fagocitosi"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "TOGGLE_BINDING"
 msgstr "Attiva la modalità di legatura"
 
@@ -1720,7 +1720,6 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Prova a scattare qualche screenshot!"
 
 #: ../src/general/PauseMenu.tscn:58
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
 msgid "RESUME"
 msgstr "Riprendi"
 
@@ -2652,24 +2651,24 @@ msgstr "Composti"
 msgid "AGENTS"
 msgstr "Agenti"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1604
+#: ../src/microbe_stage/MicrobeStage.tscn:1605
 #, fuzzy
-msgid "MICROBE_MENU_BUTTON_TOOLTIP"
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Aggiungi tasto"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1623
-#, fuzzy
-msgid "PAUSE"
-msgstr "Tasto Pausa"
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+msgid "PAUSE_TOOLTIP"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#: ../src/microbe_stage/MicrobeStage.tscn:1649
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 "Accendi/spegni la modalità HSV (Hue, Saturation, Value).\n"
 "Non compatibile con la modalità raw."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1667
+#: ../src/microbe_stage/MicrobeStage.tscn:1664
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
@@ -2678,28 +2677,19 @@ msgstr ""
 "i valori di R, G e B oltre 1.0.\n"
 "Non compatibile con la modalità HSV."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1681
+#: ../src/microbe_stage/MicrobeStage.tscn:1701
 #, fuzzy
-msgid "STATISTICS_BUTTON_MICROBE_TOOLTIP"
+msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Aggiungi tasto"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1695
+#: ../src/microbe_stage/MicrobeStage.tscn:1713
 #, fuzzy
-msgid "SEARCH_BUTTON_MICROBE_TOOLTIP"
-msgstr "Aggiungi tasto"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1709
-msgid "QUESTION_MARK_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
-#, fuzzy
-msgid "SUICIDE_BUTTON_MICROBE_TOOLTIP"
+msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 "Accendi/spegni la modalità HSV (Hue, Saturation, Value).\n"
 "Non compatibile con la modalità raw."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1774
+#: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "POPULATION_CAPITAL"
 msgstr "POPOLAZIONE:"
 

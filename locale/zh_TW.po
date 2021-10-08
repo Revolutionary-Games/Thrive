@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-08 00:53+0200\n"
+"POT-Creation-Date: 2021-10-08 23:03+0200\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -339,17 +339,17 @@ msgid "ABILITIES"
 msgstr "能力"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2120
+#: ../src/microbe_stage/MicrobeStage.tscn:2110
 msgid "FIRE_TOXIN"
 msgstr "發射毒素"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2109
+#: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
 msgstr "切換吞噬模式"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2130
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "切換吞噬模式"
@@ -1677,7 +1677,6 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "截屏"
 
 #: ../src/general/PauseMenu.tscn:58
-#: ../src/microbe_stage/MicrobeStage.tscn:1637
 msgid "RESUME"
 msgstr "返回"
 
@@ -2501,44 +2500,32 @@ msgstr "化合物"
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1604
-#, fuzzy
-msgid "MICROBE_MENU_BUTTON_TOOLTIP"
+#: ../src/microbe_stage/MicrobeStage.tscn:1605
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
-"要控制細胞，請使用在細胞附近（屏幕中心）顯示的按鍵和鼠標來控制細胞的方"
-"向。\n"
-"\n"
-"請花幾秒時間嘗試所有按鍵以繼續。"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1623
-msgid "PAUSE"
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1651
+#: ../src/microbe_stage/MicrobeStage.tscn:1649
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1667
+#: ../src/microbe_stage/MicrobeStage.tscn:1664
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1681
-msgid "STATISTICS_BUTTON_MICROBE_TOOLTIP"
+#: ../src/microbe_stage/MicrobeStage.tscn:1701
+msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1695
-msgid "SEARCH_BUTTON_MICROBE_TOOLTIP"
+#: ../src/microbe_stage/MicrobeStage.tscn:1713
+msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1709
-msgid "QUESTION_MARK_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
-msgid "SUICIDE_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1774
+#: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "POPULATION_CAPITAL"
 msgstr "人口："
 
