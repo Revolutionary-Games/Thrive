@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 # List of locales, edit this to add new ones:
-LOCALES = %w[bg ca cs de en eo es_AR es et fi fr frm he id ko la lb_LU it nl nl_BE
+LOCALES = %w[bg ca cs da de en eo es_AR es et fi fr frm he id ko la lb_LU it nl nl_BE
              pl pt_BR pt_PT ru si_LK sr_Cyrl sr_Latn sv th_TH tr lt lv zh_CN zh_TW].freeze
 
 # Weblate doesn't let you configure this so we need the same here
