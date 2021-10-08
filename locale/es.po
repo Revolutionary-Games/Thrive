@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-08 12:01+0300\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Nathaniel Balderramas <nabm.utn@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -24,14 +24,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Usa [thrive:input]g_move_forward[/thrive:input], "
-"[thrive:input]g_move_left[/thrive:input], "
-"[thrive:input]g_move_backwards[/thrive:input], "
-"[thrive:input]g_move_right[/thrive:input] y el ratón para mover tu célula. "
-"[thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound "
-"type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de toxinas. "
-"[thrive:input]g_toggle_engulf[/thrive:input] para activar/desactivar el modo "
-"engullir."
+"Usa [thrive:input]g_move_forward[/thrive:input], [thrive:"
+"input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:"
+"input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu "
+"célula. [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de "
+"toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar/"
+"desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -45,29 +44,30 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Para desbloquear el editor y reproducir tu célula, necesitas "
-"conseguir[thrive:compound type=\"ammonia\"][/thrive:compound] (Nube Naranja) "
-"y [thrive:compound type=\"phosphates\"][/thrive:compound] (Nube Púrpura)."
+"conseguir[thrive:compound type=\"ammonia\"][/thrive:compound] (Nube "
+"Naranja) y [thrive:compound type=\"phosphates\"][/thrive:compound] (Nube "
+"Púrpura)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "También puedes engullir células, bacterias, pedazos de hierro y pedazos de "
-"células que sean más pequeños que tu célula al presionar "
-"[thrive:input]g_toggle_engulf[/thrive:input]. Esto aumentara tu costo de "
-"[thrive:compound type=\"atp\"][/thrive:compound] y también ralentizará tu "
-"célula. No te olvides de presionar nuevamente "
-"[thrive:input]g_toggle_engulf[/thrive:input] para dejar de engullir."
+"células que sean más pequeños que tu célula al presionar [thrive:"
+"input]g_toggle_engulf[/thrive:input]. Esto aumentara tu costo de [thrive:"
+"compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. "
+"No te olvides de presionar nuevamente [thrive:input]g_toggle_engulf[/"
+"thrive:input] para dejar de engullir."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"La Osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:compound], "
-"lo que significa que cuan más grande es la célula, más Mitocondrias, "
-"Metabolosomas, Rusticianinas, u orgánulos que puedan realizar glicólisis "
-"necesitarás, para evitar perder[thrive:compound type=\"atp\""
-"][/thrive:compound] cuando esté estática."
+"La Osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:"
+"compound], lo que significa que cuan más grande es la célula, más "
+"Mitocondrias, Metabolosomas, Rusticianinas, u orgánulos que puedan "
+"realizar glicólisis necesitarás, para evitar perder[thrive:compound type="
+"\"atp\"][/thrive:compound] cuando esté estática."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -87,8 +87,8 @@ msgstr ""
 "Púrpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Rojo Oscuro – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para generar "
-"[thrive:compound type=\"atp\"][/thrive:compound]"
+"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para "
+"generar [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
@@ -96,16 +96,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "El [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] puede ser "
 "convertido a [thrive:compound type=\"glucose\"] con quimioplastos y "
-"proteínas quimiosintetizadoras. El [thrive:compound type=\"iron\""
-"][/thrive:compound] puede ser convertido a [thrive:compound type=\"atp\""
-"][/thrive:compound] con rusticianinas."
+"proteínas quimiosintetizadoras. El [thrive:compound type=\"iron\"][/thrive:"
+"compound] puede ser convertido a [thrive:compound type=\"atp\"][/thrive:"
+"compound] con rusticianinas."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Para que la célula se reproduzca, necesita dividir cada uno de sus orgánulos "
-"en dos. Para eso, se necesita Amoníaco y Fosfato."
+"Para que la célula se reproduzca, necesita dividir cada uno de sus "
+"orgánulos en dos. Para eso, se necesita Amoníaco y Fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
@@ -131,14 +131,14 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Al ligarte con otras células puedes crear una colonia. Las células de una "
 "colonia comparten entre sí todos los compuestos que absorben y producen. "
-"Para poder ligarte con otras células necesitas adquirir el orgánulo \"agente "
-"ligante\", activar el modo ligante y acercarte a otra célula. Por ahora solo "
-"puedes ligarte con otras células de tu misma especie. Mientras formas parte "
-"de una colonia no podrás dividir tu célula para entrar al editor (por ahora)"
-". Una vez que hayas adquirido suficientes compuestos para reproducirte "
-"tendrás que abandonar la colonia para poder entrar al editor. Grandes "
-"colonias celulares son el camino hacia la multicelularidad (aún no "
-"disponible en el juego)."
+"Para poder ligarte con otras células necesitas adquirir el orgánulo "
+"\"agente ligante\", activar el modo ligante y acercarte a otra célula. Por "
+"ahora solo puedes ligarte con otras células de tu misma especie. Mientras "
+"formas parte de una colonia no podrás dividir tu célula para entrar al "
+"editor (por ahora). Una vez que hayas adquirido suficientes compuestos "
+"para reproducirte tendrás que abandonar la colonia para poder entrar al "
+"editor. Grandes colonias celulares son el camino hacia la multicelularidad "
+"(aún no disponible en el juego)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -157,15 +157,15 @@ msgstr ""
 "\"glucose\"][/thrive:compound] de los cloroplastos, pero también realizan "
 "glicólisis y solo ocupan un espacio.\n"
 "\n"
-"Rusticianina: Convierte el [thrive:compound type=\"iron\"][/thrive:compound] "
-"en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Rusticianina: Convierte el [thrive:compound type=\"iron\"][/thrive:"
+"compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico y [thrive:compound type=\"atp"
-"\"][/thrive:compound] en [thrive:compound type=\"ammonia\"], "
+"Nitrogenasa: Convierte el nitrógeno atmosférico y [thrive:compound type="
+"\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"], "
 "anaerobicamente\n"
 "\n"
-"Citoplasma: Tiene espacio para almacenar compuestos, y realiza glicólisis ("
-"produce [thrive:compound type=\"atp\"][/thrive:compound] en pequeñas "
+"Citoplasma: Tiene espacio para almacenar compuestos, y realiza glicólisis "
+"(produce [thrive:compound type=\"atp\"][/thrive:compound] en pequeñas "
 "cantidades)"
 
 #: ../simulation_parameters/common/help_texts.json:66
@@ -173,8 +173,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Orgánulos Externos\n"
 "\n"
-"Flagelos: Mueve tu célula más rápidamente consumiendo [thrive:compound type="
-"\"atp\"][/thrive:compound]\n"
+"Flagelos: Mueve tu célula más rápidamente consumiendo [thrive:compound "
+"type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Pilus: Puede usarse para atacar a otras células"
 
@@ -192,31 +192,32 @@ msgstr ""
 "consume [thrive:compound type=\"glucose\"][/thrive:compound y O2 "
 "atmosférico. Son mucho más eficientes que el citoplasma\n"
 "\n"
-"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] "
-"utilizando la luz solar y CO2 atmosférico\n"
+"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:"
+"compound] utilizando la luz solar y CO2 atmosférico\n"
 "\n"
-"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] "
-"consumiendo[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:"
+"compound] consumiendo[thrive:compound type=\"hydrogensulfide\"][/thrive:"
+"compound]\n"
 "\n"
-"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:compound] "
-"consumiendo [thrive:compound type=\"atp\"][/thrive:compound], Nitrógeno "
-"atmosférico y Oxígeno atmosférico\n"
+"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] consumiendo [thrive:compound type=\"atp\"][/thrive:compound], "
+"Nitrógeno atmosférico y Oxígeno atmosférico\n"
 "\n"
 "Vacuola: Aumenta el espacio de almacenamiento en +15\n"
 "\n"
-"Vacuola de Toxinas: Produce toxinas (llamadas [thrive:compound type=\"oxytoxy"
-"\"][/thrive:compound])"
+"Vacuola de Toxinas: Produce toxinas (llamadas [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "En cada generación tienes 100 puntos de mutación (PM) para gastar, y cada "
 "cambio (o mutación) costará determinada cantidad de PM. Añadir y quitar "
-"orgánulos cuesta PM. Sin embargo, quitar orgánulos que fueron añadidos en la "
-"misma sesión reembolsa PM acorde a su precio. Para mover o quitar un "
-"orgánulo, haz clic derecho y selecciona la acción adecuada. Puedes rotar los "
-"orgánulos antes de colocarlos con [thrive:input]e_rotate_left[/thrive:input] "
-"y [thrive:input]e_rotate_right[/thrive:input]."
+"orgánulos cuesta PM. Sin embargo, quitar orgánulos que fueron añadidos en "
+"la misma sesión reembolsa PM acorde a su precio. Para mover o quitar un "
+"orgánulo, haz clic derecho y selecciona la acción adecuada. Puedes rotar "
+"los orgánulos antes de colocarlos con [thrive:input]e_rotate_left[/thrive:"
+"input] y [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1430,7 +1431,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor libre de microbios"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Atrás"
@@ -1446,288 +1447,337 @@ msgstr ""
 "cause errores. Intenta actualizar tus drivers de video y/o fuerza los "
 "gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
 
-#: ../src/general/OptionsMenu.cs:803
+#: ../src/general/OptionsMenu.cs:842
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de salida predeterminado"
 
-#: ../src/general/OptionsMenu.cs:843
+#: ../src/general/OptionsMenu.cs:882
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:847
+#: ../src/general/OptionsMenu.cs:886
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Este idioma es aún un trabajo en progreso ({0}% completado)"
 
-#: ../src/general/OptionsMenu.cs:851
+#: ../src/general/OptionsMenu.cs:890
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Este lenguaje está traducido en un {0}%"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:137
 msgid "GRAPHICS"
 msgstr "Gráficos"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:148
 msgid "SOUND"
 msgstr "Sonido"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:159
 msgid "PERFORMANCE"
 msgstr "Rendimiento"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:170
 msgid "INPUTS"
 msgstr "Entradas"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
 msgstr "Misc."
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "Sincronización Vertical"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "Pantalla completa"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "MSAA:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores más altos empeoran el rendimiento)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
+msgid "DISABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "TWO_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "Clic derecho"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "SIXTEEN_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "Resolución:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "FPS Máximos:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Corrección de color para daltónicos:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
+msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberración cromática:"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostrar la barra de habilidades"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:398
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectos de luz GUI"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424
 msgid "MASTER_VOLUME"
 msgstr "Volumen general"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:451 ../src/general/OptionsMenu.tscn:492
+#: ../src/general/OptionsMenu.tscn:525 ../src/general/OptionsMenu.tscn:558
+#: ../src/general/OptionsMenu.tscn:591
 msgid "MUTE"
 msgstr "Silenciar"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:465
 msgid "MUSIC_VOLUME"
 msgstr "Volumen de la Música"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:498
 msgid "AMBIANCE_VOLUME"
 msgstr "Volumen de Ambiente"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:531
 msgid "SFX_VOLUME"
 msgstr "Volumen de Efectos"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI_VOLUME"
 msgstr "Volumen de la Interfaz"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:609
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de salida de audio:"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:637
 msgid "LANGUAGE"
 msgstr "Idioma:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:655 ../src/general/OptionsMenu.tscn:1217
 msgid "RESET"
 msgstr "Restablecer"
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:673
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Ayuda a traducir el juego"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:699
 msgid "COMPOUND_CLOUDS"
 msgstr "Nubes de compuestos"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:714
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Mínimo de Simulación de Nubes\n"
 "Intervalo:"
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:721 ../src/general/OptionsMenu.tscn:763
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valores más altos mejoran el rendimiento)"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:756
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor de Resolución de Nubes:"
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:798
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Ejecutar auto-evolución durante el juego"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:818
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "Selección:"
 
-#: ../src/general/OptionsMenu.tscn:828
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Hilos actuales:"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:850
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Asume que la CPU tiene «hyperthreading» habilitado"
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:862
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ajustar manualmente el número de hilos en segundo plano"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:875
 msgid "THREADS"
 msgstr "Hilos:"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:976
 msgid "RESET_INPUTS"
 msgstr "Restablecer entradas"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1004
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Reproducir vídeo introductorio"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Reproducir introducción del estadio de Microbio en nueva partida"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1022
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autoguardado durante el juego"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:1033
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Cantidad de autoguardados a almacenar:"
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Cantidad de guardados rápidos a almacenar:"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutoriales (en nuevos juegos)"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutoriales (en juego actual)"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1111
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheats activados"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar un nombre personalizado"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "CUSTOM_USERNAME"
 msgstr "Nombre Personalizado:"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Abrir Carpeta de Capturas de Pantalla"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1168
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Abrir carpeta de registros"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1178
+msgid "JSON_DEBUG_MODE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Guardar"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1246
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predeterminado"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "RESET_TO_DEFAULTS"
 msgstr "¿Volver a los ajustes predeterminados?"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "¿Está seguro de que desea restablecer TODOS las ajustes a los valores "
 "predeterminados?"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1281
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "¿Restablecer entradas a los valores por defecto?"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "¿Está seguro de que desea restablecer la configuración de entrada a los "
 "valores predeterminados?"
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "CLOSE_OPTIONS"
 msgstr "¿Cerrar Ajustes?"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1324
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Tienes cambios sin guardar que serán descartados.\n"
 "¿Deseas continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SAVE_AND_CONTINUE"
 msgstr "Guardar y continuar"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1355
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar y continuar"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1371
 msgid "CANCEL"
 msgstr "Cancelar"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1383 ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1392 ../src/general/OptionsMenu.tscn:1431
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Fallo al guardar nuevos ajustes al archivo de configuración."
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1440
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Abrir Carpeta de Capturas de Pantalla"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Intenta tomar algunas capturas de pantalla!"
 
@@ -2207,8 +2257,8 @@ msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 "Convierte [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:"
 "compound type=\"atp\"][/thrive:compound]. La velocidad es directamente "
-"proporcional a la concentración de [thrive:compound type=\"carbondioxide\""
-"][/thrive:compound] y [thrive:compound type=\"oxygen\"][/thrive:compound]"
+"proporcional a la concentración de [thrive:compound type=\"carbondioxide\"]"
+"[/thrive:compound] y [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:618
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2941,6 +2991,24 @@ msgstr "Especies Presentes"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moverse a esta región"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+#, fuzzy
+msgid "MOVE"
+msgstr "Movimiento Base"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+#, fuzzy
+msgid "DELETE"
+msgstr "Eliminar"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+#, fuzzy
+msgid "MODIFY"
+msgstr "Modificar"
+
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr ""
@@ -3016,21 +3084,6 @@ msgstr "{0} con población: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr ""
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-#, fuzzy
-msgid "DELETE"
-msgstr "Eliminar"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-#, fuzzy
-msgid "MOVE"
-msgstr "Movimiento Base"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-#, fuzzy
-msgid "MODIFY"
-msgstr "Modificar"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"

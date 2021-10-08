@@ -550,6 +550,8 @@ public static class Constants
     public const string LOGS_FOLDER_NAME = "logs";
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
 
+    public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
+
     /// <summary>
     ///   Internal Godot name for the default audio output device
     /// </summary>

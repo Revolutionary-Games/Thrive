@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving;
 using Environment = System.Environment;
 
 /// <summary>
@@ -233,7 +234,8 @@ public class Settings
     /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
-    public SettingValue<float> JSONDebugMode { get; set; } = new SettingValue<float>(0.0f);
+    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
+        new SettingValue<JSONDebug.DebugMode>(JSONDebug.DebugMode.Automatic);
 
     // Input properties
 
