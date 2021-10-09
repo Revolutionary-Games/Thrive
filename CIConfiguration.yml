@@ -88,7 +88,7 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_script:
-    image: thrive/lint:v9
+    image: thrive/lint:v10
     cache:
       loadFrom:
         - v1-{Branch}-format
