@@ -9,6 +9,7 @@ using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using Saving;
 
 /// <summary>
 ///   Main JSON conversion class for Thrive handling all our custom stuff
@@ -153,16 +154,16 @@ public class ThriveJsonConverter : IDisposable
 
             ReferenceResolverProvider = () => referenceResolver,
 
-            TraceWriter = GetTraceWriter(Constants.DEBUG_JSON_SERIALIZE),
+            TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
         };
     }
 
-    /// <summary>
-    ///   This method is needed to fool code checking to think that this is runtime configurable
-    /// </summary>
-    private ITraceWriter GetTraceWriter(bool debug)
+    private ITraceWriter GetTraceWriter(JSONDebug.DebugMode debugMode, bool errorHasOccurred)
     {
-        if (debug)
+        if (debugMode == JSONDebug.DebugMode.AlwaysDisabled)
+            return null;
+
+        if (debugMode == JSONDebug.DebugMode.AlwaysEnabled || errorHasOccurred)
         {
             return new MemoryTraceWriter();
         }
@@ -194,6 +195,34 @@ public class ThriveJsonConverter : IDisposable
         {
             return func(settings);
         }
+        catch (Exception e)
+        {
+            // Don't do our special automatic debug enabling if debug writing is already on
+            if (JSONDebug.ErrorHasOccurred || settings.TraceWriter != null)
+                throw;
+
+            JSONDebug.ErrorHasOccurred = true;
+
+            if (Settings.Instance.JSONDebugMode == JSONDebug.DebugMode.Automatic)
+            {
+                GD.Print("JSON error happened, retrying with debug printing (mode is automatic), first exception: ",
+                    e);
+
+                currentJsonSettings.Value = null;
+                PerformWithSettings(func);
+
+                // If we get here, we didn't get another exception...
+                // So we could maybe re-throw the first exception so that we fail like we should
+                GD.PrintErr(
+                    "Expected an exception for the second try at JSON operation, but it succeeded, " +
+                    "re-throwing the original exception");
+                throw;
+            }
+            else
+            {
+                throw;
+            }
+        }
         finally
         {
             if (!recursive)
@@ -202,7 +231,7 @@ public class ThriveJsonConverter : IDisposable
 
                 if (settings.TraceWriter != null)
                 {
-                    GD.Print("JSON serialization trace: ", settings.TraceWriter);
+                    JSONDebug.OnTraceFinished(settings.TraceWriter);
 
                     // This shouldn't get reused so no point in creating a new instance here
                     settings.TraceWriter = null;
@@ -448,7 +477,7 @@ public abstract class BaseThriveConverter : JsonConverter
                 if (set == null)
                 {
                     throw new InvalidOperationException(
-                        $"Json property used on a property ({name})that has no (private) setter");
+                        $"Json property used on a property ({name}) that has no (private) setter");
                 }
 
                 set.Invoke(instance, new[]

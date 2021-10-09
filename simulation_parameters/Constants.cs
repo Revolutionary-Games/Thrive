@@ -550,6 +550,8 @@ public static class Constants
     public const string LOGS_FOLDER_NAME = "logs";
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
 
+    public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
+
     /// <summary>
     ///   Internal Godot name for the default audio output device
     /// </summary>
@@ -561,14 +563,14 @@ public static class Constants
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
     /// <summary>
-    ///   If true diagnostic information about JSON serialization is printed
-    /// </summary>
-    public const bool DEBUG_JSON_SERIALIZE = false;
-
-    /// <summary>
     ///   If set to false, saving related errors are re-thrown to make debugging easier
     /// </summary>
     public const bool CATCH_SAVE_ERRORS = true;
+
+    /// <summary>
+    ///   JSON traces longer than this are not printed to the console
+    /// </summary>
+    public const int MAX_JSON_ERROR_LENGTH_FOR_CONSOLE = 20000;
 
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
