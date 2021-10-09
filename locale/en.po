@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-01 13:57+0300\n"
+"POT-Creation-Date: 2021-10-09 01:51+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1862,18 +1862,6 @@ msgstr "Patrons"
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "You can support the future development of Thrive on Patreon"
 
-#: ../src/gui_common/CreditsScroll.cs:341
-msgid "VIP_PATRONS"
-msgstr "VIP Supporters"
-
-#: ../src/gui_common/CreditsScroll.cs:342
-msgid "DEV_BUILD_PATRONS"
-msgstr "Devbuilds Supporters"
-
-#: ../src/gui_common/CreditsScroll.cs:344
-msgid "SUPPORTER_PATRONS"
-msgstr "Supporters"
-
 #: ../src/gui_common/CreditsScroll.cs:354
 msgid "DONATIONS"
 msgstr "Donations"
@@ -1892,6 +1880,102 @@ msgstr ""
 "Thank you for playing!\n"
 "\n"
 "If you enjoyed the game, please tell your friends about us."
+
+#: ../src/gui_common/CreditsScroll.cs:494
+msgid "PROGRAMMING_TEAM"
+msgstr "Programming Team"
+
+#: ../src/gui_common/CreditsScroll.cs:495
+msgid "THEORY_TEAM"
+msgstr "Theory Team"
+
+#: ../src/gui_common/CreditsScroll.cs:496
+msgid "GRAPHICS_TEAM"
+msgstr "Graphics Team"
+
+#: ../src/gui_common/CreditsScroll.cs:497
+msgid "SOUND_TEAM"
+msgstr "Sound Team"
+
+#: ../src/gui_common/CreditsScroll.cs:498
+msgid "OUTREACH_TEAM"
+msgstr "Outreach Team"
+
+#: ../src/gui_common/CreditsScroll.cs:499
+msgid "GAME_DESIGN_TEAM"
+msgstr "Game Design Team"
+
+#: ../src/gui_common/CreditsScroll.cs:500
+msgid "TESTING_TEAM"
+msgstr "Testing Team"
+
+#: ../src/gui_common/CreditsScroll.cs:501
+msgid "PROJECT_MANAGEMENT_TEAM"
+msgstr "Project Management Team"
+
+#: ../src/gui_common/CreditsScroll.cs:502
+msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr "Pull Requests / Programming"
+
+#: ../src/gui_common/CreditsScroll.cs:503
+msgid "VIP_PATRONS"
+msgstr "VIP Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:504
+msgid "DEV_BUILD_PATRONS"
+msgstr "Devbuilds Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:505
+msgid "SUPPORTER_PATRONS"
+msgstr "Supporters"
+
+#: ../src/gui_common/CreditsScroll.cs:506
+msgid "JANUARY"
+msgstr "January"
+
+#: ../src/gui_common/CreditsScroll.cs:507
+msgid "FEBRUARY"
+msgstr "February"
+
+#: ../src/gui_common/CreditsScroll.cs:508
+msgid "MARCH"
+msgstr "March"
+
+#: ../src/gui_common/CreditsScroll.cs:509
+msgid "APRIL"
+msgstr "April"
+
+#: ../src/gui_common/CreditsScroll.cs:510
+msgid "MAY"
+msgstr "May"
+
+#: ../src/gui_common/CreditsScroll.cs:511
+msgid "JUNE"
+msgstr "June"
+
+#: ../src/gui_common/CreditsScroll.cs:512
+msgid "JULY"
+msgstr "July"
+
+#: ../src/gui_common/CreditsScroll.cs:513
+msgid "AUGUST"
+msgstr "August"
+
+#: ../src/gui_common/CreditsScroll.cs:514
+msgid "SEPTEMBER"
+msgstr "September"
+
+#: ../src/gui_common/CreditsScroll.cs:515
+msgid "OCTOBER"
+msgstr "October"
+
+#: ../src/gui_common/CreditsScroll.cs:516
+msgid "NOVEMBER"
+msgstr "November"
+
+#: ../src/gui_common/CreditsScroll.cs:517
+msgid "DECEMBER"
+msgstr "December"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
@@ -2693,20 +2777,20 @@ msgstr "Cell Processes"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compound Balances"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
