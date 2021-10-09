@@ -482,6 +482,14 @@ public class Settings
     /// </param>
     public void ApplyAll(bool delayedApply = false)
     {
+        if (Engine.EditorHint)
+        {
+            // Do not apply settings within the Godot editor.
+            return;
+        }
+
+        // Delayed apply was implemented to fix problems within the Godot editor.
+        // So this might no longer be necessary, as this is now skipped within editor.
         if (delayedApply)
         {
             GD.Print("Doing delayed apply for some settings");
