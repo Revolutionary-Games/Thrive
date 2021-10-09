@@ -39,6 +39,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private GuidanceLine guidanceLine;
     private Vector3? guidancePosition;
     private PauseMenu pauseMenu;
+    private bool transitionFinished;
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -68,7 +69,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     ///   True if auto save should trigger ASAP
     /// </summary>
     private bool wantsToSave;
-    private bool transitionFinished;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
