@@ -519,6 +519,7 @@ public class CreditsScroll : Container
                 GD.Print(
                     $"unknown heading '{team}' needs to be added to " +
                     $"{nameof(CreditsScroll)}.{nameof(GetTranslatedHeading)}");
+                return team;
         }
     }
 
