@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using Saving;
 
 /// <summary>
 ///   Holds data needed for an in-progress save action. And manages stepping through all the actions that need to happen
@@ -174,6 +175,7 @@ public class InProgressSave : IDisposable
                     Mathf.Inf);
 
                 state = State.SaveData;
+                JSONDebug.FlushJSONTracesOut();
                 break;
             }
 
@@ -191,6 +193,8 @@ public class InProgressSave : IDisposable
             {
                 stopwatch.Stop();
                 GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
+
+                JSONDebug.FlushJSONTracesOut();
 
                 if (success)
                 {
