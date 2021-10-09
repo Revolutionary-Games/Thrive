@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-08 23:03+0200\n"
+"POT-Creation-Date: 2021-10-09 15:51+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -686,36 +686,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1272
+#: ../src/microbe_stage/MicrobeStage.tscn:1273
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3042
 msgid "AMMONIA"
 msgstr "אמוניה"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1326
+#: ../src/microbe_stage/MicrobeStage.tscn:1327
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3113
 msgid "PHOSPHATE"
 msgstr "פוספט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1380
+#: ../src/microbe_stage/MicrobeStage.tscn:1381
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1218
+#: ../src/microbe_stage/MicrobeStage.tscn:1219
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3077
 msgid "GLUCOSE"
 msgstr "גלוקוז"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1566
+#: ../src/microbe_stage/MicrobeStage.tscn:1567
 msgid "OXYTOXY_NT"
 msgstr "אוקסיטוקסי נ\"ט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1434
+#: ../src/microbe_stage/MicrobeStage.tscn:1435
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
 msgid "IRON"
 msgstr "ברזל"
@@ -2553,30 +2553,30 @@ msgstr "תרכובות:"
 msgid "SPECIES_COLON"
 msgstr "מינים:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:659
+#: ../src/microbe_stage/MicrobeStage.tscn:660
 msgid "ENVIRONMENT"
 msgstr "סביבה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:926
+#: ../src/microbe_stage/MicrobeStage.tscn:927
 msgid "TEMPERATURE_SHORT"
 msgstr "טמפ'."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:982
+#: ../src/microbe_stage/MicrobeStage.tscn:983
 msgid "LIGHT"
 msgstr "אור"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1037
+#: ../src/microbe_stage/MicrobeStage.tscn:1038
 msgid "PRESSURE_SHORT"
 msgstr "לחץ."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1120
+#: ../src/microbe_stage/MicrobeStage.tscn:1121
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "תרכובות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1504
+#: ../src/microbe_stage/MicrobeStage.tscn:1505
 msgid "AGENTS"
 msgstr "שליחים"
 
@@ -2586,9 +2586,15 @@ msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "הוסף מקשר חדש"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1623
-#: ../src/microbe_stage/MicrobeStage.tscn:1636
 msgid "PAUSE_TOOLTIP"
 msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#, fuzzy
+msgid "RESUME_TOOLTIP"
+msgstr ""
+"שנה HSV (גוון, רוויה וערך) למצב כבוי או דלוק.\n"
+"לא ניתן להדליק מצב \"טרי\"."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1649
 #, fuzzy
