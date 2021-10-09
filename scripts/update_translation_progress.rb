@@ -87,14 +87,14 @@ def run
   base_path = detect_thrive_folder
 
   progress = {}
-  stats = { TranslationProgress: progress }
 
   Dir["#{base_path}locale/**/*.po"].each do |f|
-    # Dir["#{base_path}locale/**/frm.po"].each do |f|
     value = calculate_stats_for f
     puts "Progress of #{f}: #{value * 100}%"
     progress[File.basename(f, File.extname(f))] = value
   end
+
+  stats = { TranslationProgress: progress.sort_by { |k, _v| k }.to_h }
 
   json_file = "#{base_path}simulation_parameters/common/translations_info.json"
 
