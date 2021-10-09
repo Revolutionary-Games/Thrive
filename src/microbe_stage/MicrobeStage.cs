@@ -68,6 +68,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     ///   True if auto save should trigger ASAP
     /// </summary>
     private bool wantsToSave;
+    private bool transitionFinished;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -121,7 +122,15 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     ///   True once stage fade-in is complete
     /// </summary>
     [JsonIgnore]
-    public bool TransitionFinished { get; internal set; }
+    public bool TransitionFinished
+    {
+        get => transitionFinished;
+        internal set
+        {
+            transitionFinished = value;
+            pauseMenu.GameLoading = !transitionFinished;
+        }
+    }
 
     /// <summary>
     ///   True when transitioning to the editor
@@ -553,7 +562,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
-        pauseMenu.GameLoading = false;
     }
 
     [DeserializedCallbackAllowed]
