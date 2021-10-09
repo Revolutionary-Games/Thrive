@@ -553,6 +553,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+        pauseMenu.GameLoading = false;
     }
 
     [DeserializedCallbackAllowed]
