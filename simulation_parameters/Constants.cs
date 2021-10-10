@@ -163,6 +163,11 @@ public static class Constants
     public const float AGENT_EMISSION_COOLDOWN = 2.0f;
 
     /// <summary>
+    ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
+    /// </summary>
+    public const float MINIMUM_AGENT_EMISSION_AMOUNT = MathUtils.EPSILON;
+
+    /// <summary>
     ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
     public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
