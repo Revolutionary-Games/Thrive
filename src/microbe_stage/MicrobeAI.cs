@@ -296,6 +296,9 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
+        var fleeThreshold = 1.8f -
+            SpeciesFear / Constants.MAX_SPECIES_FEAR *
+            (1 + (microbe.Hitpoints / microbe.MaxHitpoints));
         Microbe predator = null;
         foreach (var otherMicrobe in allMicrobes)
         {
@@ -305,8 +308,7 @@ public class MicrobeAI
             // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
             if (otherMicrobe.Species != microbe.Species
                 && !otherMicrobe.Dead
-                && otherMicrobe.EngulfSize > microbe.EngulfSize
-                * (1.8f - SpeciesFear / Constants.MAX_SPECIES_FEAR))
+                && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
             {
                 if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >
                     DistanceFromMe(otherMicrobe.GlobalTransform.origin))
