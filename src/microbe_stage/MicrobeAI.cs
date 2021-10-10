@@ -296,9 +296,9 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
-        var fleeThreshold = 1.8f -
+        var fleeThreshold = 3.0f - (2 *
             (SpeciesFear / Constants.MAX_SPECIES_FEAR) *
-            (2 - (microbe.Hitpoints / microbe.MaxHitpoints));
+            (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
         Microbe predator = null;
         foreach (var otherMicrobe in allMicrobes)
         {
