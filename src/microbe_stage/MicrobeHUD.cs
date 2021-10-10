@@ -472,13 +472,8 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        if (!editorButton.Disabled)
+        if (!editorButton.Disabled || stage?.Player == null)
             return;
-
-        if (stage?.Player == null)
-        {
-            return;
-        }
 
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
