@@ -475,6 +475,11 @@ public class MicrobeHUD : Node
         if (!editorButton.Disabled)
             return;
 
+        if (stage?.Player == null)
+        {
+            return;
+        }
+
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
 
         editorButton.Disabled = false;
