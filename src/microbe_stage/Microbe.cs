@@ -641,7 +641,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Emit as much as you have, but don't start the cooldown if that's zero
         float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
-        if (amountEmitted < MINIMUM_AGENT_EMISSION_AMOUNT)
+        if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
             return;
 
         Compounds.TakeCompound(agentType, amountEmitted);
