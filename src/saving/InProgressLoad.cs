@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using Godot;
+using Saving;
 
 /// <summary>
 ///   Holds data needed for an in-progress load action.
@@ -80,6 +81,7 @@ public class InProgressLoad
 
                 // Let all suppressed deletions happen
                 TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
+                JSONDebug.FlushJSONTracesOut();
 
                 break;
             case State.ReadingData:
@@ -177,6 +179,8 @@ public class InProgressLoad
 
                 // Stop suppressing loaded node deletion
                 TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_LOAD);
+
+                JSONDebug.FlushJSONTracesOut();
 
                 if (success)
                 {

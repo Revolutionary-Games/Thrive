@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
-"PO-Revision-Date: 2021-09-06 00:51+0000\n"
-"Last-Translator: Felecarp <felecarp@suboxide.org>\n"
+"POT-Creation-Date: 2021-10-10 00:45+0200\n"
+"PO-Revision-Date: 2021-10-05 19:11+0000\n"
+"Last-Translator: Arya Rouinsard <shigasaa@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1425,7 +1425,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Éditeur Libre de Microbe"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Revenir"
@@ -1441,295 +1441,341 @@ msgstr ""
 "causer des problèmes. Essayez de mettre à jour vos pilotes vidéos et/ou de "
 "forcer l'utilisation des graphiques AMD ou Nvidia pour lancer Thrive."
 
-#: ../src/general/OptionsMenu.cs:803
+#: ../src/general/OptionsMenu.cs:842
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Périphérique de sortie par défaut"
 
-#: ../src/general/OptionsMenu.cs:843
+#: ../src/general/OptionsMenu.cs:882
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Cette traduction est très incomplète ({0}% effectué). Aidez-nous à la "
 "terminer !"
 
-#: ../src/general/OptionsMenu.cs:847
+#: ../src/general/OptionsMenu.cs:886
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Cette langue est encore en cours de rédaction ({0}% effectué)"
 
-#: ../src/general/OptionsMenu.cs:851
+#: ../src/general/OptionsMenu.cs:890
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Aidez nous à traduire le jeu"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:137
 msgid "GRAPHICS"
 msgstr "Graphiques"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:148
 msgid "SOUND"
 msgstr "Son"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:159
 msgid "PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:170
 msgid "INPUTS"
 msgstr "Entrées"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
 msgstr "Spéc"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "Sync V"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "Plein Écran"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anticrénelage plusieurs échantillons :"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(des valeurs plus élevées demandent plus de performances)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
+msgid "DISABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "TWO_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "Clic droit"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "SIXTEEN_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "Résolution :"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "FPS max. :"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correction daltonienne :"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
+msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberration chromatique :"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Barre d’affichage des capacités"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:398
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Effets externes"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:451 ../src/general/OptionsMenu.tscn:492
+#: ../src/general/OptionsMenu.tscn:525 ../src/general/OptionsMenu.tscn:558
+#: ../src/general/OptionsMenu.tscn:591
 msgid "MUTE"
 msgstr "Silencieux"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:465
 msgid "MUSIC_VOLUME"
 msgstr "Volume de la musique"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:498
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume d'ambiance"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:531
 msgid "SFX_VOLUME"
 msgstr "Volume des effets spéciaux"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI_VOLUME"
 msgstr "Volume de l'interface"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:609
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Périphérique de sortie par défaut:"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:637
 msgid "LANGUAGE"
 msgstr "Langue :"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:655 ../src/general/OptionsMenu.tscn:1217
 msgid "RESET"
 msgstr "Recommencer"
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:673
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Aidez nous à traduire le jeu"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:699
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuages de composés"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:714
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Simulation Minimum de Nuages\n"
 "Intervalle :"
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:721 ../src/general/OptionsMenu.tscn:763
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(des valeurs plus hautes améliorent les performances)"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:756
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Diviseur de Résolution de Nuage :"
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:798
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Activer l'auto-évolution en jeu"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:818
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "Sélectionné :"
 
-#: ../src/general/OptionsMenu.tscn:828
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Sauvegarder et continuer"
+msgstr "Threads actuels :"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:850
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Suppose que l'hyper-threading est activé sur le CPU"
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:862
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:875
 msgid "THREADS"
 msgstr "Threads :"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:976
 msgid "RESET_INPUTS"
 msgstr "Réinitialiser les entrées"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1004
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Jouer la vidéo d'intro"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Jouer l'intro Microbe à chaque nouvelle partie"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1022
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sauvegarde automatique en jeu"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:1033
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Nombre de sauvegardes à conserver :"
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Nombre de sauvegardes rapide à conserver :"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Afficher les tutoriels (nouvelles parties)"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Afficher les tutoriels (partie actuelle)"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1111
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Codes de triche activés"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utiliser un nom d'utilisateur personnalisé"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "CUSTOM_USERNAME"
 msgstr "Pseudo personnalisé :"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Ouvrir le dossier de captures d'écran"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1168
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Ouvrir le dossier des Logs"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1178
+msgid "JSON_DEBUG_MODE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Sauvegarder"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1246
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Par Défaut"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "RESET_TO_DEFAULTS"
 msgstr "Restaurer par défaut ?"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Êtes-vous sûr de vouloir restaurer tous les paramètres par défaut ?"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1281
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Remettre les touches à zéro?"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Êtes-vous sur de vouloir restaurer les entrées à leurs valeurs par "
 "défauts ?"
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "CLOSE_OPTIONS"
 msgstr "Fermer les paramètres ?"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1324
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Des changements non sauvegardés vont être abandonnés.\n"
 "Voulez-vous continuer ?"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SAVE_AND_CONTINUE"
 msgstr "Sauvegarder et continuer"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1355
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Annuler et continuer"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1371
 msgid "CANCEL"
 msgstr "Annuler"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1383 ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "ERROR"
 msgstr "Erreur"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1392 ../src/general/OptionsMenu.tscn:1431
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Erreur : les nouveaux paramètres n'ont pas été sauvegardés dans le fichier "
 "de configuration."
 
-#: ../src/general/OptionsMenu.tscn:1407
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:1440
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Ouvrir le dossier de captures d'écran"
+msgstr "Pas de dossier de captures d'écrans trouvé"
 
-#: ../src/general/OptionsMenu.tscn:1416
-#, fuzzy
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Prendre une capture d'écran"
+msgstr "Essayez de prendre une capture d'écran!"
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
@@ -1788,39 +1834,39 @@ msgstr "{0}%"
 
 #: ../src/gui_common/CreditsScroll.cs:228
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Développeur principal"
 
 #: ../src/gui_common/CreditsScroll.cs:234
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Programmeur principal"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Programmeurs principaux"
 
 #: ../src/gui_common/CreditsScroll.cs:240
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Théoricien principal"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Théoriciens principaux"
 
 #: ../src/gui_common/CreditsScroll.cs:246
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Artiste principal"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Artistes principaux"
 
 #: ../src/gui_common/CreditsScroll.cs:252
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Équipe son principale"
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Équipe son principales"
 
 #: ../src/gui_common/CreditsScroll.cs:258
 msgid "LEAD_OUTREACH_PERSON"
@@ -1832,43 +1878,46 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:264
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "Concepteur de jeu principal"
 
 #: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "Concepteurs de jeu principaux"
 
 #: ../src/gui_common/CreditsScroll.cs:270
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "Testeur principal"
 
 #: ../src/gui_common/CreditsScroll.cs:271
 msgid "LEAD_TESTERS"
-msgstr ""
+msgstr "Testeurs principaux"
 
 #: ../src/gui_common/CreditsScroll.cs:276
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Chef de projet principal"
 
 #: ../src/gui_common/CreditsScroll.cs:277
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "Chef de projets principaux"
 
 #: ../src/gui_common/CreditsScroll.cs:284
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Développeurs actuels"
 
 #: ../src/gui_common/CreditsScroll.cs:300
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Anciens développeurs"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Contributeurs éxterieurs"
 
 #: ../src/gui_common/CreditsScroll.cs:319
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive est un projet open-source.\n"
+"Vous pouvez proposer un correctif sans avoir besoin de faire partie de "
+"l'équipe (de développement)."
 
 #: ../src/gui_common/CreditsScroll.cs:334
 msgid "PATRONS"
@@ -1876,41 +1925,132 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:341
-msgid "VIP_PATRONS"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:342
-msgid "DEV_BUILD_PATRONS"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:344
-msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Vous pouvez financer le développement de Thrive sur Patreon"
 
 #: ../src/gui_common/CreditsScroll.cs:354
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Options"
+msgstr "Dons"
 
 #: ../src/gui_common/CreditsScroll.cs:377
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Aidez nous à traduire le jeu"
+msgstr "Traducteurs"
 
 #: ../src/gui_common/CreditsScroll.cs:391
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Licences et bibliothèques utilisés"
 
 #: ../src/gui_common/CreditsScroll.cs:485
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Merci d'avoir joué !\n"
+"\n"
+"Si vous avez aimé le jeu, n'hésitez pas à en parler à vos amis."
+
+#: ../src/gui_common/CreditsScroll.cs:494
+msgid "PROGRAMMING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:495
+msgid "THEORY_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:496
+#, fuzzy
+msgid "GRAPHICS_TEAM"
+msgstr "Graphiques"
+
+#: ../src/gui_common/CreditsScroll.cs:497
+#, fuzzy
+msgid "SOUND_TEAM"
+msgstr "Équipe son principale"
+
+#: ../src/gui_common/CreditsScroll.cs:498
+msgid "OUTREACH_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:499
+#, fuzzy
+msgid "GAME_DESIGN_TEAM"
+msgstr "Concepteur de jeu principal"
+
+#: ../src/gui_common/CreditsScroll.cs:500
+msgid "TESTING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:501
+#, fuzzy
+msgid "PROJECT_MANAGEMENT_TEAM"
+msgstr "Chef de projet principal"
+
+#: ../src/gui_common/CreditsScroll.cs:502
+msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:503
+msgid "VIP_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:504
+msgid "DEV_BUILD_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:505
+msgid "SUPPORTER_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:506
+msgid "JANUARY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:507
+#, fuzzy
+msgid "FEBRUARY"
+msgstr "Estuaire"
+
+#: ../src/gui_common/CreditsScroll.cs:508
+msgid "MARCH"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:509
+msgid "APRIL"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:510
+msgid "MAY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:511
+msgid "JUNE"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:512
+msgid "JULY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:513
+msgid "AUGUST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:514
+msgid "SEPTEMBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:515
+msgid "OCTOBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:516
+#, fuzzy
+msgid "NOVEMBER"
+msgstr "Mouvement"
+
+#: ../src/gui_common/CreditsScroll.cs:517
+msgid "DECEMBER"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Par Revolutionary Game Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
@@ -1918,7 +2058,7 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Développeurs"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -1964,24 +2104,20 @@ msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
-#, fuzzy
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Valeur du canal rouge de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Valeur du canal vert de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Valeur du canal bleu de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Ajouter un nouveau raccourci clavier"
+msgstr "Valeur du canal de transparence de la couleur"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
 #, fuzzy
@@ -1989,7 +2125,6 @@ msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:44
-#, fuzzy
 msgid "HSV"
 msgstr "HSV"
 
@@ -1999,7 +2134,7 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:706
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Aucune donnée à afficher"
 
 #: ../src/gui_common/charts/line/LineChart.cs:956
 #: ../src/gui_common/charts/line/LineChart.cs:985
@@ -2251,8 +2386,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Utilise [thrive:compound]atp[/thrive:compound] pour augmenter la vitesse "
-"de déplacement de la cellule"
+"Utilise de l'[thrive:compound type=\"atp\"][/thrive:compound] pour "
+"augmenter la vitesse de déplacement de la cellule"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2323,14 +2458,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1302
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"La centrale de la cellule. La mitochondrie est une structure à double "
-"membrane remplis de protéines et d'enzymes. C'est un procaryote qui a été "
-"assimilé pour être utilisé par son hôte eucaryote. Elle est capable de "
-"convertir du glucose en ATP avec une bien meilleure efficacité que ce qui "
-"peut être fait dans le cytoplasme avec le procédé appelé Respiration "
-"Aérobique. Cependant, elle a besoin d'oxygène pour fonctionner, et de "
-"faibles niveaux d'oxygènes dans l'environnement vont ralentir son taux de "
-"production d'ATP"
+"Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la "
+"concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1303
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2347,10 +2477,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produit [thrive:compound] glucose [/thrive:compound]. Échelles de taux "
-"avec concentration de [thrive:compound] dioxyde de carbone [/thrive:"
-"compound] et intensité de [thrive:compound] lumière solaire [/thrive:"
-"compound]"
+"Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux "
+"proportionnels à la concentration de [thrive:compound type=\"carbondioxide"
+"\"][/thrive:compound] et à l'intensité de [thrive:compound type=\"sunlight"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2394,11 +2524,10 @@ msgstr "Aucune action"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Le chimioplaste est une structure à double membrane contenant des "
-"protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde "
-"de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de "
-"Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la "
-"concentration en dioxyde de carbone"
+"Transforme l'[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
+"en [thrive:compound type=\"glucose\"][/thrive:compound]. Taux "
+"proportionnels à la concentration de [thrive:compound type=\"carbondioxide"
+"\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2412,10 +2541,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme [thrive:compound]atp[/thrive:compound] en [thrive:"
-"compound]ammoniac[/thrive:compound]. Échelles de taux avec concentration "
-"de [thrive:compound]azote[/thrive:compound] et [thrive:compound]oxygène[/"
-"thrive:compound]"
+"Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la "
+"concentration d'[thrive:compound type=\"nitrogen\"][/thrive:compound] et "
+"d'[thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
@@ -2442,10 +2571,11 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1864
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforme l'[thrive:compound]atp[/thrive:compound] en [thrive:"
-"compound]oxytoxy[/thrive:compound]. Taux proportionnel à la concentration "
-"d'[thrive:compound]oxygène[thrive:compound]. Peut libérer des toxines en "
-"appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
+"Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la "
+"concentration d'[thrive:compound type=\"oxygen\"][thrive:compound]. Peut "
+"libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:"
+"input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2731,20 +2861,20 @@ msgstr "Processus cellulaires"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:593
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1365
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Chargement de l'Éditeur de Microbes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:595
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Attente pour l'auto-évo :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2314
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 
@@ -2921,6 +3051,21 @@ msgstr "Espèces Présentes"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Se Déplacer vers Cette Parcelle"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "Déplacer"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "Supprimer"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "Modifier"
+
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr "MP illimités"
@@ -2993,18 +3138,6 @@ msgstr "{0} avec population : {1}"
 msgid "MP_COST"
 msgstr "{0} MP"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "Supprimer"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "Déplacer"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "Modifier"
-
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
 msgstr "EXTINCTION"
@@ -3027,61 +3160,61 @@ msgstr ""
 "jouer après que cet écran se soit fermé si vous le souhaitez, ou démarrer "
 "une nouvelle partie dans un autre monde."
 
-#: ../src/saving/InProgressLoad.cs:77 ../src/saving/InProgressLoad.cs:96
-#: ../src/saving/InProgressLoad.cs:145
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:147
 msgid "LOADING_GAME"
 msgstr "Chargement du Jeu"
 
-#: ../src/saving/InProgressLoad.cs:79
+#: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr "Lecture des données de sauvegarde"
 
-#: ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:100
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Création des objets à partir de la sauvegarde"
 
-#: ../src/saving/InProgressLoad.cs:107
+#: ../src/saving/InProgressLoad.cs:109
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 "Une exception a eu lieu pendant le chargement des données de sauvegarde"
 
-#: ../src/saving/InProgressLoad.cs:133
+#: ../src/saving/InProgressLoad.cs:135
 msgid "SAVE_IS_INVALID"
 msgstr "La sauvegarde est invalide"
 
-#: ../src/saving/InProgressLoad.cs:134
+#: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "La sauvegarde a un état scénique de jeu invalide"
 
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:149
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Compréhension des objets chargés"
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:164
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Une exception a eu lieu lors de la compréhension des objets chargés"
 
-#: ../src/saving/InProgressLoad.cs:168
+#: ../src/saving/InProgressLoad.cs:170
 msgid "LOAD_FINISHED"
 msgstr "Chargement terminé"
 
-#: ../src/saving/InProgressLoad.cs:191
+#: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
 msgstr "Erreur de Chargement"
 
-#: ../src/saving/InProgressLoad.cs:220
+#: ../src/saving/InProgressLoad.cs:224
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Echec de la libération des ressources déjà chargées : {0}"
 
-#: ../src/saving/InProgressSave.cs:173
+#: ../src/saving/InProgressSave.cs:174
 msgid "SAVING"
 msgstr "Sauvegarde..."
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:207
 msgid "SAVE_FAILED"
 msgstr "Sauvegarde Échouée"
 
-#: ../src/saving/InProgressSave.cs:204
+#: ../src/saving/InProgressSave.cs:208
 msgid "ERROR_SAVING"
 msgstr "Erreur de Sauvegarde"
 
@@ -3110,14 +3243,12 @@ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Réécrire la sauvegarde existante?"
 
 #: ../src/saving/SaveHelper.cs:382
-#, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
-msgstr "Sauvegarde échoué! Une exception a eu lieu"
+msgstr "Sauvegarde actuellement impossible à cause de :"
 
 #: ../src/saving/SaveHelper.cs:383
-#, fuzzy
 msgid "PLAYER_EXTINCT"
-msgstr "joueur en double"
+msgstr "Le joueur est éteint"
 
 #: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
@@ -3150,15 +3281,10 @@ msgstr ""
 "vouloir détruire {0} de manière permanente?"
 
 #: ../src/saving/SaveList.cs:281
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"La vacuole est un organite de la membrane interne utilisé pour stocker "
-"dans la cellule. Ils sont composé de plusieurs vésicules, des structures "
-"membranaires plus petites grandement utilisé dans les cellules pour le "
-"stockage, qui ont fusionné ensemble. Elle est rempli d'eau qui est utilisé "
-"pour contenir des molécules, des enzymes, des solides et autres "
-"substances. Leur forme est fluide et peut varier selon les cellules."
+"La mise à jour de la sauvegarde a échouée à cause de cette erreur :\n"
+"{0}"
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -3223,15 +3349,14 @@ msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "La sauvegarde sélectionnée est incompatible"
 
 #: ../src/saving/SaveList.tscn:192
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"La vacuole est un organite de la membrane interne utilisé pour stocker "
-"dans la cellule. Ils sont composé de plusieurs vésicules, des structures "
-"membranaires plus petites grandement utilisé dans les cellules pour le "
-"stockage, qui ont fusionné ensemble. Elle est rempli d'eau qui est utilisé "
-"pour contenir des molécules, des enzymes, des solides et autres "
-"substances. Leur forme est fluide et peut varier selon les cellules."
+"La sauvegarde sélectionnée provient d'une version plus ancienne de Thrive, "
+"mais elle peut être mise à jour.\n"
+"Une copie sera créée avant la procédure, si elle n'est pas déjà présente.\n"
+"Si vous passer cette étape, Thrive essaiera de charger la sauvegarde "
+"normalement.\n"
+"Voulez-vous effectuer la mise à jour de cette sauvegarde ?"
 
 #: ../src/saving/SaveList.tscn:207
 #, fuzzy
@@ -3331,13 +3456,12 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Supprimer les anciennes Sauvegardes?"
 
 #: ../src/saving/SaveManagerGUI.tscn:232
-#, fuzzy
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Ouvrir le Dossier de Sauvegarde"
+msgstr "Pas de dossier de sauvegarde trouvé"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Essayez de sauvegarder !"
 
 #: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"
