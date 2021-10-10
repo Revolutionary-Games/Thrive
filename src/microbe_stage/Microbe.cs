@@ -670,11 +670,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
         {
-            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-release-toxin-low.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin-low.ogg");
         }
         else
         {
-            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
     }
 
@@ -746,7 +746,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // TODO: Replace this take damage sound with a more appropriate one.
 
             // Play the toxin sound
-            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
             // Divide damage by toxin resistance
             amount /= Species.MembraneType.ToxinResistance;
@@ -754,7 +754,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         else if (source == "pilus")
         {
             // Play the pilus sound
-            PlaySoundEffectOnce("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/pilus_puncture_stab.ogg");
 
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
@@ -765,7 +765,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // TODO: Replace this take damage sound with a more appropriate one.
 
-            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
 
             // Divide damage by physical resistance
             amount /= Species.MembraneType.PhysicalResistance;
@@ -774,7 +774,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // TODO: Replace this take damage sound with a more appropriate one.
 
-            PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
 
         Hitpoints -= amount;
@@ -998,7 +998,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             OnReproductionStatus?.Invoke(this, false);
         }
 
-        PlaySoundEffectOnce("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
 
         // Disable collisions
         CollisionLayer = 0;
@@ -1007,14 +1007,31 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Some pre-death actions are going to be run now
     }
 
-    public void PlaySoundEffectOnce(string effect)
+    public void PlaySoundEffect(string effect)
     {
-        PlaySoundEffect(effect, false);
-    }
+        // TODO: make these sound objects only be loaded once
+        var sound = GD.Load<AudioStream>(effect);
 
-    public void PlaySoundEffectOnLoop(string effect)
-    {
-        PlaySoundEffect(effect, true);
+        // Find a player not in use or create a new one if none are available.
+        var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
+
+        if (player == null)
+        {
+            // If we hit the player limit just return and ignore the sound.
+            if (otherAudioPlayers.Count >= Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY)
+                return;
+
+            player = new AudioStreamPlayer3D();
+            player.UnitDb = 50.0f;
+            player.MaxDistance = 100.0f;
+            player.Bus = "SFX";
+
+            AddChild(player);
+            otherAudioPlayers.Add(player);
+        }
+
+        player.Stream = sound;
+        player.Play();
     }
 
     /// <summary>
@@ -1113,7 +1130,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Play the split sound
-        PlaySoundEffectOnce("res://assets/sounds/soundeffects/reproduction.ogg");
+        PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");
     }
 
     /// <summary>
@@ -1481,39 +1498,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN,
             TranslationServer.Translate("SUCCESSFUL_KILL"));
-    }
-
-    private void PlaySoundEffect(string effect, bool loop)
-    {
-        // TODO: make these sound objects only be loaded once
-        var sound = GD.Load<AudioStream>(effect);
-
-        // set looping property for .ogg files
-        if (sound is AudioStreamOGGVorbis oggSound)
-        {
-            oggSound.Loop = loop;
-        }
-
-        // Find a player not in use or create a new one if none are available.
-        var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
-
-        if (player == null)
-        {
-            // If we hit the player limit just return and ignore the sound.
-            if (otherAudioPlayers.Count >= Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY)
-                return;
-
-            player = new AudioStreamPlayer3D();
-            player.UnitDb = 50.0f;
-            player.MaxDistance = 100.0f;
-            player.Bus = "SFX";
-
-            AddChild(player);
-            otherAudioPlayers.Add(player);
-        }
-
-        player.Stream = sound;
-        player.Play();
     }
 
     private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
