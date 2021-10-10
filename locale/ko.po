@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-09 15:51+0200\n"
+"POT-Creation-Date: 2021-10-10 20:19+0200\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -1390,7 +1390,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "뒤로가기"
@@ -1406,288 +1406,337 @@ msgstr ""
 "할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래"
 "픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
-#: ../src/general/OptionsMenu.cs:803
+#: ../src/general/OptionsMenu.cs:842
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:843
+#: ../src/general/OptionsMenu.cs:882
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:847
+#: ../src/general/OptionsMenu.cs:886
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:851
+#: ../src/general/OptionsMenu.cs:890
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "게임을 번역하는 것을 도와주세요"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:137
 msgid "GRAPHICS"
 msgstr "그래픽"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:148
 msgid "SOUND"
 msgstr "소리"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:159
 msgid "PERFORMANCE"
 msgstr "성능"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:170
 msgid "INPUTS"
 msgstr "입력"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
 msgstr "기타"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "수직동기화"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "전체화면"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "멀티샘플 안티-앨리어싱:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(값이 커질수록 성능이 저하됩니다)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
+msgid "DISABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "TWO_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "마우스 오른쪽 버튼"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "SIXTEEN_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "해상도:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "자동"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "최대 FPS:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "색맹 교정:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
+msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "색수차:"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:389
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "능력"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:398
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "외부 효과:"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424
 msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:451 ../src/general/OptionsMenu.tscn:492
+#: ../src/general/OptionsMenu.tscn:525 ../src/general/OptionsMenu.tscn:558
+#: ../src/general/OptionsMenu.tscn:591
 msgid "MUTE"
 msgstr "음소거"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:465
 msgid "MUSIC_VOLUME"
 msgstr "음악 음량"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:498
 msgid "AMBIANCE_VOLUME"
 msgstr "배경 음량"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:531
 msgid "SFX_VOLUME"
 msgstr "효과음 음량"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI_VOLUME"
 msgstr "GUI 음량"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:609
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:637
 msgid "LANGUAGE"
 msgstr "언어:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:655 ../src/general/OptionsMenu.tscn:1217
 msgid "RESET"
 msgstr "초기화"
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:673
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "게임을 번역하는 것을 도와주세요"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:699
 msgid "COMPOUND_CLOUDS"
 msgstr "화합물 구름"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:714
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "최소 구름 시뮬레이션\n"
 "간격:"
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:721 ../src/general/OptionsMenu.tscn:763
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(높은 값일수록 더 나은 성능)"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:756
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "구름 해상도 인자:"
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:798
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "게임 플레이 중 자동 진화 실행"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:818
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "선택됨:"
 
-#: ../src/general/OptionsMenu.tscn:828
+#: ../src/general/OptionsMenu.tscn:835
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "저장 및 계속"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:850
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:862
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:875
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:976
 msgid "RESET_INPUTS"
 msgstr "키 설정 초기화"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1004
 msgid "PLAY_INTRO_VIDEO"
 msgstr "인트로 영상 재생"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "새 게임 시 미생물 인트로 재생"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1022
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "진행 중 자동 저장"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:1033
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "저장할 수 있는 자동저장 갯수:"
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "저장할 수 있는 빠른저장 갯수:"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "튜토리얼 보기(새 게임 시작 시)"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "튜토리얼 보기(현재 진행중인 게임)"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1111
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "치트 키 활성화"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "CUSTOM_USERNAME"
 msgstr "임의 사용자 이름:"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "스크린샷 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1168
 msgid "OPEN_LOGS_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1178
+msgid "JSON_DEBUG_MODE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "저장"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1246
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "기본값"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "RESET_TO_DEFAULTS"
 msgstr "기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1281
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "CLOSE_OPTIONS"
 msgstr "설정을 종료합니까?"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1324
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
 "계속하시겠습니까?"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SAVE_AND_CONTINUE"
 msgstr "저장 및 계속"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1355
 msgid "DISCARD_AND_CONTINUE"
 msgstr "취소 및 계속"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1371
 msgid "CANCEL"
 msgstr "취소"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1383 ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "ERROR"
 msgstr "오류"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1392 ../src/general/OptionsMenu.tscn:1431
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "오류: 새로운 설정을 설정 파일에 저장하는 데 실패하였습니다."
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1440
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "스크린샷 폴더 열기"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1449
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "스크린샷 촬영"
@@ -1839,18 +1888,6 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:341
-msgid "VIP_PATRONS"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:342
-msgid "DEV_BUILD_PATRONS"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:344
-msgid "SUPPORTER_PATRONS"
-msgstr ""
-
 #: ../src/gui_common/CreditsScroll.cs:354
 #, fuzzy
 msgid "DONATIONS"
@@ -1867,6 +1904,106 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:485
 msgid "THANKS_FOR_PLAYING"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:494
+msgid "PROGRAMMING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:495
+msgid "THEORY_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:496
+#, fuzzy
+msgid "GRAPHICS_TEAM"
+msgstr "그래픽"
+
+#: ../src/gui_common/CreditsScroll.cs:497
+#, fuzzy
+msgid "SOUND_TEAM"
+msgstr "소리"
+
+#: ../src/gui_common/CreditsScroll.cs:498
+msgid "OUTREACH_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:499
+msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:500
+msgid "TESTING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:501
+msgid "PROJECT_MANAGEMENT_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:502
+msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:503
+msgid "VIP_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:504
+msgid "DEV_BUILD_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:505
+msgid "SUPPORTER_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:506
+msgid "JANUARY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:507
+#, fuzzy
+msgid "FEBRUARY"
+msgstr "어귀"
+
+#: ../src/gui_common/CreditsScroll.cs:508
+msgid "MARCH"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:509
+msgid "APRIL"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:510
+msgid "MAY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:511
+msgid "JUNE"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:512
+msgid "JULY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:513
+msgid "AUGUST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:514
+msgid "SEPTEMBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:515
+msgid "OCTOBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:516
+#, fuzzy
+msgid "NOVEMBER"
+msgstr "이동"
+
+#: ../src/gui_common/CreditsScroll.cs:517
+msgid "DECEMBER"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:45
@@ -2626,7 +2763,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeStage.tscn:1636
 #, fuzzy
 msgid "RESUME_TOOLTIP"
-msgstr "새로운 키 배치 추가"
+msgstr "재개"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1649
 #, fuzzy
@@ -2910,6 +3047,22 @@ msgstr "존재하는 종"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "해당 파편으로 이동"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+#, fuzzy
+msgid "MOVE"
+msgstr "이동"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr ""
+
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr ""
@@ -2983,19 +3136,6 @@ msgstr "{0} 의 개체수: {1}"
 msgid "MP_COST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-#, fuzzy
-msgid "MOVE"
-msgstr "이동"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr ""
-
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
 msgstr "멸종"
@@ -3017,60 +3157,60 @@ msgstr ""
 "현재 버전의 Thrive에서 승리하신 것을 축하드립니다! 창이 닫히면 계속 진행하"
 "거나, 새로운 세계에서 새로운 시작을 하실 수 있습니다."
 
-#: ../src/saving/InProgressLoad.cs:77 ../src/saving/InProgressLoad.cs:96
-#: ../src/saving/InProgressLoad.cs:145
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:147
 msgid "LOADING_GAME"
 msgstr "게임 불러오는 중"
 
-#: ../src/saving/InProgressLoad.cs:79
+#: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr "저장된 데이터 읽는 중"
 
-#: ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:100
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "저장된 객체 생성 중"
 
-#: ../src/saving/InProgressLoad.cs:107
+#: ../src/saving/InProgressLoad.cs:109
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "저장된 데이터를 불러오는 중 예기치 못한 일이 발생했습니다"
 
-#: ../src/saving/InProgressLoad.cs:133
+#: ../src/saving/InProgressLoad.cs:135
 msgid "SAVE_IS_INVALID"
 msgstr "올바르지 않은 저장 입니다"
 
-#: ../src/saving/InProgressLoad.cs:134
+#: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "저장된 게임 상태가 올바르지 않습니다"
 
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:149
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "불러온 객체 처리 중"
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:164
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "불러온 객체를 처리하는 중 예기치 못한 일이 발생했습니다"
 
-#: ../src/saving/InProgressLoad.cs:168
+#: ../src/saving/InProgressLoad.cs:170
 msgid "LOAD_FINISHED"
 msgstr "불러오기 완료"
 
-#: ../src/saving/InProgressLoad.cs:191
+#: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
 msgstr "불러오기 오류"
 
-#: ../src/saving/InProgressLoad.cs:220
+#: ../src/saving/InProgressLoad.cs:224
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:173
+#: ../src/saving/InProgressSave.cs:174
 msgid "SAVING"
 msgstr "저장 중..."
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:207
 msgid "SAVE_FAILED"
 msgstr "저장 실패"
 
-#: ../src/saving/InProgressSave.cs:204
+#: ../src/saving/InProgressSave.cs:208
 msgid "ERROR_SAVING"
 msgstr "저장 오류"
 

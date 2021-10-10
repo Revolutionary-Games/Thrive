@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-09 15:51+0200\n"
+"POT-Creation-Date: 2021-10-10 20:19+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Giacomo Volta <furbogiaco@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -1420,7 +1420,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Microbico Libero"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Indietro"
@@ -1436,286 +1436,335 @@ msgstr ""
 "probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o "
 "a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
-#: ../src/general/OptionsMenu.cs:803
+#: ../src/general/OptionsMenu.cs:842
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio di default"
 
-#: ../src/general/OptionsMenu.cs:843
+#: ../src/general/OptionsMenu.cs:882
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Questa traduzione è molto incompleta (siamo al {0}%). Perfavore, aiutaci!"
 
-#: ../src/general/OptionsMenu.cs:847
+#: ../src/general/OptionsMenu.cs:886
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Questa traduzione è in corso d'opera (siamo al {0}%)"
 
-#: ../src/general/OptionsMenu.cs:851
+#: ../src/general/OptionsMenu.cs:890
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Questa traduzione è completa al {0}%"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:137
 msgid "GRAPHICS"
 msgstr "Grafica"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:148
 msgid "SOUND"
 msgstr "Suono"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:159
 msgid "PERFORMANCE"
 msgstr "Prestazioni"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:170
 msgid "INPUTS"
 msgstr "Controlli"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
 msgstr "Varie"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "Schermo intero"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multicampionamento (MSAA):"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valori più elevati compromettono le prestazioni)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
+msgid "DISABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "TWO_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "Clic destro"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "SIXTEEN_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "Risoluzione:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "automatica"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "FPS massimi:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correzione colore:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
+msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberrazione Cromatica:"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostra la Barra delle Abilità"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:398
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Abilita gli effetti di luce della GUI"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424
 msgid "MASTER_VOLUME"
 msgstr "Volume Principale"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:451 ../src/general/OptionsMenu.tscn:492
+#: ../src/general/OptionsMenu.tscn:525 ../src/general/OptionsMenu.tscn:558
+#: ../src/general/OptionsMenu.tscn:591
 msgid "MUTE"
 msgstr "Muto"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:465
 msgid "MUSIC_VOLUME"
 msgstr "Volume della Musica"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:498
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume degli effetti ambientali"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:531
 msgid "SFX_VOLUME"
 msgstr "Volume degli effetti sonori"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI_VOLUME"
 msgstr "Volume della GUI"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:609
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio:"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:637
 msgid "LANGUAGE"
 msgstr "Lingua:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:655 ../src/general/OptionsMenu.tscn:1217
 msgid "RESET"
 msgstr "Ripristina"
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:673
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Aiuta a tradurre il gioco"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:699
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvole di composti"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:714
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Intervallo Minimo\n"
 "Simulazione Nuvole:"
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:721 ../src/general/OptionsMenu.tscn:763
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valori più elevati migliorano le prestazioni)"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:756
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisore Risoluzione Nuvole:"
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:798
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Esegui auto-evo in gioco"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:818
 msgid "DETECTED_CPU_COUNT"
 msgstr "Numero di CPU rilevate:"
 
-#: ../src/general/OptionsMenu.tscn:828
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Thread attuali:"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:850
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Presupponi che la CPU abbia attivato l'hyperthreading"
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:862
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Imposta manualmente il numero di thread in background"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:875
 msgid "THREADS"
 msgstr "Thread:"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:976
 msgid "RESET_INPUTS"
 msgstr "Ripristina i comandi"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1004
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Riproduci video introduttivo"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Riproduci filmato microbico iniziale in Nuova Partita"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1022
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvataggio automatico durante il gioco"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:1033
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Numero di salvataggi automatici da conservare:"
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Numero di salvataggi rapidi da conservare:"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostra i tutorial (in nuove partite)"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostra i tutorial (nella partita attuale)"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1111
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Abilita trucchi"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utilizza uno username personalizzato"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "CUSTOM_USERNAME"
 msgstr "Username Personalizzato:"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Apri Cartella degli Screenshot"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1168
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Apri Cartella dei Report"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1178
+msgid "JSON_DEBUG_MODE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Salva"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1246
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predefinite"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ripristinare le impostazioni predefinite?"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Sicuro di voler ripristinare TUTTE le impostazioni ai valori predefiniti?"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1281
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ripristinare i comandi?"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Sei sicuro di voler ripristinare i comandi ai valori iniziali?"
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "CLOSE_OPTIONS"
 msgstr "Chiudere le impostazioni?"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1324
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Hai modifiche non salvate. Saranno eliminate.\n"
 "Vuoi procedere?"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SAVE_AND_CONTINUE"
 msgstr "Salva e continua"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1355
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Continua senza salvare"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1371
 msgid "CANCEL"
 msgstr "Annulla"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1383 ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "ERROR"
 msgstr "Errore"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1392 ../src/general/OptionsMenu.tscn:1431
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Errore: è stato impossibile salvare le nuove impostazioni su file di "
 "configurazione."
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1440
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Cartella degli Screenshot non trovata"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Prova a scattare qualche screenshot!"
 
@@ -1869,18 +1918,6 @@ msgstr "Utenti di Patreon"
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Puoi sostenere lo sviluppo futuro di Thrive su Patreon"
 
-#: ../src/gui_common/CreditsScroll.cs:341
-msgid "VIP_PATRONS"
-msgstr "Sostenitori VIP"
-
-#: ../src/gui_common/CreditsScroll.cs:342
-msgid "DEV_BUILD_PATRONS"
-msgstr "Sostenitori delle Devbuilds"
-
-#: ../src/gui_common/CreditsScroll.cs:344
-msgid "SUPPORTER_PATRONS"
-msgstr "Sostenitori"
-
 #: ../src/gui_common/CreditsScroll.cs:354
 msgid "DONATIONS"
 msgstr "Donazioni"
@@ -1899,6 +1936,109 @@ msgstr ""
 "Grazie per aver giocato!\n"
 "\n"
 "Se il gioco ti è piaciuto, parlane anche ai tuoi amici."
+
+#: ../src/gui_common/CreditsScroll.cs:494
+msgid "PROGRAMMING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:495
+msgid "THEORY_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:496
+#, fuzzy
+msgid "GRAPHICS_TEAM"
+msgstr "Grafica"
+
+#: ../src/gui_common/CreditsScroll.cs:497
+#, fuzzy
+msgid "SOUND_TEAM"
+msgstr "Capo Fonico"
+
+#: ../src/gui_common/CreditsScroll.cs:498
+#, fuzzy
+msgid "OUTREACH_TEAM"
+msgstr "Capo della Pubblicità"
+
+#: ../src/gui_common/CreditsScroll.cs:499
+#, fuzzy
+msgid "GAME_DESIGN_TEAM"
+msgstr "Capo Progettista di Gioco"
+
+#: ../src/gui_common/CreditsScroll.cs:500
+msgid "TESTING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:501
+#, fuzzy
+msgid "PROJECT_MANAGEMENT_TEAM"
+msgstr "Capo Gestore del Progetto"
+
+#: ../src/gui_common/CreditsScroll.cs:502
+msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:503
+msgid "VIP_PATRONS"
+msgstr "Sostenitori VIP"
+
+#: ../src/gui_common/CreditsScroll.cs:504
+msgid "DEV_BUILD_PATRONS"
+msgstr "Sostenitori delle Devbuilds"
+
+#: ../src/gui_common/CreditsScroll.cs:505
+msgid "SUPPORTER_PATRONS"
+msgstr "Sostenitori"
+
+#: ../src/gui_common/CreditsScroll.cs:506
+msgid "JANUARY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:507
+#, fuzzy
+msgid "FEBRUARY"
+msgstr "Estuario"
+
+#: ../src/gui_common/CreditsScroll.cs:508
+msgid "MARCH"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:509
+msgid "APRIL"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:510
+msgid "MAY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:511
+msgid "JUNE"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:512
+msgid "JULY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:513
+msgid "AUGUST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:514
+msgid "SEPTEMBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:515
+msgid "OCTOBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:516
+#, fuzzy
+msgid "NOVEMBER"
+msgstr "Movimento"
+
+#: ../src/gui_common/CreditsScroll.cs:517
+msgid "DECEMBER"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
@@ -2663,9 +2803,7 @@ msgstr ""
 #: ../src/microbe_stage/MicrobeStage.tscn:1636
 #, fuzzy
 msgid "RESUME_TOOLTIP"
-msgstr ""
-"Accendi/spegni la modalità HSV (Hue, Saturation, Value).\n"
-"Non compatibile con la modalità raw."
+msgstr "Riprendi"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1649
 #, fuzzy
@@ -2945,6 +3083,21 @@ msgstr "Specie Presenti"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Trasferisciti in Questa Zona"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "Sposta"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "Rimuovi"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "Modifica"
+
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr "PM Infiniti"
@@ -3018,18 +3171,6 @@ msgstr "{0} con popolazione: {1}"
 msgid "MP_COST"
 msgstr "{0} PM"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "Rimuovi"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "Sposta"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "Modifica"
-
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
 msgstr "ESTINZIONE"
@@ -3052,61 +3193,61 @@ msgstr ""
 "continuare a giocare dopo la chiusura di questo messaggio, oppure avviare "
 "una nuova partita in un nuovo mondo."
 
-#: ../src/saving/InProgressLoad.cs:77 ../src/saving/InProgressLoad.cs:96
-#: ../src/saving/InProgressLoad.cs:145
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:147
 msgid "LOADING_GAME"
 msgstr "Caricamento della Partita"
 
-#: ../src/saving/InProgressLoad.cs:79
+#: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr "Lettura dati di salvataggio"
 
-#: ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:100
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creazione di oggetti dal salvataggio"
 
-#: ../src/saving/InProgressLoad.cs:107
+#: ../src/saving/InProgressLoad.cs:109
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Si è verificata un'eccezione nel caricamento dei dati di salvataggio"
 
-#: ../src/saving/InProgressLoad.cs:133
+#: ../src/saving/InProgressLoad.cs:135
 msgid "SAVE_IS_INVALID"
 msgstr "Il salvataggio non è valido"
 
-#: ../src/saving/InProgressLoad.cs:134
+#: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Il salvataggio contiene uno stato di gioco non valido"
 
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:149
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Elaborazione degli oggetti caricati"
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:164
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr ""
 "Si è verificata un'eccezione nell'elaborazione degli oggetti caricati"
 
-#: ../src/saving/InProgressLoad.cs:168
+#: ../src/saving/InProgressLoad.cs:170
 msgid "LOAD_FINISHED"
 msgstr "Caricamento completato"
 
-#: ../src/saving/InProgressLoad.cs:191
+#: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
 msgstr "Errore di Caricamento"
 
-#: ../src/saving/InProgressLoad.cs:220
+#: ../src/saving/InProgressLoad.cs:224
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Impossibile liberare le risorse già caricate: {0}"
 
-#: ../src/saving/InProgressSave.cs:173
+#: ../src/saving/InProgressSave.cs:174
 msgid "SAVING"
 msgstr "Salvataggio..."
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:207
 msgid "SAVE_FAILED"
 msgstr "Salvataggio fallito"
 
-#: ../src/saving/InProgressSave.cs:204
+#: ../src/saving/InProgressSave.cs:208
 msgid "ERROR_SAVING"
 msgstr "Errore di Salvataggio"
 

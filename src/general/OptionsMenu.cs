@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Saving;
 using Environment = System.Environment;
 
 /// <summary>
@@ -196,6 +197,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath CustomUsernamePath;
 
+    [Export]
+    public NodePath JSONDebugModePath;
+
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
@@ -269,6 +273,7 @@ public class OptionsMenu : ControlWithInput
     private SpinBox maxQuickSaves;
     private CheckBox customUsernameEnabled;
     private LineEdit customUsername;
+    private OptionButton jsonDebugMode;
 
     private CheckBox tutorialsEnabled;
 
@@ -393,6 +398,7 @@ public class OptionsMenu : ControlWithInput
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
         customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
+        jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
 
         screenshotDirectoryWarningBox = GetNode<AcceptDialog>(ScreenshotDirectoryWarningBoxPath);
         backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
@@ -533,6 +539,7 @@ public class OptionsMenu : ControlWithInput
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+        jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -763,6 +770,38 @@ public class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid MSAA resolution index");
                 return Viewport.MSAA.Disabled;
+        }
+    }
+
+    private int JSONDebugModeToIndex(JSONDebug.DebugMode mode)
+    {
+        switch (mode)
+        {
+            case JSONDebug.DebugMode.AlwaysDisabled:
+                return 2;
+            case JSONDebug.DebugMode.Automatic:
+                return 0;
+            case JSONDebug.DebugMode.AlwaysEnabled:
+                return 1;
+        }
+
+        GD.PrintErr("invalid JSON debug mode value");
+        return 0;
+    }
+
+    private JSONDebug.DebugMode JSONDebugIndexToMode(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return JSONDebug.DebugMode.Automatic;
+            case 1:
+                return JSONDebug.DebugMode.AlwaysEnabled;
+            case 2:
+                return JSONDebug.DebugMode.AlwaysDisabled;
+            default:
+                GD.PrintErr("invalid JSON debug mode index");
+                return JSONDebug.DebugMode.Automatic;
         }
     }
 
@@ -1269,6 +1308,13 @@ public class OptionsMenu : ControlWithInput
     private void OnTutorialsEnabledToggled(bool pressed)
     {
         gameProperties.TutorialState.Enabled = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnJSONDebugModeSelected(int index)
+    {
+        Settings.Instance.JSONDebugMode.Value = JSONDebugIndexToMode(index);
 
         UpdateResetSaveButtonState();
     }

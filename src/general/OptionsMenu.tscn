@@ -97,6 +97,7 @@ DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
 CustomUsernameEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled")
 CustomUsernamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername")
+JSONDebugModePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer5/JSONDebug")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -262,11 +263,11 @@ margin_right = 648.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "Disabled"
-items = [ "Disabled", null, false, 0, null, "2x", null, false, 1, null, "4x", null, false, 2, null, "8x", null, false, 3, null, "16x", null, false, 4, null ]
+text = "DISABLED"
+items = [ "DISABLED", null, false, 0, null, "TWO_TIMES", null, false, 1, null, "FOUR_TIMES", null, false, 2, null, "EIGHT_TIMES", null, false, 3, null, "SIXTEEN_TIMES", null, false, 4, null ]
 selected = 0
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
@@ -340,11 +341,11 @@ margin_left = 448.0
 margin_right = 648.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
-text = "None"
-items = [ "None", null, false, 0, null, "Protanope (Red-Green)", null, false, 1, null, "Tritanope (Blue-Yellow)", null, false, 2, null ]
+text = "NONE"
+items = [ "NONE", null, false, 0, null, "CORRECTION_PROTANOPE", null, false, 1, null, "CORRECTION_TRITANOPE", null, false, 2, null ]
 selected = 0
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
@@ -613,6 +614,9 @@ margin_left = 212.0
 margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HSeparator3" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer"]
 margin_top = 380.0
@@ -638,6 +642,9 @@ margin_left = 103.0
 margin_right = 648.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ResetLanguageButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Sound/VBoxContainer/HBoxContainer6"]
 visible = false
@@ -897,10 +904,10 @@ rounded = true
 
 [node name="Inputs" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 664.0
-margin_bottom = 584.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 679.0
+margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -909,8 +916,8 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Inputs"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 633.0
-margin_bottom = 553.0
+margin_right = 663.0
+margin_bottom = 583.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -970,10 +977,10 @@ text = "RESET_INPUTS"
 
 [node name="Misc" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 visible = false
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 664.0
-margin_bottom = 584.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 679.0
+margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
 custom_constants/margin_left = 15
@@ -982,8 +989,8 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 633.0
-margin_bottom = 553.0
+margin_right = 663.0
+margin_bottom = 583.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1016,7 +1023,7 @@ text = "AUTOSAVE_DURING_THE_GAME"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
 margin_top = 96.0
-margin_right = 651.0
+margin_right = 648.0
 margin_bottom = 123.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer"]
@@ -1027,14 +1034,14 @@ text = "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer"]
 margin_left = 302.0
-margin_right = 447.0
+margin_right = 444.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="MaxAutoSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer"]
-margin_left = 451.0
-margin_right = 651.0
+margin_left = 448.0
+margin_right = 648.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -1044,7 +1051,7 @@ value = 1.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
 margin_top = 133.0
-margin_right = 651.0
+margin_right = 648.0
 margin_bottom = 160.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer2"]
@@ -1055,14 +1062,14 @@ text = "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer2"]
 margin_left = 308.0
-margin_right = 447.0
+margin_right = 444.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="MaxQuickSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer2"]
-margin_left = 451.0
-margin_right = 651.0
+margin_left = 448.0
+margin_right = 648.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -1092,7 +1099,7 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
 margin_top = 234.0
-margin_right = 651.0
+margin_right = 648.0
 margin_bottom = 238.0
 
 [node name="Cheats" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
@@ -1117,7 +1124,7 @@ text = "USE_A_CUSTOM_USERNAME"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
 margin_top = 312.0
-margin_right = 651.0
+margin_right = 648.0
 margin_bottom = 339.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3"]
@@ -1128,37 +1135,63 @@ text = "CUSTOM_USERNAME"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3"]
 margin_left = 188.0
-margin_right = 347.0
+margin_right = 344.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="CustomUsername" type="LineEdit" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3"]
-margin_left = 351.0
-margin_right = 651.0
+margin_left = 348.0
+margin_right = 648.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 300, 0 )
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
 margin_top = 349.0
-margin_right = 651.0
+margin_right = 648.0
 margin_bottom = 381.0
 size_flags_horizontal = 3
 
 [node name="ScreenshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4"]
-margin_right = 323.0
+margin_right = 322.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 action_mode = 0
 text = "OPEN_SCREENSHOT_FOLDER"
 
 [node name="LogButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4"]
-margin_left = 327.0
-margin_right = 651.0
+margin_left = 326.0
+margin_right = 648.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 action_mode = 0
 text = "OPEN_LOGS_FOLDER"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
+margin_top = 391.0
+margin_right = 648.0
+margin_bottom = 413.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer5"]
+margin_right = 183.0
+margin_bottom = 22.0
+text = "JSON_DEBUG_MODE"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer5"]
+margin_left = 187.0
+margin_right = 427.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 5 )
+
+[node name="JSONDebug" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer5"]
+margin_left = 431.0
+margin_right = 648.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 200, 0 )
+text = "JSON_DEBUG_MODE_AUTO"
+items = [ "JSON_DEBUG_MODE_AUTO", null, false, 0, null, "JSON_DEBUG_MODE_ALWAYS", null, false, 1, null, "JSON_DEBUG_MODE_NEVER", null, false, 2, null ]
+selected = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 645.0
@@ -1466,6 +1499,7 @@ __meta__ = {
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername" to="." method="OnCustomUsernameTextChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4/ScreenshotFolder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4/LogButton" to="." method="OnLogButtonPressed"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer5/JSONDebug" to="." method="OnJSONDebugModeSelected"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
