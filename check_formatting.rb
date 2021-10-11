@@ -851,7 +851,7 @@ def run_localization_checks
   return unless issues_found
 
   OUTPUT_MUTEX.synchronize do
-    error 'Translations are not up to date.' # Please rerun scripts/update_localization.rb'
+    error 'Translations are not up to date.'
     puts "Babel-Thrive version installed: #{installed_babel_thrive_version}; "\
           "required: #{required_babel_thrive_version}"
     if installed_babel_thrive_version == required_babel_thrive_version
