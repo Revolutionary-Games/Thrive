@@ -38,6 +38,7 @@ NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
 CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
 ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 ASSEMBLY_VERSION_REGEX = /AssemblyVersion\("([\d.]+)"\)/.freeze
+REQUIREMENTS_TXT_FILE = 'docker/jsonlint/requirements.txt'
 
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
@@ -806,8 +807,15 @@ def run_localization_checks
 
   return unless issues_found
 
+  _, pybabel = runOpen3CaptureOutput 'pybabel', '--version'
   OUTPUT_MUTEX.synchronize do
-    error 'Translations are not up to date. Please rerun scripts/update_localization.rb'
+    error 'Translations are not up to date.'
+    puts 'Please verify your local tools meet the requirements and '\
+         'rerun '.yellow + "'scripts/update_localization.rb'" + '.'.yellow
+    puts 'pybabel --version: '.yellow + pybabel
+    puts "#{REQUIREMENTS_TXT_FILE}:".yellow
+    puts File.readlines(REQUIREMENTS_TXT_FILE)
+    puts 'Run '.yellow + "'pip install -r docker/jsonlint/requirements.txt --user'" + ' to update.'.yellow
   end
 
   exit 2
