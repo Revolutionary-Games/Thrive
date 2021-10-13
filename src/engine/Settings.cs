@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -11,7 +12,10 @@ using Environment = System.Environment;
 /// </summary>
 public class Settings
 {
-    private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
+    private static readonly List<string>
+        AvailableLocales = TranslationServer.GetLoadedLocales().Cast<string>().ToList();
+
+    private static readonly string DefaultLanguageValue = GetSupportedLocale(TranslationServer.GetLocale());
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
     private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
@@ -615,6 +619,7 @@ public class Settings
         }
         else
         {
+            language = GetSupportedLocale(language);
             cultureInfo = GetCultureInfo(language);
         }
 
@@ -692,6 +697,30 @@ public class Settings
 
             return settings;
         }
+    }
+
+    /// <summary>
+    ///   Tries to get the best supported local match.
+    /// </summary>
+    /// <param name="locale">locale to check</param>
+    /// <returns>supported local</returns>
+    private static string GetSupportedLocale(string locale)
+    {
+        if (AvailableLocales.Contains(locale))
+        {
+            return locale;
+        }
+
+        if (locale.Contains('_'))
+        {
+            locale = locale.Split("_")[0];
+            if (AvailableLocales.Contains(locale))
+            {
+                return locale;
+            }
+        }
+
+        return "en";
     }
 
     /// <summary>

@@ -865,22 +865,7 @@ public class OptionsMenu : ControlWithInput
     private void UpdateCurrentLanguageProgress()
     {
         string locale = TranslationServer.GetLocale();
-        if (!SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress
-            .TryGetValue(locale, out float progress))
-        {
-            // Inexact match to match things like "fi_FI"
-            if (!locale.Contains("_") || !SimulationParameters.Instance.GetTranslationsInfo()
-                .TranslationProgress.TryGetValue(locale.Split("_")[0], out progress))
-            {
-                GD.PrintErr("Unknown progress for current locale", locale);
-                progress = -1;
-            }
-        }
-
-        if (progress > 0)
-        {
-            progress *= 100;
-        }
+        float progress = 100 * SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress[locale];
 
         string textFormat;
 
@@ -1404,28 +1389,7 @@ public class OptionsMenu : ControlWithInput
 
     private void UpdateSelectedLanguage(Settings settings)
     {
-        if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
-        {
-            int index = Languages.IndexOf(Settings.DefaultLanguage);
-
-            // Inexact match to match things like "fi_FI"
-            if (index == -1 && Settings.DefaultLanguage.Contains("_"))
-            {
-                index = Languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
-            }
-
-            // English is the default language, if the user's default locale didn't match anything
-            if (index < 0)
-            {
-                index = Languages.IndexOf("en");
-            }
-
-            languageSelection.Selected = index;
-        }
-        else
-        {
-            languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value);
-        }
+        languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value ?? Settings.DefaultLanguage);
     }
 
     private void OnLogButtonPressed()
