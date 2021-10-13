@@ -867,10 +867,19 @@ public class OptionsMenu : ControlWithInput
         if (!SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress
             .TryGetValue(TranslationServer.GetLocale(), out float progress))
         {
-            GD.PrintErr("Unknown progress for current locale");
-            progress = -1;
+            // Inexact match to match things like "fi_FI"
+            if (TranslationServer.GetLocale().Contains("_"))
+            {
+                if (!SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress
+                    .TryGetValue(TranslationServer.GetLocale().Split("_")[0], out progress))
+                {
+                    GD.PrintErr("Unknown progress for current locale", TranslationServer.GetLocale());
+                    progress = -1;
+                }
+            }
         }
-        else
+
+        if (progress > 0)
         {
             progress *= 100;
         }
