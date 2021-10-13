@@ -376,7 +376,7 @@ public class MicrobeAI
         microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
-        if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
+        if (CanShootToxin())
         {
             LaunchToxin(target);
 
