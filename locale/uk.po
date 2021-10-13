@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-08-21 20:45+0300\n"
-"PO-Revision-Date: 2021-09-08 14:51+0000\n"
+"PO-Revision-Date: 2021-10-02 16:11+0000\n"
 "Last-Translator: Ivan Kurta <ivkurta1@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -103,6 +103,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"Кожного покоління ви отримуєте 100 очок мутації (MP), які ви можете "
+"витратити. Кожна зміна (наприклад, додавання або видалення органел) буде "
+"коштувати певне число цих очок. Щоб перемістити або видалити органелу, "
+"натисніть на неї правою кнопкою мишки і виберіть бажаний варіант у меню. "
+"Коли ви розміщаєте органелу, ви можете повертати її за допомогою "
+"[thrive:input]e_rotate_left[/thrive:input] і "
+"[thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -1441,11 +1448,11 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1077 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
-msgstr ""
+msgstr "Зберегти"
 
 #: ../src/general/OptionsMenu.tscn:1094
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
+msgstr "За замовчуванням"
 
 #: ../src/general/OptionsMenu.tscn:1106
 msgid "RESET_TO_DEFAULTS"
@@ -1473,20 +1480,20 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1194
 msgid "SAVE_AND_CONTINUE"
-msgstr ""
+msgstr "Зберегти й продовжити"
 
 #: ../src/general/OptionsMenu.tscn:1203
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Відмінити й продовжити"
 
 #: ../src/general/OptionsMenu.tscn:1219
 msgid "CANCEL"
-msgstr ""
+msgstr "Скасувати"
 
 #: ../src/general/OptionsMenu.tscn:1231 ../src/general/OptionsMenu.tscn:1254
 #: ../src/general/OptionsMenu.tscn:1278
 msgid "ERROR"
-msgstr ""
+msgstr "Помилка"
 
 #: ../src/general/OptionsMenu.tscn:1240 ../src/general/OptionsMenu.tscn:1279
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
@@ -1494,45 +1501,45 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
-msgstr ""
+msgstr "Продовжити"
 
 #: ../src/general/PauseMenu.tscn:65
 msgid "SAVE_GAME"
-msgstr ""
+msgstr "Зберегти гру"
 
 #: ../src/general/PauseMenu.tscn:80
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2146
 msgid "STATISTICS"
-msgstr ""
+msgstr "Статистика"
 
 #: ../src/general/PauseMenu.tscn:87
 msgid "HELP"
-msgstr ""
+msgstr "Допомога"
 
 #: ../src/general/PauseMenu.tscn:101
 msgid "RETURN_TO_MENU"
-msgstr ""
+msgstr "Повернутись до меню"
 
 #: ../src/general/PauseMenu.tscn:108
 msgid "EXIT"
-msgstr ""
+msgstr "Вихід"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Млрд"
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Млн"
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
-msgstr ""
+msgstr "{0} Тис"
 
 #: ../src/gui_common/ChemicalEquation.cs:139
 #: ../src/gui_common/ChemicalEquation.cs:176
 msgid "PER_SECOND_SLASH"
-msgstr ""
+msgstr "/секунду"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:230
@@ -1541,7 +1548,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:969
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -2692,3 +2699,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+
+#: ../src/gui_common/ChemicalEquation.cs:298
+msgid "PROCESS_ENVIRONMENT_SEPARATOR"
+msgstr "у"
+
+#: ../src/gui_common/CreditsScroll.cs:377
+msgid "TRANSLATORS"
+msgstr "Перекладачі"

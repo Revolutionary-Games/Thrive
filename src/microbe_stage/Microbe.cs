@@ -78,7 +78,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private bool previousEngulfMode;
 
     [JsonProperty]
-    private Microbe hostileEngulfer;
+    private EntityReference<Microbe> hostileEngulfer = new EntityReference<Microbe>();
 
     [JsonProperty]
     private bool wasBeingEngulfed;
@@ -359,7 +359,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     public bool IsForPreviewOnly { get; set; }
 
     [JsonIgnore]
-    public Node SpawnedNode => this;
+    public Node EntityNode => this;
 
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
@@ -2153,21 +2153,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Check whether we should not be being engulfed anymore
-        if (hostileEngulfer != null)
+        var hostile = hostileEngulfer.Value;
+        if (hostile != null)
         {
-            try
+            // Dead things can't engulf us
+            if (hostile.Dead)
             {
-                // Dead things can't engulf us
-                if (hostileEngulfer.Dead)
-                {
-                    hostileEngulfer = null;
-                    IsBeingEngulfed = false;
-                }
-            }
-            catch (ObjectDisposedException)
-            {
-                // Something that's disposed can't engulf us
-                hostileEngulfer = null;
+                hostileEngulfer.Value = null;
                 IsBeingEngulfed = false;
             }
         }
@@ -2201,7 +2193,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // Apply engulf effect (which will cause damage in their process call) to the cells we are engulfing
         foreach (var microbe in attemptingToEngulf)
         {
-            microbe.hostileEngulfer = this;
+            microbe.hostileEngulfer.Value = this;
             microbe.IsBeingEngulfed = true;
         }
     }
@@ -2213,13 +2205,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         wasBeingEngulfed = false;
         IsBeingEngulfed = false;
 
-        if (hostileEngulfer != null)
+        if (hostileEngulfer.Value != null)
         {
             // Currently unused
             // hostileEngulfer.isCurrentlyEngulfing = false;
         }
 
-        hostileEngulfer = null;
+        hostileEngulfer.Value = null;
     }
 
     private void HandleOsmoregulation(float delta)
@@ -2282,8 +2274,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         if (Membrane.DissolveEffectValue >= 1)
         {
-            OnDestroyed();
-            this.DetachAndQueueFree();
+            this.DestroyDetachAndQueueFree();
         }
     }
 
@@ -2742,7 +2733,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void StartEngulfingTarget(Microbe microbe)
     {
         AddCollisionExceptionWith(microbe);
-        microbe.hostileEngulfer = this;
+        microbe.hostileEngulfer.Value = this;
         microbe.IsBeingEngulfed = true;
     }
 
@@ -2751,6 +2742,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (IsInstanceValid(microbe) && (Colony == null || Colony != microbe.Colony))
             RemoveCollisionExceptionWith(microbe);
 
-        microbe.hostileEngulfer = null;
+        microbe.hostileEngulfer.Value = null;
     }
 }
