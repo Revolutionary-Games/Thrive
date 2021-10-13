@@ -48,6 +48,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   Init can call _Ready if it hasn't been called yet
     /// </summary>
     private bool onReadyCalled;
+
     private bool onRemakeCalled;
     private bool onUnbindCalled;
 
@@ -1479,7 +1480,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         // Keep the colony members in place until the pili update.
         for (int i = 0; i < col.Count; i++)
+        {
             col[i].GlobalTransform = colonyChildrenTransform[i + 1];
+        }
+
         GlobalTransform = colonyChildrenTransform[0];
 
         // Wait for the pili of colony members to update to the true position
