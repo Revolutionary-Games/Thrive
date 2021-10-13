@@ -48,8 +48,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   Init can call _Ready if it hasn't been called yet
     /// </summary>
     private bool onReadyCalled;
-    private bool onRemakeCalled = false;
-    private bool onUnbindCalled = false;
+    private bool onRemakeCalled;
+    private bool onUnbindCalled;
 
     /// <summary>
     ///   The organelles in this microbe
@@ -1256,7 +1256,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             foreach (var member in colList)
             {
                 list.Add(member.ColonyParent);
-                
+
                 // Save the position of colony members parents before unbind
                 // Neded to remake the colony as it was before
                 if (Colony.Master.colonyChildrenTransform == null)
@@ -1264,8 +1264,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                     Colony.Master.colonyChildrenTransform = new List<Transform>();
                     Colony.Master.colonyChildrenTransform.Add(Colony.Master.GlobalTransform);
                 }
-                Colony.Master.colonyChildrenTransform.Add(member.GlobalTransform);
 
+                Colony.Master.colonyChildrenTransform.Add(member.GlobalTransform);
             }
 
             UnbindAll();
@@ -1471,21 +1471,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         foreach (var member in col)
         {
             foreach (var organelle in member.organelles)
+            {
                 if (organelle.HasComponent<PilusComponent>() && member.pilusPhysicsShapes.Count == 0)
                     sem = 1;
+            }
         }
 
         // Keep the colony members in place until the pili update.
-        for (int i = 0; i< col.Count; i++)
-            col[i].GlobalTransform = colonyChildrenTransform[i+1];
+        for (int i = 0; i < col.Count; i++)
+            col[i].GlobalTransform = colonyChildrenTransform[i + 1];
         GlobalTransform = colonyChildrenTransform[0];
 
         // Wait for the pili of colony members to update to the true position
         if (sem == 0)
         {
             MicrobeColony.CreateColonyForMicrobe(this);
-            foreach (var member in col){
-                Colony.AddToColony(member, member.ColonyParent); GD.Print("bind");}
+            foreach (var member in col)
+            {
+                Colony.AddToColony(member, member.ColonyParent);
+            }
+
             onRemakeCalled = true;
         }
     }
