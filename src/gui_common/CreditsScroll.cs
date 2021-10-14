@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Godot;
 
 public class CreditsScroll : Container
@@ -226,7 +227,7 @@ public class CreditsScroll : Container
         int offset = GetNextDynamicSectionOffset();
 
         var leadLabel = CreateDynamicPart(offset, TranslationServer.Translate("LEAD_DEVELOPERS"), SectionNameFont);
-        offset += (int)leadLabel.Control.RectSize.y + OffsetAfterSection;
+        offset += (int)leadLabel.Height + OffsetAfterSection;
 
         // Team leads
         if (credits.Developers.Current.TryGetValue(ProgrammingTeamName, out var members))
@@ -282,7 +283,7 @@ public class CreditsScroll : Container
         // Team members
         var currentLabel =
             CreateDynamicPart(offset, TranslationServer.Translate("CURRENT_DEVELOPERS"), SectionNameFont);
-        offset += (int)currentLabel.Control.RectSize.y + OffsetAfterSection;
+        offset += (int)currentLabel.Height + OffsetAfterSection;
 
         foreach (var pair in credits.Developers.Current)
         {
@@ -298,7 +299,7 @@ public class CreditsScroll : Container
         int offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("PAST_DEVELOPERS"), SectionNameFont);
-        offset += (int)currentLabel.Control.RectSize.y + OffsetAfterSection;
+        offset += (int)currentLabel.Height + OffsetAfterSection;
 
         foreach (var pair in credits.Developers.Past)
         {
@@ -314,10 +315,10 @@ public class CreditsScroll : Container
 
         var currentLabel =
             CreateDynamicPart(offset, TranslationServer.Translate("OUTSIDE_CONTRIBUTORS"), SectionNameFont);
-        offset += (int)currentLabel.Control.RectSize.y + 15;
+        offset += (int)currentLabel.Height + 15;
 
         var patreonPromptLabel = CreateDynamicPart(offset, TranslationServer.Translate("YOU_CAN_MAKE_PULL_REQUEST"));
-        offset += (int)patreonPromptLabel.Control.RectSize.y + OffsetAfterSection - 15;
+        offset += (int)patreonPromptLabel.Height + OffsetAfterSection - 15;
 
         foreach (var pair in credits.Developers.Outside)
         {
@@ -332,11 +333,11 @@ public class CreditsScroll : Container
         int offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("PATRONS"), SectionNameFont);
-        offset += (int)currentLabel.Control.RectSize.y + 15;
+        offset += (int)currentLabel.Height + 15;
 
         var patreonPromptLabel =
             CreateDynamicPart(offset, TranslationServer.Translate("YOU_CAN_SUPPORT_THRIVE_ON_PATREON"));
-        offset += (int)patreonPromptLabel.Control.RectSize.y + 35;
+        offset += (int)patreonPromptLabel.Height + 35;
 
         offset = CreateTeamNameList(offset, "VIP_PATRONS", credits.Patrons.VIPPatrons);
         offset = CreateTeamNameList(offset, "DEV_BUILD_PATRONS",
@@ -352,12 +353,12 @@ public class CreditsScroll : Container
         int offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("DONATIONS"), SectionNameFont);
-        offset += (int)currentLabel.Control.RectSize.y + OffsetAfterSection;
+        offset += (int)currentLabel.Height + OffsetAfterSection;
 
         foreach (var yearPair in credits.Donations)
         {
             var teamNameLabel = CreateDynamicPart(offset, yearPair.Key, TeamNameFont);
-            offset += (int)teamNameLabel.Control.RectSize.y + OffsetAfterSection;
+            offset += (int)teamNameLabel.Height + OffsetAfterSection;
 
             foreach (var monthPair in yearPair.Value)
             {
@@ -375,7 +376,7 @@ public class CreditsScroll : Container
         int offset = GetNextDynamicSectionOffset();
 
         var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("TRANSLATORS"), SectionNameFont);
-        offset += (int)currentLabel.Control.RectSize.y + OffsetAfterSection;
+        offset += (int)currentLabel.Height + OffsetAfterSection;
 
         // For now translators aren't separated by language as a lot of random people have done one or two edits
         // on most languages
@@ -390,10 +391,10 @@ public class CreditsScroll : Container
 
         var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("USED_LIBRARIES_LICENSES"),
             SectionNameFont);
-        offset += (int)currentLabel.Control.RectSize.y + OffsetAfterSection;
+        offset += (int)currentLabel.Height + OffsetAfterSection;
 
         var licenseTextLabel = CreateFileLoadedPart(offset, LicenseFile);
-        offset += (int)licenseTextLabel.Control.RectSize.y + ExtraOffsetAfterTeam;
+        offset += (int)licenseTextLabel.Height + ExtraOffsetAfterTeam;
 
         // This is purposefully not translatable
         var extraLicenseInfo = CreateDynamicPart(offset,
@@ -402,10 +403,10 @@ public class CreditsScroll : Container
             "to find the licenses.\n\nThrive assets are licensed under the\n" +
             "Creative Commons Attribution-ShareAlike 3.0 Unported License");
 
-        offset += (int)extraLicenseInfo.Control.RectSize.y + OffsetBeforeNextDynamicPart;
+        offset += (int)extraLicenseInfo.Height + OffsetBeforeNextDynamicPart;
 
         var assetLicenseText = CreateFileLoadedPart(offset, AssetsReadme);
-        offset += (int)assetLicenseText.Control.RectSize.y + ExtraOffsetAfterTeam;
+        offset += (int)assetLicenseText.Height + ExtraOffsetAfterTeam;
 
         // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
 #pragma warning disable 162
@@ -530,32 +531,29 @@ public class CreditsScroll : Container
             return CreateDynamicPart(offset, string.Join("\n", texts));
         }
 
-        List<List<string>> splittedTexts = new List<List<string>>(columns);
-        int column;
-        for (column = 0; column < columns; ++column)
-        {
-            splittedTexts.Add(new List<string>());
-        }
+        var splitTexts = Enumerable.Range(0, columns).Select(column => new StringBuilder()).ToList();
 
-        column = 0;
+        int columnIndex = 0;
         foreach (string text in texts)
         {
-            splittedTexts[column].Add(text);
-            column = ++column % columns;
+            splitTexts[columnIndex].AppendLine(text);
+            columnIndex = ++columnIndex % columns;
         }
 
         var hBox = new HBoxContainer
         {
-            RectMinSize = new Vector2(RectSize.x, 0),
+            // 0.7 == 15% shrink of middle spacing for 2 columns and move position to center.
+            RectPosition = new Vector2(columns == 2 ? RectSize.x * 0.15f : 0, 0),
+            RectMinSize = new Vector2(columns == 2 ? RectSize.x * 0.7f : RectSize.x, 0),
         };
 
-        for (column = 0; column < columns; ++column)
+        foreach (var columnText in splitTexts)
         {
             var label = new Label
             {
-                Text = string.Join("\n", string.Join("\n", splittedTexts[column])),
+                Text = columnText.ToString(),
                 Align = Label.AlignEnum.Center,
-                SizeFlagsHorizontal = 3, // Fill | Expand
+                SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
             };
 
             if (overrideFont != null)
@@ -589,13 +587,13 @@ public class CreditsScroll : Container
     private int CreateTeamNameList(int offset, string team, IEnumerable<string> people, int columns = 1)
     {
         var teamNameLabel = CreateDynamicPart(offset, GetTranslatedHeading(team), TeamNameFont);
-        offset += (int)teamNameLabel.Control.RectSize.y + OffsetAfterTeamName;
+        offset += (int)teamNameLabel.Height + OffsetAfterTeamName;
 
         // Combine the names to a single list for probably more efficiency
         // If past team leads need to be marked might need to use rich text label or some other approach there.
         // And this method might need to be split into separate implementations as not all places would need that.
         var memberLabel = CreateDynamicPart(offset, people, columns);
-        offset += (int)memberLabel.Control.RectSize.y + ExtraOffsetAfterTeam;
+        offset += (int)memberLabel.Height + ExtraOffsetAfterTeam;
 
         return offset;
     }
@@ -642,13 +640,13 @@ public class CreditsScroll : Container
 
         var teamNameLabel =
             CreateDynamicPart(offset, leadsList.Count > 1 ? leadHeadingPlural : leadHeading, TeamNameFont);
-        offset += (int)teamNameLabel.Control.RectSize.y + OffsetAfterTeamName;
+        offset += (int)teamNameLabel.Height + OffsetAfterTeamName;
 
         // Combine the names to a single list for probably more efficiency
         // If past team leads need to be marked might need to use rich text label or some other approach there.
         // And this method might need to be split into separate implementations as not all places would need that.
         var memberLabel = CreateDynamicPart(offset, string.Join("\n", leadsList));
-        offset += (int)memberLabel.Control.RectSize.y + ExtraOffsetAfterTeam;
+        offset += (int)memberLabel.Height + ExtraOffsetAfterTeam;
 
         return offset;
     }
@@ -675,7 +673,7 @@ public class CreditsScroll : Container
 
         foreach (var part in dynamicParts)
         {
-            var y = (int)(part.Control.RectPosition.y + part.Control.RectSize.y) - height;
+            var y = (int)(part.Top + part.Height) - height;
 
             if (y > offset)
                 offset = y;
@@ -694,7 +692,7 @@ public class CreditsScroll : Container
         {
             part.UpdatePosition(smoothOffset, height);
 
-            if (!part.HasBeenVisible && part.Control.RectPosition.y < height)
+            if (!part.HasBeenVisible && part.Top < height)
             {
                 part.HasBeenVisible = true;
 
@@ -702,7 +700,7 @@ public class CreditsScroll : Container
                     Invoke.Instance.Queue(part.OnBecomeVisible);
             }
 
-            if (part.Control.RectPosition.y + part.Control.RectSize.y + DestroyTopThreshold < 0)
+            if (part.Top + part.Height + DestroyTopThreshold < 0)
             {
                 destroyedDynamicParts.Add(part);
             }
@@ -734,6 +732,9 @@ public class CreditsScroll : Container
         public bool HasBeenVisible { get; set; }
 
         public Action OnBecomeVisible { get; set; }
+
+        public float Height => Control.RectSize.y;
+        public float Top => Control.RectPosition.y;
 
         // In the end nothing ended up using the set here, but it should work so it is kept here with a suppression
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
