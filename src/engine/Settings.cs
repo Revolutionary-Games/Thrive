@@ -702,7 +702,7 @@ public class Settings
     /// <summary>
     ///   Tries to return the best supported Godot locale match.
     ///   Godot locale is different from C# culture.
-    ///   e.g. fi_FI (Godot) to fi-FI (C#).
+    ///   Compare for example fi_FI (Godot) to fi-FI (C#).
     /// </summary>
     /// <param name="locale">locale to check</param>
     /// <returns>supported locale</returns>
