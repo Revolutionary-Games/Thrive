@@ -565,20 +565,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (targetPatch != null)
         {
             GD.Print("MicrobeEditor: applying player move to patch: ", TranslationServer.Translate(targetPatch.Name));
-            var playerSpecies = CurrentGame.GameWorld.PlayerSpecies;
-            var currentPatch = CurrentGame.GameWorld.Map.CurrentPatch;
-            var currentPopulation = currentPatch.GetSpeciesPopulation(playerSpecies);
-            var migrated = Math.Max(2, (long)(currentPopulation * Constants.PLAYER_MIGRATION_RATIO));
-
-            CurrentGame.GameWorld.PlayerSpecies.LastPlayerMigration =
-                new SpeciesMigration(currentPatch, targetPatch, migrated, true);
-
-            CurrentGame.GameWorld.SetSpeciesPopulationInPatch(playerSpecies, currentPatch,
-                currentPopulation - migrated);
-            CurrentGame.GameWorld.SetSpeciesPopulationInPatch(playerSpecies, targetPatch,
-                CurrentGame.GameWorld.GetSpeciesPopulationInPatch(playerSpecies, targetPatch) + migrated);
-
             CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
+
+            // Add the edited species to that patch to allow the species to gain population there
+            CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(editedSpecies, 0);
         }
 
         var stage = ReturnToStage;

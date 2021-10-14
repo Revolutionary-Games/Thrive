@@ -376,13 +376,8 @@ public class AutoEvoRun
 
                 // The player species doesn't get random mutations. And also doesn't
                 // spread automatically
-                if (speciesEntry.Key.PlayerSpecies && speciesEntry.Key.LastPlayerMigration != null)
+                if (speciesEntry.Key.PlayerSpecies)
                 {
-                    runSteps.Enqueue(new PlayerMigration(speciesEntry.Key, speciesEntry.Key.LastPlayerMigration));
-                    map.CurrentPatch.UpdateSpeciesPopulation(speciesEntry.Key,
-                        map.CurrentPatch.GetSpeciesPopulation(speciesEntry.Key) -
-                        speciesEntry.Key.LastPlayerMigration.Population);
-                    speciesEntry.Key.LastPlayerMigration = null;
                 }
                 else
                 {

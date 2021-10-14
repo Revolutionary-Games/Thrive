@@ -64,12 +64,6 @@ public abstract class Species : ICloneable
     [JsonProperty]
     public bool PlayerSpecies { get; private set; }
 
-    /// <summary>
-    ///   The last migration the player made. Gets applied on the next AutoEvo run. Only relevant for player species.
-    /// </summary>
-    [JsonProperty]
-    public SpeciesMigration LastPlayerMigration { get; set; }
-
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;
 

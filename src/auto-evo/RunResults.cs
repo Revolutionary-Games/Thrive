@@ -72,9 +72,6 @@
 
                 foreach (var spreadEntry in entry.Value.SpreadToPatches)
                 {
-                    if (spreadEntry.OnlyVisual)
-                        continue;
-
                     var from = world.Map.GetPatch(spreadEntry.From.ID);
                     var to = world.Map.GetPatch(spreadEntry.To.ID);
 
