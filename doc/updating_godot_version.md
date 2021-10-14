@@ -7,3 +7,7 @@ to be changed in the following files:
 - `doc/setup_instructions.md`
 - `scripts/godot_version.rb`
 - `docker/ci/Dockerfile`
+
+The CI system needs to also be updated (`CIConfiguration.yml`). That
+can only be done by Thrive team members. Instructions for that can be 
+found here: https://wiki.revolutionarygamesstudio.com/wiki/CI_Images

@@ -412,6 +412,17 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public Dictionary<Patch, (string summary, string externalEffects)> AutoEvoReports { get; set; }
 
+    [JsonIgnore]
+    private bool Ready
+    {
+        get => ready;
+        set
+        {
+            ready = value;
+            pauseMenu.GameLoading = !value;
+        }
+    }
+
     public override void _Ready()
     {
         ResolveNodeReferences();
@@ -582,7 +593,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public override void _Process(float delta)
     {
-        if (!ready)
+        if (!Ready)
         {
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
@@ -694,7 +705,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public void QuickSave()
     {
         // Can only save once the editor is ready
-        if (ready)
+        if (Ready)
         {
             GD.Print("quick saving microbe editor");
             SaveHelper.QuickSave(this);
@@ -1355,7 +1366,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // For now we only show a loading screen if auto-evo is not ready yet
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
-            ready = false;
+            Ready = false;
             LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
                 MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
@@ -2290,7 +2301,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     private void OnEditorReady()
     {
-        ready = true;
+        Ready = true;
         LoadingScreen.Instance.Hide();
 
         GD.Print("Elapsing time on editor entry");
@@ -2323,7 +2334,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void OnLoadedEditorReady()
     {
-        if (ready != true)
+        if (Ready != true)
             throw new InvalidOperationException("loaded editor isn't in the ready state");
 
         gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);

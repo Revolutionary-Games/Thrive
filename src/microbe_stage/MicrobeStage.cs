@@ -39,6 +39,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private GuidanceLine guidanceLine;
     private Vector3? guidancePosition;
     private PauseMenu pauseMenu;
+    private bool transitionFinished;
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -127,7 +128,15 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     ///   True once stage fade-in is complete
     /// </summary>
     [JsonIgnore]
-    public bool TransitionFinished { get; internal set; }
+    public bool TransitionFinished
+    {
+        get => transitionFinished;
+        internal set
+        {
+            transitionFinished = value;
+            pauseMenu.GameLoading = !transitionFinished;
+        }
+    }
 
     /// <summary>
     ///   True when transitioning to the editor
