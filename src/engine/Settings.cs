@@ -700,10 +700,12 @@ public class Settings
     }
 
     /// <summary>
-    ///   Tries to get the best supported local match.
+    ///   Tries to return the best supported Godot locale match.
+    ///   Godot locale is different from C# culture.
+    ///   e.g. fi_FI (Godot) to fi-FI (C#).
     /// </summary>
     /// <param name="locale">locale to check</param>
-    /// <returns>supported local</returns>
+    /// <returns>supported locale</returns>
     private static string GetSupportedLocale(string locale)
     {
         if (AvailableLocales.Contains(locale))
