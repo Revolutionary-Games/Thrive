@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-02 22:34+0200\n"
+"POT-Creation-Date: 2021-10-14 14:58+0200\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -19,334 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.4\n"
 "Generated-By: Babel 2.9.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
-"toksinan vakuolon). G por ŝalti englutan reĝimon."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Via ĉelo uzas ATP-on kiel energifonton, se ĝi finiĝos, vi mortos."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Por malfermi la redaktilon kaj reprodukti, vi devas kolekti Amoniakon "
-"(Oranĝa Nubo) kaj Fosfaton (Purpura Nubo)."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Vi ankaŭ povas engluti ĉelojn, bakteriojn, ferajn pecojn kaj ĉelajn pecojn "
-"pli malgrandajn ol vi premante G. Ĉi tio kostos aldonan ATP-on kaj "
-"malrapidigos vin. Ne forgesu premi G duan fojon por ĉesi engluti."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Osmoregado kostas ATP-ojn, kio signifas, ju pli granda estas via ĉelo, des "
-"pli da Mitokondrioj aŭ Metabolosomoj aŭ Rusticianinoj (aŭ citoplasmo, kiu "
-"faras Glikolizon) vi bezonas por eviti perdi ATP-on kiam vi estas senmova."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"Estas multaj Organetoj en la redaktilo por ke vi evoluu, permesante larĝan "
-"gamon de malsamaj ludstiloj."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"La diversaj kunmetitaj nuboj estas:\n"
-"\n"
-"Blanka - Glukozo\n"
-"Flava - Hidrogena Sulfido\n"
-"Oranĝa - Amoniako\n"
-"Purpura - Fosfato\n"
-"Rusta Bruno - Fero\n"
-"\n"
-"Glukozo produktas ATP-on"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"Hidrogena Sulfido povas esti konvertita je glukozo per kemoplastoj kaj "
-"kemosintezaj proteinoj. Fero povas esti transformita en ATP per "
-"rusticianino."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Por reproduktiĝi vi devas dividi ĉiun el viaj organetoj en du. Organetoj "
-"bezonas amoniakon kaj fosfaton por duiĝi."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Se la nombro de via loĝantaro iĝos nulo, vi formortos."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Sed se vi postvivos dudek generaciojn kun 300 aŭ pli loĝantoj, vi gajnas "
-"la ludon. Post kiam vi gajnas, aperas ŝprucfenestro, sed vi povas ludi "
-"plu, se vi volas."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Evoluu saĝe ĉar viaj konkurantoj evoluas kune kun vi. Ĉiufoje, kiam vi "
-"uzas la redaktilon, ili evoluas."
-
-#: ../simulation_parameters/common/help_texts.json:54
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
-"toksinan vakuolon). G por ŝalti englutan reĝimon."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokariotaj Strukturoj\n"
-"\n"
-"Metabolosomoj: Produktas ATP-ojn el glukozo\n"
-"\n"
-"Kemiosintezaj Proteinoj: Produktas duonon de la tuta glukozo el Hidrogena "
-"Sulfido kiel kemoplasto, sed ankaŭ plenumas glikolizon, plenas 1 "
-"Sesangulon\n"
-"\n"
-"Tilakoidoj: Produktas 1/3 de la kvanto de glukozo kiel normala "
-"kloroplasto, sed ankaŭ plenumas glikolizon, kaj plenas 1 Sesangulon\n"
-"\n"
-"Rusticyanin: Konvertas feron en ATP-ojn\n"
-"\n"
-"Nitrogenazo: Konvertas atmosferan nitrogenon kaj ATP-ojn en amoniakon "
-"malaerobe\n"
-"\n"
-"Citoplasmo: Havas stokan spacon kaj faras glikolizon (Produktas "
-"malgrandajn kvantojn de ATP)"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Eksteraj Organetoj\n"
-"\n"
-"Flagelo: Pli rapide movas vian ĉelon per konsumado de ATP\n"
-"\n"
-"Pilus: Povas esti uzata por bati aliajn ĉelojn"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membranaj Binditaj Organetoj\n"
-"\n"
-"Nukleo: Prenas 11 sesangulojn kaj permesas evoluon de membranligitaj "
-"organetoj. Kaj ankaŭ duobligas la grandecon de via ĉelo. (Evolueblas nur "
-"unufoje)\n"
-"\n"
-"Mitokondrio: Produktas ATP-ojn el glukozo kaj atmosfera O2. Multe pli "
-"efika ol citoplasmo\n"
-"\n"
-"Kloroplasto: Faras glukozon el sunlumo kaj atmosfera CO2\n"
-"\n"
-"Chememioplasto: Faras glukozon el Hidrogena Sulfido\n"
-"\n"
-"Nitrogenfiksanta plastido: Faras amoniakon de ATP kaj atmosfera Nitrogeno "
-"kaj Oksigeno\n"
-"\n"
-"Vakuolo: Konservas 15 kolektitajn komponaĵojn\n"
-"\n"
-"Toksinaj Vakuoloj: Produktas toksinojn (nomitajn OxyToxy NT-ojn)"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Ĉiu generacio, vi havas 100 mutaciajn punktojn (MP) por elspezi, kaj ĉiu "
-"ŝanĝo (aŭ mutacio) kostos certan kvanton de tiu MP. Aldono kaj forigo de "
-"organetoj kostas MP-ojn, tamen forigi organetojn kiu estis lokitaj en la "
-"nuna mutacia kunsido repagas MP-ojn por tiu organeto. Vi povas forigi "
-"organeton per dekstra klako sur ĝi. Vi povas turni viajn organetojn per A "
-"kaj D."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Ĉiufoje, kiam vi reproduktiĝas, vi eniros la Mikroban Redaktilon, kie vi "
-"povas ŝanĝi vian specion (aldonante, movante aŭ forigante organetojn) por "
-"pliigi la sukceson de via specio. Ĉiu vizito al la redaktoro en la Mikroba "
-"Scenejo reprezentas 100 milionojn da jaroj da evoluo."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Premu la malfaran butonon en la redaktilo por korekti eraron"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Amuza Fakto, La Didinio kaj Paramecio estas lernolibra ekzemplo de rilato "
-"de predantaj predoj, kiu estis studata de jardekoj, nun, ĉu vi estas la "
-"Didinio aŭ la Paramecio? Ĉu Predanto aŭ Predo?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Jen konsilo, toksinoj povas esti uzataj por forpeli aliajn toksinojn de "
-"vi, se vi estas sufiĉe rapida."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Jen konsilo, ke Osmoregado konsumas 1 ATP-on per sekundo por ĉiu sesangulo "
-"kiun vi havas. Ĉiu malplena sesangulo de citoplasmo generas ankaŭ 5 ATP-"
-"ojn per sekundo, kio signifas, ke se vi perdas ATP-ojn pro osmozregulacio, "
-"nur aldonu kelkajn malplenajn citoplasmajn sesangulojn aŭ forigu iujn "
-"organetojn."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Amuza Fakto: En la reala vivo prokariotoj havas ion nomatan "
-"Biokompartmentoj, kiuj funkcias kiel organetoj. Fakte ili nomiĝas "
-"Pluredraj organetoj."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-"Amuza Fakto: La metabolosomo estas tio, kion oni nomas Pluredra organeto."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Jen konsilo, foje plej bone estas nur forkuri de aliaj ĉeloj."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Jen konsilo, se ĉelo estas ĉirkaŭ duono de via grandeco, tiam vi povas "
-"engluti ĝin."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Jen konsilo, Bakterioj povas esti pli fortaj ol ili ŝajnas, ili eble "
-"aspektas malgrandaj, sed iuj el ili povas enkaŝiĝi en vin kaj mortigi vin "
-"tiel!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Jen konsilo: Vi povas ĉasi aliajn speciojn ĝis formorto, se vi ne sufiĉe "
-"zorgas, ili ankaŭ povas fari ĉi tion."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "FURIOZAJ AĴOJ!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Metala potencialo."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Tiuj bluaj ĉeloj tamen."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Jen konsilo, Biomoj estas pli ol nur malsamaj fonoj, la kunmetaĵoj en "
-"malsamaj biomoj foje generiĝas kun malsamaj rapidecoj."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Jen konsilo, Ju pli da flageloj vi havas, des pli rapide vi iras, sed ĝi "
-"kostas pli da ATP"
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Jen konsilo, vi povas engluti pecojn da fero aŭ da alia."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Jen konsilo, preparu antaŭ ol aldoni kernon. Tiuj aĵoj estas multekostaj! "
-"En prizorgado kaj antaŭkosto."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Amuza Fakto, ĉu vi sciis, ke ekzistas pli ol 8000 specioj de ciliatoj sur "
-"la planedo Tero?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Amuza Fakto: La Stentoro estas ciliato, kiu povas streĉi sin kaj kapti "
-"predon en simila al trumpeto buŝo, kiu allogas predon, generante "
-"akvofluojn kun cilioj."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Amuza Fakto, La Didinio estas ciliato, kiu ĉasas paramecion."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Amuza Fakto: La Amebo ĉasas kaj kaptas predojn per 'kruroj' el citoplasmo "
-"nomata pseŭdopodoj, ni volas havi tiujn en Thrive."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Jen konsilo: gardu sin de pli grandaj ĉeloj kaj grandaj bakterioj, ĉar ne "
-"estas amuze esti digestita, se ili manĝos vin."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"La teama gvidanto de Thrive kreis multajn kantojn, kiuj ankoraŭ ne estis "
-"aldonitaj al la ludo. Vi povas aŭdi ilin, aŭ spekti fluojn de li "
-"komponanta sur sia jutuba kanalo, Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Jen konsilo, se via ĉelo havas 150 sesangulojn, vi povas engluti la "
-"grandajn ferajn pecojn."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive estas simulado de fremda planedo, tial havas sencon, ke plej multaj "
-"bestoj, kiujn vi trovas, rilatos al unu aŭ du aliaj specioj pro evoluo "
-"okazanta ĉirkaŭ vi. Ni vidu, ĉu vi povas identigi ilin!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-"Amuze, La Thrive-teamo faras podkastojn de tempo al tempo, vi devas "
-"kontroli ilin!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Amuza Fakto, Thrive estas farita per la malfermitkoda Godot engine!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Amuza Fakto, Unu el la unuaj ludeblaj ludaj prototipoj estis farita per "
-"nia brava programisto, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -883,39 +555,39 @@ msgstr "Komenco"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
-#: ../src/auto-evo/RunResults.cs:223
+#: ../src/auto-evo/RunResults.cs:220
 msgid "POPULATION"
 msgstr "loĝantaro:"
 
-#: ../src/auto-evo/RunResults.cs:231
+#: ../src/auto-evo/RunResults.cs:228
 msgid "WENT_EXTINCT_IN"
 msgstr "formortis je"
 
-#: ../src/auto-evo/RunResults.cs:237
+#: ../src/auto-evo/RunResults.cs:234
 msgid "PREVIOUS"
 msgstr "antaŭa:"
 
-#: ../src/auto-evo/RunResults.cs:285
+#: ../src/auto-evo/RunResults.cs:282
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "havas mutacion"
 
-#: ../src/auto-evo/RunResults.cs:290
+#: ../src/auto-evo/RunResults.cs:287
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "genkodo:"
 
-#: ../src/auto-evo/RunResults.cs:301
+#: ../src/auto-evo/RunResults.cs:298
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "disvastiĝas al flikĵj:"
 
-#: ../src/auto-evo/RunResults.cs:310
+#: ../src/auto-evo/RunResults.cs:307
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} sendas: {1} loĝantaro de loko: {2}"
 
-#: ../src/auto-evo/RunResults.cs:329
+#: ../src/auto-evo/RunResults.cs:326
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "loĝantaro en j:"
 
-#: ../src/auto-evo/RunResults.cs:382
+#: ../src/auto-evo/RunResults.cs:379
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "formortis de la planedo"
 
@@ -2653,6 +2325,12 @@ msgstr "ludanto reproduktita"
 msgid "PLAYER_DIED"
 msgstr "ludanto mortis"
 
+#: ../src/microbe_stage/MicrobeStage.cs:650
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
+#, fuzzy
+msgid "PATCH_EXTINCTION"
+msgstr "formortis je"
+
 #: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "AT_CURSOR"
 msgstr "Ĉe Kursoro(montrilo):"
@@ -2768,12 +2446,12 @@ msgstr "Ĉelaj Procezoj"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Kunmetaĵaj Ekvilibro"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:600
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1359
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Ŝarĝante Mikrobredaktilon"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Atendante aŭtomata evolucion:"
 
@@ -3022,11 +2700,6 @@ msgstr ""
 "Same kiel 99% de ĉiuj specioj iam ajn ekzistintaj, via specio formortis. "
 "Aliaj plenigos vian niĉon kaj prosperos, sed tio ne estos vi. Vi estos "
 "forgesita, malsukcesa eksperimento de evolucio."
-
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
-#, fuzzy
-msgid "PATCH_EXTINCTION"
-msgstr "formortis je"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
 #, fuzzy
@@ -3565,6 +3238,282 @@ msgstr ""
 "(centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
+#~ "toksinan vakuolon). G por ŝalti englutan reĝimon."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Via ĉelo uzas ATP-on kiel energifonton, se ĝi finiĝos, vi mortos."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Por malfermi la redaktilon kaj reprodukti, vi devas kolekti Amoniakon "
+#~ "(Oranĝa Nubo) kaj Fosfaton (Purpura Nubo)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Vi ankaŭ povas engluti ĉelojn, bakteriojn, ferajn pecojn kaj ĉelajn "
+#~ "pecojn pli malgrandajn ol vi premante G. Ĉi tio kostos aldonan ATP-on "
+#~ "kaj malrapidigos vin. Ne forgesu premi G duan fojon por ĉesi engluti."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Osmoregado kostas ATP-ojn, kio signifas, ju pli granda estas via ĉelo, "
+#~ "des pli da Mitokondrioj aŭ Metabolosomoj aŭ Rusticianinoj (aŭ "
+#~ "citoplasmo, kiu faras Glikolizon) vi bezonas por eviti perdi ATP-on "
+#~ "kiam vi estas senmova."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Estas multaj Organetoj en la redaktilo por ke vi evoluu, permesante "
+#~ "larĝan gamon de malsamaj ludstiloj."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "La diversaj kunmetitaj nuboj estas:\n"
+#~ "\n"
+#~ "Blanka - Glukozo\n"
+#~ "Flava - Hidrogena Sulfido\n"
+#~ "Oranĝa - Amoniako\n"
+#~ "Purpura - Fosfato\n"
+#~ "Rusta Bruno - Fero\n"
+#~ "\n"
+#~ "Glukozo produktas ATP-on"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "Hidrogena Sulfido povas esti konvertita je glukozo per kemoplastoj kaj "
+#~ "kemosintezaj proteinoj. Fero povas esti transformita en ATP per "
+#~ "rusticianino."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "Por reproduktiĝi vi devas dividi ĉiun el viaj organetoj en du. "
+#~ "Organetoj bezonas amoniakon kaj fosfaton por duiĝi."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Se la nombro de via loĝantaro iĝos nulo, vi formortos."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "Sed se vi postvivos dudek generaciojn kun 300 aŭ pli loĝantoj, vi "
+#~ "gajnas la ludon. Post kiam vi gajnas, aperas ŝprucfenestro, sed vi "
+#~ "povas ludi plu, se vi volas."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "Evoluu saĝe ĉar viaj konkurantoj evoluas kune kun vi. Ĉiufoje, kiam vi "
+#~ "uzas la redaktilon, ili evoluas."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "W, A, S, D kaj muso por moviĝi. E por pafi OxyToxy NT-on (se vi havas "
+#~ "toksinan vakuolon). G por ŝalti englutan reĝimon."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokariotaj Strukturoj\n"
+#~ "\n"
+#~ "Metabolosomoj: Produktas ATP-ojn el glukozo\n"
+#~ "\n"
+#~ "Kemiosintezaj Proteinoj: Produktas duonon de la tuta glukozo el "
+#~ "Hidrogena Sulfido kiel kemoplasto, sed ankaŭ plenumas glikolizon, "
+#~ "plenas 1 Sesangulon\n"
+#~ "\n"
+#~ "Tilakoidoj: Produktas 1/3 de la kvanto de glukozo kiel normala "
+#~ "kloroplasto, sed ankaŭ plenumas glikolizon, kaj plenas 1 Sesangulon\n"
+#~ "\n"
+#~ "Rusticyanin: Konvertas feron en ATP-ojn\n"
+#~ "\n"
+#~ "Nitrogenazo: Konvertas atmosferan nitrogenon kaj ATP-ojn en amoniakon "
+#~ "malaerobe\n"
+#~ "\n"
+#~ "Citoplasmo: Havas stokan spacon kaj faras glikolizon (Produktas "
+#~ "malgrandajn kvantojn de ATP)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Eksteraj Organetoj\n"
+#~ "\n"
+#~ "Flagelo: Pli rapide movas vian ĉelon per konsumado de ATP\n"
+#~ "\n"
+#~ "Pilus: Povas esti uzata por bati aliajn ĉelojn"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membranaj Binditaj Organetoj\n"
+#~ "\n"
+#~ "Nukleo: Prenas 11 sesangulojn kaj permesas evoluon de membranligitaj "
+#~ "organetoj. Kaj ankaŭ duobligas la grandecon de via ĉelo. (Evolueblas "
+#~ "nur unufoje)\n"
+#~ "\n"
+#~ "Mitokondrio: Produktas ATP-ojn el glukozo kaj atmosfera O2. Multe pli "
+#~ "efika ol citoplasmo\n"
+#~ "\n"
+#~ "Kloroplasto: Faras glukozon el sunlumo kaj atmosfera CO2\n"
+#~ "\n"
+#~ "Chememioplasto: Faras glukozon el Hidrogena Sulfido\n"
+#~ "\n"
+#~ "Nitrogenfiksanta plastido: Faras amoniakon de ATP kaj atmosfera "
+#~ "Nitrogeno kaj Oksigeno\n"
+#~ "\n"
+#~ "Vakuolo: Konservas 15 kolektitajn komponaĵojn\n"
+#~ "\n"
+#~ "Toksinaj Vakuoloj: Produktas toksinojn (nomitajn OxyToxy NT-ojn)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Ĉiu generacio, vi havas 100 mutaciajn punktojn (MP) por elspezi, kaj "
+#~ "ĉiu ŝanĝo (aŭ mutacio) kostos certan kvanton de tiu MP. Aldono kaj "
+#~ "forigo de organetoj kostas MP-ojn, tamen forigi organetojn kiu estis "
+#~ "lokitaj en la nuna mutacia kunsido repagas MP-ojn por tiu organeto. Vi "
+#~ "povas forigi organeton per dekstra klako sur ĝi. Vi povas turni viajn "
+#~ "organetojn per A kaj D."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Ĉiufoje, kiam vi reproduktiĝas, vi eniros la Mikroban Redaktilon, kie "
+#~ "vi povas ŝanĝi vian specion (aldonante, movante aŭ forigante "
+#~ "organetojn) por pliigi la sukceson de via specio. Ĉiu vizito al la "
+#~ "redaktoro en la Mikroba Scenejo reprezentas 100 milionojn da jaroj da "
+#~ "evoluo."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Premu la malfaran butonon en la redaktilo por korekti eraron"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "Amuza Fakto, La Didinio kaj Paramecio estas lernolibra ekzemplo de "
+#~ "rilato de predantaj predoj, kiu estis studata de jardekoj, nun, ĉu vi "
+#~ "estas la Didinio aŭ la Paramecio? Ĉu Predanto aŭ Predo?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "Jen konsilo, toksinoj povas esti uzataj por forpeli aliajn toksinojn de "
+#~ "vi, se vi estas sufiĉe rapida."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "Jen konsilo, ke Osmoregado konsumas 1 ATP-on per sekundo por ĉiu "
+#~ "sesangulo kiun vi havas. Ĉiu malplena sesangulo de citoplasmo generas "
+#~ "ankaŭ 5 ATP-ojn per sekundo, kio signifas, ke se vi perdas ATP-ojn pro "
+#~ "osmozregulacio, nur aldonu kelkajn malplenajn citoplasmajn sesangulojn "
+#~ "aŭ forigu iujn organetojn."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "Amuza Fakto: En la reala vivo prokariotoj havas ion nomatan "
+#~ "Biokompartmentoj, kiuj funkcias kiel organetoj. Fakte ili nomiĝas "
+#~ "Pluredraj organetoj."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr ""
+#~ "Amuza Fakto: La metabolosomo estas tio, kion oni nomas Pluredra "
+#~ "organeto."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Jen konsilo, foje plej bone estas nur forkuri de aliaj ĉeloj."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr ""
+#~ "Jen konsilo, se ĉelo estas ĉirkaŭ duono de via grandeco, tiam vi povas "
+#~ "engluti ĝin."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "Jen konsilo, Bakterioj povas esti pli fortaj ol ili ŝajnas, ili eble "
+#~ "aspektas malgrandaj, sed iuj el ili povas enkaŝiĝi en vin kaj mortigi "
+#~ "vin tiel!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "Jen konsilo: Vi povas ĉasi aliajn speciojn ĝis formorto, se vi ne "
+#~ "sufiĉe zorgas, ili ankaŭ povas fari ĉi tion."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "FURIOZAJ AĴOJ!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Metala potencialo."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Tiuj bluaj ĉeloj tamen."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "Jen konsilo, Biomoj estas pli ol nur malsamaj fonoj, la kunmetaĵoj en "
+#~ "malsamaj biomoj foje generiĝas kun malsamaj rapidecoj."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "Jen konsilo, Ju pli da flageloj vi havas, des pli rapide vi iras, sed "
+#~ "ĝi kostas pli da ATP"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Jen konsilo, vi povas engluti pecojn da fero aŭ da alia."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "Jen konsilo, preparu antaŭ ol aldoni kernon. Tiuj aĵoj estas "
+#~ "multekostaj! En prizorgado kaj antaŭkosto."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr ""
+#~ "Amuza Fakto, ĉu vi sciis, ke ekzistas pli ol 8000 specioj de ciliatoj "
+#~ "sur la planedo Tero?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "Amuza Fakto: La Stentoro estas ciliato, kiu povas streĉi sin kaj kapti "
+#~ "predon en simila al trumpeto buŝo, kiu allogas predon, generante "
+#~ "akvofluojn kun cilioj."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Amuza Fakto, La Didinio estas ciliato, kiu ĉasas paramecion."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "Amuza Fakto: La Amebo ĉasas kaj kaptas predojn per 'kruroj' el "
+#~ "citoplasmo nomata pseŭdopodoj, ni volas havi tiujn en Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "Jen konsilo: gardu sin de pli grandaj ĉeloj kaj grandaj bakterioj, ĉar "
+#~ "ne estas amuze esti digestita, se ili manĝos vin."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "La teama gvidanto de Thrive kreis multajn kantojn, kiuj ankoraŭ ne "
+#~ "estis aldonitaj al la ludo. Vi povas aŭdi ilin, aŭ spekti fluojn de li "
+#~ "komponanta sur sia jutuba kanalo, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "Jen konsilo, se via ĉelo havas 150 sesangulojn, vi povas engluti la "
+#~ "grandajn ferajn pecojn."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "Thrive estas simulado de fremda planedo, tial havas sencon, ke plej "
+#~ "multaj bestoj, kiujn vi trovas, rilatos al unu aŭ du aliaj specioj pro "
+#~ "evoluo okazanta ĉirkaŭ vi. Ni vidu, ĉu vi povas identigi ilin!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr ""
+#~ "Amuze, La Thrive-teamo faras podkastojn de tempo al tempo, vi devas "
+#~ "kontroli ilin!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr ""
+#~ "Amuza Fakto, Thrive estas farita per la malfermitkoda Godot engine!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "Amuza Fakto, Unu el la unuaj ludeblaj ludaj prototipoj estis farita per "
+#~ "nia brava programisto, untrustedlife!"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Forigu organeton"

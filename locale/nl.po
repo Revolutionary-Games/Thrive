@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-02 22:34+0200\n"
+"POT-Creation-Date: 2021-10-14 14:58+0200\n"
 "PO-Revision-Date: 2021-09-08 14:51+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
@@ -19,361 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.9.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:"
-"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
-"input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. "
-"[thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. "
-"[thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en "
-"uit te zetten."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als "
-"energiebron, als het opraakt ga je dood."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"Om de editor te ontgrendelen en voort te planten moet je [thrive:compound "
-"type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type="
-"\"phosphates\"][/thrive:compound] (Paarse Wolk) verzamelen."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou opnemen "
-"door op [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit "
-"gebruikt extra [thrive:compound type=\"atp\"][/thrive:compound] en maakt "
-"je langzamer. Vergeet niet nog een keer op [thrive:input]g_toggle_engulf[/"
-"thrive:input] te drukken om te stoppen."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound]. Dat "
-"betekent dat hoe groter je cel is, hoe meer mitochondriën, metabolosomen "
-"of rusticyanine (of cytoplasma, dat aan glycolyse doet) je nodig hebt om "
-"te voorkomen dat je [thrive:compound type=\"atp\"][/thrive:compound] "
-"verliest als je stilstaat."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"Er zijn veel organellen in de editor om te evolueren, wat voor een brede "
-"selectie aan speelwijzen zorgt."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"De verschillende wolken met chemicaliën zijn:\n"
-"\n"
-"Wit - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Geel - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Oranje - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Paars - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Roestbruin - [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:"
-"compound type=\"atp\"][/thrive:compound]"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden "
-"omgezet naar [thrive:compound type=\"glucose\"][/thrive:compound] met "
-"chemoplasten en chemosynthesende eiwitten. [thrive:compound type=\"iron\"]"
-"[/thrive:compound] kan met rusticyanin worden omgezet in [thrive:compound "
-"type=\"atp\"][/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Om jezelf voort te planten moet je al je organellen in tweeën delen. "
-"Organellen hebben ammoniak en fosfaat nodig om in tweeën te splitsen."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Voor nu, als je populatie naar nul zakt, sterf je uit."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Maar als je voor twintig generaties met 300 populatie overleeft, win je "
-"deze versie van het spel. Nadat je hebt gewonnen kan je nog verder spelen "
-"als je dat wilt."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Wees gewaarschuwd voor je vijanden die ook evolueren. Elke keer als je in "
-"de editor komt, evolueren zij zich ook."
-
-#: ../simulation_parameters/common/help_texts.json:54
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Door te binden met andere cellen kan je een kolonie maken waar de cellen "
-"hun grondstoffen die ze absorberen en produceren delen. Om met een andere "
-"cel te kunnen binden heb je een bindings-middel organel nodig en tegen een "
-"cel aan bewegen in bindings-modus. Je kan alleen binden met cellen van "
-"jouw eigen soort. Je kan niet delen of de editor in gaan in een kolonie "
-"(voor nu). Om in de editor te komen moet je eerst de kolonie uit wanneer "
-"je genoeg chemicaliën hebt. Grote kolonies zijn de weg naar meercellige "
-"organismes (nog niet in het spel)."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Procaryote Structuren\n"
-"\n"
-"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] "
-"van [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Chemosynthese-eiwitten: Produceert half keer zoveel [thrive:compound type="
-"\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide"
-"\"][/thrive:compound] als een chemoplast, maar voert ook glycolise uit, en "
-"neemt 1 Hex in beslag\n"
-"\n"
-"Thylakoïden: Produceert 1/3 van de hoeveelheid [thrive:compound type="
-"\"glucose\"][/thrive:compound] dan een normale chloroplast, maar voert ook "
-"glycolise uit. Neemt 1 Hex in beslag\n"
-"\n"
-"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in "
-"[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Zet atmosferische stikstof en [thrive:compound type=\"atp\"][/"
-"thrive:compound] anaeroob om in [thrive:compound type=\"ammonia\"][/thrive:"
-"compound]\n"
-"\n"
-"Cytoplasma: Bevat opslagruimte en voert glycolyse uit (Produceert kleine "
-"hoeveelheden [thrive:compound type=\"atp\"][/thrive:compound])"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Externe Organellen\n"
-"\n"
-"Flagellum: Maakt bewegen sneller door [thrive:compound type=\"atp\"][/"
-"thrive:compound] te verbruiken\n"
-"\n"
-"Pilus: Kan worden gebruikt om andere cellen te steken"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membraangebonden Organellen\n"
-"\n"
-"Celkern: Neemt 11 hexen in beslag en geeft toegang tot andere "
-"membraangebonden organellen, ook verdubbelt de grootte van je cel (kan "
-"maar één keer geëvolueerd worden)\n"
-"\n"
-"Bindings Middel: Geeft de mogelijkheid om te binden met andere cellen\n"
-"\n"
-"Mitochondrion: Produceert [thrive:compound type=\"atp\"][/thrive:compound] "
-"van [thrive:compound type=\"glucose\"][/thrive:compound] en atmosferische "
-"O2 veel efficiënter dan cytoplasma\n"
-"\n"
-"Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] "
-"van zonlicht en atmosferische CO2\n"
-"\n"
-"Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] van "
-"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Stikstof Fixerende Plastide: Maakt [thrive:compound type=\"ammonia\"][/"
-"thrive:compound] van [thrive:compound type=\"atp\"][/thrive:compound], "
-"atmosferische Stikstof en Zuurstof\n"
-"\n"
-"Vacuole: Slaat vijftien verzamelde chemicaliën op\n"
-"\n"
-"Toxine vacuolen: Produceert toxine ( [thrive:compound type=\"oxytoxy\"][/"
-"thrive:compound] genoemd)"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke "
-"verandering (of mutatie) kost een hoeveelheid MP. Het toevoegen en "
-"verwijderen van organellen kost MP, maar het terug draaien van "
-"veranderingen kost niks als deze verandering in de huidige mutatie sessie "
-"plaats hebben gevonden. Je kan een organel verplaatsen of verwijderen met "
-"rechtsklik. Je kan organellen ook draaien met [thrive:input]e_rotate_left[/"
-"thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Telkens als je jezelf voortplant, open je de microbe editor waar je "
-"veranderingen aan je cel kan maken om je succes te verhogen. Elk bezoek "
-"aan de editor telt als 100 miljoen jaar."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Klik de undo-knop in de editor om een fout te corrigeren"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-"
-"prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een "
-"nakomeling van het roofdier of de prooi?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Een tip: toxine kan worden gebruikt om andere toxinen af te stoten als je "
-"snel genoeg bent."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke "
-"lege hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent dat "
-"als je ATP verliest door osmoregulatie je gewoon wat lege hexes aan "
-"cytoplasma moet toevoegen of wat organellen moet verwijderen."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Wist je dat in het echte leven prokaryoten iets hebben die "
-"biocompartementen worden genoemd? Ze gedragen zich als organellen en hun "
-"echte naam is veelvlakkig organel."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Wist je dat de metabolosoom een veelvlakkig organel is."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Een tip, soms is het beter om weg te rennen van andere cellen."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr ""
-"Een tip, als een cel de helft van jouw maat is, kan je die overspoelen."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit, "
-"maar sommigen van hen kunnen zich in je ingraven en je op die manier doden!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Een tip, je kan andere cellen uitroeien als je niet voorichtig bent. "
-"Anderen kunnen dat ook."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "WIEBELIGE DINGEN!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Smelt al het metaal."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Dat zijn wel blauwe cellen."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Een tip, biomen zijn meer dan andere achtergronden. De behoeften spawnen "
-"op verschillende manieren."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Een tip, hoe meer flagella je hebt, hoe sneller je gaat, vroom vroom, het "
-"kost wel veel meer ATP"
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"Tip, je kan stukken zoals ijzer of organellen van dode cellen overspoelen "
-"door op \"G\" te drukken."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Een tip, bereid je voor voordat je een kern plaatst. Ze zijn duur om te "
-"plaatsen en te onderhouden."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "Wist je dat er meer dan 8000 soorten ciliaat op Aarde zijn?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Wist je dat: Stentors zijn wimperdieren die zich uit te strekken en met "
-"een trompetachtige mond prooien vangen. Dit doen ze door waterstromingen "
-"te maken met hun trilharen en daarmee de prooi naar binnen zuigen."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
-"Wist je dat: Didinium is een trilhaardiertje die op pantoffeldieren jaagt."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Wist je dat: Amoeben jagen en vangen hun prooi met 'benen' van cytoplasma, "
-"genaamd pseudopodia of schijnvoetjes. Ooit willen we ze deze in Thrive."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Een tip, kijk uit voor grotere cellen en bacterien, want het is niet fijn "
-"om verteerd te worden, ze zullen je eten."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Het geluidsteam van Thrive heeft veel nummers gemaakt die nog niet in de "
-"game zitten. Je kan ze luisteren op het Youtube-kanaal Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Wist je dat: Als je cel 150 zeshoeken/velden groot is, dan kan je de grote "
-"ijzerklompen opslokken."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive is bedoelt als een simulatie van een buitenaardse planeet, waardoor "
-"het logisch is dat de meeste wezens die je vind verwant zijn aan één of "
-"twee andere soorten die zich door evolutie hebben aangepast, kijk of je ze "
-"kan herkennen!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Weetje, het team van Thrive doer regelmatic podcasts, luister ze!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Weetje, Thrive is gemaakt met de open-source Godot engine!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Weetje, de eerste speelbare prototypes waren gemaakt door untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -903,39 +548,39 @@ msgstr "Starten"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} populatie veranderd met {1} vanwege: {2}"
 
-#: ../src/auto-evo/RunResults.cs:223
+#: ../src/auto-evo/RunResults.cs:220
 msgid "POPULATION"
 msgstr "populatie:"
 
-#: ../src/auto-evo/RunResults.cs:231
+#: ../src/auto-evo/RunResults.cs:228
 msgid "WENT_EXTINCT_IN"
 msgstr "stierf uit in {0}"
 
-#: ../src/auto-evo/RunResults.cs:237
+#: ../src/auto-evo/RunResults.cs:234
 msgid "PREVIOUS"
 msgstr "vorige:"
 
-#: ../src/auto-evo/RunResults.cs:285
+#: ../src/auto-evo/RunResults.cs:282
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "heeft een mutatie"
 
-#: ../src/auto-evo/RunResults.cs:290
+#: ../src/auto-evo/RunResults.cs:287
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen code:"
 
-#: ../src/auto-evo/RunResults.cs:301
+#: ../src/auto-evo/RunResults.cs:298
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "verspreid naar patches:"
 
-#: ../src/auto-evo/RunResults.cs:310
+#: ../src/auto-evo/RunResults.cs:307
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} door de sturen: {1} populatie van patch: {2}"
 
-#: ../src/auto-evo/RunResults.cs:329
+#: ../src/auto-evo/RunResults.cs:326
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "populatie in patches:"
 
-#: ../src/auto-evo/RunResults.cs:382
+#: ../src/auto-evo/RunResults.cs:379
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "stierf uit op de planeet"
 
@@ -2476,6 +2121,12 @@ msgstr "speler reproduceerde"
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
 
+#: ../src/microbe_stage/MicrobeStage.cs:650
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
+#, fuzzy
+msgid "PATCH_EXTINCTION"
+msgstr "stierf uit in {0}"
+
 #: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "AT_CURSOR"
 msgstr "Bij Cursor:"
@@ -2591,12 +2242,12 @@ msgstr "Celprocessen"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:600
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1359
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe-editor Laden"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten op auto-evo:"
 
@@ -2838,11 +2489,6 @@ msgstr ""
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
-
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
-#, fuzzy
-msgid "PATCH_EXTINCTION"
-msgstr "stierf uit in {0}"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
 msgid "PATCH_EXTINCTION_BOX_TEXT"
@@ -3246,6 +2892,311 @@ msgstr "Microbe vrij bouwen"
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe vrij bouwen"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:"
+#~ "input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+#~ "input],[thrive:input]g_move_right[/thrive:input] en de muis om te "
+#~ "bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound "
+#~ "type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif "
+#~ "vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de "
+#~ "verzwelg-modus aan en uit te zetten."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als "
+#~ "energiebron, als het opraakt ga je dood."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Om de editor te ontgrendelen en voort te planten moet je [thrive:"
+#~ "compound type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:"
+#~ "compound type=\"phosphates\"][/thrive:compound] (Paarse Wolk) "
+#~ "verzamelen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou "
+#~ "opnemen door op [thrive:input]g_toggle_engulf[/thrive:input] te "
+#~ "drukken. Dit gebruikt extra [thrive:compound type=\"atp\"][/thrive:"
+#~ "compound] en maakt je langzamer. Vergeet niet nog een keer op [thrive:"
+#~ "input]g_toggle_engulf[/thrive:input] te drukken om te stoppen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound]. "
+#~ "Dat betekent dat hoe groter je cel is, hoe meer mitochondriën, "
+#~ "metabolosomen of rusticyanine (of cytoplasma, dat aan glycolyse doet) "
+#~ "je nodig hebt om te voorkomen dat je [thrive:compound type=\"atp\"][/"
+#~ "thrive:compound] verliest als je stilstaat."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Er zijn veel organellen in de editor om te evolueren, wat voor een "
+#~ "brede selectie aan speelwijzen zorgt."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "De verschillende wolken met chemicaliën zijn:\n"
+#~ "\n"
+#~ "Wit - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Geel - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Oranje - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Paars - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Roestbruin - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:"
+#~ "compound type=\"atp\"][/thrive:compound]"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden "
+#~ "omgezet naar [thrive:compound type=\"glucose\"][/thrive:compound] met "
+#~ "chemoplasten en chemosynthesende eiwitten. [thrive:compound type=\"iron"
+#~ "\"][/thrive:compound] kan met rusticyanin worden omgezet in [thrive:"
+#~ "compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "Om jezelf voort te planten moet je al je organellen in tweeën delen. "
+#~ "Organellen hebben ammoniak en fosfaat nodig om in tweeën te splitsen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Voor nu, als je populatie naar nul zakt, sterf je uit."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "Maar als je voor twintig generaties met 300 populatie overleeft, win je "
+#~ "deze versie van het spel. Nadat je hebt gewonnen kan je nog verder "
+#~ "spelen als je dat wilt."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "Wees gewaarschuwd voor je vijanden die ook evolueren. Elke keer als je "
+#~ "in de editor komt, evolueren zij zich ook."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "Door te binden met andere cellen kan je een kolonie maken waar de "
+#~ "cellen hun grondstoffen die ze absorberen en produceren delen. Om met "
+#~ "een andere cel te kunnen binden heb je een bindings-middel organel "
+#~ "nodig en tegen een cel aan bewegen in bindings-modus. Je kan alleen "
+#~ "binden met cellen van jouw eigen soort. Je kan niet delen of de editor "
+#~ "in gaan in een kolonie (voor nu). Om in de editor te komen moet je "
+#~ "eerst de kolonie uit wanneer je genoeg chemicaliën hebt. Grote kolonies "
+#~ "zijn de weg naar meercellige organismes (nog niet in het spel)."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Procaryote Structuren\n"
+#~ "\n"
+#~ "Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:"
+#~ "compound] van [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Chemosynthese-eiwitten: Produceert half keer zoveel [thrive:compound "
+#~ "type=\"glucose\"][/thrive:compound] uit [thrive:compound type="
+#~ "\"hydrogensulfide\"][/thrive:compound] als een chemoplast, maar voert "
+#~ "ook glycolise uit, en neemt 1 Hex in beslag\n"
+#~ "\n"
+#~ "Thylakoïden: Produceert 1/3 van de hoeveelheid [thrive:compound type="
+#~ "\"glucose\"][/thrive:compound] dan een normale chloroplast, maar voert "
+#~ "ook glycolise uit. Neemt 1 Hex in beslag\n"
+#~ "\n"
+#~ "Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om "
+#~ "in [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenase: Zet atmosferische stikstof en [thrive:compound type=\"atp"
+#~ "\"][/thrive:compound] anaeroob om in [thrive:compound type=\"ammonia\"]"
+#~ "[/thrive:compound]\n"
+#~ "\n"
+#~ "Cytoplasma: Bevat opslagruimte en voert glycolyse uit (Produceert "
+#~ "kleine hoeveelheden [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Externe Organellen\n"
+#~ "\n"
+#~ "Flagellum: Maakt bewegen sneller door [thrive:compound type=\"atp\"][/"
+#~ "thrive:compound] te verbruiken\n"
+#~ "\n"
+#~ "Pilus: Kan worden gebruikt om andere cellen te steken"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membraangebonden Organellen\n"
+#~ "\n"
+#~ "Celkern: Neemt 11 hexen in beslag en geeft toegang tot andere "
+#~ "membraangebonden organellen, ook verdubbelt de grootte van je cel (kan "
+#~ "maar één keer geëvolueerd worden)\n"
+#~ "\n"
+#~ "Bindings Middel: Geeft de mogelijkheid om te binden met andere cellen\n"
+#~ "\n"
+#~ "Mitochondrion: Produceert [thrive:compound type=\"atp\"][/thrive:"
+#~ "compound] van [thrive:compound type=\"glucose\"][/thrive:compound] en "
+#~ "atmosferische O2 veel efficiënter dan cytoplasma\n"
+#~ "\n"
+#~ "Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] "
+#~ "van zonlicht en atmosferische CO2\n"
+#~ "\n"
+#~ "Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] "
+#~ "van [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Stikstof Fixerende Plastide: Maakt [thrive:compound type=\"ammonia\"][/"
+#~ "thrive:compound] van [thrive:compound type=\"atp\"][/thrive:compound], "
+#~ "atmosferische Stikstof en Zuurstof\n"
+#~ "\n"
+#~ "Vacuole: Slaat vijftien verzamelde chemicaliën op\n"
+#~ "\n"
+#~ "Toxine vacuolen: Produceert toxine ( [thrive:compound type=\"oxytoxy\"]"
+#~ "[/thrive:compound] genoemd)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke "
+#~ "verandering (of mutatie) kost een hoeveelheid MP. Het toevoegen en "
+#~ "verwijderen van organellen kost MP, maar het terug draaien van "
+#~ "veranderingen kost niks als deze verandering in de huidige mutatie "
+#~ "sessie plaats hebben gevonden. Je kan een organel verplaatsen of "
+#~ "verwijderen met rechtsklik. Je kan organellen ook draaien met [thrive:"
+#~ "input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/"
+#~ "thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Telkens als je jezelf voortplant, open je de microbe editor waar je "
+#~ "veranderingen aan je cel kan maken om je succes te verhogen. Elk bezoek "
+#~ "aan de editor telt als 100 miljoen jaar."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Klik de undo-knop in de editor om een fout te corrigeren"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-"
+#~ "prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een "
+#~ "nakomeling van het roofdier of de prooi?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "Een tip: toxine kan worden gebruikt om andere toxinen af te stoten als "
+#~ "je snel genoeg bent."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke "
+#~ "lege hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent "
+#~ "dat als je ATP verliest door osmoregulatie je gewoon wat lege hexes aan "
+#~ "cytoplasma moet toevoegen of wat organellen moet verwijderen."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "Wist je dat in het echte leven prokaryoten iets hebben die "
+#~ "biocompartementen worden genoemd? Ze gedragen zich als organellen en "
+#~ "hun echte naam is veelvlakkig organel."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "Wist je dat de metabolosoom een veelvlakkig organel is."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Een tip, soms is het beter om weg te rennen van andere cellen."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr ""
+#~ "Een tip, als een cel de helft van jouw maat is, kan je die overspoelen."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "Tip: Bacteriën kunnen sterker zijn dan ze lijken. Ze zien er klein uit, "
+#~ "maar sommigen van hen kunnen zich in je ingraven en je op die manier "
+#~ "doden!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "Een tip, je kan andere cellen uitroeien als je niet voorichtig bent. "
+#~ "Anderen kunnen dat ook."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "WIEBELIGE DINGEN!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Smelt al het metaal."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Dat zijn wel blauwe cellen."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "Een tip, biomen zijn meer dan andere achtergronden. De behoeften "
+#~ "spawnen op verschillende manieren."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "Een tip, hoe meer flagella je hebt, hoe sneller je gaat, vroom vroom, "
+#~ "het kost wel veel meer ATP"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr ""
+#~ "Tip, je kan stukken zoals ijzer of organellen van dode cellen "
+#~ "overspoelen door op \"G\" te drukken."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "Een tip, bereid je voor voordat je een kern plaatst. Ze zijn duur om te "
+#~ "plaatsen en te onderhouden."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "Wist je dat er meer dan 8000 soorten ciliaat op Aarde zijn?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "Wist je dat: Stentors zijn wimperdieren die zich uit te strekken en met "
+#~ "een trompetachtige mond prooien vangen. Dit doen ze door "
+#~ "waterstromingen te maken met hun trilharen en daarmee de prooi naar "
+#~ "binnen zuigen."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr ""
+#~ "Wist je dat: Didinium is een trilhaardiertje die op pantoffeldieren "
+#~ "jaagt."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "Wist je dat: Amoeben jagen en vangen hun prooi met 'benen' van "
+#~ "cytoplasma, genaamd pseudopodia of schijnvoetjes. Ooit willen we ze "
+#~ "deze in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "Een tip, kijk uit voor grotere cellen en bacterien, want het is niet "
+#~ "fijn om verteerd te worden, ze zullen je eten."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "Het geluidsteam van Thrive heeft veel nummers gemaakt die nog niet in "
+#~ "de game zitten. Je kan ze luisteren op het Youtube-kanaal Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "Wist je dat: Als je cel 150 zeshoeken/velden groot is, dan kan je de "
+#~ "grote ijzerklompen opslokken."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "Thrive is bedoelt als een simulatie van een buitenaardse planeet, "
+#~ "waardoor het logisch is dat de meeste wezens die je vind verwant zijn "
+#~ "aan één of twee andere soorten die zich door evolutie hebben aangepast, "
+#~ "kijk of je ze kan herkennen!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Weetje, het team van Thrive doer regelmatic podcasts, luister ze!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Weetje, Thrive is gemaakt met de open-source Godot engine!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "Weetje, de eerste speelbare prototypes waren gemaakt door untrustedlife!"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Verwijder organellen"

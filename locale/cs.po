@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-02 22:34+0200\n"
+"POT-Creation-Date: 2021-10-14 14:58+0200\n"
 "PO-Revision-Date: 2021-04-20 08:07+0000\n"
 "Last-Translator: Pajoš <fractvival@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -19,359 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.8.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-"Pro pohyb použij myš a klávesy [thrive:input]g_move_forward[/thrive:input],"
-"[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/"
-"thrive:input],[thrive:input]g_move_right[/thrive:input]. Klávesa [thrive:"
-"input]g_fire_toxin[/thrive:input] k vystřelení [thrive:compound type="
-"\"oxytoxy\"]toxinu[/thrive:compound], pokud máš toxinovou vakuolu. Klávesa "
-"[thrive:input]g_toggle_engulf[/thrive:input] k zapnutí režimu pohlcení."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-"Tvá buňka používá [thrive:compound type=\"atp\"][/thrive:compound] jako "
-"zdroj energie, pokud ti dojde, zemřeš."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-"K odemknutí editoru a rozmnožování musíš shromáždit [thrive:compound type="
-"\"ammonia\"]amoniak[/thrive:compound](oranžový mrak) a [thrive:compound "
-"type=\"phosphates\"]fosfát[/thrive:compound] (fialový mrak)."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-"Stisknutím [thrive:input]g_toggle_engulf[/thrive:input] můžeš pohltit "
-"buňky, bakterie, železné kousky a kusy buněk, které jsou menší než ty. "
-"Tento proces však stojí dodatečné [thrive:compound type=\"atp\"][/thrive:"
-"compound] a zpomaluje. Nezapomeň stisknout [thrive:input]g_toggle_engulf[/"
-"thrive:input] znovu k zastavení tohoto procesu."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-"Osmoregulace stojí [thrive:compound type=\"atp\"][/thrive:compound], což "
-"znamená, že čím větší bude tvoje buňka, tím víc bude potřebovat "
-"Mitochondrií, Metabolomů nebo Rusticyaninu (nebo cytoplasmy, která provádí "
-"Glykolýzu), abys neztrácel(a) [thrive:compound type=\"atp\"][/thrive:"
-"compound] v době kdy stojíš."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-"V editoru je spousta Organel, které můžete vyvíjet. Dík tomu máte k "
-"dispozici obrovský počet herních stylů."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Různé barvy mračen jsou:\n"
-"\n"
-"Bílá - [thrive:compound type=\"glucose\"]Glukóza[/thrive:compound]\n"
-"Žlutá - [thrive:compound type=\"hydrogensulfide\"]Sirovodík[/thrive:"
-"compound]\n"
-"Oranžová - [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound]\n"
-"Fialová - [thrive:compound type=\"phosphates\"]Fosfáty[/thrive:compound]\n"
-"Rezavě hnědá - [thrive:compound type=\"iron\"]Železo[/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"]Glukóza[/thrive:compound] tvoří [thrive:"
-"compound type=\"atp\"]ATP[/thrive:compound]"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"]Sirovodík[/thrive:compound] lze "
-"přeměnit na [thrive:compound type=\"glucose\"]glukózu[/thrive:"
-"compound]pomocí chemoplastů a chemicky syntetizujících proteinů. [thrive:"
-"compound type=\"iron\"]Železo[/thrive:compound]lze přeměnit pomocí "
-"rusticyaninu na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-"Chceš-li zahájit rozmnožení, musíš rozdělit každou ze svých organel na "
-"dvě. Organely k rozdělení potřebují Amoniak (oranžová) a Fosfát (fialová)."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Nyní, pokud tvoje populace klesne na nulu, vyhyneš."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-"Pokud přežiješ dvacet generací s populací 300, vyhraješ hru. Po výhře ti "
-"vyskočí okénko, kde můžeš zvolit pokračování ve hře dle libosti."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-"Buď opatrný(á), protože tví konkurenti se vyvíjejí společně s tebou. "
-"Pokaždé, když vstoupíš do editoru, tak se vyvinou taktéž."
-
-#: ../simulation_parameters/common/help_texts.json:54
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-"Spojením s ostatními buňkami můžeš vytvořit kolonii, ve které buňky "
-"sdílejí sloučeniny, které absorbují a vytvářejí. Pro spojení s jinou "
-"buňkou musí vaše buňka obsahovat pojící organelu, kterou se jí dotknete po "
-"zapnutí spojovacího módu. Spojit se můžete pouze s buňkami vašeho druhu. "
-"Když jste v kolonii, nemůžete svou buňku dělit ani s ní vstoupit do "
-"editoru (prozatím). Pro vstup do editoru po nasbírání dostatku sloučenin "
-"nejdřív opusťte kolonii. Velké kolonie buněk jsou cestou k mnohobuněčným "
-"organismům (zatím nejsou ve hře)."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokaryotické struktury\n"
-"\n"
-"Metabolosomy: Produkují [thrive:compound type=\"atp\"][/thrive:compound] z "
-"[thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Chemosyntetizující proteiny: Produkují polovinu [thrive:compound type="
-"\"glucose\"][/thrive:compound] ze [thrive:compound type=\"hydrogensulfide"
-"\"][/thrive:compound] co chemoplast, ale také provádí glykolýzu, zabírají "
-"1 Hex\n"
-"\n"
-"Thylakoidy: Produkují 1/3 množství [thrive:compound type=\"glucose\"][/"
-"thrive:compound] jako normální chloroplast, ale také provádí glykolýzu, "
-"zabírají 1 Hex\n"
-"\n"
-"Rusticyanin: Převádí [thrive:compound type=\"iron\"][/thrive:compound] na "
-"[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenáza: Anaerobně převádí atmosférický dusík a [thrive:compound type="
-"\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:"
-"compound]\n"
-"\n"
-"Cytoplazma: Má úložný prostor a provádí glykolýzu (Produkuje malé množství "
-"[thrive:compound type=\"atp\"][/thrive:compound])"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Vnější organely\n"
-"\n"
-"Bičík: Umožní rychlejší pohyb buňky spotřebováváním [thrive:compound type="
-"\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Může být použit k bodnutí ostatních buněk"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membránově vázané organely\n"
-"\n"
-"Jádro: Zabírá 11 Hexů a umožňuje vývoj organel vázaných na membránu. "
-"Zdvojnásobuje velikost vaší buňky. (Může se vyvinout pouze jednou)\n"
-"\n"
-"Pojivové médium: Umožňuje spojení s dalšími buňkami\n"
-"\n"
-"Mitochondrie: Produkují ATP z glukózy a atmosférického kyslíku (O2). "
-"Mnohem efektivněji než cytoplazma\n"
-"\n"
-"Chloroplast: Vytváří glukózu ze slunečního záření a atmosférického oxidu "
-"uhličitého (CO2)\n"
-"\n"
-"Chemoplast: Vytváří glukózu ze sirovodíku\n"
-"\n"
-"Plastid fixující dusík: Vytváří amoniak z ATP a atmosférického dusíku a "
-"kyslíku\n"
-"\n"
-"Vakuola: Uchovává 15 nashromážděných sloučenin\n"
-"\n"
-"Vakuola s toxiny: Produkuje toxiny (nazývané [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound])"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-"Každou generaci máte k dispozici 100 bodů mutace (MP) a každá změna (nebo "
-"mutace) bude stát určitou částku MP. Přidání a odebrání organel stojí MP, "
-"avšak odebrání organel, které byly umístěny v aktuální relaci mutace, "
-"vrátí MP za tuto organelu. Organelu můžete přesunout nebo úplně odebrat "
-"tak, že na ni kliknete pravým tlačítkem a v rozbalovací nabídce vyberete "
-"příslušnou akci. Při umístění organel můžete k jejich natočení použít "
-"[thrive:input]e_rotate_left[/thrive:input] a [thrive:input]e_rotate_right[/"
-"thrive:input]."
-
-#: ../simulation_parameters/common/help_texts.json:78
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-"Vždy, když zahájíš reprodukci, vstoupíš do editoru mikrobů, kde můžeš "
-"provádět změny tvého druhu (přidáním, přesunutím nebo odstraněním organel) "
-"ke zvýšení úspěšnosti. Každá návštěva editoru v mikrobiální fázi "
-"představuje 100 milionů let evoluce."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr ""
-"Vpíjenka (Didinium) a Trepka (Paramecium) jsou učebnicovým příkladem "
-"vztahu predátora a kořisti, který byl studován po celá desetiletí. A co "
-"ty, jsi Didinium nebo Paramecium? Predátor nebo kořist?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-"Tip - Toxiny mohou být použity k odražení jiných toxinů letících na tebe, "
-"tedy pokud jsi dostatečně rychlý(á)."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr ""
-"Tip - Osmoregulace stojí 1 ATP/sek/Hex tvé buňky, každý prázdný Hex "
-"cytoplazmy generuje 5 ATP/sek, což znamená, že pokud ztrácíš ATP kvůli "
-"osmoregulaci, stačí přidat pár prázdných Hex cytoplazem nebo odstranit "
-"některé organely."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr ""
-"Víte, že prokaryoty mají v reálném světě něco, co se nazývá biokomponenty? "
-"Ty fungují jako organely a ve skutečnosti se nazývají polyhedrální "
-"organely."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Víte, že metabolosom je to, co se nazývá Polyhedrální organela?"
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Tip - Někdy je zkrátka lepší utéct od ostatních buněk."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "Tip - Pokud je buňka zhruba poloviční velikosti, můžete ji pohltit."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr ""
-"Tip - Bakterie můžou být silnější než se zdá, velikostně sice nevynikají, "
-"ale některé se do tebe dovedou zabořit a zabít tě!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr ""
-"Tip - Můžeš lovit ostatní druhy až do jejich vyhynutí, ale pokud nejsi "
-"dost opatrný(á), mohou zahubit oni tebe."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "VRTÍCÍ SE VĚCI!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Želízko k vypečení."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Mrkejte na ty modrý buňky."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr ""
-"Tip - Biomy jsou více než různé barvy pozadí, sloučeniny se v různých "
-"biomech objevují s různou četností."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr ""
-"Tip - Čím více bičíků máš, tím rychleji jedeš, vroom vroom, ovšem stojí to "
-"taky víc ATP"
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Tip - Můžeš spolknout kousky železa i jiné poživatiny."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr ""
-"Tip - Pořádně se před přidáním jádra připravte. Tyhle věci jsou hodně "
-"drahé! A to jak při nákupu, tak na údržbu."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "Víte, že nálevníků (Ciliata) je na Zemi víc než 8000 druhů?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr ""
-"Víte, že Mrskavka (Stentor) je nálevník, který se dokáže natáhnout a "
-"chytit kořist do úst podobné jakési trubce, která kořist přitahuje "
-"generováním vodních proudů pomocí řasinek?"
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Víte, že Vpíjenka (Didinum) je lovcem Trepek (Paramecia)?"
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-"Víte, že Měnavka (Amoeba) loví a chytá kořist pomocí „nohou“, vytvořených "
-"z cytoplazmy, zvaných pseudopody? Eventuálně je chceme do Thrive přidat."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-"Tip: Dávej pozor na větší buňky a velké bakterie, není příliš zábavné být "
-"\"vdechnut\" a stráven."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-"Vedoucí zvukového oddělení Thrive vytvořil spousty skladeb, které ještě "
-"nebyly přidány do hry. Můžete si je poslechnout, nebo se podívat na videa "
-"o jejich tvorbě na jeho Youtube kanálu Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-"Tip - Pokud je tvoje buňka velká 150 Hexů, můžeš pohltit velké železné "
-"kusy."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-"Thrive je zamýšlen jako simulátor mimozemské planety, proto má smysl, že "
-"většina tvorů, které najdete, bude příbuzná jednomu nebo dvěma dalším "
-"druhům kvůli vývoji, který se děje kolem vás. Zkuste zjistit, jestli je "
-"můžete identifikovat!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Tým Thrive dělá občas podcasty, měl bys je tu a tam zkouknout!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-"Hra Thrive je zamýšlena jako simulátor mimozemské planety, proto většina "
-"organizmů, které najdeš, bude podobná jednomu nebo dvěma dalším druhům ve "
-"vývoji, který se děje kolem tebe. Zjisti, jestli je dovedeš identifikovat!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-"Jeden z prvních hratelných prototypů hry vytvořil náš úžasný programátor, "
-"samotný untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -899,39 +546,39 @@ msgstr "Začínání"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Populace {0} se změnila o {1} z důvodu: {2}"
 
-#: ../src/auto-evo/RunResults.cs:223
+#: ../src/auto-evo/RunResults.cs:220
 msgid "POPULATION"
 msgstr "populace:"
 
-#: ../src/auto-evo/RunResults.cs:231
+#: ../src/auto-evo/RunResults.cs:228
 msgid "WENT_EXTINCT_IN"
 msgstr "vyhynul v {0}"
 
-#: ../src/auto-evo/RunResults.cs:237
+#: ../src/auto-evo/RunResults.cs:234
 msgid "PREVIOUS"
 msgstr "předchozí:"
 
-#: ../src/auto-evo/RunResults.cs:285
+#: ../src/auto-evo/RunResults.cs:282
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "má mutaci"
 
-#: ../src/auto-evo/RunResults.cs:290
+#: ../src/auto-evo/RunResults.cs:287
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "genový kód:"
 
-#: ../src/auto-evo/RunResults.cs:301
+#: ../src/auto-evo/RunResults.cs:298
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "rozšíření do místa:"
 
-#: ../src/auto-evo/RunResults.cs:310
+#: ../src/auto-evo/RunResults.cs:307
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} poslal(o): {1} populace z místa: {2}"
 
-#: ../src/auto-evo/RunResults.cs:329
+#: ../src/auto-evo/RunResults.cs:326
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "populace v místě:"
 
-#: ../src/auto-evo/RunResults.cs:382
+#: ../src/auto-evo/RunResults.cs:379
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "vyhynul na této planetě"
 
@@ -2574,6 +2221,12 @@ msgstr "hráč se rozmnožil"
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
+#: ../src/microbe_stage/MicrobeStage.cs:650
+#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
+#, fuzzy
+msgid "PATCH_EXTINCTION"
+msgstr "vyhynul v {0}"
+
 #: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "AT_CURSOR"
 msgstr "Na kurzoru:"
@@ -2689,12 +2342,12 @@ msgstr "Proces buňky"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balanc sloučenin"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:600
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1370
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1359
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:602
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čekání na automatickou evoluci:"
 
@@ -2940,11 +2593,6 @@ msgstr ""
 "Stejně jako 99% všech ostatních druhů co kdy existovaly, váš druh vyhynul. "
 "Ostatní budou pokračovat a prosperovat, ale vy to nebudete. Budete "
 "zapomenuti, zkrátka chybný experiment v evoluci."
-
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
-#, fuzzy
-msgid "PATCH_EXTINCTION"
-msgstr "vyhynul v {0}"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
 #, fuzzy
@@ -3460,6 +3108,310 @@ msgstr ""
 "\n"
 "K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro "
 "odpojení všech."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Pro pohyb použij myš a klávesy [thrive:input]g_move_forward[/thrive:"
+#~ "input],[thrive:input]g_move_left[/thrive:input],[thrive:"
+#~ "input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/"
+#~ "thrive:input]. Klávesa [thrive:input]g_fire_toxin[/thrive:input] k "
+#~ "vystřelení [thrive:compound type=\"oxytoxy\"]toxinu[/thrive:compound], "
+#~ "pokud máš toxinovou vakuolu. Klávesa [thrive:input]g_toggle_engulf[/"
+#~ "thrive:input] k zapnutí režimu pohlcení."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Tvá buňka používá [thrive:compound type=\"atp\"][/thrive:compound] jako "
+#~ "zdroj energie, pokud ti dojde, zemřeš."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "K odemknutí editoru a rozmnožování musíš shromáždit [thrive:compound "
+#~ "type=\"ammonia\"]amoniak[/thrive:compound](oranžový mrak) a [thrive:"
+#~ "compound type=\"phosphates\"]fosfát[/thrive:compound] (fialový mrak)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Stisknutím [thrive:input]g_toggle_engulf[/thrive:input] můžeš pohltit "
+#~ "buňky, bakterie, železné kousky a kusy buněk, které jsou menší než ty. "
+#~ "Tento proces však stojí dodatečné [thrive:compound type=\"atp\"][/"
+#~ "thrive:compound] a zpomaluje. Nezapomeň stisknout [thrive:"
+#~ "input]g_toggle_engulf[/thrive:input] znovu k zastavení tohoto procesu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Osmoregulace stojí [thrive:compound type=\"atp\"][/thrive:compound], "
+#~ "což znamená, že čím větší bude tvoje buňka, tím víc bude potřebovat "
+#~ "Mitochondrií, Metabolomů nebo Rusticyaninu (nebo cytoplasmy, která "
+#~ "provádí Glykolýzu), abys neztrácel(a) [thrive:compound type=\"atp\"][/"
+#~ "thrive:compound] v době kdy stojíš."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "V editoru je spousta Organel, které můžete vyvíjet. Dík tomu máte k "
+#~ "dispozici obrovský počet herních stylů."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Různé barvy mračen jsou:\n"
+#~ "\n"
+#~ "Bílá - [thrive:compound type=\"glucose\"]Glukóza[/thrive:compound]\n"
+#~ "Žlutá - [thrive:compound type=\"hydrogensulfide\"]Sirovodík[/thrive:"
+#~ "compound]\n"
+#~ "Oranžová - [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound]\n"
+#~ "Fialová - [thrive:compound type=\"phosphates\"]Fosfáty[/thrive:"
+#~ "compound]\n"
+#~ "Rezavě hnědá - [thrive:compound type=\"iron\"]Železo[/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"]Glukóza[/thrive:compound] tvoří "
+#~ "[thrive:compound type=\"atp\"]ATP[/thrive:compound]"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr ""
+#~ "[thrive:compound type=\"hydrogensulfide\"]Sirovodík[/thrive:compound] "
+#~ "lze přeměnit na [thrive:compound type=\"glucose\"]glukózu[/thrive:"
+#~ "compound]pomocí chemoplastů a chemicky syntetizujících proteinů. "
+#~ "[thrive:compound type=\"iron\"]Železo[/thrive:compound]lze přeměnit "
+#~ "pomocí rusticyaninu na [thrive:compound type=\"atp\"]ATP[/thrive:"
+#~ "compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr ""
+#~ "Chceš-li zahájit rozmnožení, musíš rozdělit každou ze svých organel na "
+#~ "dvě. Organely k rozdělení potřebují Amoniak (oranžová) a Fosfát "
+#~ "(fialová)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Nyní, pokud tvoje populace klesne na nulu, vyhyneš."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr ""
+#~ "Pokud přežiješ dvacet generací s populací 300, vyhraješ hru. Po výhře "
+#~ "ti vyskočí okénko, kde můžeš zvolit pokračování ve hře dle libosti."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr ""
+#~ "Buď opatrný(á), protože tví konkurenti se vyvíjejí společně s tebou. "
+#~ "Pokaždé, když vstoupíš do editoru, tak se vyvinou taktéž."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr ""
+#~ "Spojením s ostatními buňkami můžeš vytvořit kolonii, ve které buňky "
+#~ "sdílejí sloučeniny, které absorbují a vytvářejí. Pro spojení s jinou "
+#~ "buňkou musí vaše buňka obsahovat pojící organelu, kterou se jí dotknete "
+#~ "po zapnutí spojovacího módu. Spojit se můžete pouze s buňkami vašeho "
+#~ "druhu. Když jste v kolonii, nemůžete svou buňku dělit ani s ní vstoupit "
+#~ "do editoru (prozatím). Pro vstup do editoru po nasbírání dostatku "
+#~ "sloučenin nejdřív opusťte kolonii. Velké kolonie buněk jsou cestou k "
+#~ "mnohobuněčným organismům (zatím nejsou ve hře)."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokaryotické struktury\n"
+#~ "\n"
+#~ "Metabolosomy: Produkují [thrive:compound type=\"atp\"][/thrive:"
+#~ "compound] z [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Chemosyntetizující proteiny: Produkují polovinu [thrive:compound type="
+#~ "\"glucose\"][/thrive:compound] ze [thrive:compound type="
+#~ "\"hydrogensulfide\"][/thrive:compound] co chemoplast, ale také provádí "
+#~ "glykolýzu, zabírají 1 Hex\n"
+#~ "\n"
+#~ "Thylakoidy: Produkují 1/3 množství [thrive:compound type=\"glucose\"][/"
+#~ "thrive:compound] jako normální chloroplast, ale také provádí glykolýzu, "
+#~ "zabírají 1 Hex\n"
+#~ "\n"
+#~ "Rusticyanin: Převádí [thrive:compound type=\"iron\"][/thrive:compound] "
+#~ "na [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenáza: Anaerobně převádí atmosférický dusík a [thrive:compound "
+#~ "type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/"
+#~ "thrive:compound]\n"
+#~ "\n"
+#~ "Cytoplazma: Má úložný prostor a provádí glykolýzu (Produkuje malé "
+#~ "množství [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Vnější organely\n"
+#~ "\n"
+#~ "Bičík: Umožní rychlejší pohyb buňky spotřebováváním [thrive:compound "
+#~ "type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Může být použit k bodnutí ostatních buněk"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membránově vázané organely\n"
+#~ "\n"
+#~ "Jádro: Zabírá 11 Hexů a umožňuje vývoj organel vázaných na membránu. "
+#~ "Zdvojnásobuje velikost vaší buňky. (Může se vyvinout pouze jednou)\n"
+#~ "\n"
+#~ "Pojivové médium: Umožňuje spojení s dalšími buňkami\n"
+#~ "\n"
+#~ "Mitochondrie: Produkují ATP z glukózy a atmosférického kyslíku (O2). "
+#~ "Mnohem efektivněji než cytoplazma\n"
+#~ "\n"
+#~ "Chloroplast: Vytváří glukózu ze slunečního záření a atmosférického "
+#~ "oxidu uhličitého (CO2)\n"
+#~ "\n"
+#~ "Chemoplast: Vytváří glukózu ze sirovodíku\n"
+#~ "\n"
+#~ "Plastid fixující dusík: Vytváří amoniak z ATP a atmosférického dusíku a "
+#~ "kyslíku\n"
+#~ "\n"
+#~ "Vakuola: Uchovává 15 nashromážděných sloučenin\n"
+#~ "\n"
+#~ "Vakuola s toxiny: Produkuje toxiny (nazývané [thrive:compound type="
+#~ "\"oxytoxy\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr ""
+#~ "Každou generaci máte k dispozici 100 bodů mutace (MP) a každá změna "
+#~ "(nebo mutace) bude stát určitou částku MP. Přidání a odebrání organel "
+#~ "stojí MP, avšak odebrání organel, které byly umístěny v aktuální relaci "
+#~ "mutace, vrátí MP za tuto organelu. Organelu můžete přesunout nebo úplně "
+#~ "odebrat tak, že na ni kliknete pravým tlačítkem a v rozbalovací nabídce "
+#~ "vyberete příslušnou akci. Při umístění organel můžete k jejich natočení "
+#~ "použít [thrive:input]e_rotate_left[/thrive:input] a [thrive:"
+#~ "input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr ""
+#~ "Vždy, když zahájíš reprodukci, vstoupíš do editoru mikrobů, kde můžeš "
+#~ "provádět změny tvého druhu (přidáním, přesunutím nebo odstraněním "
+#~ "organel) ke zvýšení úspěšnosti. Každá návštěva editoru v mikrobiální "
+#~ "fázi představuje 100 milionů let evoluce."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr ""
+#~ "Vpíjenka (Didinium) a Trepka (Paramecium) jsou učebnicovým příkladem "
+#~ "vztahu predátora a kořisti, který byl studován po celá desetiletí. A co "
+#~ "ty, jsi Didinium nebo Paramecium? Predátor nebo kořist?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr ""
+#~ "Tip - Toxiny mohou být použity k odražení jiných toxinů letících na "
+#~ "tebe, tedy pokud jsi dostatečně rychlý(á)."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr ""
+#~ "Tip - Osmoregulace stojí 1 ATP/sek/Hex tvé buňky, každý prázdný Hex "
+#~ "cytoplazmy generuje 5 ATP/sek, což znamená, že pokud ztrácíš ATP kvůli "
+#~ "osmoregulaci, stačí přidat pár prázdných Hex cytoplazem nebo odstranit "
+#~ "některé organely."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr ""
+#~ "Víte, že prokaryoty mají v reálném světě něco, co se nazývá "
+#~ "biokomponenty? Ty fungují jako organely a ve skutečnosti se nazývají "
+#~ "polyhedrální organely."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "Víte, že metabolosom je to, co se nazývá Polyhedrální organela?"
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Tip - Někdy je zkrátka lepší utéct od ostatních buněk."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr ""
+#~ "Tip - Pokud je buňka zhruba poloviční velikosti, můžete ji pohltit."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr ""
+#~ "Tip - Bakterie můžou být silnější než se zdá, velikostně sice "
+#~ "nevynikají, ale některé se do tebe dovedou zabořit a zabít tě!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr ""
+#~ "Tip - Můžeš lovit ostatní druhy až do jejich vyhynutí, ale pokud nejsi "
+#~ "dost opatrný(á), mohou zahubit oni tebe."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "VRTÍCÍ SE VĚCI!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Želízko k vypečení."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Mrkejte na ty modrý buňky."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr ""
+#~ "Tip - Biomy jsou více než různé barvy pozadí, sloučeniny se v různých "
+#~ "biomech objevují s různou četností."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr ""
+#~ "Tip - Čím více bičíků máš, tím rychleji jedeš, vroom vroom, ovšem stojí "
+#~ "to taky víc ATP"
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Tip - Můžeš spolknout kousky železa i jiné poživatiny."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr ""
+#~ "Tip - Pořádně se před přidáním jádra připravte. Tyhle věci jsou hodně "
+#~ "drahé! A to jak při nákupu, tak na údržbu."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "Víte, že nálevníků (Ciliata) je na Zemi víc než 8000 druhů?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr ""
+#~ "Víte, že Mrskavka (Stentor) je nálevník, který se dokáže natáhnout a "
+#~ "chytit kořist do úst podobné jakési trubce, která kořist přitahuje "
+#~ "generováním vodních proudů pomocí řasinek?"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Víte, že Vpíjenka (Didinum) je lovcem Trepek (Paramecia)?"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr ""
+#~ "Víte, že Měnavka (Amoeba) loví a chytá kořist pomocí „nohou“, "
+#~ "vytvořených z cytoplazmy, zvaných pseudopody? Eventuálně je chceme do "
+#~ "Thrive přidat."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr ""
+#~ "Tip: Dávej pozor na větší buňky a velké bakterie, není příliš zábavné "
+#~ "být \"vdechnut\" a stráven."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr ""
+#~ "Vedoucí zvukového oddělení Thrive vytvořil spousty skladeb, které ještě "
+#~ "nebyly přidány do hry. Můžete si je poslechnout, nebo se podívat na "
+#~ "videa o jejich tvorbě na jeho Youtube kanálu Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr ""
+#~ "Tip - Pokud je tvoje buňka velká 150 Hexů, můžeš pohltit velké železné "
+#~ "kusy."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr ""
+#~ "Thrive je zamýšlen jako simulátor mimozemské planety, proto má smysl, "
+#~ "že většina tvorů, které najdete, bude příbuzná jednomu nebo dvěma "
+#~ "dalším druhům kvůli vývoji, který se děje kolem vás. Zkuste zjistit, "
+#~ "jestli je můžete identifikovat!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Tým Thrive dělá občas podcasty, měl bys je tu a tam zkouknout!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr ""
+#~ "Hra Thrive je zamýšlena jako simulátor mimozemské planety, proto "
+#~ "většina organizmů, které najdeš, bude podobná jednomu nebo dvěma dalším "
+#~ "druhům ve vývoji, který se děje kolem tebe. Zjisti, jestli je dovedeš "
+#~ "identifikovat!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr ""
+#~ "Jeden z prvních hratelných prototypů hry vytvořil náš úžasný "
+#~ "programátor, samotný untrustedlife!"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Odstranit organelu"
