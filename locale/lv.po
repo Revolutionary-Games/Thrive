@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-14 14:58+0200\n"
+"POT-Creation-Date: 2021-10-10 20:19+0200\n"
 "PO-Revision-Date: 2021-04-28 19:41+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -20,6 +20,367 @@ msgstr ""
 "<= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
 "X-Generator: Weblate 4.5.3\n"
 "Generated-By: Babel 2.9.0\n"
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:85
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr ""
+"W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
+"toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
+
+#: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:88
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr ""
+"Tava šūna izmanto ATP kā enerģijas avotu, ja tas beigsies, tava šūna mirs."
+
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:91
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr ""
+"Lai atbloķētu redaktoru un vairoties, tev jāsavāc amonjaku (oranžs "
+"mākonis) un fosfāts (purpurs mākonis)."
+
+#: ../simulation_parameters/common/help_texts.json:18
+#: ../simulation_parameters/common/help_texts.json:94
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr ""
+"Tu var arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, kas "
+"ir mazāki par tevi, nospiežot G. Tas maksās papildu ATP, kā arī tev "
+"palēninās. Neaizmirsti nospiest G otrreiz, lai pārtrauktu absorbēšanu."
+
+#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:97
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr ""
+"Osmoregulācija izmanto ATP. Tas nozīmē, ka, jo lielāka ir tava šūna, jo "
+"vairāk ATP ražojošu organoīdu tev ir nepieciešams, lai nezaudētu ATP, kad "
+"nekusties."
+
+#: ../simulation_parameters/common/help_texts.json:26
+#: ../simulation_parameters/common/help_texts.json:100
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr ""
+"Redaktorā ir daudz organoīdu, kurus vari attīstīt, pieļaujot daudz dažādu "
+"spēles stilu."
+
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Dažādi savienojumu mākoņi ir:\n"
+"\n"
+"Balti - glikoze\n"
+"Dzelteni - sērūdeņradis\n"
+"Oranži - amonjaks\n"
+"Purpuri - fosfāts\n"
+"Rūsas brūni - dzelzs\n"
+"\n"
+"Glikoze ražo ATP"
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:106
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr ""
+"Sērūdeņradi var pārveidot glikozē, izmantojot hemoplastus un "
+"hemosintezējošas olbaltumvielas. Ar rusticianīnu no dzelzs var ražot ATP."
+
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:109
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr ""
+"Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. "
+"Organoīdiem ir nepieciešams amonjaks un fosfāts, lai sadalītos."
+
+#: ../simulation_parameters/common/help_texts.json:42
+#: ../simulation_parameters/common/help_texts.json:103
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Pagaidām, ja tava populācija samazināsies līdz nullei, tu izmirsi."
+
+#: ../simulation_parameters/common/help_texts.json:46
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr ""
+"Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik "
+"tiek uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt "
+"spēlēt, kā vēlies."
+
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:112
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr ""
+"W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
+"toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
+
+#: ../simulation_parameters/common/help_texts.json:54
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
+"toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
+
+#: ../simulation_parameters/common/help_texts.json:62
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
+"glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī "
+"veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
+"daudzumos)"
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Ārējie organoīdi\n"
+"\n"
+"Vica: Pārvieto jūsu šūnu ātrāk, izmantojot ATP\n"
+"\n"
+"Pīluss: Var sadurt citas šūnas"
+
+#: ../simulation_parameters/common/help_texts.json:70
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
+"glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī "
+"veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
+"daudzumos)"
+
+#: ../simulation_parameters/common/help_texts.json:74
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
+"glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī "
+"veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
+"daudzumos)"
+
+#: ../simulation_parameters/common/help_texts.json:78
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr ""
+"Prokariotu struktūras\n"
+"\n"
+"Metabolosomas: ražo ATP no glikozes\n"
+"\n"
+"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
+"glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+"\n"
+"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī "
+"veic glikolīzi un aizņem 1 daļu\n"
+"\n"
+"Rusticianīns : pārvērš dzelzi ATP\n"
+"\n"
+"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+"\n"
+"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
+"daudzumos)"
+
+#: ../simulation_parameters/common/help_texts.json:119
+msgid "LOADING_TIP"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#: ../simulation_parameters/common/help_texts.json:126
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_1"
+msgstr ""
+"Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
+"biomos dažreiz parādās ar dažādiem biežumiem."
+
+#: ../simulation_parameters/common/help_texts.json:129
+msgid "EASTEREGG_MESSAGE_2"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:132
+msgid "EASTEREGG_MESSAGE_3"
+msgstr ""
+"Padoms: Osmoregulācija maksā 1 ATP sekundē par daļu tavā šūnā, katra tukšā "
+"citoplazmas daļa rada 5 ATP sekundē, kas nozīmē, ka, ja tu zaudē ATP "
+"osmoregulācijas dēļ, vienkārši pievieno vairāk tukšu citoplazmas daļu vai "
+"noņem dažus organoīdus."
+
+#: ../simulation_parameters/common/help_texts.json:135
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_4"
+msgstr ""
+"Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā vairāk "
+"ATP"
+
+#: ../simulation_parameters/common/help_texts.json:138
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_5"
+msgstr "Padoms: tu vari absorbēt dzelzs gabalus un arī citus gabalus."
+
+#: ../simulation_parameters/common/help_texts.json:141
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "Padoms: dažreiz labākā rīcība ir vienkārši bēgt no citām šūnām."
+
+#: ../simulation_parameters/common/help_texts.json:144
+msgid "EASTEREGG_MESSAGE_7"
+msgstr ""
+"Padoms: tu vari absorbēt šūnu, ja tā ir aptuveni puse no tavas šūnas "
+"lieluma."
+
+#: ../simulation_parameters/common/help_texts.json:147
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_8"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:150
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_9"
+msgstr "Interesants fakts: Didinijs ir infuzorija, kas medī paramecijus."
+
+#: ../simulation_parameters/common/help_texts.json:153
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_10"
+msgstr ""
+"Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
+"biomos dažreiz parādās ar dažādiem biežumiem."
+
+#: ../simulation_parameters/common/help_texts.json:156
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_11"
+msgstr ""
+"Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
+"biomos dažreiz parādās ar dažādiem biežumiem."
+
+#: ../simulation_parameters/common/help_texts.json:159
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_12"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:162
+msgid "EASTEREGG_MESSAGE_13"
+msgstr ""
+"Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
+"biomos dažreiz parādās ar dažādiem biežumiem."
+
+#: ../simulation_parameters/common/help_texts.json:165
+msgid "EASTEREGG_MESSAGE_14"
+msgstr ""
+"Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā vairāk "
+"ATP"
+
+#: ../simulation_parameters/common/help_texts.json:168
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "Padoms: tu vari absorbēt dzelzs gabalus un arī citus gabalus."
+
+#: ../simulation_parameters/common/help_texts.json:171
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_16"
+msgstr "Padoms: dažreiz labākā rīcība ir vienkārši bēgt no citām šūnām."
+
+#: ../simulation_parameters/common/help_texts.json:174
+msgid "EASTEREGG_MESSAGE_17"
+msgstr ""
+"Interesants fakts: vai zināji, ka uz Zemes ir vairāk nekā 8000 infuzoriju "
+"veidu?"
+
+#: ../simulation_parameters/common/help_texts.json:177
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_18"
+msgstr ""
+"Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
+"biomos dažreiz parādās ar dažādiem biežumiem."
+
+#: ../simulation_parameters/common/help_texts.json:180
+msgid "EASTEREGG_MESSAGE_19"
+msgstr "Interesants fakts: Didinijs ir infuzorija, kas medī paramecijus."
+
+#: ../simulation_parameters/common/help_texts.json:183
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_20"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:186
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_21"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:189
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_22"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:192
+msgid "EASTEREGG_MESSAGE_23"
+msgstr ""
+"Padoms: ja tavā šūnā ir 150 daļas, tā var absorbēt lielus dzelzs gabalus."
+
+#: ../simulation_parameters/common/help_texts.json:195
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_24"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:198
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_25"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:201
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_26"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
+
+#: ../simulation_parameters/common/help_texts.json:204
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_27"
+msgstr ""
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -50,17 +411,17 @@ msgid "ABILITIES"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2076
+#: ../src/microbe_stage/MicrobeStage.tscn:2110
 msgid "FIRE_TOXIN"
 msgstr "Šaut toksīnus"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2065
+#: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
 msgstr "Pārslēgt absorbēšanas režīmu"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2086
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Pārslēgt absorbēšanas režīmu"
@@ -91,7 +452,7 @@ msgid "ZOOM_IN"
 msgstr "Pietuvināt"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:499
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:551
 msgid "EDITOR"
 msgstr "Redaktors"
 
@@ -353,58 +714,58 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1272
-#: ../src/microbe_stage/gui/PatchPanel.tscn:664
+#: ../src/microbe_stage/MicrobeStage.tscn:1273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3042
 msgid "AMMONIA"
 msgstr "Amonjaks"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1326
-#: ../src/microbe_stage/gui/PatchPanel.tscn:735
+#: ../src/microbe_stage/MicrobeStage.tscn:1327
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3113
 msgid "PHOSPHATE"
 msgstr "Fosfāti"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1380
-#: ../src/microbe_stage/gui/PatchPanel.tscn:629
+#: ../src/microbe_stage/MicrobeStage.tscn:1381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sērūdeņradis"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1218
-#: ../src/microbe_stage/gui/PatchPanel.tscn:699
+#: ../src/microbe_stage/MicrobeStage.tscn:1219
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3077
 msgid "GLUCOSE"
 msgstr "Glikoze"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1566
+#: ../src/microbe_stage/MicrobeStage.tscn:1567
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1434
-#: ../src/microbe_stage/gui/PatchPanel.tscn:770
+#: ../src/microbe_stage/MicrobeStage.tscn:1435
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
 msgid "IRON"
 msgstr "Dzelzs"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/gui/PatchPanel.tscn:465
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
 msgid "OXYGEN"
 msgstr "Skābeklis"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/gui/PatchPanel.tscn:519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2897
 msgid "CARBON_DIOXIDE"
 msgstr "Ogļskābā gāze"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/gui/PatchPanel.tscn:492
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2870
 msgid "NITROGEN"
 msgstr "Slāpeklis"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3473
-#: ../src/microbe_stage/gui/PatchPanel.tscn:345
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
 msgid "SUNLIGHT"
 msgstr "Saules gaisma"
 
@@ -548,43 +909,43 @@ msgstr ""
 msgid "STARTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:280
+#: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:220
+#: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
 msgstr "populācija:"
 
-#: ../src/auto-evo/RunResults.cs:228
+#: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:234
+#: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:282
+#: ../src/auto-evo/RunResults.cs:248
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:287
+#: ../src/auto-evo/RunResults.cs:253
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:298
+#: ../src/auto-evo/RunResults.cs:264
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:307
+#: ../src/auto-evo/RunResults.cs:273
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:326
+#: ../src/auto-evo/RunResults.cs:292
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:379
+#: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
@@ -1070,7 +1431,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Atpakaļ"
@@ -1083,285 +1444,334 @@ msgstr ""
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:803
+#: ../src/general/OptionsMenu.cs:842
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:843
+#: ../src/general/OptionsMenu.cs:882
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:847
+#: ../src/general/OptionsMenu.cs:886
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:851
+#: ../src/general/OptionsMenu.cs:890
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Palīdziet tulkot spēli"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:137
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:148
 msgid "SOUND"
 msgstr "Audio"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:159
 msgid "PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:170
 msgid "INPUTS"
 msgstr "Ievade"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "Vertikālā sinhronizācija"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "Pilnekrāna režīms"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Vairāku paraugu kropļojumnovērse:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
+msgid "DISABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "TWO_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "Peles labā poga"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "SIXTEEN_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "Izšķirtspēja:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "Augstākais FPS:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Krāsu korekcija krāsu aklumam:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
+msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "Hromatiskā aberācija:"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:398
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Ārējie efekti:"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424
 msgid "MASTER_VOLUME"
 msgstr "Skaļums"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:451 ../src/general/OptionsMenu.tscn:492
+#: ../src/general/OptionsMenu.tscn:525 ../src/general/OptionsMenu.tscn:558
+#: ../src/general/OptionsMenu.tscn:591
 msgid "MUTE"
 msgstr "Izslēgt skaņu"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:465
 msgid "MUSIC_VOLUME"
 msgstr "Mūzikas skaļums"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:498
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:531
 msgid "SFX_VOLUME"
 msgstr "SFX skaļums"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI_VOLUME"
 msgstr "Interfeisa skaļums"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:609
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:637
 msgid "LANGUAGE"
 msgstr "Valoda:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:655 ../src/general/OptionsMenu.tscn:1217
 msgid "RESET"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:673
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Palīdziet tulkot spēli"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:699
 msgid "COMPOUND_CLOUDS"
 msgstr "Savienojumu mākonis"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:714
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Mākoņa simulācijas minimālais\n"
 "intervāls:"
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:721 ../src/general/OptionsMenu.tscn:763
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:756
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Mākoņa izšķirtspējas dalītājs:"
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:798
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:818
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "Atlasīts:"
 
-#: ../src/general/OptionsMenu.tscn:828
+#: ../src/general/OptionsMenu.tscn:835
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Saglabāt un turpināt"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:850
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:862
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:875
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:976
 msgid "RESET_INPUTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1004
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1022
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automātiski saglabāt progresu spēles laikā"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:1033
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Automātisko saglabāšanas failu daudzums:"
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Ātru saglabāšanas failu daudzums:"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Rādīt tutoriālus (jaunās spēlēs)"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Rādīt tutoriālus (pašreizējā spēlē)"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1111
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Izmantot pielāgotu lietotājvārdu"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "CUSTOM_USERNAME"
 msgstr "Pielāgots lietotājvards:"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Atvērt ekrānuzņēmumu mapi"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1168
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Atvērt logu mapi"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1178
+msgid "JSON_DEBUG_MODE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Saglabāt"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1246
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1281
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1324
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SAVE_AND_CONTINUE"
 msgstr "Saglabāt un turpināt"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1355
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Atlaist un turpināt"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1371
 msgid "CANCEL"
 msgstr "Atcelt"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1383 ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "ERROR"
 msgstr "Kļūda"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1392 ../src/general/OptionsMenu.tscn:1431
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1440
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Atvērt ekrānuzņēmumu mapi"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
@@ -1374,7 +1784,7 @@ msgid "SAVE_GAME"
 msgstr "Saglabāt spēli"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2096
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2147
 msgid "STATISTICS"
 msgstr "Statistika"
 
@@ -1413,10 +1823,10 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:633
-#: ../src/microbe_stage/PatchPanel.cs:222
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:436
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:704
+#: ../src/microbe_stage/MicrobeHUD.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -1512,18 +1922,6 @@ msgstr ""
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:341
-msgid "VIP_PATRONS"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:342
-msgid "DEV_BUILD_PATRONS"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:344
-msgid "SUPPORTER_PATRONS"
-msgstr ""
-
 #: ../src/gui_common/CreditsScroll.cs:354
 #, fuzzy
 msgid "DONATIONS"
@@ -1540,6 +1938,106 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:485
 msgid "THANKS_FOR_PLAYING"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:494
+msgid "PROGRAMMING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:495
+msgid "THEORY_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:496
+#, fuzzy
+msgid "GRAPHICS_TEAM"
+msgstr "Grafika"
+
+#: ../src/gui_common/CreditsScroll.cs:497
+#, fuzzy
+msgid "SOUND_TEAM"
+msgstr "Audio"
+
+#: ../src/gui_common/CreditsScroll.cs:498
+msgid "OUTREACH_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:499
+msgid "GAME_DESIGN_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:500
+msgid "TESTING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:501
+msgid "PROJECT_MANAGEMENT_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:502
+msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:503
+msgid "VIP_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:504
+msgid "DEV_BUILD_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:505
+msgid "SUPPORTER_PATRONS"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:506
+msgid "JANUARY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:507
+#, fuzzy
+msgid "FEBRUARY"
+msgstr "Grīva"
+
+#: ../src/gui_common/CreditsScroll.cs:508
+msgid "MARCH"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:509
+msgid "APRIL"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:510
+msgid "MAY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:511
+msgid "JUNE"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:512
+msgid "JULY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:513
+msgid "AUGUST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:514
+msgid "SEPTEMBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:515
+msgid "OCTOBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:516
+#, fuzzy
+msgid "NOVEMBER"
+msgstr "Kustība"
+
+#: ../src/gui_common/CreditsScroll.cs:517
+msgid "DECEMBER"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:45
@@ -1989,8 +2487,8 @@ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
-#: ../src/microbe_stage/gui/PatchPanel.tscn:282
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Temperatūra"
 
@@ -2042,27 +2540,21 @@ msgstr "Spēlētāja šūna"
 msgid "PLAYER_DUPLICATE"
 msgstr "Spēlētāja šūna"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:702
+#: ../src/microbe_stage/MicrobeHUD.cs:672
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:752
+#: ../src/microbe_stage/MicrobeHUD.cs:722
 msgid "PLAYER_CELL"
 msgstr "Spēlētāja šūna"
 
-#: ../src/microbe_stage/MicrobeStage.cs:517
+#: ../src/microbe_stage/MicrobeStage.cs:489
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:638
+#: ../src/microbe_stage/MicrobeStage.cs:610
 msgid "PLAYER_DIED"
 msgstr ""
-
-#: ../src/microbe_stage/MicrobeStage.cs:650
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
-#, fuzzy
-msgid "PATCH_EXTINCTION"
-msgstr "Spēlētāja šūna"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "AT_CURSOR"
@@ -2080,34 +2572,63 @@ msgstr "Savienojumi:"
 msgid "SPECIES_COLON"
 msgstr "Suga:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:659
+#: ../src/microbe_stage/MicrobeStage.tscn:660
 msgid "ENVIRONMENT"
 msgstr "Vide"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:926
+#: ../src/microbe_stage/MicrobeStage.tscn:927
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:982
+#: ../src/microbe_stage/MicrobeStage.tscn:983
 msgid "LIGHT"
 msgstr "Gaisma"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1037
+#: ../src/microbe_stage/MicrobeStage.tscn:1038
 msgid "PRESSURE_SHORT"
 msgstr "Spied."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1120
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
-#: ../src/microbe_stage/gui/PatchPanel.tscn:589
+#: ../src/microbe_stage/MicrobeStage.tscn:1121
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "Savienojumi"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1504
+#: ../src/microbe_stage/MicrobeStage.tscn:1505
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1756
+#: ../src/microbe_stage/MicrobeStage.tscn:1605
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
+msgid "PAUSE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#, fuzzy
+msgid "RESUME_TOOLTIP"
+msgstr "Turpināt"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1649
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1664
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1701
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1713
+msgid "SUICIDE_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "POPULATION_CAPITAL"
 msgstr "POPULĀCIJA:"
 
@@ -2155,18 +2676,6 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/PatchPanel.cs:213
-msgid "BIOME_LABEL"
-msgstr ""
-
-#: ../src/microbe_stage/PatchPanel.cs:218
-msgid "BELOW_SEA_LEVEL"
-msgstr ""
-
-#: ../src/microbe_stage/PatchPanel.cs:257
-msgid "WITH_POPULATION"
-msgstr ""
-
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:117
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
@@ -2179,226 +2688,274 @@ msgstr "Šūnas procesi"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1359
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:457
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
+msgid "AUTO_EVO_FAILED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
+msgid "AUTO_EVO_RUN_STATUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:509
 msgid "REPORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:478
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:530
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:558
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:610
 msgid "ORGANISM_STATISTICS"
 msgstr "Organisma statistika"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:621
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
 msgid "SPEED_COLON"
 msgstr "Ātrums:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:651
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:703
 msgid "HP_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:681
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:733
 msgid "SIZE_COLON"
 msgstr "Izmērs:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:702
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
 msgid "GENERATION_COLON"
 msgstr "Ģenerācija:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:744
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:796
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:950
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1002
 msgid "MUTATION_POINTS"
 msgstr "Mutācijas punkti"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1085
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1137
 msgid "STRUCTURE"
 msgstr "Struktūra"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1107
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
 msgid "MEMBRANE"
 msgstr "Membrāna"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1130
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
 msgid "BEHAVIOR"
 msgstr "Uzvedība"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1234
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Meklēt..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1241
 msgid "STRUCTURAL"
 msgstr "Strukturāls"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1225
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1277
 msgid "PROTEINS"
 msgstr "Olbaltumvielas"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1301
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
 msgid "EXTERNAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1355
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
 msgid "ORGANELLES"
 msgstr "Organoīdi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1504
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
 msgid "MEMBRANE_TYPES"
 msgstr "Membrānas veidi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1574
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1626
 msgid "FLUIDITY_RIGIDITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1613
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1665
 msgid "COLOUR"
 msgstr "Krāsa"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1753
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Sugas nosaukums..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1789
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1841
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "APSTIPRINĀT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1803
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1855
 msgid "CONFIRM_CAPITAL"
 msgstr "APSTIPRINĀT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1813
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1865
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1825
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1877
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Tavs mikrobs neražo pietiekami daudz ATP, lai izdzīvot!\n"
 "Vai vēlies turpināt?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1888
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1848
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1900
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1949
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
 msgid "FOOD_CHAIN"
 msgstr "Barības ķēde"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1975
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2026
 msgid "TIMELINE"
 msgstr "Laika skala"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2028
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2079
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo rezultāti:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2047
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2098
 msgid "EXTERNAL_EFFECTS"
 msgstr "Ārējie efekti:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2105
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
 msgid "SPECIES_POPULATION"
 msgstr "Sugas populācija"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2138
-#: ../src/microbe_stage/gui/PatchPanel.tscn:241
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2619
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziskie apstākļi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2242
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#: ../src/microbe_stage/gui/PatchPanel.tscn:424
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2293
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2802
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosfēras gāzes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2335
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2386
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3311
 msgid "NEXT_CAPITAL"
 msgstr "NĀKAMAIS"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2501
+msgid "SELECT_A_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2536
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
+#, fuzzy
+msgid "PRESSURE"
+msgstr "Spied."
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
+msgid "SPECIES_PRESENT"
+msgstr "Sastopamās sugas"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3284
+msgid "MOVE_TO_THIS_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "Pārvietot"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "Izdzēst"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "Modificēt"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:442
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Glikozes daudzums ir samazināts līdz {0} no iepriekšējā daudzuma."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:449
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:453
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:710
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:845
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:495
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:500
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "ATP_PRODUCTION"
 msgstr "ATP ražošana"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:501
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:527
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:544
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
 msgstr "Osmoregulācija"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:550
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:562
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "SPECIES_LIST"
 msgstr "Sugu saraksts"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:741
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:875
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
-msgid "AUTO_EVO_FAILED"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
+msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-msgid "AUTO_EVO_RUN_STATUS"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
+msgid "BELOW_SEA_LEVEL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
+msgid "WITH_POPULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
@@ -2407,49 +2964,12 @@ msgstr ""
 msgid "MP_COST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "Izdzēst"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "Pārvietot"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "Modificēt"
-
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
 msgstr "IZMIRŠANA"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
-msgstr ""
-
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
-msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr ""
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:123
-msgid "SELECT_A_PATCH"
-msgstr ""
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:158
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr ""
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:318
-#, fuzzy
-msgid "PRESSURE"
-msgstr "Spied."
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:849
-msgid "SPECIES_PRESENT"
-msgstr "Sastopamās sugas"
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:906
-msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
@@ -2460,60 +2980,60 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:77 ../src/saving/InProgressLoad.cs:96
-#: ../src/saving/InProgressLoad.cs:145
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:147
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:79
+#: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr "Notiek datu lasīšana no saglabāšanas faila"
 
-#: ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:100
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Notiek objektu izveidošana no saglabāšanas faila"
 
-#: ../src/saving/InProgressLoad.cs:107
+#: ../src/saving/InProgressLoad.cs:109
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:133
+#: ../src/saving/InProgressLoad.cs:135
 msgid "SAVE_IS_INVALID"
 msgstr "Saglabāšanas fails nav derīgs"
 
-#: ../src/saving/InProgressLoad.cs:134
+#: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:149
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:164
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:168
+#: ../src/saving/InProgressLoad.cs:170
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:191
+#: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:220
+#: ../src/saving/InProgressLoad.cs:224
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
-#: ../src/saving/InProgressSave.cs:173
+#: ../src/saving/InProgressSave.cs:174
 msgid "SAVING"
 msgstr "Notiek saglabāšana..."
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:207
 msgid "SAVE_FAILED"
 msgstr "Saglabāšana neizdevās"
 
-#: ../src/saving/InProgressSave.cs:204
+#: ../src/saving/InProgressSave.cs:208
 msgid "ERROR_SAVING"
 msgstr ""
 
@@ -2820,315 +3340,6 @@ msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
 "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
-#~ "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Tava šūna izmanto ATP kā enerģijas avotu, ja tas beigsies, tava šūna "
-#~ "mirs."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Lai atbloķētu redaktoru un vairoties, tev jāsavāc amonjaku (oranžs "
-#~ "mākonis) un fosfāts (purpurs mākonis)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Tu var arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, "
-#~ "kas ir mazāki par tevi, nospiežot G. Tas maksās papildu ATP, kā arī tev "
-#~ "palēninās. Neaizmirsti nospiest G otrreiz, lai pārtrauktu absorbēšanu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Osmoregulācija izmanto ATP. Tas nozīmē, ka, jo lielāka ir tava šūna, jo "
-#~ "vairāk ATP ražojošu organoīdu tev ir nepieciešams, lai nezaudētu ATP, "
-#~ "kad nekusties."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Redaktorā ir daudz organoīdu, kurus vari attīstīt, pieļaujot daudz "
-#~ "dažādu spēles stilu."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Dažādi savienojumu mākoņi ir:\n"
-#~ "\n"
-#~ "Balti - glikoze\n"
-#~ "Dzelteni - sērūdeņradis\n"
-#~ "Oranži - amonjaks\n"
-#~ "Purpuri - fosfāts\n"
-#~ "Rūsas brūni - dzelzs\n"
-#~ "\n"
-#~ "Glikoze ražo ATP"
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-#~ msgstr ""
-#~ "Sērūdeņradi var pārveidot glikozē, izmantojot hemoplastus un "
-#~ "hemosintezējošas olbaltumvielas. Ar rusticianīnu no dzelzs var ražot "
-#~ "ATP."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr ""
-#~ "Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. "
-#~ "Organoīdiem ir nepieciešams amonjaks un fosfāts, lai sadalītos."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr ""
-#~ "Pagaidām, ja tava populācija samazināsies līdz nullei, tu izmirsi."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr ""
-#~ "Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik "
-#~ "tiek uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt "
-#~ "spēlēt, kā vēlies."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-#~ msgstr ""
-#~ "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
-#~ "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr ""
-#~ "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
-#~ "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Prokariotu struktūras\n"
-#~ "\n"
-#~ "Metabolosomas: ražo ATP no glikozes\n"
-#~ "\n"
-#~ "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
-#~ "glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
-#~ "\n"
-#~ "Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet "
-#~ "arī veic glikolīzi un aizņem 1 daļu\n"
-#~ "\n"
-#~ "Rusticianīns : pārvērš dzelzi ATP\n"
-#~ "\n"
-#~ "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
-#~ "\n"
-#~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
-#~ "daudzumos)"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Ārējie organoīdi\n"
-#~ "\n"
-#~ "Vica: Pārvieto jūsu šūnu ātrāk, izmantojot ATP\n"
-#~ "\n"
-#~ "Pīluss: Var sadurt citas šūnas"
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Prokariotu struktūras\n"
-#~ "\n"
-#~ "Metabolosomas: ražo ATP no glikozes\n"
-#~ "\n"
-#~ "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
-#~ "glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
-#~ "\n"
-#~ "Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet "
-#~ "arī veic glikolīzi un aizņem 1 daļu\n"
-#~ "\n"
-#~ "Rusticianīns : pārvērš dzelzi ATP\n"
-#~ "\n"
-#~ "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
-#~ "\n"
-#~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
-#~ "daudzumos)"
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Prokariotu struktūras\n"
-#~ "\n"
-#~ "Metabolosomas: ražo ATP no glikozes\n"
-#~ "\n"
-#~ "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
-#~ "glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
-#~ "\n"
-#~ "Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet "
-#~ "arī veic glikolīzi un aizņem 1 daļu\n"
-#~ "\n"
-#~ "Rusticianīns : pārvērš dzelzi ATP\n"
-#~ "\n"
-#~ "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
-#~ "\n"
-#~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
-#~ "daudzumos)"
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Prokariotu struktūras\n"
-#~ "\n"
-#~ "Metabolosomas: ražo ATP no glikozes\n"
-#~ "\n"
-#~ "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
-#~ "glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
-#~ "\n"
-#~ "Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet "
-#~ "arī veic glikolīzi un aizņem 1 daļu\n"
-#~ "\n"
-#~ "Rusticianīns : pārvērš dzelzi ATP\n"
-#~ "\n"
-#~ "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
-#~ "\n"
-#~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos "
-#~ "daudzumos)"
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_1"
-#~ msgstr ""
-#~ "Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
-#~ "biomos dažreiz parādās ar dažādiem biežumiem."
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#~ msgid "EASTEREGG_MESSAGE_3"
-#~ msgstr ""
-#~ "Padoms: Osmoregulācija maksā 1 ATP sekundē par daļu tavā šūnā, katra "
-#~ "tukšā citoplazmas daļa rada 5 ATP sekundē, kas nozīmē, ka, ja tu zaudē "
-#~ "ATP osmoregulācijas dēļ, vienkārši pievieno vairāk tukšu citoplazmas "
-#~ "daļu vai noņem dažus organoīdus."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_4"
-#~ msgstr ""
-#~ "Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā "
-#~ "vairāk ATP"
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_5"
-#~ msgstr "Padoms: tu vari absorbēt dzelzs gabalus un arī citus gabalus."
-
-#~ msgid "EASTEREGG_MESSAGE_6"
-#~ msgstr "Padoms: dažreiz labākā rīcība ir vienkārši bēgt no citām šūnām."
-
-#~ msgid "EASTEREGG_MESSAGE_7"
-#~ msgstr ""
-#~ "Padoms: tu vari absorbēt šūnu, ja tā ir aptuveni puse no tavas šūnas "
-#~ "lieluma."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_8"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_9"
-#~ msgstr "Interesants fakts: Didinijs ir infuzorija, kas medī paramecijus."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_10"
-#~ msgstr ""
-#~ "Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
-#~ "biomos dažreiz parādās ar dažādiem biežumiem."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_11"
-#~ msgstr ""
-#~ "Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
-#~ "biomos dažreiz parādās ar dažādiem biežumiem."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_12"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#~ msgid "EASTEREGG_MESSAGE_13"
-#~ msgstr ""
-#~ "Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
-#~ "biomos dažreiz parādās ar dažādiem biežumiem."
-
-#~ msgid "EASTEREGG_MESSAGE_14"
-#~ msgstr ""
-#~ "Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā "
-#~ "vairāk ATP"
-
-#~ msgid "EASTEREGG_MESSAGE_15"
-#~ msgstr "Padoms: tu vari absorbēt dzelzs gabalus un arī citus gabalus."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_16"
-#~ msgstr "Padoms: dažreiz labākā rīcība ir vienkārši bēgt no citām šūnām."
-
-#~ msgid "EASTEREGG_MESSAGE_17"
-#~ msgstr ""
-#~ "Interesants fakts: vai zināji, ka uz Zemes ir vairāk nekā 8000 "
-#~ "infuzoriju veidu?"
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_18"
-#~ msgstr ""
-#~ "Padoms: biomi ir vairāk nekā tikai atšķirīgi foni, savienojumi dažādos "
-#~ "biomos dažreiz parādās ar dažādiem biežumiem."
-
-#~ msgid "EASTEREGG_MESSAGE_19"
-#~ msgstr "Interesants fakts: Didinijs ir infuzorija, kas medī paramecijus."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr ""
-#~ "Padoms: ja tavā šūnā ir 150 daļas, tā var absorbēt lielus dzelzs "
-#~ "gabalus."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr ""
-#~ "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, "
-#~ "ja esi pietiekami ātrs."
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Noņemt organoīdu"

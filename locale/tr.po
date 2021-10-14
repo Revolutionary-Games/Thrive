@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-14 14:58+0200\n"
-"PO-Revision-Date: 2021-09-10 07:05+0000\n"
+"POT-Creation-Date: 2021-10-10 20:19+0200\n"
+"PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -17,8 +17,379 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:85
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr ""
+"Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi "
+"kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy"
+"\"]Oksitoksi NT'yi[/thrive:compound] ateş etmek için [thrive:"
+"input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için "
+"[thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas."
+
+#: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:88
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr ""
+"Hücren enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/thrive:"
+"compound] kullanır, eğer ATP tükenirse hücren ölür."
+
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:91
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr ""
+"Editörü açmak ve hücreni çoğaltmak için [thrive:compound type=\"ammonia"
+"\"]Amonyak[/thrive:compound] (Turuncu Bulut) ve [thrive:compound type="
+"\"phosphates\"]Fosfat[/thrive:compound] (Mor Bulut) biriktirmen gerekir."
+
+#: ../simulation_parameters/common/help_texts.json:18
+#: ../simulation_parameters/common/help_texts.json:94
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr ""
+"Ayrıca senden küçük hücreleri, bakterileri ve demir parçalarını [thrive:"
+"input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsin. Bu "
+"fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur "
+"ve hücreni yavaşlatır. Yutmayı sona erdirmek için [thrive:"
+"input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutma."
+
+#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:97
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr ""
+"Ozmoregülasyon [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal "
+"olur. Bu demek oluyor ki hücren ne kadar büyükse, o kadar çok Mitokondri, "
+"Metabolozom ya da Rustisiyanine (veya glikoliz yapan sitoplazmaya) "
+"ihtiyacın var. Böylece hücren durgun haldeyken [thrive:compound type=\"atp"
+"\"]ATP[/thrive:compound] kaybını önleyebilirsin."
+
+#: ../simulation_parameters/common/help_texts.json:26
+#: ../simulation_parameters/common/help_texts.json:100
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr ""
+"Editörde, evrimleşmeni sağlayan birçok Organel bulunuyor. Böylece geniş "
+"kapsamda, farklı oynama şekillerine olanak var."
+
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Çeşitli bileşik bulutları:\n"
+"\n"
+"Beyaz – [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
+"Sarı – [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:"
+"compound]\n"
+"Turuncu – [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound]\n"
+"Mor – [thrive:compound type=\"phosphates\"]Fosfat[/thrive:compound]\n"
+"Pas Rengi – [thrive:compound type=\"iron\"]Demir[/thrive:compound]\n"
+"\n"
+"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] [thrive:"
+"compound type=\"atp\"]ATP[/thrive:compound] oluşturur"
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:106
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr ""
+"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:"
+"compound]; kemoplastlar ve kemosentez yapan proteinler aracılığıyla "
+"[thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülür. "
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound], rustisiyanin "
+"aracılığıyla [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] "
+"dönüştürülür."
+
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:109
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr ""
+"Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. Organeller "
+"bölünmek için amonyak ve fosfat gerektirir."
+
+#: ../simulation_parameters/common/help_texts.json:42
+#: ../simulation_parameters/common/help_texts.json:103
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Şu an için, eğer popülasyonun sıfıra düşerse neslin tükenir."
+
+#: ../simulation_parameters/common/help_texts.json:46
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr ""
+"Ama eğer 300 popülasyonla yirmi kuşak boyunca hayatta kalırsan, mevcut "
+"oyunu kazanmış sayılırsın. Kazandıktan sonra karşına açılır bir pencere "
+"çıkar, ondan sonra oyunu istediğin kadar oynamaya devam edebilirsin."
+
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:112
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr ""
+"Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre girdiğin "
+"her an onlar da evrimleşiyor."
+
+#: ../simulation_parameters/common/help_texts.json:54
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr ""
+"Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle "
+"üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir "
+"hücre ile bağ kurmak için, bağlayıcı madde organeline sahip olman ve "
+"bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca "
+"kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni "
+"bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, "
+"yeterli bileşik toplamalı ve koloniden ayrılmalısın. Böylece editöre "
+"girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur "
+"(henüz oyunda değil)."
+
+#: ../simulation_parameters/common/help_texts.json:62
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Prokaryotik Yapılar\n"
+"\n"
+"Metabolozomlar: Glukozdan [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] üretir\n"
+"\n"
+"Kemosentez Yapan Proteinler: Bir kemoplast gibi [thrive:compound type="
+"\"hydrogensulfide\"]Hidrojen Sülfürden[/thrive:compound] [thrive:compound "
+"type=\"glucose\"]glukozun[/thrive:compound] yarısını üretir ve glikoliz "
+"yapar. 1 Altıgenlik yer kaplar\n"
+"\n"
+"Tilakoidler: Normal bir kloroplast gibi [thrive:compound type=\"glucose"
+"\"]glukozun[/thrive:compound] 3'te 1'ini üretir ve glikoliz yapar. 1 "
+"Altıgenlik yer kaplar\n"
+"\n"
+"Rustisiyanin: [thrive:compound type=\"iron\"]Demiri[/thrive:compound] "
+"[thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çevirir\n"
+"\n"
+"Nitrojenaz: Atmosferdeki azotu ve [thrive:compound type=\"atp\"]ATP'yi[/"
+"thrive:compound] oksijen olmadan [thrive:compound type=\"ammonia"
+"\"]amonyağa[/thrive:compound] çevirir\n"
+"\n"
+"Sitoplazma: Depo alanına sahiptir ve glikoliz yapar (Az miktarda [thrive:"
+"compound type=\"atp\"]ATP[/thrive:compound] üretir)"
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Dış Organeller\n"
+"\n"
+"Kamçı: [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketerek "
+"hücreni daha hızlı hareket ettirir\n"
+"\n"
+"Pilus: Diğer hücreleri delmek için kullanılabilir"
+
+#: ../simulation_parameters/common/help_texts.json:70
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Zarlı Organeller\n"
+"\n"
+"Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini sağlar. "
+"Ayrıca hücrenin büyüklüğünü iki katına çıkarır. (Yalnızca bir kez "
+"evrimleşilir)\n"
+"\n"
+"Bağlayıcı Madde: Diğer hücrelerle bağ kurmaya izin verir\n"
+"\n"
+"Mitokondri: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] ve "
+"atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] üretir. Sitoplazmadan çok daha verimli şekilde yapar.\n"
+"\n"
+"Kloroplast: Güneş ışığı ve atmosferdeki CO2 gazından [thrive:compound type="
+"\"glucose\"]glukoz[/thrive:compound] üretir\n"
+"\n"
+"Kemoplast: [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürden[/"
+"thrive:compound] [thrive:compound type=\"glucose\"]glukoz[/thrive:"
+"compound] üretir\n"
+"\n"
+"Azot Fiksasyon Plastidi: [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] ile atmosferdeki Azot ve Oksijenden [thrive:compound type="
+"\"ammonia\"]amonyak[/thrive:compound] yapar\n"
+"\n"
+"Koful: Toplanan 15 bileşiği depolar\n"
+"\n"
+"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy"
+"\"]OksiToksi NT[/thrive:compound] diye adlandırılır)"
+
+#: ../simulation_parameters/common/help_texts.json:74
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr ""
+"Her kuşakta, harcanacak 100 mutasyon puanın var ve her değişim (ya da "
+"mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da "
+"kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen "
+"organelleri kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade "
+"eder. Bir organelin üzerine sağ tıklayarak onu taşıyabilir ya da tamamen "
+"kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi "
+"seçebilirsin. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:"
+"input]e_rotate_right[/thrive:input] tuşları ile organellerini "
+"döndürebilirsin."
+
+#: ../simulation_parameters/common/help_texts.json:78
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr ""
+"Hücren her çoğaldığında, Mikrop Editörüne giriş yaparsın. Burada, türünün "
+"başarısını arttırmak için onda değişiklikler yapabilirsin (organelleri "
+"ekleyerek, taşıyarak veya kaldırarak). Editöre yapılan her ziyaret, Mikrop "
+"Evresinde 100 milyon yıllık evrimi temsil eder."
+
+#: ../simulation_parameters/common/help_texts.json:119
+msgid "LOADING_TIP"
+msgstr "Editördeyken yanlışlıkları düzeltmek için geri al butonuna bas"
+
+#: ../simulation_parameters/common/help_texts.json:126
+msgid "EASTEREGG_MESSAGE_1"
+msgstr ""
+"İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı "
+"ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa "
+"Didinyum mu? Av mı, avcı mı?"
+
+#: ../simulation_parameters/common/help_texts.json:129
+msgid "EASTEREGG_MESSAGE_2"
+msgstr ""
+"İşte sana bir ipucu. Toksinler, yeterince hızlı davranıldığında, diğer "
+"toksinleri vurup uzaklaştırmak için kullanılabilir."
+
+#: ../simulation_parameters/common/help_texts.json:132
+msgid "EASTEREGG_MESSAGE_3"
+msgstr ""
+"İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında her "
+"saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik "
+"alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; eğer "
+"ozmoregülasyondan dolayı ATP kaybediyorsan, birkaç altıgenlik alanı "
+"yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
+
+#: ../simulation_parameters/common/help_texts.json:135
+msgid "EASTEREGG_MESSAGE_4"
+msgstr ""
+"İlginç Gerçek: Gerçek hayatta prokaryotlar, organeller gibi davranan "
+"Biyokompartman adı verilen yapılara sahiptir ve bunlar aslında Çok Yüzeyli "
+"organeller olarak adlandırılır."
+
+#: ../simulation_parameters/common/help_texts.json:138
+msgid "EASTEREGG_MESSAGE_5"
+msgstr ""
+"İlginç Gerçek: Metabolozom, Çok yüzeyli bir organel olarak adlandırılır."
+
+#: ../simulation_parameters/common/help_texts.json:141
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "İşte sana ipucu. Bazen en iyisi yalnızca diğer hücrelerden kaçmak."
+
+#: ../simulation_parameters/common/help_texts.json:144
+msgid "EASTEREGG_MESSAGE_7"
+msgstr ""
+"İşte sana ipucu. Eğer bir hücre senin büyüklüğünün yarısı kadarsa, bu onu "
+"yutabileceğin anlamına gelir."
+
+#: ../simulation_parameters/common/help_texts.json:147
+msgid "EASTEREGG_MESSAGE_8"
+msgstr ""
+"İşte sana ipucu. Bakteriler göründüğünden daha güçlü olabilir. Küçük "
+"duruyor görünebilirler ama bazıları arkandan çukur kazıp seni bu şekilde "
+"öldürebilir!"
+
+#: ../simulation_parameters/common/help_texts.json:150
+msgid "EASTEREGG_MESSAGE_9"
+msgstr ""
+"İşte sana ipucu. Eğer yeterince dikkatli olmazsan, diğer türleri avlayarak "
+"soylarının tükenmesine neden olabilirsin. Bu duruma ayrıca başka türler de "
+"neden olabilir."
+
+#: ../simulation_parameters/common/help_texts.json:153
+msgid "EASTEREGG_MESSAGE_10"
+msgstr "KIMILDAYAN ŞEYLER!!"
+
+#: ../simulation_parameters/common/help_texts.json:156
+msgid "EASTEREGG_MESSAGE_11"
+msgstr "Metali eritalim."
+
+#: ../simulation_parameters/common/help_texts.json:159
+msgid "EASTEREGG_MESSAGE_12"
+msgstr "Ama şu mavi hücreler var ya."
+
+#: ../simulation_parameters/common/help_texts.json:162
+msgid "EASTEREGG_MESSAGE_13"
+msgstr ""
+"İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı "
+"biyomlardaki bileşikler farklı oranlarda oluşuyor."
+
+#: ../simulation_parameters/common/help_texts.json:165
+msgid "EASTEREGG_MESSAGE_14"
+msgstr ""
+"İşte sana ipucu. Ne kadar kamçıya sahipsen, o kadar hızlı gidersin, vınn "
+"vınnn, ama ayrıca daha fazla ATP'ye mal olur"
+
+#: ../simulation_parameters/common/help_texts.json:168
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "İşte sana ipucu. Demir veya başka parçalar yutabilirsin."
+
+#: ../simulation_parameters/common/help_texts.json:171
+msgid "EASTEREGG_MESSAGE_16"
+msgstr ""
+"İşte sana ipucu. Çekirdeği eklemeden önce bir hazırlık yap. Bu tür şeyler "
+"pahalı! Bakım ve önden ödeme ücretiyle."
+
+#: ../simulation_parameters/common/help_texts.json:174
+msgid "EASTEREGG_MESSAGE_17"
+msgstr ""
+"İlginç Gerçek: Dünya üzerinde 8000'in üzerinde silli türü olduğunu biliyor "
+"muydun?"
+
+#: ../simulation_parameters/common/help_texts.json:177
+msgid "EASTEREGG_MESSAGE_18"
+msgstr ""
+"İlginç Gerçek: Stentor, kendini esnetebilen ve siliyle su akıntısı meydana "
+"getirerek, bir tür trompete benzeyen ağzıyla avını yakalayabilen bir silli "
+"türüdür."
+
+#: ../simulation_parameters/common/help_texts.json:180
+msgid "EASTEREGG_MESSAGE_19"
+msgstr "İlginç Gerçek: Didinyum, paramesyumları avlayan bir silli türüdür."
+
+#: ../simulation_parameters/common/help_texts.json:183
+msgid "EASTEREGG_MESSAGE_20"
+msgstr ""
+"İlginç Gerçek: Amip, avını yalancı ayak adı verilen sitoplazmadan yapma "
+"'bacaklar' ile yakalar ve avlar. Bunları er ya da geç Thrive'a eklemek "
+"istiyoruz."
+
+#: ../simulation_parameters/common/help_texts.json:186
+msgid "EASTEREGG_MESSAGE_21"
+msgstr ""
+"İşte sana ipucu. Büyük hücrelere ve bakterilere dikkat et. Bir şeyler "
+"tarafından sindirilmek eğlenceli değil ki, seni yerler."
+
+#: ../simulation_parameters/common/help_texts.json:189
+msgid "EASTEREGG_MESSAGE_22"
+msgstr ""
+"Thrive'ın ses ekip kaptanı oyuna henüz eklenmeyen birçok şarkı yaptı. Bu "
+"şarkıları dinleyebilirsin veya sahibi Oliver Lugg'ın YouTube kanalından "
+"beste yaptığı sırada çekilen yayın akışlarını izleyebilirsin."
+
+#: ../simulation_parameters/common/help_texts.json:192
+msgid "EASTEREGG_MESSAGE_23"
+msgstr ""
+"İşte sana ipucu. Eğer hücren 150 altıgenlik alan büyüklüğündeyse, büyük "
+"demir parçalarını yutabilirsin."
+
+#: ../simulation_parameters/common/help_texts.json:195
+msgid "EASTEREGG_MESSAGE_24"
+msgstr ""
+"Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğun çoğu "
+"canlının, etrafında gerçekleşen evrimden dolayı, bir ya da iki farklı türe "
+"benzemesi mümkün. Onları tanıyabiliyor musun bir gör!"
+
+#: ../simulation_parameters/common/help_texts.json:198
+msgid "EASTEREGG_MESSAGE_25"
+msgstr ""
+"İlginç Gerçek: Thrive ekibi ara sıra podcastler yayınlıyor, onları "
+"incelemeyi unutma!"
+
+#: ../simulation_parameters/common/help_texts.json:201
+msgid "EASTEREGG_MESSAGE_26"
+msgstr ""
+"İlginç Gerçek: Thrive, açık kaynak kodlu Godot oyun motoru ile yapıldı!"
+
+#: ../simulation_parameters/common/help_texts.json:204
+msgid "EASTEREGG_MESSAGE_27"
+msgstr ""
+"İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerden biri bizim müthiş "
+"programcımız untrustedlife tarafından yapıldı!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -49,17 +420,17 @@ msgid "ABILITIES"
 msgstr "Yetenekler"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2076
+#: ../src/microbe_stage/MicrobeStage.tscn:2110
 msgid "FIRE_TOXIN"
 msgstr "Toksini ateşle"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2065
+#: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
 msgstr "Yutma modunu aç"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2086
+#: ../src/microbe_stage/MicrobeStage.tscn:2120
 msgid "TOGGLE_BINDING"
 msgstr "Bağ kurmayı aç"
 
@@ -88,7 +459,7 @@ msgid "ZOOM_IN"
 msgstr "Yakınlaştır"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:499
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:551
 msgid "EDITOR"
 msgstr "Editör"
 
@@ -113,9 +484,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Organel yerleştir"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Organel sil"
+msgstr "Organel menüsünü aç"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_LEFT"
@@ -347,58 +717,58 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1272
-#: ../src/microbe_stage/gui/PatchPanel.tscn:664
+#: ../src/microbe_stage/MicrobeStage.tscn:1273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3042
 msgid "AMMONIA"
 msgstr "Amonyak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1326
-#: ../src/microbe_stage/gui/PatchPanel.tscn:735
+#: ../src/microbe_stage/MicrobeStage.tscn:1327
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3113
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1380
-#: ../src/microbe_stage/gui/PatchPanel.tscn:629
+#: ../src/microbe_stage/MicrobeStage.tscn:1381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1218
-#: ../src/microbe_stage/gui/PatchPanel.tscn:699
+#: ../src/microbe_stage/MicrobeStage.tscn:1219
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3077
 msgid "GLUCOSE"
 msgstr "Glukoz"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1566
+#: ../src/microbe_stage/MicrobeStage.tscn:1567
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1434
-#: ../src/microbe_stage/gui/PatchPanel.tscn:770
+#: ../src/microbe_stage/MicrobeStage.tscn:1435
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3148
 msgid "IRON"
 msgstr "Demir"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/gui/PatchPanel.tscn:465
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2843
 msgid "OXYGEN"
 msgstr "Oksijen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/gui/PatchPanel.tscn:519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2897
 msgid "CARBON_DIOXIDE"
 msgstr "Karbondioksit"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/gui/PatchPanel.tscn:492
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2870
 msgid "NITROGEN"
 msgstr "Azot"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3473
-#: ../src/microbe_stage/gui/PatchPanel.tscn:345
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
 msgid "SUNLIGHT"
 msgstr "Güneş ışığı"
 
@@ -542,43 +912,43 @@ msgstr "%{0:F1} tamamlandı. {1:n0}/{2:n0} adım."
 msgid "STARTING"
 msgstr "Başlıyor"
 
-#: ../src/auto-evo/AutoEvoRun.cs:280
+#: ../src/auto-evo/AutoEvoRun.cs:273
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} popülasyonu {1} defa değişti çünkü: {2}"
 
-#: ../src/auto-evo/RunResults.cs:220
+#: ../src/auto-evo/RunResults.cs:218
 msgid "POPULATION"
 msgstr "popülasyon:"
 
-#: ../src/auto-evo/RunResults.cs:228
+#: ../src/auto-evo/RunResults.cs:226
 msgid "WENT_EXTINCT_IN"
 msgstr "{0} arazisinde nesli tükendi"
 
-#: ../src/auto-evo/RunResults.cs:234
+#: ../src/auto-evo/RunResults.cs:232
 msgid "PREVIOUS"
 msgstr "önceki:"
 
-#: ../src/auto-evo/RunResults.cs:282
+#: ../src/auto-evo/RunResults.cs:248
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "mutasyona sahip"
 
-#: ../src/auto-evo/RunResults.cs:287
+#: ../src/auto-evo/RunResults.cs:253
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen kodu:"
 
-#: ../src/auto-evo/RunResults.cs:298
+#: ../src/auto-evo/RunResults.cs:264
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "yayıldığı araziler:"
 
-#: ../src/auto-evo/RunResults.cs:307
+#: ../src/auto-evo/RunResults.cs:273
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0}: {1} popülasyon {2} adlı araziden göç etti"
 
-#: ../src/auto-evo/RunResults.cs:326
+#: ../src/auto-evo/RunResults.cs:292
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "arazilerdeki popülasyon:"
 
-#: ../src/auto-evo/RunResults.cs:379
+#: ../src/auto-evo/RunResults.cs:372
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "gezegende nesli tükendi"
 
@@ -1058,7 +1428,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrop Editörü Serbest Modu"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Geri"
@@ -1075,286 +1445,335 @@ msgstr ""
 "güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia "
 "grafiklerini kullanmaya zorla."
 
-#: ../src/general/OptionsMenu.cs:803
+#: ../src/general/OptionsMenu.cs:842
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#: ../src/general/OptionsMenu.cs:843
+#: ../src/general/OptionsMenu.cs:882
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı "
 "ol!"
 
-#: ../src/general/OptionsMenu.cs:847
+#: ../src/general/OptionsMenu.cs:886
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 
-#: ../src/general/OptionsMenu.cs:851
+#: ../src/general/OptionsMenu.cs:890
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bu dil %{0} tamamlandı"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:137
 msgid "GRAPHICS"
 msgstr "Grafikler"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:148
 msgid "SOUND"
 msgstr "Ses"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:159
 msgid "PERFORMANCE"
 msgstr "Performans"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:170
 msgid "INPUTS"
 msgstr "Girişler"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:181
 msgid "MISC"
 msgstr "Diğer"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:214
 msgid "VSYNC"
 msgstr "Dikey Eşitleme"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:222
 msgid "FULLSCREEN"
 msgstr "Tam Ekran"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:244
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Çoklu örnekleme kenar yumuşatma:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:251
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(daha üst değerler performansı düşürür)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
+msgid "DISABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "TWO_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "Sağ fare tuşu"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "SIXTEEN_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
 msgstr "Çözünürlük:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
 msgstr "otomatik"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
 msgstr "Maksimum FPS:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Renk Düzeltme:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
+msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_TRITANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
 msgstr "Renk Sapması:"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Yetenek Çubuğunu Göster"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:398
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "GKA Işık Efektlerini Etkinleştir"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:424
 msgid "MASTER_VOLUME"
 msgstr "Ana Ses"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:451 ../src/general/OptionsMenu.tscn:492
+#: ../src/general/OptionsMenu.tscn:525 ../src/general/OptionsMenu.tscn:558
+#: ../src/general/OptionsMenu.tscn:591
 msgid "MUTE"
 msgstr "Sessiz"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:465
 msgid "MUSIC_VOLUME"
 msgstr "Müzik Seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:498
 msgid "AMBIANCE_VOLUME"
 msgstr "Ortam Seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:531
 msgid "SFX_VOLUME"
 msgstr "Ses Efekti Seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:564
 msgid "GUI_VOLUME"
 msgstr "Arayüz Seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:609
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Ses çıkış aygıtı:"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:637
 msgid "LANGUAGE"
 msgstr "Dil:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:655 ../src/general/OptionsMenu.tscn:1217
 msgid "RESET"
 msgstr "Sıfırla"
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:673
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Oyunun Çevrilmesine Yardımcı Ol"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:699
 msgid "COMPOUND_CLOUDS"
 msgstr "Bileşik bulutları"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:714
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Bulut Simülasyonu Minimum\n"
 "Aralığı:"
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:721 ../src/general/OptionsMenu.tscn:763
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(üst değerler performansı arttırır)"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:756
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Bulut Çözünürlük Bölücü:"
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:798
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Oyun esnasında oto-evrimi çalıştır"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:818
 msgid "DETECTED_CPU_COUNT"
 msgstr "Tespit edilen CPU sayısı:"
 
-#: ../src/general/OptionsMenu.tscn:828
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Mevcut iş parçacıkları:"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:850
 msgid "ASSUME_HYPERTHREADING"
 msgstr "CPU'da hiper iş parçacığı etkin varsayılıyor"
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:862
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Arkaplanda çalışan iş parçacığı sayısını elle ayarla"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:875
 msgid "THREADS"
 msgstr "İş Parçacıkları:"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:976
 msgid "RESET_INPUTS"
 msgstr "Girişleri sıfırla"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1004
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Tanıtım videosunu oynat"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:1013
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Yeni Oyunda Mikrop Tanıtımını oynat"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1022
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Oyun esnasında otomatik olarak kaydet"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:1033
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Saklanacak otomatik kayıt miktarı:"
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Saklanacak çabuk kayıt miktarı:"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Oyun rehberini göster (yeni oyunlarda)"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1095
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Oyun rehberini göster (şu anki oyunda)"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1111
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Hile tuşları aktif"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1123
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1134
 msgid "CUSTOM_USERNAME"
 msgstr "Özel Kullanıcı Adı:"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1160
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Ekran Görüntüsünün Kaydedildiği Klasörü Aç"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1168
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Log Klasörünü Aç"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1178
+msgid "JSON_DEBUG_MODE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Kaydet"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1246
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Varsayılanlar"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1258
 msgid "RESET_TO_DEFAULTS"
 msgstr "Varsayılanlara sıfırlansın mı?"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "BÜTÜN ayarları varsayılan değerlere sıfırlamak istediğinden emin misin?"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1281
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Girişler varsayılana sıfırlansın mı?"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Giriş ayarlarını varsayılan değerlere sıfırlamak istediğinden emin misin?"
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1304
 msgid "CLOSE_OPTIONS"
 msgstr "Ayarlar kapatılsın mı?"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1324
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Kaydedilmemiş değişiklikler var.\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1346
 msgid "SAVE_AND_CONTINUE"
 msgstr "Kaydet ve devam et"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1355
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Yoksay ve devam et"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1371
 msgid "CANCEL"
 msgstr "İptal"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1383 ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1430
 msgid "ERROR"
 msgstr "Hata"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1392 ../src/general/OptionsMenu.tscn:1431
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Hata: Yeni ayarlar konfigürasyon dosyasına kaydedilemedi."
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1440
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Ekran görüntüsü dizini bulunamadı"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1449
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Bir ekran görüntüsü almayı dene!"
 
@@ -1367,7 +1786,7 @@ msgid "SAVE_GAME"
 msgstr "Oyunu Kaydet"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2096
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2147
 msgid "STATISTICS"
 msgstr "İstatistikler"
 
@@ -1406,10 +1825,10 @@ msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:633
-#: ../src/microbe_stage/PatchPanel.cs:222
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:436
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:704
+#: ../src/microbe_stage/MicrobeHUD.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
 
@@ -1507,20 +1926,8 @@ msgstr "Yardımcılar"
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
-"Gelecekte oyunun geliştirilmesine yardımcı olmak için Thrive'ı Patreon "
+"Gelecekte Thrive'ın geliştirilmesine yardımcı olmak için oyunu Patreon "
 "üzerinden destekleyebilirsin"
-
-#: ../src/gui_common/CreditsScroll.cs:341
-msgid "VIP_PATRONS"
-msgstr "VIP Destekçiler"
-
-#: ../src/gui_common/CreditsScroll.cs:342
-msgid "DEV_BUILD_PATRONS"
-msgstr "Geliştirme Sürümü Destekçileri"
-
-#: ../src/gui_common/CreditsScroll.cs:344
-msgid "SUPPORTER_PATRONS"
-msgstr "Destekçiler"
 
 #: ../src/gui_common/CreditsScroll.cs:354
 msgid "DONATIONS"
@@ -1540,6 +1947,109 @@ msgstr ""
 "Oynadığın için teşekkür ederiz!\n"
 "\n"
 "Eğer oyunu beğendiysen, lütfen arkadaşlarına bizden bahset."
+
+#: ../src/gui_common/CreditsScroll.cs:494
+msgid "PROGRAMMING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:495
+msgid "THEORY_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:496
+#, fuzzy
+msgid "GRAPHICS_TEAM"
+msgstr "Grafikler"
+
+#: ../src/gui_common/CreditsScroll.cs:497
+#, fuzzy
+msgid "SOUND_TEAM"
+msgstr "Ses Ekip Başı"
+
+#: ../src/gui_common/CreditsScroll.cs:498
+#, fuzzy
+msgid "OUTREACH_TEAM"
+msgstr "Baş Destek Şahsı"
+
+#: ../src/gui_common/CreditsScroll.cs:499
+#, fuzzy
+msgid "GAME_DESIGN_TEAM"
+msgstr "Baş Oyun Tasarımcısı"
+
+#: ../src/gui_common/CreditsScroll.cs:500
+msgid "TESTING_TEAM"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:501
+#, fuzzy
+msgid "PROJECT_MANAGEMENT_TEAM"
+msgstr "Baş Proje Yöneticisi"
+
+#: ../src/gui_common/CreditsScroll.cs:502
+msgid "PULL_REQUESTS_PROGRAMMING"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:503
+msgid "VIP_PATRONS"
+msgstr "VIP Destekçiler"
+
+#: ../src/gui_common/CreditsScroll.cs:504
+msgid "DEV_BUILD_PATRONS"
+msgstr "Geliştirme Sürümü Destekçileri"
+
+#: ../src/gui_common/CreditsScroll.cs:505
+msgid "SUPPORTER_PATRONS"
+msgstr "Destekçiler"
+
+#: ../src/gui_common/CreditsScroll.cs:506
+msgid "JANUARY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:507
+#, fuzzy
+msgid "FEBRUARY"
+msgstr "Haliç"
+
+#: ../src/gui_common/CreditsScroll.cs:508
+msgid "MARCH"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:509
+msgid "APRIL"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:510
+msgid "MAY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:511
+msgid "JUNE"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:512
+msgid "JULY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:513
+msgid "AUGUST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:514
+msgid "SEPTEMBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:515
+msgid "OCTOBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:516
+#, fuzzy
+msgid "NOVEMBER"
+msgstr "Hareket"
+
+#: ../src/gui_common/CreditsScroll.cs:517
+msgid "DECEMBER"
+msgstr ""
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
@@ -2178,8 +2688,8 @@ msgstr ""
 "bu, varsayılan iş parçacığı sayısını etkiler."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
-#: ../src/microbe_stage/gui/PatchPanel.tscn:282
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2660
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
 msgid "TEMPERATURE"
 msgstr "Sıcaklık"
 
@@ -2230,27 +2740,21 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr "Oyuncuyu Çoğalt"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:702
+#: ../src/microbe_stage/MicrobeHUD.cs:672
 msgid "STUFF_AT"
 msgstr "Burada bir şey var {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:752
+#: ../src/microbe_stage/MicrobeHUD.cs:722
 msgid "PLAYER_CELL"
 msgstr "Oyuncu Hücresi"
 
-#: ../src/microbe_stage/MicrobeStage.cs:517
+#: ../src/microbe_stage/MicrobeStage.cs:489
 msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
-#: ../src/microbe_stage/MicrobeStage.cs:638
+#: ../src/microbe_stage/MicrobeStage.cs:610
 msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
-
-#: ../src/microbe_stage/MicrobeStage.cs:650
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
-#, fuzzy
-msgid "PATCH_EXTINCTION"
-msgstr "{0} arazisinde nesli tükendi"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:490
 msgid "AT_CURSOR"
@@ -2268,34 +2772,76 @@ msgstr "Bileşikler:"
 msgid "SPECIES_COLON"
 msgstr "Tür:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:659
+#: ../src/microbe_stage/MicrobeStage.tscn:660
 msgid "ENVIRONMENT"
 msgstr "Ortam"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:926
+#: ../src/microbe_stage/MicrobeStage.tscn:927
 msgid "TEMPERATURE_SHORT"
 msgstr "Sıc."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:982
+#: ../src/microbe_stage/MicrobeStage.tscn:983
 msgid "LIGHT"
 msgstr "Işık"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1037
+#: ../src/microbe_stage/MicrobeStage.tscn:1038
 msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1120
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
-#: ../src/microbe_stage/gui/PatchPanel.tscn:589
+#: ../src/microbe_stage/MicrobeStage.tscn:1121
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1504
+#: ../src/microbe_stage/MicrobeStage.tscn:1505
 msgid "AGENTS"
 msgstr "Maddeler"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1756
+#: ../src/microbe_stage/MicrobeStage.tscn:1605
+#, fuzzy
+msgid "STAGE_MENU_BUTTON_TOOLTIP"
+msgstr "Yeni bir kontrol tuşu ekle"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1623
+msgid "PAUSE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1636
+#, fuzzy
+msgid "RESUME_TOOLTIP"
+msgstr "Devam"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1649
+#, fuzzy
+msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"HSV (Renk, Doygunluk, Değer) modunu aç veya kapat.\n"
+"Raw moddayken kullanılamaz."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1664
+#, fuzzy
+msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
+msgstr ""
+"Raw modu aç veya kapat.\n"
+"Raw modda K, Y, M'yi yapabilirsin\n"
+"Renk değerleri 1.0'ın ötesine gider.\n"
+"HSV modundayken kullanılamaz."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1701
+#, fuzzy
+msgid "HELP_BUTTON_TOOLTIP"
+msgstr "Yeni bir kontrol tuşu ekle"
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1713
+#, fuzzy
+msgid "SUICIDE_BUTTON_TOOLTIP"
+msgstr ""
+"HSV (Renk, Doygunluk, Değer) modunu aç veya kapat.\n"
+"Raw moddayken kullanılamaz."
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
@@ -2343,18 +2889,6 @@ msgstr "Buz Sahanlığı"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonik Deniz Tabanı"
 
-#: ../src/microbe_stage/PatchPanel.cs:213
-msgid "BIOME_LABEL"
-msgstr "Biyom: {0}"
-
-#: ../src/microbe_stage/PatchPanel.cs:218
-msgid "BELOW_SEA_LEVEL"
-msgstr "Deniz seviyesinin {0}-{1}m altı"
-
-#: ../src/microbe_stage/PatchPanel.cs:257
-msgid "WITH_POPULATION"
-msgstr "{0}: {1} popülasyonla"
-
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:117
 msgid "UNBIND_HELP_TEXT"
 msgstr "Bağ Çözme Modu"
@@ -2367,247 +2901,282 @@ msgstr "Hücre İşleyişi"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bileşik Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:589
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1359
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:604
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1376
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikrop Editörü Yükleniyor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:591
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:606
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Oto-evrim bekleniyor:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:457
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2325
+msgid "AUTO_EVO_FAILED"
+msgstr "Oto-evrim çalıştırılamadı"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2326
+msgid "AUTO_EVO_RUN_STATUS"
+msgstr "çalışma durumu:"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:509
 msgid "REPORT"
 msgstr "Rapor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:478
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:530
 msgid "PATCH_MAP"
 msgstr "Arazi Haritası"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:558
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:610
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:621
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:673
 msgid "SPEED_COLON"
 msgstr "Hız:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:651
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:703
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:681
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:733
 msgid "SIZE_COLON"
 msgstr "Büyüklük:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:702
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:754
 msgid "GENERATION_COLON"
 msgstr "Kuşak:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:744
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:796
 msgid "ATP_BALANCE"
 msgstr "ATP Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:950
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1002
 msgid "MUTATION_POINTS"
 msgstr "Mutasyon Puanı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1085
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1137
 msgid "STRUCTURE"
 msgstr "Yapı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1107
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1159
 msgid "MEMBRANE"
 msgstr "Hücre Zarı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1130
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
 msgid "BEHAVIOR"
 msgstr "Davranış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1182
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1234
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Ara..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1241
 msgid "STRUCTURAL"
 msgstr "Yapısal"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1225
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1277
 msgid "PROTEINS"
 msgstr "Proteinler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1301
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
 msgid "EXTERNAL"
 msgstr "Dış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1355
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
 msgid "ORGANELLES"
 msgstr "Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1504
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1556
 msgid "MEMBRANE_TYPES"
 msgstr "Hücre Zarı Türleri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1574
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1626
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Akışkanlık / Sertlik"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1613
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1665
 msgid "COLOUR"
 msgstr "Renk"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1753
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Tür ismi..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1789
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1841
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "EYLEMİ İPTAL ET"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1803
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1855
 msgid "CONFIRM_CAPITAL"
 msgstr "ONAYLA"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1813
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1865
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatif ATP Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1825
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1877
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobun, hayatta kalmak için yeterli ATP üretmiyor!\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1888
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Bağlı Olmayan Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1848
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1900
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, eklenmiş organeller var.\n"
 "Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya "
 "değişikliklerini geri al."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1949
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
 msgid "AUTO_EVO"
 msgstr "Oto-Evrim"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2013
 msgid "FOOD_CHAIN"
 msgstr "Besin Zinciri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1975
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2026
 msgid "TIMELINE"
 msgstr "Tarih Şeridi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2028
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2079
 msgid "AUTO_EVO_RESULTS"
 msgstr "Oto-evrim sonuçları:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2047
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2098
 msgid "EXTERNAL_EFFECTS"
 msgstr "Dış etkenler:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2105
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2156
 msgid "SPECIES_POPULATION"
 msgstr "Tür Popülasyonu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2138
-#: ../src/microbe_stage/gui/PatchPanel.tscn:241
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2619
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziksel Koşullar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2242
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#: ../src/microbe_stage/gui/PatchPanel.tscn:424
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2293
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2802
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2335
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2386
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3311
 msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2501
+msgid "SELECT_A_PATCH"
+msgstr "Detayları görmek için bir arazi seçin"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2536
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr "MEVCUT KONUM"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
+msgid "PRESSURE"
+msgstr "Basınç"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
+msgid "SPECIES_PRESENT"
+msgstr "Mevcut Türler"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3284
+msgid "MOVE_TO_THIS_PATCH"
+msgstr "Bu Araziye Git"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "Taşı"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "Sil"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "Değiştir"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr "Sonsuz MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:442
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:449
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
 msgstr "Myö"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:453
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:710
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:845
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:847
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:852
 msgid "YEARS"
 msgstr "yıl"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:495
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:500
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:634
 msgid "ATP_PRODUCTION"
 msgstr "ATP Üretimi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:501
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:635
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ÜRETİMİ ÇOK DÜŞÜK!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:527
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:544
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:678
 msgid "OSMOREGULATION"
 msgstr "Ozmoregülasyon"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:550
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:684
 msgid "BASE_MOVEMENT"
 msgstr "Ana Hareket"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:562
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "SPECIES_LIST"
 msgstr "Tür Listesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:741
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:875
 msgid "FREEBUILDING"
 msgstr "Serbest mod"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:823
-msgid "AUTO_EVO_FAILED"
-msgstr "Oto-evrim çalıştırılamadı"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
+msgid "BIOME_LABEL"
+msgstr "Biyom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-msgid "AUTO_EVO_RUN_STATUS"
-msgstr "çalışma durumu:"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:977
+msgid "BELOW_SEA_LEVEL"
+msgstr "Deniz seviyesinin {0}-{1}m altı"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
+msgid "WITH_POPULATION"
+msgstr "{0}: {1} popülasyonla"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "Sil"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "Taşı"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "Değiştir"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2620,34 +3189,6 @@ msgstr ""
 "senin alanını doldurmaya ve gelişmeye devam edecek ama bu sen "
 "olmayacaksın. Evrimde başarısız bir deney olarak kalacaksın."
 
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
-#, fuzzy
-msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr ""
-"Varolmuş bütün türlerin %99'u gibi senin türün de yok oldu. Diğerleri "
-"senin alanını doldurmaya ve gelişmeye devam edecek ama bu sen "
-"olmayacaksın. Evrimde başarısız bir deney olarak kalacaksın."
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:123
-msgid "SELECT_A_PATCH"
-msgstr "Detayları görmek için bir arazi seçin"
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:158
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "MEVCUT KONUM"
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:318
-msgid "PRESSURE"
-msgstr "Basınç"
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:849
-msgid "SPECIES_PRESENT"
-msgstr "Mevcut Türler"
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:906
-msgid "MOVE_TO_THIS_PATCH"
-msgstr "Bu Araziye Git"
-
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
 msgstr "BAŞARDIN!"
@@ -2659,60 +3200,60 @@ msgstr ""
 "gittikten sonra da oynamaya devam edebilirsin veya yeni bir konumda, yeni "
 "bir oyun başlatabilirsin."
 
-#: ../src/saving/InProgressLoad.cs:77 ../src/saving/InProgressLoad.cs:96
-#: ../src/saving/InProgressLoad.cs:145
+#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:147
 msgid "LOADING_GAME"
 msgstr "Oyun Yükleniyor"
 
-#: ../src/saving/InProgressLoad.cs:79
+#: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
 msgstr "Kayıt verisi okunuyor"
 
-#: ../src/saving/InProgressLoad.cs:98
+#: ../src/saving/InProgressLoad.cs:100
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kayıttan objeler oluşturuluyor"
 
-#: ../src/saving/InProgressLoad.cs:107
+#: ../src/saving/InProgressLoad.cs:109
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
-#: ../src/saving/InProgressLoad.cs:133
+#: ../src/saving/InProgressLoad.cs:135
 msgid "SAVE_IS_INVALID"
 msgstr "Kayıt geçersiz"
 
-#: ../src/saving/InProgressLoad.cs:134
+#: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
 
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:149
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Yüklenen objeler işleniyor"
 
-#: ../src/saving/InProgressLoad.cs:162
+#: ../src/saving/InProgressLoad.cs:164
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Yüklenen objeleri işlerken bir sorun oluştu"
 
-#: ../src/saving/InProgressLoad.cs:168
+#: ../src/saving/InProgressLoad.cs:170
 msgid "LOAD_FINISHED"
 msgstr "Yükleme bitti"
 
-#: ../src/saving/InProgressLoad.cs:191
+#: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
 msgstr "Yükleme Hatası"
 
-#: ../src/saving/InProgressLoad.cs:220
+#: ../src/saving/InProgressLoad.cs:224
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
 
-#: ../src/saving/InProgressSave.cs:173
+#: ../src/saving/InProgressSave.cs:174
 msgid "SAVING"
 msgstr "Kaydediliyor..."
 
-#: ../src/saving/InProgressSave.cs:203
+#: ../src/saving/InProgressSave.cs:207
 msgid "SAVE_FAILED"
 msgstr "Kaydetme başarısız"
 
-#: ../src/saving/InProgressSave.cs:204
+#: ../src/saving/InProgressSave.cs:208
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
@@ -2741,14 +3282,12 @@ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Mevcut kaydın üstüne yazılsın mı?"
 
 #: ../src/saving/SaveHelper.cs:382
-#, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
-msgstr "Kaydetme başarısız! Bir sorun oluştu"
+msgstr "Kaydetmek şu an mümkün değil çünkü:"
 
 #: ../src/saving/SaveHelper.cs:383
-#, fuzzy
 msgid "PLAYER_EXTINCT"
-msgstr "Oyuncuyu Çoğalt"
+msgstr "Oyuncunun soyu tükendi"
 
 #: ../src/saving/SaveHelper.cs:392
 msgid "SAVING_SUCCEEDED"
@@ -3138,324 +3677,6 @@ msgstr ""
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin "
 "bağını çöz\" tuşuna basabilirsin."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:"
-#~ "input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
-#~ "input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi "
-#~ "kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy"
-#~ "\"]Oksitoksi NT'yi[/thrive:compound] ateş etmek için [thrive:"
-#~ "input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için "
-#~ "[thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Hücren enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/"
-#~ "thrive:compound] kullanır, eğer ATP tükenirse hücren ölür."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Editörü açmak ve hücreni çoğaltmak için [thrive:compound type=\"ammonia"
-#~ "\"]Amonyak[/thrive:compound] (Turuncu Bulut) ve [thrive:compound type="
-#~ "\"phosphates\"]Fosfat[/thrive:compound] (Mor Bulut) biriktirmen gerekir."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Ayrıca senden küçük hücreleri, bakterileri ve demir parçalarını [thrive:"
-#~ "input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsin. Bu "
-#~ "fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal "
-#~ "olur ve hücreni yavaşlatır. Yutmayı sona erdirmek için [thrive:"
-#~ "input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutma."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Ozmoregülasyon [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] "
-#~ "mal olur. Bu demek oluyor ki hücren ne kadar büyükse, o kadar çok "
-#~ "Mitokondri, Metabolozom ya da Rustisiyanine (veya glikoliz yapan "
-#~ "sitoplazmaya) ihtiyacın var. Böylece hücren durgun haldeyken [thrive:"
-#~ "compound type=\"atp\"]ATP[/thrive:compound] kaybını önleyebilirsin."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Editörde, evrimleşmeni sağlayan birçok Organel bulunuyor. Böylece geniş "
-#~ "kapsamda, farklı oynama şekillerine olanak var."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Çeşitli bileşik bulutları:\n"
-#~ "\n"
-#~ "Beyaz – [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
-#~ "Sarı – [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/"
-#~ "thrive:compound]\n"
-#~ "Turuncu – [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound]\n"
-#~ "Mor – [thrive:compound type=\"phosphates\"]Fosfat[/thrive:compound]\n"
-#~ "Pas Rengi – [thrive:compound type=\"iron\"]Demir[/thrive:compound]\n"
-#~ "\n"
-#~ "[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] [thrive:"
-#~ "compound type=\"atp\"]ATP[/thrive:compound] oluşturur"
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-#~ msgstr ""
-#~ "[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:"
-#~ "compound]; kemoplastlar ve kemosentez yapan proteinler aracılığıyla "
-#~ "[thrive:compound type=\"glucose\"]glukoza[/thrive:compound] "
-#~ "dönüştürülür. [thrive:compound type=\"iron\"]Demir[/thrive:compound], "
-#~ "rustisiyanin aracılığıyla [thrive:compound type=\"atp\"]ATP'ye[/thrive:"
-#~ "compound] dönüştürülür."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr ""
-#~ "Hücreni çoğaltmak için her bir organelini ikiye bölmen gerekir. "
-#~ "Organeller bölünmek için amonyak ve fosfat gerektirir."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr "Şu an için, eğer popülasyonun sıfıra düşerse neslin tükenir."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr ""
-#~ "Ama eğer 300 popülasyonla yirmi kuşak boyunca hayatta kalırsan, mevcut "
-#~ "oyunu kazanmış sayılırsın. Kazandıktan sonra karşına açılır bir pencere "
-#~ "çıkar, ondan sonra oyunu istediğin kadar oynamaya devam edebilirsin."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-#~ msgstr ""
-#~ "Dikkatli ol çünkü rakiplerin seninle birlikte gelişiyor. Editöre "
-#~ "girdiğin her an onlar da evrimleşiyor."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr ""
-#~ "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve "
-#~ "birbiriyle üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. "
-#~ "Başka bir hücre ile bağ kurmak için, bağlayıcı madde organeline sahip "
-#~ "olman ve bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. "
-#~ "Yalnızca kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, "
-#~ "hücreni bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, "
-#~ "ilk önce, yeterli bileşik toplamalı ve koloniden ayrılmalısın. Böylece "
-#~ "editöre girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru "
-#~ "giden yoldur (henüz oyunda değil)."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Prokaryotik Yapılar\n"
-#~ "\n"
-#~ "Metabolozomlar: Glukozdan [thrive:compound type=\"atp\"]ATP[/thrive:"
-#~ "compound] üretir\n"
-#~ "\n"
-#~ "Kemosentez Yapan Proteinler: Bir kemoplast gibi [thrive:compound type="
-#~ "\"hydrogensulfide\"]Hidrojen Sülfürden[/thrive:compound] [thrive:"
-#~ "compound type=\"glucose\"]glukozun[/thrive:compound] yarısını üretir ve "
-#~ "glikoliz yapar. 1 Altıgenlik yer kaplar\n"
-#~ "\n"
-#~ "Tilakoidler: Normal bir kloroplast gibi [thrive:compound type=\"glucose"
-#~ "\"]glukozun[/thrive:compound] 3'te 1'ini üretir ve glikoliz yapar. 1 "
-#~ "Altıgenlik yer kaplar\n"
-#~ "\n"
-#~ "Rustisiyanin: [thrive:compound type=\"iron\"]Demiri[/thrive:compound] "
-#~ "[thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çevirir\n"
-#~ "\n"
-#~ "Nitrojenaz: Atmosferdeki azotu ve [thrive:compound type=\"atp\"]ATP'yi[/"
-#~ "thrive:compound] oksijen olmadan [thrive:compound type=\"ammonia"
-#~ "\"]amonyağa[/thrive:compound] çevirir\n"
-#~ "\n"
-#~ "Sitoplazma: Depo alanına sahiptir ve glikoliz yapar (Az miktarda "
-#~ "[thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir)"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Dış Organeller\n"
-#~ "\n"
-#~ "Kamçı: [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketerek "
-#~ "hücreni daha hızlı hareket ettirir\n"
-#~ "\n"
-#~ "Pilus: Diğer hücreleri delmek için kullanılabilir"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Zarlı Organeller\n"
-#~ "\n"
-#~ "Çekirdek: 11 altıgenlik yer kaplar ve zarlı organellerin evrimini "
-#~ "sağlar. Ayrıca hücrenin büyüklüğünü iki katına çıkarır. (Yalnızca bir "
-#~ "kez evrimleşilir)\n"
-#~ "\n"
-#~ "Bağlayıcı Madde: Diğer hücrelerle bağ kurmaya izin verir\n"
-#~ "\n"
-#~ "Mitokondri: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] "
-#~ "ve atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:"
-#~ "compound] üretir. Sitoplazmadan çok daha verimli şekilde yapar.\n"
-#~ "\n"
-#~ "Kloroplast: Güneş ışığı ve atmosferdeki CO2 gazından [thrive:compound "
-#~ "type=\"glucose\"]glukoz[/thrive:compound] üretir\n"
-#~ "\n"
-#~ "Kemoplast: [thrive:compound type=\"hydrogensulfide\"]Hidrojen "
-#~ "Sülfürden[/thrive:compound] [thrive:compound type=\"glucose\"]glukoz[/"
-#~ "thrive:compound] üretir\n"
-#~ "\n"
-#~ "Azot Fiksasyon Plastidi: [thrive:compound type=\"atp\"]ATP[/thrive:"
-#~ "compound] ile atmosferdeki Azot ve Oksijenden [thrive:compound type="
-#~ "\"ammonia\"]amonyak[/thrive:compound] yapar\n"
-#~ "\n"
-#~ "Koful: Toplanan 15 bileşiği depolar\n"
-#~ "\n"
-#~ "Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy"
-#~ "\"]OksiToksi NT[/thrive:compound] diye adlandırılır)"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-#~ msgstr ""
-#~ "Her kuşakta, harcanacak 100 mutasyon puanın var ve her değişim (ya da "
-#~ "mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da "
-#~ "kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen "
-#~ "organelleri kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade "
-#~ "eder. Bir organelin üzerine sağ tıklayarak onu taşıyabilir ya da "
-#~ "tamamen kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi "
-#~ "seçebilirsin. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:"
-#~ "input]e_rotate_right[/thrive:input] tuşları ile organellerini "
-#~ "döndürebilirsin."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-#~ msgstr ""
-#~ "Hücren her çoğaldığında, Mikrop Editörüne giriş yaparsın. Burada, "
-#~ "türünün başarısını arttırmak için onda değişiklikler yapabilirsin "
-#~ "(organelleri ekleyerek, taşıyarak veya kaldırarak). Editöre yapılan her "
-#~ "ziyaret, Mikrop Evresinde 100 milyon yıllık evrimi temsil eder."
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Editördeyken yanlışlıkları düzeltmek için geri al butonuna bas"
-
-#~ msgid "EASTEREGG_MESSAGE_1"
-#~ msgstr ""
-#~ "İlginç Gerçek: Didinyum ve Paramesyum on yıllardır çalışılan av-avcı "
-#~ "ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa "
-#~ "Didinyum mu? Av mı, avcı mı?"
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr ""
-#~ "İşte sana bir ipucu. Toksinler, yeterince hızlı davranıldığında, diğer "
-#~ "toksinleri vurup uzaklaştırmak için kullanılabilir."
-
-#~ msgid "EASTEREGG_MESSAGE_3"
-#~ msgstr ""
-#~ "İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında "
-#~ "her saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş "
-#~ "altıgenlik alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; "
-#~ "eğer ozmoregülasyondan dolayı ATP kaybediyorsan, birkaç altıgenlik "
-#~ "alanı yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri "
-#~ "kaldırmalısın."
-
-#~ msgid "EASTEREGG_MESSAGE_4"
-#~ msgstr ""
-#~ "İlginç Gerçek: Gerçek hayatta prokaryotlar, organeller gibi davranan "
-#~ "Biyokompartman adı verilen yapılara sahiptir ve bunlar aslında Çok "
-#~ "Yüzeyli organeller olarak adlandırılır."
-
-#~ msgid "EASTEREGG_MESSAGE_5"
-#~ msgstr ""
-#~ "İlginç Gerçek: Metabolozom, Çok yüzeyli bir organel olarak adlandırılır."
-
-#~ msgid "EASTEREGG_MESSAGE_6"
-#~ msgstr ""
-#~ "İşte sana ipucu. Bazen en iyisi yalnızca diğer hücrelerden kaçmak."
-
-#~ msgid "EASTEREGG_MESSAGE_7"
-#~ msgstr ""
-#~ "İşte sana ipucu. Eğer bir hücre senin büyüklüğünün yarısı kadarsa, bu "
-#~ "onu yutabileceğin anlamına gelir."
-
-#~ msgid "EASTEREGG_MESSAGE_8"
-#~ msgstr ""
-#~ "İşte sana ipucu. Bakteriler göründüğünden daha güçlü olabilir. Küçük "
-#~ "duruyor görünebilirler ama bazıları arkandan çukur kazıp seni bu "
-#~ "şekilde öldürebilir!"
-
-#~ msgid "EASTEREGG_MESSAGE_9"
-#~ msgstr ""
-#~ "İşte sana ipucu. Eğer yeterince dikkatli olmazsan, diğer türleri "
-#~ "avlayarak soylarının tükenmesine neden olabilirsin. Bu duruma ayrıca "
-#~ "başka türler de neden olabilir."
-
-#~ msgid "EASTEREGG_MESSAGE_10"
-#~ msgstr "KIMILDAYAN ŞEYLER!!"
-
-#~ msgid "EASTEREGG_MESSAGE_11"
-#~ msgstr "Metali eritalim."
-
-#~ msgid "EASTEREGG_MESSAGE_12"
-#~ msgstr "Ama şu mavi hücreler var ya."
-
-#~ msgid "EASTEREGG_MESSAGE_13"
-#~ msgstr ""
-#~ "İşte sana ipucu. Biyomlar arkaplan olmaktan çok daha fazlası. Farklı "
-#~ "biyomlardaki bileşikler farklı oranlarda oluşuyor."
-
-#~ msgid "EASTEREGG_MESSAGE_14"
-#~ msgstr ""
-#~ "İşte sana ipucu. Ne kadar kamçıya sahipsen, o kadar hızlı gidersin, "
-#~ "vınn vınnn, ama ayrıca daha fazla ATP'ye mal olur"
-
-#~ msgid "EASTEREGG_MESSAGE_15"
-#~ msgstr "İşte sana ipucu. Demir veya başka parçalar yutabilirsin."
-
-#~ msgid "EASTEREGG_MESSAGE_16"
-#~ msgstr ""
-#~ "İşte sana ipucu. Çekirdeği eklemeden önce bir hazırlık yap. Bu tür "
-#~ "şeyler pahalı! Bakım ve önden ödeme ücretiyle."
-
-#~ msgid "EASTEREGG_MESSAGE_17"
-#~ msgstr ""
-#~ "İlginç Gerçek: Dünya üzerinde 8000'in üzerinde silli türü olduğunu "
-#~ "biliyor muydun?"
-
-#~ msgid "EASTEREGG_MESSAGE_18"
-#~ msgstr ""
-#~ "İlginç Gerçek: Stentor, kendini esnetebilen ve siliyle su akıntısı "
-#~ "meydana getirerek, bir tür trompete benzeyen ağzıyla avını "
-#~ "yakalayabilen bir silli türüdür."
-
-#~ msgid "EASTEREGG_MESSAGE_19"
-#~ msgstr ""
-#~ "İlginç Gerçek: Didinyum, paramesyumları avlayan bir silli türüdür."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr ""
-#~ "İlginç Gerçek: Amip, avını yalancı ayak adı verilen sitoplazmadan yapma "
-#~ "'bacaklar' ile yakalar ve avlar. Bunları er ya da geç Thrive'a eklemek "
-#~ "istiyoruz."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr ""
-#~ "İşte sana ipucu. Büyük hücrelere ve bakterilere dikkat et. Bir şeyler "
-#~ "tarafından sindirilmek eğlenceli değil ki, seni yerler."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr ""
-#~ "Thrive'ın ses ekip kaptanı oyuna henüz eklenmeyen birçok şarkı yaptı. "
-#~ "Bu şarkıları dinleyebilirsin veya sahibi Oliver Lugg'ın YouTube "
-#~ "kanalından beste yaptığı sırada çekilen yayın akışlarını izleyebilirsin."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr ""
-#~ "İşte sana ipucu. Eğer hücren 150 altıgenlik alan büyüklüğündeyse, büyük "
-#~ "demir parçalarını yutabilirsin."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr ""
-#~ "Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğun çoğu "
-#~ "canlının, etrafında gerçekleşen evrimden dolayı, bir ya da iki farklı "
-#~ "türe benzemesi mümkün. Onları tanıyabiliyor musun bir gör!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr ""
-#~ "İlginç Gerçek: Thrive ekibi ara sıra podcastler yayınlıyor, onları "
-#~ "incelemeyi unutma!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr ""
-#~ "İlginç Gerçek: Thrive, açık kaynak kodlu Godot oyun motoru ile yapıldı!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr ""
-#~ "İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerden biri bizim "
-#~ "müthiş programcımız untrustedlife tarafından yapıldı!"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Organel sil"
