@@ -813,7 +813,12 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
     {
         reportTabPatchNameLabel.Text = patch.Name;
 
-        if (editor.AutoEvoReports.ContainsKey(patch))
+        // Conditional access for save compatibility
+        // If a save created before the patch-wise population system created in the editor was loaded the current
+        // editor session will show "Auto Evo failed". I have not found a way to write a simple safe upgrader for the
+        // auto evo results. Due to this only being the report and only for one editor session I don't think this is be
+        // a huge problem and worth the time effort to create a fix. - FuJa0815
+        if (editor.AutoEvoReports?.ContainsKey(patch) == true)
         {
             var (summary, externalEffects) = editor.AutoEvoReports[patch];
             UpdateAutoEvoResults(summary, externalEffects);
