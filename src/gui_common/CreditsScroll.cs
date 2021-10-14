@@ -533,11 +533,22 @@ public class CreditsScroll : Container
 
         var splitTexts = Enumerable.Range(0, columns).Select(column => new StringBuilder()).ToList();
 
-        int columnIndex = 0;
-        foreach (string text in texts)
+        using (var textEnumerator = texts.GetEnumerator())
         {
-            splitTexts[columnIndex].AppendLine(text);
-            columnIndex = ++columnIndex % columns;
+            bool done = false;
+            while (!done)
+            {
+                foreach (var column in splitTexts)
+                {
+                    if (!textEnumerator.MoveNext())
+                    {
+                        done = true;
+                        break;
+                    }
+
+                    column.AppendLine(textEnumerator.Current);
+                }
+            }
         }
 
         var hBox = new HBoxContainer
