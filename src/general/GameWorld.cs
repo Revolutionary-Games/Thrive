@@ -311,6 +311,8 @@ public class GameWorld
         if (species == null)
             throw new ArgumentException("species is null");
 
+        var effectPatch = patch ?? Map.CurrentPatch;
+
         // Immediate is only allowed to use for the player dying
         if (immediate)
         {
@@ -319,12 +321,12 @@ public class GameWorld
 
             GD.Print("Applying immediate population effect " +
                 "(should only be used for the player dying)");
-            ApplyImmediatePopulationChange(species, patch ?? Map.CurrentPatch, constant, coefficient);
+            ApplyImmediatePopulationChange(species, effectPatch, constant, coefficient);
         }
 
         CreateRunIfMissing();
 
-        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, patch ?? Map.CurrentPatch, immediate);
+        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, effectPatch, immediate);
     }
 
     /// <summary>
