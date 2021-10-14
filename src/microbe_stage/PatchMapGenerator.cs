@@ -97,6 +97,7 @@ public static class PatchMapGenerator
         LinkPatches(vents, seafloor);
         LinkPatches(seafloor, bathypelagic);
         LinkPatches(seafloor, abyssopelagic);
+        LinkPatches(bathypelagic, abyssopelagic);
         LinkPatches(bathypelagic, mesopelagic);
         LinkPatches(mesopelagic, epipelagic);
         LinkPatches(mesopelagic, cave);
