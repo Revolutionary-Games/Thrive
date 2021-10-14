@@ -642,18 +642,21 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (!CurrentGame.FreeBuild)
         {
-            // Respawn if not extinct (or freebuild)
-            if (GameWorld.IsPlayerExtinct())
-            {
-                gameOver = true;
-                return;
-            }
-
             if (GameWorld.IsSpeciesExtinctInPatch(playerSpecies, GameWorld.Map.CurrentPatch))
             {
+                // Decrease the population by the constant for the player dying out in a patch
+                GameWorld.AlterSpeciesPopulationEverywhere(
+                    playerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
+                    TranslationServer.Translate("PATCH_EXTINCTION"),
+                    true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT);
                 playerExtinctInCurrentPatch = true;
-                return;
             }
+
+            if (GameWorld.IsPlayerExtinct())
+                gameOver = true;
+
+            if (gameOver || playerExtinctInCurrentPatch)
+                return;
         }
 
         // Player is not extinct, so can respawn

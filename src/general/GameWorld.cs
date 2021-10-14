@@ -292,7 +292,7 @@ public class GameWorld
     }
 
     /// <summary>
-    ///   Adds an external population effect to a species
+    ///   Adds an external population effect to a species in a specific patch
     /// </summary>
     /// <param name="species">Target species</param>
     /// <param name="constant">Change amount (constant part)</param>
@@ -301,8 +301,9 @@ public class GameWorld
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
+    /// <param name="patch">The patch where this happened. Null for the current patch.</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description,
-        bool immediate = false, float coefficient = 1)
+        bool immediate = false, float coefficient = 1, Patch patch = null)
     {
         if (constant == 0 || coefficient == 0)
             return;
@@ -318,12 +319,27 @@ public class GameWorld
 
             GD.Print("Applying immediate population effect " +
                 "(should only be used for the player dying)");
-            ApplyImmediatePopulationChange(species, Map.CurrentPatch, constant, coefficient);
+            ApplyImmediatePopulationChange(species, patch ?? Map.CurrentPatch, constant, coefficient);
         }
 
         CreateRunIfMissing();
 
-        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, Map.CurrentPatch, immediate);
+        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, patch ?? Map.CurrentPatch, immediate);
+    }
+
+    /// <summary>
+    ///   Adds an external population effect to a species in all patches where this species is present
+    /// </summary>
+    public void AlterSpeciesPopulationEverywhere(Species species, int constant, string description,
+        bool immediate = false, float coefficient = 1)
+    {
+        foreach (var patch in Map.Patches.Values)
+        {
+            if (patch.GetSpeciesPopulation(species) <= 0)
+                continue;
+
+            AlterSpeciesPopulation(species, constant, description, immediate, coefficient, patch);
+        }
     }
 
     public void RemoveSpecies(Species species)
