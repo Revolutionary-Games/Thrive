@@ -1504,10 +1504,10 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private void OnBehaviourValueChanged(float value, string behaviourName)
     {
-        if (!Enum.TryParse(behaviourName, out BehaviouralValueType behaviourValue))
+        if (!Enum.TryParse(behaviourName, out BehaviouralValueType behaviouralValueType))
             throw new ArgumentException($"{behaviourName} is not a valid BehaviouralValueType");
 
-        editor.SetBehavioural(behaviourValue, value);
+        editor.SetBehaviouralValue(behaviouralValueType, value);
     }
 
     private void OnRigidityChanged(int value)

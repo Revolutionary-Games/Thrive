@@ -815,7 +815,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateMembraneButtons(Membrane.InternalName);
     }
 
-    public void SetBehavioural(BehaviouralValueType type, float value)
+    public void SetBehaviouralValue(BehaviouralValueType type, float value)
     {
         gui.UpdateBehaviourSlider(type, value);
 
