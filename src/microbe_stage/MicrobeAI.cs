@@ -34,7 +34,7 @@ public class MicrobeAI
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
     [JsonIgnore]
-    private Microbe focusedPrey;
+    private EntityReference<Microbe> focusedPrey = new EntityReference<Microbe>();
 
     [JsonProperty]
     private float pursuitThreshold;
@@ -81,8 +81,6 @@ public class MicrobeAI
         if (microbe.ColonyParent != null)
             return;
 
-        ClearDisposedReferences(data);
-
         ChooseActions(random, data);
 
         // Store the absorbed compounds for run and rumble
@@ -103,7 +101,7 @@ public class MicrobeAI
     {
         previousAngle = 0;
         targetPosition = Vector3.Zero;
-        focusedPrey = null;
+        focusedPrey.Value = null;
         pursuitThreshold = 0;
         microbe.MovementDirection = Vector3.Zero;
         microbe.TotalAbsorbedCompounds.Clear();
@@ -159,19 +157,6 @@ public class MicrobeAI
         {
             // This organism is sessile, and will not act until the environment changes
             SetMoveSpeed(0.0f);
-        }
-    }
-
-    /// <summary>
-    ///   Anything held between calls of the think() method has a chance of having been disposed elsewhere.
-    ///   This sets anything disposed to null to prevent errors. This can probably be removed when issue
-    ///   https://github.com/Revolutionary-Games/Thrive/issues/2029 is fixed
-    /// </summary>
-    private void ClearDisposedReferences(MicrobeAICommonData data)
-    {
-        if (!data.AllMicrobes.Contains(focusedPrey))
-        {
-            focusedPrey = null;
         }
     }
 
@@ -258,17 +243,18 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPreyItem(List<Microbe> allMicrobes)
     {
-        if (focusedPrey != null)
+        var focused = focusedPrey.Value;
+        if (focused != null)
         {
-            var distanceToFocusedPrey = DistanceFromMe(focusedPrey.GlobalTransform.origin);
-            if (!focusedPrey.Dead && distanceToFocusedPrey <
+            var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin);
+            if (!focused.Dead && distanceToFocusedPrey <
                 (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
                 if (distanceToFocusedPrey < pursuitThreshold)
                 {
                     // Keep chasing, but expect to keep getting closer
                     pursuitThreshold *= 0.95f;
-                    return focusedPrey;
+                    return focused;
                 }
 
                 // If prey hasn't gotten closer by now, it's probably too fast, or juking you
@@ -276,7 +262,7 @@ public class MicrobeAI
                 return null;
             }
 
-            focusedPrey = null;
+            focusedPrey.Value = null;
         }
 
         Microbe chosenPrey = null;
@@ -299,7 +285,7 @@ public class MicrobeAI
             }
         }
 
-        focusedPrey = chosenPrey;
+        focusedPrey.Value = chosenPrey;
         pursuitThreshold = chosenPrey != null ? DistanceFromMe(chosenPrey.GlobalTransform.origin) * 3.0f : 0.0f;
         return chosenPrey;
     }

@@ -561,7 +561,6 @@ __meta__ = {
 }
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -1.41425
@@ -1191,6 +1190,7 @@ __meta__ = {
 }
 
 [node name="Structure" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+visible = false
 margin_top = 40.0
 margin_right = 318.0
 margin_bottom = 556.0
@@ -1695,15 +1695,13 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 0.0
-margin_top = 23.0
-margin_right = 302.0
-margin_bottom = 587.0
+margin_top = 27.0
+margin_right = 306.0
+margin_bottom = 591.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-visible = false
-margin_top = 303.0
+margin_top = 40.0
 margin_right = 318.0
 margin_bottom = 556.0
 mouse_filter = 1
@@ -1712,7 +1710,7 @@ custom_styles/panel = SubResource( 20 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour"]
 margin_right = 318.0
-margin_bottom = 253.0
+margin_bottom = 516.0
 mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -1737,25 +1735,37 @@ margin_right = 308.0
 margin_bottom = 38.0
 custom_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression"]
+[node name="HBoxContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression"]
 margin_right = 308.0
 margin_bottom = 18.0
+columns = 3
 
 [node name="AggressionLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
-margin_right = 95.0
+margin_right = 135.0
 margin_bottom = 18.0
+size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 99 )
-text = "AGGRESSION"
+text = "PEACEFUL"
 valign = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
-margin_left = 99.0
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
+margin_left = 139.0
+margin_right = 169.0
+margin_bottom = 18.0
+grow_horizontal = 2
+rect_min_size = Vector2( 30, 0 )
+
+[node name="AggressionLabel2" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
+margin_left = 173.0
 margin_right = 308.0
 margin_bottom = 18.0
-mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 22 )
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 99 )
+text = "AGGRESSIVE"
+align = 2
+valign = 1
 
 [node name="AggressionSlider" type="HSlider" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression"]
 margin_top = 23.0
@@ -1776,25 +1786,38 @@ margin_right = 308.0
 margin_bottom = 91.0
 custom_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism"]
+[node name="HBoxContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism"]
 margin_right = 308.0
 margin_bottom = 18.0
+columns = 3
 
 [node name="OpportunismLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
-margin_right = 102.0
+margin_right = 135.0
 margin_bottom = 18.0
+size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 99 )
-text = "OPPORTUNISM"
+text = "CAUTIOUS"
 valign = 1
+clip_text = true
 
-[node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
-margin_left = 106.0
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
+margin_left = 139.0
+margin_right = 169.0
+margin_bottom = 18.0
+grow_horizontal = 2
+rect_min_size = Vector2( 30, 0 )
+
+[node name="OpportunismLabel2" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
+margin_left = 173.0
 margin_right = 308.0
 margin_bottom = 18.0
-mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 22 )
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 99 )
+text = "OPPORTUNISTIC"
+align = 2
+valign = 1
 
 [node name="OpportunismSlider" type="HSlider" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism"]
 margin_top = 23.0
@@ -1815,25 +1838,37 @@ margin_right = 308.0
 margin_bottom = 144.0
 custom_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear"]
+[node name="HBoxContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear"]
 margin_right = 308.0
 margin_bottom = 18.0
+columns = 3
 
 [node name="FearLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
-margin_right = 40.0
+margin_right = 135.0
 margin_bottom = 18.0
+size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 99 )
-text = "FEAR"
+text = "BRAVE"
 valign = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
-margin_left = 44.0
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
+margin_left = 139.0
+margin_right = 169.0
+margin_bottom = 18.0
+grow_horizontal = 2
+rect_min_size = Vector2( 30, 0 )
+
+[node name="FearLabel2" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
+margin_left = 173.0
 margin_right = 308.0
 margin_bottom = 18.0
-mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 22 )
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 99 )
+text = "FEARFUL"
+align = 2
+valign = 1
 
 [node name="FearSlider" type="HSlider" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear"]
 margin_top = 23.0
@@ -1854,25 +1889,37 @@ margin_right = 308.0
 margin_bottom = 197.0
 custom_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity"]
+[node name="HBoxContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity"]
 margin_right = 308.0
 margin_bottom = 18.0
+columns = 3
 
 [node name="ActivityLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
-margin_right = 63.0
+margin_right = 135.0
 margin_bottom = 18.0
+size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 99 )
-text = "ACTIVITY"
+text = "SESSILE"
 valign = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
-margin_left = 67.0
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
+margin_left = 139.0
+margin_right = 169.0
+margin_bottom = 18.0
+grow_horizontal = 2
+rect_min_size = Vector2( 30, 0 )
+
+[node name="ActivityLabel2" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
+margin_left = 173.0
 margin_right = 308.0
 margin_bottom = 18.0
-mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 22 )
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 99 )
+text = "ACTIVE"
+align = 2
+valign = 1
 
 [node name="ActivitySlider" type="HSlider" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity"]
 margin_top = 23.0
@@ -1893,25 +1940,37 @@ margin_right = 308.0
 margin_bottom = 250.0
 custom_constants/separation = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus"]
+[node name="HBoxContainer" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus"]
 margin_right = 308.0
 margin_bottom = 18.0
+columns = 3
 
 [node name="FocusLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
-margin_right = 50.0
+margin_right = 135.0
 margin_bottom = 18.0
+size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 99 )
-text = "FOCUS"
+text = "RESPONSIVE"
 valign = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
-margin_left = 54.0
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
+margin_left = 139.0
+margin_right = 169.0
+margin_bottom = 18.0
+grow_horizontal = 2
+rect_min_size = Vector2( 30, 0 )
+
+[node name="FocusLabel2" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
+margin_left = 173.0
 margin_right = 308.0
 margin_bottom = 18.0
-mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 22 )
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 99 )
+text = "FOCUSED"
+align = 2
+valign = 1
 
 [node name="FocusSlider" type="HSlider" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus"]
 margin_top = 23.0
@@ -2141,6 +2200,7 @@ align = 1
 autowrap = true
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
@@ -2365,7 +2425,7 @@ margin_right = 328.0
 margin_bottom = 608.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer"]
-margin_right = 312.0
+margin_right = 318.0
 margin_bottom = 602.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2373,7 +2433,7 @@ custom_constants/margin_right = 15
 custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer"]
-margin_right = 297.0
+margin_right = 303.0
 margin_bottom = 592.0
 size_flags_horizontal = 3
 size_flags_vertical = 3

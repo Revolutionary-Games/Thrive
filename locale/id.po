@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-30 20:21+0200\n"
-"PO-Revision-Date: 2021-09-08 14:51+0000\n"
+"POT-Creation-Date: 2021-10-03 14:00+0200\n"
+"PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/id/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -723,25 +723,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1272
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3281
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3341
 msgid "AMMONIA"
 msgstr "Amonia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3352
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3412
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1380
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3246
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogen Sulfida"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1218
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3316
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3376
 msgid "GLUCOSE"
 msgstr "Glukosa"
 
@@ -752,28 +752,28 @@ msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1434
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3387
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
 msgid "IRON"
 msgstr "Besi"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3142
 msgid "OXYGEN"
 msgstr "Oksigen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3136
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
 msgid "CARBON_DIOXIDE"
 msgstr "Karbon Dioksida"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3109
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3169
 msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3022
 msgid "SUNLIGHT"
 msgstr "Sinar Matahari"
 
@@ -1746,7 +1746,7 @@ msgid "SAVE_GAME"
 msgstr "Simpan Permainan"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2386
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2446
 msgid "STATISTICS"
 msgstr "Statistika"
 
@@ -1794,107 +1794,109 @@ msgstr "{0}%"
 
 #: ../src/gui_common/CreditsScroll.cs:228
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Kepala Pengembang"
 
 #: ../src/gui_common/CreditsScroll.cs:234
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Kepala Programmer"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Kepala Programmer"
 
 #: ../src/gui_common/CreditsScroll.cs:240
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Kepala Teoritisi"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Kepala Teoritisi"
 
 #: ../src/gui_common/CreditsScroll.cs:246
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Kepala Ahli Seni"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Kepala Ahli Seni"
 
 #: ../src/gui_common/CreditsScroll.cs:252
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Kepala Tim Suara"
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Kepala Tim Suara"
 
 #: ../src/gui_common/CreditsScroll.cs:258
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Kepala Outreach"
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Kepala Outreach"
 
 #: ../src/gui_common/CreditsScroll.cs:264
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "Kepala Desainer Game"
 
 #: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "Kepala Desainer Game"
 
 #: ../src/gui_common/CreditsScroll.cs:270
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "Kepala Penguji"
 
 #: ../src/gui_common/CreditsScroll.cs:271
 msgid "LEAD_TESTERS"
-msgstr ""
+msgstr "Kepala Penguji"
 
 #: ../src/gui_common/CreditsScroll.cs:276
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Kepala Manager Proyek"
 
 #: ../src/gui_common/CreditsScroll.cs:277
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "Kepala Manager Proyek"
 
 #: ../src/gui_common/CreditsScroll.cs:284
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Pengembang Masa Ini"
 
 #: ../src/gui_common/CreditsScroll.cs:300
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Pengembang Masa Lalu"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Kontributor Luar"
 
 #: ../src/gui_common/CreditsScroll.cs:319
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive merupakan proyek open source.\n"
+"Kamu dapat mengkontribusi sebuah pull request tanpa melamar ke tim."
 
 #: ../src/gui_common/CreditsScroll.cs:334
 msgid "PATRONS"
-msgstr ""
+msgstr "Patron"
 
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Kamu dapat mendukung pengembangan masa depan Thrive di Pateron"
 
 #: ../src/gui_common/CreditsScroll.cs:341
 msgid "VIP_PATRONS"
-msgstr ""
+msgstr "Pendukung VIP"
 
 #: ../src/gui_common/CreditsScroll.cs:342
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Pendukung Devbuilds"
 
 #: ../src/gui_common/CreditsScroll.cs:344
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Pendukung"
 
 #: ../src/gui_common/CreditsScroll.cs:354
 #, fuzzy
@@ -1908,23 +1910,26 @@ msgstr "Bantu Alih Bahasa Permainan"
 
 #: ../src/gui_common/CreditsScroll.cs:391
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Lisensi dan Libraries yang Digunakan"
 
 #: ../src/gui_common/CreditsScroll.cs:485
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Terimakasih telah bermain!\n"
+"\n"
+"Jika kamu menikmati game ini, tolong beritahu teman anda tentang kami."
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Oleh Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Pengembangan didukung oleh Revolutionary Games Studio ry"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Pengembang"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -2578,7 +2583,7 @@ msgstr ""
 "tidak secepat inti CPU asli."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2899
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2959
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
 msgid "TEMPERATURE"
 msgstr "Suhu"
@@ -2679,8 +2684,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Tekanan"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1120
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2570
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3206
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2630
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3266
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
 msgid "COMPOUNDS"
 msgstr "Senyawa"
@@ -2749,20 +2754,20 @@ msgstr "Proses Sel"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Keseimbangan Senyawa"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:614
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1438
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:605
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1392
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:616
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:607
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Menunggu auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2405
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2361
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo gagal bekerja"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2406
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2362
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status auto-evo:"
 
@@ -2774,43 +2779,44 @@ msgstr "Laporan"
 msgid "PATCH_MAP"
 msgstr "Peta Daerah"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:616
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organisme"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:679
 msgid "SPEED_COLON"
 msgstr "Kecepatan:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:710
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:709
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:740
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:739
 msgid "SIZE_COLON"
 msgstr "Ukuran:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:761
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:760
 msgid "GENERATION_COLON"
 msgstr "Generasi:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:803
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:802
 msgid "ATP_BALANCE"
 msgstr "Keseimbangan ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1009
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1008
 msgid "MUTATION_POINTS"
 msgstr "Poin Mutasi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1144
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1143
 msgid "STRUCTURE"
 msgstr "Struktur"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1166
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1165
 msgid "MEMBRANE"
 msgstr "Membran"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1188
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1187
+#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Perilaku"
 
@@ -2847,115 +2853,135 @@ msgid "COLOUR"
 msgstr "Warna"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1749
-msgid "AGGRESSION"
+msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1788
-msgid "OPPORTUNISM"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1766
+msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1827
-msgid "FEAR"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
+msgid "CAUTIOUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1866
-msgid "ACTIVITY"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1818
+msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1905
-msgid "FOCUS"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
+msgid "BRAVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2044
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1869
+msgid "FEARFUL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1903
+msgid "SESSILE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1920
+msgid "ACTIVE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1954
+msgid "RESPONSIVE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1971
+msgid "FOCUSED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2103
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nama spesies..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2080
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2139
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "BATAL TINDAKAN"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2094
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2153
 msgid "CONFIRM_CAPITAL"
 msgstr "KONFIRMASI"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2104
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2163
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Keseimbangan ATP Negatif"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2116
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2175
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobamu tidak menghasilkan ATP yang cukup untuk bertahan hidup!\n"
 "Lanjut?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2127
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2186
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Organel Terputus"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2139
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2198
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Ada organel yang tidak tersambung dengan yang lainnya.\n"
 "Mohon untuk menyambung semua organel dengan yang lainnya atau batal "
 "perubahanmu."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2239
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2299
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2312
 msgid "FOOD_CHAIN"
 msgstr "Rantai Makanan"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2265
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2325
 msgid "TIMELINE"
 msgstr "Alur Waktu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2318
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2378
 msgid "AUTO_EVO_RESULTS"
 msgstr "Hasil auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2337
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2397
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efek eksternal:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2395
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2455
 msgid "SPECIES_POPULATION"
 msgstr "Populasi Spesies"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2858
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2918
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Kondisi Fisik"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2532
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2592
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3101
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gas Atmosfer"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2625
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2685
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3610
 msgid "NEXT_CAPITAL"
 msgstr "LANJUT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2740
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2800
 msgid "SELECT_A_PATCH"
 msgstr "Pilih daerah untuk menampilkan rincian"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2835
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "LOKASI SEKARANG"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2995
 msgid "PRESSURE"
 msgstr "Tekanan"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3466
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3526
 msgid "SPECIES_PRESENT"
 msgstr "Spesies yang Ada"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3523
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3583
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Pindah ke Daerah Ini"
 
@@ -3361,7 +3387,7 @@ msgstr "Buka Direktori Save"
 
 #: ../src/saving/SaveManagerGUI.tscn:239
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Coba buat save!"
 
 #: ../src/saving/SaveStatusOverlay.tscn:122
 msgid "SAVING_ERROR"

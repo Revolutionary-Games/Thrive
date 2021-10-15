@@ -54,7 +54,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
-    public Node SpawnedNode => this;
+    public Node EntityNode => this;
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
@@ -369,8 +369,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         if (dissolveEffectValue >= 1)
         {
-            OnDestroyed();
-            this.DetachAndQueueFree();
+            this.DestroyDetachAndQueueFree();
         }
     }
 
@@ -461,8 +460,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         }
         else if (!isParticles)
         {
-            OnDestroyed();
-            this.DetachAndQueueFree();
+            this.DestroyDetachAndQueueFree();
         }
     }
 }

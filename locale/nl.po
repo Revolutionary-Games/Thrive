@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-30 20:21+0200\n"
-"PO-Revision-Date: 2021-09-08 14:51+0000\n"
-"Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
+"POT-Creation-Date: 2021-10-03 14:00+0200\n"
+"PO-Revision-Date: 2021-09-28 07:32+0000\n"
+"Last-Translator: MrTunaPizza <rickvossebelt@hotmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -498,14 +498,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Annuleer huidige actie"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Plaats organellen"
+msgstr "Verwijder organellen"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Verwijder organellen"
+msgstr "Verplaats organellen"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
@@ -705,25 +703,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1272
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3281
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3341
 msgid "AMMONIA"
 msgstr "Ammoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3352
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3412
 msgid "PHOSPHATE"
 msgstr "Fosfaat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1380
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3246
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
 msgid "HYDROGEN_SULFIDE"
 msgstr "Waterstofsulfide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1218
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3316
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3376
 msgid "GLUCOSE"
 msgstr "Glucose"
 
@@ -734,28 +732,28 @@ msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1434
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3387
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
 msgid "IRON"
 msgstr "Ijzer"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3082
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3142
 msgid "OXYGEN"
 msgstr "Zuurstof"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3136
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3196
 msgid "CARBON_DIOXIDE"
 msgstr "Kooldioxide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3109
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3169
 msgid "NITROGEN"
 msgstr "Stikstof"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3022
 msgid "SUNLIGHT"
 msgstr "Zonlicht"
 
@@ -1068,11 +1066,11 @@ msgstr "Terug"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
-msgstr ""
+msgstr "Num Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
@@ -1120,9 +1118,8 @@ msgid "DIRECTIONR"
 msgstr "Rechts"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "Geluid Omlaag"
+msgstr "Geluid Zachter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 #, fuzzy
@@ -1130,51 +1127,48 @@ msgid "VOLUMEMUTE"
 msgstr "Geluid Uit"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "Geluid Omhoog"
+msgstr "Geluid Harder"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr ""
+msgstr "Bassboost"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr ""
+msgstr "Bass Harder"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr ""
+msgstr "Bass Zachter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
-msgstr ""
+msgstr "Hoge tonen Harder"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Scroll omlaag"
+msgstr "Hoge tonen Zachter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Media Afspelen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Media Stoppen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
-#, fuzzy
 msgid "MEDIAPREVIOUS"
-msgstr "Vorige:"
+msgstr "Vorige Media"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Volgende Media"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
-msgstr ""
+msgstr "Media Opnemen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
@@ -1182,131 +1176,131 @@ msgstr "Mail"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "Media"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Lanceren 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Lanceren 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Lanceren 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Lanceren 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Lanceren 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Lanceren 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Lanceren 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Lanceren 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Lanceren 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Lanceren 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Lanceren A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Lanceren B"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Lanceren C"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Lanceren D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Lanceren E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Lanceren F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Num *"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Num /"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Num -"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Num ."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KPADD"
-msgstr ""
+msgstr "Num +"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
-msgstr ""
+msgstr "Num 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP1"
-msgstr ""
+msgstr "Num 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP2"
-msgstr ""
+msgstr "Num 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP3"
-msgstr ""
+msgstr "Num 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP4"
-msgstr ""
+msgstr "Num 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP5"
-msgstr ""
+msgstr "Num 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP6"
-msgstr ""
+msgstr "Num 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "KP7"
-msgstr ""
+msgstr "Num 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:225
 msgid "KP8"
-msgstr ""
+msgstr "Num 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:226
 msgid "KP9"
-msgstr ""
+msgstr "Num 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 #, fuzzy
@@ -1367,16 +1361,16 @@ msgstr "Onbekende muisknop"
 
 #: ../src/general/Gallery.cs:70
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Kunst van {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
-msgstr "Sluit"
+msgstr "Sluiten"
 
 #: ../src/general/MainMenu.cs:393
 msgid "OK"
@@ -1420,7 +1414,7 @@ msgstr "Stop"
 
 #: ../src/general/MainMenu.tscn:251
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "Microbe vrij bouwen"
+msgstr "Microbe vrij bouwen bewerker"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
 #: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
@@ -1435,29 +1429,31 @@ msgstr "GLES2 moduswaarschuwing"
 #: ../src/general/MainMenu.tscn:395
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"Je gebruikt Thrive met GLES2. Dit is niet getest en veroorzaakt problemen. "
-"Update je drivers of gebruik een AMD of Nvidia videokaart met Thrive."
+"Je gebruikt Thrive met GLES2. Dit is niet getest en zal "
+"hoogstwaarschijnlijk voor problemen veroorzaken. Update je drivers en/of "
+"forceer je AMD of Nvidia graphics om Thrive te laten runnen."
 
 #: ../src/general/OptionsMenu.cs:803
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Standaard uitvoer apparaat"
 
 #: ../src/general/OptionsMenu.cs:843
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+"Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublieft "
+"mee!"
 
 #: ../src/general/OptionsMenu.cs:847
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "De vertaling van deze taal is nog niet compleet ({0}% compleet)"
 
 #: ../src/general/OptionsMenu.cs:851
-#, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Help met vertalen"
+msgstr "Deze taal is {0}% compleet"
 
 #: ../src/general/OptionsMenu.tscn:136
 msgid "GRAPHICS"
-msgstr "Kwaliteit"
+msgstr "Grafische Kwaliteit"
 
 #: ../src/general/OptionsMenu.tscn:147
 msgid "SOUND"
@@ -1481,7 +1477,7 @@ msgstr "vSync"
 
 #: ../src/general/OptionsMenu.tscn:221
 msgid "FULLSCREEN"
-msgstr "Fullscreen"
+msgstr "Volledig Scherm"
 
 #: ../src/general/OptionsMenu.tscn:243
 msgid "MULTISAMPLE_ANTI_ALIASING"
@@ -1489,7 +1485,7 @@ msgstr "Anti-Aliasing:"
 
 #: ../src/general/OptionsMenu.tscn:250
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(hogere instelling verlaagt de prestatie)"
+msgstr "(hogere waarden verlagen de prestatie)"
 
 #: ../src/general/OptionsMenu.tscn:280
 msgid "RESOLUTION"
@@ -1512,17 +1508,16 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische Aberratie:"
 
 #: ../src/general/OptionsMenu.tscn:388
-#, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Capaciteiten"
+msgstr "Toon Capaciteiten Balk"
 
 #: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr ""
+msgstr "Zet GUI Licht Effecten Aan"
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
-msgstr "Volume"
+msgstr "Master Volume"
 
 #: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
 #: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
@@ -1548,7 +1543,7 @@ msgstr "Volume GUI"
 
 #: ../src/general/OptionsMenu.tscn:608
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Audio uitvoer apparaat:"
 
 #: ../src/general/OptionsMenu.tscn:633
 msgid "LANGUAGE"
@@ -1574,7 +1569,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(hogere instelling verlaagt de prestatie)"
+msgstr "(hogere waarden verbeteren prestatie)"
 
 #: ../src/general/OptionsMenu.tscn:749
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -1586,24 +1581,23 @@ msgstr "Voer auto-evo uit tijdens het spelen"
 
 #: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
-msgstr ""
+msgstr "Gedetecteerde CPU count:"
 
 #: ../src/general/OptionsMenu.tscn:828
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Opslaan en doorgaan"
+msgstr "Huidige threads:"
 
 #: ../src/general/OptionsMenu.tscn:843
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Veronderstel dat de CPU hyperthreading aan heeft staan"
 
 #: ../src/general/OptionsMenu.tscn:855
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Stel handmatig de nummers van achtergrond threads in"
 
 #: ../src/general/OptionsMenu.tscn:868
 msgid "THREADS"
-msgstr ""
+msgstr "Threads:"
 
 #: ../src/general/OptionsMenu.tscn:969
 msgid "RESET_INPUTS"
@@ -1611,7 +1605,7 @@ msgstr "Reset invoer"
 
 #: ../src/general/OptionsMenu.tscn:997
 msgid "PLAY_INTRO_VIDEO"
-msgstr "Speel intro"
+msgstr "Speel intro video"
 
 #: ../src/general/OptionsMenu.tscn:1006
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
@@ -1655,7 +1649,7 @@ msgstr "Open screenshots"
 
 #: ../src/general/OptionsMenu.tscn:1161
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Open logs"
+msgstr "Open logs Folder"
 
 #: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -1713,25 +1707,23 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ERROR: Het opslaan van nieuwe instellingen is mislukt."
 
 #: ../src/general/OptionsMenu.tscn:1407
-#, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Open screenshots"
+msgstr "Geen screenshot directory gevonden"
 
 #: ../src/general/OptionsMenu.tscn:1416
-#, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Maak een screenshot"
+msgstr "Maak een screenshot!"
 
 #: ../src/general/PauseMenu.tscn:58
 msgid "RESUME"
-msgstr "Ga verder"
+msgstr "Hervat"
 
 #: ../src/general/PauseMenu.tscn:65
 msgid "SAVE_GAME"
 msgstr "Sla spel op"
 
 #: ../src/general/PauseMenu.tscn:80
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2386
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2446
 msgid "STATISTICS"
 msgstr "Statistieken"
 
@@ -1749,15 +1741,15 @@ msgstr "Sluit"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} Mjrd"
+msgstr "{0} Mld"
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
-msgstr "{0} M"
+msgstr "{0} Mln"
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
-msgstr "{0} K"
+msgstr "{0} Kg"
 
 #: ../src/gui_common/ChemicalEquation.cs:139
 #: ../src/gui_common/ChemicalEquation.cs:179
@@ -1766,7 +1758,7 @@ msgstr "/seconde"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
@@ -1775,35 +1767,35 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
 msgid "PERCENTAGE_VALUE"
-msgstr ""
+msgstr "{0}%"
 
 #: ../src/gui_common/CreditsScroll.cs:228
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Hoofd Ontwikkelaars"
 
 #: ../src/gui_common/CreditsScroll.cs:234
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Hoofd Programmeur"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Hoofd Programmeurs"
 
 #: ../src/gui_common/CreditsScroll.cs:240
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Hoofd Theorist"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Hoofd Theoristen"
 
 #: ../src/gui_common/CreditsScroll.cs:246
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Hoofd Design"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Hoofd Design"
 
 #: ../src/gui_common/CreditsScroll.cs:252
 msgid "SOUND_TEAM_LEAD"
@@ -2430,7 +2422,7 @@ msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2899
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2959
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
 msgid "TEMPERATURE"
 msgstr ""
@@ -2529,8 +2521,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Druk"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1120
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2570
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3206
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2630
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3266
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
 msgid "COMPOUNDS"
 msgstr "Verbindingen"
@@ -2599,20 +2591,20 @@ msgstr "Celprocessen"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:614
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1438
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:605
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1392
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe-editor Laden"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:616
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:607
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten op auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2405
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2361
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo mislukt"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2406
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2362
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "uitvoeringsstatus:"
 
@@ -2625,43 +2617,44 @@ msgstr "Rapport"
 msgid "PATCH_MAP"
 msgstr "Kaart met plekken"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:616
 msgid "ORGANISM_STATISTICS"
 msgstr "Organismestatistieken"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:679
 msgid "SPEED_COLON"
 msgstr "Snelheid:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:710
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:709
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:740
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:739
 msgid "SIZE_COLON"
 msgstr "Grootte:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:761
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:760
 msgid "GENERATION_COLON"
 msgstr "Generatie:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:803
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:802
 msgid "ATP_BALANCE"
 msgstr "ATP-balans"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1009
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1008
 msgid "MUTATION_POINTS"
 msgstr "Mutatiepunten"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1144
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1143
 msgid "STRUCTURE"
 msgstr "Structuur"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1166
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1165
 msgid "MEMBRANE"
 msgstr "Membraan"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1188
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1187
+#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Gedrag"
 
@@ -2698,112 +2691,132 @@ msgid "COLOUR"
 msgstr "Kleur"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1749
-msgid "AGGRESSION"
+msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1788
-msgid "OPPORTUNISM"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1766
+msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1827
-msgid "FEAR"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
+msgid "CAUTIOUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1866
-msgid "ACTIVITY"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1818
+msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1905
-msgid "FOCUS"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1852
+msgid "BRAVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2044
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1869
+msgid "FEARFUL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1903
+msgid "SESSILE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1920
+msgid "ACTIVE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1954
+msgid "RESPONSIVE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1971
+msgid "FOCUSED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2103
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Soortnaam..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2080
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2139
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANNULEER ACTIE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2094
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2153
 msgid "CONFIRM_CAPITAL"
 msgstr "BEVESTIGEN"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2104
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2163
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatieve ATP-balans"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2116
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2175
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Je microbe produceert niet genoeg ATP om te overleven!\n"
 "Wil je doorgaan?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2127
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2186
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2139
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2198
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2239
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2299
 msgid "AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2252
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2312
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2265
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2325
 msgid "TIMELINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2318
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2378
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2337
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2397
 msgid "EXTERNAL_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2395
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2455
 msgid "SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2428
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2858
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2918
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2532
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2592
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3101
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2625
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2685
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3610
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2740
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2800
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2835
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2995
 msgid "PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3466
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3526
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3523
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3583
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
