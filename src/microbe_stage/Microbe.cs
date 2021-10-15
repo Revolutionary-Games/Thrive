@@ -510,7 +510,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
                 Colony.Master.AddCollisionExceptionWith(this);
                 AddCollisionExceptionWith(Colony.Master);
-                Mode = ModeEnum.Static;          
+                Mode = ModeEnum.Static;
             }
 
             // And recompute storage
@@ -624,7 +624,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
     public Microbe GetMicrobeFromShape(int bodyShape)
     {
-        if (Colony == null || (IsLoadedFromSave && !onRemakeCalled ))
+        if (Colony == null || (IsLoadedFromSave && !onRemakeCalled))
             return this;
 
         var touchedOwnerId = ShapeFindOwner(bodyShape);
@@ -1432,7 +1432,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
     }
 
-
     public void CheckColonyRemake()
     {
         // Remake the clony after destroying it
@@ -1501,7 +1500,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         GlobalTransform = colonyChildrenTransform[0];
-        
+
         // Wait for the pili of colony members to update to the true position
         if (sem == 0)
         {
