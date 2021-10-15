@@ -70,9 +70,9 @@ public class BehaviourChangeActionData : IMicrobeEditorActionData
 {
     public float NewValue;
     public float OldValue;
-    public BehaviouralValue Type;
+    public BehaviouralValueType Type;
 
-    public BehaviourChangeActionData(float newValue, float oldValue, BehaviouralValue type)
+    public BehaviourChangeActionData(float newValue, float oldValue, BehaviouralValueType type)
     {
         NewValue = newValue;
         OldValue = oldValue;

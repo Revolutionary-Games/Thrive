@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   Defines a species' personality by holding behaviour properties
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValue, float>, ICloneable
+public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, float>, ICloneable
 {
     [JsonProperty]
     public float Aggression { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
@@ -27,13 +27,13 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValue, float>,
     [JsonIgnore]
     public int Count => 5;
 
-    public IEnumerable<BehaviouralValue> Keys => new[]
+    public IEnumerable<BehaviouralValueType> Keys => new[]
     {
-        BehaviouralValue.Aggression,
-        BehaviouralValue.Opportunism,
-        BehaviouralValue.Fear,
-        BehaviouralValue.Activity,
-        BehaviouralValue.Focus,
+        BehaviouralValueType.Aggression,
+        BehaviouralValueType.Opportunism,
+        BehaviouralValueType.Fear,
+        BehaviouralValueType.Activity,
+        BehaviouralValueType.Focus,
     };
 
     public IEnumerable<float> Values => new[]
@@ -45,7 +45,7 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValue, float>,
         Focus,
     };
 
-    public float this[BehaviouralValue key]
+    public float this[BehaviouralValueType key]
     {
         get
         {
@@ -58,19 +58,19 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValue, float>,
         {
             switch (key)
             {
-                case BehaviouralValue.Aggression:
+                case BehaviouralValueType.Aggression:
                     Aggression = value;
                     break;
-                case BehaviouralValue.Opportunism:
+                case BehaviouralValueType.Opportunism:
                     Opportunism = value;
                     break;
-                case BehaviouralValue.Fear:
+                case BehaviouralValueType.Fear:
                     Fear = value;
                     break;
-                case BehaviouralValue.Activity:
+                case BehaviouralValueType.Activity:
                     Activity = value;
                     break;
-                case BehaviouralValue.Focus:
+                case BehaviouralValueType.Focus:
                     Focus = value;
                     break;
                 default:
@@ -79,13 +79,13 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValue, float>,
         }
     }
 
-    public IEnumerator<KeyValuePair<BehaviouralValue, float>> GetEnumerator()
+    public IEnumerator<KeyValuePair<BehaviouralValueType, float>> GetEnumerator()
     {
-        yield return new KeyValuePair<BehaviouralValue, float>(BehaviouralValue.Aggression, Aggression);
-        yield return new KeyValuePair<BehaviouralValue, float>(BehaviouralValue.Opportunism, Opportunism);
-        yield return new KeyValuePair<BehaviouralValue, float>(BehaviouralValue.Fear, Fear);
-        yield return new KeyValuePair<BehaviouralValue, float>(BehaviouralValue.Activity, Activity);
-        yield return new KeyValuePair<BehaviouralValue, float>(BehaviouralValue.Focus, Focus);
+        yield return new KeyValuePair<BehaviouralValueType, float>(BehaviouralValueType.Aggression, Aggression);
+        yield return new KeyValuePair<BehaviouralValueType, float>(BehaviouralValueType.Opportunism, Opportunism);
+        yield return new KeyValuePair<BehaviouralValueType, float>(BehaviouralValueType.Fear, Fear);
+        yield return new KeyValuePair<BehaviouralValueType, float>(BehaviouralValueType.Activity, Activity);
+        yield return new KeyValuePair<BehaviouralValueType, float>(BehaviouralValueType.Focus, Focus);
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -93,29 +93,29 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValue, float>,
         return GetEnumerator();
     }
 
-    public bool ContainsKey(BehaviouralValue key)
+    public bool ContainsKey(BehaviouralValueType key)
     {
         return true;
     }
 
-    public bool TryGetValue(BehaviouralValue key, out float value)
+    public bool TryGetValue(BehaviouralValueType key, out float value)
     {
         var result = true;
         switch (key)
         {
-            case BehaviouralValue.Aggression:
+            case BehaviouralValueType.Aggression:
                 value = Aggression;
                 break;
-            case BehaviouralValue.Opportunism:
+            case BehaviouralValueType.Opportunism:
                 value = Opportunism;
                 break;
-            case BehaviouralValue.Fear:
+            case BehaviouralValueType.Fear:
                 value = Fear;
                 break;
-            case BehaviouralValue.Activity:
+            case BehaviouralValueType.Activity:
                 value = Activity;
                 break;
-            case BehaviouralValue.Focus:
+            case BehaviouralValueType.Focus:
                 value = Focus;
                 break;
             default:

@@ -1371,23 +1371,23 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
             UpdateBehaviourSlider(pair.Key, pair.Value);
     }
 
-    internal void UpdateBehaviourSlider(BehaviouralValue type, float value)
+    internal void UpdateBehaviourSlider(BehaviouralValueType type, float value)
     {
         switch (type)
         {
-            case BehaviouralValue.Activity:
+            case BehaviouralValueType.Activity:
                 activitySlider.Value = value;
                 break;
-            case BehaviouralValue.Aggression:
+            case BehaviouralValueType.Aggression:
                 aggressionSlider.Value = value;
                 break;
-            case BehaviouralValue.Opportunism:
+            case BehaviouralValueType.Opportunism:
                 opportunismSlider.Value = value;
                 break;
-            case BehaviouralValue.Fear:
+            case BehaviouralValueType.Fear:
                 fearSlider.Value = value;
                 break;
-            case BehaviouralValue.Focus:
+            case BehaviouralValueType.Focus:
                 focusSlider.Value = value;
                 break;
             default:
@@ -1504,7 +1504,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 
     private void OnBehaviourValueChanged(float value, string behaviourName)
     {
-        if (!Enum.TryParse(behaviourName, out BehaviouralValue behaviourValue))
+        if (!Enum.TryParse(behaviourName, out BehaviouralValueType behaviourValue))
             throw new ArgumentException($"{behaviourName} is not a valid BehaviouralValue");
 
         editor.SetBehavioural(behaviourValue, value);

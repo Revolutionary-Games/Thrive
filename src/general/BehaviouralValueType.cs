@@ -1,7 +1,7 @@
 ﻿/// <summary>
 ///   All behavioural values
 /// </summary>
-public enum BehaviouralValue
+public enum BehaviouralValueType
 {
     Aggression,
     Opportunism,
