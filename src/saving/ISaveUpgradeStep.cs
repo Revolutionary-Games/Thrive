@@ -96,16 +96,24 @@
 
         protected override void CheckAndUpdateProperty(JProperty property)
         {
-            if ((property.Parent?.Parent as JProperty)?.Name == "worldSpecies")
+            if ((property.Parent?.Parent as JProperty)?.Name != "worldSpecies")
+                return;
+
+            var children = property.Value.Children<JProperty>();
+            var childrenNames = children.Select(c => c.Name);
+
+            if (new[] { "Aggression", "Opportunism", "Fear", "Activity", "Focus", }
+                .All(p => childrenNames.Contains(p)))
             {
-                UpgradeBehaviouralValues(property);
+                UpgradeBehaviouralValues(property, children);
             }
         }
 
         /// <summary>
         ///   Updates the behavioural values. Triggers on a specific species
         /// </summary>
-        /// <param name="property">Should be the Aggression property</param>
+        /// <param name="property">Should be a specific species</param>
+        /// <param name="children">The children of the given property</param>
         /// <remarks>
         ///   <para>
         ///     Changes a json like
@@ -132,10 +140,8 @@
         ///     }
         ///   </para>
         /// </remarks>
-        private void UpgradeBehaviouralValues(JProperty property)
+        private void UpgradeBehaviouralValues(JProperty property, JEnumerable<JProperty> children)
         {
-            var children = property.Value.Children<JProperty>();
-
             var aggression = children.First(p => p.Name == "Aggression");
             var opportunism = children.First(p => p.Name == "Opportunism");
             var fear = children.First(p => p.Name == "Fear");
