@@ -35,6 +35,9 @@ public class MainMenu : NodeWithInput
     public NodePath CreditsScrollPath;
 
     [Export]
+    public NodePath LicensesDisplayPath;
+
+    [Export]
     public NodePath GLES2PopupPath;
 
     public Array MenuArray;
@@ -49,6 +52,7 @@ public class MainMenu : NodeWithInput
 
     private Control creditsContainer;
     private CreditsScroll credits;
+    private Control licensesDisplay;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -144,6 +148,7 @@ public class MainMenu : NodeWithInput
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
+        licensesDisplay = GetNode<Control>(LicensesDisplayPath);
 
         MenuArray?.Clear();
 
@@ -282,6 +287,12 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(1);
     }
 
+    private void ExtrasPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetCurrentMenu(2);
+    }
+
     private void FreebuildEditorPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -293,6 +304,7 @@ public class MainMenu : NodeWithInput
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 
+    // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good
     private void BackFromToolsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -373,6 +385,28 @@ public class MainMenu : NodeWithInput
     {
         creditsContainer.Visible = false;
         credits.Pause();
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void LicensesPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the licenses view
+        licensesDisplay.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromLicenses()
+    {
+        licensesDisplay.Visible = false;
 
         SetCurrentMenu(0, false);
 
