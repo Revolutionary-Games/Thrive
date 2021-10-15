@@ -1983,7 +1983,6 @@ margin_top = -70.0
 margin_right = 70.0
 margin_bottom = 70.0
 step = 0.1
-value = 100.0
 texture_progress = ExtResource( 65 )
 fill_mode = 5
 tint_progress = Color( 1, 0.627451, 0.121569, 1 )
@@ -2003,7 +2002,6 @@ margin_top = -70.0
 margin_right = 70.0
 margin_bottom = 70.0
 step = 0.1
-value = 100.0
 texture_progress = ExtResource( 65 )
 fill_mode = 5
 tint_progress = Color( 0.690196, 0.423529, 1, 1 )
@@ -2091,6 +2089,7 @@ __meta__ = {
 }
 
 [node name="Engulfment" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 225.0
@@ -2102,6 +2101,7 @@ ActionIcon = ExtResource( 83 )
 ActionName = "g_toggle_engulf"
 
 [node name="FireToxin" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 277.0
@@ -2112,6 +2112,7 @@ ActionIcon = ExtResource( 15 )
 ActionName = "g_fire_toxin"
 
 [node name="BindingMode" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 329.0

@@ -652,13 +652,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         float amountAvailable = Compounds.GetCompoundAmount(agentType);
 
-        if (amountAvailable < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+        // Emit as much as you have, but don't start the cooldown if that's zero
+        float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
+        if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
             return;
+
+        Compounds.TakeCompound(agentType, amountEmitted);
 
         // The cooldown time is inversely proportional to the amount of agent vacuoles.
         AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / AgentVacuoleCount;
-
-        Compounds.TakeCompound(agentType, Constants.MINIMUM_AGENT_EMISSION_AMOUNT);
 
         float ejectionDistance = Membrane.EncompassingCircleRadius +
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
@@ -675,11 +677,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
         var position = Translation + (direction * ejectionDistance);
 
-        SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+        SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
             SpawnHelpers.LoadAgentScene(), this);
 
-        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+        if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin-low.ogg");
+        }
+        else
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+        }
     }
 
     /// <summary>
@@ -874,16 +883,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             var agentScene = SpawnHelpers.LoadAgentScene();
 
-            while (amount > Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+            while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
             {
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+                SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
+                    Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetStageAsParent(),
                     agentScene, this);
 
-                amount -= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
+                amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
                 ++createdAgents;
 
                 if (createdAgents >= Constants.MAX_EMITTED_AGENTS_ON_DEATH)
