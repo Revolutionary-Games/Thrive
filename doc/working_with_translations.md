@@ -83,8 +83,15 @@ run `update_localization.rb`. This will extract the strings from the game files,
 and also update the .po files if the template (.pot) has changed.
 
 The final step is to open en.po in the locale folder (you can use a text editor
-or Poedit), search for your keys, and add your strings as translation.  Once done,
+or Poedit), search for your keys, and add your strings as translation. Once done,
 you can launch the game and make sure everything works as expected.
+
+Note that you should configure your gettext tool to not use line
+wrapping. We don't use line wrapping because Weblate and gettext
+command line tools disagree where lines should be wrapped in many
+cases, so we don't use that to reduce cases where translations are
+automatically changed back and forth to different line wrapping
+lengths.
 
 Translating the game into a new language
 ----------------------------------------
