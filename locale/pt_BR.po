@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-10 20:19+0200\n"
-"PO-Revision-Date: 2021-10-01 10:30+0000\n"
+"PO-Revision-Date: 2021-10-14 09:05+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -465,9 +465,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Colocar organela"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Remover organela"
+msgstr "Abrir o menu de organelas"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_LEFT"
@@ -1482,24 +1481,23 @@ msgstr "(valores mais altos diminuem a performance)"
 
 #: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
 msgid "DISABLED"
-msgstr ""
+msgstr "Desativado"
 
 #: ../src/general/OptionsMenu.tscn:267
 msgid "TWO_TIMES"
-msgstr ""
+msgstr "2x"
 
 #: ../src/general/OptionsMenu.tscn:267
 msgid "FOUR_TIMES"
-msgstr ""
+msgstr "4x"
 
 #: ../src/general/OptionsMenu.tscn:267
-#, fuzzy
 msgid "EIGHT_TIMES"
-msgstr "Botão direito do mouse"
+msgstr "8x"
 
 #: ../src/general/OptionsMenu.tscn:267
 msgid "SIXTEEN_TIMES"
-msgstr ""
+msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
@@ -1507,7 +1505,7 @@ msgstr "Resolução:"
 
 #: ../src/general/OptionsMenu.tscn:294
 msgid "AUTO"
-msgstr "auto"
+msgstr "Auto"
 
 #: ../src/general/OptionsMenu.tscn:304
 msgid "MAX_FPS"
@@ -1515,27 +1513,27 @@ msgstr "FPS máximo:"
 
 #: ../src/general/OptionsMenu.tscn:330
 msgid "COLOURBLIND_CORRECTION"
-msgstr "Correção de Cor (daltonismo):"
+msgstr "Correção de cor (daltonismo):"
 
 #: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
 msgid "NONE"
-msgstr ""
+msgstr "Nenhum"
 
 #: ../src/general/OptionsMenu.tscn:345
 msgid "CORRECTION_PROTANOPE"
-msgstr ""
+msgstr "Protanopia (Vermelho-Verde)"
 
 #: ../src/general/OptionsMenu.tscn:345
 msgid "CORRECTION_TRITANOPE"
-msgstr ""
+msgstr "Tritanopia (Azul-Amarelo)"
 
 #: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
-msgstr "Aberração Cromática:"
+msgstr "Aberração cromática:"
 
 #: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Exibir Barra de Habilidades"
+msgstr "Exibir barra de habilidades"
 
 #: ../src/general/OptionsMenu.tscn:398
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
@@ -1543,7 +1541,7 @@ msgstr "Habilitar efeitos de luz na interface"
 
 #: ../src/general/OptionsMenu.tscn:424
 msgid "MASTER_VOLUME"
-msgstr "Volume Principal"
+msgstr "Volume principal"
 
 #: ../src/general/OptionsMenu.tscn:451 ../src/general/OptionsMenu.tscn:492
 #: ../src/general/OptionsMenu.tscn:525 ../src/general/OptionsMenu.tscn:558
@@ -1553,19 +1551,19 @@ msgstr "Silenciar"
 
 #: ../src/general/OptionsMenu.tscn:465
 msgid "MUSIC_VOLUME"
-msgstr "Volume da Música"
+msgstr "Volume da música"
 
 #: ../src/general/OptionsMenu.tscn:498
 msgid "AMBIANCE_VOLUME"
-msgstr "Volume do Ambiente"
+msgstr "Volume do ambiente"
 
 #: ../src/general/OptionsMenu.tscn:531
 msgid "SFX_VOLUME"
-msgstr "Volume dos Efeitos Sonoros"
+msgstr "Volume dos efeitos sonoros"
 
 #: ../src/general/OptionsMenu.tscn:564
 msgid "GUI_VOLUME"
-msgstr "Volume da Interface"
+msgstr "Volume da interface"
 
 #: ../src/general/OptionsMenu.tscn:609
 msgid "AUDIO_OUTPUT_DEVICE"
@@ -1590,8 +1588,8 @@ msgstr "Nuvens de compostos"
 #: ../src/general/OptionsMenu.tscn:714
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
-"Intervalo Mínimo da Simulação \n"
-"de Nuvens:"
+"Intervalo mínimo da simulação \n"
+"de nuvens:"
 
 #: ../src/general/OptionsMenu.tscn:721 ../src/general/OptionsMenu.tscn:763
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1599,7 +1597,7 @@ msgstr "(valores mais altos melhoram a performance)"
 
 #: ../src/general/OptionsMenu.tscn:756
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr "Divisor da Resolução de Nuvens:"
+msgstr "Divisor da resolução de nuvens:"
 
 #: ../src/general/OptionsMenu.tscn:798
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -1667,7 +1665,7 @@ msgstr "Usar um nome personalizado"
 
 #: ../src/general/OptionsMenu.tscn:1134
 msgid "CUSTOM_USERNAME"
-msgstr "Nome Personalizado:"
+msgstr "Nome personalizado:"
 
 #: ../src/general/OptionsMenu.tscn:1160
 msgid "OPEN_SCREENSHOT_FOLDER"
@@ -1683,15 +1681,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
+msgstr "Automaticamente"
 
 #: ../src/general/OptionsMenu.tscn:1193
 msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
+msgstr "Sempre"
 
 #: ../src/general/OptionsMenu.tscn:1193
 msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
+msgstr "Nunca"
 
 #: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -1813,48 +1811,59 @@ msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
 #: ../src/gui_common/CreditsScroll.cs:228
+#, fuzzy
 msgid "LEAD_DEVELOPERS"
 msgstr "Líderes de Desenvolvimento"
 
 #: ../src/gui_common/CreditsScroll.cs:234
+#, fuzzy
 msgid "LEAD_PROGRAMMER"
 msgstr "Programador-Chefe"
 
 #: ../src/gui_common/CreditsScroll.cs:235
+#, fuzzy
 msgid "LEAD_PROGRAMMERS"
 msgstr "Programadores-Chefes"
 
 #: ../src/gui_common/CreditsScroll.cs:240
+#, fuzzy
 msgid "LEAD_THEORIST"
 msgstr "Teórico-Chefe"
 
 #: ../src/gui_common/CreditsScroll.cs:241
+#, fuzzy
 msgid "LEAD_THEORISTS"
 msgstr "Teóricos-Chefes"
 
 #: ../src/gui_common/CreditsScroll.cs:246
+#, fuzzy
 msgid "LEAD_ARTIST"
 msgstr "Artista-Chefe"
 
 #: ../src/gui_common/CreditsScroll.cs:247
+#, fuzzy
 msgid "LEAD_ARTISTS"
 msgstr "Artistas-Chefes"
 
 #: ../src/gui_common/CreditsScroll.cs:252
+#, fuzzy
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Liderança da equipe de som"
 
 #: ../src/gui_common/CreditsScroll.cs:253
+#, fuzzy
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Lideranças da equipe de som"
 
 #: ../src/gui_common/CreditsScroll.cs:258
+#, fuzzy
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Liderança da Equipe de Divulgação"
 
 #: ../src/gui_common/CreditsScroll.cs:259
+#, fuzzy
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Lideranças da Equipe de Divulgação"
 
 #: ../src/gui_common/CreditsScroll.cs:264
 msgid "LEAD_GAME_DESIGNER"
@@ -1882,49 +1891,52 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:284
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Desenvolvedores Atuais"
 
 #: ../src/gui_common/CreditsScroll.cs:300
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Desenvolvedores Antigos"
 
 #: ../src/gui_common/CreditsScroll.cs:316
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Colaboradores Externos"
 
 #: ../src/gui_common/CreditsScroll.cs:319
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive é um projeto de código aberto.\n"
+"Você pode contribuir mesmo sem fazer parte da equipe."
 
 #: ../src/gui_common/CreditsScroll.cs:334
 msgid "PATRONS"
-msgstr ""
+msgstr "Patrons"
 
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Você pode financiar o desenvolvimento do jogo usando o Patreon."
 
 #: ../src/gui_common/CreditsScroll.cs:354
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Opções"
+msgstr "Doações"
 
 #: ../src/gui_common/CreditsScroll.cs:377
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Ajude a traduzir o jogo"
+msgstr "Tradutores"
 
 #: ../src/gui_common/CreditsScroll.cs:391
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Licenças e Bibliotecas Usadas"
 
 #: ../src/gui_common/CreditsScroll.cs:485
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Obrigado por jogar!\n"
+"\n"
+"Se gostou, fale do jogo para seus amigos."
 
 #: ../src/gui_common/CreditsScroll.cs:494
 msgid "PROGRAMMING_TEAM"
-msgstr ""
+msgstr "Equipe de Programação"
 
 #: ../src/gui_common/CreditsScroll.cs:495
 msgid "THEORY_TEAM"
@@ -1942,97 +1954,95 @@ msgstr "Som"
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "OUTREACH_TEAM"
-msgstr ""
+msgstr "Equipe de Divulgação"
 
 #: ../src/gui_common/CreditsScroll.cs:499
 msgid "GAME_DESIGN_TEAM"
-msgstr ""
+msgstr "Equipe de Game Design"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "TESTING_TEAM"
-msgstr ""
+msgstr "Equipe de Teste"
 
 #: ../src/gui_common/CreditsScroll.cs:501
 msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr ""
+msgstr "Equipe de Gestão do Projeto"
 
 #: ../src/gui_common/CreditsScroll.cs:502
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
+msgstr "Pull Requests / Programação"
 
 #: ../src/gui_common/CreditsScroll.cs:503
 msgid "VIP_PATRONS"
-msgstr ""
+msgstr "Apoiadores VIP"
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Apoiadores Devbuilds"
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Apoiadores"
 
 #: ../src/gui_common/CreditsScroll.cs:506
 msgid "JANUARY"
-msgstr ""
+msgstr "Janeiro"
 
 #: ../src/gui_common/CreditsScroll.cs:507
-#, fuzzy
 msgid "FEBRUARY"
-msgstr "Estuário"
+msgstr "Fevereiro"
 
 #: ../src/gui_common/CreditsScroll.cs:508
 msgid "MARCH"
-msgstr ""
+msgstr "Março"
 
 #: ../src/gui_common/CreditsScroll.cs:509
 msgid "APRIL"
-msgstr ""
+msgstr "Abril"
 
 #: ../src/gui_common/CreditsScroll.cs:510
 msgid "MAY"
-msgstr ""
+msgstr "Maio"
 
 #: ../src/gui_common/CreditsScroll.cs:511
 msgid "JUNE"
-msgstr ""
+msgstr "Junho"
 
 #: ../src/gui_common/CreditsScroll.cs:512
 msgid "JULY"
-msgstr ""
+msgstr "Julho"
 
 #: ../src/gui_common/CreditsScroll.cs:513
 msgid "AUGUST"
-msgstr ""
+msgstr "Agosto"
 
 #: ../src/gui_common/CreditsScroll.cs:514
 msgid "SEPTEMBER"
-msgstr ""
+msgstr "Setembro"
 
 #: ../src/gui_common/CreditsScroll.cs:515
 msgid "OCTOBER"
-msgstr ""
+msgstr "Outubro"
 
 #: ../src/gui_common/CreditsScroll.cs:516
-#, fuzzy
 msgid "NOVEMBER"
-msgstr "Movimento"
+msgstr "Novembro"
 
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "DECEMBER"
-msgstr ""
+msgstr "Dezembro"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Por Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Desenvolvimento Financiado por Revolutionary Games Studio ry"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Desenvolvedores"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:18
 msgid "SAVE_HAS_DIFFERENT_VERSION"
@@ -2778,7 +2788,7 @@ msgstr "Adicionar uma nova tecla"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1623
 msgid "PAUSE_TOOLTIP"
-msgstr ""
+msgstr "Pausar o jogo"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1636
 #, fuzzy
@@ -2786,20 +2796,12 @@ msgid "RESUME_TOOLTIP"
 msgstr "Retomar"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1649
-#, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
-"Alternar o modo HSV (Matiz, Saturação, Valor) entre ligado ou desligado.\n"
-"Não pode ser ligado no modo bruto."
+msgstr "Mostrar/esconder ambiente e compostos"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1664
-#, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
-"Alternar o modo bruto entre ligado e desligado.\n"
-"No modo bruto você pode fazer os valores\n"
-"de cor R, G, B ultrapassarem 1.0.\n"
-"Não pode ser ligado no modo HSV."
+msgstr "Mostrar/esconder processos da célula"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1701
 #, fuzzy
@@ -2807,11 +2809,8 @@ msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Adicionar uma nova tecla"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1713
-#, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
-msgstr ""
-"Alternar o modo HSV (Matiz, Saturação, Valor) entre ligado ou desligado.\n"
-"Não pode ser ligado no modo bruto."
+msgstr "Suicídio"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1764
 msgid "POPULATION_CAPITAL"
@@ -3254,9 +3253,8 @@ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Sobrescrever salvamento existente?"
 
 #: ../src/saving/SaveHelper.cs:382
-#, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
-msgstr "O salvamento falhou! Uma exceção ocorreu"
+msgstr "Atualmente, não é possível salvar porque:"
 
 #: ../src/saving/SaveHelper.cs:383
 #, fuzzy
