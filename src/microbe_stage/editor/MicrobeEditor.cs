@@ -798,6 +798,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             organelleRot = 5;
     }
 
+    [RunOnKeyDown("g_toggle_gui")]
+    public void ToggleGUI()
+    {
+        gui.Visible = !gui.Visible;
+    }
+
     public void SetMembrane(string membraneName)
     {
         var membrane = SimulationParameters.Instance.GetMembrane(membraneName);
