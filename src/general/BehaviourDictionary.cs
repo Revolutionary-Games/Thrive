@@ -27,7 +27,7 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
     [JsonIgnore]
     public int Count => 5;
 
-    public IEnumerable<BehaviouralValueType> Keys => new[]
+    public IEnumerable<BehaviouralValueType> Keys { get; } = new[]
     {
         BehaviouralValueType.Aggression,
         BehaviouralValueType.Opportunism,
