@@ -94,16 +94,14 @@
     {
         protected override string VersionAfter => "0.5.6.0-alpha";
 
+        private static readonly string[] behaviouralKeys = { "Aggression", "Opportunism", "Fear", "Activity", "Focus" };
+
         protected override void CheckAndUpdateProperty(JProperty property)
         {
-            if ((property.Parent?.Parent as JProperty)?.Name != "worldSpecies")
-                return;
-
             var children = property.Value.Children<JProperty>();
             var childrenNames = children.Select(c => c.Name);
 
-            if (new[] { "Aggression", "Opportunism", "Fear", "Activity", "Focus", }
-                .All(p => childrenNames.Contains(p)))
+            if (behaviouralKeys.All(p => childrenNames.Contains(p)))
             {
                 UpgradeBehaviouralValues(property, children);
             }
