@@ -8,17 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-10 20:19+0200\n"
-"PO-Revision-Date: 2021-10-08 12:02+0300\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
-"com>\n"
-"Language-Team: English <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/en/>\n"
+"PO-Revision-Date: 2021-10-15 11:01+0000\n"
+"Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
+"Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -84,8 +82,7 @@ msgstr ""
 "Purple – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Rust Brown – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] makes [thrive:compound "
-"type=\"atp\"][/thrive:compound]"
+"[thrive:compound type=\"glucose\"][/thrive:compound] makes [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
@@ -562,7 +559,7 @@ msgstr "Show help"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "TOGGLE_FULLSCREEN"
-msgstr "Toggle Fullscreen"
+msgstr "Toggle fullscreen"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -2208,9 +2205,7 @@ msgstr "Health"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr ""
-"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
-"compound type=\"atp\"][/thrive:compound]"
+msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
@@ -2271,10 +2266,7 @@ msgstr "Osmoregulation Cost"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr ""
-"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound type=\"oxygen\"][/thrive:compound]"
+msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -2293,11 +2285,7 @@ msgstr "Thylakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
-"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:"
-"compound]"
+msgstr "Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -2312,12 +2300,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr ""
-"Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
-"Also turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
-"compound type=\"atp\"][/thrive:compound]"
+msgstr "Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Also turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -2331,11 +2314,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:617
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr ""
-"Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:"
-"compound type=\"oxygen\"][/thrive:compound]"
+msgstr "Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:618
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2346,10 +2325,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
-"type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound type=\"nitrogen\"][/thrive:compound]"
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:715
 msgid "NITROGENASE_DESCRIPTION"
@@ -2376,9 +2352,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
-"Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the "
-"movement speed of the cell"
+msgstr "Uses [thrive:compound type=\"atp\"][/thrive:compound] to increase the movement speed of the cell."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2447,10 +2421,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1302
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr ""
-"Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound type=\"oxygen\"][/thrive:compound]"
+msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1303
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2465,11 +2436,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
-"with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:"
-"compound]"
+msgstr "Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2512,10 +2479,7 @@ msgstr "No processes"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
-"Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
+msgstr "Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2527,11 +2491,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr ""
-"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
-"type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of "
-"[thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound "
-"type=\"oxygen\"][/thrive:compound]"
+msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
