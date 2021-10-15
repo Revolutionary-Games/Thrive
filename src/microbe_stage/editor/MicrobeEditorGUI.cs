@@ -1391,7 +1391,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
                 focusSlider.Value = value;
                 break;
             default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValue {type} is not valid");
+                throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValueType {type} is not valid");
         }
     }
 
