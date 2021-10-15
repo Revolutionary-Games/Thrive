@@ -98,6 +98,26 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
         return true;
     }
 
+    public void Mutate(Random random)
+    {
+        // Variables used in AI to determine general behaviour mutate these
+        Aggression = (Aggression + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_AGGRESSION);
+        Fear = (Fear + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_FEAR);
+        Activity = (Activity + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_ACTIVITY);
+        Focus = (Focus + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_FOCUS);
+        Opportunism = (Opportunism + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_OPPORTUNISM);
+    }
+
     public bool TryGetValue(BehaviouralValueType key, out float value)
     {
         switch (key)
@@ -126,6 +146,11 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
     }
 
     public object Clone()
+    {
+        return CloneObject();
+    }
+
+    public BehaviourDictionary CloneObject()
     {
         var obj = new BehaviourDictionary();
         foreach (var pair in this)
