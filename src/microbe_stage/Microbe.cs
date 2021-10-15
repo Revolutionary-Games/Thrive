@@ -84,7 +84,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private bool wasBeingEngulfed;
 
     /// <summary>
-    ///   List of colony children of player microbe positions, needed when the colony is remade at load
+    ///   List of colony children of colony master positions, needed when the colony is remade at load
     /// </summary>
     private List<Transform> colonyChildrenTransform;
 
@@ -502,15 +502,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 OrganelleParent.AddChild(organelle);
 
             // Colony children shapes need re-parenting to their master
-            // The shapes have to be re-parented to their original microbe then to the master again, maybe engine bug
-            // Also readd to the collision exception and change the mode to static as it should be
+            // The shapes have to be re-parented to their original microbe then to the master again,maybe engine bug
+            // Also re-add to the collision exception and change the mode to static as it should be
             if (Colony != null && this != Colony.Master)
             {
                 ReParentShapes(this, Vector3.Zero);
                 ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
                 Colony.Master.AddCollisionExceptionWith(this);
                 AddCollisionExceptionWith(Colony.Master);
-                Mode = ModeEnum.Static;
+                Mode = ModeEnum.Static;          
             }
 
             // And recompute storage
@@ -624,7 +624,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
     public Microbe GetMicrobeFromShape(int bodyShape)
     {
-        if (Colony == null || (IsLoadedFromSave && !onRemakeCalled && IsPlayerMicrobe))
+        if (Colony == null || (IsLoadedFromSave && !onRemakeCalled ))
             return this;
 
         var touchedOwnerId = ShapeFindOwner(bodyShape);
@@ -1251,45 +1251,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _Process(float delta)
     {
-        // Remake the clony after destroying it
-        if (!onRemakeCalled && IsPlayerMicrobe && onUnbindCalled)
-            RemakeColony();
-
-        // First destroy the colony and save its members
-        if (IsLoadedFromSave && !onUnbindCalled && IsPlayerMicrobe)
-        {
-            // Lists with colony members and their parents needed to remake the colony
-            var list = new List<Microbe>();
-            var colList = new List<Microbe>(Colony.ColonyMembers);
-            colList.Remove(this);
-
-            // Save the colony members parents
-            foreach (var member in colList)
-            {
-                list.Add(member.ColonyParent);
-
-                // Save the position of colony members parents before unbind
-                // Neded to remake the colony as it was before
-                if (Colony.Master.colonyChildrenTransform == null)
-                {
-                    Colony.Master.colonyChildrenTransform = new List<Transform>();
-                    Colony.Master.colonyChildrenTransform.Add(Colony.Master.GlobalTransform);
-                }
-
-                Colony.Master.colonyChildrenTransform.Add(member.GlobalTransform);
-            }
-
-            UnbindAll();
-
-            // Reassign the parents to their microbes
-            for (int i = 0; i < list.Count; i++)
-            {
-                colList[i].ColonyParent = list[i];
-            }
-
-            ColonyChildren = colList;
-            onUnbindCalled = true;
-        }
+        CheckColonyRemake();
 
         // Updates the listener if this is the player owned microbe.
         if (listener != null)
@@ -1470,16 +1432,60 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
     }
 
+
+    public void CheckColonyRemake()
+    {
+        // Remake the clony after destroying it
+        if (!onRemakeCalled && IsPlayerMicrobe && onUnbindCalled)
+            RemakeColony();
+
+        // First destroy the colony and save its members
+        if (IsLoadedFromSave && !onUnbindCalled && IsPlayerMicrobe)
+        {
+            // Lists with colony members and their parents needed to remake the colony
+            var parentsList = new List<Microbe>();
+            var childrenList = new List<Microbe>(Colony.ColonyMembers);
+            childrenList.Remove(this);
+
+            // Save the colony members parents
+            foreach (var member in childrenList)
+            {
+                parentsList.Add(member.ColonyParent);
+
+                // Save the position of colony members parents before unbind
+                // Neded to remake the colony as it was before
+                if (Colony.Master.colonyChildrenTransform == null)
+                {
+                    Colony.Master.colonyChildrenTransform = new List<Transform>();
+                    Colony.Master.colonyChildrenTransform.Add(Colony.Master.GlobalTransform);
+                }
+
+                Colony.Master.colonyChildrenTransform.Add(member.GlobalTransform);
+            }
+
+            UnbindAll();
+
+            // Reassign the parents to their microbes
+            for (int i = 0; i < parentsList.Count; i++)
+            {
+                childrenList[i].ColonyParent = parentsList[i];
+            }
+
+            ColonyChildren = childrenList;
+            onUnbindCalled = true;
+        }
+    }
+
     /// <summary>
     ///   Remake the colony, only needed after load
     /// </summary>
     public void RemakeColony()
     {
-        var col = new List<Microbe>(ColonyChildren);
+        var childrenList = new List<Microbe>(ColonyChildren);
         var sem = 0;
 
         // Check if the pili of colony members have been formed
-        foreach (var member in col)
+        foreach (var member in childrenList)
         {
             foreach (var organelle in member.organelles)
             {
@@ -1489,20 +1495,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         }
 
         // Keep the colony members in place until the pili update.
-        for (int i = 0; i < col.Count; i++)
+        for (int i = 0; i < childrenList.Count; i++)
         {
-            col[i].GlobalTransform = colonyChildrenTransform[i + 1];
+            childrenList[i].GlobalTransform = colonyChildrenTransform[i + 1];
         }
 
         GlobalTransform = colonyChildrenTransform[0];
-
+        
         // Wait for the pili of colony members to update to the true position
         if (sem == 0)
         {
             MicrobeColony.CreateColonyForMicrobe(this);
-            foreach (var member in col)
+            foreach (var child in childrenList)
             {
-                Colony.AddToColony(member, member.ColonyParent);
+                Colony.AddToColony(child, child.ColonyParent);
             }
 
             onRemakeCalled = true;
@@ -1566,7 +1572,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
 
-            // Readding collision exception because the bodies shapes got updated
+            // Re-adding collision exception because the bodies shapes got updated
             AddCollisionExceptionWith(Colony.Master);
             Colony.Master.AddCollisionExceptionWith(this);
         }
