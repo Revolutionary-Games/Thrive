@@ -130,7 +130,7 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
 
-    public const float OXYTOXY_DAMAGE = 10.0f;
+    public const float OXYTOXY_DAMAGE = 15.0f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
@@ -163,9 +163,14 @@ public static class Constants
     public const float AGENT_EMISSION_COOLDOWN = 2.0f;
 
     /// <summary>
-    ///   The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
+    ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
-    public const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
+    public const float MINIMUM_AGENT_EMISSION_AMOUNT = MathUtils.EPSILON;
+
+    /// <summary>
+    ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
+    /// </summary>
+    public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
 
     /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.

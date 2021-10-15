@@ -378,7 +378,7 @@ public class MicrobeAI
         microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
-        if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+        if (CanShootToxin())
         {
             LaunchToxin(target);
 
@@ -555,14 +555,14 @@ public class MicrobeAI
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
         return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && CanShootToxin() &&
-                sizeRatio > 1 / Constants.ENGULF_SIZE_RATIO_REQ) ||
-            (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
+            || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
     private bool CanShootToxin()
     {
-        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >=
+            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
     private float DistanceFromMe(Vector3 target)
