@@ -52,7 +52,7 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
             if (TryGetValue(key, out var value))
                 return value;
 
-            throw new KeyNotFoundException($"{key} is not a valid BehaviouralValue");
+            throw new KeyNotFoundException($"{key} is not a valid BehaviouralValueType");
         }
         set
         {
@@ -74,7 +74,7 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
                     Focus = value;
                     break;
                 default:
-                    throw new KeyNotFoundException($"{key} is not a valid BehaviouralValue");
+                    throw new KeyNotFoundException($"{key} is not a valid BehaviouralValueType");
             }
         }
     }
@@ -100,7 +100,6 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
 
     public bool TryGetValue(BehaviouralValueType key, out float value)
     {
-        var result = true;
         switch (key)
         {
             case BehaviouralValueType.Aggression:
@@ -119,12 +118,11 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
                 value = Focus;
                 break;
             default:
-                result = false;
                 value = default;
-                break;
+                return false;
         }
 
-        return result;
+        return true;
     }
 
     public object Clone()
