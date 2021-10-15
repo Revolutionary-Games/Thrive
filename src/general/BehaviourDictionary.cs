@@ -9,6 +9,15 @@ using Newtonsoft.Json;
 [JsonObject(MemberSerialization.OptIn)]
 public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, float>, ICloneable
 {
+    private static IEnumerable<BehaviouralValueType> keys = new[]
+    {
+        BehaviouralValueType.Aggression,
+        BehaviouralValueType.Opportunism,
+        BehaviouralValueType.Fear,
+        BehaviouralValueType.Activity,
+        BehaviouralValueType.Focus,
+    };
+
     [JsonProperty]
     public float Aggression { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
@@ -27,14 +36,7 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
     [JsonIgnore]
     public int Count => 5;
 
-    public IEnumerable<BehaviouralValueType> Keys { get; } = new[]
-    {
-        BehaviouralValueType.Aggression,
-        BehaviouralValueType.Opportunism,
-        BehaviouralValueType.Fear,
-        BehaviouralValueType.Activity,
-        BehaviouralValueType.Focus,
-    };
+    public IEnumerable<BehaviouralValueType> Keys => keys;
 
     public IEnumerable<float> Values => new[]
     {
