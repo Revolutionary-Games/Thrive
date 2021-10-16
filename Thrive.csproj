@@ -32,6 +32,7 @@
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
+    <Compile Include="src\engine\EntityReference.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\FileDropHandler.cs" />
     <Compile Include="src\engine\FullScreenToggle.cs" />
@@ -257,6 +258,7 @@
     <Compile Include="src\saving\ISaveLoadable.cs" />
     <Compile Include="src\saving\ISaveLoadedTracked.cs" />
     <Compile Include="src\saving\ISaveUpgradeStep.cs" />
+    <Compile Include="src\saving\JSONDebug.cs" />
     <Compile Include="src\saving\NewSaveMenu.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveApplyHelper.cs" />
@@ -277,6 +279,7 @@
     <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
+    <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />
@@ -341,15 +344,18 @@
       <Version>1.3.3</Version>
     </PackageReference>
     <PackageReference Include="Nito.Collections.Deque">
-      <Version>1.1.0</Version>
+      <Version>1.1.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="export_presets.cfg" />
+    <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />
+    <Content Include="simulation_parameters\common\gallery.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
+    <Content Include="simulation_parameters\common\translations_info.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />
     <Content Include="simulation_parameters\microbe_stage\bio_processes.json" />

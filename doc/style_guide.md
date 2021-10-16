@@ -278,6 +278,17 @@ Godot usage
   `QueueFree`. You can instead call `DetachAndQueueFree`
   instead to detach them from parents automatically.
 
+- To support keeping references to game objects, we have `IEntity` interface
+  that all game objects need to implement. To keep references to these
+  entities, use the `EntityReference<T>` class. That class will
+  automatically clear the reference when the entity is destroyed. To
+  make this work all entity types need to properly implement the
+  `OnDestroyed` method and all code destroying entities must call that
+  method before freeing the Godot Node. Normal references can be used
+  for a single frame, and in fact if a single `EntityReference` needs
+  to be used multiple times, it is preferred to read out the value
+  from it to a local variable first.
+
 - The order of Godot overridden methods in a class should be in the
   following order: (class constructor), _Ready, _ExitTree, _Process,
   _Input, _UnhandledInput, (other callbacks)

@@ -130,7 +130,7 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
 
-    public const float OXYTOXY_DAMAGE = 10.0f;
+    public const float OXYTOXY_DAMAGE = 15.0f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
@@ -163,9 +163,14 @@ public static class Constants
     public const float AGENT_EMISSION_COOLDOWN = 2.0f;
 
     /// <summary>
-    ///   The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
+    ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
-    public const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
+    public const float MINIMUM_AGENT_EMISSION_AMOUNT = MathUtils.EPSILON;
+
+    /// <summary>
+    ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
+    /// </summary>
+    public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
 
     /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
@@ -555,6 +560,8 @@ public static class Constants
     public const string LOGS_FOLDER_NAME = "logs";
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
 
+    public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
+
     /// <summary>
     ///   Internal Godot name for the default audio output device
     /// </summary>
@@ -566,14 +573,14 @@ public static class Constants
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
     /// <summary>
-    ///   If true diagnostic information about JSON serialization is printed
-    /// </summary>
-    public const bool DEBUG_JSON_SERIALIZE = false;
-
-    /// <summary>
     ///   If set to false, saving related errors are re-thrown to make debugging easier
     /// </summary>
     public const bool CATCH_SAVE_ERRORS = true;
+
+    /// <summary>
+    ///   JSON traces longer than this are not printed to the console
+    /// </summary>
+    public const int MAX_JSON_ERROR_LENGTH_FOR_CONSOLE = 20000;
 
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;

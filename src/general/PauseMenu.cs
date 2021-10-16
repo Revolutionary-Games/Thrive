@@ -64,6 +64,34 @@ public class PauseMenu : ControlWithInput
     /// </summary>
     public GameProperties GameProperties { get; set; }
 
+    public bool GameLoading { get; set; }
+
+    /// <summary>
+    ///   If true the user may not open the pause menu.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Does not automatically close the pause menu when set to true.
+    ///   </para>
+    /// </remarks>
+    public bool IsPausingBlocked
+    {
+        get
+        {
+            if (GameLoading)
+                return true;
+
+            // Block if exclusive tutorial is active
+            if (!GUICommon.Instance.IsAnyExclusivePopupActive)
+                return true;
+
+            if (TransitionManager.Instance.HasQueuedTransitions)
+                return true;
+
+            return false;
+        }
+    }
+
     private ActiveMenuType ActiveMenu
     {
         get
@@ -127,24 +155,22 @@ public class PauseMenu : ControlWithInput
             return true;
         }
 
-        if (!GUICommon.Instance.IsAnyExclusivePopupActive)
-        {
-            EmitSignal(nameof(OnOpenWithKeyPress));
-            return true;
-        }
+        if (IsPausingBlocked)
+            return false;
 
-        // Not handled, pass through.
-        return false;
+        EmitSignal(nameof(OnOpenWithKeyPress));
+        return true;
     }
 
     [RunOnKeyDown("help")]
-    public void ShowHelpPressed()
+    public bool ShowHelpPressed()
     {
-        if (!GUICommon.Instance.IsAnyExclusivePopupActive)
-        {
-            EmitSignal(nameof(OnOpenWithKeyPress));
-            ShowHelpScreen();
-        }
+        if (IsPausingBlocked)
+            return false;
+
+        EmitSignal(nameof(OnOpenWithKeyPress));
+        ShowHelpScreen();
+        return true;
     }
 
     public void ShowHelpScreen()

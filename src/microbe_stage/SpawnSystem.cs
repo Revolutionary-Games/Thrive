@@ -103,7 +103,7 @@ public class SpawnSystem
         float radius = Constants.MICROBE_SPAWN_RADIUS)
     {
         entity.DespawnRadiusSquared = (int)(radius * radius);
-        entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
+        entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
     /// <summary>
@@ -171,8 +171,7 @@ public class SpawnSystem
                     continue;
                 }
 
-                spawned.OnDestroyed();
-                entity.DetachAndQueueFree();
+                spawned.DestroyDetachAndQueueFree();
             }
         }
     }
@@ -418,8 +417,7 @@ public class SpawnSystem
             if (squaredDistance > spawned.DespawnRadiusSquared)
             {
                 entitiesDeleted++;
-                spawned.OnDestroyed();
-                entity.DetachAndQueueFree();
+                spawned.DestroyDetachAndQueueFree();
 
                 if (entitiesDeleted >= maxEntitiesToDeletePerStep)
                     break;
@@ -440,7 +438,7 @@ public class SpawnSystem
         // just fine
         entity.DespawnRadiusSquared = spawnType.SpawnRadiusSquared;
 
-        entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
+        entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
     /// <summary>
