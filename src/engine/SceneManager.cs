@@ -47,6 +47,11 @@ public class SceneManager : Node
         }
 
         internalRootNode.AddChild(newSceneRoot);
+
+        // Reset locale to assure the stage's language.
+        // Because the stage scene tree being unattached during editor,
+        // if language was changed while in the editor, it doesn't properly propagate
+        TranslationServer.SetLocale(TranslationServer.GetLocale());
         GetTree().CurrentScene = newSceneRoot;
 
         if (!keepOldRoot)

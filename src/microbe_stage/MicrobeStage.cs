@@ -548,11 +548,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         StartMusic();
 
-        // Apply language settings here to be sure the stage doesn't continue to use the wrong language
-        // Because the stage scene tree being unattached during editor,
-        // if language was changed while in the editor, it doesn't properly propagate
-        Settings.Instance.ApplyLanguageSettings();
-
         // Auto save is wanted once possible
         wantsToSave = true;
     }
