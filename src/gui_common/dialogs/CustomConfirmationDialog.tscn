@@ -44,25 +44,25 @@ margin_bottom = 67.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 4.0
-margin_right = 41.0
-margin_bottom = 32.0
-custom_fonts/font = ExtResource( 3 )
-text = "OK"
-
-[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer"]
-margin_left = 45.0
-margin_right = 45.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-
 [node name="CancelButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 49.0
-margin_right = 129.0
+margin_left = 4.0
+margin_right = 84.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 3 )
 text = "CANCEL"
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer"]
+margin_left = 88.0
+margin_right = 88.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 92.0
+margin_right = 129.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "OK"
 
 [node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer"]
 margin_left = 133.0
@@ -70,5 +70,5 @@ margin_right = 133.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/ConfirmButton" to="." method="OnConfirmPressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCancelPressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ConfirmButton" to="." method="OnConfirmPressed"]
