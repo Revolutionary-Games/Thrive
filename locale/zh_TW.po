@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-16 17:39+0800\n"
+"POT-Creation-Date: 2021-10-16 17:45+0800\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1381,9 +1381,28 @@ msgstr "多重採樣抗鋸齒："
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（提高設置會降低表現）"
 
-#: ../src/general/OptionsMenu.tscn:270
+#: ../src/general/OptionsMenu.tscn:270 ../src/general/OptionsMenu.tscn:271
 msgid "DISABLED"
 msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "TWO_TIMES"
+msgstr "鼠標右鍵"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "鼠標右鍵"
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "鼠標右鍵"
 
 #: ../src/general/OptionsMenu.tscn:285
 msgid "RESOLUTION"
@@ -1401,8 +1420,16 @@ msgstr "最大FPS："
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
-#: ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:348 ../src/general/OptionsMenu.tscn:349
 msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:366
@@ -1561,8 +1588,16 @@ msgstr ""
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
 msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1233 ../src/saving/NewSaveMenu.tscn:72
@@ -3219,10 +3254,6 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "取消"
-
-#, fuzzy
-#~ msgid "EIGHT_TIMES"
-#~ msgstr "鼠標右鍵"
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "保存錯誤"

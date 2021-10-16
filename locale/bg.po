@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-16 17:39+0800\n"
+"POT-Creation-Date: 2021-10-16 17:45+0800\n"
 "PO-Revision-Date: 2021-10-15 11:01+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1350,9 +1350,25 @@ msgstr "Множествено изглаждане:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(по-високите стойности понижават производителността)"
 
-#: ../src/general/OptionsMenu.tscn:270
+#: ../src/general/OptionsMenu.tscn:270 ../src/general/OptionsMenu.tscn:271
 msgid "DISABLED"
 msgstr "Изключено"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "TWO_TIMES"
+msgstr "2 пъти"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "FOUR_TIMES"
+msgstr "4 пъти"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "EIGHT_TIMES"
+msgstr "8 пъти"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "SIXTEEN_TIMES"
+msgstr "16 пъти"
 
 #: ../src/general/OptionsMenu.tscn:285
 msgid "RESOLUTION"
@@ -1370,9 +1386,17 @@ msgstr "Максимална ЧКС:"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Корекция за цветна слепота:"
 
-#: ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:348 ../src/general/OptionsMenu.tscn:349
 msgid "NONE"
 msgstr "Няма"
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_PROTANOPE"
+msgstr "Протанопия (червено и зелено)"
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_TRITANOPE"
+msgstr "Тританопия (синьо и жълто)"
 
 #: ../src/general/OptionsMenu.tscn:366
 msgid "CHROMATIC_ABERRATION"
@@ -1526,9 +1550,17 @@ msgstr "Отваряне на папката с дневници"
 msgid "JSON_DEBUG_MODE"
 msgstr "Отстраняване на грешки:"
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматично"
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr "Включено"
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr "Изключено"
 
 #: ../src/general/OptionsMenu.tscn:1233 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -3237,30 +3269,6 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Отказ"
-
-#~ msgid "TWO_TIMES"
-#~ msgstr "2 пъти"
-
-#~ msgid "FOUR_TIMES"
-#~ msgstr "4 пъти"
-
-#~ msgid "EIGHT_TIMES"
-#~ msgstr "8 пъти"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16 пъти"
-
-#~ msgid "CORRECTION_PROTANOPE"
-#~ msgstr "Протанопия (червено и зелено)"
-
-#~ msgid "CORRECTION_TRITANOPE"
-#~ msgstr "Тританопия (синьо и жълто)"
-
-#~ msgid "JSON_DEBUG_MODE_ALWAYS"
-#~ msgstr "Включено"
-
-#~ msgid "JSON_DEBUG_MODE_NEVER"
-#~ msgstr "Изключено"
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "Грешка при запазването"

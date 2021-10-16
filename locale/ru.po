@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-16 17:39+0800\n"
+"POT-Creation-Date: 2021-10-16 17:45+0800\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1351,9 +1351,28 @@ msgstr "Множественная выборка сглаживания:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(высокие значения ухудшают производительность)"
 
-#: ../src/general/OptionsMenu.tscn:270
+#: ../src/general/OptionsMenu.tscn:270 ../src/general/OptionsMenu.tscn:271
 msgid "DISABLED"
 msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "TWO_TIMES"
+msgstr "Правая кнопка мыши"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "Правая кнопка мыши"
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "Правая кнопка мыши"
 
 #: ../src/general/OptionsMenu.tscn:285
 msgid "RESOLUTION"
@@ -1371,8 +1390,16 @@ msgstr "Макс. FPS:"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Цветокоррекция для Дальтоников:"
 
-#: ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:348 ../src/general/OptionsMenu.tscn:349
 msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:366
@@ -1527,8 +1554,16 @@ msgstr "Открыть Папку с Логами"
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
 msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1233 ../src/saving/NewSaveMenu.tscn:72
@@ -3252,10 +3287,6 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Отмена"
-
-#, fuzzy
-#~ msgid "EIGHT_TIMES"
-#~ msgstr "Правая кнопка мыши"
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "Ошибка Сохранения"

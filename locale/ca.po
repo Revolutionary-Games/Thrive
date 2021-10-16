@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-16 17:39+0800\n"
+"POT-Creation-Date: 2021-10-16 17:45+0800\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Ribi2110 <ribert2110@yahoo.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1351,9 +1351,28 @@ msgstr "Antialiàsing Multimostres (MSAA):"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valors més alts empitjoren el rendiment)"
 
-#: ../src/general/OptionsMenu.tscn:270
+#: ../src/general/OptionsMenu.tscn:270 ../src/general/OptionsMenu.tscn:271
 msgid "DISABLED"
 msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "TWO_TIMES"
+msgstr "Clic dret del ratolí"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "Clic dret del ratolí"
+
+#: ../src/general/OptionsMenu.tscn:271
+#, fuzzy
+msgid "SIXTEEN_TIMES"
+msgstr "Clic dret del ratolí"
 
 #: ../src/general/OptionsMenu.tscn:285
 msgid "RESOLUTION"
@@ -1371,8 +1390,16 @@ msgstr "Màxim FPS:"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correcció 'Colourblind':"
 
-#: ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:348 ../src/general/OptionsMenu.tscn:349
 msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:366
@@ -1527,8 +1554,16 @@ msgstr "Obrir Carpeta de Registres"
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
 msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1233 ../src/saving/NewSaveMenu.tscn:72
@@ -3256,10 +3291,6 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Cancel·lar"
-
-#, fuzzy
-#~ msgid "EIGHT_TIMES"
-#~ msgstr "Clic dret del ratolí"
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "Error en l'acció de guardat"

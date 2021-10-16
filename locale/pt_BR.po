@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-16 17:39+0800\n"
+"POT-Creation-Date: 2021-10-16 17:45+0800\n"
 "PO-Revision-Date: 2021-10-14 09:05+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1350,9 +1350,25 @@ msgstr "Multisample anti-aliasing:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valores mais altos diminuem a performance)"
 
-#: ../src/general/OptionsMenu.tscn:270
+#: ../src/general/OptionsMenu.tscn:270 ../src/general/OptionsMenu.tscn:271
 msgid "DISABLED"
 msgstr "Desativado"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "TWO_TIMES"
+msgstr "2x"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "FOUR_TIMES"
+msgstr "4x"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "EIGHT_TIMES"
+msgstr "8x"
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "SIXTEEN_TIMES"
+msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:285
 msgid "RESOLUTION"
@@ -1370,9 +1386,17 @@ msgstr "FPS máximo:"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correção de cor (daltonismo):"
 
-#: ../src/general/OptionsMenu.tscn:348
+#: ../src/general/OptionsMenu.tscn:348 ../src/general/OptionsMenu.tscn:349
 msgid "NONE"
 msgstr "Nenhum"
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_PROTANOPE"
+msgstr "Protanopia (Vermelho-Verde)"
+
+#: ../src/general/OptionsMenu.tscn:349
+msgid "CORRECTION_TRITANOPE"
+msgstr "Tritanopia (Azul-Amarelo)"
 
 #: ../src/general/OptionsMenu.tscn:366
 msgid "CHROMATIC_ABERRATION"
@@ -1526,9 +1550,17 @@ msgstr "Abrir pasta de logs"
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1196
+#: ../src/general/OptionsMenu.tscn:1196 ../src/general/OptionsMenu.tscn:1197
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaticamente"
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr "Sempre"
+
+#: ../src/general/OptionsMenu.tscn:1197
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr "Nunca"
 
 #: ../src/general/OptionsMenu.tscn:1233 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -3254,30 +3286,6 @@ msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"
-
-#~ msgid "TWO_TIMES"
-#~ msgstr "2x"
-
-#~ msgid "FOUR_TIMES"
-#~ msgstr "4x"
-
-#~ msgid "EIGHT_TIMES"
-#~ msgstr "8x"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16x"
-
-#~ msgid "CORRECTION_PROTANOPE"
-#~ msgstr "Protanopia (Vermelho-Verde)"
-
-#~ msgid "CORRECTION_TRITANOPE"
-#~ msgstr "Tritanopia (Azul-Amarelo)"
-
-#~ msgid "JSON_DEBUG_MODE_ALWAYS"
-#~ msgstr "Sempre"
-
-#~ msgid "JSON_DEBUG_MODE_NEVER"
-#~ msgstr "Nunca"
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "Erro ao Salvar"
