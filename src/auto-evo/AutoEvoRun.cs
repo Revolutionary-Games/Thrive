@@ -350,35 +350,28 @@ public class AutoEvoRun
                 {
                     if (FullSpeed)
                     {
-                        int availableThreads = TaskExecutor.Instance.ParallelTasks;
+                        // Try to use extra threads to speed this up
+                        // If we ever want to use background processing in a loading screen to do something time
+                        // sensitive while auto-evo runs this value needs to be reduced
+                        int maxTasksAtOnce = 1000;
 
-                        // We check against 2 here as it only makes sense to make tasks if we have one thread in
-                        // addition to the current one to run auto-evo on (otherwise it won't speed up at all)
-                        if (availableThreads < 2)
+                        while (runSteps.Peek()?.CanRunConcurrently == true && maxTasksAtOnce > 0)
                         {
+                            var step = runSteps.Dequeue();
+
+                            concurrentStepTasks.Add(new Task(() => RunSingleStepToCompletion(step)));
+                            --maxTasksAtOnce;
+                        }
+
+                        if (concurrentStepTasks.Count < 1)
+                        {
+                            // No steps that can run concurrently, need to run just a normal run
                             NormalRunPartOfNextStep();
                         }
                         else
                         {
-                            // We can use extra threads to speed this up
-                            while (runSteps.Peek()?.CanRunConcurrently == true && availableThreads > 0)
-                            {
-                                var step = runSteps.Dequeue();
-
-                                concurrentStepTasks.Add(new Task(() => RunSingleStepToCompletion(step)));
-                                --availableThreads;
-                            }
-
-                            if (concurrentStepTasks.Count < 1)
-                            {
-                                // No concurrently possible to run concurrentStepTasks, need to run just a normal run
-                                NormalRunPartOfNextStep();
-                            }
-                            else
-                            {
-                                TaskExecutor.Instance.RunTasks(concurrentStepTasks);
-                                concurrentStepTasks.Clear();
-                            }
+                            TaskExecutor.Instance.RunTasks(concurrentStepTasks, true);
+                            concurrentStepTasks.Clear();
                         }
                     }
                     else
