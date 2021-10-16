@@ -9,8 +9,6 @@ public class CustomConfirmationDialog : CustomDialog
     [Export]
     public bool HideOnOk = true;
 
-    private static readonly bool OkLeftCancelRight = OS.IsOkLeftAndCancelRight();
-
     private bool hideCancelButton;
 
     private string dialogText;
@@ -98,7 +96,7 @@ public class CustomConfirmationDialog : CustomDialog
         cancelButton = GetNode<Button>("VBoxContainer/HBoxContainer/CancelButton");
         cancelEndSpacer = GetNode<Control>("VBoxContainer/HBoxContainer/Spacer3");
 
-        if (OkLeftCancelRight)
+        if (OS.IsOkLeftAndCancelRight())
         {
             buttonsContainer.MoveChild(confirmButton, 1);
             buttonsContainer.MoveChild(cancelButton, 3);
