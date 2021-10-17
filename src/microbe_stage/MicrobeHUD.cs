@@ -6,7 +6,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Manages the microbe HUD
 /// </summary>
-public class MicrobeHUD : Node
+public class MicrobeHUD : Control
 {
     [Export]
     public NodePath AnimationPlayerPath;
@@ -694,7 +694,7 @@ public class MicrobeHUD : Node
 
                 var compoundIcon = GUICommon.Instance.CreateCompoundIcon(compound.Key.InternalName, 20, 20);
 
-                compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
+                compoundName.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
                 compoundName.Text = compound.Key.Name;
 
                 compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", compound.Value);
