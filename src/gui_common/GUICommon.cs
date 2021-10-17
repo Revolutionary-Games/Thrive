@@ -18,9 +18,13 @@ public class GUICommon : Node
 
         AudioSource = new AudioStreamPlayer();
         AudioSource.Bus = "GUI";
-        Tween = new Tween();
-
         AddChild(AudioSource);
+
+        AudioSource2 = new AudioStreamPlayer();
+        AudioSource2.Bus = "GUI";
+        AddChild(AudioSource2);
+
+        Tween = new Tween();
         AddChild(Tween);
 
         // Keep this node running even while paused
@@ -33,14 +37,25 @@ public class GUICommon : Node
     public static GUICommon Instance => instance;
 
     /// <summary>
-    ///   The audio player for UI sound effects.
-    /// </summary>
-    public AudioStreamPlayer AudioSource { get; }
-
-    /// <summary>
     ///   General purpose Tween node for use in various places.
     /// </summary>
     public Tween Tween { get; }
+
+    /// <summary>
+    ///   The audio player for UI sound effects.
+    /// </summary>
+    private AudioStreamPlayer AudioSource { get; }
+
+    /// <summary>
+    ///   Second audio player for GUI effects. This is used if the primary one is still playing the previous effect.
+    /// </summary>
+    /// <remarks>
+    ///    <para>
+    ///      If the user is really fast with the mouse they can click buttons so fast that two sounds need to play at
+    ///      once.
+    ///    </para>
+    /// </remarks>
+    private AudioStreamPlayer AudioSource2 { get; }
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
@@ -74,11 +89,7 @@ public class GUICommon : Node
     /// </summary>
     public void PlayButtonPressSound()
     {
-        if (AudioSource.Playing)
-            return;
-
-        AudioSource.Stream = buttonPressSound;
-        AudioSource.Play();
+        PlayCustomSound(buttonPressSound);
     }
 
     /// <summary>
@@ -87,7 +98,16 @@ public class GUICommon : Node
     public void PlayCustomSound(AudioStream sound)
     {
         if (AudioSource.Playing)
+        {
+            // Use backup player if it is available
+            if (!AudioSource2.Playing)
+            {
+                AudioSource2.Stream = sound;
+                AudioSource2.Play();
+            }
+
             return;
+        }
 
         AudioSource.Stream = sound;
         AudioSource.Play();

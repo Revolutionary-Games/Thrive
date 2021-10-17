@@ -7,14 +7,7 @@ using Godot;
 public class CreditsScroll : Container
 {
     private const bool ShowAssociationName = true;
-    private const bool ShowFullLicenseTexts = true;
-
-    private const string LicenseFile = "res://LICENSE.txt";
-    private const string AssetsReadme = "res://assets/README.txt";
-    private const string AssetsLicense = "res://assets/LICENSE.txt";
-    private const string GodotLicense = "res://doc/GodotLicense.txt";
-    private const string OFLLicense = "res://assets/OFL.txt";
-    private const string GPLLicense = "res://gpl.txt";
+    private const bool ShowFullLicenseTexts = false;
 
     private const float GameNameEndOffset = 355;
     private const float GameNameInvisibleOffset = 1200;
@@ -393,7 +386,7 @@ public class CreditsScroll : Container
             SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
 
-        var licenseTextLabel = CreateFileLoadedPart(offset, LicenseFile);
+        var licenseTextLabel = CreateFileLoadedPart(offset, Constants.LICENSE_FILE);
         offset += (int)licenseTextLabel.Height + ExtraOffsetAfterTeam;
 
         // This is purposefully not translatable
@@ -405,7 +398,7 @@ public class CreditsScroll : Container
 
         offset += (int)extraLicenseInfo.Height + OffsetBeforeNextDynamicPart;
 
-        var assetLicenseText = CreateFileLoadedPart(offset, AssetsReadme);
+        var assetLicenseText = CreateFileLoadedPart(offset, Constants.ASSETS_README);
         offset += (int)assetLicenseText.Height + ExtraOffsetAfterTeam;
 
         // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
@@ -416,10 +409,9 @@ public class CreditsScroll : Container
             var fullLicensesHeading = CreateDynamicPart(offset, "Full license texts follow");
             fullLicensesHeading.OnBecomeVisible += LoadFullLicenseTexts;
         }
-        else
-        {
-            assetLicenseText.OnBecomeVisible += LoadEndRemarks;
-        }
+
+        var fullLicensesInfo = CreateDynamicPart(offset, "You can find full licenses in the \"extras\" menu");
+        fullLicensesInfo.OnBecomeVisible += LoadEndRemarks;
 #pragma warning restore 162
 
         // ReSharper restore HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
@@ -427,7 +419,7 @@ public class CreditsScroll : Container
 
     private void LoadFullLicenseTexts()
     {
-        var assetsLicenseLabel = CreateFileLoadedPart(GetNextDynamicSectionOffset(), AssetsLicense);
+        var assetsLicenseLabel = CreateFileLoadedPart(GetNextDynamicSectionOffset(), Constants.ASSETS_LICENSE_FILE);
         assetsLicenseLabel.OnBecomeVisible += () =>
         {
             // As licenses are boring speed this up
@@ -446,13 +438,13 @@ public class CreditsScroll : Container
 
     private void LoadGPLLicense()
     {
-        var licenseLabel = CreateFileLoadedPart(GetNextDynamicSectionOffset(), GPLLicense);
+        var licenseLabel = CreateFileLoadedPart(GetNextDynamicSectionOffset(), Constants.GPL_LICENSE_FILE);
         licenseLabel.OnBecomeVisible += LoadOFLLicense;
     }
 
     private void LoadOFLLicense()
     {
-        var oflLicense = CreateFileLoadedPart(GetNextDynamicSectionOffset(), OFLLicense);
+        var oflLicense = CreateFileLoadedPart(GetNextDynamicSectionOffset(), Constants.OFL_LICENSE_FILE);
         oflLicense.OnBecomeVisible += LoadGodotLicense;
     }
 
@@ -462,7 +454,8 @@ public class CreditsScroll : Container
         // don't add any height here, we still leave a pretty huge blank gap
         // To try to combat these the Godot license is last of the shown licenses
         var godotLicenseLabel =
-            CreateFileLoadedPart(GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart, GodotLicense);
+            CreateFileLoadedPart(GetNextDynamicSectionOffset() + OffsetBeforeNextDynamicPart,
+                Constants.GODOT_LICENSE_FILE);
         godotLicenseLabel.OnBecomeVisible += () =>
         {
             int offset = GetNextDynamicSectionOffset();

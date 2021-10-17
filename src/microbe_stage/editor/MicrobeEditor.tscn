@@ -383,9 +383,18 @@ omni_attenuation = 0.420448
 
 [node name="DynamicallySpawned" type="Spatial" parent="World"]
 
-[node name="MicrobeEditorGUI" type="Node" parent="."]
+[node name="MicrobeEditorGUI" type="Control" parent="."]
 pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 53 )
 script = ExtResource( 45 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 MenuPath = NodePath("../PauseMenu")
 ReportTabButtonPath = NodePath("TopLeft/HBoxContainer/ReportButton")
 PatchMapButtonPath = NodePath("TopLeft/HBoxContainer/PatchMapButton")
@@ -471,7 +480,6 @@ CompoundBalancePath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Bod
 [node name="TopLeft" type="MarginContainer" parent="MicrobeEditorGUI"]
 margin_right = 353.0
 margin_bottom = 45.0
-theme = ExtResource( 53 )
 custom_constants/margin_right = 5
 custom_constants/margin_top = 10
 custom_constants/margin_left = 15
@@ -560,7 +568,6 @@ anchor_bottom = 1.0
 margin_top = -1.41425
 margin_bottom = -1.41425
 mouse_filter = 2
-theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1534,8 +1541,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
-margin_right = 327.0
-margin_bottom = 897.0
+margin_right = 321.0
+margin_bottom = 889.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -1544,8 +1551,8 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
-margin_right = 317.0
-margin_bottom = 897.0
+margin_right = 311.0
+margin_bottom = 889.0
 custom_constants/separation = 15
 
 [node name="MembraneTypes" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
@@ -1674,10 +1681,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 322.0
-margin_bottom = 520.0
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 326.0
+margin_bottom = 524.0
 RawButtonEnabled = false
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -1906,7 +1913,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
 mouse_filter = 2
-theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2393,7 +2399,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
