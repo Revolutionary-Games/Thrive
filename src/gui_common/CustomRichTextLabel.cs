@@ -325,21 +325,44 @@ public class CustomRichTextLabel : RichTextLabel
                 var parsedAttributes = StringUtils.ParseKeyValuePairs(attributes);
                 parsedAttributes.TryGetValue("format", out string format);
 
-                output = input switch
+                switch (input)
                 {
-                    "OXYTOXY_DAMAGE" => Constants.OXYTOXY_DAMAGE.ToString(format, CultureInfo.CurrentCulture),
-                    "ENGULF_DAMAGE" => Constants.ENGULF_DAMAGE.ToString(format, CultureInfo.CurrentCulture),
-                    "PILUS_BASE_DAMAGE" => Constants.PILUS_BASE_DAMAGE.ToString(format, CultureInfo.CurrentCulture),
-                    "BINDING_ATP_COST_PER_SECOND" => Constants.BINDING_ATP_COST_PER_SECOND.ToString(format,
-                        CultureInfo.CurrentCulture),
-                    "ENGULFING_ATP_COST_PER_SECOND" => Constants.ENGULFING_ATP_COST_PER_SECOND.ToString(format,
-                        CultureInfo.CurrentCulture),
-                    _ => ((Func<string, string, string>)((notExistingInput, sameOutput) =>
+                    case "OXYTOXY_DAMAGE":
                     {
-                        GD.Print($"Constant: \"{notExistingInput}\" doesn't exist, referenced in bbcode");
-                        return sameOutput;
-                    }))(input, output),
-                };
+                        output = Constants.OXYTOXY_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENGULF_DAMAGE":
+                    {
+                        output = Constants.ENGULF_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "PILUS_BASE_DAMAGE":
+                    {
+                        output = Constants.PILUS_BASE_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "BINDING_ATP_COST_PER_SECOND":
+                    {
+                        output = Constants.BINDING_ATP_COST_PER_SECOND.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENGULFING_ATP_COST_PER_SECOND":
+                    {
+                        output = Constants.ENGULFING_ATP_COST_PER_SECOND.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    default:
+                    {
+                        GD.Print($"Constant: \"{input}\" doesn't exist, referenced in bbcode");
+                        break;
+                    }
+                }
 
                 break;
         }
