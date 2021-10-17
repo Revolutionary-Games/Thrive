@@ -101,7 +101,7 @@ public class MainMenu : NodeWithInput
 
         if (slide)
         {
-            guiAnimations.Play("MenuSlide");
+            PlayGUIAnimation("MenuSlide");
         }
         else
         {
