@@ -13,6 +13,12 @@
         int TotalSteps { get; }
 
         /// <summary>
+        ///   If true this step can be ran concurrently with other steps. If false all previous steps need to finish
+        ///   before this can be ran.
+        /// </summary>
+        bool CanRunConcurrently { get; }
+
+        /// <summary>
         /// Performs a single step. This needs to be called TotalSteps times
         /// </summary>
         /// <returns>True once final step is complete</returns>

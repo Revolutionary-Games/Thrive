@@ -1382,6 +1382,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
                 MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
+
+            CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
         }
         else
         {
@@ -2367,8 +2369,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void ApplyAutoEvoResults()
     {
-        GD.Print("Applying auto-evo results");
-        CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
+        GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
+        run.ApplyExternalEffects();
 
         CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
 
