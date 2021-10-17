@@ -17,7 +17,15 @@ public class ChromaticFilter : TextureRect
         Settings.Instance.ChromaticEnabled.OnChanged += OnChanged;
     }
 
-    public void OnChanged(bool enabled)
+    protected override void Dispose(bool disposing)
+    {
+        Settings.Instance.ChromaticAmount.OnChanged -= SetAmount;
+        Settings.Instance.ChromaticEnabled.OnChanged -= OnChanged;
+
+        base.Dispose(disposing);
+    }
+
+    private void OnChanged(bool enabled)
     {
         if (enabled)
         {
@@ -29,7 +37,7 @@ public class ChromaticFilter : TextureRect
         }
     }
 
-    public void SetAmount(float amount)
+    private void SetAmount(float amount)
     {
         material.SetShaderParam("MAX_DIST_PX", amount);
     }
