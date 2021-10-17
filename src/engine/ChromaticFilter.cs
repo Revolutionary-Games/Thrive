@@ -7,24 +7,28 @@ public class ChromaticFilter : TextureRect
 {
     private ShaderMaterial material;
 
-    public override void _EnterTree()
+    public ChromaticFilter()
     {
         material = (ShaderMaterial)Material;
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
         SetAmount(Settings.Instance.ChromaticAmount);
         OnChanged(Settings.Instance.ChromaticEnabled);
 
         Settings.Instance.ChromaticAmount.OnChanged += SetAmount;
         Settings.Instance.ChromaticEnabled.OnChanged += OnChanged;
-
-        base._EnterTree();
     }
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         Settings.Instance.ChromaticAmount.OnChanged -= SetAmount;
         Settings.Instance.ChromaticEnabled.OnChanged -= OnChanged;
-
-        base._ExitTree();
     }
 
     private void OnChanged(bool enabled)
