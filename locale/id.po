@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-17 13:02+0300\n"
+"POT-Creation-Date: 2021-10-18 21:41+0200\n"
 "PO-Revision-Date: 2021-10-02 16:11+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -18,243 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
-
-#: ../simulation_parameters/common/help_texts.json:6
-#: ../simulation_parameters/common/help_texts.json:85
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
-
-#: ../simulation_parameters/common/help_texts.json:10
-#: ../simulation_parameters/common/help_texts.json:88
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Sel kamu menggunakan [thrive:compound type=\"atp\"][/thrive:compound] sebagai sumber energinya, jika habis maka kamu akan mati."
-
-#: ../simulation_parameters/common/help_texts.json:14
-#: ../simulation_parameters/common/help_texts.json:91
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah [thrive:compound type=\"ammonia\"][/thrive:compound] (Awan Oranye) dan [thrive:compound type=\"phosphates\"][/thrive:compound] (Awan Ungu)."
-
-#: ../simulation_parameters/common/help_texts.json:18
-#: ../simulation_parameters/common/help_texts.json:94
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan potongan sel yang lebih kecil dari sel kamu dengan cara menekan tombol [thrive:input]g_toggle_engulf[/thrive:input]. Proses ini membutuhkan [thrive:compound type=\"atp\"][/thrive:compound] dan memperlambat sel kamu. Jangan lupa tekan lagi [thrive:input]g_toggle_engulf[/thrive:input] untuk menghentikan penelanan."
-
-#: ../simulation_parameters/common/help_texts.json:22
-#: ../simulation_parameters/common/help_texts.json:97
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulasi memerlukan [thrive:compound type=\"atp\"][/thrive:compound], yang berarti semakin besar sel kamu, semakin banyak Mitokondria, Metabolosom, atau Rusticyanin (atau sitoplasma, yang melakukan proses Glikolisis) yang kamu butuhkan agar terhindar dari kehilangan [thrive:compound type=\"atp\"][/thrive:compound] saat kamu tidak bergerak."
-
-#: ../simulation_parameters/common/help_texts.json:26
-#: ../simulation_parameters/common/help_texts.json:100
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Ada banyak organel di editor yang dapat kamu gunakan untuk mengembangkan selmu, memungkinkan gaya permainan yang luas."
-
-#: ../simulation_parameters/common/help_texts.json:30
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Jenis-jenis awan senyawa adalah sebagai berikut:\n"
-"\n"
-"Putih - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Kuning - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Oranye - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Ungu - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Coklat Karat - [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"]Glukosa-lah[/thrive:compound] yang membuat [thrive:compound type=\"atp\"][/thrive:compound]"
-
-#: ../simulation_parameters/common/help_texts.json:34
-#: ../simulation_parameters/common/help_texts.json:106
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"glucose\"][/thrive:compound] melalui kemoplas dan protein pengkemosintesis. [thrive:compound type=\"iron\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"atp\"][/thrive:compound] melalui rustisianin."
-
-#: ../simulation_parameters/common/help_texts.json:38
-#: ../simulation_parameters/common/help_texts.json:109
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi dua. Diperlukan amonia dan fosfat untuk membelah semua organel menjadi dua."
-
-#: ../simulation_parameters/common/help_texts.json:42
-#: ../simulation_parameters/common/help_texts.json:103
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Untuk saat ini jika populasi turun menjadi nol maka kamu akan punah."
-
-#: ../simulation_parameters/common/help_texts.json:46
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Namun jika kamu dapat bertahan hingga 20 generasi dengan populasi sebesar 300, kamu dianggap telah memenangkan sesi permainan yang sedang berlangsung, saat kamu menang sebuah popup muncul dan kamu dapat melanjutkan permainan semau kamu."
-
-#: ../simulation_parameters/common/help_texts.json:50
-#: ../simulation_parameters/common/help_texts.json:112
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar kamu. Setiap kamu memasuki sesi editor, para kompetitor juga ikut berkembang."
-
-#: ../simulation_parameters/common/help_texts.json:54
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Dengan melekat bersama sel lain, kamu dapat membentuk sebuah koloni sel dimana setiap sel membagi senyawa-senyawa yang mereka peroleh dan memproduksi bersama-sama. Agar bisa melekat dengan sel lain, kamu memerlukan organel agen pelekat dan kemudian bergerak mendekati sel tersebut setelah menyalakan mode lekat. Kamu hanya bisa melekat dengan sel satu spesies kamu. Ketika dalam koloni, kamu tidak dapat melakukan pembelahan sel dan memasuki editor (untuk saat ini). Untuk memasuki editor, pertama kamu perlu keluar dari koloni setelah mengumpulkan senyawa yang cukup dan kemudian masuk ke editor. Koloni sel yang besar adalah jalan menuju multiseluleritas (saat ini tidak ada di game)."
-
-#: ../simulation_parameters/common/help_texts.json:62
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Struktur Prokariotik\n"
-"\n"
-"Metabolosom: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Kemosintisasi Protein: Menghasilkan setengah [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
-"\n"
-"Tilakoid: Menghasilkan 1/3 dari jumlah [thrive:compound type=\"glucose\"][/thrive:compound] sebagai kloroplas normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
-"\n"
-"Rusticyanin: Ubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
-"\n"
-"Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
-
-#: ../simulation_parameters/common/help_texts.json:66
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Organel Eksternal\n"
-"\n"
-"Flagelum: Menggerakkan sel kamu dengan lebih cepat dengan mengonsumsi [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Dapat digunakan untuk menusuk sel lain"
-
-#: ../simulation_parameters/common/help_texts.json:70
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Organel Terikat Membran\n"
-"\n"
-"Nukleus: Memerlukan 11 heksa dan memungkinkan evolusi organel terikat membran yang juga menggandakan ukuran sel kamu sebesar dua kali lipat. (Hanya dapat berevolusi sekali saja)\n"
-"\n"
-"Mitokondria: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound] dan gas CO2. Jauh lebih efisien dari sitoplasma.\n"
-"\n"
-"Kloroplas: Membuat [thrive:compound type=\"glucose\"][/thrive:compound] dari sinar matahari dan gas CO2.\n"
-"\n"
-"Kemoplas: Membuat [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound].\n"
-"\n"
-"Pengikat Nitrogen Plastida: Membuat [thrive:compound type=\"ammonia\"][/thrive:compound] dari [thrive:compound type=\"atp\"][/thrive:compound] serta atmosfer Nitrogen dan Oksigen\n"
-"\n"
-"Vakula: Menyimpan senyawa yang dikumpulkan sebesar 15\n"
-"\n"
-"Vakula Toksin: Menghasilkan toksin (Disebut [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
-
-#: ../simulation_parameters/common/help_texts.json:74
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untuk digunakan, dan setiap perubahan (atau mutasi) membutuhkan MP sebesar organel yang kamu tambahkan/lepas. Menambah dan melepas organel juga membutuhkan MP, tetapi melepas organel yang sudah ditempatkan di sesi mutasi saat ini akan mengembalikan MP dari organel tersebut. Kamu bisa melepas sebuah organel dengan cara mengklik kanan pada organel tersebut. Kamu bisa memutar organelmu dengan cara mengklik [thrive:input]e_rotate_left[/thrive:input] dan [thrive:input]e_rotate_right[/thrive:input]."
-
-#: ../simulation_parameters/common/help_texts.json:78
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili 100 juta tahun evolusi."
-
-#: ../simulation_parameters/common/help_texts.json:119
-msgid "LOADING_TIP"
-msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
-
-#: ../simulation_parameters/common/help_texts.json:126
-msgid "EASTEREGG_MESSAGE_1"
-msgstr "Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau Mangsa?"
-
-#: ../simulation_parameters/common/help_texts.json:129
-msgid "EASTEREGG_MESSAGE_2"
-msgstr "Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di sekitarmu jika kamu cepat menangkisnya."
-
-#: ../simulation_parameters/common/help_texts.json:132
-msgid "EASTEREGG_MESSAGE_3"
-msgstr "Berikut tipsnya, Osmoregulasi memerlukan 1 ATP per detik per hex yang sel kamu miliki, setiap hex sitoplasma kosong juga menghasilkan 5 ATP per detik, yang artinya jika kamu kehilangan ATP karena osmoregulasi, cukup tambahkan beberapa hex kosong sitoplasma atau lepaskan beberapa organel."
-
-#: ../simulation_parameters/common/help_texts.json:135
-msgid "EASTEREGG_MESSAGE_4"
-msgstr "Fakta Menarik, Di dunia nyata, prokariota memiliki sesuatu yang disebut Biokompartemen yang bertindak layaknya organel, dan juga disebut sebagai organel Polihedral."
-
-#: ../simulation_parameters/common/help_texts.json:138
-msgid "EASTEREGG_MESSAGE_5"
-msgstr "Fakta Menarik, Metabolosom adalah organel yang termasuk organel Polihedral."
-
-#: ../simulation_parameters/common/help_texts.json:141
-msgid "EASTEREGG_MESSAGE_6"
-msgstr "Berikut tipsnya, terkadang lebih baik melarikan diri dari sel lain."
-
-#: ../simulation_parameters/common/help_texts.json:144
-msgid "EASTEREGG_MESSAGE_7"
-msgstr "Berikut tipsnya, jika ukuran sebuah sel sekitar setengah dari ukuranmu, kamu dapat menelan sel tersebut."
-
-#: ../simulation_parameters/common/help_texts.json:147
-msgid "EASTEREGG_MESSAGE_8"
-msgstr "Berikut tipsnya, bakteri bisa lebih kuat dari yang terlihat, mungkin mereka terlihat kecil, tetapi beberapa dari mereka dapat menggali kedalam selmu dan membunuh selmu dengan cara tersebut!"
-
-#: ../simulation_parameters/common/help_texts.json:150
-msgid "EASTEREGG_MESSAGE_9"
-msgstr "Berikut tipsnya, kamu bisa memburu spesies lain hingga kepunahan jika kamu tidak berhati-hati. Spesies lain juga dapat melakukannya."
-
-#: ../simulation_parameters/common/help_texts.json:153
-msgid "EASTEREGG_MESSAGE_10"
-msgstr "WIGGLY THINGS!!"
-
-#: ../simulation_parameters/common/help_texts.json:156
-msgid "EASTEREGG_MESSAGE_11"
-msgstr "Smeltal the meltal."
-
-#: ../simulation_parameters/common/help_texts.json:159
-msgid "EASTEREGG_MESSAGE_12"
-msgstr "Dasar sel-sel biru itu..."
-
-#: ../simulation_parameters/common/help_texts.json:162
-msgid "EASTEREGG_MESSAGE_13"
-msgstr "Berikut tipsnya, Bioma lebih dari sekadar perbedaan latar belakang, senyawa yang ada di bioma berbeda terkadang muncul pada laju yang berbeda."
-
-#: ../simulation_parameters/common/help_texts.json:165
-msgid "EASTEREGG_MESSAGE_14"
-msgstr "Berikut tipsnya, semakin banyak flagela yang kamu miliki, semakin cepat pula selmu bergerak, vroom vroom, tetapi juga memerlukan lebih banyak ATP."
-
-#: ../simulation_parameters/common/help_texts.json:168
-msgid "EASTEREGG_MESSAGE_15"
-msgstr "Berikut tipsnya, kamu bisa menelan potongan, besi atau lainnya."
-
-#: ../simulation_parameters/common/help_texts.json:171
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "Berikut tipsnya, bersiaplah sebelum menambahkan nukleus pada selmu. Organel tersebut sangatlah mahal! Dalam sisi pemeliharaan dan biaya organel."
-
-#: ../simulation_parameters/common/help_texts.json:174
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "Fakta Menarik, Tahukah kamu bahwa ada lebih dari 8000 spesies ciliata di planet Bumi?"
-
-#: ../simulation_parameters/common/help_texts.json:177
-msgid "EASTEREGG_MESSAGE_18"
-msgstr "Fakta Menarik, Stentor adalah ciliata yang dapat meregangkan dirinya sendiri dan menangkap mangsanya dari mulut berbentuk seperti terompet yang menarik mangsa kedalamnya dengan menimbulkan arus air dengan cilia."
-
-#: ../simulation_parameters/common/help_texts.json:180
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Fakta Menarik, Didinium adalah ciliata yang memburu paramecia."
-
-#: ../simulation_parameters/common/help_texts.json:183
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Fakta menarik, Amoeba memburu dan menangkap mangsa dengan 'kaki' terbuat dari sitoplasma yang disebut pseudopoda, kami nantinya juga ingin menambahkan 'kaki' tersebut dalam Thrive."
-
-#: ../simulation_parameters/common/help_texts.json:186
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Berikut tipsnya, hati-hati dengan sel yang lebih besar dan bakteria besar, tidak seru rasanya kalau kamu dicerna, dan mereka akan memakanmu."
-
-#: ../simulation_parameters/common/help_texts.json:189
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Kepala tim suara Thrive telah membuat banyak lagu yang masih belum dimasukkan ke dalam game. Kamu dapat mendengar lagu-lagu tersebut, atau tonton streamingnya menyusun lagu di kanal YouTubenya, Oliver Lugg."
-
-#: ../simulation_parameters/common/help_texts.json:192
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Berikut tipsnya, jika ukuran sel kamu 150 hex, kamu dapat menelan potongan besi besar."
-
-#: ../simulation_parameters/common/help_texts.json:195
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive dimaksudkan sebagai sebuah simulasi planet asing, dengan demikian, masuk akal jika sebagian besar makhluk yang kamu temukan akan berkaitan dengan satu atau dua spesies lainnya karena evolusi yang terjadi di sekitarmu, coba lihatlah apakah kamu mengenali mereka!"
-
-#: ../simulation_parameters/common/help_texts.json:198
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Fakta menarik, Tim Thrive melakukan podcast sesekali waktu, cobalah untuk menontonnya!"
-
-#: ../simulation_parameters/common/help_texts.json:201
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Fakta menarik, Thrive dikembangkan dengan mesin game sumber terbuka Godot!"
-
-#: ../simulation_parameters/common/help_texts.json:204
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Fakta menarik, Salah satu prototipe gameplay pertama yang dapat dimainkan dibuat oleh programmer luar biasa kita, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1375,24 +1138,8 @@ msgstr "Anti-aliasing multisampel:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(Nilai tinggi memperburuk performa)"
 
-#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
+#: ../src/general/OptionsMenu.tscn:266
 msgid "DISABLED"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:267
-msgid "TWO_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:267
-msgid "FOUR_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:267
-msgid "EIGHT_TIMES"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:267
-msgid "SIXTEEN_TIMES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:281
@@ -1411,16 +1158,8 @@ msgstr "FPS Maks:"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Koreksi Buta Warna:"
 
-#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
+#: ../src/general/OptionsMenu.tscn:344
 msgid "NONE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:345
-msgid "CORRECTION_PROTANOPE"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:345
-msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:362
@@ -1577,16 +1316,8 @@ msgstr "Buka Folder Catatan"
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
+#: ../src/general/OptionsMenu.tscn:1192
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1193
-msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
-
-#: ../src/general/OptionsMenu.tscn:1193
-msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
@@ -2415,27 +2146,31 @@ msgstr "bereproduksi"
 msgid "ESCAPE_ENGULFING"
 msgstr "lolos dari penelanan"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "INFINITE_COMPOUNDS"
 msgstr "Jumlah Senyawa Tak Terhingga"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
 msgid "GODMODE"
 msgstr "Mode Kebal"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:60
 msgid "NO_AI"
 msgstr "Nonaktifkan AI (kecerdasan buatan)"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:77
 msgid "PLAYER_SPEED"
 msgstr ""
 "Kecepatan\n"
 "Pemain"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:98
 msgid "PLAYER_DUPLICATE"
 msgstr "Gandakan Pemain"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:108
+msgid "SPAWN_ENEMY"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:672
 msgid "STUFF_AT"
@@ -2445,11 +2180,11 @@ msgstr "Yang ada pada {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Sel Pemain"
 
-#: ../src/microbe_stage/MicrobeStage.cs:510
+#: ../src/microbe_stage/MicrobeStage.cs:522
 msgid "PLAYER_REPRODUCED"
 msgstr "pemain bereproduksi"
 
-#: ../src/microbe_stage/MicrobeStage.cs:631
+#: ../src/microbe_stage/MicrobeStage.cs:662
 msgid "PLAYER_DIED"
 msgstr "pemain mati"
 
@@ -2534,47 +2269,47 @@ msgstr "Tambah keybind baru"
 msgid "POPULATION_CAPITAL"
 msgstr "POPULASI:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:126
+#: ../src/microbe_stage/PatchMapGenerator.cs:181
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Ventilasi Pangonia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:127
+#: ../src/microbe_stage/PatchMapGenerator.cs:182
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Mesopelagik Pangonia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:128
+#: ../src/microbe_stage/PatchMapGenerator.cs:183
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Epipelagik Pangonia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:129
+#: ../src/microbe_stage/PatchMapGenerator.cs:184
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Kolam Pasang-Surut Pangonia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:130
+#: ../src/microbe_stage/PatchMapGenerator.cs:185
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Batipelagik Pangonia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:131
+#: ../src/microbe_stage/PatchMapGenerator.cs:186
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Abisopelagik Pangonia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:132
+#: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pesisir Pangonia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:133
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Muara Pangonia"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:134
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_CAVE"
 msgstr "Gua"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:135
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_ICE_SHELF"
 msgstr "Lempengan Es"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:136
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Dasar Laut Pangonia"
 
@@ -2779,21 +2514,6 @@ msgstr "Spesies yang Ada"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Pindah ke Daerah Ini"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "Pindah"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "Hapus"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "Ubah"
-
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr "PM Tak Terhingga"
@@ -2865,6 +2585,18 @@ msgstr "{0} dengan populasi: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} PM"
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "Hapus"
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "Pindah"
+
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "Ubah"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -3319,6 +3051,187 @@ msgstr ""
 "Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Sel kamu menggunakan [thrive:compound type=\"atp\"][/thrive:compound] sebagai sumber energinya, jika habis maka kamu akan mati."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah [thrive:compound type=\"ammonia\"][/thrive:compound] (Awan Oranye) dan [thrive:compound type=\"phosphates\"][/thrive:compound] (Awan Ungu)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan potongan sel yang lebih kecil dari sel kamu dengan cara menekan tombol [thrive:input]g_toggle_engulf[/thrive:input]. Proses ini membutuhkan [thrive:compound type=\"atp\"][/thrive:compound] dan memperlambat sel kamu. Jangan lupa tekan lagi [thrive:input]g_toggle_engulf[/thrive:input] untuk menghentikan penelanan."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulasi memerlukan [thrive:compound type=\"atp\"][/thrive:compound], yang berarti semakin besar sel kamu, semakin banyak Mitokondria, Metabolosom, atau Rusticyanin (atau sitoplasma, yang melakukan proses Glikolisis) yang kamu butuhkan agar terhindar dari kehilangan [thrive:compound type=\"atp\"][/thrive:compound] saat kamu tidak bergerak."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Ada banyak organel di editor yang dapat kamu gunakan untuk mengembangkan selmu, memungkinkan gaya permainan yang luas."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Jenis-jenis awan senyawa adalah sebagai berikut:\n"
+#~ "\n"
+#~ "Putih - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Kuning - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Oranye - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Ungu - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Coklat Karat - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"]Glukosa-lah[/thrive:compound] yang membuat [thrive:compound type=\"atp\"][/thrive:compound]"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"glucose\"][/thrive:compound] melalui kemoplas dan protein pengkemosintesis. [thrive:compound type=\"iron\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"atp\"][/thrive:compound] melalui rustisianin."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi dua. Diperlukan amonia dan fosfat untuk membelah semua organel menjadi dua."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Untuk saat ini jika populasi turun menjadi nol maka kamu akan punah."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Namun jika kamu dapat bertahan hingga 20 generasi dengan populasi sebesar 300, kamu dianggap telah memenangkan sesi permainan yang sedang berlangsung, saat kamu menang sebuah popup muncul dan kamu dapat melanjutkan permainan semau kamu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar kamu. Setiap kamu memasuki sesi editor, para kompetitor juga ikut berkembang."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Dengan melekat bersama sel lain, kamu dapat membentuk sebuah koloni sel dimana setiap sel membagi senyawa-senyawa yang mereka peroleh dan memproduksi bersama-sama. Agar bisa melekat dengan sel lain, kamu memerlukan organel agen pelekat dan kemudian bergerak mendekati sel tersebut setelah menyalakan mode lekat. Kamu hanya bisa melekat dengan sel satu spesies kamu. Ketika dalam koloni, kamu tidak dapat melakukan pembelahan sel dan memasuki editor (untuk saat ini). Untuk memasuki editor, pertama kamu perlu keluar dari koloni setelah mengumpulkan senyawa yang cukup dan kemudian masuk ke editor. Koloni sel yang besar adalah jalan menuju multiseluleritas (saat ini tidak ada di game)."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Struktur Prokariotik\n"
+#~ "\n"
+#~ "Metabolosom: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Kemosintisasi Protein: Menghasilkan setengah [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
+#~ "\n"
+#~ "Tilakoid: Menghasilkan 1/3 dari jumlah [thrive:compound type=\"glucose\"][/thrive:compound] sebagai kloroplas normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
+#~ "\n"
+#~ "Rusticyanin: Ubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
+#~ "\n"
+#~ "Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Organel Eksternal\n"
+#~ "\n"
+#~ "Flagelum: Menggerakkan sel kamu dengan lebih cepat dengan mengonsumsi [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Dapat digunakan untuk menusuk sel lain"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Organel Terikat Membran\n"
+#~ "\n"
+#~ "Nukleus: Memerlukan 11 heksa dan memungkinkan evolusi organel terikat membran yang juga menggandakan ukuran sel kamu sebesar dua kali lipat. (Hanya dapat berevolusi sekali saja)\n"
+#~ "\n"
+#~ "Mitokondria: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound] dan gas CO2. Jauh lebih efisien dari sitoplasma.\n"
+#~ "\n"
+#~ "Kloroplas: Membuat [thrive:compound type=\"glucose\"][/thrive:compound] dari sinar matahari dan gas CO2.\n"
+#~ "\n"
+#~ "Kemoplas: Membuat [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound].\n"
+#~ "\n"
+#~ "Pengikat Nitrogen Plastida: Membuat [thrive:compound type=\"ammonia\"][/thrive:compound] dari [thrive:compound type=\"atp\"][/thrive:compound] serta atmosfer Nitrogen dan Oksigen\n"
+#~ "\n"
+#~ "Vakula: Menyimpan senyawa yang dikumpulkan sebesar 15\n"
+#~ "\n"
+#~ "Vakula Toksin: Menghasilkan toksin (Disebut [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untuk digunakan, dan setiap perubahan (atau mutasi) membutuhkan MP sebesar organel yang kamu tambahkan/lepas. Menambah dan melepas organel juga membutuhkan MP, tetapi melepas organel yang sudah ditempatkan di sesi mutasi saat ini akan mengembalikan MP dari organel tersebut. Kamu bisa melepas sebuah organel dengan cara mengklik kanan pada organel tersebut. Kamu bisa memutar organelmu dengan cara mengklik [thrive:input]e_rotate_left[/thrive:input] dan [thrive:input]e_rotate_right[/thrive:input]."
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili 100 juta tahun evolusi."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#~ msgid "EASTEREGG_MESSAGE_1"
+#~ msgstr "Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau Mangsa?"
+
+#~ msgid "EASTEREGG_MESSAGE_2"
+#~ msgstr "Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di sekitarmu jika kamu cepat menangkisnya."
+
+#~ msgid "EASTEREGG_MESSAGE_3"
+#~ msgstr "Berikut tipsnya, Osmoregulasi memerlukan 1 ATP per detik per hex yang sel kamu miliki, setiap hex sitoplasma kosong juga menghasilkan 5 ATP per detik, yang artinya jika kamu kehilangan ATP karena osmoregulasi, cukup tambahkan beberapa hex kosong sitoplasma atau lepaskan beberapa organel."
+
+#~ msgid "EASTEREGG_MESSAGE_4"
+#~ msgstr "Fakta Menarik, Di dunia nyata, prokariota memiliki sesuatu yang disebut Biokompartemen yang bertindak layaknya organel, dan juga disebut sebagai organel Polihedral."
+
+#~ msgid "EASTEREGG_MESSAGE_5"
+#~ msgstr "Fakta Menarik, Metabolosom adalah organel yang termasuk organel Polihedral."
+
+#~ msgid "EASTEREGG_MESSAGE_6"
+#~ msgstr "Berikut tipsnya, terkadang lebih baik melarikan diri dari sel lain."
+
+#~ msgid "EASTEREGG_MESSAGE_7"
+#~ msgstr "Berikut tipsnya, jika ukuran sebuah sel sekitar setengah dari ukuranmu, kamu dapat menelan sel tersebut."
+
+#~ msgid "EASTEREGG_MESSAGE_8"
+#~ msgstr "Berikut tipsnya, bakteri bisa lebih kuat dari yang terlihat, mungkin mereka terlihat kecil, tetapi beberapa dari mereka dapat menggali kedalam selmu dan membunuh selmu dengan cara tersebut!"
+
+#~ msgid "EASTEREGG_MESSAGE_9"
+#~ msgstr "Berikut tipsnya, kamu bisa memburu spesies lain hingga kepunahan jika kamu tidak berhati-hati. Spesies lain juga dapat melakukannya."
+
+#~ msgid "EASTEREGG_MESSAGE_10"
+#~ msgstr "WIGGLY THINGS!!"
+
+#~ msgid "EASTEREGG_MESSAGE_11"
+#~ msgstr "Smeltal the meltal."
+
+#~ msgid "EASTEREGG_MESSAGE_12"
+#~ msgstr "Dasar sel-sel biru itu..."
+
+#~ msgid "EASTEREGG_MESSAGE_13"
+#~ msgstr "Berikut tipsnya, Bioma lebih dari sekadar perbedaan latar belakang, senyawa yang ada di bioma berbeda terkadang muncul pada laju yang berbeda."
+
+#~ msgid "EASTEREGG_MESSAGE_14"
+#~ msgstr "Berikut tipsnya, semakin banyak flagela yang kamu miliki, semakin cepat pula selmu bergerak, vroom vroom, tetapi juga memerlukan lebih banyak ATP."
+
+#~ msgid "EASTEREGG_MESSAGE_15"
+#~ msgstr "Berikut tipsnya, kamu bisa menelan potongan, besi atau lainnya."
+
+#~ msgid "EASTEREGG_MESSAGE_16"
+#~ msgstr "Berikut tipsnya, bersiaplah sebelum menambahkan nukleus pada selmu. Organel tersebut sangatlah mahal! Dalam sisi pemeliharaan dan biaya organel."
+
+#~ msgid "EASTEREGG_MESSAGE_17"
+#~ msgstr "Fakta Menarik, Tahukah kamu bahwa ada lebih dari 8000 spesies ciliata di planet Bumi?"
+
+#~ msgid "EASTEREGG_MESSAGE_18"
+#~ msgstr "Fakta Menarik, Stentor adalah ciliata yang dapat meregangkan dirinya sendiri dan menangkap mangsanya dari mulut berbentuk seperti terompet yang menarik mangsa kedalamnya dengan menimbulkan arus air dengan cilia."
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Fakta Menarik, Didinium adalah ciliata yang memburu paramecia."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Fakta menarik, Amoeba memburu dan menangkap mangsa dengan 'kaki' terbuat dari sitoplasma yang disebut pseudopoda, kami nantinya juga ingin menambahkan 'kaki' tersebut dalam Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Berikut tipsnya, hati-hati dengan sel yang lebih besar dan bakteria besar, tidak seru rasanya kalau kamu dicerna, dan mereka akan memakanmu."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Kepala tim suara Thrive telah membuat banyak lagu yang masih belum dimasukkan ke dalam game. Kamu dapat mendengar lagu-lagu tersebut, atau tonton streamingnya menyusun lagu di kanal YouTubenya, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Berikut tipsnya, jika ukuran sel kamu 150 hex, kamu dapat menelan potongan besi besar."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive dimaksudkan sebagai sebuah simulasi planet asing, dengan demikian, masuk akal jika sebagian besar makhluk yang kamu temukan akan berkaitan dengan satu atau dua spesies lainnya karena evolusi yang terjadi di sekitarmu, coba lihatlah apakah kamu mengenali mereka!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Fakta menarik, Tim Thrive melakukan podcast sesekali waktu, cobalah untuk menontonnya!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fakta menarik, Thrive dikembangkan dengan mesin game sumber terbuka Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Fakta menarik, Salah satu prototipe gameplay pertama yang dapat dimainkan dibuat oleh programmer luar biasa kita, untrustedlife!"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Hapus organel"
