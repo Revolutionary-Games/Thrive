@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-17 13:02+0300\n"
+"POT-Creation-Date: 2021-10-18 23:05+0200\n"
 "PO-Revision-Date: 2021-10-15 11:01+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -2403,27 +2403,31 @@ msgstr "התרבה"
 msgid "ESCAPE_ENGULFING"
 msgstr "בריחה מבליעה"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "INFINITE_COMPOUNDS"
 msgstr "תרכובות אינסופיות"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
 msgid "GODMODE"
 msgstr "מצב אלוהים"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:60
 msgid "NO_AI"
 msgstr "מצב בודד"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:77
 msgid "PLAYER_SPEED"
 msgstr ""
 "מהירות\n"
 "שחקן"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:98
 msgid "PLAYER_DUPLICATE"
 msgstr "שכפל שחקן"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:108
+msgid "SPAWN_ENEMY"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:672
 msgid "STUFF_AT"
@@ -2433,11 +2437,11 @@ msgstr "דברים ב {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
-#: ../src/microbe_stage/MicrobeStage.cs:510
+#: ../src/microbe_stage/MicrobeStage.cs:522
 msgid "PLAYER_REPRODUCED"
 msgstr "השחקן התרבה"
 
-#: ../src/microbe_stage/MicrobeStage.cs:631
+#: ../src/microbe_stage/MicrobeStage.cs:662
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
@@ -2516,47 +2520,47 @@ msgstr "התאבדות"
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:126
+#: ../src/microbe_stage/PatchMapGenerator.cs:181
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "אזור הנביעות"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:127
+#: ../src/microbe_stage/PatchMapGenerator.cs:182
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "אזור המזופלגי"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:128
+#: ../src/microbe_stage/PatchMapGenerator.cs:183
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "אזור האפיפלגי"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:129
+#: ../src/microbe_stage/PatchMapGenerator.cs:184
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "אזור בריכות גאות"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:130
+#: ../src/microbe_stage/PatchMapGenerator.cs:185
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "אזור הבתיאלי"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:131
+#: ../src/microbe_stage/PatchMapGenerator.cs:186
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "אזור התהומות"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:132
+#: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "אזור החוף"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:133
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "אזור שפך הנהר"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:134
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_CAVE"
 msgstr "מערה"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:135
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_ICE_SHELF"
 msgstr "מדף קרח"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:136
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "אזור קרקעית הים"
 
