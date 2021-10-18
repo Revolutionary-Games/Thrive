@@ -7,14 +7,11 @@ public class ChromaticFilter : TextureRect
 {
     private ShaderMaterial material;
 
-    public ChromaticFilter()
-    {
-        material = (ShaderMaterial)Material;
-    }
-
     public override void _EnterTree()
     {
         base._EnterTree();
+
+        material ??= (ShaderMaterial)Material;
 
         SetAmount(Settings.Instance.ChromaticAmount);
         OnChanged(Settings.Instance.ChromaticEnabled);
