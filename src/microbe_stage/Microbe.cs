@@ -484,6 +484,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
 
+            // Colony children shapes need re-parenting to their master
+            // The shapes have to be re-parented to their original microbe then to the master again
+            // maybe engine bug
+            if (Colony != null && this != Colony.Master)
+            {
+                ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
+                ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
+            }
+
             // Fix the tree of colonies
             if (ColonyChildren != null)
             {
