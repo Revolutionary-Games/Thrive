@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-18 21:41+0200\n"
+"POT-Creation-Date: 2021-10-17 13:02+0300\n"
 "PO-Revision-Date: 2021-08-31 18:14+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -18,6 +18,236 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.7.2\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:85
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
+
+#: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:88
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr "Solusi käyttää ATP:tä energianlähteenä, jos se loppuu, kuolet."
+
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:91
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr "Avataksesi editorin ja lisääntyäksesi, kerää ammoniakkia (oransseja pilviä) sekä fosfaattia (purppuroita pilviä)."
+
+#: ../simulation_parameters/common/help_texts.json:18
+#: ../simulation_parameters/common/help_texts.json:94
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr "Voit myös nielaista soluja, bakteereja, rautalohkareita sekä solujen kappaleita, jotka ovat sinua pienempiä painamalla G:tä. Tämä lisää ATP:n kulutusta ja hidastaa sinua. Älä unohda painaa G:tä uudestaan lopettaaksesi nielemisen."
+
+#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:97
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr "Osmoregulaatio kuluttaa ATP:tä, joka tarkoittaa, että mitä suurempi solusi on, sitä enemmän tarvitset mitokondrioita, metabolosomeja tai rusticyaninia (tai solulimaa, joka suorittaa glykolyysiä) välttääksesi menettämästä ATP:tä, kun olet paikallasi."
+
+#: ../simulation_parameters/common/help_texts.json:26
+#: ../simulation_parameters/common/help_texts.json:100
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr "Editorissa on saatavilla monia soluelimiä, joita voit lisätä lajiisi. Nämä mahdollistavat paljon erilaisia pelityylejä."
+
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Yhdistepilviä ovat seuraavat:\n"
+"\n"
+"Valkoinen – Glukoosi\n"
+"Keltainen – Rikkivety\n"
+"Oranssi – Ammoniakki\n"
+"Purppura – Fosfaatti\n"
+"Ruosteen ruskea – Rauta\n"
+"\n"
+"Glukoosi tuottaa ATP:tä"
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:106
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr "Rikkivety voidaan muuttaa glukoosiksi kemoplastien ja kemosyntesoivien proteiinien avulla. Rauta voidaan muuttaa rusticyaniinin avulla ATP:ksi."
+
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:109
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr "Lisääntyäkseen solun kaikkien soluelinten pitää jakautua kahdeksi. Soluelimet tarvitsevat ammoniakkia ja fosfaattia jakaantuakseen."
+
+#: ../simulation_parameters/common/help_texts.json:42
+#: ../simulation_parameters/common/help_texts.json:103
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Toistaiseksi, jos populaatiosi tippuu nollaan, lajisi kuolee sukupuuttoon."
+
+#: ../simulation_parameters/common/help_texts.json:46
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr "Mutta, jos selviydyt kaksikymmentä sukupolvea ja populaatiosi on 300, voitat Thriven nykyisessä muodossaan, voiton jälkeen aukeaa ponnahdusikkuna, jonka sulkeuduttua peliä voi jatkaa oman halun mukaan."
+
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:112
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr "Ole varuillasi muita lajeja vastaan, sillä evoluutio muuttaa niitä, kun menet editoriin."
+
+#: ../simulation_parameters/common/help_texts.json:54
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
+
+#: ../simulation_parameters/common/help_texts.json:62
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Ulkoiset elimet\n"
+"\n"
+"Siima:Liikuttaa soluasi nopeammin kuluttaen ATP:tä\n"
+"\n"
+"Ihokarva: Voidaan käyttää toisten solujen pistämiseen"
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Ulkoiset elimet\n"
+"\n"
+"Siima:Liikuttaa soluasi nopeammin kuluttaen ATP:tä\n"
+"\n"
+"Ihokarva: Voidaan käyttää toisten solujen pistämiseen"
+
+#: ../simulation_parameters/common/help_texts.json:70
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Ulkoiset elimet\n"
+"\n"
+"Siima:Liikuttaa soluasi nopeammin kuluttaen ATP:tä\n"
+"\n"
+"Ihokarva: Voidaan käyttää toisten solujen pistämiseen"
+
+#: ../simulation_parameters/common/help_texts.json:74
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr "Joka sukupolvi, sinulla on käytössäsi 100 mutaatiopistettä (MP). Jokainen muutos (mutaatio) maksaa tietyn verran mutaatiopisteitä. Soluelinten lisääminen tai poistaminen maksaa MP:tä, mutta soluelinten poistaminen, jotka on lisätty nykyisessä editorisessiossa, antaa takaisin niiden kustannuksen. Soluelintä voi siirtää tai poistaa kokonaan painamalla sitä oikealla hiirennapilla ja valitsemalla halutun toimenpiteen avautuvasta valikosta. Asetettavaa soluelintä voi kääntää painamalla A:ta tai D:tä."
+
+#: ../simulation_parameters/common/help_texts.json:78
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr "Joka kerta kun jatkat sukuasi, pääset mikrobieditoriin, jossa voit tehdä muutoksia lajiisi (lisäämällä, siirtämällä tai poistamalla soluelimiä) parantaaksesi sen menestystä. Jokainen vierailu editoriin mikrobitasolla edustaa evoluutiota, joka tapahtuu 100 miljoonan vuoden aikana."
+
+#: ../simulation_parameters/common/help_texts.json:119
+msgid "LOADING_TIP"
+msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
+
+#: ../simulation_parameters/common/help_texts.json:126
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_1"
+msgstr "KIEMURTELEVIA JUTTUJA!!"
+
+#: ../simulation_parameters/common/help_texts.json:129
+msgid "EASTEREGG_MESSAGE_2"
+msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
+
+#: ../simulation_parameters/common/help_texts.json:132
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_3"
+msgstr "Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri alueille joskus eri määrinä."
+
+#: ../simulation_parameters/common/help_texts.json:135
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_4"
+msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, mutta se kuluttaa enemmän ATP:tä"
+
+#: ../simulation_parameters/common/help_texts.json:138
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_5"
+msgstr "Vinkki: voit niellä paloja, rautaisia tai muita."
+
+#: ../simulation_parameters/common/help_texts.json:141
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "Vinkki: joskus paras vaihtoehto on yksinkertaisesti vain paeta muita soluja."
+
+#: ../simulation_parameters/common/help_texts.json:144
+msgid "EASTEREGG_MESSAGE_7"
+msgstr "Vinkki: jos solu on noin puolet koostasi, voit niellä sen."
+
+#: ../simulation_parameters/common/help_texts.json:147
+msgid "EASTEREGG_MESSAGE_8"
+msgstr "Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näyttää pieniltä, mutta jotkut niistä voivat kaivautua sisällesi ja tappaa sinut siten!"
+
+#: ../simulation_parameters/common/help_texts.json:150
+msgid "EASTEREGG_MESSAGE_9"
+msgstr "Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut lajit voivat myös tehdä sen."
+
+#: ../simulation_parameters/common/help_texts.json:153
+msgid "EASTEREGG_MESSAGE_10"
+msgstr "KIEMURTELEVIA JUTTUJA!!"
+
+#: ../simulation_parameters/common/help_texts.json:156
+msgid "EASTEREGG_MESSAGE_11"
+msgstr "Sulata metallia."
+
+#: ../simulation_parameters/common/help_texts.json:159
+msgid "EASTEREGG_MESSAGE_12"
+msgstr "Ne siniset solut."
+
+#: ../simulation_parameters/common/help_texts.json:162
+msgid "EASTEREGG_MESSAGE_13"
+msgstr "Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri alueille joskus eri määrinä."
+
+#: ../simulation_parameters/common/help_texts.json:165
+msgid "EASTEREGG_MESSAGE_14"
+msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, mutta se kuluttaa enemmän ATP:tä"
+
+#: ../simulation_parameters/common/help_texts.json:168
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "Vinkki: voit niellä paloja, rautaisia tai muita."
+
+#: ../simulation_parameters/common/help_texts.json:171
+msgid "EASTEREGG_MESSAGE_16"
+msgstr "Vinkki: valmistaudu ennen kuin lisäät tuman. Ne ovat kalliita! Kulutuksessaan ja hinnassaan."
+
+#: ../simulation_parameters/common/help_texts.json:174
+msgid "EASTEREGG_MESSAGE_17"
+msgstr "Hauska vinkki: Tiesitkö, että maailmassa on yli 8000 eri lajia ripsieläimiä?"
+
+#: ../simulation_parameters/common/help_texts.json:177
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_18"
+msgstr "Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näyttää pieniltä, mutta jotkut niistä voivat kaivautua sisällesi ja tappaa sinut siten!"
+
+#: ../simulation_parameters/common/help_texts.json:180
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_19"
+msgstr "Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut lajit voivat myös tehdä sen."
+
+#: ../simulation_parameters/common/help_texts.json:183
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_20"
+msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
+
+#: ../simulation_parameters/common/help_texts.json:186
+msgid "EASTEREGG_MESSAGE_21"
+msgstr "Vinkki: Varo isompia soluja ja isompia bakteereja, se ei ole hauskaa tulla syödyksi ja ne syövät sinut."
+
+#: ../simulation_parameters/common/help_texts.json:189
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_22"
+msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
+
+#: ../simulation_parameters/common/help_texts.json:192
+msgid "EASTEREGG_MESSAGE_23"
+msgstr "Vinkki: Jos sinun solussasi on yli 150 osaa, voit niellä isoja rautapaloja."
+
+#: ../simulation_parameters/common/help_texts.json:195
+#, fuzzy
+msgid "EASTEREGG_MESSAGE_24"
+msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
+
+#: ../simulation_parameters/common/help_texts.json:198
+msgid "EASTEREGG_MESSAGE_25"
+msgstr "Hauska fakta, Thriven tiimi tekee joskus podcasteja, sinun kannattaa tsekata ne!"
+
+#: ../simulation_parameters/common/help_texts.json:201
+msgid "EASTEREGG_MESSAGE_26"
+msgstr "Hauska fakta, Thrive on tehty avoimen lähdekoodin Godot-pelimoottorilla!"
+
+#: ../simulation_parameters/common/help_texts.json:204
+msgid "EASTEREGG_MESSAGE_27"
+msgstr "Hauska fakta, untrustedlife, meidän mahtava ohjelmoida, teki yhden ensimmäisistä pelattavista prototyypeistä!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1144,8 +1374,25 @@ msgstr "Monen näytteen reunanpehmennys:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(suuremmat arvot heikentävät suorituskykyä)"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
 msgid "DISABLED"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "TWO_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "FOUR_TIMES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:267
+#, fuzzy
+msgid "EIGHT_TIMES"
+msgstr "Hiiren oikea painike"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "SIXTEEN_TIMES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:281
@@ -1164,8 +1411,16 @@ msgstr "Maksimi kuvia sekunnissa:"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Värisokeuden korjaus:"
 
-#: ../src/general/OptionsMenu.tscn:344
+#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
 msgid "NONE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_PROTANOPE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:362
@@ -1324,8 +1579,16 @@ msgstr "Avaa lokien kansio"
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1192
+#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
 msgid "JSON_DEBUG_MODE_AUTO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
@@ -2158,32 +2421,28 @@ msgstr "jatkoi sukuaan"
 msgid "ESCAPE_ENGULFING"
 msgstr "pakeni nielaisulta"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "INFINITE_COMPOUNDS"
 msgstr "Loputtomat Yhdisteet"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:60
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
 msgstr "Ei tekoälyä"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:77
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 msgid "PLAYER_SPEED"
 msgstr ""
 "Pelaajan\n"
 "nopeus"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:98
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "pelaaja kuoli"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:108
-msgid "SPAWN_ENEMY"
-msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:672
 msgid "STUFF_AT"
@@ -2193,11 +2452,11 @@ msgstr "Juttuja sijainnissa {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Pelaajan solu"
 
-#: ../src/microbe_stage/MicrobeStage.cs:522
+#: ../src/microbe_stage/MicrobeStage.cs:510
 msgid "PLAYER_REPRODUCED"
 msgstr "pelaaja jatkoi sukuaan"
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:631
 msgid "PLAYER_DIED"
 msgstr "pelaaja kuoli"
 
@@ -2282,47 +2541,47 @@ msgstr "Lisää uusi syöte"
 msgid "POPULATION_CAPITAL"
 msgstr "POPULAATIO:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
+#: ../src/microbe_stage/PatchMapGenerator.cs:126
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangonian Syvänmeren tupruttajat"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
+#: ../src/microbe_stage/PatchMapGenerator.cs:127
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
+#: ../src/microbe_stage/PatchMapGenerator.cs:128
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
+#: ../src/microbe_stage/PatchMapGenerator.cs:129
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
+#: ../src/microbe_stage/PatchMapGenerator.cs:130
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
+#: ../src/microbe_stage/PatchMapGenerator.cs:131
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:132
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangonian Rannikko"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:133
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangonian Estuaari"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:134
 msgid "PATCH_CAVE"
 msgstr "Luola"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:135
 msgid "PATCH_ICE_SHELF"
 msgstr "Jäähylly"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:136
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonian Merenpohja"
 
@@ -2529,6 +2788,21 @@ msgstr "Läsnäolevat lajit"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Siirry tälle alueelle"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "Siirrä"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "Poista"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "Muokkaa"
+
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr "Loputon MP"
@@ -2600,18 +2874,6 @@ msgstr "{0} populaatiolla: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "Poista"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "Siirrä"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "Muokkaa"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -2989,184 +3251,6 @@ msgstr "Mikrobien vapaa rakentelu"
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Mikrobien vapaa rakentelu"
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr "Solusi käyttää ATP:tä energianlähteenä, jos se loppuu, kuolet."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr "Avataksesi editorin ja lisääntyäksesi, kerää ammoniakkia (oransseja pilviä) sekä fosfaattia (purppuroita pilviä)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr "Voit myös nielaista soluja, bakteereja, rautalohkareita sekä solujen kappaleita, jotka ovat sinua pienempiä painamalla G:tä. Tämä lisää ATP:n kulutusta ja hidastaa sinua. Älä unohda painaa G:tä uudestaan lopettaaksesi nielemisen."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-#~ msgstr "Osmoregulaatio kuluttaa ATP:tä, joka tarkoittaa, että mitä suurempi solusi on, sitä enemmän tarvitset mitokondrioita, metabolosomeja tai rusticyaninia (tai solulimaa, joka suorittaa glykolyysiä) välttääksesi menettämästä ATP:tä, kun olet paikallasi."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr "Editorissa on saatavilla monia soluelimiä, joita voit lisätä lajiisi. Nämä mahdollistavat paljon erilaisia pelityylejä."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Yhdistepilviä ovat seuraavat:\n"
-#~ "\n"
-#~ "Valkoinen – Glukoosi\n"
-#~ "Keltainen – Rikkivety\n"
-#~ "Oranssi – Ammoniakki\n"
-#~ "Purppura – Fosfaatti\n"
-#~ "Ruosteen ruskea – Rauta\n"
-#~ "\n"
-#~ "Glukoosi tuottaa ATP:tä"
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-#~ msgstr "Rikkivety voidaan muuttaa glukoosiksi kemoplastien ja kemosyntesoivien proteiinien avulla. Rauta voidaan muuttaa rusticyaniinin avulla ATP:ksi."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr "Lisääntyäkseen solun kaikkien soluelinten pitää jakautua kahdeksi. Soluelimet tarvitsevat ammoniakkia ja fosfaattia jakaantuakseen."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr "Toistaiseksi, jos populaatiosi tippuu nollaan, lajisi kuolee sukupuuttoon."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr "Mutta, jos selviydyt kaksikymmentä sukupolvea ja populaatiosi on 300, voitat Thriven nykyisessä muodossaan, voiton jälkeen aukeaa ponnahdusikkuna, jonka sulkeuduttua peliä voi jatkaa oman halun mukaan."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-#~ msgstr "Ole varuillasi muita lajeja vastaan, sillä evoluutio muuttaa niitä, kun menet editoriin."
-
-#, fuzzy
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Ulkoiset elimet\n"
-#~ "\n"
-#~ "Siima:Liikuttaa soluasi nopeammin kuluttaen ATP:tä\n"
-#~ "\n"
-#~ "Ihokarva: Voidaan käyttää toisten solujen pistämiseen"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Ulkoiset elimet\n"
-#~ "\n"
-#~ "Siima:Liikuttaa soluasi nopeammin kuluttaen ATP:tä\n"
-#~ "\n"
-#~ "Ihokarva: Voidaan käyttää toisten solujen pistämiseen"
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Ulkoiset elimet\n"
-#~ "\n"
-#~ "Siima:Liikuttaa soluasi nopeammin kuluttaen ATP:tä\n"
-#~ "\n"
-#~ "Ihokarva: Voidaan käyttää toisten solujen pistämiseen"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-#~ msgstr "Joka sukupolvi, sinulla on käytössäsi 100 mutaatiopistettä (MP). Jokainen muutos (mutaatio) maksaa tietyn verran mutaatiopisteitä. Soluelinten lisääminen tai poistaminen maksaa MP:tä, mutta soluelinten poistaminen, jotka on lisätty nykyisessä editorisessiossa, antaa takaisin niiden kustannuksen. Soluelintä voi siirtää tai poistaa kokonaan painamalla sitä oikealla hiirennapilla ja valitsemalla halutun toimenpiteen avautuvasta valikosta. Asetettavaa soluelintä voi kääntää painamalla A:ta tai D:tä."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-#~ msgstr "Joka kerta kun jatkat sukuasi, pääset mikrobieditoriin, jossa voit tehdä muutoksia lajiisi (lisäämällä, siirtämällä tai poistamalla soluelimiä) parantaaksesi sen menestystä. Jokainen vierailu editoriin mikrobitasolla edustaa evoluutiota, joka tapahtuu 100 miljoonan vuoden aikana."
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Paina kumoamispainiketta editorissa korjataksesi tehdyn virheen"
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_1"
-#~ msgstr "KIEMURTELEVIA JUTTUJA!!"
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_3"
-#~ msgstr "Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri alueille joskus eri määrinä."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_4"
-#~ msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, mutta se kuluttaa enemmän ATP:tä"
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_5"
-#~ msgstr "Vinkki: voit niellä paloja, rautaisia tai muita."
-
-#~ msgid "EASTEREGG_MESSAGE_6"
-#~ msgstr "Vinkki: joskus paras vaihtoehto on yksinkertaisesti vain paeta muita soluja."
-
-#~ msgid "EASTEREGG_MESSAGE_7"
-#~ msgstr "Vinkki: jos solu on noin puolet koostasi, voit niellä sen."
-
-#~ msgid "EASTEREGG_MESSAGE_8"
-#~ msgstr "Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näyttää pieniltä, mutta jotkut niistä voivat kaivautua sisällesi ja tappaa sinut siten!"
-
-#~ msgid "EASTEREGG_MESSAGE_9"
-#~ msgstr "Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut lajit voivat myös tehdä sen."
-
-#~ msgid "EASTEREGG_MESSAGE_10"
-#~ msgstr "KIEMURTELEVIA JUTTUJA!!"
-
-#~ msgid "EASTEREGG_MESSAGE_11"
-#~ msgstr "Sulata metallia."
-
-#~ msgid "EASTEREGG_MESSAGE_12"
-#~ msgstr "Ne siniset solut."
-
-#~ msgid "EASTEREGG_MESSAGE_13"
-#~ msgstr "Vinkki: Alueet ovat enemmänkin kuin vain taustoja, yhdisteet ilmestyvät eri alueille joskus eri määrinä."
-
-#~ msgid "EASTEREGG_MESSAGE_14"
-#~ msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom vroom, mutta se kuluttaa enemmän ATP:tä"
-
-#~ msgid "EASTEREGG_MESSAGE_15"
-#~ msgstr "Vinkki: voit niellä paloja, rautaisia tai muita."
-
-#~ msgid "EASTEREGG_MESSAGE_16"
-#~ msgstr "Vinkki: valmistaudu ennen kuin lisäät tuman. Ne ovat kalliita! Kulutuksessaan ja hinnassaan."
-
-#~ msgid "EASTEREGG_MESSAGE_17"
-#~ msgstr "Hauska vinkki: Tiesitkö, että maailmassa on yli 8000 eri lajia ripsieläimiä?"
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_18"
-#~ msgstr "Vinkki, bakteerit ovat vahvempia kuin ne näyttävät, ne voivat näyttää pieniltä, mutta jotkut niistä voivat kaivautua sisällesi ja tappaa sinut siten!"
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_19"
-#~ msgstr "Vinkki: Voit metsästää muita lajeja sukupuuttoon jos et ole varovainen, muut lajit voivat myös tehdä sen."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Vinkki: Varo isompia soluja ja isompia bakteereja, se ei ole hauskaa tulla syödyksi ja ne syövät sinut."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Vinkki: Jos sinun solussasi on yli 150 osaa, voit niellä isoja rautapaloja."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Vinkki, myrkkyjä voi käyttää toisten olentojen myrkkyjen torjumiseen,jos olet tarpeeksi nopea."
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Hauska fakta, Thriven tiimi tekee joskus podcasteja, sinun kannattaa tsekata ne!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Hauska fakta, Thrive on tehty avoimen lähdekoodin Godot-pelimoottorilla!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Hauska fakta, untrustedlife, meidän mahtava ohjelmoida, teki yhden ensimmäisistä pelattavista prototyypeistä!"
-
-#, fuzzy
-#~ msgid "EIGHT_TIMES"
-#~ msgstr "Hiiren oikea painike"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Poista soluelin"

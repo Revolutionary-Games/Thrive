@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-18 21:41+0200\n"
+"POT-Creation-Date: 2021-10-17 13:02+0300\n"
 "PO-Revision-Date: 2021-10-15 11:01+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -18,6 +18,244 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
+
+#: ../simulation_parameters/common/help_texts.json:6
+#: ../simulation_parameters/common/help_texts.json:85
+msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+msgstr "Използвайте [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мишката за да се придвижвате. Окситоксинът се изстрелва с [thrive:input]g_fire_toxin[/thrive:input], ако имате токсична вакуола. Режимът на поглъщане се включва с [thrive:input]g_toggle_engulf[/thrive:input]."
+
+#: ../simulation_parameters/common/help_texts.json:10
+#: ../simulation_parameters/common/help_texts.json:88
+msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+msgstr "Вашата клетка използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да оцелее, ако той свърши тя ще умре."
+
+#: ../simulation_parameters/common/help_texts.json:14
+#: ../simulation_parameters/common/help_texts.json:91
+msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+msgstr "За възпроизвеждане и влизане в редактора, трябва да съберете [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] (оранжевите облаци) и [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound] (лилавите облаци)."
+
+#: ../simulation_parameters/common/help_texts.json:18
+#: ../simulation_parameters/common/help_texts.json:94
+msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+msgstr "С натискане на [thrive:input]g_toggle_engulf[/thrive:input] може да поглъщате другите клетки, клетъчните останки, бактериите и железните късове, ако те са по-малки от Вас. Това ще отнеме допълнителен [thrive:compound type=\"atp\"]АТФ[/thrive:compound] и ще Ви забави. Когато приключите, не забравяйте да натиснете [thrive:input]g_toggle_engulf[/thrive:input] още веднъж за да спрете режима на поглъщане."
+
+#: ../simulation_parameters/common/help_texts.json:22
+#: ../simulation_parameters/common/help_texts.json:97
+msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+msgstr "Осморегулацията отнема [thrive:compound type=\"atp\"]АТФ[/thrive:compound], това означава, че колкото е по-голяма Вашата клетка, толкова повече митохондрии, метаболозоми или рустицианин (или цитоплазма, която извършва процеса гликолиза) ще са Ви нужни за да не губите [thrive:compound type=\"atp\"]АТФ[/thrive:compound], докато не се движите."
+
+#: ../simulation_parameters/common/help_texts.json:26
+#: ../simulation_parameters/common/help_texts.json:100
+msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+msgstr "В редактора имате на разположение различни органели, които дават възможност за различни стилове на игра."
+
+#: ../simulation_parameters/common/help_texts.json:30
+msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+msgstr ""
+"Видовете облаци са:\n"
+"\n"
+"Бял – [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
+"Жълт – [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:compound]\n"
+"Оранжев – [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]\n"
+"Лилав – [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound]\n"
+"Ръждивокафяв – [thrive:compound type=\"iron\"]желязо[/thrive:compound]\n"
+"\n"
+"[thrive:compound type=\"glucose\"]Глюкозата[/thrive:compound] създава [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+
+#: ../simulation_parameters/common/help_texts.json:34
+#: ../simulation_parameters/common/help_texts.json:106
+msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+msgstr "[thrive:compound type=\"hydrogensulfide\"]Сероводородът[/thrive:compound] може да се превърне в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] чрез хемопласти и хемосинтезиращи протеини. [thrive:compound type=\"iron\"]Желязото[/thrive:compound] може да се превърне в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] чрез рустицианин."
+
+#: ../simulation_parameters/common/help_texts.json:38
+#: ../simulation_parameters/common/help_texts.json:109
+msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+msgstr "За възпроизвеждане, органелите на клетката трябва да се разделят на две. За да го направят, те се нуждаят от амоняк и фосфат."
+
+#: ../simulation_parameters/common/help_texts.json:42
+#: ../simulation_parameters/common/help_texts.json:103
+msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+msgstr "Ако популацията Ви спадне до нула, Вашите създания ще изчезнат."
+
+#: ../simulation_parameters/common/help_texts.json:46
+msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+msgstr "Но ако оцелеете в продължение на 20 поколения с популация от 300 индивида, Вие ще победите. След това ще се появи изскачащ прозорец, който ще се затвори и играта ще продължи."
+
+#: ../simulation_parameters/common/help_texts.json:50
+#: ../simulation_parameters/common/help_texts.json:112
+msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+msgstr "Внимавайте, защото Вие не сте единствените, които еволюират. Всеки път, когато отворите редактора, Вашите съперници също еволюират."
+
+#: ../simulation_parameters/common/help_texts.json:54
+msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+msgstr "Чрез свързването с други клетки, може да създадете клетъчна колония, в която клетките споделят химичните съединения помежду си. За да се свържете с друга клетка, трябва да имате свързващ агент и да сте в режим на свързване. Може да се свържете само с индивиди от Вашите създания. Засега, докато сте част от клетъчната колония, възпроизвеждането не е възможно. За да се възпроизведете, трябва да напуснете клетъчната колония и да съберете нужните химични съединения. Големите клетъчни колонии са първата стъпка към многоклетъчните организми, но те са все още в процес на разработка."
+
+#: ../simulation_parameters/common/help_texts.json:62
+msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+msgstr ""
+"Прокариотни структури\n"
+"\n"
+"Метаболозоми: Произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
+"\n"
+"Хемосинтезиращи протеини: Произвеждат 1/2 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound], чрез хемопласт от [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:compound] и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
+"\n"
+"Тилакоиди: Произвеждат 1/3 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] като обикновен хлоропласт и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
+"\n"
+"Рустицианин: Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
+"\n"
+"Нитрогеназа: Превръща атмософерния азот и [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], чрез анаеробен процес\n"
+"\n"
+"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза (произвежда малки количества [thrive:compound type=\"atp\"]АТФ[/thrive:compound])"
+
+#: ../simulation_parameters/common/help_texts.json:66
+msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+msgstr ""
+"Външни органели\n"
+"\n"
+"Флагела: Осигурява по-бързо движение на клетката, използвайки [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
+"\n"
+"Пили: Използва се за пробождане на другите клетки"
+
+#: ../simulation_parameters/common/help_texts.json:70
+msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+msgstr ""
+"Вътрешни органели\n"
+"\n"
+"Ядро: Заема 11 шестоъгълника и позволява използването на другите вътрешни органели. Също така, удвоява размера на клетката (може да се сложи само веднъж)\n"
+"\n"
+"Свързващ агент: Позволява свързването с други клетки\n"
+"\n"
+"Митохондрия: Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] и атмосферния O2, много по-ефективно от цитоплазмата\n"
+"\n"
+"Хлоропласт: Създава [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], чрез слънчевата светлина и атмосферния СО2\n"
+"\n"
+"Хемопласт: Създава [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound]\n"
+"\n"
+"Пластид за азотна фиксация: Създава [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] от [thrive:compound type=\"atp\"]АТФ[/thrive:compound], атмосферния азот и кислорода\n"
+"\n"
+"Вакуола: Съхранява до 15 хранителни вещества\n"
+"\n"
+"Токсични вакуоли: Произвеждат токсини, известни като [thrive:compound type=\"oxytoxy\"]окситоксини[/thrive:compound]"
+
+#: ../simulation_parameters/common/help_texts.json:74
+msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+msgstr "Всяко поколение разполага със 100 мутационни точки (МТ), всяка негова промяна (или мутация) струва определен брой МТ. Добавянето или премахването на органели струва МТ, но премахването на органели, които са добавени в текущата сесия на редактора, връща тяхната стойност. Може да преместите или премахнете органелите като натиснете с десния бутон на мишката върху тях и изберете съответното действие в контекстното меню. Може да ги завъртите, преди добавяне, чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
+
+#: ../simulation_parameters/common/help_texts.json:78
+msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+msgstr "По време на възпроизвеждане, микробният редактор ще бъде отворен, в него може да променяте Вашето създание (като добавяте, премествате или премахвате органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора е равно на 100 милиона години еволюция."
+
+#: ../simulation_parameters/common/help_texts.json:119
+msgid "LOADING_TIP"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#: ../simulation_parameters/common/help_texts.json:126
+msgid "EASTEREGG_MESSAGE_1"
+msgstr "Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и плячка. Вие от коя страна сте – ловецът или плячката?"
+
+#: ../simulation_parameters/common/help_texts.json:129
+msgid "EASTEREGG_MESSAGE_2"
+msgstr "Ето един съвет – токсините може да се използват за да спрат токсините на противника, ако сте достатъчно бързи, разбира се."
+
+#: ../simulation_parameters/common/help_texts.json:132
+msgid "EASTEREGG_MESSAGE_3"
+msgstr "Ето един съвет – осморегулацията струва 1 АТФ на секунда за всеки шестоъгълник на Вашата клетка, всеки празен шестоъгълник от цитоплазма създава 5 АТФ на секунда, с други думи, ако губите АТФ по време на осморегулация, просто добавете няколко празни шестоъгълника цитоплазма или премахнете някои органели."
+
+#: ../simulation_parameters/common/help_texts.json:135
+msgid "EASTEREGG_MESSAGE_4"
+msgstr "Забавен факт е, че истинските прокариоти имат биоотделения, които функционират като органели и всъщност се наричат многостенни органели."
+
+#: ../simulation_parameters/common/help_texts.json:138
+msgid "EASTEREGG_MESSAGE_5"
+msgstr "Забавен факт е, че метаболозомата представлява многостенен органел."
+
+#: ../simulation_parameters/common/help_texts.json:141
+msgid "EASTEREGG_MESSAGE_6"
+msgstr "Ето един съвет – понякога просто бягайте от другите клетки."
+
+#: ../simulation_parameters/common/help_texts.json:144
+msgid "EASTEREGG_MESSAGE_7"
+msgstr "Ето един съвет – ако дадена клетка е 1/2 от Вашия размер, може да я погълнете."
+
+#: ../simulation_parameters/common/help_texts.json:147
+msgid "EASTEREGG_MESSAGE_8"
+msgstr "Ето един съвет – бактериите може да са малки, но някои от тях са много опасни, могат да Ви убият!"
+
+#: ../simulation_parameters/common/help_texts.json:150
+msgid "EASTEREGG_MESSAGE_9"
+msgstr "Ето един съвет – ако ловувате дадени създания, без да искате, може напълно да ги унищожите, но не само Вие сте способни на това."
+
+#: ../simulation_parameters/common/help_texts.json:153
+msgid "EASTEREGG_MESSAGE_10"
+msgstr "КАК САМО СЕ ИЗВИВАТ!!"
+
+#: ../simulation_parameters/common/help_texts.json:156
+msgid "EASTEREGG_MESSAGE_11"
+msgstr "Претопете метала."
+
+#: ../simulation_parameters/common/help_texts.json:159
+msgid "EASTEREGG_MESSAGE_12"
+msgstr "Ех тези сини клетки."
+
+#: ../simulation_parameters/common/help_texts.json:162
+msgid "EASTEREGG_MESSAGE_13"
+msgstr "Ето един съвет – биомите са нещо повече от фонове, химичните съединения в различните биоми не се появяват по едно и също време."
+
+#: ../simulation_parameters/common/help_texts.json:165
+msgid "EASTEREGG_MESSAGE_14"
+msgstr "Ето един съвет – с повече флагели ще се движите по-бързо, бръм, бръм, но това ще Ви струва повече АТФ"
+
+#: ../simulation_parameters/common/help_texts.json:168
+msgid "EASTEREGG_MESSAGE_15"
+msgstr "Ето един съвет – може да поглъщате дори и железните късове."
+
+#: ../simulation_parameters/common/help_texts.json:171
+msgid "EASTEREGG_MESSAGE_16"
+msgstr "Ето един съвет – подгответе се преди да добавите ядрото. Това нещо е адски скъпо! И не е лесно да се поддържа."
+
+#: ../simulation_parameters/common/help_texts.json:174
+msgid "EASTEREGG_MESSAGE_17"
+msgstr "Забавен факт е, че има над 8 000 ресничести създания на нашата планета, а Вие не го знаехте, нали?"
+
+#: ../simulation_parameters/common/help_texts.json:177
+msgid "EASTEREGG_MESSAGE_18"
+msgstr "Забавен факт е, че Тромпетът е ресничест вид, който може да се разтяга и да улавя плячката в устата си, която е с формата на тромпет, създавайки водно течение чрез своите реснички."
+
+#: ../simulation_parameters/common/help_texts.json:180
+msgid "EASTEREGG_MESSAGE_19"
+msgstr "Забавен факт е, че Дидиний е ресничест вид, който ловува чехълчета."
+
+#: ../simulation_parameters/common/help_texts.json:183
+msgid "EASTEREGG_MESSAGE_20"
+msgstr "Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в „Thrive“."
+
+#: ../simulation_parameters/common/help_texts.json:186
+msgid "EASTEREGG_MESSAGE_21"
+msgstr "Ето един съвет – пазете се от големите клетки и големите бактерии, няма да е приятно, ако станете част от менюто им."
+
+#: ../simulation_parameters/common/help_texts.json:189
+msgid "EASTEREGG_MESSAGE_22"
+msgstr "„Thrive“ има много мелодии, които все още не са добавени в играта. Може да ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
+
+#: ../simulation_parameters/common/help_texts.json:192
+msgid "EASTEREGG_MESSAGE_23"
+msgstr "Ето един съвет – може да поглъщате големите железни късове, ако Вашата клетка е с размер от 150 шестоъгълника."
+
+#: ../simulation_parameters/common/help_texts.json:195
+msgid "EASTEREGG_MESSAGE_24"
+msgstr "„Thrive“ се развива на извънземна планета, следователно повечето създания, които ще видите имат общи черти с едно или две определени създания, благодарение на еволюционният процес, опитайте се да познаете кои са те!"
+
+#: ../simulation_parameters/common/help_texts.json:198
+msgid "EASTEREGG_MESSAGE_25"
+msgstr "Забавен факт е, че екипът на „Thrive“ излъчва конференции от време на време, може да им хвърлите едно око!"
+
+#: ../simulation_parameters/common/help_texts.json:201
+msgid "EASTEREGG_MESSAGE_26"
+msgstr "Забавен факт е, че „Thrive“ е базиранa на „Godot“!"
+
+#: ../simulation_parameters/common/help_texts.json:204
+msgid "EASTEREGG_MESSAGE_27"
+msgstr "Забавен факт е, че един от първите работещи прототипи на играта е създаден от нашия страхотен програмист, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1134,9 +1372,25 @@ msgstr "Множествено изглаждане:"
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(по-високите стойности понижават производителността)"
 
-#: ../src/general/OptionsMenu.tscn:266
+#: ../src/general/OptionsMenu.tscn:266 ../src/general/OptionsMenu.tscn:267
 msgid "DISABLED"
 msgstr "Изключено"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "TWO_TIMES"
+msgstr "2 пъти"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "FOUR_TIMES"
+msgstr "4 пъти"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "EIGHT_TIMES"
+msgstr "8 пъти"
+
+#: ../src/general/OptionsMenu.tscn:267
+msgid "SIXTEEN_TIMES"
+msgstr "16 пъти"
 
 #: ../src/general/OptionsMenu.tscn:281
 msgid "RESOLUTION"
@@ -1154,9 +1408,17 @@ msgstr "Максимална ЧКС:"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Корекция за цветна слепота:"
 
-#: ../src/general/OptionsMenu.tscn:344
+#: ../src/general/OptionsMenu.tscn:344 ../src/general/OptionsMenu.tscn:345
 msgid "NONE"
 msgstr "Няма"
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_PROTANOPE"
+msgstr "Протанопия (червено и зелено)"
+
+#: ../src/general/OptionsMenu.tscn:345
+msgid "CORRECTION_TRITANOPE"
+msgstr "Тританопия (синьо и жълто)"
 
 #: ../src/general/OptionsMenu.tscn:362
 msgid "CHROMATIC_ABERRATION"
@@ -1310,9 +1572,17 @@ msgstr "Отваряне на папката с дневници"
 msgid "JSON_DEBUG_MODE"
 msgstr "Отстраняване на грешки:"
 
-#: ../src/general/OptionsMenu.tscn:1192
+#: ../src/general/OptionsMenu.tscn:1192 ../src/general/OptionsMenu.tscn:1193
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Автоматично"
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_ALWAYS"
+msgstr "Включено"
+
+#: ../src/general/OptionsMenu.tscn:1193
+msgid "JSON_DEBUG_MODE_NEVER"
+msgstr "Изключено"
 
 #: ../src/general/OptionsMenu.tscn:1229 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -2133,31 +2403,27 @@ msgstr "възпроизвеждане"
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 msgid "INFINITE_COMPOUNDS"
 msgstr "Неограничени ХС"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "GODMODE"
 msgstr "Безсмъртие"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:60
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
 msgid "NO_AI"
 msgstr "Самота"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:77
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
 msgid "PLAYER_SPEED"
 msgstr ""
 "Вашата\n"
 "скорост"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:98
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
 msgid "PLAYER_DUPLICATE"
 msgstr "Удвояване"
-
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:108
-msgid "SPAWN_ENEMY"
-msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:672
 msgid "STUFF_AT"
@@ -2167,11 +2433,11 @@ msgstr "Неща при {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Вашето създание"
 
-#: ../src/microbe_stage/MicrobeStage.cs:522
+#: ../src/microbe_stage/MicrobeStage.cs:510
 msgid "PLAYER_REPRODUCED"
 msgstr "възпроизвеждане"
 
-#: ../src/microbe_stage/MicrobeStage.cs:662
+#: ../src/microbe_stage/MicrobeStage.cs:631
 msgid "PLAYER_DIED"
 msgstr "измиране"
 
@@ -2250,47 +2516,47 @@ msgstr "Извършване на самоубийство"
 msgid "POPULATION_CAPITAL"
 msgstr "ПОПУЛАЦИЯ:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:181
+#: ../src/microbe_stage/PatchMapGenerator.cs:126
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Пангонски отвори"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:182
+#: ../src/microbe_stage/PatchMapGenerator.cs:127
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Пангонска мезопелагична"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:183
+#: ../src/microbe_stage/PatchMapGenerator.cs:128
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Пангонска епипелагична"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:184
+#: ../src/microbe_stage/PatchMapGenerator.cs:129
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Пангонски тидален басейн"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:185
+#: ../src/microbe_stage/PatchMapGenerator.cs:130
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Пангонска батипелагична"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:186
+#: ../src/microbe_stage/PatchMapGenerator.cs:131
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Пангонска абисопелагична"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:187
+#: ../src/microbe_stage/PatchMapGenerator.cs:132
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Пангонско крайбрежие"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:188
+#: ../src/microbe_stage/PatchMapGenerator.cs:133
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Пангонски естуар"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:189
+#: ../src/microbe_stage/PatchMapGenerator.cs:134
 msgid "PATCH_CAVE"
 msgstr "Пещера"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:190
+#: ../src/microbe_stage/PatchMapGenerator.cs:135
 msgid "PATCH_ICE_SHELF"
 msgstr "Шелфов ледник"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:191
+#: ../src/microbe_stage/PatchMapGenerator.cs:136
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Пангонско морско дъно"
 
@@ -2495,6 +2761,21 @@ msgstr "Настоящи създания"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Преселване"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "Преместване"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "Премахване"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "Променяне"
+
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
@@ -2566,18 +2847,6 @@ msgstr "{0}: {1} индивида"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} МТ"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "Премахване"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "Преместване"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "Променяне"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -3029,212 +3298,6 @@ msgstr ""
 "Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
 "\n"
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете съответния клавиш."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-#~ msgstr "Използвайте [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мишката за да се придвижвате. Окситоксинът се изстрелва с [thrive:input]g_fire_toxin[/thrive:input], ако имате токсична вакуола. Режимът на поглъщане се включва с [thrive:input]g_toggle_engulf[/thrive:input]."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-#~ msgstr "Вашата клетка използва [thrive:compound type=\"atp\"]АТФ[/thrive:compound] за да оцелее, ако той свърши тя ще умре."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-#~ msgstr "За възпроизвеждане и влизане в редактора, трябва да съберете [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] (оранжевите облаци) и [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound] (лилавите облаци)."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-#~ msgstr "С натискане на [thrive:input]g_toggle_engulf[/thrive:input] може да поглъщате другите клетки, клетъчните останки, бактериите и железните късове, ако те са по-малки от Вас. Това ще отнеме допълнителен [thrive:compound type=\"atp\"]АТФ[/thrive:compound] и ще Ви забави. Когато приключите, не забравяйте да натиснете [thrive:input]g_toggle_engulf[/thrive:input] още веднъж за да спрете режима на поглъщане."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-#~ msgstr "Осморегулацията отнема [thrive:compound type=\"atp\"]АТФ[/thrive:compound], това означава, че колкото е по-голяма Вашата клетка, толкова повече митохондрии, метаболозоми или рустицианин (или цитоплазма, която извършва процеса гликолиза) ще са Ви нужни за да не губите [thrive:compound type=\"atp\"]АТФ[/thrive:compound], докато не се движите."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-#~ msgstr "В редактора имате на разположение различни органели, които дават възможност за различни стилове на игра."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-#~ msgstr ""
-#~ "Видовете облаци са:\n"
-#~ "\n"
-#~ "Бял – [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
-#~ "Жълт – [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:compound]\n"
-#~ "Оранжев – [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]\n"
-#~ "Лилав – [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound]\n"
-#~ "Ръждивокафяв – [thrive:compound type=\"iron\"]желязо[/thrive:compound]\n"
-#~ "\n"
-#~ "[thrive:compound type=\"glucose\"]Глюкозата[/thrive:compound] създава [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-#~ msgstr "[thrive:compound type=\"hydrogensulfide\"]Сероводородът[/thrive:compound] може да се превърне в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] чрез хемопласти и хемосинтезиращи протеини. [thrive:compound type=\"iron\"]Желязото[/thrive:compound] може да се превърне в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] чрез рустицианин."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-#~ msgstr "За възпроизвеждане, органелите на клетката трябва да се разделят на две. За да го направят, те се нуждаят от амоняк и фосфат."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-#~ msgstr "Ако популацията Ви спадне до нула, Вашите създания ще изчезнат."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-#~ msgstr "Но ако оцелеете в продължение на 20 поколения с популация от 300 индивида, Вие ще победите. След това ще се появи изскачащ прозорец, който ще се затвори и играта ще продължи."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-#~ msgstr "Внимавайте, защото Вие не сте единствените, които еволюират. Всеки път, когато отворите редактора, Вашите съперници също еволюират."
-
-#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-#~ msgstr "Чрез свързването с други клетки, може да създадете клетъчна колония, в която клетките споделят химичните съединения помежду си. За да се свържете с друга клетка, трябва да имате свързващ агент и да сте в режим на свързване. Може да се свържете само с индивиди от Вашите създания. Засега, докато сте част от клетъчната колония, възпроизвеждането не е възможно. За да се възпроизведете, трябва да напуснете клетъчната колония и да съберете нужните химични съединения. Големите клетъчни колонии са първата стъпка към многоклетъчните организми, но те са все още в процес на разработка."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-#~ msgstr ""
-#~ "Прокариотни структури\n"
-#~ "\n"
-#~ "Метаболозоми: Произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
-#~ "\n"
-#~ "Хемосинтезиращи протеини: Произвеждат 1/2 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound], чрез хемопласт от [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:compound] и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
-#~ "\n"
-#~ "Тилакоиди: Произвеждат 1/3 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] като обикновен хлоропласт и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
-#~ "\n"
-#~ "Рустицианин: Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
-#~ "\n"
-#~ "Нитрогеназа: Превръща атмософерния азот и [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], чрез анаеробен процес\n"
-#~ "\n"
-#~ "Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза (произвежда малки количества [thrive:compound type=\"atp\"]АТФ[/thrive:compound])"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-#~ msgstr ""
-#~ "Външни органели\n"
-#~ "\n"
-#~ "Флагела: Осигурява по-бързо движение на клетката, използвайки [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
-#~ "\n"
-#~ "Пили: Използва се за пробождане на другите клетки"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-#~ msgstr ""
-#~ "Вътрешни органели\n"
-#~ "\n"
-#~ "Ядро: Заема 11 шестоъгълника и позволява използването на другите вътрешни органели. Също така, удвоява размера на клетката (може да се сложи само веднъж)\n"
-#~ "\n"
-#~ "Свързващ агент: Позволява свързването с други клетки\n"
-#~ "\n"
-#~ "Митохондрия: Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] и атмосферния O2, много по-ефективно от цитоплазмата\n"
-#~ "\n"
-#~ "Хлоропласт: Създава [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound], чрез слънчевата светлина и атмосферния СО2\n"
-#~ "\n"
-#~ "Хемопласт: Създава [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от [thrive:compound type=\"hydrogensulfide\"]сероводорода[/thrive:compound]\n"
-#~ "\n"
-#~ "Пластид за азотна фиксация: Създава [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound] от [thrive:compound type=\"atp\"]АТФ[/thrive:compound], атмосферния азот и кислорода\n"
-#~ "\n"
-#~ "Вакуола: Съхранява до 15 хранителни вещества\n"
-#~ "\n"
-#~ "Токсични вакуоли: Произвеждат токсини, известни като [thrive:compound type=\"oxytoxy\"]окситоксини[/thrive:compound]"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-#~ msgstr "Всяко поколение разполага със 100 мутационни точки (МТ), всяка негова промяна (или мутация) струва определен брой МТ. Добавянето или премахването на органели струва МТ, но премахването на органели, които са добавени в текущата сесия на редактора, връща тяхната стойност. Може да преместите или премахнете органелите като натиснете с десния бутон на мишката върху тях и изберете съответното действие в контекстното меню. Може да ги завъртите, преди добавяне, чрез натискане на [thrive:input]e_rotate_left[/thrive:input] или [thrive:input]e_rotate_right[/thrive:input]."
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-#~ msgstr "По време на възпроизвеждане, микробният редактор ще бъде отворен, в него може да променяте Вашето създание (като добавяте, премествате или премахвате органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора е равно на 100 милиона години еволюция."
-
-#~ msgid "LOADING_TIP"
-#~ msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
-
-#~ msgid "EASTEREGG_MESSAGE_1"
-#~ msgstr "Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и плячка. Вие от коя страна сте – ловецът или плячката?"
-
-#~ msgid "EASTEREGG_MESSAGE_2"
-#~ msgstr "Ето един съвет – токсините може да се използват за да спрат токсините на противника, ако сте достатъчно бързи, разбира се."
-
-#~ msgid "EASTEREGG_MESSAGE_3"
-#~ msgstr "Ето един съвет – осморегулацията струва 1 АТФ на секунда за всеки шестоъгълник на Вашата клетка, всеки празен шестоъгълник от цитоплазма създава 5 АТФ на секунда, с други думи, ако губите АТФ по време на осморегулация, просто добавете няколко празни шестоъгълника цитоплазма или премахнете някои органели."
-
-#~ msgid "EASTEREGG_MESSAGE_4"
-#~ msgstr "Забавен факт е, че истинските прокариоти имат биоотделения, които функционират като органели и всъщност се наричат многостенни органели."
-
-#~ msgid "EASTEREGG_MESSAGE_5"
-#~ msgstr "Забавен факт е, че метаболозомата представлява многостенен органел."
-
-#~ msgid "EASTEREGG_MESSAGE_6"
-#~ msgstr "Ето един съвет – понякога просто бягайте от другите клетки."
-
-#~ msgid "EASTEREGG_MESSAGE_7"
-#~ msgstr "Ето един съвет – ако дадена клетка е 1/2 от Вашия размер, може да я погълнете."
-
-#~ msgid "EASTEREGG_MESSAGE_8"
-#~ msgstr "Ето един съвет – бактериите може да са малки, но някои от тях са много опасни, могат да Ви убият!"
-
-#~ msgid "EASTEREGG_MESSAGE_9"
-#~ msgstr "Ето един съвет – ако ловувате дадени създания, без да искате, може напълно да ги унищожите, но не само Вие сте способни на това."
-
-#~ msgid "EASTEREGG_MESSAGE_10"
-#~ msgstr "КАК САМО СЕ ИЗВИВАТ!!"
-
-#~ msgid "EASTEREGG_MESSAGE_11"
-#~ msgstr "Претопете метала."
-
-#~ msgid "EASTEREGG_MESSAGE_12"
-#~ msgstr "Ех тези сини клетки."
-
-#~ msgid "EASTEREGG_MESSAGE_13"
-#~ msgstr "Ето един съвет – биомите са нещо повече от фонове, химичните съединения в различните биоми не се появяват по едно и също време."
-
-#~ msgid "EASTEREGG_MESSAGE_14"
-#~ msgstr "Ето един съвет – с повече флагели ще се движите по-бързо, бръм, бръм, но това ще Ви струва повече АТФ"
-
-#~ msgid "EASTEREGG_MESSAGE_15"
-#~ msgstr "Ето един съвет – може да поглъщате дори и железните късове."
-
-#~ msgid "EASTEREGG_MESSAGE_16"
-#~ msgstr "Ето един съвет – подгответе се преди да добавите ядрото. Това нещо е адски скъпо! И не е лесно да се поддържа."
-
-#~ msgid "EASTEREGG_MESSAGE_17"
-#~ msgstr "Забавен факт е, че има над 8 000 ресничести създания на нашата планета, а Вие не го знаехте, нали?"
-
-#~ msgid "EASTEREGG_MESSAGE_18"
-#~ msgstr "Забавен факт е, че Тромпетът е ресничест вид, който може да се разтяга и да улавя плячката в устата си, която е с формата на тромпет, създавайки водно течение чрез своите реснички."
-
-#~ msgid "EASTEREGG_MESSAGE_19"
-#~ msgstr "Забавен факт е, че Дидиний е ресничест вид, който ловува чехълчета."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в „Thrive“."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Ето един съвет – пазете се от големите клетки и големите бактерии, няма да е приятно, ако станете част от менюто им."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "„Thrive“ има много мелодии, които все още не са добавени в играта. Може да ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Ето един съвет – може да поглъщате големите железни късове, ако Вашата клетка е с размер от 150 шестоъгълника."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "„Thrive“ се развива на извънземна планета, следователно повечето създания, които ще видите имат общи черти с едно или две определени създания, благодарение на еволюционният процес, опитайте се да познаете кои са те!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Забавен факт е, че екипът на „Thrive“ излъчва конференции от време на време, може да им хвърлите едно око!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Забавен факт е, че „Thrive“ е базиранa на „Godot“!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Забавен факт е, че един от първите работещи прототипи на играта е създаден от нашия страхотен програмист, untrustedlife!"
-
-#~ msgid "TWO_TIMES"
-#~ msgstr "2 пъти"
-
-#~ msgid "FOUR_TIMES"
-#~ msgstr "4 пъти"
-
-#~ msgid "EIGHT_TIMES"
-#~ msgstr "8 пъти"
-
-#~ msgid "SIXTEEN_TIMES"
-#~ msgstr "16 пъти"
-
-#~ msgid "CORRECTION_PROTANOPE"
-#~ msgstr "Протанопия (червено и зелено)"
-
-#~ msgid "CORRECTION_TRITANOPE"
-#~ msgstr "Тританопия (синьо и жълто)"
-
-#~ msgid "JSON_DEBUG_MODE_ALWAYS"
-#~ msgstr "Включено"
-
-#~ msgid "JSON_DEBUG_MODE_NEVER"
-#~ msgstr "Изключено"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"
