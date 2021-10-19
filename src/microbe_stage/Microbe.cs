@@ -49,9 +49,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// </summary>
     private bool onReadyCalled;
 
-    private bool onRemakeCalled;
-    private bool onUnbindCalled;
-
     /// <summary>
     ///   The organelles in this microbe
     /// </summary>
@@ -82,11 +79,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     [JsonProperty]
     private bool wasBeingEngulfed;
-
-    /// <summary>
-    ///   List of colony children of colony master positions, needed when the colony is remade at load
-    /// </summary>
-    private List<Transform> colonyChildrenTransform;
 
     /// <summary>
     ///   Tracks other Microbes that are within the engulf area and are ignoring collisions with this body.
@@ -624,7 +616,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
     public Microbe GetMicrobeFromShape(int bodyShape)
     {
-        if (Colony == null || (IsLoadedFromSave && !onRemakeCalled))
+        if (Colony == null)
             return this;
 
         var touchedOwnerId = ShapeFindOwner(bodyShape);
