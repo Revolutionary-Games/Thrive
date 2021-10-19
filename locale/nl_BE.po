@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-17 13:02+0300\n"
+"POT-Creation-Date: 2021-10-18 22:42+0200\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -2438,26 +2438,26 @@ msgstr "Temperatuur"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.cs:992
+#: ../src/microbe_stage/Microbe.Contact.cs:486
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1493
+#: ../src/microbe_stage/Microbe.Contact.cs:577
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "succesvolle doorzoeking"
 
-#: ../src/microbe_stage/Microbe.cs:1500
+#: ../src/microbe_stage/Microbe.Contact.cs:584
 msgid "SUCCESSFUL_KILL"
 msgstr "succesvolle moord"
 
-#: ../src/microbe_stage/Microbe.cs:1926
+#: ../src/microbe_stage/Microbe.Contact.cs:786
+msgid "ESCAPE_ENGULFING"
+msgstr "ontsnap omsluiting"
+
+#: ../src/microbe_stage/Microbe.Interior.cs:710
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Produceert"
-
-#: ../src/microbe_stage/Microbe.cs:2070
-msgid "ESCAPE_ENGULFING"
-msgstr "ontsnap omsluiting"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
 #, fuzzy
@@ -2579,47 +2579,47 @@ msgstr "Voeg een nieuwe sneltoets toe"
 msgid "POPULATION_CAPITAL"
 msgstr "BEVOLKING:"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:126
+#: ../src/microbe_stage/PatchMapGenerator.cs:181
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangonische luchtopeningen"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:127
+#: ../src/microbe_stage/PatchMapGenerator.cs:182
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Pangonische mesopelagische zone"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:128
+#: ../src/microbe_stage/PatchMapGenerator.cs:183
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Pangonische epipelagische zone"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:129
+#: ../src/microbe_stage/PatchMapGenerator.cs:184
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pangonische getijdepoel"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:130
+#: ../src/microbe_stage/PatchMapGenerator.cs:185
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Pangonische bathypelagische zone"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:131
+#: ../src/microbe_stage/PatchMapGenerator.cs:186
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Pangonische abyssopelagische zone"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:132
+#: ../src/microbe_stage/PatchMapGenerator.cs:187
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangonische kust"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:133
+#: ../src/microbe_stage/PatchMapGenerator.cs:188
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangonische zeearm"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:134
+#: ../src/microbe_stage/PatchMapGenerator.cs:189
 msgid "PATCH_CAVE"
 msgstr "Grot"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:135
+#: ../src/microbe_stage/PatchMapGenerator.cs:190
 msgid "PATCH_ICE_SHELF"
 msgstr "Ijsplank"
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:136
+#: ../src/microbe_stage/PatchMapGenerator.cs:191
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonische zeebodem"
 
