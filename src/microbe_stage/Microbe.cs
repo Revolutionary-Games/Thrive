@@ -616,13 +616,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
     public Microbe GetMicrobeFromShape(int bodyShape)
     {
-        if (Colony == null)
+        if (Colony == null )
             return this;
 
         var touchedOwnerId = ShapeFindOwner(bodyShape);
 
         // Not found
-        if (touchedOwnerId == 0)
+        if (touchedOwnerId == uint.MaxValue)
             return null;
 
         return GetColonyMemberWithShapeOwner(touchedOwnerId, Colony);
