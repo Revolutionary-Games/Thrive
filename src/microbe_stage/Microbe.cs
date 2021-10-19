@@ -213,13 +213,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         if (IsLoadedFromSave)
         {
-            // Fix the tree of colonies
-            if (ColonyChildren != null)
-            {
-                foreach (var child in ColonyChildren)
-                    AddChild(child);
-            }
-
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
@@ -231,6 +224,16 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             {
                 ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
                 ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
+            }
+
+            // Fix the tree of colonies
+            if (ColonyChildren != null)
+            {
+                foreach (var child in ColonyChildren)
+                {
+                    child.Mode = ModeEnum.Static;
+                    AddChild(child);
+                }
             }
 
             // And recompute storage
@@ -493,6 +496,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     public override void _IntegrateForces(PhysicsDirectBodyState physicsState)
     {
+        if (ColonyParent != null)
+            return;
+
         // TODO: should movement also be applied here?
 
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);

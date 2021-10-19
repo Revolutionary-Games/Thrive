@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using Godot;
+
+/// <summary>
 ///   Allows cell to store more stuff
 /// </summary>
 public class StorageComponent : IOrganelleComponent
@@ -19,6 +21,11 @@ public class StorageComponent : IOrganelleComponent
     }
 
     public void Update(float elapsed)
+    {
+    }
+
+    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset, Vector3 masterRotation,
+        Vector3 parentRotation)
     {
     }
 }
