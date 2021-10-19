@@ -1243,7 +1243,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
     public override void _Process(float delta)
     {
-
         // Updates the listener if this is the player owned microbe.
         if (listener != null)
         {
