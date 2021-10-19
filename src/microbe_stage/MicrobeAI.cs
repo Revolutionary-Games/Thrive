@@ -139,9 +139,8 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null)
         {
-            bool engulfPrey = !microbe.Species.MembraneType.CellWall &&
-                possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-                microbe.EngulfSize && DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
+                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
             EngagePrey(prey.Value, random, engulfPrey);
