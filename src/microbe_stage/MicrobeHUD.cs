@@ -706,20 +706,30 @@ public class MicrobeHUD : Control
             }
         }
 
-        // Show the species name of hovered cells
+        // Show the species name and count of hovered cells
+        var hoveredSpeciesCounts = new System.Collections.Generic.Dictionary<Species, int>();
         foreach (var microbe in stage.HoverInfo.HoveredMicrobes)
         {
-            // TODO: Combine cells of same species within mouse over
-            // into a single line with total number of them
-
-            var microbeText = new Label();
-            microbeText.Valign = Label.VAlign.Center;
-            hoveredCellsContainer.AddChild(microbeText);
-
-            microbeText.Text = microbe.Species.FormattedName;
-
             if (microbe.IsPlayerMicrobe)
-                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
+            {
+                AddHoveredCellLabel(microbe.Species.FormattedName +
+                    " (" + TranslationServer.Translate("PLAYER_CELL") + ")");
+                continue;
+            }
+
+            if (!hoveredSpeciesCounts.ContainsKey(microbe.Species))
+            {
+                hoveredSpeciesCounts.Add(microbe.Species, 1);
+                continue;
+            }
+
+            ++hoveredSpeciesCounts[microbe.Species];
+        }
+
+        foreach (var hoveredSpeciesCount in hoveredSpeciesCounts)
+        {
+            AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName +
+                (hoveredSpeciesCount.Value > 1 ? $" (x{hoveredSpeciesCount.Value})" : string.Empty));
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
@@ -728,6 +738,15 @@ public class MicrobeHUD : Control
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
         nothingHere.Visible = !stage.HoverInfo.IsHoveringOverAnything;
+    }
+
+    private void AddHoveredCellLabel(string cellInfo)
+    {
+        hoveredCellsContainer.AddChild(new Label
+        {
+            Valign = Label.VAlign.Center,
+            Text = cellInfo,
+        });
     }
 
     /// <summary>
