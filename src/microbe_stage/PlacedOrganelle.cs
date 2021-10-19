@@ -413,7 +413,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
                 // Get the rotation of all colony ancestors up to master
                 while (parent != ParentMicrobe.Colony.Master)
                 {
-                    rotation *= new Quat(parent.Transform.Basis);
+                    rotation *= new Quat(parent.Transform.basis);
                     parent = parent.ColonyParent;
                 }
             }
