@@ -67,11 +67,11 @@ public class MicrobeAI
         compoundsSearchWeights = new Dictionary<Compound, float>();
     }
 
-    private float SpeciesAggression => microbe.Species.Aggression;
-    private float SpeciesFear => microbe.Species.Fear;
-    private float SpeciesActivity => microbe.Species.Activity;
-    private float SpeciesFocus => microbe.Species.Focus;
-    private float SpeciesOpportunism => microbe.Species.Opportunism;
+    private float SpeciesAggressionNormalized => microbe.Species.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+    private float SpeciesFearNormalized => microbe.Species.Fear / Constants.MAX_SPECIES_FEAR;
+    private float SpeciesActivityNormalized => microbe.Species.Activity / Constants.MAX_SPECIES_ACTIVITY;
+    private float SpeciesFocusNormalized => microbe.Species.Focus / Constants.MAX_SPECIES_FOCUS;
+    private float SpeciesOpportunismNormalized => microbe.Species.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
@@ -118,7 +118,7 @@ public class MicrobeAI
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2323
         Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.GlobalTransform.origin;
         if (predator.HasValue &&
-            DistanceFromMe(predator.Value) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
+            DistanceFromMe(predator.Value) < (1500.0 * SpeciesFearNormalized))
         {
             FleeFromPredators(random, predator.Value);
             return;
@@ -149,7 +149,7 @@ public class MicrobeAI
         }
 
         // Otherwise just wander around and look for compounds
-        if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
+        if (SpeciesActivityNormalized > 0.1f)
         {
             RunAndTumble(random);
         }
@@ -175,7 +175,7 @@ public class MicrobeAI
         {
             if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
                 && (chunk.Translation - microbe.Translation).LengthSquared()
-                <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
+                <= (20000.0 * SpeciesFocusNormalized) + 1500.0)
             {
                 if (chunk.ContainedCompounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
@@ -208,11 +208,11 @@ public class MicrobeAI
             }
 
             int rivalThreshold;
-            if (SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3)
+            if (SpeciesOpportunismNormalized < 0.33f)
             {
                 rivalThreshold = 1;
             }
-            else if (SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM * 2 / 3)
+            else if (SpeciesOpportunismNormalized < 0.66f)
             {
                 rivalThreshold = 3;
             }
@@ -222,7 +222,7 @@ public class MicrobeAI
             }
 
             // In rare instances, microbes will choose to be much more ambitious
-            if (RollCheck(SpeciesFocus, Constants.MAX_SPECIES_FOCUS, random))
+            if (RollCheck(SpeciesFocusNormalized, 1.0f, random))
             {
                 rivalThreshold *= 2;
             }
@@ -248,7 +248,7 @@ public class MicrobeAI
         {
             var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin);
             if (!focused.Dead && distanceToFocusedPrey <
-                (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
+                (3500.0f * SpeciesFocusNormalized))
             {
                 if (distanceToFocusedPrey < pursuitThreshold)
                 {
@@ -272,7 +272,7 @@ public class MicrobeAI
             if (!otherMicrobe.Dead)
             {
                 if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
-                    (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
+                    (2500.0f * SpeciesAggressionNormalized)
                     && CanTryToEatMicrobe(otherMicrobe))
                 {
                     if (chosenPrey == null ||
@@ -297,7 +297,7 @@ public class MicrobeAI
     private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
         var fleeThreshold = 3.0f - (2 *
-            (SpeciesFear / Constants.MAX_SPECIES_FEAR) *
+            SpeciesFearNormalized *
             (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
         Microbe predator = null;
         foreach (var otherMicrobe in allMicrobes)
@@ -355,16 +355,16 @@ public class MicrobeAI
 
         // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
         if (DistanceFromMe(predatorLocation) < 100.0f &&
-            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+            RollCheck(SpeciesAggressionNormalized, 1.0f, random))
         {
             MoveWithRandomTurn(2.5f, 3.0f, random);
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
-        if (SpeciesAggression > SpeciesFear &&
+        if (SpeciesAggressionNormalized > SpeciesFearNormalized &&
             DistanceFromMe(predatorLocation) >
-            300.0f - (5.0f * SpeciesAggression) + (6.0f * SpeciesFear) &&
-            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+            300.0f - (5.0f * SpeciesAggressionNormalized) + (6.0f * SpeciesFearNormalized) &&
+            RollCheck(SpeciesAggressionNormalized, 1.0f, random))
         {
             LaunchToxin(predatorLocation);
         }
@@ -382,7 +382,7 @@ public class MicrobeAI
         {
             LaunchToxin(target);
 
-            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
+            if (RollCheck(SpeciesAggressionNormalized, 0.2f, random))
             {
                 SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
             }
@@ -517,7 +517,7 @@ public class MicrobeAI
     private void LaunchToxin(Vector3 target)
     {
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-            (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
+            (microbe.Translation - target).LengthSquared() <= SpeciesFocusNormalized * 4000.0f)
         {
             if (CanShootToxin())
             {
@@ -535,7 +535,7 @@ public class MicrobeAI
             turn = -turn;
         }
 
-        var randDist = random.Next(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY);
+        var randDist = random.Next(SpeciesActivityNormalized, 1.0f);
         targetPosition = microbe.Translation
             + new Vector3(Mathf.Cos(previousAngle + turn) * randDist,
                 0,
@@ -555,14 +555,14 @@ public class MicrobeAI
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
         return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
+            (SpeciesOpportunismNormalized > 0.3f && CanShootToxin())
             || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
     private bool CanShootToxin()
     {
         return microbe.Compounds.GetCompoundAmount(oxytoxy) >=
-            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
+            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocusNormalized;
     }
 
     private float DistanceFromMe(Vector3 target)
