@@ -53,6 +53,12 @@ public class MicrobeAI
     [JsonIgnore]
     private Dictionary<Compound, float> compoundsSearchWeights;
 
+    private float speciesAggressionNormalized;
+    private float speciesFearNormalized;
+    private float speciesActivityNormalized;
+    private float speciesFocusNormalized;
+    private float speciesOpportunismNormalized;
+
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
@@ -65,13 +71,13 @@ public class MicrobeAI
 
         previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
         compoundsSearchWeights = new Dictionary<Compound, float>();
-    }
 
-    private float SpeciesAggressionNormalized => microbe.Species.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-    private float SpeciesFearNormalized => microbe.Species.Fear / Constants.MAX_SPECIES_FEAR;
-    private float SpeciesActivityNormalized => microbe.Species.Activity / Constants.MAX_SPECIES_ACTIVITY;
-    private float SpeciesFocusNormalized => microbe.Species.Focus / Constants.MAX_SPECIES_FOCUS;
-    private float SpeciesOpportunismNormalized => microbe.Species.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        speciesAggressionNormalized = microbe.Species.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        speciesFearNormalized = microbe.Species.Fear / Constants.MAX_SPECIES_FEAR;
+        speciesActivityNormalized = microbe.Species.Activity / Constants.MAX_SPECIES_ACTIVITY;
+        speciesFocusNormalized = microbe.Species.Focus / Constants.MAX_SPECIES_FOCUS;
+        speciesOpportunismNormalized = microbe.Species.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+    }
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
