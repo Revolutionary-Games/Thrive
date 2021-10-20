@@ -728,11 +728,10 @@ public class MicrobeHUD : Control
 
         foreach (var hoveredSpeciesCount in hoveredSpeciesCounts)
         {
-            AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName +
-                (hoveredSpeciesCount.Value > 1 ?
-                    string.Format(CultureInfo.CurrentCulture,
-                        " (" + TranslationServer.Translate("N_TIMES") + ")", hoveredSpeciesCount.Value) :
-                    string.Empty));
+            AddHoveredCellLabel(hoveredSpeciesCount.Value > 1 ?
+                string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
+                    hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value) :
+                hoveredSpeciesCount.Key.FormattedName);
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
