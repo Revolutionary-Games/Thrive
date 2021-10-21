@@ -732,7 +732,6 @@ public class MicrobeHUD : Control
         {
             if (hoveredSpeciesCount.Value > 1)
             {
-                // SPECIES_N_TIMES == {0} ({1}x)
                 AddHoveredCellLabel(
                     string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
                         hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value));
