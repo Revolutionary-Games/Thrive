@@ -42,6 +42,11 @@ public class GUICommon : NodeWithInput
     public Tween Tween { get; }
 
     /// <summary>
+    ///   Checks whether the top-most modal on the modal stack is an exclusive popup.
+    /// </summary>
+    public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
+
+    /// <summary>
     ///   The audio player for UI sound effects.
     /// </summary>
     private AudioStreamPlayer AudioSource { get; }
@@ -56,11 +61,6 @@ public class GUICommon : NodeWithInput
     ///    </para>
     /// </remarks>
     private AudioStreamPlayer AudioSource2 { get; }
-
-    /// <summary>
-    ///   Checks whether the top-most modal on the modal stack is an exclusive popup.
-    /// </summary>
-    public bool IsAnyExclusivePopupActive => GetCurrentlyActiveExclusivePopup() != null;
 
     public static Vector2 GetFirstChildMinSize(Control control)
     {
