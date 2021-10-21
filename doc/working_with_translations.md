@@ -86,12 +86,13 @@ The final step is to open en.po in the locale folder (you can use a text editor
 or Poedit), search for your keys, and add your strings as translation. Once done,
 you can launch the game and make sure everything works as expected.
 
-Note that you should configure your gettext tool to not use line
-wrapping. We don't use line wrapping because Weblate and gettext
-command line tools disagree where lines should be wrapped in many
-cases, so we don't use that to reduce cases where translations are
-automatically changed back and forth to different line wrapping
-lengths.
+Note that you should configure your gettext tool to use column width
+77 line wrapping. While this doesn't ensure perfect agreement [between
+Weblate and
+gettext](https://github.com/Revolutionary-Games/Thrive/issues/2679)
+command line tools this is the best we can do to reduce the reduce
+cases where translations are automatically changed back and forth to
+different line wrapping lengths.
 
 Translating the game into a new language
 ----------------------------------------

@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-18 22:42+0200\n"
+"POT-Creation-Date: 2021-10-21 10:58+0300\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Nathaniel Balderramas <nabm.utn@gmail.com>\n"
-"Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
+"Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,32 +23,58 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu célula. [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar/desactivar el modo engullir."
+msgstr ""
+"Usa [thrive:input]g_move_forward[/thrive:input], [thrive:"
+"input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:"
+"input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu "
+"célula. [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de "
+"toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar/"
+"desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Tu célula utiliza [thrive:compound type=\"atp\"][/thrive:compound] como su fuente de energía. Si se acaba, morirás."
+msgstr ""
+"Tu célula utiliza [thrive:compound type=\"atp\"][/thrive:compound] como su "
+"fuente de energía. Si se acaba, morirás."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Para desbloquear el editor y reproducir tu célula, necesitas conseguir[thrive:compound type=\"ammonia\"][/thrive:compound] (Nube Naranja) y [thrive:compound type=\"phosphates\"][/thrive:compound] (Nube Púrpura)."
+msgstr ""
+"Para desbloquear el editor y reproducir tu célula, necesitas "
+"conseguir[thrive:compound type=\"ammonia\"][/thrive:compound] (Nube "
+"Naranja) y [thrive:compound type=\"phosphates\"][/thrive:compound] (Nube "
+"Púrpura)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "También puedes engullir células, bacterias, pedazos de hierro y pedazos de células que sean más pequeños que tu célula al presionar [thrive:input]g_toggle_engulf[/thrive:input]. Esto aumentara tu costo de [thrive:compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. No te olvides de presionar nuevamente [thrive:input]g_toggle_engulf[/thrive:input] para dejar de engullir."
+msgstr ""
+"También puedes engullir células, bacterias, pedazos de hierro y pedazos de "
+"células que sean más pequeños que tu célula al presionar [thrive:"
+"input]g_toggle_engulf[/thrive:input]. Esto aumentara tu costo de [thrive:"
+"compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. "
+"No te olvides de presionar nuevamente [thrive:input]g_toggle_engulf[/"
+"thrive:input] para dejar de engullir."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "La Osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:compound], lo que significa que cuan más grande es la célula, más Mitocondrias, Metabolosomas, Rusticianinas, u orgánulos que puedan realizar glicólisis necesitarás, para evitar perder[thrive:compound type=\"atp\"][/thrive:compound] cuando esté estática."
+msgstr ""
+"La Osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:"
+"compound], lo que significa que cuan más grande es la célula, más "
+"Mitocondrias, Metabolosomas, Rusticianinas, u orgánulos que puedan "
+"realizar glicólisis necesitarás, para evitar perder[thrive:compound type="
+"\"atp\"][/thrive:compound] cuando esté estática."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Hay varios orgánulos en el editor para que evoluciones, lo que te permite una amplia diversidad de estilos de juego."
+msgstr ""
+"Hay varios orgánulos en el editor para que evoluciones, lo que te permite "
+"una amplia diversidad de estilos de juego."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -60,17 +87,25 @@ msgstr ""
 "Púrpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Rojo Oscuro – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para generar [thrive:compound type=\"atp\"][/thrive:compound]"
+"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para "
+"generar [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "El [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] puede ser convertido a [thrive:compound type=\"glucose\"] con quimioplastos y proteínas quimiosintetizadoras. El [thrive:compound type=\"iron\"][/thrive:compound] puede ser convertido a [thrive:compound type=\"atp\"][/thrive:compound] con rusticianinas."
+msgstr ""
+"El [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] puede ser "
+"convertido a [thrive:compound type=\"glucose\"] con quimioplastos y "
+"proteínas quimiosintetizadoras. El [thrive:compound type=\"iron\"][/thrive:"
+"compound] puede ser convertido a [thrive:compound type=\"atp\"][/thrive:"
+"compound] con rusticianinas."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Para que la célula se reproduzca, necesita dividir cada uno de sus orgánulos en dos. Para eso, se necesita Amoníaco y Fosfato."
+msgstr ""
+"Para que la célula se reproduzca, necesita dividir cada uno de sus "
+"orgánulos en dos. Para eso, se necesita Amoníaco y Fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
@@ -79,40 +114,67 @@ msgstr "Por ahora, si la población de tu especie alcanza 0, se extingue."
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Pero si sobrevives por veinte generaciones con 300 de población, está considerado como ganado el juego actual, lo cual se indicara con un cuadro emergente. Luego de ganar puedes seguir jugando libremente."
+msgstr ""
+"Pero si sobrevives por veinte generaciones con 300 de población, está "
+"considerado como ganado el juego actual, lo cual se indicara con un cuadro "
+"emergente. Luego de ganar puedes seguir jugando libremente."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Ten cuidado, tus competidores evolucionan a la par con tu célula. Cada vez que entres al editor, también evolucionarán."
+msgstr ""
+"Ten cuidado, tus competidores evolucionan a la par con tu célula. Cada vez "
+"que entres al editor, también evolucionarán."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Al ligarte con otras células puedes crear una colonia. Las células de una colonia comparten entre sí todos los compuestos que absorben y producen. Para poder ligarte con otras células necesitas adquirir el orgánulo \"agente ligante\", activar el modo ligante y acercarte a otra célula. Por ahora solo puedes ligarte con otras células de tu misma especie. Mientras formas parte de una colonia no podrás dividir tu célula para entrar al editor (por ahora). Una vez que hayas adquirido suficientes compuestos para reproducirte tendrás que abandonar la colonia para poder entrar al editor. Grandes colonias celulares son el camino hacia la multicelularidad (aún no disponible en el juego)."
+msgstr ""
+"Al ligarte con otras células puedes crear una colonia. Las células de una "
+"colonia comparten entre sí todos los compuestos que absorben y producen. "
+"Para poder ligarte con otras células necesitas adquirir el orgánulo "
+"\"agente ligante\", activar el modo ligante y acercarte a otra célula. Por "
+"ahora solo puedes ligarte con otras células de tu misma especie. Mientras "
+"formas parte de una colonia no podrás dividir tu célula para entrar al "
+"editor (por ahora). Una vez que hayas adquirido suficientes compuestos "
+"para reproducirte tendrás que abandonar la colonia para poder entrar al "
+"editor. Grandes colonias celulares son el camino hacia la multicelularidad "
+"(aún no disponible en el juego)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Estructuras Procarióticas\n"
 "\n"
-"Metabolosomas: Producen [thrive:compound type=\"atp\"][/thrive:compound] y consumen [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Metabolosomas: Producen [thrive:compound type=\"atp\"][/thrive:compound] y "
+"consumen [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
-"Proteínas Quimiosintetizadoras: Producen solo la mitad de [thrive:compound type=\"glucose\"][/thrive:compound] que los Quimioplastos a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], pero también realizan glicólisis y solo ocupan un espacio.\n"
+"Proteínas Quimiosintetizadoras: Producen solo la mitad de [thrive:compound "
+"type=\"glucose\"][/thrive:compound] que los Quimioplastos a partir de "
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound], pero también "
+"realizan glicólisis y solo ocupan un espacio.\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de [thrive:compound type=\"glucose\"][/thrive:compound] de los cloroplastos, pero también realizan glicólisis y solo ocupan un espacio.\n"
+"Tilacoides: Producen un tercio de la cantidad de [thrive:compound type="
+"\"glucose\"][/thrive:compound] de los cloroplastos, pero también realizan "
+"glicólisis y solo ocupan un espacio.\n"
 "\n"
-"Rusticianina: Convierte el [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Rusticianina: Convierte el [thrive:compound type=\"iron\"][/thrive:"
+"compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico y [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"], anaerobicamente\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico y [thrive:compound type="
+"\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"], "
+"anaerobicamente\n"
 "\n"
-"Citoplasma: Tiene espacio para almacenar compuestos, y realiza glicólisis (produce [thrive:compound type=\"atp\"][/thrive:compound] en pequeñas cantidades)"
+"Citoplasma: Tiene espacio para almacenar compuestos, y realiza glicólisis "
+"(produce [thrive:compound type=\"atp\"][/thrive:compound] en pequeñas "
+"cantidades)"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Orgánulos Externos\n"
 "\n"
-"Flagelos: Mueve tu célula más rápidamente consumiendo [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Flagelos: Mueve tu célula más rápidamente consumiendo [thrive:compound "
+"type=\"atp\"][/thrive:compound]\n"
 "\n"
 "Pilus: Puede usarse para atacar a otras células"
 
@@ -121,29 +183,49 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Orgánulos con membrana\n"
 "\n"
-"Núcleo: Ocupa 11 espacios y permite la evolución de orgánulos unidos a la membrana. Solo puede ser evolucionado una vez\n"
+"Núcleo: Ocupa 11 espacios y permite la evolución de orgánulos unidos a la "
+"membrana. Solo puede ser evolucionado una vez\n"
 "\n"
 "Agente Ligante: Permite ligarte con otras células\n"
 "\n"
-"Mitocondria: Produce [thrive:compound type=\"atp\"][/thrive:compound] y consume [thrive:compound type=\"glucose\"][/thrive:compound y O2 atmosférico. Son mucho más eficientes que el citoplasma\n"
+"Mitocondria: Produce [thrive:compound type=\"atp\"][/thrive:compound] y "
+"consume [thrive:compound type=\"glucose\"][/thrive:compound y O2 "
+"atmosférico. Son mucho más eficientes que el citoplasma\n"
 "\n"
-"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] utilizando la luz solar y CO2 atmosférico\n"
+"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:"
+"compound] utilizando la luz solar y CO2 atmosférico\n"
 "\n"
-"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:"
+"compound] consumiendo[thrive:compound type=\"hydrogensulfide\"][/thrive:"
+"compound]\n"
 "\n"
-"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:compound] consumiendo [thrive:compound type=\"atp\"][/thrive:compound], Nitrógeno atmosférico y Oxígeno atmosférico\n"
+"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] consumiendo [thrive:compound type=\"atp\"][/thrive:compound], "
+"Nitrógeno atmosférico y Oxígeno atmosférico\n"
 "\n"
 "Vacuola: Aumenta el espacio de almacenamiento en +15\n"
 "\n"
-"Vacuola de Toxinas: Produce toxinas (llamadas [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
+"Vacuola de Toxinas: Produce toxinas (llamadas [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "En cada generación tienes 100 puntos de mutación (PM) para gastar, y cada cambio (o mutación) costará determinada cantidad de PM. Añadir y quitar orgánulos cuesta PM. Sin embargo, quitar orgánulos que fueron añadidos en la misma sesión reembolsa PM acorde a su precio. Para mover o quitar un orgánulo, haz clic derecho y selecciona la acción adecuada. Puedes rotar los orgánulos antes de colocarlos con [thrive:input]e_rotate_left[/thrive:input] y [thrive:input]e_rotate_right[/thrive:input]."
+msgstr ""
+"En cada generación tienes 100 puntos de mutación (PM) para gastar, y cada "
+"cambio (o mutación) costará determinada cantidad de PM. Añadir y quitar "
+"orgánulos cuesta PM. Sin embargo, quitar orgánulos que fueron añadidos en "
+"la misma sesión reembolsa PM acorde a su precio. Para mover o quitar un "
+"orgánulo, haz clic derecho y selecciona la acción adecuada. Puedes rotar "
+"los orgánulos antes de colocarlos con [thrive:input]e_rotate_left[/thrive:"
+"input] y [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Cada vez que tu célula se reproduce, entrarás al editor de microbio, donde puedes hacerle cambios a tu especie (añadiendo, moviendo y/o quitando orgánulos) para incrementar tus chances de éxito. Cada visita al editor en el estadio de microbio representa 100 millones de años de evolución."
+msgstr ""
+"Cada vez que tu célula se reproduce, entrarás al editor de microbio, donde "
+"puedes hacerle cambios a tu especie (añadiendo, moviendo y/o quitando "
+"orgánulos) para incrementar tus chances de éxito. Cada visita al editor en "
+"el estadio de microbio representa 100 millones de años de evolución."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
@@ -151,23 +233,36 @@ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
 #: ../simulation_parameters/common/help_texts.json:126
 msgid "EASTEREGG_MESSAGE_1"
-msgstr "Dato curioso: El Didinium y el Paramecio son un ejemplo de una relación depredador-presa que fue estudiado por décadas. Ahora, eres el Didinium, o el Paramecio? Depredador, o presa?"
+msgstr ""
+"Dato curioso: El Didinium y el Paramecio son un ejemplo de una relación "
+"depredador-presa que fue estudiado por décadas. Ahora, eres el Didinium, o "
+"el Paramecio? Depredador, o presa?"
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Un consejo: Las toxinas pueden ser usadas para bloquear otras toxinas antes de que te alcancen."
+msgstr ""
+"Un consejo: Las toxinas pueden ser usadas para bloquear otras toxinas "
+"antes de que te alcancen."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "Un consejo: la Osmorregulación consume 1 ATP por segundo por espacios que tu célula ocupe. Cada espacio ocupado por citoplasma genera 5 ATP por segundo, lo que significa que, si estás perdiendo ATP, añade algunos espacios de citoplasma o quita algunos orgánulos."
+msgstr ""
+"Un consejo: la Osmorregulación consume 1 ATP por segundo por espacios que "
+"tu célula ocupe. Cada espacio ocupado por citoplasma genera 5 ATP por "
+"segundo, lo que significa que, si estás perdiendo ATP, añade algunos "
+"espacios de citoplasma o quita algunos orgánulos."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "Dato curioso: En la vida real, las células procariotas tienen algo llamado biocompartimientos, que actúan como orgánulos, y son llamados orgánulos poliedricos."
+msgstr ""
+"Dato curioso: En la vida real, las células procariotas tienen algo llamado "
+"biocompartimientos, que actúan como orgánulos, y son llamados orgánulos "
+"poliedricos."
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Dato curioso: Los metabolosomas son lo que se llama un orgánulo poliédrico."
+msgstr ""
+"Dato curioso: Los metabolosomas son lo que se llama un orgánulo poliédrico."
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
@@ -175,15 +270,21 @@ msgstr "Un consejo: A veces es mejor huir de otras células."
 
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Un consejo: Si otra célula mide la mitad que tu célula, puedes engullirla."
+msgstr ""
+"Un consejo: Si otra célula mide la mitad que tu célula, puedes engullirla."
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "Un consejo: Las bacterias pueden ser mas fuertes de lo que aparentan. Pueden ser pequeñas, pero algunas de ellas pueden enterrarse dentro de tu célula y matarla!"
+msgstr ""
+"Un consejo: Las bacterias pueden ser mas fuertes de lo que aparentan. "
+"Pueden ser pequeñas, pero algunas de ellas pueden enterrarse dentro de tu "
+"célula y matarla!"
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "Un consejo: Otras especies pueden ser cazadas hasta la extinción por tí u otras especies."
+msgstr ""
+"Un consejo: Otras especies pueden ser cazadas hasta la extinción por tí u "
+"otras especies."
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
@@ -199,11 +300,15 @@ msgstr "Fíjate en esas células azules."
 
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Un consejo: Los biomas son más que solo fondos diferentes, los compuestos en distintos biomas son generados de forma diferente."
+msgstr ""
+"Un consejo: Los biomas son más que solo fondos diferentes, los compuestos "
+"en distintos biomas son generados de forma diferente."
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "Un consejo: Mientras más flagelos tengas, mas rápido te mueves (wooosh!). Aunque también consumes más ATP"
+msgstr ""
+"Un consejo: Mientras más flagelos tengas, mas rápido te mueves (wooosh!). "
+"Aunque también consumes más ATP"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
@@ -211,15 +316,20 @@ msgstr "Un consejo: Puedes engullir pedazos de hierro."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
-msgstr "Un consejo: Prepárate antes de añadir un núcleo. ¡Esas cosas son caras!"
+msgstr ""
+"Un consejo: Prepárate antes de añadir un núcleo. ¡Esas cosas son caras!"
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "Dato curioso: Sabías que hay mas de 8000 ciliados en el planeta Tierra?"
+msgstr ""
+"Dato curioso: Sabías que hay mas de 8000 ciliados en el planeta Tierra?"
 
 #: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "Dato curioso: El Stentor es un ciliado que puede estirarse y atrapar presas en una especie de boca con forma de trompeta que atrae presas generando corrientes en el agua con sus cilios."
+msgstr ""
+"Dato curioso: El Stentor es un ciliado que puede estirarse y atrapar "
+"presas en una especie de boca con forma de trompeta que atrae presas "
+"generando corrientes en el agua con sus cilios."
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
@@ -227,35 +337,53 @@ msgstr "Dato curioso: El Didinium es un ciliado que caza paramecios."
 
 #: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Dato curioso: La Ameba caza y atrapa presas con 'piernas' hechas de citoplasma llamadas pseudópodos. Eventualmente los agregaremos a Thrive."
+msgstr ""
+"Dato curioso: La Ameba caza y atrapa presas con 'piernas' hechas de "
+"citoplasma llamadas pseudópodos. Eventualmente los agregaremos a Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Un consejo: Ten cuidado con células y bacterias grandes, pueden engullirte."
+msgstr ""
+"Un consejo: Ten cuidado con células y bacterias grandes, pueden engullirte."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "El líder del equipo de sonido ha hecho varias canciones que no están todavía añadidas al juego. Puedes escucharlas, o ver vídeos en vivo de el componiendo en su canal de YouTube, Oliver Lugg."
+msgstr ""
+"El líder del equipo de sonido ha hecho varias canciones que no están "
+"todavía añadidas al juego. Puedes escucharlas, o ver vídeos en vivo de el "
+"componiendo en su canal de YouTube, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Un consejo: Si tu célula ocupa 150 espacios, puedes engullir pedazos grandes de hierro."
+msgstr ""
+"Un consejo: Si tu célula ocupa 150 espacios, puedes engullir pedazos "
+"grandes de hierro."
 
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive está pensado como una simulación de un planeta extraterrestre. Por eso tiene sentido que la mayoría de las criaturas que encuentres estén relacionadas a una o dos especies, debido a la evolución ocurriendo a lo largo del juego. ¿Puedes identificarlas?"
+msgstr ""
+"Thrive está pensado como una simulación de un planeta extraterrestre. Por "
+"eso tiene sentido que la mayoría de las criaturas que encuentres estén "
+"relacionadas a una o dos especies, debido a la evolución ocurriendo a lo "
+"largo del juego. ¿Puedes identificarlas?"
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
-msgstr "Dato curioso: El equipo de Thrive hace podcasts de vez en cuando. Échale un vistazo!"
+msgstr ""
+"Dato curioso: El equipo de Thrive hace podcasts de vez en cuando. Échale "
+"un vistazo!"
 
 #: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Dato curioso: ¡Thrive está hecho con el motor de juegos de código abierto Godot!"
+msgstr ""
+"Dato curioso: ¡Thrive está hecho con el motor de juegos de código abierto "
+"Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Dato curioso: Uno de los primeros prototipos funcionales en el juego fue hecho por nuestro genial programador, untrustedlife!"
+msgstr ""
+"Dato curioso: Uno de los primeros prototipos funcionales en el juego fue "
+"hecho por nuestro genial programador, untrustedlife!"
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1258,7 +1386,8 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Arte por {0}"
 
-#: ../src/general/HelpScreen.tscn:107 ../src/microbe_stage/ProcessPanel.tscn:76
+#: ../src/general/HelpScreen.tscn:107
+#: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
 msgstr "Cerrar"
 
@@ -1327,7 +1456,10 @@ msgstr "Advertencia del modo GLES2"
 
 #: ../src/general/MainMenu.tscn:509
 msgid "GLES2_MODE_WARNING_TEXT"
-msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
+msgstr ""
+"Estás usando Thrive en el Modo GLES2. No está probado y probablemente "
+"cause errores. Intenta actualizar tus drivers de video y/o fuerza los "
+"gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
 
 #: ../src/general/OptionsMenu.cs:842
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1609,7 +1741,9 @@ msgstr "¿Volver a los ajustes predeterminados?"
 
 #: ../src/general/OptionsMenu.tscn:1267
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "¿Está seguro de que desea restablecer TODOS las ajustes a los valores predeterminados?"
+msgstr ""
+"¿Está seguro de que desea restablecer TODOS las ajustes a los valores "
+"predeterminados?"
 
 #: ../src/general/OptionsMenu.tscn:1281
 msgid "RESET_INPUTS_TO_DEFAULTS"
@@ -1617,7 +1751,9 @@ msgstr "¿Restablecer entradas a los valores por defecto?"
 
 #: ../src/general/OptionsMenu.tscn:1290
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "¿Está seguro de que desea restablecer la configuración de entrada a los valores predeterminados?"
+msgstr ""
+"¿Está seguro de que desea restablecer la configuración de entrada a los "
+"valores predeterminados?"
 
 #: ../src/general/OptionsMenu.tscn:1304
 msgid "CLOSE_OPTIONS"
@@ -2078,7 +2214,9 @@ msgstr "Rigidez de la Membrana"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:120
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
-msgstr "Una membrana más rígida es más resistente al daño, pero hace más difícil el movimiento."
+msgstr ""
+"Una membrana más rígida es más resistente al daño, pero hace más difícil "
+"el movimiento."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:146
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2014
@@ -2102,11 +2240,19 @@ msgstr "Salud"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
-msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]"
+msgstr ""
+"Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:"
+"compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
-msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la Fermentación, la conversión de glucosa a ATP. Para las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para tener energía. También se usa para almacenar moléculas en la célula."
+msgstr ""
+"Las entrañas de una célula. El citoplasma es la mezcla básica de iones, "
+"proteínas y otras sustancias disueltas en agua que llenan el interior de "
+"la célula. Una de sus funciones es la Fermentación, la conversión de "
+"glucosa a ATP. Para las células que carecen de orgánulos para tener "
+"metabolismos más avanzados, esto es de lo que dependen para tener energía. "
+"También se usa para almacenar moléculas en la célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:344
@@ -2157,11 +2303,21 @@ msgstr "Costo de Osmorregulación"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
-msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Tasa de escalas con concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]"
+msgstr ""
+"Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Tasa de escalas con "
+"concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
-msgstr "Los Metabolosomas son aglomeraciones de proteínas envueltas en cápsides. Pueden convertir la glucosa en ATP mucho más eficientemente que el citoplasma o metabolosomas con un proceso llamado Respiración Aeróbica. Sin embargo, requiere oxígeno para funcionar, y niveles más bajos de oxígeno en el ambiente bajan su funcionalidad. Como los metabolosomas estan directamente suspendidos en el citoplasma, este realiza la fermentación."
+msgstr ""
+"Los Metabolosomas son aglomeraciones de proteínas envueltas en cápsides. "
+"Pueden convertir la glucosa en ATP mucho más eficientemente que el "
+"citoplasma o metabolosomas con un proceso llamado Respiración Aeróbica. "
+"Sin embargo, requiere oxígeno para funcionar, y niveles más bajos de "
+"oxígeno en el ambiente bajan su funcionalidad. Como los metabolosomas "
+"estan directamente suspendidos en el citoplasma, este realiza la "
+"fermentación."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
 msgid "THYLAKOID"
@@ -2169,54 +2325,109 @@ msgstr "Tilacoide"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:423
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
-msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Escalas de tasas con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e intensidad de [thrive:compound type=\"sunlight\"][/thrive:compound]"
+msgstr ""
+"Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Escalas de "
+"tasas con la concentración de [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] e intensidad de [thrive:compound type=\"sunlight\"][/"
+"thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "THYLAKOIDS_DESCRIPTION"
-msgstr "Los Tilacoides son aglomeraciones de proteinas y pigmentos fotosensibles. Estos pigmentos usan la energía de la luz solar para producir glucosa consumiendo agua y dióxido de carbono gaseoso en un proceso llamado Fotosíntesis. Los pigmentos también son lo que le dan su color. La eficiencia de su producción de glucosa escala con la concentración de dióxido de carbono y la intensidad de la luz solar. Como los tilacoides están directamente suspendidos en el citoplasma, éste realiza la fermentación."
+msgstr ""
+"Los Tilacoides son aglomeraciones de proteinas y pigmentos fotosensibles. "
+"Estos pigmentos usan la energía de la luz solar para producir glucosa "
+"consumiendo agua y dióxido de carbono gaseoso en un proceso llamado "
+"Fotosíntesis. Los pigmentos también son lo que le dan su color. La "
+"eficiencia de su producción de glucosa escala con la concentración de "
+"dióxido de carbono y la intensidad de la luz solar. Como los tilacoides "
+"están directamente suspendidos en el citoplasma, éste realiza la "
+"fermentación."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "Convierte [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en [thrive:compound type=\"glucose\"][/thrive:compound]. Escalas de tasas con concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. También convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]"
+msgstr ""
+"Convierte [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Escalas de tasas con "
+"concentración de [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound]. También convierte [thrive:compound type=\"glucose\"][/thrive:"
+"compound] en [thrive:compound type=\"atp\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
-msgstr "Las proteinas quimiosintetizadoras son aglomeraciones de proteinas en el citoplasma que pueden convertir sulfuro de hidrógeno, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Sulfuro de Hidrógeno. Su eficiencia escala con la concentración de dióxido de carbono. Como están directamente suspendidos en el citoplasma, éste realiza la fermentación."
+msgstr ""
+"Las proteinas quimiosintetizadoras son aglomeraciones de proteinas en el "
+"citoplasma que pueden convertir sulfuro de hidrógeno, agua y dióxido de "
+"carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Sulfuro "
+"de Hidrógeno. Su eficiencia escala con la concentración de dióxido de "
+"carbono. Como están directamente suspendidos en el citoplasma, éste "
+"realiza la fermentación."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:617
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Convierte [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. La velocidad es directamente proporcional a la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y [thrive:compound type=\"oxygen\"][/thrive:compound]"
+msgstr ""
+"Convierte [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:"
+"compound type=\"atp\"][/thrive:compound]. La velocidad es directamente "
+"proporcional a la concentración de [thrive:compound type=\"carbondioxide\"]"
+"[/thrive:compound] y [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:618
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y oxigeno para oxidizar el hierro de un estado químico a otro. Este proceso, llamado Respiración Férrica, libera energía para la célula."
+msgstr ""
+"La Rusticianina es una proteína capaz de usar dióxido de carbono gaseoso y "
+"oxigeno para oxidizar el hierro de un estado químico a otro. Este proceso, "
+"llamado Respiración Férrica, libera energía para la célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
 #, fuzzy
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
-msgstr "La Nitrogenasa es una proteína capaz de usar dióxido de carbono gaseoso y ATP para producir amoníaco, un nutriente clave para el crecimiento celular. Este es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la fermentación."
+msgstr ""
+"La Nitrogenasa es una proteína capaz de usar dióxido de carbono gaseoso y "
+"ATP para producir amoníaco, un nutriente clave para el crecimiento "
+"celular. Este es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo "
+"la nitrogenasa está directamente suspendida en el citoplasma, éste realiza "
+"la fermentación."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:715
 msgid "NITROGENASE_DESCRIPTION"
-msgstr "La Nitrogenasa es una proteína capaz de usar dióxido de carbono gaseoso y ATP para producir amoníaco, un nutriente clave para el crecimiento celular. Este es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la fermentación."
+msgstr ""
+"La Nitrogenasa es una proteína capaz de usar dióxido de carbono gaseoso y "
+"ATP para producir amoníaco, un nutriente clave para el crecimiento "
+"celular. Este es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo "
+"la nitrogenasa está directamente suspendida en el citoplasma, éste realiza "
+"la fermentación."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:812
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
-msgstr "Los Metabolosomas son aglomeraciones de proteínas envueltas en cápsides. Pueden convertir la glucosa en ATP mucho más eficientemente que el citoplasma o metabolosomas con un proceso llamado Respiración Aeróbica. Sin embargo, requiere oxígeno para funcionar, y niveles más bajos de oxígeno en el ambiente bajan su funcionalidad. Como los metabolosomas estan directamente suspendidos en el citoplasma, este realiza la fermentación."
+msgstr ""
+"Los Metabolosomas son aglomeraciones de proteínas envueltas en cápsides. "
+"Pueden convertir la glucosa en ATP mucho más eficientemente que el "
+"citoplasma o metabolosomas con un proceso llamado Respiración Aeróbica. "
+"Sin embargo, requiere oxígeno para funcionar, y niveles más bajos de "
+"oxígeno en el ambiente bajan su funcionalidad. Como los metabolosomas "
+"estan directamente suspendidos en el citoplasma, este realiza la "
+"fermentación."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:813
 msgid "OXYTOXISOME_DESC"
-msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
+msgstr ""
+"Un metabolosoma modificado para la producción de OxiToxi NT, una forma "
+"primitiva de toxinas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:909
 #, fuzzy
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr "Los flagelos son grupos de fibras de proteinas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en una dirección."
+msgstr ""
+"Los flagelos son grupos de fibras de proteinas en forma de látigo que se "
+"extienden desde la membrana de la célula. Usan ATP para propulsar a la "
+"célula en una dirección."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
-msgstr "Los flagelos son grupos de fibras de proteinas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en una dirección."
+msgstr ""
+"Los flagelos son grupos de fibras de proteinas en forma de látigo que se "
+"extienden desde la membrana de la célula. Usan ATP para propulsar a la "
+"célula en una dirección."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:927
 msgid "SPEED"
@@ -2239,38 +2450,86 @@ msgstr "A implementar."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1122
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "La Nitrogenasa es una proteína capaz de usar dióxido de carbono gaseoso y ATP para producir amoníaco, un nutriente clave para el crecimiento celular. Este es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la fermentación."
+msgstr ""
+"La Nitrogenasa es una proteína capaz de usar dióxido de carbono gaseoso y "
+"ATP para producir amoníaco, un nutriente clave para el crecimiento "
+"celular. Este es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo "
+"la nitrogenasa está directamente suspendida en el citoplasma, éste realiza "
+"la fermentación."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1123
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "La Nitrogenasa es una proteína capaz de usar dióxido de carbono gaseoso y ATP para producir amoníaco, un nutriente clave para el crecimiento celular. Este es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la fermentación."
+msgstr ""
+"La Nitrogenasa es una proteína capaz de usar dióxido de carbono gaseoso y "
+"ATP para producir amoníaco, un nutriente clave para el crecimiento "
+"celular. Este es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo "
+"la nitrogenasa está directamente suspendida en el citoplasma, éste realiza "
+"la fermentación."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1205
 msgid "NUCLEUS_SMALL_DESCRIPTION"
-msgstr "Permite la evolución de orgánulos más avanzados y unidos a la membrana. Consume mucho ATP y es irreversible de evolucionar."
+msgstr ""
+"Permite la evolución de orgánulos más avanzados y unidos a la membrana. "
+"Consume mucho ATP y es irreversible de evolucionar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1206
 msgid "NUCLEUS_DESCRIPTION"
-msgstr "La característica definitoria de las células eucariotas. El núcleo también incluye el retículo endoplásmico y el aparato de golgi. Es una evolución de las células procariotas para desarrollar un sistema de membranas internas, hecho asimilando otra procariota adentro de sí misma. Esto permite compartimentar los distintos procesos que ocurren dentro de la célula y evitar su superposición. La adición del núcleo a una célula permite que sus nuevos orgánulos, contenidos por una bicapa lipídica, sean mucho más complejos, eficientes y especializados. No obstante, esto viene con el precio de aumentar drásticamente el tamaño de la célula y requerir más energía para mantenerla."
+msgstr ""
+"La característica definitoria de las células eucariotas. El núcleo también "
+"incluye el retículo endoplásmico y el aparato de golgi. Es una evolución "
+"de las células procariotas para desarrollar un sistema de membranas "
+"internas, hecho asimilando otra procariota adentro de sí misma. Esto "
+"permite compartimentar los distintos procesos que ocurren dentro de la "
+"célula y evitar su superposición. La adición del núcleo a una célula "
+"permite que sus nuevos orgánulos, contenidos por una bicapa lipídica, sean "
+"mucho más complejos, eficientes y especializados. No obstante, esto viene "
+"con el precio de aumentar drásticamente el tamaño de la célula y requerir "
+"más energía para mantenerla."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1302
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
-msgstr "La central enérgica de la célula. La mitocondria es una estructura de doble membrana llena de proteinas y encimas. Es una célula procariota que ha sido asimilada para uso de su anfitrión eucariota. Es capaz de convertir glucosa en ATP a una eficiencia mucho mayor que otros procesos gracias a la Respiración Aeróbica. No obstante, requiere oxígeno para funcionar, y niveles más bajos de oxígeno empeoran su eficiencia."
+msgstr ""
+"La central enérgica de la célula. La mitocondria es una estructura de "
+"doble membrana llena de proteinas y encimas. Es una célula procariota que "
+"ha sido asimilada para uso de su anfitrión eucariota. Es capaz de "
+"convertir glucosa en ATP a una eficiencia mucho mayor que otros procesos "
+"gracias a la Respiración Aeróbica. No obstante, requiere oxígeno para "
+"funcionar, y niveles más bajos de oxígeno empeoran su eficiencia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1303
 msgid "MITOCHONDRION_DESCRIPTION"
-msgstr "La central enérgica de la célula. La mitocondria es una estructura de doble membrana llena de proteinas y encimas. Es una célula procariota que ha sido asimilada para uso de su anfitrión eucariota. Es capaz de convertir glucosa en ATP a una eficiencia mucho mayor que otros procesos gracias a la Respiración Aeróbica. No obstante, requiere oxígeno para funcionar, y niveles más bajos de oxígeno empeoran su eficiencia."
+msgstr ""
+"La central enérgica de la célula. La mitocondria es una estructura de "
+"doble membrana llena de proteinas y encimas. Es una célula procariota que "
+"ha sido asimilada para uso de su anfitrión eucariota. Es capaz de "
+"convertir glucosa en ATP a una eficiencia mucho mayor que otros procesos "
+"gracias a la Respiración Aeróbica. No obstante, requiere oxígeno para "
+"funcionar, y niveles más bajos de oxígeno empeoran su eficiencia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
-msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
+msgstr ""
+"Los cloroplastos son una estructura de doble membrana que contiene "
+"pigmentos fotosensibles apilados en sacos membranosos. Es una procariota "
+"asimilada para uso de su anfitrión eucariota. Los pigmentos en el "
+"cloroplasto usan la energía de la luz solar para convertir agua y dióxido "
+"de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos "
+"son lo que le dan su color. Su eficiencia escala con la concentración de "
+"dióxido de carbono atmosférico y la intensidad de la luz solar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1387
 msgid "CHLOROPLAST_DESCRIPTION"
-msgstr "Los cloroplastos son una estructura de doble membrana que contiene pigmentos fotosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el cloroplasto usan la energía de la luz solar para convertir agua y dióxido de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos son lo que le dan su color. Su eficiencia escala con la concentración de dióxido de carbono atmosférico y la intensidad de la luz solar."
+msgstr ""
+"Los cloroplastos son una estructura de doble membrana que contiene "
+"pigmentos fotosensibles apilados en sacos membranosos. Es una procariota "
+"asimilada para uso de su anfitrión eucariota. Los pigmentos en el "
+"cloroplasto usan la energía de la luz solar para convertir agua y dióxido "
+"de carbono en glucosa en un proceso llamado Fotosíntesis. Los pigmentos "
+"son lo que le dan su color. Su eficiencia escala con la concentración de "
+"dióxido de carbono atmosférico y la intensidad de la luz solar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1469
 msgid "THERMOPLAST"
@@ -2279,11 +2538,21 @@ msgstr "Termoplasto"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1470
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis."
+msgstr ""
+"El Termoplasto es una estructura de doble membrana que contiene pigmentos "
+"termosensibles apilados en sacos membranosos. Es una procariota asimilada "
+"para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan "
+"las diferencias de energía térmica en el ambiente para producir energía en "
+"un proceso llamado Termosíntesis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1471
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis."
+msgstr ""
+"El Termoplasto es una estructura de doble membrana que contiene pigmentos "
+"termosensibles apilados en sacos membranosos. Es una procariota asimilada "
+"para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan "
+"las diferencias de energía térmica en el ambiente para producir energía en "
+"un proceso llamado Termosíntesis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
@@ -2294,38 +2563,70 @@ msgstr "Colocar orgánulos"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteinas capaces de convertir sulfuro de hidrógeno, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Sulfuro de Hidrógeno. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
+msgstr ""
+"Los Quimioplastos son estructuras de membrana doble que contienen "
+"proteinas capaces de convertir sulfuro de hidrógeno, agua y dióxido de "
+"carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Sulfuro "
+"de Hidrógeno. Su eficiencia escala con la concentración de dióxido de "
+"carbono atmosférico."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "CHEMOPLAST_DESCRIPTION"
-msgstr "Los Quimioplastos son estructuras de membrana doble que contienen proteinas capaces de convertir sulfuro de hidrógeno, agua y dióxido de carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Sulfuro de Hidrógeno. Su eficiencia escala con la concentración de dióxido de carbono atmosférico."
+msgstr ""
+"Los Quimioplastos son estructuras de membrana doble que contienen "
+"proteinas capaces de convertir sulfuro de hidrógeno, agua y dióxido de "
+"carbono gaseoso en glucosa en un proceso llamado Quimiosíntesis de Sulfuro "
+"de Hidrógeno. Su eficiencia escala con la concentración de dióxido de "
+"carbono atmosférico."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
-msgstr "El Nitroplasto es una proteína capaz de usar nitrogeno, oxígeno y ATP para producir amoníaco, un nutriente clave para el crecimiento celular. A este proceso se lo denomina Fijación de Nitrógeno Aeróbica."
+msgstr ""
+"El Nitroplasto es una proteína capaz de usar nitrogeno, oxígeno y ATP para "
+"producir amoníaco, un nutriente clave para el crecimiento celular. A este "
+"proceso se lo denomina Fijación de Nitrógeno Aeróbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "El Nitroplasto es una proteína capaz de usar nitrogeno, oxígeno y ATP para producir amoníaco, un nutriente clave para el crecimiento celular. A este proceso se lo denomina Fijación de Nitrógeno Aeróbica."
+msgstr ""
+"El Nitroplasto es una proteína capaz de usar nitrogeno, oxígeno y ATP para "
+"producir amoníaco, un nutriente clave para el crecimiento celular. A este "
+"proceso se lo denomina Fijación de Nitrógeno Aeróbica."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1767
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "La Vacuola es un orgánulo membranoso interno usado para el almacenamiento en la célula. Están compuestas por varias vesículas, estructuras membranosas más pequeñas, fusionadas. Está llena de agua, que usa para contener moléculas, encimas, sólidos y otras sustancias. Su forma es fluida y puede variar entre células."
+msgstr ""
+"La Vacuola es un orgánulo membranoso interno usado para el almacenamiento "
+"en la célula. Están compuestas por varias vesículas, estructuras "
+"membranosas más pequeñas, fusionadas. Está llena de agua, que usa para "
+"contener moléculas, encimas, sólidos y otras sustancias. Su forma es "
+"fluida y puede variar entre células."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1768
 msgid "VACUOLE_DESCRIPTION"
-msgstr "La Vacuola es un orgánulo membranoso interno usado para el almacenamiento en la célula. Están compuestas por varias vesículas, estructuras membranosas más pequeñas, fusionadas. Está llena de agua, que usa para contener moléculas, encimas, sólidos y otras sustancias. Su forma es fluida y puede variar entre células."
+msgstr ""
+"La Vacuola es un orgánulo membranoso interno usado para el almacenamiento "
+"en la célula. Están compuestas por varias vesículas, estructuras "
+"membranosas más pequeñas, fusionadas. Está llena de agua, que usa para "
+"contener moléculas, encimas, sólidos y otras sustancias. Su forma es "
+"fluida y puede variar entre células."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1864
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
-msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
+msgstr ""
+"La vacuola de toxinas es una vacuola modificada específicamente para la "
+"producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas "
+"incrementan la velocidad a la que se pueden disparar las toxinas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
+msgstr ""
+"La vacuola de toxinas es una vacuola modificada específicamente para la "
+"producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas "
+"incrementan la velocidad a la que se pueden disparar las toxinas."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1961
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -2333,7 +2634,10 @@ msgstr "Vacuola Bioluminiscente"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1988
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
-msgstr "Siendo la forma más básica de membrana, tiene poca protección. También necesita más energía para no deformarse. Su ventaja es su mayor mobilidad y velocidad de absorción de recursos."
+msgstr ""
+"Siendo la forma más básica de membrana, tiene poca protección. También "
+"necesita más energía para no deformarse. Su ventaja es su mayor mobilidad "
+"y velocidad de absorción de recursos."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2083
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2249
@@ -2346,11 +2650,17 @@ msgstr "Velocidad de Absorción de Recursos"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2156
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
-msgstr "Una membrana con dos capas; tiene mejor protección y consume menos energía. Sin embargo, reduce un poco la velocidad del movimiento y absorbe recursos más lentamente."
+msgstr ""
+"Una membrana con dos capas; tiene mejor protección y consume menos "
+"energía. Sin embargo, reduce un poco la velocidad del movimiento y absorbe "
+"recursos más lentamente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2320
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
-msgstr "Esta membrana tiene una pared celular, resultando en mejor protección, especialmente contra el daño físico. También cuesta menos energía, pero absorbe recursos y se mueve muy lentamente."
+msgstr ""
+"Esta membrana tiene una pared celular, resultando en mejor protección, "
+"especialmente contra el daño físico. También cuesta menos energía, pero "
+"absorbe recursos y se mueve muy lentamente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2951
@@ -2367,7 +2677,10 @@ msgstr "No puede engullir"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
-msgstr "Esta membrana tiene una pared celular, por lo que provee una mayor protección, especialmente contra toxinas. También consume menos energía. Pero se mueve y absorbe recursos muy lentamente."
+msgstr ""
+"Esta membrana tiene una pared celular, por lo que provee una mayor "
+"protección, especialmente contra toxinas. También consume menos energía. "
+"Pero se mueve y absorbe recursos muy lentamente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2718
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2985
@@ -2377,11 +2690,18 @@ msgstr "Resistencia Toxica"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2790
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
-msgstr "Esta membrana tiene un caparazón resistente hecho de carbonato de calcio. Tiene una alta resistencia y requiere menos energía. Sus desventajas son su reducida velocidad de movimiento y de absorción."
+msgstr ""
+"Esta membrana tiene un caparazón resistente hecho de carbonato de calcio. "
+"Tiene una alta resistencia y requiere menos energía. Sus desventajas son "
+"su reducida velocidad de movimiento y de absorción."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "SILICA_MEMBRANE_DESCRIPTION"
-msgstr "Esta membrana tiene una dura pared de sílice. Puede resistir el daño muy bien, especialmente el daño físico. También requiere menos energía. No obstante, ralentiza a la célula drásticamente y absorbe recursos a una velocidad menor."
+msgstr ""
+"Esta membrana tiene una dura pared de sílice. Puede resistir el daño muy "
+"bien, especialmente el daño físico. También requiere menos energía. No "
+"obstante, ralentiza a la célula drásticamente y absorbe recursos a una "
+"velocidad menor."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
 #, fuzzy
@@ -2390,12 +2710,20 @@ msgstr "Agregar nueva tecla personalizada"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3446
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr "Este valor solo se aplica a nuevos juegos empezados tras cambiar esta opción"
+msgstr ""
+"Este valor solo se aplica a nuevos juegos empezados tras cambiar esta "
+"opción"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3452
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
-msgstr "La central enérgica de la célula. La mitocondria es una estructura de doble membrana llena de proteinas y encimas. Es una célula procariota que ha sido asimilada para uso de su anfitrión eucariota. Es capaz de convertir glucosa en ATP a una eficiencia mucho mayor que otros procesos gracias a la Respiración Aeróbica. No obstante, requiere oxígeno para funcionar, y niveles más bajos de oxígeno empeoran su eficiencia."
+msgstr ""
+"La central enérgica de la célula. La mitocondria es una estructura de "
+"doble membrana llena de proteinas y encimas. Es una célula procariota que "
+"ha sido asimilada para uso de su anfitrión eucariota. Es capaz de "
+"convertir glucosa en ATP a una eficiencia mucho mayor que otros procesos "
+"gracias a la Respiración Aeróbica. No obstante, requiere oxígeno para "
+"funcionar, y niveles más bajos de oxígeno empeoran su eficiencia."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
@@ -2417,15 +2745,15 @@ msgstr "N/A PM"
 msgid "DEATH"
 msgstr "muerte"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:577
+#: ../src/microbe_stage/Microbe.Contact.cs:584
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "Búsqueda de recursos exitosa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:584
+#: ../src/microbe_stage/Microbe.Contact.cs:591
 msgid "SUCCESSFUL_KILL"
 msgstr "Caza exitosa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:786
+#: ../src/microbe_stage/Microbe.Contact.cs:793
 msgid "ESCAPE_ENGULFING"
 msgstr "Engullición evadida"
 
@@ -2839,7 +3167,8 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:576
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "La cantidad de glucosa ha sido reducida a {0} de su cantidad anterior."
+msgstr ""
+"La cantidad de glucosa ha sido reducida a {0} de su cantidad anterior."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:583
 msgid "MEGA_YEARS"
@@ -2914,7 +3243,10 @@ msgstr "EXTINCIÓN"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
-msgstr "Cómo el 99% de todas las especies que han existido, tu especie se ha extinto. Otras especies llenarán tu espacio y prosperarán, pero no va a ser tu especie. Será olvidada, un experimento evolutivo fallido."
+msgstr ""
+"Cómo el 99% de todas las especies que han existido, tu especie se ha "
+"extinto. Otras especies llenarán tu espacio y prosperarán, pero no va a "
+"ser tu especie. Será olvidada, un experimento evolutivo fallido."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
@@ -2922,7 +3254,9 @@ msgstr "HAS PROSPERADO!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:63
 msgid "WIN_TEXT"
-msgstr "Felicitaciones! Has ganado esta versión de Thrive! Puedes seguir jugando libremente luego de esta notificación, o puedes empezar una nueva partida."
+msgstr ""
+"Felicitaciones! Has ganado esta versión de Thrive! Puedes seguir jugando "
+"libremente luego de esta notificación, o puedes empezar una nueva partida."
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -3042,12 +3376,19 @@ msgstr "Inválido"
 
 #: ../src/saving/SaveList.cs:187
 msgid "SAVE_DELETE_WARNING"
-msgstr "Eliminar esta partida es irreversible, ¿está seguro querer eliminar {0} permanentemente?"
+msgstr ""
+"Eliminar esta partida es irreversible, ¿está seguro querer eliminar {0} "
+"permanentemente?"
 
 #: ../src/saving/SaveList.cs:281
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr "La Vacuola es un orgánulo membranoso interno usado para el almacenamiento en la célula. Están compuestas por varias vesículas, estructuras membranosas más pequeñas, fusionadas. Está llena de agua, que usa para contener moléculas, encimas, sólidos y otras sustancias. Su forma es fluida y puede variar entre células."
+msgstr ""
+"La Vacuola es un orgánulo membranoso interno usado para el almacenamiento "
+"en la célula. Están compuestas por varias vesículas, estructuras "
+"membranosas más pequeñas, fusionadas. Está llena de agua, que usa para "
+"contener moléculas, encimas, sólidos y otras sustancias. Su forma es "
+"fluida y puede variar entre células."
 
 #: ../src/saving/SaveList.tscn:49 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -3064,15 +3405,19 @@ msgstr "Cargar partida incompatible?"
 #: ../src/saving/SaveList.tscn:95
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Esta partida guardada es de una versión más nueva de Thrive, y muy probablemente incompatible.\n"
+"Esta partida guardada es de una versión más nueva de Thrive, y muy "
+"probablemente incompatible.\n"
 "Intentar cargar?"
 
 #: ../src/saving/SaveList.tscn:119
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Esta partida es de una versión vieja de Thrive, y muy probablemente incompatible.\n"
-"Como Thrive esta actualmente en desarrollo, la compatibilidad entre partidas no es una prioridad.\n"
-"Puedes reportar problemas que encuentres, pero no son la mayor prioridad ahora mismo.\n"
+"Esta partida es de una versión vieja de Thrive, y muy probablemente "
+"incompatible.\n"
+"Como Thrive esta actualmente en desarrollo, la compatibilidad entre "
+"partidas no es una prioridad.\n"
+"Puedes reportar problemas que encuentres, pero no son la mayor prioridad "
+"ahora mismo.\n"
 "Intentar cargar?"
 
 #: ../src/saving/SaveList.tscn:134
@@ -3082,7 +3427,8 @@ msgstr "¿Cargar partida inválida?"
 #: ../src/saving/SaveList.tscn:143
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
-"La información de la partida guardada no pudo ser cargada desde este archivo.\n"
+"La información de la partida guardada no pudo ser cargada desde este "
+"archivo.\n"
 "Probablemente esté corrupta o sea de una versión futura.\n"
 "¿Intentar cargar de todos modos?"
 
@@ -3094,7 +3440,8 @@ msgstr "La partida seleccionada es incompatible"
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "La partida seleccionada no es compatible con esta versión de Thrive.\n"
-"Como Thrive está en desarrollo, la compatibilidad entre partidas no es una prioridad, por lo tanto no hay un convertidor para actualizar partidas."
+"Como Thrive está en desarrollo, la compatibilidad entre partidas no es una "
+"prioridad, por lo tanto no hay un convertidor para actualizar partidas."
 
 #: ../src/saving/SaveList.tscn:183
 #, fuzzy
@@ -3104,7 +3451,12 @@ msgstr "La partida seleccionada es incompatible"
 #: ../src/saving/SaveList.tscn:192
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
-msgstr "La Vacuola es un orgánulo membranoso interno usado para el almacenamiento en la célula. Están compuestas por varias vesículas, estructuras membranosas más pequeñas, fusionadas. Está llena de agua, que usa para contener moléculas, encimas, sólidos y otras sustancias. Su forma es fluida y puede variar entre células."
+msgstr ""
+"La Vacuola es un orgánulo membranoso interno usado para el almacenamiento "
+"en la célula. Están compuestas por varias vesículas, estructuras "
+"membranosas más pequeñas, fusionadas. Está llena de agua, que usa para "
+"contener moléculas, encimas, sólidos y otras sustancias. Su forma es "
+"fluida y puede variar entre células."
 
 #: ../src/saving/SaveList.tscn:207
 #, fuzzy
@@ -3151,12 +3503,15 @@ msgstr "Eliminar esta partida es irreversible, eliminar permanentemente?"
 
 #: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr "Eliminar la(s) partida(s) seleccionada(s) es irreversible, eliminar {0} partida(s)?"
+msgstr ""
+"Eliminar la(s) partida(s) seleccionada(s) es irreversible, eliminar {0} "
+"partida(s)?"
 
 #: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Eliminar todos los autoguardados y guardados rápidos es irreversible, eliminar lo siguiente?\n"
+"Eliminar todos los autoguardados y guardados rápidos es irreversible, "
+"eliminar lo siguiente?\n"
 " - {0} Autoguardado(s)\n"
 " - {0} Guardado(s) rápido(s)"
 
@@ -3233,50 +3588,66 @@ msgstr "Tutorial"
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Editor de Microbio.\n"
-"Aquí puedes ver lo que ha ocurrido desde el principio del juego o desde la última vez que entraste al editor y hacer cambios a tu especie.\n"
+"Aquí puedes ver lo que ha ocurrido desde el principio del juego o desde la "
+"última vez que entraste al editor y hacer cambios a tu especie.\n"
 "\n"
-"En esta pestaña puedes ver un reporte de cuáles especies existen, dónde, y sus poblaciones. También puedes ver cambios en el ambiente en la parte superior.\n"
+"En esta pestaña puedes ver un reporte de cuáles especies existen, dónde, y "
+"sus poblaciones. También puedes ver cambios en el ambiente en la parte "
+"superior.\n"
 "\n"
-"Para ir a la pestaña siguiente en el editor, presiona el botón 'Siguiente' en la parte inferior derecha."
+"Para ir a la pestaña siguiente en el editor, presiona el botón 'Siguiente' "
+"en la parte inferior derecha."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:97
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Este es el mapa de biomas.\n"
-"Aquí puedes ver los diferentes biomas en los que pueden vivir los distintos microbios.\n"
+"Aquí puedes ver los diferentes biomas en los que pueden vivir los "
+"distintos microbios.\n"
 "\n"
 "Tu bioma actual está resaltado.\n"
-"Puedes hacer click en los biomas con el ratón para seleccionarlos y ver sus detalles en la parte derecha.\n"
+"Puedes hacer click en los biomas con el ratón para seleccionarlos y ver "
+"sus detalles en la parte derecha.\n"
 "\n"
-"Si seleccionas un bioma al lado de en el que estás, puedes presionar el botón a la derecha para moverte ahí. Esto permite que tu población se propague a nuevos biomas.\n"
+"Si seleccionas un bioma al lado de en el que estás, puedes presionar el "
+"botón a la derecha para moverte ahí. Esto permite que tu población se "
+"propague a nuevos biomas.\n"
 "\n"
 "Selecciona un bioma para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:131
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"Este es el editor de célula donde puedes añadir o quitar orgánulos a tu especie consumiendo puntos de mutación, o PM.\n"
+"Este es el editor de célula donde puedes añadir o quitar orgánulos a tu "
+"especie consumiendo puntos de mutación, o PM.\n"
 "\n"
-"También puedes cambiar otras propiedades de tu especie en las otras pestañas del editor.\n"
+"También puedes cambiar otras propiedades de tu especie en las otras "
+"pestañas del editor.\n"
 "\n"
-"Para continuar, selecciona un orgánulo del panel en la izquierda (citoplasma es una buena elección). Luego haz click al lado del espacio mostrado en el centro de la pantalla y añade el orgánulo a tu especie."
+"Para continuar, selecciona un orgánulo del panel en la izquierda "
+"(citoplasma es una buena elección). Luego haz click al lado del espacio "
+"mostrado en el centro de la pantalla y añade el orgánulo a tu especie."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:165
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Quitar orgánulos cuesta 10 PM, ya que es una mutación. Haz click derecho en un orgánulo para quitarlo.\n"
+"Quitar orgánulos cuesta 10 PM, ya que es una mutación. Haz click derecho "
+"en un orgánulo para quitarlo.\n"
 "Si cometes un error, puedes deshacer tus cambios desde el editor.\n"
 "\n"
-"Nota: Quitar orgánulos añadidos en la misma sesión del editor no cuesta MP.\n"
+"Nota: Quitar orgánulos añadidos en la misma sesión del editor no cuesta "
+"MP.\n"
 "\n"
 "Presiona el botón de deshacer para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:202
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Al seleccionar los orgánulos a añadir, presta atención a sus descripciones para saber que procesos realizan y que compuestos producen.\n"
+"Al seleccionar los orgánulos a añadir, presta atención a sus descripciones "
+"para saber que procesos realizan y que compuestos producen.\n"
 "\n"
-"También presta atención a el balance de ATP mostrado en la parte superior derecha de la pantalla para asegurarte de que tu célula sobreviva.\n"
+"También presta atención a el balance de ATP mostrado en la parte superior "
+"derecha de la pantalla para asegurarte de que tu célula sobreviva.\n"
 "\n"
 "Puedes rotar orgánulos con A y D antes de añadirlas.\n"
 "\n"
@@ -3285,11 +3656,14 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Eso es lo básico de el editor. Puedes ver las otras pestañas del editor para más opciones.\n"
+"Eso es lo básico de el editor. Puedes ver las otras pestañas del editor "
+"para más opciones.\n"
 "\n"
-"Puedes renombrar tu especie al hacer click en el nombre de la especie y editando el texto.\n"
+"Puedes renombrar tu especie al hacer click en el nombre de la especie y "
+"editando el texto.\n"
 "\n"
-"Al principio, deberías mantener el tamaño de la célula bajo y moverte a los biomas de la superficie.\n"
+"Al principio, deberías mantener el tamaño de la célula bajo y moverte a "
+"los biomas de la superficie.\n"
 "\n"
 "Buena suerte!"
 
@@ -3300,13 +3674,16 @@ msgstr "Entendido"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
+"En un planeta distante, eones de actividad volcánica e impactos meteóricos "
+"han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
 "\n"
 "La vida.\n"
 "\n"
-"Simples microbios residen en las regiones más profundas del océano. Eres el último antepasado común ancestral (LUCA) en el planeta.\n"
+"Simples microbios residen en las regiones más profundas del océano. Eres "
+"el último antepasado común ancestral (LUCA) en el planeta.\n"
 "\n"
-"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar cada generación para competir contra los otros microbios."
+"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y "
+"evolucionar cada generación para competir contra los otros microbios."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
 msgid "SHOW_TUTORIALS"
@@ -3319,7 +3696,8 @@ msgstr "Empezar a prosperar"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:148
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Para controlar tu célula, usa las teclas mostradas cerca de tu célula en el centro de la pantalla, y el ratón para controlar la orientación.\n"
+"Para controlar tu célula, usa las teclas mostradas cerca de tu célula en "
+"el centro de la pantalla, y el ratón para controlar la orientación.\n"
 "\n"
 "Prueba todas las teclas por unos segundos para continuar."
 
@@ -3327,13 +3705,15 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Consigue glucosa (nubes blancas) al moverte hacia ella.\n"
-"Tu célula necesita glucosa para producir energía, y por lo tanto, sobrevivir.\n"
+"Tu célula necesita glucosa para producir energía, y por lo tanto, "
+"sobrevivir.\n"
 "Sigue la linea desde tu célula hacia la glucosa."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Mantén la atención en la barra de HP al lado de la barra de ATP (parte inferior derecha).\n"
+"Mantén la atención en la barra de HP al lado de la barra de ATP (parte "
+"inferior derecha).\n"
 "Tu célula muere si se queda sin HP.\n"
 "Mientras tengas ATP, regenerarás tu HP.\n"
 "Asegurate de conseguir suficiente glucosa para producir ATP."
@@ -3341,26 +3721,31 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:301
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Para que tu célula se reproduzca, necesita duplicar sus orgánulos. Para hacer esto necesitas amoníaco y fosfato.\n"
+"Para que tu célula se reproduzca, necesita duplicar sus orgánulos. Para "
+"hacer esto necesitas amoníaco y fosfato.\n"
 "Mira el indicador en la parte inferior derecha para ver cuánto necesitas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"En un planeta distante, eones de actividad volcánica e impactos meteóricos han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
+"En un planeta distante, eones de actividad volcánica e impactos meteóricos "
+"han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
 "\n"
 "La vida.\n"
 "\n"
-"Simples microbios residen en las regiones más profundas del océano. Eres el último antepasado común ancestral (LUCA) en el planeta.\n"
+"Simples microbios residen en las regiones más profundas del océano. Eres "
+"el último antepasado común ancestral (LUCA) en el planeta.\n"
 "\n"
-"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y evolucionar cada generación para competir contra los otros microbios."
+"Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y "
+"evolucionar cada generación para competir contra los otros microbios."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Para controlar tu célula, usa las teclas mostradas cerca de tu célula en el centro de la pantalla, y el ratón para controlar la orientación.\n"
+"Para controlar tu célula, usa las teclas mostradas cerca de tu célula en "
+"el centro de la pantalla, y el ratón para controlar la orientación.\n"
 "\n"
 "Prueba todas las teclas por unos segundos para continuar."
 
