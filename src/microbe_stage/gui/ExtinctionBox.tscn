@@ -42,6 +42,7 @@ LoadMenuPath = NodePath("LoadMenu")
 ]]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 size_flags_horizontal = 3
 theme = ExtResource( 3 )
 custom_constants/separation = 10
@@ -65,6 +66,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="ExtinctionBoxMenu/PanelContainer"]
 margin_right = 1280.0
 margin_bottom = 300.0
+mouse_filter = 2
 custom_constants/margin_right = 150
 custom_constants/margin_left = 150
 
@@ -72,6 +74,7 @@ custom_constants/margin_left = 150
 margin_left = 150.0
 margin_right = 1130.0
 margin_bottom = 300.0
+mouse_filter = 2
 alignment = 1
 
 [node name="Title" type="Label" parent="ExtinctionBoxMenu/PanelContainer/MarginContainer/VBoxContainer"]
@@ -145,6 +148,6 @@ __meta__ = {
 autoplay = "FadeIn"
 anims/FadeIn = SubResource( 2 )
 
-[connection signal="pressed" from="ExtinctionBoxMenu/LoadGame" to="." method="OpenGamePressed"]
+[connection signal="pressed" from="ExtinctionBoxMenu/LoadGame" to="." method="OpenLoadGamePressed"]
 [connection signal="pressed" from="ExtinctionBoxMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
 [connection signal="pressed" from="LoadMenu/Back" to="." method="CloseLoadPressed"]

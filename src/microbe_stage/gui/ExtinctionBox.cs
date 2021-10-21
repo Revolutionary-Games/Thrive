@@ -17,7 +17,7 @@ public class ExtinctionBox : Control
         loadMenu = GetNode<Control>(LoadMenuPath);
     }
 
-    private void OpenGamePressed()
+    private void OpenLoadGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
