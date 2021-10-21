@@ -193,11 +193,12 @@ rect_min_size = Vector2( 550, 0 )
 WindowTitle = "DELETE_OLD_SAVES"
 
 [node name="SaveDirectoryWarning" parent="CenterContainer/VBoxContainer" instance=ExtResource( 4 )]
-margin_top = 515.0
+margin_top = 503.0
 margin_right = 1000.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 400, 0 )
 DialogText = "TRY_MAKING_A_SAVE"
+HideCancelButton = true
 WindowTitle = "NO_SAVE_DIRECTORY"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSaveButtonPressed"]
