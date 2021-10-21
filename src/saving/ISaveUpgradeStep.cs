@@ -92,16 +92,16 @@
 
     internal class UpgradeStep055To056 : BaseRecursiveJSONWalkerStep
     {
-        protected override string VersionAfter => "0.5.6.0-alpha";
+        private static readonly string[] BehaviouralKeys = { "Aggression", "Opportunism", "Fear", "Activity", "Focus" };
 
-        private static readonly string[] behaviouralKeys = { "Aggression", "Opportunism", "Fear", "Activity", "Focus" };
+        protected override string VersionAfter => "0.5.6.0-alpha";
 
         protected override void CheckAndUpdateProperty(JProperty property)
         {
             var children = property.Value.Children<JProperty>();
             var childrenNames = children.Select(c => c.Name);
 
-            if (property.Name != "Behaviour" && behaviouralKeys.All(p => childrenNames.Contains(p)))
+            if (property.Name != "Behaviour" && BehaviouralKeys.All(p => childrenNames.Contains(p)))
             {
                 UpgradeBehaviouralValues(property, children);
             }
