@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -598,9 +599,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // No enemy species to spawn in this patch
         if (enemySpecies == 0)
+        {
+            GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
             return;
+        }
 
-        var randomSpecies = species.ElementAt(random.Next(0, enemySpecies));
+        var randomSpecies = species.Random(random);
 
         SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
