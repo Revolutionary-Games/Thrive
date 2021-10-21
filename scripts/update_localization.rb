@@ -5,9 +5,13 @@
 LOCALES = %w[bg ca cs da de en eo es_AR es et fi fr frm he id ko la lb_LU it nl nl_BE
              pl pt_BR pt_PT ru si_LK sr_Cyrl sr_Latn sv th_TH tr lt lv zh_CN zh_TW].freeze
 
-# Weblate disagrees with gettext tools regarding where to wrap, so we have to disable it
-# https://github.com/WeblateOrg/weblate/issues/6350
-LINE_WRAP_SETTINGS = ['--no-wrap'].freeze
+# Weblate disagrees with gettext tools regarding where to wrap
+# https://github.com/Revolutionary-Games/Thrive/issues/2679
+# For now we use 77 column wrapping as that is *mostly* the same
+# If 78 was used instead, it would give slightly less changes from Weblate PRs
+# but normal gettext editors would need manual configuration (as 77 is like the standard
+# line width in gettext)
+LINE_WRAP_SETTINGS = ['--width=77'].freeze
 
 require 'optparse'
 require_relative '../bootstrap_rubysetupsystem'

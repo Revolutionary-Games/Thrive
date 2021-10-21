@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-18 22:42+0200\n"
+"POT-Creation-Date: 2021-10-21 10:58+0300\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -26,11 +26,11 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 "Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:"
 "input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
-"input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi kullan. "
-"Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy\"]Oksitoksi "
-"NT'yi[/thrive:compound] ateş etmek için [thrive:input]g_fire_toxin[/thrive:"
-"input] tuşuna bas. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/"
-"thrive:input] tuşuna bas."
+"input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi "
+"kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy"
+"\"]Oksitoksi NT'yi[/thrive:compound] ateş etmek için [thrive:"
+"input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için "
+"[thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -53,8 +53,8 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Ayrıca senden küçük hücreleri, bakterileri ve demir parçalarını [thrive:"
 "input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsin. Bu "
-"fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve "
-"hücreni yavaşlatır. Yutmayı sona erdirmek için [thrive:"
+"fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur "
+"ve hücreni yavaşlatır. Yutmayı sona erdirmek için [thrive:"
 "input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutma."
 
 #: ../simulation_parameters/common/help_texts.json:22
@@ -63,9 +63,9 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Ozmoregülasyon [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal "
 "olur. Bu demek oluyor ki hücren ne kadar büyükse, o kadar çok Mitokondri, "
-"Metabolozom ya da Rustisiyanine (veya glikoliz yapan sitoplazmaya) ihtiyacın "
-"var. Böylece hücren durgun haldeyken [thrive:compound type=\"atp\"]ATP[/"
-"thrive:compound] kaybını önleyebilirsin."
+"Metabolozom ya da Rustisiyanine (veya glikoliz yapan sitoplazmaya) "
+"ihtiyacın var. Böylece hücren durgun haldeyken [thrive:compound type=\"atp"
+"\"]ATP[/thrive:compound] kaybını önleyebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -86,18 +86,19 @@ msgstr ""
 "Mor – [thrive:compound type=\"phosphates\"]Fosfat[/thrive:compound]\n"
 "Pas Rengi – [thrive:compound type=\"iron\"]Demir[/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] [thrive:compound "
-"type=\"atp\"]ATP[/thrive:compound] oluşturur."
+"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] [thrive:"
+"compound type=\"atp\"]ATP[/thrive:compound] oluşturur."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound]; "
-"kemoplastlar ve kemosentez yapan proteinler aracılığıyla [thrive:compound "
-"type=\"glucose\"]glukoza[/thrive:compound] dönüştürülür. [thrive:compound "
-"type=\"iron\"]Demir[/thrive:compound], rustisiyanin aracılığıyla [thrive:"
-"compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülür."
+"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:"
+"compound]; kemoplastlar ve kemosentez yapan proteinler aracılığıyla "
+"[thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülür. "
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound], rustisiyanin "
+"aracılığıyla [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] "
+"dönüştürülür."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
@@ -114,9 +115,9 @@ msgstr "Şu an için, eğer popülasyonun sıfıra düşerse neslin tükenir."
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Ama eğer 300 popülasyonla yirmi kuşak boyunca hayatta kalırsan, mevcut oyunu "
-"kazanmış sayılırsın. Kazandıktan sonra karşına açılır bir pencere çıkar, "
-"ondan sonra oyunu istediğin kadar oynamaya devam edebilirsin."
+"Ama eğer 300 popülasyonla yirmi kuşak boyunca hayatta kalırsan, mevcut "
+"oyunu kazanmış sayılırsın. Kazandıktan sonra karşına açılır bir pencere "
+"çıkar, ondan sonra oyunu istediğin kadar oynamaya devam edebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
@@ -129,13 +130,14 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Diğer hücrelerle bağ kurarak, aldıkları bileşikleri paylaşan ve birbiriyle "
-"üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir hücre "
-"ile bağ kurmak için, bağlayıcı madde organeline sahip olman ve bağlanma "
-"moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca kendi türüne "
-"ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni bölemez ve editöre "
-"giremezsin (şimdilik). Editöre girmek için, ilk önce, yeterli bileşik "
-"toplamalı ve koloniden ayrılmalısın. Böylece editöre girebilirsin. Büyük "
-"hücre kolonileri çok hücreliliğe doğru giden yoldur (henüz oyunda değil)."
+"üreten hücrelerin bulunduğu bir hücre kolonisi kurabilirsin. Başka bir "
+"hücre ile bağ kurmak için, bağlayıcı madde organeline sahip olman ve "
+"bağlanma moduna girdikten sonra o hücreye yaklaşman gerekir. Yalnızca "
+"kendi türüne ait hücrelere bağlanabilirsin. Koloni içindeyken, hücreni "
+"bölemez ve editöre giremezsin (şimdilik). Editöre girmek için, ilk önce, "
+"yeterli bileşik toplamalı ve koloniden ayrılmalısın. Böylece editöre "
+"girebilirsin. Büyük hücre kolonileri çok hücreliliğe doğru giden yoldur "
+"(henüz oyunda değil)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -158,8 +160,8 @@ msgstr ""
 "[thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çevirir\n"
 "\n"
 "Nitrojenaz: Atmosferdeki azotu ve [thrive:compound type=\"atp\"]ATP'yi[/"
-"thrive:compound] oksijen olmadan [thrive:compound type=\"ammonia\"]amonyağa[/"
-"thrive:compound] çevirir\n"
+"thrive:compound] oksijen olmadan [thrive:compound type=\"ammonia"
+"\"]amonyağa[/thrive:compound] çevirir\n"
 "\n"
 "Sitoplazma: Depo alanına sahiptir ve glikoliz yapar (Az miktarda [thrive:"
 "compound type=\"atp\"]ATP[/thrive:compound] üretir)"
@@ -169,8 +171,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Dış Organeller\n"
 "\n"
-"Kamçı: [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketerek hücreni "
-"daha hızlı hareket ettirir\n"
+"Kamçı: [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketerek "
+"hücreni daha hızlı hareket ettirir\n"
 "\n"
 "Pilus: Diğer hücreleri delmek için kullanılabilir"
 
@@ -186,19 +188,19 @@ msgstr ""
 "Bağlayıcı Madde: Diğer hücrelerle bağ kurmaya izin verir\n"
 "\n"
 "Mitokondri: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] ve "
-"atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:compound] "
-"üretir. Sitoplazmadan çok daha verimli şekilde yapar.\n"
+"atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] üretir. Sitoplazmadan çok daha verimli şekilde yapar.\n"
 "\n"
 "Kloroplast: Güneş ışığı ve atmosferdeki CO2 gazından [thrive:compound type="
 "\"glucose\"]glukoz[/thrive:compound] üretir\n"
 "\n"
 "Kemoplast: [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürden[/"
-"thrive:compound] [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] "
-"üretir\n"
+"thrive:compound] [thrive:compound type=\"glucose\"]glukoz[/thrive:"
+"compound] üretir\n"
 "\n"
-"Azot Fiksasyon Plastidi: [thrive:compound type=\"atp\"]ATP[/thrive:compound] "
-"ile atmosferdeki Azot ve Oksijenden [thrive:compound type=\"ammonia"
-"\"]amonyak[/thrive:compound] yapar\n"
+"Azot Fiksasyon Plastidi: [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] ile atmosferdeki Azot ve Oksijenden [thrive:compound type="
+"\"ammonia\"]amonyak[/thrive:compound] yapar\n"
 "\n"
 "Koful: Toplanan 15 bileşiği depolar\n"
 "\n"
@@ -209,13 +211,14 @@ msgstr ""
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Her kuşakta, harcanacak 100 mutasyon puanın var ve her değişim (ya da "
-"mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da kaldırmak "
-"MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen organelleri "
-"kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade eder. Bir "
-"organelin üzerine sağ tıklayarak onu taşıyabilir ya da tamamen "
-"kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi seçebilirsin. "
-"[thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/"
-"thrive:input] tuşları ile organellerini döndürebilirsin."
+"mutasyon) o MP'nin belli miktarına mal olur. Organel eklemek ya da "
+"kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen "
+"organelleri kaldırmak o organelin mal olduğu kadar MP'yi sana geri iade "
+"eder. Bir organelin üzerine sağ tıklayarak onu taşıyabilir ya da tamamen "
+"kaldırabilirsin. Bunu yapmak için açılır menüden uygun eylemi "
+"seçebilirsin. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:"
+"input]e_rotate_right[/thrive:input] tuşları ile organellerini "
+"döndürebilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -248,8 +251,8 @@ msgstr ""
 "İşte sana ipucu. Ozmoregülasyon, hücrenin her bir altıgenlik alanında her "
 "saniyede bir 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgenlik "
 "alan da saniyede 5 ATP oluşturur. Bu da demek oluyor ki; eğer "
-"ozmoregülasyondan dolayı ATP kaybediyorsan, birkaç altıgenlik alanı yalnızca "
-"sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
+"ozmoregülasyondan dolayı ATP kaybediyorsan, birkaç altıgenlik alanı "
+"yalnızca sitoplazmayla doldurmalısın ya da bazı organelleri kaldırmalısın."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
@@ -276,8 +279,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"İşte sana ipucu. Bakteriler göründüğünden daha güçlü olabilir. Küçük duruyor "
-"görünebilirler ama bazıları arkandan çukur kazıp seni bu şekilde öldürebilir!"
+"İşte sana ipucu. Bakteriler göründüğünden daha güçlü olabilir. Küçük "
+"duruyor görünebilirler ama bazıları arkandan çukur kazıp seni bu şekilde "
+"öldürebilir!"
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
@@ -366,9 +370,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğun çoğu canlının, "
-"etrafında gerçekleşen evrimden dolayı, bir ya da iki farklı türe benzemesi "
-"mümkün. Onları tanıyabiliyor musun bir gör!"
+"Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğun çoğu "
+"canlının, etrafında gerçekleşen evrimden dolayı, bir ya da iki farklı türe "
+"benzemesi mümkün. Onları tanıyabiliyor musun bir gör!"
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
@@ -1378,7 +1382,8 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "Resmi yapan: {0}"
 
-#: ../src/general/HelpScreen.tscn:107 ../src/microbe_stage/ProcessPanel.tscn:76
+#: ../src/general/HelpScreen.tscn:107
+#: ../src/microbe_stage/ProcessPanel.tscn:76
 msgid "CLOSE"
 msgstr "Kapat"
 
@@ -1448,10 +1453,10 @@ msgstr "GLES2 Mod Uyarısı"
 #: ../src/general/MainMenu.tscn:509
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
-"Thrive'ı GLES2 ile çalıştırıyorsun. Bu mod ciddi derecede test edilmemiştir "
-"ve sorunlara neden olması muhtemel. Ekran kartlarını güncelleştirmeyi dene "
-"ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia grafiklerini kullanmaya "
-"zorla."
+"Thrive'ı GLES2 ile çalıştırıyorsun. Bu mod ciddi derecede test "
+"edilmemiştir ve sorunlara neden olması muhtemel. Ekran kartlarını "
+"güncelleştirmeyi dene ve/veya Thrive'ı çalıştırırken AMD ya da Nvidia "
+"grafiklerini kullanmaya zorla."
 
 #: ../src/general/OptionsMenu.cs:842
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1460,7 +1465,8 @@ msgstr "Varsayılan çıkış aygıtı"
 #: ../src/general/OptionsMenu.cs:874
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
-"Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı ol!"
+"Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı "
+"ol!"
 
 #: ../src/general/OptionsMenu.cs:878
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
@@ -2225,18 +2231,19 @@ msgstr "Sağlık"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] [thrive:compound "
-"type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
+"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] [thrive:"
+"compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:229
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Bir hücrenin yapışkan iç kısmı. Sitoplazma, hücrenin içini dolduran; "
-"iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımdan oluşur. "
-"Yaptığı işlevlerden biri glikolizdir, yani glukozun ATP enerjisine dönüşümü. "
-"Gelişmiş metabolizmaya öncü organellerden yoksun hücreler, enerji almak için "
-"sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak "
-"için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+"iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımdan "
+"oluşur. Yaptığı işlevlerden biri glikolizdir, yani glukozun ATP enerjisine "
+"dönüşümü. Gelişmiş metabolizmaya öncü organellerden yoksun hücreler, "
+"enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede "
+"moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için "
+"kullanılır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:246
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:344
@@ -2288,20 +2295,21 @@ msgstr "Ozmoregülasyon Maliyeti"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:326
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] [thrive:compound "
-"type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. Bu oran [thrive:compound "
-"type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır."
+"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] [thrive:"
+"compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. Bu oran [thrive:"
+"compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile "
+"doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:327
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolozomlar, protein kabuklarının içine sarılmış proteinler kümesidir. "
-"Sitoplazmada gerçekleşen oksijenli solunuma kıyasla, metabolozomlar glukozu "
-"ATP'ye çok daha yüksek oranlarda dönüştürebilir. Ancak metabolozomlar "
-"çalışmak için oksijen gerektirir ve ortamda bulunan düşük seviyelerdeki "
-"oksijen, onun ATP sentezleme hızını yavaşlatır. Metabolozomlar direkt "
-"sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz yapabilir."
+"Sitoplazmada gerçekleşen oksijenli solunuma kıyasla, metabolozomlar "
+"glukozu ATP'ye çok daha yüksek oranlarda dönüştürebilir. Ancak "
+"metabolozomlar çalışmak için oksijen gerektirir ve ortamda bulunan düşük "
+"seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır. "
+"Metabolozomlar direkt sitoplazmada asılı kaldığından, etrafında bulunan "
+"akışkan glikoliz yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:422
 msgid "THYLAKOID"
@@ -2323,18 +2331,18 @@ msgstr ""
 "karbondioksit gazı üretmek için ışık enerjisini kullanırlar. Bu pigmentler "
 "ayrıca yapıya kendine özgü bir renk verir. Üretilen glukoz oranı, "
 "karbondioksit konsantrasyonu ve ışık şiddeti ile doğru orantılıdır. "
-"Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan "
-"glikoliz yapabilir."
+"Tilakoidler direkt sitoplazmada asılı kaldığından, etrafında bulunan "
+"akışkan glikoliz yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:compound] "
-"[thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. "
-"[thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] "
-"konsantrasyonu ile doğru orantılıdır. Ayrıca [thrive:compound type=\"glucose"
-"\"]glukozu[/thrive:compound] [thrive:compound type=\"atp\"]ATP'ye[/thrive:"
-"compound] dönüştürür."
+"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:"
+"compound] [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] "
+"dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:"
+"compound] konsantrasyonu ile doğru orantılıdır. Ayrıca [thrive:compound "
+"type=\"glucose\"]glukozu[/thrive:compound] [thrive:compound type=\"atp"
+"\"]ATP'ye[/thrive:compound] dönüştürür."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -2343,8 +2351,8 @@ msgstr ""
 "işlemde, hidrojen sülfür, su ve karbondioksit gazını glukoza dönüştüren, "
 "sitoplazmada bulunan küçük proteinler kümesidir. Üretilen glukoz oranı, "
 "karbondioksit konsantrasyonu ile doğru orantılıdır. Kemosentez yapan "
-"proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan "
-"glikoliz yapabilir."
+"proteinler direkt sitoplazmada asılı kaldığından, etrafında bulunan "
+"akışkan glikoliz yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:617
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -2358,32 +2366,34 @@ msgstr ""
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için "
-"karbondioksit gazı ve oksijen kullanan bir proteindir. Demir Solunumu olarak "
-"adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+"karbondioksit gazı ve oksijen kullanan bir proteindir. Demir Solunumu "
+"olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:714
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
-"\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound type="
-"\"nitrogen\"]Azot[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound "
+"type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound "
+"type=\"nitrogen\"]Azot[/thrive:compound] konsantrasyonu ile doğru "
+"orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:715
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan amonyağı üretmek için "
-"azot gazı ve ATP formundaki hücresel enerjiyi kullanan bir proteindir. Bu "
-"işlem Oksijensiz Azot Fiksasyonu olarak anılır. Nitrojenaz direkt "
-"sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz yapabilir."
+"Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan amonyağı üretmek "
+"için azot gazı ve ATP formundaki hücresel enerjiyi kullanan bir "
+"proteindir. Bu işlem Oksijensiz Azot Fiksasyonu olarak anılır. Nitrojenaz "
+"direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz "
+"yapabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:812
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
-"\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound "
-"type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında "
-"toksin salabilir."
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound "
+"type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:"
+"compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile "
+"doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna "
+"basıldığında toksin salabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:813
 msgid "OXYTOXISOME_DESC"
@@ -2400,11 +2410,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:910
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"Kamçı (veya Flagella), hücrenin bir doğrultuda kıvrılması ve ilerlemesi için "
-"ATP kullanan, hücre zarından uzanıp birbirine bağlanmış kamçı benzeri "
-"protein fiberleridir. Kamçının pozisyonu, hücre hareketi için itişi sağlayan "
-"yönü belirler. İtiş yönü, kamçının gösterdiği yönün tersidir. Örneğin, bir "
-"hücrenin sağ tarafına yerleştirilen kamçı, sağ tarafa giderken itişi sağlar."
+"Kamçı (veya Flagella), hücrenin bir doğrultuda kıvrılması ve ilerlemesi "
+"için ATP kullanan, hücre zarından uzanıp birbirine bağlanmış kamçı benzeri "
+"protein fiberleridir. Kamçının pozisyonu, hücre hareketi için itişi "
+"sağlayan yönü belirler. İtiş yönü, kamçının gösterdiği yönün tersidir. "
+"Örneğin, bir hücrenin sağ tarafına yerleştirilen kamçı, sağ tarafa "
+"giderken itişi sağlar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:927
 msgid "SPEED"
@@ -2443,27 +2454,28 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1205
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Daha kompleks olan zarlı organellerin evrimleşmesini sağlar. Bakımı bir sürü "
-"ATP'ye mal olur. Bu evrimden geri dönülemez."
+"Daha kompleks olan zarlı organellerin evrimleşmesini sağlar. Bakımı bir "
+"sürü ATP'ye mal olur. Bu evrimden geri dönülemez."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1206
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 "Ökaryotik hücrelerinin belirleyici özelliği. Çekirdek ayrıca endoplazmik "
 "retikulum ve golgi aygıtını içerir. Bu kısım, hücre iç zarında bir sistem "
-"geliştirmek için prokaryotik hücrelerin kendi içlerinde başka bir prokaryotu "
-"özümsemesiyle tanıştığı bir evrimdir. Çekirdek, hücre içindeki işlemlerin "
-"farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve bu işlemlerin "
-"birbirine karışmasını engeller. Bu yapı, yeni zarlı organellerin, "
-"sitoplazmadaki serbest yapılardan daha kompleks, etkili ve özelleşmiş "
-"olmasını sağlar."
+"geliştirmek için prokaryotik hücrelerin kendi içlerinde başka bir "
+"prokaryotu özümsemesiyle tanıştığı bir evrimdir. Çekirdek, hücre içindeki "
+"işlemlerin farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve "
+"bu işlemlerin birbirine karışmasını engeller. Bu yapı, yeni zarlı "
+"organellerin, sitoplazmadaki serbest yapılardan daha kompleks, etkili ve "
+"özelleşmiş olmasını sağlar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1302
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] [thrive:compound "
-"type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:compound type="
-"\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+"[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound] [thrive:"
+"compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. [thrive:"
+"compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile "
+"doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1303
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2471,9 +2483,9 @@ msgstr ""
 "Hücrenin güç merkezidir. Mitokondri, protein ve enzimlerle dolu çift zarlı "
 "bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere "
 "özümsenmiş bir prokaryottur. Mitokondri, Oksijenli Solunum adı verilen bir "
-"işlemde, glukozu ATP'ye sitoplazmada olduğundan çok daha etkili bir şekilde "
-"dönüştürür. Ancak çalışmak için oksijen gerektirir ve ortamda bulunan düşük "
-"seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır."
+"işlemde, glukozu ATP'ye sitoplazmada olduğundan çok daha etkili bir "
+"şekilde dönüştürür. Ancak çalışmak için oksijen gerektirir ve ortamda "
+"bulunan düşük seviyelerdeki oksijen, onun ATP sentezleme hızını yavaşlatır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1386
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
@@ -2512,8 +2524,9 @@ msgstr ""
 "pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı "
 "tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki "
 "pigmentler, Termosentez adı verilen bir işlemde, sudan glukoz ve "
-"karbondioksit gazı üretmek için çevredeki ısı farkını kullanırlar. Üretilen "
-"glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru orantılıdır."
+"karbondioksit gazı üretmek için çevredeki ısı farkını kullanırlar. "
+"Üretilen glukoz oranı, karbondioksit konsantrasyonu ve sıcaklıkla doğru "
+"orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
@@ -2523,10 +2536,10 @@ msgstr "İşlev yok"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:compound] "
-"[thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürür. "
-"[thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] "
-"konsantrasyonu ile doğru orantılıdır."
+"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:"
+"compound] [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] "
+"dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:"
+"compound] konsantrasyonu ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2539,17 +2552,17 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1669
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
-"\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound type="
-"\"nitrogen\"]Azot[/thrive:compound] ve [thrive:compound type=\"oxygen"
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound "
+"type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. [thrive:compound "
+"type=\"nitrogen\"]Azot[/thrive:compound] ve [thrive:compound type=\"oxygen"
 "\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1670
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan amonyağı "
-"üretmek için azot gazı, oksijen ve ATP formundaki hücresel enerjiyi kullanan "
-"bir proteindir. Bu işlem Oksijenli Azot Fiksasyonu olarak anılır."
+"üretmek için azot gazı, oksijen ve ATP formundaki hücresel enerjiyi "
+"kullanan bir proteindir. Bu işlem Oksijenli Azot Fiksasyonu olarak anılır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1767
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
@@ -2558,20 +2571,20 @@ msgstr "Hücrenin depo alanını arttırır."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1768
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, hücrede "
-"geniş çapta depo olarak kullanılan daha küçük zarsı yapılar olan ve "
-"birbiriyle birleşen birkaç kesecikten oluşur. Kofulun içi; moleküller, "
+"Koful hücrede depo olarak kullanılan iç zarsı organeldir. Kofullar, "
+"hücrede geniş çapta depo olarak kullanılan daha küçük zarsı yapılar olan "
+"ve birbiriyle birleşen birkaç kesecikten oluşur. Kofulun içi; moleküller, "
 "enzimler, katılar ve diğer maddeleri içeren suyla doludur. Şekilleri "
 "değişken ve hücreler arasında değişiklik gösterir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1864
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
-"\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound "
-"type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında "
-"toksin salabilir."
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound "
+"type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:"
+"compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile "
+"doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna "
+"basıldığında toksin salabilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1865
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -2610,9 +2623,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2320
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Bu hücre zarı toplam hasara, özellikle de fiziksel hasara karşı koruyuculuğu "
-"daha yüksek olan bir duvara sahip. Ayrıca formunu korumak için daha az "
-"enerji harcar. Ama kaynakları çabucak ememez ve hücre daha yavaştır."
+"Bu hücre zarı toplam hasara, özellikle de fiziksel hasara karşı "
+"koruyuculuğu daha yüksek olan bir duvara sahip. Ayrıca formunu korumak "
+"için daha az enerji harcar. Ama kaynakları çabucak ememez ve hücre daha "
+"yavaştır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2483
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2951
@@ -2630,9 +2644,10 @@ msgstr "Yutamaz"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2555
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Bu hücre zarı toplam hasara, özellikle de toksin hasarına karşı koruyuculuğu "
-"daha yüksek olan bir duvara sahip. Ayrıca formunu korumak için daha az "
-"enerji harcar. Ama kaynakları çabucak ememez ve hücre daha yavaştır."
+"Bu hücre zarı toplam hasara, özellikle de toksin hasarına karşı "
+"koruyuculuğu daha yüksek olan bir duvara sahip. Ayrıca formunu korumak "
+"için daha az enerji harcar. Ama kaynakları çabucak ememez ve hücre daha "
+"yavaştır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2718
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2985
@@ -2645,16 +2660,17 @@ msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Bu hücre zarı kalsiyum karbonattan yapılmış güçlü bir kabuğa sahiptir. "
 "Hasara karşı kolayca direnir ve şeklinin bozulmaması için daha az enerji "
-"gerektirir. Böyle ağır bir kabuğa sahip olmanın dezavantajları ise hücrenin "
-"çok daha yavaş olması ve kaynakları emmenin biraz daha zaman almasıdır."
+"gerektirir. Böyle ağır bir kabuğa sahip olmanın dezavantajları ise "
+"hücrenin çok daha yavaş olması ve kaynakları emmenin biraz daha zaman "
+"almasıdır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3058
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Bu hücre zarı silikadan yapılmış güçlü bir duvara sahiptir. Toplam hasara "
-"iyi direnir ve fiziksel hasara karşı çok dirençlidir. Ayrıca formunu korumak "
-"için daha az enerji gerektirir. Ancak hücreyi büyük oranda yavaşlatır ve "
-"hücre, kaynakları düşük oranda emer."
+"iyi direnir ve fiziksel hasara karşı çok dirençlidir. Ayrıca formunu "
+"korumak için daha az enerji gerektirir. Ancak hücreyi büyük oranda "
+"yavaşlatır ve hücre, kaynakları düşük oranda emer."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3440
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
@@ -2679,9 +2695,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3458
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
-"Hiper iş parçacığının etkin olup olmadığı otomatik olarak tespit edilemez.\n"
-"Hiper iş parçacıkları gerçek CPU çekirdekleri kadar hızlı olmadığı için bu, "
-"varsayılan iş parçacığı sayısını etkiler."
+"Hiper iş parçacığının etkin olup olmadığı otomatik olarak tespit "
+"edilemez.\n"
+"Hiper iş parçacıkları gerçek CPU çekirdekleri kadar hızlı olmadığı için "
+"bu, varsayılan iş parçacığı sayısını etkiler."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3468
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2665
@@ -2695,27 +2712,22 @@ msgid "N_A_MP"
 msgstr "Bilinmeyen MP"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:486
-#: ../src/microbe_stage/Microbe.cs:992
 msgid "DEATH"
 msgstr "ölüm"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:577
-#: ../src/microbe_stage/Microbe.cs:1493
+#: ../src/microbe_stage/Microbe.Contact.cs:584
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:584
-#: ../src/microbe_stage/Microbe.cs:1500
+#: ../src/microbe_stage/Microbe.Contact.cs:591
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:786
-#: ../src/microbe_stage/Microbe.cs:2070
+#: ../src/microbe_stage/Microbe.Contact.cs:793
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:710
-#: ../src/microbe_stage/Microbe.cs:1926
 msgid "REPRODUCED"
 msgstr "çoğaldı"
 
@@ -2833,57 +2845,46 @@ msgid "POPULATION_CAPITAL"
 msgstr "POPÜLASYON:"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:181
-#: ../src/microbe_stage/PatchMapGenerator.cs:126
 msgid "PATCH_PANGONIAN_VENTS"
 msgstr "Pangonik Bacalar"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:182
-#: ../src/microbe_stage/PatchMapGenerator.cs:127
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
 msgstr "Pangonik Mezopelajik"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:183
-#: ../src/microbe_stage/PatchMapGenerator.cs:128
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
 msgstr "Pangonik Epipelajik"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:184
-#: ../src/microbe_stage/PatchMapGenerator.cs:129
 msgid "PATCH_PANGONIAN_TIDEPOOL"
 msgstr "Pangonik Gelgit Havuzu"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:185
-#: ../src/microbe_stage/PatchMapGenerator.cs:130
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
 msgstr "Pangonik Batipelajik"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:186
-#: ../src/microbe_stage/PatchMapGenerator.cs:131
 msgid "PATHCH_PANGONIAN_ABYSSOPELAGIC"
 msgstr "Pangonik Abissopelajik"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:187
-#: ../src/microbe_stage/PatchMapGenerator.cs:132
 msgid "PATCH_PANGONIAN_COAST"
 msgstr "Pangonik Sahil"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:188
-#: ../src/microbe_stage/PatchMapGenerator.cs:133
 msgid "PATCH_PANGONIAN_ESTUARY"
 msgstr "Pangonik Haliç"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:189
-#: ../src/microbe_stage/PatchMapGenerator.cs:134
 msgid "PATCH_CAVE"
 msgstr "Mağara"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:190
-#: ../src/microbe_stage/PatchMapGenerator.cs:135
 msgid "PATCH_ICE_SHELF"
 msgstr "Buz Sahanlığı"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:191
-#: ../src/microbe_stage/PatchMapGenerator.cs:136
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangonik Deniz Tabanı"
 
@@ -3183,9 +3184,9 @@ msgstr "SOYUN TÜKENDİ"
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
-"Varolmuş bütün türlerin %99'u gibi senin türün de yok oldu. Diğerleri senin "
-"alanını doldurmaya ve gelişmeye devam edecek ama bu sen olmayacaksın. "
-"Evrimde başarısız bir deney olarak kalacaksın."
+"Varolmuş bütün türlerin %99'u gibi senin türün de yok oldu. Diğerleri "
+"senin alanını doldurmaya ve gelişmeye devam edecek ama bu sen "
+"olmayacaksın. Evrimde başarısız bir deney olarak kalacaksın."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:54
 msgid "WIN_BOX_TITLE"
@@ -3371,7 +3372,8 @@ msgstr "Seçilen kayıt uyumsuz"
 #: ../src/saving/SaveList.tscn:168
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu görünüyor.\n"
+"Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu "
+"görünüyor.\n"
 "Ayrıca, bu kaydı yükseltmek için kayıt yükseltici yok.\n"
 "Thrive hala yapım aşamasında olduğu için kayıt uyumluluğu bu aşamada büyük "
 "bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt "
@@ -3432,20 +3434,20 @@ msgstr "Yükle"
 #: ../src/saving/SaveListItem.tscn:292
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
-"Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden "
-"emin misin?"
+"Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek "
+"istediğinden emin misin?"
 
 #: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
 msgstr ""
-"Seçili kayıtları silme işlemi geri alınamaz, {0} kaydı kalıcı olarak silmek "
-"istediğinden emin misin?"
+"Seçili kayıtları silme işlemi geri alınamaz, {0} kaydı kalıcı olarak "
+"silmek istediğinden emin misin?"
 
 #: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
-"Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, aşağıdaki "
-"kayıtları kalıcı olarak silmek istediğinden emin misin?\n"
+"Otomatik ve Çabuk kayıtların tamamını silme işlemi geri alınamaz, "
+"aşağıdaki kayıtları kalıcı olarak silmek istediğinden emin misin?\n"
 "- {0} Otomatik kayıt\n"
 "- {1} Çabuk kayıt"
 
@@ -3524,9 +3526,9 @@ msgstr ""
 "Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman "
 "kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının "
-"ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel "
-"değişiklikleri görebilirsin.\n"
+"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve "
+"popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca "
+"üstte çevresel değişiklikleri görebilirsin.\n"
 "\n"
 "Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
 
@@ -3589,8 +3591,8 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:245
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Bunlar türünü düzenlerken bilmen gereken önemli noktalar. Daha fazlası için "
-"hücre editörünün diğer sekmelerini inceleyebilirsin.\n"
+"Bunlar türünü düzenlerken bilmen gereken önemli noktalar. Daha fazlası "
+"için hücre editörünün diğer sekmelerini inceleyebilirsin.\n"
 "\n"
 "Mevcut türünün ismine tıklayarak ve metnini düzenleyerek türünü yeniden "
 "adlandırabilirsin.\n"
@@ -3607,16 +3609,17 @@ msgstr "Anladım"
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik aktiviteler "
-"ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden oldu.\n"
+"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik "
+"aktiviteler ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden "
+"oldu.\n"
 "\n"
 "Hayat.\n"
 "\n"
 "Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Sen bu gezegendeki "
 "son evrensel ortak atasın (LUCA).\n"
 "\n"
-"Bu hasım dünyada hayatta kalmak için, bulabildiğin her bileşiği toplaman ve "
-"diğerleriyle rekabet etmek için her defasında evrimleşmen gerekiyor."
+"Bu hasım dünyada hayatta kalmak için, bulabildiğin her bileşiği toplaman "
+"ve diğerleriyle rekabet etmek için her defasında evrimleşmen gerekiyor."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
 msgid "SHOW_TUTORIALS"
@@ -3668,8 +3671,8 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Bağ çözme moduna girdin. Bu modda, bağını çözmek istediğin koloni üyelerine "
-"tıklayabilirsin.\n"
+"Bağ çözme moduna girdin. Bu modda, bağını çözmek istediğin koloni "
+"üyelerine tıklayabilirsin.\n"
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin "
 "bağını çöz\" tuşuna basabilirsin."
