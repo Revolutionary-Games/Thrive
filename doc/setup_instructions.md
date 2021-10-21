@@ -514,6 +514,48 @@ plain install command won't do it. So it is recommended that you use
 the above command with the provided `requirements.txt` file which
 tells pip the exact versions that should be installed.
 
+#### virtualenv
+
+You can use virtualenv to not have to install the Thrive required
+python packages globally. This can especially help if you have
+conflicting globally installed packages.
+
+First install virtualenv:
+```sh
+pip install virtualenv
+```
+
+Then create the virtualenv folder (for example in the Thrive root
+folder):
+
+```sh
+virtualenv venv -p python3
+```
+
+This creates a folder called `venv` that will contain the python
+environment.
+
+You need to activate it each time in terminal or command prompt you
+want to use python from that environment.
+
+On unix like systems:
+```sh
+source venv/bin/activate
+```
+
+On Windows:
+```sh
+\venv\Scripts\activate.bat
+```
+
+Then install the required packages and run the localization scripts
+while in the environment:
+
+```sh
+pip install -r docker/jsonlint/requirements.txt
+ruby scripts/update_localization.rb
+```
+
 ### Poedit (optional)
 
 [Poedit](https://poedit.net/) is a free .pot and .po file editor that may
