@@ -179,6 +179,9 @@ public class MicrobeHUD : Control
     private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
+    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
+        new System.Collections.Generic.Dictionary<Species, int>();
+
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
     private VBoxContainer hoveredCompoundsContainer;
@@ -707,7 +710,7 @@ public class MicrobeHUD : Control
         }
 
         // Show the species name and count of hovered cells
-        var hoveredSpeciesCounts = new System.Collections.Generic.Dictionary<Species, int>();
+        hoveredSpeciesCounts.Clear();
         foreach (var microbe in stage.HoverInfo.HoveredMicrobes)
         {
             if (microbe.IsPlayerMicrobe)
@@ -717,21 +720,27 @@ public class MicrobeHUD : Control
                 continue;
             }
 
-            if (!hoveredSpeciesCounts.ContainsKey(microbe.Species))
+            if (!hoveredSpeciesCounts.TryGetValue(microbe.Species, out int count))
             {
-                hoveredSpeciesCounts.Add(microbe.Species, 1);
-                continue;
+                count = 0;
             }
 
-            ++hoveredSpeciesCounts[microbe.Species];
+            hoveredSpeciesCounts[microbe.Species] = count + 1;
         }
 
         foreach (var hoveredSpeciesCount in hoveredSpeciesCounts)
         {
-            AddHoveredCellLabel(hoveredSpeciesCount.Value > 1 ?
-                string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
-                    hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value) :
-                hoveredSpeciesCount.Key.FormattedName);
+            if (hoveredSpeciesCount.Value > 1)
+            {
+                // SPECIES_N_TIMES == {0} ({1}x)
+                AddHoveredCellLabel(
+                    string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
+                        hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value));
+            }
+            else
+            {
+                AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName);
+            }
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
