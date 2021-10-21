@@ -101,7 +101,7 @@
             var children = property.Value.Children<JProperty>();
             var childrenNames = children.Select(c => c.Name);
 
-            if (behaviouralKeys.All(p => childrenNames.Contains(p)))
+            if (property.Name != "Behaviour" && behaviouralKeys.All(p => childrenNames.Contains(p)))
             {
                 UpgradeBehaviouralValues(property, children);
             }
