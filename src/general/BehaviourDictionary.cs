@@ -20,7 +20,7 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
 
     [JsonProperty]
     public float Aggression { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
-    
+
     [JsonProperty]
     public float Opportunism { get; set; } = Constants.DEFAULT_BEHAVIOUR_VALUE;
 
