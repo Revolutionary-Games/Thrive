@@ -380,9 +380,18 @@ omni_attenuation = 0.420448
 
 [node name="DynamicallySpawned" type="Spatial" parent="World"]
 
-[node name="MicrobeEditorGUI" type="Node" parent="."]
+[node name="MicrobeEditorGUI" type="Control" parent="."]
 pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 53 )
 script = ExtResource( 45 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 MenuPath = NodePath("../PauseMenu")
 ReportTabButtonPath = NodePath("TopLeft/HBoxContainer/ReportButton")
 PatchMapButtonPath = NodePath("TopLeft/HBoxContainer/PatchMapButton")
@@ -468,7 +477,6 @@ CompoundBalancePath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Bod
 [node name="TopLeft" type="MarginContainer" parent="MicrobeEditorGUI"]
 margin_right = 353.0
 margin_bottom = 45.0
-theme = ExtResource( 53 )
 custom_constants/margin_right = 5
 custom_constants/margin_top = 10
 custom_constants/margin_left = 15
@@ -557,7 +565,6 @@ anchor_bottom = 1.0
 margin_top = -1.41425
 margin_bottom = -1.41425
 mouse_filter = 2
-theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1874,7 +1881,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
 mouse_filter = 2
-theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2361,7 +2367,6 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

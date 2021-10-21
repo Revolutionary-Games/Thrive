@@ -18,6 +18,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [Export]
     public NodePath PauseMenuPath;
 
+    [Export]
+    public NodePath HUDRootPath;
+
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
     private Node world;
@@ -40,6 +43,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private Vector3? guidancePosition;
     private PauseMenu pauseMenu;
     private bool transitionFinished;
+
+    private Control hudRoot;
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -236,6 +241,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         worldLight = world.GetNode<DirectionalLight>("WorldLight");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
+        hudRoot = GetNode<Control>(HUDRootPath);
 
         // These need to be created here as well for child property save load to work
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
@@ -476,6 +482,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         SaveHelper.QuickSave(this);
     }
 
+    [RunOnKeyDown("g_toggle_gui")]
+    public void ToggleGUI()
+    {
+        hudRoot.Visible = !hudRoot.Visible;
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -548,10 +560,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         StartMusic();
 
-        // Apply language settings here to be sure the stage doesn't continue to use the wrong language
-        // Because the stage scene tree being unattached during editor,
-        // if language was changed while in the editor, it doesn't properly propagate
-        Settings.Instance.ApplyLanguageSettings();
+        // Reset locale to assure the stage's language.
+        // Because the stage scene tree being unattached during editor, if language was
+        // changed while in the editor, it doesn't update this stage's translation cache.
+        TranslationServer.SetLocale(TranslationServer.GetLocale());
 
         // Auto save is wanted once possible
         wantsToSave = true;

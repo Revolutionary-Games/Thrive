@@ -8,374 +8,359 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-21 15:21+0700\n"
-"PO-Revision-Date: 2021-03-31 14:40+0000\n"
-"Last-Translator: Thor Andreas Laan <thor.a.laan@gmail.com>\n"
-"Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/et/>\n"
-"Language: et\n"
+"PO-Revision-Date: 2021-10-21 07:37+0000\n"
+"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
+"Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/hu/>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4\n"
-"Generated-By: Babel 2.9.0\n"
+"X-Generator: Weblate 4.8.1\n"
+"Generated-By: Babel 2.9.1\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a "
+"forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha "
+"rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:"
+"input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy "
+"kikapcsolni."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
+"A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor "
+"elpusztul."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Et enda rakku muuta ja paljuneda, pead koguma ammoniaaki (Oranžid pilve) "
-"ja fosfaati (Lillad pilved)"
+"Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor "
+"ammóniát (Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Sa saad kugistada rakke, baktereid, raua tükke ja raku osi mis on sinust "
-"väiksemad vajutades G-d. See kasutab rohkem ATP-d ja aeglustab su "
-"liikumist. Ära unusta vajutada G-d uuesti kui oled lõpetanud."
+"Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a "
+"[thrive:input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-"
+"t használsz, és lassabb is leszel. Ne felejtsd el a [thrive:"
+"input]g_toggle_engulf[/thrive:input]-t lenyomni még egyszer az elnyelés "
+"befejezéséhez."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a "
+"sejted, annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra "
+"(vagy citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél "
+"kevesebb ATP-t veszíts, amikor egy helyhez vagy kötve."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"Sok sejtszervecske érhető el a szerkesztőben, ezzel megadva neked a "
+"lehetőséget arra, hogy a saját tetszésed szerint játszd a játékot."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"Erinevad ained on:\n"
+"A különböző vegyületfelhők lehetnek:\n"
 "\n"
-"Valge - Glükoos\n"
-"Kollane/roheline - Vesinik sulfiid\n"
-"Oranž - Amoniaak\n"
-"Lilla - Fosfaat\n"
-"Pruun/punane - Raud\n"
+"Fehérek – [thrive:compound type=\"glucose\"]Glükóz[/thrive:compound]\n"
+"Citromsárgák – [thrive:compound type=\"hydrogensulfide\"]Hidrogén-szulfid[/"
+"thrive:compound]\n"
+"Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:"
+"compound]\n"
+"Lilák – [thrive:compound type=\"phosphates\"]Foszfátok[/thrive:compound]\n"
+"Rozsdabarnák – [thrive:compound type=\"iron\"]Vas[/thrive:compound]\n"
 "\n"
-"Glükoosist saab teha ATP-d"
+"A glükózból ATP készül."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"Vesinik sulfiidist saab sünteesida glükoosi kasutades kemoplaste ja "
-"kemosünteesivaid valke. Rauaga saab toota ATP-d kasutades roote-tsüaniini."
+"A hidrogén-szulfidot glükózzá tudod alakítani kemoplasztiszok és "
+"kemoszintetizáló proteinek segítségével. A vasat rusticyanin segítségével "
+"pedig ATP-vé tudod alakítani."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és "
+"foszfátra van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "(Praeguseks) Kui su rakkude arv väheneb 0-ks siis oled välja surnud."
+msgstr ""
+"Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz "
+"halni."
 
 #: ../simulation_parameters/common/help_texts.json:46
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a "
+"játékot (a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak "
+"jelenik meg, és utána még addig játszhatsz tovább, ameddig csak akarsz."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Ole teadlik et su konkurendid arenevad sinuga koos. Iga kord kui sa enda "
-"rakku muudad, arenevad nad samuti."
+"Légy óvatos, mert vetélytársaid is haladnak előre az evolúció rögös "
+"ösvényén. Amikor belépsz a szerkesztőbe, akkor ők is fejlődnek."
 
 #: ../simulation_parameters/common/help_texts.json:54
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"Több sejthez való kapcsolódás által ki tudsz alakítani egy sejtkolóniát, "
+"melyek egymással vegyületeket osztanak meg, amiket elnyelnek és "
+"előállítanak közösen. Egy másik sejthez való csatlakozáshoz egy "
+"kötőszövetre lesz szükséged. Ha ez megvan, akkor át kell váltanod "
+"összekapcsolás módba, és neki kell menned a másik sejtnek. Csak a saját "
+"fajod egyedeivel tudsz összekapcsolódni. Amíg egy kolóniában vagy, addig "
+"nem tudsz osztódni, és belépni a szerkesztőbe (perpillanat). Hogy a "
+"szerkesztőbe beléphess, ahhoz először hagyd el a kolóniát akkor, amikor "
+"elegendő nyersanyagot gyűjtöttél, és utána lépj be. A nagy sejtkolóniák "
+"fognak majd előrevinni a többsejtűség felé (perpillanat még nincs a "
+"játékban)."
 
 #: ../simulation_parameters/common/help_texts.json:62
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"Rakuvälised organellid\n"
+"Prokarióta szerkezetek\n"
 "\n"
-"Vibur: paneb su raku kiiremini liikuma, aga kasutab rohkem ATP-d\n"
+"Metaboloszómák: A gülkózból ATP-t állít elő.\n"
 "\n"
-"Piil: laseb su rakul teise rakke pussitada"
+"Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá "
+"alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon "
+"területet foglal el\n"
+"\n"
+"Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de "
+"glikolízist is végez, és 1 hexagon helyet foglal\n"
+"\n"
+"Rusticyanin: A vasat ATP-vé alakítja át\n"
+"\n"
+"Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át "
+"ammóniává anaerob módon\n"
+"\n"
+"Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis "
+"mennyiségű ATP-t termel)"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Rakuvälised organellid\n"
+"Külső sejtszervecskék\n"
 "\n"
-"Vibur: paneb su raku kiiremini liikuma, aga kasutab rohkem ATP-d\n"
+"Ostor: Gyorsabbá teszi a sejtedet ATP-t használva a folyamat során\n"
 "\n"
-"Piil: laseb su rakul teise rakke pussitada"
+"Pilus: Más sejtek megszúrására használható"
 
 #: ../simulation_parameters/common/help_texts.json:70
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Rakuvälised organellid\n"
+"Eukarióta sejtszervecskék\n"
 "\n"
-"Vibur: paneb su raku kiiremini liikuma, aga kasutab rohkem ATP-d\n"
+"Sejtmag: 11 hexagonnyi helyet foglal, és a sejtszervecskéket teszi "
+"elérhetővé, plusz megduplázza a sejted méretét (ezt csak egyszer teheted "
+"meg)\n"
 "\n"
-"Piil: laseb su rakul teise rakke pussitada"
+"Kötőszövet: Ezzel más sejtekhez tudsz kapcsolódni\n"
+"\n"
+"Mitokondrium: Glükózból és oxigénből (O2) állít elő ATP-t, méghozzá sokkal "
+"hatékonyabban, mint egy citoplazma\n"
+"\n"
+"Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) "
+"segítségével\n"
+"\n"
+"Kemoplasztisz: Glükózt állít elő hidrogén-szulfidból\n"
+"\n"
+"Nitrogén fixációs színtest: Ammóniát állít elő ATP-ből, és az "
+"atmoszférából gyűjtött oxigénből és nitrogénből\n"
+"\n"
+"Sejtnedvüreg: 15 egységnyi vegyületet tud raktározni\n"
+"\n"
+"Mérget tartalmazó sejtnedvüreg: Mérget állít elő (Neve [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Rakuvälised organellid\n"
-"\n"
-"Vibur: paneb su raku kiiremini liikuma, aga kasutab rohkem ATP-d\n"
-"\n"
-"Piil: laseb su rakul teise rakke pussitada"
+"Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, "
+"melyet mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos "
+"mennyiségű MP-be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, "
+"amit éppen abban a mutációs szekcióban raktál le, akkor annyi pontot kapsz "
+"vissza, amennyit ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is "
+"törölhetsz egy sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, "
+"és kiválasztod a neked megfelelő műveletet a felugró ablakban. Forgathatod "
+"is a sejtszervecskéket, miközben lerakod őket a [thrive:"
+"input]e_rotate_left[/thrive:input] vagy a [thrive:input]e_rotate_right[/"
+"thrive:input] megnyomásával."
 
 #: ../simulation_parameters/common/help_texts.json:78
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Rakuvälised organellid\n"
-"\n"
-"Vibur: paneb su raku kiiremini liikuma, aga kasutab rohkem ATP-d\n"
-"\n"
-"Piil: laseb su rakul teise rakke pussitada"
+"Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz "
+"belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy "
+"hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld "
+"túlélési esélyüket. Minden egyes látogatás a szerkesztőben 100 millió "
+"évnyi fejlődést jelent a fajod számára."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
 msgstr ""
+"A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen "
+"elkövetett hibát"
 
 #: ../simulation_parameters/common/help_texts.json:126
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a "
+"ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. "
+"És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A "
+"ragadozóhoz, vagy a zsákmányhoz?"
 
 #: ../simulation_parameters/common/help_texts.json:129
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
+"Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss "
+"el magad elől, ha elég gyors vagy."
 
 #: ../simulation_parameters/common/help_texts.json:132
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Et enda rakku muuta ja paljuneda, pead koguma ammoniaaki (Oranžid pilve) "
-"ja fosfaati (Lillad pilved)"
+"Itt egy kis tanács. Az ozmoreguláció másodpercenként 1 ATP-be kerül "
+"hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt "
+"jelenti, hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a "
+"sejtedhez egy pár hexagonnyi citoplazmát, és távolíts el pár "
+"sejtszervecskét."
 
 #: ../simulation_parameters/common/help_texts.json:135
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Sa saad kugistada rakke, baktereid, raua tükke ja raku osi mis on sinust "
-"väiksemad vajutades G-d. See kasutab rohkem ATP-d ja aeglustab su "
-"liikumist. Ära unusta vajutada G-d uuesti kui oled lõpetanud."
+"Érdekesség: a valóságban a prokariótáknak vannak úgynevezett biokamráik, "
+"melyek sejtszervecskeként viselkednek, és poliéderes sejtszervecskének is "
+"hívják ezeket."
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
+msgstr "Érdekesség: a metaboloszómát hívják poliéderes sejtszervecskének."
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
+msgstr "Itt egy kis tanács. Néha jobb döntés elmenekülni más sejtek elől."
 
 #: ../simulation_parameters/common/help_texts.json:144
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "(Praeguseks) Kui su rakkude arv väheneb 0-ks siis oled välja surnud."
+msgstr ""
+"Itt egy kis tanács. Ha egy sejt a tiédnek a fele, akkor tudod őt elnyelni."
 
 #: ../simulation_parameters/common/help_texts.json:147
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Erinevad ained on:\n"
-"\n"
-"Valge - Glükoos\n"
-"Kollane/roheline - Vesinik sulfiid\n"
-"Oranž - Amoniaak\n"
-"Lilla - Fosfaat\n"
-"Pruun/punane - Raud\n"
-"\n"
-"Glükoosist saab teha ATP-d"
+"Itt egy kis tanács. A baktériumok erősebbek is lehetnek, mint ahogy "
+"kinéznek. Kicsinek nézhetnek ki, de némelyik beléd tud fúródni, és úgy tud "
+"megölni!"
 
 #: ../simulation_parameters/common/help_texts.json:150
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Vesinik sulfiidist saab sünteesida glükoosi kasutades kemoplaste ja "
-"kemosünteesivaid valke. Rauaga saab toota ATP-d kasutades roote-tsüaniini."
+"Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz "
+"írtani, viszont ezt ők is megtehetik veled."
 
 #: ../simulation_parameters/common/help_texts.json:153
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+msgstr "HULLÁMZÓ BIGYUSZOK!!"
 
 #: ../simulation_parameters/common/help_texts.json:156
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+msgstr "Égesd a vasat."
 
 #: ../simulation_parameters/common/help_texts.json:159
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
-"Ole teadlik et su konkurendid arenevad sinuga koos. Iga kord kui sa enda "
-"rakku muudad, arenevad nad samuti."
+msgstr "Na azok a kék sejtek."
 
 #: ../simulation_parameters/common/help_texts.json:162
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"Itt egy kis tanács. A biomok kicsivel többek, mint egy csicsás háttér. "
+"Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak "
+"meg."
 
 #: ../simulation_parameters/common/help_texts.json:165
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész "
+"(VuTuTuTu), viszont ez sok ATP-t is használ"
 
 #: ../simulation_parameters/common/help_texts.json:168
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
 
 #: ../simulation_parameters/common/help_texts.json:171
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+"Itt egy kis tanács. Készülj fel, mielőtt egy sejtmaggal gazdagítod a "
+"sejtedet. Nagyon drágák azok az izék, és nem könnyű őket fenntartani."
 
 #: ../simulation_parameters/common/help_texts.json:174
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
+msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?"
 
 #: ../simulation_parameters/common/help_texts.json:177
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
 
 #: ../simulation_parameters/common/help_texts.json:180
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_19"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
 
 #: ../simulation_parameters/common/help_texts.json:183
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
 
 #: ../simulation_parameters/common/help_texts.json:186
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
 
 #: ../simulation_parameters/common/help_texts.json:189
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
 
 #: ../simulation_parameters/common/help_texts.json:192
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
 
 #: ../simulation_parameters/common/help_texts.json:195
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
 
 #: ../simulation_parameters/common/help_texts.json:198
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
 
 #: ../simulation_parameters/common/help_texts.json:201
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_26"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
 
 #: ../simulation_parameters/common/help_texts.json:204
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
-"Su rakk kasutab ATP-d energiaallikana, kui see saab otsa, siis su rakk "
-"sureb."
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -470,9 +455,8 @@ msgid "PLACE_ORGANELLE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Organellid"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_LEFT"
@@ -500,14 +484,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Organellid"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Organellid"
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:14
@@ -1000,9 +982,8 @@ msgid "KEY_UP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
-#, fuzzy
 msgid "KEY_RIGHT"
-msgstr "Valgus"
+msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
@@ -1046,71 +1027,71 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
-msgstr ""
+msgstr "Kedvencek"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Print Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Űr"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr ""
+msgstr "Holtjáték"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr ""
+msgstr "Backspace"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
-msgstr ""
+msgstr "Num Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "Page Up"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
-msgstr ""
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr ""
+msgstr "Super Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr ""
+msgstr "Super Right"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr ""
+msgstr "Hyper Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr ""
+msgstr "Hyper Right"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
@@ -1884,55 +1865,61 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:294
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Korábbi Fejlesztők"
 
 #: ../src/gui_common/CreditsScroll.cs:310
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Külső Közreműködők"
 
 #: ../src/gui_common/CreditsScroll.cs:313
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"A Thrive egy nyílt forrású project.\n"
+"Hozzájárulhatsz egy pull request-hez a csapatba való jelentkezés nélkül."
 
 #: ../src/gui_common/CreditsScroll.cs:328
 msgid "PATRONS"
-msgstr ""
+msgstr "Patronok"
 
 #: ../src/gui_common/CreditsScroll.cs:332
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "A Thrive fejlesztését támogatni is tudod Patreonon."
 
 #: ../src/gui_common/CreditsScroll.cs:348
 msgid "DONATIONS"
-msgstr ""
+msgstr "Adományok"
 
 #: ../src/gui_common/CreditsScroll.cs:371
 msgid "TRANSLATORS"
-msgstr ""
+msgstr "Fordítók"
 
 #: ../src/gui_common/CreditsScroll.cs:385
+#, fuzzy
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Licenszek"
 
 #: ../src/gui_common/CreditsScroll.cs:479
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Köszönjük, hogy játszottál a játékkal!\n"
+"\n"
+"Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
 
 #: ../src/gui_common/CreditsScroll.cs:488
 msgid "PROGRAMMING_TEAM"
-msgstr ""
+msgstr "Programozó csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:489
 msgid "THEORY_TEAM"
-msgstr ""
+msgstr "Elméleti csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:490
 msgid "GRAPHICS_TEAM"
-msgstr ""
+msgstr "Grafikus csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:491
 msgid "SOUND_TEAM"
-msgstr ""
+msgstr "Hangokkal foglalkozó csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:492
 msgid "OUTREACH_TEAM"
@@ -2155,13 +2142,11 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:119
 msgid "MEMBRANE_RIGIDITY"
-msgstr "Membraani jäikus"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:120
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab "
-"liikumist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:146
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2014
@@ -2171,7 +2156,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2814
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3084
 msgid "MOBILITY"
-msgstr "Liikuvus"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:181
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2117
@@ -2181,7 +2166,7 @@ msgstr "Liikuvus"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2917
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3187
 msgid "HEALTH"
-msgstr "Elu"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:228
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -2209,7 +2194,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1785
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
 msgid "STORAGE"
-msgstr "Varud"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:284
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:382
@@ -2259,9 +2244,8 @@ msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:520
-#, fuzzy
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
-msgstr "Kemo-sünteesivad valgud"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:521
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -2318,18 +2302,12 @@ msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1122
-#, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab "
-"liikumist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1123
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab "
-"liikumist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1205
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2369,9 +2347,8 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1487
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Organellid"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
@@ -2570,7 +2547,7 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:990
 msgid "LIGHT"
-msgstr "Valgus"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1045
 msgid "PRESSURE_SHORT"
@@ -2746,44 +2723,43 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1245
 msgid "STRUCTURAL"
-msgstr "Struktuurne"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1281
 msgid "PROTEINS"
-msgstr "Valgud"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1357
 msgid "EXTERNAL"
-msgstr "Väline"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1411
 msgid "ORGANELLES"
-msgstr "Organellid"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1560
 msgid "MEMBRANE_TYPES"
-msgstr "Membraani liigid"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1630
 msgid "FLUIDITY_RIGIDITY"
-msgstr "Vedelus / Jäikus"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1669
 msgid "COLOUR"
-msgstr "Värv"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1809
 msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Liigi nimi"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1845
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "KINNITA"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1859
 msgid "CONFIRM_CAPITAL"
-msgstr "KINNITA"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1868
 msgid "NEGATIVE_ATP_BALANCE"
@@ -2807,7 +2783,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1987
 msgid "FOOD_CHAIN"
-msgstr "Toiduahel"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
 msgid "TIMELINE"
@@ -3119,25 +3095,16 @@ msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:104
-#, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab "
-"liikumist."
 
 #: ../src/saving/SaveList.tscn:111
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr ""
-"Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab "
-"liikumist."
 
 #: ../src/saving/SaveList.tscn:112
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"Jäigem membraan teeb su raku vastupidavamaks vigastustele, aga raskendab "
-"liikumist."
 
 #: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
@@ -3302,38 +3269,9 @@ msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
-#, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:380
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"kasuta W,A,S,D ja hiirt et liikuda. Vajuta E-d et pihustada hapniku-"
-"toksiini kui sul on toksiini vakuool. Vajuta G-d et kugistada rauda ja "
-"organelle"
-
-#, fuzzy
-#~ msgid "COLOR"
-#~ msgstr "Värv"
-
-#~ msgid "TURNS"
-#~ msgstr "Keerab"
-
-#~ msgid "PRODUCES"
-#~ msgstr "Toodab"
-
-#~ msgid "OXYGEN_DOT"
-#~ msgstr "Hapnik."
-
-#, fuzzy
-#~ msgid "COLON"
-#~ msgstr "Värv"
-
-#, fuzzy
-#~ msgid "ETH"
-#~ msgstr "Elu"
