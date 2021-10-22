@@ -45,6 +45,9 @@ public class GameWorld
     {
         PlayerSpecies = CreatePlayerSpecies();
 
+        if (!PlayerSpecies.PlayerSpecies)
+            throw new Exception("PlayerSpecies flag for being player species is not set");
+
         Map = PatchMapGenerator.Generate(settings, PlayerSpecies);
 
         if (!Map.Verify())
