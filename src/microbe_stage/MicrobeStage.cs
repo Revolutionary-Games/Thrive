@@ -125,13 +125,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     public bool IsLoadedFromSave { get; set; }
 
-    [JsonProperty]
-    public Random Random
-    {
-        get => random ??= new Random();
-        set => random = value;
-    }
-
     /// <summary>
     ///   True once stage fade-in is complete
     /// </summary>
@@ -298,6 +291,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             }
         }
 
+        random = new Random();
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
@@ -372,8 +366,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             // Random location on respawn
             Player.Translation = new Vector3(
-                Random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
-                Random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
+                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
         }
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
@@ -610,7 +604,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
         }
 
-        var randomSpecies = species.Random(Random);
+        var randomSpecies = species.Random(random);
 
         SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
