@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 20:56+0200\n"
+"POT-Creation-Date: 2021-10-22 18:34+0300\n"
 "PO-Revision-Date: 2021-10-11 18:00+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -412,17 +412,17 @@ msgid "ABILITIES"
 msgstr "Abilità"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2116
+#: ../src/microbe_stage/MicrobeStage.tscn:2105
 msgid "FIRE_TOXIN"
 msgstr "Lancia tossina"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2104
+#: ../src/microbe_stage/MicrobeStage.tscn:2093
 msgid "TOGGLE_ENGULF"
 msgstr "Attiva/disattiva fagocitosi"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2127
+#: ../src/microbe_stage/MicrobeStage.tscn:2116
 msgid "TOGGLE_BINDING"
 msgstr "Attiva la modalità di legatura"
 
@@ -912,39 +912,59 @@ msgstr "Inizio"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "La popolazione di {0} è cambiata di {1} per il seguente motivo: {2}"
 
-#: ../src/auto-evo/RunResults.cs:231
+#: ../src/auto-evo/RunResults.cs:401
 msgid "POPULATION"
 msgstr "popolazione:"
 
-#: ../src/auto-evo/RunResults.cs:239
+#: ../src/auto-evo/RunResults.cs:409
 msgid "WENT_EXTINCT_IN"
 msgstr "si è estinto nella zona {0}"
 
-#: ../src/auto-evo/RunResults.cs:245
+#: ../src/auto-evo/RunResults.cs:415
 msgid "PREVIOUS"
 msgstr "precedente:"
 
-#: ../src/auto-evo/RunResults.cs:261
+#: ../src/auto-evo/RunResults.cs:432
+#, fuzzy
+msgid "RUN_RESULT_SPLIT_FROM"
+msgstr "codice genetico:"
+
+#: ../src/auto-evo/RunResults.cs:445
+#, fuzzy
+msgid "RUN_RESULT_NICHE_FILL"
+msgstr "codice genetico:"
+
+#: ../src/auto-evo/RunResults.cs:448
+#, fuzzy
+msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
+msgstr "è migrato nelle zone:"
+
+#: ../src/auto-evo/RunResults.cs:466
+#, fuzzy
+msgid "RUN_RESULT_SPLIT_OFF_TO"
+msgstr "è migrato nelle zone:"
+
+#: ../src/auto-evo/RunResults.cs:482
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "ha subito una mutazione"
 
-#: ../src/auto-evo/RunResults.cs:266
+#: ../src/auto-evo/RunResults.cs:487
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "codice genetico:"
 
-#: ../src/auto-evo/RunResults.cs:277
+#: ../src/auto-evo/RunResults.cs:498
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "è migrato nelle zone:"
 
-#: ../src/auto-evo/RunResults.cs:286
+#: ../src/auto-evo/RunResults.cs:507
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} avendo mosso: {1} esemplari dalla zona: {2}"
 
-#: ../src/auto-evo/RunResults.cs:305
+#: ../src/auto-evo/RunResults.cs:526
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "Popolazione nelle zone:"
 
-#: ../src/auto-evo/RunResults.cs:385
+#: ../src/auto-evo/RunResults.cs:633
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "si è estinto dal pianeta"
 
@@ -1392,6 +1412,7 @@ msgid "NEW_GAME"
 msgstr "Nuova Partita"
 
 #: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Carica Partita"
 
@@ -1426,6 +1447,7 @@ msgstr "Editor Microbico Libero"
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
 #: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:459
 #: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Indietro"
@@ -1798,6 +1820,7 @@ msgid "HELP"
 msgstr "Aiuto"
 
 #: ../src/general/PauseMenu.tscn:101
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
 msgid "RETURN_TO_MENU"
 msgstr "Ritorna al Menù"
 
@@ -2753,7 +2776,7 @@ msgstr "Roba alle coordinate {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Cellula del Giocatore"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:737
+#: ../src/microbe_stage/MicrobeHUD.cs:736
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Lista delle Specie"
@@ -2906,11 +2929,11 @@ msgstr "Caricamento dell'Editor Microbico"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Auto-evo in corso:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2333
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2341
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-evo non ha funzionato"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2334
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2342
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Stato dell'Auto-evo:"
 
@@ -3175,22 +3198,22 @@ msgstr "{0} con popolazione: {1}"
 msgid "MP_COST"
 msgstr "{0} PM"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:86
 msgid "EXTINCTION_CAPITAL"
 msgstr "ESTINZIONE"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:95
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Proprio come il 99% delle specie mai esistite, la tua si è estinta. Altri "
 "andranno a occupare nicchie e prosperare, ma non tu. Sarai dimenticato, un "
 "esperimento fallito dell'evoluzione."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:54
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "HAI PROSPERATO!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:63
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Congratulazioni! Hai vinto questa versione di Thrive! Se vuoi, puoi "

@@ -1431,8 +1431,18 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
-        // Create a mutated version of the current species code to compete against the player
-        CreateMutatedSpeciesCopy(species);
+#pragma warning disable 162
+
+        // Disabled warning as this is a tweak constant
+        // ReSharper disable ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
+        if (Constants.CREATE_COPY_OF_EDITED_SPECIES)
+        {
+            // Create a mutated version of the current species code to compete against the player
+            CreateMutatedSpeciesCopy(species);
+        }
+
+        // ReSharper restore ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
+#pragma warning restore 162
 
         NewName = species.FormattedName;
 

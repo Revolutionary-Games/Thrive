@@ -421,6 +421,8 @@ public class AutoEvoRun
     /// </summary>
     private void GatherInfo()
     {
+        var random = new Random();
+
         var alreadyHandledSpecies = new HashSet<Species>();
 
         var map = parameters.World.Map;
@@ -436,8 +438,7 @@ public class AutoEvoRun
 
                 alreadyHandledSpecies.Add(speciesEntry.Key);
 
-                // The player species doesn't get random mutations. And also doesn't
-                // spread automatically
+                // The player species doesn't get random mutations. And also doesn't spread automatically
                 if (speciesEntry.Key.PlayerSpecies)
                 {
                 }
@@ -445,11 +446,20 @@ public class AutoEvoRun
                 {
                     runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowNoMigration));
-                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key,
+                        autoEvoConfiguration.AllowNoMigration,
+                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
+                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
+
+                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key, random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
                 }
+            }
+
+            if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
+                random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
+            {
+                runSteps.Enqueue(new IncreaseBiodiversity(map, entry.Value, random, autoEvoConfiguration));
             }
         }
 
@@ -460,9 +470,12 @@ public class AutoEvoRun
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
         runSteps.Enqueue(new CalculatePopulation(map) { CanRunConcurrently = false });
 
+        // Due to species splitting migrations may end up being invalid
+        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
+        // numbers
+        runSteps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
+
         // Adjust auto-evo results for player species
-        // NOTE: currently the player isn't given enough info so the auto-evo is canceled for them. In the future it
-        // will be applied with 80% change strength
         runSteps.Enqueue(new LambdaStep(
             result =>
             {
@@ -473,8 +486,20 @@ public class AutoEvoRun
                     if (!entry.Value.SpeciesInPatch.ContainsKey(species))
                         continue;
 
-                    result.AddPopulationResultForSpecies(species, entry.Value,
-                        entry.Value.GetSpeciesPopulation(species));
+                    // Going extinct in patch is not adjusted, because the minimum viable population clamping is
+                    // performed already so we don't want to undo that
+                    var resultPopulation = result.GetPopulationInPatch(species, entry.Value);
+
+                    if (resultPopulation == 0)
+                        continue;
+
+                    // Adjust to the specified fraction of the full population change
+                    var previousPopulation = entry.Value.GetSpeciesPopulation(species);
+                    var change = resultPopulation - previousPopulation;
+
+                    change = (long)Math.Round(change * Constants.AUTO_EVO_PLAYER_STRENGTH_FRACTION);
+
+                    result.AddPopulationResultForSpecies(species, entry.Value, previousPopulation + change);
                 }
             }));
     }

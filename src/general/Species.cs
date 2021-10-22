@@ -173,6 +173,16 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
+    ///   Only called by GameWorld when an externally created species is added to it. Should not be called from
+    ///   anywhere else.
+    /// </summary>
+    /// <param name="newId">The new ID for this species for the new world</param>
+    public void OnBecomePartOfWorld(uint newId)
+    {
+        ID = newId;
+    }
+
+    /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
     ///   referring to the old data. In for example the Mutations
@@ -204,6 +214,9 @@ public abstract class Species : ICloneable
         species.Population = Population;
         species.Generation = Generation;
         species.ID = ID;
-        species.PlayerSpecies = PlayerSpecies;
+
+        // There can only be one player species at a time, so to avoid adding a method to reset this flag when
+        // mutating, this property is just not copied
+        // species.PlayerSpecies = PlayerSpecies;
     }
 }
