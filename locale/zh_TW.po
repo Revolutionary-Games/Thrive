@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 10:58+0300\n"
+"POT-Creation-Date: 2021-10-21 20:56+0200\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -1787,7 +1787,7 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:614
+#: ../src/microbe_stage/MicrobeHUD.cs:617
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
@@ -2599,14 +2599,19 @@ msgstr "玩家死亡"
 msgid "PLAYER_DUPLICATE"
 msgstr "玩家死亡"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:672
+#: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:722
+#: ../src/microbe_stage/MicrobeHUD.cs:719
 #, fuzzy
 msgid "PLAYER_CELL"
 msgstr "玩家死亡"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:737
+#, fuzzy
+msgid "SPECIES_N_TIMES"
+msgstr "存在的物種"
 
 #: ../src/microbe_stage/MicrobeStage.cs:510
 msgid "PLAYER_REPRODUCED"
