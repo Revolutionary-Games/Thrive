@@ -22,6 +22,7 @@ public class PilusComponent : ExternallyPositionedComponent
         Vector3 membraneCoords)
     {
         organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         Vector3 membranePointDirection = (membraneCoords - middle).Normalized();
 
