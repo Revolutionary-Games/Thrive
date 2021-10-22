@@ -494,7 +494,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
                 OrganelleParent.AddChild(organelle);
 
             // Colony children shapes need re-parenting to their master
-            // The shapes have to be re-parented to their original microbe then to the master again,maybe engine bug
+            // The shapes have to be re-parented to their original microbe then to the master again, maybe engine bug
             // Also re-add to the collision exception and change the mode to static as it should be
             if (Colony != null && this != Colony.Master)
             {
