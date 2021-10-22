@@ -46,8 +46,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     private Control hudRoot;
 
-    [JsonProperty]
-    private Random random = new Random();
+    private Random random;
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -125,6 +124,13 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; }
+
+    [JsonProperty]
+    public Random Random
+    {
+        get => random ??= new Random();
+        set => random = value;
+    }
 
     /// <summary>
     ///   True once stage fade-in is complete
@@ -364,8 +370,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             // Random location on respawn
             Player.Translation = new Vector3(
-                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
-                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
+                Random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+                Random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
         }
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
@@ -594,16 +600,15 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
 
         var species = GameWorld.Map.CurrentPatch.SpeciesInPatch.Keys.Where(s => !s.PlayerSpecies).ToList();
-        var enemySpecies = species.Count;
 
         // No enemy species to spawn in this patch
-        if (enemySpecies == 0)
+        if (species.Count == 0)
         {
             GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
             return;
         }
 
-        var randomSpecies = species.Random(random);
+        var randomSpecies = species.Random(Random);
 
         SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
