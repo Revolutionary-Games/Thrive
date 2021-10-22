@@ -28,14 +28,18 @@ unless File.exist?('Thrive.sln')
   puts 'I told you to run this script from the root Thrive folder!'
   exit
 end
-current_branch = `git rev-parse --abbrev-ref HEAD`.strip!
 has_changes = system('git diff-index --quiet HEAD --') == false
-runOpen3Checked('git', 'stash') if has_changes
+if has_changes
+  puts 'You have uncommitted changes. Please commit your changes before running this script.'
+  exit
+end
+current_branch = `git rev-parse --abbrev-ref HEAD`.strip!
 runOpen3Checked('git', 'checkout', 'master')
 runOpen3Checked('git', 'pull')
 runOpen3Checked('git', 'checkout', current_branch)
-runOpen3Checked('git', 'stash', 'pop') if has_changes
-runOpen3Checked('git', 'merge', 'master', '--no-ff')
 runOpen3Checked('git', 'checkout', 'master', 'locale/')
+runOpen3Checked('git', 'add', 'locale/')
+runOpen3Checked('git', 'commit', '-m "Reset locales to master"')
+runOpen3Checked('git', 'merge', 'master', '--no-ff')
 runOpen3Checked('ruby', 'scripts/update_localization.rb')
 system(editor, 'locale/en.po')
