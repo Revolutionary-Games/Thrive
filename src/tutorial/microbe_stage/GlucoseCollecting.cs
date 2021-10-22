@@ -37,7 +37,7 @@
                     var compounds = ((CompoundBagEventArgs)args).Compounds;
 
                     if (!HasBeenShown && !CanTrigger &&
-                        compounds.GetCompoundAmount(glucose) < compounds.BagCapacity -
+                        compounds.GetCompoundAmount(glucose) < compounds.Capacity -
                         Constants.GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE)
                     {
                         CanTrigger = true;

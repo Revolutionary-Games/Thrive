@@ -1614,7 +1614,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             foreach (var usefulCompound in usefulCompounds)
             {
                 Compounds.AddCompound(usefulCompound,
-                    Compounds.BagCapacity - Compounds.GetCompoundAmount(usefulCompound));
+                    Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
             }
         }
     }
@@ -1646,10 +1646,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             {
                 amountToVent -= EjectCompound(type, amountToVent);
             }
-            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.BagCapacity)
+            else if (Compounds.GetCompoundAmount(type) > 2 * Compounds.Capacity)
             {
                 // Vent the part that went over
-                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.BagCapacity);
+                float toVent = Compounds.GetCompoundAmount(type) - (2 * Compounds.Capacity);
 
                 amountToVent -= EjectCompound(type, Math.Min(toVent, amountToVent));
             }
@@ -2250,7 +2250,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
-        Compounds.BagCapacity = organellesCapacity;
+        Compounds.Capacity = organellesCapacity;
     }
 
     [DeserializedCallbackAllowed]
@@ -2268,7 +2268,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         cachedHexCountDirty = true;
         membraneOrganellePositionsAreDirty = true;
 
-        Compounds.BagCapacity = organellesCapacity;
+        Compounds.Capacity = organellesCapacity;
     }
 
     /// <summary>
@@ -2352,7 +2352,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     private void RecomputeOrganelleCapacity()
     {
         organellesCapacity = organelles.Sum(o => o.StorageCapacity);
-        Compounds.BagCapacity = organellesCapacity;
+        Compounds.Capacity = organellesCapacity;
     }
 
     /// <summary>

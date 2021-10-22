@@ -14,9 +14,9 @@ public class ColonyCompoundBag : ICompoundStorage
     [JsonProperty]
     private MicrobeColony Colony { get; set; }
 
-    public float GetCapacity(Compound compound)
+    public float GetCapacityForCompound(Compound compound)
     {
-        return GetCompoundBags().Sum(p => p.GetCapacity(compound));
+        return GetCompoundBags().Sum(p => p.GetCapacityForCompound(compound));
     }
 
     /// <summary>
@@ -33,11 +33,11 @@ public class ColonyCompoundBag : ICompoundStorage
             if (!compound.Key.CanBeDistributed)
                 continue;
 
-            var ratio = compound.Value / GetCapacity(compound.Key);
+            var ratio = compound.Value / GetCapacityForCompound(compound.Key);
 
             foreach (var bag in bags)
             {
-                var amount = ratio * bag.GetCapacity(compound.Key);
+                var amount = ratio * bag.GetCapacityForCompound(compound.Key);
                 var surplus = bag.GetCompoundAmount(compound.Key) - amount;
                 if (surplus > 0)
                 {

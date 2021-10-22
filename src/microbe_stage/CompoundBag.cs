@@ -16,14 +16,14 @@ public class CompoundBag : ICompoundStorage
     /// <summary>
     ///   Creates a new bag
     /// </summary>
-    /// <param name="bagCapacity">Specifies the initial capacity of the compound bag</param>
-    public CompoundBag(float bagCapacity)
+    /// <param name="capacity">Specifies the initial capacity of the compound bag</param>
+    public CompoundBag(float capacity)
     {
-        BagCapacity = bagCapacity;
+        Capacity = capacity;
     }
 
     [JsonProperty]
-    public float BagCapacity { get; set; }
+    public float Capacity { get; set; }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
@@ -32,10 +32,10 @@ public class CompoundBag : ICompoundStorage
     [JsonProperty]
     public Dictionary<Compound, float> Compounds { get; private set; } = new Dictionary<Compound, float>();
 
-    public float GetCapacity(Compound compound)
+    public float GetCapacityForCompound(Compound compound)
     {
         if (IsUseful(compound))
-            return BagCapacity;
+            return Capacity;
 
         return 0;
     }
@@ -66,7 +66,7 @@ public class CompoundBag : ICompoundStorage
 
         float existingAmount = GetCompoundAmount(compound);
 
-        float newAmount = Math.Min(existingAmount + amount, BagCapacity);
+        float newAmount = Math.Min(existingAmount + amount, Capacity);
 
         Compounds[compound] = newAmount;
 

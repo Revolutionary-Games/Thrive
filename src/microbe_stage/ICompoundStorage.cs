@@ -6,9 +6,9 @@
 public interface ICompoundStorage : IEnumerable<KeyValuePair<Compound, float>>
 {
     /// <summary>
-    ///   The max amount of any compound that can be stored
+    ///   The max amount of a compound that can be stored
     /// </summary>
-    float GetCapacity(Compound compound);
+    float GetCapacityForCompound(Compound compound);
 
     /// <summary>
     ///   Returns the stored amount of the compound in this
