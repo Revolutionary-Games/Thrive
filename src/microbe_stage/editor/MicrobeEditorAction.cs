@@ -47,6 +47,7 @@ public class MicrobeEditorAction : ReversibleAction
     [JsonIgnore]
     public bool IsMoveAction => Data is MoveActionData;
 
+    /// <inheritdoc cref="MicrobeEditorActionData.IsSubAction"/>
     public override bool IsSubAction => Data.IsSubAction;
 
     public override void DoAction()

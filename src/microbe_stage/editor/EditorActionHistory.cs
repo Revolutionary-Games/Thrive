@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+///   Holds the action history for the microbe editor.
+///   Is capable of MP calculation.
+/// </summary>
 public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 {
     private List<MicrobeEditorActionData> cache;
 
+    /// <summary>
+    ///   Calculates how much MP these actions would cost if performed on top of the current history.
+    /// </summary>
     public int WhatWouldActionsCost(List<MicrobeEditorActionData> actions)
     {
         var result = 0;
@@ -21,6 +28,9 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
         return result;
     }
 
+    /// <summary>
+    ///   Calculates how much MP this action would cost if performed on top of the current history.
+    /// </summary>
     public int WhatWouldActionCost(MicrobeEditorActionData action)
     {
         int result = 0;
@@ -47,9 +57,8 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     }
 
     /// <summary>
-    ///   Calculates the remaining MP from the action history
+    ///   Calculates the remaining MP from the action history.
     /// </summary>
-    /// <returns>The remaining MP</returns>
     public int CalculateMutationPointsLeft()
     {
         var copyLength = (cache ??= GetActionHistorySinceLastNewMicrobePress()).Count;
@@ -113,6 +122,9 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
         base.AddAction(action);
     }
 
+    /// <summary>
+    ///   Returns all actions since the last time the user performed the "New Microbe" action
+    /// </summary>
     private List<MicrobeEditorActionData> GetActionHistorySinceLastNewMicrobePress()
     {
         var relevantActions = actions.Take(actionIndex).Select(p => p.Data).ToList();

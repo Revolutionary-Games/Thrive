@@ -34,6 +34,7 @@ public abstract class ActionHistory<T>
         if (!CanRedo())
             return false;
 
+        // This do while loop is here to redo actions till a non-sub-action was redone
         T action;
         do
         {
@@ -50,6 +51,7 @@ public abstract class ActionHistory<T>
         if (!CanUndo())
             return false;
 
+        // This do while loop is here to undo actions till a non-sub-action was undone
         T action;
         do
         {

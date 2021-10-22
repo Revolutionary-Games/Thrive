@@ -226,7 +226,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public MicrobeCamera Camera => camera;
 
     /// <summary>
-    ///   Where all user actions will  be registered
+    ///   Where all user actions will be registered
     /// </summary>
     public EditorActionHistory History { get; private set; } = new EditorActionHistory();
 
@@ -435,7 +435,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             camera.ObjectToFollow = cameraFollow;
 
         tutorialGUI.Visible = true;
-
         gui.Init(this);
 
         TransitionFinished = false;
@@ -629,6 +628,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
+    /// <summary>
+    ///   Counts the number of placed organelles with this symmetry mode
+    /// </summary>
     public int GetPositionsOfSymmetryMode(MicrobeSymmetry symmetry)
     {
         return symmetry switch
