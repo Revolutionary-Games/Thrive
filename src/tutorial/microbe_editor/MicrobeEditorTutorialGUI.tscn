@@ -44,10 +44,10 @@ Resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="EditorEntryReport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 345.0
+margin_bottom = 345.0
 rect_min_size = Vector2( 330, 330 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -55,8 +55,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="EditorEntryReport/ScrollContainer"]
-margin_right = 340.0
-margin_bottom = 340.0
+margin_right = 690.0
+margin_bottom = 690.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
@@ -77,16 +77,16 @@ rect_pivot_offset = Vector2( 175, 175 )
 theme = null
 script = ExtResource( 7 )
 WindowTitle = "TUTORIAL"
-Resizable = true
 ShowDelay = 0.5
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PatchMapTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 335.0
 rect_min_size = Vector2( 320, 320 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -94,8 +94,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PatchMapTutorial/ScrollContainer"]
-margin_right = 330.0
-margin_bottom = 330.0
+margin_right = 670.0
+margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
@@ -121,16 +121,16 @@ Resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorIntro"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 335.0
 rect_min_size = Vector2( 320, 320 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="CellEditorIntro/ScrollContainer"]
-margin_right = 330.0
-margin_bottom = 330.0
+margin_right = 670.0
+margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
@@ -145,22 +145,22 @@ anchor_bottom = 0.5
 margin_left = -403.0
 margin_top = -134.0
 margin_right = -113.0
-margin_bottom = 208.0
-rect_min_size = Vector2( 290, 342 )
+margin_bottom = 216.0
+rect_min_size = Vector2( 290, 350 )
 rect_pivot_offset = Vector2( 145, 171 )
 theme = null
 script = ExtResource( 7 )
 WindowTitle = "TUTORIAL"
-Resizable = true
 ShowDelay = 0.0
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 260, 260 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -168,8 +168,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="UndoTutorial/ScrollContainer"]
-margin_right = 270.0
-margin_bottom = 322.0
+margin_right = 260.0
+margin_bottom = 320.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
@@ -198,10 +198,10 @@ Resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="RedoTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 355.0
+margin_bottom = 355.0
 rect_min_size = Vector2( 340, 340 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -209,8 +209,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="RedoTutorial/ScrollContainer"]
-margin_right = 350.0
-margin_bottom = 350.0
+margin_right = 710.0
+margin_bottom = 710.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
@@ -236,18 +236,18 @@ Resizable = true
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 10.0
-margin_right = -10.0
-margin_bottom = -10.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 355.0
+margin_bottom = 355.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CellEditorClosingWords/ScrollContainer"]
-margin_right = 350.0
-margin_bottom = 350.0
+margin_right = 710.0
+margin_bottom = 710.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
