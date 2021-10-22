@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 10:58+0300\n"
+"POT-Creation-Date: 2021-10-21 20:56+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Nathaniel Balderramas <nabm.utn@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -1843,7 +1843,7 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:614
+#: ../src/microbe_stage/MicrobeHUD.cs:617
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
@@ -2785,14 +2785,19 @@ msgstr "El jugador murió"
 msgid "PLAYER_DUPLICATE"
 msgstr "El jugador murió"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:672
+#: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
 msgstr "Objetos en {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:722
+#: ../src/microbe_stage/MicrobeHUD.cs:719
 #, fuzzy
 msgid "PLAYER_CELL"
 msgstr "El jugador murió"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:737
+#, fuzzy
+msgid "SPECIES_N_TIMES"
+msgstr "Especies Presentes"
 
 #: ../src/microbe_stage/MicrobeStage.cs:510
 msgid "PLAYER_REPRODUCED"

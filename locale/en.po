@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 10:58+0300\n"
-"PO-Revision-Date: 2021-10-15 15:58+0300\n"
+"POT-Creation-Date: 2021-10-21 20:56+0200\n"
+"PO-Revision-Date: 2021-10-22 08:50+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -1822,7 +1822,7 @@ msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:614
+#: ../src/microbe_stage/MicrobeHUD.cs:617
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:570
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:838
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:981
@@ -2728,13 +2728,17 @@ msgstr ""
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplicate Player"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:672
+#: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
 msgstr "Stuff at {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:722
+#: ../src/microbe_stage/MicrobeHUD.cs:719
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:737
+msgid "SPECIES_N_TIMES"
+msgstr "{0} (x{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:510
 msgid "PLAYER_REPRODUCED"

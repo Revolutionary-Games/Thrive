@@ -179,6 +179,9 @@ public class MicrobeHUD : Control
     private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
+    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
+        new System.Collections.Generic.Dictionary<Species, int>();
+
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
     private VBoxContainer hoveredCompoundsContainer;
@@ -706,20 +709,37 @@ public class MicrobeHUD : Control
             }
         }
 
-        // Show the species name of hovered cells
+        // Show the species name and count of hovered cells
+        hoveredSpeciesCounts.Clear();
         foreach (var microbe in stage.HoverInfo.HoveredMicrobes)
         {
-            // TODO: Combine cells of same species within mouse over
-            // into a single line with total number of them
-
-            var microbeText = new Label();
-            microbeText.Valign = Label.VAlign.Center;
-            hoveredCellsContainer.AddChild(microbeText);
-
-            microbeText.Text = microbe.Species.FormattedName;
-
             if (microbe.IsPlayerMicrobe)
-                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
+            {
+                AddHoveredCellLabel(microbe.Species.FormattedName +
+                    " (" + TranslationServer.Translate("PLAYER_CELL") + ")");
+                continue;
+            }
+
+            if (!hoveredSpeciesCounts.TryGetValue(microbe.Species, out int count))
+            {
+                count = 0;
+            }
+
+            hoveredSpeciesCounts[microbe.Species] = count + 1;
+        }
+
+        foreach (var hoveredSpeciesCount in hoveredSpeciesCounts)
+        {
+            if (hoveredSpeciesCount.Value > 1)
+            {
+                AddHoveredCellLabel(
+                    string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
+                        hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value));
+            }
+            else
+            {
+                AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName);
+            }
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
@@ -728,6 +748,15 @@ public class MicrobeHUD : Control
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
         nothingHere.Visible = !stage.HoverInfo.IsHoveringOverAnything;
+    }
+
+    private void AddHoveredCellLabel(string cellInfo)
+    {
+        hoveredCellsContainer.AddChild(new Label
+        {
+            Valign = Label.VAlign.Center,
+            Text = cellInfo,
+        });
     }
 
     /// <summary>
