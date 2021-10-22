@@ -152,7 +152,7 @@
             activity.Remove();
             focus.Remove();
 
-            (property.Value as JObject)?.Add("Behaviour",
+            ((JObject)property.Value).Add("Behaviour",
                 new JObject(aggression, opportunism, fear, activity, focus));
         }
     }
