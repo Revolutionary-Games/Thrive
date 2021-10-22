@@ -230,11 +230,13 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public override void _EnterTree()
     {
         CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+        base._EnterTree();
     }
 
     public override void _ExitTree()
     {
         CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+        base._ExitTree();
     }
 
     public override void _Notification(int what)
