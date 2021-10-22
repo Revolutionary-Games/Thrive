@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
+[ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.cs" type="Script" id=4]
+[ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 0.196078 )
@@ -22,50 +25,129 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="ExtinctionBox" type="PanelContainer"]
-modulate = Color( 1, 1, 1, 0 )
-anchor_top = 0.277778
+[node name="ExtinctionBox" type="Control"]
 anchor_right = 1.0
-anchor_bottom = 0.694444
-margin_bottom = 3.05176e-05
+anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 3 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ExtinctionMenuPath = NodePath("ExtinctionBoxMenu")
+LoadMenuPath = NodePath("LoadMenu")
+
+[node name="ExtinctionBoxMenu" type="VBoxContainer" parent="." groups=[
+"MenuItem",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+custom_constants/separation = 10
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="ExtinctionBoxMenu"]
+margin_top = 160.0
+margin_right = 1280.0
+margin_bottom = 460.0
+rect_min_size = Vector2( 0, 300 )
+mouse_filter = 2
+size_flags_horizontal = 3
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="ExtinctionBoxMenu/PanelContainer"]
 margin_right = 1280.0
 margin_bottom = 300.0
+mouse_filter = 2
 custom_constants/margin_right = 150
 custom_constants/margin_left = 150
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ExtinctionBoxMenu/PanelContainer/MarginContainer"]
 margin_left = 150.0
 margin_right = 1130.0
-margin_bottom = 299.0
+margin_bottom = 300.0
+mouse_filter = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 102.0
+[node name="Title" type="Label" parent="ExtinctionBoxMenu/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 103.0
 margin_right = 980.0
-margin_bottom = 168.0
+margin_bottom = 169.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.2, 0.2, 1 )
 text = "EXTINCTION_CAPITAL"
 align = 1
 valign = 1
 
-[node name="Message" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 172.0
+[node name="Message" type="Label" parent="ExtinctionBoxMenu/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 173.0
 margin_right = 980.0
-margin_bottom = 196.0
+margin_bottom = 197.0
 custom_fonts/font = ExtResource( 1 )
 text = "EXTINCTION_BOX_TEXT"
 align = 1
 valign = 1
 autowrap = true
 
+[node name="LoadGame" type="Button" parent="ExtinctionBoxMenu"]
+margin_left = 515.0
+margin_top = 470.0
+margin_right = 765.0
+margin_bottom = 510.0
+rect_min_size = Vector2( 250, 40 )
+size_flags_horizontal = 4
+text = "LOAD_GAME"
+
+[node name="ReturnToMenu" type="Button" parent="ExtinctionBoxMenu"]
+margin_left = 515.0
+margin_top = 520.0
+margin_right = 765.0
+margin_bottom = 560.0
+rect_min_size = Vector2( 250, 40 )
+size_flags_horizontal = 4
+text = "RETURN_TO_MENU"
+
+[node name="LoadMenu" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 140.0
+margin_top = 60.0
+margin_right = 1140.0
+margin_bottom = 660.0
+rect_min_size = Vector2( 1000, 600 )
+
+[node name="SaveList" parent="LoadMenu" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1000.0
+margin_bottom = 559.0
+size_flags_vertical = 3
+AutoRefreshOnFirstVisible = false
+
+[node name="Back" type="Button" parent="LoadMenu"]
+margin_left = 450.0
+margin_top = 563.0
+margin_right = 550.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 100, 37 )
+size_flags_horizontal = 4
+theme = ExtResource( 3 )
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"
 anims/FadeIn = SubResource( 2 )
+
+[connection signal="pressed" from="ExtinctionBoxMenu/LoadGame" to="." method="OpenLoadGamePressed"]
+[connection signal="pressed" from="ExtinctionBoxMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
+[connection signal="pressed" from="LoadMenu/Back" to="." method="CloseLoadPressed"]
