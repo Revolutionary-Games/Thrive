@@ -96,7 +96,9 @@ public class CustomConfirmationDialog : CustomDialog
         cancelButton = GetNode<Button>("VBoxContainer/HBoxContainer/CancelButton");
         cancelEndSpacer = GetNode<Control>("VBoxContainer/HBoxContainer/Spacer3");
 
-        if (OS.IsOkLeftAndCancelRight())
+        // Only move the buttons when run outside of the editor to avoid messing up
+        // the predefined button order placement in the scene when it's opened
+        if (OS.IsOkLeftAndCancelRight() && !Engine.EditorHint)
         {
             buttonsContainer.MoveChild(confirmButton, 1);
             buttonsContainer.MoveChild(cancelButton, 3);

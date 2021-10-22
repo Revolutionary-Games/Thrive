@@ -3,6 +3,7 @@
 /// <summary>
 ///   A window dialog for tutorials with custom behaviors such as show (pop-up) delay and animation.
 /// </summary>
+[Tool]
 public class TutorialDialog : CustomDialog
 {
     private Tween tween;
@@ -21,6 +22,10 @@ public class TutorialDialog : CustomDialog
 
     protected override void OnShown()
     {
+        // Don't animate if currently running inside the editor
+        if (Engine.EditorHint)
+            return;
+
         RectPivotOffset = RectSize / 2;
         RectScale = Vector2.Zero;
 
