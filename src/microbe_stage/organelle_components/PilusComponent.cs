@@ -8,6 +8,13 @@ public class PilusComponent : ExternallyPositionedComponent
 {
     private List<uint> addedChildShapes = new List<uint>();
 
+    public override void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset, Vector3 masterRotation,
+        Vector3 parentRotation)
+    {
+        // For now to avoid bug with attaching to the wrong microbe physically, we destroy our shape here
+        DestroyShape();
+    }
+
     protected override void CustomDetach()
     {
         DestroyShape();
@@ -22,6 +29,11 @@ public class PilusComponent : ExternallyPositionedComponent
         Vector3 membraneCoords)
     {
         organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+
+        // TODO: fix attaching to the wrong parent
+        // This if is only true when loading a save
+        if (organelle.ParentMicrobe.ColonyParent != null)
+            return;
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         Vector3 membranePointDirection = (membraneCoords - middle).Normalized();
