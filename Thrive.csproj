@@ -95,6 +95,7 @@
     <Compile Include="src\gui_common\CreditsScroll.cs" />
     <Compile Include="src\gui_common\CustomDropDown.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
+    <Compile Include="src\gui_common\LicensesDisplay.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
@@ -126,6 +127,9 @@
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
+    <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
+    <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
+    <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
     <Compile Include="src\microbe_stage\ChunkConfiguration.cs" />
     <Compile Include="src\microbe_stage\ColonyCompoundBag.cs" />
@@ -255,6 +259,7 @@
     <Compile Include="src\saving\ISaveLoadable.cs" />
     <Compile Include="src\saving\ISaveLoadedTracked.cs" />
     <Compile Include="src\saving\ISaveUpgradeStep.cs" />
+    <Compile Include="src\saving\JSONDebug.cs" />
     <Compile Include="src\saving\NewSaveMenu.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveApplyHelper.cs" />
@@ -345,10 +350,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="export_presets.cfg" />
+    <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
     <Content Include="simulation_parameters\common\credits.json" />
+    <Content Include="simulation_parameters\common\gallery.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
+    <Content Include="simulation_parameters\common\translations_info.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />
     <Content Include="simulation_parameters\microbe_stage\bio_processes.json" />

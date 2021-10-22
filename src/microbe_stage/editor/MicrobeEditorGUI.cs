@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main class managing the microbe editor GUI
 /// </summary>
-public class MicrobeEditorGUI : Node, ISaveLoadedTracked
+public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 {
     // The labels to update are at really long relative paths, so they are set in the Godot editor
     [Export]
@@ -1048,7 +1048,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
             var speciesLabel = new Label();
-            speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
+            speciesLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
             speciesLabel.Autowrap = true;
             speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
@@ -1263,7 +1263,7 @@ public class MicrobeEditorGUI : Node, ISaveLoadedTracked
         }
 
         // To prevent being clicked twice
-        finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+        finishButton.MouseFilter = MouseFilterEnum.Ignore;
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));

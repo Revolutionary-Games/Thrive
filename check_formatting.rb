@@ -39,6 +39,10 @@ CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
 ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 ASSEMBLY_VERSION_REGEX = /AssemblyVersion\("([\d.]+)"\)/.freeze
 
+REQUIREMENTS_TXT_FILE = 'docker/jsonlint/requirements.txt'
+PIP_BABEL_THRIVE_VERSION = /^Babel-Thrive\s*([\d.]+)/.freeze
+REQUIREMENTS_BABEL_THRIVE_VERSION = /^Babel-Thrive==([\d.]+)$/.freeze
+
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
 OUTPUT_MUTEX = Mutex.new
@@ -159,6 +163,46 @@ def game_version
   end
 
   raise 'Could not find AssemblyVersion'
+end
+
+@pip_name = nil
+
+def pip_name
+  return @pip_name if @pip_name
+
+  @pip_name = which 'pip'
+  return @pip_name if @pip_name
+
+  @pip_name = which 'pip3'
+  return @pip_name if @pip_name
+
+  raise 'Could not find pip nor pip3.'
+end
+
+@installed_babel_thrive_version = nil
+
+def installed_babel_thrive_version
+  return @installed_babel_thrive_version if @installed_babel_thrive_version
+
+  _, piplist = runOpen3CaptureOutput pip_name, 'list'
+  matches = piplist.match(PIP_BABEL_THRIVE_VERSION)
+
+  return @installed_babel_thrive_version = matches[1] if matches
+
+  raise 'Could not find Babel-Thrive.'
+end
+
+@required_babel_thrive_version = nil
+
+def required_babel_thrive_version
+  return @required_babel_thrive_version if @required_babel_thrive_version
+
+  requirements = File.read(REQUIREMENTS_TXT_FILE)
+  matches = requirements.match(REQUIREMENTS_BABEL_THRIVE_VERSION)
+
+  return @required_babel_thrive_version = matches[1] if matches
+
+  raise "Could not read required Babel-Thrive verion from #{REQUIREMENTS_TXT_FILE}."
 end
 
 def file_begins_with_bom(path)
@@ -807,7 +851,17 @@ def run_localization_checks
   return unless issues_found
 
   OUTPUT_MUTEX.synchronize do
-    error 'Translations are not up to date. Please rerun scripts/update_localization.rb'
+    error 'Translations are not up to date.'
+    puts "Babel-Thrive version installed: #{installed_babel_thrive_version}; "\
+          "required: #{required_babel_thrive_version}"
+    if installed_babel_thrive_version == required_babel_thrive_version
+      warning 'Please verify your Babel-Thrive version meets the requirement '\
+            'and rerun "scripts/update_localization.rb"'
+    else
+      warning 'Mismatching Babel-Thrive version detected. Please update '\
+              '"pip install -r docker/jsonlint/requirements.txt --user" '\
+              'and rerun "scripts/update_localization.rb"'
+    end
   end
 
   exit 2

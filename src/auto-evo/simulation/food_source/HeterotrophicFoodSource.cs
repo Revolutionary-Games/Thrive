@@ -68,6 +68,12 @@
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed;
 
+        // predators are less likely to use toxin against larger prey, unless they are opportunistic
+        if (preyHexSize > microbeSpeciesHexSize)
+        {
+            oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+        }
+
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
         return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
     }

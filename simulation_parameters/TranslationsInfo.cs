@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 public class TranslationsInfo : IRegistryType
@@ -17,6 +18,15 @@ public class TranslationsInfo : IRegistryType
         {
             throw new InvalidRegistryDataException("TranslationsInfo", GetType().Name,
                 "translation progress is empty");
+        }
+
+        foreach (string locale in TranslationServer.GetLoadedLocales())
+        {
+            if (!TranslationProgress.ContainsKey(locale))
+            {
+                throw new InvalidRegistryDataException("TranslationsInfo", GetType().Name,
+                    $"translation progress does not contain {locale}");
+            }
         }
     }
 

@@ -426,6 +426,17 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public bool IsLoadedFromSave { get; set; }
 
+    [JsonIgnore]
+    private bool Ready
+    {
+        get => ready;
+        set
+        {
+            ready = value;
+            pauseMenu.GameLoading = !value;
+        }
+    }
+
     public override void _Ready()
     {
         ResolveNodeReferences();
@@ -598,7 +609,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public override void _Process(float delta)
     {
-        if (!ready)
+        if (!Ready)
         {
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
@@ -710,7 +721,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public void QuickSave()
     {
         // Can only save once the editor is ready
-        if (ready)
+        if (Ready)
         {
             GD.Print("quick saving microbe editor");
             SaveHelper.QuickSave(this);
@@ -797,6 +808,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         if (organelleRot < 0)
             organelleRot = 5;
+    }
+
+    [RunOnKeyDown("g_toggle_gui")]
+    public void ToggleGUI()
+    {
+        gui.Visible = !gui.Visible;
     }
 
     public void SetMembrane(string membraneName)
@@ -1388,10 +1405,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // For now we only show a loading screen if auto-evo is not ready yet
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
-            ready = false;
+            Ready = false;
             LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
                 MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
+
+            CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
         }
         else
         {
@@ -2343,7 +2362,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     private void OnEditorReady()
     {
-        ready = true;
+        Ready = true;
         LoadingScreen.Instance.Hide();
 
         GD.Print("Elapsing time on editor entry");
@@ -2380,7 +2399,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void OnLoadedEditorReady()
     {
-        if (ready != true)
+        if (Ready != true)
             throw new InvalidOperationException("loaded editor isn't in the ready state");
 
         gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
@@ -2397,8 +2416,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void ApplyAutoEvoResults()
     {
-        GD.Print("Applying auto-evo results");
-        CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
+        GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
+        run.ApplyExternalEffects();
 
         CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
 
