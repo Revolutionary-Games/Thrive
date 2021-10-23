@@ -443,6 +443,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             currentShapesParent.RemoveShapeOwner(ownerId);
         }
 
+        foreach (var component in Components)
+        {
+            component.OnShapeParentChanged(to, offset, masterRotation, parentRotation);
+        }
+
         currentShapesParent = to;
     }
 
@@ -465,6 +470,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         // Physics
+        // TODO: shouldn't we also add the mass to the colony master?
         ParentMicrobe.Mass += Definition.Mass;
 
         MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
@@ -492,6 +498,16 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         return Hex.AxialToCartesian(parentOffset) + Hex.AxialToCartesian(Position);
     }
 
+    /// <summary>
+    ///   Creates the collision shape(s) necessary for this organelle
+    /// </summary>
+    /// <param name="to">The microbe to add the shapes to</param>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: make this take into initial colony membership into account so that calling ReParentShapes twice
+    ///     when loading a game is not necessary
+    ///   </para>
+    /// </remarks>
     private void MakeCollisionShapes(Microbe to)
     {
         currentShapesParent = to;

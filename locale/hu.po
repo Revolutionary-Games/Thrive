@@ -1,392 +1,366 @@
 # Translations template for PROJECT.
-# Copyright (C) 2020 ORGANIZATION
+# Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-23 13:18+0300\n"
-"PO-Revision-Date: 2020-11-17 07:36+0000\n"
-"Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
-"Language-Team: Spanish (Argentina) <https://translate."
-"revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
-"Language: es_AR\n"
+"PO-Revision-Date: 2021-10-21 07:37+0000\n"
+"Last-Translator: Undibundi <andras9334@citromail.hu>\n"
+"Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/hu/>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
-"Generated-By: Babel 2.8.0\n"
+"X-Generator: Weblate 4.8.1\n"
+"Generated-By: Babel 2.9.1\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+"A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a "
+"forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha "
+"rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:"
+"input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy "
+"kikapcsolni."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
+"A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor "
+"elpusztul."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Para desbloquear el editor y reproducir tu célula necesitas agarrar "
-"Amoníaco (Nube Naranja) y Fosfato (Nube Violeta)."
+"Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor "
+"ammóniát (Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Podés comerte otras células, bacterias, pedazos de hierro y pedazos de "
-"célula que sean más chicos que tu célula apretando G. Cuesta más ATP y "
-"enlentece tu célula. Acordate de apretar G de vuelta para desactivar el "
-"modo engullir."
+"Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a "
+"[thrive:input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-"
+"t használsz, és lassabb is leszel. Ne felejtsd el a [thrive:"
+"input]g_toggle_engulf[/thrive:input]-t lenyomni még egyszer az elnyelés "
+"befejezéséhez."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, "
-"más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a "
-"necesitar para evitar perder ATP."
+"Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a "
+"sejted, annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra "
+"(vagy citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél "
+"kevesebb ATP-t veszíts, amikor egy helyhez vagy kötve."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"Hay varias organelas en el editor para que evoluciones, permitiendo "
-"diferentes modos de jugar."
+"Sok sejtszervecske érhető el a szerkesztőben, ezzel megadva neked a "
+"lehetőséget arra, hogy a saját tetszésed szerint játszd a játékot."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"Las distintas nubes de compuestos son:\n"
+"A különböző vegyületfelhők lehetnek:\n"
 "\n"
-"Blancas – Glucosa\n"
-"Amarillas – Sulfuro de Hidrógeno\n"
-"Naranjas – Amoníaco\n"
-"Violeta – Fosfato\n"
-"Rojo Oscuro – Hierro"
+"Fehérek – [thrive:compound type=\"glucose\"]Glükóz[/thrive:compound]\n"
+"Citromsárgák – [thrive:compound type=\"hydrogensulfide\"]Hidrogén-szulfid[/"
+"thrive:compound]\n"
+"Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:"
+"compound]\n"
+"Lilák – [thrive:compound type=\"phosphates\"]Foszfátok[/thrive:compound]\n"
+"Rozsdabarnák – [thrive:compound type=\"iron\"]Vas[/thrive:compound]\n"
+"\n"
+"A glükózból ATP készül."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
-"Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro "
-"de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
+"A hidrogén-szulfidot glükózzá tudod alakítani kemoplasztiszok és "
+"kemoszintetizáló proteinek segítségével. A vasat rusticyanin segítségével "
+"pedig ATP-vé tudod alakítani."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Para que tu célula se reproduzca necesita dividir todas sus organelas en "
-"dos. Para eso necesitás juntar amoníaco y fosfato."
+"A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és "
+"foszfátra van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Por ahora, si tu población llega a 0, se extingue tu especie."
+msgstr ""
+"Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz "
+"halni."
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Pero si sobrevivís por veinte generaciones, está considerado que ganaste "
-"el juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
+"De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a "
+"játékot (a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak "
+"jelenik meg, és utána még addig játszhatsz tovább, ameddig csak akarsz."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Cuidado porque las otras especies también evolucionan cada vez que entrás "
-"al editor."
+"Légy óvatos, mert vetélytársaid is haladnak előre az evolúció rögös "
+"ösvényén. Amikor belépsz a szerkesztőbe, akkor ők is fejlődnek."
 
 #: ../simulation_parameters/common/help_texts.json:54
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+"Több sejthez való kapcsolódás által ki tudsz alakítani egy sejtkolóniát, "
+"melyek egymással vegyületeket osztanak meg, amiket elnyelnek és "
+"előállítanak közösen. Egy másik sejthez való csatlakozáshoz egy "
+"kötőszövetre lesz szükséged. Ha ez megvan, akkor át kell váltanod "
+"összekapcsolás módba, és neki kell menned a másik sejtnek. Csak a saját "
+"fajod egyedeivel tudsz összekapcsolódni. Amíg egy kolóniában vagy, addig "
+"nem tudsz osztódni, és belépni a szerkesztőbe (perpillanat). Hogy a "
+"szerkesztőbe beléphess, ahhoz először hagyd el a kolóniát akkor, amikor "
+"elegendő nyersanyagot gyűjtöttél, és utána lépj be. A nagy sejtkolóniák "
+"fognak majd előrevinni a többsejtűség felé (perpillanat még nincs a "
+"játékban)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
-"Estructuras Procarioticas\n"
+"Prokarióta szerkezetek\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Metaboloszómák: A gülkózból ATP-t állít elő.\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá "
+"alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon "
+"területet foglal el\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un "
-"cloroplasto, pero hace glicólisis.\n"
+"Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de "
+"glikolízist is végez, és 1 hexagon helyet foglal\n"
 "\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
+"Rusticyanin: A vasat ATP-vé alakítja át\n"
 "\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+"Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át "
+"ammóniává anaerob módon\n"
+"\n"
+"Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis "
+"mennyiségű ATP-t termel)"
 
 #: ../simulation_parameters/common/help_texts.json:66
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
-"Estructuras Procarioticas\n"
+"Külső sejtszervecskék\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Ostor: Gyorsabbá teszi a sejtedet ATP-t használva a folyamat során\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-"\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un "
-"cloroplasto, pero hace glicólisis.\n"
-"\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
-"\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+"Pilus: Más sejtek megszúrására használható"
 
 #: ../simulation_parameters/common/help_texts.json:70
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Estructuras Procarioticas\n"
+"Eukarióta sejtszervecskék\n"
 "\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
+"Sejtmag: 11 hexagonnyi helyet foglal, és a sejtszervecskéket teszi "
+"elérhetővé, plusz megduplázza a sejted méretét (ezt csak egyszer teheted "
+"meg)\n"
 "\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"Kötőszövet: Ezzel más sejtekhez tudsz kapcsolódni\n"
 "\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un "
-"cloroplasto, pero hace glicólisis.\n"
+"Mitokondrium: Glükózból és oxigénből (O2) állít elő ATP-t, méghozzá sokkal "
+"hatékonyabban, mint egy citoplazma\n"
 "\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
+"Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) "
+"segítségével\n"
 "\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+"Kemoplasztisz: Glükózt állít elő hidrogén-szulfidból\n"
+"\n"
+"Nitrogén fixációs színtest: Ammóniát állít elő ATP-ből, és az "
+"atmoszférából gyűjtött oxigénből és nitrogénből\n"
+"\n"
+"Sejtnedvüreg: 15 egységnyi vegyületet tud raktározni\n"
+"\n"
+"Mérget tartalmazó sejtnedvüreg: Mérget állít elő (Neve [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Estructuras Procarioticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
-"\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-"\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un "
-"cloroplasto, pero hace glicólisis.\n"
-"\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
-"\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+"Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, "
+"melyet mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos "
+"mennyiségű MP-be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, "
+"amit éppen abban a mutációs szekcióban raktál le, akkor annyi pontot kapsz "
+"vissza, amennyit ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is "
+"törölhetsz egy sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, "
+"és kiválasztod a neked megfelelő műveletet a felugró ablakban. Forgathatod "
+"is a sejtszervecskéket, miközben lerakod őket a [thrive:"
+"input]e_rotate_left[/thrive:input] vagy a [thrive:input]e_rotate_right[/"
+"thrive:input] megnyomásával."
 
 #: ../simulation_parameters/common/help_texts.json:78
-#, fuzzy
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Estructuras Procarioticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un "
-"poco de ATP).\n"
-"\n"
-"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la "
-"eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-"\n"
-"Tilacoides: Producen un tercio de la cantidad de glucosa de un "
-"cloroplasto, pero hace glicólisis.\n"
-"\n"
-"Rusticianina: Convierte el hierro en ATP.\n"
-"\n"
-"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+"Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz "
+"belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy "
+"hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld "
+"túlélési esélyüket. Minden egyes látogatás a szerkesztőben 100 millió "
+"évnyi fejlődést jelent a fajod számára."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
 msgstr ""
+"A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen "
+"elkövetett hibát"
 
 #: ../simulation_parameters/common/help_texts.json:126
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+"Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a "
+"ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. "
+"És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A "
+"ragadozóhoz, vagy a zsákmányhoz?"
 
 #: ../simulation_parameters/common/help_texts.json:129
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
+"Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss "
+"el magad elől, ha elég gyors vagy."
 
 #: ../simulation_parameters/common/help_texts.json:132
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Para desbloquear el editor y reproducir tu célula necesitas agarrar "
-"Amoníaco (Nube Naranja) y Fosfato (Nube Violeta)."
+"Itt egy kis tanács. Az ozmoreguláció másodpercenként 1 ATP-be kerül "
+"hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt "
+"jelenti, hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a "
+"sejtedhez egy pár hexagonnyi citoplazmát, és távolíts el pár "
+"sejtszervecskét."
 
 #: ../simulation_parameters/common/help_texts.json:135
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Podés comerte otras células, bacterias, pedazos de hierro y pedazos de "
-"célula que sean más chicos que tu célula apretando G. Cuesta más ATP y "
-"enlentece tu célula. Acordate de apretar G de vuelta para desactivar el "
-"modo engullir."
+"Érdekesség: a valóságban a prokariótáknak vannak úgynevezett biokamráik, "
+"melyek sejtszervecskeként viselkednek, és poliéderes sejtszervecskének is "
+"hívják ezeket."
 
 #: ../simulation_parameters/common/help_texts.json:138
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
-"La osmorregulación cuesta ATP, o sea que mientras más grande es tu célula, "
-"más mitocondrias, metabolosomas, rusticianina, o citoplasma vas a "
-"necesitar para evitar perder ATP."
+msgstr "Érdekesség: a metaboloszómát hívják poliéderes sejtszervecskének."
 
 #: ../simulation_parameters/common/help_texts.json:141
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_6"
-msgstr ""
-"Hay varias organelas en el editor para que evoluciones, permitiendo "
-"diferentes modos de jugar."
+msgstr "Itt egy kis tanács. Néha jobb döntés elmenekülni más sejtek elől."
 
 #: ../simulation_parameters/common/help_texts.json:144
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "Por ahora, si tu población llega a 0, se extingue tu especie."
+msgstr ""
+"Itt egy kis tanács. Ha egy sejt a tiédnek a fele, akkor tudod őt elnyelni."
 
 #: ../simulation_parameters/common/help_texts.json:147
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Las distintas nubes de compuestos son:\n"
-"\n"
-"Blancas – Glucosa\n"
-"Amarillas – Sulfuro de Hidrógeno\n"
-"Naranjas – Amoníaco\n"
-"Violeta – Fosfato\n"
-"Rojo Oscuro – Hierro"
+"Itt egy kis tanács. A baktériumok erősebbek is lehetnek, mint ahogy "
+"kinéznek. Kicsinek nézhetnek ki, de némelyik beléd tud fúródni, és úgy tud "
+"megölni!"
 
 #: ../simulation_parameters/common/help_texts.json:150
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro "
-"de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
+"Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz "
+"írtani, viszont ezt ők is megtehetik veled."
 
 #: ../simulation_parameters/common/help_texts.json:153
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_10"
-msgstr ""
-"Para que tu célula se reproduzca necesita dividir todas sus organelas en "
-"dos. Para eso necesitás juntar amoníaco y fosfato."
+msgstr "HULLÁMZÓ BIGYUSZOK!!"
 
 #: ../simulation_parameters/common/help_texts.json:156
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
-"Pero si sobrevivís por veinte generaciones, está considerado que ganaste "
-"el juego. Cuando ganás aparece una pestaña y después podés seguir jugando."
+msgstr "Égesd a vasat."
 
 #: ../simulation_parameters/common/help_texts.json:159
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
-"Cuidado porque las otras especies también evolucionan cada vez que entrás "
-"al editor."
+msgstr "Na azok a kék sejtek."
 
 #: ../simulation_parameters/common/help_texts.json:162
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+"Itt egy kis tanács. A biomok kicsivel többek, mint egy csicsás háttér. "
+"Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak "
+"meg."
 
 #: ../simulation_parameters/common/help_texts.json:165
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+"Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész "
+"(VuTuTuTu), viszont ez sok ATP-t is használ"
 
 #: ../simulation_parameters/common/help_texts.json:168
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_15"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+"Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
 
 #: ../simulation_parameters/common/help_texts.json:171
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+"Itt egy kis tanács. Készülj fel, mielőtt egy sejtmaggal gazdagítod a "
+"sejtedet. Nagyon drágák azok az izék, és nem könnyű őket fenntartani."
 
 #: ../simulation_parameters/common/help_texts.json:174
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_17"
-msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?"
 
 #: ../simulation_parameters/common/help_texts.json:177
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:180
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_19"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../simulation_parameters/common/help_texts.json:183
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:186
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_21"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:189
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_22"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:192
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_23"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:195
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_24"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:198
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_25"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:201
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:204
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:6
 msgid "MOVEMENT"
@@ -1053,71 +1027,71 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
-msgstr ""
+msgstr "Kedvencek"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Print Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Űr"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr ""
+msgstr "Holtjáték"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
-msgstr ""
+msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr ""
+msgstr "Backspace"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
-msgstr ""
+msgstr "Num Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "Page Up"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
-msgstr ""
+msgstr "Page Down"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Num Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Scroll Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr ""
+msgstr "Super Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr ""
+msgstr "Super Right"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr ""
+msgstr "Hyper Left"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr ""
+msgstr "Hyper Right"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
@@ -1902,55 +1876,61 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:294
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Korábbi Fejlesztők"
 
 #: ../src/gui_common/CreditsScroll.cs:310
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Külső Közreműködők"
 
 #: ../src/gui_common/CreditsScroll.cs:313
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"A Thrive egy nyílt forrású project.\n"
+"Hozzájárulhatsz egy pull request-hez a csapatba való jelentkezés nélkül."
 
 #: ../src/gui_common/CreditsScroll.cs:328
 msgid "PATRONS"
-msgstr ""
+msgstr "Patronok"
 
 #: ../src/gui_common/CreditsScroll.cs:332
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "A Thrive fejlesztését támogatni is tudod Patreonon."
 
 #: ../src/gui_common/CreditsScroll.cs:348
 msgid "DONATIONS"
-msgstr ""
+msgstr "Adományok"
 
 #: ../src/gui_common/CreditsScroll.cs:371
 msgid "TRANSLATORS"
-msgstr ""
+msgstr "Fordítók"
 
 #: ../src/gui_common/CreditsScroll.cs:385
+#, fuzzy
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Licenszek"
 
 #: ../src/gui_common/CreditsScroll.cs:479
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Köszönjük, hogy játszottál a játékkal!\n"
+"\n"
+"Ha élvezted a játékot, akkor beszélj a barátaidnak is rólunk."
 
 #: ../src/gui_common/CreditsScroll.cs:488
 msgid "PROGRAMMING_TEAM"
-msgstr ""
+msgstr "Programozó csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:489
 msgid "THEORY_TEAM"
-msgstr ""
+msgstr "Elméleti csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:490
 msgid "GRAPHICS_TEAM"
-msgstr ""
+msgstr "Grafikus csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:491
 msgid "SOUND_TEAM"
-msgstr ""
+msgstr "Hangokkal foglalkozó csapat"
 
 #: ../src/gui_common/CreditsScroll.cs:492
 msgid "OUTREACH_TEAM"
@@ -3370,15 +3350,9 @@ msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:336
-#, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:371
-#, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si "
-"tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."

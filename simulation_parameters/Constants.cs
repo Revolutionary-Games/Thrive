@@ -374,6 +374,8 @@ public static class Constants
     public const float MAX_SPECIES_FOCUS = 400.0f;
     public const float MAX_SPECIES_OPPORTUNISM = 400.0f;
 
+    public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
+
     // Bacterial Colony configuration
     public const int MIN_BACTERIAL_COLONY_SIZE = 2;
     public const int MAX_BACTERIAL_COLONY_SIZE = 6;
@@ -556,6 +558,13 @@ public static class Constants
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
 
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
+
+    public const string LICENSE_FILE = "res://LICENSE.txt";
+    public const string ASSETS_README = "res://assets/README.txt";
+    public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
+    public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
+    public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
+    public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     /// <summary>
     ///   Internal Godot name for the default audio output device

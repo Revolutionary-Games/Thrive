@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using Godot;
+
+/// <summary>
 ///   Adds toxin shooting capability
 /// </summary>
 public class AgentVacuoleComponent : IOrganelleComponent
@@ -19,6 +21,11 @@ public class AgentVacuoleComponent : IOrganelleComponent
     }
 
     public void Update(float elapsed)
+    {
+    }
+
+    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset, Vector3 masterRotation,
+        Vector3 parentRotation)
     {
     }
 }
