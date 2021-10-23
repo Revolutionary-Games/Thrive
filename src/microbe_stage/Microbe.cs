@@ -421,7 +421,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
                 ApplyMovementImpulse(totalMovement, delta);
 
-                var speedPercent = Math.Min(1.0f, totalMovement.Length() / Constants.MICROBE_MAX_SPEED);
+                var speedPercent = Math.Min(1.0f, totalMovement.Length() / Mass / Constants.MICROBE_MAX_SPEED);
                 movementAudio.PitchScale = speedPercent;
                 movementAudio.UnitDb = GD.Linear2Db(speedPercent);
 
