@@ -26,4 +26,5 @@ text = "INFINITE_MP"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="toggled" from="InfiniteMP" to="." method="SetInfiniteMP"]
