@@ -3,6 +3,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditorCheatMenu.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=4]
 
 [node name="MicrobeEditorCheatMenu" type="WindowDialog"]
 margin_right = 197.0
@@ -16,7 +17,7 @@ __meta__ = {
 }
 InfiniteMpPath = NodePath("InfiniteMP")
 
-[node name="InfiniteMP" type="CheckBox" parent="."]
+[node name="InfiniteMP" parent="." instance = ExtResource( 4 )]
 margin_left = 11.0
 margin_top = 6.0
 margin_right = 188.0
