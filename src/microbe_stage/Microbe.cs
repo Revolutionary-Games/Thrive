@@ -421,12 +421,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
                 ApplyMovementImpulse(totalMovement, delta);
 
+                movementAudio.PitchScale = Math.Min(1.0f, totalMovement.Length() / Constants.MICROBE_MAX_SPEED);
+
                 // Play movement sound if one isn't already playing.
                 if (!movementAudio.Playing)
                     movementAudio.Play();
-
-                movementAudio.MaxDb = GD.Linear2Db(totalMovement.Length() / Constants.MICROBE_MAX_SPEED * 100.0f) -
-                    Constants.MICROBE_MAX_MOVEMENT_VOLUME_DECREASE;
             }
         }
 
