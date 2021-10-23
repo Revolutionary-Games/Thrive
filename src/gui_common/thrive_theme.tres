@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=52 format=2]
+[gd_resource type="Theme" load_steps=50 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -11,8 +11,6 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=11]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=12]
-[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -447,8 +445,6 @@ FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
 Fonts/fonts/large = null
-Fonts/fonts/lato_bold_normal = ExtResource( 13 )
-Fonts/fonts/lato_normal = ExtResource( 12 )
 Fonts/fonts/normal = null
 GraphEdit/colors/activity = Color( 0, 0, 0, 1 )
 GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )
