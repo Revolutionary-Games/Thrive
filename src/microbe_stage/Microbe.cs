@@ -327,6 +327,142 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         player.Play();
     }
 
+    public override void _Process(float delta)
+    {
+        // Updates the listener if this is the player owned microbe.
+        if (listener != null)
+        {
+            // Listener is directional and since it is a child of the microbe it will have the same forward
+            // vector as the parent. Since we want sound to come from the side of the screen relative to the
+            // camera rather than the microbe we need to force the listener to face up every frame.
+            Transform transform = GlobalTransform;
+            transform.basis = new Basis(new Vector3(0.0f, 0.0f, -1.0f));
+            listener.GlobalTransform = transform;
+        }
+
+        if (membraneOrganellePositionsAreDirty)
+        {
+            // Redo the cell membrane.
+            SendOrganellePositionsToMembrane();
+
+            if (IsForPreviewOnly)
+            {
+                // Update once for the positioning of external organelles
+                foreach (var organelle in organelles.Organelles)
+                    organelle.Update(delta);
+            }
+        }
+
+        // The code below starting from here is not needed for a display-only cell
+        if (IsForPreviewOnly)
+            return;
+
+        CheckEngulfShapeSize();
+
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
+        HandleCompoundAbsorbing(delta);
+
+        // Movement factor is reset here. HandleEngulfing will set the right value
+        MovementFactor = 1.0f;
+        queuedMovementForce = new Vector3(0, 0, 0);
+
+        // Reduce agent emission cooldown
+        AgentEmissionCooldown -= delta;
+        if (AgentEmissionCooldown < 0)
+            AgentEmissionCooldown = 0;
+
+        // Fire queued agents
+        if (queuedToxinToEmit != null)
+        {
+            EmitToxin(queuedToxinToEmit);
+            queuedToxinToEmit = null;
+        }
+
+        HandleFlashing(delta);
+        HandleHitpointsRegeneration(delta);
+        HandleReproduction(delta);
+
+        // Handles engulfing related stuff as well as modifies the
+        // movement factor. This needs to be done before Update is
+        // called on organelles as movement organelles will use
+        // MovementFactor.
+        HandleEngulfing(delta);
+
+        // Handles binding related stuff
+        HandleBinding(delta);
+        HandleUnbinding();
+
+        HandleOsmoregulation(delta);
+
+        // Let organelles do stuff (this for example gets the movement force from flagella)
+        foreach (var organelle in organelles.Organelles)
+        {
+            organelle.Update(delta);
+        }
+
+        // Movement
+        if (ColonyParent == null)
+        {
+            if (MovementDirection != new Vector3(0, 0, 0) ||
+                queuedMovementForce != new Vector3(0, 0, 0))
+            {
+                // Movement direction should not be normalized to allow different speeds
+                Vector3 totalMovement = new Vector3(0, 0, 0);
+
+                if (MovementDirection != new Vector3(0, 0, 0))
+                {
+                    totalMovement += DoBaseMovementForce(delta);
+                }
+
+                totalMovement += queuedMovementForce;
+
+                ApplyMovementImpulse(totalMovement, delta);
+
+                // Play movement sound if one isn't already playing.
+                if (!movementAudio.Playing)
+                    movementAudio.Play();
+
+                movementAudio.MaxDb = GD.Linear2Db(totalMovement.Length() / Constants.MICROBE_MAX_SPEED * 100.0f) -
+                    Constants.MICROBE_MAX_MOVEMENT_VOLUME_DECREASE;
+            }
+        }
+
+        // Rotation is applied in the physics force callback as that's
+        // the place where the body rotation can be directly set
+        // without problems
+
+        HandleCompoundVenting(delta);
+
+        if (Colony != null && Colony.Master == this)
+            Colony.Process(delta);
+
+        lastCheckedATPDamage += delta;
+
+        while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
+        {
+            lastCheckedATPDamage -= Constants.ATP_DAMAGE_CHECK_INTERVAL;
+            ApplyATPDamage();
+        }
+
+        Membrane.HealthFraction = Hitpoints / MaxHitpoints;
+
+        if (Hitpoints <= 0 || Dead)
+        {
+            HandleDeath(delta);
+        }
+        else
+        {
+            // As long as the player has been alive they can go to the editor in freebuild
+            if (OnReproductionStatus != null && CurrentGame.FreeBuild)
+            {
+                OnReproductionStatus(this, true);
+            }
+        }
+    }
+
     public override void _EnterTree()
     {
         if (IsPlayerMicrobe)
