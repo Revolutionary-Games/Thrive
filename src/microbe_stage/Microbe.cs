@@ -433,8 +433,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
         else
         {
-            if (Colony != null && Colony.Master != null)
-                Colony.Master.AddMovementForce(queuedMovementForce);
+            Colony?.Master?.AddMovementForce(queuedMovementForce);
         }
 
         // Rotation is applied in the physics force callback as that's
