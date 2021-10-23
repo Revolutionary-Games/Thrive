@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-23 17:53+0800\n"
 "PO-Revision-Date: 2021-09-10 11:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -467,8 +467,8 @@ msgid "MOVE_ORGANELLE"
 msgstr "移动细胞器"
 
 #: ../simulation_parameters/common/input_options.json:147
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:13
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:13
 msgid "CHEATS"
 msgstr "作弊"
 
@@ -1372,7 +1372,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1133 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
@@ -1403,264 +1403,264 @@ msgstr "此翻译仍在开发中（已完成 {0}%）"
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "此翻译已完成 {0}%"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "图像"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "声音"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "性能"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "输入"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "杂项"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:204
 msgid "VSYNC"
 msgstr "垂直同步"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:211
 msgid "FULLSCREEN"
 msgstr "全屏"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:233
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重采样抗锯齿："
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:240
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（设置的太高会影响性能）"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:270
 msgid "RESOLUTION"
 msgstr "分辨率："
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:283
 msgid "AUTO"
 msgstr "自动"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:293
 msgid "MAX_FPS"
 msgstr "最高FPS："
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:319
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:350
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:376
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "显示能力栏"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:384
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "启用GUI闪烁特效"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:410
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:436 ../src/general/OptionsMenu.tscn:476
+#: ../src/general/OptionsMenu.tscn:508 ../src/general/OptionsMenu.tscn:540
+#: ../src/general/OptionsMenu.tscn:572
 msgid "MUTE"
 msgstr "静音"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:450
 msgid "MUSIC_VOLUME"
 msgstr "音乐音量"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:482
 msgid "AMBIANCE_VOLUME"
 msgstr "环境声效"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:514
 msgid "SFX_VOLUME"
 msgstr "音效音量"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:546
 msgid "GUI_VOLUME"
 msgstr "界面音量"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:590
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "音频输出设备："
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:615
 msgid "LANGUAGE"
 msgstr "语言："
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:630 ../src/general/OptionsMenu.tscn:1144
 msgid "RESET"
 msgstr "重置"
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:648
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "帮忙翻译这个游戏"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:674
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:689
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "云仿真最小间隔时间："
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:696 ../src/general/OptionsMenu.tscn:738
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "（更高的数值有助于提升性能）"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:731
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "云分辨率除数："
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:772
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在游戏中启用auto-evo"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:792
 msgid "DETECTED_CPU_COUNT"
 msgstr "检测到的CPU数量："
 
-#: ../src/general/OptionsMenu.tscn:828
+#: ../src/general/OptionsMenu.tscn:809
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "当前线程："
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:823
 msgid "ASSUME_HYPERTHREADING"
 msgstr "假设CPU启用了超线程"
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:831
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手动设置后台线程数"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:841
 msgid "THREADS"
 msgstr "线程："
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:942
 msgid "RESET_INPUTS"
 msgstr "重置输入"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:969
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放游戏开场动画"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:977
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在开始新游戏时播放微生物阶段开场动画"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:985
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "游戏中启用自动保存"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:996
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "要保留的自动保存存档数："
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1024
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "要保留的快速保存存档数："
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1049
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "在开始新游戏时显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1056
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "在现有游戏里显示教程"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "启用作弊键"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1076
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定义用户名"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "CUSTOM_USERNAME"
 msgstr "自定义用户名："
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1113
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "打开截图存放文件夹"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1121
 msgid "OPEN_LOGS_FOLDER"
 msgstr "打开日志文件夹"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1156 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "保存"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1173
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默认"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1185
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置为默认值？"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你确定要把「所有」设置都重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1208
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "将输入重置为默认值？"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "你确定要把输入设置重置为默认值吗？"
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1231
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1251
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改将被丢弃。\n"
 "你想继续吗？"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1273
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存并继续"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1282
 msgid "DISCARD_AND_CONTINUE"
 msgstr "放弃更改并继续"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1298
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1333
+#: ../src/general/OptionsMenu.tscn:1357
 msgid "ERROR"
 msgstr "错误"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1358
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "错误：无法将新设置保存到配置文件。"
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1367
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截图目录"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1376
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "试着截一些图吧！"
 
@@ -1923,11 +1923,11 @@ msgstr ""
 "鼠标左键：使用这个预设\n"
 "鼠标右键：删除这个预设"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:44
+#: ../src/gui_common/TweakedColourPicker.tscn:42
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:67
+#: ../src/gui_common/TweakedColourPicker.tscn:59
 msgid "RAW"
 msgstr "Raw"
 
@@ -2439,25 +2439,25 @@ msgstr "繁殖次数"
 msgid "ESCAPE_ENGULFING"
 msgstr "逃脱被吞噬的命运"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "INFINITE_COMPOUNDS"
 msgstr "无限化合物"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
 msgid "GODMODE"
 msgstr "上帝模式"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:54
 msgid "NO_AI"
 msgstr "AI关闭"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:68
 msgid "PLAYER_SPEED"
 msgstr ""
 "玩家\n"
 "速度"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:89
 msgid "PLAYER_DUPLICATE"
 msgstr "玩家分裂"
 
@@ -2769,7 +2769,22 @@ msgstr "存在的物种"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "移动到这个地区"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "移动"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "删除"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "修改"
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:26
 msgid "INFINITE_MP"
 msgstr "无限变异点"
 
@@ -2840,18 +2855,6 @@ msgstr "{0} 有生物数： {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} 变异点"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "删除"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "移动"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "修改"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -3171,13 +3174,13 @@ msgstr "将错误复制到剪贴板"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:211
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:281
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:351
 msgid "TUTORIAL"
 msgstr "教程"
 
@@ -3254,7 +3257,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "明白了"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:75
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
@@ -3267,11 +3270,11 @@ msgstr ""
 "要在这个艰难的世界存活下来，你将需要收集各种化合物并不断进化，才能跟其它的"
 "微生物竞争。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:99
 msgid "SHOW_TUTORIALS"
 msgstr "显示教程"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 msgid "BEGIN_THRIVING"
 msgstr "开始游戏"
 
@@ -3289,7 +3292,7 @@ msgstr ""
 "你需要葡萄糖才能产生能量并存活。\n"
 "请跟随显示的线到最近的葡萄糖云中。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:267
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"

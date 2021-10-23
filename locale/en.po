@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-23 17:53+0800\n"
 "PO-Revision-Date: 2021-09-24 10:22+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -510,8 +510,8 @@ msgid "MOVE_ORGANELLE"
 msgstr "Move organelle"
 
 #: ../simulation_parameters/common/input_options.json:147
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:13
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:13
 msgid "CHEATS"
 msgstr "Cheats"
 
@@ -1417,7 +1417,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1133 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Back"
@@ -1450,266 +1450,266 @@ msgstr "This language is still a work in progress ({0}% complete)"
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "This language is {0}% complete"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "Graphics"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "Sound"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "Performance"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "Inputs"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "Misc"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:204
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:211
 msgid "FULLSCREEN"
 msgstr "FullScreen"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:233
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:240
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(higher values worsen performance)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:270
 msgid "RESOLUTION"
 msgstr "Resolution:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:283
 msgid "AUTO"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:293
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:319
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Colourblind Correction:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:350
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:376
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Display Abilities Bar"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:384
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Enable GUI Light Effects"
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:410
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:436 ../src/general/OptionsMenu.tscn:476
+#: ../src/general/OptionsMenu.tscn:508 ../src/general/OptionsMenu.tscn:540
+#: ../src/general/OptionsMenu.tscn:572
 msgid "MUTE"
 msgstr "Mute"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:450
 msgid "MUSIC_VOLUME"
 msgstr "Music Volume"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:482
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance Volume"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:514
 msgid "SFX_VOLUME"
 msgstr "SFX Volume"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:546
 msgid "GUI_VOLUME"
 msgstr "GUI Volume"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:590
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio output device:"
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:615
 msgid "LANGUAGE"
 msgstr "Language:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:630 ../src/general/OptionsMenu.tscn:1144
 msgid "RESET"
 msgstr "Reset"
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:648
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Help Translate The Game"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:674
 msgid "COMPOUND_CLOUDS"
 msgstr "Compound clouds"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:689
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Cloud Simulation Minimum\n"
 "Interval:"
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:696 ../src/general/OptionsMenu.tscn:738
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(higher values increase performance)"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:731
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Cloud Resolution Divisor:"
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:772
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Run auto-evo during gameplay"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:792
 msgid "DETECTED_CPU_COUNT"
 msgstr "Detected CPU count:"
 
-#: ../src/general/OptionsMenu.tscn:828
+#: ../src/general/OptionsMenu.tscn:809
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Current threads:"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:823
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assume CPU has hyperthreading enabled"
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:831
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manually set number of background threads"
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:841
 msgid "THREADS"
 msgstr "Threads:"
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:942
 msgid "RESET_INPUTS"
 msgstr "Reset Inputs"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:969
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Play intro video"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:977
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Play Microbe Intro on New Game"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:985
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autosave during the game"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:996
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Amount of autosaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1024
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Amount of quicksaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1049
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Show tutorials (in new games)"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1056
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Show tutorials (in current game)"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Cheat keys enabled"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1076
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "CUSTOM_USERNAME"
 msgstr "Custom Username:"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1113
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Open Screenshot Folder"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1121
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Open Logs Folder"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1156 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Save"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1173
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Defaults"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1185
 msgid "RESET_TO_DEFAULTS"
 msgstr "Reset to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Are you sure you want to reset ALL settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1208
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Reset inputs to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Are you sure you want to reset the input settings to default values?"
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1231
 msgid "CLOSE_OPTIONS"
 msgstr "Close options?"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1251
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "You have unsaved changes that will be discarded.\n"
 "Do you wish to continue?"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1273
 msgid "SAVE_AND_CONTINUE"
 msgstr "Save and continue"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1282
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Discard and continue"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1298
 msgid "CANCEL"
 msgstr "Cancel"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1333
+#: ../src/general/OptionsMenu.tscn:1357
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1358
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: Failed to save new settings to configuration file."
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1367
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "No screenshot directory found"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1376
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Try taking some screenshots!"
 
@@ -1973,11 +1973,11 @@ msgstr ""
 "Left mouse: Use this preset\n"
 "Right mouse: Delete this preset"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:44
+#: ../src/gui_common/TweakedColourPicker.tscn:42
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:67
+#: ../src/gui_common/TweakedColourPicker.tscn:59
 msgid "RAW"
 msgstr "Raw"
 
@@ -2552,25 +2552,25 @@ msgstr "reproduced"
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "INFINITE_COMPOUNDS"
 msgstr "Infinite Compounds"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
 msgid "GODMODE"
 msgstr "Godmode"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:54
 msgid "NO_AI"
 msgstr "No AI"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:68
 msgid "PLAYER_SPEED"
 msgstr ""
 "Player\n"
 "Speed"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:89
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplicate Player"
 
@@ -2882,7 +2882,22 @@ msgstr "Species Present"
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Move to This Patch"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr "Move"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr "Delete"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr "Modify"
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:26
 msgid "INFINITE_MP"
 msgstr "Infinite MP"
 
@@ -2954,18 +2969,6 @@ msgstr "{0} with population: {1}"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr "Delete"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr "Move"
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
-msgstr "Modify"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
 msgid "EXTINCTION_CAPITAL"
@@ -3296,13 +3299,13 @@ msgstr "Copy Error To Clipboard"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:211
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:281
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:351
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -3392,7 +3395,7 @@ msgstr ""
 msgid "GOT_IT"
 msgstr "Got it"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:75
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "On a distant alien planet, eons of volcanic activity and meteor impacts "
@@ -3407,11 +3410,11 @@ msgstr ""
 "that you can find and evolve each generation to compete against the other "
 "species of microbes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:99
 msgid "SHOW_TUTORIALS"
 msgstr "Show tutorials"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 msgid "BEGIN_THRIVING"
 msgstr "Begin Thriving"
 
@@ -3430,7 +3433,7 @@ msgstr ""
 "Your cell needs glucose in order to produce energy to stay alive.\n"
 "Follow the line from your cell to nearby glucose."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:267
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Keep an eye on your health bar next to the ATP bar (bottom right).\n"

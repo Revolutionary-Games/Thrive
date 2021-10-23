@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-09-24 14:14+0300\n"
+"POT-Creation-Date: 2021-10-23 17:53+0800\n"
 "PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/"
@@ -455,8 +455,8 @@ msgid "MOVE_ORGANELLE"
 msgstr "เอาออร์แกเนลล์ออก"
 
 #: ../simulation_parameters/common/input_options.json:147
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:12
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:13
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:13
 msgid "CHEATS"
 msgstr "โหมดโกง"
 
@@ -1365,7 +1365,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "สร้างจุลินทรีย์ฟรี"
 
 #: ../src/general/MainMenu.tscn:311 ../src/general/MainMenu.tscn:345
-#: ../src/general/OptionsMenu.tscn:1173 ../src/general/PauseMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:1133 ../src/general/PauseMenu.tscn:134
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "กลับ"
@@ -1399,269 +1399,269 @@ msgstr ""
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "ช่วยแปลเกม"
 
-#: ../src/general/OptionsMenu.tscn:136
+#: ../src/general/OptionsMenu.tscn:128
 msgid "GRAPHICS"
 msgstr "กราฟิก"
 
-#: ../src/general/OptionsMenu.tscn:147
+#: ../src/general/OptionsMenu.tscn:139
 msgid "SOUND"
 msgstr "เสียง"
 
-#: ../src/general/OptionsMenu.tscn:158
+#: ../src/general/OptionsMenu.tscn:150
 msgid "PERFORMANCE"
 msgstr "ประสิทธิภาพ"
 
-#: ../src/general/OptionsMenu.tscn:169
+#: ../src/general/OptionsMenu.tscn:161
 msgid "INPUTS"
 msgstr "อินพุต"
 
-#: ../src/general/OptionsMenu.tscn:180
+#: ../src/general/OptionsMenu.tscn:172
 msgid "MISC"
 msgstr "เพลง"
 
-#: ../src/general/OptionsMenu.tscn:213
+#: ../src/general/OptionsMenu.tscn:204
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:221
+#: ../src/general/OptionsMenu.tscn:211
 msgid "FULLSCREEN"
 msgstr "เต็มจอ"
 
-#: ../src/general/OptionsMenu.tscn:243
+#: ../src/general/OptionsMenu.tscn:233
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "การลบรอยหยักหลายตัวอย่าง:"
 
-#: ../src/general/OptionsMenu.tscn:250
+#: ../src/general/OptionsMenu.tscn:240
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ค่าที่สูงขึ้นทำให้ประสิทธิภาพแย่ลง)"
 
-#: ../src/general/OptionsMenu.tscn:280
+#: ../src/general/OptionsMenu.tscn:270
 msgid "RESOLUTION"
 msgstr "ความละเอียด:"
 
-#: ../src/general/OptionsMenu.tscn:293
+#: ../src/general/OptionsMenu.tscn:283
 msgid "AUTO"
 msgstr "อัตโนมัต"
 
-#: ../src/general/OptionsMenu.tscn:303
+#: ../src/general/OptionsMenu.tscn:293
 msgid "MAX_FPS"
 msgstr "FPS สูงสุด:"
 
-#: ../src/general/OptionsMenu.tscn:329
+#: ../src/general/OptionsMenu.tscn:319
 msgid "COLOURBLIND_CORRECTION"
 msgstr "การแก้ไขคนตาบอดสี:"
 
-#: ../src/general/OptionsMenu.tscn:361
+#: ../src/general/OptionsMenu.tscn:350
 msgid "CHROMATIC_ABERRATION"
 msgstr "ความผิดปกติของสี:"
 
-#: ../src/general/OptionsMenu.tscn:388
+#: ../src/general/OptionsMenu.tscn:376
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "ความสามารถ"
 
-#: ../src/general/OptionsMenu.tscn:397
+#: ../src/general/OptionsMenu.tscn:384
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:423
+#: ../src/general/OptionsMenu.tscn:410
 msgid "MASTER_VOLUME"
 msgstr "ระดับเสียงหลัก"
 
-#: ../src/general/OptionsMenu.tscn:450 ../src/general/OptionsMenu.tscn:491
-#: ../src/general/OptionsMenu.tscn:524 ../src/general/OptionsMenu.tscn:557
-#: ../src/general/OptionsMenu.tscn:590
+#: ../src/general/OptionsMenu.tscn:436 ../src/general/OptionsMenu.tscn:476
+#: ../src/general/OptionsMenu.tscn:508 ../src/general/OptionsMenu.tscn:540
+#: ../src/general/OptionsMenu.tscn:572
 msgid "MUTE"
 msgstr "ปิดเสียง"
 
-#: ../src/general/OptionsMenu.tscn:464
+#: ../src/general/OptionsMenu.tscn:450
 msgid "MUSIC_VOLUME"
 msgstr "ระดับเสียงเพลง"
 
-#: ../src/general/OptionsMenu.tscn:497
+#: ../src/general/OptionsMenu.tscn:482
 msgid "AMBIANCE_VOLUME"
 msgstr "ปริมาณบรรยากาศ"
 
-#: ../src/general/OptionsMenu.tscn:530
+#: ../src/general/OptionsMenu.tscn:514
 msgid "SFX_VOLUME"
 msgstr "ปริมาณ SFX"
 
-#: ../src/general/OptionsMenu.tscn:563
+#: ../src/general/OptionsMenu.tscn:546
 msgid "GUI_VOLUME"
 msgstr "ปริมาณ GUI"
 
-#: ../src/general/OptionsMenu.tscn:608
+#: ../src/general/OptionsMenu.tscn:590
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:633
+#: ../src/general/OptionsMenu.tscn:615
 msgid "LANGUAGE"
 msgstr "ภาษา:"
 
-#: ../src/general/OptionsMenu.tscn:648 ../src/general/OptionsMenu.tscn:1184
+#: ../src/general/OptionsMenu.tscn:630 ../src/general/OptionsMenu.tscn:1144
 msgid "RESET"
 msgstr "รีเซ็ต"
 
-#: ../src/general/OptionsMenu.tscn:666
+#: ../src/general/OptionsMenu.tscn:648
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "ช่วยแปลเกม"
 
-#: ../src/general/OptionsMenu.tscn:692
+#: ../src/general/OptionsMenu.tscn:674
 msgid "COMPOUND_CLOUDS"
 msgstr "สารประกอบของเมฆ"
 
-#: ../src/general/OptionsMenu.tscn:707
+#: ../src/general/OptionsMenu.tscn:689
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "การจำลองคลาวด์ขั้นต่ำ\n"
 "ช่วงเวลา:"
 
-#: ../src/general/OptionsMenu.tscn:714 ../src/general/OptionsMenu.tscn:756
+#: ../src/general/OptionsMenu.tscn:696 ../src/general/OptionsMenu.tscn:738
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(ค่าที่สูงขึ้นจะเพิ่มประสิทธิภาพ)"
 
-#: ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:731
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "ตัวหารความละเอียดของคลาวด์:"
 
-#: ../src/general/OptionsMenu.tscn:791
+#: ../src/general/OptionsMenu.tscn:772
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "เรียกใช้ auto-evo ระหว่างการเล่นเกม"
 
-#: ../src/general/OptionsMenu.tscn:811
+#: ../src/general/OptionsMenu.tscn:792
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:828
+#: ../src/general/OptionsMenu.tscn:809
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "บันทึกและดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:823
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:831
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:868
+#: ../src/general/OptionsMenu.tscn:841
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:969
+#: ../src/general/OptionsMenu.tscn:942
 msgid "RESET_INPUTS"
 msgstr "รีเซ็ตอินพุต"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:969
 msgid "PLAY_INTRO_VIDEO"
 msgstr "เล่นวิดีโอแนะนำ"
 
-#: ../src/general/OptionsMenu.tscn:1006
+#: ../src/general/OptionsMenu.tscn:977
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "เล่น Microbe Intro ในเกมใหม่"
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:985
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "บันทึกอัตโนมัติระหว่างเกม"
 
-#: ../src/general/OptionsMenu.tscn:1026
+#: ../src/general/OptionsMenu.tscn:996
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "จำนวนการบันทึกอัตโนมัติที่จะเก็บไว้:"
 
-#: ../src/general/OptionsMenu.tscn:1054
+#: ../src/general/OptionsMenu.tscn:1024
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "จำนวนการบันทึกด่วนที่จะเก็บไว้:"
 
-#: ../src/general/OptionsMenu.tscn:1080
+#: ../src/general/OptionsMenu.tscn:1049
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "แสดงบทช่วยสอน (ในเกมใหม่)"
 
-#: ../src/general/OptionsMenu.tscn:1088
+#: ../src/general/OptionsMenu.tscn:1056
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "แสดงบทช่วยสอน (ในเกมปัจจุบัน)"
 
-#: ../src/general/OptionsMenu.tscn:1104
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "เปิดใช้งานโกงคีย์"
 
-#: ../src/general/OptionsMenu.tscn:1116
+#: ../src/general/OptionsMenu.tscn:1076
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "ใช้ชื่อผู้ใช้ที่กำหนดเอง"
 
-#: ../src/general/OptionsMenu.tscn:1127
+#: ../src/general/OptionsMenu.tscn:1087
 msgid "CUSTOM_USERNAME"
 msgstr "ชื่อผู้ใช้ที่กำหนดเอง:"
 
-#: ../src/general/OptionsMenu.tscn:1153
+#: ../src/general/OptionsMenu.tscn:1113
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 
-#: ../src/general/OptionsMenu.tscn:1161
+#: ../src/general/OptionsMenu.tscn:1121
 msgid "OPEN_LOGS_FOLDER"
 msgstr "เปิดโฟลเดอร์บันทึก"
 
-#: ../src/general/OptionsMenu.tscn:1196 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1156 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "เซฟ"
 
-#: ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1173
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ค่าเริ่มต้น"
 
-#: ../src/general/OptionsMenu.tscn:1225
+#: ../src/general/OptionsMenu.tscn:1185
 msgid "RESET_TO_DEFAULTS"
 msgstr "รีเซ็ตเป็นค่าเริ่มต้นไหม"
 
-#: ../src/general/OptionsMenu.tscn:1234
+#: ../src/general/OptionsMenu.tscn:1194
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าทั้งหมดเป็นค่าเริ่มต้น"
 
-#: ../src/general/OptionsMenu.tscn:1248
+#: ../src/general/OptionsMenu.tscn:1208
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "รีเซ็ตอินพุตเป็นค่าเริ่มต้น?"
 
-#: ../src/general/OptionsMenu.tscn:1257
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าการป้อนข้อมูลเป็นค่าเริ่มต้น"
 
-#: ../src/general/OptionsMenu.tscn:1271
+#: ../src/general/OptionsMenu.tscn:1231
 msgid "CLOSE_OPTIONS"
 msgstr "ปิดตัวเลือกไหม"
 
-#: ../src/general/OptionsMenu.tscn:1291
+#: ../src/general/OptionsMenu.tscn:1251
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะถูกยกเลิก\n"
 "คุณต้องการดำเนินการต่อหรือไม่"
 
-#: ../src/general/OptionsMenu.tscn:1313
+#: ../src/general/OptionsMenu.tscn:1273
 msgid "SAVE_AND_CONTINUE"
 msgstr "บันทึกและดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.tscn:1322
+#: ../src/general/OptionsMenu.tscn:1282
 msgid "DISCARD_AND_CONTINUE"
 msgstr "ทิ้งและดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.tscn:1338
+#: ../src/general/OptionsMenu.tscn:1298
 msgid "CANCEL"
 msgstr "ยกเลิก"
 
-#: ../src/general/OptionsMenu.tscn:1350 ../src/general/OptionsMenu.tscn:1373
-#: ../src/general/OptionsMenu.tscn:1397
+#: ../src/general/OptionsMenu.tscn:1310 ../src/general/OptionsMenu.tscn:1333
+#: ../src/general/OptionsMenu.tscn:1357
 msgid "ERROR"
 msgstr "ผิดพลาด"
 
-#: ../src/general/OptionsMenu.tscn:1359 ../src/general/OptionsMenu.tscn:1398
+#: ../src/general/OptionsMenu.tscn:1319 ../src/general/OptionsMenu.tscn:1358
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ผิดพลาด: บันทึกการตั้งค่าใหม่ลงในไฟล์กำหนดค่าไม่สำเร็จ"
 
-#: ../src/general/OptionsMenu.tscn:1407
+#: ../src/general/OptionsMenu.tscn:1367
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 
-#: ../src/general/OptionsMenu.tscn:1416
+#: ../src/general/OptionsMenu.tscn:1376
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "จับภาพหน้าจอ"
@@ -1913,11 +1913,11 @@ msgstr ""
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:44
+#: ../src/gui_common/TweakedColourPicker.tscn:42
 msgid "HSV"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:67
+#: ../src/gui_common/TweakedColourPicker.tscn:59
 msgid "RAW"
 msgstr ""
 
@@ -2475,23 +2475,23 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 msgid "INFINITE_COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:54
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:68
 msgid "PLAYER_SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:89
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
@@ -2799,7 +2799,22 @@ msgstr ""
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+msgid "MOVE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+msgid "DELETE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3418
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+msgid "MODIFY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:26
 msgid "INFINITE_MP"
 msgstr ""
 
@@ -2869,18 +2884,6 @@ msgstr ""
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
-msgstr ""
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
-msgid "DELETE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
-msgid "MOVE"
-msgstr ""
-
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
-msgid "MODIFY"
 msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
@@ -3188,13 +3191,13 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:144
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:181
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:127
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:210
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:245
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:280
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:315
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:350
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:128
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:211
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:246
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:281
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:316
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:351
 msgid "TUTORIAL"
 msgstr "บทช่วยสอน"
 
@@ -3226,15 +3229,15 @@ msgstr ""
 msgid "GOT_IT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:74
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:75
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:98
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:99
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:106
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:107
 msgid "BEGIN_THRIVING"
 msgstr ""
 
@@ -3246,7 +3249,7 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:266
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:267
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 

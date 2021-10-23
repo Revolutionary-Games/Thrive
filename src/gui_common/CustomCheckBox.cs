@@ -57,6 +57,8 @@ public class CustomCheckBox : Button
             };
         }
 
+        // Set icon instantly will cause Godot not to update it, and apply it at the next update
+        // which will happen when there's another input event. So we queue it to be run the next frame.
         Invoke.Instance.Queue(UpdateIcon);
 
         base._Draw();
@@ -69,7 +71,7 @@ public class CustomCheckBox : Button
         if (@event is InputEventMouseButton mouseEvent)
         {
             pressing = (mouseEvent.ButtonMask & ButtonMask) != 0;
-            _Draw();
+            Update();
         }
 
         base._GuiInput(@event);
