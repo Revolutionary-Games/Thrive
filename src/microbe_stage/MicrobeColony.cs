@@ -92,6 +92,7 @@ public class MicrobeColony
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
+        Master.Mass -= microbe.Mass;
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -100,7 +101,7 @@ public class MicrobeColony
             throw new ArgumentException("Microbe or master null or microbe already is in a colony");
 
         ColonyMembers.Add(microbe);
-
+        Master.Mass += microbe.Mass;
         microbe.ColonyParent = master;
         master.ColonyChildren.Add(microbe);
         microbe.Colony = this;

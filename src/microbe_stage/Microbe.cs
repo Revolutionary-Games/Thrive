@@ -232,6 +232,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 foreach (var child in ColonyChildren)
                 {
                     child.Mode = ModeEnum.Static;
+                    Colony.Master.Mass += Constants.MICROBE_BASE_MASS;
                     AddChild(child);
                 }
             }
@@ -352,7 +353,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                     organelle.Update(delta);
             }
         }
-
+        
         // The code below starting from here is not needed for a display-only cell
         if (IsForPreviewOnly)
             return;
@@ -418,13 +419,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 }
 
                 totalMovement += queuedMovementForce;
-
+                if(IsPlayerMicrobe)
+                GD.Print(Mass);
                 ApplyMovementImpulse(totalMovement, delta);
 
                 // Play movement sound if one isn't already playing.
                 if (!movementAudio.Playing)
                     movementAudio.Play();
             }
+        }
+        else
+        {
+            Colony.Master.AddMovementForce(queuedMovementForce);
         }
 
         // Rotation is applied in the physics force callback as that's
@@ -586,6 +592,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         float force = Constants.CELL_BASE_THRUST;
 
+        if (Colony != null && Colony.Master == this)
+            {
+                MovementFactor *= Colony.ColonyMembers.Count;
+                MovementFactor -= (MovementFactor*0.25f) * (1 - 1/((float)Math.Pow(2,Colony.ColonyMembers.Count-1)));
+            }
+
+            
         // Halve speed if out of ATP
         if (got < cost)
         {

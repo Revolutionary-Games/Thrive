@@ -460,8 +460,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         // Physics
-        // TODO: shouldn't we also add the mass to the colony master?
         ParentMicrobe.Mass += Definition.Mass;
+
+        // Add the mass of the organelles to the master
+        if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master)
+            ParentMicrobe.Colony.Master.Mass += Definition.Mass;
 
         MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
 
