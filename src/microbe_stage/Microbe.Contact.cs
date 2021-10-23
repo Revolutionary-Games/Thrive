@@ -597,6 +597,11 @@ public partial class Microbe
                 return microbe;
         }
 
+        // Now as we consider 0 valid, still don't want to crash here
+        // TODO: re-check this once this issue is done: https://github.com/Revolutionary-Games/Thrive/issues/2671
+        if (ownerID == 0)
+            return null;
+
         // TODO: I really hope there is no way to hit this. I would really hate to reduce the game stability due to
         // possibly bogus ownerID values that sometimes seem to come from Godot
         // https://github.com/Revolutionary-Games/Thrive/issues/2504
