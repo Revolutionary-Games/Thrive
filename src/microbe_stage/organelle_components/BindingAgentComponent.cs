@@ -17,8 +17,7 @@ public class BindingAgentComponent : IOrganelleComponent
     {
     }
 
-    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset, Vector3 masterRotation,
-        Vector3 parentRotation)
+    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
     }
 }
