@@ -46,6 +46,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     private Control hudRoot;
 
+    // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
+    // if null)
+    private Random random = new Random();
+
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
     /// </summary>
@@ -218,6 +222,18 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         SetupStage();
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
+    }
+
     public override void _Notification(int what)
     {
         if (what == NotificationTranslationChanged)
@@ -350,7 +366,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (spawnedPlayer)
         {
             // Random location on respawn
-            var random = new Random();
             Player.Translation = new Vector3(
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
@@ -574,6 +589,27 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+    }
+
+    private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)
+    {
+        if (Player == null)
+            return;
+
+        var species = GameWorld.Map.CurrentPatch.SpeciesInPatch.Keys.Where(s => !s.PlayerSpecies).ToList();
+
+        // No enemy species to spawn in this patch
+        if (species.Count == 0)
+        {
+            GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
+            return;
+        }
+
+        var randomSpecies = species.Random(random);
+
+        SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
+            CurrentGame);
     }
 
     [DeserializedCallbackAllowed]

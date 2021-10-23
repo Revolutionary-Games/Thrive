@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 20:56+0200\n"
+"POT-Creation-Date: 2021-10-22 15:48+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Nathaniel Balderramas <nabm.utn@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -414,18 +414,18 @@ msgid "ABILITIES"
 msgstr "Habilidades"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2116
+#: ../src/microbe_stage/MicrobeStage.tscn:2105
 msgid "FIRE_TOXIN"
 msgstr "Toxina de fuego"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2104
+#: ../src/microbe_stage/MicrobeStage.tscn:2093
 #, fuzzy
 msgid "TOGGLE_ENGULF"
 msgstr "No puede engullir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2127
+#: ../src/microbe_stage/MicrobeStage.tscn:2116
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "No puede engullir"
@@ -1404,6 +1404,7 @@ msgid "NEW_GAME"
 msgstr "Nueva Partida"
 
 #: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Cargar Partida"
 
@@ -1438,6 +1439,7 @@ msgstr "Editor libre de microbios"
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
 #: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:459
 #: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Atrás"
@@ -1813,6 +1815,7 @@ msgid "HELP"
 msgstr "Ayuda"
 
 #: ../src/general/PauseMenu.tscn:101
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
 msgid "RETURN_TO_MENU"
 msgstr "Volver al Menú"
 
@@ -2762,28 +2765,32 @@ msgstr "Engullición evadida"
 msgid "REPRODUCED"
 msgstr "Produce"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "Compuestos"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
 msgid "GODMODE"
 msgstr "Modo Dios"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:60
 msgid "NO_AI"
 msgstr "Sin IA"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:77
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "El jugador murió"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:98
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "El jugador murió"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:108
+msgid "SPAWN_ENEMY"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
@@ -2794,16 +2801,16 @@ msgstr "Objetos en {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "El jugador murió"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:737
+#: ../src/microbe_stage/MicrobeHUD.cs:736
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Especies Presentes"
 
-#: ../src/microbe_stage/MicrobeStage.cs:510
+#: ../src/microbe_stage/MicrobeStage.cs:524
 msgid "PLAYER_REPRODUCED"
 msgstr "El jugador se reprodujo"
 
-#: ../src/microbe_stage/MicrobeStage.cs:631
+#: ../src/microbe_stage/MicrobeStage.cs:666
 msgid "PLAYER_DIED"
 msgstr "El jugador murió"
 
@@ -3242,22 +3249,22 @@ msgstr "{0} con población: {1}"
 msgid "MP_COST"
 msgstr ""
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:86
 msgid "EXTINCTION_CAPITAL"
 msgstr "EXTINCIÓN"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:95
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Cómo el 99% de todas las especies que han existido, tu especie se ha "
 "extinto. Otras especies llenarán tu espacio y prosperarán, pero no va a "
 "ser tu especie. Será olvidada, un experimento evolutivo fallido."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:54
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "HAS PROSPERADO!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:63
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Felicitaciones! Has ganado esta versión de Thrive! Puedes seguir jugando "

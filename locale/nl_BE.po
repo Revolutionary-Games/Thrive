@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 20:56+0200\n"
+"POT-Creation-Date: 2021-10-22 15:48+0200\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -393,17 +393,17 @@ msgid "ABILITIES"
 msgstr "Vaardigheden"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2116
+#: ../src/microbe_stage/MicrobeStage.tscn:2105
 msgid "FIRE_TOXIN"
 msgstr "Vergif vuren"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2104
+#: ../src/microbe_stage/MicrobeStage.tscn:2093
 msgid "TOGGLE_ENGULF"
 msgstr "Schakel verzwelg"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2127
+#: ../src/microbe_stage/MicrobeStage.tscn:2116
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Schakel verzwelg"
@@ -1398,6 +1398,7 @@ msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
 #: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:72
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Spel Laden"
 
@@ -1432,6 +1433,7 @@ msgstr "Microbe Vrij Bouwen in de \"Editor\""
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
 #: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:459
 #: ../src/general/OptionsMenu.tscn:1206 ../src/general/PauseMenu.tscn:134
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Terug"
@@ -1816,6 +1818,7 @@ msgid "HELP"
 msgstr "Help"
 
 #: ../src/general/PauseMenu.tscn:101
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
 msgid "RETURN_TO_MENU"
 msgstr "Ga terug naar het menu"
 
@@ -2802,28 +2805,32 @@ msgstr "ontsnap omsluiting"
 msgid "REPRODUCED"
 msgstr "Produceert"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:39
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
 #, fuzzy
 msgid "INFINITE_COMPOUNDS"
 msgstr "Chemische verbindingen"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:50
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:59
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:60
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:76
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:77
 #, fuzzy
 msgid "PLAYER_SPEED"
 msgstr "speler stierf"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:98
 #, fuzzy
 msgid "PLAYER_DUPLICATE"
 msgstr "speler stierf"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:108
+msgid "SPAWN_ENEMY"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
@@ -2833,16 +2840,16 @@ msgstr "Spullen bij {0:F1}, {1:F1}:"
 msgid "PLAYER_CELL"
 msgstr "Spelerscel"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:737
+#: ../src/microbe_stage/MicrobeHUD.cs:736
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Soortenlijst"
 
-#: ../src/microbe_stage/MicrobeStage.cs:510
+#: ../src/microbe_stage/MicrobeStage.cs:524
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
-#: ../src/microbe_stage/MicrobeStage.cs:631
+#: ../src/microbe_stage/MicrobeStage.cs:666
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
 
@@ -3263,11 +3270,11 @@ msgstr "{0} met populatie: {1}"
 msgid "MP_COST"
 msgstr "{0} MP"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:55
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:86
 msgid "EXTINCTION_CAPITAL"
 msgstr "UITSTERVEN"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:64
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:95
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Net zoals 99% van alle soorten die hebben bestaan is je soort "
@@ -3275,11 +3282,11 @@ msgstr ""
 "jij niet zijn. Je zal vergeten worden, een gefaald experiment in de "
 "evolutie."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:54
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "JE HEBT OVERWONNEN!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:63
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Proficiat, je hebt gewonnen in deze versie van Thrive! Je kan verderspelen "
