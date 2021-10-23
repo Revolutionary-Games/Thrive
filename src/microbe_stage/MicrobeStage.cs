@@ -46,7 +46,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     private Control hudRoot;
 
-    private Random random;
+    // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
+    // if null)
+    private Random random = new Random();
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -291,7 +293,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             }
         }
 
-        random = new Random();
         pauseMenu.GameProperties = CurrentGame ?? throw new InvalidOperationException("current game is not set");
 
         tutorialGUI.EventReceiver = TutorialState;
