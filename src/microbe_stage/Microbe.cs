@@ -1612,10 +1612,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             var usefulCompounds = SimulationParameters.Instance.GetCloudCompounds().Where(Compounds.IsUseful);
             foreach (var usefulCompound in usefulCompounds)
-            {
-                Compounds.AddCompound(usefulCompound,
-                    Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
-            }
+                Compounds.AddCompound(usefulCompound, Compounds.Capacity - Compounds.GetCompoundAmount(usefulCompound));
         }
     }
 
