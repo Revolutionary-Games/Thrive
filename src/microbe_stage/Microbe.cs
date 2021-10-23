@@ -222,6 +222,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // maybe engine bug
             if (Colony != null && this != Colony.Master)
             {
+                Colony.Master.Mass += Constants.MICROBE_BASE_MASS;
                 ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
                 ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
             }
@@ -232,7 +233,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 foreach (var child in ColonyChildren)
                 {
                     child.Mode = ModeEnum.Static;
-                    Colony.Master.Mass += Constants.MICROBE_BASE_MASS;
                     AddChild(child);
                 }
             }
@@ -433,7 +433,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
         else
         {
-            Colony.Master.AddMovementForce(queuedMovementForce);
+            if (Colony != null)
+                Colony.Master.AddMovementForce(queuedMovementForce);
         }
 
         // Rotation is applied in the physics force callback as that's
