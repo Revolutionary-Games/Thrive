@@ -152,7 +152,7 @@ public static class Constants
 
     public const float COMPOUND_RELEASE_PERCENTAGE = 0.9f;
 
-    public const float MICROBE_MAX_SPEED = 75.0f;
+    public const float MICROBE_MAX_SPEED = 80.0f;
 
     /// <summary>
     ///   Base mass all microbes have on top of their organelle masses
