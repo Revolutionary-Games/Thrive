@@ -10,18 +10,20 @@ public class ModifierInfoLabel : HBoxContainer
     private Label valueLabel;
     private TextureRect icon;
 
-    private string modifierName;
+    private string displayName;
     private string modifierValue;
     private Color modifierValueColor;
     private Texture iconTexture;
 
+    private bool showValue = true;
+
     [Export]
-    public string ModifierName
+    public string DisplayName
     {
-        get => modifierName;
+        get => displayName;
         set
         {
-            modifierName = value;
+            displayName = value;
             UpdateName();
         }
     }
@@ -59,6 +61,20 @@ public class ModifierInfoLabel : HBoxContainer
         }
     }
 
+    /// <summary>
+    ///   Useful for modifier labels that doesn't require a value to be shown.
+    /// </summary>
+    [Export]
+    public bool ShowValue
+    {
+        get => showValue;
+        set
+        {
+            showValue = value;
+            UpdateValue();
+        }
+    }
+
     public override void _Ready()
     {
         nameLabel = GetNode<Label>("Name");
@@ -70,19 +86,40 @@ public class ModifierInfoLabel : HBoxContainer
         UpdateIcon();
     }
 
+    /// <summary>
+    ///   Helper method for setting the color of the value text to either green,
+    ///   white or red based on the magnitude of the given numerical value.
+    /// </summary>
+    /// <param name="value">Positive numbers = green, negative numbers = red.</param>
+    /// <param name="inverted">
+    ///   <para>
+    ///     Inverts the color choice (e.g. Red color for positive numbers).
+    ///     This is useful for modifiers like Osmoregulation Cost (A disadvantage
+    ///     for cells at increased value, thus the red color imply that).
+    ///   </para>
+    /// </param>
+    public void AdjustValueColor(float value, bool inverted = false)
+    {
+        if (value > 0)
+        {
+            ModifierValueColor = inverted ? new Color(1, 0.3f, 0.3f) : new Color(0, 1, 0);
+        }
+        else if (value == 0)
+        {
+            ModifierValueColor = new Color(1, 1, 1);
+        }
+        else
+        {
+            ModifierValueColor = inverted ? new Color(0, 1, 0) : new Color(1, 0.3f, 0.3f);
+        }
+    }
+
     private void UpdateName()
     {
         if (nameLabel == null)
             return;
 
-        if (string.IsNullOrEmpty(ModifierName))
-        {
-            modifierName = nameLabel.Text;
-        }
-        else
-        {
-            nameLabel.Text = modifierName;
-        }
+        nameLabel.Text = displayName;
     }
 
     private void UpdateValue()
@@ -90,23 +127,11 @@ public class ModifierInfoLabel : HBoxContainer
         if (valueLabel == null)
             return;
 
-        if (string.IsNullOrEmpty(ModifierValue))
-        {
-            modifierValue = valueLabel.Text;
-        }
-        else
-        {
-            valueLabel.Text = modifierValue;
-        }
+        valueLabel.Visible = ShowValue;
 
-        if (ModifierValueColor == new Color(0, 0, 0, 0))
-        {
-            valueLabel.GetColor("font_color");
-        }
-        else
-        {
-            valueLabel.AddColorOverride("font_color", modifierValueColor);
-        }
+        valueLabel.Text = modifierValue;
+
+        valueLabel.AddColorOverride("font_color", modifierValueColor);
     }
 
     private void UpdateIcon()
@@ -114,13 +139,6 @@ public class ModifierInfoLabel : HBoxContainer
         if (icon == null)
             return;
 
-        if (ModifierIcon == null)
-        {
-            iconTexture = icon.Texture;
-        }
-        else
-        {
-            icon.Texture = iconTexture;
-        }
+        icon.Texture = iconTexture;
     }
 }

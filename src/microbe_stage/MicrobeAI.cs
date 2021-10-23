@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -7,370 +8,227 @@ using Newtonsoft.Json;
 ///   AI for a single Microbe. This is a separate class to contain all the AI status variables as well as make the
 ///   Microbe.cs file cleaner as this AI has a lot of code.
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is run in a background thread so no state changing or scene spawning methods on Microbe may be called.
+///   </para>
+///   <para>
+///     TODO: this should be updated to have special handling for cell colonies
+///   </para>
+/// </remarks>
 public class MicrobeAI
 {
-    private readonly Compound atp;
-
-    // ReSharper disable once NotAccessedField.Local
+    private readonly Compound glucose;
     private readonly Compound iron;
     private readonly Compound oxytoxy;
+    private readonly Compound ammonia;
+    private readonly Compound phosphates;
 
     [JsonProperty]
     private Microbe microbe;
 
     [JsonProperty]
-    private int boredom;
-
-    // ReSharper disable once CollectionNeverQueried.Local
-    [JsonProperty]
-    private List<FloatingChunk> chunkList = new List<FloatingChunk>();
-
-    [JsonProperty]
-    private bool hasTargetPosition;
-
-    [JsonProperty]
-    private LifeState lifeState = LifeState.NEUTRAL_STATE;
-
-    [JsonProperty]
-    private bool moveFocused;
-
-    [JsonProperty]
-    private float movementRadius = 2000;
-
-    [JsonProperty]
-    private bool moveThisHunt = true;
-
-    // All of the game entities stored here are probable places where disposed objects come from
-    // so they are ignored for now
-    [JsonProperty]
-    private Microbe predator;
-
-    // Prey and predator lists
-    [JsonProperty]
-    private List<Microbe> predatoryMicrobes = new List<Microbe>();
-
-    [JsonProperty]
     private float previousAngle;
-
-    [JsonProperty]
-    private Microbe prey;
-
-    [JsonProperty]
-    private List<Microbe> preyMicrobes = new List<Microbe>();
-
-    [JsonProperty]
-    private bool preyPegged;
-
-    [JsonProperty]
-    private FloatingChunk targetChunk;
 
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
-    /// <summary>
-    ///   TODO: change to be the elapsed time instead of AI update count
-    /// </summary>
+    [JsonIgnore]
+    private EntityReference<Microbe> focusedPrey = new EntityReference<Microbe>();
+
     [JsonProperty]
-    private float ticksSinceLastToggle = 600;
+    private float pursuitThreshold;
+
+    /// <summary>
+    ///   Stores the value of microbe.totalAbsorbedCompound at tick t-1 before it is cleared and updated at tick t.
+    ///   Used for compounds gradient computation.
+    /// </summary>
+    /// <remarks>
+    ///   Memory of the previous absorption step is required to compute gradient (which is a variation).
+    ///   Values dictionary rather than single value as they will be combined with variable weights.
+    /// </remarks>
+    [JsonProperty]
+    private Dictionary<Compound, float> previouslyAbsorbedCompounds;
+
+    [JsonIgnore]
+    private Dictionary<Compound, float> compoundsSearchWeights;
 
     public MicrobeAI(Microbe microbe)
     {
         this.microbe = microbe ?? throw new ArgumentException("no microbe given", nameof(microbe));
-        oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-        atp = SimulationParameters.Instance.GetCompound("atp");
+
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
         iron = SimulationParameters.Instance.GetCompound("iron");
+        oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+
+        previouslyAbsorbedCompounds = new Dictionary<Compound, float>(microbe.TotalAbsorbedCompounds);
+        compoundsSearchWeights = new Dictionary<Compound, float>();
     }
 
-    /// <summary>
-    ///   Enum for state machine
-    /// </summary>
-    private enum LifeState
-    {
-        NEUTRAL_STATE,
-        GATHERING_STATE,
-        FLEEING_STATE,
-        PREDATING_STATE,
-        PLANTLIKE_STATE,
-        SCAVENGING_STATE,
-    }
-
-    private float SpeciesAggression => microbe.Species.Aggression;
-
-    private float SpeciesFear => microbe.Species.Fear;
-
-    private float SpeciesActivity => microbe.Species.Activity;
-
-    private float SpeciesFocus => microbe.Species.Focus;
-
-    private float SpeciesOpportunism => microbe.Species.Opportunism;
+    private float SpeciesAggression => microbe.Species.Behaviour.Aggression;
+    private float SpeciesFear => microbe.Species.Behaviour.Fear;
+    private float SpeciesActivity => microbe.Species.Behaviour.Activity;
+    private float SpeciesFocus => microbe.Species.Behaviour.Focus;
+    private float SpeciesOpportunism => microbe.Species.Behaviour.Opportunism;
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
         _ = delta;
 
-        // SetRandomTargetAndSpeed(random);
+        // Disable most AI in a colony
+        if (microbe.ColonyParent != null)
+            return;
 
-        // Clear the lists
-        predatoryMicrobes.Clear();
-        preyMicrobes.Clear();
-        chunkList.Clear();
+        ChooseActions(random, data);
 
-        prey = null;
-
-        // 30 seconds about
-        if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
+        // Store the absorbed compounds for run and rumble
+        previouslyAbsorbedCompounds.Clear();
+        foreach (var compound in microbe.TotalAbsorbedCompounds)
         {
-            // Occasionally you need to reevaluate things
-            boredom = 0;
-            if (RollCheck(SpeciesActivity, 400, random))
-            {
-                lifeState = LifeState.PLANTLIKE_STATE;
-            }
-            else
-            {
-                lifeState = LifeState.NEUTRAL_STATE;
-            }
-        }
-        else
-        {
-            boredom++;
+            previouslyAbsorbedCompounds[compound.Key] = compound.Value;
         }
 
-        switch (lifeState)
-        {
-            case LifeState.PLANTLIKE_STATE:
-                // This ai would ideally just sit there, until it sees a nice opportunity pop-up unlike neutral,
-                // which wanders randomly (has a gather chance) until something interesting pops up
-                break;
-            case LifeState.NEUTRAL_STATE:
-            {
-                // Before these would run every time, now they just run for the states that need them.
-                boredom = 0;
-                preyPegged = false;
-                prey = null;
-                if (predator == null)
-                {
-                    GetNearestPredatorItem(data.AllMicrobes);
-                }
-
-                // Peg your prey
-                if (!preyPegged)
-                {
-                    prey = null;
-                    prey = GetNearestPreyItem(data.AllMicrobes);
-                    if (prey != null)
-                    {
-                        preyPegged = true;
-                    }
-                }
-
-                if (targetChunk == null)
-                {
-                    targetChunk = GetNearestChunkItem(data.AllChunks);
-                }
-
-                EvaluateEnvironment(random);
-                break;
-            }
-
-            case LifeState.GATHERING_STATE:
-            {
-                // In this state you gather compounds
-                if (RollCheck(SpeciesOpportunism, 400.0f, random))
-                {
-                    lifeState = LifeState.SCAVENGING_STATE;
-                    boredom = 0;
-                }
-                else
-                {
-                    DoRunAndTumble(random);
-                }
-
-                break;
-            }
-
-            case LifeState.FLEEING_STATE:
-            {
-                if (predator == null)
-                {
-                    GetNearestPredatorItem(data.AllMicrobes);
-                }
-
-                // In this state you run from predatory microbes
-                if (predator != null)
-                {
-                    DealWithPredators(random);
-                }
-                else
-                {
-                    if (RollCheck(SpeciesActivity, 400, random))
-                    {
-                        lifeState = LifeState.PLANTLIKE_STATE;
-                        boredom = 0;
-                    }
-                    else
-                    {
-                        lifeState = LifeState.NEUTRAL_STATE;
-                    }
-                }
-
-                break;
-            }
-
-            case LifeState.PREDATING_STATE:
-            {
-                // Peg your prey
-                if (!preyPegged)
-                {
-                    prey = null;
-                    prey = GetNearestPreyItem(data.AllMicrobes);
-                    if (prey != null)
-                    {
-                        preyPegged = true;
-                    }
-                }
-
-                if (preyPegged && prey != null)
-                {
-                    DealWithPrey(data.AllMicrobes, random);
-                }
-                else
-                {
-                    if (RollCheck(SpeciesActivity, 400, random))
-                    {
-                        lifeState = LifeState.PLANTLIKE_STATE;
-                        boredom = 0;
-                    }
-                    else
-                    {
-                        lifeState = LifeState.NEUTRAL_STATE;
-                    }
-                }
-
-                break;
-            }
-
-            case LifeState.SCAVENGING_STATE:
-            {
-                if (targetChunk == null)
-                {
-                    targetChunk = GetNearestChunkItem(data.AllChunks);
-                }
-
-                if (targetChunk != null)
-                {
-                    DealWithChunks(targetChunk, data.AllChunks);
-                }
-                else
-                {
-                    if (!RollCheck(SpeciesOpportunism, 400, random))
-                    {
-                        lifeState = LifeState.NEUTRAL_STATE;
-                        boredom = 0;
-                    }
-                    else
-                    {
-                        lifeState = LifeState.SCAVENGING_STATE;
-                    }
-                }
-
-                break;
-            }
-        }
-
-        // Run reflexes
-        DoReflexes();
-
-        // Clear the absorbed compounds for run and rumble
+        // We clear here for update, this is why we stored above!
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
-    // There are cases when we want either ||, so here's two state rolls
-    private static bool RollCheck(float ourStat, float dc, Random random)
+    /// <summary>
+    ///   Resets AI status when this AI controlled microbe is removed from a colony
+    /// </summary>
+    public void ResetAI()
     {
-        return random.Next(0.0f, dc) <= ourStat;
+        previousAngle = 0;
+        targetPosition = Vector3.Zero;
+        focusedPrey.Value = null;
+        pursuitThreshold = 0;
+        microbe.MovementDirection = Vector3.Zero;
+        microbe.TotalAbsorbedCompounds.Clear();
     }
 
-    private static bool RollReverseCheck(float ourStat, float dc, Random random)
+    private void ChooseActions(Random random, MicrobeAICommonData data)
     {
-        return ourStat >= random.Next(0.0f, dc);
-    }
-
-    private void DoReflexes()
-    {
-        // For times when its best to tell the microbe directly what to do (Life threatening, attaching to things etc);
-        /* Check if we are willing to run, and there is a predator nearby, if so, flee for your life
-           If it was ran in evaluate environment, it would only work if the microbe was in the neutral state.
-           because we may need more of these very specific things in the future for things like latching onto rocks */
-        // If you are predating and not being engulfed, don't run away until you switch state (keeps predators chasing
-        // you even when their predators are nearby) Its not a good survival strategy but it makes the game more fun.
-        if (predator != null && (lifeState != LifeState.PREDATING_STATE || microbe.IsBeingEngulfed))
+        if (microbe.IsBeingEngulfed)
         {
-            try
-            {
-                if (!predator.Dead)
-                {
-                    if ((microbe.Translation - predator.Translation).LengthSquared() <=
-                        (2000 + ((predator.HexCount * 8.0f) * 2)))
-                    {
-                        if (lifeState != LifeState.FLEEING_STATE)
-                        {
-                            // Reset target position for faster fleeing
-                            hasTargetPosition = false;
-                        }
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+        }
 
-                        boredom = 0;
-                        lifeState = LifeState.FLEEING_STATE;
-                    }
-                }
-                else
-                {
-                    predator = null;
-                }
-            }
-            catch (ObjectDisposedException)
+        // If nothing is engulfing me right now, see if there's something that might want to hunt me
+        // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2323
+        Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.GlobalTransform.origin;
+        if (predator.HasValue &&
+            DistanceFromMe(predator.Value) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
+        {
+            FleeFromPredators(random, predator.Value);
+            return;
+        }
+
+        // If there are no threats, look for a chunk to eat
+        if (!microbe.Species.MembraneType.CellWall)
+        {
+            Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
+            if (targetChunk.HasValue)
             {
-                // Our predator might be already disposed
-                predator = null;
+                PursueAndConsumeChunks(targetChunk.Value, random);
+                return;
             }
+        }
+
+        // If there are no chunks, look for living prey to hunt
+        var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
+        if (possiblePrey != null)
+        {
+            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
+                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+            Vector3? prey = possiblePrey.GlobalTransform.origin;
+
+            EngagePrey(prey.Value, random, engulfPrey);
+            return;
+        }
+
+        // Otherwise just wander around and look for compounds
+        if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
+        {
+            RunAndTumble(random);
+        }
+        else
+        {
+            // This organism is sessile, and will not act until the environment changes
+            SetMoveSpeed(0.0f);
         }
     }
 
-    /// <summary>
-    /// Gets the nearest chunk. And builds a list on chunkList
-    /// </summary>
-    /// <returns>The nearest chunk item.</returns>
-    /// <param name="allChunks">All chunks the AI knows of.</param>
-    private FloatingChunk GetNearestChunkItem(List<FloatingChunk> allChunks)
+    private FloatingChunk GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes, Random random)
     {
         FloatingChunk chosenChunk = null;
 
-        Vector3 testPosition = new Vector3(0, 0, 0);
-        bool setPosition = true;
+        // If the microbe cannot absorb, no need for this
+        if (microbe.Membrane.Type.CellWall)
+        {
+            return null;
+        }
 
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
-            if ((SpeciesOpportunism == Constants.MAX_SPECIES_OPPORTUNISM) ||
-                ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
-                    chunk.Size))
+            if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
+                && (chunk.Translation - microbe.Translation).LengthSquared()
+                <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
             {
-                chunkList.Add(chunk);
-                var thisPosition = chunk.Translation;
-
-                if (setPosition)
+                if (chunk.ContainedCompounds.Compounds.Any(x => microbe.Compounds.IsUseful(x.Key)))
                 {
-                    testPosition = thisPosition;
-                    setPosition = false;
-                    chosenChunk = chunk;
+                    if (chosenChunk == null ||
+                        (chosenChunk.Translation - microbe.Translation).LengthSquared() >
+                        (chunk.Translation - microbe.Translation).LengthSquared())
+                    {
+                        chosenChunk = chunk;
+                    }
                 }
+            }
+        }
 
-                if ((testPosition - microbe.Translation).LengthSquared() >
-                    (thisPosition - microbe.Translation).LengthSquared())
+        // Don't bother with chunks when there's a lot of microbes to compete with
+        if (chosenChunk != null)
+        {
+            var rivals = 0;
+            var distanceToChunk = (microbe.Translation - chosenChunk.Translation).LengthSquared();
+            foreach (var rival in allMicrobes)
+            {
+                if (rival != microbe)
                 {
-                    testPosition = thisPosition;
-                    chosenChunk = chunk;
+                    var rivalDistance = (rival.GlobalTransform.origin - chosenChunk.Translation).LengthSquared();
+                    if (rivalDistance < 500.0f &&
+                        rivalDistance < distanceToChunk)
+                    {
+                        rivals++;
+                    }
                 }
+            }
+
+            int rivalThreshold;
+            if (SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM / 3)
+            {
+                rivalThreshold = 1;
+            }
+            else if (SpeciesOpportunism < Constants.MAX_SPECIES_OPPORTUNISM * 2 / 3)
+            {
+                rivalThreshold = 3;
+            }
+            else
+            {
+                rivalThreshold = 5;
+            }
+
+            // In rare instances, microbes will choose to be much more ambitious
+            if (RollCheck(SpeciesFocus, Constants.MAX_SPECIES_FOCUS, random))
+            {
+                rivalThreshold *= 2;
+            }
+
+            if (rivals > rivalThreshold)
+            {
+                chosenChunk = null;
             }
         }
 
@@ -384,50 +242,50 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPreyItem(List<Microbe> allMicrobes)
     {
+        var focused = focusedPrey.Value;
+        if (focused != null)
+        {
+            var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin);
+            if (!focused.Dead && distanceToFocusedPrey <
+                (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
+            {
+                if (distanceToFocusedPrey < pursuitThreshold)
+                {
+                    // Keep chasing, but expect to keep getting closer
+                    pursuitThreshold *= 0.95f;
+                    return focused;
+                }
+
+                // If prey hasn't gotten closer by now, it's probably too fast, or juking you
+                // Remember who focused prey is, so that you don't fall for this again
+                return null;
+            }
+
+            focusedPrey.Value = null;
+        }
+
         Microbe chosenPrey = null;
-
-        // Use the agent amounts so a small cell with a lot of toxins has the courage to attack.
-
-        // Retrieve nearest potential prey
-        // Max position
-        Vector3 testPosition = new Vector3(0, 0, 0);
-        bool setPosition = true;
 
         foreach (var otherMicrobe in allMicrobes)
         {
-            if (otherMicrobe == microbe)
-                continue;
-
-            if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
+            if (!otherMicrobe.Dead)
             {
-                if ((SpeciesAggression == Constants.MAX_SPECIES_AGRESSION) ||
-                    ((((microbe.AgentVacuoleCount + microbe.EngulfSize) * 1.0f) *
-                            (SpeciesAggression / Constants.AGRESSION_DIVISOR)) >
-                        (otherMicrobe.EngulfSize * 1.0f)))
+                if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
+                    (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
+                    && CanTryToEatMicrobe(otherMicrobe))
                 {
-                    preyMicrobes.Add(otherMicrobe);
-
-                    var thisPosition = otherMicrobe.Translation;
-
-                    if (setPosition)
+                    if (chosenPrey == null ||
+                        (chosenPrey.GlobalTransform.origin - microbe.Translation).LengthSquared() >
+                        (otherMicrobe.GlobalTransform.origin - microbe.Translation).LengthSquared())
                     {
-                        testPosition = otherMicrobe.Translation;
-                        setPosition = false;
-                        chosenPrey = otherMicrobe;
-                    }
-
-                    if ((testPosition - microbe.Translation).LengthSquared() >
-                        (thisPosition - microbe.Translation).LengthSquared())
-                    {
-                        testPosition = thisPosition;
                         chosenPrey = otherMicrobe;
                     }
                 }
             }
         }
 
-        // It might be interesting to prioritize weakened prey (Maybe add a variable for opportunisticness to each
-        // species?)
+        focusedPrey.Value = chosenPrey;
+        pursuitThreshold = chosenPrey != null ? DistanceFromMe(chosenPrey.GlobalTransform.origin) * 3.0f : 0.0f;
         return chosenPrey;
     }
 
@@ -435,463 +293,294 @@ public class MicrobeAI
     ///   Building the predator list and setting the scariest one to be predator
     /// </summary>
     /// <param name="allMicrobes">All microbes.</param>
-    private void GetNearestPredatorItem(List<Microbe> allMicrobes)
+    private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
-        // Retrive the nearest predator
-        // For our desires lets just say all microbes bigger are potential predators
-        // and later extend this to include those with toxins and pilus
-        Vector3 testPosition = new Vector3(0, 0, 0);
-        bool setPosition = true;
-
+        var fleeThreshold = 3.0f - (2 *
+            (SpeciesFear / Constants.MAX_SPECIES_FEAR) *
+            (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
+        Microbe predator = null;
         foreach (var otherMicrobe in allMicrobes)
         {
             if (otherMicrobe == microbe)
                 continue;
 
-            // At max fear add them all
-            if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
+            // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
+            if (otherMicrobe.Species != microbe.Species
+                && !otherMicrobe.Dead
+                && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
             {
-                if ((SpeciesFear == Constants.MAX_SPECIES_FEAR) ||
-                    ((((microbe.AgentVacuoleCount + otherMicrobe.EngulfSize) * 1.0f) *
-                            (SpeciesFear / Constants.FEAR_DIVISOR)) >
-                        (microbe.EngulfSize * 1.0f)))
+                if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >
+                    DistanceFromMe(otherMicrobe.GlobalTransform.origin))
                 {
-                    // You are bigger then me and i am afraid of that
-                    predatoryMicrobes.Add(otherMicrobe);
-                    var thisPosition = otherMicrobe.Translation;
-
-                    // At max aggression add them all
-                    if (setPosition)
-                    {
-                        testPosition = thisPosition;
-                        setPosition = false;
-                        predator = otherMicrobe;
-                    }
-
-                    if ((testPosition - microbe.Translation).LengthSquared() >
-                        (thisPosition - microbe.Translation).LengthSquared())
-                    {
-                        testPosition = thisPosition;
-                        predator = otherMicrobe;
-                    }
+                    predator = otherMicrobe;
                 }
             }
         }
+
+        return predator;
     }
 
-    /// <summary>
-    /// For chasing down and killing prey in various ways
-    /// </summary>
-    private void DealWithPrey(List<Microbe> allMicrobes, Random random)
+    private void PursueAndConsumeChunks(Vector3 chunk, Random random)
     {
-        // Tick the engulf tick
-        ticksSinceLastToggle += 1;
-
-        bool lostPrey = false;
-
-        try
-        {
-            targetPosition = prey.Translation;
-        }
-        catch (ObjectDisposedException)
-        {
-            lostPrey = true;
-        }
-
-        if (lostPrey)
-        {
-            preyPegged = false;
-            prey = null;
-            return;
-        }
-
-        // Chase your prey if you dont like acting like a plant
-        // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
-        // Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
+        // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
+        targetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
         microbe.LookAtPoint = targetPosition;
-        hasTargetPosition = true;
+        SetEngulfIfClose();
 
-        // Always set target Position, for use later in AI
-        if (moveThisHunt)
+        // Just in case something is obstructing chunk engulfing, wiggle a little sometimes
+        if (random.NextDouble() < 0.05)
         {
-            if (moveFocused)
-            {
-                microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_FOCUSED_MOVEMENT);
-            }
-            else
-            {
-                microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
-            }
+            MoveWithRandomTurn(0.1f, 0.2f, random);
+        }
+
+        // If this Microbe is right on top of the chunk, stop instead of spinning
+        if (DistanceFromMe(chunk) < Constants.AI_ENGULF_STOP_DISTANCE)
+        {
+            SetMoveSpeed(0.0f);
         }
         else
         {
-            microbe.MovementDirection = new Vector3(0, 0, 0);
-        }
-
-        // Turn off engulf if prey is Dead
-        // This is probabbly not working. This is almost certainly not working in the Godot version
-        if (prey.Dead)
-        {
-            hasTargetPosition = false;
-            prey = GetNearestPreyItem(allMicrobes);
-            if (prey != null)
-            {
-                preyPegged = true;
-            }
-
-            microbe.EngulfMode = false;
-
-            // You got a kill, good job
-            if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
-            {
-                microbe.SuccessfulKill();
-            }
-
-            if (RollCheck(SpeciesOpportunism, 400.0f, random))
-            {
-                lifeState = LifeState.SCAVENGING_STATE;
-                boredom = 0;
-            }
-        }
-        else
-        {
-            // Turn on engulfmode if close
-            if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + microbe.EngulfSize * 3.0f
-                && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-                && !microbe.EngulfMode &&
-                microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize
-                && !microbe.Membrane.Type.CellWall)
-            {
-                microbe.EngulfMode = true;
-                ticksSinceLastToggle = 0;
-            }
-            else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f &&
-                microbe.EngulfMode && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
-            {
-                microbe.EngulfMode = false;
-                ticksSinceLastToggle = 0;
-            }
-        }
-
-        // Shoot toxins if able There should be AI that prefers shooting over engulfing, etc, not sure how to model that
-        // without a million and one variables perhaps its a mix? Maybe a creature with a focus less then a certain
-        // amount simply never attacks that way?  Maybe a creature with a specific focus, only ever shoots and never
-        // engulfs? Maybe their lethargicness impacts that? I just dont want each enemy to feel the same you know.  For
-        // now creatures with a focus under 100 will never shoot.
-        if (SpeciesFocus >= 100.0f)
-        {
-            if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-                (microbe.Translation - targetPosition).LengthSquared() <= SpeciesFocus * 10.0f)
-            {
-                if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
-                {
-                    microbe.EmitToxin(oxytoxy);
-                }
-            }
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
     }
 
-    /// <summary>
-    ///   For chasing down and eating chunks in various ways
-    /// </summary>
-    /// <param name="chunk">Chunk.</param>
-    /// <param name="allChunks">All chunks.</param>
-    private void DealWithChunks(FloatingChunk chunk, List<FloatingChunk> allChunks)
+    private void FleeFromPredators(Random random, Vector3 predatorLocation)
     {
-        // Tick the engulf tick
-        ticksSinceLastToggle += 1;
+        microbe.State = Microbe.MicrobeState.Normal;
 
-        // TODO: do something with the chunk compounds
-        // ReSharper disable once NotAccessedVariable
-        CompoundBag compounds;
-
-        try
-        {
-            // ReSharper disable once RedundantAssignment
-            compounds = chunk.ContainedCompounds;
-            targetPosition = chunk.Translation;
-        }
-        catch (ObjectDisposedException)
-        {
-            // Turn off engulf if chunk is gone
-            targetChunk = null;
-
-            hasTargetPosition = false;
-            targetChunk = GetNearestChunkItem(allChunks);
-            microbe.EngulfMode = false;
-
-            // You got a consumption, good job
-            if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
-            {
-                microbe.SuccessfulScavenge();
-            }
-
-            return;
-        }
+        targetPosition = (2 * (microbe.Translation - predatorLocation)) + microbe.Translation;
 
         microbe.LookAtPoint = targetPosition;
-        hasTargetPosition = true;
 
-        // Always set target Position, for use later in AI
-        microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
+        // If the predator is right on top of the microbe, there's a chance to try and swing with a pilus.
+        if (DistanceFromMe(predatorLocation) < 100.0f &&
+            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
+        {
+            MoveWithRandomTurn(2.5f, 3.0f, random);
+        }
 
-        // Turn on engulfmode if close
-        if ((microbe.Translation - targetPosition).LengthSquared() <= 300 +
-            microbe.EngulfSize * 3.0f
-            && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
-            && !microbe.EngulfMode &&
-            microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * chunk.Size
-            && !microbe.Membrane.Type.CellWall)
+        // If prey is confident enough, it will try and launch toxin at the predator
+        if (SpeciesAggression > SpeciesFear &&
+            DistanceFromMe(predatorLocation) >
+            300.0f - (5.0f * SpeciesAggression) + (6.0f * SpeciesFear) &&
+            RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
         {
-            microbe.EngulfMode = true;
-            ticksSinceLastToggle = 0;
+            LaunchToxin(predatorLocation);
         }
-        else if ((microbe.Translation - targetPosition).LengthSquared() >=
-            500 + microbe.EngulfSize * 3.0f && microbe.EngulfMode && ticksSinceLastToggle >=
-            Constants.AI_ENGULF_INTERVAL)
-        {
-            microbe.EngulfMode = false;
-            ticksSinceLastToggle = 0;
-        }
+
+        // No matter what, I want to make sure I'm moving
+        SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
     }
 
-    // For self defense (not necessarily fleeing)
-    private void DealWithPredators(Random random)
+    private void EngagePrey(Vector3 target, Random random, bool engulf)
     {
-        if (random.Next(0, 50) <= 10)
+        microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
+        targetPosition = target;
+        microbe.LookAtPoint = targetPosition;
+        if (CanShootToxin())
         {
-            hasTargetPosition = false;
-        }
+            LaunchToxin(target);
 
-        // Run From Predator
-        if (hasTargetPosition == false)
-        {
-            // check if predator is legit
-            bool hasPredator = false;
-
-            try
+            if (RollCheck(SpeciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
-                if (predator != null && !predator.Dead)
-                    hasPredator = true;
+                SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
             }
-            catch (ObjectDisposedException)
-            {
-                hasPredator = false;
-            }
-
-            if (!hasPredator)
-            {
-                predator = null;
-            }
-
-            PreyFlee(random);
-        }
-    }
-
-    private void PreyFlee(Random random)
-    {
-        // If focused you can run away more specifically, if not you freak out and scatter
-        if (predator == null || !RollCheck(SpeciesFocus, 500.0f, random))
-        {
-            // Scatter
-            var randAngle = random.Next(-2 * Mathf.Pi, 2 * Mathf.Pi);
-            var randDist = random.Next(200.0f, movementRadius * 10.0f);
-            targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
-        }
-        else if (predator != null)
-        {
-            // Run specifically away
-            try
-            {
-                targetPosition = new Vector3(random.Next(-5000.0f, 5000.0f), 1.0f,
-                        random.Next(-5000.0f, 5000.0f)) *
-                    predator.Translation;
-            }
-            catch (ObjectDisposedException)
-            {
-                // Our predator is dead
-                predator = null;
-                return;
-            }
-        }
-
-        // TODO: do something with this
-        // var vec = microbe.Translation - targetPosition;
-        microbe.LookAtPoint = -targetPosition;
-        microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
-        hasTargetPosition = true;
-
-        // Freak out and fire toxins everywhere
-        if (SpeciesAggression > SpeciesFear && RollReverseCheck(SpeciesFocus, 400.0f, random))
-        {
-            if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-                (microbe.Translation - targetPosition).LengthSquared() <= SpeciesFocus * 10.0f)
-            {
-                if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
-                {
-                    microbe.EmitToxin(oxytoxy);
-                }
-            }
-        }
-    }
-
-    // For for figuring out which state to enter
-    private void EvaluateEnvironment(Random random)
-    {
-        if (RollCheck(SpeciesOpportunism, 500.0f, random))
-        {
-            lifeState = LifeState.SCAVENGING_STATE;
-            boredom = 0;
         }
         else
         {
-            if (prey != null && predator != null)
-            {
-                if (random.Next(0.0f, SpeciesAggression) >
-                    random.Next(0.0f, SpeciesFear) &&
-                    preyMicrobes.Count > 0)
-                {
-                    moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);
-
-                    if (microbe.AgentVacuoleCount > 0)
-                    {
-                        moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
-                    }
-
-                    lifeState = LifeState.PREDATING_STATE;
-                }
-                else if (random.Next(0.0f, SpeciesAggression) <
-                    random.Next(0.0f, SpeciesFear) &&
-                    predatoryMicrobes.Count > 0)
-                {
-                    lifeState = LifeState.FLEEING_STATE;
-                }
-                else if (SpeciesAggression == SpeciesFear &&
-                    preyMicrobes.Count > 0)
-                {
-                    // Prefer predating (makes game more fun)
-                    moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);
-
-                    if (microbe.AgentVacuoleCount > 0)
-                    {
-                        moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
-                    }
-
-                    lifeState = LifeState.PREDATING_STATE;
-                }
-                else if (RollCheck(SpeciesFocus, 500.0f, random) && random.Next(0, 10) <= 2)
-                {
-                    lifeState = LifeState.GATHERING_STATE;
-                }
-            }
-            else if (prey != null)
-            {
-                moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);
-
-                if (microbe.AgentVacuoleCount > 0)
-                {
-                    moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
-                }
-
-                lifeState = LifeState.PREDATING_STATE;
-            }
-            else if (predator != null)
-            {
-                lifeState = LifeState.FLEEING_STATE;
-
-                // I want gathering to trigger more often so i added this here.
-                // Because even with predators around you should still graze
-                if (RollCheck(SpeciesFocus, 500.0f, random) && random.Next(0, 10) <= 5)
-                {
-                    lifeState = LifeState.GATHERING_STATE;
-                }
-            }
-            else if (targetChunk != null)
-            {
-                lifeState = LifeState.SCAVENGING_STATE;
-            }
-            else if (random.Next(0, 10) < 8)
-            {
-                // Every 2 intervals || so
-                lifeState = LifeState.GATHERING_STATE;
-            }
-            else if (RollCheck(SpeciesActivity, 400.0f, random))
-            {
-                // Every 10 intervals || so
-                lifeState = LifeState.PLANTLIKE_STATE;
-            }
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
         }
     }
 
     // For doing run and tumble
-    private void DoRunAndTumble(Random random)
+    private void RunAndTumble(Random random)
     {
+        // If this microbe is currently stationary, just initialize by moving in a random direction.
+        // Used to get newly spawned microbes to move.
+        if (microbe.MovementDirection.Length() == 0)
+        {
+            MoveWithRandomTurn(0, Mathf.Pi, random);
+            return;
+        }
+
         // Run and tumble
         // A biased random walk, they turn more if they are picking up less compounds.
+        // The scientifically accurate algorithm has been flipped to account for the compound
+        // deposits being a lot smaller compared to the microbes
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
 
-        var randAngle = previousAngle;
-        float randDist;
+        // If we are still engulfing for some reason, stop
+        microbe.State = Microbe.MicrobeState.Normal;
 
-        float compoundDifference = microbe.TotalAbsorbedCompounds.SumValues();
+        ComputeCompoundsSearchWeights();
 
-        // Angle should only change if you havent picked up compounds || picked up less compounds
-        if (compoundDifference < 0 && random.Next(0, 10) < 5)
+        float gradientValue = 0.0f;
+        foreach (var compoundWeight in compoundsSearchWeights)
         {
-            randAngle = SelectRandomTargetPosition(random);
+            // Note this is about absorbed quantities (which is all microbe has access to) not the ones in the clouds.
+            // Gradient computation is therefore cell-centered, and might be different for different cells.
+            float compoundDifference = 0.0f;
+
+            microbe.TotalAbsorbedCompounds.TryGetValue(compoundWeight.Key, out float quantityAbsorbedThisStep);
+            previouslyAbsorbedCompounds.TryGetValue(compoundWeight.Key, out float quantityAbsorbedPreviousStep);
+
+            compoundDifference += quantityAbsorbedThisStep - quantityAbsorbedPreviousStep;
+
+            compoundDifference *= compoundWeight.Value;
+            gradientValue += compoundDifference;
         }
 
-        // If last round you had 0, then have a high likelihood of turning
-        if (compoundDifference < Constants.AI_COMPOUND_BIAS && random.Next(0, 10) < 9)
+        // Implement a detection threshold to possibly rule out too tiny variations
+        // TODO: possibly include cell capacity correction
+        float differenceDetectionThreshold = Constants.AI_GRADIENT_DETECTION_THRESHOLD;
+
+        // If food density is going down, back up and see if there's some more
+        if (gradientValue < -differenceDetectionThreshold && random.Next(0, 10) < 9)
         {
-            randAngle = SelectRandomTargetPosition(random);
+            MoveWithRandomTurn(2.5f, 3.0f, random);
         }
 
-        if (compoundDifference == 0 && random.Next(0, 10) < 9)
+        // If there isn't any food here, it's a good idea to keep moving
+        if (Math.Abs(gradientValue) <= differenceDetectionThreshold && random.Next(0, 10) < 5)
         {
-            randAngle = SelectRandomTargetPosition(random);
+            MoveWithRandomTurn(0.0f, 0.4f, random);
         }
 
-        // If positive last step you gained compounds
-        if (compoundDifference > 0 && random.Next(0, 10) < 5)
+        // If positive last step you gained compounds, so let's move toward the source
+        if (gradientValue > differenceDetectionThreshold)
         {
-            // If found food subtract from angle randomly;
-            randAngle = previousAngle - random.Next(0.1f, 0.3f);
-            previousAngle = randAngle;
-            randDist = random.Next(200.0f, movementRadius);
-            targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
+            // There's a decent chance to turn by 90° to explore gradient
+            // 180° is useless since previous position let you absorb less compounds already
+            if (random.Next(0, 10) < 4)
+            {
+                MoveWithRandomTurn(0.0f, 1.5f, random);
+            }
         }
-
-        // Turn more if not in concentration gradient basically (step is .4 if really no food, .3 if less food, .1 if
-        // in food)
-        previousAngle = randAngle;
-
-        // TODO: do something with this
-        // var vec = targetPosition - microbe.Translation;
-        microbe.LookAtPoint = targetPosition;
-        microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
-        hasTargetPosition = true;
-    }
-
-    private float SelectRandomTargetPosition(Random random)
-    {
-        var randAngle = previousAngle + random.Next(0.1f, 1.0f);
-        previousAngle = randAngle;
-        var randDist = random.Next(200.0f, movementRadius);
-        targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
-        return randAngle;
     }
 
     /// <summary>
-    ///   This makes the microbe to do some random movement, used by the AI when nothing else should be done
+    ///   Prioritizing compounds that are stored in lesser quantities.
+    ///   If ATP-producing compounds are low (less than half storage capacities),
+    ///   non ATP-related compounds are discarded.
+    ///   Updates compoundsSearchWeights instance dictionary.
     /// </summary>
-    private void SetRandomTargetAndSpeed(Random random)
+    private void ComputeCompoundsSearchWeights()
     {
-        // Set a random nearby look at location
-        microbe.LookAtPoint = microbe.Translation + new Vector3(
-            random.Next(-200, 201), 0, random.Next(-200, 201));
+        IEnumerable<Compound> usefulCompounds = microbe.Compounds.Compounds.Keys;
 
-        // And random movement speed
-        microbe.MovementDirection = new Vector3(0, 0, (float)(-1 * random.NextDouble()));
+        // If this microbe lacks vital compounds don't bother with ammonia and phosphate
+        if (usefulCompounds.Any(
+            compound => IsVitalCompound(compound) &&
+                microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
+        {
+            usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
+        }
+
+        compoundsSearchWeights.Clear();
+        foreach (var compound in usefulCompounds)
+        {
+            // The priority of a compound is inversely proportional to its availability
+            // Should be tweaked with consumption
+            var compoundPriority = 1 - microbe.Compounds.GetCompoundAmount(compound) / microbe.Compounds.Capacity;
+
+            compoundsSearchWeights.Add(compound, compoundPriority);
+        }
+    }
+
+    /// <summary>
+    ///   Tells if a compound is vital to this microbe.
+    ///   Vital compounds are *direct* ATP producers
+    ///   TODO: what is used here is a shortcut linked to the current game state:
+    ///     such compounds could be used for other processes in future versions
+    /// </summary>
+    private bool IsVitalCompound(Compound compound)
+    {
+        return microbe.Compounds.IsUseful(compound) &&
+            (compound == glucose || compound == iron);
+    }
+
+    private void SetEngulfIfClose()
+    {
+        // Turn on engulf mode if close
+        // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
+        if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
+        {
+            microbe.State = Microbe.MicrobeState.Engulf;
+        }
+        else
+        {
+            microbe.State = Microbe.MicrobeState.Normal;
+        }
+    }
+
+    private void LaunchToxin(Vector3 target)
+    {
+        if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
+            (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
+        {
+            if (CanShootToxin())
+            {
+                microbe.LookAtPoint = target;
+                microbe.QueueEmitToxin(oxytoxy);
+            }
+        }
+    }
+
+    private void MoveWithRandomTurn(float minTurn, float maxTurn, Random random)
+    {
+        var turn = random.Next(minTurn, maxTurn);
+        if (random.Next(2) == 1)
+        {
+            turn = -turn;
+        }
+
+        var randDist = random.Next(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY);
+        targetPosition = microbe.Translation
+            + new Vector3(Mathf.Cos(previousAngle + turn) * randDist,
+                0,
+                Mathf.Sin(previousAngle + turn) * randDist);
+        previousAngle = previousAngle + turn;
+        microbe.LookAtPoint = targetPosition;
+        SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+    }
+
+    private void SetMoveSpeed(float speed)
+    {
+        microbe.MovementDirection = new Vector3(0, 0, -speed);
+    }
+
+    private bool CanTryToEatMicrobe(Microbe targetMicrobe)
+    {
+        var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
+
+        return targetMicrobe.Species != microbe.Species && (
+            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
+            || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+    }
+
+    private bool CanShootToxin()
+    {
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >=
+            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
+    }
+
+    private float DistanceFromMe(Vector3 target)
+    {
+        return (target - microbe.Translation).LengthSquared();
+    }
+
+    private bool RollCheck(float ourStat, float dc, Random random)
+    {
+        return random.Next(0.0f, dc) <= ourStat;
+    }
+
+    private bool RollReverseCheck(float ourStat, float dc, Random random)
+    {
+        return ourStat <= random.Next(0.0f, dc);
+    }
+
+    private void DebugFlash()
+    {
+        microbe.Flash(1.0f, new Color(255.0f, 0.0f, 0.0f));
     }
 }

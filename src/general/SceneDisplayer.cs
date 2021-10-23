@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Displayes a scene based on its path. Also stores the previous path to avoid duplicate loads
+///   Displays a scene based on its path. Also stores the previous path to avoid duplicate loads
 /// </summary>
 public class SceneDisplayer : Spatial
 {
@@ -27,6 +27,7 @@ public class SceneDisplayer : Spatial
         {
             RemoveChild(currentlyShown);
             currentlyShown.QueueFree();
+            currentlyShown = null;
         }
 
         if (string.IsNullOrEmpty(currentScene))

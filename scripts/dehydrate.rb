@@ -14,6 +14,8 @@ def git_commit
 end
 
 def git_branch
+  return ENV['CI_BRANCH'] if ENV['CI_BRANCH']
+
   `git rev-parse --symbolic-full-name --abbrev-ref HEAD`.strip
 end
 
@@ -32,10 +34,7 @@ def dehydrate_file(file, cache)
   target = File.join DEHYDRATE_CACHE, "#{hash}.gz"
 
   # Only copy to the dehydrate cache if hash doesn't exist
-  unless File.exist? target
-    puts "Copying #{file} (#{hash}) to dehydrate cache"
-    gzip_to_target file, target
-  end
+  gzip_to_target file, target unless File.exist? target
 
   cache.add file, hash
 

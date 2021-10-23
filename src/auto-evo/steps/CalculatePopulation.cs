@@ -14,6 +14,8 @@
 
         public int TotalSteps => 1;
 
+        public bool CanRunConcurrently { get; set; } = true;
+
         public bool RunStep(RunResults results)
         {
             // ReSharper disable RedundantArgumentDefaultValue

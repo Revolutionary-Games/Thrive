@@ -70,6 +70,7 @@ public class SaveListItem : PanelContainer
 
     private bool isBroken;
     private bool isKnownIncompatible;
+    private bool isUpgradeable;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -79,6 +80,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnOldSaveLoaded();
+
+    [Signal]
+    public delegate void OnUpgradeableSaveLoaded(string saveName, bool incompatible);
 
     [Signal]
     public delegate void OnBrokenSaveLoaded();
@@ -189,8 +193,15 @@ public class SaveListItem : PanelContainer
 
         if (versionDifference != 0)
         {
+            if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
+            {
+                isUpgradeable = true;
+            }
+
             if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+            {
                 isKnownIncompatible = true;
+            }
         }
 
         version.Text = save.Info.ThriveVersion;
@@ -224,6 +235,12 @@ public class SaveListItem : PanelContainer
             return;
         }
 
+        if (versionDifference < 0 && isUpgradeable)
+        {
+            EmitSignal(nameof(OnUpgradeableSaveLoaded), SaveName, isKnownIncompatible);
+            return;
+        }
+
         if (isKnownIncompatible)
         {
             EmitSignal(nameof(OnKnownIncompatibleLoaded));
@@ -242,7 +259,7 @@ public class SaveListItem : PanelContainer
             return;
         }
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, true);
         TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
     }
 

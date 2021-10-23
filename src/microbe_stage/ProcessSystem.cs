@@ -46,6 +46,15 @@ public class ProcessSystem
     /// <summary>
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
+    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
+        BiomeConditions biome, MembraneType membrane)
+    {
+        return ComputeEnergyBalance(organelles.Select(o => o.Definition), biome, membrane);
+    }
+
+    /// <summary>
+    ///   Computes the energy balance for the given organelles in biome
+    /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleDefinition> organelles,
         BiomeConditions biome, MembraneType membrane)
     {
@@ -65,18 +74,18 @@ public class ProcessSystem
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
 
-                if (processData.OtherInputs.ContainsKey(ATP))
+                if (processData.WritableInputs.ContainsKey(ATP))
                 {
-                    var amount = processData.OtherInputs[ATP].Amount;
+                    var amount = processData.WritableInputs[ATP];
 
                     processATPConsumption += amount;
 
                     result.AddConsumption(organelle.InternalName, amount);
                 }
 
-                if (processData.Outputs.ContainsKey(ATP))
+                if (processData.WritableOutputs.ContainsKey(ATP))
                 {
-                    var amount = processData.Outputs[ATP].Amount;
+                    var amount = processData.WritableOutputs[ATP];
 
                     processATPProduction += amount;
 
@@ -121,8 +130,57 @@ public class ProcessSystem
         return result;
     }
 
+    /// <summary>
+    ///   Computes the compound balances for given organelle list in a patch
+    /// </summary>
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+    {
+        var result = new Dictionary<Compound, CompoundBalance>();
+
+        void MakeSureResultExists(Compound compound)
+        {
+            if (!result.ContainsKey(compound))
+            {
+                result[compound] = new CompoundBalance();
+            }
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var process in organelle.RunnableProcesses)
+            {
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
+
+                foreach (var input in speedAdjusted.Inputs)
+                {
+                    MakeSureResultExists(input.Key);
+                    result[input.Key].AddConsumption(organelle.InternalName, input.Value);
+                }
+
+                foreach (var output in speedAdjusted.Outputs)
+                {
+                    MakeSureResultExists(output.Key);
+                    result[output.Key].AddProduction(organelle.InternalName, output.Value);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
+    {
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
+    }
+
     public void Process(float delta)
     {
+        // Guard against Godot delta problems. https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (biome == null)
         {
             GD.PrintErr("ProcessSystem has no biome set");
@@ -130,6 +188,9 @@ public class ProcessSystem
         }
 
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.PROCESS_GROUP);
+
+        // Used to go from the calculated compound values to per second values for reporting statistics
+        float inverseDelta = 1.0f / delta;
 
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
@@ -143,7 +204,7 @@ public class ProcessSystem
                 for (int a = start;
                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
                 {
-                    ProcessNode(nodes[a] as IProcessable, delta);
+                    ProcessNode(nodes[a] as IProcessable, delta, inverseDelta);
                 }
             });
 
@@ -158,9 +219,9 @@ public class ProcessSystem
     /// <summary>
     ///   Sets the biome whose environmental values affect processes
     /// </summary>
-    public void SetBiome(BiomeConditions biome)
+    public void SetBiome(BiomeConditions newBiome)
     {
-        this.biome = biome;
+        biome = newBiome;
     }
 
     /// <summary>
@@ -198,23 +259,25 @@ public class ProcessSystem
 
             // Environmental compound that can limit the rate
 
-            var input = new ProcessSpeedInformation.EnvironmentalInput(entry.Key, entry.Value);
-
             var availableInEnvironment = GetDissolvedInBiome(entry.Key, biome);
 
-            input.AvailableAmount = availableInEnvironment;
+            var availableRate = availableInEnvironment / entry.Value;
+
+            result.AvailableAmounts[entry.Key] = availableInEnvironment;
 
             // More than needed environment value boosts the effectiveness
-            input.AvailableRate = availableInEnvironment / entry.Value;
+            result.AvailableRates[entry.Key] = availableRate;
 
-            speedFactor *= input.AvailableRate;
+            speedFactor *= availableRate;
 
-            result.EnvironmentInputs[entry.Key] = input;
+            result.WritableInputs[entry.Key] = entry.Value;
         }
 
         speedFactor *= process.Rate;
 
-        // So that the speedfactor is available here
+        // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
+
+        // So that the speed factor is available here
         foreach (var entry in process.Process.Inputs)
         {
             if (entry.Key.IsEnvironmental)
@@ -222,25 +285,25 @@ public class ProcessSystem
 
             // Normal, cloud input
 
-            var input = new ProcessSpeedInformation.CompoundAmount(entry.Key, entry.Value * speedFactor);
-
-            result.OtherInputs.Add(entry.Key, input);
+            result.WritableInputs.Add(entry.Key, entry.Value * speedFactor);
         }
 
         foreach (var entry in process.Process.Outputs)
         {
-            var output = new ProcessSpeedInformation.CompoundAmount(entry.Key,
-                entry.Value * speedFactor);
+            var amount = entry.Value * speedFactor;
 
-            result.Outputs[entry.Key] = output;
+            result.WritableOutputs[entry.Key] = amount;
+
+            if (amount <= 0)
+                result.WritableLimitingCompounds.Add(entry.Key);
         }
 
-        result.SpeedFactor = speedFactor;
+        result.CurrentSpeed = speedFactor;
 
         return result;
     }
 
-    private void ProcessNode(IProcessable processor, float delta)
+    private void ProcessNode(IProcessable processor, float delta, float inverseDelta)
     {
         if (processor == null)
         {
@@ -255,124 +318,196 @@ public class ProcessSystem
         // used it will be marked useful
         bag.ClearUseful();
 
+        var processStatistics = processor.ProcessStatistics;
+
+        processStatistics?.MarkAllUnused();
+
         foreach (TweakedProcess process in processor.ActiveProcesses)
         {
             // If rate is 0 dont do it
             // The rate specifies how fast fraction of the specified process
             // numbers this cell can do
+            // TODO: would be nice still to report these to process statistics
             if (process.Rate <= 0.0f)
                 continue;
 
             var processData = process.Process;
 
-            // Can your cell do the process
-            bool canDoProcess = true;
+            var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process);
+            currentProcessStatistics?.BeginFrame(delta);
 
-            // Loop through to make sure you can follow through with your
-            // whole process so nothing gets wasted as that would be
-            // frustrating, its two more for loops, yes but it should only
-            // really be looping at max two or three times anyway. also make
-            // sure you wont run out of space when you do add the compounds.
-            // Input
-            // Defaults to 1
-            float environmentModifier = 1.0f;
-
-            foreach (var entry in processData.Inputs)
-            {
-                // Set used compounds to be useful, we dont want to purge
-                // those
-                bag.SetUseful(entry.Key);
-
-                var inputRemoved = entry.Value * process.Rate * delta;
-
-                // TODO: It might be faster to just check if there is any
-                // dissolved amount of this compound or not
-                if (entry.Key.IsEnvironmental)
-                {
-                    // do environmental modifier here, and save it for later
-                    environmentModifier *= GetDissolved(entry.Key) / entry.Value;
-                }
-                else
-                {
-                    // If not enough compound we can't do the process
-                    if (bag.GetCompoundAmount(entry.Key) < inputRemoved)
-                    {
-                        canDoProcess = false;
-                    }
-                }
-            }
-
-            if (environmentModifier <= MathUtils.EPSILON)
-            {
-                canDoProcess = false;
-            }
-
-            // Output
-            // This is now always looped (even when we can't do the process)
-            // because the is useful part is needs to be always be done
-            foreach (var entry in processData.Outputs)
-            {
-                // For now lets assume compounds we produce are also
-                // useful
-                bag.SetUseful(entry.Key);
-
-                // Apply the general modifiers and
-                // apply the environmental modifier
-                var outputAdded = entry.Value * process.Rate * delta * environmentModifier;
-
-                // If no space we can't do the process, and if environmental
-                // right now this isn't released anywhere
-                if (entry.Key.IsEnvironmental)
-                {
-                    continue;
-                }
-
-                if (bag.GetCompoundAmount(entry.Key) + outputAdded > bag.Capacity)
-                {
-                    canDoProcess = false;
-                }
-            }
-
-            // Only carry out this process if you have all the required
-            // ingredients and enough space for the outputs
-            if (!canDoProcess)
-                continue;
-
-            // Inputs.
-            foreach (var entry in processData.Inputs)
-            {
-                // TODO: It might be faster to just check if there is any
-                // dissolved amount of this compound or not
-                if (entry.Key.IsEnvironmental)
-                    continue;
-
-                // Note: the environment modifier is applied here, but not
-                // when checking if we have enough compounds. So sometimes
-                // we might not run a process when we actually would have
-                // enough compounds to run it.
-                // TODO: the reverse is also probably true, ie. we can run a process we shouldn't be able to due to the
-                // environmental modifier boosting its speed
-                var inputRemoved = entry.Value * process.Rate * delta *
-                    environmentModifier;
-
-                // This should always succeed (due to the earlier check) so
-                // it is always assumed here that the process succeeded
-                bag.TakeCompound(entry.Key, inputRemoved);
-            }
-
-            // Outputs.
-            foreach (var entry in processData.Outputs)
-            {
-                if (entry.Key.IsEnvironmental)
-                    continue;
-
-                var outputGenerated = entry.Value * process.Rate * delta *
-                    environmentModifier;
-
-                bag.AddCompound(entry.Key, outputGenerated);
-            }
+            RunProcess(delta, processData, bag, process, currentProcessStatistics, inverseDelta);
         }
 
         bag.ClampNegativeCompoundAmounts();
+
+        processStatistics?.RemoveUnused();
+    }
+
+    private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
+        SingleProcessStatistics currentProcessStatistics, float inverseDelta)
+    {
+        // Can your cell do the process
+        bool canDoProcess = true;
+
+        float environmentModifier = 1.0f;
+
+        // This modifies the process overall speed to allow really fast processes to run, for example if there are
+        // a ton of one organelle it might consume 100 glucose per go, which might be unlikely for the cell to have
+        // so if there is *some* but not enough space for results (and also inputs) this can run the process as
+        // fraction of the speed to allow the cell to still function well
+        float spaceConstraintModifier = 1.0f;
+
+        // First check the environmental compounds so that we can build the right environment modifier for accurate
+        // check of normal compound input amounts
+        foreach (var entry in processData.Inputs)
+        {
+            // Set used compounds to be useful, we dont want to purge those
+            bag.SetUseful(entry.Key);
+
+            if (!entry.Key.IsEnvironmental)
+                continue;
+
+            var dissolved = GetDissolved(entry.Key);
+
+            // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
+            currentProcessStatistics?.AddInputAmount(entry.Key, dissolved);
+
+            // do environmental modifier here, and save it for later
+            environmentModifier *= dissolved / entry.Value;
+
+            if (environmentModifier <= MathUtils.EPSILON)
+                currentProcessStatistics?.AddLimitingFactor(entry.Key);
+        }
+
+        if (environmentModifier <= MathUtils.EPSILON)
+            canDoProcess = false;
+
+        // Compute spaceConstraintModifier before updating the final use and input amounts
+        foreach (var entry in processData.Inputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            var inputRemoved = entry.Value * process.Rate * environmentModifier;
+
+            // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
+            // We don't multiply by delta here because we report the per-second values anyway. In the actual process
+            // output numbers (computed after testing the speed), we need to multiply by inverse delta
+            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
+
+            inputRemoved = inputRemoved * delta * spaceConstraintModifier;
+
+            // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
+            var availableAmount = bag.GetCompoundAmount(entry.Key);
+            if (availableAmount < inputRemoved)
+            {
+                bool canRun = false;
+
+                if (availableAmount > MathUtils.EPSILON)
+                {
+                    var neededModifier = availableAmount / inputRemoved;
+
+                    if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
+                    {
+                        spaceConstraintModifier = neededModifier;
+                        canRun = true;
+
+                        // Due to rounding errors there can be very small disparity here between the amount available
+                        // and what we will take with the modifiers. See the comment in outputs for more details
+                    }
+                }
+
+                if (!canRun)
+                {
+                    canDoProcess = false;
+                    currentProcessStatistics?.AddLimitingFactor(entry.Key);
+                }
+            }
+        }
+
+        foreach (var entry in processData.Outputs)
+        {
+            // For now lets assume compounds we produce are also useful
+            bag.SetUseful(entry.Key);
+
+            var outputAdded = entry.Value * process.Rate * environmentModifier;
+
+            // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
+            currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
+
+            outputAdded = outputAdded * delta * spaceConstraintModifier;
+
+            // if environmental right now this isn't released anywhere
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            // If no space we can't do the process, if we can't adjust the space constraint modifier enough
+            var remainingSpace = bag.Capacity - bag.GetCompoundAmount(entry.Key);
+            if (outputAdded > remainingSpace)
+            {
+                bool canRun = false;
+
+                if (remainingSpace > MathUtils.EPSILON)
+                {
+                    var neededModifier = remainingSpace / outputAdded;
+
+                    if (neededModifier > Constants.MINIMUM_RUNNABLE_PROCESS_FRACTION)
+                    {
+                        spaceConstraintModifier = neededModifier;
+                        canRun = true;
+                    }
+
+                    // With all of the modifiers we can lose a tiny bit of compound that won't fit due to rounding
+                    // errors, but we ignore that here
+                }
+
+                if (!canRun)
+                {
+                    canDoProcess = false;
+                    currentProcessStatistics?.AddCapacityProblem(entry.Key);
+                }
+            }
+        }
+
+        // Only carry out this process if you have all the required ingredients and enough space for the outputs
+        if (!canDoProcess)
+        {
+            if (currentProcessStatistics != null)
+                currentProcessStatistics.CurrentSpeed = 0;
+            return;
+        }
+
+        float totalModifier = process.Rate * delta * environmentModifier * spaceConstraintModifier;
+
+        if (currentProcessStatistics != null)
+            currentProcessStatistics.CurrentSpeed = process.Rate * environmentModifier * spaceConstraintModifier;
+
+        // Consume inputs
+        foreach (var entry in processData.Inputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            var inputRemoved = entry.Value * totalModifier;
+
+            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
+
+            // This should always succeed (due to the earlier check) so it is always assumed here that this succeeded
+            bag.TakeCompound(entry.Key, inputRemoved);
+        }
+
+        // Add outputs
+        foreach (var entry in processData.Outputs)
+        {
+            if (entry.Key.IsEnvironmental)
+                continue;
+
+            var outputGenerated = entry.Value * totalModifier;
+
+            currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
+
+            bag.AddCompound(entry.Key, outputGenerated);
+        }
     }
 }

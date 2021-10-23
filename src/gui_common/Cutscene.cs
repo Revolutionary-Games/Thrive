@@ -5,37 +5,42 @@
 /// </summary>
 public class Cutscene : CanvasLayer, ITransition
 {
-    public VideoPlayer CutsceneVideoPlayer;
-    public Vector2 FrameSize;
+    private VideoPlayer cutsceneVideoPlayer;
+    private Control controlNode;
 
     [Signal]
     public delegate void OnFinishedSignal();
 
-    public Control ControlNode { get; private set; }
-
     public bool Skippable { get; set; } = true;
+
+    public bool Visible
+    {
+        get => controlNode.Visible;
+        set => controlNode.Visible = value;
+    }
+
+    public VideoStream Stream
+    {
+        get => cutsceneVideoPlayer.Stream;
+        set => cutsceneVideoPlayer.Stream = value;
+    }
 
     public override void _Ready()
     {
-        CutsceneVideoPlayer = GetNode<VideoPlayer>("Control/VideoPlayer");
-        ControlNode = GetNode<Control>("Control");
+        controlNode = GetNode<Control>("Control");
+        cutsceneVideoPlayer = GetNode<VideoPlayer>("Control/VideoPlayer");
 
-        FrameSize = CutsceneVideoPlayer.RectSize;
-
-        CutsceneVideoPlayer.Connect("finished", this, nameof(OnFinished));
-
-        ControlNode.Hide();
+        cutsceneVideoPlayer.Connect("finished", this, nameof(OnFinished));
     }
 
     public void OnStarted()
     {
-        ControlNode.Show();
-        CutsceneVideoPlayer.Play();
+        cutsceneVideoPlayer.Play();
     }
 
     public void OnFinished()
     {
         EmitSignal(nameof(OnFinishedSignal));
-        QueueFree();
+        this.DetachAndQueueFree();
     }
 }

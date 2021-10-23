@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Shows a key prompt that reacts to being pressed down
 /// </summary>
-public class KeyPrompt : Control
+public class KeyPrompt : TextureRect
 {
     /// <summary>
     ///   Name of the action this key prompt shows
@@ -30,8 +30,6 @@ public class KeyPrompt : Control
     [Export]
     public Color PressedColour = new Color(0.7f, 0.7f, 0.7f, 1);
 
-    private TextureRect icon;
-
     // public override void _Ready()
     // {
     //
@@ -39,19 +37,20 @@ public class KeyPrompt : Control
 
     public override void _EnterTree()
     {
-        if (icon == null)
-        {
-            icon = GetNode<TextureRect>("Icon");
-        }
+        base._EnterTree();
 
         // TODO: should this rather happen in _Ready and unregister happen in dispose?
         KeyPromptHelper.IconsChanged += OnIconsChanged;
+        InputDataList.InputsRemapped += OnIconsChanged;
         Refresh();
     }
 
     public override void _ExitTree()
     {
+        base._ExitTree();
+
         KeyPromptHelper.IconsChanged -= OnIconsChanged;
+        InputDataList.InputsRemapped -= OnIconsChanged;
     }
 
     /// <summary>
@@ -61,11 +60,11 @@ public class KeyPrompt : Control
     {
         if (string.IsNullOrEmpty(ActionName))
         {
-            icon.Texture = null;
+            Texture = null;
         }
         else
         {
-            icon.Texture = KeyPromptHelper.GetTextureForAction(ActionName);
+            Texture = KeyPromptHelper.GetTextureForAction(ActionName);
         }
     }
 
@@ -76,11 +75,11 @@ public class KeyPrompt : Control
 
         if (string.IsNullOrEmpty(ActionName) || !Input.IsActionPressed(ActionName))
         {
-            icon.SelfModulate = UnpressedColour;
+            SelfModulate = UnpressedColour;
         }
         else
         {
-            icon.SelfModulate = PressedColour;
+            SelfModulate = PressedColour;
         }
     }
 

@@ -1,11 +1,12 @@
 version: 2.1
 jobs:
-   build:
+   jetbrains:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v6
+       - image: hhyyrylainen/godot-ci:v9
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
+       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
      steps:
        - checkout
        - restore_cache:
@@ -20,50 +21,6 @@ jobs:
           key: v7-lfs-{{ .Branch }}
           paths:
             - .git/lfs
-       - restore_cache:
-           keys:
-             - v7-import-{{ .Branch }}
-             - v7-import-master
-       - run: mkdir -p builds
-       # This is here to reimport assets, but this build would fail due to missing nuget packages
-       # if C# was compiled here
-       - run: godot --export "Linux/X11" "builds/a.x86_64"
-       # - run: ./headless_project_refresh.rb
-       - save_cache:
-           key: v7-import-{{ .Branch }}
-           paths:
-             - .import
-       - restore_cache:
-           keys:
-             - v3-nuget-{{ .Branch }}
-       - run: nuget restore Thrive.sln
-       - save_cache:
-          key: v3-nuget-{{ .Branch }}
-          paths:
-            - ~/.nuget/packages
-       # Format check before making final packages
-       - run: ./check_formatting.rb -c compile
-       # Proper packages
-       - run: ./make_release.rb --dehydrated
-       # Upload devbuilds
-       - run: ./upload_devbuilds.rb
-   jetbrains:
-     working_directory: ~/Thrive
-     docker:
-       - image: hhyyrylainen/godot-ci:v6
-     environment:
-       GIT_LFS_SKIP_SMUDGE: 1
-       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
-     steps:
-       - checkout
-       - restore_cache:
-           keys:
-             - v7-lfs-{{ .Branch }}
-             - v7-lfs-master
-       - run:
-           name: Pull Git LFS files, retry up to 5 times
-           command: |
-             for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
        - run:
            name: Detect changed files (since last commit and against master)
            command: |
@@ -72,18 +29,26 @@ jobs:
              git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
        - restore_cache:
            keys:
-             - v7-import-{{ .Branch }}
-             - v7-import-master
+             - v8-import-{{ .Branch }}
+             - v8-import-master
        - run: mkdir -p builds
        # Don't care if this fails, it's enough that the C# build works
        - run:
            name: Just make C# project valid; don't care if asset import fails
            command: |
              godot --export "Linux/X11" "builds/a.x86_64" || true
+       - save_cache:
+           key: v8-import-{{ .Branch }}
+           paths:
+             - .import
        - restore_cache:
            keys:
              - v3-nuget-{{ .Branch }}
-       - run: nuget restore Thrive.sln
+       - run: dotnet restore Thrive.sln
+       - save_cache:
+          key: v3-nuget-{{ .Branch }}
+          paths:
+            - ~/.nuget/packages
        # Makes sure that there aren't any changes at this point to not make the CI trip up on them
        - run:
            name: Make sure no changes to git tracked files at this point
@@ -116,7 +81,7 @@ jobs:
    format_script:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/thrive-lint:v4
+       - image: hhyyrylainen/thrive-lint:v9
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
@@ -139,10 +104,9 @@ jobs:
 
 workflows:
   version: 2
-  build_and_format:
+  format:
     # Unfortunately godot is setup so that a build can't happen without having all the assets processed
     # so the format script can't check C# files
     jobs:
-      - build
       - format_script
       - jetbrains

@@ -29,29 +29,26 @@ public class SystemVector4ArrayConverter : JsonConverter
         var elementSize = 4 * sizeof(float);
         var header = sizeof(int) * 2;
 
-        using (var stream = new MemoryStream { Capacity = (elementSize * width * height) + header })
+        using var stream = new MemoryStream { Capacity = (elementSize * width * height) + header };
+        using var dataWriter = new BinaryWriter(stream);
+
+        dataWriter.Write(width);
+        dataWriter.Write(height);
+
+        for (int x = 0; x < width; ++x)
         {
-            using (var dataWriter = new BinaryWriter(stream))
+            for (int y = 0; y < width; ++y)
             {
-                dataWriter.Write(width);
-                dataWriter.Write(height);
+                var element = casted[x, y];
 
-                for (int x = 0; x < width; ++x)
-                {
-                    for (int y = 0; y < width; ++y)
-                    {
-                        var element = casted[x, y];
-
-                        dataWriter.Write(element.X);
-                        dataWriter.Write(element.Y);
-                        dataWriter.Write(element.Z);
-                        dataWriter.Write(element.W);
-                    }
-                }
-
-                serializer.Serialize(writer, Convert.ToBase64String(stream.GetBuffer()));
+                dataWriter.Write(element.X);
+                dataWriter.Write(element.Y);
+                dataWriter.Write(element.Z);
+                dataWriter.Write(element.W);
             }
         }
+
+        serializer.Serialize(writer, Convert.ToBase64String(stream.GetBuffer()));
     }
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
@@ -64,31 +61,28 @@ public class SystemVector4ArrayConverter : JsonConverter
         if (string.IsNullOrEmpty(encoded))
             return null;
 
-        using (var stream = new MemoryStream(Convert.FromBase64String(encoded)))
+        using var stream = new MemoryStream(Convert.FromBase64String(encoded));
+        using var dataReader = new BinaryReader(stream);
+
+        var width = dataReader.ReadInt32();
+        var height = dataReader.ReadInt32();
+
+        var result = new Vector4[width, height];
+
+        for (int x = 0; x < width; ++x)
         {
-            using (var dataReader = new BinaryReader(stream))
+            for (int y = 0; y < width; ++y)
             {
-                var width = dataReader.ReadInt32();
-                var height = dataReader.ReadInt32();
+                var elementX = dataReader.ReadSingle();
+                var elementY = dataReader.ReadSingle();
+                var elementZ = dataReader.ReadSingle();
+                var elementW = dataReader.ReadSingle();
 
-                var result = new Vector4[width, height];
-
-                for (int x = 0; x < width; ++x)
-                {
-                    for (int y = 0; y < width; ++y)
-                    {
-                        var elementX = dataReader.ReadSingle();
-                        var elementY = dataReader.ReadSingle();
-                        var elementZ = dataReader.ReadSingle();
-                        var elementW = dataReader.ReadSingle();
-
-                        result[x, y] = new Vector4(elementX, elementY, elementZ, elementW);
-                    }
-                }
-
-                return result;
+                result[x, y] = new Vector4(elementX, elementY, elementZ, elementW);
             }
         }
+
+        return result;
     }
 
     public override bool CanConvert(Type objectType)

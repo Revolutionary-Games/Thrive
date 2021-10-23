@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving;
 using Environment = System.Environment;
 
 /// <summary>
@@ -9,8 +12,12 @@ using Environment = System.Environment;
 /// </summary>
 public class Settings
 {
-    private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
+    private static readonly List<string>
+        AvailableLocales = TranslationServer.GetLoadedLocales().Cast<string>().ToList();
+
+    private static readonly string DefaultLanguageValue = GetSupportedLocale(TranslationServer.GetLocale());
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
+    private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
@@ -68,6 +75,17 @@ public class Settings
     /// </summary>
     public SettingValue<bool> ChromaticEnabled { get; set; } = new SettingValue<bool>(true);
 
+    /// <summary>
+    ///   Display or hide the abilities hotbar in the microbe stage HUD.
+    /// </summary>
+    public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Enable or disable lighting effects on the GUI. Mainly Used to workaround a bug where the HUD area
+    ///   surrounding the editor button sometimes disappearing with the light effect turned on.
+    /// </summary>
+    public SettingValue<bool> GUILightEffectsEnabled { get; set; } = new SettingValue<bool>(true);
+
     // Sound Properties
 
     /// <summary>
@@ -120,6 +138,9 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
+    public SettingValue<string> SelectedAudioOutputDevice { get; set; } =
+        new SettingValue<string>(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
+
     public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
 
     // Performance Properties
@@ -150,6 +171,21 @@ public class Settings
     ///   taking up one of the background threads.
     /// </summary>
     public SettingValue<bool> RunAutoEvoDuringGamePlay { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
+    /// </summary>
+    public SettingValue<bool> AssumeCPUHasHyperthreading { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Only if this is true the ThreadCount will be followed
+    /// </summary>
+    public SettingValue<bool> UseManualThreadCount { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Manually set number of background threads to use. Needs to be at least 2 if RunAutoEvoDuringGamePlay is true
+    /// </summary>
+    public SettingValue<int> ThreadCount { get; set; } = new SettingValue<int>(4);
 
     // Misc Properties
 
@@ -190,14 +226,6 @@ public class Settings
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
-    ///   The current controls of the game.
-    ///   It stores the godot actions like g_move_left and
-    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
-    /// </summary>
-    public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
-
-    /// <summary>
     ///   If false username will be set to System username
     /// </summary>
     public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
@@ -206,6 +234,24 @@ public class Settings
     ///   Username that the user can choose
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+
+    /// <summary>
+    ///   The Db value to be added to the master audio bus
+    /// </summary>
+    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
+        new SettingValue<JSONDebug.DebugMode>(JSONDebug.DebugMode.Automatic);
+
+    // Input properties
+
+    /// <summary>
+    ///   The current controls of the game.
+    ///   It stores the godot actions like g_move_left and
+    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
+    /// </summary>
+    public SettingValue<InputDataList> CurrentControls { get; set; } =
+        new SettingValue<InputDataList>(GetDefaultControls());
+
+    // Computed properties from other settings
 
     [JsonIgnore]
     public string ActiveUsername =>
@@ -226,6 +272,113 @@ public class Settings
     public static bool operator !=(Settings lhs, Settings rhs)
     {
         return !(lhs == rhs);
+    }
+
+    /// <summary>
+    ///   Returns the default controls which never change, unless there is a new release.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This relies on the static member holding the default controls to be initialized before the code has a chance
+    ///     to modify the controls.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The default controls</returns>
+    public static InputDataList GetDefaultControls()
+    {
+        return (InputDataList)DefaultControls.Clone();
+    }
+
+    /// <summary>
+    ///   Returns the currently applied controls. Gathers the data from the godot InputMap.
+    ///   Required to get the default controls.
+    /// </summary>
+    /// <returns>The current inputs</returns>
+    public static InputDataList GetCurrentlyAppliedControls()
+    {
+        return new InputDataList(InputMap.GetActions().OfType<string>()
+            .ToDictionary(p => p,
+                p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
+                    x => new SpecifiedInputKey(x)).ToList()));
+    }
+
+    /// <summary>
+    ///   Tries to return a C# culture info from Godot language name
+    /// </summary>
+    /// <param name="language">The language name to try to understand</param>
+    /// <returns>The culture info</returns>
+    public static CultureInfo GetCultureInfo(string language)
+    {
+        // Perform hard coded translations first
+        var translated = TranslateLocaleToCSharp(language);
+        if (translated != null)
+            language = translated;
+
+        try
+        {
+            return new CultureInfo(language);
+        }
+        catch (CultureNotFoundException)
+        {
+            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
+
+            if (!language.Contains("_"))
+                throw;
+
+            // So we first try converting "_" to "-" and go with that
+            language = language.Replace('_', '-');
+
+            try
+            {
+                return new CultureInfo(language);
+            }
+            catch (CultureNotFoundException)
+            {
+                language = language.Split("-")[0];
+
+                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
+                    language);
+                return new CultureInfo(language);
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Translates a Godot locale to C# locale name
+    /// </summary>
+    /// <param name="godotLocale">Godot locale</param>
+    /// <returns>C# locale name, or null if there is not a premade mapping</returns>
+    public static string TranslateLocaleToCSharp(string godotLocale)
+    {
+        // ReSharper disable StringLiteralTypo
+        switch (godotLocale)
+        {
+            case "eo":
+                return "en";
+            case "sr_Latn":
+                return "sr-Latn-RS";
+            case "sr_Cyrl":
+                return "sr-Cyrl-RS";
+        }
+
+        // ReSharper restore StringLiteralTypo
+        return null;
+    }
+
+    /// <summary>
+    ///   Overrides Native name if an override is set
+    /// </summary>
+    /// <param name="godotLocale">Godot locale</param>
+    /// <returns>Native name, or null if there is not a premade mapping</returns>
+    public static string GetLanguageNativeNameOverride(string godotLocale)
+    {
+        switch (godotLocale)
+        {
+            case "eo":
+                return "Esperanto";
+        }
+
+        return null;
     }
 
     public override bool Equals(object obj)
@@ -254,7 +407,7 @@ public class Settings
             object thisValue = property.GetValue(this);
             object objValue = property.GetValue(obj);
 
-            if (thisValue != objValue && (thisValue == null || !thisValue.Equals(objValue)))
+            if (thisValue != objValue && thisValue?.Equals(objValue) != true)
             {
                 return false;
             }
@@ -309,20 +462,18 @@ public class Settings
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()
     {
-        using (var file = new File())
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
+
+        if (error != Error.Ok)
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
-
-            if (error != Error.Ok)
-            {
-                GD.PrintErr("Couldn't open settings file for writing.");
-                return false;
-            }
-
-            file.StoreString(JsonConvert.SerializeObject(this));
-
-            file.Close();
+            GD.PrintErr("Couldn't open settings file for writing.");
+            return false;
         }
+
+        file.StoreString(JsonConvert.SerializeObject(this));
+
+        file.Close();
 
         return true;
     }
@@ -335,6 +486,14 @@ public class Settings
     /// </param>
     public void ApplyAll(bool delayedApply = false)
     {
+        if (Engine.EditorHint)
+        {
+            // Do not apply settings within the Godot editor.
+            return;
+        }
+
+        // Delayed apply was implemented to fix problems within the Godot editor.
+        // So this might no longer be necessary, as this is now skipped within editor.
         if (delayedApply)
         {
             GD.Print("Doing delayed apply for some settings");
@@ -342,16 +501,19 @@ public class Settings
 
             // These need to be also delay applied, otherwise when debugging these overwrite the default settings
             Invoke.Instance.Queue(ApplySoundSettings);
+
+            // If this is not delay applied, this also causes some errors in godot editor output when running
+            Invoke.Instance.Queue(ApplyInputSettings);
         }
         else
         {
             ApplyGraphicsSettings();
             ApplySoundSettings();
+            ApplyInputSettings();
         }
 
+        ApplyAudioOutputDeviceSettings();
         ApplyLanguageSettings();
-        ApplyWindowSettings();
-        ApplyInputSettings();
         ApplyWindowSettings();
     }
 
@@ -413,6 +575,35 @@ public class Settings
     }
 
     /// <summary>
+    ///   Applies current output device settings to the audio system
+    /// </summary>
+    public void ApplyAudioOutputDeviceSettings()
+    {
+        var audioOutputDevice = SelectedAudioOutputDevice.Value;
+        if (string.IsNullOrEmpty(audioOutputDevice))
+        {
+            audioOutputDevice = Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME;
+        }
+
+        // If the selected output device is invalid Godot resets AudioServer.Device to Default.
+        // It seems like there is some kind of threading going on. The getter of AudioServer.Device
+        // only returns the new value after some time, therefore we can't check if the output device
+        // got applied successfully.
+        AudioServer.Device = audioOutputDevice;
+
+        GD.Print("Set audio output device to: ", audioOutputDevice);
+    }
+
+    /// <summary>
+    ///   Applies thread count settings, not necessary to call on startup as TaskExecutor reads the values itself from
+    ///   us when starting
+    /// </summary>
+    public void ApplyThreadSettings()
+    {
+        TaskExecutor.Instance.ReApplyThreadCount();
+    }
+
+    /// <summary>
     ///   Applies current language settings to any applicable engine systems.
     /// </summary>
     public void ApplyLanguageSettings()
@@ -428,52 +619,18 @@ public class Settings
         }
         else
         {
+            language = GetSupportedLocale(language);
             cultureInfo = GetCultureInfo(language);
         }
-
-        // Set locale for the game.
-        TranslationServer.SetLocale(language);
 
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.CurrentUICulture = cultureInfo;
 
-        SimulationParameters.Instance.ApplyTranslations();
-    }
+        // Set locale for the game. Called after C# locale change so that string
+        // formatting uses could also get updated properly.
+        TranslationServer.SetLocale(language);
 
-    /// <summary>
-    ///   Tries to return a C# culture info from Godot language name
-    /// </summary>
-    /// <param name="language">The language name to try to understand</param>
-    /// <returns>The culture info</returns>
-    private static CultureInfo GetCultureInfo(string language)
-    {
-        try
-        {
-            return new CultureInfo(language);
-        }
-        catch (CultureNotFoundException)
-        {
-            // Some locales might have "_extra" at the end that C# doesn't understand, because it uses a dash
-
-            if (!language.Contains("_"))
-                throw;
-
-            // So we first try converting "_" to "-" and go with that
-            language = language.Replace('_', '-');
-
-            try
-            {
-                return new CultureInfo(language);
-            }
-            catch (CultureNotFoundException)
-            {
-                language = language.Split("-")[0];
-
-                GD.Print("Failed to get CultureInfo with whole language name, tried stripping extra, new: ",
-                    language);
-                return new CultureInfo(language);
-            }
-        }
+        GD.Print("Set C# locale to: ", cultureInfo, " Godot locale is: ", TranslationServer.GetLocale());
     }
 
     /// <summary>
@@ -508,40 +665,79 @@ public class Settings
     /// </summary>
     private static Settings LoadSettings()
     {
-        using (var file = new File())
+        using var file = new File();
+        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+
+        if (error != Error.Ok)
         {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+            GD.Print("Failed to open settings configuration file, file is missing or unreadable. "
+                + "Using default settings instead.");
 
-            if (error != Error.Ok)
+            var settings = new Settings();
+            settings.Save();
+
+            return settings;
+        }
+
+        var text = file.GetAsText();
+
+        file.Close();
+
+        try
+        {
+            return JsonConvert.DeserializeObject<Settings>(text);
+        }
+        catch
+        {
+            GD.Print("Failed to deserialize settings file data, data may be improperly formatted. "
+                + "Using default settings instead.");
+
+            var settings = new Settings();
+            settings.Save();
+
+            return settings;
+        }
+    }
+
+    /// <summary>
+    ///   Tries to return the best supported Godot locale match.
+    ///   Godot locale is different from C# culture.
+    ///   Compare for example fi_FI (Godot) to fi-FI (C#).
+    /// </summary>
+    /// <param name="locale">locale to check</param>
+    /// <returns>supported locale</returns>
+    private static string GetSupportedLocale(string locale)
+    {
+        if (AvailableLocales.Contains(locale))
+        {
+            return locale;
+        }
+
+        if (locale.Contains('_'))
+        {
+            locale = locale.Split("_")[0];
+            if (AvailableLocales.Contains(locale))
             {
-                GD.Print("Failed to open settings configuration file, file is missing or unreadable. "
-                    + "Using default settings instead.");
-
-                var settings = new Settings();
-                settings.Save();
-
-                return settings;
-            }
-
-            var text = file.GetAsText();
-
-            file.Close();
-
-            try
-            {
-                return JsonConvert.DeserializeObject<Settings>(text);
-            }
-            catch
-            {
-                GD.Print("Failed to deserialize settings file data, data may be improperly formatted. "
-                    + "Using default settings instead.");
-
-                var settings = new Settings();
-                settings.Save();
-
-                return settings;
+                return locale;
             }
         }
+
+        return "en";
+    }
+
+    /// <summary>
+    ///   Debug helper for dumping what C# considers valid locales
+    /// </summary>
+    private static void DumpValidCSharpLocales()
+    {
+        GD.Print("Locales (C#):");
+
+        foreach (var culture in CultureInfo.GetCultures(CultureTypes.AllCultures & ~CultureTypes.NeutralCultures))
+        {
+            GD.Print(culture.DisplayName + " - " + culture.Name);
+        }
+
+        GD.Print(string.Empty);
     }
 
     /// <summary>

@@ -52,6 +52,12 @@ public class OrganelleDefinition : IRegistryType
     public string DisplayScene;
 
     /// <summary>
+    ///   A path to a scene to display this organelle as a corpse chunk.
+    ///   Not needed if it is the same as DisplayScene.
+    /// </summary>
+    public string CorpseChunkScene;
+
+    /// <summary>
     ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
     /// </summary>
     public string DisplaySceneModelPath;
@@ -65,6 +71,16 @@ public class OrganelleDefinition : IRegistryType
     ///   Loaded scene instance to be used when organelle of this type is placed
     /// </summary>
     public PackedScene LoadedScene;
+
+    /// <summary>
+    ///   Loaded scene instance to be used when organelle of this type needs to be displayed for a dead microbe
+    /// </summary>
+    public PackedScene LoadedCorpseChunkScene;
+
+    /// <summary>
+    ///   Loaded icon for display in GUIs
+    /// </summary>
+    public Texture LoadedIcon;
 
     public float Mass;
 
@@ -120,6 +136,16 @@ public class OrganelleDefinition : IRegistryType
     ///   Controls whether this organelle scales with growth progress (progress towards division and reproduction).
     /// </summary>
     public bool ShouldScale = true;
+
+    /// <summary>
+    ///   Flags whether this organelle is exclusive for eukaryotes
+    /// </summary>
+    public bool RequiresNucleus;
+
+    /// <summary>
+    ///   Can this organelle only be placed once
+    /// </summary>
+    public bool Unique;
 
     /// <summary>
     ///   Caches the rotated hexes
@@ -269,6 +295,12 @@ public class OrganelleDefinition : IRegistryType
                 "Hexes is empty");
         }
 
+        if (string.IsNullOrEmpty(DisplayScene) && string.IsNullOrEmpty(CorpseChunkScene))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Both DisplayScene and CorpseChunkScene are null");
+        }
+
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)
         {
@@ -305,6 +337,16 @@ public class OrganelleDefinition : IRegistryType
         if (!string.IsNullOrEmpty(DisplayScene))
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
+        }
+
+        if (!string.IsNullOrEmpty(CorpseChunkScene))
+        {
+            LoadedCorpseChunkScene = GD.Load<PackedScene>(CorpseChunkScene);
+        }
+
+        if (!string.IsNullOrEmpty(IconPath))
+        {
+            LoadedIcon = GD.Load<Texture>(IconPath);
         }
 
         // Resolve process names
@@ -347,6 +389,7 @@ public class OrganelleDefinition : IRegistryType
         public NucleusComponentFactory Nucleus;
         public StorageComponentFactory Storage;
         public AgentVacuoleComponentFactory AgentVacuole;
+        public BindingAgentComponentFactory BindingAgent;
         public MovementComponentFactory Movement;
         public PilusComponentFactory Pilus;
 
@@ -388,6 +431,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 AgentVacuole.Check(name);
                 allFactories.Add(AgentVacuole);
+                count++;
+            }
+
+            if (BindingAgent != null)
+            {
+                BindingAgent.Check(name);
+                allFactories.Add(BindingAgent);
                 count++;
             }
 

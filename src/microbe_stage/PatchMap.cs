@@ -215,15 +215,17 @@ public class PatchMap
 
         foreach (var patch in Patches)
         {
+            // We remove a species as extinct when its population value is not strictly positive,
+            // unless it's the player's species and the player can't go extinct.
             var toRemove = patch.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
-                (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
+                !(playerCantGoExtinct && v.Key.PlayerSpecies)).ToList();
 
             foreach (var speciesEntry in toRemove)
             {
                 patch.Value.RemoveSpecies(speciesEntry.Key);
 
                 GD.Print("Species ", speciesEntry.Key.FormattedName, " has gone extinct in ",
-                    patch.Value.Name);
+                    TranslationServer.Translate(patch.Value.Name));
 
                 if (!nonExtinctSpecies.Contains(speciesEntry.Key))
                 {
@@ -257,6 +259,17 @@ public class PatchMap
         }
 
         return found.ToList();
+    }
+
+    /// <summary>
+    ///   Updates the time period in all of the patches.
+    /// </summary>
+    public void UpdateGlobalTimePeriod(double time)
+    {
+        foreach (var patch in Patches)
+        {
+            patch.Value.TimePeriod = time;
+        }
     }
 
     public Patch GetPatch(int id)

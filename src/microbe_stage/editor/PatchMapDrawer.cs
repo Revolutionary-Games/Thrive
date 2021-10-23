@@ -41,8 +41,7 @@ public class PatchMapDrawer : Control
             map = value;
             dirty = true;
 
-            if (playerPatch == null)
-                playerPatch = Map.CurrentPatch;
+            playerPatch ??= Map.CurrentPatch;
         }
     }
 
@@ -135,7 +134,7 @@ public class PatchMapDrawer : Control
     {
         foreach (var node in nodes)
         {
-            node.Free();
+            node.DetachAndFree();
         }
 
         nodes.Clear();

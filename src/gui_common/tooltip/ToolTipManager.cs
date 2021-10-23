@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Holds and handles a collection of custom tooltip Controls
+///   Holds and handles a collection of custom tooltip Controls.
 /// </summary>
 public class ToolTipManager : CanvasLayer
 {
     /// <summary>
-    ///   The tooltip to be shown
+    ///   This must be in sync with the name of the default group node in the ToolTipManager scene.
     /// </summary>
-    public ICustomToolTip MainToolTip;
+    public const string DEFAULT_GROUP_NAME = "default";
 
     private static ToolTipManager instance;
 
@@ -24,8 +25,17 @@ public class ToolTipManager : CanvasLayer
 
     private bool display;
     private float displayTimer;
+    private float hideTimer;
+
+    /// <summary>
+    ///   Flags whether MainToolTip should be shown temporarily (automatically hides once timer reaches threshold).
+    /// </summary>
+    private bool currentIsTemporary;
 
     private Vector2 lastMousePosition;
+
+    private ICustomToolTip mainToolTip;
+    private ICustomToolTip previousToolTip;
 
     private ToolTipManager()
     {
@@ -35,8 +45,21 @@ public class ToolTipManager : CanvasLayer
     public static ToolTipManager Instance => instance;
 
     /// <summary>
-    ///   Displays the current tooltip if set true. It's preferable to set this
-    ///   rather than directly from the tooltip
+    ///   The tooltip to be shown
+    /// </summary>
+    public ICustomToolTip MainToolTip
+    {
+        get => mainToolTip;
+        set
+        {
+            previousToolTip = mainToolTip;
+            mainToolTip = value;
+        }
+    }
+
+    /// <summary>
+    ///   If true displays the current tooltip with a set delay of <see cref="ICustomToolTip.DisplayDelay"/>.
+    ///   It's preferable to set this rather than directly from the tooltip
     /// </summary>
     public bool Display
     {
@@ -44,7 +67,15 @@ public class ToolTipManager : CanvasLayer
         set
         {
             display = value;
-            UpdateToolTipVisibility();
+
+            if (previousToolTip != null)
+                FinalizeToolTipVisibility(previousToolTip, false);
+
+            if (display)
+            {
+                // Set timer
+                displayTimer = MainToolTip.DisplayDelay;
+            }
         }
     }
 
@@ -63,56 +94,132 @@ public class ToolTipManager : CanvasLayer
         if (MainToolTip == null)
             return;
 
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         // Wait for duration of the delay and then show the tooltip
-        if (displayTimer >= 0 && !MainToolTip.ToolTipVisible)
+        if (displayTimer >= 0 && !MainToolTip.ToolTipNode.Visible)
         {
             displayTimer -= delta;
 
             if (displayTimer < 0)
             {
                 lastMousePosition = GetViewport().GetMousePosition();
-                MainToolTip.OnDisplay();
+                FinalizeToolTipVisibility(MainToolTip, true);
             }
         }
 
         // Adjust position and size
-        if (MainToolTip.ToolTipVisible)
+        if (MainToolTip.ToolTipNode.Visible)
         {
+            Vector2 mousePos;
+
+            switch (MainToolTip.Positioning)
+            {
+                case ToolTipPositioning.LastMousePosition:
+                    mousePos = lastMousePosition;
+                    break;
+                case ToolTipPositioning.FollowMousePosition:
+                    mousePos = GetViewport().GetMousePosition();
+                    break;
+                default:
+                    throw new Exception("Invalid tooltip positioning type");
+            }
+
             var screenSize = GetViewport().GetVisibleRect().Size;
 
             // Clamp tooltip position so it doesn't go offscreen
-            var adjustedPosition = new Vector2(
-                Mathf.Clamp(lastMousePosition.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
-                    MainToolTip.Size.x),
-                Mathf.Clamp(lastMousePosition.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
-                    MainToolTip.Size.y));
+            // TODO: Take into consideration of viewport (window) resizing for the offsetting.
+            MainToolTip.ToolTipNode.RectPosition = new Vector2(
+                Mathf.Clamp(mousePos.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
+                    MainToolTip.ToolTipNode.RectSize.x),
+                Mathf.Clamp(mousePos.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
+                    MainToolTip.ToolTipNode.RectSize.y));
 
-            MainToolTip.Position = adjustedPosition;
-            MainToolTip.Size = Vector2.Zero;
+            MainToolTip.ToolTipNode.RectSize = Vector2.Zero;
+
+            // Handle temporary tooltips/popup
+            if (currentIsTemporary && hideTimer >= 0)
+            {
+                hideTimer -= delta;
+
+                if (hideTimer < 0)
+                {
+                    currentIsTemporary = false;
+                    FinalizeToolTipVisibility(MainToolTip, false);
+                }
+            }
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (MainToolTip == null)
+            return;
+
+        if (@event is InputEventMouseButton mouseButton &&
+            mouseButton.Pressed && MainToolTip.HideOnMousePress)
+        {
+            // This is to avoid flickering when smashing mouse press multiple times
+            // on the transient tooltip
+            if (currentIsTemporary && !MainToolTip.ToolTipNode.Visible)
+                return;
+
+            FinalizeToolTipVisibility(MainToolTip, false);
+            displayTimer = MainToolTip.DisplayDelay;
+
+            if (currentIsTemporary)
+            {
+                currentIsTemporary = false;
+                MainToolTip = null;
+            }
         }
     }
 
     /// <summary>
-    ///   Add tooltip into collection. Creates a new group if group node with the given name doesn't exist
+    ///   Shows a tooltip (popup) with specified message for a given duration.
     /// </summary>
-    public void AddToolTip(ICustomToolTip tooltip, string group = "general")
+    public void ShowPopup(string message, float duration)
     {
-        tooltip.ToolTipVisible = false;
+        var popup = GetToolTip<DefaultToolTip>("popup");
 
-        var groupNode = GetGroup(group, false);
+        if (popup == null)
+        {
+            popup = ToolTipHelper.CreateDefaultToolTip();
+            AddToolTip(popup);
+        }
 
-        if (groupNode == null)
-            groupNode = AddGroup(group);
+        popup.Description = message;
+        popup.HideOnMousePress = true;
+        popup.TransitionType = ToolTipTransitioning.Fade;
+        popup.DisplayDelay = 0;
+
+        MainToolTip = popup;
+        Display = true;
+
+        currentIsTemporary = true;
+        hideTimer = duration;
+    }
+
+    /// <summary>
+    ///   Adds tooltip into collection. Creates a new group if group node with the given name doesn't exist
+    /// </summary>
+    public void AddToolTip(ICustomToolTip tooltip, string group = DEFAULT_GROUP_NAME)
+    {
+        tooltip.ToolTipNode.Visible = false;
+
+        var groupNode = GetGroup(group, false) ?? AddGroup(group);
 
         tooltips[groupNode].Add(tooltip);
         groupNode.AddChild(tooltip.ToolTipNode);
     }
 
-    public void RemoveToolTip(string name, string group = "general")
+    public void RemoveToolTip(string name, string group = DEFAULT_GROUP_NAME)
     {
         var tooltip = GetToolTip(name, group);
 
-        tooltip?.ToolTipNode.QueueFree();
+        tooltip?.ToolTipNode.DetachAndQueueFree();
         tooltips[GetGroup(group)]?.Remove(tooltip);
     }
 
@@ -142,17 +249,17 @@ public class ToolTipManager : CanvasLayer
 
         if (deleteGroup)
         {
-            groupNode.QueueFree();
+            groupNode.DetachAndQueueFree();
             tooltips.Remove(groupNode);
         }
     }
 
     /// <summary>
-    ///   Returns tooltip with the given name and group (default is "general")
+    ///   Returns tooltip with the given name and group.
     /// </summary>
     /// <param name="name">The name of the tooltip's node (not display name)</param>
     /// <param name="group">The name of the group the tooltip belongs to</param>
-    public ICustomToolTip GetToolTip(string name, string group = "general")
+    public ICustomToolTip GetToolTip(string name, string group = DEFAULT_GROUP_NAME)
     {
         var tooltip = tooltips[GetGroup(group)].Find(found => found.ToolTipNode.Name == name);
 
@@ -166,12 +273,19 @@ public class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
+    ///   Generic version of <see cref="GetToolTip"/> method.
+    /// </summary>
+    public T GetToolTip<T>(string name, string group = DEFAULT_GROUP_NAME)
+        where T : ICustomToolTip
+    {
+        return (T)GetToolTip(name, group);
+    }
+
+    /// <summary>
     ///   Creates a new group node to contain tooltips
     /// </summary>
     public Control AddGroup(string name)
     {
-        GD.Print("Creating new tooltip group: '" + name + "'");
-
         var groupNode = new Control();
         groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;
@@ -197,7 +311,7 @@ public class ToolTipManager : CanvasLayer
     }
 
     /// <summary>
-    ///   Get all the existing groups and tooltips into the dictionary
+    ///   Gets all the existing groups and tooltips into the dictionary
     /// </summary>
     private void FetchToolTips()
     {
@@ -207,7 +321,7 @@ public class ToolTipManager : CanvasLayer
 
             foreach (ICustomToolTip tooltip in group.GetChildren())
             {
-                tooltip.ToolTipVisible = false;
+                tooltip.ToolTipNode.Visible = false;
                 collectedTooltips.Add(tooltip);
             }
 
@@ -215,25 +329,48 @@ public class ToolTipManager : CanvasLayer
         }
     }
 
-    private void UpdateToolTipVisibility()
+    private void FinalizeToolTipVisibility(ICustomToolTip tooltip, bool visible)
     {
-        // TODO: Fix the current tooltip changing while still fading out
-        // when quickly mousing over multiple closely positioned elements
-        // (Happens when a single tooltip is registered to multiple Controls)
+        if (tooltip.ToolTipNode.Visible == visible)
+            return;
 
-        // Make sure to hide any other tooltips that are still visible
-        HideAllToolTips();
-
-        if (Display)
+        switch (tooltip.TransitionType)
         {
-            // Set timer
-            displayTimer = MainToolTip.DisplayDelay;
+            case ToolTipTransitioning.Immediate:
+            {
+                tooltip.ToolTipNode.Visible = visible;
+                break;
+            }
+
+            case ToolTipTransitioning.Fade:
+            {
+                // TODO: Fix fading when tooltip display delay is less than the tooltip fade speed, some kind of
+                // flickering happens
+                if (visible)
+                {
+                    GUICommon.Instance.ModulateFadeIn(tooltip.ToolTipNode, Constants.TOOLTIP_FADE_SPEED);
+                }
+                else
+                {
+                    GUICommon.Instance.ModulateFadeOut(tooltip.ToolTipNode, Constants.TOOLTIP_FADE_SPEED);
+                }
+
+                break;
+            }
+
+            default:
+                throw new Exception("Invalid tooltip visibility transition type");
         }
     }
 
     private void HideAllToolTips()
     {
         foreach (var group in tooltips.Keys)
-            tooltips[group].ForEach(tooltip => tooltip.OnHide());
+        {
+            foreach (var tooltip in tooltips[group])
+            {
+                FinalizeToolTipVisibility(tooltip, false);
+            }
+        }
     }
 }

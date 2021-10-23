@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   A custom dropdown implemented through MenuButton, but with extra popup menu functionality
+///   A custom dropdown implemented through MenuButton, with extra popup menu functionality
 ///   such as adjusted custom icon size with tweakable color and some slide down animation.
 ///   (Might need to expand this later)
 /// </summary>
@@ -21,7 +21,6 @@ public class CustomDropDown : MenuButton
     /// </summary>
     private Vector2 iconSize;
 
-    private float cachedPopupHSeparation;
     private float cachedPopupVSeparation;
 
     private List<Item> items;
@@ -34,7 +33,6 @@ public class CustomDropDown : MenuButton
 
         AddChild(tween);
 
-        cachedPopupHSeparation = Popup.GetConstant("hseparation");
         cachedPopupVSeparation = Popup.GetConstant("vseparation");
 
         var checkSize = Popup.GetIcon("checked").GetSize();
@@ -69,7 +67,7 @@ public class CustomDropDown : MenuButton
 
         items.Add(item);
 
-        if (checkable)
+        if (item.Checkable)
         {
             Popup.AddCheckItem(item.Text, item.Id);
         }
@@ -81,6 +79,22 @@ public class CustomDropDown : MenuButton
         // Redraw the menu button and popup
         Popup.Update();
         Update();
+    }
+
+    /// <summary>
+    ///   Returns the index of the item containing the given name/text.
+    /// </summary>
+    /// <param name="name">The item text</param>
+    /// <returns>Item's index. -1 if not found</returns>
+    public int GetItemIndex(string name)
+    {
+        foreach (var item in items)
+        {
+            if (item.Text == name)
+                return Popup.GetItemIndex(item.Id);
+        }
+
+        return -1;
     }
 
     private void RedrawPopup()
@@ -95,11 +109,11 @@ public class CustomDropDown : MenuButton
     /// </summary>
     private void ReadjustRectSizes()
     {
-        // Set popup to minimum length
-        Popup.RectSize = new Vector2(GetContentsMinimumSize().x + iconSize.x + 6, 0);
-
         // Adjust the menu button to have the same length as the popup
-        RectMinSize = new Vector2(Popup.RectSize.x, RectMinSize.y);
+        RectMinSize = new Vector2(Popup.GetMinimumSize().x + iconSize.x + 6, RectMinSize.y);
+
+        // Set popup to minimum length
+        Popup.RectSize = new Vector2(RectSize.x, 0);
     }
 
     /// <summary>
@@ -110,7 +124,6 @@ public class CustomDropDown : MenuButton
         if (!Popup.Visible)
             return;
 
-        var contentMinSize = GetContentsMinimumSize();
         var font = Popup.GetFont("font");
 
         // Offset from the top
@@ -122,37 +135,12 @@ public class CustomDropDown : MenuButton
             if (item.Icon == null)
                 continue;
 
-            var position = new Vector2(contentMinSize.x, height);
+            var position = new Vector2(Popup.RectSize.x - iconSize.x - 6, height);
 
             Popup.DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
 
-            height += font.GetHeight() + cachedPopupVSeparation;
+            height += font.GetHeight() + Popup.GetConstant("vseparation");
         }
-    }
-
-    /// <summary>
-    ///   Returns the size of the popup menu contents
-    /// </summary>
-    private Vector2 GetContentsMinimumSize()
-    {
-        var minWidth = 0.0f;
-        var minHeight = 0.0f;
-
-        var font = Popup.GetFont("font");
-
-        foreach (var item in items)
-        {
-            var width = iconSize.x + font.GetStringSize(item.Text).x + cachedPopupHSeparation;
-            var height = Mathf.Max(iconSize.y, font.GetHeight()) + cachedPopupVSeparation;
-
-            if (item.Checkable)
-                width += Popup.GetIcon("checked").GetWidth();
-
-            minWidth = Mathf.Max(minWidth, width);
-            minHeight += height;
-        }
-
-        return new Vector2(minWidth, minHeight);
     }
 
     private void OnPopupAboutToShow()
@@ -161,7 +149,7 @@ public class CustomDropDown : MenuButton
 
         // Animate slide down
         tween.InterpolateProperty(Popup, "custom_constants/vseparation", -14, cachedPopupVSeparation, 0.1f,
-            Tween.TransitionType.Circ, Tween.EaseType.Out);
+            Tween.TransitionType.Cubic, Tween.EaseType.Out);
         tween.Start();
     }
 

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=47 format=2]
+[gd_resource type="Theme" load_steps=56 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -8,7 +8,15 @@
 [ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=12]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/checkAclick.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -125,8 +133,8 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0, 0, 0, 1 )
-border_width_top = 3
-border_width_bottom = 3
+border_width_top = 2
+border_width_bottom = 2
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxTexture" id=16]
@@ -150,7 +158,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxLine" id=19]
-content_margin_top = 0.0
 color = Color( 0.439216, 0.623529, 0.623529, 1 )
 thickness = 5
 
@@ -304,14 +311,23 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=33]
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=34]
-bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+bg_color = Color( 0.0666667, 1, 0.835294, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -325,17 +341,24 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=36]
+bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=37]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 3
 border_width_right = 3
 border_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=37]
+[sub_resource type="StyleBoxFlat" id=38]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 10.0
 content_margin_bottom = 15.0
-bg_color = Color( 0.054902, 0.145098, 0.168627, 0.901961 )
+bg_color = Color( 0.054902, 0.145098, 0.168627, 0.941176 )
 border_width_left = 1
 border_width_top = 23
 border_width_right = 1
@@ -361,13 +384,19 @@ Button/styles/hover = SubResource( 3 )
 Button/styles/normal = SubResource( 4 )
 Button/styles/pressed = SubResource( 5 )
 CheckBox/colors/font_color = Color( 1, 1, 1, 1 )
-CheckBox/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+CheckBox/colors/font_color_disabled = Color( 0.666667, 0.666667, 0.666667, 1 )
 CheckBox/colors/font_color_hover = Color( 1, 1, 1, 1 )
 CheckBox/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
 CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = ExtResource( 8 )
+CheckBox/icons/PressedClicked = ExtResource( 16 )
+CheckBox/icons/PressedHovered = ExtResource( 17 )
+CheckBox/icons/PressedNormal = ExtResource( 5 )
+CheckBox/icons/UnpressedClicked = ExtResource( 14 )
+CheckBox/icons/UnpressedHovered = ExtResource( 15 )
+CheckBox/icons/UnpressedNormal = ExtResource( 6 )
 CheckBox/icons/checked = ExtResource( 5 )
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
@@ -378,14 +407,14 @@ CheckBox/styles/hover = SubResource( 8 )
 CheckBox/styles/hover_pressed = SubResource( 9 )
 CheckBox/styles/normal = SubResource( 10 )
 CheckBox/styles/pressed = SubResource( 11 )
-CheckButton/colors/font_color = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-CheckButton/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_hover = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
 CheckButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
 CheckButton/constants/check_vadjust = 0
-CheckButton/constants/hseparation = 4
-CheckButton/fonts/font = null
+CheckButton/constants/hseparation = 1
+CheckButton/fonts/font = ExtResource( 11 )
 CheckButton/icons/off = null
 CheckButton/icons/off_disabled = null
 CheckButton/icons/on = null
@@ -419,8 +448,8 @@ ColorPickerButton/styles/focus = null
 ColorPickerButton/styles/hover = null
 ColorPickerButton/styles/normal = null
 ColorPickerButton/styles/pressed = null
-Dialogs/constants/button_margin = 32
-Dialogs/constants/margin = 8
+Dialogs/constants/button_margin = 42
+Dialogs/constants/margin = 10
 FileDialog/colors/files_disabled = Color( 0, 0, 0, 1 )
 FileDialog/colors/folder_icon_modulate = Color( 0, 0, 0, 1 )
 FileDialog/icons/folder = null
@@ -428,6 +457,8 @@ FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
 Fonts/fonts/large = null
+Fonts/fonts/lato_bold_normal = ExtResource( 13 )
+Fonts/fonts/lato_normal = ExtResource( 12 )
 Fonts/fonts/normal = null
 GraphEdit/colors/activity = Color( 0, 0, 0, 1 )
 GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )
@@ -510,6 +541,7 @@ Label/constants/shadow_as_outline = 0
 Label/constants/shadow_offset_x = 1
 Label/constants/shadow_offset_y = 1
 Label/fonts/font = ExtResource( 8 )
+Label/fonts/jura_small = ExtResource( 9 )
 Label/styles/normal = null
 LineEdit/colors/clear_button_color = Color( 1, 1, 1, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
@@ -692,12 +724,12 @@ ToolButton/styles/focus = null
 ToolButton/styles/hover = null
 ToolButton/styles/normal = null
 ToolButton/styles/pressed = null
-TooltipLabel/colors/font_color = Color( 0, 0, 0, 1 )
-TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+TooltipLabel/colors/font_color = Color( 1, 1, 1, 1 )
+TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 0 )
 TooltipLabel/constants/shadow_offset_x = 1
 TooltipLabel/constants/shadow_offset_y = 1
-TooltipLabel/fonts/font = null
-TooltipPanel/styles/panel = null
+TooltipLabel/fonts/font = ExtResource( 10 )
+TooltipPanel/styles/panel = SubResource( 33 )
 Tree/colors/cursor_color = Color( 0, 0, 0, 1 )
 Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
 Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
@@ -741,10 +773,10 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 33 )
-VScrollBar/styles/grabber_highlight = SubResource( 34 )
-VScrollBar/styles/grabber_pressed = SubResource( 35 )
-VScrollBar/styles/scroll = SubResource( 36 )
+VScrollBar/styles/grabber = SubResource( 34 )
+VScrollBar/styles/grabber_highlight = SubResource( 35 )
+VScrollBar/styles/grabber_pressed = SubResource( 36 )
+VScrollBar/styles/scroll = SubResource( 37 )
 VScrollBar/styles/scroll_focus = null
 VSeparator/constants/separation = 4
 VSeparator/styles/separator = null
@@ -766,4 +798,4 @@ WindowDialog/constants/title_height = 16
 WindowDialog/fonts/title_font = ExtResource( 8 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 37 )
+WindowDialog/styles/panel = SubResource( 38 )

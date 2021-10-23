@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using Saving;
 
 /// <summary>
 ///   Holds data needed for an in-progress save action. And manages stepping through all the actions that need to happen
@@ -30,7 +31,14 @@ public class InProgressSave : IDisposable
 
     private bool success;
     private string message;
-    private string exception;
+
+    /// <summary>
+    ///   Failure exception or message describing the problem. Which one it is depends on
+    ///   <see cref="exceptionOrMessageIsException"/>
+    /// </summary>
+    private string exceptionOrFailureMessage;
+
+    private bool exceptionOrMessageIsException = true;
 
     private bool disposed;
 
@@ -59,12 +67,18 @@ public class InProgressSave : IDisposable
         Finished,
     }
 
+    /// <summary>
+    ///   True when a save is currently being made. Used to prevent another save or load starting
+    /// </summary>
+    public static bool IsSaving { get; private set; }
+
     public SaveInformation.SaveType Type { get; }
 
     public void Start()
     {
         currentGameRoot.Invoke().GetTree().Paused = true;
 
+        IsSaving = true;
         Invoke.Instance.Perform(Step);
     }
 
@@ -74,11 +88,12 @@ public class InProgressSave : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    internal void ReportStatus(bool success, string message, string exception = "")
+    internal void ReportStatus(bool success, string message, string exceptionOrFailure = "", bool isException = true)
     {
         this.success = success;
         this.message = message;
-        this.exception = exception;
+        exceptionOrFailureMessage = exceptionOrFailure;
+        exceptionOrMessageIsException = isException;
     }
 
     protected virtual void Dispose(bool disposing)
@@ -117,28 +132,26 @@ public class InProgressSave : IDisposable
         oldestSave = null;
         ulong oldestModifiedTime = ulong.MaxValue;
 
-        using (var file = new File())
+        using var file = new File();
+        foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
         {
-            foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
+            var match = Regex.Match(name, matchRegex);
+
+            if (match.Success)
             {
-                var match = Regex.Match(name, matchRegex);
+                ++totalCount;
 
-                if (match.Success)
+                int found = Convert.ToInt32(match.Groups[1].Value, CultureInfo.InvariantCulture);
+
+                if (found > highestNumber)
+                    highestNumber = found;
+
+                var modified = file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, name));
+
+                if (modified < oldestModifiedTime)
                 {
-                    ++totalCount;
-
-                    int found = Convert.ToInt32(match.Groups[1].Value, CultureInfo.InvariantCulture);
-
-                    if (found > highestNumber)
-                        highestNumber = found;
-
-                    var modified = file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, name));
-
-                    if (modified < oldestModifiedTime)
-                    {
-                        oldestModifiedTime = modified;
-                        oldestSave = name;
-                    }
+                    oldestModifiedTime = modified;
+                    oldestSave = name;
                 }
             }
         }
@@ -162,6 +175,7 @@ public class InProgressSave : IDisposable
                     Mathf.Inf);
 
                 state = State.SaveData;
+                JSONDebug.FlushJSONTracesOut();
                 break;
             }
 
@@ -180,6 +194,8 @@ public class InProgressSave : IDisposable
                 stopwatch.Stop();
                 GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
 
+                JSONDebug.FlushJSONTracesOut();
+
                 if (success)
                 {
                     SaveStatusOverlay.Instance.ShowMessage(message);
@@ -190,9 +206,10 @@ public class InProgressSave : IDisposable
                 {
                     SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_FAILED"));
                     SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_SAVING"),
-                        message, exception);
+                        message, exceptionOrFailureMessage, false, null, exceptionOrMessageIsException);
                 }
 
+                IsSaving = false;
                 return;
             }
 

@@ -3,7 +3,7 @@ using System.Globalization;
 using Godot;
 
 /// <summary>
-///   Helpers for dealing with Thrive's version number
+///   Helpers for dealing with Thrive version number
 /// </summary>
 public static class VersionUtils
 {
@@ -11,7 +11,26 @@ public static class VersionUtils
     {
         "pre-alpha",
         "alpha",
+
+        // These alpha and beta suffixes are provided to make save upgrader operations possible to define without
+        // needing a much more major version bump while the next stable version is being developed
+        "alpha2",
+        "alpha3",
+        "alpha4",
+        "alpha5",
+        "alpha6",
+        "alpha7",
+        "alpha8",
+        "alpha9",
         "beta",
+        "beta2",
+        "beta3",
+        "beta4",
+        "beta5",
+        "beta6",
+        "beta7",
+        "beta8",
+        "beta9",
         "rc1",
         "rc2",
         "rc3",
@@ -48,7 +67,11 @@ public static class VersionUtils
         // Compare the numeric versions
         try
         {
-            int versionDiff = Version.Parse(aSplit[0]).CompareTo(Version.Parse(bSplit[0]));
+            // parse and make a trailing zero missing insignificant
+            var parsedA = NormalizeVersion(Version.Parse(aSplit[0]));
+            var parsedB = NormalizeVersion(Version.Parse(bSplit[0]));
+
+            int versionDiff = parsedA.CompareTo(parsedB);
             if (versionDiff != 0)
             {
                 return versionDiff;
@@ -67,6 +90,12 @@ public static class VersionUtils
             return bSplit.Length - aSplit.Length;
         }
 
+        // Versions are equal if the splits are the same (or if either had no suffix)
+        if (aSplit.Equals(bSplit) || aSplit.Length < 2 || bSplit.Length < 2)
+        {
+            return 0;
+        }
+
         // Compare predefined suffixes
         int aSuffixIndex = Array.IndexOf(Suffixes, aSplit[1].ToLowerInvariant());
         int bSuffixIndex = Array.IndexOf(Suffixes, bSplit[1].ToLowerInvariant());
@@ -79,6 +108,19 @@ public static class VersionUtils
         return string.Compare(aSplit[1], bSplit[1], CultureInfo.InvariantCulture, CompareOptions.OrdinalIgnoreCase);
     }
 
+    /// <summary>
+    ///   Normalizes version so that the revision number is 0 if there weren't enough numbers
+    /// </summary>
+    public static Version NormalizeVersion(Version version)
+    {
+        if (version.Revision == -1)
+        {
+            return new Version(version.Major, version.Minor, version.Build, 0);
+        }
+
+        return version;
+    }
+
     // TODO: Use actual unit tests instead
     // https://github.com/Revolutionary-Games/Thrive/issues/1571
     public static bool TestCompare()
@@ -88,6 +130,10 @@ public static class VersionUtils
             && Compare("1.2.3-rc1", "1.2.4-pre-alpha") < 0
             && Compare("3.2.1-pre-alpha", "1.2.3") > 0
             && Compare("1.2.3-alpha", "1.2.3-potato") < 0
+            && Compare("1.2.3", "1.2.3.0") == 0
+            && Compare("1.2.3.1", "1.2.3.0") > 0
+            && Compare("0.5.3.1-alpha", "0.5.3.1") < 1
+            && Compare("0.5.3.1-alpha", "0.5.3") > 0
             ;
     }
 }

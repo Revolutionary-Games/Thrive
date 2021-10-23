@@ -7,6 +7,9 @@ using Godot;
 public class LoadingScreen : Control
 {
     [Export]
+    public NodePath ArtworkPath;
+
+    [Export]
     public NodePath ArtDescriptionPath;
 
     [Export]
@@ -31,7 +34,8 @@ public class LoadingScreen : Control
 
     private readonly Random random = new Random();
 
-    private Label artDescription;
+    private TextureRect artworkRect;
+    private Label artDescriptionLabel;
     private Label loadingMessageLabel;
     private Label loadingDescriptionLabel;
     private Label tipLabel;
@@ -44,6 +48,7 @@ public class LoadingScreen : Control
     private string loadingMessage;
     private string tip;
     private string loadingDescription = string.Empty;
+    private string artDescription;
 
     private float totalElapsed;
     private MainGameState currentlyLoadingGameState = MainGameState.Invalid;
@@ -89,6 +94,23 @@ public class LoadingScreen : Control
         }
     }
 
+    public string ArtDescription
+    {
+        get => artDescription;
+        set
+        {
+            if (artDescription == value)
+                return;
+
+            artDescription = value;
+
+            if (artDescriptionLabel != null)
+            {
+                UpdateArtDescription();
+            }
+        }
+    }
+
     public string Tip
     {
         get => tip;
@@ -121,18 +143,19 @@ public class LoadingScreen : Control
 
     public override void _Ready()
     {
-        artDescription = GetNode<Label>(ArtDescriptionPath);
+        artworkRect = GetNode<TextureRect>(ArtworkPath);
+        artDescriptionLabel = GetNode<Label>(ArtDescriptionPath);
         loadingMessageLabel = GetNode<Label>(LoadingMessagePath);
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
         tipLabel = GetNode<Label>(TipLabelPath);
         randomizeTipTimer = GetNode<Timer>(RandomizeTipTimerPath);
 
-        spinner = GetNode<Control>("Spinner");
+        spinner = GetNode<Control>("HBoxContainer/Spinner");
 
         UpdateMessage();
         UpdateDescription();
         UpdateTip();
-        artDescription.Text = string.Empty;
+        UpdateArtDescription();
 
         Hide();
     }
@@ -162,17 +185,29 @@ public class LoadingScreen : Control
         }
 
         var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState + "Tips");
-        var selectedTip = tips.Messages.Random(random);
+        var selectedTip = tips.Messages.Random(random).Message;
         Tip = selectedTip;
     }
 
     public void RandomizeArt()
     {
-        // TODO: implement randomized art showing
+        var galleryName = CurrentlyLoadingGameState == MainGameState.Invalid ?
+            "General" :
+            CurrentlyLoadingGameState.ToString();
+
+        var gallery = SimulationParameters.Instance.GetGallery(galleryName);
+        var artwork = gallery.Artworks.Random(random);
+
+        artworkRect.Texture = GD.Load<Texture>(artwork.ResourcePath);
+        ArtDescription = artwork.BuildDescription(true);
     }
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         // Only elapse passed time if this is visible
         if (!Visible)
         {
@@ -209,6 +244,11 @@ public class LoadingScreen : Control
     private void UpdateDescription()
     {
         loadingDescriptionLabel.Text = LoadingDescription;
+    }
+
+    private void UpdateArtDescription()
+    {
+        artDescriptionLabel.Text = ArtDescription;
     }
 
     private void UpdateTip()

@@ -14,12 +14,12 @@ public struct Hex : IEquatable<Hex>
     public static readonly Dictionary<HexSide, HexSide> OppositeHexSide =
         new Dictionary<HexSide, HexSide>
         {
-            { HexSide.TOP, HexSide.BOTTOM },
-            { HexSide.TOP_RIGHT, HexSide.BOTTOM_LEFT },
-            { HexSide.BOTTOM_RIGHT, HexSide.TOP_LEFT },
-            { HexSide.BOTTOM, HexSide.TOP },
-            { HexSide.BOTTOM_LEFT, HexSide.TOP_RIGHT },
-            { HexSide.TOP_LEFT, HexSide.BOTTOM_RIGHT },
+            { HexSide.Top, HexSide.Bottom },
+            { HexSide.TopRight, HexSide.BottomLeft },
+            { HexSide.BottomRight, HexSide.TopLeft },
+            { HexSide.Bottom, HexSide.Top },
+            { HexSide.BottomLeft, HexSide.TopRight },
+            { HexSide.TopLeft, HexSide.BottomRight },
         };
 
     /// <summary>
@@ -30,12 +30,12 @@ public struct Hex : IEquatable<Hex>
     public static readonly Dictionary<HexSide, Hex> HexNeighbourOffset =
         new Dictionary<HexSide, Hex>
         {
-            { HexSide.TOP, new Hex(0, 1) },
-            { HexSide.TOP_RIGHT, new Hex(1, 0) },
-            { HexSide.BOTTOM_RIGHT, new Hex(1, -1) },
-            { HexSide.BOTTOM, new Hex(0, -1) },
-            { HexSide.BOTTOM_LEFT, new Hex(-1, 0) },
-            { HexSide.TOP_LEFT, new Hex(-1, 1) },
+            { HexSide.Top, new Hex(0, 1) },
+            { HexSide.TopRight, new Hex(1, 0) },
+            { HexSide.BottomRight, new Hex(1, -1) },
+            { HexSide.Bottom, new Hex(0, -1) },
+            { HexSide.BottomLeft, new Hex(-1, 0) },
+            { HexSide.TopLeft, new Hex(-1, 1) },
         };
 
     public int Q;
@@ -55,32 +55,32 @@ public struct Hex : IEquatable<Hex>
         /// <summary>
         ///   Directly up
         /// </summary>
-        TOP = 1,
+        Top = 1,
 
         /// <summary>
         ///   Up and to the right
         /// </summary>
-        TOP_RIGHT = 2,
+        TopRight = 2,
 
         /// <summary>
         ///   Down and to the right
         /// </summary>
-        BOTTOM_RIGHT = 3,
+        BottomRight = 3,
 
         /// <summary>
         ///   Directly down
         /// </summary>
-        BOTTOM = 4,
+        Bottom = 4,
 
         /// <summary>
         ///   Down and left
         /// </summary>
-        BOTTOM_LEFT = 5,
+        BottomLeft = 5,
 
         /// <summary>
         ///   Up and left
         /// </summary>
-        TOP_LEFT = 6,
+        TopLeft = 6,
     }
 
     public static Hex operator +(Hex a, Hex b)
@@ -224,7 +224,7 @@ public struct Hex : IEquatable<Hex>
     }
 
     /// <summary>
-    ///   Symmetrizes a hex horizontally about the (0,x) axis.
+    ///   Makes a hex symmetrical horizontally about the (0,x) axis.
     /// </summary>
     public static Hex FlipHorizontally(Hex hex)
     {
@@ -233,10 +233,10 @@ public struct Hex : IEquatable<Hex>
 
     public override bool Equals(object obj)
     {
-        if (!(obj is Hex))
+        if (!(obj is Hex hex))
             return false;
 
-        return Equals((Hex)obj);
+        return Equals(hex);
     }
 
     public bool Equals(Hex other)

@@ -13,24 +13,10 @@ public class DefaultToolTip : Control, ICustomToolTip
     /// </summary>
     private Label descriptionLabel;
 
-    private Tween tween;
-
     private string description;
 
-    public Vector2 Position
-    {
-        get => RectPosition;
-        set => RectPosition = value;
-    }
-
-    public Vector2 Size
-    {
-        get => RectSize;
-        set => RectSize = value;
-    }
-
     /// <summary>
-    ///   Only get and sets node name since this tooltip only shows a message
+    ///   Only gets and sets the Node name since this tooltip only shows a message
     /// </summary>
     public string DisplayName
     {
@@ -52,13 +38,16 @@ public class DefaultToolTip : Control, ICustomToolTip
     [Export]
     public float DisplayDelay { get; set; } = Constants.TOOLTIP_DEFAULT_DELAY;
 
-    public bool ToolTipVisible
-    {
-        get => Visible;
-        set => Visible = value;
-    }
+    [Export]
+    public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.LastMousePosition;
 
-    public Node ToolTipNode => this;
+    [Export]
+    public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
+
+    [Export]
+    public bool HideOnMousePress { get; set; } = true;
+
+    public Control ToolTipNode => this;
 
     public override void _Ready()
     {
@@ -67,19 +56,7 @@ public class DefaultToolTip : Control, ICustomToolTip
         // See https://github.com/Revolutionary-Games/Thrive/issues/1855
         descriptionLabel = GetNode<Label>("MarginContainer/VBoxContainer/Description");
 
-        tween = GetNode<Tween>("Tween");
-
         UpdateDescription();
-    }
-
-    public void OnDisplay()
-    {
-        ToolTipHelper.TooltipFadeIn(tween, this);
-    }
-
-    public void OnHide()
-    {
-        Hide();
     }
 
     private void UpdateDescription()

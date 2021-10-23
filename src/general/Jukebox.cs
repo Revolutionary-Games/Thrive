@@ -81,6 +81,16 @@ public class Jukebox : Node
     }
 
     /// <summary>
+    ///   Starts playing tracks from the provided category
+    /// </summary>
+    /// <param name="category">category from music_tracks.json</param>
+    public void PlayCategory(string category)
+    {
+        PlayingCategory = category;
+        Resume();
+    }
+
+    /// <summary>
     ///   Unpauses currently playing songs
     /// </summary>
     public void Resume()
@@ -115,6 +125,10 @@ public class Jukebox : Node
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (paused)
             return;
 
@@ -171,7 +185,7 @@ public class Jukebox : Node
 
         // TODO: should MIX_TARGET_SURROUND be used here?
 
-        player.Connect("finished", this, "OnSomeTrackEnded");
+        player.Connect("finished", this, nameof(OnSomeTrackEnded));
 
         var created = new AudioPlayer(player);
 
@@ -189,16 +203,27 @@ public class Jukebox : Node
 
     private void PlayTrack(AudioPlayer player, TrackList.Track track, string trackBus, float fromPosition = 0)
     {
+        bool changedTrack = false;
+
         if (player.CurrentTrack != track.ResourcePath)
         {
             var stream = GD.Load<AudioStream>(track.ResourcePath);
 
             player.Player.Stream = stream;
             player.CurrentTrack = track.ResourcePath;
+
+            changedTrack = true;
+        }
+
+        if (player.Bus != trackBus)
+        {
             player.Bus = trackBus;
+            changedTrack = true;
+        }
 
+        if (changedTrack || !player.Playing)
+        {
             player.Player.Play(fromPosition);
-
             GD.Print("Jukebox: starting track: ", track.ResourcePath, " position: ", fromPosition);
         }
     }
@@ -210,13 +235,10 @@ public class Jukebox : Node
         bool faded = false;
 
         // Add transitions
-        if (previouslyPlayedCategory != null)
+        if (previouslyPlayedCategory?.CategoryTransition == MusicCategory.Transition.Fade)
         {
-            if (previouslyPlayedCategory.CategoryTransition == MusicCategory.Transition.Fade)
-            {
-                AddFadeOut();
-                faded = true;
-            }
+            AddFadeOut();
+            faded = true;
         }
 
         operations.Enqueue(new Operation(delta =>
@@ -394,15 +416,25 @@ public class Jukebox : Node
         else
         {
             var random = new Random();
-
-            // Make sure same random track is not played twice in a row
             int nextIndex;
 
-            do
+            if (mode == TrackList.Order.Random)
+            {
+                // Make sure same random track is not played twice in a row
+                do
+                {
+                    nextIndex = random.Next(0, list.Tracks.Count);
+                }
+                while (nextIndex == list.LastPlayedIndex && list.Tracks.Count > 1);
+            }
+            else if (mode == TrackList.Order.EntirelyRandom)
             {
                 nextIndex = random.Next(0, list.Tracks.Count);
             }
-            while (nextIndex == list.LastPlayedIndex && list.Tracks.Count > 1);
+            else
+            {
+                throw new InvalidOperationException("Unknown track list order type");
+            }
 
             PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex], list.TrackBus);
             list.LastPlayedIndex = nextIndex;
@@ -411,13 +443,10 @@ public class Jukebox : Node
 
     private void OnCategoryEnded()
     {
-        if (previouslyPlayedCategory == null)
-            return;
-
         var category = previouslyPlayedCategory;
 
         // Store continue positions
-        if (category.Return == MusicCategory.ReturnType.Continue)
+        if (category?.Return == MusicCategory.ReturnType.Continue)
         {
             var activeTracks = PlayingTracks;
 

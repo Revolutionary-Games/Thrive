@@ -53,7 +53,16 @@ public class Invoke : Node
         // Run the temp list actions first to make sure that their Perform calls would work
         foreach (var action in tempActionList)
         {
-            action.Invoke();
+            // TODO: would be nice to have a more explicit system to skip already disposed objects from being in the
+            // invoke queue. https://github.com/Revolutionary-Games/Thrive/issues/2477
+            try
+            {
+                action.Invoke();
+            }
+            catch (ObjectDisposedException e)
+            {
+                GD.PrintErr("An invoke target is already disposed: ", e);
+            }
         }
 
         tempActionList.Clear();
@@ -61,7 +70,14 @@ public class Invoke : Node
         // And then run the actions that are allowed to run as soon as possible
         while (queuedInvokes.TryTake(out Action action))
         {
-            action.Invoke();
+            try
+            {
+                action.Invoke();
+            }
+            catch (ObjectDisposedException e)
+            {
+                GD.PrintErr("An invoke target is already disposed: ", e);
+            }
         }
     }
 }

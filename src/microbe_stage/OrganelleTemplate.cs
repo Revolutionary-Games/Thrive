@@ -13,17 +13,25 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     [JsonProperty]
     public readonly OrganelleDefinition Definition;
 
-    public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation)
+    public OrganelleTemplate(OrganelleDefinition definition, Hex location, int rotation, int numberOfTimesMoved = 0)
     {
         Definition = definition;
         Position = location;
         Orientation = rotation;
+        NumberOfTimesMoved = numberOfTimesMoved;
     }
 
     /// <summary>
     /// Used to flag whether this Organelle was placed during the current editor session.
     /// </summary>
     public bool PlacedThisSession { get; set; }
+
+    public int NumberOfTimesMoved { get; set; }
+
+    /// <summary>
+    ///   Used to flag whether this Organelle was moved during the current editor session.
+    /// </summary>
+    public bool MovedThisSession => NumberOfTimesMoved > 0;
 
     public Hex Position { get; set; }
 
@@ -41,6 +49,6 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
 
     public object Clone()
     {
-        return new OrganelleTemplate(Definition, Position, Orientation);
+        return new OrganelleTemplate(Definition, Position, Orientation, NumberOfTimesMoved);
     }
 }

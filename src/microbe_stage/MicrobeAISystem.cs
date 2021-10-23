@@ -17,6 +17,9 @@ public class MicrobeAISystem
 
     public void Process(float delta)
     {
+        if (CheatManager.NoAI)
+            return;
+
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.AI_GROUP);
 
         // TODO: it would be nice to only rebuild these lists if some AI think interval has elapsed and these are needed

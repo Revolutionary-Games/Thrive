@@ -1,0 +1,549 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/VersionNumber.cs" type="Script" id=5]
+[ext_resource path="res://src/general/MainMenu.cs" type="Script" id=6]
+[ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
+[ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/gui_common/LicensesDisplay.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "MenuSlide"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SwitchMenu"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuContainers/Menus:anchor_top")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ 0.368, 0.45, 0.368 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MenuContainers/Menus:anchor_bottom")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 2, 0.5, 1 ),
+"update": 0,
+"values": [ 1.0, 0.45, 1.0 ]
+}
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 6 )
+__meta__ = {
+"_editor_description_": "The root and controller for the main menu"
+}
+ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
+MenuBackgrounds = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
+NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
+FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor")
+CreditsContainerPath = NodePath("CreditsView")
+CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
+LicensesDisplayPath = NodePath("LicensesView")
+GLES2PopupPath = NodePath("GLES2Popup")
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "Randomizeable background"
+}
+
+[node name="MenuContainers" type="Node" parent="."]
+__meta__ = {
+"_editor_description_": "The UI for the main menu is contained here"
+}
+
+[node name="LogoCenterContainer" type="CenterContainer" parent="MenuContainers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = -60.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "Centering fo the Thrive logo"
+}
+
+[node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
+margin_left = 556.0
+margin_top = 66.0
+margin_right = 723.0
+margin_bottom = 234.0
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menus" type="Control" parent="MenuContainers"]
+anchor_top = 0.368
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_clip_content = true
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainers/Menus"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -227.5
+margin_right = 640.0
+margin_bottom = 227.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
+"MenuItem",
+]]
+margin_right = 1280.0
+margin_bottom = 455.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 515.0
+margin_right = 765.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "NEW_GAME"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="LoadGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 515.0
+margin_top = 50.0
+margin_right = 765.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "LOAD_GAME"
+
+[node name="Options" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 515.0
+margin_top = 100.0
+margin_right = 765.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "OPTIONS"
+
+[node name="Tools" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 515.0
+margin_top = 150.0
+margin_right = 765.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "TOOLS"
+
+[node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 515.0
+margin_top = 200.0
+margin_right = 765.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "VIEW_SOURCE_CODE"
+
+[node name="Extras" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 515.0
+margin_top = 250.0
+margin_right = 765.0
+margin_bottom = 290.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "EXTRAS"
+
+[node name="Credits" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 515.0
+margin_top = 300.0
+margin_right = 765.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "CREDITS"
+
+[node name="Quit" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 515.0
+margin_top = 350.0
+margin_right = 765.0
+margin_bottom = 390.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "QUIT"
+
+[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
+"MenuItem",
+]]
+visible = false
+margin_right = 1280.0
+margin_bottom = 455.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FreebuildEditor" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 502.0
+margin_right = 777.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "MICROBE_FREEBUILD_EDITOR"
+
+[node name="unknown" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 515.0
+margin_top = 50.0
+margin_right = 765.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+disabled = true
+text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="unknown2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 515.0
+margin_top = 100.0
+margin_right = 765.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+disabled = true
+text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="unknown3" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 515.0
+margin_top = 150.0
+margin_right = 765.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+disabled = true
+text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 515.0
+margin_top = 200.0
+margin_right = 765.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "BACK"
+
+[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
+"MenuItem",
+]]
+visible = false
+margin_right = 1280.0
+margin_bottom = 455.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ArtGallery" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 502.0
+margin_right = 777.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+disabled = true
+text = "ART_GALLERY"
+
+[node name="Licenses" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 515.0
+margin_top = 50.0
+margin_right = 765.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "LICENSES"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="unknown2" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 515.0
+margin_top = 100.0
+margin_right = 765.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+disabled = true
+text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="unknown3" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 515.0
+margin_top = 150.0
+margin_right = 765.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+disabled = true
+text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 515.0
+margin_top = 200.0
+margin_right = 765.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "BACK"
+
+[node name="OptionsMenu" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="SaveManagerGUI" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="CreditsView" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CreditsScroll" parent="CreditsView" instance=ExtResource( 11 )]
+AutoStart = false
+
+[node name="Back" type="Button" parent="CreditsView"]
+anchor_top = 0.931
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 4.67993
+margin_right = -1125.0
+margin_bottom = -5.00006
+rect_min_size = Vector2( 150, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LicensesView" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="LicensesView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LicensesView/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1270.0
+margin_bottom = 710.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LicensesDisplay" parent="LicensesView/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1260.0
+margin_bottom = 656.0
+size_flags_vertical = 3
+
+[node name="Back" type="Button" parent="LicensesView/MarginContainer/VBoxContainer"]
+margin_top = 660.0
+margin_right = 150.0
+margin_bottom = 700.0
+rect_min_size = Vector2( 150, 40 )
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VersionNumber" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -298.0
+margin_top = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+text = "x.y.z"
+align = 2
+valign = 2
+clip_text = true
+max_lines_visible = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="GUIAnimations" type="AnimationPlayer" parent="."]
+anims/MenuSlide = SubResource( 1 )
+
+[node name="GLES2Popup" type="AcceptDialog" parent="."]
+margin_right = 500.0
+margin_bottom = 78.0
+rect_min_size = Vector2( 500, 0 )
+theme = ExtResource( 1 )
+window_title = "GLES2_MODE_WARNING"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogText" type="Label" parent="GLES2Popup"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 490.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+text = "GLES2_MODE_WARNING_TEXT"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Options" to="." method="OptionsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Tools" to="." method="ToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/ViewSourceCode" to="." method="ViewSourceCodePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Extras" to="." method="ExtrasPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Credits" to="." method="CreditsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Quit" to="." method="QuitPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
+[connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
+[connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
+[connection signal="pressed" from="LicensesView/MarginContainer/VBoxContainer/Back" to="." method="OnReturnFromLicenses"]

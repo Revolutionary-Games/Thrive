@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,9 @@ public class AutoEvoRun
     /// </summary>
     private readonly Queue<IRunStep> runSteps = new Queue<IRunStep>();
 
-    private volatile RunStage state = RunStage.GATHERING_INFO;
+    private readonly List<Task> concurrentStepTasks = new List<Task>();
+
+    private volatile RunStage state = RunStage.GatheringInfo;
 
     private bool started;
     private volatile bool running;
@@ -51,17 +54,17 @@ public class AutoEvoRun
         ///   On the first step(s) all the data is loaded (if there is a lot then it is split into multiple steps) and
         ///   the total number of steps is calculated
         /// </summary>
-        GATHERING_INFO,
+        GatheringInfo,
 
         /// <summary>
         ///   Steps are being executed
         /// </summary>
-        STEPPING,
+        Stepping,
 
         /// <summary>
         ///   All the steps are done and the result is written
         /// </summary>
-        ENDED,
+        Ended,
     }
 
     /// <summary>
@@ -84,6 +87,11 @@ public class AutoEvoRun
 
     public bool Aborted { get => aborted; set => aborted = value; }
 
+    /// <summary>
+    ///   The total duration auto-evo processing took
+    /// </summary>
+    public TimeSpan? RunDuration { get; private set; }
+
     public float CompletionFraction
     {
         get
@@ -100,6 +108,11 @@ public class AutoEvoRun
     public int CompleteSteps => Thread.VolatileRead(ref completeSteps);
 
     public bool WasSuccessful => Finished && !Aborted;
+
+    /// <summary>
+    ///   If true the auto evo uses all available executor threads by running more concurrent concurrentStepTasks
+    /// </summary>
+    public bool FullSpeed { get; set; }
 
     /// <summary>
     ///   a string describing the status of the simulation For example "21% done. 21/100 steps."
@@ -125,7 +138,7 @@ public class AutoEvoRun
 
                 // {0:F1}% done. {1:n0}/{2:n0} steps.
                 return string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("AUTOEVO_STEPS_DONE"),
+                    TranslationServer.Translate("AUTO-EVO_STEPS_DONE"),
                     percentage, CompleteSteps, total);
             }
 
@@ -270,9 +283,9 @@ public class AutoEvoRun
         {
             // entry.Value is the amount, Item2 is the reason string
             builder.Append(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("AUTOEVO_POPULATION_CHANGED"),
+                TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED"),
                 entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
-            builder.Append("\n");
+            builder.Append('\n');
         }
 
         return builder.ToString();
@@ -283,6 +296,9 @@ public class AutoEvoRun
     /// </summary>
     private void Run()
     {
+        var timer = new Stopwatch();
+        timer.Start();
+
         Running = true;
 
         bool complete = false;
@@ -302,6 +318,8 @@ public class AutoEvoRun
 
         Running = false;
         Finished = true;
+
+        RunDuration = timer.Elapsed;
     }
 
     /// <summary>
@@ -313,31 +331,57 @@ public class AutoEvoRun
     {
         switch (state)
         {
-            case RunStage.GATHERING_INFO:
+            case RunStage.GatheringInfo:
                 GatherInfo();
 
                 // +2 is for this step and the result apply step
                 totalSteps = runSteps.Sum(step => step.TotalSteps) + 2;
 
                 Interlocked.Increment(ref completeSteps);
-                state = RunStage.STEPPING;
+                state = RunStage.Stepping;
                 return false;
-            case RunStage.STEPPING:
+            case RunStage.Stepping:
                 if (runSteps.Count < 1)
                 {
                     // All steps complete
-                    state = RunStage.ENDED;
+                    state = RunStage.Ended;
                 }
                 else
                 {
-                    if (runSteps.Peek().RunStep(results))
-                        runSteps.Dequeue();
+                    if (FullSpeed)
+                    {
+                        // Try to use extra threads to speed this up
+                        // If we ever want to use background processing in a loading screen to do something time
+                        // sensitive while auto-evo runs this value needs to be reduced
+                        int maxTasksAtOnce = 1000;
 
-                    Interlocked.Increment(ref completeSteps);
+                        while (runSteps.Peek()?.CanRunConcurrently == true && maxTasksAtOnce > 0)
+                        {
+                            var step = runSteps.Dequeue();
+
+                            concurrentStepTasks.Add(new Task(() => RunSingleStepToCompletion(step)));
+                            --maxTasksAtOnce;
+                        }
+
+                        if (concurrentStepTasks.Count < 1)
+                        {
+                            // No steps that can run concurrently, need to run just a normal run
+                            NormalRunPartOfNextStep();
+                        }
+                        else
+                        {
+                            TaskExecutor.Instance.RunTasks(concurrentStepTasks, true);
+                            concurrentStepTasks.Clear();
+                        }
+                    }
+                    else
+                    {
+                        NormalRunPartOfNextStep();
+                    }
                 }
 
                 return false;
-            case RunStage.ENDED:
+            case RunStage.Ended:
                 // Results are no longer applied here as it's easier to just apply them on the main thread while
                 // moving to the editor
                 Interlocked.Increment(ref completeSteps);
@@ -345,6 +389,31 @@ public class AutoEvoRun
         }
 
         throw new InvalidOperationException("run stage enum value not handled");
+    }
+
+    private void NormalRunPartOfNextStep()
+    {
+        if (runSteps.Peek().RunStep(results))
+            runSteps.Dequeue();
+
+        Interlocked.Increment(ref completeSteps);
+    }
+
+    private void RunSingleStepToCompletion(IRunStep step)
+    {
+        int steps = 0;
+
+        // This condition is here to allow abandoning auto-evo runs quickly
+        while (!Aborted)
+        {
+            ++steps;
+
+            if (step.RunStep(results))
+                break;
+        }
+
+        // Doing the steps counting this way is slightly faster than an increment after each step
+        Interlocked.Add(ref completeSteps, steps);
     }
 
     /// <summary>
@@ -388,11 +457,12 @@ public class AutoEvoRun
         // the player edits their species the other species they are competing
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
-        runSteps.Enqueue(new CalculatePopulation(map));
+        // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
+        runSteps.Enqueue(new CalculatePopulation(map) { CanRunConcurrently = false });
 
         // Adjust auto-evo results for player species
-        // NOTE: currently the population change is random so it is canceled out for
-        // the player
+        // NOTE: currently the player isn't given enough info so the auto-evo is canceled for them. In the future it
+        // will be applied with 80% change strength
         runSteps.Enqueue(new LambdaStep(
             result =>
             {

@@ -15,7 +15,9 @@ public static class SaveHelper
     /// </summary>
     private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
     {
-        "0.5.3",
+        "0.5.3.0",
+        "0.5.3.1",
+        "0.5.5.0-alpha",
     };
 
     public enum SaveOrder
@@ -118,6 +120,12 @@ public static class SaveHelper
     /// <param name="name">The name of the save to load</param>
     public static void LoadSave(string name)
     {
+        if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
+        {
+            GD.PrintErr("Can't load a save while a load or save is in progress");
+            return;
+        }
+
         GD.Print("Starting load of save: ", name);
         new InProgressLoad(name).Start();
     }
@@ -192,22 +200,18 @@ public static class SaveHelper
         {
             case SaveOrder.LastModifiedFirst:
             {
-                using (var file = new File())
-                {
-                    result = result.OrderByDescending(item =>
-                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
-                }
+                using var file = new File();
+                result = result.OrderByDescending(item =>
+                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
 
             case SaveOrder.FirstModifiedFirst:
             {
-                using (var file = new File())
-                {
-                    result = result.OrderBy(item =>
-                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
-                }
+                using var file = new File();
+                result = result.OrderBy(item =>
+                    file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
 
                 break;
             }
@@ -224,16 +228,14 @@ public static class SaveHelper
         int count = 0;
         long totalSize = 0;
 
-        using (var file = new File())
+        using var file = new File();
+        foreach (var save in CreateListOfSaves())
         {
-            foreach (var save in CreateListOfSaves())
+            if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
             {
-                if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
-                {
-                    file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
-                    ++count;
-                    totalSize += file.GetLen();
-                }
+                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                ++count;
+                totalSize += file.GetLen();
             }
         }
 
@@ -245,10 +247,8 @@ public static class SaveHelper
     /// </summary>
     public static void DeleteSave(string saveName)
     {
-        using (var directory = new Directory())
-        {
-            directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
-        }
+        using var directory = new Directory();
+        directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
     }
 
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
@@ -345,11 +345,20 @@ public static class SaveHelper
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
+        if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
+        {
+            GD.PrintErr("Can't start save while a load or save is in progress");
+            return;
+        }
+
         new InProgressSave(type, stateRoot, data =>
                 CreateSaveObject(gameState, data.Type),
             (inProgress, save) =>
             {
                 copyInfoToSave.Invoke(save);
+
+                if (PreventSavingIfExtinct(inProgress, save))
+                    return;
 
                 PerformSave(inProgress, save);
             }, saveName).Start();
@@ -365,6 +374,16 @@ public static class SaveHelper
         };
     }
 
+    private static bool PreventSavingIfExtinct(InProgressSave inProgress, Save save)
+    {
+        if (!save.SavedProperties.GameWorld.PlayerSpecies.IsExtinct)
+            return false;
+
+        inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
+            TranslationServer.Translate("PLAYER_EXTINCT"), false);
+        return true;
+    }
+
     private static void PerformSave(InProgressSave inProgress, Save save)
     {
         try
@@ -374,6 +393,12 @@ public static class SaveHelper
         }
         catch (Exception e)
         {
+            // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+            if (!Constants.CATCH_SAVE_ERRORS)
+#pragma warning disable 162
+                throw;
+#pragma warning restore 162
+
             inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED"),
                 e.ToString());
             return;

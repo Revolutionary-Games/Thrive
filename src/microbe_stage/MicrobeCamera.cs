@@ -52,8 +52,13 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public bool DisableBackgroundParticles;
 
+    [Export]
     [JsonProperty]
     public float InterpolateSpeed = 0.3f;
+
+    [Export]
+    [JsonProperty]
+    public float InterpolateZoomSpeed = 0.3f;
 
     private ShaderMaterial materialToUpdate;
 
@@ -64,6 +69,16 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     ///   How high the camera is above the followed object
     /// </summary>
     public float CameraHeight { get; set; }
+
+    /// <summary>
+    ///   If true zoom speed is adjusted based on the elapsed time.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     At least in my experience this actually makes the zooming feel more laggy -hhyyrylainen
+    ///   </para>
+    /// </remarks>
+    public bool FramerateAdjustZoomSpeed { get; set; }
 
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
@@ -106,6 +121,18 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             ResetHeight();
     }
 
+    public override void _EnterTree()
+    {
+        InputManager.RegisterReceiver(this);
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        InputManager.UnregisterReceiver(this);
+        base._ExitTree();
+    }
+
     public void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -117,24 +144,21 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true)]
+    public void Zoom(float delta, float value)
     {
-        bool changed = false;
-
-        if (@event.IsActionPressed("g_zoom_in", true))
+        if (FramerateAdjustZoomSpeed)
         {
-            CameraHeight -= ZoomSpeed;
-            changed = true;
+            // The constant on next line is for converting from delta corrected value to a good zooming speed.
+            // ZoomSpeed was not adjusted because different speeds were already used in different parts of the game.
+            CameraHeight += ZoomSpeed * value * delta * 165;
+        }
+        else
+        {
+            CameraHeight += ZoomSpeed * value;
         }
 
-        if (@event.IsActionPressed("g_zoom_out", true))
-        {
-            CameraHeight += ZoomSpeed;
-            changed = true;
-        }
-
-        if (changed)
-            CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+        CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 
     /// <summary>
@@ -142,17 +166,25 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// </summary>
     public override void _PhysicsProcess(float delta)
     {
+        var currentFloorPosition = new Vector3(Translation.x, 0, Translation.z);
+        var currentCameraHeight = new Vector3(0, Translation.y, 0);
+        var newCameraHeight = new Vector3(0, CameraHeight, 0);
+
         if (ObjectToFollow != null)
         {
-            var target = ObjectToFollow.Transform.origin + new Vector3(0, CameraHeight, 0);
+            var newFloorPosition = new Vector3(ObjectToFollow.Transform.origin.x, 0, ObjectToFollow.Transform.origin.z);
 
-            Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
+            var target = currentFloorPosition.LinearInterpolate(newFloorPosition, InterpolateSpeed)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
+
+            Translation = target;
         }
         else
         {
-            var target = new Vector3(Translation.x, CameraHeight, Translation.z);
+            var target = new Vector3(Translation.x, 0, Translation.z)
+                + currentCameraHeight.LinearInterpolate(newCameraHeight, InterpolateZoomSpeed);
 
-            Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
+            Translation = target;
         }
 
         if (BackgroundPlane != null)
@@ -160,7 +192,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             var target = new Vector3(0, 0, -15 - CameraHeight);
 
             BackgroundPlane.Translation = BackgroundPlane.Translation.LinearInterpolate(
-                target, InterpolateSpeed);
+                target, InterpolateZoomSpeed);
         }
 
         cursorDirty = true;
@@ -178,7 +210,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
         }
 
-        BackgroundParticles?.QueueFree();
+        BackgroundParticles?.DetachAndQueueFree();
 
         if (!DisableBackgroundParticles)
         {
@@ -193,7 +225,15 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     {
         var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
 
-        var mousePos = GetViewport().GetMousePosition();
+        var viewPort = GetViewport();
+
+        if (viewPort == null)
+        {
+            GD.PrintErr("Camera is not related to a viewport, can't update mouse world position");
+            return;
+        }
+
+        var mousePos = viewPort.GetMousePosition();
 
         var intersection = worldPlane.IntersectRay(ProjectRayOrigin(mousePos),
             ProjectRayNormal(mousePos));

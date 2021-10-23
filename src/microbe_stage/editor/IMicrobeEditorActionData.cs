@@ -33,6 +33,26 @@ public class RemoveActionData : IMicrobeEditorActionData
 }
 
 [JSONAlwaysDynamicType]
+public class MoveActionData : IMicrobeEditorActionData
+{
+    public OrganelleTemplate Organelle;
+    public Hex OldLocation;
+    public Hex NewLocation;
+    public int OldRotation;
+    public int NewRotation;
+
+    public MoveActionData(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
+        int newRotation)
+    {
+        Organelle = organelle;
+        OldLocation = oldLocation;
+        NewLocation = newLocation;
+        OldRotation = oldRotation;
+        NewRotation = newRotation;
+    }
+}
+
+[JSONAlwaysDynamicType]
 public class MembraneActionData : IMicrobeEditorActionData
 {
     public MembraneType OldMembrane;
@@ -42,6 +62,21 @@ public class MembraneActionData : IMicrobeEditorActionData
     {
         OldMembrane = oldMembrane;
         NewMembrane = newMembrane;
+    }
+}
+
+[JSONAlwaysDynamicType]
+public class BehaviourChangeActionData : IMicrobeEditorActionData
+{
+    public float NewValue;
+    public float OldValue;
+    public BehaviouralValueType Type;
+
+    public BehaviourChangeActionData(float newValue, float oldValue, BehaviouralValueType type)
+    {
+        NewValue = newValue;
+        OldValue = oldValue;
+        Type = type;
     }
 }
 

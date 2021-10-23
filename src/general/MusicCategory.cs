@@ -88,6 +88,11 @@ public class TrackList
         ///   Track order is as specified in the file
         /// </summary>
         Sequential,
+
+        /// <summary>
+        ///   Track order is random (fully random, same item can be played multiple times in a row)
+        /// </summary>
+        EntirelyRandom,
     }
 
     public Type ListType { get; set; } = Type.Concurrent;

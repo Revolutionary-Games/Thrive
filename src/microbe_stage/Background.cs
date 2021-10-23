@@ -49,7 +49,7 @@ public class Background : IRegistryType
             if (!directory.FileExists(resource + ".import"))
             {
                 throw new InvalidRegistryDataException(InternalName, GetType().Name,
-                    "Background contains non-existant image: " + resource);
+                    "Background contains non-existent image: " + resource);
             }
         }
 

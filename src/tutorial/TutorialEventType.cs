@@ -77,4 +77,14 @@ public enum TutorialEventType
     ///   Player redid an action in the editor
     /// </summary>
     MicrobeEditorRedo,
+
+    /// <summary>
+    ///   The player pressed Shift+U to toggle enable unbind mode
+    /// </summary>
+    MicrobePlayerUnbindEnabled,
+
+    /// <summary>
+    ///   The player unbound any cell
+    /// </summary>
+    MicrobePlayerUnbound,
 }

@@ -22,6 +22,9 @@ public class SimulationParameters : Node
     private readonly Dictionary<string, HelpTexts> helpTexts;
     private readonly AutoEvoConfiguration autoEvoConfiguration;
     private readonly List<NamedInputGroup> inputGroups;
+    private readonly Dictionary<string, Gallery> gallery;
+    private readonly TranslationsInfo translationsInfo;
+    private readonly GameCredits gameCredits;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -67,12 +70,24 @@ public class SimulationParameters : Node
         inputGroups = LoadListRegistry<NamedInputGroup>("res://simulation_parameters/common/input_options.json");
 
         autoEvoConfiguration =
-            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/autoevo_parameters.json");
+            LoadDirectObject<AutoEvoConfiguration>("res://simulation_parameters/common/auto-evo_parameters.json");
+
+        gallery = LoadRegistry<Gallery>("res://simulation_parameters/common/gallery.json");
+
+        translationsInfo =
+            LoadDirectObject<TranslationsInfo>("res://simulation_parameters/common/translations_info.json");
+
+        gameCredits =
+            LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
 
         GD.Print("SimulationParameters loading ended");
 
         CheckForInvalidValues();
         ResolveValueRelationships();
+
+        // Apply translations here to ensure that initial translations are correct when the game starts.
+        // This is done this way to allow StartupActions to run before SimulationParameters are loaded
+        ApplyTranslations();
 
         GD.Print("SimulationParameters are good");
     }
@@ -84,6 +99,14 @@ public class SimulationParameters : Node
     public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
     public NameGenerator NameGenerator { get; }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            ApplyTranslations();
+        }
+    }
 
     public OrganelleDefinition GetOrganelleType(string name)
     {
@@ -98,9 +121,24 @@ public class SimulationParameters : Node
         return organelles.Values;
     }
 
+    public bool DoesOrganelleExist(string name)
+    {
+        return organelles.ContainsKey(name);
+    }
+
     public MembraneType GetMembrane(string name)
     {
         return membranes[name];
+    }
+
+    public IEnumerable<MembraneType> GetAllMembranes()
+    {
+        return membranes.Values;
+    }
+
+    public bool DoesMembraneExist(string name)
+    {
+        return membranes.ContainsKey(name);
     }
 
     public Background GetBackground(string name)
@@ -121,6 +159,11 @@ public class SimulationParameters : Node
     public Compound GetCompound(string name)
     {
         return compounds[name];
+    }
+
+    public bool DoesCompoundExist(string name)
+    {
+        return compounds.ContainsKey(name);
     }
 
     /// <summary>
@@ -149,6 +192,21 @@ public class SimulationParameters : Node
     public HelpTexts GetHelpTexts(string name)
     {
         return helpTexts[name];
+    }
+
+    public Gallery GetGallery(string name)
+    {
+        return gallery[name];
+    }
+
+    public TranslationsInfo GetTranslationsInfo()
+    {
+        return translationsInfo;
+    }
+
+    public GameCredits GetCredits()
+    {
+        return gameCredits;
     }
 
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
@@ -182,7 +240,7 @@ public class SimulationParameters : Node
     }
 
     /// <summary>
-    ///   Applies translations to all registry loaded types. Called by Settings whenever the locale is changed
+    ///   Applies translations to all registry loaded types. Called whenever the locale is changed
     /// </summary>
     public void ApplyTranslations()
     {
@@ -195,6 +253,7 @@ public class SimulationParameters : Node
         ApplyRegistryObjectTranslations(musicCategories);
         ApplyRegistryObjectTranslations(helpTexts);
         ApplyRegistryObjectTranslations(inputGroups);
+        ApplyRegistryObjectTranslations(gallery);
     }
 
     private static void CheckRegistryType<T>(Dictionary<string, T> registry)
@@ -239,16 +298,14 @@ public class SimulationParameters : Node
 
     private static string ReadJSONFile(string path)
     {
-        using (var file = new File())
-        {
-            file.Open(path, File.ModeFlags.Read);
-            var result = file.GetAsText();
+        using var file = new File();
+        file.Open(path, File.ModeFlags.Read);
+        var result = file.GetAsText();
 
-            // This might be completely unnecessary
-            file.Close();
+        // This might be completely unnecessary
+        file.Close();
 
-            return result;
-        }
+        return result;
     }
 
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
@@ -301,9 +358,12 @@ public class SimulationParameters : Node
         CheckRegistryType(musicCategories);
         CheckRegistryType(helpTexts);
         CheckRegistryType(inputGroups);
+        CheckRegistryType(gallery);
 
         NameGenerator.Check(string.Empty);
         autoEvoConfiguration.Check(string.Empty);
+        translationsInfo.Check(string.Empty);
+        gameCredits.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()
@@ -324,6 +384,16 @@ public class SimulationParameters : Node
         }
 
         foreach (var entry in membranes)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in compounds)
+        {
+            entry.Value.Resolve();
+        }
+
+        foreach (var entry in gallery)
         {
             entry.Value.Resolve();
         }

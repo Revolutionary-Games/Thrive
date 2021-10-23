@@ -67,6 +67,16 @@ public static class KeyPromptHelper
     }
 
     /// <summary>
+    ///   Mapping of current Theme to the names of blank images, valid values: "Black", "White"
+    /// </summary>
+    public static string BlankTheme => theme switch
+    {
+        "Dark" => "Black",
+        "Light" => "White",
+        _ => theme,
+    };
+
+    /// <summary>
     ///   The current primary input method for showing button prompts with
     /// </summary>
     public static ActiveInputMethod InputMethod
@@ -140,7 +150,7 @@ public static class KeyPromptHelper
     /// </summary>
     public static string GetPathForInvalidKey()
     {
-        return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/Blanks/Blank_{Theme}_Normal.png";
+        return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/Blanks/Blank_{BlankTheme}_Normal.png";
     }
 
     /// <summary>

@@ -1,10 +1,11 @@
-﻿using Godot;
-
+﻿/// <summary>
+///   Interface for all screen transitions.
+/// </summary>
 public interface ITransition
 {
-    Control ControlNode { get; }
-
     bool Skippable { get; set; }
+
+    bool Visible { get; set; }
 
     void OnStarted();
     void OnFinished();

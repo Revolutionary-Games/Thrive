@@ -1,20 +1,24 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# This script first builds using msbuild treating warnings as errors
+# This script first builds using dotnet treating warnings as errors
 # and then runs some custom line length checks
 require 'optparse'
 require 'find'
 require 'digest'
 require 'nokogiri'
 require 'set'
+require 'os'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
+require_relative 'scripts/check_file_list'
+require_relative 'scripts/po_helpers'
+require_relative 'scripts/json_helpers'
 
 MAX_LINE_LENGTH = 120
-DUPLICATE_THRESSHOLD = 110
+DUPLICATE_THRESHOLD = 105
 
 LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
 
@@ -25,15 +29,23 @@ SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
 VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
 DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
 
-ONLY_FILE_LIST = 'files_to_check.txt'
-
 LOCALE_TEMP_SUFFIX = '.temp_check'
-MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
+TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
+NODE_NAME_REGEX = /\[node\s+name="([^"]+)"/.freeze
+NODE_NAME_UPPERCASE_REQUIRED_LENGTH = 25
+NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
+
+CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
+ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
+ASSEMBLY_VERSION_REGEX = /AssemblyVersion\("([\d.]+)"\)/.freeze
+
+REQUIREMENTS_TXT_FILE = 'docker/jsonlint/requirements.txt'
+PIP_BABEL_THRIVE_VERSION = /^Babel-Thrive\s*([\d.]+)/.freeze
+REQUIREMENTS_BABEL_THRIVE_VERSION = /^Babel-Thrive==([\d.]+)$/.freeze
 
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
 OUTPUT_MUTEX = Mutex.new
-MSBUILD_MUTEX = Mutex.new
 
 # Bom bytes
 BOM = [239, 187, 191].freeze
@@ -58,9 +70,6 @@ OptionParser.new do |opts|
   opts.on('-p', '--[no-]parallel', 'Run different checks in parallel (default)') do |b|
     @options[:parallel] = b
   end
-  opts.on('--msbuild MSBUILD', 'Specify msbuild dll to use with jetbrains tools') do |f|
-    @options[:msBuild] = f
-  end
 end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
@@ -69,49 +78,13 @@ info "Starting formatting checks with the following checks: #{@options[:checks]}
 
 # Helper functions
 
-def detect_ms_build_dll
-  msbuild = which 'msbuild'
-
-  unless msbuild
-    OUTPUT_MUTEX.synchronize do
-      puts 'Searched paths:'
-      pathAsArray.each do |p|
-        puts p
-      end
-
-      onError 'msbuild not found in PATH'
-    end
-  end
-
-  File.foreach(msbuild) do |line|
-    match = line.match(%r{/mono\s+.+\s(/.*/MSBuild.dll)\s+})
-
-    next unless match
-
-    dll = match.captures[0]
-
-    info "msbuild dll path detected: #{dll}"
-    return dll
-  end
-
-  onError 'Could not determine MSBuild.dll location, please specify --msbuild ' \
-          'parameter with the correct path'
-end
-
-def ms_build
-  MSBUILD_MUTEX.synchronize do
-    return @options[:msBuild] if @options[:msBuild]
-
-    @options[:msBuild] = detect_ms_build_dll
-  end
-end
-
 def ide_file?(path)
   path =~ %r{/\.vs/} || path =~ %r{/\.idea/}
 end
 
 def explicitly_ignored?(path)
-  path =~ %r{/ThirdParty/}i || path =~ /GlobalSuppressions.cs/ || path =~ %r{/RubySetupSystem/}
+  path =~ %r{/ThirdParty/}i || path =~ %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
+    path =~ %r{/RubySetupSystem/}
 end
 
 def cache?(path)
@@ -120,7 +93,7 @@ end
 
 # Skip some files that would otherwise be processed
 def skip_file?(path)
-  explicitly_ignored?(path) || path =~ %r{^\.\/\.\/} || cache?(path) || ide_file?(path)
+  explicitly_ignored?(path) || path =~ %r{^\./\./} || cache?(path) || ide_file?(path)
 end
 
 def file_type_skipped?(path)
@@ -176,6 +149,62 @@ def process_file?(filepath)
   end
 end
 
+@game_version = nil
+
+def game_version
+  return @game_version if @game_version
+
+  File.foreach(ASSEMBLY_VERSION_FILE, encoding: 'utf-8') do |line|
+    next unless line
+
+    matches = line.match(ASSEMBLY_VERSION_REGEX)
+
+    return @game_version = matches[1] if matches
+  end
+
+  raise 'Could not find AssemblyVersion'
+end
+
+@pip_name = nil
+
+def pip_name
+  return @pip_name if @pip_name
+
+  @pip_name = which 'pip'
+  return @pip_name if @pip_name
+
+  @pip_name = which 'pip3'
+  return @pip_name if @pip_name
+
+  raise 'Could not find pip nor pip3.'
+end
+
+@installed_babel_thrive_version = nil
+
+def installed_babel_thrive_version
+  return @installed_babel_thrive_version if @installed_babel_thrive_version
+
+  _, piplist = runOpen3CaptureOutput pip_name, 'list'
+  matches = piplist.match(PIP_BABEL_THRIVE_VERSION)
+
+  return @installed_babel_thrive_version = matches[1] if matches
+
+  raise 'Could not find Babel-Thrive.'
+end
+
+@required_babel_thrive_version = nil
+
+def required_babel_thrive_version
+  return @required_babel_thrive_version if @required_babel_thrive_version
+
+  requirements = File.read(REQUIREMENTS_TXT_FILE)
+  matches = requirements.match(REQUIREMENTS_BABEL_THRIVE_VERSION)
+
+  return @required_babel_thrive_version = matches[1] if matches
+
+  raise "Could not read required Babel-Thrive verion from #{REQUIREMENTS_TXT_FILE}."
+end
+
 def file_begins_with_bom(path)
   raw_data = File.binread(path, 3)
 
@@ -193,6 +222,13 @@ def handle_gd_file(_path)
   true
 end
 
+def handle_mo_file(_path)
+  OUTPUT_MUTEX.synchronize do
+    error '.mo files are not allowed'
+  end
+  true
+end
+
 def handle_cs_file(path)
   errors = false
 
@@ -204,7 +240,7 @@ def handle_cs_file(path)
     end
   end
 
-  original = File.read(path)
+  original = File.read(path, encoding: 'utf-8')
   line_number = 0
 
   OUTPUT_MUTEX.synchronize do
@@ -235,16 +271,16 @@ def handle_cs_file(path)
 end
 
 def handle_json_file(path)
-  digest_before = Digest::MD5.hexdigest File.read(path)
+  digest_before = Digest::MD5.hexdigest File.read(path, encoding: 'utf-8')
 
-  if runSystemSafe('jsonlint', '-i', path, '--indent', '    ') != 0
+  unless jsonlint_on_file(path)
     OUTPUT_MUTEX.synchronize do
       error 'JSONLint failed on file'
     end
     return true
   end
 
-  digest_after = Digest::MD5.hexdigest File.read(path)
+  digest_after = Digest::MD5.hexdigest File.read(path, encoding: 'utf-8')
 
   if digest_before != digest_after
     OUTPUT_MUTEX.synchronize do
@@ -259,7 +295,7 @@ end
 def handle_shader_file(path)
   errors = false
 
-  File.foreach(path).with_index do |line, line_number|
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
     if line.include? "\t"
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} contains a tab"
@@ -284,7 +320,7 @@ end
 def handle_tscn_file(path)
   errors = false
 
-  File.foreach(path).with_index do |line, line_number|
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
     # For some reason this reports 1 too high
     length = line.length - 1
 
@@ -300,6 +336,38 @@ def handle_tscn_file(path)
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} contains embedded font. "\
               "Don't embed fonts in scenes, instead place font resources in a separate .tres"
+        errors = true
+      end
+    end
+
+    matches = line.match(NODE_NAME_REGEX)
+
+    if matches
+      name = matches[1]
+
+      if name =~ /\s/
+        error "Line #{line_number + 1} contains a name (#{name}) that has a space."
+        errors = true
+      end
+
+      if name.include? '_'
+        error "Line #{line_number + 1} contains a name (#{name}) that has an underscore."
+        errors = true
+      end
+
+      # Single word names can be without upper case letters so we use a length heuristic here
+      if name.length > NODE_NAME_UPPERCASE_REQUIRED_LENGTH && name.downcase == name
+        error "Line #{line_number + 1} contains a name (#{name}) that has no capital letters."
+        errors = true
+      end
+
+      # Short acronyms are ignored here if the name starts with a capital
+      # TODO: in the future might only want to allow node names that start with a
+      # lowercase letter
+      if name.upcase == name && (name.length > NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH ||
+                                 name !~ /^[A-Z]/)
+        error "Line #{line_number + 1} contains a name (#{name}) that doesn't " \
+              "contain lowercase letters (and isn't a short acronym)."
         errors = true
       end
     end
@@ -332,6 +400,39 @@ def handle_csproj_file(path)
   errors
 end
 
+def handle_export_presets(path)
+  errors = false
+  found = false
+
+  required_version = game_version
+
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    matches = line.match(CFG_VERSION_LINE)
+
+    if matches
+
+      found = true
+
+      if matches[1] != required_version
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has incorrect version. "\
+                "#{matches[1]} is not equal to #{required_version}"
+          errors = true
+        end
+      end
+    end
+  end
+
+  unless found
+    OUTPUT_MUTEX.synchronize do
+      error 'No line specifying version numbers was found'
+      errors = true
+    end
+  end
+
+  errors
+end
+
 def handle_po_file(path)
   errors = false
 
@@ -344,6 +445,22 @@ def handle_po_file(path)
   msg_ids = Set[]
 
   File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if is_english && line.match(FUZZY_TRANSLATION_REGEX)
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} has fuzzy (marked needs changes) translation, not allowed for en"
+        errors = true
+      end
+    end
+
+    # Could only check in headers, but checking everywhere just adds
+    # only 200 milliseconds to total runtime so all lines are checked
+    if line.match TRAILING_SPACE
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} has trailing space"
+        errors = true
+      end
+    end
+
     matches = line.match(MSG_ID_REGEX)
 
     if matches
@@ -454,6 +571,10 @@ def handle_file(path)
     handle_tscn_file path
   elsif path =~ /\.po$/
     handle_po_file path
+  elsif path =~ /\.mo$/
+    handle_mo_file path
+  elsif path =~ /export_presets.cfg$/
+    handle_export_presets path
   else
     false
   end
@@ -465,12 +586,12 @@ def run_compile
   # Make sure in analysis mode before running build
   perform_analysis_mode_check true, quiet: true
 
-  status, output = runOpen3CaptureOutput('msbuild', 'Thrive.sln', '/t:Clean,Build',
+  status, output = runOpen3CaptureOutput('dotnet', 'build', 'Thrive.sln', '/t:Clean,Build',
                                          '/warnaserror')
 
   if status != 0
     OUTPUT_MUTEX.synchronize  do
-      info 'Build output from msbuild:'
+      info 'Build output from dotnet:'
       puts output
       error "\nBuild generated warnings or errors."
     end
@@ -487,15 +608,15 @@ def run_files
     begin
       if handle_file path
         OUTPUT_MUTEX.synchronize  do
-          puts 'Problems found in file (see above): ' + path
+          puts "Problems found in file (see above): #{path}"
           puts ''
         end
         issues_found = true
       end
     rescue StandardError => e
       OUTPUT_MUTEX.synchronize do
-        puts 'Failed to handle path: ' + path
-        puts 'Error: ' + e.message
+        puts "Failed to handle path: #{path}"
+        puts "Error: #{e.message}"
       end
       raise e
     end
@@ -532,9 +653,7 @@ end
 def run_inspect_code
   return if skip_jetbrains?
 
-  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
-
-  params.append "--toolset-path=#{ms_build}" if OS.linux?
+  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml', '--build']
 
   params.append "--include=#{@includes.join(';')}" if @includes
 
@@ -582,17 +701,15 @@ end
 def run_cleanup_code
   return if skip_jetbrains?
 
-  old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+  old_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
   params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
-
-  params.append "--toolset-path=#{ms_build}" if OS.linux?
 
   params.append "--include=#{@includes.join(';')}" if @includes
 
   runOpen3Checked(*params)
 
-  new_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+  new_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
   return if new_diff == old_diff
 
@@ -614,15 +731,11 @@ def run_duplicate_finder
   return if skip_jetbrains?
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
-            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=true']
+            "--discard-cost=#{DUPLICATE_THRESHOLD}", '--discard-literals=false',
+            '--exclude-by-comment="NO_DUPLICATE_CHECK"', 'Thrive.csproj']
 
-  params.append "--toolset-path=#{ms_build}" if OS.linux?
-
-  if @includes
-    params += @includes.select { |item| item =~ /\.cs$/ }.uniq
-  else
-    params.append 'Thrive.sln'
-  end
+  # Duplicate code needs to always process all files to detect code
+  # from an existing file being duplicated in a new file
 
   runOpen3Checked(*params)
 
@@ -669,21 +782,6 @@ def cleanup_temp_check_locales
   end
 end
 
-def find_next_msg_id(reader)
-  loop do
-    line = reader.gets
-
-    if line.nil?
-      # File ended
-      return nil
-    end
-
-    matches = line.match(MSG_ID_REGEX)
-
-    return matches[1] if matches
-  end
-end
-
 def run_localization_checks
   cleanup_temp_check_locales
 
@@ -712,6 +810,19 @@ def run_localization_checks
 
     File.open(original, encoding: 'utf-8') do |original_reader|
       File.open(updated, encoding: 'utf-8') do |updated_reader|
+        # Check that headers are in the right order
+        original_header_order = read_gettext_header_order original_reader
+        updated_header_order = read_gettext_header_order updated_reader
+
+        if original_header_order != updated_header_order
+          OUTPUT_MUTEX.synchronize do
+            puts "Headers are in wrong order in #{original}"
+            error "Header order should be: #{original_header_order}, but " \
+                  "it is: #{updated_header_order}"
+            issues_found = true
+          end
+        end
+
         loop do
           original_message = find_next_msg_id original_reader
           updated_message = find_next_msg_id updated_reader
@@ -740,7 +851,17 @@ def run_localization_checks
   return unless issues_found
 
   OUTPUT_MUTEX.synchronize do
-    error 'Translations are not up to date. Please rerun scripts/update_localization.rb'
+    error 'Translations are not up to date.'
+    puts "Babel-Thrive version installed: #{installed_babel_thrive_version}; "\
+          "required: #{required_babel_thrive_version}"
+    if installed_babel_thrive_version == required_babel_thrive_version
+      warning 'Please verify your Babel-Thrive version meets the requirement '\
+            'and rerun "scripts/update_localization.rb"'
+    else
+      warning 'Mismatching Babel-Thrive version detected. Please update '\
+              '"pip install -r docker/jsonlint/requirements.txt --user" '\
+              'and rerun "scripts/update_localization.rb"'
+    end
   end
 
   exit 2
@@ -761,6 +882,7 @@ run_check = proc { |check|
     run_localization_checks
   else
     OUTPUT_MUTEX.synchronize do
+      puts "Valid checks: #{VALID_CHECKS}"
       onError "Unknown check type: #{check}"
     end
   end

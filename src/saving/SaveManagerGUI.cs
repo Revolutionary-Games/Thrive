@@ -37,6 +37,9 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath DeleteOldConfirmDialogPath;
 
+    [Export]
+    public NodePath SaveDirectoryWarningDialogPath;
+
     private SaveList saveList;
     private Label selectedItemCount;
     private Label totalSaveCount;
@@ -46,6 +49,7 @@ public class SaveManagerGUI : Control
     private Button deleteOldButton;
     private ConfirmationDialog deleteSelectedConfirmDialog;
     private ConfirmationDialog deleteOldConfirmDialog;
+    private AcceptDialog saveDirectoryWarningDialog;
 
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
@@ -88,8 +92,9 @@ public class SaveManagerGUI : Control
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
         deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
         deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
+        saveDirectoryWarningDialog = GetNode<AcceptDialog>(SaveDirectoryWarningDialogPath);
 
-        saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshList));
+        saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
 
     public override void _Process(float delta)
@@ -142,10 +147,7 @@ public class SaveManagerGUI : Control
 
     private void RefreshList()
     {
-        selectedDirty = true;
-
         saveList.Refresh();
-        RefreshSaveCounts();
     }
 
     private void RefreshSaveCounts()
@@ -153,6 +155,7 @@ public class SaveManagerGUI : Control
         if (refreshing)
             return;
 
+        selectedDirty = true;
         saveCountRefreshed = true;
         refreshing = true;
 
@@ -196,18 +199,19 @@ public class SaveManagerGUI : Control
 
     private void OpenSaveDirectoryPressed()
     {
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER));
+        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER)) == Error.FileNotFound)
+            saveDirectoryWarningDialog.PopupCenteredShrink();
     }
 
     private void DeleteSelectedButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        deleteSelectedConfirmDialog.DialogText =
+        deleteSelectedConfirmDialog.GetNode<Label>("DialogText").Text =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
                 Selected.Count);
-        deleteSelectedConfirmDialog.PopupCenteredMinsize();
+        deleteSelectedConfirmDialog.PopupCenteredShrink();
     }
 
     private void DeleteOldButtonPressed()
@@ -215,11 +219,11 @@ public class SaveManagerGUI : Control
         int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
-        deleteOldConfirmDialog.DialogText =
+        deleteOldConfirmDialog.GetNode<Label>("DialogText").Text =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount);
-        deleteOldConfirmDialog.PopupCenteredMinsize();
+        deleteOldConfirmDialog.PopupCenteredShrink();
     }
 
     private void OnConfirmDeleteSelected()
@@ -252,7 +256,6 @@ public class SaveManagerGUI : Control
     private void OnBackButton()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
         EmitSignal(nameof(OnBackPressed));
     }
 }

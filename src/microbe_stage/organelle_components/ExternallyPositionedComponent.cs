@@ -15,7 +15,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     /// <summary>
     ///   Last calculated position, Used to not have to recreate the physics all the time
     /// </summary>
-    protected Vector3 lastCalculatedPos = new Vector3(0, 0, 0);
+    protected Vector3 lastCalculatedPosition = new Vector3(0, 0, 0);
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
@@ -40,10 +40,10 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePos;
         Vector3 exit = middle - delta;
-        var membraneCoords = organelle.ParentMicrobe.Membrane.GetExternalOrganelle(exit.x,
+        var membraneCoords = organelle.ParentMicrobe.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
             exit.z);
 
-        if (!membraneCoords.Equals(lastCalculatedPos) || NeedsUpdateAnyway())
+        if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
             float angle = Mathf.Atan2(-delta.z, delta.x);
             if (angle < 0)
@@ -57,8 +57,13 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
             OnPositionChanged(rotation, angle, membraneCoords);
 
-            lastCalculatedPos = membraneCoords;
+            lastCalculatedPosition = membraneCoords;
         }
+    }
+
+    public virtual void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset, Vector3 masterRotation,
+        Vector3 parentRotation)
+    {
     }
 
     protected virtual void CustomAttach()

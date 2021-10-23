@@ -8,13 +8,8 @@ using Newtonsoft.Json;
 ///   Object that stores compound amounts and capacities
 /// </summary>
 [UseThriveSerializer]
-public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
+public class CompoundBag : ICompoundStorage
 {
-    /// <summary>
-    ///   The max amount of any compound that can be stored
-    /// </summary>
-    public float Capacity;
-
     [JsonProperty]
     private readonly HashSet<Compound> usefulCompounds = new HashSet<Compound>();
 
@@ -27,6 +22,9 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         Capacity = capacity;
     }
 
+    [JsonProperty]
+    public float Capacity { get; set; }
+
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
     ///   Except if you want to ignore capacity...
@@ -34,9 +32,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     [JsonProperty]
     public Dictionary<Compound, float> Compounds { get; private set; } = new Dictionary<Compound, float>();
 
-    /// <summary>
-    ///   Returns the stored amount of the compound in this
-    /// </summary>
     public float GetCompoundAmount(Compound compound)
     {
         if (Compounds.ContainsKey(compound))
@@ -45,10 +40,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         return 0.0f;
     }
 
-    /// <summary>
-    ///   Takes some compound out of this bag. Returns the amount
-    ///   taken, which can be less than the requested amount.
-    /// </summary>
     public float TakeCompound(Compound compound, float amount)
     {
         if (!Compounds.ContainsKey(compound) || amount <= 0.0f)
@@ -60,10 +51,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         return amount;
     }
 
-    /// <summary>
-    ///   Adds some compound amount to this. Returns the amount that
-    ///   didn't fit due to reached capacity.
-    /// </summary>
     public float AddCompound(Compound compound, float amount)
     {
         if (amount <= 0.0f)
@@ -75,14 +62,7 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
 
         Compounds[compound] = newAmount;
 
-        float didntFit = amount - newAmount;
-
-        if (didntFit > 0.0f)
-        {
-            return didntFit;
-        }
-
-        return 0.0f;
+        return newAmount - amount;
     }
 
     public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
@@ -95,9 +75,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         return GetEnumerator();
     }
 
-    /// <summary>
-    ///   Clears the held compounds
-    /// </summary>
     public void ClearCompounds()
     {
         Compounds.Clear();
@@ -138,9 +115,6 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         return usefulCompounds.Contains(compound);
     }
 
-    /// <summary>
-    ///   Makes sure no compound amount is negative
-    /// </summary>
     public void ClampNegativeCompoundAmounts()
     {
         var negative = Compounds.Where(c => c.Value < 0.0f);

@@ -43,6 +43,11 @@ When creating a pull request, include the "closes" or "fixes" keyword followed
 by the issue number that will be closed when the pull request is
 accepted. Example: `closes #1234`.
 
+Before marking your PR as ready for review (not a draft) please work
+through the PR testing checklist to not waste the reviewer's time if
+they have to find basic issues in your PR:
+https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
+
 If you need to alter code for an issue, don't create a new pull request.
 Existing pull requests can be updated. Simply push further commits to
 the same branch.
@@ -56,6 +61,11 @@ code to disable your changes. Note: currently we don't have an options
 menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
 
+If your PR breaks save compatibility (older saves no longer being
+loadable) you should include a save upgrader in your PR. Note that you
+may need to introduce a new sub version / bump the version number to
+make it possible to trigger the save upgrader.
+
 ## Translating the game
 
 You can find the necessary informations about how to translate the game [here](doc/working_with_translations.md).
@@ -64,6 +74,28 @@ You can find the necessary informations about how to translate the game [here](d
 
 The planning board contains all issues and pull requests grouped
 by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
+
+## Continuous integration checks
+
+We use continuous integration (CI) systems to run automatic checks on
+code before accepting it. After making a pull request please make sure
+the CI jobs finish correctly on your code and fix any style
+etc. errors they detect. Note that sometimes the CI jobs can
+sporadically fail without you being at fault. If you are unsure if
+that's the case (even after using the code checks locally), you can
+ask someone from the team to look at the situation.
+
+To view CI build logs and other information, press the "details" button on Github in the 
+checks section.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/viewing_ci_results.png" alt="rider godot plugin">
+
+When updating Godot import settings (meaning changing the settings for
+an existing asset, if you just added a new one, you don't need to do
+this), or adding new C# dependencies, you should update the cache
+versions for CI. To do this you need to increment the relevant numbers
+by 1 in `CIConfiguration.yml`. If you are unsure which cache names to
+increment, please ask.
 
 ## Getting help
 

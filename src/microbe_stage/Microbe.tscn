@@ -32,6 +32,7 @@ can_sleep = false
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
+axis_lock_angular_z = true
 linear_damp = 2.46
 script = ExtResource( 5 )
 __meta__ = {
@@ -45,6 +46,12 @@ MaterialToEdit = SubResource( 1 )
 [node name="OrganelleParent" type="Spatial" parent="."]
 
 [node name="EngulfAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+unit_size = 50.0
+max_distance = 100.0
+bus = "SFX"
+
+[node name="BindingAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 unit_size = 50.0
 max_distance = 100.0

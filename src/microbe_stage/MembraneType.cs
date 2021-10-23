@@ -5,6 +5,14 @@
 /// </summary>
 public class MembraneType : IRegistryType
 {
+    /// <summary>
+    ///   User readable name
+    /// </summary>
+    [TranslateFrom("untranslatedName")]
+    public string Name;
+
+    public string IconPath;
+    public string AlbedoTexture;
     public string NormalTexture;
     public string DamagedTexture;
     public float MovementFactor = 1.0f;
@@ -14,25 +22,34 @@ public class MembraneType : IRegistryType
     public float PhysicalResistance = 1.0f;
     public float ToxinResistance = 1.0f;
     public int EditorCost = 50;
-    public bool CellWall = false;
+    public bool CellWall;
+    public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
 
+    public Texture LoadedAlbedoTexture;
     public Texture LoadedNormalTexture;
     public Texture LoadedDamagedTexture;
+
+    public Texture LoadedIcon;
+
+#pragma warning disable 169 // Used through reflection
+    private string untranslatedName;
+#pragma warning restore 169
 
     public string InternalName { get; set; }
 
     public void Check(string name)
     {
-        if (string.IsNullOrEmpty(NormalTexture) || string.IsNullOrEmpty(DamagedTexture))
+        if (string.IsNullOrEmpty(AlbedoTexture) || string.IsNullOrEmpty(NormalTexture)
+            || string.IsNullOrEmpty(DamagedTexture))
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Empty normal or damaged texture");
+                "Empty albedo, normal, or damaged texture");
         }
 
         var directory = new Directory();
 
-        string[] membranes = { NormalTexture, DamagedTexture };
+        string[] membranes = { AlbedoTexture, NormalTexture, DamagedTexture };
 
         foreach (var resource in membranes)
         {
@@ -40,9 +57,11 @@ public class MembraneType : IRegistryType
             if (!directory.FileExists(resource + ".import"))
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Membrane uses non-existant image: " + resource);
+                    "Membrane uses non-existent image: " + resource);
             }
         }
+
+        TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
     /// <summary>
@@ -51,11 +70,18 @@ public class MembraneType : IRegistryType
     /// </summary>
     public void Resolve()
     {
+        LoadedAlbedoTexture = GD.Load<Texture>(AlbedoTexture);
         LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
         LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
+
+        if (!string.IsNullOrEmpty(IconPath))
+        {
+            LoadedIcon = GD.Load<Texture>(IconPath);
+        }
     }
 
     public void ApplyTranslations()
     {
+        TranslationHelper.ApplyTranslations(this);
     }
 }

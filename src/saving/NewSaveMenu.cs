@@ -18,7 +18,7 @@ public class NewSaveMenu : Control
     public NodePath OverwriteConfirmPath;
 
     private SaveList saveList;
-    private TextEdit saveNameBox;
+    private LineEdit saveNameBox;
     private ConfirmationDialog overwriteConfirm;
 
     private bool usingSelectedSaveName;
@@ -32,7 +32,7 @@ public class NewSaveMenu : Control
     public override void _Ready()
     {
         saveList = GetNode<SaveList>(SaveListPath);
-        saveNameBox = GetNode<TextEdit>(SaveNameBoxPath);
+        saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
         overwriteConfirm = GetNode<ConfirmationDialog>(OverwriteConfirmPath);
     }
 
@@ -57,10 +57,10 @@ public class NewSaveMenu : Control
         if (FileHelpers.Exists(PathUtils.Join(Constants.SAVE_FOLDER, name)))
         {
             // The chosen filename ({0}) already exists. Overwrite?
-            overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
+            overwriteConfirm.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
                 name);
-            overwriteConfirm.PopupCentered();
+            overwriteConfirm.PopupCenteredShrink();
         }
         else
         {
@@ -114,5 +114,12 @@ public class NewSaveMenu : Control
 
         saveNameBox.Text = selected.Last().SaveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
         usingSelectedSaveName = true;
+    }
+
+    private void OnSaveNameTextEntered(string newName)
+    {
+        _ = newName;
+
+        SaveButtonPressed();
     }
 }

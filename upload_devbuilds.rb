@@ -13,7 +13,8 @@ require_relative 'scripts/dehydrate'
 @options = {
   parallel_upload: DEFAULT_PARALLEL_UPLOADS,
   url: DEVCENTER_URL,
-  retries: 3
+  retries: 3,
+  delete_after_upload: true
 }
 
 OptionParser.new do |opts|
@@ -26,8 +27,12 @@ OptionParser.new do |opts|
   opts.on('--url devcenterurl', 'Custom URL to upload to') do |url|
     @options[:url] = url
   end
-  opts.on('-j', '--parallel count', 'How many parallel uploads to do') do |p|
+  opts.on('-j', '--parallel count', Integer, 'How many parallel uploads to do') do |p|
     @options[:parallel_upload] = p
+  end
+  opts.on('--[no-]delete-after-upload',
+          'If specified dehydrated builds are deleted after upload') do |d|
+    @options[:delete_after_upload] = d
   end
 end.parse!
 

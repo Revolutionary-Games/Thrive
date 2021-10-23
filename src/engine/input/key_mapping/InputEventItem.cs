@@ -94,6 +94,14 @@ public class InputEventItem : Node
         {
             UpdateButtonText();
         }
+
+        // ESC must not be re-assignable or removable, otherwise it can't be added back because ESC is the only key
+        // reserved this way to serve as the way to cancel a rebind action.
+        if (AssociatedEvent?.Code == (uint)KeyList.Escape)
+        {
+            button.Disabled = true;
+            xButton.Disabled = true;
+        }
     }
 
     /// <summary>
@@ -131,13 +139,17 @@ public class InputEventItem : Node
         // Hacky custom button press detection
         if (@event is InputEventMouseButton mouseEvent)
         {
-            if (xButton.IsHovered())
+            if (xButton.IsHovered() && !xButton.Disabled)
             {
                 Delete();
+
+                // Rebind canceled, alert the InputManager so it can resume getting input
+                InputManager.RebindingIsActive = false;
+
                 return;
             }
 
-            if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed)
+            if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed && !button.Disabled)
             {
                 OnButtonPressed(mouseEvent);
                 return;
@@ -158,16 +170,25 @@ public class InputEventItem : Node
             switch (key.Scancode)
             {
                 case (uint)KeyList.Escape:
+                {
+                    InputGroupList.WasListeningForInput = true;
+                    WaitingForInput = false;
+
+                    // Rebind canceled, alert the InputManager so it can resume getting input
+                    InputManager.RebindingIsActive = false;
+
                     if (AssociatedEvent == null)
                     {
                         Delete();
-                        return;
+                    }
+                    else
+                    {
+                        UpdateButtonText();
                     }
 
-                    InputGroupList.WasListeningForInput = true;
-                    WaitingForInput = false;
-                    UpdateButtonText();
                     return;
+                }
+
                 case (uint)KeyList.Alt:
                 case (uint)KeyList.Shift:
                 case (uint)KeyList.Control:
@@ -183,6 +204,9 @@ public class InputEventItem : Node
         // The old key input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;
         AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
+
+        // Consume current input event so it is only used for rebinding
+        GetTree().SetInputAsHandled();
 
         // Check conflicts, and don't proceed if there is a conflict
         if (CheckNewKeyConflicts(@event, groupList, old))
@@ -260,6 +284,9 @@ public class InputEventItem : Node
 
         // Update the button text
         UpdateButtonText();
+
+        // Rebinding is done so we alert the InputManager that it can resume getting input
+        InputManager.RebindingIsActive = false;
     }
 
     /// <summary>
@@ -292,6 +319,10 @@ public class InputEventItem : Node
         WaitingForInput = true;
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
+
+        // Signal to the input manager that a rebinding has started
+        // and it should ignore input until the rebind is finished
+        InputManager.RebindingIsActive = true;
     }
 
     private void UpdateButtonText()

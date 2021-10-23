@@ -9,6 +9,7 @@ using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using Saving;
 
 /// <summary>
 ///   Main JSON conversion class for Thrive handling all our custom stuff
@@ -58,6 +59,8 @@ public class ThriveJsonConverter : IDisposable
             // to not use this
             new BaseNodeConverter(context),
 
+            new EntityReferenceConverter(),
+
             // Converter for all types with a specific few attributes for this to be enabled
             new DefaultThriveJSONConverter(context),
         };
@@ -68,9 +71,20 @@ public class ThriveJsonConverter : IDisposable
 
     public static ThriveJsonConverter Instance => InstanceValue;
 
-    public string SerializeObject(object o)
+    /// <summary>
+    ///   Serializes the specified object to a JSON string using ThriveJsonConverter settings.
+    /// </summary>
+    /// <param name="o">Object to serialize</param>
+    /// <param name="type">
+    ///   <para>
+    ///     Specifies the type of the object being serialized (optional). The dynamic type will
+    ///     get written out if this is set to a base class of the object to serialize.
+    ///   </para>
+    /// </param>
+    public string SerializeObject(object o, Type type = null)
     {
-        return PerformWithSettings(settings => JsonConvert.SerializeObject(o, Constants.SAVE_FORMATTING, settings));
+        return PerformWithSettings(
+            settings => JsonConvert.SerializeObject(o, type, Constants.SAVE_FORMATTING, settings));
     }
 
     public T DeserializeObject<T>(string json)
@@ -140,16 +154,16 @@ public class ThriveJsonConverter : IDisposable
 
             ReferenceResolverProvider = () => referenceResolver,
 
-            TraceWriter = GetTraceWriter(Constants.DEBUG_JSON_SERIALIZE),
+            TraceWriter = GetTraceWriter(Settings.Instance.JSONDebugMode, JSONDebug.ErrorHasOccurred),
         };
     }
 
-    /// <summary>
-    ///   This method is needed to fool code checking to think that this is runtime configurable
-    /// </summary>
-    private ITraceWriter GetTraceWriter(bool debug)
+    private ITraceWriter GetTraceWriter(JSONDebug.DebugMode debugMode, bool errorHasOccurred)
     {
-        if (debug)
+        if (debugMode == JSONDebug.DebugMode.AlwaysDisabled)
+            return null;
+
+        if (debugMode == JSONDebug.DebugMode.AlwaysEnabled || errorHasOccurred)
         {
             return new MemoryTraceWriter();
         }
@@ -181,6 +195,34 @@ public class ThriveJsonConverter : IDisposable
         {
             return func(settings);
         }
+        catch (Exception e)
+        {
+            // Don't do our special automatic debug enabling if debug writing is already on
+            if (JSONDebug.ErrorHasOccurred || settings.TraceWriter != null)
+                throw;
+
+            JSONDebug.ErrorHasOccurred = true;
+
+            if (Settings.Instance.JSONDebugMode == JSONDebug.DebugMode.Automatic)
+            {
+                GD.Print("JSON error happened, retrying with debug printing (mode is automatic), first exception: ",
+                    e);
+
+                currentJsonSettings.Value = null;
+                PerformWithSettings(func);
+
+                // If we get here, we didn't get another exception...
+                // So we could maybe re-throw the first exception so that we fail like we should
+                GD.PrintErr(
+                    "Expected an exception for the second try at JSON operation, but it succeeded, " +
+                    "re-throwing the original exception");
+                throw;
+            }
+            else
+            {
+                throw;
+            }
+        }
         finally
         {
             if (!recursive)
@@ -189,7 +231,7 @@ public class ThriveJsonConverter : IDisposable
 
                 if (settings.TraceWriter != null)
                 {
-                    GD.Print("JSON serialization trace: ", settings.TraceWriter);
+                    JSONDebug.OnTraceFinished(settings.TraceWriter);
 
                     // This shouldn't get reused so no point in creating a new instance here
                     settings.TraceWriter = null;
@@ -336,9 +378,9 @@ public abstract class BaseThriveConverter : JsonConverter
         // Detect ref to already loaded object
         var refId = item[REF_PROPERTY];
 
-        if (refId != null)
+        if (refId is { Type: JTokenType.String })
         {
-            return serializer.ReferenceResolver.ResolveReference(serializer, refId.Value<string>());
+            return serializer.ReferenceResolver.ResolveReference(serializer, refId.ValueNotNull<string>());
         }
 
         var objId = item[ID_PROPERTY];
@@ -346,13 +388,14 @@ public abstract class BaseThriveConverter : JsonConverter
         // Detect dynamic typing
         var type = item[TYPE_PROPERTY];
 
-        if (type != null)
+        if (type is { Type: JTokenType.String })
         {
             if (serializer.TypeNameHandling != TypeNameHandling.None)
             {
-                var parts = type.Value<string>().Split(',').Select(p => p.Trim()).ToList();
+                var parts = type.ValueNotNull<string>().Split(',').Select(p => p.Trim()).ToList();
+
                 if (parts.Count != 2 && parts.Count != 1)
-                    throw new JsonException("invalid $type format");
+                    throw new JsonException($"invalid {TYPE_PROPERTY} format");
 
                 // Change to loading the other type
                 objectType = serializer.SerializationBinder.BindToType(
@@ -372,9 +415,9 @@ public abstract class BaseThriveConverter : JsonConverter
             CreateDeserializedFromScene(objectType, out alreadyConsumedItems);
 
         // Store the instance before loading properties to not break on recursive references
-        if (objId != null)
+        if (objId is { Type: JTokenType.String })
         {
-            serializer.ReferenceResolver.AddReference(serializer, objId.Value<string>(), instance);
+            serializer.ReferenceResolver.AddReference(serializer, objId.ValueNotNull<string>(), instance);
         }
 
         RunPrePropertyDeserializeActions(instance);
@@ -434,7 +477,7 @@ public abstract class BaseThriveConverter : JsonConverter
                 if (set == null)
                 {
                     throw new InvalidOperationException(
-                        $"Json property used on a property ({name})that has no (private) setter");
+                        $"Json property used on a property ({name}) that has no (private) setter");
                 }
 
                 set.Invoke(instance, new[]
@@ -477,7 +520,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         bool reference = ForceReferenceWrite ||
             serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
-            (contract.IsReference.HasValue && contract.IsReference.Value);
+            (contract.IsReference == true);
 
         writer.WriteStartObject();
 
@@ -503,8 +546,8 @@ public abstract class BaseThriveConverter : JsonConverter
             {
                 // Write the type of the instance always as we can't detect if the value matches the type of the field
                 // We can at least check that the actual type is a subclass of something allowing dynamic typing
-                bool baseIsDynamic = type.BaseType != null && type.BaseType.CustomAttributes.Any(attr =>
-                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute));
+                bool baseIsDynamic = type.BaseType?.CustomAttributes.Any(attr =>
+                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)) == true;
 
                 // If the current uses scene creation, dynamic type needs to be also in that case output
                 bool currentIsAlwaysDynamic = type.CustomAttributes.Any(attr =>
@@ -536,9 +579,17 @@ public abstract class BaseThriveConverter : JsonConverter
                 {
                     memberValue = property.GetValue(value, null);
                 }
-                catch (ObjectDisposedException)
+                catch (TargetInvocationException e)
                 {
-                    // Protection against disposed stuff that happen a lot in godot
+                    // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+                    if (!Constants.CATCH_SAVE_ERRORS)
+#pragma warning disable 162
+                        throw;
+#pragma warning restore 162
+
+                    // Protection against disposed stuff that is very easy to make a mistake about. Seems to be caused
+                    // by carelessly keeping references to other game entities that are saved.
+                    GD.PrintErr("Problem trying to save a property: ", e);
                     writer.WritePropertyName(property.Name);
                     serializer.Serialize(writer, null);
                     continue;
@@ -649,7 +700,14 @@ public abstract class BaseThriveConverter : JsonConverter
         // Find a constructor we can call
         ConstructorInfo constructor = null;
 
-        foreach (var candidate in objectType.GetConstructors())
+        // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
+        var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Where(
+            c => c.CustomAttributes.Any(a => a.AttributeType == typeof(JsonConstructorAttribute)));
+
+        var potentialConstructors = objectType.GetConstructors().Concat(
+            privateJsonConstructors);
+
+        foreach (var candidate in potentialConstructors)
         {
             if (candidate.ContainsGenericParameters)
                 continue;
@@ -763,6 +821,17 @@ public abstract class BaseThriveConverter : JsonConverter
             throw new JsonSerializationException("Copy only child properties target is null");
         }
 
+        // If no new data, don't apply anything
+        if (newData == null)
+        {
+            // But to support detecting if that is the case we have an interface to give the instance the info that
+            // it didn't get the properties
+            if (target is IChildPropertiesLoadCallback callbackReceiver)
+                callbackReceiver.OnNoPropertiesLoaded();
+
+            return;
+        }
+
         // Need to register for deletion the orphaned Godot object
         if (newData is Node node)
         {
@@ -776,9 +845,9 @@ public abstract class BaseThriveConverter : JsonConverter
         RunPrePropertyDeserializeActions(target);
         RunPostPropertyDeserializeActions(target);
 
-        if (data.ReplaceReferences && serializer.ReferenceResolver != null)
+        if (data.ReplaceReferences)
         {
-            if (serializer.ReferenceResolver.IsReferenced(serializer, newData))
+            if (serializer.ReferenceResolver?.IsReferenced(serializer, newData) == true)
             {
                 serializer.ReferenceResolver.AddReference(serializer,
                     serializer.ReferenceResolver.GetReference(serializer, newData), target);

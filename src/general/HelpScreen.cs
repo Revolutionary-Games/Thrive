@@ -57,6 +57,16 @@ public class HelpScreen : Control
         }
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            leftColumn.QueueFreeChildren();
+            rightColumn.QueueFreeChildren();
+            BuildHelpTexts(Category);
+        }
+    }
+
     /// <summary>
     ///   Randomizes the easter egg messages
     ///   and its chance of showing up.
@@ -69,7 +79,7 @@ public class HelpScreen : Control
         {
             var helpTexts = SimulationParameters.Instance.GetHelpTexts("EasterEgg");
 
-            tipMessageLabel.Text = TranslationServer.Translate(helpTexts.Messages.Random(random));
+            tipMessageLabel.Text = TranslationServer.Translate(helpTexts.Messages.Random(random).Message);
             tipMessageLabel.Show();
 
             timer.Start(20);
@@ -84,22 +94,27 @@ public class HelpScreen : Control
     {
         var helpTexts = SimulationParameters.Instance.GetHelpTexts(category);
 
-        var middleIndex = helpTexts.Messages.Count / 2;
-
-        for (var i = 0; i < helpTexts.Messages.Count; i++)
+        foreach (var text in helpTexts.Messages)
         {
-            var message = TranslationServer.Translate(helpTexts.Messages[i]);
+            var message = TranslationServer.Translate(text.Message);
 
             var helpBox = HelpBoxScene.Instance();
-            helpBox.GetNode<Label>("MarginContainer/Label").Text = message;
+            helpBox.GetNode<CustomRichTextLabel>("MarginContainer/CustomRichTextLabel").ExtendedBbcode = message;
 
-            if (i < middleIndex)
+            if (text.Column == HelpText.TextColumn.Left)
             {
                 leftColumn.AddChild(helpBox);
             }
-            else
+            else if (text.Column == HelpText.TextColumn.Right)
             {
                 rightColumn.AddChild(helpBox);
+            }
+            else
+            {
+                GD.PrintErr("Help text doesn't have a column set, couldn't be added into the container");
+
+                // Queued as otherwise help text's ExtendedBbcode would be applied on a disposed object
+                Invoke.Instance.Queue(helpBox.DetachAndQueueFree);
             }
         }
     }

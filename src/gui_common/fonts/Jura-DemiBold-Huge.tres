@@ -1,4 +1,4 @@
-[gd_resource type="DynamicFont" load_steps=7 format=2]
+[gd_resource type="DynamicFont" load_steps=9 format=2]
 
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/NotoSans-SemiBold.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/fonts/NotoSansCJKsc-Regular.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://assets/fonts/NotoSansCJKtc-Regular.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/fonts/NotoSansHebrew-SemiBold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/fonts/NotoSansThai-SemiBold.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/fonts/NotoSansSinhala-SemiBold.ttf" type="DynamicFontData" id=8]
 
 [resource]
 size = 34
@@ -16,3 +18,5 @@ fallback/1 = ExtResource( 3 )
 fallback/2 = ExtResource( 4 )
 fallback/3 = ExtResource( 5 )
 fallback/4 = ExtResource( 6 )
+fallback/5 = ExtResource( 7 )
+fallback/6 = ExtResource( 8 )

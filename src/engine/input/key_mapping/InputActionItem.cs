@@ -90,6 +90,8 @@ public class InputActionItem : VBoxContainer
         inputEventsContainer = GetNode<HBoxContainer>(InputEventsContainerPath);
         addInputEvent = GetNode<Button>(AddInputEventPath);
 
+        addInputEvent.RegisterToolTipForControl("addInputButton", "options");
+
         inputActionHeader.Text = DisplayName;
 
         foreach (var input in Inputs)

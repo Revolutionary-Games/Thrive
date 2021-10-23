@@ -39,19 +39,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EditorEntryReport"]
+[node name="ScrollContainer" type="ScrollContainer" parent="EditorEntryReport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 315.0
-margin_bottom = 337.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 330, 330 )
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="EditorEntryReport/VBoxContainer"]
+[node name="Label" type="Label" parent="EditorEntryReport/ScrollContainer"]
 margin_right = 330.0
-margin_bottom = 273.0
+margin_bottom = 330.0
+rect_min_size = Vector2( 330, 330 )
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_EDITOR_TEXT"
 autowrap = true
@@ -72,19 +76,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PatchMapTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PatchMapTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 335.0
-margin_bottom = 335.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 320, 320 )
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PatchMapTutorial/VBoxContainer"]
+[node name="Label" type="Label" parent="PatchMapTutorial/ScrollContainer"]
 margin_right = 320.0
-margin_bottom = 319.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 320, 320 )
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_PATCH_TEXT"
 autowrap = true
@@ -105,16 +113,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CellEditorIntro"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CellEditorIntro"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 335.0
-margin_bottom = 335.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 320, 320 )
+scroll_horizontal_enabled = false
 
-[node name="Label" type="Label" parent="CellEditorIntro/VBoxContainer"]
+[node name="Label" type="Label" parent="CellEditorIntro/ScrollContainer"]
 margin_right = 320.0
-margin_bottom = 250.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 320, 320 )
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_CELL_TEXT"
 autowrap = true
@@ -127,27 +139,28 @@ anchor_bottom = 0.5
 margin_left = 237.0
 margin_top = -134.0
 margin_right = 527.0
-margin_bottom = 156.0
-rect_min_size = Vector2( 290, 290 )
+margin_bottom = 208.0
+rect_min_size = Vector2( 290, 342 )
 window_title = "TUTORIAL"
 resizable = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UndoTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 275.0
-margin_bottom = 275.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 260, 260 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_horizontal_enabled = false
 
-[node name="Label" type="Label" parent="UndoTutorial/VBoxContainer"]
+[node name="Label" type="Label" parent="UndoTutorial/ScrollContainer"]
 margin_right = 260.0
-margin_bottom = 250.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 260, 260 )
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 autowrap = true
@@ -171,19 +184,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RedoTutorial"]
+[node name="ScrollContainer" type="ScrollContainer" parent="RedoTutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 355.0
-margin_bottom = 355.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 340, 340 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+scroll_horizontal_enabled = false
 
-[node name="Label" type="Label" parent="RedoTutorial/VBoxContainer"]
+[node name="Label" type="Label" parent="RedoTutorial/ScrollContainer"]
 margin_right = 340.0
-margin_bottom = 296.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 340, 340 )
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 autowrap = true
@@ -204,37 +218,48 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CellEditorClosingWords"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 355.0
-margin_bottom = 355.0
+margin_right = -15.0
+margin_bottom = -15.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CellEditorClosingWords/ScrollContainer"]
+margin_right = 340.0
+margin_bottom = 340.0
 rect_min_size = Vector2( 340, 340 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CellEditorClosingWords/VBoxContainer"]
+[node name="Label" type="Label" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
 margin_right = 340.0
-margin_bottom = 250.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_ENDING_TEXT"
 autowrap = true
 
-[node name="Control" type="Control" parent="CellEditorClosingWords/VBoxContainer"]
-margin_top = 254.0
+[node name="Control" type="Control" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
+margin_top = 24.0
 margin_right = 340.0
-margin_bottom = 306.0
+margin_bottom = 304.0
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="CellEditorClosingWords/VBoxContainer"]
+[node name="Button" type="Button" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
 margin_left = 115.0
-margin_top = 310.0
+margin_top = 308.0
 margin_right = 225.0
 margin_bottom = 340.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
 text = "GOT_IT"
+
 [connection signal="hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="popup_hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="hide" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= [ "PatchMap" ]]
@@ -247,4 +272,4 @@ text = "GOT_IT"
 [connection signal="popup_hide" from="RedoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorRedo" ]]
 [connection signal="hide" from="CellEditorClosingWords" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="popup_hide" from="CellEditorClosingWords" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
-[connection signal="pressed" from="CellEditorClosingWords/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
+[connection signal="pressed" from="CellEditorClosingWords/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]

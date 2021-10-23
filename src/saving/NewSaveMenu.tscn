@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/NewSaveMenu.cs" type="Script" id=2]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=4]
 
 [node name="NewSaveMenu" type="Control"]
@@ -25,12 +26,12 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 1280.0
-margin_bottom = 23.0
+margin_bottom = 22.0
 text = "CREATE_NEW_SAVE"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 27.0
+margin_top = 26.0
 margin_right = 1280.0
 margin_bottom = 679.0
 size_flags_vertical = 3
@@ -41,21 +42,19 @@ margin_bottom = 37.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_top = 7.0
-margin_right = 62.0
-margin_bottom = 30.0
+margin_right = 51.0
+margin_bottom = 29.0
 text = "NAME"
 
-[node name="SaveName" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 66.0
-margin_right = 1033.0
+[node name="SaveName" type="LineEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 55.0
+margin_right = 1041.0
 margin_bottom = 37.0
 size_flags_horizontal = 3
-draw_tabs = true
-draw_spaces = true
 caret_blink = true
 
 [node name="ExtraOptions" type="MenuButton" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1037.0
+margin_left = 1045.0
 margin_right = 1176.0
 margin_bottom = 37.0
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -80,15 +79,15 @@ margin_bottom = 45.0
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
 margin_top = 49.0
 margin_right = 1280.0
-margin_bottom = 72.0
+margin_bottom = 71.0
 text = "OVERWRITE_EXISTING_SAVE"
 
 [node name="SaveList" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 76.0
+margin_top = 75.0
 margin_right = 1280.0
-margin_bottom = 652.0
+margin_bottom = 653.0
 size_flags_vertical = 3
 AutoRefreshOnFirstVisible = false
 SelectableItems = true
@@ -112,10 +111,26 @@ __meta__ = {
 }
 
 [node name="OverwriteConfirm" type="ConfirmationDialog" parent="."]
-margin_right = 200.0
-margin_bottom = 71.0
+margin_right = 500.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 500, 84 )
 popup_exclusive = true
 window_title = "OVERWRITE_EXISTING_SAVE_TITLE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogText" type="Label" parent="OverwriteConfirm"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 490.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+align = 1
+valign = 1
+autowrap = true
+[connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="SaveButtonPressed"]
 [connection signal="OnSelectedChanged" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Back" to="." method="ClosePressed"]

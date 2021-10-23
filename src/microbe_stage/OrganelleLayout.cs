@@ -81,10 +81,19 @@ public class OrganelleLayout<T> : ICollection<T>
     /// </summary>
     public bool CanPlace(T organelle, bool allowCytoplasmOverlap = false)
     {
+        return CanPlace(organelle.Definition, organelle.Position, organelle.Orientation, allowCytoplasmOverlap);
+    }
+
+    /// <summary>
+    ///   Returns true if organelle can be placed at location
+    /// </summary>
+    public bool CanPlace(OrganelleDefinition organelleType, Hex position, int orientation,
+        bool allowCytoplasmOverlap = false)
+    {
         // Check for overlapping hexes with existing organelles
-        foreach (var hex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
+        foreach (var hex in organelleType.GetRotatedHexes(orientation))
         {
-            var overlapping = GetOrganelleAt(hex + organelle.Position);
+            var overlapping = GetOrganelleAt(hex + position);
             if (overlapping != null && (allowCytoplasmOverlap == false ||
                 overlapping.Definition.InternalName != "cytoplasm"))
                 return false;

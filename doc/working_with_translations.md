@@ -55,6 +55,27 @@ Always call `TranslationServer.Translate()` for strings that should be localized
 Other than that, it is the same principle has for the scene files:
 once you are done, write down your strings somewhere And change them in the code into keys.
 
+Note that due to the way the text extraction works, only string
+literals work in the `Translate` call, using variables or string
+concatenation, won't extract things properly. For example this is the
+correct usage: `TranslationServer.Translate("A_TRANSLATION_KEY");`
+
+The translation keys need to be named all uppercase with underscores
+(`_`) used to separate words. If a general name (that may be used in
+multiple places) is used in a translation key, and there is
+punctuation after it, the key should have a `_DOT` or `_COLON` or
+whatever the punctuation is as a suffix.
+
+Generally, general translation keys should be used so that they can be
+used in many different contexts to reduce the required translation
+effort. Note that some languages can't use the same word as in English
+in different context, so the translation keys should be context
+specific. For example different keys should be used for the word
+"play" when used in music playing context and when used in game
+playing context. In contexts where general names are not good, for
+example in the previous example, the context should be included in the
+translation key like `PLAY_MUSIC`.
+
 ### Updating the localizations
 
 Once you are done adding content into the game, go into the scripts folder and
@@ -62,8 +83,16 @@ run `update_localization.rb`. This will extract the strings from the game files,
 and also update the .po files if the template (.pot) has changed.
 
 The final step is to open en.po in the locale folder (you can use a text editor
-or Poedit), search for your keys, and add your strings as translation.  Once done,
+or Poedit), search for your keys, and add your strings as translation. Once done,
 you can launch the game and make sure everything works as expected.
+
+Note that you should configure your gettext tool to use column width
+77 line wrapping. While this doesn't ensure perfect agreement [between
+Weblate and
+gettext](https://github.com/Revolutionary-Games/Thrive/issues/2679)
+command line tools this is the best we can do to reduce the reduce
+cases where translations are automatically changed back and forth to
+different line wrapping lengths.
 
 Translating the game into a new language
 ----------------------------------------

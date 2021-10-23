@@ -40,6 +40,22 @@
             {
                 "InputName": "g_toggle_engulf",
                 "Name": "TOGGLE_ENGULF"
+            },
+            {
+                "InputName": "g_toggle_binding",
+                "Name": "TOGGLE_BINDING"
+            },
+            {
+                "InputName": "g_toggle_unbinding",
+                "Name": "TOGGLE_UNBINDING"
+            },
+            {
+                "InputName": "g_unbind_all",
+                "Name": "UNBIND_ALL"
+            },
+            {
+                "InputName": "g_perform_unbinding",
+                "Name": "PERFORM_UNBINDING"
             }
         ]
     },
@@ -88,7 +104,39 @@
             },
             {
                 "InputName": "e_secondary",
-                "Name": "REMOVE_ORGANELLE"
+                "Name": "OPEN_ORGANELLE_MENU"
+            },
+            {
+                "InputName": "e_pan_left",
+                "Name": "PAN_CAMERA_LEFT"
+            },
+            {
+                "InputName": "e_pan_right",
+                "Name": "PAN_CAMERA_RIGHT"
+            },
+            {
+                "InputName": "e_pan_up",
+                "Name": "PAN_CAMERA_UP"
+            },
+            {
+                "InputName": "e_pan_down",
+                "Name": "PAN_CAMERA_DOWN"
+            },
+            {
+                "InputName": "e_reset_camera",
+                "Name": "PAN_CAMERA_RESET"
+            },
+            {
+                "InputName": "e_cancel_current_action",
+                "Name": "CANCEL_CURRENT_ACTION"
+            },
+            {
+                "InputName": "e_delete",
+                "Name": "DELETE_ORGANELLE"
+            },
+            {
+                "InputName": "e_move",
+                "Name": "MOVE_ORGANELLE"
             }
         ]
     },
@@ -113,6 +161,10 @@
             {
                 "InputName": "g_cheat_phosphates",
                 "Name": "SPAWN_PHOSPHATES"
+            },
+            {
+                "InputName": "g_cheat_menu",
+                "Name": "CHEAT_MENU"
             }
         ]
     },
@@ -142,6 +194,14 @@
             {
                 "InputName": "help",
                 "Name": "SHOW_HELP"
+            },
+            {
+                "InputName": "toggle_fullscreen",
+                "Name": "TOGGLE_FULLSCREEN"
+            },
+            {
+                "InputName": "g_toggle_gui",
+                "Name": "TOGGLE_HUD_HIDE"
             }
         ]
     }

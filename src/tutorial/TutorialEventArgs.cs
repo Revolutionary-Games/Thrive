@@ -87,3 +87,13 @@ public class PatchEventArgs : TutorialEventArgs
 
     public Patch Patch { get; }
 }
+
+public class CallbackEventArgs : TutorialEventArgs
+{
+    public CallbackEventArgs(Action data)
+    {
+        Data = data;
+    }
+
+    public Action Data { get; }
+}

@@ -68,17 +68,17 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public void UpdatePosition(Int2 newPosition)
     {
         // Whoever made the modulus operator return negatives: i hate u.
-        int newx = ((newPosition.x % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+        int newX = ((newPosition.x % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
-        int newy = ((newPosition.y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+        int newY = ((newPosition.y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
             % Constants.CLOUD_SQUARES_PER_SIDE;
 
-        if (newx == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        if (newX == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
                 Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
-        else if (newx == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+        else if (newX == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
             % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(((position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
@@ -86,19 +86,19 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 0, Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
 
-        if (newy == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        if (newY == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(0, position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
         }
-        else if (newy == (position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        else if (newY == (position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(0, ((position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                 Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
         }
 
-        position = new Int2(newx, newy);
+        position = new Int2(newX, newY);
 
         // This accommodates the texture of the cloud to the new position of the plane.
         SetMaterialUVForPosition();
@@ -380,7 +380,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAdress(Density[x, y], GetCompoundIndex(compound));
+        float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
         float amountToGive = amountInCloud * fraction;
         if (amountInCloud - amountToGive < 0.1f)
             AddCloud(compound, -amountInCloud, x, y);
@@ -396,7 +396,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <returns>The amount available for taking</returns>
     public float AmountAvailable(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        float amountInCloud = HackyAdress(Density[x, y], GetCompoundIndex(compound));
+        float amountInCloud = HackyAddress(Density[x, y], GetCompoundIndex(compound));
         float amountToGive = amountInCloud * fraction;
         return amountToGive;
     }
@@ -411,7 +411,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (Compounds[i] == null)
                 break;
 
-            float amount = HackyAdress(Density[x, y], i);
+            float amount = HackyAddress(Density[x, y], i);
             if (amount > 0)
                 result[Compounds[i]] = amount;
         }
@@ -487,7 +487,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 continue;
 
             // Overestimate of how much compounds we get
-            float generousAmount = HackyAdress(Density[localX, localY], i) *
+            float generousAmount = HackyAddress(Density[localX, localY], i) *
                 Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
             // Skip if there isn't enough to absorb
@@ -681,7 +681,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta, pos);
     }
 
-    private float HackyAdress(Vector4 vector, int index)
+    private float HackyAddress(Vector4 vector, int index)
     {
         switch (index)
         {
@@ -719,7 +719,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     private void SetMaterialUVForPosition()
     {
         var material = (ShaderMaterial)Material;
-        material.SetShaderParam("UVoffset", new Vector2(position.x / (float)Constants.CLOUD_SQUARES_PER_SIDE,
+
+        // No clue how this math ends up with the right UV offsets - hhyyrylainen
+        material.SetShaderParam("UVOffset", new Vector2(position.x / (float)Constants.CLOUD_SQUARES_PER_SIDE,
             position.y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
     }
 }

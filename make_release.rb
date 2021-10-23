@@ -24,6 +24,9 @@ THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 README_FILE = 'builds/README.txt'
 REVISION_FILE = 'builds/revision.txt'
 
+DESKTOP_FILE = 'assets/misc/Thrive.desktop'
+ICON_FILE = 'assets/misc/thrive_logo_big.png'
+
 # Files that will never be considered for dehydrating
 DEHYDRATE_IGNORE_FILES = [
   'source.7z',
@@ -39,19 +42,20 @@ LICENSE_FILES = [
   ['LICENSE.txt', 'LICENSE.txt'],
   ['gpl.txt', 'gpl.txt'],
   ['assets/LICENSE.txt', 'ThriveAssetsLICENSE.txt'],
-  ['assets/README.md', 'ThriveAssetsREADME.txt'],
+  ['assets/README.txt', 'ThriveAssetsREADME.txt'],
   ['doc/GodotLicense.txt', 'GodotLicense.txt']
 ].freeze
 
 SOURCE_ITEMS = [
   'default_bus_layout.tres', 'default_env.tres', 'Directory.Build.props', 'export_presets.cfg',
   'GlobalSuppressions.cs', 'LICENSE.txt', 'project.godot', 'stylecop.json', 'StyleCop.ruleset',
-  'Thrive.csproj', 'Thrive.sln', 'Thrive.sln.DotSettings', 'doc', 'docker', 'Properties',
-  'shaders', 'simulation_parameters', 'src', 'test', 'README.md'
+  'Thrive.csproj', 'Thrive.sln', 'Thrive.sln.DotSettings', 'doc', 'docker/ci',
+  'docker/jsonlint', 'Properties', 'shaders', 'simulation_parameters', 'src', 'test',
+  'third_party', 'README.md'
 ].freeze
 
-ASSEMBLY_VERSION = /AssemblyVersion\(\"([\d\.]+)\"\)/.freeze
-INFORMATIONAL_VERSION = /AssemblyInformationalVersion\(\"([^\"]*)\"\)/.freeze
+ASSEMBLY_VERSION = /AssemblyVersion\("([\d.]+)"\)/.freeze
+INFORMATIONAL_VERSION = /AssemblyInformationalVersion\("([^"]*)"\)/.freeze
 
 SET_EXECUTE_FOR_MAC = false
 
@@ -90,6 +94,9 @@ end.parse!
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
 
 VALID_TARGETS = @options[:dehydrate] ? DEVBUILD_TARGETS : ALL_TARGETS
+
+# Make sure godot ignores the builds folder in terms of imports
+File.write 'builds/.gdignore', '' unless File.exist? 'builds/.gdignore'
 
 if @options[:dehydrate]
   puts 'Making dehydrated devbuilds'
@@ -201,6 +208,12 @@ end
 def prepare_readme(target_folder)
   FileUtils.cp README_FILE, target_folder
   FileUtils.cp REVISION_FILE, target_folder
+end
+
+# Copies desktop file & icon to the target folder
+def prepare_desktop(target_folder)
+  FileUtils.cp DESKTOP_FILE, target_folder
+  FileUtils.cp ICON_FILE, File.join(target_folder, 'Thrive.png')
 end
 
 def gzip_to_target(source, target)
@@ -432,6 +445,8 @@ def perform_export(target)
 
   prepare_licenses target_folder
   prepare_readme target_folder
+
+  prepare_desktop target_folder if target =~ /linux/i
 
   package target, target_name, target_folder, target_file
 end

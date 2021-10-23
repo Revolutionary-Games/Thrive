@@ -40,6 +40,7 @@
             },
             {
                 "TrackBus": "Ambiance",
+                "TrackOrder": "EntirelyRandom",
                 "Tracks": [
                     {
                         "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience.ogg"
@@ -69,6 +70,17 @@
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-editor-theme-5.ogg"
+                    }
+                ]
+            }
+        ]
+    },
+    "Extinction": {
+        "TrackLists": [
+            {
+                "Tracks": [
+                    {
+                        "ResourcePath": "res://assets/sounds/extinct2.ogg"
                     }
                 ]
             }

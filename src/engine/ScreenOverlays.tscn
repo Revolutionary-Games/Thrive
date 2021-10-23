@@ -16,7 +16,6 @@ layer = 128
 
 [node name="LoadingScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false
-LoadingMessagePath = NodePath("../../../ScreenOverlays/CanvasLayer/LoadingScreen/CenterContainer2/VBoxContainer/LoadingMessage")
 
 [node name="SaveStatusOverlay" parent="CanvasLayer" instance=ExtResource( 2 )]
 visible = false

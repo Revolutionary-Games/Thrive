@@ -40,15 +40,21 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     private bool isDissolving;
 
     [JsonProperty]
+    private bool isFadingParticles;
+
+    [JsonProperty]
+    private float particleFadeTimer;
+
+    [JsonProperty]
     private float dissolveEffectValue;
 
     [JsonProperty]
     private bool isParticles;
 
-    public int DespawnRadiusSqr { get; set; }
+    public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
-    public Node SpawnedNode => this;
+    public Node EntityNode => this;
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
@@ -76,6 +82,17 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public float Damages { get; set; }
 
     /// <summary>
+    ///   When true, the chunk will despawn when the despawn timer finishes
+    /// </summary>
+    public bool UsesDespawnTimer { get; set; }
+
+    /// <summary>
+    ///   How much time has passed since a chunk that uses this timer has been spawned
+    /// </summary>
+    [JsonProperty]
+    public float DespawnTimer { get; private set; }
+
+    /// <summary>
     ///   If true this gets deleted when a cell touches this
     /// </summary>
     public bool DeleteOnTouch { get; set; }
@@ -85,6 +102,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public float ChunkScale { get; set; }
 
     public bool IsLoadedFromSave { get; set; }
+
+    [JsonIgnore]
+    public AliveMarker AliveMarker { get; } = new AliveMarker();
 
     /// <summary>
     ///   Grabs data from the type to initialize this
@@ -115,7 +135,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         ModelNodePath = modelPath;
 
         // Copy compounds to vent
-        if (chunkType.Compounds != null && chunkType.Compounds.Count > 0)
+        if (chunkType.Compounds?.Count > 0)
         {
             // Capacity is set to 0 so that no compounds can be added
             // the normal way to the chunk
@@ -157,7 +177,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         config.Meshes.Add(item);
 
-        if (ContainedCompounds != null && ContainedCompounds.Compounds.Count > 0)
+        if (ContainedCompounds?.Compounds.Count > 0)
         {
             config.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
 
@@ -206,11 +226,18 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         if (ContainedCompounds != null)
             VentCompounds(delta);
 
         if (isDissolving)
             HandleDissolving(delta);
+
+        if (UsesDespawnTimer)
+            DespawnTimer += delta;
 
         // Check contacts
         foreach (var microbe in touchingMicrobes)
@@ -236,7 +263,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             bool disappear = false;
 
             // Engulfing
-            if (Size > 0 && microbe.EngulfMode)
+            if (Size > 0 && microbe.State == Microbe.MicrobeState.Engulf)
             {
                 // Check can engulf based on the size of the chunk compared to the cell size
                 if (microbe.EngulfSize >= Size * Constants.ENGULF_SIZE_RATIO_REQ)
@@ -259,18 +286,29 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
             if (DeleteOnTouch || disappear)
             {
-                if (Dissolves)
-                {
-                    isDissolving = true;
-                }
-                else
-                {
-                    QueueFree();
-                }
-
+                DissolveOrRemove();
                 break;
             }
         }
+
+        if (DespawnTimer > Constants.DESPAWNING_CHUNK_LIFETIME)
+            DissolveOrRemove();
+
+        if (isFadingParticles)
+        {
+            particleFadeTimer -= delta;
+
+            if (particleFadeTimer <= 0)
+            {
+                OnDestroyed();
+                this.DetachAndFree();
+            }
+        }
+    }
+
+    public void OnDestroyed()
+    {
+        AliveMarker.Alive = false;
     }
 
     /// <summary>
@@ -331,7 +369,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         if (dissolveEffectValue >= 1)
         {
-            QueueFree();
+            this.DestroyDetachAndQueueFree();
         }
     }
 
@@ -354,8 +392,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (Damages > 0 || DeleteOnTouch || Size > 0)
         {
             ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-            Connect("body_shape_entered", this, "OnContactBegin");
-            Connect("body_shape_exited", this, "OnContactEnd");
+            Connect("body_shape_entered", this, nameof(OnContactBegin));
+            Connect("body_shape_exited", this, nameof(OnContactEnd));
         }
     }
 
@@ -370,7 +408,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
                 return;
 
-            touchingMicrobes.Add(microbe);
+            microbe = microbe.GetMicrobeFromShape(bodyShape);
+            if (microbe != null)
+                touchingMicrobes.Add(microbe);
         }
     }
 
@@ -381,11 +421,46 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         if (body is Microbe microbe)
         {
+            var shapeOwner = microbe.ShapeFindOwner(bodyShape);
+
+            // This can happen when a microbe unbinds while also touching a floating chunk
+            // TODO: Do something more elegant to stop the error messages in the log
+            if (shapeOwner == 0)
+            {
+                touchingMicrobes.Remove(microbe);
+                return;
+            }
+
             // This might help in a case where the cell is touching with both a pilus and non-pilus part
-            if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
+            if (microbe.IsPilus(shapeOwner))
                 return;
 
-            touchingMicrobes.Remove(microbe);
+            touchingMicrobes.Remove(microbe.GetMicrobeFromShape(bodyShape));
+        }
+    }
+
+    private void DissolveOrRemove()
+    {
+        if (Dissolves)
+        {
+            isDissolving = true;
+        }
+        else if (isParticles && !isFadingParticles)
+        {
+            isFadingParticles = true;
+
+            var particles = GetNode("NodeToScale").GetChild<Particles>(0);
+
+            // Disable collisions
+            CollisionLayer = 0;
+            CollisionMask = 0;
+
+            particles.Emitting = false;
+            particleFadeTimer = particles.Lifetime;
+        }
+        else if (!isParticles)
+        {
+            this.DestroyDetachAndQueueFree();
         }
     }
 }

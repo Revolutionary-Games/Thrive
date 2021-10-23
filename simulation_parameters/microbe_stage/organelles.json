@@ -18,9 +18,10 @@
         "shouldScale": false,
         "prokaryoteChance": 0.5,
         "chanceToCreate": 0.5,
-        "mass": 0.5,
+        "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Pilus.tscn",
-        "name": "PREDATORY_PILUS"
+        "name": "PREDATORY_PILUS",
+        "iconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png"
     },
     "rusticyanin": {
         "mpCost": 45,
@@ -39,7 +40,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -47,12 +48,12 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
-        "mass": 0.1,
+        "mass": 0.09,
         "displayScene": "res://assets/models/organelles/Rusticyanin.tscn",
         "name": "RUSTICYANIN",
         "productionColour": "#3293f7",
         "consumptionColour": "#f04681",
-        "iconPath": "res://assets/textures/gui/bevel/RusticyaninIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/RusticyaninIcon.png"
     },
     "nitrogenase": {
         "mpCost": 55,
@@ -72,7 +73,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -80,12 +81,12 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 1,
-        "mass": 0.1,
+        "mass": 0.08,
         "displayScene": "res://assets/models/organelles/Nitrogenase.tscn",
         "name": "NITROGENASE",
         "productionColour": "#3feb67",
         "consumptionColour": "#ff8425",
-        "iconPath": "res://assets/textures/gui/bevel/NitrogenaseIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png"
     },
     "protoplasm": {
         "mpCost": 55,
@@ -114,6 +115,7 @@
         "chanceToCreate": 0,
         "mass": 0.1,
         "displayScene": "",
+        "corpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
         "name": "PROTOPLASM"
     },
     "chemoSynthesizingProteins": {
@@ -134,7 +136,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -142,12 +144,12 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
-        "mass": 0.1,
+        "mass": 0.08,
         "displayScene": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
         "name": "CHEMOSYNTHESIZING_PROTEINS",
         "productionColour": "#64f995",
         "consumptionColour": "#ff7248",
-        "iconPath": "res://assets/textures/gui/bevel/ChemoproteinsIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoproteinsIcon.png"
     },
     "oxytoxyProteins": {
         "mpCost": 55,
@@ -170,7 +172,7 @@
                 "colourChangeFactor": 1
             },
             "storage": {
-                "capacity": 4
+                "capacity": 0.5
             },
             "agentVacuole": {
                 "process": "bacterial_oxytoxySynthesis",
@@ -179,12 +181,12 @@
         },
         "prokaryoteChance": 0.5,
         "chanceToCreate": 1,
-        "mass": 0.1,
+        "mass": 0.08,
         "displayScene": "res://assets/models/organelles/OxytoxyProteins.tscn",
         "name": "OXYTOXISOME",
         "productionColour": "#834acb",
         "consumptionColour": "#c4303d",
-        "iconPath": "res://assets/textures/gui/bevel/ToxinVacuoleIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png"
     },
     "chromatophore": {
         "mpCost": 50,
@@ -204,7 +206,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -217,7 +219,7 @@
         "name": "THYLAKOIDS",
         "productionColour": "#40f0ac",
         "consumptionColour": "#fbae3a",
-        "iconPath": "res://assets/textures/gui/bevel/ChromatophoreIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png"
     },
     "metabolosome": {
         "mpCost": 45,
@@ -236,7 +238,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -244,12 +246,12 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
-        "mass": 0.1,
+        "mass": 0.08,
         "displayScene": "res://assets/models/organelles/Metabolosome.tscn",
         "name": "METABOLOSOMES",
         "productionColour": "#26e0ff",
         "consumptionColour": "#ff5649",
-        "iconPath": "res://assets/textures/gui/bevel/MetabolosomeIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/MetabolosomeIcon.png"
     },
     "nitrogenfixingplastid": {
         "mpCost": 50,
@@ -272,7 +274,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 1
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -285,7 +287,8 @@
         "name": "NITROGEN_FIXING_PLASTID",
         "productionColour": "#4fc9ff",
         "consumptionColour": "#ffb74f",
-        "iconPath": "res://assets/textures/gui/bevel/NitroplastidIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
+        "requiresNucleus": true
     },
     "chemoplast": {
         "mpCost": 45,
@@ -308,7 +311,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 1
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -318,7 +321,9 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Chemoplast.tscn",
-        "name": "CHEMOPLAST"
+        "name": "CHEMOPLAST",
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
+        "requiresNucleus": true
     },
     "flagellum": {
         "mpCost": 55,
@@ -335,7 +340,7 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 1
+                "capacity": 0.5
             },
             "movement": {
                 "torque": 300,
@@ -344,14 +349,14 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 6,
-        "mass": 0.3,
+        "mass": 0.2,
         "displayScene": "res://assets/models/organelles/Flagellum.tscn",
         "displaySceneModelPath": "Armature001/Skeleton/flagella",
         "displaySceneAnimation": "AnimationPlayer",
         "name": "FLAGELLUM",
         "productionColour": "#ff9721",
         "consumptionColour": "#ff9721",
-        "iconPath": "res://assets/textures/gui/bevel/FlagellumIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png"
     },
     "vacuole": {
         "mpCost": 50,
@@ -368,14 +373,16 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 15
+                "capacity": 8
             }
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 3,
-        "mass": 0.4,
+        "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Vacuole.tscn",
-        "name": "VACUOLE"
+        "name": "VACUOLE",
+        "iconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
+        "requiresNucleus": true
     },
     "mitochondrion": {
         "mpCost": 45,
@@ -398,7 +405,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 1
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -406,12 +413,13 @@
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 3,
-        "mass": 0.3,
+        "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Mitochondrion.tscn",
         "name": "MITOCHONDRION",
         "productionColour": "#26ffce",
         "consumptionColour": "#ff2653",
-        "iconPath": "res://assets/textures/gui/bevel/MitochondrionIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
+        "requiresNucleus": true
     },
     "oxytoxy": {
         "mpCost": 70,
@@ -430,7 +438,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 5
+                "capacity": 1
             },
             "agentVacuole": {
                 "process": "oxytoxySynthesis",
@@ -439,12 +447,41 @@
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 1,
-        "mass": 0.3,
+        "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Oxytoxy.tscn",
         "name": "TOXIN_VACUOLE",
         "productionColour": "#624acb",
         "consumptionColour": "#c4307b",
-        "iconPath": "res://assets/textures/gui/bevel/ToxinVacuoleIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
+        "requiresNucleus": true
+    },
+    "bindingAgent": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "bindingAgent": {}
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
+        "name": "BINDING_AGENT",
+        "iconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
+        "requiresNucleus": true,
+        "unique": true
     },
     "chloroplast": {
         "mpCost": 50,
@@ -471,7 +508,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 1.5
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -481,7 +518,9 @@
         "chanceToCreate": 1,
         "mass": 0.4,
         "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
-        "name": "CHLOROPLAST"
+        "name": "CHLOROPLAST",
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
+        "requiresNucleus": true
     },
     "cytoplasm": {
         "mpCost": 22,
@@ -500,7 +539,7 @@
         },
         "components": {
             "storage": {
-                "capacity": 4
+                "capacity": 1
             },
             "processor": {
                 "colourChangeFactor": 1
@@ -508,12 +547,13 @@
         },
         "prokaryoteChance": 1,
         "chanceToCreate": 1,
-        "mass": 0.1,
+        "mass": 0.08,
         "displayScene": "",
+        "corpseChunkScene": "res://assets/models/organelles/Cytoplasm.tscn",
         "name": "CYTOPLASM",
         "productionColour": "#1db7c5",
         "consumptionColour": "#c51d38",
-        "iconPath": "res://assets/textures/gui/bevel/CytoplasmIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png"
     },
     "nucleus": {
         "mpCost": 100,
@@ -566,15 +606,17 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 15
+                "capacity": 4
             },
             "nucleus": {}
         },
         "shouldScale": false,
         "prokaryoteChance": 0,
         "chanceToCreate": 0,
-        "mass": 0.7,
+        "mass": 0.5,
         "displayScene": "res://assets/models/organelles/Nucleus.tscn",
-        "name": "NUCLEUS"
+        "name": "NUCLEUS",
+        "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
+        "unique": true
     }
 }

@@ -25,12 +25,11 @@ public abstract class Species : ICloneable
 
     public Color Colour = new Color(1, 1, 1);
 
-    // Behavior properties
-    public float Aggression = 100.0f;
-    public float Opportunism = 100.0f;
-    public float Fear = 100.0f;
-    public float Activity;
-    public float Focus;
+    /// <summary>
+    ///   This holds all behavioural values and defines how this species will behave in the environment.
+    /// </summary>
+    [JsonProperty]
+    public BehaviourDictionary Behaviour = new BehaviourDictionary();
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
@@ -79,6 +78,9 @@ public abstract class Species : ICloneable
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
+
+    [JsonIgnore]
+    public bool IsExtinct => Population <= 0;
 
     /// <summary>
     ///   Repositions the structure of the species according to stage specific rules
@@ -129,22 +131,16 @@ public abstract class Species : ICloneable
         InitialCompounds.Clear();
 
         foreach (var entry in mutation.InitialCompounds)
-        {
             InitialCompounds.Add(entry.Key, entry.Value);
-        }
+
+        foreach (var entry in mutation.Behaviour)
+            Behaviour[entry.Key] = entry.Value;
 
         Colour = mutation.Colour;
 
         // These don't mutate for a species
         // genus;
         // epithet;
-
-        // Behavior properties
-        Aggression = mutation.Aggression;
-        Opportunism = mutation.Opportunism;
-        Fear = mutation.Fear;
-        Activity = mutation.Activity;
-        Focus = mutation.Focus;
     }
 
     /// <summary>
@@ -153,6 +149,20 @@ public abstract class Species : ICloneable
     public void BecomePlayerSpecies()
     {
         PlayerSpecies = true;
+    }
+
+    /// <summary>
+    ///   Gets info specific to the species for storing into a new container class.
+    ///   Used for patch snapshots, but could be expanded
+    /// </summary>
+    /// <remarks>TODO: Check overlap with ClonePropertiesTo</remarks>
+    public SpeciesInfo RecordSpeciesInfo()
+    {
+        return new SpeciesInfo
+        {
+            ID = ID,
+            Population = Population,
+        };
     }
 
     /// <summary>
@@ -176,14 +186,12 @@ public abstract class Species : ICloneable
         foreach (var entry in InitialCompounds)
             species.InitialCompounds[entry.Key] = entry.Value;
 
+        foreach (var entry in Behaviour)
+            species.Behaviour[entry.Key] = entry.Value;
+
         species.Genus = Genus;
         species.Epithet = Epithet;
         species.Colour = Colour;
-        species.Aggression = Aggression;
-        species.Opportunism = Opportunism;
-        species.Fear = Fear;
-        species.Activity = Activity;
-        species.Focus = Focus;
         species.Population = Population;
         species.Generation = Generation;
         species.ID = ID;

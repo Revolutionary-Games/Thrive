@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/saving/SaveManagerGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=4]
 
 [node name="SaveManagerGUI" type="Control"]
 anchor_right = 1.0
@@ -21,6 +22,7 @@ DeleteSelectedButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/Delete
 DeleteOldButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteOld")
 DeleteSelectedConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog")
 DeleteOldConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteOldConfirmDialog")
+SaveDirectoryWarningDialogPath = NodePath("CenterContainer/VBoxContainer/SaveDirectoryWarningDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -45,50 +47,55 @@ margin_bottom = 37.0
 alignment = 1
 
 [node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 140.0
-margin_right = 195.0
+margin_left = 93.0
+margin_right = 151.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+focus_mode = 0
 disabled = true
 text = "LOAD"
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 199.0
-margin_right = 203.0
+margin_left = 155.0
+margin_right = 159.0
 margin_bottom = 37.0
 
 [node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 207.0
-margin_right = 291.0
+margin_left = 163.0
+margin_right = 259.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+focus_mode = 0
 text = "REFRESH"
 
 [node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 295.0
-margin_right = 454.0
+margin_left = 263.0
+margin_right = 447.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+focus_mode = 0
 disabled = true
 text = "DELETE_SELECTED"
 
 [node name="DeleteOld" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 458.0
-margin_right = 646.0
+margin_left = 451.0
+margin_right = 670.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+focus_mode = 0
 disabled = true
 text = "CLEAN_UP_OLD_SAVES"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 650.0
-margin_right = 654.0
+margin_left = 674.0
+margin_right = 678.0
 margin_bottom = 37.0
 
 [node name="OpenSaveDir" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 658.0
-margin_right = 860.0
+margin_left = 682.0
+margin_right = 906.0
 margin_bottom = 37.0
+focus_mode = 0
 text = "OPEN_SAVE_DIRECTORY"
 
 [node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -96,19 +103,20 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 41.0
 margin_right = 1000.0
-margin_bottom = 561.0
+margin_bottom = 473.0
 size_flags_vertical = 3
 SelectableItems = true
 
 [node name="BottomBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 565.0
+margin_top = 477.0
 margin_right = 1000.0
-margin_bottom = 600.0
+margin_bottom = 512.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_right = 100.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
+focus_mode = 0
 text = "BACK"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/BottomBox"]
@@ -119,76 +127,121 @@ margin_bottom = 35.0
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 112.0
 margin_top = 6.0
-margin_right = 229.0
+margin_right = 238.0
 margin_bottom = 28.0
 text = "TOTAL_SAVES"
 
 [node name="SaveCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 233.0
+margin_left = 242.0
 margin_top = 6.0
-margin_right = 245.0
+margin_right = 254.0
 margin_bottom = 28.0
 text = "0"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 249.0
-margin_right = 252.0
+margin_left = 258.0
+margin_right = 261.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 256.0
+margin_left = 265.0
 margin_top = 6.0
-margin_right = 385.0
+margin_right = 443.0
 margin_bottom = 28.0
 text = "SAVE_SPACE_USED"
 
 [node name="SavesSpaceUsed" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 389.0
+margin_left = 447.0
 margin_top = 6.0
-margin_right = 401.0
+margin_right = 459.0
 margin_bottom = 28.0
 text = "0"
 
 [node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 405.0
-margin_right = 408.0
+margin_left = 463.0
+margin_right = 466.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 412.0
+margin_left = 470.0
 margin_top = 6.0
-margin_right = 512.0
+margin_right = 634.0
 margin_bottom = 28.0
 text = "SELECTED_COLON"
 
 [node name="SelectedCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 516.0
+margin_left = 638.0
 margin_top = 6.0
-margin_right = 528.0
+margin_right = 650.0
 margin_bottom = 28.0
 text = "0"
 
 [node name="DeleteSelectedConfirmDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer"]
-margin_top = 479.0
+margin_top = 516.0
 margin_right = 1000.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 0, 0 )
+margin_bottom = 600.0
+rect_min_size = Vector2( 500, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
 window_title = "DELETE_SELECTED_SAVES"
 
+[node name="DialogText" type="Label" parent="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 990.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DeleteOldConfirmDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer"]
-margin_top = 479.0
+margin_top = 516.0
 margin_right = 1000.0
-margin_bottom = 550.0
-rect_min_size = Vector2( 0, 0 )
+margin_bottom = 600.0
+rect_min_size = Vector2( 550, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
 window_title = "DELETE_OLD_SAVES"
+
+[node name="DialogText" type="Label" parent="CenterContainer/VBoxContainer/DeleteOldConfirmDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 990.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 4 )
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveDirectoryWarningDialog" type="AcceptDialog" parent="CenterContainer/VBoxContainer"]
+visible = true
+margin_top = 516.0
+margin_right = 1000.0
+margin_bottom = 600.0
+window_title = "NO_SAVE_DIRECTORY"
+
+[node name="DialogText" type="Label" parent="CenterContainer/VBoxContainer/SaveDirectoryWarningDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 990.0
+margin_bottom = 32.0
+text = "TRY_MAKING_A_SAVE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSaveButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteSelected" to="." method="DeleteSelectedButtonPressed"]

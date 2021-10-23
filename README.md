@@ -7,12 +7,19 @@ This is the code repository for Thrive. For more information, visit
 ### Build Status [![CircleCI](https://circleci.com/gh/Revolutionary-Games/Thrive.svg?style=svg)](https://circleci.com/gh/Revolutionary-Games/Thrive)
 ### Patreon [![Patreon](https://img.shields.io/badge/Join-Patreon-orange.svg)](https://www.patreon.com/thrivegame)
 
+[![Community Forums](https://img.shields.io/badge/-Community%20Forums-%239cf)](https://community.revolutionarygamesstudio.com/)
 <a href="https://translate.revolutionarygamesstudio.com/engage/thrive/">
 <img src="https://translate.revolutionarygamesstudio.com/widgets/thrive/-/thrive-game/svg-badge.svg" alt="translation status" />
 </a>
+[![Developer Wiki](https://img.shields.io/badge/-Developer%20Wiki-red)](https://wiki.revolutionarygamesstudio.com/)
+[![Discord](https://discord.com/api/guilds/228300288023461893/widget.png)](https://discord.gg/FZxDQ4H)
+
+<br>
+<img src="https://randomthrivefiles.b-cdn.net/screenshots/github_screenshot_1.png" alt="game screenshot" width="900px">
 
 Overview
-----------------
+--------
+
 Repository structure:
 - assets: This folder contains all the assets such as models and other binaries. The big files in this folder use [Git LFS](https://git-lfs.github.com/) in order to keep this repository from bloating. You need to have Git LFS installed to get the files. Some better editable versions of the assets are stored in a separate [repository](https://github.com/Revolutionary-Games/Thrive-Raw-Assets).
 - [doc: Documentation files.](/doc) Contains style guide, engine overview and other useful documentation.
@@ -26,7 +33,7 @@ Getting Involved
 Depending on what you want to contribute, you need to take different steps
 to get your development environment set up.
 
-Read the [contribution guidelines](CONTRIBUTING.md) first. If you need
+Read the [contribution guidelines](CONTRIBUTING.md) and [code of conduct](CODE_OF_CONDUCT.md) first. If you need
 help please ask [on our
 forums](https://community.revolutionarygamesstudio.com/c/dev-help).
 
@@ -40,11 +47,15 @@ If you'd like to translate the game to your language, you can find the relevant 
 The planning board contains all issues and pull requests grouped
 by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
 
+<br>
+<img src="https://randomthrivefiles.b-cdn.net/screenshots/github_screenshot_2.png" alt="game screenshot" width="900px">
+
 ### Programmers 
 Thrive is written in C# with a few helper scripts written in ruby. In
 order to work on the C# you need to compile Thrive yourself. You can
 find instructions for how to do that in the [setup
-instructions][setupguide].
+instructions][setupguide]. And if you've never used Godot before
+please read [learning Godot][learninggodot].
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.
@@ -54,7 +65,8 @@ Binary files should be committed using [Git LFS][lfs].
 ### Modellers, texture and GUI artists, and Sound Engineers
 To work on the art assets you will want to install Godot and work on
 the project files with it. Instructions for that are the same as for
-programmers: [setup instructions][setupguide].
+programmers: [setup instructions][setupguide]. And if you've never
+used Godot before please read [learning Godot][learninggodot].
 
 Alternatively some art assets can be worked on without having a
 working copy of the Godot project, but then you need to rely on other
@@ -82,3 +94,4 @@ There are extra instructions for how to import models here: [import tool][import
 [asprimer]: doc/angelscript_primer.md "AngelScript primer"
 [importtutorial]: https://wiki.revolutionarygamesstudio.com/wiki/How_to_Import_Assets "How to import assets"
 [lfs]: https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS
+[learninggodot]: doc/learning_godot.md
