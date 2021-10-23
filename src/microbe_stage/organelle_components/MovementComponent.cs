@@ -104,7 +104,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
         rotation = rotation.Normalized();
 
-        // Transform the vector with the rotation quaternion
+        // Calculate the real force rotated if the microbe has a colony parent
         var realForce = rotation.Xform(force);
 
         var forceMagnitude = realForce.Dot(direction);
