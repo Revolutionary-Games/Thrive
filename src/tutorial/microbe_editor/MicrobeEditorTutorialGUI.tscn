@@ -259,6 +259,7 @@ margin_bottom = 340.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
 text = "GOT_IT"
+
 [connection signal="hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="popup_hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="hide" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= [ "PatchMap" ]]

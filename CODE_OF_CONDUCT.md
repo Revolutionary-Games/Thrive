@@ -2,7 +2,7 @@
 
 ## Our Standards
 
-Examples of behavior that contributes to a positive environment for our
+Examples of behaviour that contributes to a positive environment for our
 community include:
 
 * Demonstrating empathy and kindness toward other people
@@ -13,7 +13,7 @@ community include:
 * Focusing on what is best not just for us as individuals, but for the
   overall community
 
-Examples of unacceptable behavior include:
+Examples of unacceptable behaviour include:
 
 * The use of sexualized language or imagery, and sexual attention or
   advances of any kind
@@ -25,7 +25,7 @@ Examples of unacceptable behavior include:
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
+Instances of abusive, harassing, or otherwise unacceptable behaviour may be
 reported to the community leaders responsible for enforcement at
 revolutionarygamesstudio@gmail.com.
 All complaints will be reviewed and investigated promptly and fairly.

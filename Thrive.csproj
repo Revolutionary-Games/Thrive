@@ -69,6 +69,8 @@
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
     <Compile Include="src\general\AliveMarker.cs" />
+    <Compile Include="src\general\BehaviouralValueType.cs" />
+    <Compile Include="src\general\BehaviourDictionary.cs" />
     <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="src\gui_common\ChemicalEquation.cs" />
     <Compile Include="src\gui_common\CompoundAmount.cs" />
     <Compile Include="src\gui_common\CompoundListBox.cs" />
+    <Compile Include="src\gui_common\CustomCheckBox.cs" />
     <Compile Include="src\gui_common\CreditsScroll.cs" />
     <Compile Include="src\gui_common\CustomDropDown.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />

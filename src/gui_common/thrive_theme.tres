@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=50 format=2]
+[gd_resource type="Theme" load_steps=56 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -11,6 +11,12 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=12]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/checkAclick.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -385,6 +391,12 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = ExtResource( 8 )
+CheckBox/icons/PressedClicked = ExtResource( 16 )
+CheckBox/icons/PressedHovered = ExtResource( 17 )
+CheckBox/icons/PressedNormal = ExtResource( 5 )
+CheckBox/icons/UnpressedClicked = ExtResource( 14 )
+CheckBox/icons/UnpressedHovered = ExtResource( 15 )
+CheckBox/icons/UnpressedNormal = ExtResource( 6 )
 CheckBox/icons/checked = ExtResource( 5 )
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
@@ -445,6 +457,8 @@ FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
 Fonts/fonts/large = null
+Fonts/fonts/lato_bold_normal = ExtResource( 13 )
+Fonts/fonts/lato_normal = ExtResource( 12 )
 Fonts/fonts/normal = null
 GraphEdit/colors/activity = Color( 0, 0, 0, 1 )
 GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )

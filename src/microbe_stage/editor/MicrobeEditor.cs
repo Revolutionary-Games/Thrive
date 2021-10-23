@@ -75,6 +75,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     private float rigidity;
 
+    [JsonProperty]
+    private BehaviourDictionary behaviour;
+
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -246,6 +249,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 previewMicrobe.ApplyMembraneWigglyness();
             }
         }
+    }
+
+    [JsonProperty]
+    public BehaviourDictionary Behaviour
+    {
+        get => behaviour ??= editedSpecies?.Behaviour;
+        private set => behaviour = value;
     }
 
     /// <summary>
@@ -575,6 +585,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedSpecies.Colour = Colour;
         editedSpecies.MembraneRigidity = Rigidity;
 
+        editedSpecies.Behaviour = Behaviour;
+
         // Move patches
         if (targetPatch != null)
         {
@@ -818,6 +830,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // In case the action failed, we need to make sure the membrane buttons are updated properly
         gui.UpdateMembraneButtons(Membrane.InternalName);
+    }
+
+    public void SetBehaviouralValue(BehaviouralValueType type, float value)
+    {
+        gui.UpdateBehaviourSlider(type, value);
+
+        var oldValue = Behaviour[type];
+
+        if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
+            return;
+
+        var action = new MicrobeEditorAction(this, 0, DoBehaviourChangeAction, UndoBehaviourChangeAction,
+            new BehaviourChangeActionData(value, oldValue, type));
+
+        EnqueueAction(action);
     }
 
     public void SetRigidity(int rigidity)
@@ -1425,6 +1452,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         Rigidity = species.MembraneRigidity;
         Colour = species.Colour;
 
+        Behaviour = species.Behaviour;
+
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
         {
@@ -1455,7 +1484,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
-        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
+        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity, Behaviour);
         gui.UpdateGeneration(species.Generation);
         gui.UpdateHitpoints(CalculateHitpoints());
     }
@@ -2249,6 +2278,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             previewMicrobe.Membrane.Dirty = true;
             previewMicrobe.ApplyMembraneWigglyness();
         }
+    }
+
+    [DeserializedCallbackAllowed]
+    private void DoBehaviourChangeAction(MicrobeEditorAction action)
+    {
+        var data = (BehaviourChangeActionData)action.Data;
+
+        Behaviour[data.Type] = data.NewValue;
+        gui.UpdateBehaviourSlider(data.Type, data.NewValue);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoBehaviourChangeAction(MicrobeEditorAction action)
+    {
+        var data = (BehaviourChangeActionData)action.Data;
+
+        Behaviour[data.Type] = data.OldValue;
+        gui.UpdateBehaviourSlider(data.Type, data.OldValue);
     }
 
     [DeserializedCallbackAllowed]
