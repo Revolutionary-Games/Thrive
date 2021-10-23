@@ -433,7 +433,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
         else
         {
-            if (Colony != null)
+            if (Colony != null && Colony.Master != null)
                 Colony.Master.AddMovementForce(queuedMovementForce);
         }
 
