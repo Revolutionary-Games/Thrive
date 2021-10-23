@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-23 17:55+0800\n"
+"POT-Creation-Date: 2021-10-23 18:02+0800\n"
 "PO-Revision-Date: 2021-09-16 11:34+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -534,7 +534,7 @@ msgstr "Organelle entfernen"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:13
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:13
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:12
 msgid "CHEATS"
 msgstr "Cheats"
 
@@ -1446,7 +1446,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
 
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
-#: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:459
+#: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:477
 #: ../src/general/OptionsMenu.tscn:1166 ../src/general/PauseMenu.tscn:134
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
@@ -1461,11 +1461,11 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:514
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2-Modus-Warnung"
 
-#: ../src/general/MainMenu.tscn:509
+#: ../src/general/MainMenu.tscn:527
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Du betreibst Thrive mit GLES2. Dies ist schwerwiegend ungetestet und wird "
@@ -2097,7 +2097,7 @@ msgstr "Entwickler(innen)"
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
-#: ../src/gui_common/LicensesDisplay.tscn:25
+#: ../src/gui_common/LicensesDisplay.tscn:62
 msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
@@ -2777,27 +2777,31 @@ msgstr "Verschlingung entflohen"
 msgid "REPRODUCED"
 msgstr "Reproduziert"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:40
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:41
 msgid "INFINITE_COMPOUNDS"
 msgstr "Unendlich Verbindungen"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:48
 msgid "GODMODE"
 msgstr "Unbesiegbar"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:54
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:55
 msgid "NO_AI"
 msgstr "Keine KI"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:68
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:69
 msgid "PLAYER_SPEED"
 msgstr ""
 "Spieler\n"
 "Tempo"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:89
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:90
 msgid "PLAYER_DUPLICATE"
 msgstr "Spieler duplizieren"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:100
+msgid "SPAWN_ENEMY"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
@@ -2812,11 +2816,11 @@ msgstr "Spielerzelle"
 msgid "SPECIES_N_TIMES"
 msgstr "Spezienliste"
 
-#: ../src/microbe_stage/MicrobeStage.cs:510
+#: ../src/microbe_stage/MicrobeStage.cs:525
 msgid "PLAYER_REPRODUCED"
 msgstr "Spieler reproduziert"
 
-#: ../src/microbe_stage/MicrobeStage.cs:631
+#: ../src/microbe_stage/MicrobeStage.cs:667
 msgid "PLAYER_DIED"
 msgstr "Spieler starb"
 
@@ -3170,7 +3174,7 @@ msgstr "Löschen"
 msgid "MODIFY"
 msgstr "Verändern"
 
-#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:26
+#: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:25
 msgid "INFINITE_MP"
 msgstr "Unendliche MP"
 

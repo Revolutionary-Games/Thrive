@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class LicensesDisplay : ScrollContainer
+public class LicensesDisplay : PanelContainer
 {
     private List<(string heading, string file)> licensesToShow;
 
@@ -54,7 +54,9 @@ public class LicensesDisplay : ScrollContainer
     {
         foreach (var licenseTuple in licensesToShow)
         {
-            textsContainer.AddChild(new Label { Text = licenseTuple.heading });
+            var heading = new Label { Text = licenseTuple.heading };
+            heading.AddFontOverride("font", GetFont("lato_bold_regular", "Fonts"));
+            textsContainer.AddChild(heading);
 
             string text;
             using var reader = new File();
@@ -69,12 +71,15 @@ public class LicensesDisplay : ScrollContainer
                 GD.PrintErr("Can't load file to show in licenses: ", licenseTuple.file);
             }
 
-            textsContainer.AddChild(new Label
+            var content = new Label
             {
                 Text = text,
                 Align = Label.AlignEnum.Left,
                 Autowrap = true,
-            });
+            };
+
+            content.AddFontOverride("font", GetFont("lato_normal", "Fonts"));
+            textsContainer.AddChild(content);
 
             textsContainer.AddChild(new Control { RectMinSize = new Vector2(0, 5) });
         }
