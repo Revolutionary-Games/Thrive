@@ -602,7 +602,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
             // when specialized cells become a reality the cap could b lowered to encourage cell specialization
             MovementFactor *= Colony.ColonyMembers.Count;
-            var seriesValue = (1 - 1 / (float)Math.Pow(2, Colony.ColonyMembers.Count - 1));
+            var seriesValue = 1 - 1 / (float)Math.Pow(2, Colony.ColonyMembers.Count - 1);
             MovementFactor -= (MovementFactor * 0.25f) * seriesValue;
         }
 
