@@ -596,13 +596,15 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         float force = Constants.CELL_BASE_THRUST;
 
         if (Colony != null && Colony.Master == this)
-            {
-                // Multiplies the movement factor as if the colony has the normal microbe speed
-                // Then it substracts movement speed from 100% up to 75%(soft cap), 
-                // when specialized cells become a realite the cap could b lowered to encourage cell specialization
-                MovementFactor *= Colony.ColonyMembers.Count;
-                MovementFactor -= (MovementFactor * 0.25f) * (1 - 1 / ( (float)Math.Pow(2, Colony.ColonyMembers.Count - 1)));
-            }
+        {
+            // Multiplies the movement factor as if the colony has the normal microbe speed
+            // Then it substracts movement speed from 100% up to 75%(soft cap), 
+            // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
+            // when specialized cells become a reality the cap could b lowered to encourage cell specialization
+            MovementFactor *= Colony.ColonyMembers.Count;
+            var seriesValue = (1 - 1 / ( (float)Math.Pow(2, Colony.ColonyMembers.Count - 1)));
+            MovementFactor -= (MovementFactor * 0.25f) * seriesValue;
+        }
 
         // Halve speed if out of ATP
         if (got < cost)
