@@ -22,6 +22,10 @@ public class CompoundBag : ICompoundStorage
         Capacity = capacity;
     }
 
+    /// <summary>
+    ///   How much of each compound this bag can store.
+    ///   Currently a CompoundBag can hold the same amount of each compound.
+    /// </summary>
     [JsonProperty]
     public float Capacity { get; set; }
 
@@ -32,6 +36,10 @@ public class CompoundBag : ICompoundStorage
     [JsonProperty]
     public Dictionary<Compound, float> Compounds { get; private set; } = new Dictionary<Compound, float>();
 
+    /// <summary>
+    ///   Gets the capacity for a given compound
+    /// </summary>
+    /// <returns>Returns <see cref="Capacity"/> if the compound is useful, otherwise 0</returns>
     public float GetCapacityForCompound(Compound compound)
     {
         if (IsUseful(compound))
