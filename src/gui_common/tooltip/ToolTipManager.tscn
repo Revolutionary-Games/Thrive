@@ -214,6 +214,41 @@ margin_bottom = 105.0
 margin_top = 120.0
 margin_bottom = 137.0
 
+[node name="aggressionSlider" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "AGGRESSION_EXPLANATION"
+DisplayDelay = 0.0
+DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+
+[node name="opportunismSlider" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "OPPORTUNISM_EXPLANATION"
+DisplayDelay = 0.0
+DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+
+[node name="fearSlider" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "FEAR_EXPLANATION"
+DisplayDelay = 0.0
+DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+
+[node name="activitySlider" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "ACTIVITY_EXPLANATION"
+DisplayDelay = 0.0
+DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+
+[node name="focusSlider" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "FOCUS_EXPLANATION"
+DisplayDelay = 0.0
+DescriptionLabelPath = NodePath("../timeIndicator/MarginContainer/VBoxContainer/Description")
+
 [node name="organelleSelection" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0
