@@ -30,11 +30,6 @@ public class PilusComponent : ExternallyPositionedComponent
     {
         organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
 
-        // TODO: fix attaching to the wrong parent
-        // This if is only true when loading a save
-        if (organelle.ParentMicrobe.ColonyParent != null)
-            return;
-
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         Vector3 membranePointDirection = (membraneCoords - middle).Normalized();
 

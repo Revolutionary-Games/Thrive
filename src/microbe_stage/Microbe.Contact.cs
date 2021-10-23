@@ -546,13 +546,13 @@ public partial class Microbe
             RemoveCollisionExceptionWith(microbe);
     }
 
-    internal void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 microbeRotation)
+    internal void ReParentShapes(Microbe to, Vector3 offset)
     {
         // TODO: if microbeRotation is the rotation of *this* instance we should use the variable here directly
         // An object doesn't need to be told its own member variable in a method...
         // https://github.com/Revolutionary-Games/Thrive/issues/2504
         foreach (var organelle in organelles)
-            organelle.ReParentShapes(to, offset, masterRotation, microbeRotation);
+            organelle.ReParentShapes(to, offset);
     }
 
     internal void OnColonyMemberAdded(Microbe microbe)
@@ -568,7 +568,7 @@ public partial class Microbe
                 parent = ColonyParent;
             }
 
-            ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), parent.Rotation, Rotation);
+            ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
         }
         else
         {
