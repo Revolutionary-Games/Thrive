@@ -445,7 +445,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         foreach (var component in Components)
         {
-            component.OnShapeParentChanged(to, offset, to.Rotation, ParentMicrobe.Rotation);
+            component.OnShapeParentChanged(to, offset);
         }
 
         currentShapesParent = to;
