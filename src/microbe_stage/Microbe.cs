@@ -222,7 +222,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 }
             }
 
-
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
                 OrganelleParent.AddChild(organelle);
@@ -238,7 +237,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 AddCollisionExceptionWith(Colony.Master);
                 Mode = ModeEnum.Static;
             }
-
 
             // And recompute storage
             RecomputeOrganelleCapacity();
