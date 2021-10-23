@@ -1547,11 +1547,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
-<<<<<<< HEAD
-margin_right = 318.0
-=======
 margin_right = 321.0
->>>>>>> master
 margin_bottom = 889.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1561,11 +1557,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
-<<<<<<< HEAD
-margin_right = 308.0
-=======
 margin_right = 311.0
->>>>>>> master
 margin_bottom = 889.0
 custom_constants/separation = 15
 
@@ -1710,16 +1702,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 20 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-<<<<<<< HEAD
-margin_top = 27.0
-margin_right = 306.0
-margin_bottom = 591.0
-=======
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 326.0
-margin_bottom = 524.0
->>>>>>> master
+margin_left = 8.0
+margin_top = 31.0
+margin_right = 310.0
+margin_bottom = 595.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -2222,7 +2208,6 @@ align = 1
 autowrap = true
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
@@ -2446,7 +2431,7 @@ margin_right = 328.0
 margin_bottom = 608.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer"]
-margin_right = 318.0
+margin_right = 312.0
 margin_bottom = 602.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2454,7 +2439,7 @@ custom_constants/margin_right = 15
 custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer"]
-margin_right = 303.0
+margin_right = 297.0
 margin_bottom = 592.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
