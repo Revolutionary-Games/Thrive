@@ -18,6 +18,11 @@
 
         public int TotalSteps => 1;
 
+        /// <summary>
+        ///   By default lambda steps can't run concurrently
+        /// </summary>
+        public bool CanRunConcurrently { get; set; }
+
         public bool RunStep(RunResults results)
         {
             operation(results);

@@ -7,9 +7,12 @@ public class ChromaticFilter : TextureRect
 {
     private ShaderMaterial material;
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
-        material = (ShaderMaterial)Material;
+        base._EnterTree();
+
+        material ??= (ShaderMaterial)Material;
+
         SetAmount(Settings.Instance.ChromaticAmount);
         OnChanged(Settings.Instance.ChromaticEnabled);
 
@@ -17,7 +20,15 @@ public class ChromaticFilter : TextureRect
         Settings.Instance.ChromaticEnabled.OnChanged += OnChanged;
     }
 
-    public void OnChanged(bool enabled)
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Settings.Instance.ChromaticAmount.OnChanged -= SetAmount;
+        Settings.Instance.ChromaticEnabled.OnChanged -= OnChanged;
+    }
+
+    private void OnChanged(bool enabled)
     {
         if (enabled)
         {
@@ -29,7 +40,7 @@ public class ChromaticFilter : TextureRect
         }
     }
 
-    public void SetAmount(float amount)
+    private void SetAmount(float amount)
     {
         material.SetShaderParam("MAX_DIST_PX", amount);
     }

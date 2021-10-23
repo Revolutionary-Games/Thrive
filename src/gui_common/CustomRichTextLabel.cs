@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -26,6 +27,11 @@ public class CustomRichTextLabel : RichTextLabel
         ///   Turns input action string into a key prompt image of its primary input event.
         /// </summary>
         Input,
+
+        /// <summary>
+        ///   Retrieves value by key. Special handling for every key. Expandable.
+        /// </summary>
+        Constant,
     }
 
     /// <summary>
@@ -244,7 +250,7 @@ public class CustomRichTextLabel : RichTextLabel
     /// <param name="input">The string enclosed by the custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
     /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
-    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes = null)
+    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
@@ -314,6 +320,51 @@ public class CustomRichTextLabel : RichTextLabel
 
                 break;
             }
+
+            case ThriveBbCode.Constant:
+                var parsedAttributes = StringUtils.ParseKeyValuePairs(attributes);
+                parsedAttributes.TryGetValue("format", out string format);
+
+                switch (input)
+                {
+                    case "OXYTOXY_DAMAGE":
+                    {
+                        output = Constants.OXYTOXY_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENGULF_DAMAGE":
+                    {
+                        output = Constants.ENGULF_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "PILUS_BASE_DAMAGE":
+                    {
+                        output = Constants.PILUS_BASE_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "BINDING_ATP_COST_PER_SECOND":
+                    {
+                        output = Constants.BINDING_ATP_COST_PER_SECOND.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENGULFING_ATP_COST_PER_SECOND":
+                    {
+                        output = Constants.ENGULFING_ATP_COST_PER_SECOND.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    default:
+                    {
+                        GD.Print($"Constant: \"{input}\" doesn't exist, referenced in bbcode");
+                        break;
+                    }
+                }
+
+                break;
         }
 
         return output;

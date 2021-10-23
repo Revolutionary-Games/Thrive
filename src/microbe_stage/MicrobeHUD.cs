@@ -6,7 +6,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Manages the microbe HUD
 /// </summary>
-public class MicrobeHUD : Node
+public class MicrobeHUD : Control
 {
     [Export]
     public NodePath AnimationPlayerPath;
@@ -178,6 +178,9 @@ public class MicrobeHUD : Node
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
+        new System.Collections.Generic.Dictionary<Species, int>();
 
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
@@ -472,7 +475,7 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        if (!editorButton.Disabled)
+        if (!editorButton.Disabled || stage?.Player == null)
             return;
 
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
@@ -694,7 +697,7 @@ public class MicrobeHUD : Node
 
                 var compoundIcon = GUICommon.Instance.CreateCompoundIcon(compound.Key.InternalName, 20, 20);
 
-                compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
+                compoundName.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
                 compoundName.Text = compound.Key.Name;
 
                 compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", compound.Value);
@@ -706,20 +709,37 @@ public class MicrobeHUD : Node
             }
         }
 
-        // Show the species name of hovered cells
+        // Show the species name and count of hovered cells
+        hoveredSpeciesCounts.Clear();
         foreach (var microbe in stage.HoverInfo.HoveredMicrobes)
         {
-            // TODO: Combine cells of same species within mouse over
-            // into a single line with total number of them
-
-            var microbeText = new Label();
-            microbeText.Valign = Label.VAlign.Center;
-            hoveredCellsContainer.AddChild(microbeText);
-
-            microbeText.Text = microbe.Species.FormattedName;
-
             if (microbe.IsPlayerMicrobe)
-                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
+            {
+                AddHoveredCellLabel(microbe.Species.FormattedName +
+                    " (" + TranslationServer.Translate("PLAYER_CELL") + ")");
+                continue;
+            }
+
+            if (!hoveredSpeciesCounts.TryGetValue(microbe.Species, out int count))
+            {
+                count = 0;
+            }
+
+            hoveredSpeciesCounts[microbe.Species] = count + 1;
+        }
+
+        foreach (var hoveredSpeciesCount in hoveredSpeciesCounts)
+        {
+            if (hoveredSpeciesCount.Value > 1)
+            {
+                AddHoveredCellLabel(
+                    string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
+                        hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value));
+            }
+            else
+            {
+                AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName);
+            }
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
@@ -728,6 +748,15 @@ public class MicrobeHUD : Node
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
         nothingHere.Visible = !stage.HoverInfo.IsHoveringOverAnything;
+    }
+
+    private void AddHoveredCellLabel(string cellInfo)
+    {
+        hoveredCellsContainer.AddChild(new Label
+        {
+            Valign = Label.VAlign.Center,
+            Text = cellInfo,
+        });
     }
 
     /// <summary>
