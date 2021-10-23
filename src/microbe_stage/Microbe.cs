@@ -398,6 +398,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         HandleOsmoregulation(delta);
 
+        // Colony members have their movement update before organelle update,
+        // so that the movement organelles see the direction
+        if(Colony != null && Colony.Master != this)
+            MovementDirection = Colony.Master.MovementDirection;
+
         // Let organelles do stuff (this for example gets the movement force from flagella)
         foreach (var organelle in organelles.Organelles)
         {
