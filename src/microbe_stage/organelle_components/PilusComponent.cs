@@ -8,12 +8,6 @@ public class PilusComponent : ExternallyPositionedComponent
 {
     private List<uint> addedChildShapes = new List<uint>();
 
-    public override void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
-    {
-        // For now to avoid bug with attaching to the wrong microbe physically, we destroy our shape here
-        DestroyShape();
-    }
-
     protected override void CustomDetach()
     {
         DestroyShape();

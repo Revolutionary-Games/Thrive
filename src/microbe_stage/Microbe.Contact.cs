@@ -561,11 +561,9 @@ public partial class Microbe
         {
             OnIGotAddedToColony();
 
-            var parent = this;
             if (Colony.Master != this)
             {
                 Mode = ModeEnum.Static;
-                parent = ColonyParent;
             }
 
             ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
