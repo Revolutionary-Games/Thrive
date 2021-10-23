@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Saving;
 using Environment = System.Environment;
 
 /// <summary>
@@ -196,6 +197,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath CustomUsernamePath;
 
+    [Export]
+    public NodePath JSONDebugModePath;
+
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
@@ -269,6 +273,7 @@ public class OptionsMenu : ControlWithInput
     private SpinBox maxQuickSaves;
     private CustomCheckBox customUsernameEnabled;
     private LineEdit customUsername;
+    private OptionButton jsonDebugMode;
 
     private CustomCheckBox tutorialsEnabled;
 
@@ -393,6 +398,7 @@ public class OptionsMenu : ControlWithInput
         tutorialsEnabled = GetNode<CustomCheckBox>(TutorialsEnabledPath);
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
+        jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
 
         screenshotDirectoryWarningBox = GetNode<AcceptDialog>(ScreenshotDirectoryWarningBoxPath);
         backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
@@ -533,6 +539,7 @@ public class OptionsMenu : ControlWithInput
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+        jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -766,6 +773,38 @@ public class OptionsMenu : ControlWithInput
         }
     }
 
+    private int JSONDebugModeToIndex(JSONDebug.DebugMode mode)
+    {
+        switch (mode)
+        {
+            case JSONDebug.DebugMode.AlwaysDisabled:
+                return 2;
+            case JSONDebug.DebugMode.Automatic:
+                return 0;
+            case JSONDebug.DebugMode.AlwaysEnabled:
+                return 1;
+        }
+
+        GD.PrintErr("invalid JSON debug mode value");
+        return 0;
+    }
+
+    private JSONDebug.DebugMode JSONDebugIndexToMode(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return JSONDebug.DebugMode.Automatic;
+            case 1:
+                return JSONDebug.DebugMode.AlwaysEnabled;
+            case 2:
+                return JSONDebug.DebugMode.AlwaysDisabled;
+            default:
+                GD.PrintErr("invalid JSON debug mode index");
+                return JSONDebug.DebugMode.Automatic;
+        }
+    }
+
     /// <summary>
     ///   Returns whether current settings match their saved originals. Settings that are
     ///   inactive due to a different options menu mode will not be used in the comparison.
@@ -825,16 +864,8 @@ public class OptionsMenu : ControlWithInput
 
     private void UpdateCurrentLanguageProgress()
     {
-        if (!SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress
-            .TryGetValue(TranslationServer.GetLocale(), out float progress))
-        {
-            GD.PrintErr("Unknown progress for current locale");
-            progress = -1;
-        }
-        else
-        {
-            progress *= 100;
-        }
+        string locale = TranslationServer.GetLocale();
+        float progress = 100 * SimulationParameters.Instance.GetTranslationsInfo().TranslationProgress[locale];
 
         string textFormat;
 
@@ -1273,6 +1304,13 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnJSONDebugModeSelected(int index)
+    {
+        Settings.Instance.JSONDebugMode.Value = JSONDebugIndexToMode(index);
+
+        UpdateResetSaveButtonState();
+    }
+
     private void BuildInputRebindControls()
     {
         inputGroupList.InitGroupList();
@@ -1351,28 +1389,7 @@ public class OptionsMenu : ControlWithInput
 
     private void UpdateSelectedLanguage(Settings settings)
     {
-        if (string.IsNullOrEmpty(settings.SelectedLanguage.Value))
-        {
-            int index = Languages.IndexOf(Settings.DefaultLanguage);
-
-            // Inexact match to match things like "fi_FI"
-            if (index == -1 && Settings.DefaultLanguage.Contains("_"))
-            {
-                index = Languages.IndexOf(Settings.DefaultLanguage.Split("_")[0]);
-            }
-
-            // English is the default language, if the user's default locale didn't match anything
-            if (index < 0)
-            {
-                index = Languages.IndexOf("en");
-            }
-
-            languageSelection.Selected = index;
-        }
-        else
-        {
-            languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value);
-        }
+        languageSelection.Selected = Languages.IndexOf(settings.SelectedLanguage.Value ?? Settings.DefaultLanguage);
     }
 
     private void OnLogButtonPressed()

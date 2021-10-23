@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving;
 using Environment = System.Environment;
 
 /// <summary>
@@ -10,7 +12,10 @@ using Environment = System.Environment;
 /// </summary>
 public class Settings
 {
-    private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
+    private static readonly List<string>
+        AvailableLocales = TranslationServer.GetLoadedLocales().Cast<string>().ToList();
+
+    private static readonly string DefaultLanguageValue = GetSupportedLocale(TranslationServer.GetLocale());
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
     private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
@@ -221,14 +226,6 @@ public class Settings
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
-    ///   The current controls of the game.
-    ///   It stores the godot actions like g_move_left and
-    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
-    /// </summary>
-    public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(GetDefaultControls());
-
-    /// <summary>
     ///   If false username will be set to System username
     /// </summary>
     public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
@@ -237,6 +234,24 @@ public class Settings
     ///   Username that the user can choose
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+
+    /// <summary>
+    ///   The Db value to be added to the master audio bus
+    /// </summary>
+    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
+        new SettingValue<JSONDebug.DebugMode>(JSONDebug.DebugMode.Automatic);
+
+    // Input properties
+
+    /// <summary>
+    ///   The current controls of the game.
+    ///   It stores the godot actions like g_move_left and
+    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
+    /// </summary>
+    public SettingValue<InputDataList> CurrentControls { get; set; } =
+        new SettingValue<InputDataList>(GetDefaultControls());
+
+    // Computed properties from other settings
 
     [JsonIgnore]
     public string ActiveUsername =>
@@ -471,6 +486,14 @@ public class Settings
     /// </param>
     public void ApplyAll(bool delayedApply = false)
     {
+        if (Engine.EditorHint)
+        {
+            // Do not apply settings within the Godot editor.
+            return;
+        }
+
+        // Delayed apply was implemented to fix problems within the Godot editor.
+        // So this might no longer be necessary, as this is now skipped within editor.
         if (delayedApply)
         {
             GD.Print("Doing delayed apply for some settings");
@@ -596,6 +619,7 @@ public class Settings
         }
         else
         {
+            language = GetSupportedLocale(language);
             cultureInfo = GetCultureInfo(language);
         }
 
@@ -673,6 +697,32 @@ public class Settings
 
             return settings;
         }
+    }
+
+    /// <summary>
+    ///   Tries to return the best supported Godot locale match.
+    ///   Godot locale is different from C# culture.
+    ///   Compare for example fi_FI (Godot) to fi-FI (C#).
+    /// </summary>
+    /// <param name="locale">locale to check</param>
+    /// <returns>supported locale</returns>
+    private static string GetSupportedLocale(string locale)
+    {
+        if (AvailableLocales.Contains(locale))
+        {
+            return locale;
+        }
+
+        if (locale.Contains('_'))
+        {
+            locale = locale.Split("_")[0];
+            if (AvailableLocales.Contains(locale))
+            {
+                return locale;
+            }
+        }
+
+        return "en";
     }
 
     /// <summary>

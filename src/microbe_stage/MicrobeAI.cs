@@ -34,7 +34,7 @@ public class MicrobeAI
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
     [JsonIgnore]
-    private Microbe focusedPrey;
+    private EntityReference<Microbe> focusedPrey = new EntityReference<Microbe>();
 
     [JsonProperty]
     private float pursuitThreshold;
@@ -81,8 +81,6 @@ public class MicrobeAI
         if (microbe.ColonyParent != null)
             return;
 
-        ClearDisposedReferences(data);
-
         ChooseActions(random, data);
 
         // Store the absorbed compounds for run and rumble
@@ -103,7 +101,7 @@ public class MicrobeAI
     {
         previousAngle = 0;
         targetPosition = Vector3.Zero;
-        focusedPrey = null;
+        focusedPrey.Value = null;
         pursuitThreshold = 0;
         microbe.MovementDirection = Vector3.Zero;
         microbe.TotalAbsorbedCompounds.Clear();
@@ -141,9 +139,8 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null)
         {
-            bool engulfPrey = !microbe.Species.MembraneType.CellWall &&
-                possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-                microbe.EngulfSize && DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
+                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
             EngagePrey(prey.Value, random, engulfPrey);
@@ -159,19 +156,6 @@ public class MicrobeAI
         {
             // This organism is sessile, and will not act until the environment changes
             SetMoveSpeed(0.0f);
-        }
-    }
-
-    /// <summary>
-    ///   Anything held between calls of the think() method has a chance of having been disposed elsewhere.
-    ///   This sets anything disposed to null to prevent errors. This can probably be removed when issue
-    ///   https://github.com/Revolutionary-Games/Thrive/issues/2029 is fixed
-    /// </summary>
-    private void ClearDisposedReferences(MicrobeAICommonData data)
-    {
-        if (!data.AllMicrobes.Contains(focusedPrey))
-        {
-            focusedPrey = null;
         }
     }
 
@@ -258,17 +242,18 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPreyItem(List<Microbe> allMicrobes)
     {
-        if (focusedPrey != null)
+        var focused = focusedPrey.Value;
+        if (focused != null)
         {
-            var distanceToFocusedPrey = DistanceFromMe(focusedPrey.GlobalTransform.origin);
-            if (!focusedPrey.Dead && distanceToFocusedPrey <
+            var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin);
+            if (!focused.Dead && distanceToFocusedPrey <
                 (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
                 if (distanceToFocusedPrey < pursuitThreshold)
                 {
                     // Keep chasing, but expect to keep getting closer
                     pursuitThreshold *= 0.95f;
-                    return focusedPrey;
+                    return focused;
                 }
 
                 // If prey hasn't gotten closer by now, it's probably too fast, or juking you
@@ -276,7 +261,7 @@ public class MicrobeAI
                 return null;
             }
 
-            focusedPrey = null;
+            focusedPrey.Value = null;
         }
 
         Microbe chosenPrey = null;
@@ -299,7 +284,7 @@ public class MicrobeAI
             }
         }
 
-        focusedPrey = chosenPrey;
+        focusedPrey.Value = chosenPrey;
         pursuitThreshold = chosenPrey != null ? DistanceFromMe(chosenPrey.GlobalTransform.origin) * 3.0f : 0.0f;
         return chosenPrey;
     }
@@ -310,6 +295,9 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
+        var fleeThreshold = 3.0f - (2 *
+            (SpeciesFear / Constants.MAX_SPECIES_FEAR) *
+            (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
         Microbe predator = null;
         foreach (var otherMicrobe in allMicrobes)
         {
@@ -319,8 +307,7 @@ public class MicrobeAI
             // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
             if (otherMicrobe.Species != microbe.Species
                 && !otherMicrobe.Dead
-                && otherMicrobe.EngulfSize > microbe.EngulfSize
-                * (1.8f - SpeciesFear / Constants.MAX_SPECIES_FEAR))
+                && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
             {
                 if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >
                     DistanceFromMe(otherMicrobe.GlobalTransform.origin))
@@ -390,7 +377,7 @@ public class MicrobeAI
         microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
-        if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+        if (CanShootToxin())
         {
             LaunchToxin(target);
 
@@ -567,14 +554,14 @@ public class MicrobeAI
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
         return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && CanShootToxin() &&
-                sizeRatio > 1 / Constants.ENGULF_SIZE_RATIO_REQ) ||
-            (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
+            || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
     private bool CanShootToxin()
     {
-        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >=
+            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
     private float DistanceFromMe(Vector3 target)
