@@ -353,7 +353,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                     organelle.Update(delta);
             }
         }
-        
+
         // The code below starting from here is not needed for a display-only cell
         if (IsForPreviewOnly)
             return;
@@ -400,7 +400,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         // Colony members have their movement update before organelle update,
         // so that the movement organelles see the direction
-        if(Colony != null && Colony.Master != this)
+        if (Colony != null && Colony.Master != this)
             MovementDirection = Colony.Master.MovementDirection;
 
         // Let organelles do stuff (this for example gets the movement force from flagella)
@@ -424,8 +424,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 }
 
                 totalMovement += queuedMovementForce;
-                if(IsPlayerMicrobe)
-                GD.Print(Mass);
                 ApplyMovementImpulse(totalMovement, delta);
 
                 // Play movement sound if one isn't already playing.
@@ -599,11 +597,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         if (Colony != null && Colony.Master == this)
             {
+                // Multiplies the movement factor as if the colony has the normal microbe speed
+                // Then it substracts movement speed from 100% up to 75%(soft cap), 
+                // when specialized cells become a realite the cap could b lowered to encourage cell specialization
                 MovementFactor *= Colony.ColonyMembers.Count;
-                MovementFactor -= (MovementFactor*0.25f) * (1 - 1/((float)Math.Pow(2,Colony.ColonyMembers.Count-1)));
+                MovementFactor -= (MovementFactor * 0.25f) * (1 - 1 / ( (float)Math.Pow(2, Colony.ColonyMembers.Count - 1)));
             }
 
-            
         // Halve speed if out of ATP
         if (got < cost)
         {
