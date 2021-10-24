@@ -94,8 +94,13 @@
     <Compile Include="src\gui_common\CompoundListBox.cs" />
     <Compile Include="src\gui_common\CustomCheckBox.cs" />
     <Compile Include="src\gui_common\CreditsScroll.cs" />
+    <Compile Include="src\gui_common\CustomDialog.cs" />
     <Compile Include="src\gui_common\CustomDropDown.cs" />
+    <Compile Include="src\gui_common\dialogs\TutorialDialog.cs" />
+    <Compile Include="src\gui_common\ICustomPopup.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
+    <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
+    <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
     <Compile Include="src\gui_common\LicensesDisplay.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />

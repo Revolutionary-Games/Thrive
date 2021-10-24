@@ -5,16 +5,15 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=4]
 
-[node name="MicrobeCheatMenu" type="WindowDialog"]
-margin_right = 197.0
-margin_bottom = 234.0
+[node name="MicrobeCheatMenu" type="Popup"]
 theme = ExtResource( 1 )
 popup_exclusive = true
-window_title = "CHEATS"
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+WindowTitle = "CHEATS"
+Resizable = true
 InfiniteCompoundsPath = NodePath("VBoxContainer/InfiniteCompounds")
 GodModePath = NodePath("VBoxContainer/GodMode")
 DisableAIPath = NodePath("VBoxContainer/DisableAI")
@@ -23,40 +22,35 @@ PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
 SpawnEnemyPath = NodePath("VBoxContainer/SpawnEnemy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 5.0
-margin_top = 7.0
-margin_right = 190.0
-margin_bottom = 118.0
-rect_min_size = Vector2( 185, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_right = 177.0
+margin_bottom = 142.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="InfiniteCompounds" parent="VBoxContainer" instance=ExtResource( 4 )]
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "INFINITE_COMPOUNDS"
 
 [node name="GodMode" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 21.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 38.0
 custom_fonts/font = ExtResource( 3 )
 text = "GODMODE"
 
 [node name="DisableAI" parent="VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 42.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 59.0
 custom_fonts/font = ExtResource( 3 )
 text = "NO_AI"
 
 [node name="Speed" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 63.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 80.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -73,7 +67,7 @@ __meta__ = {
 
 [node name="SpeedSlider" type="HSlider" parent="VBoxContainer/Speed"]
 margin_left = 105.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -84,7 +78,7 @@ value = 1.0
 
 [node name="PlayerDuplicate" type="Button" parent="VBoxContainer"]
 margin_top = 84.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 111.0
 custom_fonts/font = ExtResource( 3 )
 text = "PLAYER_DUPLICATE"
@@ -94,7 +88,7 @@ __meta__ = {
 
 [node name="SpawnEnemy" type="Button" parent="VBoxContainer"]
 margin_top = 115.0
-margin_right = 185.0
+margin_right = 177.0
 margin_bottom = 142.0
 custom_fonts/font = ExtResource( 3 )
 text = "SPAWN_ENEMY"

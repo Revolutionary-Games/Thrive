@@ -81,8 +81,7 @@ public class PauseMenu : ControlWithInput
             if (GameLoading)
                 return true;
 
-            // Block if exclusive tutorial is active
-            if (!NoExclusiveTutorialActive())
+            if (GUICommon.Instance.IsAnyExclusivePopupActive)
                 return true;
 
             if (TransitionManager.Instance.HasQueuedTransitions)
@@ -194,11 +193,6 @@ public class PauseMenu : ControlWithInput
             ActiveMenuType.None => null,
             _ => throw new NotSupportedException($"{value} is not supported"),
         };
-    }
-
-    private bool NoExclusiveTutorialActive()
-    {
-        return GameProperties.TutorialState?.ExclusiveTutorialActive() != true;
     }
 
     private void ClosePressed()

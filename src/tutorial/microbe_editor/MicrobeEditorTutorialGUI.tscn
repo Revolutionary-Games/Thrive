@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 
 [node name="MicrobeEditorTutorialGUI" type="Control"]
 pause_mode = 2
@@ -23,29 +26,28 @@ CellEditorUndoHighlightPath = NodePath("UndoButtonHighlight")
 CellEditorRedoPath = NodePath("RedoTutorial")
 CellEditorClosingWordsPath = NodePath("CellEditorClosingWords")
 
-[node name="EditorEntryReport" type="WindowDialog" parent="."]
-anchor_left = 0.5
+[node name="EditorEntryReport" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 107.0
+margin_left = -533.0
 margin_top = -184.0
-margin_right = 467.0
+margin_right = -173.0
 margin_bottom = 176.0
 rect_min_size = Vector2( 360, 360 )
-window_title = "TUTORIAL"
-resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_pivot_offset = Vector2( 180, 180 )
+script = ExtResource( 7 )
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="EditorEntryReport"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 345.0
+margin_bottom = 345.0
 rect_min_size = Vector2( 330, 330 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -53,36 +55,38 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="EditorEntryReport/ScrollContainer"]
-margin_right = 330.0
-margin_bottom = 330.0
-rect_min_size = Vector2( 330, 330 )
+margin_right = 690.0
+margin_bottom = 690.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_EDITOR_TEXT"
 autowrap = true
 
-[node name="PatchMapTutorial" type="WindowDialog" parent="."]
-anchor_left = 0.5
+[node name="PatchMapTutorial" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 107.0
+margin_left = -533.0
 margin_top = -184.0
-margin_right = 457.0
+margin_right = -183.0
 margin_bottom = 166.0
 rect_min_size = Vector2( 350, 350 )
-window_title = "TUTORIAL"
-resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_pivot_offset = Vector2( 175, 175 )
+theme = null
+script = ExtResource( 7 )
+WindowTitle = "TUTORIAL"
+ShowDelay = 0.5
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PatchMapTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 335.0
+margin_bottom = 335.0
 rect_min_size = Vector2( 320, 320 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -90,62 +94,65 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PatchMapTutorial/ScrollContainer"]
-margin_right = 320.0
-margin_bottom = 320.0
-rect_min_size = Vector2( 320, 320 )
+margin_right = 670.0
+margin_bottom = 670.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_PATCH_TEXT"
 autowrap = true
 
-[node name="CellEditorIntro" type="WindowDialog" parent="."]
-anchor_left = 0.5
+[node name="CellEditorIntro" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 237.0
+margin_left = -403.0
 margin_top = -134.0
-margin_right = 587.0
+margin_right = -53.0
 margin_bottom = 216.0
 rect_min_size = Vector2( 350, 350 )
-window_title = "TUTORIAL"
-resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_pivot_offset = Vector2( 175, 175 )
+theme = null
+script = ExtResource( 7 )
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorIntro"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 335.0
+margin_bottom = 335.0
 rect_min_size = Vector2( 320, 320 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="CellEditorIntro/ScrollContainer"]
-margin_right = 320.0
-margin_bottom = 320.0
-rect_min_size = Vector2( 320, 320 )
+margin_right = 670.0
+margin_bottom = 670.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_CELL_TEXT"
 autowrap = true
 
-[node name="UndoTutorial" type="WindowDialog" parent="."]
-anchor_left = 0.5
+[node name="UndoTutorial" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 237.0
+margin_left = -403.0
 margin_top = -134.0
-margin_right = 527.0
-margin_bottom = 208.0
-rect_min_size = Vector2( 290, 342 )
-window_title = "TUTORIAL"
-resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_right = -113.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 290, 350 )
+rect_pivot_offset = Vector2( 145, 171 )
+theme = null
+script = ExtResource( 7 )
+WindowTitle = "TUTORIAL"
+ShowDelay = 0.0
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
 anchor_right = 1.0
@@ -156,11 +163,15 @@ margin_right = -15.0
 margin_bottom = -15.0
 rect_min_size = Vector2( 260, 260 )
 scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="UndoTutorial/ScrollContainer"]
 margin_right = 260.0
-margin_bottom = 260.0
-rect_min_size = Vector2( 260, 260 )
+margin_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 autowrap = true
@@ -168,78 +179,83 @@ autowrap = true
 [node name="UndoButtonHighlight" parent="." instance=ExtResource( 3 )]
 visible = false
 
-[node name="RedoTutorial" type="WindowDialog" parent="."]
-anchor_left = 0.5
+[node name="RedoTutorial" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 185.0
+margin_left = -455.0
 margin_top = -125.0
-margin_right = 555.0
+margin_right = -85.0
 margin_bottom = 245.0
 rect_min_size = Vector2( 370, 370 )
-window_title = "TUTORIAL"
-resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_pivot_offset = Vector2( 185, 185 )
+theme = null
+script = ExtResource( 7 )
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="RedoTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 355.0
+margin_bottom = 355.0
 rect_min_size = Vector2( 340, 340 )
 scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="RedoTutorial/ScrollContainer"]
-margin_right = 340.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 340, 340 )
+margin_right = 710.0
+margin_bottom = 710.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 autowrap = true
 
-[node name="CellEditorClosingWords" type="WindowDialog" parent="."]
+[node name="CellEditorClosingWords" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 185.0
-margin_top = -125.0
-margin_right = 555.0
-margin_bottom = 245.0
+margin_left = -185.0
+margin_top = -185.0
+margin_right = 185.0
+margin_bottom = 185.0
 rect_min_size = Vector2( 370, 370 )
-window_title = "TUTORIAL"
-resizable = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_pivot_offset = Vector2( 185, 185 )
+theme = null
+script = ExtResource( 7 )
+WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CellEditorClosingWords"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 355.0
+margin_bottom = 355.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CellEditorClosingWords/ScrollContainer"]
-margin_right = 340.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 340, 340 )
+margin_right = 710.0
+margin_bottom = 710.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
-margin_right = 340.0
+margin_right = 350.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_ENDING_TEXT"
@@ -247,17 +263,18 @@ autowrap = true
 
 [node name="Control" type="Control" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 340.0
-margin_bottom = 304.0
+margin_right = 350.0
+margin_bottom = 319.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="CellEditorClosingWords/ScrollContainer/VBoxContainer"]
-margin_left = 115.0
-margin_top = 308.0
-margin_right = 225.0
-margin_bottom = 340.0
+margin_left = 120.0
+margin_top = 323.0
+margin_right = 230.0
+margin_bottom = 350.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 6 )
 text = "GOT_IT"
 
 [connection signal="hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
