@@ -214,7 +214,6 @@
             {
                 if (population > 0)
                 {
-                    builder.Append("  ");
                     builder.Append(PatchString());
                     builder.Append(' ');
                     builder.Append(TranslationServer.Translate("POPULATION"));
@@ -223,7 +222,7 @@
                 }
                 else
                 {
-                    builder.Append("   ");
+                    builder.Append(' ');
                     builder.Append(string.Format(CultureInfo.CurrentCulture,
                         TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString()));
                 }
@@ -292,6 +291,27 @@
                     builder.Append('\n');
                 }
 
+                // As the populations are added to all patches, even when the species is not there, we remove those
+                // from output if there is currently no population in a patch and there isn't one in
+                // previousPopulations
+                var include = false;
+
+                if (adjustedPopulation > 0)
+                {
+                    include = true;
+                }
+                else
+                {
+                    if (previousPopulations?.GetPatch(patch.ID).GetSpeciesPopulation(entry.Species) >
+                        0 || playerDied)
+                    {
+                        include = true;
+                    }
+                }
+
+                if (include)
+                    OutputPopulationForPatch(entry.Species, adjustedPopulation);
+
                 if (entry.SpreadToPatches.Count > 0)
                 {
                     builder.Append(' ');
@@ -322,35 +342,17 @@
                     }
                 }
 
-                builder.Append(' ');
-                builder.Append(TranslationServer.Translate("RUN_RESULT_POP_IN_PATCHES"));
-                builder.Append('\n');
 
-                // As the populations are added to all patches, even when the species is not there, we remove those
-                // from output if there is currently no population in a patch and there isn't one in
-                // previousPopulations
-                var include = false;
-
-                if (adjustedPopulation > 0)
+                if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
                 {
-                    include = true;
+                    builder.Append(' ');
+                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
+                    builder.Append('\n');
                 }
-                else
+                else if (resolveMoves)
                 {
-                    if (previousPopulations?.GetPatch(patch.ID).GetSpeciesPopulation(entry.Species) >
-                        0 || playerDied)
-                    {
-                        include = true;
-                    }
-                }
-
-                if (include)
-                    OutputPopulationForPatch(entry.Species, adjustedPopulation);
-
-                // Also print new patches the species moved to (as the moves don't get
-                // included in newPopulationInPatches
-                if (resolveMoves)
-                {
+                    // Also print new patches the species moved to (as the moves don't get
+                    // included in newPopulationInPatches
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
                         var found = false;
@@ -371,13 +373,6 @@
                             OutputPopulationForPatch(entry.Species, CountSpeciesSpreadPopulation(entry.Species, to));
                         }
                     }
-                }
-
-                if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
-                {
-                    builder.Append(' ');
-                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
-                    builder.Append('\n');
                 }
 
                 if (playerReadable)
