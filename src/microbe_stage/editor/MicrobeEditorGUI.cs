@@ -30,10 +30,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath AppearanceTabButtonPath;
 
     [Export]
+    public NodePath BehaviourTabButtonPath;
+
+    [Export]
     public NodePath StructureTabPath;
 
     [Export]
     public NodePath AppearanceTabPath;
+
+    [Export]
+    public NodePath BehaviourTabPath;
 
     [Export]
     public NodePath SizeLabelPath;
@@ -240,6 +246,21 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath RigiditySliderPath;
 
     [Export]
+    public NodePath AggressionSliderPath;
+
+    [Export]
+    public NodePath OpportunismSliderPath;
+
+    [Export]
+    public NodePath FearSliderPath;
+
+    [Export]
+    public NodePath ActivitySliderPath;
+
+    [Export]
+    public NodePath FocusSliderPath;
+
+    [Export]
     public NodePath NegativeAtpPopupPath;
 
     [Export]
@@ -297,9 +318,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     // Selection menu tab selector buttons
     private Button structureTabButton;
     private Button appearanceTabButton;
+    private Button behaviourTabButton;
 
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
+    private PanelContainer behaviourTab;
 
     private Label sizeLabel;
     private Label speedLabel;
@@ -315,6 +338,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private Slider rigiditySlider;
     private TweakedColourPicker membraneColorPicker;
+
+    private Slider aggressionSlider;
+    private Slider opportunismSlider;
+    private Slider fearSlider;
+    private Slider activitySlider;
+    private Slider focusSlider;
 
     private TextureButton undoButton;
     private TextureButton redoButton;
@@ -389,8 +418,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private AudioStream unableToPlaceHexSound;
     private Texture temperatureIcon;
 
-    private ConfirmationDialog negativeAtpPopup;
-    private AcceptDialog islandPopup;
+    private CustomConfirmationDialog negativeAtpPopup;
+    private CustomConfirmationDialog islandPopup;
 
     private OrganellePopupMenu organelleMenu;
 
@@ -454,6 +483,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
         appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
 
+        behaviourTab = GetNode<PanelContainer>(BehaviourTabPath);
+        behaviourTabButton = GetNode<Button>(BehaviourTabButtonPath);
+
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
@@ -468,6 +500,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
+
+        aggressionSlider = GetNode<Slider>(AggressionSliderPath);
+        opportunismSlider = GetNode<Slider>(OpportunismSliderPath);
+        fearSlider = GetNode<Slider>(FearSliderPath);
+        activitySlider = GetNode<Slider>(ActivitySliderPath);
+        focusSlider = GetNode<Slider>(FocusSliderPath);
 
         menuButton = GetNode<TextureButton>(MenuButtonPath);
         helpButton = GetNode<TextureButton>(HelpButtonPath);
@@ -540,8 +578,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
         temperatureIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/Temperature.png");
 
-        negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
-        islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
+        negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
+        islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
@@ -1321,7 +1359,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     }
 
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
-        float rigidity)
+        float rigidity, BehaviourDictionary behaviour)
     {
         speciesNameEdit.Text = name;
         membraneColorPicker.Color = colour;
@@ -1333,6 +1371,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         SetMembraneTooltips(membrane);
 
         UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+
+        UpdateAllBehaviouralSliders(behaviour);
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -1341,6 +1381,36 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         foreach (var selection in membraneSelectionElements.Values)
         {
             selection.Selected = selection.Name == membrane;
+        }
+    }
+
+    internal void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
+    {
+        foreach (var pair in behaviour)
+            UpdateBehaviourSlider(pair.Key, pair.Value);
+    }
+
+    internal void UpdateBehaviourSlider(BehaviouralValueType type, float value)
+    {
+        switch (type)
+        {
+            case BehaviouralValueType.Activity:
+                activitySlider.Value = value;
+                break;
+            case BehaviouralValueType.Aggression:
+                aggressionSlider.Value = value;
+                break;
+            case BehaviouralValueType.Opportunism:
+                opportunismSlider.Value = value;
+                break;
+            case BehaviouralValueType.Fear:
+                fearSlider.Value = value;
+                break;
+            case BehaviouralValueType.Focus:
+                focusSlider.Value = value;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValueType {type} is not valid");
         }
     }
 
@@ -1451,6 +1521,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
+    private void OnBehaviourValueChanged(float value, string behaviourName)
+    {
+        if (!Enum.TryParse(behaviourName, out BehaviouralValueType behaviouralValueType))
+            throw new ArgumentException($"{behaviourName} is not a valid BehaviouralValueType");
+
+        editor.SetBehaviouralValue(behaviouralValueType, value);
+    }
+
     private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
@@ -1546,6 +1624,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Hide all
         structureTab.Hide();
         appearanceTab.Hide();
+        behaviourTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -1563,6 +1642,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
                 editor.MicrobePreviewMode = true;
+                break;
+            }
+
+            case SelectionMenuTab.Behaviour:
+            {
+                behaviourTab.Show();
+                behaviourTabButton.Pressed = true;
+                editor.MicrobePreviewMode = false;
                 break;
             }
 
@@ -1786,6 +1873,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private void RegisterTooltips()
     {
         rigiditySlider.RegisterToolTipForControl("rigiditySlider", "editor");
+        aggressionSlider.RegisterToolTipForControl("aggressionSlider", "editor");
+        opportunismSlider.RegisterToolTipForControl("opportunismSlider", "editor");
+        fearSlider.RegisterToolTipForControl("fearSlider", "editor");
+        activitySlider.RegisterToolTipForControl("activitySlider", "editor");
+        focusSlider.RegisterToolTipForControl("focusSlider", "editor");
         helpButton.RegisterToolTipForControl("helpButton");
         symmetryButton.RegisterToolTipForControl("symmetryButton", "editor");
         undoButton.RegisterToolTipForControl("undoButton", "editor");

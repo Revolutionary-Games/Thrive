@@ -47,9 +47,9 @@ public class SaveManagerGUI : Control
     private Button loadButton;
     private Button deleteSelectedButton;
     private Button deleteOldButton;
-    private ConfirmationDialog deleteSelectedConfirmDialog;
-    private ConfirmationDialog deleteOldConfirmDialog;
-    private AcceptDialog saveDirectoryWarningDialog;
+    private CustomConfirmationDialog deleteSelectedConfirmDialog;
+    private CustomConfirmationDialog deleteOldConfirmDialog;
+    private CustomConfirmationDialog saveDirectoryWarningDialog;
 
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
@@ -90,9 +90,9 @@ public class SaveManagerGUI : Control
         loadButton = GetNode<Button>(LoadButtonPath);
         deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
-        deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
-        deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
-        saveDirectoryWarningDialog = GetNode<AcceptDialog>(SaveDirectoryWarningDialogPath);
+        deleteSelectedConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteSelectedConfirmDialogPath);
+        deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
+        saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
@@ -207,7 +207,7 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        deleteSelectedConfirmDialog.GetNode<Label>("DialogText").Text =
+        deleteSelectedConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
                 Selected.Count);
@@ -219,7 +219,7 @@ public class SaveManagerGUI : Control
         int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
-        deleteOldConfirmDialog.GetNode<Label>("DialogText").Text =
+        deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount);

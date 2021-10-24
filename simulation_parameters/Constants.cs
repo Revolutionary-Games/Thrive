@@ -374,6 +374,8 @@ public static class Constants
     public const float MAX_SPECIES_FOCUS = 400.0f;
     public const float MAX_SPECIES_OPPORTUNISM = 400.0f;
 
+    public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
+
     // Bacterial Colony configuration
     public const int MIN_BACTERIAL_COLONY_SIZE = 2;
     public const int MAX_BACTERIAL_COLONY_SIZE = 6;
@@ -485,6 +487,11 @@ public static class Constants
     public const int PAUSE_MENU_CANCEL_PRIORITY = -2;
 
     public const int SUBMENU_CANCEL_PRIORITY = -1;
+
+    /// <summary>
+    ///   Popups have a highest priority to ensure they can react first.
+    /// </summary>
+    public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.

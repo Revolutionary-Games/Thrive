@@ -28,7 +28,7 @@
             return 0.0f;
         }
 
-        var behaviorScore = microbeSpecies.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
         var microbeSpeciesHexSize = microbeSpecies.BaseHexSize;
         var predatorSpeed = microbeSpecies.BaseSpeed;
@@ -71,11 +71,11 @@
         // predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > microbeSpeciesHexSize)
         {
-            oxytoxyScore *= microbeSpecies.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+            oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
-        return behaviorScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+        return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
     }
 
     public override float TotalEnergyAvailable()
