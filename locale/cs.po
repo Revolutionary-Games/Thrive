@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 15:21+0700\n"
+"POT-Creation-Date: 2021-10-24 10:45+0800\n"
 "PO-Revision-Date: 2021-10-14 09:05+0000\n"
 "Last-Translator: Vojtěch John <czsteeveecz@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -1422,15 +1422,15 @@ msgid "LICENSES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:496
+msgid "GLES2_MODE_WARNING"
+msgstr "Varování režimu GLES2"
+
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Spouštíte Thrive pomocí OpenGLES2. Tato možnost není otestovaná a může "
 "způsobovat problémy. Zkuste aktualizovat grafické ovladače nebo vynutit "
 "použití AMD nebo Nvidia grafiky pro spuštění Thrive."
-
-#: ../src/general/MainMenu.tscn:498
-msgid "GLES2_MODE_WARNING"
-msgstr "Varování režimu GLES2"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -3442,7 +3442,7 @@ msgstr "Smazat stará uložení?"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Zkus vytvořit uloženou pozici!"
 
-#: ../src/saving/SaveManagerGUI.tscn:201
+#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Složka uložených pozic nebyla nalezena"
 

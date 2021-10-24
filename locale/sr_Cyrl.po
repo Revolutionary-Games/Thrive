@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 15:21+0700\n"
+"POT-Creation-Date: 2021-10-24 10:45+0800\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -1428,16 +1428,16 @@ msgid "LICENSES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:496
+msgid "GLES2_MODE_WARNING"
+msgstr "Упозорење у режиму GLES2"
+
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Користите Thrive витх GLES2. Ово је озбиљно непроверено и вероватно ће "
 "изазвати проблеме. Покушајте да ажурирате управљачке програме за видео и / "
 "или присилите АМД или Нвидиа графику да се користи за покретање програма "
 "Thrive."
-
-#: ../src/general/MainMenu.tscn:498
-msgid "GLES2_MODE_WARNING"
-msgstr "Упозорење у режиму GLES2"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -3549,7 +3549,7 @@ msgstr "Избришете старе Сачуваје?"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:201
+#: ../src/saving/SaveManagerGUI.tscn:202
 #, fuzzy
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Отворите Сачувај Директоријум"

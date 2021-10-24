@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 15:21+0700\n"
+"POT-Creation-Date: 2021-10-24 10:45+0800\n"
 "PO-Revision-Date: 2021-08-23 16:43+0000\n"
 "Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -1439,15 +1439,15 @@ msgid "LICENSES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:496
+msgid "GLES2_MODE_WARNING"
+msgstr "Предупреждение режима GLES2"
+
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать "
 "проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD "
 "или Nvidia видеокарты для запуска Thrive."
-
-#: ../src/general/MainMenu.tscn:498
-msgid "GLES2_MODE_WARNING"
-msgstr "Предупреждение режима GLES2"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -3507,7 +3507,7 @@ msgstr "Удалить старые Сохранения?"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:201
+#: ../src/saving/SaveManagerGUI.tscn:202
 #, fuzzy
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Открыть Папку Сохранений"

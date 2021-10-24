@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 15:21+0700\n"
+"POT-Creation-Date: 2021-10-24 10:45+0800\n"
 "PO-Revision-Date: 2021-07-21 12:42+0000\n"
 "Last-Translator: Filip Szot <filip.szot08@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -1441,15 +1441,15 @@ msgid "LICENSES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:496
+msgid "GLES2_MODE_WARNING"
+msgstr "Ostrzeżenie Tryb GLES2"
+
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie "
 "spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie "
 "grafiki AMD lub Nvidia do uruchamiania Trive."
-
-#: ../src/general/MainMenu.tscn:498
-msgid "GLES2_MODE_WARNING"
-msgstr "Ostrzeżenie Tryb GLES2"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -3492,7 +3492,7 @@ msgstr "Usunąć stare zapisy?"
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:201
+#: ../src/saving/SaveManagerGUI.tscn:202
 #, fuzzy
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Otwórz folder zapisów"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-21 15:21+0700\n"
+"POT-Creation-Date: 2021-10-24 10:45+0800\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Ribi2110 <ribert2110@yahoo.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -1445,16 +1445,16 @@ msgid "LICENSES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:496
+msgid "GLES2_MODE_WARNING"
+msgstr "Mode d'Alerta GLES2"
+
+#: ../src/general/MainMenu.tscn:498
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no "
 "ha estat del tot validada i, per tant, pot originar alguns problemes. "
 "Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de "
 "gràfics AMD o Nvidia per executar Thrive."
-
-#: ../src/general/MainMenu.tscn:498
-msgid "GLES2_MODE_WARNING"
-msgstr "Mode d'Alerta GLES2"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -3537,7 +3537,7 @@ msgstr "Eliminar arxiu(s) de guardat antic(s)?"
 msgid "TRY_MAKING_A_SAVE"
 msgstr "Intenta guardar una partida!"
 
-#: ../src/saving/SaveManagerGUI.tscn:201
+#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "NO_SAVE_DIRECTORY"
 msgstr "No s'ha trobar el directori d'arxius de guardat"
 
