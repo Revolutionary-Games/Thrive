@@ -28,7 +28,7 @@
             .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
                 microbeSpecies.MembraneType).FinalBalance;
 
-        var score = predatorSpeed * species.Activity;
+        var score = predatorSpeed * species.Behaviour.Activity;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
         if (microbeSpecies.MembraneType.CellWall ||

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=55 format=2]
+[gd_resource type="Theme" load_steps=59 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -12,7 +12,11 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=12]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=13]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=15]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=20]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -419,6 +423,12 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = ExtResource( 8 )
+CheckBox/icons/PressedClicked = ExtResource( 19 )
+CheckBox/icons/PressedHovered = ExtResource( 20 )
+CheckBox/icons/PressedNormal = ExtResource( 5 )
+CheckBox/icons/UnpressedClicked = ExtResource( 20 )
+CheckBox/icons/UnpressedHovered = ExtResource( 18 )
+CheckBox/icons/UnpressedNormal = ExtResource( 6 )
 CheckBox/icons/checked = ExtResource( 5 )
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
@@ -480,6 +490,8 @@ FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
 Fonts/fonts/large = null
+Fonts/fonts/lato_bold_normal = ExtResource( 16 )
+Fonts/fonts/lato_normal = ExtResource( 15 )
 Fonts/fonts/normal = null
 GraphEdit/colors/activity = Color( 0, 0, 0, 1 )
 GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )
@@ -823,7 +835,7 @@ WindowDialog/constants/custom_title_height = 26
 WindowDialog/constants/custom_titlebar_height = 28
 WindowDialog/constants/scaleborder_size = 4
 WindowDialog/constants/title_height = 16
-WindowDialog/fonts/custom_title_font = ExtResource( 13 )
+WindowDialog/fonts/custom_title_font = ExtResource( 15 )
 WindowDialog/fonts/title_font = ExtResource( 11 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
