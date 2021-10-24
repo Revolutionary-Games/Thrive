@@ -20,6 +20,8 @@ public static class SaveHelper
         "0.5.5.0-alpha",
     };
 
+    private static DateTime? lastSave;
+
     public enum SaveOrder
     {
         /// <summary>
@@ -37,6 +39,18 @@ public static class SaveHelper
         /// </summary>
         FileSystem,
     }
+
+    /// <summary>
+    ///   Checks whether the last save is made within a timespan of set duration.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Used for knowing whether to show confirmation dialog on the pause menu when exiting the game.
+    ///     TODO: Implement a method overriding this flag as old in some way.
+    ///   </para>
+    /// </remarks>
+    /// <returns>True if the last save is still recent, false if otherwise.</returns>
+    public static bool SavedRecently => DateTime.Now - lastSave < Constants.RecentSaveTime;
 
     /// <summary>
     ///   A save (and not a quick save) that the user triggered
@@ -128,6 +142,7 @@ public static class SaveHelper
 
         GD.Print("Starting load of save: ", name);
         new InProgressLoad(name).Start();
+        lastSave = DateTime.Now;
     }
 
     /// <summary>
@@ -390,6 +405,7 @@ public static class SaveHelper
         {
             save.SaveToFile();
             inProgress.ReportStatus(true, TranslationServer.Translate("SAVING_SUCCEEDED"));
+            lastSave = DateTime.Now;
         }
         catch (Exception e)
         {

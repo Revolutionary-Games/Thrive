@@ -600,6 +600,16 @@ public static class Constants
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
 
+    /// <summary>
+    ///   The duration for which a save is considered recently performed.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Not a const because TimeSpan is not a primitive.
+    ///   </para>
+    /// </remarks>
+    public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(10);
+
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
     // Or maybe it raises an actual error. Anyway this seems good enough for now to do some stuff
