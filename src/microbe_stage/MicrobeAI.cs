@@ -67,11 +67,11 @@ public class MicrobeAI
         compoundsSearchWeights = new Dictionary<Compound, float>();
     }
 
-    private float SpeciesAggression => microbe.Species.Aggression;
-    private float SpeciesFear => microbe.Species.Fear;
-    private float SpeciesActivity => microbe.Species.Activity;
-    private float SpeciesFocus => microbe.Species.Focus;
-    private float SpeciesOpportunism => microbe.Species.Opportunism;
+    private float SpeciesAggression => microbe.Species.Behaviour.Aggression;
+    private float SpeciesFear => microbe.Species.Behaviour.Fear;
+    private float SpeciesActivity => microbe.Species.Behaviour.Activity;
+    private float SpeciesFocus => microbe.Species.Behaviour.Focus;
+    private float SpeciesOpportunism => microbe.Species.Behaviour.Opportunism;
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
@@ -139,9 +139,8 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null)
         {
-            bool engulfPrey = !microbe.Species.MembraneType.CellWall &&
-                possiblePrey.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ <=
-                microbe.EngulfSize && DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+            bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
+                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
             EngagePrey(prey.Value, random, engulfPrey);
@@ -296,6 +295,9 @@ public class MicrobeAI
     /// <param name="allMicrobes">All microbes.</param>
     private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
+        var fleeThreshold = 3.0f - (2 *
+            (SpeciesFear / Constants.MAX_SPECIES_FEAR) *
+            (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
         Microbe predator = null;
         foreach (var otherMicrobe in allMicrobes)
         {
@@ -305,8 +307,7 @@ public class MicrobeAI
             // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
             if (otherMicrobe.Species != microbe.Species
                 && !otherMicrobe.Dead
-                && otherMicrobe.EngulfSize > microbe.EngulfSize
-                * (1.8f - SpeciesFear / Constants.MAX_SPECIES_FEAR))
+                && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
             {
                 if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >
                     DistanceFromMe(otherMicrobe.GlobalTransform.origin))
@@ -376,7 +377,7 @@ public class MicrobeAI
         microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
         microbe.LookAtPoint = targetPosition;
-        if (microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+        if (CanShootToxin())
         {
             LaunchToxin(target);
 
@@ -553,14 +554,14 @@ public class MicrobeAI
         var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
 
         return targetMicrobe.Species != microbe.Species && (
-            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.5 && CanShootToxin() &&
-                sizeRatio > 1 / Constants.ENGULF_SIZE_RATIO_REQ) ||
-            (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
+            (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())
+            || (sizeRatio >= Constants.ENGULF_SIZE_RATIO_REQ));
     }
 
     private bool CanShootToxin()
     {
-        return microbe.Compounds.GetCompoundAmount(oxytoxy) >= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
+        return microbe.Compounds.GetCompoundAmount(oxytoxy) >=
+            Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
     private float DistanceFromMe(Vector3 target)

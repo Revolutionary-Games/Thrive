@@ -8,10 +8,12 @@
     /// </summary>
     public class FindBestMigration : VariantTryingStep
     {
-        private GameWorld world;
-        private Species species;
+        private readonly GameWorld world;
+        private readonly Species species;
 
-        private Random random = new Random();
+        // TODO: allow passing in a seed from the constructor to avoid problems where multiple instances have the same
+        // random sequence due to happening to be created at the same time
+        private readonly Random random = new Random();
 
         public FindBestMigration(GameWorld world, Species species, int migrationsToTry, bool allowNoMigration)
             : base(migrationsToTry, allowNoMigration)
@@ -19,6 +21,8 @@
             this.world = world;
             this.species = species;
         }
+
+        public override bool CanRunConcurrently => true;
 
         protected override void OnBestResultFound(RunResults results, IAttemptResult bestVariant)
         {

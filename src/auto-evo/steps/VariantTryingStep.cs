@@ -23,6 +23,8 @@
 
         public int TotalSteps => (tryCurrentVariant ? 1 : 0) + variantsToTry;
 
+        public abstract bool CanRunConcurrently { get; }
+
         public bool RunStep(RunResults results)
         {
             bool ran = false;

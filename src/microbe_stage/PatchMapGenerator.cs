@@ -15,82 +15,137 @@ public static class PatchMapGenerator
         var map = new PatchMap();
 
         // Predefined patches
-        Patch vents = new Patch("PATCH_PANGONIAN_VENTS", 0,
-            GetBiomeTemplate("aavolcanic_vent"));
-        vents.Depth[0] = 2500;
-        vents.Depth[1] = 3000;
+        var vents = new Patch("PATCH_PANGONIAN_VENTS", 0,
+            GetBiomeTemplate("aavolcanic_vent"))
+        {
+            Depth =
+            {
+                [0] = 2500,
+                [1] = 3000,
+            },
+            ScreenCoordinates = new Vector2(100, 400),
+        };
         vents.AddSpecies(defaultSpecies);
-        vents.ScreenCoordinates = new Vector2(100, 400);
         map.AddPatch(vents);
 
-        Patch mesopelagic = new Patch("PATCH_PANGONIAN_MESOPELAGIC", 1,
-            GetBiomeTemplate("mesopelagic"));
-        mesopelagic.Depth[0] = 200;
-        mesopelagic.Depth[1] = 1000;
-        mesopelagic.ScreenCoordinates = new Vector2(200, 200);
+        var mesopelagic = new Patch("PATCH_PANGONIAN_MESOPELAGIC", 1,
+            GetBiomeTemplate("mesopelagic"))
+        {
+            Depth =
+            {
+                [0] = 200,
+                [1] = 1000,
+            },
+            ScreenCoordinates = new Vector2(200, 200),
+        };
         map.AddPatch(mesopelagic);
 
-        Patch epipelagic = new Patch("PATCH_PANGONIAN_EPIPELAGIC", 2,
-            GetBiomeTemplate("default"));
-        epipelagic.Depth[0] = 0;
-        epipelagic.Depth[1] = 200;
-        epipelagic.ScreenCoordinates = new Vector2(200, 100);
+        var epipelagic = new Patch("PATCH_PANGONIAN_EPIPELAGIC", 2,
+            GetBiomeTemplate("default"))
+        {
+            Depth =
+            {
+                [0] = 0,
+                [1] = 200,
+            },
+            ScreenCoordinates = new Vector2(200, 100),
+        };
         map.AddPatch(epipelagic);
 
-        Patch tidepool = new Patch("PATCH_PANGONIAN_TIDEPOOL", 3,
-            GetBiomeTemplate("tidepool"));
-        tidepool.Depth[0] = 0;
-        tidepool.Depth[1] = 10;
-        tidepool.ScreenCoordinates = new Vector2(300, 100);
+        var tidepool = new Patch("PATCH_PANGONIAN_TIDEPOOL", 3,
+            GetBiomeTemplate("tidepool"))
+        {
+            Depth =
+            {
+                [0] = 0,
+                [1] = 10,
+            },
+            ScreenCoordinates = new Vector2(300, 100),
+        };
         map.AddPatch(tidepool);
 
-        Patch bathypelagic = new Patch("PATCH_PANGONIAN_BATHYPELAGIC", 4,
-            GetBiomeTemplate("bathypelagic"));
-        bathypelagic.Depth[0] = 1000;
-        bathypelagic.Depth[1] = 4000;
-        bathypelagic.ScreenCoordinates = new Vector2(200, 300);
+        var bathypelagic = new Patch("PATCH_PANGONIAN_BATHYPELAGIC", 4,
+            GetBiomeTemplate("bathypelagic"))
+        {
+            Depth =
+            {
+                [0] = 1000,
+                [1] = 4000,
+            },
+            ScreenCoordinates = new Vector2(200, 300),
+        };
         map.AddPatch(bathypelagic);
 
-        Patch abyssopelagic = new Patch("PATHCH_PANGONIAN_ABYSSOPELAGIC", 5,
-            GetBiomeTemplate("abyssopelagic"));
-        abyssopelagic.Depth[0] = 4000;
-        abyssopelagic.Depth[1] = 6000;
-        abyssopelagic.ScreenCoordinates = new Vector2(300, 400);
+        var abyssopelagic = new Patch("PATHCH_PANGONIAN_ABYSSOPELAGIC", 5,
+            GetBiomeTemplate("abyssopelagic"))
+        {
+            Depth =
+            {
+                [0] = 4000,
+                [1] = 6000,
+            },
+            ScreenCoordinates = new Vector2(300, 400),
+        };
         map.AddPatch(abyssopelagic);
 
-        Patch coast = new Patch("PATCH_PANGONIAN_COAST", 6,
-            GetBiomeTemplate("coastal"));
-        coast.Depth[0] = 0;
-        coast.Depth[1] = 200;
-        coast.ScreenCoordinates = new Vector2(100, 100);
+        var coast = new Patch("PATCH_PANGONIAN_COAST", 6,
+            GetBiomeTemplate("coastal"))
+        {
+            Depth =
+            {
+                [0] = 0,
+                [1] = 200,
+            },
+            ScreenCoordinates = new Vector2(100, 100),
+        };
         map.AddPatch(coast);
 
-        Patch estuary = new Patch("PATCH_PANGONIAN_ESTUARY", 7,
-            GetBiomeTemplate("estuary"));
-        estuary.Depth[0] = 0;
-        estuary.Depth[1] = 200;
-        estuary.ScreenCoordinates = new Vector2(70, 160);
+        var estuary = new Patch("PATCH_PANGONIAN_ESTUARY", 7,
+            GetBiomeTemplate("estuary"))
+        {
+            Depth =
+            {
+                [0] = 0,
+                [1] = 200,
+            },
+            ScreenCoordinates = new Vector2(70, 160),
+        };
         map.AddPatch(estuary);
 
-        Patch cave = new Patch("PATCH_CAVE", 8,
-            GetBiomeTemplate("underwater_cave"));
-        cave.Depth[0] = 200;
-        cave.Depth[1] = 1000;
-        cave.ScreenCoordinates = new Vector2(300, 200);
+        var cave = new Patch("PATCH_CAVE", 8,
+            GetBiomeTemplate("underwater_cave"))
+        {
+            Depth =
+            {
+                [0] = 200,
+                [1] = 1000,
+            },
+            ScreenCoordinates = new Vector2(300, 200),
+        };
         map.AddPatch(cave);
 
-        Patch iceshelf = new Patch("PATCH_ICE_SHELF", 9,
-            GetBiomeTemplate("ice_shelf"));
-        iceshelf.Depth[0] = 0;
-        iceshelf.Depth[1] = 200;
-        iceshelf.ScreenCoordinates = new Vector2(200, 30);
-        map.AddPatch(iceshelf);
+        var iceShelf = new Patch("PATCH_ICE_SHELF", 9,
+            GetBiomeTemplate("ice_shelf"))
+        {
+            Depth =
+            {
+                [0] = 0,
+                [1] = 200,
+            },
+            ScreenCoordinates = new Vector2(200, 30),
+        };
+        map.AddPatch(iceShelf);
 
-        Patch seafloor = new Patch("PATCH_PANGONIAN_SEAFLOOR", 10,
-            GetBiomeTemplate("seafloor"));
-        seafloor.Depth[0] = 4000;
-        seafloor.Depth[1] = 6000;
-        seafloor.ScreenCoordinates = new Vector2(200, 400);
+        var seafloor = new Patch("PATCH_PANGONIAN_SEAFLOOR", 10,
+            GetBiomeTemplate("seafloor"))
+        {
+            Depth =
+            {
+                [0] = 4000,
+                [1] = 6000,
+            },
+            ScreenCoordinates = new Vector2(200, 400),
+        };
         map.AddPatch(seafloor);
 
         // Connections
@@ -102,7 +157,7 @@ public static class PatchMapGenerator
         LinkPatches(mesopelagic, epipelagic);
         LinkPatches(mesopelagic, cave);
         LinkPatches(epipelagic, tidepool);
-        LinkPatches(epipelagic, iceshelf);
+        LinkPatches(epipelagic, iceShelf);
         LinkPatches(epipelagic, coast);
         LinkPatches(coast, estuary);
 

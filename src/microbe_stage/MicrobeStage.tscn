@@ -356,6 +356,7 @@ process_priority = -1
 script = ExtResource( 1 )
 GuidanceLinePath = NodePath("World/GuidanceLine")
 PauseMenuPath = NodePath("PauseMenu")
+HUDRootPath = NodePath("MicrobeHUD")
 
 [node name="World" type="Node" parent="."]
 
@@ -385,11 +386,18 @@ script = ExtResource( 7 )
 margin_left = -0.943848
 margin_right = -0.943848
 
-[node name="MicrobeHUD" type="Node" parent="."]
+[node name="MicrobeHUD" type="Control" parent="."]
 pause_mode = 2
 process_priority = 4
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 72 )
 script = ExtResource( 9 )
 __meta__ = {
+"_edit_use_anchors_": false,
 "_editor_description_": ""
 }
 AnimationPlayerPath = NodePath("AnimationPlayer")
@@ -594,7 +602,6 @@ anchor_bottom = 1.0
 margin_top = -632.0
 margin_right = 455.0
 mouse_filter = 2
-theme = ExtResource( 72 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -662,9 +669,9 @@ autowrap = true
 
 [node name="EnvironmentExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 132.0
-margin_top = 6.0
+margin_top = 4.0
 margin_right = 150.0
-margin_bottom = 24.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
@@ -679,9 +686,9 @@ group = SubResource( 6 )
 
 [node name="EnvironmentCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 156.0
-margin_top = 6.0
+margin_top = 4.0
 margin_right = 174.0
-margin_bottom = 24.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
@@ -1123,9 +1130,9 @@ autowrap = true
 
 [node name="CompoundExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 192.0
-margin_top = 8.0
+margin_top = 6.0
 margin_right = 210.0
-margin_bottom = 26.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
@@ -1140,9 +1147,9 @@ group = SubResource( 15 )
 
 [node name="CompoundCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 216.0
-margin_top = 8.0
+margin_top = 6.0
 margin_right = 234.0
-margin_bottom = 26.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
@@ -1983,7 +1990,6 @@ margin_top = -70.0
 margin_right = 70.0
 margin_bottom = 70.0
 step = 0.1
-value = 100.0
 texture_progress = ExtResource( 65 )
 fill_mode = 5
 tint_progress = Color( 1, 0.627451, 0.121569, 1 )
@@ -2003,7 +2009,6 @@ margin_top = -70.0
 margin_right = 70.0
 margin_bottom = 70.0
 step = 0.1
-value = 100.0
 texture_progress = ExtResource( 65 )
 fill_mode = 5
 tint_progress = Color( 0.690196, 0.423529, 1, 1 )
@@ -2039,6 +2044,24 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
 anims/EditorButtonFlash = SubResource( 30 )
 
+<<<<<<< HEAD
+=======
+[node name="ProcessPanel" parent="MicrobeHUD" instance=ExtResource( 58 )]
+margin_left = 8.0
+margin_top = 72.0
+margin_right = -872.0
+margin_bottom = -48.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
+anims/HideLeftPanels = SubResource( 31 )
+anims/ShowLeftPanels = SubResource( 32 )
+
+[node name="MicrobeCheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 207.0
+
+>>>>>>> master
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeHUD"]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -2056,7 +2079,6 @@ __meta__ = {
 
 [node name="HotBar" type="HBoxContainer" parent="MicrobeHUD/ScrollContainer"]
 margin_right = 600.0
-margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 1
@@ -2065,6 +2087,7 @@ __meta__ = {
 }
 
 [node name="Engulfment" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 225.0
@@ -2076,6 +2099,7 @@ ActionIcon = ExtResource( 83 )
 ActionName = "g_toggle_engulf"
 
 [node name="FireToxin" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 277.0
@@ -2086,6 +2110,7 @@ ActionIcon = ExtResource( 15 )
 ActionName = "g_fire_toxin"
 
 [node name="BindingMode" parent="MicrobeHUD/ScrollContainer/HotBar" instance=ExtResource( 66 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 329.0
@@ -2131,6 +2156,17 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "PLACEHOLDER"
+}
+
+[node name="WinExtinctBoxHolder" type="Control" parent="MicrobeHUD"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]

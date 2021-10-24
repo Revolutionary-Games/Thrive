@@ -130,7 +130,7 @@ public static class Constants
     /// </summary>
     public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
 
-    public const float OXYTOXY_DAMAGE = 10.0f;
+    public const float OXYTOXY_DAMAGE = 15.0f;
 
     /// <summary>
     ///   Delay when a toxin hits or expires until it is destroyed. This is used to give some time for the effect to
@@ -163,9 +163,14 @@ public static class Constants
     public const float AGENT_EMISSION_COOLDOWN = 2.0f;
 
     /// <summary>
-    ///   The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
+    ///   The minimum amount of oxytoxy (or any agent) fired in one shot.
     /// </summary>
-    public const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
+    public const float MINIMUM_AGENT_EMISSION_AMOUNT = MathUtils.EPSILON;
+
+    /// <summary>
+    ///   The maximum amount of oxytoxy (or any agent) fired in one shot.
+    /// </summary>
+    public const float MAXIMUM_AGENT_EMISSION_AMOUNT = 2.0f;
 
     /// <summary>
     ///   The time (in seconds) it takes a cloud being absorbed to halve its compounds.
@@ -371,6 +376,8 @@ public static class Constants
     public const float MAX_SPECIES_FOCUS = 400.0f;
     public const float MAX_SPECIES_OPPORTUNISM = 400.0f;
 
+    public const float DEFAULT_BEHAVIOUR_VALUE = 100.0f;
+
     // Bacterial Colony configuration
     public const int MIN_BACTERIAL_COLONY_SIZE = 2;
     public const int MAX_BACTERIAL_COLONY_SIZE = 6;
@@ -484,6 +491,11 @@ public static class Constants
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
+    ///   Popups have a highest priority to ensure they can react first.
+    /// </summary>
+    public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
+
+    /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
     /// </summary>
     public const int PATCH_HISTORY_RANGE = 10;
@@ -553,6 +565,13 @@ public static class Constants
     public const string LOGS_FOLDER = "user://" + LOGS_FOLDER_NAME;
 
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
+
+    public const string LICENSE_FILE = "res://LICENSE.txt";
+    public const string ASSETS_README = "res://assets/README.txt";
+    public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
+    public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
+    public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
+    public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     /// <summary>
     ///   Internal Godot name for the default audio output device

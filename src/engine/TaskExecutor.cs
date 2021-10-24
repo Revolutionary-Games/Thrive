@@ -118,12 +118,26 @@ public class TaskExecutor
     ///   Runs a list of tasks and waits for them to complete. The
     ///   first task is ran on the calling thread before waiting.
     /// </summary>
-    public void RunTasks(IEnumerable<Task> tasks)
+    /// <param name="tasks">List of tasks to execute and wait to finish</param>
+    /// <param name="runExtraTasksOnCallingThread">
+    ///   If true the main thread processes tasks while there are queued tasks. Set this to false if you want to wait
+    ///   only for the tasks list to complete. If this is true then this call blocks until all tasks (for example
+    ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
+    ///   some cases.
+    /// </param>
+    public void RunTasks(IEnumerable<Task> tasks, bool runExtraTasksOnCallingThread = false)
     {
         // Queue all but the first task
         Task firstTask = null;
 
         var enumerated = tasks.ToList();
+
+        if (enumerated.Count < 1)
+        {
+            // No tasks given to execute. Should we throw here?
+            return;
+        }
+
         foreach (var task in enumerated)
         {
             if (firstTask != null)
@@ -137,9 +151,37 @@ public class TaskExecutor
         }
 
         // Run the first task on this thread
+        // This should always be non-null given the check above, but I don't feel like changing this now to not
+        // have to test this extensively
         firstTask?.RunSynchronously();
 
-        // Wait for all tasks to complete
+        // TODO: it should be plausible to make it so that only tasks in "tasks" are ran on the calling thread
+        // but due to implementation difficulty that is not currently done, instead this parameter is used
+        // to give control to the caller if they want to accept the tradeoffs regarding the current implementation
+        if (runExtraTasksOnCallingThread)
+        {
+            // Process tasks also on the main thread
+
+            // This should be the non-blocking variant so the current thread won't wait for more tasks,
+            // just immediately exits the loop if there are no tasks to run
+            while (queuedTasks.TryTake(out ThreadCommand command))
+            {
+                // If we take out a quit command here, we need to put it back for the actual threads to get and break
+                if (command.CommandType == ThreadCommand.Type.Quit)
+                {
+                    queuedTasks.Add(new ThreadCommand(ThreadCommand.Type.Quit, null));
+                    break;
+                }
+
+                if (ProcessNormalCommand(command))
+                    break;
+            }
+        }
+
+        // TODO: if Quit is called from another thread here, this thread will become permanently stuck waiting for the
+        // tasks
+
+        // Wait for all given tasks to complete
         foreach (var task in enumerated)
         {
             task.Wait();
@@ -197,31 +239,39 @@ public class TaskExecutor
                     return;
                 }
 
-                if (command.CommandType == ThreadCommand.Type.Task)
-                {
-                    try
-                    {
-                        command.Task.RunSynchronously();
-                    }
-                    catch (TaskSchedulerException exception)
-                    {
-                        GD.Print("Background task failed due to thread exiting: ", exception.Message);
-                        return;
-                    }
-
-                    // Make sure task exceptions aren't ignored.
-                    // TODO: it used to be that not all places properly waited for tasks, that's why this code is here
-                    // but now some places actually want to handle the task exceptions themselves, so this should
-                    // be removed after making sure no places ignore the exceptions
-                    if (command.Task.Exception != null)
-                        GD.Print("Background task caused an exception: ", command.Task.Exception);
-                }
-                else
-                {
-                    throw new Exception("invalid task type");
-                }
+                if (ProcessNormalCommand(command))
+                    return;
             }
         }
+    }
+
+    private bool ProcessNormalCommand(ThreadCommand command)
+    {
+        if (command.CommandType == ThreadCommand.Type.Task)
+        {
+            try
+            {
+                command.Task.RunSynchronously();
+            }
+            catch (TaskSchedulerException exception)
+            {
+                GD.Print("Background task failed due to thread exiting: ", exception.Message);
+                return true;
+            }
+
+            // Make sure task exceptions aren't ignored.
+            // TODO: it used to be that not all places properly waited for tasks, that's why this code is here
+            // but now some places actually want to handle the task exceptions themselves, so this should
+            // be removed after making sure no places ignore the exceptions
+            if (command.Task.Exception != null)
+                GD.Print("Background task caused an exception: ", command.Task.Exception);
+        }
+        else
+        {
+            throw new Exception("invalid task type");
+        }
+
+        return false;
     }
 
     private struct ThreadCommand

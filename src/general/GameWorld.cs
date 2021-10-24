@@ -272,6 +272,15 @@ public class GameWorld
         return autoEvo.Finished;
     }
 
+    /// <summary>
+    ///   Makes the current auto-evo run run at full speed (all threads) until complete. If not active run does nothing
+    /// </summary>
+    public void FinishAutoEvoRunAtFullSpeed()
+    {
+        if (autoEvo?.FullSpeed == false)
+            autoEvo.FullSpeed = true;
+    }
+
     public AutoEvoRun GetAutoEvoRun()
     {
         IsAutoEvoFinished();

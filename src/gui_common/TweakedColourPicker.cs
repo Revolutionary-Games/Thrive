@@ -31,8 +31,8 @@ public class TweakedColourPicker : ColorPicker
     private HSlider sliderBOrV;
     private HSlider sliderA;
     private ToolButton pickerButton;
-    private CheckBox hsvCheckBox;
-    private CheckBox rawCheckBox;
+    private CustomCheckBox hsvCheckBox;
+    private CustomCheckBox rawCheckBox;
     private Label htmlColourStart;
     private LineEdit htmlColourEdit;
     private HSeparator separator;
@@ -62,7 +62,7 @@ public class TweakedColourPicker : ColorPicker
     public string PresetGroup { get; private set; } = "default";
 
     /// <summary>
-    ///   Decide if user can toggle HSV CheckBox to switch HSV mode.
+    ///   Decide if user can toggle HSV CustomCheckBox to switch HSV mode.
     /// </summary>
     [Export]
     public bool HSVButtonEnabled
@@ -76,7 +76,7 @@ public class TweakedColourPicker : ColorPicker
     }
 
     /// <summary>
-    ///   Decide if user can toggle raw CheckBox to switch raw mode.
+    ///   Decide if user can toggle raw CustomCheckBox to switch raw mode.
     /// </summary>
     [Export]
     public bool RawButtonEnabled
@@ -212,8 +212,8 @@ public class TweakedColourPicker : ColorPicker
         sliderBOrV = baseControl.GetChild(2).GetChild<HSlider>(1);
         sliderA = baseControl.GetChild(3).GetChild<HSlider>(1);
         pickerButton = GetChild(1).GetChild<ToolButton>(1);
-        hsvCheckBox = GetNode<CheckBox>("MarginButtonsContainer/ButtonsContainer/HSVCheckBox");
-        rawCheckBox = GetNode<CheckBox>("MarginButtonsContainer/ButtonsContainer/RawCheckBox");
+        hsvCheckBox = GetNode<CustomCheckBox>("MarginButtonsContainer/ButtonsContainer/HSVCheckBox");
+        rawCheckBox = GetNode<CustomCheckBox>("MarginButtonsContainer/ButtonsContainer/RawCheckBox");
         htmlColourStart = GetNode<Label>("MarginButtonsContainer/ButtonsContainer/HtmlColourStart");
         htmlColourEdit = GetNode<LineEdit>("MarginButtonsContainer/ButtonsContainer/HtmlColourEdit");
         separator = GetNode<HSeparator>("Separator");
