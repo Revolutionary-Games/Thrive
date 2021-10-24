@@ -355,7 +355,6 @@
                     }
                 }
 
-
                 if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
                 {
                     builder.Append(' ');
