@@ -418,8 +418,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private AudioStream unableToPlaceHexSound;
     private Texture temperatureIcon;
 
-    private ConfirmationDialog negativeAtpPopup;
-    private AcceptDialog islandPopup;
+    private CustomConfirmationDialog negativeAtpPopup;
+    private CustomConfirmationDialog islandPopup;
 
     private OrganellePopupMenu organelleMenu;
 
@@ -559,8 +559,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
         temperatureIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/Temperature.png");
 
-        negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
-        islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
+        negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
+        islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);

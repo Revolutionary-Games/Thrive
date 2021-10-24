@@ -278,10 +278,10 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox tutorialsEnabled;
 
     // Confirmation Boxes
-    private AcceptDialog screenshotDirectoryWarningBox;
-    private AcceptDialog backConfirmationBox;
-    private ConfirmationDialog defaultsConfirmationBox;
-    private AcceptDialog errorAcceptBox;
+    private CustomConfirmationDialog screenshotDirectoryWarningBox;
+    private CustomDialog backConfirmationBox;
+    private CustomConfirmationDialog defaultsConfirmationBox;
+    private ErrorDialog errorAcceptBox;
 
     /*
       Misc
@@ -400,16 +400,12 @@ public class OptionsMenu : ControlWithInput
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
 
-        screenshotDirectoryWarningBox = GetNode<AcceptDialog>(ScreenshotDirectoryWarningBoxPath);
-        backConfirmationBox = GetNode<AcceptDialog>(BackConfirmationBoxPath);
-        defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
-        errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
+        screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
+        backConfirmationBox = GetNode<CustomDialog>(BackConfirmationBoxPath);
+        defaultsConfirmationBox = GetNode<CustomConfirmationDialog>(DefaultsConfirmationBoxPath);
+        errorAcceptBox = GetNode<ErrorDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
-
-        // We're only utilizing the AcceptDialog's auto resize functionality,
-        // so hide the default Ok button since it's not needed
-        backConfirmationBox.GetOk().Hide();
 
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");

@@ -489,6 +489,11 @@ public static class Constants
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
+    ///   Popups have a highest priority to ensure they can react first.
+    /// </summary>
+    public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
+
+    /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
     /// </summary>
     public const int PATCH_HISTORY_RANGE = 10;
