@@ -608,7 +608,7 @@ public partial class Microbe
         throw new InvalidOperationException();
     }
 
-    private Vector3 GetOffsetRelativeToMaster()
+    public Vector3 GetOffsetRelativeToMaster()
     {
         return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
             Colony.Master.Rotation.y);
@@ -898,7 +898,7 @@ public partial class Microbe
         }
     }
 
-    private void SendOrganellePositionsToMembrane()
+    public void SendOrganellePositionsToMembrane()
     {
         var organellePositions = new List<Vector2>();
 

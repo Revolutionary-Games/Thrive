@@ -32,6 +32,17 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         this.organelle = null;
     }
 
+    public float GetAngle(Vector3 delta)
+    {
+        float angle = Mathf.Atan2(-delta.z, delta.x);
+        if (angle < 0)
+        {
+            angle = angle + (2 * Mathf.Pi);
+        }
+
+        angle = (angle * 180 / Mathf.Pi - 90) % 360;
+        return angle;
+    }
     public virtual void Update(float elapsed)
     {
         // TODO: it would be nicer if this were notified when the
@@ -45,13 +56,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
-            float angle = Mathf.Atan2(-delta.z, delta.x);
-            if (angle < 0)
-            {
-                angle = angle + (2 * Mathf.Pi);
-            }
-
-            angle = (angle * 180 / Mathf.Pi - 90) % 360;
+            float angle = GetAngle (delta);
 
             var rotation = MathUtils.CreateRotationForExternal(angle);
 
