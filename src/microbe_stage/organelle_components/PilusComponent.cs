@@ -118,9 +118,7 @@ public class PilusComponent : ExternallyPositionedComponent
         shape.Radius = pilusSize / 10.0f;
         shape.Height = pilusSize;
 
-        var ownerId = parent.CreateShapeOwner(shape);
-        parent.ShapeOwnerAddShape(ownerId, shape);
-        parent.ShapeOwnerSetTransform(addedChildShapes[0], transform);
+        var ownerId = organelle.CreateOwner(parent, transform, shape);
         parent.AddPilus(ownerId);
         addedChildShapes.Add(ownerId);
     }
