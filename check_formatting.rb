@@ -31,7 +31,7 @@ DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localiza
 
 LOCALE_TEMP_SUFFIX = '.temp_check'
 TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
-GIT_MERGE_CONFLICT_MARKERS = /^<{7} HEAD$/.freeze
+GIT_MERGE_CONFLICT_MARKERS = /^<{7} [^\s\\]*$/.freeze
 NODE_NAME_REGEX = /\[node\s+name="([^"]+)"/.freeze
 NODE_NAME_UPPERCASE_REQUIRED_LENGTH = 25
 NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
