@@ -43,6 +43,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         angle = (angle * 180 / Mathf.Pi - 90) % 360;
         return angle;
     }
+
     public virtual void Update(float elapsed)
     {
         // TODO: it would be nicer if this were notified when the
@@ -56,7 +57,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
-            float angle = GetAngle (delta);
+            float angle = GetAngle(delta);
 
             var rotation = MathUtils.CreateRotationForExternal(angle);
 

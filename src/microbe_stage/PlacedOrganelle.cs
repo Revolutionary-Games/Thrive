@@ -414,7 +414,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     ///  Creates a new shape owner for a shape
     /// </summary>
     public uint CreateOwner(Microbe microbe, Transform transform, Shape shape)
-    {  
+    {
         var newOwnerId = microbe.CreateShapeOwner(shape);
         microbe.ShapeOwnerAddShape(newOwnerId, shape);
         microbe.ShapeOwnerSetTransform(newOwnerId, transform);
@@ -425,7 +425,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     ///  Creates a new shapeOwner for a given shape and its old shape owner
     ///  Doesnt destroy the old shape owner
     /// </summary>
-    public uint NewOwnerId (Microbe parent, Microbe microbe, Transform transform, uint oldOwner)
+    public uint NewOwnerId(Microbe parent, Microbe microbe, Transform transform, uint oldOwner)
     {
         var shape = parent.ShapeOwnerGetShape(oldOwner, 0);
         var newOwnerId = CreateOwner(microbe, transform, shape);
@@ -466,7 +466,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             shapes[i] = NewOwnerId(currentShapesParent, to, transform, ownerId);
             currentShapesParent.RemoveShapeOwner(ownerId);
         }
-        
+
         foreach (var component in Components)
         {
             component.OnShapeParentChanged(to, offset);
