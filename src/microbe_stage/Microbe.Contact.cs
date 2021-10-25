@@ -327,6 +327,27 @@ public partial class Microbe
         return EngulfSize >= target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
+    public Vector3 GetOffsetRelativeToMaster()
+    {
+        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
+            Colony.Master.Rotation.y);
+    }
+
+    public void SendOrganellePositionsToMembrane()
+    {
+        var organellePositions = new List<Vector2>();
+
+        foreach (var entry in organelles.Organelles)
+        {
+            var cartesian = Hex.AxialToCartesian(entry.Position);
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+        }
+
+        Membrane.OrganellePositions = organellePositions;
+        Membrane.Dirty = true;
+        membraneOrganellePositionsAreDirty = false;
+    }
+
     /// <summary>
     ///   Instantly kills this microbe and queues this entity to be destroyed
     /// </summary>
@@ -606,12 +627,6 @@ public partial class Microbe
         // possibly bogus ownerID values that sometimes seem to come from Godot
         // https://github.com/Revolutionary-Games/Thrive/issues/2504
         throw new InvalidOperationException();
-    }
-
-    public Vector3 GetOffsetRelativeToMaster()
-    {
-        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
-            Colony.Master.Rotation.y);
     }
 
     private void OnIGotAddedToColony()
@@ -896,21 +911,6 @@ public partial class Microbe
         {
             this.DestroyDetachAndQueueFree();
         }
-    }
-
-    public void SendOrganellePositionsToMembrane()
-    {
-        var organellePositions = new List<Vector2>();
-
-        foreach (var entry in organelles.Organelles)
-        {
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
-        }
-
-        Membrane.OrganellePositions = organellePositions;
-        Membrane.Dirty = true;
-        membraneOrganellePositionsAreDirty = false;
     }
 
     private void ChangeNodeParent(Microbe parent)

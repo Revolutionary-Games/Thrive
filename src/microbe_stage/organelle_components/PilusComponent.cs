@@ -12,6 +12,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
     public override void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
+        // Check if the  pilus exists
         if (NeedsUpdateAnyway())
         {
             // Send the organelle positions to the membrane then update their positions
@@ -22,6 +23,8 @@ public class PilusComponent : ExternallyPositionedComponent
         {
             // Firstly the rotation relative to the master.
             var position = organelle.RotationInsideColony(lastCalculatedPosition);
+
+            // Then the position
             position += offset;
             Vector3 middle = offset;
             Vector3 membranePointDirection = (position - middle).Normalized();
@@ -40,6 +43,7 @@ public class PilusComponent : ExternallyPositionedComponent
             DestroyShape();
             addedChildShapes.Add(ownerId);
         }
+
         currentShapesParent = newShapeParent;
     }
 
@@ -74,9 +78,8 @@ public class PilusComponent : ExternallyPositionedComponent
         }
 
         var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
-        
         var parentMicrobe = currentShapesParent;
-        
+
         if (parentMicrobe.Colony != null && !NeedsUpdateAnyway())
         {
             // Get the real position of the pilus while in the colony
@@ -87,6 +90,7 @@ public class PilusComponent : ExternallyPositionedComponent
         var transform = new Transform(physicsRotation, membraneCoords);
         if(NeedsUpdateAnyway())
             CreateShape(transform, parentMicrobe);
+
         parentMicrobe.ShapeOwnerSetTransform(addedChildShapes[0], transform);
         // TODO: find a way to pass the information to the shape /
         // parentMicrobe what is a pilus part of the collision
