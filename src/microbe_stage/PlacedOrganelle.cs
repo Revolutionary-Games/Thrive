@@ -556,7 +556,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             if (ParentMicrobe.Species.IsBacteria)
                 shapePosition *= 0.5f;
 
-            // Create a transform for a shaqpe position
+            // Create a transform for a shape position
             var transform = new Transform(Quat.Identity, shapePosition);
             var ownerId = CreateOwner(to, transform, shape);
             shapes.Add(ownerId);
