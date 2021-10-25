@@ -121,7 +121,7 @@ public class PilusComponent : ExternallyPositionedComponent
         shape.Height = pilusSize;
 
         var ownerId = parent.CreateShapeOwner(shape);
-        parent.ShapeOwnerAddShape(ownerId,shape);
+        parent.ShapeOwnerAddShape(ownerId, shape);
         parent.AddPilus(ownerId);
         addedChildShapes.Add(ownerId);
     }
