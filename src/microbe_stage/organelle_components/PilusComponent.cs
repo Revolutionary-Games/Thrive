@@ -12,7 +12,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
     public override void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
-        // Check if the  pilus exists
+        // Check if the pilus exists
         if (NeedsUpdateAnyway())
         {
             // Send the organelle positions to the membrane then update their positions
