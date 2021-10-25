@@ -90,14 +90,16 @@ public class PilusComponent : ExternallyPositionedComponent
 
         var transform = new Transform(physicsRotation, membraneCoords);
         if (NeedsUpdateAnyway())
-            CreateShape(transform, parentMicrobe);
+            CreateShape(parentMicrobe);
+
+        currentShapesParent.ShapeOwnerSetTransform(addedChildShapes[0], transform);
 
         // TODO: find a way to pass the information to the shape /
         // parentMicrobe what is a pilus part of the collision
         // pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
     }
 
-    private void CreateShape(Transform transform, Microbe parent)
+    private void CreateShape(Microbe parent)
     {
         float pilusSize = 4.6f;
 
@@ -118,7 +120,8 @@ public class PilusComponent : ExternallyPositionedComponent
         shape.Radius = pilusSize / 10.0f;
         shape.Height = pilusSize;
 
-        var ownerId = organelle.CreateOwner(parent, transform, shape);
+        var ownerId = parent.CreateShapeOwner(shape);
+        parent.ShapeOwnerAddShape(ownerId,shape);
         parent.AddPilus(ownerId);
         addedChildShapes.Add(ownerId);
     }
