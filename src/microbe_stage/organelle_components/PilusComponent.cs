@@ -36,7 +36,7 @@ public class PilusComponent : ExternallyPositionedComponent
             var transform = new Transform(rotation, position);
 
             // New ownerId
-            var ownerId = organelle.NewOwnerId(currentShapesParent, newShapeParent, transform, addedChildShapes[0]);
+            var ownerId = currentShapesParent.NewOwnerId(newShapeParent, transform, addedChildShapes[0]);
             newShapeParent.AddPilus(ownerId);
 
             // Destroy the old shape owner
