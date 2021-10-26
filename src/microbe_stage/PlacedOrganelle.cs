@@ -459,10 +459,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
 	private static Color CalculateHSVForOrganelle(Color rawColour)
 	{
-		// Get hue saturation and brightness for the colour
+        // Get hue saturation and brightness for the colour
 
 		// According to stack overflow HSV and HSB are the same thing
-		rawColour.ToHsv(out var hue, out var saturation, out var brightness);
+        rawColour.ToHsv(out var hue, out var saturation, out var brightness);
 
 		return Color.FromHsv(hue, saturation * 2, brightness);
 	}
