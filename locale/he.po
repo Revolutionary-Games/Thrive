@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-24 15:50+0300\n"
+"POT-Creation-Date: 2021-10-28 00:04+0200\n"
 "PO-Revision-Date: 2021-10-15 11:01+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -1796,7 +1796,7 @@ msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:617
+#: ../src/microbe_stage/MicrobeHUD.cs:627
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
@@ -2702,18 +2702,43 @@ msgstr "שכפל שחקן"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:675
+#: ../src/microbe_stage/MicrobeHUD.cs:680
 msgid "STUFF_AT"
 msgstr "דברים ב {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:719
+#: ../src/microbe_stage/MicrobeHUD.cs:712
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:736
+#: ../src/microbe_stage/MicrobeHUD.cs:729
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "רשימת מינים"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:758
+msgid "CATEGORY_AN_ABUNDANCE"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:760
+msgid "CATEGORY_QUITE_A_BIT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:762
+msgid "CATEGORY_A_FAIR_AMOUNT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:764
+msgid "CATEGORY_SOME"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:766
+#, fuzzy
+msgid "CATEGORY_LITTLE"
+msgstr "צוות תיאוריה"
+
+#: ../src/microbe_stage/MicrobeHUD.cs:768
+msgid "CATEGORY_VERY_LITTLE"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.cs:525
 msgid "PLAYER_REPRODUCED"

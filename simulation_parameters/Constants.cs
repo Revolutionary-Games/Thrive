@@ -600,6 +600,15 @@ public static class Constants
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
 
+    public const float COMPOUND_HOVER_INFO_REMOVE_DELAY = 1000f;
+    public const float COMPOUND_HOVER_INFO_THRESHOLD = 2.5f;
+    public const float COMPOUND_DENSITY_CATEGORY_VERY_LITTLE = 0.5f;
+    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 5f;
+    public const float COMPOUND_DENSITY_CATEGORY_SOME = 20f;
+    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 50f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 200f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 500f;
+
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
     // Or maybe it raises an actual error. Anyway this seems good enough for now to do some stuff

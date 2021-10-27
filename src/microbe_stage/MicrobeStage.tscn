@@ -457,9 +457,10 @@ BindingModeHotkeyPath = NodePath("ScrollContainer/HotBar/BindingMode")
 [node name="MouseHoverPanel" type="MarginContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -240.0
-margin_bottom = 79.0
+anchor_bottom = 1.0
+margin_bottom = -300.0
 grow_horizontal = 0
+mouse_filter = 2
 theme = ExtResource( 72 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -469,8 +470,12 @@ __meta__ = {
 
 [node name="PanelContainer" type="PanelContainer" parent="MicrobeHUD/MouseHoverPanel"]
 margin_top = 10.0
-margin_right = 230.0
-margin_bottom = 79.0
+margin_right = 240.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 240, 80 )
+mouse_filter = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -478,8 +483,9 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 229.0
-margin_bottom = 68.0
+margin_right = 239.0
+margin_bottom = 79.0
+mouse_filter = 2
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
@@ -488,41 +494,42 @@ custom_constants/margin_bottom = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 5.0
-margin_right = 218.0
-margin_bottom = 57.0
+margin_right = 228.0
+margin_bottom = 68.0
+mouse_filter = 2
 
 [node name="MousePos" type="Label" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
-margin_right = 208.0
+margin_right = 218.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 71 )
 text = "AT_CURSOR"
 align = 1
-autowrap = true
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="TitleSeparator" type="HSeparator" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 23.0
-margin_right = 208.0
+margin_right = 218.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 0, 5 )
+mouse_filter = 2
 
 [node name="NothingHere" type="MarginContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 margin_top = 32.0
-margin_right = 208.0
+margin_right = 218.0
 margin_bottom = 52.0
+mouse_filter = 2
 custom_constants/margin_left = 10
 
 [node name="NothingHereLabel" type="Label" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/NothingHere"]
 margin_left = 10.0
-margin_right = 208.0
+margin_right = 218.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
 custom_fonts/font = ExtResource( 68 )
 text = "NOTHING_HERE"
 valign = 1
-autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -530,18 +537,19 @@ __meta__ = {
 [node name="HoveredCompounds" type="VBoxContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
 margin_top = 56.0
-margin_right = 208.0
+margin_right = 218.0
 margin_bottom = 80.0
-size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds"]
-margin_right = 208.0
+margin_right = 218.0
 margin_bottom = 20.0
+mouse_filter = 2
 custom_constants/margin_left = 10
 
 [node name="CompoundsLabel" type="Label" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds/MarginContainer"]
 margin_left = 10.0
-margin_right = 208.0
+margin_right = 218.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 20 )
 custom_fonts/font = ExtResource( 68 )
@@ -553,28 +561,30 @@ __meta__ = {
 
 [node name="List" type="VBoxContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds"]
 margin_top = 24.0
-margin_right = 208.0
+margin_right = 218.0
 margin_bottom = 24.0
-size_flags_vertical = 3
+mouse_filter = 2
 theme = SubResource( 1 )
 
 [node name="SpeciesSeparator" type="HSeparator" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 148.0
-margin_right = 208.0
-margin_bottom = 153.0
+margin_top = 56.0
+margin_right = 218.0
+margin_bottom = 61.0
 rect_min_size = Vector2( 0, 5 )
+mouse_filter = 2
 
 [node name="HoveredCells" type="VBoxContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
 margin_top = 56.0
 margin_right = 208.0
 margin_bottom = 97.0
-size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells"]
 margin_right = 208.0
 margin_bottom = 20.0
+mouse_filter = 2
 custom_constants/margin_left = 10
 
 [node name="SpeciesLabel" type="Label" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/MarginContainer2"]
@@ -593,7 +603,7 @@ __meta__ = {
 margin_top = 24.0
 margin_right = 208.0
 margin_bottom = 41.0
-size_flags_vertical = 3
+mouse_filter = 2
 theme = SubResource( 1 )
 
 [node name="BottomLeft" type="Control" parent="MicrobeHUD"]

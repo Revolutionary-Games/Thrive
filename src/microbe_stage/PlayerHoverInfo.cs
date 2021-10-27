@@ -6,13 +6,16 @@ using Godot;
 /// </summary>
 public class PlayerHoverInfo : Node
 {
+    private readonly Dictionary<Compound, float> currentHoveredCompounds = new Dictionary<Compound, float>();
+    private readonly Dictionary<Compound, float> compoundDelayTimer = new Dictionary<Compound, float>();
     private MicrobeCamera camera;
     private CompoundCloudSystem cloudSystem;
+    private Vector3 lastCursorWorldPos = Vector3.Inf;
 
     /// <summary>
     ///   All compounds the user is hovering over.
     /// </summary>
-    public Dictionary<Compound, float> HoveredCompounds { get; private set; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> HoveredCompounds { get; } = new Dictionary<Compound, float>();
 
     /// <summary>
     ///   All microbes the user is hovering over.
@@ -29,7 +32,42 @@ public class PlayerHoverInfo : Node
 
     public override void _Process(float delta)
     {
-        HoveredCompounds = cloudSystem.GetAllAvailableAt(camera.CursorWorldPos);
+        cloudSystem.GetAllAvailableAt(camera.CursorWorldPos, currentHoveredCompounds);
+
+        if (camera.CursorWorldPos != lastCursorWorldPos)
+        {
+            HoveredCompounds.Clear();
+            lastCursorWorldPos = camera.CursorWorldPos;
+        }
+
+        foreach (var compound in currentHoveredCompounds)
+        {
+            HoveredCompounds.TryGetValue(compound.Key, out float oldAmount);
+
+            // Delay removing of label to reduce flickering.
+            if (compound.Value == 0f && oldAmount > 0f)
+            {
+                compoundDelayTimer.TryGetValue(compound.Key, out float delayDelta);
+                delayDelta += delta;
+                if (delayDelta > Constants.COMPOUND_HOVER_INFO_REMOVE_DELAY)
+                {
+                    compoundDelayTimer.Remove(compound.Key);
+                    HoveredCompounds[compound.Key] = 0f;
+                    continue;
+                }
+
+                compoundDelayTimer[compound.Key] = delayDelta;
+                continue;
+            }
+
+            // Ignore small changes to reduce flickering.
+            if (Mathf.Abs(compound.Value - oldAmount) >= Constants.COMPOUND_HOVER_INFO_THRESHOLD)
+            {
+                HoveredCompounds[compound.Key] = compound.Value;
+            }
+        }
+
+        currentHoveredCompounds.Clear();
 
         var allMicrobes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
 
