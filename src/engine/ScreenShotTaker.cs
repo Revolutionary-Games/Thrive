@@ -38,7 +38,7 @@ public class ScreenShotTaker : NodeWithInput
     {
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
-        var img = TakeScreenshot();
+        var img = GetViewportTextureData();
 
         return SaveScreenshot(img);
     }
@@ -47,7 +47,7 @@ public class ScreenShotTaker : NodeWithInput
     ///   Takes an image of the current viewport
     /// </summary>
     /// <returns>The image</returns>
-    public Image TakeScreenshot()
+    public Image GetViewportTextureData()
     {
         var image = GetViewport().GetTexture().GetData();
 
@@ -84,12 +84,15 @@ public class ScreenShotTaker : NodeWithInput
         {
             ColourblindScreenFilter.Instance.Hide();
 
-            // two frames needed
+            // Two frames needed.
+            // From Godot docs since v3.2.1 yield(VisualServer, "frame_post_draw") should be enough.
+            // But couldn't get this to work. So taking the old recommendation of waiting 2 frames.
+            // to be sure the image is drawn in the viewport.
             await ToSignal(GetTree(), "idle_frame");
             await ToSignal(GetTree(), "idle_frame");
         }
 
-        using Image image = TakeScreenshot();
+        using Image image = GetViewportTextureData();
 
         if (wasColourblindScreenFilterVisible)
         {
