@@ -5,17 +5,16 @@
 /// </summary>
 public abstract class ExternallyPositionedComponent : IOrganelleComponent
 {
+    /// <summary>
+    ///   The default visual position if the organelle is on the microbe's center
+    /// </summary>
+    protected static readonly Vector3 DefaultVisualPos = Vector3.Forward;
     protected PlacedOrganelle organelle;
 
     /// <summary>
     ///   Needed to calculate final pos on update
     /// </summary>
     protected Vector3 organellePos;
-
-    /// <summary>
-    ///   The default visual position if the organelle is on the microbe's center
-    /// </summary>
-    protected static readonly Vector3 defaultVisualPos = Vector3.Forward;
 
     /// <summary>
     ///   Last calculated position, Used to not have to recreate the physics all the time
@@ -45,7 +44,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         var relativeOrganellePosition = middle - organellePos;
 
         if (relativeOrganellePosition == Vector3.Zero)
-            relativeOrganellePosition = defaultVisualPos;
+            relativeOrganellePosition = DefaultVisualPos;
         Vector3 exit = middle - relativeOrganellePosition;
         var membraneCoords = organelle.ParentMicrobe.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
             exit.z);

@@ -74,7 +74,7 @@ public class MovementComponent : ExternallyPositionedComponent
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePosition;
         if (delta == Vector3.Zero)
-            delta = defaultVisualPos;
+            delta = DefaultVisualPos;
         return delta.Normalized() * momentum;
     }
 
