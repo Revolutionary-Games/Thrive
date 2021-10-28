@@ -152,7 +152,9 @@ public static class Constants
 
     public const float COMPOUND_RELEASE_PERCENTAGE = 0.9f;
 
-    public const float MICROBE_MAX_SPEED = 80.0f;
+    public const float MICROBE_SOUND_MAX_SPEED = 80.0f;
+    public const float MICROBE_SOUND_MIN_SPEED = 10.0f;
+    public const float MICROBE_SOUND_MIN_MODIFIER = 0.1f;
 
     /// <summary>
     ///   Base mass all microbes have on top of their organelle masses
