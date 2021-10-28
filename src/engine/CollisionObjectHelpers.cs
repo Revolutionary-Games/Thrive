@@ -6,7 +6,7 @@
 public static class CollisionObjectHelpers
 {
     /// <summary>
-    ///  Creates and returns new shape owner for a shape 
+    ///  Creates and returns new shape owner for a shape
     ///  apllies a given transform to the new shapeOwner
     ///  Used on collisionObjects
     /// </summary>
@@ -19,7 +19,7 @@ public static class CollisionObjectHelpers
     }
 
     /// <summary>
-    ///  Creates a new shapeOwner for a given shape and its old shape owner 
+    ///  Creates a new shapeOwner for a given shape and its old shape owner
     ///  and applies a given transform
     ///  Doesnt destroy the old shape owner
     /// </summary>
