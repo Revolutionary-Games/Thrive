@@ -144,7 +144,10 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
         ObjectToFollow = objectToFollow;
 
         if (jump && ObjectToFollow != null)
-            Translation = new Vector3(ObjectToFollow.Transform.origin.x, CameraHeight, ObjectToFollow.Transform.origin.z);
+        {
+            Translation = new Vector3(ObjectToFollow.Transform.origin.x, CameraHeight,
+                ObjectToFollow.Transform.origin.z);
+        }
     }
 
     public void ResolveNodeReferences()
