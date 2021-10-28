@@ -683,6 +683,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             gameOver = true;
             TransitionManager.Instance.CancelTransitionPressed();
+            TutorialState.HideAll();
         }
         else
         {
