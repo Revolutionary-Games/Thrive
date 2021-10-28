@@ -44,8 +44,7 @@ public class GodotBasisConverter : JsonConverter
             // ReSharper restore AssignNullToNotNullAttribute PossibleNullReferenceException
         }
         catch (Exception e) when (
-            e is NullReferenceException ||
-            e is ArgumentNullException)
+            e is NullReferenceException or ArgumentNullException)
         {
             throw new JsonException("can't read Basis (missing property)", e);
         }
