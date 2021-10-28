@@ -68,6 +68,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [JsonProperty]
     private bool gameOver;
 
+    [JsonProperty]
     private bool respawnFadeStarted;
 
     [JsonProperty]
@@ -494,7 +495,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [RunOnKeyDown("g_quick_save")]
     public void QuickSave()
     {
-        if (!TransitionFinished)
+        if (!TransitionFinished || respawnFadeStarted)
         {
             GD.Print("quick save is disabled while transitioning");
             return;

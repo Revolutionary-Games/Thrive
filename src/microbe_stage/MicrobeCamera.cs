@@ -63,6 +63,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
+    [JsonIgnore]
     public Spatial ObjectToFollow { get; private set; }
 
     /// <summary>
