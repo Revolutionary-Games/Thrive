@@ -13,6 +13,7 @@ public class MovementComponent : ExternallyPositionedComponent
     private int initialUpdatesCount = 6;
     private bool movingTail;
     private Vector3 force;
+
     private AnimationPlayer animation;
 
     public MovementComponent(float momentum, float torque)
@@ -37,8 +38,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
-        force = CalculateForce(organelle.Position, Momentum, defaultVisualPos);
-
+        force = CalculateForce(organelle.Position, Momentum);
         animation = organelle.OrganelleAnimation;
 
         if (animation == null)
@@ -68,13 +68,13 @@ public class MovementComponent : ExternallyPositionedComponent
     ///   If the flagella is  placed in the microbe's center, hence delta equals 0,
     ///   consider defaultPos as the organelles "false" position.
     /// </summary>
-    private static Vector3 CalculateForce(Hex pos, float momentum, Vector3 defaultPos)
+    private static Vector3 CalculateForce(Hex pos, float momentum)
     {
         Vector3 organellePosition = Hex.AxialToCartesian(pos);
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePosition;
         if (delta == Vector3.Zero)
-            delta = defaultPos;
+            delta = defaultVisualPos;
         return delta.Normalized() * momentum;
     }
 
