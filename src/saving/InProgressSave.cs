@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using Saving;
 
 /// <summary>
 ///   Holds data needed for an in-progress save action. And manages stepping through all the actions that need to happen
@@ -30,7 +31,14 @@ public class InProgressSave : IDisposable
 
     private bool success;
     private string message;
-    private string exception;
+
+    /// <summary>
+    ///   Failure exception or message describing the problem. Which one it is depends on
+    ///   <see cref="exceptionOrMessageIsException"/>
+    /// </summary>
+    private string exceptionOrFailureMessage;
+
+    private bool exceptionOrMessageIsException = true;
 
     private bool disposed;
 
@@ -80,11 +88,12 @@ public class InProgressSave : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    internal void ReportStatus(bool success, string message, string exception = "")
+    internal void ReportStatus(bool success, string message, string exceptionOrFailure = "", bool isException = true)
     {
         this.success = success;
         this.message = message;
-        this.exception = exception;
+        exceptionOrFailureMessage = exceptionOrFailure;
+        exceptionOrMessageIsException = isException;
     }
 
     protected virtual void Dispose(bool disposing)
@@ -166,6 +175,7 @@ public class InProgressSave : IDisposable
                     Mathf.Inf);
 
                 state = State.SaveData;
+                JSONDebug.FlushJSONTracesOut();
                 break;
             }
 
@@ -184,6 +194,8 @@ public class InProgressSave : IDisposable
                 stopwatch.Stop();
                 GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
 
+                JSONDebug.FlushJSONTracesOut();
+
                 if (success)
                 {
                     SaveStatusOverlay.Instance.ShowMessage(message);
@@ -194,7 +206,7 @@ public class InProgressSave : IDisposable
                 {
                     SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_FAILED"));
                     SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_SAVING"),
-                        message, exception);
+                        message, exceptionOrFailureMessage, false, null, exceptionOrMessageIsException);
                 }
 
                 IsSaving = false;

@@ -18,6 +18,11 @@ public static class CheatManager
     public static event EventHandler<EventArgs> OnPlayerDuplicationCheatUsed;
 
     /// <summary>
+    ///   Fired whenever the user uses the "Spawn Enemy" cheat
+    /// </summary>
+    public static event EventHandler<EventArgs> OnSpawnEnemyCheatUsed;
+
+    /// <summary>
     ///   You automatically have 100% of all compounds
     /// </summary>
     public static bool InfiniteCompounds { get; set; }
@@ -49,6 +54,14 @@ public static class CheatManager
     public static void PlayerDuplication()
     {
         OnPlayerDuplicationCheatUsed?.Invoke(null, EventArgs.Empty);
+    }
+
+    /// <summary>
+    ///   Spawns a random enemy
+    /// </summary>
+    public static void SpawnEnemy()
+    {
+        OnSpawnEnemyCheatUsed?.Invoke(null, EventArgs.Empty);
     }
 
     public static void DisableAllCheats()

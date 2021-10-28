@@ -75,6 +75,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [JsonProperty]
     private float rigidity;
 
+    [JsonProperty]
+    private BehaviourDictionary behaviour;
+
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -248,6 +251,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
+    [JsonProperty]
+    public BehaviourDictionary Behaviour
+    {
+        get => behaviour ??= editedSpecies?.Behaviour;
+        private set => behaviour = value;
+    }
+
     /// <summary>
     ///   Selected membrane type for the species
     /// </summary>
@@ -416,6 +426,17 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public bool IsLoadedFromSave { get; set; }
 
+    [JsonIgnore]
+    private bool Ready
+    {
+        get => ready;
+        set
+        {
+            ready = value;
+            pauseMenu.GameLoading = !value;
+        }
+    }
+
     public override void _Ready()
     {
         ResolveNodeReferences();
@@ -564,6 +585,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         editedSpecies.Colour = Colour;
         editedSpecies.MembraneRigidity = Rigidity;
 
+        editedSpecies.Behaviour = Behaviour;
+
         // Move patches
         if (targetPatch != null)
         {
@@ -586,7 +609,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     public override void _Process(float delta)
     {
-        if (!ready)
+        if (!Ready)
         {
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
@@ -698,7 +721,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public void QuickSave()
     {
         // Can only save once the editor is ready
-        if (ready)
+        if (Ready)
         {
             GD.Print("quick saving microbe editor");
             SaveHelper.QuickSave(this);
@@ -787,6 +810,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             organelleRot = 5;
     }
 
+    [RunOnKeyDown("g_toggle_gui")]
+    public void ToggleGUI()
+    {
+        gui.Visible = !gui.Visible;
+    }
+
     public void SetMembrane(string membraneName)
     {
         var membrane = SimulationParameters.Instance.GetMembrane(membraneName);
@@ -801,6 +830,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // In case the action failed, we need to make sure the membrane buttons are updated properly
         gui.UpdateMembraneButtons(Membrane.InternalName);
+    }
+
+    public void SetBehaviouralValue(BehaviouralValueType type, float value)
+    {
+        gui.UpdateBehaviourSlider(type, value);
+
+        var oldValue = Behaviour[type];
+
+        if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
+            return;
+
+        var action = new MicrobeEditorAction(this, 0, DoBehaviourChangeAction, UndoBehaviourChangeAction,
+            new BehaviourChangeActionData(value, oldValue, type));
+
+        EnqueueAction(action);
     }
 
     public void SetRigidity(int rigidity)
@@ -1197,8 +1241,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void StartMusic()
     {
-        Jukebox.Instance.PlayingCategory = "MicrobeEditor";
-        Jukebox.Instance.Resume();
+        Jukebox.Instance.PlayCategory("MicrobeEditor");
     }
 
     /// <summary>
@@ -1362,10 +1405,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // For now we only show a loading screen if auto-evo is not ready yet
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
-            ready = false;
+            Ready = false;
             LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
                 MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
+
+            CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
         }
         else
         {
@@ -1407,6 +1452,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         Rigidity = species.MembraneRigidity;
         Colour = species.Colour;
 
+        Behaviour = species.Behaviour;
+
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
         {
@@ -1437,7 +1484,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // Reset to cytoplasm if nothing is selected
         gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
-        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
+        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity, Behaviour);
         gui.UpdateGeneration(species.Generation);
         gui.UpdateHitpoints(CalculateHitpoints());
     }
@@ -1885,11 +1932,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private bool AddOrganelle(OrganelleTemplate organelle)
     {
-        // 1 - you put nucleus but you already have it
-        // 2 - you put organelle that need nucleus and you don't have it
+        // 1 - you put a unique organelle (means only one instance allowed) but you already have it
+        // 2 - you put an organelle that requires nucleus but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
-            (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
-                && organelle.Definition.ChanceToCreate != 0))
+            (organelle.Definition.RequiresNucleus && !HasNucleus))
             return false;
 
         organelle.PlacedThisSession = true;
@@ -2235,6 +2281,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
+    private void DoBehaviourChangeAction(MicrobeEditorAction action)
+    {
+        var data = (BehaviourChangeActionData)action.Data;
+
+        Behaviour[data.Type] = data.NewValue;
+        gui.UpdateBehaviourSlider(data.Type, data.NewValue);
+    }
+
+    [DeserializedCallbackAllowed]
+    private void UndoBehaviourChangeAction(MicrobeEditorAction action)
+    {
+        var data = (BehaviourChangeActionData)action.Data;
+
+        Behaviour[data.Type] = data.OldValue;
+        gui.UpdateBehaviourSlider(data.Type, data.OldValue);
+    }
+
+    [DeserializedCallbackAllowed]
     private void DoRigidityChangeAction(MicrobeEditorAction action)
     {
         var data = (RigidityChangeActionData)action.Data;
@@ -2298,7 +2362,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     private void OnEditorReady()
     {
-        ready = true;
+        Ready = true;
         LoadingScreen.Instance.Hide();
 
         GD.Print("Elapsing time on editor entry");
@@ -2335,7 +2399,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void OnLoadedEditorReady()
     {
-        if (ready != true)
+        if (Ready != true)
             throw new InvalidOperationException("loaded editor isn't in the ready state");
 
         gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
@@ -2352,8 +2416,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void ApplyAutoEvoResults()
     {
-        GD.Print("Applying auto-evo results");
-        CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
+        GD.Print("Applying auto-evo results. Auto-evo run took: ", run.RunDuration);
+        run.ApplyExternalEffects();
 
         CurrentGame.GameWorld.Map.UpdateGlobalTimePeriod(CurrentGame.GameWorld.TotalPassedTime);
 

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=50 format=2]
+[gd_resource type="Theme" load_steps=59 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -10,7 +10,13 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
-[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Small.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=12]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=15]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=20]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -127,8 +133,8 @@ corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0, 0, 0, 1 )
-border_width_top = 2
-border_width_bottom = 2
+border_width_top = 3
+border_width_bottom = 3
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxTexture" id=16]
@@ -348,6 +354,38 @@ border_width_right = 3
 border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=38]
+bg_color = Color( 0, 0, 0, 0.588235 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id=39]
+bg_color = Color( 0, 0.129412, 0.141176, 0.980392 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id=40]
+bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id=41]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 10.0
@@ -385,6 +423,12 @@ CheckBox/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 CheckBox/constants/check_vadjust = 0
 CheckBox/constants/hseparation = 4
 CheckBox/fonts/font = ExtResource( 8 )
+CheckBox/icons/PressedClicked = ExtResource( 19 )
+CheckBox/icons/PressedHovered = ExtResource( 20 )
+CheckBox/icons/PressedNormal = ExtResource( 5 )
+CheckBox/icons/UnpressedClicked = ExtResource( 20 )
+CheckBox/icons/UnpressedHovered = ExtResource( 18 )
+CheckBox/icons/UnpressedNormal = ExtResource( 6 )
 CheckBox/icons/checked = ExtResource( 5 )
 CheckBox/icons/radio_checked = null
 CheckBox/icons/radio_unchecked = null
@@ -437,6 +481,7 @@ ColorPickerButton/styles/hover = null
 ColorPickerButton/styles/normal = null
 ColorPickerButton/styles/pressed = null
 Dialogs/constants/button_margin = 42
+Dialogs/constants/custom_margin = 15
 Dialogs/constants/margin = 10
 FileDialog/colors/files_disabled = Color( 0, 0, 0, 1 )
 FileDialog/colors/folder_icon_modulate = Color( 0, 0, 0, 1 )
@@ -445,6 +490,8 @@ FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
 Fonts/fonts/large = null
+Fonts/fonts/lato_bold_normal = ExtResource( 16 )
+Fonts/fonts/lato_normal = ExtResource( 15 )
 Fonts/fonts/normal = null
 GraphEdit/colors/activity = Color( 0, 0, 0, 1 )
 GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )
@@ -576,7 +623,7 @@ OptionButton/styles/focus = null
 OptionButton/styles/hover = SubResource( 23 )
 OptionButton/styles/normal = SubResource( 24 )
 OptionButton/styles/pressed = SubResource( 25 )
-Panel/styles/panel = null
+Panel/styles/panel = SubResource( 26 )
 PanelContainer/styles/panel = SubResource( 26 )
 PopupDialog/styles/panel = null
 PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )
@@ -776,12 +823,24 @@ VSplitContainer/constants/autohide = 1
 VSplitContainer/constants/separation = 12
 VSplitContainer/icons/grabber = null
 VSplitContainer/styles/bg = null
+WindowDialog/colors/custom_close_color = Color( 0, 0, 0, 1 )
+WindowDialog/colors/custom_title_color = Color( 0, 0, 0, 1 )
 WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
 WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/custom_close_h_ofs = 22
+WindowDialog/constants/custom_close_v_ofs = 20
+WindowDialog/constants/custom_scaleBorder_size = 4
+WindowDialog/constants/custom_title_height = 26
+WindowDialog/constants/custom_titlebar_height = 28
 WindowDialog/constants/scaleborder_size = 4
 WindowDialog/constants/title_height = 16
-WindowDialog/fonts/title_font = ExtResource( 8 )
+WindowDialog/fonts/custom_title_font = ExtResource( 15 )
+WindowDialog/fonts/title_font = ExtResource( 11 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 38 )
+WindowDialog/icons/custom_close = ExtResource( 12 )
+WindowDialog/styles/custom_close_highlight = SubResource( 38 )
+WindowDialog/styles/custom_panel = SubResource( 39 )
+WindowDialog/styles/custom_titlebar = SubResource( 40 )
+WindowDialog/styles/panel = SubResource( 41 )

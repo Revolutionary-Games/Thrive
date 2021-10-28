@@ -7,8 +7,7 @@ require_relative '../RubySetupSystem/RubyCommon'
 
 require_relative 'po_helpers'
 require_relative 'json_helpers'
-
-TOP_LEVEL_FILE_FOR_FOLDER_DETECT = 'Thrive.sln'
+require_relative 'folder_detector'
 
 def calculate_stats_for(path)
   in_header = true
@@ -85,24 +84,17 @@ def calculate_stats_for(path)
 end
 
 def run
-  base_path = ''
-  unless File.exist? TOP_LEVEL_FILE_FOR_FOLDER_DETECT
-    base_path = '../'
-    unless File.exist? "#{base_path}TOP_LEVEL_FILE_FOR_FOLDER_DETECT"
-      puts 'Failed to find the top level Thrive folder'
-      exit 2
-    end
-  end
+  base_path = detect_thrive_folder
 
   progress = {}
-  stats = { TranslationProgress: progress }
 
   Dir["#{base_path}locale/**/*.po"].each do |f|
-    # Dir["#{base_path}locale/**/frm.po"].each do |f|
     value = calculate_stats_for f
     puts "Progress of #{f}: #{value * 100}%"
     progress[File.basename(f, File.extname(f))] = value
   end
+
+  stats = { TranslationProgress: progress.sort_by { |k, _v| k }.to_h }
 
   json_file = "#{base_path}simulation_parameters/common/translations_info.json"
 

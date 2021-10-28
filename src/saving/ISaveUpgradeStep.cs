@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Godot;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
@@ -50,6 +51,7 @@
                 { "0.5.4.0", new UpgradeStep054To055() },
                 { "0.5.5.0-alpha", new UpgradeJustVersionNumber("0.5.5.0-rc1") },
                 { "0.5.5.0-rc1", new UpgradeJustVersionNumber("0.5.5.0") },
+                { "0.5.5.0", new UpgradeStep055To056() },
             };
         }
     }
@@ -88,6 +90,73 @@
         }
     }
 
+    internal class UpgradeStep055To056 : BaseRecursiveJSONWalkerStep
+    {
+        private static readonly string[] BehaviouralKeys = { "Aggression", "Opportunism", "Fear", "Activity", "Focus" };
+
+        protected override string VersionAfter => "0.5.6.0-alpha";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            var children = property.Value.Children<JProperty>();
+            var childrenNames = children.Select(c => c.Name);
+
+            if (property.Name != "Behaviour" && BehaviouralKeys.All(p => childrenNames.Contains(p)))
+            {
+                UpgradeBehaviouralValues(property, children);
+            }
+        }
+
+        /// <summary>
+        ///   Updates the behavioural values. Triggers on a specific species
+        /// </summary>
+        /// <param name="property">Should be a specific species</param>
+        /// <param name="children">The children of the given property</param>
+        /// <remarks>
+        ///   <para>
+        ///     Changes a json like
+        ///     "1": {
+        ///       ...
+        ///       "Aggression": 126.188889,
+        ///       "Opportunism": 34.3588943,
+        ///       "Fear": 52.6969757,
+        ///       "Activity": 74.67135,
+        ///       "Focus": 111.778221,
+        ///       ...
+        ///     }
+        ///     to
+        ///     "1": {
+        ///       ...
+        ///       "Behaviour": {
+        ///         "Aggression": 126.188889,
+        ///         "Opportunism": 34.3588943,
+        ///         "Fear": 52.6969757,
+        ///         "Activity": 74.67135,
+        ///         "Focus": 111.778221
+        ///       },
+        ///       ...
+        ///     }
+        ///   </para>
+        /// </remarks>
+        private void UpgradeBehaviouralValues(JProperty property, JEnumerable<JProperty> children)
+        {
+            var aggression = children.First(p => p.Name == "Aggression");
+            var opportunism = children.First(p => p.Name == "Opportunism");
+            var fear = children.First(p => p.Name == "Fear");
+            var activity = children.First(p => p.Name == "Activity");
+            var focus = children.First(p => p.Name == "Focus");
+
+            aggression.Remove();
+            opportunism.Remove();
+            fear.Remove();
+            activity.Remove();
+            focus.Remove();
+
+            ((JObject)property.Value).Add("Behaviour",
+                new JObject(aggression, opportunism, fear, activity, focus));
+        }
+    }
+
     internal abstract class BaseRecursiveJSONWalkerStep : BaseJSONUpgradeStep
     {
         protected override void PerformUpgradeOnJSON(JObject saveData)
@@ -103,6 +172,18 @@
             foreach (var entry in jObject.Properties())
             {
                 RecursivelyUpdateValues(entry);
+            }
+
+            DetectAndUpdateKeysThatAreJSON(jObject);
+        }
+
+        protected virtual void DetectAndUpdateKeysThatAreJSON(JObject jObject)
+        {
+            foreach (var entry in jObject.Properties().Where(e =>
+                e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
+                e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
+            {
+                UpdateJSONPropertyKey(entry);
             }
         }
 
@@ -133,6 +214,21 @@
                 throw new JsonException("Child object convert to object type failed");
 
             RecursivelyUpdateObjectProperties(valueObject);
+        }
+
+        private void UpdateJSONPropertyKey(JProperty property)
+        {
+            var data = JObject.Parse(property.Name);
+
+            RecursivelyUpdateObjectProperties(data);
+
+            var newData = data.ToString(Formatting.None);
+
+            if (newData != property.Name)
+            {
+                GD.Print("Updating JSON data in a key at: ", property.Path);
+                property.Replace(new JProperty(newData, property.Value));
+            }
         }
     }
 

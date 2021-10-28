@@ -69,6 +69,10 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         }
     }
 
+    public virtual void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
+    {
+    }
+
     protected virtual void CustomAttach()
     {
     }

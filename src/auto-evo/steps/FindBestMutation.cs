@@ -5,10 +5,10 @@
     /// </summary>
     public class FindBestMutation : VariantTryingStep
     {
-        private PatchMap map;
-        private Species species;
+        private readonly PatchMap map;
+        private readonly Species species;
 
-        private Mutations mutations = new Mutations();
+        private readonly Mutations mutations = new Mutations();
 
         public FindBestMutation(PatchMap map, Species species, int mutationsToTry, bool allowNoMutation)
             : base(mutationsToTry, allowNoMutation)
@@ -16,6 +16,8 @@
             this.map = map;
             this.species = species;
         }
+
+        public override bool CanRunConcurrently => true;
 
         protected override void OnBestResultFound(RunResults results, IAttemptResult bestVariant)
         {

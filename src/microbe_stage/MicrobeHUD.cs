@@ -6,7 +6,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Manages the microbe HUD
 /// </summary>
-public class MicrobeHUD : Node
+public class MicrobeHUD : Control
 {
     [Export]
     public NodePath AnimationPlayerPath;
@@ -178,6 +178,9 @@ public class MicrobeHUD : Node
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
+        new System.Collections.Generic.Dictionary<Species, int>();
 
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
@@ -472,7 +475,7 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        if (!editorButton.Disabled)
+        if (!editorButton.Disabled || stage?.Player == null)
             return;
 
         GUICommon.Instance.PlayCustomSound(MicrobePickupOrganelleSound);
@@ -694,7 +697,7 @@ public class MicrobeHUD : Node
 
                 var compoundIcon = GUICommon.Instance.CreateCompoundIcon(compound.Key.InternalName, 20, 20);
 
-                compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
+                compoundName.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
                 compoundName.Text = compound.Key.Name;
 
                 compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", compound.Value);
@@ -706,20 +709,37 @@ public class MicrobeHUD : Node
             }
         }
 
-        // Show the species name of hovered cells
+        // Show the species name and count of hovered cells
+        hoveredSpeciesCounts.Clear();
         foreach (var microbe in stage.HoverInfo.HoveredMicrobes)
         {
-            // TODO: Combine cells of same species within mouse over
-            // into a single line with total number of them
-
-            var microbeText = new Label();
-            microbeText.Valign = Label.VAlign.Center;
-            hoveredCellsContainer.AddChild(microbeText);
-
-            microbeText.Text = microbe.Species.FormattedName;
-
             if (microbe.IsPlayerMicrobe)
-                microbeText.Text += " (" + TranslationServer.Translate("PLAYER_CELL") + ")";
+            {
+                AddHoveredCellLabel(microbe.Species.FormattedName +
+                    " (" + TranslationServer.Translate("PLAYER_CELL") + ")");
+                continue;
+            }
+
+            if (!hoveredSpeciesCounts.TryGetValue(microbe.Species, out int count))
+            {
+                count = 0;
+            }
+
+            hoveredSpeciesCounts[microbe.Species] = count + 1;
+        }
+
+        foreach (var hoveredSpeciesCount in hoveredSpeciesCounts)
+        {
+            if (hoveredSpeciesCount.Value > 1)
+            {
+                AddHoveredCellLabel(
+                    string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("SPECIES_N_TIMES"),
+                        hoveredSpeciesCount.Key.FormattedName, hoveredSpeciesCount.Value));
+            }
+            else
+            {
+                AddHoveredCellLabel(hoveredSpeciesCount.Key.FormattedName);
+            }
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
@@ -730,6 +750,15 @@ public class MicrobeHUD : Node
         nothingHere.Visible = !stage.HoverInfo.IsHoveringOverAnything;
     }
 
+    private void AddHoveredCellLabel(string cellInfo)
+    {
+        hoveredCellsContainer.AddChild(new Label
+        {
+            Valign = Label.VAlign.Center,
+            Text = cellInfo,
+        });
+    }
+
     /// <summary>
     ///   Updates the compound bars with the correct values.
     /// </summary>
@@ -737,28 +766,28 @@ public class MicrobeHUD : Node
     {
         var compounds = GetPlayerColonyOrPlayerStorage();
 
-        glucoseBar.MaxValue = compounds.Capacity;
+        glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
         glucoseBar.GetNode<Label>("Value").Text = glucoseBar.Value + " / " + glucoseBar.MaxValue;
 
-        ammoniaBar.MaxValue = compounds.Capacity;
+        ammoniaBar.MaxValue = compounds.GetCapacityForCompound(ammonia);
         ammoniaBar.Value = compounds.GetCompoundAmount(ammonia);
         ammoniaBar.GetNode<Label>("Value").Text = ammoniaBar.Value + " / " + ammoniaBar.MaxValue;
 
-        phosphateBar.MaxValue = compounds.Capacity;
+        phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
         phosphateBar.Value = compounds.GetCompoundAmount(phosphates);
         phosphateBar.GetNode<Label>("Value").Text = phosphateBar.Value + " / " + phosphateBar.MaxValue;
 
-        hydrogenSulfideBar.MaxValue = compounds.Capacity;
+        hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
         hydrogenSulfideBar.Value = compounds.GetCompoundAmount(hydrogensulfide);
         hydrogenSulfideBar.GetNode<Label>("Value").Text = hydrogenSulfideBar.Value + " / " +
             hydrogenSulfideBar.MaxValue;
 
-        ironBar.MaxValue = compounds.Capacity;
+        ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
         ironBar.Value = compounds.GetCompoundAmount(iron);
         ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
 
-        oxytoxyBar.MaxValue = compounds.Capacity;
+        oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
     }
@@ -830,7 +859,7 @@ public class MicrobeHUD : Node
             var compounds = GetPlayerColonyOrPlayerStorage();
 
             atpAmount = compounds.GetCompoundAmount(atp);
-            maxATP = compounds.Capacity;
+            maxATP = compounds.GetCapacityForCompound(atp);
         }
 
         atpBar.MaxValue = maxATP * 10.0f;

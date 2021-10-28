@@ -150,32 +150,10 @@ public class Mutations
         return false;
     }
 
-    private void MutateBehaviour(MicrobeSpecies parent, MicrobeSpecies mutated)
+    private void MutateBehaviour(Species parent, Species mutated)
     {
-        // Variables used in AI to determine general behavior mutate these
-        float aggression = parent.Aggression + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-        float fear = parent.Fear + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-        float activity = parent.Activity + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-        float focus = parent.Focus + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-        float opportunism = parent.Opportunism + random.Next(
-            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
-
-        // Make sure not over or under our scales
-        // This used to be a method as well
-        mutated.Aggression = aggression.Clamp(0.0f, Constants.MAX_SPECIES_AGGRESSION);
-        mutated.Fear = fear.Clamp(0.0f, Constants.MAX_SPECIES_FEAR);
-        mutated.Activity = activity.Clamp(0.0f, Constants.MAX_SPECIES_ACTIVITY);
-        mutated.Focus = focus.Clamp(0.0f, Constants.MAX_SPECIES_FOCUS);
-        mutated.Opportunism = opportunism.Clamp(0.0f, Constants.MAX_SPECIES_OPPORTUNISM);
+        mutated.Behaviour = parent.Behaviour.CloneObject();
+        mutated.Behaviour.Mutate(random);
     }
 
     /// <summary>
@@ -235,7 +213,18 @@ public class Mutations
                     }
                     else
                     {
-                        AddNewOrganelle(mutatedOrganelles, parentOrganelles.Organelles.Random(random).Definition);
+                        // Duplicate an existing organelle, but only if there are any organelles where that is legal
+                        var organellesThatCanBeDuplicated =
+                            parentOrganelles.Organelles.Where(organelle => !organelle.Definition.Unique).ToList();
+                        if (organellesThatCanBeDuplicated.Any())
+                        {
+                            AddNewOrganelle(mutatedOrganelles,
+                                organellesThatCanBeDuplicated.Random(random).Definition);
+                        }
+                        else
+                        {
+                            AddNewOrganelle(mutatedOrganelles, GetRandomOrganelle(isBacteria));
+                        }
                     }
                 }
             }
