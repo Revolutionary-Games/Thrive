@@ -9,6 +9,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     ///   The default visual position if the organelle is on the microbe's center
     /// </summary>
     protected static readonly Vector3 DefaultVisualPos = Vector3.Forward;
+
     protected PlacedOrganelle organelle;
 
     /// <summary>
