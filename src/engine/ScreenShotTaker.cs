@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -23,10 +24,10 @@ public class ScreenShotTaker : NodeWithInput
     }
 
     [RunOnKeyDown("screenshot", OnlyUnhandled = false)]
-    public void TakeScreenshotPressed()
+    public async Task TakeScreenshotPressed()
     {
         GD.Print("Taking a screenshot");
-        TakeAndSaveScreenShot();
+        await TakeScreenshotAsync().ConfigureAwait(false);
     }
 
     /// <summary>
@@ -38,6 +39,26 @@ public class ScreenShotTaker : NodeWithInput
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
         var img = TakeScreenshot();
+
+        return SaveScreenshot(img);
+    }
+
+    /// <summary>
+    ///   Takes an image of the current viewport
+    /// </summary>
+    /// <returns>The image</returns>
+    public Image TakeScreenshot()
+    {
+        var image = GetViewport().GetTexture().GetData();
+
+        // TODO: do we always need this?
+        image.FlipY();
+
+        return image;
+    }
+
+    private string SaveScreenshot(Image img)
+    {
         var filename = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss.ffff", CultureInfo.CurrentCulture) + ".png";
 
         var path = PathUtils.Join(Constants.SCREENSHOT_FOLDER, filename);
@@ -54,17 +75,28 @@ public class ScreenShotTaker : NodeWithInput
         return path;
     }
 
-    /// <summary>
-    ///   Takes an image of the current viewport
-    /// </summary>
-    /// <returns>The image</returns>
-    public Image TakeScreenshot()
+    private async Task TakeScreenshotAsync()
     {
-        var image = GetViewport().GetTexture().GetData();
+        FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
-        // TODO: do we always need this?
-        image.FlipY();
+        bool wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
+        if (wasColourblindScreenFilterVisible)
+        {
+            ColourblindScreenFilter.Instance.Hide();
 
-        return image;
+            // two frames needed
+            await ToSignal(GetTree(), "idle_frame");
+            await ToSignal(GetTree(), "idle_frame");
+        }
+
+        using Image image = TakeScreenshot();
+
+        if (wasColourblindScreenFilterVisible)
+        {
+            ColourblindScreenFilter.Instance.Show();
+            await ToSignal(GetTree(), "idle_frame");
+        }
+
+        SaveScreenshot(image);
     }
 }
