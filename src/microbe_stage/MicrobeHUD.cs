@@ -757,20 +757,22 @@ public class MicrobeHUD : Control
 
     private string GetCompoundDensityCategory(float amount)
     {
-        if (amount >= Constants.COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE)
-            return TranslationServer.Translate("CATEGORY_AN_ABUNDANCE");
-        if (amount >= Constants.COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT)
-            return TranslationServer.Translate("CATEGORY_QUITE_A_BIT");
-        if (amount >= Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT)
-            return TranslationServer.Translate("CATEGORY_A_FAIR_AMOUNT");
-        if (amount >= Constants.COMPOUND_DENSITY_CATEGORY_SOME)
-            return TranslationServer.Translate("CATEGORY_SOME");
-        if (amount >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE)
-            return TranslationServer.Translate("CATEGORY_LITTLE");
-        if (amount >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
-            return TranslationServer.Translate("CATEGORY_VERY_LITTLE");
-
-        return null;
+        return amount switch
+        {
+            >= Constants.COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE =>
+                TranslationServer.Translate("CATEGORY_AN_ABUNDANCE"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT =>
+                TranslationServer.Translate("CATEGORY_QUITE_A_BIT"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT =>
+                TranslationServer.Translate("CATEGORY_A_FAIR_AMOUNT"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_SOME =>
+                TranslationServer.Translate("CATEGORY_SOME"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE =>
+                TranslationServer.Translate("CATEGORY_LITTLE"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE =>
+                TranslationServer.Translate("CATEGORY_VERY_LITTLE"),
+            _ => null,
+        };
     }
 
     /// <summary>
