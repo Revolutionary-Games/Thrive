@@ -789,8 +789,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
                 gui.UpdateRigiditySlider(intRigidity);
 
-                // Re-enable undo/redo button
+                // Re-enable undo/redo/symmetry button
                 UpdateUndoRedoButtons();
+                UpdateSymmetryButton();
             }
             else
             {
@@ -948,8 +949,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
         }
 
-        // Disable undo/redo button while moving (enabled after finishing move)
+        // Disable undo/redo/symmetry button while moving (enabled after finishing move)
         UpdateUndoRedoButtons();
+        UpdateSymmetryButton();
     }
 
     /// <summary>
@@ -988,8 +990,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             MovingOrganelles = null;
             gui.UpdateCancelButtonVisibility();
 
-            // Re-enable undo/redo button
+            // Re-enable undo/redo/symmetry button
             UpdateUndoRedoButtons();
+            UpdateSymmetryButton();
 
             return true;
         }
@@ -1371,6 +1374,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         previewMicrobe.Visible = MicrobePreviewMode;
 
         UpdateUndoRedoButtons();
+        UpdateSymmetryButton();
 
         UpdateArrow(false);
 
@@ -2081,7 +2085,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return false;
         }
 
-        EnqueueAction(new MicrobeEditorAction(this, DoOrganelleMoveAction, UndoOrganelleMoveAction, mad)));
+        moveActionData.ForEach(mad =>
+            EnqueueAction(new MicrobeEditorAction(this, DoOrganelleMoveAction, UndoOrganelleMoveAction, mad)));
 
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingOrganelle may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingOrganelle to null
@@ -2382,6 +2387,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         gui.SetUndoButtonStatus(History.CanUndo() && MovingOrganelles == null);
         gui.SetRedoButtonStatus(History.CanRedo() && MovingOrganelles == null);
+    }
+
+    private void UpdateSymmetryButton()
+    {
+        gui.SetSymmetryButtonStatus(MovingOrganelles == null);
     }
 
     /// <summary>

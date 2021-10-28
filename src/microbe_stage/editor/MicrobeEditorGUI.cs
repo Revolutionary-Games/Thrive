@@ -1160,6 +1160,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         UpdateMutationPointsBar();
     }
 
+    internal void SetSymmetryButtonStatus(bool enabled)
+    {
+        symmetryButton.Disabled = !enabled;
+    }
+
     internal void SetUndoButtonStatus(bool enabled)
     {
         undoButton.Disabled = !enabled;
