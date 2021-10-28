@@ -2081,8 +2081,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return false;
         }
 
-        moveActionData.ForEach(mad =>
-            EnqueueAction(new MicrobeEditorAction(this, DoOrganelleMoveAction, UndoOrganelleMoveAction, mad)));
+        EnqueueAction(new MicrobeEditorAction(this, DoOrganelleMoveAction, UndoOrganelleMoveAction, mad)));
 
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingOrganelle may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingOrganelle to null
