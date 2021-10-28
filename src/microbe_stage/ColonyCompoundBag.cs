@@ -11,10 +11,13 @@ public class ColonyCompoundBag : ICompoundStorage
         Colony = colony;
     }
 
-    public float Capacity => GetCompoundBags().Sum(p => p.Capacity);
-
     [JsonProperty]
     private MicrobeColony Colony { get; set; }
+
+    public float GetCapacityForCompound(Compound compound)
+    {
+        return GetCompoundBags().Sum(p => p.GetCapacityForCompound(compound));
+    }
 
     /// <summary>
     ///   Evenly spreads out the compounds among all microbes
@@ -30,11 +33,12 @@ public class ColonyCompoundBag : ICompoundStorage
             if (!compound.Key.CanBeDistributed)
                 continue;
 
-            var average = compound.Value / bags.Count;
+            var ratio = compound.Value / GetCapacityForCompound(compound.Key);
 
             foreach (var bag in bags)
             {
-                var surplus = bag.GetCompoundAmount(compound.Key) - average;
+                var amount = ratio * bag.GetCapacityForCompound(compound.Key);
+                var surplus = bag.GetCompoundAmount(compound.Key) - amount;
                 if (surplus > 0)
                 {
                     bag.TakeCompound(compound.Key, surplus);
