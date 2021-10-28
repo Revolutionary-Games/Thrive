@@ -600,7 +600,7 @@ public static class Constants
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
 
-    public const float COMPOUND_HOVER_INFO_REMOVE_DELAY = 1000f;
+    public const float COMPOUND_HOVER_INFO_REMOVE_DELAY = 500f;
     public const float COMPOUND_HOVER_INFO_THRESHOLD = 2.5f;
     public const float COMPOUND_DENSITY_CATEGORY_VERY_LITTLE = 0.5f;
     public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 5f;
