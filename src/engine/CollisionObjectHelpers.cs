@@ -7,8 +7,7 @@ public static class CollisionObjectHelpers
 {
     /// <summary>
     ///  Creates and returns new shape owner for a shape
-    ///  apllies a given transform to the new shapeOwner
-    ///  Used on collisionObjects
+    ///  applies a given transform to the new shapeOwner
     /// </summary>
     public static uint CreateOwnerWithTransform(this CollisionObject entity, Transform transform, Shape shape)
     {
