@@ -568,7 +568,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         menu = GetNode<PauseMenu>(MenuPath);
 
-        mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
