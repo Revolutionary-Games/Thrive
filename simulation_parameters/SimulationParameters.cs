@@ -184,6 +184,26 @@ public class SimulationParameters : Node
         return result;
     }
 
+    /// <summary>
+    ///   Returns all *molecular* compounds that are dissolved in the environment, i.e. gas.
+    /// </summary>
+    /// <remarks>This excludes sunlight</remarks>
+    public List<Compound> GetGasCompounds()
+    {
+        var result = new List<Compound>();
+
+        foreach (var entry in compounds)
+        {
+            // The ability to be distributed is a distinctive heuristic for molecular compounds
+            if (!entry.Value.IsCloud && entry.Value.CanBeDistributed)
+            {
+                result.Add(entry.Value);
+            }
+        }
+
+        return result;
+    }
+
     public Dictionary<string, MusicCategory> GetMusicCategories()
     {
         return musicCategories;
