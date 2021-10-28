@@ -1007,7 +1007,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateRigiditySliderState(int mutationPoints)
     {
-        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelle == null)
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelles == null)
         {
             rigiditySlider.Editable = true;
         }
@@ -1131,7 +1131,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void OnMovePressed()
     {
-        editor.StartOrganelleMove(organelleMenu.SelectedOrganelle);
+        editor.StartOrganelleMove(organelleMenu.SelectedOrganelle.Position);
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelButtonVisibility();
@@ -1258,7 +1258,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
 
         // Can't finish an organism edit if an organelle is being moved
-        if (editor.MovingOrganelle != null)
+        if (editor.MovingOrganelles != null)
         {
             OnActionBlockedWhileMoving();
             return;

@@ -320,11 +320,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Organelle that is in the process of being moved but a new location hasn't been selected yet
-    ///   If null, no organelle is in the process of moving
+    ///   Organelles that is in the process of being moved but a new location hasn't been selected yet
+    ///   If null, no organelle is in the process of moving.
+    ///   May contain null when symmetry moving but there wasn't an organelle at a symmetry position
     /// </summary>
     [JsonProperty]
-    public OrganelleTemplate MovingOrganelle { get; private set; }
+    public List<OrganelleTemplate> MovingOrganelles { get; private set; }
 
     /// <summary>
     ///   When true nothing costs MP
@@ -420,7 +421,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   If true an editor action is active and can be cancelled. Currently only checks for organelle move.
     /// </summary>
     [JsonIgnore]
-    public bool CanCancelAction => MovingOrganelle != null;
+    public bool CanCancelAction => MovingOrganelles != null;
 
     [JsonIgnore]
     public Node GameStateRoot => this;
@@ -744,7 +745,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_redo")]
     public void Redo()
     {
-        if (MovingOrganelle != null)
+        if (MovingOrganelles != null)
             return;
 
         if (History.Redo())
@@ -759,7 +760,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_undo")]
     public void Undo()
     {
-        if (MovingOrganelle != null)
+        if (MovingOrganelles != null)
             return;
 
         if (History.Undo())
@@ -774,14 +775,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_primary")]
     public void PlaceOrganelle()
     {
-        if (MovingOrganelle != null)
+        if (MovingOrganelles != null)
         {
             GetMouseHex(out int q, out int r);
-            if (MoveOrganelle(MovingOrganelle, MovingOrganelle.Position, new Hex(q, r), MovingOrganelle.Orientation,
-                organelleRot))
+            if (MoveOrganelle(MovingOrganelles, new Hex(q, r), organelleRot))
             {
                 // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
-                MovingOrganelle = null;
+                MovingOrganelles = null;
                 gui.UpdateCancelButtonVisibility();
 
                 // Update rigidity slider in case it was disabled
@@ -866,7 +866,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     {
         int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
 
-        if (MovingOrganelle != null)
+        if (MovingOrganelles != null)
         {
             gui.OnActionBlockedWhileMoving();
             gui.UpdateRigiditySlider(intRigidity);
@@ -909,7 +909,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
 
         // Can't open organelle popup menu while moving something
-        if (MovingOrganelle != null)
+        if (MovingOrganelles != null)
         {
             gui.OnActionBlockedWhileMoving();
             return;
@@ -925,16 +925,28 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.ShowOrganelleMenu(organelle);
     }
 
-    public void StartOrganelleMove(OrganelleTemplate selectedOrganelle)
+    public void StartOrganelleMove(Hex hex)
     {
-        if (MovingOrganelle != null)
+        if (MovingOrganelles != null)
         {
             // Already moving something! some code went wrong
             throw new InvalidOperationException("Can't begin organelle move while another in progress");
         }
 
-        MovingOrganelle = selectedOrganelle;
-        editedMicrobeOrganelles.Remove(MovingOrganelle);
+        MovingOrganelles = new List<OrganelleTemplate>();
+        var hexes = GetHexesWithSymmetryMode(hex.Q, hex.R);
+        foreach (var (symmetryHex, _) in hexes)
+        {
+            var organelle = editedMicrobeOrganelles.GetOrganelleAt(symmetryHex);
+            MovingOrganelles.Add(organelle);
+            editedMicrobeOrganelles.Remove(organelle);
+        }
+
+        if (MovingOrganelles.Count == 0)
+        {
+            MovingOrganelles = null;
+            return;
+        }
 
         // Disable undo/redo button while moving (enabled after finishing move)
         UpdateUndoRedoButtons();
@@ -947,7 +959,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     public void StartOrganelleMoveAtCursor()
     {
         // Can't move an organelle while already moving one
-        if (MovingOrganelle != null)
+        if (MovingOrganelles != null)
         {
             gui.OnActionBlockedWhileMoving();
             return;
@@ -955,12 +967,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         GetMouseHex(out int q, out int r);
 
-        var organelle = editedMicrobeOrganelles.GetOrganelleAt(new Hex(q, r));
-
-        if (organelle == null)
-            return;
-
-        StartOrganelleMove(organelle);
+        StartOrganelleMove(new Hex(q, r));
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
         gui.UpdateCancelButtonVisibility();
@@ -973,10 +980,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
     public bool CancelCurrentAction()
     {
-        if (MovingOrganelle != null)
+        if (MovingOrganelles != null)
         {
-            editedMicrobeOrganelles.Add(MovingOrganelle);
-            MovingOrganelle = null;
+            foreach (var movingOrganelle in MovingOrganelles)
+                editedMicrobeOrganelles.Add(movingOrganelle);
+
+            MovingOrganelles = null;
             gui.UpdateCancelButtonVisibility();
 
             // Re-enable undo/redo button
@@ -1576,33 +1585,30 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             GetMouseHex(out int q, out int r);
 
-            OrganelleDefinition shownOrganelle;
+            var hexes = GetHexesWithSymmetryMode(q, r);
 
-            List<(Hex hex, int orientation)> hexes;
-            if (MovingOrganelle == null)
+            if (MovingOrganelles == null)
             {
                 // Can place stuff at all?
                 isPlacementProbablyValid = IsValidPlacement(new OrganelleTemplate(
                     GetOrganelleDefinition(ActiveActionName), new Hex(q, r), organelleRot));
 
-                shownOrganelle = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
+                var shownOrganelle = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
 
-                hexes = GetHexesWithSymmetryMode(q, r);
+                foreach (var (hex, orientation) in hexes)
+                {
+                    RenderHighlightedOrganelle(hex.Q, hex.R, orientation, shownOrganelle);
+                }
             }
             else
             {
-                isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), organelleRot, MovingOrganelle);
-                shownOrganelle = MovingOrganelle.Definition;
-
-                hexes = new List<(Hex hex, int orientation)>
+                for (var i = 0; i < hexes.Count; i++)
                 {
-                    (new Hex(q, r), organelleRot),
-                };
-            }
-
-            foreach (var (hex, orientation) in hexes)
-            {
-                RenderHighlightedOrganelle(hex.Q, hex.R, orientation, shownOrganelle);
+                    var (hex, orientation) = hexes[i];
+                    var organelle = MovingOrganelles[i];
+                    if (organelle != null)
+                        RenderHighlightedOrganelle(hex.Q, hex.R, orientation, organelle.Definition);
+                }
             }
 
             gui.MouseHoverHexes = hexes;
@@ -1614,7 +1620,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     private void RenderHighlightedOrganelle(int q, int r, int rotation, OrganelleDefinition shownOrganelle)
     {
-        if (MovingOrganelle == null && ActiveActionName == null)
+        if (MovingOrganelles == null && ActiveActionName == null)
             return;
 
         bool showModel = true;
@@ -2044,37 +2050,39 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Finishes an organelle move
     /// </summary>
     /// <returns>True if the organelle move succeeded.</returns>
-    private bool MoveOrganelle(OrganelleTemplate organelle, Hex oldLocation, Hex newLocation, int oldRotation,
-        int newRotation)
+    private bool MoveOrganelle(List<OrganelleTemplate> organelles, Hex newLocation, int newRotation)
     {
         // Make sure placement is valid
-        if (!IsMoveTargetValid(newLocation, newRotation, organelle))
+        if (organelles.Any(o => o != null && !IsMoveTargetValid(newLocation, newRotation, o)))
             return false;
 
-        var moveActionData = new MoveActionData(organelle, oldLocation, newLocation, oldRotation, newRotation);
+        var hexes = GetHexesWithSymmetryMode(newLocation.Q, newLocation.R);
+
+        var moveActionData = new List<MoveActionData>();
+        for (var i = 0; i < hexes.Count; i++)
+        {
+            var (hexPos, orientation) = hexes[i];
+            var organelle = organelles[i];
+            if (organelle == null)
+                continue;
+
+            moveActionData.Add(new MoveActionData(organelle, organelle.Position, hexPos, organelle.Orientation,
+                orientation));
+
+            if (editedMicrobeOrganelles.GetOrganelleAt(hexPos) != null)
+                return false;
+        }
 
         // Too low mutation points, cancel move
-        if (MutationPoints < History.WhatWouldActionCost(moveActionData))
+        if (MutationPoints < History.WhatWouldActionsCost(moveActionData.OfType<MicrobeEditorActionData>().ToList()))
         {
             CancelCurrentAction();
             gui.OnInsufficientMp(false);
             return false;
         }
 
-        // Don't register the action if the final location is the same as previous. This is so the player can't exploit
-        // the MovedThisSession flag allowing them to freely move an organelle that was placed in another session
-        // while on zero mutation points. Also it makes more sense to not count that organelle as moved either way.
-        if (oldLocation == newLocation)
-        {
-            CancelCurrentAction();
-
-            // Assume this is a successful move (some operation in the above call may be repeated)
-            return true;
-        }
-
-        var action = new MicrobeEditorAction(this, DoOrganelleMoveAction, UndoOrganelleMoveAction, moveActionData);
-
-        EnqueueAction(action);
+        moveActionData.ForEach(mad =>
+            EnqueueAction(new MicrobeEditorAction(this, DoOrganelleMoveAction, UndoOrganelleMoveAction, mad)));
 
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingOrganelle may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingOrganelle to null
@@ -2355,7 +2363,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         // Or if they are in the process of moving an organelle
-        if (MovingOrganelle != null && !action.IsMoveAction)
+        if (MovingOrganelles != null && !action.IsMoveAction)
         {
             // Play sound
             gui.OnActionBlockedWhileMoving();
@@ -2373,8 +2381,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private void UpdateUndoRedoButtons()
     {
-        gui.SetUndoButtonStatus(History.CanUndo() && MovingOrganelle == null);
-        gui.SetRedoButtonStatus(History.CanRedo() && MovingOrganelle == null);
+        gui.SetUndoButtonStatus(History.CanUndo() && MovingOrganelles == null);
+        gui.SetRedoButtonStatus(History.CanRedo() && MovingOrganelles == null);
     }
 
     /// <summary>
