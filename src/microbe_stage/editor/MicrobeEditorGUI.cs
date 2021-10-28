@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main class managing the microbe editor GUI
 /// </summary>
+[JsonObject(MemberSerialization.OptIn)]
 public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 {
     // The labels to update are at really long relative paths, so they are set in the Godot editor
@@ -567,7 +568,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         menu = GetNode<PauseMenu>(MenuPath);
 
-        mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
