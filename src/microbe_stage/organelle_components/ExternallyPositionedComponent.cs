@@ -43,16 +43,16 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         // membrane changes to not recheck this constantly
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organellePos;
+        var relativeOrganellePosition = middle - organellePos;
 
-        if (delta == Vector.Zero)
-            delta = defaultVisualPos;
-        Vector3 exit = middle - delta;
+        if (relativeOrganellePosition == Vector3.Zero)
+            relativeOrganellePosition = defaultVisualPos;
+        Vector3 exit = middle - relativeOrganellePosition;
         var membraneCoords = organelle.ParentMicrobe.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
             exit.z);
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
-            float angle = Mathf.Atan2(-delta.z, delta.x);
+            float angle = Mathf.Atan2(-relativeOrganellePosition.z, relativeOrganellePosition.x);
 
             if (angle < 0)
             {
