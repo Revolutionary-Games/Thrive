@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode unshaded;
 
+uniform float xrepeats = 1f;
+uniform float yrepeats = 1f;
 uniform sampler2D layer0 : hint_albedo;
 uniform sampler2D layer1 : hint_albedo;
 uniform sampler2D layer2 : hint_albedo;
@@ -31,16 +33,19 @@ void vertex(){
 }
 
 void fragment(){
-    vec4 colour0 = texture(layer0, UV);
-    vec4 colour1 = texture(layer1, UV2);
-    vec4 colour2 = texture(layer2, UV3);
-    vec4 colour3 = texture(layer3, UV4);
+    vec2 repeat = vec2(xrepeats, yrepeats);
+    vec2 offset = (repeat - 1f) / 2f;
+
+    vec4 colour0 = texture(layer0, UV * repeat - offset);
+    vec4 colour1 = texture(layer1, UV2 * repeat - offset);
+    vec4 colour2 = texture(layer2, UV3 * repeat - offset);
+    vec4 colour3 = texture(layer3, UV4 * repeat - offset);
 
     ALBEDO.rgb =
         colour0.rgb 
         + colour1.rgb * colour1.a * 0.7f
         + colour2.rgb * colour2.a * 0.7f
         + colour3.rgb * colour3.a * 0.7f; 
-    
+
     ALPHA = 1.0f;
 }
