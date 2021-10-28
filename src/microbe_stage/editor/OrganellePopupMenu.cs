@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -26,7 +28,7 @@ public class OrganellePopupMenu : PopupPanel
     private MicrobeEditor microbeEditor;
 
     private bool showPopup;
-    private OrganelleTemplate selectedOrganelle;
+    private List<OrganelleTemplate> selectedOrganelles;
     private bool enableDelete = true;
     private bool enableMove = true;
 
@@ -62,14 +64,19 @@ public class OrganellePopupMenu : PopupPanel
     }
 
     /// <summary>
-    ///   The placed organelle to be shown options of.
+    ///   The main organelle.
     /// </summary>
-    public OrganelleTemplate SelectedOrganelle
+    public OrganelleTemplate SelectedOrganelle { get; set; }
+
+    /// <summary>
+    ///   The placed organelles to be shown options of.
+    /// </summary>
+    public List<OrganelleTemplate> SelectedOrganelles
     {
-        get => selectedOrganelle;
+        get => selectedOrganelles;
         set
         {
-            selectedOrganelle = value;
+            selectedOrganelles = value;
             UpdateOrganelleNameLabel();
         }
     }
@@ -198,7 +205,18 @@ public class OrganellePopupMenu : PopupPanel
         if (selectedOrganelleNameLabel == null)
             return;
 
-        selectedOrganelleNameLabel.Text = SelectedOrganelle?.Definition.Name;
+        if (SelectedOrganelles == null)
+        {
+            selectedOrganelleNameLabel.Text = null;
+            return;
+        }
+
+        var names = SelectedOrganelles.Select(p => p.Definition.Name).Distinct().ToList();
+
+        if (names.Count == 1)
+            selectedOrganelleNameLabel.Text = names[0];
+        else
+            selectedOrganelleNameLabel.Text = TranslationServer.Translate("MULTIPLE_ORGANELLES");
     }
 
     private void UpdateDeleteButton()
@@ -207,14 +225,15 @@ public class OrganellePopupMenu : PopupPanel
             return;
 
         float mpCost;
-        if (SelectedOrganelle == null)
+        if (SelectedOrganelles == null)
         {
             mpCost = 0;
         }
         else
         {
-            mpCost = microbeEditor.History.WhatWouldActionCost(
-                new RemoveActionData(SelectedOrganelle, SelectedOrganelle.Position, SelectedOrganelle.Orientation));
+            mpCost = microbeEditor.History.WhatWouldActionsCost(
+                selectedOrganelles
+                    .Select(o => (MicrobeEditorActionData)new RemoveActionData(o, o.Position, o.Orientation)).ToList());
         }
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -231,15 +250,16 @@ public class OrganellePopupMenu : PopupPanel
             return;
 
         float mpCost;
-        if (SelectedOrganelle == null)
+        if (SelectedOrganelles == null)
         {
             mpCost = 0;
         }
         else
         {
-            mpCost = microbeEditor.History.WhatWouldActionCost(
-                new MoveActionData(SelectedOrganelle, SelectedOrganelle.Position, SelectedOrganelle.Position,
-                    SelectedOrganelle.Orientation, SelectedOrganelle.Orientation));
+            mpCost = microbeEditor.History.WhatWouldActionsCost(selectedOrganelles.Select(o =>
+                    (MicrobeEditorActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
+                        o.Orientation))
+                .ToList());
         }
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");

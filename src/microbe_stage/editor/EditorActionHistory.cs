@@ -15,17 +15,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     /// </summary>
     public int WhatWouldActionsCost(List<MicrobeEditorActionData> actions)
     {
-        var result = 0;
-
-        foreach (var action in actions)
-        {
-            result += WhatWouldActionCost(action);
-            cache.Add(action);
-        }
-
-        cache.RemoveRange(cache.Count - actions.Count, actions.Count);
-
-        return result;
+        return actions.Sum(WhatWouldActionCost);
     }
 
     /// <summary>

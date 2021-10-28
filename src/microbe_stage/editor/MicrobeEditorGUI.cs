@@ -1110,13 +1110,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         cancelButton.Visible = editor.CanCancelAction;
     }
 
-    public void ShowOrganelleMenu(OrganelleTemplate selectedOrganelle)
+    public void ShowOrganelleMenu(OrganelleTemplate main, List<OrganelleTemplate> selectedOrganelles)
     {
-        organelleMenu.SelectedOrganelle = selectedOrganelle;
+        organelleMenu.SelectedOrganelle = main;
+        organelleMenu.SelectedOrganelles = selectedOrganelles;
         organelleMenu.ShowPopup = true;
 
         // Disable delete for nucleus or the last organelle.
-        if (editor.MicrobeSize < 2 || selectedOrganelle.Definition == nucleus)
+        if (editor.MicrobeSize < 1 + selectedOrganelles.Count || selectedOrganelles.Any(o => o.Definition == nucleus))
         {
             organelleMenu.EnableDeleteOption = false;
         }
@@ -1126,7 +1127,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
 
         // Move enabled only when microbe has more than one organelle
-        organelleMenu.EnableMoveOption = editor.MicrobeSize > 1;
+        organelleMenu.EnableMoveOption = editor.MicrobeSize > 1 + selectedOrganelles.Count;
     }
 
     public void OnMovePressed()

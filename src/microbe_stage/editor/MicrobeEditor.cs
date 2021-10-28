@@ -923,7 +923,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (organelle == null)
             return;
 
-        gui.ShowOrganelleMenu(organelle);
+        var hexes = GetHexesWithSymmetryMode(q, r);
+        var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.hex)).ToList();
+
+        gui.ShowOrganelleMenu(organelle, organelles);
     }
 
     public void StartOrganelleMove(Hex hex)
