@@ -7,11 +7,6 @@ using Newtonsoft.Json;
 public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 {
     /// <summary>
-    ///   Object the camera positions itself over
-    /// </summary>
-    public Spatial ObjectToFollow;
-
-    /// <summary>
     ///   Background plane that is moved farther away from the camera when zooming out
     /// </summary>
     [JsonIgnore]
@@ -64,6 +59,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
     private bool cursorDirty = true;
+
+    /// <summary>
+    ///   Object the camera positions itself over
+    /// </summary>
+    public Spatial ObjectToFollow { get; private set; }
 
     /// <summary>
     ///   How high the camera is above the followed object
@@ -131,6 +131,19 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     {
         InputManager.UnregisterReceiver(this);
         base._ExitTree();
+    }
+
+    /// <summary>
+    ///   Sets the object to follow
+    /// </summary>
+    /// <param name="objectToFollow">The new object to follow</param>
+    /// <param name="jump">If true the camera will not interpolate to the new object</param>
+    public void SetObjectToFollow(Spatial objectToFollow, bool jump)
+    {
+        ObjectToFollow = objectToFollow;
+
+        if (jump && ObjectToFollow != null)
+            Translation = new Vector3(ObjectToFollow.Transform.origin.x, CameraHeight, ObjectToFollow.Transform.origin.z);
     }
 
     public void ResolveNodeReferences()

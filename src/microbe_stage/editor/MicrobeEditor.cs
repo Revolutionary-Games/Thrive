@@ -452,7 +452,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         microbeScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
 
         if (!IsLoadedFromSave)
-            camera.ObjectToFollow = cameraFollow;
+            camera.SetObjectToFollow(cameraFollow, true);
 
         tutorialGUI.Visible = true;
         gui.Init(this);

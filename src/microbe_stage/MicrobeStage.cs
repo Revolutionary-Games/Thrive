@@ -68,6 +68,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [JsonProperty]
     private bool gameOver;
 
+    private bool respawnFadeStarted;
+
     [JsonProperty]
     private bool wonOnce;
 
@@ -321,7 +323,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     public void OnFinishLoading()
     {
-        Camera.ObjectToFollow = Player;
+        Camera.SetObjectToFollow(Player, true);
     }
 
     public void StartNewGame()
@@ -361,8 +363,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
 
-        Camera.ObjectToFollow = Player;
-
         if (spawnedPlayer)
         {
             // Random location on respawn
@@ -370,6 +370,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
         }
+
+        Camera.SetObjectToFollow(Player, true);
 
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
 
@@ -462,7 +464,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
                 if (playerRespawnTimer <= 0)
                 {
-                    HandlePlayerRespawn();
+                    if (!respawnFadeStarted)
+                    {
+                        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 1.5f, false);
+                        TransitionManager.Instance.StartTransitions(this, nameof(HandlePlayerRespawn));
+                        respawnFadeStarted = true;
+                    }
                 }
             }
         }
@@ -622,7 +629,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
 
         Player = null;
-        Camera.ObjectToFollow = null;
+        Camera.SetObjectToFollow(null, false);
     }
 
     [DeserializedCallbackAllowed]
@@ -659,6 +666,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     private void HandlePlayerRespawn()
     {
+        respawnFadeStarted = false;
+
         var playerSpecies = GameWorld.PlayerSpecies;
 
         // Decrease the population by the constant for the player dying
@@ -673,11 +682,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (playerSpecies.Population <= 0 && !CurrentGame.FreeBuild)
         {
             gameOver = true;
+            TransitionManager.Instance.CancelTransitionPressed();
         }
         else
         {
             // Player is not extinct, so can respawn
             SpawnPlayer();
+            TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, 1.5f, false);
+            TransitionManager.Instance.StartTransitions(this);
         }
     }
 
