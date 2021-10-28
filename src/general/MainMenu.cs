@@ -57,7 +57,7 @@ public class MainMenu : NodeWithInput
     private Button newGameButton;
     private Button freebuildButton;
 
-    private AcceptDialog gles2Popup;
+    private CustomConfirmationDialog gles2Popup;
 
     public override void _Ready()
     {
@@ -165,7 +165,7 @@ public class MainMenu : NodeWithInput
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-        gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
+        gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
 
         // Set initial menu
         SwitchMenu();
@@ -416,15 +416,5 @@ public class MainMenu : NodeWithInput
     private void OnEnteringGame()
     {
         CheatManager.OnCheatsDisabled();
-    }
-
-    /// <summary>
-    ///   This never called method contains translation strings that exist, but cannot automatically be extracted.
-    ///   Examples are predefined Godot strings, like popup buttons.
-    /// </summary>
-    private void CallMiscTranslations()
-    {
-        _ = TranslationServer.Translate("OK");
-        _ = TranslationServer.Translate("Cancel");
     }
 }

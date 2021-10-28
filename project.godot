@@ -304,6 +304,10 @@ file_logging/enable_file_logging=true
 file_logging/log_path="user://logs/log.txt"
 file_logging/max_log_files=8
 
+[memory]
+
+limits/message_queue/max_size_kb=8192
+
 [physics]
 
 3d/default_gravity=9.81

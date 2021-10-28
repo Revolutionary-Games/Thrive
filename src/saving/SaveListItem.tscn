@@ -6,10 +6,9 @@
 [ext_resource path="res://assets/textures/gui/bevel/trashButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://src/saving/SaveListItem.cs" type="Script" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/trashButton.png" type="Texture" id=6]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=8]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=10]
-
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
@@ -271,30 +270,14 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "LOAD"
 
-[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="MarginContainer/HBoxContainer"]
-margin_left = 839.0
-margin_right = 1339.0
+[node name="DeleteConfirmDialog" parent="MarginContainer/HBoxContainer" instance=ExtResource( 7 )]
+margin_left = 1354.0
+margin_right = 1854.0
 margin_bottom = 128.0
-rect_min_size = Vector2( 500, 70 )
-mouse_filter = 1
-size_flags_horizontal = 5
-size_flags_vertical = 5
-popup_exclusive = true
-window_title = "DELETE_THIS_SAVE"
+rect_min_size = Vector2( 500, 0 )
+DialogText = "DELETE_SAVE_CONFIRMATION"
+WindowTitle = "DELETE_THIS_SAVE"
 
-[node name="DialogText" type="Label" parent="MarginContainer/HBoxContainer/DeleteConfirmDialog"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 490.0
-margin_bottom = 76.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 7 )
-text = "DELETE_SAVE_CONFIRMATION"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/HBoxContainer/Delete" to="." method="DeletePressed"]

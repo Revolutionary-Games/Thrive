@@ -213,27 +213,29 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         if (IsLoadedFromSave)
         {
-            // Need to re-attach our organelles
-            foreach (var organelle in organelles)
-                OrganelleParent.AddChild(organelle);
-
-            // Colony children shapes need re-parenting to their master
-            // The shapes have to be re-parented to their original microbe then to the master again
-            // maybe engine bug
-            if (Colony != null && this != Colony.Master)
-            {
-                ReParentShapes(this, Vector3.Zero, ColonyParent.Rotation, Rotation);
-                ReParentShapes(Colony.Master, GetOffsetRelativeToMaster(), ColonyParent.Rotation, Rotation);
-            }
-
             // Fix the tree of colonies
             if (ColonyChildren != null)
             {
                 foreach (var child in ColonyChildren)
                 {
-                    child.Mode = ModeEnum.Static;
                     AddChild(child);
                 }
+            }
+
+            // Need to re-attach our organelles
+            foreach (var organelle in organelles)
+                OrganelleParent.AddChild(organelle);
+
+            // Colony children shapes need re-parenting to their master
+            // The shapes have to be re-parented to their original microbe then to the master again, maybe engine bug
+            // Also re-add to the collision exception and change the mode to static as it should be
+            if (Colony != null && this != Colony.Master)
+            {
+                ReParentShapes(this, Vector3.Zero);
+                ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
+                Colony.Master.AddCollisionExceptionWith(this);
+                AddCollisionExceptionWith(Colony.Master);
+                Mode = ModeEnum.Static;
             }
 
             // And recompute storage
@@ -286,7 +288,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         var touchedOwnerId = ShapeFindOwner(bodyShape);
 
         // Not found
-        if (touchedOwnerId == 0)
+        if (touchedOwnerId == uint.MaxValue)
             return null;
 
         return GetColonyMemberWithShapeOwner(touchedOwnerId, Colony);

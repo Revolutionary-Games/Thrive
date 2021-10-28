@@ -142,15 +142,6 @@ public class TutorialState : ITutorialInput
     }
 
     /// <summary>
-    ///   Checks if any exclusive tutorial is visible. When one is active it prevents all other GUI buttons from working
-    /// </summary>
-    /// <returns>True if any exclusive tutorial is visible</returns>
-    public bool ExclusiveTutorialActive()
-    {
-        return Tutorials.Any(tutorial => tutorial.CurrentlyExclusivelyOpen);
-    }
-
-    /// <summary>
     ///   Returns true when the tutorial system is in a state where nearby compound info is wanted
     /// </summary>
     /// <returns>True when the tutorial system wants compound information</returns>
