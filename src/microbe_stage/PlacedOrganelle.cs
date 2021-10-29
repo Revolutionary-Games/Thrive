@@ -445,7 +445,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             var transform = new Transform(Quat.Identity, shapePosition);
 
             // Create a new owner id and apply the new position to it
-            shapes[i] = currentShapesParent.NewOwnerId(to, transform, ownerId);
+            shapes[i] = currentShapesParent.CreateNewOwnerId(to, transform, ownerId);
             currentShapesParent.RemoveShapeOwner(ownerId);
         }
 

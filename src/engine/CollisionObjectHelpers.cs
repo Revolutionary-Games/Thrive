@@ -22,7 +22,7 @@ public static class CollisionObjectHelpers
     ///  and applies a given transform
     ///  Doesnt destroy the old shapeOwner
     /// </summary>
-    public static uint NewOwnerId(this CollisionObject oldParent,
+    public static uint CreateNewOwnerId(this CollisionObject oldParent,
         CollisionObject newParent, Transform transform, uint oldShapeOwnerId)
     {
         var shape = oldParent.ShapeOwnerGetShape(oldShapeOwnerId, 0);
