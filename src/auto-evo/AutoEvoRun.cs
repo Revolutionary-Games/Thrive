@@ -15,8 +15,6 @@ using Thread = System.Threading.Thread;
 /// </summary>
 public class AutoEvoRun
 {
-    private readonly RunParameters parameters;
-
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
     /// </summary>
@@ -45,7 +43,7 @@ public class AutoEvoRun
 
     public AutoEvoRun(GameWorld world)
     {
-        parameters = new RunParameters(world);
+        Parameters = new RunParameters(world);
     }
 
     private enum RunStage
@@ -164,6 +162,8 @@ public class AutoEvoRun
         }
     }
 
+    protected RunParameters Parameters { get; }
+
     /// <summary>
     ///   Starts this run if not started already
     /// </summary>
@@ -203,7 +203,7 @@ public class AutoEvoRun
             throw new InvalidOperationException("Can't apply run results before it is done");
         }
 
-        results.ApplyResults(parameters.World, false);
+        results.ApplyResults(Parameters.World, false);
     }
 
     /// <summary>
@@ -220,7 +220,7 @@ public class AutoEvoRun
         if (ExternalEffects.Count > 0)
         {
             // Effects are applied in the current patch
-            var currentPatch = parameters.World.Map.CurrentPatch;
+            var currentPatch = Parameters.World.Map.CurrentPatch;
 
             foreach (var entry in ExternalEffects)
             {
@@ -238,7 +238,7 @@ public class AutoEvoRun
             }
         }
 
-        results.ApplyResults(parameters.World, false);
+        results.ApplyResults(Parameters.World, false);
     }
 
     /// <summary>
@@ -292,6 +292,108 @@ public class AutoEvoRun
     }
 
     /// <summary>
+    ///   The info gather phase
+    /// </summary>
+    protected virtual void GatherInfo(Queue<IRunStep> steps)
+    {
+        var random = new Random();
+
+        var alreadyHandledSpecies = new HashSet<Species>();
+
+        var map = Parameters.World.Map;
+
+        var autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
+
+        foreach (var entry in map.Patches)
+        {
+            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
+            {
+                if (alreadyHandledSpecies.Contains(speciesEntry.Key))
+                    continue;
+
+                alreadyHandledSpecies.Add(speciesEntry.Key);
+
+                // The player species doesn't get random mutations. And also doesn't spread automatically
+                if (speciesEntry.Key.PlayerSpecies)
+                {
+                }
+                else
+                {
+                    steps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
+                        autoEvoConfiguration.MutationsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration,
+                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
+                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
+
+                    steps.Enqueue(new FindBestMigration(map, speciesEntry.Key, random,
+                        autoEvoConfiguration.MoveAttemptsPerSpecies,
+                        autoEvoConfiguration.AllowNoMigration));
+                }
+            }
+
+            if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
+                random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
+            {
+                steps.Enqueue(new IncreaseBiodiversity(map, entry.Value, random, autoEvoConfiguration));
+            }
+        }
+
+        // The new populations don't depend on the mutations, this is so that when
+        // the player edits their species the other species they are competing
+        // against are the same (so we can show some performance predictions in the
+        // editor and suggested changes)
+        // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
+        steps.Enqueue(new CalculatePopulation(map) { CanRunConcurrently = false });
+
+        // Due to species splitting migrations may end up being invalid
+        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
+        // numbers
+        steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
+
+        AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
+    }
+
+    /// <summary>
+    ///   Adds a step that adjusts the player species population results
+    /// </summary>
+    /// <param name="steps">The list of steps to add the adjust step to</param>
+    /// <param name="map">Used to get list of patches to act on</param>
+    /// <param name="playerSpecies">The species the player adjustment is performed on, if null, nothing is done</param>
+    /// <param name="previousPopulationFrom">
+    ///   This is the species from which the previous populations are read through. If null
+    ///   <see cref="playerSpecies"/> is used instead
+    /// </param>
+    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map, Species playerSpecies,
+        Species previousPopulationFrom = null)
+    {
+        if (playerSpecies == null)
+            return;
+
+        steps.Enqueue(new LambdaStep(
+            result =>
+            {
+                foreach (var entry in map.Patches)
+                {
+                    var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);
+
+                    // Going extinct in patch is not adjusted, because the minimum viable population clamping is
+                    // performed already so we don't want to undo that
+                    if (resultPopulation is null or 0)
+                        continue;
+
+                    // Adjust to the specified fraction of the full population change
+                    var previousPopulation = entry.Value.GetSpeciesPopulation(previousPopulationFrom ?? playerSpecies);
+
+                    var change = resultPopulation.Value - previousPopulation;
+
+                    change = (long)Math.Round(change * Constants.AUTO_EVO_PLAYER_STRENGTH_FRACTION);
+
+                    result.AddPopulationResultForSpecies(playerSpecies, entry.Value, previousPopulation + change);
+                }
+            }));
+    }
+
+    /// <summary>
     ///   Run this instance. Should only be called in a background thread
     /// </summary>
     private void Run()
@@ -332,7 +434,7 @@ public class AutoEvoRun
         switch (state)
         {
             case RunStage.GatheringInfo:
-                GatherInfo();
+                GatherInfo(runSteps);
 
                 // +2 is for this step and the result apply step
                 totalSteps = runSteps.Sum(step => step.TotalSteps) + 2;
@@ -414,93 +516,5 @@ public class AutoEvoRun
 
         // Doing the steps counting this way is slightly faster than an increment after each step
         Interlocked.Add(ref completeSteps, steps);
-    }
-
-    /// <summary>
-    ///   The info gather phase
-    /// </summary>
-    private void GatherInfo()
-    {
-        var random = new Random();
-
-        var alreadyHandledSpecies = new HashSet<Species>();
-
-        var map = parameters.World.Map;
-
-        var autoEvoConfiguration = SimulationParameters.Instance.AutoEvoConfiguration;
-
-        foreach (var entry in map.Patches)
-        {
-            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
-            {
-                if (alreadyHandledSpecies.Contains(speciesEntry.Key))
-                    continue;
-
-                alreadyHandledSpecies.Add(speciesEntry.Key);
-
-                // The player species doesn't get random mutations. And also doesn't spread automatically
-                if (speciesEntry.Key.PlayerSpecies)
-                {
-                }
-                else
-                {
-                    runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
-                        autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowNoMigration,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
-
-                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key, random,
-                        autoEvoConfiguration.MoveAttemptsPerSpecies,
-                        autoEvoConfiguration.AllowNoMigration));
-                }
-            }
-
-            if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
-                random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
-            {
-                runSteps.Enqueue(new IncreaseBiodiversity(map, entry.Value, random, autoEvoConfiguration));
-            }
-        }
-
-        // The new populations don't depend on the mutations, this is so that when
-        // the player edits their species the other species they are competing
-        // against are the same (so we can show some performance predictions in the
-        // editor and suggested changes)
-        // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        runSteps.Enqueue(new CalculatePopulation(map) { CanRunConcurrently = false });
-
-        // Due to species splitting migrations may end up being invalid
-        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
-        // numbers
-        runSteps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
-
-        // Adjust auto-evo results for player species
-        runSteps.Enqueue(new LambdaStep(
-            result =>
-            {
-                var species = parameters.World.PlayerSpecies;
-
-                foreach (var entry in map.Patches)
-                {
-                    if (!entry.Value.SpeciesInPatch.ContainsKey(species))
-                        continue;
-
-                    // Going extinct in patch is not adjusted, because the minimum viable population clamping is
-                    // performed already so we don't want to undo that
-                    var resultPopulation = result.GetPopulationInPatch(species, entry.Value);
-
-                    if (resultPopulation == 0)
-                        continue;
-
-                    // Adjust to the specified fraction of the full population change
-                    var previousPopulation = entry.Value.GetSpeciesPopulation(species);
-                    var change = resultPopulation - previousPopulation;
-
-                    change = (long)Math.Round(change * Constants.AUTO_EVO_PLAYER_STRENGTH_FRACTION);
-
-                    result.AddPopulationResultForSpecies(species, entry.Value, previousPopulation + change);
-                }
-            }));
     }
 }

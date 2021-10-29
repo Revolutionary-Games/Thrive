@@ -335,6 +335,19 @@
         }
 
         /// <summary>
+        ///   Variant of GetGlobalPopulation for a single patch that returns null if patch not found
+        /// </summary>
+        public long? GetPopulationInPatchIfExists(Species species, Patch patch)
+        {
+            if (results[species].NewPopulationInPatches.TryGetValue(patch, out long population))
+            {
+                return Math.Max(population, 0);
+            }
+
+            return null;
+        }
+
+        /// <summary>
         ///   Returns all patches that have population for the given species
         /// </summary>
         /// <param name="species">The species to get population for</param>
