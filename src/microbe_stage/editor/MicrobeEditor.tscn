@@ -1706,7 +1706,8 @@ margin_bottom = 548.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-margin_top = 40.0
+visible = false
+margin_top = 303.0
 margin_right = 318.0
 margin_bottom = 556.0
 mouse_filter = 1
@@ -1715,7 +1716,7 @@ custom_styles/panel = SubResource( 20 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour"]
 margin_right = 318.0
-margin_bottom = 516.0
+margin_bottom = 253.0
 mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
