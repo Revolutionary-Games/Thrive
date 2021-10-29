@@ -8,7 +8,7 @@ using Godot;
 public class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker instance;
-
+    private bool isCurrentlyTakingScreenshot;
     private Image screenshotImage;
     private Steps step;
 
@@ -41,19 +41,6 @@ public class ScreenShotTaker : NodeWithInput
     }
 
     /// <summary>
-    ///   Takes and saves a screenshot
-    /// </summary>
-    /// <returns>The path of the screenshot on success, null on failure</returns>
-    public string TakeAndSaveScreenShot()
-    {
-        FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
-
-        var img = GetViewportTextureImage();
-
-        return SaveScreenshot(img);
-    }
-
-    /// <summary>
     ///   Takes an image of the current viewport
     /// </summary>
     /// <returns>The image</returns>
@@ -67,7 +54,7 @@ public class ScreenShotTaker : NodeWithInput
         return image;
     }
 
-    private string SaveScreenshot(Image img)
+    private void SaveScreenshot(Image img)
     {
         var filename = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss.ffff", CultureInfo.CurrentCulture) + ".png";
 
@@ -78,50 +65,73 @@ public class ScreenShotTaker : NodeWithInput
         if (error != Error.Ok)
         {
             GD.PrintErr("Saving screenshot failed ", error);
-            return null;
+            return;
         }
 
         GD.Print("Saved screenshot: ", path);
-        return path;
     }
 
+    /// <summary>
+    ///   Takes and saves a screenshot
+    /// </summary>
     private void TakeScreenshot()
     {
+        if (isCurrentlyTakingScreenshot)
+        {
+            GD.Print("Already in the process of taking a screenshot.");
+            return;
+        }
+
+        isCurrentlyTakingScreenshot = true;
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
+        // If ScreenFilter is active, turn it of before taking a screenshot.
         if (ColourblindScreenFilter.Instance.Visible)
         {
             step = Steps.Start;
-            Step();
+            ScreenFilterScreenshotStepper();
             return;
         }
 
         SaveScreenshot(GetViewportTextureImage());
+        isCurrentlyTakingScreenshot = false;
     }
 
-    private void Step()
+    /// <summary>
+    ///   Invokes itself to:
+    ///   1: Hide the ScreenFilter and wait a frame.
+    ///   2: Wait another frame.
+    ///   3: Take the screenshot, show the filter and wait a frame so the filter can show itself again faster.
+    ///   4: Save the screenshot.
+    /// </summary>
+    private void ScreenFilterScreenshotStepper()
     {
         switch (step)
         {
             case Steps.Start:
+                GD.Print("Start");
                 ColourblindScreenFilter.Instance.Hide();
                 step = Steps.Wait;
                 break;
             case Steps.Wait:
+                GD.Print("Wait");
                 step = Steps.TakeScreenshot;
                 break;
             case Steps.TakeScreenshot:
+                GD.Print("TakeSceenshot");
                 screenshotImage = GetViewportTextureImage();
                 ColourblindScreenFilter.Instance.Show();
                 step = Steps.Save;
                 break;
             case Steps.Save:
+                GD.Print("Save");
                 SaveScreenshot(screenshotImage);
                 screenshotImage.Dispose();
                 screenshotImage = null;
+                isCurrentlyTakingScreenshot = false;
                 return;
         }
 
-        Invoke.Instance.Queue(Step);
+        Invoke.Instance.Queue(ScreenFilterScreenshotStepper);
     }
 }
