@@ -17,22 +17,6 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     /// </summary>
     protected Vector3 lastCalculatedPosition = new Vector3(0, 0, 0);
 
-    /// <summary>
-    ///  Gets the angle of rotation of an externally placed organelle
-    /// </summary>
-    /// <param name="delta"> the difference between the cell middle and the external organelle position</param>
-    protected float GetAngle(Vector3 delta)
-    {
-        float angle = Mathf.Atan2(-delta.z, delta.x);
-        if (angle < 0)
-        {
-            angle = angle + (2 * Mathf.Pi);
-        }
-
-        angle = (angle * 180 / Mathf.Pi - 90) % 360;
-        return angle;
-    }
-
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
         this.organelle = organelle;
@@ -73,6 +57,22 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
     public virtual void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
+    }
+
+    /// <summary>
+    ///  Gets the angle of rotation of an externally placed organelle
+    /// </summary>
+    /// <param name="delta"> the difference between the cell middle and the external organelle position</param>
+    protected float GetAngle(Vector3 delta)
+    {
+        float angle = Mathf.Atan2(-delta.z, delta.x);
+        if (angle < 0)
+        {
+            angle = angle + (2 * Mathf.Pi);
+        }
+
+        angle = (angle * 180 / Mathf.Pi - 90) % 360;
+        return angle;
     }
 
     protected virtual void CustomAttach()
