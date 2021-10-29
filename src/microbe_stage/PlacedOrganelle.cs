@@ -392,7 +392,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     ///  Returns the rotated position, as it should be in the colony.
     ///  Used for re-parenting shapes to other microbes
     /// </summary>
-    public Vector3 RotationInsideColony(Vector3 shapePosition)
+    public Vector3 RotatedPositionInsideColony(Vector3 shapePosition)
     {
         var rotation = Quat.Identity;
         if (ParentMicrobe.Colony != null)
@@ -433,7 +433,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             Vector3 shapePosition = ShapeTruePosition(hexes[i]);
 
             // Rotate the position of the organelle to its true position relative to the master
-            shapePosition = RotationInsideColony(shapePosition);
+            shapePosition = RotatedPositionInsideColony(shapePosition);
 
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
@@ -540,7 +540,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             // Create a transform for a shape position
             var transform = new Transform(Quat.Identity, shapePosition);
-            var ownerId = to.CreateOwnerWithTransform(transform, shape);
+            var ownerId = to.CreateShapeOwnerWithTransform(transform, shape);
             shapes.Add(ownerId);
         }
     }

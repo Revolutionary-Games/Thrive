@@ -15,14 +15,14 @@ public class PilusComponent : ExternallyPositionedComponent
         // Check if the pilus exists
         if (NeedsUpdateAnyway())
         {
-            // Send the organelle positions to the membrane then update their positions
+            // Send the organelle positions to the membrane then update the pilus
             currentShapesParent.SendOrganellePositionsToMembrane();
             Update(0);
         }
         else
         {
             // Firstly the rotation relative to the master.
-            var position = organelle.RotationInsideColony(lastCalculatedPosition);
+            var position = organelle.RotatedPositionInsideColony(lastCalculatedPosition);
 
             // Then the position
             position += offset;
@@ -83,7 +83,7 @@ public class PilusComponent : ExternallyPositionedComponent
         if (parentMicrobe.Colony != null && !NeedsUpdateAnyway())
         {
             // Get the real position of the pilus while in the colony
-            membraneCoords = organelle.RotationInsideColony(membraneCoords);
+            membraneCoords = organelle.RotatedPositionInsideColony(membraneCoords);
             membraneCoords += parentMicrobe.GetOffsetRelativeToMaster();
         }
 
@@ -92,10 +92,6 @@ public class PilusComponent : ExternallyPositionedComponent
             CreateShape(parentMicrobe);
 
         currentShapesParent.ShapeOwnerSetTransform(addedChildShapes[0], transform);
-
-        // TODO: find a way to pass the information to the shape /
-        // parentMicrobe what is a pilus part of the collision
-        // pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
     }
 
     private void CreateShape(Microbe parent)
@@ -109,12 +105,6 @@ public class PilusComponent : ExternallyPositionedComponent
         }
 
         // Create the shape
-        // TODO: Godot doesn't have Cone shape.
-        // https://github.com/godotengine/godot-proposals/issues/610
-        // So this uses a cylinder for now
-
-        // @pilusShape = organelle.world.GetPhysicalWorld().CreateCone(pilusSize / 10.f,
-        //     pilusSize);
         var shape = new CylinderShape();
         shape.Radius = pilusSize / 10.0f;
         shape.Height = pilusSize;

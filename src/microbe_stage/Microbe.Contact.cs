@@ -333,6 +333,10 @@ public partial class Microbe
             Colony.Master.Rotation.y);
     }
 
+    ///  <summary>
+    ///  Public becase it needs to be called by externall organelles only
+    ///  Not meant for other use
+    ///  </summary>
     public void SendOrganellePositionsToMembrane()
     {
         var organellePositions = new List<Vector2>();

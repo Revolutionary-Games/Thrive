@@ -34,9 +34,9 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
     /// <summary>
     ///  Gets the angle of rotation of an externally placed organelle
-    ///  delta = the difference between the cell middle and the external organelle position
     /// </summary>
-    public float GetAngle(Vector3 delta)
+    /// <param name="delta"> the difference between the cell middle and the external organelle position</param> 
+    protected float GetAngle(Vector3 delta)
     {
         float angle = Mathf.Atan2(-delta.z, delta.x);
         if (angle < 0)
