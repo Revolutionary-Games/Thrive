@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -10,9 +9,20 @@ public class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker instance;
 
+    private Image screenshotImage;
+    private Steps step;
+
     private ScreenShotTaker()
     {
         instance = this;
+    }
+
+    private enum Steps
+    {
+        Start,
+        Wait,
+        TakeScreenshot,
+        Save,
     }
 
     public static ScreenShotTaker Instance => instance;
@@ -24,10 +34,10 @@ public class ScreenShotTaker : NodeWithInput
     }
 
     [RunOnKeyDown("screenshot", OnlyUnhandled = false)]
-    public async Task TakeScreenshotPressed()
+    public void TakeScreenshotPressed()
     {
         GD.Print("Taking a screenshot");
-        await TakeScreenshotAsync().ConfigureAwait(false);
+        TakeScreenshot();
     }
 
     /// <summary>
@@ -38,7 +48,7 @@ public class ScreenShotTaker : NodeWithInput
     {
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
-        var img = GetViewportTextureData();
+        var img = GetViewportTextureImage();
 
         return SaveScreenshot(img);
     }
@@ -47,7 +57,7 @@ public class ScreenShotTaker : NodeWithInput
     ///   Takes an image of the current viewport
     /// </summary>
     /// <returns>The image</returns>
-    public Image GetViewportTextureData()
+    public Image GetViewportTextureImage()
     {
         var image = GetViewport().GetTexture().GetData();
 
@@ -75,31 +85,43 @@ public class ScreenShotTaker : NodeWithInput
         return path;
     }
 
-    private async Task TakeScreenshotAsync()
+    private void TakeScreenshot()
     {
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
-        bool wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
-        if (wasColourblindScreenFilterVisible)
+        if (ColourblindScreenFilter.Instance.Visible)
         {
-            ColourblindScreenFilter.Instance.Hide();
-
-            // Two frames needed.
-            // From Godot docs since v3.2.1 yield(VisualServer, "frame_post_draw") should be enough.
-            // But couldn't get this to work. So taking the old recommendation of waiting 2 frames.
-            // to be sure the image is drawn in the viewport.
-            await ToSignal(GetTree(), "idle_frame");
-            await ToSignal(GetTree(), "idle_frame");
+            step = Steps.Start;
+            Step();
+            return;
         }
 
-        using Image image = GetViewportTextureData();
+        SaveScreenshot(GetViewportTextureImage());
+    }
 
-        if (wasColourblindScreenFilterVisible)
+    private void Step()
+    {
+        switch (step)
         {
-            ColourblindScreenFilter.Instance.Show();
-            await ToSignal(GetTree(), "idle_frame");
+            case Steps.Start:
+                ColourblindScreenFilter.Instance.Hide();
+                step = Steps.Wait;
+                break;
+            case Steps.Wait:
+                step = Steps.TakeScreenshot;
+                break;
+            case Steps.TakeScreenshot:
+                screenshotImage = GetViewportTextureImage();
+                ColourblindScreenFilter.Instance.Show();
+                step = Steps.Save;
+                break;
+            case Steps.Save:
+                SaveScreenshot(screenshotImage);
+                screenshotImage.Dispose();
+                screenshotImage = null;
+                return;
         }
 
-        SaveScreenshot(image);
+        Invoke.Instance.Queue(Step);
     }
 }
