@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-24 15:50+0300\n"
-"PO-Revision-Date: 2021-10-11 18:00+0000\n"
+"POT-Creation-Date: 2021-10-29 10:38+0300\n"
+"PO-Revision-Date: 2021-10-28 07:11+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -1604,9 +1604,7 @@ msgstr "Nuvole di composti"
 
 #: ../src/general/OptionsMenu.tscn:700
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-"Intervallo minimo\n"
-"simulazione nuvole:"
+msgstr "Intervallo minimo simulazione nuvole:"
 
 #: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1824,9 +1822,9 @@ msgstr "@"
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:617
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1020
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2224,22 +2222,42 @@ msgstr "Salute"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:220
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"I microbi aggressivi inseguono le prede per distanze maggiori\n"
+"e sono più propensi a combattere quando aggrediti.\n"
+"I microbi pacifici, invece, ignorano soggetti più lontani\n"
+"e sono meno propensi a sparare tossine ai propri predatori."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:227
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
+"I microbi opportunisti competono coi rivali per i pezzi di cibo\n"
+"e, se non riescono a fagocitare la preda, cercano di colpirla con le "
+"tossine.\n"
+"I microbi cauti potrebbero evitare di avvicinarsi ai pezzi di cibo in caso "
+"che ciò costituisca un pericolo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:234
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"I microbi pavidi scappano dai pericoli per lunghe distanze\n"
+"e sono generalmente più propensi alla fuga.\n"
+"I microbi coraggiosi non sono spaventati dai predatori vicini\n"
+"e sono più propensi a contrattaccare."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:241
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"I microbi attivi corrono e saltano anche quando non accade nulla di "
+"interessante.\n"
+"I microbi sessili sono stazionari e aspettano cambiamenti nell'ambiente "
+"prima di agire."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:248
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"I microbi focalizzati inseguono prede e pezzi di cibo per lunghe distanze\n"
+"e potrebbero bramare maggiormente i pezzi di cibo.\n"
+"I microbi reattivi cambiano più facilmente bersaglio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -2718,7 +2736,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2932
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:782
 msgid "TEMPERATURE"
 msgstr "Temperatura"
 
@@ -2771,7 +2789,7 @@ msgstr "Duplica Giocatore"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
 msgid "SPAWN_ENEMY"
-msgstr ""
+msgstr "Genera Nemico"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
@@ -2782,9 +2800,8 @@ msgid "PLAYER_CELL"
 msgstr "Cellula del Giocatore"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:736
-#, fuzzy
 msgid "SPECIES_N_TIMES"
-msgstr "Lista delle Specie"
+msgstr "{0} (x{1})"
 
 #: ../src/microbe_stage/MicrobeStage.cs:525
 msgid "PLAYER_REPRODUCED"
@@ -2829,7 +2846,7 @@ msgstr "Press."
 #: ../src/microbe_stage/MicrobeStage.tscn:1128
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2604
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3239
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "COMPOUNDS"
 msgstr "Composti"
 
@@ -2987,7 +3004,6 @@ msgid "MEMBRANE"
 msgstr "Tipi di membrana"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1192
-#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Comportamento"
 
@@ -3025,43 +3041,43 @@ msgstr "Colore"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1754
 msgid "PEACEFUL"
-msgstr ""
+msgstr "Pacifico"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1771
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Aggressivo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "Cauto"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1823
 msgid "OPPORTUNISTIC"
-msgstr ""
+msgstr "Opportunista"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1857
 msgid "BRAVE"
-msgstr ""
+msgstr "Coraggioso"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1874
 msgid "FEARFUL"
-msgstr ""
+msgstr "Pavido"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1908
 msgid "SESSILE"
-msgstr ""
+msgstr "Sessile"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1925
 msgid "ACTIVE"
-msgstr ""
+msgstr "Attivo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1959
 msgid "RESPONSIVE"
-msgstr ""
+msgstr "Reattivo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1976
 msgid "FOCUSED"
-msgstr ""
+msgstr "Focalizzato"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2108
 msgid "SPECIES_NAME_DOT_DOT_DOT"
@@ -3127,7 +3143,7 @@ msgstr "Condizioni Fisiche"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2566
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3074
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gas Atmosferici"
 
@@ -3160,66 +3176,66 @@ msgstr "Trasferisciti in Questa Zona"
 msgid "INFINITE_MP"
 msgstr "PM Infiniti"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 "La quantità di glucosio è stata ridotta al {0} della quantità precedente."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:622
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:625
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:626
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:883
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:884
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "YEARS"
 msgstr "anni"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
 msgid "ATP_PRODUCTION"
 msgstr "Produzione di ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:674
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "PRODUZIONE DI ATP TROPPO BASSA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:699
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:700
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:717
 msgid "OSMOREGULATION"
 msgstr "Osmoregolazione"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:723
 msgid "BASE_MOVEMENT"
 msgstr "Movimento di Base"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:735
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
 msgid "SPECIES_LIST"
 msgstr "Lista delle Specie"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:913
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:914
 msgid "FREEBUILDING"
 msgstr "Modifica Libera"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1011
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1015
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sotto il livello del mare"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1055
 msgid "WITH_POPULATION"
 msgstr "{0} con popolazione: {1}"
 
@@ -3741,6 +3757,9 @@ msgstr ""
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "Errore di Salvataggio"
+
+#~ msgid "BEHAVIOR"
+#~ msgstr "Comportamento"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "Rimuovi organulo"

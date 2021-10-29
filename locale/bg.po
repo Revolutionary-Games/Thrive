@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-24 15:50+0300\n"
-"PO-Revision-Date: 2021-10-15 11:01+0000\n"
+"POT-Creation-Date: 2021-10-29 10:38+0300\n"
+"PO-Revision-Date: 2021-10-29 07:14+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -1605,9 +1605,7 @@ msgstr "Облаци"
 
 #: ../src/general/OptionsMenu.tscn:700
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-"Минимален интервал на облачната\n"
-"симулация:"
+msgstr "Минимален интервал на облачната симулация:"
 
 #: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1824,9 +1822,9 @@ msgstr "при"
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:617
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1020
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
@@ -2222,22 +2220,38 @@ msgstr "Здраве"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:220
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Агресивните микроби преследват плячката си на големи разстояния\n"
+"и са склонни да се защитят, когато са нападнати.\n"
+"Пасивните микроби не преследват пляката си на големи разстояния\n"
+"и са склонни да избягат, когато са нападнати."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:227
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
+"Опортюнистичните микроби се съревновават за своята плячка\n"
+"и са склонни да използват токсини срещу по-големите микроби.\n"
+"Предпазливите микроби не се излагат на опасност за своята плячка."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:234
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Плашливите микроби отстъпват при опасност\n"
+"и са склонни да избягат, когато са нападнати.\n"
+"Безрасъдните микроби не отстъпват при опасност\n"
+"и са склонни да се защитят, когато са нападнати."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:241
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Енергичните микроби са в движение, дори да няма промени в околната среда.\n"
+"Мудните микроби не са в движение, докато няма промени в околната среда."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:248
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Вглъбените микроби не променят намеренията си\n"
+"и са склонни да постигнат целта си.\n"
+"Бдителните микроби бързо променят намеренията си."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -2711,7 +2725,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2932
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:782
 msgid "TEMPERATURE"
 msgstr "Температура"
 
@@ -2742,7 +2756,7 @@ msgstr "възпроизвеждане"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
 msgid "INFINITE_COMPOUNDS"
-msgstr "Неограничени ХС"
+msgstr "Пиршество"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
@@ -2764,7 +2778,7 @@ msgstr "Удвояване"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
 msgid "SPAWN_ENEMY"
-msgstr ""
+msgstr "Съперничество"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
@@ -2775,9 +2789,8 @@ msgid "PLAYER_CELL"
 msgstr "Вашето създание"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:736
-#, fuzzy
 msgid "SPECIES_N_TIMES"
-msgstr "Списък на създанията"
+msgstr "{0} ({1} индивида)"
 
 #: ../src/microbe_stage/MicrobeStage.cs:525
 msgid "PLAYER_REPRODUCED"
@@ -2822,7 +2835,7 @@ msgstr "Наляг."
 #: ../src/microbe_stage/MicrobeStage.tscn:1128
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2604
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3239
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
 
@@ -2980,7 +2993,6 @@ msgid "MEMBRANE"
 msgstr "Мембрана"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1192
-#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Поведение"
 
@@ -3018,43 +3030,43 @@ msgstr "Цвят"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1754
 msgid "PEACEFUL"
-msgstr ""
+msgstr "Пасивно"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1771
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Агресивно"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "Предпазливо"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1823
 msgid "OPPORTUNISTIC"
-msgstr ""
+msgstr "Опортюнистично"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1857
 msgid "BRAVE"
-msgstr ""
+msgstr "Безразсъдно"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1874
 msgid "FEARFUL"
-msgstr ""
+msgstr "Плашливо"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1908
 msgid "SESSILE"
-msgstr ""
+msgstr "Мудно"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1925
 msgid "ACTIVE"
-msgstr ""
+msgstr "Енергично"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1959
 msgid "RESPONSIVE"
-msgstr ""
+msgstr "Бдително"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1976
 msgid "FOCUSED"
-msgstr ""
+msgstr "Вглъбено"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2108
 msgid "SPECIES_NAME_DOT_DOT_DOT"
@@ -3119,7 +3131,7 @@ msgstr "Физически условия"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2566
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3074
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферни газове"
 
@@ -3152,65 +3164,65 @@ msgstr "Преселване"
 msgid "INFINITE_MP"
 msgstr "Неограничени МТ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Глюкозата се понижи на {0} от предишното си състояние."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:622
 msgid "MEGA_YEARS"
 msgstr "млн. г."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:625
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:626
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:883
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:884
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "YEARS"
 msgstr "години"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
 msgid "ATP_PRODUCTION"
 msgstr "Производство на АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:674
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:699
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:700
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:717
 msgid "OSMOREGULATION"
 msgstr "Осморегулация"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:723
 msgid "BASE_MOVEMENT"
 msgstr "Базово движение"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:735
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
 msgid "SPECIES_LIST"
 msgstr "Списък на създанията"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:913
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:914
 msgid "FREEBUILDING"
 msgstr "Неограничени"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1011
 msgid "BIOME_LABEL"
 msgstr "Биом: „{0}“"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1015
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1055
 msgid "WITH_POPULATION"
 msgstr "{0}: {1} индивида"
 
@@ -3720,6 +3732,9 @@ msgstr ""
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "Грешка при запазването"
+
+#~ msgid "BEHAVIOR"
+#~ msgstr "Поведение"
 
 #, fuzzy
 #~ msgid "TRY_NEW_GAME"
