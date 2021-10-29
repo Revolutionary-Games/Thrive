@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-28 00:04+0200\n"
+"POT-Creation-Date: 2021-10-30 01:20+0200\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -377,17 +377,17 @@ msgid "ABILITIES"
 msgstr "Kapabloj"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2105
+#: ../src/microbe_stage/MicrobeStage.tscn:2115
 msgid "FIRE_TOXIN"
 msgstr "Pafu toksinon"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2093
+#: ../src/microbe_stage/MicrobeStage.tscn:2103
 msgid "TOGGLE_ENGULF"
 msgstr "Ŝaltu engluton"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2116
+#: ../src/microbe_stage/MicrobeStage.tscn:2126
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Ŝaltu engluton"
@@ -686,36 +686,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1280
+#: ../src/microbe_stage/MicrobeStage.tscn:1290
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3314
 msgid "AMMONIA"
 msgstr "Amoniako"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1334
+#: ../src/microbe_stage/MicrobeStage.tscn:1344
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3385
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1388
+#: ../src/microbe_stage/MicrobeStage.tscn:1398
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogena Sulfido"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1226
+#: ../src/microbe_stage/MicrobeStage.tscn:1236
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3349
 msgid "GLUCOSE"
 msgstr "Glukozo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1574
+#: ../src/microbe_stage/MicrobeStage.tscn:1584
 msgid "OXYTOXY_NT"
 msgstr "OksiToksina NO"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1442
+#: ../src/microbe_stage/MicrobeStage.tscn:1452
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3420
 msgid "IRON"
 msgstr "Fero"
@@ -1826,10 +1826,10 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
+#: ../src/microbe_stage/MicrobeHUD.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1020
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -2768,7 +2768,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2932
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:782
 msgid "TEMPERATURE"
 msgstr "Temperaturo"
 
@@ -2824,40 +2824,40 @@ msgstr "ludanto mortis"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:680
+#: ../src/microbe_stage/MicrobeHUD.cs:683
 msgid "STUFF_AT"
 msgstr "Aĵoj ĉe {0: F1}, {1: F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:712
+#: ../src/microbe_stage/MicrobeHUD.cs:715
 msgid "PLAYER_CELL"
 msgstr "Ĉelo de la ludanto"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:729
+#: ../src/microbe_stage/MicrobeHUD.cs:732
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Listo de Specioj"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:758
+#: ../src/microbe_stage/MicrobeHUD.cs:763
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:760
+#: ../src/microbe_stage/MicrobeHUD.cs:765
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:762
+#: ../src/microbe_stage/MicrobeHUD.cs:767
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:764
+#: ../src/microbe_stage/MicrobeHUD.cs:769
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:766
+#: ../src/microbe_stage/MicrobeHUD.cs:771
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:768
+#: ../src/microbe_stage/MicrobeHUD.cs:773
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -2869,84 +2869,84 @@ msgstr "ludanto reproduktita"
 msgid "PLAYER_DIED"
 msgstr "ludanto mortis"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:498
+#: ../src/microbe_stage/MicrobeStage.tscn:505
 msgid "AT_CURSOR"
 msgstr "Ĉe Kursoro(montrilo):"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:523
+#: ../src/microbe_stage/MicrobeStage.tscn:531
 msgid "NOTHING_HERE"
 msgstr "Nenio estas ĉi tie"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:556
 msgid "COMPOUNDS_COLON"
 msgstr "Kunmetaĵoj:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:586
+#: ../src/microbe_stage/MicrobeStage.tscn:596
 msgid "SPECIES_COLON"
 msgstr "Specioj:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:667
+#: ../src/microbe_stage/MicrobeStage.tscn:677
 msgid "ENVIRONMENT"
 msgstr "Medio"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:934
+#: ../src/microbe_stage/MicrobeStage.tscn:944
 msgid "TEMPERATURE_SHORT"
 msgstr "Tеmp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:990
+#: ../src/microbe_stage/MicrobeStage.tscn:1000
 msgid "LIGHT"
 msgstr "Lumo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1045
+#: ../src/microbe_stage/MicrobeStage.tscn:1055
 msgid "PRESSURE_SHORT"
 msgstr "Premo."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1128
+#: ../src/microbe_stage/MicrobeStage.tscn:1138
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2604
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3239
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "COMPOUNDS"
 msgstr "Kunmetaĵoj"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1512
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "AGENTS"
 msgstr "Agentoj"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1612
+#: ../src/microbe_stage/MicrobeStage.tscn:1622
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1630
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1643
+#: ../src/microbe_stage/MicrobeStage.tscn:1653
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Rekomenci"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1666
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1671
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1708
+#: ../src/microbe_stage/MicrobeStage.tscn:1718
 #, fuzzy
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1720
+#: ../src/microbe_stage/MicrobeStage.tscn:1730
 #, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Aldonunovan funkcion por klavo"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1771
+#: ../src/microbe_stage/MicrobeStage.tscn:1781
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACIO:"
 
@@ -3210,7 +3210,7 @@ msgstr "Fizikaj Kondiĉoj"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2566
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3074
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferaj Gasoj"
 
@@ -3244,65 +3244,65 @@ msgstr "Moviĝu al ĉi tiu loko"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "La kvanto de glukozo reduktiĝis al {0} de la antaŭa kvanto."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:622
 msgid "MEGA_YEARS"
 msgstr "Megajaro"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:625
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:626
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:883
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:884
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "YEARS"
 msgstr "jaroj"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktado"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:674
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP-PRODUKTO ESTAS TRE MALALTA!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:699
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:700
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:717
 msgid "OSMOREGULATION"
 msgstr "Osmoregado"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:723
 msgid "BASE_MOVEMENT"
 msgstr "Baza Movado"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:735
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
 msgid "SPECIES_LIST"
 msgstr "Listo de Specioj"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:913
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:914
 msgid "FREEBUILDING"
 msgstr "Libera konstruado"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1011
 msgid "BIOME_LABEL"
 msgstr "Biomo: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1015
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sub marnivelo"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1055
 msgid "WITH_POPULATION"
 msgstr "{0} kun loĝantaro: {1}"
 

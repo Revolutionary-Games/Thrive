@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-28 00:04+0200\n"
+"POT-Creation-Date: 2021-10-30 01:20+0200\n"
 "PO-Revision-Date: 2021-10-05 19:11+0000\n"
 "Last-Translator: Arya Rouinsard <shigasaa@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -414,17 +414,17 @@ msgid "ABILITIES"
 msgstr "Capacités"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2105
+#: ../src/microbe_stage/MicrobeStage.tscn:2115
 msgid "FIRE_TOXIN"
 msgstr "Tirer des toxines"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2093
+#: ../src/microbe_stage/MicrobeStage.tscn:2103
 msgid "TOGGLE_ENGULF"
 msgstr "Activer Engloutir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2116
+#: ../src/microbe_stage/MicrobeStage.tscn:2126
 msgid "TOGGLE_BINDING"
 msgstr "Activer relieur"
 
@@ -719,36 +719,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1280
+#: ../src/microbe_stage/MicrobeStage.tscn:1290
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3314
 msgid "AMMONIA"
 msgstr "Ammoniaque"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1334
+#: ../src/microbe_stage/MicrobeStage.tscn:1344
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3385
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1388
+#: ../src/microbe_stage/MicrobeStage.tscn:1398
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfure d'Hydrogène"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1226
+#: ../src/microbe_stage/MicrobeStage.tscn:1236
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3349
 msgid "GLUCOSE"
 msgstr "Glucose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1574
+#: ../src/microbe_stage/MicrobeStage.tscn:1584
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1442
+#: ../src/microbe_stage/MicrobeStage.tscn:1452
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3420
 msgid "IRON"
 msgstr "Fer"
@@ -1834,10 +1834,10 @@ msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
+#: ../src/microbe_stage/MicrobeHUD.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1020
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2739,7 +2739,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2932
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:782
 msgid "TEMPERATURE"
 msgstr "Température"
 
@@ -2792,40 +2792,40 @@ msgstr "joueur en double"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:680
+#: ../src/microbe_stage/MicrobeHUD.cs:683
 msgid "STUFF_AT"
 msgstr "Matériel à {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:712
+#: ../src/microbe_stage/MicrobeHUD.cs:715
 msgid "PLAYER_CELL"
 msgstr "Cellule du joueur"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:729
+#: ../src/microbe_stage/MicrobeHUD.cs:732
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Espèces Présentes"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:758
+#: ../src/microbe_stage/MicrobeHUD.cs:763
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:760
+#: ../src/microbe_stage/MicrobeHUD.cs:765
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:762
+#: ../src/microbe_stage/MicrobeHUD.cs:767
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:764
+#: ../src/microbe_stage/MicrobeHUD.cs:769
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:766
+#: ../src/microbe_stage/MicrobeHUD.cs:771
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:768
+#: ../src/microbe_stage/MicrobeHUD.cs:773
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -2837,84 +2837,84 @@ msgstr "joueur reproduit"
 msgid "PLAYER_DIED"
 msgstr "joueur mort"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:498
+#: ../src/microbe_stage/MicrobeStage.tscn:505
 msgid "AT_CURSOR"
 msgstr "Au pointeur :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:523
+#: ../src/microbe_stage/MicrobeStage.tscn:531
 msgid "NOTHING_HERE"
 msgstr "Rien ici"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:556
 msgid "COMPOUNDS_COLON"
 msgstr "Composés :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:586
+#: ../src/microbe_stage/MicrobeStage.tscn:596
 msgid "SPECIES_COLON"
 msgstr "Espèces :"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:667
+#: ../src/microbe_stage/MicrobeStage.tscn:677
 msgid "ENVIRONMENT"
 msgstr "Environnement"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:934
+#: ../src/microbe_stage/MicrobeStage.tscn:944
 msgid "TEMPERATURE_SHORT"
 msgstr "Temp."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:990
+#: ../src/microbe_stage/MicrobeStage.tscn:1000
 msgid "LIGHT"
 msgstr "Lumière"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1045
+#: ../src/microbe_stage/MicrobeStage.tscn:1055
 msgid "PRESSURE_SHORT"
 msgstr "Press."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1128
+#: ../src/microbe_stage/MicrobeStage.tscn:1138
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2604
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3239
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "COMPOUNDS"
 msgstr "Composés"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1512
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "AGENTS"
 msgstr "Agents"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1612
+#: ../src/microbe_stage/MicrobeStage.tscn:1622
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1630
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1643
+#: ../src/microbe_stage/MicrobeStage.tscn:1653
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Reprendre"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1666
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1671
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1708
+#: ../src/microbe_stage/MicrobeStage.tscn:1718
 #, fuzzy
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1720
+#: ../src/microbe_stage/MicrobeStage.tscn:1730
 #, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Ajouter un nouveau raccourci clavier"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1771
+#: ../src/microbe_stage/MicrobeStage.tscn:1781
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION :"
 
@@ -3176,7 +3176,7 @@ msgstr "Conditions Physique"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2566
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3074
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gaz Atmosphériques"
 
@@ -3209,65 +3209,65 @@ msgstr "Se Déplacer vers Cette Parcelle"
 msgid "INFINITE_MP"
 msgstr "MP illimités"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "La quantité de glucose a été réduite a {0} se sa valeur précédente."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:622
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:625
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:626
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:883
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:884
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "YEARS"
 msgstr "années"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
 msgid "ATP_PRODUCTION"
 msgstr "Production d'ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:674
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCTION D'ATP EST TROP FAIBLE!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:699
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:700
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:717
 msgid "OSMOREGULATION"
 msgstr "Osmorégulation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:723
 msgid "BASE_MOVEMENT"
 msgstr "Mouvement de Base"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:735
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
 msgid "SPECIES_LIST"
 msgstr "Espèces Présentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:913
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:914
 msgid "FREEBUILDING"
 msgstr "Construction Libre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1011
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1015
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sous la mer"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1055
 msgid "WITH_POPULATION"
 msgstr "{0} avec population : {1}"
 

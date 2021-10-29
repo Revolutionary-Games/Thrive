@@ -290,7 +290,7 @@ public class MicrobeHUD : Control
     {
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
 
-        winExtinctBoxHolder = GetNode<Control>("WinExtinctBoxHolder");
+        winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);

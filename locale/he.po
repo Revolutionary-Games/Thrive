@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-10-28 00:04+0200\n"
+"POT-Creation-Date: 2021-10-30 01:20+0200\n"
 "PO-Revision-Date: 2021-10-15 11:01+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -389,17 +389,17 @@ msgid "ABILITIES"
 msgstr "יכולות"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2105
+#: ../src/microbe_stage/MicrobeStage.tscn:2115
 msgid "FIRE_TOXIN"
 msgstr "שחרר רעלנים"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2093
+#: ../src/microbe_stage/MicrobeStage.tscn:2103
 msgid "TOGGLE_ENGULF"
 msgstr "החלף מצב בליעה"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2116
+#: ../src/microbe_stage/MicrobeStage.tscn:2126
 msgid "TOGGLE_BINDING"
 msgstr "החלף מצב קישור"
 
@@ -690,36 +690,36 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1280
+#: ../src/microbe_stage/MicrobeStage.tscn:1290
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3314
 msgid "AMMONIA"
 msgstr "אמוניה"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1334
+#: ../src/microbe_stage/MicrobeStage.tscn:1344
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3385
 msgid "PHOSPHATE"
 msgstr "פוספט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1388
+#: ../src/microbe_stage/MicrobeStage.tscn:1398
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
 msgid "HYDROGEN_SULFIDE"
 msgstr "מימן גופרתי"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1226
+#: ../src/microbe_stage/MicrobeStage.tscn:1236
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3349
 msgid "GLUCOSE"
 msgstr "גלוקוז"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1574
+#: ../src/microbe_stage/MicrobeStage.tscn:1584
 msgid "OXYTOXY_NT"
 msgstr "אוקסיטוקסי נ\"ט"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1442
+#: ../src/microbe_stage/MicrobeStage.tscn:1452
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3420
 msgid "IRON"
 msgstr "ברזל"
@@ -1580,9 +1580,7 @@ msgstr "ענני תרכובות"
 
 #: ../src/general/OptionsMenu.tscn:700
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-"סימולציית ענן מינימלית\n"
-"רווח:"
+msgstr "מרווח מינימלי של הדמיית ענן:"
 
 #: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1796,10 +1794,10 @@ msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:627
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:608
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
+#: ../src/microbe_stage/MicrobeHUD.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:609
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:877
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1020
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2193,22 +2191,38 @@ msgstr "חיים"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:220
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"מיקרובים אגרסיבים ירדפו אחרי הטרפם למרחקים\n"
+"והם לרוב נוטים להילחם בטורפים כשהם מותקפים.\n"
+"מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
+"ופחות נוטים להשתמש ברעלנים כנגד טורפים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:227
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
+"מיקרובים אופורטוניסטיים יתחרו עם יריבים על גושים\n"
+"וינסו לצוד את טרפם עם רעלנים אם הם לא יכולים לבלוע אותם.\n"
+"מיקרובים זהירים ינסו לא לסכן את עצמם על גושים."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:234
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"מיקרובים פחדנים יברחו למרחקים\n"
+"והם נוטים לברוח מטורפים בכללי.\n"
+"תאים אמיצים לא יפחדו מטורפים לידם\n"
+"והם נוטים לתקוף חזרה."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:241
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"מיקרבים פעילים יתרוצצו כששום דבר מעניין קורה.\n"
+"מיקרובים נייחים יחכו לסביבה להשתנות לפני שהם יפעלו."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:248
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"מיקרובים ממוקדים יחפשו אחר גושים או טרף למרחקים\n"
+"ולרוב הוא ישאף לגושים.\n"
+"מיקורבים מגיבים ישנו למטרה חדשה באופן כפוף יותר."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:263
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -2647,7 +2661,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3503
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2932
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:782
 msgid "TEMPERATURE"
 msgstr "טמפרטורה"
 
@@ -2700,43 +2714,42 @@ msgstr "שכפל שחקן"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
 msgid "SPAWN_ENEMY"
-msgstr ""
+msgstr "זמן אויב"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:680
+#: ../src/microbe_stage/MicrobeHUD.cs:683
 msgid "STUFF_AT"
 msgstr "דברים ב {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:712
+#: ../src/microbe_stage/MicrobeHUD.cs:715
 msgid "PLAYER_CELL"
 msgstr "תא השחקן"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:729
-#, fuzzy
+#: ../src/microbe_stage/MicrobeHUD.cs:732
 msgid "SPECIES_N_TIMES"
-msgstr "רשימת מינים"
+msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:758
+#: ../src/microbe_stage/MicrobeHUD.cs:763
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:760
+#: ../src/microbe_stage/MicrobeHUD.cs:765
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:762
+#: ../src/microbe_stage/MicrobeHUD.cs:767
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:764
+#: ../src/microbe_stage/MicrobeHUD.cs:769
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:766
+#: ../src/microbe_stage/MicrobeHUD.cs:771
 #, fuzzy
 msgid "CATEGORY_LITTLE"
 msgstr "צוות תיאוריה"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:768
+#: ../src/microbe_stage/MicrobeHUD.cs:773
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -2748,78 +2761,78 @@ msgstr "השחקן התרבה"
 msgid "PLAYER_DIED"
 msgstr "השחקן מת"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:498
+#: ../src/microbe_stage/MicrobeStage.tscn:505
 msgid "AT_CURSOR"
 msgstr "בסמן העכבר:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:523
+#: ../src/microbe_stage/MicrobeStage.tscn:531
 msgid "NOTHING_HERE"
 msgstr "אין פה שום דבר"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:548
+#: ../src/microbe_stage/MicrobeStage.tscn:556
 msgid "COMPOUNDS_COLON"
 msgstr "תרכובות:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:586
+#: ../src/microbe_stage/MicrobeStage.tscn:596
 msgid "SPECIES_COLON"
 msgstr "מינים:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:667
+#: ../src/microbe_stage/MicrobeStage.tscn:677
 msgid "ENVIRONMENT"
 msgstr "סביבה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:934
+#: ../src/microbe_stage/MicrobeStage.tscn:944
 msgid "TEMPERATURE_SHORT"
 msgstr "טמפ'."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:990
+#: ../src/microbe_stage/MicrobeStage.tscn:1000
 msgid "LIGHT"
 msgstr "אור"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1045
+#: ../src/microbe_stage/MicrobeStage.tscn:1055
 msgid "PRESSURE_SHORT"
 msgstr "לחץ."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1128
+#: ../src/microbe_stage/MicrobeStage.tscn:1138
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2604
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3239
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "COMPOUNDS"
 msgstr "תרכובות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1512
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
 msgid "AGENTS"
 msgstr "שליחים"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1612
+#: ../src/microbe_stage/MicrobeStage.tscn:1622
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "תפריט השהה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1630
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "PAUSE_TOOLTIP"
 msgstr "השהה את המשחק"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1643
+#: ../src/microbe_stage/MicrobeStage.tscn:1653
 msgid "RESUME_TOOLTIP"
 msgstr "המשך את המשחק"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1656
+#: ../src/microbe_stage/MicrobeStage.tscn:1666
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא סביבה ותרכובות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1671
+#: ../src/microbe_stage/MicrobeStage.tscn:1681
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא תהליכי תא"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1708
+#: ../src/microbe_stage/MicrobeStage.tscn:1718
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "עזרה"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1720
+#: ../src/microbe_stage/MicrobeStage.tscn:1730
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "התאבדות"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1771
+#: ../src/microbe_stage/MicrobeStage.tscn:1781
 msgid "POPULATION_CAPITAL"
 msgstr "אוכלוסיה:"
 
@@ -2941,7 +2954,6 @@ msgid "MEMBRANE"
 msgstr "קרום"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1192
-#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "התנהגות"
 
@@ -2979,43 +2991,43 @@ msgstr "צבע"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1754
 msgid "PEACEFUL"
-msgstr ""
+msgstr "שלוו"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1771
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "אגריסיבי"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "זהיר"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1823
 msgid "OPPORTUNISTIC"
-msgstr ""
+msgstr "אופורטוניסטי"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1857
 msgid "BRAVE"
-msgstr ""
+msgstr "אמיץ"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1874
 msgid "FEARFUL"
-msgstr ""
+msgstr "פחדן"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1908
 msgid "SESSILE"
-msgstr ""
+msgstr "נייח"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1925
 msgid "ACTIVE"
-msgstr ""
+msgstr "פעיל"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1959
 msgid "RESPONSIVE"
-msgstr ""
+msgstr "מגיב"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1976
 msgid "FOCUSED"
-msgstr ""
+msgstr "ממוקד"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2108
 msgid "SPECIES_NAME_DOT_DOT_DOT"
@@ -3080,7 +3092,7 @@ msgstr "מצב פיזי"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2566
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3074
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
 msgid "ATMOSPHERIC_GASSES"
 msgstr "גזים אטמוספריים"
 
@@ -3113,65 +3125,65 @@ msgstr "תעבור לאזור זה"
 msgid "INFINITE_MP"
 msgstr "אינסוף נקמ\"ו"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:615
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:621
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:622
 msgid "MEGA_YEARS"
 msgstr "מיליון שנה"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:625
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:626
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:883
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:885
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:890
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:884
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:886
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:891
 msgid "YEARS"
 msgstr "שנים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:667
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
 msgid "ATP_PRODUCTION"
 msgstr "ייצור ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:674
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ייצור ATP נמוך מדי!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:699
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:700
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: {1}+ ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:717
 msgid "OSMOREGULATION"
 msgstr "ויסות אוסמטי"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:723
 msgid "BASE_MOVEMENT"
 msgstr "מהירות בסיסית"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:735
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: {1}- ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:888
 msgid "SPECIES_LIST"
 msgstr "רשימת מינים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:913
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:914
 msgid "FREEBUILDING"
 msgstr "ארגז חול"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1011
 msgid "BIOME_LABEL"
 msgstr "ביומה: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1015
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1016
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}מ' מתחת פני הים"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1055
 msgid "WITH_POPULATION"
 msgstr "{0} עם אוכלוסיה: {1}"
 
@@ -3675,6 +3687,9 @@ msgstr ""
 
 #~ msgid "SAVING_ERROR"
 #~ msgstr "שומר שגיאה"
+
+#~ msgid "BEHAVIOR"
+#~ msgstr "התנהגות"
 
 #~ msgid "REMOVE_ORGANELLE"
 #~ msgstr "הסר אברון"
