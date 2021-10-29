@@ -407,6 +407,7 @@ OrganismStatisticsPath = NodePath("CellEditor/TopRight/Statistics")
 SpeedLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Value")
 HpLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Value")
 GenerationLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
+AutoEvoPredictionPanelPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel")
 TotalPopulationLabelPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Value")
 WorstPatchLabelPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst/Value")
 BestPatchLabelPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best/Value")
@@ -570,6 +571,7 @@ __meta__ = {
 }
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -1.41425

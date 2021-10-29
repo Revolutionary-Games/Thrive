@@ -58,6 +58,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath GenerationLabelPath;
 
     [Export]
+    public NodePath AutoEvoPredictionPanelPath;
+
+    [Export]
     public NodePath TotalPopulationLabelPath;
 
     [Export]
@@ -345,6 +348,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Label bestPatchLabel;
     private Label worstPatchLabel;
 
+    private Control autoEvoPredictionPanel;
+
     private Label currentMutationPointsLabel;
     private TextureRect mutationPointsArrow;
     private Label resultingMutationPointsLabel;
@@ -494,6 +499,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         totalPopulationLabel = GetNode<Label>(TotalPopulationLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
         bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
+
+        autoEvoPredictionPanel = GetNode<Control>(AutoEvoPredictionPanelPath);
 
         currentMutationPointsLabel = GetNode<Label>(CurrentMutationPointsLabelPath);
         mutationPointsArrow = GetNode<TextureRect>(MutationPointsArrowPath);
@@ -1466,10 +1473,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void SendUndoToTutorial(TutorialState tutorial)
     {
-        if (tutorial.EditorUndoTutorial == null)
-            return;
+        if (tutorial.EditorUndoTutorial != null)
+            tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
 
-        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+        if (tutorial.AutoEvoPrediction != null)
+            tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }
 
     private void UpdateSymmetryIcon()
