@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-10-24 15:50+0300\n"
-"PO-Revision-Date: 2021-09-28 07:32+0000\n"
-"Last-Translator: Ribi2110 <ribert2110@yahoo.com>\n"
+"PO-Revision-Date: 2021-10-29 07:14+0000\n"
+"Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -86,7 +86,7 @@ msgstr ""
 "Marró rovellat – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
 "[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound "
-"type=\"atp\"][/thrive:compound]"
+"type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
@@ -486,9 +486,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Col·locar orgànul"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Suprimir orgànul"
+msgstr "Obrir menú d'orgànul"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_LEFT"
@@ -578,9 +577,8 @@ msgid "TOGGLE_FULLSCREEN"
 msgstr "Activar pantalla completa"
 
 #: ../simulation_parameters/common/input_options.json:204
-#, fuzzy
 msgid "TOGGLE_HUD_HIDE"
-msgstr "Desactivar el mode d'unió"
+msgstr "Commuta HUD"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -1440,11 +1438,11 @@ msgstr "Enrere"
 
 #: ../src/general/MainMenu.tscn:334
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Galeria d'art"
 
 #: ../src/general/MainMenu.tscn:346
 msgid "LICENSES"
-msgstr ""
+msgstr "Llicències"
 
 #: ../src/general/MainMenu.tscn:514
 msgid "GLES2_MODE_WARNING_TEXT"
@@ -1514,24 +1512,23 @@ msgstr "(valors més alts empitjoren el rendiment)"
 
 #: ../src/general/OptionsMenu.tscn:260 ../src/general/OptionsMenu.tscn:261
 msgid "DISABLED"
-msgstr ""
+msgstr "Inhabilitat"
 
 #: ../src/general/OptionsMenu.tscn:261
 msgid "TWO_TIMES"
-msgstr ""
+msgstr "2x"
 
 #: ../src/general/OptionsMenu.tscn:261
 msgid "FOUR_TIMES"
-msgstr ""
+msgstr "4x"
 
 #: ../src/general/OptionsMenu.tscn:261
-#, fuzzy
 msgid "EIGHT_TIMES"
-msgstr "Clic dret del ratolí"
+msgstr "8x"
 
 #: ../src/general/OptionsMenu.tscn:261
 msgid "SIXTEEN_TIMES"
-msgstr ""
+msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:275
 msgid "RESOLUTION"
@@ -1539,7 +1536,7 @@ msgstr "Resolució:"
 
 #: ../src/general/OptionsMenu.tscn:288
 msgid "AUTO"
-msgstr "auto"
+msgstr "Auto"
 
 #: ../src/general/OptionsMenu.tscn:298
 msgid "MAX_FPS"
@@ -1551,15 +1548,15 @@ msgstr "Correcció 'Colourblind':"
 
 #: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
 msgid "NONE"
-msgstr ""
+msgstr "Cap"
 
 #: ../src/general/OptionsMenu.tscn:339
 msgid "CORRECTION_PROTANOPE"
-msgstr ""
+msgstr "Protanòpia (Vermell-Verd)"
 
 #: ../src/general/OptionsMenu.tscn:339
 msgid "CORRECTION_TRITANOPE"
-msgstr ""
+msgstr "Tritanopia (Blau-Groc)"
 
 #: ../src/general/OptionsMenu.tscn:355
 msgid "CHROMATIC_ABERRATION"
@@ -1567,11 +1564,11 @@ msgstr "Aberració cromàtica:"
 
 #: ../src/general/OptionsMenu.tscn:381
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Mostrar Barra d'Habilitats"
+msgstr "Mostrar barra d'habilitats"
 
 #: ../src/general/OptionsMenu.tscn:389
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Permetre Efectes de Llum en el GUI"
+msgstr "Habilitar efectes de llum del GUI"
 
 #: ../src/general/OptionsMenu.tscn:415
 msgid "MASTER_VOLUME"
@@ -1597,7 +1594,7 @@ msgstr "Volum SFX"
 
 #: ../src/general/OptionsMenu.tscn:551
 msgid "GUI_VOLUME"
-msgstr "Volum de la interfície GUI"
+msgstr "Volum del GUI"
 
 #: ../src/general/OptionsMenu.tscn:595
 msgid "AUDIO_OUTPUT_DEVICE"
@@ -1622,8 +1619,8 @@ msgstr "Núvols de Compostos"
 #: ../src/general/OptionsMenu.tscn:700
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
-"Mínim Interval de Simulació\n"
-"de Núvols:"
+"Mínim interval de simulació\n"
+"de núvols:"
 
 #: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1631,7 +1628,7 @@ msgstr "(valors més alts augmenten el rendiment)"
 
 #: ../src/general/OptionsMenu.tscn:742
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr "Divisor de Resolució dels Núvols:"
+msgstr "Divisor de resolució dels núvols:"
 
 #: ../src/general/OptionsMenu.tscn:783
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
@@ -1668,8 +1665,7 @@ msgstr "Mostra el vídeo introductori"
 #: ../src/general/OptionsMenu.tscn:988
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
-"Mostra la cinemàtica d'entrada a l'Estadi de Microbi en començar una nova "
-"partida"
+"Mostrar la cinemàtica d'entrada a l'Estadi de Microbi en una nova partida"
 
 #: ../src/general/OptionsMenu.tscn:996
 msgid "AUTOSAVE_DURING_THE_GAME"
@@ -1701,7 +1697,7 @@ msgstr "Fer servir un nom d'usuari propi"
 
 #: ../src/general/OptionsMenu.tscn:1098
 msgid "CUSTOM_USERNAME"
-msgstr "Nom d'usuari:"
+msgstr "Nom d'usuari propi:"
 
 #: ../src/general/OptionsMenu.tscn:1124
 msgid "OPEN_SCREENSHOT_FOLDER"
@@ -1713,19 +1709,19 @@ msgstr "Obrir Carpeta de Registres"
 
 #: ../src/general/OptionsMenu.tscn:1142
 msgid "JSON_DEBUG_MODE"
-msgstr ""
+msgstr "Mode debug de JSON:"
 
 #: ../src/general/OptionsMenu.tscn:1156 ../src/general/OptionsMenu.tscn:1157
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
+msgstr "Automàticament"
 
 #: ../src/general/OptionsMenu.tscn:1157
 msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
+msgstr "Sempre"
 
 #: ../src/general/OptionsMenu.tscn:1157
 msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
+msgstr "Mai"
 
 #: ../src/general/OptionsMenu.tscn:1193 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -1852,23 +1848,23 @@ msgstr "{0}%"
 
 #: ../src/gui_common/CreditsScroll.cs:222
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Desenvolupadors en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:228
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Programador en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:229
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Programadors en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:234
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Teòric en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Teòrics en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:240
 msgid "LEAD_ARTIST"
@@ -1876,31 +1872,31 @@ msgstr "Artista Principal"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Artistes en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:246
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Líder de l'Equip de So"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Líders de l'Equip de So"
 
 #: ../src/gui_common/CreditsScroll.cs:252
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Persona Líder de Divulgació"
 
 #: ../src/gui_common/CreditsScroll.cs:253
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Persona Líder de Divulgació"
 
 #: ../src/gui_common/CreditsScroll.cs:258
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "Dissenyador del Joc en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "Dissenyadors del Joc en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:264
 msgid "LEAD_TESTER"
