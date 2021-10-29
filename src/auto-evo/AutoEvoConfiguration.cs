@@ -60,8 +60,7 @@ public class AutoEvoConfiguration : IRegistryType
                 "Move attempts per species must be positive");
         }
 
-        if (SpeciesSplitByMutationThresholdPopulationFraction < 0 ||
-            SpeciesSplitByMutationThresholdPopulationFraction > 1)
+        if (SpeciesSplitByMutationThresholdPopulationFraction is < 0 or > 1)
         {
             throw new InvalidRegistryDataException("AutoEvoConfiguration", GetType().Name,
                 "SpeciesSplitByMutationThresholdPopulationFraction not between 0 and 1");
