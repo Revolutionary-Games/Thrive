@@ -6,11 +6,10 @@
     string InternalName { get; set; }
 
     /// <summary>
-    /// Checks that values are valid. Throws InvalidRegistryData if not good.
+    ///   Checks that values are valid. Throws InvalidRegistryData if not good.
     /// </summary>
     /// <param name="name">Name of the current object for easier reporting.</param>
-    /// <remarks>Some registry types also process their initial data and create
-    ///  derived data here</remarks>
+    /// <remarks> Some registry types also process their initial data and create derived data here </remarks>
     void Check(string name);
 
     /// <summary>

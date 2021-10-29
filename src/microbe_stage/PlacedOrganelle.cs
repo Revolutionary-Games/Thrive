@@ -391,7 +391,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// <summary>
     ///  Re-parents the organelle shape to the "to" microbe.
     /// </summary>
-    public void ReParentShapes(Microbe to, Vector3 offset, Vector3 masterRotation, Vector3 parentRotation)
+    public void ReParentShapes(Microbe to, Vector3 offset)
     {
         if (to == currentShapesParent)
             return;
@@ -404,21 +404,31 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         for (int i = 0; i < shapes.Count; i++)
         {
+            var rotation = Quat.Identity;
             Vector3 shapePosition = ShapeTruePosition(hexes[i]);
             if (ParentMicrobe.Colony != null)
             {
-                // TODO: quaternion usage would be good here
-                // https://github.com/Revolutionary-Games/Thrive/issues/2504
-                shapePosition = shapePosition.Rotated(Vector3.Up, parentRotation.y);
-                if (ParentMicrobe.ColonyParent != ParentMicrobe.Colony.Master)
-                    shapePosition = shapePosition.Rotated(Vector3.Up, masterRotation.y);
+                var parent = ParentMicrobe;
+
+                // Get the rotation of all colony ancestors up to master
+                while (parent != ParentMicrobe.Colony.Master)
+                {
+                    rotation *= new Quat(parent.Transform.basis);
+                    parent = parent.ColonyParent;
+                }
             }
+
+            rotation = rotation.Normalized();
+
+            // Transform the vector with the rotation quaternion
+            shapePosition = rotation.Xform(shapePosition);
 
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
                 shapePosition *= 0.5f;
 
             shapePosition += offset;
+
             var transform = new Transform(Quat.Identity, shapePosition);
 
             var ownerId = shapes[i];
@@ -435,7 +445,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         foreach (var component in Components)
         {
-            component.OnShapeParentChanged(to, offset, masterRotation, parentRotation);
+            component.OnShapeParentChanged(to, offset);
         }
 
         currentShapesParent = to;

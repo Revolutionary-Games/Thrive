@@ -524,7 +524,7 @@ public class CreditsScroll : Container
             return CreateDynamicPart(offset, string.Join("\n", texts));
         }
 
-        var splitTexts = Enumerable.Range(0, columns).Select(column => new StringBuilder()).ToList();
+        var splitTexts = Enumerable.Range(0, columns).Select(_ => new StringBuilder()).ToList();
 
         using (var textEnumerator = texts.GetEnumerator())
         {

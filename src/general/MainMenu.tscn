@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/VersionNumber.cs" type="Script" id=5]
 [ext_resource path="res://src/general/MainMenu.cs" type="Script" id=6]
 [ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=7]
@@ -439,22 +439,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LicensesDisplay" parent="LicensesView" instance=ExtResource( 12 )]
-anchor_bottom = 0.932
-margin_left = 25.0
-margin_bottom = -0.0400391
-
-[node name="Back" type="Button" parent="LicensesView"]
-anchor_top = 0.931
+[node name="MarginContainer" type="MarginContainer" parent="LicensesView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = 4.67993
-margin_right = -1125.0
-margin_bottom = -5.00006
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LicensesView/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1270.0
+margin_bottom = 710.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LicensesDisplay" parent="LicensesView/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1260.0
+margin_bottom = 656.0
+size_flags_vertical = 3
+
+[node name="Back" type="Button" parent="LicensesView/MarginContainer/VBoxContainer"]
+margin_top = 660.0
+margin_right = 150.0
+margin_bottom = 700.0
 rect_min_size = Vector2( 150, 40 )
 mouse_filter = 1
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "BACK"
 __meta__ = {
@@ -488,29 +506,14 @@ __meta__ = {
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
 
-[node name="GLES2Popup" type="AcceptDialog" parent="."]
-margin_right = 500.0
-margin_bottom = 78.0
-rect_min_size = Vector2( 500, 0 )
-theme = ExtResource( 1 )
-window_title = "GLES2_MODE_WARNING"
-dialog_autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DialogText" type="Label" parent="GLES2Popup"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 490.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 4 )
-text = "GLES2_MODE_WARNING_TEXT"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="GLES2Popup" parent="." instance=ExtResource( 4 )]
+margin_right = 680.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 680, 0 )
+popup_exclusive = false
+DialogText = "GLES2_MODE_WARNING_TEXT"
+HideCancelButton = true
+WindowTitle = "GLES2_MODE_WARNING"
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
@@ -528,4 +531,4 @@ __meta__ = {
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
-[connection signal="pressed" from="LicensesView/Back" to="." method="OnReturnFromLicenses"]
+[connection signal="pressed" from="LicensesView/MarginContainer/VBoxContainer/Back" to="." method="OnReturnFromLicenses"]
