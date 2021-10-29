@@ -390,7 +390,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     /// <summary>
     ///  Returns the rotated position, as it should be in the colony.
-    ///  Used for reparenting shapes to other microbes
+    ///  Used for re-parenting shapes to other microbes
     /// </summary>
     public Vector3 RotationInsideColony(Vector3 shapePosition)
     {
