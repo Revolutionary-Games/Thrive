@@ -6,8 +6,9 @@
 public static class CollisionObjectHelpers
 {
     /// <summary>
-    ///  Creates and returns new shape owner for a shape
-    ///  applies a given transform to the new shapeOwner
+    ///  Creates and returns new shape owner for a shape and the given entity.
+    ///  Applies a given transform to the new shapeOwner.
+    ///  Returns the shapeOwner.
     /// </summary>
     public static uint CreateShapeOwnerWithTransform(this CollisionObject entity, Transform transform, Shape shape)
     {
@@ -18,9 +19,10 @@ public static class CollisionObjectHelpers
     }
 
     /// <summary>
-    ///  Creates a new shapeOwner for the first shape in the old shapeOwner
-    ///  and applies a given transform
-    ///  Doesnt destroy the old shapeOwner
+    ///  Creates a new shapeOwner for the first shape in the oldShapeOwner of the oldParent
+    ///  and applies a transform to it.
+    ///  Doesnt destroy the oldDhapeOwner.
+    ///  Returns the new ShapeOwnerId.
     /// </summary>
     public static uint CreateNewOwnerId(this CollisionObject oldParent,
         CollisionObject newParent, Transform transform, uint oldShapeOwnerId)

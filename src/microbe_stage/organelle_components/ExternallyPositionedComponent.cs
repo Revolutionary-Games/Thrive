@@ -17,21 +17,6 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     /// </summary>
     protected Vector3 lastCalculatedPosition = new Vector3(0, 0, 0);
 
-    public void OnAttachToCell(PlacedOrganelle organelle)
-    {
-        this.organelle = organelle;
-        organellePos = Hex.AxialToCartesian(organelle.Position);
-
-        CustomAttach();
-    }
-
-    public void OnDetachFromCell(PlacedOrganelle organelle)
-    {
-        CustomDetach();
-
-        this.organelle = null;
-    }
-
     /// <summary>
     ///  Gets the angle of rotation of an externally placed organelle
     /// </summary>
@@ -46,6 +31,21 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
         angle = (angle * 180 / Mathf.Pi - 90) % 360;
         return angle;
+    }
+
+    public void OnAttachToCell(PlacedOrganelle organelle)
+    {
+        this.organelle = organelle;
+        organellePos = Hex.AxialToCartesian(organelle.Position);
+
+        CustomAttach();
+    }
+
+    public void OnDetachFromCell(PlacedOrganelle organelle)
+    {
+        CustomDetach();
+
+        this.organelle = null;
     }
 
     public virtual void Update(float elapsed)
