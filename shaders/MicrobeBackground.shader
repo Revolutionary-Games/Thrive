@@ -7,10 +7,10 @@ uniform sampler2D layer1 : hint_albedo;
 uniform sampler2D layer2 : hint_albedo;
 uniform sampler2D layer3 : hint_albedo;
 
-const vec2 speed0 = vec2(3300.0f, 6600.0f);
-const vec2 speed1 = vec2(2550.0f, 5100.0f);
-const vec2 speed2 = vec2(1800.0f, 3200.0f);
-const vec2 speed3 = vec2(1050.0f, 2100.0f);
+const vec2 speed0 = vec2(3300.0f);
+const vec2 speed1 = vec2(2550.0f);
+const vec2 speed2 = vec2(1800.0f);
+const vec2 speed3 = vec2(1050.0f);
 
 varying vec2 UV3;
 varying vec2 UV4;
@@ -26,7 +26,6 @@ void vertex(){
 }
 
 void fragment(){
-
     vec4 colour0 = texture(layer0, UV);
     vec4 colour1 = texture(layer1, UV2);
     vec4 colour2 = texture(layer2, UV3);
