@@ -52,7 +52,7 @@ public class MovementComponent : ExternallyPositionedComponent
     {
         // The basis of the transform represents the rotation, as long as the rotation is not modified,
         // the organnel needs to be updated.
-        // TO DO: 
+        // TO DO:
         // Calculated rotations should never equal the identity, it should be kept an eye on if it does
         return organelle.OrganelleGraphics.Transform.basis == Transform.Identity.basis;
     }
