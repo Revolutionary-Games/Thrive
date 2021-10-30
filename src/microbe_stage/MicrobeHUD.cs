@@ -688,17 +688,17 @@ public class MicrobeHUD : Control
         bool anyCompoundVisible = false;
         foreach (var compound in stage.HoverInfo.HoveredCompounds)
         {
-            string compoundDensityCategoryText = GetCompoundDensityCategory(compound.Value);
             var compoundControl = hoveredCompoundControls[compound.Key];
 
             // It is not useful to show trace amounts of a compound, so those are skipped
-            if (compoundDensityCategoryText == null)
+            if (compound.Value < Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
             {
                 compoundControl.Visible = false;
                 continue;
             }
 
-            compoundControl.Category = compoundDensityCategoryText;
+            compoundControl.Category = GetCompoundDensityCategory(compound.Value);
+            compoundControl.CategoryColor = GetCompoundDensityCategoryColor(compound.Value);
             compoundControl.Visible = true;
             anyCompoundVisible = true;
         }
@@ -753,6 +753,20 @@ public class MicrobeHUD : Control
             Valign = Label.VAlign.Center,
             Text = cellInfo,
         });
+    }
+
+    private Color GetCompoundDensityCategoryColor(float amount)
+    {
+        return amount switch
+        {
+            >= Constants.COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE => Color.Color8(75, 187, 16),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT => Color.Color8(117, 186, 15),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT => Color.Color8(174, 186, 15),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_SOME => Color.Color8(186, 173, 15),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE => Color.Color8(186, 137, 15),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE => Color.Color8(186, 78, 15),
+            _ => Color.Color8(1, 1, 1),
+        };
     }
 
     private string GetCompoundDensityCategory(float amount)
@@ -1117,6 +1131,12 @@ public class MicrobeHUD : Control
         {
             get => compoundValue.Text;
             set => compoundValue.Text = value;
+        }
+
+        public Color CategoryColor
+        {
+            get => compoundValue.Modulate;
+            set => compoundValue.Modulate = value;
         }
 
         public void UpdateTranslation()
