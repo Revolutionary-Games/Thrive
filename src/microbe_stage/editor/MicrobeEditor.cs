@@ -1262,7 +1262,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 var absoluteHex = relativeHex + organelle.Position;
 
                 // Only consider the middle 3 rows
-                if (absoluteHex.Q < -1 || absoluteHex.Q > 1)
+                if (absoluteHex.Q is < -1 or > 1)
                     continue;
 
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
