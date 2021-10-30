@@ -260,9 +260,6 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Ignore mouse event on the button to prevent it being clicked twice
-        newGameButton.MouseFilter = Control.MouseFilterEnum.Ignore;
-
         // Disable the button to prevent it being executed again.
         newGameButton.Disabled = true;
 
@@ -299,9 +296,6 @@ public class MainMenu : NodeWithInput
     private void FreebuildEditorPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        // Ignore mouse event on the button to prevent it being clicked twice
-        freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
