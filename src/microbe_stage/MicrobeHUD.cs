@@ -759,13 +759,13 @@ public class MicrobeHUD : Control
     {
         return amount switch
         {
-            >= Constants.COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE => Color.Color8(75, 187, 16),
-            >= Constants.COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT => Color.Color8(117, 186, 15),
-            >= Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT => Color.Color8(174, 186, 15),
-            >= Constants.COMPOUND_DENSITY_CATEGORY_SOME => Color.Color8(186, 173, 15),
-            >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE => Color.Color8(186, 137, 15),
-            >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE => Color.Color8(186, 78, 15),
-            _ => Color.Color8(1, 1, 1),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE => new Color(0.294f, 0.733f, 0.062f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT => new Color(0.458f, 0.729f, 0.058f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT => new Color(0.682f, 0.729f, 0.058f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_SOME => new Color(0.729f, 0.678f, 0.058f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE => new Color(0.729f, 0.537f, 0.058f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE => new Color(0.729f, 0.305f, 0.058f),
+            _ => new Color(1f, 1f, 1f),
         };
     }
 
