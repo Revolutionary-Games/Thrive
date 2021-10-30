@@ -6,7 +6,7 @@
 
     /// <summary>
     ///   Attempts to increase the biodiversity of a patch by force-splitting an existing species there or creating a
-    ///   new offshoot species from a
+    ///   new offshoot species from a nearby patch
     /// </summary>
     public class IncreaseBiodiversity : IRunStep
     {
