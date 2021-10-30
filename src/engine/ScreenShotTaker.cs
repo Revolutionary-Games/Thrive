@@ -85,7 +85,7 @@ public class ScreenShotTaker : NodeWithInput
         isCurrentlyTakingScreenshot = true;
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
-        // If ScreenFilter is active, turn it of before taking a screenshot.
+        // If ScreenFilter is active, turn it off before taking a screenshot.
         if (ColourblindScreenFilter.Instance.Visible)
         {
             step = Steps.Start;
