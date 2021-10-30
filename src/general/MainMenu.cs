@@ -263,8 +263,8 @@ public class MainMenu : NodeWithInput
         // Ignore mouse event on the button to prevent it being clicked twice
         newGameButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        // Release keyboard focus on the button to prevent it being executed again.
-        newGameButton.ReleaseFocus();
+        // Disable the button to prevent it being executed again.
+        newGameButton.Disabled = true;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -303,8 +303,8 @@ public class MainMenu : NodeWithInput
         // Ignore mouse event on the button to prevent it being clicked twice
         freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        // Release keyboard focus on the button to prevent it being executed again.
-        freebuildButton.ReleaseFocus();
+        // Disable the button to prevent it being executed again.
+        freebuildButton.Disabled = true;
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.15f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
