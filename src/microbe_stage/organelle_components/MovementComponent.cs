@@ -10,7 +10,6 @@ public class MovementComponent : ExternallyPositionedComponent
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-    private int initialUpdatesCount = 6;
     private bool movingTail;
     private Vector3 force;
 
@@ -51,9 +50,11 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override bool NeedsUpdateAnyway()
     {
-        if (initialUpdatesCount > 0)
-            initialUpdatesCount--;
-        return initialUpdatesCount > 0;
+        // The basis of the transform represents the rotation, as long as the rotation is not modified,
+        // the organnel needs to be updated.
+        // TO DO: 
+        // Calculated rotations should never equal the identity, it should be kept an eye on if it does
+        return organelle.OrganelleGraphics.Transform.basis == Transform.Identity.basis;
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle,
