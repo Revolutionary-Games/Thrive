@@ -54,7 +54,8 @@ public class DataPoint : Control
     public Vector2 Value { get; set; }
 
     /// <summary>
-    ///   Position of this point on a chart, this is different from Value.
+    ///   The position of this point on a chart and is different from Value. This should be set in the
+    ///   host chart class due to the possible calculation-specific differences in various charts.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -166,7 +167,7 @@ public class DataPoint : Control
     }
 
     /// <summary>
-    ///   This can used rather than <see cref="Coordinate"/>'s property setter to allow for flexible
+    ///   This can be used rather than <see cref="Coordinate"/>'s property setter to allow for flexible
     ///   control of whether to tween the rect position or not.
     /// </summary>
     public void SetCoordinate(Vector2 target, bool useTween = true,
