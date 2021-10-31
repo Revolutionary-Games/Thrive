@@ -13,13 +13,13 @@ require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 
 require_relative 'scripts/dehydrate'
+require_relative 'scripts/version_reader'
 
 FileUtils.mkdir_p 'builds'
 
 ALL_TARGETS = ['Linux/X11', 'Windows Desktop', 'Windows Desktop (32-bit)', 'Mac OSX'].freeze
 DEVBUILD_TARGETS = ['Linux/X11', 'Windows Desktop'].freeze
 BASE_BUILDS_FOLDER = File.realpath 'builds'
-THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 
 README_FILE = 'builds/README.txt'
 REVISION_FILE = 'builds/revision.txt'
@@ -53,9 +53,6 @@ SOURCE_ITEMS = [
   'docker/jsonlint', 'Properties', 'shaders', 'simulation_parameters', 'src', 'test',
   'third_party', 'README.md'
 ].freeze
-
-ASSEMBLY_VERSION = /AssemblyVersion\("([\d.]+)"\)/.freeze
-INFORMATIONAL_VERSION = /AssemblyInformationalVersion\("([^"]*)"\)/.freeze
 
 SET_EXECUTE_FOR_MAC = false
 
@@ -130,27 +127,6 @@ end
 
 # Messages to print again after the end
 @reprint_messages = []
-
-# Reads thrive version from the code
-def find_thrive_version
-  version = nil
-  additional_version = nil
-
-  File.open(THRIVE_VERSION_FILE, 'r') do |f|
-    f.each_line do |line|
-      line.match(ASSEMBLY_VERSION) do |match|
-        version = match[1]
-      end
-      line.match(INFORMATIONAL_VERSION) do |match|
-        additional_version = match[1]
-      end
-    end
-  end
-
-  raise 'Failed to find AssemblyVersion for thrive' unless version
-
-  "#{version}#{additional_version}"
-end
 
 THRIVE_VERSION = !@options[:dehydrate] ? find_thrive_version : git_commit
 
