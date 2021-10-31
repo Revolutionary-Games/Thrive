@@ -15,7 +15,7 @@ public static class StringUtils
     /// </summary>
     public static string FormatNumber(this double number, bool withSuffix = true)
     {
-        if (number >= 1000000000 || number <= -1000000000)
+        if (number is >= 1000000000 or <= -1000000000)
         {
             return withSuffix ?
                 string.Format(
@@ -24,7 +24,7 @@ public static class StringUtils
                 number.ToString("0,,,.###", CultureInfo.CurrentCulture);
         }
 
-        if (number >= 1000000 || number <= -1000000)
+        if (number is >= 1000000 or <= -1000000)
         {
             return withSuffix ?
                 string.Format(
@@ -33,7 +33,7 @@ public static class StringUtils
                 number.ToString("0,,.##", CultureInfo.CurrentCulture);
         }
 
-        if (number >= 1000 || number <= -1000)
+        if (number is >= 1000 or <= -1000)
         {
             return withSuffix ?
                 string.Format(

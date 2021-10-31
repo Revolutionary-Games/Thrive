@@ -2129,7 +2129,10 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="WinExtinctBoxHolder" type="Control" parent="MicrobeHUD"]
+[node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
+visible = false
+
+[node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2139,9 +2142,6 @@ size_flags_vertical = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
-visible = false
 
 [node name="PatchNameOverlay" type="PanelContainer" parent="."]
 visible = false
