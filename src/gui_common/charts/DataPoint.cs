@@ -21,6 +21,8 @@ public class DataPoint : Control
     private Vector2 coordinate;
     private float size;
 
+    private Tween tween;
+
     public DataPoint()
     {
         Size = 7;
@@ -53,16 +55,17 @@ public class DataPoint : Control
 
     /// <summary>
     ///   Position of this point on a chart, this is different from Value.
-    ///   This is automatically set in the chart-specific class.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Setting this will always tween the rect position (smoothly moving it to the set coordinate).
+    ///     For more options, please use <see cref="SetCoordinate"/> method.
+    ///   </para>
+    /// </remarks>
     public Vector2 Coordinate
     {
         get => coordinate;
-        set
-        {
-            coordinate = value;
-            RectPosition = value - (RectSize / 2);
-        }
+        set => SetCoordinate(value, true);
     }
 
     /// <summary>
@@ -96,6 +99,9 @@ public class DataPoint : Control
         graphMarkerCircle = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
         graphMarkerCross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
         graphMarkerSkull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
+
+        tween = new Tween();
+        AddChild(tween);
 
         Connect("mouse_entered", this, nameof(OnMouseEnter));
         Connect("mouse_exited", this, nameof(OnMouseExit));
@@ -156,6 +162,31 @@ public class DataPoint : Control
 
             default:
                 throw new Exception("Invalid marker shape");
+        }
+    }
+
+    /// <summary>
+    ///   This can used rather than <see cref="Coordinate"/>'s property setter to allow for flexible
+    ///   control of whether to tween the rect position or not.
+    /// </summary>
+    public void SetCoordinate(Vector2 target, bool useTween = true,
+        Tween.TransitionType transitionType = Tween.TransitionType.Expo,
+        Tween.EaseType easeType = Tween.EaseType.Out, float duration = 0.5f)
+    {
+        if (coordinate == target)
+            return;
+
+        coordinate = target;
+
+        if (!useTween || tween == null)
+        {
+            RectPosition = coordinate - (RectSize / 2);
+        }
+        else
+        {
+            tween.InterpolateProperty(
+                this, "rect_position", RectPosition, coordinate - (RectSize / 2), duration, transitionType, easeType);
+            tween.Start();
         }
     }
 
