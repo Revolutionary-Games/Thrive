@@ -276,6 +276,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
+    [Export]
+    public NodePath StructurePartsScrollContainerPath;
+
+    [Export]
+    public NodePath MembraneScrollContainerPath;
+
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -567,6 +573,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
         menu = GetNode<PauseMenu>(MenuPath);
+
+        var structurePartsScrollBar = GetNode<ScrollContainer>(StructurePartsScrollContainerPath).GetVScrollbar();
+        structurePartsScrollBar.Connect("mouse_entered", this, nameof(OnMouseEnter));
+        structurePartsScrollBar.Connect("mouse_exited", this, nameof(OnMouseExit));
+
+        var membraneScrollBar = GetNode<ScrollContainer>(MembraneScrollContainerPath).GetVScrollbar();
+        membraneScrollBar.Connect("mouse_entered", this, nameof(OnMouseEnter));
+        membraneScrollBar.Connect("mouse_exited", this, nameof(OnMouseExit));
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
