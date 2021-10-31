@@ -471,8 +471,8 @@ __meta__ = {
 [node name="PanelContainer" type="PanelContainer" parent="MicrobeHUD/MouseHoverPanel"]
 margin_top = 10.0
 margin_right = 240.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 240, 80 )
+margin_bottom = 79.0
+rect_min_size = Vector2( 240, 0 )
 mouse_filter = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -484,7 +484,7 @@ __meta__ = {
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 239.0
-margin_bottom = 79.0
+margin_bottom = 68.0
 mouse_filter = 2
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
@@ -495,7 +495,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 228.0
-margin_bottom = 68.0
+margin_bottom = 57.0
 mouse_filter = 2
 
 [node name="MousePos" type="Label" parent="MicrobeHUD/MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer"]
