@@ -182,8 +182,8 @@ public class MicrobeHUD : Control
     private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
         new System.Collections.Generic.Dictionary<Species, int>();
 
-    private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundContainer> hoveredCompoundControls =
-        new System.Collections.Generic.Dictionary<Compound, HoveredCompoundContainer>();
+    private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
+        new System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl>();
 
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
@@ -351,9 +351,9 @@ public class MicrobeHUD : Control
 
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
         {
-            var hoveredCompoundContainer = new HoveredCompoundContainer(compound);
-            hoveredCompoundControls.Add(compound, hoveredCompoundContainer);
-            hoveredCompoundsContainer.AddChild(hoveredCompoundContainer);
+            var hoveredCompoundControl = new HoveredCompoundControl(compound);
+            hoveredCompoundControls.Add(compound, hoveredCompoundControl);
+            hoveredCompoundsContainer.AddChild(hoveredCompoundControl);
         }
     }
 
@@ -1107,12 +1107,12 @@ public class MicrobeHUD : Control
         hotBar.Visible = displayed;
     }
 
-    private class HoveredCompoundContainer : HBoxContainer
+    private class HoveredCompoundControl : HBoxContainer
     {
         private readonly Label compoundName = new Label();
         private readonly Label compoundValue = new Label();
 
-        public HoveredCompoundContainer(Compound compound)
+        public HoveredCompoundControl(Compound compound)
         {
             MouseFilter = MouseFilterEnum.Ignore;
             Compound = compound;
