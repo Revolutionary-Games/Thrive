@@ -276,12 +276,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
-    [Export]
-    public NodePath StructurePartsScrollContainerPath;
-
-    [Export]
-    public NodePath MembraneScrollContainerPath;
-
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -573,14 +567,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
         menu = GetNode<PauseMenu>(MenuPath);
-
-        var structurePartsScrollBar = GetNode<ScrollContainer>(StructurePartsScrollContainerPath).GetVScrollbar();
-        structurePartsScrollBar.Connect("mouse_entered", this, nameof(OnMouseEnter));
-        structurePartsScrollBar.Connect("mouse_exited", this, nameof(OnMouseExit));
-
-        var membraneScrollBar = GetNode<ScrollContainer>(MembraneScrollContainerPath).GetVScrollbar();
-        membraneScrollBar.Connect("mouse_entered", this, nameof(OnMouseEnter));
-        membraneScrollBar.Connect("mouse_exited", this, nameof(OnMouseExit));
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
@@ -1138,24 +1124,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
-    /// <summary>
-    ///   Called once when the mouse enters the editor GUI.
-    /// </summary>
-    internal void OnMouseEnter()
-    {
-        editor.ShowHover = false;
-        UpdateMutationPointsBar();
-    }
-
-    /// <summary>
-    ///   Called when the mouse is no longer hovering the editor GUI.
-    /// </summary>
-    internal void OnMouseExit()
-    {
-        editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
-        UpdateMutationPointsBar();
-    }
-
     internal void SetUndoButtonStatus(bool enabled)
     {
         undoButton.Disabled = !enabled;
@@ -1422,6 +1390,39 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             return;
 
         tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+    }
+
+    /// <summary>
+    ///   Called once when the mouse enters the background.
+    /// </summary>
+    private void OnCellEditorMouseEntered()
+    {
+        editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
+        UpdateMutationPointsBar();
+    }
+
+    /// <summary>
+    ///   Called when the mouse is no longer hovering the background.
+    /// </summary>
+    private void OnCellEditorMouseExited()
+    {
+        editor.ShowHover = false;
+        UpdateMutationPointsBar();
+    }
+
+    /// <summary>
+    ///   To get MouseEnter/Exit the CellEditor needs MouseFilter != Ignore.
+    ///   Controls with MouseFilter != Ignore always handle mouse events.
+    ///   So to get MouseClicks via the normal InputManager, this must be forwarded.
+    ///   This is needed to respect the current Key Settings.
+    /// </summary>
+    /// <param name="inputEvent">The event the user fired</param>
+    private void OnCellEditorGuiInput(InputEvent inputEvent)
+    {
+        if (inputEvent is InputEventMouseMotion)
+            return;
+
+        InputManager.ForwardInput(inputEvent);
     }
 
     private void UpdateSymmetryIcon()
