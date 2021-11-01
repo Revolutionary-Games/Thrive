@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -11,6 +12,7 @@ public class ScreenShotTaker : NodeWithInput
     private bool isCurrentlyTakingScreenshot;
     private Image screenshotImage;
     private Step step;
+    private Task saveScreenshotTask;
 
     private ScreenShotTaker()
     {
@@ -21,8 +23,7 @@ public class ScreenShotTaker : NodeWithInput
     {
         Start,
         Wait,
-        TakeScreenshot,
-        Save,
+        TakeAndSaveScreenshot,
     }
 
     public static ScreenShotTaker Instance => instance;
@@ -86,6 +87,14 @@ public class ScreenShotTaker : NodeWithInput
 
         isCurrentlyTakingScreenshot = true;
 
+        saveScreenshotTask = new Task(() =>
+        {
+            SaveScreenshot(screenshotImage);
+            screenshotImage.Dispose();
+            screenshotImage = null;
+            isCurrentlyTakingScreenshot = false;
+        });
+
         // If ScreenFilter is active, turn it off before taking a screenshot.
         if (ColourblindScreenFilter.Instance.Visible)
         {
@@ -94,16 +103,16 @@ public class ScreenShotTaker : NodeWithInput
             return;
         }
 
-        SaveScreenshot(GetViewportTextureAsImage());
-        isCurrentlyTakingScreenshot = false;
+        screenshotImage = GetViewportTextureAsImage();
+        TaskExecutor.Instance.AddTask(saveScreenshotTask);
     }
 
     /// <summary>
     ///   Invokes itself to:
     ///   1: Hide the ScreenFilter and wait a frame.
     ///   2: Wait another frame.
-    ///   3: Take the screenshot, show the filter and wait a frame so the filter can show itself again faster.
-    ///   4: Save the screenshot.
+    ///   3: Take the screenshot, show the filter and then save
+    ///      the screenshot in a task to not block the game.
     /// </summary>
     private void ScreenFilterScreenshotStepper()
     {
@@ -114,18 +123,12 @@ public class ScreenShotTaker : NodeWithInput
                 step = Step.Wait;
                 break;
             case Step.Wait:
-                step = Step.TakeScreenshot;
+                step = Step.TakeAndSaveScreenshot;
                 break;
-            case Step.TakeScreenshot:
+            case Step.TakeAndSaveScreenshot:
                 screenshotImage = GetViewportTextureAsImage();
                 ColourblindScreenFilter.Instance.Show();
-                step = Step.Save;
-                break;
-            case Step.Save:
-                SaveScreenshot(screenshotImage);
-                screenshotImage.Dispose();
-                screenshotImage = null;
-                isCurrentlyTakingScreenshot = false;
+                TaskExecutor.Instance.AddTask(saveScreenshotTask);
                 return;
         }
 
