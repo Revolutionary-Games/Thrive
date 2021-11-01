@@ -370,7 +370,7 @@ public static class SaveHelper
         {
             GameState = gameState,
             Info = { Type = type },
-            Screenshot = ScreenShotTaker.Instance.GetViewportTextureImage(),
+            Screenshot = ScreenShotTaker.Instance.GetViewportTextureAsImage(),
         };
     }
 

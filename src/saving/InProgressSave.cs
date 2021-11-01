@@ -179,6 +179,7 @@ public class InProgressSave : IDisposable
             case State.Screenshot:
             {
                 save = createSaveData.Invoke(this);
+
                 if (wasColourblindScreenFilterVisible)
                 {
                     ColourblindScreenFilter.Instance.Show();

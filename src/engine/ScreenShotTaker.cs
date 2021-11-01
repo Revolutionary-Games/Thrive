@@ -10,14 +10,14 @@ public class ScreenShotTaker : NodeWithInput
     private static ScreenShotTaker instance;
     private bool isCurrentlyTakingScreenshot;
     private Image screenshotImage;
-    private Steps step;
+    private Step step;
 
     private ScreenShotTaker()
     {
         instance = this;
     }
 
-    private enum Steps
+    private enum Step
     {
         Start,
         Wait,
@@ -44,7 +44,7 @@ public class ScreenShotTaker : NodeWithInput
     ///   Takes an image of the current viewport
     /// </summary>
     /// <returns>The image</returns>
-    public Image GetViewportTextureImage()
+    public Image GetViewportTextureAsImage()
     {
         var image = GetViewport().GetTexture().GetData();
 
@@ -54,13 +54,15 @@ public class ScreenShotTaker : NodeWithInput
         return image;
     }
 
-    private void SaveScreenshot(Image img)
+    private void SaveScreenshot(Image image)
     {
+        FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
+
         var filename = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss.ffff", CultureInfo.CurrentCulture) + ".png";
 
         var path = PathUtils.Join(Constants.SCREENSHOT_FOLDER, filename);
 
-        var error = img.SavePng(path);
+        var error = image.SavePng(path);
 
         if (error != Error.Ok)
         {
@@ -83,17 +85,16 @@ public class ScreenShotTaker : NodeWithInput
         }
 
         isCurrentlyTakingScreenshot = true;
-        FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
         // If ScreenFilter is active, turn it off before taking a screenshot.
         if (ColourblindScreenFilter.Instance.Visible)
         {
-            step = Steps.Start;
+            step = Step.Start;
             ScreenFilterScreenshotStepper();
             return;
         }
 
-        SaveScreenshot(GetViewportTextureImage());
+        SaveScreenshot(GetViewportTextureAsImage());
         isCurrentlyTakingScreenshot = false;
     }
 
@@ -108,23 +109,19 @@ public class ScreenShotTaker : NodeWithInput
     {
         switch (step)
         {
-            case Steps.Start:
-                GD.Print("Start");
+            case Step.Start:
                 ColourblindScreenFilter.Instance.Hide();
-                step = Steps.Wait;
+                step = Step.Wait;
                 break;
-            case Steps.Wait:
-                GD.Print("Wait");
-                step = Steps.TakeScreenshot;
+            case Step.Wait:
+                step = Step.TakeScreenshot;
                 break;
-            case Steps.TakeScreenshot:
-                GD.Print("TakeSceenshot");
-                screenshotImage = GetViewportTextureImage();
+            case Step.TakeScreenshot:
+                screenshotImage = GetViewportTextureAsImage();
                 ColourblindScreenFilter.Instance.Show();
-                step = Steps.Save;
+                step = Step.Save;
                 break;
-            case Steps.Save:
-                GD.Print("Save");
+            case Step.Save:
                 SaveScreenshot(screenshotImage);
                 screenshotImage.Dispose();
                 screenshotImage = null;
