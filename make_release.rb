@@ -24,8 +24,8 @@ THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 README_FILE = 'builds/README.txt'
 REVISION_FILE = 'builds/revision.txt'
 
-DESKTOP_FILE = 'assets/misc/Thrive.desktop'
-ICON_FILE = 'assets/misc/thrive_logo_big.png'
+LINUX_EXTRA_FILES = [['assets/misc/Thrive.desktop', 'Thrive.desktop'],
+                     ['assets/misc/thrive_logo_big.png', 'Thrive.png']].freeze
 
 # Files that will never be considered for dehydrating
 DEHYDRATE_IGNORE_FILES = [
@@ -210,15 +210,15 @@ def prepare_readme(target_folder)
   FileUtils.cp REVISION_FILE, target_folder
 end
 
-# Copies desktop file & icon to the target folder
-def prepare_desktop(target_folder)
-  FileUtils.cp DESKTOP_FILE, target_folder
-  FileUtils.cp ICON_FILE, File.join(target_folder, 'Thrive.png')
+def copy_extra_linux_resources(target_folder)
+  LINUX_EXTRA_FILES.each do |source, target|
+    FileUtils.cp source, File.join(target_folder, target)
+  end
 end
 
 def gzip_to_target(source, target)
   Zlib::GzipWriter.open(target) do |writer|
-    File.open(source)  do |reader|
+    File.open(source) do |reader|
       while (chunk = reader.read(16 * 1024))
         writer.write chunk
       end
@@ -446,7 +446,7 @@ def perform_export(target)
   prepare_licenses target_folder
   prepare_readme target_folder
 
-  prepare_desktop target_folder if target =~ /linux/i
+  copy_extra_linux_resources target_folder if target =~ /linux/i
 
   package target, target_name, target_folder, target_file
 end
