@@ -42,8 +42,7 @@ public class PlayerHoverInfo : Node
         {
             var distanceSquared = (microbe.GlobalTransform.origin - camera.CursorWorldPos).LengthSquared();
 
-            // Find only cells that have the mouse
-            // position within their membrane
+            // Find only cells that have the mouse position within their membrane
             if (distanceSquared > microbe.RadiusSquared + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED)
                 continue;
 
