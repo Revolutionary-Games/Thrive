@@ -439,6 +439,8 @@ public static class Constants
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
 
+    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
+
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 

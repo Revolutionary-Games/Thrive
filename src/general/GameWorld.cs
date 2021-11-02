@@ -177,7 +177,7 @@ public class GameWorld
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
-        TotalPassedTime += timePassed * 100000000;
+        TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
     }
