@@ -51,6 +51,8 @@ public static class Constants
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
+    public const float MINIMUM_CLOUD_DENSITY_TO_SHOW_PLAYER = 0.15f;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>
