@@ -1,8 +1,5 @@
 * text=auto
-*.lua text
 *.cs text
-*.cpp text
-*.h text
 *.tres text
 *.tscn text
 *.asset filter=lfs diff=lfs merge=lfs -text
