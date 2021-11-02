@@ -1419,7 +1419,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     /// <param name="inputEvent">The event the user fired</param>
     private void OnCellEditorGuiInput(InputEvent inputEvent)
     {
-        if (inputEvent is InputEventMouseMotion)
+        if (!editor.ShowHover)
             return;
 
         InputManager.ForwardInput(inputEvent);
