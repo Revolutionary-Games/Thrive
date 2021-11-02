@@ -503,18 +503,11 @@ public static class Constants
     public const int PATCH_HISTORY_RANGE = 10;
 
     /// <summary>
-    ///   When checking if the mouse is hovering over a microbe, this increments
-    ///   the testing area as an addition to microbe radius, so it's easier to hover
-    ///   over smaller microbes.
-    /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
-
-    /// <summary>
-    ///   Squared value of <see cref="MICROBE_HOVER_DETECTION_EXTRA_RADIUS"/>.
+    ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
+    ///   to see what small cells are.
     ///   Specifically for use with LengthSquared.
     /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED =
-        MICROBE_HOVER_DETECTION_EXTRA_RADIUS * MICROBE_HOVER_DETECTION_EXTRA_RADIUS;
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
