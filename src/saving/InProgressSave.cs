@@ -42,6 +42,8 @@ public class InProgressSave : IDisposable
 
     private bool disposed;
 
+    private bool wasColourblindScreenFilterVisible;
+
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
         Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string saveName)
     {
@@ -166,11 +168,23 @@ public class InProgressSave : IDisposable
             case State.Initial:
                 // On this frame a pause menu might still be open, wait until next frame for it to close before
                 // taking a screenshot
+                wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
+                if (wasColourblindScreenFilterVisible)
+                {
+                    ColourblindScreenFilter.Instance.Hide();
+                }
+
                 state = State.Screenshot;
                 break;
             case State.Screenshot:
             {
                 save = createSaveData.Invoke(this);
+
+                if (wasColourblindScreenFilterVisible)
+                {
+                    ColourblindScreenFilter.Instance.Show();
+                }
+
                 SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING"),
                     Mathf.Inf);
 
