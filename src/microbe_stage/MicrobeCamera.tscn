@@ -8,12 +8,13 @@
 [ext_resource path="res://assets/textures/background/Thrive_vent0.png" type="Texture" id=6]
 
 [sub_resource type="PlaneMesh" id=1]
-size = Vector2( 400, 400 )
+size = Vector2( 800, 400 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 render_priority = -2
 shader = ExtResource( 5 )
+shader_param/repeats = Vector2( 2, 1 )
 shader_param/layer0 = ExtResource( 6 )
 shader_param/layer1 = ExtResource( 1 )
 shader_param/layer2 = ExtResource( 2 )
