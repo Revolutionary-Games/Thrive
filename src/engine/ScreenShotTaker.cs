@@ -9,21 +9,12 @@ using Godot;
 public class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker instance;
-    private readonly Action<object> saveScreenshotAction;
     private bool isCurrentlyTakingScreenshot;
     private Step step;
 
     private ScreenShotTaker()
     {
         instance = this;
-
-        saveScreenshotAction = data =>
-        {
-            Image image = (Image)data;
-            SaveScreenshot(image);
-            image.Dispose();
-            isCurrentlyTakingScreenshot = false;
-        };
     }
 
     private enum Step
@@ -62,6 +53,11 @@ public class ScreenShotTaker : NodeWithInput
         return image;
     }
 
+    private void SaveScreenshotInBackground(Image image)
+    {
+        TaskExecutor.Instance.AddTask(new Task(() => SaveScreenshot(image)));
+    }
+
     private void SaveScreenshot(Image image)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
@@ -79,6 +75,9 @@ public class ScreenShotTaker : NodeWithInput
         }
 
         GD.Print("Saved screenshot: ", path);
+
+        image.Dispose();
+        isCurrentlyTakingScreenshot = false;
     }
 
     /// <summary>
@@ -102,7 +101,7 @@ public class ScreenShotTaker : NodeWithInput
             return;
         }
 
-        TaskExecutor.Instance.AddTask(new Task(saveScreenshotAction, GetViewportTextureAsImage()));
+        SaveScreenshotInBackground(GetViewportTextureAsImage());
     }
 
     /// <summary>
@@ -124,10 +123,11 @@ public class ScreenShotTaker : NodeWithInput
                 step = Step.TakeAndSaveScreenshot;
                 break;
             case Step.TakeAndSaveScreenshot:
-                Image image = GetViewportTextureAsImage();
+                SaveScreenshotInBackground(GetViewportTextureAsImage());
                 ColourblindScreenFilter.Instance.Show();
-                TaskExecutor.Instance.AddTask(new Task(saveScreenshotAction, image));
                 return;
+            default:
+                throw new InvalidOperationException("invalid step for ScreenShotTaker");
         }
 
         Invoke.Instance.Queue(ScreenFilterScreenshotStepper);
