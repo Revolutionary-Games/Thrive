@@ -253,7 +253,7 @@ public class InProgressSave : IDisposable
 
                 foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
                 {
-                    var match = Regex.Match(name, "^save_(\\d)+\\." + Constants.SAVE_EXTENSION);
+                    var match = Regex.Match(name, "^save_(\\d+)\\." + Constants.SAVE_EXTENSION);
 
                     if (match.Success)
                     {
@@ -270,13 +270,13 @@ public class InProgressSave : IDisposable
 
             case SaveInformation.SaveType.AutoSave:
             {
-                return GetNextNameForSaveType("^auto_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "auto_save",
+                return GetNextNameForSaveType("^auto_save_(\\d+)\\." + Constants.SAVE_EXTENSION, "auto_save",
                     Settings.Instance.MaxAutoSaves);
             }
 
             case SaveInformation.SaveType.QuickSave:
             {
-                return GetNextNameForSaveType("^quick_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "quick_save",
+                return GetNextNameForSaveType("^quick_save_(\\d+)\\." + Constants.SAVE_EXTENSION, "quick_save",
                     Settings.Instance.MaxQuickSaves);
             }
 
