@@ -9,14 +9,21 @@ using Godot;
 public class ScreenShotTaker : NodeWithInput
 {
     private static ScreenShotTaker instance;
+    private readonly Action<object> saveScreenshotAction;
     private bool isCurrentlyTakingScreenshot;
-    private Image screenshotImage;
     private Step step;
-    private Task saveScreenshotTask;
 
     private ScreenShotTaker()
     {
         instance = this;
+
+        saveScreenshotAction = data =>
+        {
+            Image image = (Image)data;
+            SaveScreenshot(image);
+            image.Dispose();
+            isCurrentlyTakingScreenshot = false;
+        };
     }
 
     private enum Step
@@ -87,14 +94,6 @@ public class ScreenShotTaker : NodeWithInput
 
         isCurrentlyTakingScreenshot = true;
 
-        saveScreenshotTask = new Task(() =>
-        {
-            SaveScreenshot(screenshotImage);
-            screenshotImage.Dispose();
-            screenshotImage = null;
-            isCurrentlyTakingScreenshot = false;
-        });
-
         // If ScreenFilter is active, turn it off before taking a screenshot.
         if (ColourblindScreenFilter.Instance.Visible)
         {
@@ -103,8 +102,7 @@ public class ScreenShotTaker : NodeWithInput
             return;
         }
 
-        screenshotImage = GetViewportTextureAsImage();
-        TaskExecutor.Instance.AddTask(saveScreenshotTask);
+        TaskExecutor.Instance.AddTask(new Task(saveScreenshotAction, GetViewportTextureAsImage()));
     }
 
     /// <summary>
@@ -126,9 +124,9 @@ public class ScreenShotTaker : NodeWithInput
                 step = Step.TakeAndSaveScreenshot;
                 break;
             case Step.TakeAndSaveScreenshot:
-                screenshotImage = GetViewportTextureAsImage();
+                Image image = GetViewportTextureAsImage();
                 ColourblindScreenFilter.Instance.Show();
-                TaskExecutor.Instance.AddTask(saveScreenshotTask);
+                TaskExecutor.Instance.AddTask(new Task(saveScreenshotAction, image));
                 return;
         }
 
