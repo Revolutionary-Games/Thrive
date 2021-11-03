@@ -1109,20 +1109,12 @@ public class MicrobeHUD : Control
 
     private class HoveredCompoundControl : HBoxContainer
     {
-        private readonly Label compoundName = new Label();
-        private readonly Label compoundValue = new Label();
+        private Label compoundName;
+        private Label compoundValue;
 
         public HoveredCompoundControl(Compound compound)
         {
-            MouseFilter = MouseFilterEnum.Ignore;
             Compound = compound;
-            TextureRect compoundIcon = GUICommon.Instance.CreateCompoundIcon(compound.InternalName, 20, 20);
-            compoundName.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-            compoundName.Text = Compound.Name;
-            AddChild(compoundIcon);
-            AddChild(compoundName);
-            AddChild(compoundValue);
-            Visible = false;
         }
 
         public Compound Compound { get; }
@@ -1137,6 +1129,21 @@ public class MicrobeHUD : Control
         {
             get => compoundValue.Modulate;
             set => compoundValue.Modulate = value;
+        }
+
+        public override void _Ready()
+        {
+            compoundName = new Label();
+            compoundValue = new Label();
+
+            MouseFilter = MouseFilterEnum.Ignore;
+            TextureRect compoundIcon = GUICommon.Instance.CreateCompoundIcon(Compound.InternalName, 20, 20);
+            compoundName.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+            compoundName.Text = Compound.Name;
+            AddChild(compoundIcon);
+            AddChild(compoundName);
+            AddChild(compoundValue);
+            Visible = false;
         }
 
         public void UpdateTranslation()

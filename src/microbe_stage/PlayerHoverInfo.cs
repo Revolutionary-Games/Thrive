@@ -6,14 +6,19 @@ using Godot;
 /// </summary>
 public class PlayerHoverInfo : Node
 {
+    /// <summary>
+    ///   Used to query the real hovered compound values.
+    ///   This is a member variable to reduce GC pressure.
+    /// </summary>
     private readonly Dictionary<Compound, float> currentHoveredCompounds = new Dictionary<Compound, float>();
+
     private readonly Dictionary<Compound, float> compoundDelayTimer = new Dictionary<Compound, float>();
     private MicrobeCamera camera;
     private CompoundCloudSystem cloudSystem;
-    private Vector3 lastCursorWorldPos = Vector3.Inf;
+    private Vector3? lastCursorWorldPos;
 
     /// <summary>
-    ///   All compounds the user is hovering over.
+    ///   All compounds the user is hovering over with delay to reduce flickering.
     /// </summary>
     public Dictionary<Compound, float> HoveredCompounds { get; } = new Dictionary<Compound, float>();
 
@@ -32,6 +37,10 @@ public class PlayerHoverInfo : Node
 
     public override void _Process(float delta)
     {
+        // https://github.com/Revolutionary-Games/Thrive/issues/1976
+        if (delta <= 0)
+            return;
+
         cloudSystem.GetAllAvailableAt(camera.CursorWorldPos, currentHoveredCompounds);
 
         if (camera.CursorWorldPos != lastCursorWorldPos)
