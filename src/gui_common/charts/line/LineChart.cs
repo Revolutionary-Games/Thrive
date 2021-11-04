@@ -1021,7 +1021,7 @@ public class LineChart : VBoxContainer
 
         public void InterpolatePointPosition(int i, Vector2 initialPos, Vector2 targetPos)
         {
-            tween.InterpolateMethod(this, "ChangePointPos", new Vector3(i, initialPos.x, initialPos.y),
+            tween.InterpolateMethod(this, nameof(ChangePointPos), new Vector3(i, initialPos.x, initialPos.y),
                 new Vector3(i, targetPos.x, targetPos.y), 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
             tween.Start();
         }
