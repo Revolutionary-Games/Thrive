@@ -97,6 +97,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath RedoButtonPath;
 
     [Export]
+    public NodePath RandomizeSpeciesNameButtonPath;
+
+    [Export]
     public NodePath FinishButtonPath;
 
     [Export]
@@ -350,6 +353,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private TextureButton redoButton;
     private TextureButton newCellButton;
     private LineEdit speciesNameEdit;
+    private TextureButton randomizeSpeciesNameButton;
 
     private Button finishButton;
     private Button cancelButton;
@@ -498,6 +502,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         finishButton = GetNode<Button>(FinishButtonPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
+        randomizeSpeciesNameButton = GetNode<TextureButton>(RandomizeSpeciesNameButtonPath);
 
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
@@ -1884,6 +1889,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         finishButton.RegisterToolTipForControl("finishButton", "editor");
         cancelButton.RegisterToolTipForControl("cancelButton", "editor");
         menuButton.RegisterToolTipForControl("menuButton");
+        randomizeSpeciesNameButton.RegisterToolTipForControl("randomizeNameButton", "editor");
 
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
@@ -1913,7 +1919,25 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Only defocus if the name is valid to indicate invalid namings to the player
         if (newText.Split(" ").Length == 2)
+        {
             speciesNameEdit.ReleaseFocus();
+        }
+        else
+        {
+            // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+        }
+    }
+
+    private void OnRandomizeSpeciesNamePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+        var randomizedName = nameGenerator.GenerateNameSection() + " " + nameGenerator.GenerateNameSection();
+
+        speciesNameEdit.Text = randomizedName;
+        OnSpeciesNameTextChanged(randomizedName);
     }
 
     /// <summary>
