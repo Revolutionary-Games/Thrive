@@ -62,7 +62,7 @@ public class LineChartData
     /// </summary>
     public void ClearPoints()
     {
-        foreach (var point in dataPoints.ToArray())
+        foreach (var point in dataPoints)
             point.Free();
 
         dataPoints.Clear();
