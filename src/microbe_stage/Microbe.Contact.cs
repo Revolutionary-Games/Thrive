@@ -261,7 +261,7 @@ public partial class Microbe
             return;
         }
 
-        if (source == "toxin" || source == "oxytoxy")
+        if (source is "toxin" or "oxytoxy")
         {
             // TODO: Replace this take damage sound with a more appropriate one.
 
@@ -518,7 +518,7 @@ public partial class Microbe
     /// </remarks>
     public void UnbindAll()
     {
-        if (State == MicrobeState.Unbinding || State == MicrobeState.Binding)
+        if (State is MicrobeState.Unbinding or MicrobeState.Binding)
             State = MicrobeState.Normal;
 
         // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
@@ -624,8 +624,8 @@ public partial class Microbe
 
         var newTransform = GetNewRelativeTransform();
 
-        Rotation = newTransform.rotation;
-        Translation = newTransform.translation;
+        Rotation = newTransform.Rotation;
+        Translation = newTransform.Translation;
 
         ChangeNodeParent(ColonyParent);
     }

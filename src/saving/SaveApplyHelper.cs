@@ -61,6 +61,6 @@ public static class SaveApplyHelper
     /// <returns>True if should be skipped</returns>
     public static bool IsNameLoadedFromSaveName(string name)
     {
-        return name == "IsLoadedFromSave" || name == "isLoadedFromSave";
+        return name is "IsLoadedFromSave" or "isLoadedFromSave";
     }
 }

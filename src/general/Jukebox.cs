@@ -241,7 +241,7 @@ public class Jukebox : Node
             faded = true;
         }
 
-        operations.Enqueue(new Operation(delta =>
+        operations.Enqueue(new Operation(_ =>
         {
             SetupStreamsFromCategory();
             return true;
@@ -301,7 +301,7 @@ public class Jukebox : Node
 
     private void AddVolumeRestore()
     {
-        operations.Enqueue(new Operation(delta =>
+        operations.Enqueue(new Operation(_ =>
         {
             SetVolume(NORMAL_VOLUME);
             return true;
@@ -310,7 +310,7 @@ public class Jukebox : Node
 
     private void AddVolumeRemove()
     {
-        operations.Enqueue(new Operation(delta =>
+        operations.Enqueue(new Operation(_ =>
         {
             SetVolume(FADE_LOW_VOLUME);
             return true;

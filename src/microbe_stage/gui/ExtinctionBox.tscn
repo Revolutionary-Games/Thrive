@@ -117,11 +117,16 @@ text = "RETURN_TO_MENU"
 
 [node name="LoadMenu" type="VBoxContainer" parent="."]
 visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 140.0
 margin_top = 60.0
-margin_right = 1140.0
-margin_bottom = 660.0
+margin_right = -140.0
+margin_bottom = -60.0
 rect_min_size = Vector2( 1000, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SaveList" parent="LoadMenu" instance=ExtResource( 5 )]
 anchor_right = 0.0

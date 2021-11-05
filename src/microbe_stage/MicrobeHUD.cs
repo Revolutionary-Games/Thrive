@@ -287,7 +287,7 @@ public class MicrobeHUD : Control
     {
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
 
-        winExtinctBoxHolder = GetNode<Control>("WinExtinctBoxHolder");
+        winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
@@ -687,8 +687,8 @@ public class MicrobeHUD : Control
             // Create for each compound the information in GUI
             foreach (var compound in stage.HoverInfo.HoveredCompounds)
             {
-                // It is not useful to show trace amounts of a compound, so those are skipped
-                if (compound.Value < 0.1)
+                // Skip showing insignificant amounts to the player
+                if (compound.Value < Constants.MINIMUM_CLOUD_DENSITY_TO_SHOW_PLAYER)
                     continue;
 
                 var hBox = new HBoxContainer();
@@ -766,28 +766,28 @@ public class MicrobeHUD : Control
     {
         var compounds = GetPlayerColonyOrPlayerStorage();
 
-        glucoseBar.MaxValue = compounds.Capacity;
+        glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
         glucoseBar.GetNode<Label>("Value").Text = glucoseBar.Value + " / " + glucoseBar.MaxValue;
 
-        ammoniaBar.MaxValue = compounds.Capacity;
+        ammoniaBar.MaxValue = compounds.GetCapacityForCompound(ammonia);
         ammoniaBar.Value = compounds.GetCompoundAmount(ammonia);
         ammoniaBar.GetNode<Label>("Value").Text = ammoniaBar.Value + " / " + ammoniaBar.MaxValue;
 
-        phosphateBar.MaxValue = compounds.Capacity;
+        phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
         phosphateBar.Value = compounds.GetCompoundAmount(phosphates);
         phosphateBar.GetNode<Label>("Value").Text = phosphateBar.Value + " / " + phosphateBar.MaxValue;
 
-        hydrogenSulfideBar.MaxValue = compounds.Capacity;
+        hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
         hydrogenSulfideBar.Value = compounds.GetCompoundAmount(hydrogensulfide);
         hydrogenSulfideBar.GetNode<Label>("Value").Text = hydrogenSulfideBar.Value + " / " +
             hydrogenSulfideBar.MaxValue;
 
-        ironBar.MaxValue = compounds.Capacity;
+        ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
         ironBar.Value = compounds.GetCompoundAmount(iron);
         ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
 
-        oxytoxyBar.MaxValue = compounds.Capacity;
+        oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
     }
@@ -859,7 +859,7 @@ public class MicrobeHUD : Control
             var compounds = GetPlayerColonyOrPlayerStorage();
 
             atpAmount = compounds.GetCompoundAmount(atp);
-            maxATP = compounds.Capacity;
+            maxATP = compounds.GetCapacityForCompound(atp);
         }
 
         atpBar.MaxValue = maxATP * 10.0f;

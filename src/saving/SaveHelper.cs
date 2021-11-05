@@ -238,7 +238,7 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int count, long diskSpace) CountSaves(string nameStartsWith = null)
+    public static (int Count, long DiskSpace) CountSaves(string nameStartsWith = null)
     {
         int count = 0;
         long totalSize = 0;
@@ -385,7 +385,7 @@ public static class SaveHelper
         {
             GameState = gameState,
             Info = { Type = type },
-            Screenshot = ScreenShotTaker.Instance.TakeScreenshot(),
+            Screenshot = ScreenShotTaker.Instance.GetViewportTextureAsImage(),
         };
     }
 

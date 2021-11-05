@@ -1858,21 +1858,17 @@ texture_progress = ExtResource( 64 )
 fill_mode = 4
 tint_under = Color( 0, 0, 0, 0.752941 )
 tint_progress = Color( 0.960784, 0.270588, 0.478431, 1 )
-radial_initial_angle = 211.0
-radial_fill_degrees = 197.0
+radial_initial_angle = 237.0
+radial_fill_degrees = 126.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HitpointIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/HealthBar"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -45.5403
-margin_top = 99.249
-margin_right = -25.5403
-margin_bottom = 119.249
+margin_left = 21.46
+margin_top = 197.749
+margin_right = 41.46
+margin_bottom = 217.749
 texture = ExtResource( 61 )
 expand = true
 __meta__ = {
@@ -1884,10 +1880,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -203.756
+margin_left = -202.756
 margin_top = -201.525
-margin_right = -94.756
-margin_bottom = -45.525
+margin_right = 6.24402
+margin_bottom = 7.47501
 step = 0.1
 value = 100.0
 texture_under = ExtResource( 63 )
@@ -1895,21 +1891,17 @@ texture_progress = ExtResource( 63 )
 fill_mode = 4
 tint_under = Color( 0, 0, 0, 0.752941 )
 tint_progress = Color( 0.439216, 0.956863, 0.137255, 1 )
-radial_initial_angle = 205.0
-radial_fill_degrees = 210.0
+radial_initial_angle = 237.0
+radial_fill_degrees = 129.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ATPIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/ATPBar"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -36.0
-margin_top = 78.5
-margin_right = -16.0
-margin_bottom = 98.5
+margin_left = 18.5
+margin_top = 156.5
+margin_right = 38.5
+margin_bottom = 176.5
 texture = ExtResource( 60 )
 expand = true
 __meta__ = {
@@ -2129,7 +2121,10 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="WinExtinctBoxHolder" type="Control" parent="MicrobeHUD"]
+[node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
+visible = false
+
+[node name="WinExtinctBoxHolder" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -2139,9 +2134,6 @@ size_flags_vertical = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
-visible = false
 
 [node name="PatchNameOverlay" type="PanelContainer" parent="."]
 visible = false

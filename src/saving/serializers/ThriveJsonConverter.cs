@@ -302,9 +302,10 @@ public abstract class BaseThriveConverter : JsonConverter
         return candidateKey;
     }
 
-    public static IEnumerable<FieldInfo> FieldsOf(object value)
+    public static IEnumerable<FieldInfo> FieldsOf(object value, bool handleClassJSONSettings = true)
     {
-        var fields = value.GetType().GetFields(
+        var type = value.GetType();
+        var fields = type.GetFields(
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(p => p.CustomAttributes.All(
             a => a.AttributeType != typeof(JsonIgnoreAttribute) &&
                 a.AttributeType != typeof(CompilerGeneratedAttribute)));
@@ -318,12 +319,25 @@ public abstract class BaseThriveConverter : JsonConverter
         fields = fields.Where(p =>
             !ExportWithoutExplicitJson(p.CustomAttributes));
 
+        if (handleClassJSONSettings)
+        {
+            var settings = type.GetCustomAttribute<JsonObjectAttribute>();
+
+            if (settings is { MemberSerialization: MemberSerialization.OptIn })
+            {
+                // Ignore all fields not opted in
+                fields = fields.Where(
+                    p => p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+            }
+        }
+
         return fields;
     }
 
-    public static IEnumerable<PropertyInfo> PropertiesOf(object value)
+    public static IEnumerable<PropertyInfo> PropertiesOf(object value, bool handleClassJSONSettings = true)
     {
-        var properties = value.GetType().GetProperties(
+        var type = value.GetType();
+        var properties = type.GetProperties(
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(
             p => p.CustomAttributes.All(
                 a => a.AttributeType != typeof(JsonIgnoreAttribute)));
@@ -335,6 +349,18 @@ public abstract class BaseThriveConverter : JsonConverter
         // Ignore properties that are marked export without explicit JSON property
         properties = properties.Where(p =>
             !ExportWithoutExplicitJson(p.CustomAttributes));
+
+        if (handleClassJSONSettings)
+        {
+            var settings = type.GetCustomAttribute<JsonObjectAttribute>();
+
+            if (settings is { MemberSerialization: MemberSerialization.OptIn })
+            {
+                // Ignore all properties not opted in
+                properties = properties.Where(
+                    p => p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+            }
+        }
 
         return properties;
     }
@@ -364,8 +390,8 @@ public abstract class BaseThriveConverter : JsonConverter
     {
         var customRead = ReadCustomJson(reader, objectType, existingValue, serializer);
 
-        if (customRead.performed)
-            return customRead.read;
+        if (customRead.Performed)
+            return customRead.Read;
 
         if (reader.TokenType != JsonToken.StartObject)
             return null;
@@ -605,7 +631,7 @@ public abstract class BaseThriveConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    protected virtual (object read, bool performed) ReadCustomJson(JsonReader reader, Type objectType,
+    protected virtual (object Read, bool Performed) ReadCustomJson(JsonReader reader, Type objectType,
         object existingValue, JsonSerializer serializer)
     {
         return (null, false);

@@ -120,6 +120,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private MicrobeSpecies editedSpecies;
 
     /// <summary>
+    ///   To not have to recreate this object for each place / remove this is a cached clone of editedSpecies to which
+    ///   current editor changes are applied for simulating what effect they would have on the population.
+    /// </summary>
+    private MicrobeSpecies cachedAutoEvoPredictionSpecies;
+
+    /// <summary>
     ///   This is a global assessment if the currently being placed
     ///   organelle is valid (if not all hover hexes will be shown as
     ///   invalid)
@@ -1262,7 +1268,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 var absoluteHex = relativeHex + organelle.Position;
 
                 // Only consider the middle 3 rows
-                if (absoluteHex.Q < -1 || absoluteHex.Q > 1)
+                if (absoluteHex.Q is < -1 or > 1)
                     continue;
 
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
@@ -1286,8 +1292,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     /// <summary>
-    ///   Calculates the effectiveness of organelles in the current or
-    ///   given patch
+    ///   Calculates the effectiveness of organelles in the current or given patch
     /// </summary>
     private void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
     {
@@ -1298,6 +1303,27 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
 
         gui.UpdateOrganelleEfficiencies(result);
+    }
+
+    private void StartAutoEvoPrediction()
+    {
+        // First prediction can be made only after population numbers from previous run are applied
+        // so this is just here to guard against that potential programming mistake that may happen when code is
+        // changed
+        if (!Ready)
+        {
+            GD.PrintErr("Can't start auto-evo prediction before editor is ready");
+            return;
+        }
+
+        cachedAutoEvoPredictionSpecies ??= (MicrobeSpecies)editedSpecies.Clone();
+
+        CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
+
+        var run = new EditorAutoEvoRun(CurrentGame.GameWorld, editedSpecies, cachedAutoEvoPredictionSpecies);
+        run.Start();
+
+        gui.UpdateAutoEvoPrediction(run, editedSpecies, cachedAutoEvoPredictionSpecies);
     }
 
     /// <summary>
@@ -1460,8 +1486,18 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
-        // Create a mutated version of the current species code to compete against the player
-        CreateMutatedSpeciesCopy(species);
+#pragma warning disable 162
+
+        // Disabled warning as this is a tweak constant
+        // ReSharper disable ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
+        if (Constants.CREATE_COPY_OF_EDITED_SPECIES)
+        {
+            // Create a mutated version of the current species code to compete against the player
+            CreateMutatedSpeciesCopy(species);
+        }
+
+        // ReSharper restore ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
+#pragma warning restore 162
 
         NewName = species.FormattedName;
 
@@ -1740,20 +1776,44 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (!MicrobePreviewMode || !membraneOrganellePositionsAreDirty)
             return;
 
+        CopyEditedPropertiesToSpecies(previewMicrobe.Species);
+
+        // Intentionally force it to not be bacteria to show it at full size
         previewMicrobe.Species.IsBacteria = false;
-        previewMicrobe.Species.Colour = Colour;
-        previewMicrobe.Species.MembraneType = Membrane;
-        previewMicrobe.Species.MembraneRigidity = Rigidity;
-
-        previewMicrobe.Species.Organelles.Clear();
-
-        foreach (var entry in editedMicrobeOrganelles.Organelles)
-            previewMicrobe.Species.Organelles.Add(entry);
 
         // This is now just for applying changes in the species to the preview cell
         previewMicrobe.ApplySpecies(previewMicrobe.Species);
 
         membraneOrganellePositionsAreDirty = false;
+    }
+
+    /// <summary>
+    ///   Copies current editor state to a species
+    /// </summary>
+    /// <param name="target">The species to copy to</param>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: it would be nice to unify this and the final apply properties to the edited species
+    ///   </para>
+    /// </remarks>
+    private void CopyEditedPropertiesToSpecies(MicrobeSpecies target)
+    {
+        target.Colour = Colour;
+        target.MembraneType = Membrane;
+        target.MembraneRigidity = Rigidity;
+        target.IsBacteria = true;
+
+        target.Organelles.Clear();
+
+        // TODO: if this is too slow to copy each organelle like this, we'll need to find a faster way to get the data
+        // in, perhaps by sharing the entire Organelles object
+        foreach (var entry in editedMicrobeOrganelles.Organelles)
+        {
+            if (entry.Definition.InternalName == "nucleus")
+                target.IsBacteria = false;
+
+            target.Organelles.Add(entry);
+        }
     }
 
     /// <summary>
@@ -1992,6 +2052,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (editedMicrobeOrganelles.Contains(data.Organelle))
         {
             UpdateAlreadyPlacedVisuals();
+
+            // Organelle placement *might* affect auto-evo in the future so this is here for that reason
+            StartAutoEvoPrediction();
         }
         else
         {
@@ -2007,7 +2070,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var data = (MoveActionData)action.Data;
         data.Organelle.Position = data.OldLocation;
         data.Organelle.Orientation = data.OldRotation;
+
         UpdateAlreadyPlacedVisuals();
+        StartAutoEvoPrediction();
 
         --data.Organelle.NumberOfTimesMoved;
     }
@@ -2097,6 +2162,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateMembraneButtons(Membrane.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
         gui.UpdateHitpoints(CalculateHitpoints());
+
+        StartAutoEvoPrediction();
     }
 
     [DeserializedCallbackAllowed]
@@ -2129,6 +2196,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateSpeed(CalculateSpeed());
 
         UpdateCellVisualization();
+
+        StartAutoEvoPrediction();
     }
 
     private void UpdatePatchDependentBalanceData()
@@ -2251,6 +2320,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
         gui.SetMembraneTooltips(Membrane);
 
+        StartAutoEvoPrediction();
+
         if (previewMicrobe != null)
         {
             previewMicrobe.Membrane.Type = membrane;
@@ -2271,6 +2342,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
         gui.SetMembraneTooltips(Membrane);
+
+        StartAutoEvoPrediction();
 
         if (previewMicrobe != null)
         {
@@ -2304,6 +2377,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var data = (RigidityChangeActionData)action.Data;
 
         Rigidity = data.NewRigidity;
+
+        // TODO: when rigidity affects auto-evo this also needs to re-run the prediction, though there should probably
+        // be some kind of throttling, this also applies to the behaviour values
 
         OnRigidityChanged();
     }

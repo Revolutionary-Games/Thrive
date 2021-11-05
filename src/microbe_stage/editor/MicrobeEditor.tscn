@@ -94,91 +94,25 @@ shader_param/gridSize = Vector2( 25, 25 )
 shader_param/gridTexture = ExtResource( 15 )
 shader_param/maskTexture = ExtResource( 18 )
 
-[sub_resource type="StyleBoxFlat" id=3]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0, 0.435294, 0.52549, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=4]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0.0666667, 1, 0.835294, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=5]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0.164706, 0.215686, 0.235294, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.396078, 0.623529, 0.584314, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=6]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
-bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="ButtonGroup" id=7]
-
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 89 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=10]
+[sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.294118, 0.152941, 0.356863, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=12]
+[sub_resource type="StyleBoxEmpty" id=7]
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0.745098, 0.356863, 0.921569, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=14]
+[sub_resource type="StyleBoxEmpty" id=9]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=10]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -216,23 +150,103 @@ tracks/2/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ), Color( 1.5, 1.5, 1.5, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="StyleBoxTexture" id=16]
+[sub_resource type="StyleBoxTexture" id=11]
 texture = ExtResource( 89 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
-[sub_resource type="ButtonGroup" id=17]
+[sub_resource type="StyleBoxFlat" id=12]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0.435294, 0.52549, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxEmpty" id=18]
+[sub_resource type="StyleBoxFlat" id=13]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
-[sub_resource type="ButtonGroup" id=19]
+[sub_resource type="StyleBoxFlat" id=14]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.164706, 0.215686, 0.235294, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.396078, 0.623529, 0.584314, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxEmpty" id=20]
+[sub_resource type="StyleBoxFlat" id=15]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
-[sub_resource type="ButtonGroup" id=21]
+[sub_resource type="ButtonGroup" id=16]
 
-[sub_resource type="StyleBoxTexture" id=22]
+[sub_resource type="StyleBoxEmpty" id=17]
+
+[sub_resource type="ButtonGroup" id=18]
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+[sub_resource type="ButtonGroup" id=20]
+
+[sub_resource type="StyleBoxTexture" id=21]
 texture = ExtResource( 88 )
 region_rect = Rect2( 0, 0, 258, 1 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.81, 0.0162, 0.0162, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 0.07, 0.07, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=23]
 content_margin_left = 5.0
@@ -255,7 +269,7 @@ content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.81, 0.0162, 0.0162, 1 )
+bg_color = Color( 0.49, 0, 0, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -271,22 +285,6 @@ content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
-bg_color = Color( 0.49, 0, 0, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 1, 0.07, 0.07, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id=26]
-content_margin_left = 5.0
-content_margin_right = 5.0
-content_margin_top = 5.0
-content_margin_bottom = 5.0
 bg_color = Color( 0.0156863, 0.811765, 0.396078, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -298,7 +296,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id=27]
+[sub_resource type="StyleBoxFlat" id=26]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 5.0
@@ -314,9 +312,9 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="ButtonGroup" id=28]
+[sub_resource type="ButtonGroup" id=27]
 
-[sub_resource type="StyleBoxFlat" id=29]
+[sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0, 0, 0, 0.392157 )
 border_width_left = 1
 border_width_top = 1
@@ -328,20 +326,22 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxEmpty" id=30]
+[sub_resource type="StyleBoxEmpty" id=29]
 
-[sub_resource type="ButtonGroup" id=31]
+[sub_resource type="ButtonGroup" id=30]
 
-[sub_resource type="StyleBoxTexture" id=32]
+[sub_resource type="StyleBoxTexture" id=31]
 texture = ExtResource( 88 )
 region_rect = Rect2( 0, 0, 258, 1 )
 
-[sub_resource type="Theme" id=33]
+[sub_resource type="Theme" id=32]
 default_font = ExtResource( 81 )
 
-[sub_resource type="StyleBoxTexture" id=34]
+[sub_resource type="StyleBoxTexture" id=33]
 texture = ExtResource( 89 )
 region_rect = Rect2( 0, 0, 429, 1 )
+
+[sub_resource type="ButtonGroup" id=34]
 
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
@@ -407,6 +407,10 @@ OrganismStatisticsPath = NodePath("CellEditor/TopRight/Statistics")
 SpeedLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Value")
 HpLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Value")
 GenerationLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
+AutoEvoPredictionPanelPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel")
+TotalPopulationLabelPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Value")
+WorstPatchLabelPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst/Value")
+BestPatchLabelPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best/Value")
 CurrentMutationPointsLabelPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/CurrentMp")
 MutationPointsArrowPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/MpArrow")
 ResultingMutationPointsLabelPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain/HBoxContainer/MarginContainer2/HBoxContainer/ResultingMp")
@@ -469,6 +473,7 @@ PatchPhosphateSituationPath = NodePath("PatchMap/MarginContainer/HSplitContainer
 SpeedIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed/Indicator")
 HpIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Indicator")
 SizeIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Indicator")
+TotalPopulationIndicatorPath = NodePath("CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Indicator")
 RigiditySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 AggressionSliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression/AggressionSlider")
 OpportunismSliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism/OpportunismSlider")
@@ -481,97 +486,12 @@ OrganelleMenuPath = NodePath("OrganellePopupMenu")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
 CompoundBalancePath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 
-[node name="TopLeft" type="MarginContainer" parent="MicrobeEditorGUI"]
-margin_right = 353.0
-margin_bottom = 45.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 10
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/TopLeft"]
-margin_left = 15.0
-margin_top = 10.0
-margin_right = 348.0
-margin_bottom = 40.0
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ReportButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_right = 104.0
-margin_bottom = 30.0
-focus_mode = 0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = ExtResource( 101 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-toggle_mode = true
-pressed = true
-action_mode = 0
-group = SubResource( 7 )
-text = "REPORT"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PatchMapButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_left = 114.0
-margin_right = 218.0
-margin_bottom = 30.0
-focus_mode = 0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = ExtResource( 101 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-toggle_mode = true
-action_mode = 0
-group = SubResource( 7 )
-text = "PATCH_MAP"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CellEditorButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_left = 228.0
-margin_right = 333.0
-margin_bottom = 30.0
-focus_mode = 0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
-custom_fonts/font = ExtResource( 101 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-toggle_mode = true
-action_mode = 0
-group = SubResource( 7 )
-text = "EDITOR"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -1.41425
 margin_bottom = -1.41425
-mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -626,7 +546,7 @@ margin_top = 32.0
 margin_right = 273.0
 margin_bottom = 36.0
 mouse_filter = 1
-custom_styles/separator = SubResource( 8 )
+custom_styles/separator = SubResource( 3 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer"]
 margin_top = 40.0
@@ -780,7 +700,7 @@ margin_right = 246.0
 margin_bottom = 96.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 4 )
 
 [node name="ATPBalancePanel" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 100.0
@@ -813,7 +733,7 @@ margin_right = 240.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 0, 5 )
 mouse_filter = 2
-custom_styles/separator = SubResource( 10 )
+custom_styles/separator = SubResource( 5 )
 
 [node name="ATPBarContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
 margin_top = 22.0
@@ -874,7 +794,7 @@ margin_right = 246.0
 margin_bottom = 206.0
 rect_min_size = Vector2( 0, 10 )
 mouse_filter = 1
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 4 )
 
 [node name="CompoundBalanceDisplay" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 55 )]
 anchor_right = 0.0
@@ -971,8 +891,8 @@ margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_styles/fg = SubResource( 11 )
-custom_styles/bg = SubResource( 12 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
 step = 0.1
 value = 100.0
 percent_visible = false
@@ -984,8 +904,8 @@ margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_styles/fg = SubResource( 13 )
-custom_styles/bg = SubResource( 14 )
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
 step = 0.1
 value = 100.0
 percent_visible = false
@@ -1086,14 +1006,14 @@ __meta__ = {
 }
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarMain"]
-anims/FlashBar = SubResource( 15 )
+anims/FlashBar = SubResource( 10 )
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer"]
 margin_top = 39.0
 margin_right = 338.0
 margin_bottom = 43.0
 mouse_filter = 1
-custom_styles/separator = SubResource( 16 )
+custom_styles/separator = SubResource( 11 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer"]
 margin_top = 47.0
@@ -1134,17 +1054,17 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
 custom_fonts/font = ExtResource( 101 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 pressed = true
 action_mode = 0
-group = SubResource( 17 )
+group = SubResource( 16 )
 text = "STRUCTURE"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1157,16 +1077,16 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
 custom_fonts/font = ExtResource( 101 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 17 )
+group = SubResource( 16 )
 text = "MEMBRANE"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1179,16 +1099,16 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/disabled = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
 custom_fonts/font = ExtResource( 101 )
 custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 17 )
+group = SubResource( 16 )
 text = "BEHAVIOUR"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1200,7 +1120,7 @@ margin_right = 318.0
 margin_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 18 )
+custom_styles/panel = SubResource( 17 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure"]
 margin_right = 318.0
@@ -1213,14 +1133,14 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer"]
-margin_right = 318.0
+margin_right = 312.0
 margin_bottom = 966.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer"]
-margin_right = 308.0
+margin_right = 302.0
 margin_bottom = 966.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -1276,7 +1196,7 @@ columns = 3
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_right = 100.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="Protein" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 80 )]
 anchor_right = 0.0
@@ -1312,21 +1232,21 @@ columns = 3
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_right = 98.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="chromatophore" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="1" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="chemoSynthesizingProteins" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="2" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_right = 302.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="rusticyanin" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="3" groups=[
 "PlaceablePartSelectionElement",
@@ -1334,7 +1254,7 @@ SelectionGroup = SubResource( 19 )
 margin_top = 107.0
 margin_right = 98.0
 margin_bottom = 210.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="nitrogenase" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="4" groups=[
 "PlaceablePartSelectionElement",
@@ -1343,7 +1263,7 @@ margin_left = 102.0
 margin_top = 107.0
 margin_right = 200.0
 margin_bottom = 210.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="oxytoxyProteins" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="5" groups=[
 "PlaceablePartSelectionElement",
@@ -1352,7 +1272,7 @@ margin_left = 204.0
 margin_top = 107.0
 margin_right = 302.0
 margin_bottom = 210.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="External" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 80 )]
 anchor_right = 0.0
@@ -1388,14 +1308,14 @@ columns = 3
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_right = 98.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="pilus" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="1" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="cilia" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="2" groups=[
 "PlaceablePartSelectionElement",
@@ -1406,7 +1326,7 @@ MPCost = 40
 PartIcon = ExtResource( 9 )
 PartName = "CILIA"
 Locked = true
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="Organelle" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 80 )]
 anchor_right = 0.0
@@ -1442,21 +1362,21 @@ columns = 3
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_right = 98.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="bindingAgent" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="1" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="mitochondrion" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="2" groups=[
 "PlaceablePartSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_right = 302.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="chloroplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="3" groups=[
 "PlaceablePartSelectionElement",
@@ -1464,7 +1384,7 @@ SelectionGroup = SubResource( 19 )
 margin_top = 107.0
 margin_right = 98.0
 margin_bottom = 210.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="thermoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="4" groups=[
 "PlaceablePartSelectionElement",
@@ -1477,7 +1397,7 @@ MPCost = 40
 PartIcon = ExtResource( 11 )
 PartName = "THERMOPLAST"
 Locked = true
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="chemoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="5" groups=[
 "PlaceablePartSelectionElement",
@@ -1486,7 +1406,7 @@ margin_left = 204.0
 margin_top = 107.0
 margin_right = 302.0
 margin_bottom = 210.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="nitrogenfixingplastid" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="6" groups=[
 "PlaceablePartSelectionElement",
@@ -1494,7 +1414,7 @@ SelectionGroup = SubResource( 19 )
 margin_top = 214.0
 margin_right = 98.0
 margin_bottom = 317.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="vacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="7" groups=[
 "PlaceablePartSelectionElement",
@@ -1503,7 +1423,7 @@ margin_left = 102.0
 margin_top = 214.0
 margin_right = 200.0
 margin_bottom = 317.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="oxytoxy" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="8" groups=[
 "PlaceablePartSelectionElement",
@@ -1512,7 +1432,7 @@ margin_left = 204.0
 margin_top = 214.0
 margin_right = 302.0
 margin_bottom = 317.0
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=[
 "PlaceablePartSelectionElement",
@@ -1523,7 +1443,7 @@ margin_bottom = 424.0
 PartIcon = ExtResource( 10 )
 PartName = "BIOLUMINESCENT_VACUOLE"
 Locked = true
-SelectionGroup = SubResource( 19 )
+SelectionGroup = SubResource( 18 )
 
 [node name="Membrane" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 visible = false
@@ -1532,7 +1452,7 @@ margin_right = 318.0
 margin_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 20 )
+custom_styles/panel = SubResource( 19 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane"]
 margin_right = 318.0
@@ -1544,7 +1464,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
-margin_right = 319.0
+margin_right = 331.0
 margin_bottom = 889.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1554,7 +1474,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
-margin_right = 309.0
+margin_right = 321.0
 margin_bottom = 889.0
 custom_constants/separation = 15
 
@@ -1591,21 +1511,21 @@ columns = 3
 "MembraneSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_right = 98.0
-SelectionGroup = SubResource( 21 )
+SelectionGroup = SubResource( 20 )
 
 [node name="double" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="1" groups=[
 "MembraneSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
-SelectionGroup = SubResource( 21 )
+SelectionGroup = SubResource( 20 )
 
 [node name="cellulose" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="2" groups=[
 "MembraneSelectionElement",
 ] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_right = 302.0
-SelectionGroup = SubResource( 21 )
+SelectionGroup = SubResource( 20 )
 
 [node name="chitin" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="3" groups=[
 "MembraneSelectionElement",
@@ -1613,7 +1533,7 @@ SelectionGroup = SubResource( 21 )
 margin_top = 107.0
 margin_right = 98.0
 margin_bottom = 210.0
-SelectionGroup = SubResource( 21 )
+SelectionGroup = SubResource( 20 )
 
 [node name="calciumCarbonate" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="4" groups=[
 "MembraneSelectionElement",
@@ -1622,7 +1542,7 @@ margin_left = 102.0
 margin_top = 107.0
 margin_right = 200.0
 margin_bottom = 210.0
-SelectionGroup = SubResource( 21 )
+SelectionGroup = SubResource( 20 )
 
 [node name="silica" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="5" groups=[
 "MembraneSelectionElement",
@@ -1631,7 +1551,7 @@ margin_left = 204.0
 margin_top = 107.0
 margin_right = 302.0
 margin_bottom = 210.0
-SelectionGroup = SubResource( 21 )
+SelectionGroup = SubResource( 20 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 249.0
@@ -1657,7 +1577,7 @@ margin_right = 302.0
 margin_bottom = 18.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 22 )
+custom_styles/separator = SubResource( 21 )
 
 [node name="RigiditySlider" type="HSlider" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 23.0
@@ -1696,26 +1616,27 @@ margin_right = 302.0
 margin_bottom = 18.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 20 )
+custom_styles/separator = SubResource( 19 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 56.0
-margin_top = 56.0
-margin_right = 346.0
-margin_bottom = 544.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 350.0
+margin_bottom = 548.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
-margin_top = 40.0
+visible = false
+margin_top = 303.0
 margin_right = 318.0
 margin_bottom = 556.0
 mouse_filter = 1
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 20 )
+custom_styles/panel = SubResource( 19 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour"]
 margin_right = 318.0
-margin_bottom = 516.0
+margin_bottom = 253.0
 mouse_filter = 1
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
@@ -2135,9 +2056,9 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 focus_mode = 0
 mouse_filter = 1
-custom_styles/hover = SubResource( 23 )
-custom_styles/pressed = SubResource( 24 )
-custom_styles/normal = SubResource( 25 )
+custom_styles/hover = SubResource( 22 )
+custom_styles/pressed = SubResource( 23 )
+custom_styles/normal = SubResource( 24 )
 custom_colors/font_color_disabled = Color( 0.498039, 0.529412, 0.541176, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 shortcut_in_tooltip = false
@@ -2152,13 +2073,193 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 focus_mode = 0
 mouse_filter = 1
-custom_styles/hover = SubResource( 26 )
-custom_styles/normal = SubResource( 27 )
+custom_styles/hover = SubResource( 25 )
+custom_styles/normal = SubResource( 26 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "CONFIRM_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MiddleRight" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 720.0
+margin_right = -10.0
+margin_bottom = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AutoEvoInfoPanel" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight"]
+margin_right = 275.0
+margin_bottom = 192.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 274.0
+margin_bottom = 191.0
+
+[node name="Header" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer"]
+margin_right = 273.0
+margin_bottom = 28.0
+mouse_filter = 1
+custom_constants/margin_right = 10
+custom_constants/margin_top = 5
+custom_constants/margin_left = 10
+
+[node name="Title" type="Label" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Header"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 263.0
+margin_bottom = 28.0
+hint_tooltip = "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
+mouse_filter = 1
+custom_fonts/font = ExtResource( 79 )
+text = "AUTO-EVO_PREDICTION"
+autowrap = true
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer"]
+margin_top = 32.0
+margin_right = 273.0
+margin_bottom = 36.0
+mouse_filter = 1
+custom_styles/separator = SubResource( 8 )
+
+[node name="Body" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer"]
+margin_top = 40.0
+margin_right = 273.0
+margin_bottom = 190.0
+mouse_filter = 1
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 268.0
+margin_bottom = 145.0
+rect_min_size = Vector2( 263, 140 )
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer"]
+margin_right = 263.0
+margin_bottom = 82.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 0
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer"]
+margin_left = 3.0
+margin_right = 258.0
+margin_bottom = 79.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Total" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 255.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+
+[node name="Indicator" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total"]
+visible = false
+margin_top = 4.0
+margin_right = 10.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 10, 10 )
+size_flags_vertical = 4
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total"]
+margin_top = 1.0
+margin_right = 195.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 81 )
+text = "TOTAL_POPULATION_COLON"
+
+[node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total"]
+margin_left = 199.0
+margin_right = 255.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 82 )
+text = "n/a"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Best" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 255.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
+margin_top = 1.0
+margin_right = 141.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 81 )
+text = "BEST_PATCH_COLON"
+
+[node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
+margin_left = 145.0
+margin_right = 255.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 82 )
+text = "n/a"
+autowrap = true
+max_lines_visible = 5
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Worst" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 255.0
+margin_bottom = 65.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
+margin_top = 1.0
+margin_right = 159.0
+margin_bottom = 18.0
+custom_fonts/font = ExtResource( 81 )
+text = "WORST_PATCH_COLON"
+
+[node name="Value" type="Label" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
+margin_left = 163.0
+margin_right = 255.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 82 )
+text = "n/a"
+autowrap = true
+max_lines_visible = 5
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="VSeparator" type="VSeparator" parent="MicrobeEditorGUI/CellEditor/MiddleRight/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 69.0
+margin_right = 255.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 0, 10 )
+mouse_filter = 1
+custom_styles/separator = SubResource( 9 )
 
 [node name="NegativeAtpWarning" parent="MicrobeEditorGUI/CellEditor" instance=ExtResource( 3 )]
 margin_right = 500.0
@@ -2179,7 +2280,6 @@ DialogText = "DISCONNECTED_ORGANELLES_TEXT"
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
-mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2269,7 +2369,7 @@ custom_fonts/font = ExtResource( 101 )
 toggle_mode = true
 pressed = true
 action_mode = 0
-group = SubResource( 28 )
+group = SubResource( 27 )
 text = "AUTO_EVO"
 
 [node name="FoodChainButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -2282,7 +2382,7 @@ custom_fonts/font = ExtResource( 101 )
 disabled = true
 toggle_mode = true
 action_mode = 0
-group = SubResource( 28 )
+group = SubResource( 27 )
 text = "FOOD_CHAIN"
 
 [node name="TimelineButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
@@ -2295,7 +2395,7 @@ custom_fonts/font = ExtResource( 101 )
 disabled = true
 toggle_mode = true
 action_mode = 0
-group = SubResource( 28 )
+group = SubResource( 27 )
 text = "TIMELINE"
 
 [node name="EvoResultsPanel" type="PanelContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -2304,7 +2404,7 @@ margin_right = 846.0
 margin_bottom = 533.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_styles/panel = SubResource( 29 )
+custom_styles/panel = SubResource( 28 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
 margin_left = 1.0
@@ -2342,7 +2442,7 @@ margin_top = 20.0
 margin_right = 494.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 10 )
-custom_styles/separator = SubResource( 30 )
+custom_styles/separator = SubResource( 29 )
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_top = 30.0
@@ -2399,7 +2499,7 @@ margin_right = 328.0
 margin_bottom = 608.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer"]
-margin_right = 312.0
+margin_right = 318.0
 margin_bottom = 602.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2407,7 +2507,7 @@ custom_constants/margin_right = 15
 custom_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer"]
-margin_right = 297.0
+margin_right = 303.0
 margin_bottom = 592.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -2506,7 +2606,7 @@ rect_pivot_offset = Vector2( 9, 9 )
 toggle_mode = true
 pressed = true
 action_mode = 0
-group = SubResource( 31 )
+group = SubResource( 30 )
 texture_normal = ExtResource( 62 )
 expand = true
 stretch_mode = 5
@@ -2519,7 +2619,7 @@ rect_min_size = Vector2( 18, 18 )
 rect_pivot_offset = Vector2( 9, 9 )
 toggle_mode = true
 action_mode = 0
-group = SubResource( 31 )
+group = SubResource( 30 )
 texture_normal = ExtResource( 57 )
 expand = true
 stretch_mode = 5
@@ -2653,8 +2753,8 @@ margin_right = 140.0
 margin_bottom = 40.0
 focus_mode = 0
 mouse_filter = 1
-custom_styles/hover = SubResource( 26 )
-custom_styles/normal = SubResource( 27 )
+custom_styles/hover = SubResource( 25 )
+custom_styles/normal = SubResource( 26 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "NEXT_CAPITAL"
 __meta__ = {
@@ -2665,7 +2765,6 @@ __meta__ = {
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2897,7 +2996,7 @@ margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 32 )
+custom_styles/separator = SubResource( 31 )
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 margin_top = 24.0
@@ -3080,7 +3179,7 @@ margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 32 )
+custom_styles/separator = SubResource( 31 )
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
 margin_top = 24.0
@@ -3245,7 +3344,7 @@ margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 32 )
+custom_styles/separator = SubResource( 31 )
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 margin_top = 24.0
@@ -3505,7 +3604,7 @@ margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 32 )
+custom_styles/separator = SubResource( 31 )
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 margin_top = 24.0
@@ -3525,7 +3624,7 @@ margin_top = 5.0
 margin_right = 303.0
 margin_bottom = 5.0
 mouse_filter = 2
-theme = SubResource( 33 )
+theme = SubResource( 32 )
 
 [node name="Tween" type="Tween" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox"]
 
@@ -3533,7 +3632,7 @@ theme = SubResource( 33 )
 margin_top = 560.0
 margin_right = 338.0
 margin_bottom = 564.0
-custom_styles/separator = SubResource( 34 )
+custom_styles/separator = SubResource( 33 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer"]
 margin_top = 568.0
@@ -3577,10 +3676,94 @@ __meta__ = {
 margin_right = 140.0
 margin_bottom = 40.0
 mouse_filter = 1
-custom_styles/hover = SubResource( 26 )
-custom_styles/normal = SubResource( 27 )
+custom_styles/hover = SubResource( 25 )
+custom_styles/normal = SubResource( 26 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "NEXT_CAPITAL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopLeft" type="MarginContainer" parent="MicrobeEditorGUI"]
+margin_right = 353.0
+margin_bottom = 45.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 10
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/TopLeft"]
+margin_left = 15.0
+margin_top = 10.0
+margin_right = 348.0
+margin_bottom = 40.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReportButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
+margin_right = 104.0
+margin_bottom = 30.0
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = ExtResource( 101 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+toggle_mode = true
+pressed = true
+action_mode = 0
+group = SubResource( 34 )
+text = "REPORT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PatchMapButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
+margin_left = 114.0
+margin_right = 218.0
+margin_bottom = 30.0
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = ExtResource( 101 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 34 )
+text = "PATCH_MAP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CellEditorButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
+margin_left = 228.0
+margin_right = 333.0
+margin_bottom = 30.0
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = ExtResource( 101 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 34 )
+text = "EDITOR"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3665,6 +3848,7 @@ margin_right = 0.0
 margin_bottom = 0.0
 
 [node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource( 39 )]
+visible = false
 margin_left = 10.0
 margin_top = 30.0
 
@@ -3683,23 +3867,9 @@ visible = false
 theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
 
-[connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/TopLeft" to="MicrobeEditorGUI" method="OnMouseExit"]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/TopLeft/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseExit"]
-[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "Report" ]]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/TopLeft/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="OnMouseExit"]
-[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseExit"]
-[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/TopRight" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/TopRight" to="MicrobeEditorGUI" method="OnMouseExit"]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseExit"]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="gui_input" from="MicrobeEditorGUI/CellEditor" to="MicrobeEditorGUI" method="OnCellEditorGuiInput"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor" to="MicrobeEditorGUI" method="OnCellEditorMouseEntered"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor" to="MicrobeEditorGUI" method="OnCellEditorMouseExited"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure" to="MicrobeEditorGUI" method="SetSelectionMenuTab" binds= [ "Structure" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Membrane" to="MicrobeEditorGUI" method="SetSelectionMenuTab" binds= [ "Membrane" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour" to="MicrobeEditorGUI" method="SetSelectionMenuTab" binds= [ "Behaviour" ]]
@@ -3711,8 +3881,6 @@ HelpCategory = "MicrobeEditor"
 [connection signal="value_changed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Fear/FearSlider" to="MicrobeEditorGUI" method="OnBehaviourValueChanged" binds= [ "Fear" ]]
 [connection signal="value_changed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Activity/ActivitySlider" to="MicrobeEditorGUI" method="OnBehaviourValueChanged" binds= [ "Activity" ]]
 [connection signal="value_changed" from="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Focus/FocusSlider" to="MicrobeEditorGUI" method="OnBehaviourValueChanged" binds= [ "Focus" ]]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/BottomLeft" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/BottomLeft" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="button_down" from="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer/SymmetryButton" to="MicrobeEditorGUI" method="OnSymmetryHold"]
 [connection signal="button_up" from="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer/SymmetryButton" to="MicrobeEditorGUI" method="OnSymmetryReleased"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer/SymmetryButton" to="MicrobeEditorGUI" method="OnSymmetryClicked"]
@@ -3721,13 +3889,11 @@ HelpCategory = "MicrobeEditor"
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer/NewButton" to="MicrobeEditorGUI" method="OnNewCellClicked"]
 [connection signal="text_changed" from="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer/SpeciesName" to="MicrobeEditorGUI" method="OnSpeciesNameTextChanged"]
 [connection signal="text_entered" from="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer/SpeciesName" to="MicrobeEditorGUI" method="OnSpeciesNameTextEntered"]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/BottomRight" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/BottomRight" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/CancelButton" to="MicrobeEditorGUI" method="OnCancelActionClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/ConfirmButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/MiddleRight" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/MiddleRight" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="Confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", true ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", false ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendPressed" binds= [ "temperature" ]]
@@ -3735,8 +3901,6 @@ HelpCategory = "MicrobeEditor"
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "sunlight", false ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/sunlight" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendPressed" binds= [ "sunlight" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/NextTabButton/Button" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/MapPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/MapPanel" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/minusButton" to="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="CollapseButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons/plusButton" to="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions" method="ExpandButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer/Buttons/minusButton" to="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses" method="CollapseButtonPressed"]
@@ -3747,8 +3911,9 @@ HelpCategory = "MicrobeEditor"
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons/plusButton" to="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" method="ExpandButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer2/MoveToPatchButton" to="MicrobeEditorGUI" method="MoveToPatchClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer2/NextTabButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/BottomButtons" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/BottomButtons" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "Report" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/HelpButton" to="MicrobeEditorGUI" method="HelpButtonPressed"]
 [connection signal="DeletePressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="MicrobeEditorGUI" method="OnDeletePressed"]
