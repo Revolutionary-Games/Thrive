@@ -58,6 +58,18 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath GenerationLabelPath;
 
     [Export]
+    public NodePath AutoEvoPredictionPanelPath;
+
+    [Export]
+    public NodePath TotalPopulationLabelPath;
+
+    [Export]
+    public NodePath WorstPatchLabelPath;
+
+    [Export]
+    public NodePath BestPatchLabelPath;
+
+    [Export]
     public NodePath CurrentMutationPointsLabelPath;
 
     [Export]
@@ -244,6 +256,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath SizeIndicatorPath;
 
     [Export]
+    public NodePath TotalPopulationIndicatorPath;
+
+    [Export]
     public NodePath RigiditySliderPath;
 
     [Export]
@@ -329,6 +344,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Label speedLabel;
     private Label hpLabel;
     private Label generationLabel;
+    private Label totalPopulationLabel;
+    private Label bestPatchLabel;
+    private Label worstPatchLabel;
+
+    private Control autoEvoPredictionPanel;
 
     private Label currentMutationPointsLabel;
     private TextureRect mutationPointsArrow;
@@ -409,6 +429,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private TextureRect speedIndicator;
     private TextureRect hpIndicator;
     private TextureRect sizeIndicator;
+    private TextureRect totalPopulationIndicator;
 
     private Texture symmetryIconDefault;
     private Texture symmetryIcon2X;
@@ -416,6 +437,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Texture symmetryIcon6X;
     private Texture increaseIcon;
     private Texture decreaseIcon;
+    private Texture questionIcon;
     private AudioStream unableToPlaceHexSound;
     private Texture temperatureIcon;
 
@@ -436,6 +458,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
+
+    private PendingAutoEvoPrediction waitingForPrediction;
 
     public enum EditorTab
     {
@@ -472,6 +496,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speedLabel = GetNode<Label>(SpeedLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
+        totalPopulationLabel = GetNode<Label>(TotalPopulationLabelPath);
+        worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
+        bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
+
+        autoEvoPredictionPanel = GetNode<Control>(AutoEvoPredictionPanelPath);
 
         currentMutationPointsLabel = GetNode<Label>(CurrentMutationPointsLabelPath);
         mutationPointsArrow = GetNode<TextureRect>(MutationPointsArrowPath);
@@ -550,6 +579,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speedIndicator = GetNode<TextureRect>(SpeedIndicatorPath);
         hpIndicator = GetNode<TextureRect>(HpIndicatorPath);
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
+        totalPopulationIndicator = GetNode<TextureRect>(TotalPopulationIndicatorPath);
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
         symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
@@ -559,6 +589,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
         temperatureIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/Temperature.png");
+        questionIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
 
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
@@ -578,6 +609,17 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         UpdateMicrobePartSelections();
 
         RegisterTooltips();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (waitingForPrediction?.Finished != true)
+            return;
+
+        OnAutoEvoPredictionComplete(waitingForPrediction);
+        waitingForPrediction = null;
     }
 
     public void Init(MicrobeEditor editor)
@@ -762,6 +804,33 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public void UpdateCompoundBalances(System.Collections.Generic.Dictionary<Compound, CompoundBalance> balances)
     {
         compoundBalance.UpdateBalances(balances);
+    }
+
+    public void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, MicrobeSpecies playerSpeciesOriginal,
+        MicrobeSpecies playerSpeciesNew)
+    {
+        // Cancel previous one if there is one
+        waitingForPrediction?.AutoEvoRun.Abort();
+
+        totalPopulationIndicator.Show();
+        totalPopulationIndicator.Texture = questionIcon;
+
+        var prediction = new PendingAutoEvoPrediction
+        {
+            AutoEvoRun = startedRun,
+            PlayerSpeciesOriginal = playerSpeciesOriginal,
+            PlayerSpeciesNew = playerSpeciesNew,
+        };
+
+        if (startedRun.Finished)
+        {
+            OnAutoEvoPredictionComplete(prediction);
+            waitingForPrediction = null;
+        }
+        else
+        {
+            waitingForPrediction = prediction;
+        }
     }
 
     public void UpdateReportTabStatistics(Patch patch)
@@ -1386,10 +1455,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void SendUndoToTutorial(TutorialState tutorial)
     {
-        if (tutorial.EditorUndoTutorial == null)
-            return;
+        if (tutorial.EditorUndoTutorial != null)
+            tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
 
-        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+        if (tutorial.AutoEvoPrediction != null)
+            tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }
 
     /// <summary>
@@ -1725,6 +1795,64 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         else
         {
             hpIndicator.Hide();
+        }
+    }
+
+    private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
+    {
+        if (!run.AutoEvoRun.WasSuccessful)
+        {
+            GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
+            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+            return;
+        }
+
+        var results = run.AutoEvoRun.Results;
+
+        // Total population
+        var newPopulation = results.GetGlobalPopulation(run.PlayerSpeciesNew);
+
+        if (newPopulation > run.PlayerSpeciesOriginal.Population)
+        {
+            totalPopulationIndicator.Texture = increaseIcon;
+        }
+        else if (newPopulation < run.PlayerSpeciesOriginal.Population)
+        {
+            totalPopulationIndicator.Texture = decreaseIcon;
+        }
+        else
+        {
+            totalPopulationIndicator.Texture = null;
+        }
+
+        totalPopulationLabel.Text = newPopulation.ToString(CultureInfo.CurrentCulture);
+
+        var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
+
+        // Best
+        if (sorted.Count > 0)
+        {
+            var patch = sorted[0];
+            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
+                patch.Value);
+        }
+        else
+        {
+            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+
+        // And worst patch
+        if (sorted.Count > 1)
+        {
+            var patch = sorted[sorted.Count - 1];
+            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
+                patch.Value);
+        }
+        else
+        {
+            worstPatchLabel.Text = TranslationServer.Translate("N_A");
         }
     }
 
@@ -2095,5 +2223,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             return string.Compare(stringA, stringB, StringComparison.InvariantCulture);
         }
+    }
+
+    private class PendingAutoEvoPrediction
+    {
+        public AutoEvoRun AutoEvoRun;
+        public Species PlayerSpeciesOriginal;
+        public Species PlayerSpeciesNew;
+
+        public bool Finished => AutoEvoRun.Finished;
     }
 }

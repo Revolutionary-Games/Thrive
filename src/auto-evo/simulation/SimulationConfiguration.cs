@@ -51,5 +51,15 @@
         /// </summary>
         public List<Tuple<Species, SpeciesMigration>> Migrations { get; set; } =
             new List<Tuple<Species, SpeciesMigration>>();
+
+        /// <summary>
+        ///   If not empty, only the specified patches are ran
+        /// </summary>
+        /// <remarks>
+        ///    <para>
+        ///      TODO: change migration finding and mutation finding to only simulate patches they need
+        ///    </para>
+        /// </remarks>
+        public ISet<Patch> PatchesToRun { get; set; } = new HashSet<Patch>();
     }
 }
