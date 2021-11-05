@@ -108,6 +108,10 @@ custom_styles/panel = SubResource( 1 )
 Description = "CREATE_A_NEW_MICROBE"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/newCellButton/MarginContainer/VBoxContainer/Description")
 
+[node name="randomizeNameButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+Description = "RANDOMIZE_SPECIES_NAME"
+
 [node name="timeIndicator" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
