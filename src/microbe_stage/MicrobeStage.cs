@@ -487,9 +487,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [RunOnKeyDown("g_quick_save")]
     public void QuickSave()
     {
-        if (!TransitionFinished)
+        if (!TransitionFinished || wantsToSave)
         {
-            GD.Print("quick save is disabled while transitioning");
+            GD.Print("Skipping quick save as stage transition is not finished or saving is queued");
             return;
         }
 
