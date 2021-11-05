@@ -6,7 +6,6 @@ to be changed in the following files:
 
 - `doc/setup_instructions.md`
 - `scripts/godot_version.rb`
-- `scripts/install_godot_templates_steam_linux.rb`
 - `docker/ci/Dockerfile`
 
 The CI system needs to also be updated (`CIConfiguration.yml`). That
