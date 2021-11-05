@@ -1321,7 +1321,6 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
-
     private void BuildInputRebindControls()
     {
         inputGroupList.InitGroupList();
