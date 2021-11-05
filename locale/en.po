@@ -1788,14 +1788,16 @@ msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "No screenshot directory found"
 
 #: ../src/general/PauseMenu.cs:237
-#, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
-msgstr "Return to Menu"
+msgstr ""
+"Are you sure you want to exit to the main menu?\n"
+"You will lose any unsaved progress."
 
 #: ../src/general/PauseMenu.cs:254
-#, fuzzy
 msgid "QUIT_GAME_WARNING"
-msgstr "GLES2 Mode Warning"
+msgstr ""
+"Are you sure you want to quit the game?\n"
+"You will lose any unsaved progress."
 
 #: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
@@ -1824,9 +1826,8 @@ msgid "EXIT"
 msgstr "Exit"
 
 #: ../src/general/PauseMenu.tscn:161
-#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "CONFIRM"
+msgstr "Confirm Exit"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
