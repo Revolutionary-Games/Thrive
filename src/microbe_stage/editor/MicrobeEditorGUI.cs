@@ -1193,24 +1193,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
-    /// <summary>
-    ///   Called once when the mouse enters the editor GUI.
-    /// </summary>
-    internal void OnMouseEnter()
-    {
-        editor.ShowHover = false;
-        UpdateMutationPointsBar();
-    }
-
-    /// <summary>
-    ///   Called when the mouse is no longer hovering the editor GUI.
-    /// </summary>
-    internal void OnMouseExit()
-    {
-        editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
-        UpdateMutationPointsBar();
-    }
-
     internal void SetUndoButtonStatus(bool enabled)
     {
         undoButton.Disabled = !enabled;
@@ -1478,6 +1460,39 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         if (tutorial.AutoEvoPrediction != null)
             tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+    }
+
+    /// <summary>
+    ///   Called once when the mouse enters the background.
+    /// </summary>
+    private void OnCellEditorMouseEntered()
+    {
+        editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
+        UpdateMutationPointsBar();
+    }
+
+    /// <summary>
+    ///   Called when the mouse is no longer hovering the background.
+    /// </summary>
+    private void OnCellEditorMouseExited()
+    {
+        editor.ShowHover = false;
+        UpdateMutationPointsBar();
+    }
+
+    /// <summary>
+    ///   To get MouseEnter/Exit the CellEditor needs MouseFilter != Ignore.
+    ///   Controls with MouseFilter != Ignore always handle mouse events.
+    ///   So to get MouseClicks via the normal InputManager, this must be forwarded.
+    ///   This is needed to respect the current Key Settings.
+    /// </summary>
+    /// <param name="inputEvent">The event the user fired</param>
+    private void OnCellEditorGuiInput(InputEvent inputEvent)
+    {
+        if (!editor.ShowHover)
+            return;
+
+        InputManager.ForwardInput(inputEvent);
     }
 
     private void UpdateSymmetryIcon()
