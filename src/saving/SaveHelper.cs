@@ -46,7 +46,6 @@ public static class SaveHelper
     /// <remarks>
     ///   <para>
     ///     Used for knowing whether to show confirmation dialog on the pause menu when exiting the game.
-    ///     TODO: Implement a method overriding this flag as old in some way.
     ///   </para>
     /// </remarks>
     /// <returns>True if the last save is still recent, false if otherwise.</returns>
@@ -362,6 +361,15 @@ public static class SaveHelper
     public static void MarkLastSaveToCurrentTime()
     {
         lastSave = DateTime.Now;
+    }
+
+    /// <summary>
+    ///   Sets the stored lastSave time value to null. Can be used to override
+    ///   <see cref="SavedRecently"/> flag to false.
+    /// </summary>
+    public static void ClearLastSaveTime()
+    {
+        lastSave = null;
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,

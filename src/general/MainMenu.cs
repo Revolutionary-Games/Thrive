@@ -279,6 +279,8 @@ public class MainMenu : NodeWithInput
         }
 
         TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
+
+        SaveHelper.ClearLastSaveTime();
     }
 
     private void ToolsPressed()
