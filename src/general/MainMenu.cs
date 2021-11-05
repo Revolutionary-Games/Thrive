@@ -416,5 +416,6 @@ public class MainMenu : NodeWithInput
     private void OnEnteringGame()
     {
         CheatManager.OnCheatsDisabled();
+        SaveHelper.ClearLastSaveTime();
     }
 }
