@@ -144,7 +144,7 @@ public class InputEventItem : Node
                 Delete();
 
                 // Rebind canceled, alert the InputManager so it can resume getting input
-                InputManager.RebindingIsActive = false;
+                InputManager.PerformingRebind = false;
 
                 return;
             }
@@ -175,7 +175,7 @@ public class InputEventItem : Node
                     WaitingForInput = false;
 
                     // Rebind canceled, alert the InputManager so it can resume getting input
-                    InputManager.RebindingIsActive = false;
+                    InputManager.PerformingRebind = false;
 
                     if (AssociatedEvent == null)
                     {
@@ -204,9 +204,6 @@ public class InputEventItem : Node
         // The old key input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;
         AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
-
-        // Consume current input event so it is only used for rebinding
-        GetTree().SetInputAsHandled();
 
         // Check conflicts, and don't proceed if there is a conflict
         if (CheckNewKeyConflicts(@event, groupList, old))
@@ -284,9 +281,6 @@ public class InputEventItem : Node
 
         // Update the button text
         UpdateButtonText();
-
-        // Rebinding is done so we alert the InputManager that it can resume getting input
-        InputManager.RebindingIsActive = false;
     }
 
     /// <summary>
@@ -319,10 +313,6 @@ public class InputEventItem : Node
         WaitingForInput = true;
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
-
-        // Signal to the input manager that a rebinding has started
-        // and it should ignore input until the rebind is finished
-        InputManager.RebindingIsActive = true;
     }
 
     private void UpdateButtonText()

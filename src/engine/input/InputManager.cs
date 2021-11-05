@@ -40,9 +40,9 @@ public class InputManager : Node
     }
 
     /// <summary>
-    ///   Indicates whether a rebinding is in progress
+    ///   Set to true when a rebinding is being performed, used to discard input
     /// </summary>
-    public static bool RebindingIsActive { get; set; }
+    public static bool PerformingRebind { get; set; }
 
     /// <summary>
     ///   Adds the instance to the list of objects receiving input.
@@ -229,10 +229,6 @@ public class InputManager : Node
 
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
-        // Ignore input while rebinding
-        if (RebindingIsActive)
-            return;
-
         // Ignore mouse motion
         // TODO: support mouse movement input as well
         if (@event is InputEventMouseMotion)
