@@ -306,6 +306,7 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
+            // Iterate over a copy to be secure from changes to the dictionary.
             foreach (var speciesEntry in entry.Value.SpeciesInPatch.ToList())
             {
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
