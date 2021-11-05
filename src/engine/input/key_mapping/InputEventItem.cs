@@ -141,12 +141,12 @@ public class InputEventItem : Node
         {
             if (xButton.IsHovered() && !xButton.Disabled)
             {
+                GetTree().SetInputAsHandled();
+
                 Delete();
 
                 // Rebind canceled, alert the InputManager so it can resume getting input
                 InputManager.PerformingRebind = false;
-
-                GetTree().SetInputAsHandled();
 
                 return;
             }
@@ -174,6 +174,8 @@ public class InputEventItem : Node
             {
                 case (uint)KeyList.Escape:
                 {
+                    GetTree().SetInputAsHandled();
+
                     InputGroupList.WasListeningForInput = true;
                     WaitingForInput = false;
 
@@ -189,7 +191,6 @@ public class InputEventItem : Node
                         UpdateButtonText();
                     }
 
-                    GetTree().SetInputAsHandled();
                     return;
                 }
 
