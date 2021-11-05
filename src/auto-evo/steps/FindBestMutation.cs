@@ -107,8 +107,8 @@
             var bestBetter = new List<Patch>();
             var secondBetter = new List<Patch>();
 
-            // Used
-            (Patch patch, long difference) closestMatch = (null, 0);
+            // Used to track in which patch the best and second best where the closest
+            (Patch Patch, long Difference) closestMatch = (null, 0);
 
             foreach (var patch in best.PatchScores.Select(p => p.Key).Concat(data.PatchScores.Select(p => p.Key))
                 .Distinct())
@@ -119,7 +119,7 @@
                 if (!data.PatchScores.TryGetValue(patch, out long secondScore))
                     secondScore = 0;
 
-                if (closestMatch.patch == null || closestMatch.difference < secondScore - bestScore)
+                if (closestMatch.Patch == null || closestMatch.Difference < secondScore - bestScore)
                 {
                     closestMatch = (patch, secondScore - bestScore);
                 }
@@ -136,11 +136,11 @@
 
             if (secondBetter.Count < 1)
             {
-                if (closestMatch.patch == null)
+                if (closestMatch.Patch == null)
                     return;
 
-                secondBetter.Add(closestMatch.patch);
-                if (!bestBetter.Remove(closestMatch.patch))
+                secondBetter.Add(closestMatch.Patch);
+                if (!bestBetter.Remove(closestMatch.Patch))
                     throw new Exception("Couldn't remove a list item that should have been there");
             }
 

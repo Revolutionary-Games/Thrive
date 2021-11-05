@@ -134,7 +134,8 @@ public class Save
         return save;
     }
 
-    public static (SaveInformation, JObject, Image) LoadJSONStructureFromFile(string saveName)
+    public static (SaveInformation Info, JObject SaveObject, Image Screenshot) LoadJSONStructureFromFile(
+        string saveName)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
         var (infoStr, saveStr, screenshotData) = LoadDataFromFile(target, true, true, true);
@@ -262,7 +263,7 @@ public class Save
         OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
     }
 
-    private static (SaveInformation info, Save save, Image screenshot) LoadFromFile(string file, bool info,
+    private static (SaveInformation Info, Save Save, Image Screenshot) LoadFromFile(string file, bool info,
         bool save, bool screenshot, Action readFinished)
     {
         using (var directory = new Directory())
@@ -315,7 +316,7 @@ public class Save
         return (infoResult, saveResult, imageResult);
     }
 
-    private static (string infoStr, string saveStr, byte[] screenshot) LoadDataFromFile(string file, bool info,
+    private static (string InfoStr, string SaveStr, byte[] Screenshot) LoadDataFromFile(string file, bool info,
         bool save, bool screenshot)
     {
         string infoStr = null;
