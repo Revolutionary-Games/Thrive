@@ -279,8 +279,6 @@ public class MainMenu : NodeWithInput
         }
 
         TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
-
-        SaveHelper.ClearLastSaveTime();
     }
 
     private void ToolsPressed()
@@ -418,5 +416,6 @@ public class MainMenu : NodeWithInput
     private void OnEnteringGame()
     {
         CheatManager.OnCheatsDisabled();
+        SaveHelper.ClearLastSaveTime();
     }
 }
