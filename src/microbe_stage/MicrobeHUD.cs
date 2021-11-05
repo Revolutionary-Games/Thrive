@@ -686,19 +686,20 @@ public class MicrobeHUD : Control
 
         // Show hovered compound information in GUI
         bool anyCompoundVisible = false;
-        foreach (var compound in stage.HoverInfo.HoveredCompounds)
+        foreach (var compound in hoveredCompoundControls)
         {
-            var compoundControl = hoveredCompoundControls[compound.Key];
+            var compoundControl = compound.Value;
+            stage.HoverInfo.HoveredCompounds.TryGetValue(compound.Key, out float amount);
 
             // It is not useful to show trace amounts of a compound, so those are skipped
-            if (compound.Value < Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
+            if (amount < Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
             {
                 compoundControl.Visible = false;
                 continue;
             }
 
-            compoundControl.Category = GetCompoundDensityCategory(compound.Value);
-            compoundControl.CategoryColor = GetCompoundDensityCategoryColor(compound.Value);
+            compoundControl.Category = GetCompoundDensityCategory(amount);
+            compoundControl.CategoryColor = GetCompoundDensityCategoryColor(amount);
             compoundControl.Visible = true;
             anyCompoundVisible = true;
         }

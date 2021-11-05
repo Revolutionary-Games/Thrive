@@ -601,42 +601,42 @@ public static class Constants
     public const int MEBIBYTE = 1024 * KIBIBYTE;
 
     /// <summary>
-    ///  Delay for the compound row to hide when standing still and compound amount is 0.
+    ///   Delay for the compound row to hide when standing still and compound amount is 0.
     /// </summary>
     public const float COMPOUND_HOVER_INFO_REMOVE_DELAY = 0.5f;
 
     /// <summary>
-    ///  Compound changes below that value are ignored while mouse world position doesn't change.
+    ///   Compound changes below this value are ignored while mouse world position doesn't change.
     /// </summary>
     public const float COMPOUND_HOVER_INFO_THRESHOLD = 2.5f;
 
     /// <summary>
-    ///  Minimum amount for the very little category in the hover info.
+    ///   Minimum amount for the very little category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_VERY_LITTLE = 0.5f;
 
     /// <summary>
-    ///  Minimum amount for the little category in the hover info.
+    ///   Minimum amount for the little category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 5f;
 
     /// <summary>
-    ///  Minimum amount for the some category in the hover info.
+    ///   Minimum amount for the some category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_SOME = 20f;
 
     /// <summary>
-    ///  Minimum amount for the fair amount category in the hover info.
+    ///   Minimum amount for the fair amount category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 50f;
 
     /// <summary>
-    ///  Minimum amount for the quite a bit category in the hover info.
+    ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 200f;
 
     /// <summary>
-    ///  Minimum amount for the an abundance category in the hover info.
+    ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 500f;
 

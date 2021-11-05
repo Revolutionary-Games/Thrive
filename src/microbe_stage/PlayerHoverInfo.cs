@@ -15,7 +15,13 @@ public class PlayerHoverInfo : Node
     private readonly Dictionary<Compound, float> compoundDelayTimer = new Dictionary<Compound, float>();
     private MicrobeCamera camera;
     private CompoundCloudSystem cloudSystem;
+
     private Vector3? lastCursorWorldPos;
+
+    /// <summary>
+    ///   List off all cloud compounds to iterate.
+    /// </summary>
+    private List<Compound> cloudCompounds;
 
     /// <summary>
     ///   All compounds the user is hovering over with delay to reduce flickering.
@@ -33,6 +39,7 @@ public class PlayerHoverInfo : Node
     {
         this.camera = camera;
         this.cloudSystem = cloudSystem;
+        cloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
     }
 
     public override void _Process(float delta)
@@ -49,30 +56,31 @@ public class PlayerHoverInfo : Node
             lastCursorWorldPos = camera.CursorWorldPos;
         }
 
-        foreach (var compound in currentHoveredCompounds)
+        foreach (var compound in cloudCompounds)
         {
-            HoveredCompounds.TryGetValue(compound.Key, out float oldAmount);
+            HoveredCompounds.TryGetValue(compound, out float oldAmount);
+            currentHoveredCompounds.TryGetValue(compound, out float newAmount);
 
             // Delay removing of label to reduce flickering.
-            if (compound.Value == 0f && oldAmount > 0f)
+            if (newAmount == 0f && oldAmount > 0f)
             {
-                compoundDelayTimer.TryGetValue(compound.Key, out float delayDelta);
+                compoundDelayTimer.TryGetValue(compound, out float delayDelta);
                 delayDelta += delta;
                 if (delayDelta > Constants.COMPOUND_HOVER_INFO_REMOVE_DELAY)
                 {
-                    compoundDelayTimer.Remove(compound.Key);
-                    HoveredCompounds[compound.Key] = 0f;
+                    compoundDelayTimer.Remove(compound);
+                    HoveredCompounds[compound] = 0f;
                     continue;
                 }
 
-                compoundDelayTimer[compound.Key] = delayDelta;
+                compoundDelayTimer[compound] = delayDelta;
                 continue;
             }
 
             // Ignore small changes to reduce flickering.
-            if (Mathf.Abs(compound.Value - oldAmount) >= Constants.COMPOUND_HOVER_INFO_THRESHOLD)
+            if (Mathf.Abs(newAmount - oldAmount) >= Constants.COMPOUND_HOVER_INFO_THRESHOLD)
             {
-                HoveredCompounds[compound.Key] = compound.Value;
+                HoveredCompounds[compound] = newAmount;
             }
         }
 

@@ -412,7 +412,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 break;
 
             float amount = HackyAddress(Density[x, y], i);
-            result[Compounds[i]] = amount;
+            if (amount > 0)
+                result[Compounds[i]] = amount;
         }
     }
 
