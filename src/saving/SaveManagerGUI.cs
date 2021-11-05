@@ -60,9 +60,9 @@ public class SaveManagerGUI : Control
     private int currentAutoSaveCount;
     private int currentQuickSaveCount;
 
-    private Task<(int count, long diskSpace)> getTotalSaveCountTask;
-    private Task<(int count, long diskSpace)> getAutoSaveCountTask;
-    private Task<(int count, long diskSpace)> getQuickSaveCountTask;
+    private Task<(int Count, long DiskSpace)> getTotalSaveCountTask;
+    private Task<(int Count, long DiskSpace)> getAutoSaveCountTask;
+    private Task<(int Count, long DiskSpace)> getQuickSaveCountTask;
 
     [Signal]
     public delegate void OnBackPressed();
@@ -112,8 +112,8 @@ public class SaveManagerGUI : Control
             return;
 
         var info = getTotalSaveCountTask.Result;
-        currentAutoSaveCount = getAutoSaveCountTask.Result.count;
-        currentQuickSaveCount = getQuickSaveCountTask.Result.count;
+        currentAutoSaveCount = getAutoSaveCountTask.Result.Count;
+        currentQuickSaveCount = getQuickSaveCountTask.Result.Count;
 
         getTotalSaveCountTask.Dispose();
         getAutoSaveCountTask.Dispose();
@@ -122,9 +122,9 @@ public class SaveManagerGUI : Control
         getAutoSaveCountTask = null;
         getQuickSaveCountTask = null;
 
-        totalSaveCount.Text = info.count.ToString(CultureInfo.CurrentCulture);
+        totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
         totalSaveSize.Text =
-            Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
+            Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
         UpdateSelectedCount();
         UpdateButtonsStatus();
@@ -159,9 +159,9 @@ public class SaveManagerGUI : Control
         saveCountRefreshed = true;
         refreshing = true;
 
-        getTotalSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
-        getAutoSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("auto_save"));
-        getQuickSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("quick_save"));
+        getTotalSaveCountTask = new Task<(int Count, long DiskSpace)>(() => SaveHelper.CountSaves());
+        getAutoSaveCountTask = new Task<(int Count, long DiskSpace)>(() => SaveHelper.CountSaves("auto_save"));
+        getQuickSaveCountTask = new Task<(int Count, long DiskSpace)>(() => SaveHelper.CountSaves("quick_save"));
 
         TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
         TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
