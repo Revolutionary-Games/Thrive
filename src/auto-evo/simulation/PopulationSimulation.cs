@@ -21,9 +21,17 @@
 
             var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
 
+            IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate = parameters.OriginalMap.Patches;
+
+            // Skip patches not configured to be simulated in order to run faster
+            if (parameters.PatchesToRun.Count > 0)
+            {
+                patchesToSimulate = patchesToSimulate.Where(p => parameters.PatchesToRun.Contains(p.Value));
+            }
+
             while (parameters.StepsLeft > 0)
             {
-                RunSimulationStep(parameters, speciesToSimulate, random);
+                RunSimulationStep(parameters, speciesToSimulate, patchesToSimulate, random);
                 --parameters.StepsLeft;
             }
         }
@@ -106,9 +114,10 @@
             return species;
         }
 
-        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species, Random random)
+        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
+            IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random)
         {
-            foreach (var entry in parameters.OriginalMap.Patches)
+            foreach (var entry in patchesToSimulate)
             {
                 // Simulate the species in each patch taking into account the already computed populations
                 SimulatePatchStep(parameters.Results, entry.Value,
