@@ -74,6 +74,9 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new EditorTutorialEnd();
 
+    [JsonProperty]
+    public AutoEvoPrediction AutoEvoPrediction { get; private set; } = new AutoEvoPrediction();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -333,6 +336,7 @@ public class TutorialState : ITutorialInput
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
+            AutoEvoPrediction,
         };
     }
 }
