@@ -100,6 +100,16 @@ public class InputManager : Node
     }
 
     /// <summary>
+    ///   Used for Controls to forward mouse events to the InputManager,
+    ///   as Controls swallow the MouseEvents if MouseFilter != Ignore.
+    /// </summary>
+    /// <param name="inputEvent">The event the user fired</param>
+    public static void ForwardInput(InputEvent inputEvent)
+    {
+        staticInstance._UnhandledInput(inputEvent);
+    }
+
+    /// <summary>
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
     /// <param name="delta">The time since the last _Process call</param>

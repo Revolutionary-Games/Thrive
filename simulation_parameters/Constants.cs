@@ -123,6 +123,11 @@ public static class Constants
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
 
     /// <summary>
+    ///   If true a mutated copy of the (player) species is created when entering the editor
+    /// </summary>
+    public const bool CREATE_COPY_OF_EDITED_SPECIES = false;
+
+    /// <summary>
     ///   Max number of concurrent audio players that may be spawned per entity.
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
@@ -426,7 +431,8 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
     // Auto evo population algorithm tweak variables
-    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
+    // TODO: move all of these into auto-evo_parameters.json
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 200;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
@@ -440,6 +446,13 @@ public static class Constants
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
+    public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
+    public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
+
+    /// <summary>
+    ///   How much auto-evo affects the player species compared to the normal amount
+    /// </summary>
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.8f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
