@@ -3,7 +3,7 @@ using Godot;
 
 public class LicensesDisplay : PanelContainer
 {
-    private List<(string heading, string file)> licensesToShow;
+    private List<(string Heading, string File)> licensesToShow;
 
     private bool licensesLoaded;
 
@@ -17,7 +17,7 @@ public class LicensesDisplay : PanelContainer
         textsContainer = GetNode<Container>(TextsContainerPath);
 
         // These don't react to language change, but I doubt it's important enough to fix
-        licensesToShow = new List<(string heading, string file)>
+        licensesToShow = new List<(string Heading, string File)>
         {
             (string.Empty, Constants.LICENSE_FILE),
             (string.Empty, Constants.ASSETS_README),
@@ -54,21 +54,21 @@ public class LicensesDisplay : PanelContainer
     {
         foreach (var licenseTuple in licensesToShow)
         {
-            var heading = new Label { Text = licenseTuple.heading };
+            var heading = new Label { Text = licenseTuple.Heading };
             heading.AddFontOverride("font", GetFont("lato_bold_regular", "Fonts"));
             textsContainer.AddChild(heading);
 
             string text;
             using var reader = new File();
 
-            if (reader.Open(licenseTuple.file, File.ModeFlags.Read) == Error.Ok)
+            if (reader.Open(licenseTuple.File, File.ModeFlags.Read) == Error.Ok)
             {
                 text = reader.GetAsText();
             }
             else
             {
                 text = "Missing file to show here!";
-                GD.PrintErr("Can't load file to show in licenses: ", licenseTuple.file);
+                GD.PrintErr("Can't load file to show in licenses: ", licenseTuple.File);
             }
 
             var content = new Label

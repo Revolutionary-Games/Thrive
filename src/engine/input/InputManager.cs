@@ -25,8 +25,7 @@ public class InputManager : Node
     ///     This is sorted based on priority, so if Dictionary doesn't keep key order this will break.
     ///   </para>
     /// </remarks>
-    private Dictionary<InputAttribute, List<WeakReference>> attributes
-        = new Dictionary<InputAttribute, List<WeakReference>>();
+    private Dictionary<InputAttribute, List<WeakReference>> attributes = new();
 
     public InputManager()
     {
