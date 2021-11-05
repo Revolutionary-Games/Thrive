@@ -23,11 +23,14 @@
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
+    <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\MarineSnowFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
+    <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
+    <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
@@ -307,6 +310,7 @@
     <Compile Include="src\general\VersionUtils.cs" />
     <Compile Include="src\tutorial\ITutorialGUI.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
+    <Compile Include="src\tutorial\microbe_editor\AutoEvoPrediction.cs" />
     <Compile Include="src\tutorial\microbe_editor\CellEditorIntroduction.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorRedoTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorTutorialEnd.cs" />
@@ -353,6 +357,7 @@
     <PackageReference Include="Nito.Collections.Deque">
       <Version>1.1.1</Version>
     </PackageReference>
+    <PackageReference Update="StyleCop.Analyzers" Version="1.2.0-beta.354" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="export_presets.cfg" />

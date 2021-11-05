@@ -41,14 +41,14 @@ public class RunOnAxisGroupAttribute : InputAttribute
 
     public override void OnProcess(float delta)
     {
-        List<(float currentValue, float defaultValue)> axisValues =
+        List<(float CurrentValue, float DefaultValue)> axisValues =
             axes.Select(axis => (axis.CurrentResult, axis.DefaultState)).ToList();
 
         // Skip process if all axes have default values, and invoke also with no input is not set
-        if (!InvokeAlsoWithNoInput && axisValues.All(p => Math.Abs(p.currentValue - p.defaultValue) < 0.001f))
+        if (!InvokeAlsoWithNoInput && axisValues.All(p => Math.Abs(p.CurrentValue - p.DefaultValue) < 0.001f))
             return;
 
-        var callParameters = axisValues.Select(p => p.currentValue).ToList();
+        var callParameters = axisValues.Select(p => p.CurrentValue).ToList();
         callParameters.Insert(0, delta);
 
         // Casting to an object[] to match CallMethods parameter declaration

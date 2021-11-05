@@ -51,6 +51,8 @@ public static class Constants
 
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
+    public const float MINIMUM_CLOUD_DENSITY_TO_SHOW_PLAYER = 0.15f;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>
@@ -119,6 +121,11 @@ public static class Constants
     // Right now these are used for species split from the player
     public const int INITIAL_SPLIT_POPULATION_MIN = 600;
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
+
+    /// <summary>
+    ///   If true a mutated copy of the (player) species is created when entering the editor
+    /// </summary>
+    public const bool CREATE_COPY_OF_EDITED_SPECIES = false;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be spawned per entity.
@@ -424,7 +431,8 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
     // Auto evo population algorithm tweak variables
-    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
+    // TODO: move all of these into auto-evo_parameters.json
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 200;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
@@ -438,6 +446,15 @@ public static class Constants
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
+    public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
+    public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
+
+    /// <summary>
+    ///   How much auto-evo affects the player species compared to the normal amount
+    /// </summary>
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.8f;
+
+    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
@@ -499,18 +516,11 @@ public static class Constants
     public const int PATCH_HISTORY_RANGE = 10;
 
     /// <summary>
-    ///   When checking if the mouse is hovering over a microbe, this increments
-    ///   the testing area as an addition to microbe radius, so it's easier to hover
-    ///   over smaller microbes.
-    /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
-
-    /// <summary>
-    ///   Squared value of <see cref="MICROBE_HOVER_DETECTION_EXTRA_RADIUS"/>.
+    ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
+    ///   to see what small cells are.
     ///   Specifically for use with LengthSquared.
     /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED =
-        MICROBE_HOVER_DETECTION_EXTRA_RADIUS * MICROBE_HOVER_DETECTION_EXTRA_RADIUS;
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
