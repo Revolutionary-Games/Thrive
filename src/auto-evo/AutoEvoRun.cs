@@ -306,8 +306,12 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
+            // TODO: No one should be allowed to update the SpeciesInPatch.
+            // If this happens, the root cause must be addressed.
+
             // Iterate over a copy to be secure from changes to the dictionary.
-            foreach (var speciesEntry in entry.Value.SpeciesInPatch.ToList())
+            var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
+            foreach (var speciesEntry in speciesInPatchCopy)
             {
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
@@ -329,6 +333,25 @@ public class AutoEvoRun
                     steps.Enqueue(new FindBestMigration(map, speciesEntry.Key, random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
+                }
+            }
+
+            // Verify the length.
+            if (speciesInPatchCopy.Count != entry.Value.SpeciesInPatch.Count)
+            {
+                GD.PrintErr("Auto-evo: Issue #1880 occured (Collection was modified).");
+            }
+            else
+            {
+                // Check that each entry is still the same.
+                foreach (var speciesEntry in speciesInPatchCopy)
+                {
+                    if (!entry.Value.SpeciesInPatch.TryGetValue(speciesEntry.Key, out long value)
+                        || speciesEntry.Value != value)
+                    {
+                        GD.PrintErr("Auto-evo: Issue #1880 occured (Collection was modified).");
+                        break;
+                    }
                 }
             }
 
