@@ -94,6 +94,7 @@ ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorDialog")
 CustomUsernameEnabledPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled")
 CustomUsernamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername")
 JSONDebugModePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer5/JSONDebug")
+UnsavedProgressWarningPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/UnsavedProgressWarning")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -203,28 +204,28 @@ __meta__ = {
 }
 
 [node name="Vsync" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_right = 71.0
-margin_bottom = 32.0
+margin_right = 81.0
+margin_bottom = 22.0
 size_flags_horizontal = 0
 text = "VSYNC"
 
 [node name="Fullscreen" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 42.0
-margin_right = 131.0
-margin_bottom = 74.0
+margin_top = 32.0
+margin_right = 141.0
+margin_bottom = 54.0
 size_flags_horizontal = 0
 text = "FULLSCREEN"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 84.0
+margin_top = 64.0
 margin_right = 648.0
-margin_bottom = 88.0
+margin_bottom = 68.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 98.0
+margin_top = 78.0
 margin_right = 648.0
-margin_bottom = 140.0
+margin_bottom = 120.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer"]
@@ -265,9 +266,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 150.0
+margin_top = 130.0
 margin_right = 648.0
-margin_bottom = 172.0
+margin_bottom = 152.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer4"]
 margin_right = 113.0
@@ -288,9 +289,9 @@ margin_bottom = 22.0
 text = "AUTO"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 182.0
+margin_top = 162.0
 margin_right = 648.0
-margin_bottom = 204.0
+margin_bottom = 184.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer3"]
 margin_right = 83.0
@@ -311,9 +312,9 @@ margin_bottom = 22.0
 text = "400"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 214.0
+margin_top = 194.0
 margin_right = 648.0
-margin_bottom = 239.0
+margin_bottom = 219.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer2"]
@@ -343,28 +344,28 @@ __meta__ = {
 }
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer"]
-margin_top = 249.0
+margin_top = 229.0
 margin_right = 648.0
-margin_bottom = 281.0
+margin_bottom = 251.0
 size_flags_horizontal = 3
 
 [node name="ChromaticToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5" instance=ExtResource( 10 )]
-margin_right = 234.0
-margin_bottom = 32.0
+margin_right = 244.0
+margin_bottom = 22.0
 pressed = true
 text = "CHROMATIC_ABERRATION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_left = 238.0
-margin_right = 441.0
-margin_bottom = 32.0
+margin_left = 248.0
+margin_right = 444.0
+margin_bottom = 22.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 2 )
 
 [node name="ChromaticAmount" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_left = 445.0
+margin_left = 448.0
 margin_right = 648.0
-margin_bottom = 32.0
+margin_bottom = 22.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -373,17 +374,17 @@ max_value = 50.0
 value = 20.0
 
 [node name="DisplayAbilitiesBar" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 291.0
-margin_right = 227.0
-margin_bottom = 323.0
+margin_top = 261.0
+margin_right = 237.0
+margin_bottom = 283.0
 size_flags_horizontal = 0
 pressed = true
 text = "DISPLAY_ABILITIES_BAR"
 
 [node name="GUILightsEffectToggle" parent="CenterContainer/VBoxContainer/PanelContainer/Graphics/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 333.0
-margin_right = 276.0
-margin_bottom = 365.0
+margin_top = 293.0
+margin_right = 286.0
+margin_bottom = 315.0
 size_flags_horizontal = 0
 pressed = true
 text = "ENABLE_GUI_LIGHT_EFFECTS"
@@ -1066,30 +1067,36 @@ margin_bottom = 224.0
 size_flags_horizontal = 0
 text = "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
+[node name="UnsavedProgressWarning" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer" instance=ExtResource( 10 )]
 margin_top = 234.0
 margin_right = 648.0
-margin_bottom = 238.0
+margin_bottom = 256.0
+text = "SHOW_UNSAVED_PROGRESS_WARNING"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
+margin_top = 266.0
+margin_right = 648.0
+margin_bottom = 270.0
 
 [node name="Cheats" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 248.0
+margin_top = 280.0
 margin_right = 230.0
-margin_bottom = 270.0
+margin_bottom = 302.0
 size_flags_horizontal = 0
 text = "CHEAT_KEYS_ENABLED"
 
 [node name="CustomUsernameEnabled" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer" instance=ExtResource( 10 )]
-margin_top = 280.0
+margin_top = 312.0
 margin_right = 272.0
-margin_bottom = 302.0
+margin_bottom = 334.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 text = "USE_A_CUSTOM_USERNAME"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
-margin_top = 312.0
+margin_top = 344.0
 margin_right = 648.0
-margin_bottom = 339.0
+margin_bottom = 371.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3"]
 margin_top = 2.0
@@ -1111,9 +1118,9 @@ margin_bottom = 27.0
 rect_min_size = Vector2( 300, 0 )
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
-margin_top = 349.0
+margin_top = 381.0
 margin_right = 648.0
-margin_bottom = 381.0
+margin_bottom = 413.0
 size_flags_horizontal = 3
 
 [node name="ScreenshotFolder" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer4"]
@@ -1132,9 +1139,9 @@ action_mode = 0
 text = "OPEN_LOGS_FOLDER"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer"]
-margin_top = 391.0
+margin_top = 423.0
 margin_right = 648.0
-margin_bottom = 413.0
+margin_bottom = 445.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer5"]
 margin_right = 183.0
@@ -1244,8 +1251,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 585.0
+margin_bottom = 78.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -1382,6 +1389,7 @@ WindowTitle = "NO_SCREENSHOT_DIRECTORY"
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves" to="." method="OnMaxQuickSavesValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/TutorialsEnabledOnNewGame" to="." method="OnTutorialsOnNewGameToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/TutorialsEnabled" to="." method="OnTutorialsEnabledToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/UnsavedProgressWarning" to="." method="OnUnsavedProgressWarningToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/CustomUsernameEnabled" to="." method="OnCustomUsernameEnabledToggled"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/PanelContainer/Misc/VBoxContainer/HBoxContainer3/CustomUsername" to="." method="OnCustomUsernameTextChanged"]

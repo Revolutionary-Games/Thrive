@@ -28,14 +28,14 @@ public class PauseMenu : ControlWithInput
     public NodePath LoadSaveListPath;
 
     [Export]
-    public NodePath ExitConfirmationDialogPath;
+    public NodePath UnsavedProgressWarningPath;
 
     private Control primaryMenu;
     private HelpScreen helpScreen;
     private Control loadMenu;
     private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
-    private CustomConfirmationDialog exitConfirmationDialog;
+    private CustomConfirmationDialog unsavedProgressWarning;
 
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
@@ -60,7 +60,8 @@ public class PauseMenu : ControlWithInput
     public delegate void MakeSave(string name);
 
     /// <summary>
-    ///   Types of exit the player requests. Used for game exit confirmation.
+    ///   Types of exit the player can request. Used to store the action for when the warning popup
+    ///   about this is closed.
     /// </summary>
     public enum ExitType
     {
@@ -159,7 +160,7 @@ public class PauseMenu : ControlWithInput
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
-        exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
+        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -227,14 +228,14 @@ public class PauseMenu : ControlWithInput
 
         exitType = ExitType.ReturnToMenu;
 
-        if (SaveHelper.SavedRecently)
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
         {
             ConfirmExit();
         }
         else
         {
-            exitConfirmationDialog.DialogText = TranslationServer.Translate("RETURN_TO_MENU_WARNING");
-            exitConfirmationDialog.PopupCenteredShrink();
+            unsavedProgressWarning.DialogText = TranslationServer.Translate("RETURN_TO_MENU_WARNING");
+            unsavedProgressWarning.PopupCenteredShrink();
         }
     }
 
@@ -244,14 +245,14 @@ public class PauseMenu : ControlWithInput
 
         exitType = ExitType.QuitGame;
 
-        if (SaveHelper.SavedRecently)
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
         {
             ConfirmExit();
         }
         else
         {
-            exitConfirmationDialog.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
-            exitConfirmationDialog.PopupCenteredShrink();
+            unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
+            unsavedProgressWarning.PopupCenteredShrink();
         }
     }
 

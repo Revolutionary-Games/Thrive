@@ -3494,6 +3494,10 @@ Description = "ASSUME_HYPERTHREADING_TOOLTIP"
 DisplayDelay = 0.5
 DescriptionLabelPath = NodePath("../addInputButton/cloudResolution/MarginContainer/VBoxContainer/Description")
 
+[node name="unsavedProgressWarning" parent="GroupHolder/options" instance=ExtResource( 1 )]
+Description = "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
+DisplayDelay = 0.5
+
 [node name="chartLegendPhysicalConditions" type="Control" parent="GroupHolder"]
 margin_right = 40.0
 margin_bottom = 40.0

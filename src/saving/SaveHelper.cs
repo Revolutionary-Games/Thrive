@@ -50,7 +50,7 @@ public static class SaveHelper
     ///   </para>
     /// </remarks>
     /// <returns>True if the last save is still recent, false if otherwise.</returns>
-    public static bool SavedRecently => DateTime.Now - lastSave < Constants.RecentSaveTime;
+    public static bool SavedRecently => lastSave != null ? DateTime.Now - lastSave < Constants.RecentSaveTime : false;
 
     /// <summary>
     ///   A save (and not a quick save) that the user triggered

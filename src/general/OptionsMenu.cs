@@ -200,6 +200,9 @@ public class OptionsMenu : ControlWithInput
     [Export]
     public NodePath JSONDebugModePath;
 
+    [Export]
+    public NodePath UnsavedProgressWarningPath;
+
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
         .ToList();
@@ -276,6 +279,7 @@ public class OptionsMenu : ControlWithInput
     private OptionButton jsonDebugMode;
 
     private CustomCheckBox tutorialsEnabled;
+    private CustomCheckBox unsavedProgressWarningEnabled;
 
     // Confirmation Boxes
     private CustomConfirmationDialog screenshotDirectoryWarningBox;
@@ -399,6 +403,7 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled = GetNode<CustomCheckBox>(CustomUsernameEnabledPath);
         customUsername = GetNode<LineEdit>(CustomUsernamePath);
         jsonDebugMode = GetNode<OptionButton>(JSONDebugModePath);
+        unsavedProgressWarningEnabled = GetNode<CustomCheckBox>(UnsavedProgressWarningPath);
 
         screenshotDirectoryWarningBox = GetNode<CustomConfirmationDialog>(ScreenshotDirectoryWarningBoxPath);
         backConfirmationBox = GetNode<CustomDialog>(BackConfirmationBoxPath);
@@ -410,6 +415,7 @@ public class OptionsMenu : ControlWithInput
         cloudResolutionTitle.RegisterToolTipForControl("cloudResolution", "options");
         guiLightEffectsToggle.RegisterToolTipForControl("guiLightEffects", "options");
         assumeHyperthreading.RegisterToolTipForControl("assumeHyperthreading", "options");
+        unsavedProgressWarningEnabled.RegisterToolTipForControl("unsavedProgressWarning", "options");
     }
 
     public override void _Notification(int what)
@@ -536,6 +542,7 @@ public class OptionsMenu : ControlWithInput
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
+        unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
@@ -1306,6 +1313,14 @@ public class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
     }
+
+    private void OnUnsavedProgressWarningToggled(bool pressed)
+    {
+        Settings.Instance.ShowUnsavedProgressWarning.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
 
     private void BuildInputRebindControls()
     {

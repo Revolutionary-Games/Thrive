@@ -241,6 +241,11 @@ public class Settings
     public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
         new SettingValue<JSONDebug.DebugMode>(JSONDebug.DebugMode.Automatic);
 
+    /// <summary>
+    ///   Enables/disables the unsaved progress warning popup for when the player tries to quit the game.
+    /// </summary>
+    public SettingValue<bool> ShowUnsavedProgressWarning { get; set; } = new SettingValue<bool>(true);
+
     // Input properties
 
     /// <summary>

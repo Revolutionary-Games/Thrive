@@ -24,7 +24,7 @@ LoadMenuPath = NodePath("CenterContainer/LoadMenu")
 OptionsMenuPath = NodePath("OptionsMenu")
 SaveMenuPath = NodePath("CenterContainer/NewSaveMenu")
 LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
-ExitConfirmationDialogPath = NodePath("ExitConfirmation")
+UnsavedProgressWarningPath = NodePath("UnsavedProgressWarning")
 
 [node name="Overlay" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -155,7 +155,7 @@ Category = "MicrobeStage"
 [node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
 visible = false
 
-[node name="ExitConfirmation" parent="." instance=ExtResource( 7 )]
+[node name="UnsavedProgressWarning" parent="." instance=ExtResource( 7 )]
 margin_right = 391.0
 rect_min_size = Vector2( 391, 0 )
 WindowTitle = "CONFIRM_EXIT"
@@ -172,4 +172,4 @@ WindowTitle = "CONFIRM_EXIT"
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]
-[connection signal="Confirmed" from="ExitConfirmation" to="." method="ConfirmExit"]
+[connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="ConfirmExit"]
