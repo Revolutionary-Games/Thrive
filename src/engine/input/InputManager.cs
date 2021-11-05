@@ -121,6 +121,9 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (PerformingRebind)
+            return;
+
         OnInput(true, @event);
     }
 
@@ -132,6 +135,9 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _Input(InputEvent @event)
     {
+        if (PerformingRebind)
+            return;
+
         OnInput(false, @event);
     }
 

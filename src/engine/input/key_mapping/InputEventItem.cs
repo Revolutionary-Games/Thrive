@@ -146,11 +146,14 @@ public class InputEventItem : Node
                 // Rebind canceled, alert the InputManager so it can resume getting input
                 InputManager.PerformingRebind = false;
 
+                GetTree().SetInputAsHandled();
+
                 return;
             }
 
             if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed && !button.Disabled)
             {
+                GetTree().SetInputAsHandled();
                 OnButtonPressed(mouseEvent);
                 return;
             }
@@ -186,6 +189,7 @@ public class InputEventItem : Node
                         UpdateButtonText();
                     }
 
+                    GetTree().SetInputAsHandled();
                     return;
                 }
 
@@ -204,6 +208,8 @@ public class InputEventItem : Node
         // The old key input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;
         AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
+
+        GetTree().SetInputAsHandled();
 
         // Check conflicts, and don't proceed if there is a conflict
         if (CheckNewKeyConflicts(@event, groupList, old))
@@ -281,6 +287,9 @@ public class InputEventItem : Node
 
         // Update the button text
         UpdateButtonText();
+
+        // Rebind succeeded, alert the InputManager so it can resume getting input
+        InputManager.PerformingRebind = false;
     }
 
     /// <summary>
@@ -313,6 +322,9 @@ public class InputEventItem : Node
         WaitingForInput = true;
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
+
+        // Notify InputManager that input rebinding has started and it should not react to input
+        InputManager.PerformingRebind = true;
     }
 
     private void UpdateButtonText()
