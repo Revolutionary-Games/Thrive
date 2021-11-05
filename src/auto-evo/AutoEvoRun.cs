@@ -306,7 +306,7 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
+            foreach (var speciesEntry in entry.Value.SpeciesInPatch.ToList())
             {
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
