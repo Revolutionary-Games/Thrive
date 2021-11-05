@@ -357,6 +357,12 @@ public class CustomRichTextLabel : RichTextLabel
                         break;
                     }
 
+                    case "EDITOR_TIME_JUMP_MILLION_YEARS":
+                    {
+                        output = Constants.EDITOR_TIME_JUMP_MILLION_YEARS.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
                     default:
                     {
                         GD.Print($"Constant: \"{input}\" doesn't exist, referenced in bbcode");

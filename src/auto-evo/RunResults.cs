@@ -250,44 +250,51 @@
         /// <summary>
         ///   Sums up the populations of a species (ignores negative population)
         /// </summary>
+        /// <param name="species">The species to calculate population for</param>
+        /// <param name="resolveMigrations">If true migrations effects on population are taken into account</param>
+        /// <param name="resolveSplits">If true species splits are taken into account in population numbers</param>
+        /// <returns>The global population</returns>
         /// <remarks>
         ///   <para>
         ///     Throws an exception if no population is found
         ///   </para>
         /// </remarks>
-        public long GetGlobalPopulation(Species species, bool resolveMoves = false, bool resolveSplits = false)
+        public long GetGlobalPopulation(Species species, bool resolveMigrations = false, bool resolveSplits = false)
         {
             long result = 0;
 
             foreach (var entry in results[species].NewPopulationInPatches)
             {
-                var population = entry.Value;
-
-                if (resolveMoves)
+                if (!resolveMigrations)
                 {
-                    foreach (var migration in results[species].SpreadToPatches)
+                    result += Math.Max(entry.Value, 0);
+                    continue;
+                }
+
+                var adjustedPopulation = entry.Value;
+
+                foreach (var migration in results[species].SpreadToPatches)
+                {
+                    if (migration.From == entry.Key)
                     {
-                        if (migration.From == entry.Key)
-                        {
-                            population -= migration.Population;
-                        }
-                        else if (migration.To == entry.Key)
-                        {
-                            population += migration.Population;
-                        }
+                        adjustedPopulation -= migration.Population;
+                    }
+                    else if (migration.To == entry.Key)
+                    {
+                        adjustedPopulation += migration.Population;
                     }
                 }
 
                 if (resolveSplits && results[species].SplitOffPatches?.Contains(entry.Key) == true)
                 {
-                    population = 0;
+                    adjustedPopulation = 0;
                 }
 
-                result += Math.Max(population, 0);
+                result += Math.Max(adjustedPopulation, 0);
             }
 
-            // Find patches that were moved to but don't include population results
-            if (resolveMoves)
+            // Find patches that were migrated to but don't include population results
+            if (resolveMigrations)
             {
                 foreach (var migration in results[species].SpreadToPatches)
                 {
@@ -381,10 +388,11 @@
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
         /// <param name="playerReadable">if true ids are removed from the output</param>
         /// <param name="effects">if not null these effects are applied to the population numbers</param>
+        /// <returns>The generated summary text</returns>
         public string MakeSummary(PatchMap previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect> effects = null)
         {
-            const bool resolveMoves = true;
+            const bool resolveMigrations = true;
             const bool resolveSplits = true;
 
             var builder = new StringBuilder(500);
@@ -406,10 +414,12 @@
 
             void OutputPopulationForPatch(Species species, Patch patch, long population)
             {
+                builder.Append("  ");
+                var patchName = PatchString(patch);
+
                 if (population > 0)
                 {
-                    builder.Append("  ");
-                    builder.Append(PatchString(patch));
+                    builder.Append(patchName);
                     builder.Append(' ');
                     builder.Append(TranslationServer.Translate("POPULATION"));
                     builder.Append(' ');
@@ -417,9 +427,11 @@
                 }
                 else
                 {
-                    builder.Append("   ");
+                    // For some reason this line had one more space padding than the case that the population
+                    // wasn't extinct in this patch
+
                     builder.Append(string.Format(CultureInfo.CurrentCulture,
-                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString(patch)));
+                        TranslationServer.Translate("WENT_EXTINCT_IN"), patchName));
                 }
 
                 if (previousPopulations != null)
@@ -543,7 +555,7 @@
                 {
                     long adjustedPopulation = patchPopulation.Value;
 
-                    if (resolveMoves)
+                    if (resolveMigrations)
                     {
                         adjustedPopulation +=
                             CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
@@ -597,7 +609,7 @@
 
                 // Also print new patches the species moved to (as the moves don't get
                 // included in newPopulationInPatches
-                if (resolveMoves)
+                if (resolveMigrations)
                 {
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
@@ -640,7 +652,7 @@
                     }
                 }
 
-                if (GetGlobalPopulation(entry.Species, resolveMoves, resolveSplits) <= 0)
+                if (GetGlobalPopulation(entry.Species, resolveMigrations, resolveSplits) <= 0)
                 {
                     builder.Append(' ');
                     builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));

@@ -687,8 +687,8 @@ public class MicrobeHUD : Control
             // Create for each compound the information in GUI
             foreach (var compound in stage.HoverInfo.HoveredCompounds)
             {
-                // It is not useful to show trace amounts of a compound, so those are skipped
-                if (compound.Value < 0.1)
+                // Skip showing insignificant amounts to the player
+                if (compound.Value < Constants.MINIMUM_CLOUD_DENSITY_TO_SHOW_PLAYER)
                     continue;
 
                 var hBox = new HBoxContainer();
