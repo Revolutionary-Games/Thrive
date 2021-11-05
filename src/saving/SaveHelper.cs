@@ -142,7 +142,6 @@ public static class SaveHelper
 
         GD.Print("Starting load of save: ", name);
         new InProgressLoad(name).Start();
-        lastSave = DateTime.Now;
     }
 
     /// <summary>
@@ -357,6 +356,14 @@ public static class SaveHelper
         return currentVersionPlaceInList != savePlaceInList;
     }
 
+    /// <summary>
+    ///   Marks the last save time to the time this method is called in.
+    /// </summary>
+    public static void MarkLastSaveToCurrentTime()
+    {
+        lastSave = DateTime.Now;
+    }
+
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
@@ -405,7 +412,6 @@ public static class SaveHelper
         {
             save.SaveToFile();
             inProgress.ReportStatus(true, TranslationServer.Translate("SAVING_SUCCEEDED"));
-            lastSave = DateTime.Now;
         }
         catch (Exception e)
         {
