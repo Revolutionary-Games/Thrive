@@ -3912,8 +3912,6 @@ HelpCategory = "MicrobeEditor"
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer/RandomizeButton" to="MicrobeEditorGUI" method="OnRandomizeSpeciesNamePressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/CancelButton" to="MicrobeEditorGUI" method="OnCancelActionClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/ConfirmButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/MiddleRight" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/MiddleRight" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="Confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", true ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", false ]]
