@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=2]
+[gd_scene load_steps=124 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -85,6 +85,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=83]
 [ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="DynamicFont" id=85]
+[ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=86]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -652,7 +653,7 @@ __meta__ = {
 
 [node name="Header" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
 margin_right = 197.0
-margin_bottom = 35.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 195, 35 )
 mouse_filter = 1
 custom_constants/margin_right = 10
@@ -663,15 +664,14 @@ custom_constants/margin_left = 10
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 184.0
-margin_bottom = 35.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 174, 0 )
 size_flags_horizontal = 0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-margin_top = 5.0
 margin_right = 126.0
-margin_bottom = 24.0
+margin_bottom = 47.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 77 )
 text = "ENVIRONMENT"
@@ -679,9 +679,9 @@ autowrap = true
 
 [node name="EnvironmentExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 132.0
-margin_top = 4.0
+margin_top = 14.0
 margin_right = 150.0
-margin_bottom = 26.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
@@ -689,6 +689,7 @@ size_flags_vertical = 4
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 86 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -696,9 +697,9 @@ group = SubResource( 6 )
 
 [node name="EnvironmentCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 156.0
-margin_top = 4.0
+margin_top = 14.0
 margin_right = 174.0
-margin_bottom = 26.0
+margin_bottom = 32.0
 rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
@@ -706,22 +707,23 @@ size_flags_vertical = 4
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
+custom_fonts/font = ExtResource( 86 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 6 )
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
-margin_top = 39.0
+margin_top = 56.0
 margin_right = 197.0
-margin_bottom = 43.0
+margin_bottom = 60.0
 rect_min_size = Vector2( 197, 0 )
 size_flags_horizontal = 0
 custom_styles/separator = SubResource( 10 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer"]
-margin_top = 47.0
+margin_top = 64.0
 margin_right = 197.0
-margin_bottom = 232.0
+margin_bottom = 249.0
 custom_constants/margin_top = 5
 custom_constants/margin_left = 22
 custom_constants/margin_bottom = 10
@@ -1129,9 +1131,9 @@ expand = true
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 41.0
-margin_top = 8.0
+margin_top = 6.0
 margin_right = 186.0
-margin_bottom = 27.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 145, 0 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 77 )
@@ -1140,9 +1142,9 @@ autowrap = true
 
 [node name="CompoundExpandButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 192.0
-margin_top = 6.0
+margin_top = 8.0
 margin_right = 210.0
-margin_bottom = 28.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
@@ -1150,6 +1152,7 @@ size_flags_vertical = 4
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
+custom_fonts/font = ExtResource( 86 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -1157,9 +1160,9 @@ group = SubResource( 15 )
 
 [node name="CompoundCompressButton" type="Button" parent="MicrobeHUD/BottomLeft/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 216.0
-margin_top = 6.0
+margin_top = 8.0
 margin_right = 234.0
-margin_bottom = 28.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 18, 18 )
 focus_mode = 0
 size_flags_horizontal = 0
@@ -1167,6 +1170,7 @@ size_flags_vertical = 4
 custom_styles/hover = SubResource( 16 )
 custom_styles/pressed = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
+custom_fonts/font = ExtResource( 86 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 15 )
@@ -1514,9 +1518,9 @@ expand = true
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomLeft/LeftPanels/AgentsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 39.0
-margin_top = 8.0
+margin_top = 6.0
 margin_right = 239.0
-margin_bottom = 27.0
+margin_bottom = 28.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 77 )
 text = "AGENTS"
@@ -1773,7 +1777,7 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
 margin_right = 82.0
-margin_bottom = 33.0
+margin_bottom = 37.0
 rect_min_size = Vector2( 82, 0 )
 size_flags_horizontal = 3
 custom_styles/normal = SubResource( 28 )
@@ -1787,9 +1791,9 @@ __meta__ = {
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
 margin_left = 86.0
-margin_top = 8.0
+margin_top = 9.0
 margin_right = 125.0
-margin_bottom = 25.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 35, 0 )
 size_flags_horizontal = 3
 custom_styles/normal = SubResource( 28 )
