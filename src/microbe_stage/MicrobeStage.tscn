@@ -85,6 +85,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" type="Texture" id=83]
 [ext_resource path="res://src/microbe_stage/PlayerHoverInfo.cs" type="Script" id=84]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="DynamicFont" id=85]
+[ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=86]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -117,8 +118,6 @@ region_rect = Rect2( 0, 0, 20, 20 )
 [sub_resource type="StyleBoxTexture" id=5]
 texture = ExtResource( 43 )
 region_rect = Rect2( 0, 0, 20, 20 )
-
-[sub_resource type="DynamicFont" id=38]
 
 [sub_resource type="ButtonGroup" id=6]
 
@@ -690,7 +689,7 @@ size_flags_vertical = 4
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = ExtResource( 86 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -708,7 +707,7 @@ size_flags_vertical = 4
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = ExtResource( 86 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 6 )
@@ -1153,7 +1152,7 @@ size_flags_vertical = 4
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = ExtResource( 86 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -1171,7 +1170,7 @@ size_flags_vertical = 4
 custom_styles/hover = SubResource( 16 )
 custom_styles/pressed = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
-custom_fonts/font = SubResource( 38 )
+custom_fonts/font = ExtResource( 86 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 15 )
