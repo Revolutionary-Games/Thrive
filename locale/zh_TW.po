@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-05 19:05+0100\n"
+"POT-Creation-Date: 2021-11-06 11:30+0100\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -701,7 +701,7 @@ msgid "NITROGEN"
 msgstr "氮"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
 msgid "SUNLIGHT"
 msgstr "陽光"
@@ -1361,12 +1361,12 @@ msgstr "關閉"
 msgid "NEW_GAME"
 msgstr "新遊戲"
 
-#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:73
+#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "讀取遊戲"
 
-#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:95
+#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "選項"
 
@@ -1396,7 +1396,7 @@ msgstr "微生物階段自由編輯器"
 
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
 #: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:477
-#: ../src/general/OptionsMenu.tscn:1170 ../src/general/PauseMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1420,365 +1420,387 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:845
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:870
+#: ../src/general/OptionsMenu.cs:877
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:874
+#: ../src/general/OptionsMenu.cs:881
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:878
+#: ../src/general/OptionsMenu.cs:885
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "幫忙翻譯這個遊戲"
 
-#: ../src/general/OptionsMenu.tscn:133
+#: ../src/general/OptionsMenu.tscn:134
 msgid "GRAPHICS"
 msgstr "圖形"
 
-#: ../src/general/OptionsMenu.tscn:144
+#: ../src/general/OptionsMenu.tscn:145
 msgid "SOUND"
 msgstr "聲音"
 
-#: ../src/general/OptionsMenu.tscn:155
+#: ../src/general/OptionsMenu.tscn:156
 msgid "PERFORMANCE"
 msgstr "性能"
 
-#: ../src/general/OptionsMenu.tscn:166
+#: ../src/general/OptionsMenu.tscn:167
 msgid "INPUTS"
 msgstr "輸入"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:178
 msgid "MISC"
 msgstr "雜項"
 
-#: ../src/general/OptionsMenu.tscn:209
+#: ../src/general/OptionsMenu.tscn:210
 msgid "VSYNC"
 msgstr "垂直同步"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "全螢幕"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "多重採樣抗鋸齒："
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "（提高設置會降低表現）"
 
-#: ../src/general/OptionsMenu.tscn:260 ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "TWO_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 #, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "鼠標右鍵"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "解析度："
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "自動"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "最大FPS："
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "色盲修正："
 
-#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:339 ../src/general/OptionsMenu.tscn:340
 msgid "NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:356
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:382
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "能力"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 #, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "外部影響："
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
-#: ../src/general/OptionsMenu.tscn:441 ../src/general/OptionsMenu.tscn:481
-#: ../src/general/OptionsMenu.tscn:513 ../src/general/OptionsMenu.tscn:545
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:514 ../src/general/OptionsMenu.tscn:546
+#: ../src/general/OptionsMenu.tscn:578
 msgid "MUTE"
 msgstr "靜音"
 
-#: ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:456
 msgid "MUSIC_VOLUME"
 msgstr "音樂音量"
 
-#: ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.tscn:488
 msgid "AMBIANCE_VOLUME"
 msgstr "環境音量"
 
-#: ../src/general/OptionsMenu.tscn:519
+#: ../src/general/OptionsMenu.tscn:520
 msgid "SFX_VOLUME"
 msgstr "特效音量"
 
-#: ../src/general/OptionsMenu.tscn:551
+#: ../src/general/OptionsMenu.tscn:552
 msgid "GUI_VOLUME"
 msgstr "界面音量"
 
-#: ../src/general/OptionsMenu.tscn:595
+#: ../src/general/OptionsMenu.tscn:596
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:623
+#: ../src/general/OptionsMenu.tscn:624
 msgid "LANGUAGE"
 msgstr "語言："
 
-#: ../src/general/OptionsMenu.tscn:641 ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:1188
 msgid "RESET"
 msgstr "重置"
 
-#: ../src/general/OptionsMenu.tscn:659
+#: ../src/general/OptionsMenu.tscn:660
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "幫忙翻譯這個遊戲"
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:686
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
 
-#: ../src/general/OptionsMenu.tscn:700
+#: ../src/general/OptionsMenu.tscn:701
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "雲模擬最小\n"
 "間隔："
 
-#: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "（更高的數值有助於提升性能）"
 
-#: ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:743
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "雲解析度除數："
 
-#: ../src/general/OptionsMenu.tscn:783
+#: ../src/general/OptionsMenu.tscn:784
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "在遊戲中啟用auto-evo"
 
-#: ../src/general/OptionsMenu.tscn:803
+#: ../src/general/OptionsMenu.tscn:804
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
 msgstr "已選："
 
-#: ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:821
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "保存並繼續"
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:853
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:954
 msgid "RESET_INPUTS"
 msgstr "重置輸入"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:981
 msgid "PLAY_INTRO_VIDEO"
 msgstr "播放開場動畫"
 
-#: ../src/general/OptionsMenu.tscn:988
+#: ../src/general/OptionsMenu.tscn:989
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "在開啟新遊戲時播放微生物開場動畫"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "遊戲過程中自動保存"
 
-#: ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "保留的自動存檔數量："
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "保留的快速存檔數量："
 
-#: ../src/general/OptionsMenu.tscn:1060
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "顯示教程（在新遊戲中）"
 
-#: ../src/general/OptionsMenu.tscn:1067
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "顯示教程（在當前遊戲中）"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1074
+#, fuzzy
+msgid "SHOW_UNSAVED_PROGRESS_WARNING"
+msgstr ""
+"未保存的更改將被丟棄。\n"
+"你想繼續嗎？"
+
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "作弊鍵已啟用"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定義用戶名"
 
-#: ../src/general/OptionsMenu.tscn:1098
+#: ../src/general/OptionsMenu.tscn:1105
 msgid "CUSTOM_USERNAME"
 msgstr "自定義用戶名："
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1132
+#: ../src/general/OptionsMenu.tscn:1139
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1142
+#: ../src/general/OptionsMenu.tscn:1149
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1156 ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1163 ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1193 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "存檔"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "默認"
 
-#: ../src/general/OptionsMenu.tscn:1221
+#: ../src/general/OptionsMenu.tscn:1228
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "你確定要把「所有」設置都重置為默認值嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1222
+#: ../src/general/OptionsMenu.tscn:1229
 msgid "RESET_TO_DEFAULTS"
 msgstr "重置為默認設定？"
 
-#: ../src/general/OptionsMenu.tscn:1230
+#: ../src/general/OptionsMenu.tscn:1237
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "您確定要將輸入設置重置為默認嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1231
+#: ../src/general/OptionsMenu.tscn:1238
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "將輸入重置為默認？"
 
-#: ../src/general/OptionsMenu.tscn:1240
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "CLOSE_OPTIONS"
 msgstr "關閉選項菜單？"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "未保存的更改將被丟棄。\n"
 "你想繼續嗎？"
 
-#: ../src/general/OptionsMenu.tscn:1283
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "SAVE_AND_CONTINUE"
 msgstr "保存並繼續"
 
-#: ../src/general/OptionsMenu.tscn:1293
+#: ../src/general/OptionsMenu.tscn:1300
 msgid "DISCARD_AND_CONTINUE"
 msgstr "取消並繼續"
 
-#: ../src/general/OptionsMenu.tscn:1310
+#: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
 msgid "CANCEL"
 msgstr "取消"
 
-#: ../src/general/OptionsMenu.tscn:1321 ../src/general/OptionsMenu.tscn:1330
+#: ../src/general/OptionsMenu.tscn:1328 ../src/general/OptionsMenu.tscn:1337
 msgid "ERROR"
 msgstr "錯誤"
 
-#: ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "錯誤：無法將新設置保存至配置文件。"
 
-#: ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1347
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "截屏"
 
-#: ../src/general/OptionsMenu.tscn:1342
+#: ../src/general/OptionsMenu.tscn:1349
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:59
+#: ../src/general/PauseMenu.cs:237
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "返回目錄"
+
+#: ../src/general/PauseMenu.cs:254
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "GLES2模式警告"
+
+#: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
 msgstr "返回"
 
-#: ../src/general/PauseMenu.tscn:66
+#: ../src/general/PauseMenu.tscn:67
 msgid "SAVE_GAME"
 msgstr "保存遊戲"
 
-#: ../src/general/PauseMenu.tscn:81
+#: ../src/general/PauseMenu.tscn:82
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2540
 msgid "STATISTICS"
 msgstr "統計數據"
 
-#: ../src/general/PauseMenu.tscn:88
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "幫助"
 
-#: ../src/general/PauseMenu.tscn:102
+#: ../src/general/PauseMenu.tscn:103
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
 msgid "RETURN_TO_MENU"
 msgstr "返回目錄"
 
-#: ../src/general/PauseMenu.tscn:109
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "退出"
+
+#: ../src/general/PauseMenu.tscn:161
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "確認"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -2592,7 +2614,14 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
+#, fuzzy
+msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
+msgstr ""
+"未保存的更改將被丟棄。\n"
+"你想繼續嗎？"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3051
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "TEMPERATURE"
@@ -3254,7 +3283,7 @@ msgstr "加載完成"
 msgid "ERROR_LOADING"
 msgstr "錯誤加載"
 
-#: ../src/saving/InProgressLoad.cs:224
+#: ../src/saving/InProgressLoad.cs:227
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -3294,21 +3323,21 @@ msgstr "覆寫現有的存檔："
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "覆寫現有的存檔？"
 
-#: ../src/saving/SaveHelper.cs:382
+#: ../src/saving/SaveHelper.cs:412
 #, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "保存失敗！發生了一個異常"
 
-#: ../src/saving/SaveHelper.cs:383
+#: ../src/saving/SaveHelper.cs:413
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "玩家死亡"
 
-#: ../src/saving/SaveHelper.cs:392
+#: ../src/saving/SaveHelper.cs:422
 msgid "SAVING_SUCCEEDED"
 msgstr "保存成功"
 
-#: ../src/saving/SaveHelper.cs:402
+#: ../src/saving/SaveHelper.cs:432
 msgid "SAVING_FAILED"
 msgstr "保存失敗！發生了一個異常"
 

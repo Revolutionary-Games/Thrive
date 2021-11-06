@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-05 19:05+0100\n"
+"POT-Creation-Date: 2021-11-06 11:30+0100\n"
 "PO-Revision-Date: 2021-10-29 07:14+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -773,7 +773,7 @@ msgid "NITROGEN"
 msgstr "Nitrogen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
 msgid "SUNLIGHT"
 msgstr "Llum solar"
@@ -937,24 +937,21 @@ msgid "PREVIOUS"
 msgstr "anterior:"
 
 #: ../src/auto-evo/RunResults.cs:457
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "codi genètic:"
+msgstr "separació de {0}"
 
 #: ../src/auto-evo/RunResults.cs:470
-#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "codi genètic:"
+msgstr "sorgit per omplir un nínxol"
 
 #: ../src/auto-evo/RunResults.cs:473
-#, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr "s'ha escampat a les zones:"
+msgstr "sorgit a causa de les diferents pressions de selecció"
 
 #: ../src/auto-evo/RunResults.cs:491
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "s'ha escampat a les zones:"
+msgstr ""
+"la població en algunes zones es divideix per formar noves espècies {0}:"
 
 #: ../src/auto-evo/RunResults.cs:507
 msgid "RUN_RESULT_HAS_A_MUTATION"
@@ -1416,12 +1413,12 @@ msgstr "Tancar"
 msgid "NEW_GAME"
 msgstr "Nova partida"
 
-#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:73
+#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Carregar una partida"
 
-#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:95
+#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Opcions"
 
@@ -1451,7 +1448,7 @@ msgstr "Editor Lliure de Microbi"
 
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
 #: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:477
-#: ../src/general/OptionsMenu.tscn:1170 ../src/general/PauseMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1477,365 +1474,387 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "Mode d'Alerta GLES2"
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:845
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Aparell d'output per defecte"
 
-#: ../src/general/OptionsMenu.cs:870
+#: ../src/general/OptionsMenu.cs:877
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Aquesta traducció encara és incomplerta ({0}% traduït) siusplau ajuda'ns a "
 "completar-la!"
 
-#: ../src/general/OptionsMenu.cs:874
+#: ../src/general/OptionsMenu.cs:881
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Aquesta llengua encara és una feina en progrés ({0}% completat)"
 
-#: ../src/general/OptionsMenu.cs:878
+#: ../src/general/OptionsMenu.cs:885
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Aquest idioma s'ha traduït al {0}%"
 
-#: ../src/general/OptionsMenu.tscn:133
+#: ../src/general/OptionsMenu.tscn:134
 msgid "GRAPHICS"
 msgstr "Gràfics"
 
-#: ../src/general/OptionsMenu.tscn:144
+#: ../src/general/OptionsMenu.tscn:145
 msgid "SOUND"
 msgstr "Só"
 
-#: ../src/general/OptionsMenu.tscn:155
+#: ../src/general/OptionsMenu.tscn:156
 msgid "PERFORMANCE"
 msgstr "Rendiment"
 
-#: ../src/general/OptionsMenu.tscn:166
+#: ../src/general/OptionsMenu.tscn:167
 msgid "INPUTS"
 msgstr "Inputs"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:178
 msgid "MISC"
 msgstr "Misc"
 
-#: ../src/general/OptionsMenu.tscn:209
+#: ../src/general/OptionsMenu.tscn:210
 msgid "VSYNC"
 msgstr "V-sinc"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "Pantalla completa"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Antialiàsing Multimostres (MSAA):"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valors més alts empitjoren el rendiment)"
 
-#: ../src/general/OptionsMenu.tscn:260 ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
 msgstr "Inhabilitat"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "Resolució:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "Màxim FPS:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correcció 'Colourblind':"
 
-#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:339 ../src/general/OptionsMenu.tscn:340
 msgid "NONE"
 msgstr "Cap"
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanòpia (Vermell-Verd)"
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Blau-Groc)"
 
-#: ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:356
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberració cromàtica:"
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:382
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostrar barra d'habilitats"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efectes de llum del GUI"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "Master del volum"
 
-#: ../src/general/OptionsMenu.tscn:441 ../src/general/OptionsMenu.tscn:481
-#: ../src/general/OptionsMenu.tscn:513 ../src/general/OptionsMenu.tscn:545
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:514 ../src/general/OptionsMenu.tscn:546
+#: ../src/general/OptionsMenu.tscn:578
 msgid "MUTE"
 msgstr "Mut"
 
-#: ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:456
 msgid "MUSIC_VOLUME"
 msgstr "Volum de la música"
 
-#: ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.tscn:488
 msgid "AMBIANCE_VOLUME"
 msgstr "Volum de l'ambient"
 
-#: ../src/general/OptionsMenu.tscn:519
+#: ../src/general/OptionsMenu.tscn:520
 msgid "SFX_VOLUME"
 msgstr "Volum SFX"
 
-#: ../src/general/OptionsMenu.tscn:551
+#: ../src/general/OptionsMenu.tscn:552
 msgid "GUI_VOLUME"
 msgstr "Volum del GUI"
 
-#: ../src/general/OptionsMenu.tscn:595
+#: ../src/general/OptionsMenu.tscn:596
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Aparell d'output d'audio:"
 
-#: ../src/general/OptionsMenu.tscn:623
+#: ../src/general/OptionsMenu.tscn:624
 msgid "LANGUAGE"
 msgstr "Llengua:"
 
-#: ../src/general/OptionsMenu.tscn:641 ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:1188
 msgid "RESET"
 msgstr "Resetejar"
 
-#: ../src/general/OptionsMenu.tscn:659
+#: ../src/general/OptionsMenu.tscn:660
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Ajuda'ns a traduïr el joc"
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:686
 msgid "COMPOUND_CLOUDS"
 msgstr "Núvols de Compostos"
 
-#: ../src/general/OptionsMenu.tscn:700
+#: ../src/general/OptionsMenu.tscn:701
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "Mínim interval de simulació\n"
 "de núvols:"
 
-#: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valors més alts augmenten el rendiment)"
 
-#: ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:743
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor de resolució dels núvols:"
 
-#: ../src/general/OptionsMenu.tscn:783
+#: ../src/general/OptionsMenu.tscn:784
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Activa la simulació auto-evo durant el joc"
 
-#: ../src/general/OptionsMenu.tscn:803
+#: ../src/general/OptionsMenu.tscn:804
 msgid "DETECTED_CPU_COUNT"
 msgstr "Detectat compte CPU:"
 
-#: ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:821
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Fils actuals:"
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Assumir que la CPU té activat el hyperthreading"
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manualment establir nombre de fils del fons"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:853
 msgid "THREADS"
 msgstr "Fils:"
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:954
 msgid "RESET_INPUTS"
 msgstr "Resetejar Inputs"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:981
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Mostra el vídeo introductori"
 
-#: ../src/general/OptionsMenu.tscn:988
+#: ../src/general/OptionsMenu.tscn:989
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 "Mostrar la cinemàtica d'entrada a l'Estadi de Microbi en una nova partida"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Guardat automàtic durant el joc"
 
-#: ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius d'autoguardat:"
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Màxim nombre d'arxius de guardat ràpid:"
 
-#: ../src/general/OptionsMenu.tscn:1060
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostrar tutorials (en noves partides)"
 
-#: ../src/general/OptionsMenu.tscn:1067
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostrar tutorials (a la partida actual)"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1074
+#, fuzzy
+msgid "SHOW_UNSAVED_PROGRESS_WARNING"
+msgstr ""
+"Hi ha canvis no guardats. Si continueu, es perdran tots.\n"
+"Voleu continuar?"
+
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Trucs activats"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
 
-#: ../src/general/OptionsMenu.tscn:1098
+#: ../src/general/OptionsMenu.tscn:1105
 msgid "CUSTOM_USERNAME"
 msgstr "Nom d'usuari propi:"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Obrir la carpeta de captures de pantalla"
 
-#: ../src/general/OptionsMenu.tscn:1132
+#: ../src/general/OptionsMenu.tscn:1139
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Obrir Carpeta de Registres"
 
-#: ../src/general/OptionsMenu.tscn:1142
+#: ../src/general/OptionsMenu.tscn:1149
 msgid "JSON_DEBUG_MODE"
 msgstr "Mode debug de JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1156 ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1163 ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automàticament"
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Sempre"
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Mai"
 
-#: ../src/general/OptionsMenu.tscn:1193 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Guardar"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Per defecte"
 
-#: ../src/general/OptionsMenu.tscn:1221
+#: ../src/general/OptionsMenu.tscn:1228
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Esteu segur que voleu resetejar TOTA la configuració als seus valors per "
 "defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1222
+#: ../src/general/OptionsMenu.tscn:1229
 msgid "RESET_TO_DEFAULTS"
 msgstr "Resetejar als valors per defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1230
+#: ../src/general/OptionsMenu.tscn:1237
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Esteu segur que voleu resetejar els inputs de configuració a valors per "
 "defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1231
+#: ../src/general/OptionsMenu.tscn:1238
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Resetejar els inputs a valors per defecte?"
 
-#: ../src/general/OptionsMenu.tscn:1240
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "CLOSE_OPTIONS"
 msgstr "Tancar opcions?"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Hi ha canvis no guardats. Si continueu, es perdran tots.\n"
 "Voleu continuar?"
 
-#: ../src/general/OptionsMenu.tscn:1283
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "SAVE_AND_CONTINUE"
 msgstr "Guardar i continuar"
 
-#: ../src/general/OptionsMenu.tscn:1293
+#: ../src/general/OptionsMenu.tscn:1300
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Descartar i continuar"
 
-#: ../src/general/OptionsMenu.tscn:1310
+#: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
 msgid "CANCEL"
 msgstr "Cancel·lar"
 
-#: ../src/general/OptionsMenu.tscn:1321 ../src/general/OptionsMenu.tscn:1330
+#: ../src/general/OptionsMenu.tscn:1328 ../src/general/OptionsMenu.tscn:1337
 msgid "ERROR"
 msgstr "Error"
 
-#: ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Error: No s'ha pogut guardar la nova configuració."
 
-#: ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1347
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Intenta fer algunes captures de pantalla!"
 
-#: ../src/general/OptionsMenu.tscn:1342
+#: ../src/general/OptionsMenu.tscn:1349
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "No s'ha trobat cap directori de captures de pantalla"
 
-#: ../src/general/PauseMenu.tscn:59
+#: ../src/general/PauseMenu.cs:237
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "Tornar al Menú"
+
+#: ../src/general/PauseMenu.cs:254
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "Mode d'Alerta GLES2"
+
+#: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
 msgstr "Reprendre"
 
-#: ../src/general/PauseMenu.tscn:66
+#: ../src/general/PauseMenu.tscn:67
 msgid "SAVE_GAME"
 msgstr "Guardar la partida"
 
-#: ../src/general/PauseMenu.tscn:81
+#: ../src/general/PauseMenu.tscn:82
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2540
 msgid "STATISTICS"
 msgstr "Estadístiques"
 
-#: ../src/general/PauseMenu.tscn:88
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Ajuda"
 
-#: ../src/general/PauseMenu.tscn:102
+#: ../src/general/PauseMenu.tscn:103
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
 msgid "RETURN_TO_MENU"
 msgstr "Tornar al Menú"
 
-#: ../src/general/PauseMenu.tscn:109
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Sortir"
+
+#: ../src/general/PauseMenu.tscn:161
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "CONFIRMAR"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1921,91 +1940,92 @@ msgstr "Dissenyadors del Joc en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:264
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "Provador en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_TESTERS"
-msgstr ""
+msgstr "Provadors en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:270
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Gestor de projecte en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:271
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "Gestors de projecte en cap"
 
 #: ../src/gui_common/CreditsScroll.cs:278
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Desenvolupadors actuals"
 
 #: ../src/gui_common/CreditsScroll.cs:294
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Desenvolupadors passats"
 
 #: ../src/gui_common/CreditsScroll.cs:310
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Contribuïdors externs"
 
 #: ../src/gui_common/CreditsScroll.cs:313
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive és un projecte de codi obert.\n"
+"Podeu contribuïr a una sol·licitud sense aplicar a l'equip de programació."
 
 #: ../src/gui_common/CreditsScroll.cs:328
 msgid "PATRONS"
-msgstr ""
+msgstr "Patrons"
 
 #: ../src/gui_common/CreditsScroll.cs:332
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Pots donar suport al desenvolupament futur de Thrive a Patreon."
 
 #: ../src/gui_common/CreditsScroll.cs:348
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Opcions"
+msgstr "Donacions"
 
 #: ../src/gui_common/CreditsScroll.cs:371
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Ajuda'ns a traduïr el joc"
+msgstr "Traductors"
 
 #: ../src/gui_common/CreditsScroll.cs:385
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Llicències i llibreries utilitzades"
 
 #: ../src/gui_common/CreditsScroll.cs:479
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Gràcies per jugar!\n"
+"\n"
+"Si has gaudit del joc, siusplau explica-ho als teus amics."
 
 #: ../src/gui_common/CreditsScroll.cs:488
 msgid "PROGRAMMING_TEAM"
-msgstr ""
+msgstr "Equip de programació"
 
 #: ../src/gui_common/CreditsScroll.cs:489
 msgid "THEORY_TEAM"
-msgstr ""
+msgstr "Equip de teoria"
 
 #: ../src/gui_common/CreditsScroll.cs:490
-#, fuzzy
 msgid "GRAPHICS_TEAM"
-msgstr "Gràfics"
+msgstr "Equip de gràfics"
 
 #: ../src/gui_common/CreditsScroll.cs:491
-#, fuzzy
 msgid "SOUND_TEAM"
-msgstr "Só"
+msgstr "Equip de so"
 
 #: ../src/gui_common/CreditsScroll.cs:492
 msgid "OUTREACH_TEAM"
-msgstr ""
+msgstr "Equip de divulgació"
 
 #: ../src/gui_common/CreditsScroll.cs:493
 msgid "GAME_DESIGN_TEAM"
-msgstr ""
+msgstr "Equip de disseny del joc"
 
 #: ../src/gui_common/CreditsScroll.cs:494
 msgid "TESTING_TEAM"
-msgstr ""
+msgstr "Equip de proves"
 
 #: ../src/gui_common/CreditsScroll.cs:495
 msgid "PROJECT_MANAGEMENT_TEAM"
@@ -2763,7 +2783,14 @@ msgstr ""
 "Això afecta el nombre de \"threads\" per defecte ja que el "
 "\"hyperthreading threads\" no són tan ràpids com els núclis CPU reals."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
+#, fuzzy
+msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
+msgstr ""
+"Hi ha canvis no guardats. Si continueu, es perdran tots.\n"
+"Voleu continuar?"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3051
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "TEMPERATURE"
@@ -2850,8 +2877,9 @@ msgid "CATEGORY_SOME"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:786
+#, fuzzy
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "Equip de teoria"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:788
 msgid "CATEGORY_VERY_LITTLE"
@@ -3450,7 +3478,7 @@ msgstr "Càrrega completada"
 msgid "ERROR_LOADING"
 msgstr "Error durant la càrrega"
 
-#: ../src/saving/InProgressLoad.cs:224
+#: ../src/saving/InProgressLoad.cs:227
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Ha fallat en alliberar recursos ja carregats: {0}"
 
@@ -3492,21 +3520,21 @@ msgstr "Sobreescriure l'arxiu de guardat existent:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Voleu sobreescriure l'arxiu de guardat actual?"
 
-#: ../src/saving/SaveHelper.cs:382
+#: ../src/saving/SaveHelper.cs:412
 #, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Acció de guardat fallida! Hi ha hagut un problema"
 
-#: ../src/saving/SaveHelper.cs:383
+#: ../src/saving/SaveHelper.cs:413
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "Jugador Duplicat"
 
-#: ../src/saving/SaveHelper.cs:392
+#: ../src/saving/SaveHelper.cs:422
 msgid "SAVING_SUCCEEDED"
 msgstr "Acció de guardat exitosa"
 
-#: ../src/saving/SaveHelper.cs:402
+#: ../src/saving/SaveHelper.cs:432
 msgid "SAVING_FAILED"
 msgstr "Acció de guardat fallida! Hi ha hagut un problema"
 

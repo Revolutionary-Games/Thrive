@@ -20,6 +20,8 @@ public static class SaveHelper
         "0.5.5.0-alpha",
     };
 
+    private static DateTime? lastSave;
+
     public enum SaveOrder
     {
         /// <summary>
@@ -37,6 +39,17 @@ public static class SaveHelper
         /// </summary>
         FileSystem,
     }
+
+    /// <summary>
+    ///   Checks whether the last save is made within a timespan of set duration.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Used for knowing whether to show confirmation dialog on the pause menu when exiting the game.
+    ///   </para>
+    /// </remarks>
+    /// <returns>True if the last save is still recent, false if otherwise.</returns>
+    public static bool SavedRecently => lastSave != null ? DateTime.Now - lastSave < Constants.RecentSaveTime : false;
 
     /// <summary>
     ///   A save (and not a quick save) that the user triggered
@@ -340,6 +353,23 @@ public static class SaveHelper
         // the save is either older or newer than the closes save breakage point to the current version.
         // Basically if numbers don't match, we know that the save is incompatible.
         return currentVersionPlaceInList != savePlaceInList;
+    }
+
+    /// <summary>
+    ///   Marks the last save time to the time this method is called at.
+    /// </summary>
+    public static void MarkLastSaveToCurrentTime()
+    {
+        lastSave = DateTime.Now;
+    }
+
+    /// <summary>
+    ///   Sets the stored lastSave time value to null. Can be used to override
+    ///   <see cref="SavedRecently"/> flag to false.
+    /// </summary>
+    public static void ClearLastSaveTime()
+    {
+        lastSave = null;
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,

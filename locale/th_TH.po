@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-05 19:05+0100\n"
+"POT-Creation-Date: 2021-11-06 11:30+0100\n"
 "PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/"
@@ -706,7 +706,7 @@ msgid "NITROGEN"
 msgstr "ไนโตรเจน"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
 msgid "SUNLIGHT"
 msgstr "แสงแดด"
@@ -1350,12 +1350,12 @@ msgstr "ปิด"
 msgid "NEW_GAME"
 msgstr "เกมส์ใหม่"
 
-#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:73
+#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "โหลดเกม"
 
-#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:95
+#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "ตั้งค่า"
 
@@ -1385,7 +1385,7 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
 #: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:477
-#: ../src/general/OptionsMenu.tscn:1170 ../src/general/PauseMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1411,364 +1411,385 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "คำเตือนโหมด GLES2"
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:845
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:870
+#: ../src/general/OptionsMenu.cs:877
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:874
+#: ../src/general/OptionsMenu.cs:881
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:878
+#: ../src/general/OptionsMenu.cs:885
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "ช่วยแปลเกม"
 
-#: ../src/general/OptionsMenu.tscn:133
+#: ../src/general/OptionsMenu.tscn:134
 msgid "GRAPHICS"
 msgstr "กราฟิก"
 
-#: ../src/general/OptionsMenu.tscn:144
+#: ../src/general/OptionsMenu.tscn:145
 msgid "SOUND"
 msgstr "เสียง"
 
-#: ../src/general/OptionsMenu.tscn:155
+#: ../src/general/OptionsMenu.tscn:156
 msgid "PERFORMANCE"
 msgstr "ประสิทธิภาพ"
 
-#: ../src/general/OptionsMenu.tscn:166
+#: ../src/general/OptionsMenu.tscn:167
 msgid "INPUTS"
 msgstr "อินพุต"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:178
 msgid "MISC"
 msgstr "เพลง"
 
-#: ../src/general/OptionsMenu.tscn:209
+#: ../src/general/OptionsMenu.tscn:210
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "เต็มจอ"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "การลบรอยหยักหลายตัวอย่าง:"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(ค่าที่สูงขึ้นทำให้ประสิทธิภาพแย่ลง)"
 
-#: ../src/general/OptionsMenu.tscn:260 ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "TWO_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 #, fuzzy
 msgid "EIGHT_TIMES"
 msgstr "เมาส์ขวา"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "SIXTEEN_TIMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "ความละเอียด:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "อัตโนมัต"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "FPS สูงสุด:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "การแก้ไขคนตาบอดสี:"
 
-#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:339 ../src/general/OptionsMenu.tscn:340
 msgid "NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:356
 msgid "CHROMATIC_ABERRATION"
 msgstr "ความผิดปกติของสี:"
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:382
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "ความสามารถ"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "ระดับเสียงหลัก"
 
-#: ../src/general/OptionsMenu.tscn:441 ../src/general/OptionsMenu.tscn:481
-#: ../src/general/OptionsMenu.tscn:513 ../src/general/OptionsMenu.tscn:545
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:514 ../src/general/OptionsMenu.tscn:546
+#: ../src/general/OptionsMenu.tscn:578
 msgid "MUTE"
 msgstr "ปิดเสียง"
 
-#: ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:456
 msgid "MUSIC_VOLUME"
 msgstr "ระดับเสียงเพลง"
 
-#: ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.tscn:488
 msgid "AMBIANCE_VOLUME"
 msgstr "ปริมาณบรรยากาศ"
 
-#: ../src/general/OptionsMenu.tscn:519
+#: ../src/general/OptionsMenu.tscn:520
 msgid "SFX_VOLUME"
 msgstr "ปริมาณ SFX"
 
-#: ../src/general/OptionsMenu.tscn:551
+#: ../src/general/OptionsMenu.tscn:552
 msgid "GUI_VOLUME"
 msgstr "ปริมาณ GUI"
 
-#: ../src/general/OptionsMenu.tscn:595
+#: ../src/general/OptionsMenu.tscn:596
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:623
+#: ../src/general/OptionsMenu.tscn:624
 msgid "LANGUAGE"
 msgstr "ภาษา:"
 
-#: ../src/general/OptionsMenu.tscn:641 ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:1188
 msgid "RESET"
 msgstr "รีเซ็ต"
 
-#: ../src/general/OptionsMenu.tscn:659
+#: ../src/general/OptionsMenu.tscn:660
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "ช่วยแปลเกม"
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:686
 msgid "COMPOUND_CLOUDS"
 msgstr "สารประกอบของเมฆ"
 
-#: ../src/general/OptionsMenu.tscn:700
+#: ../src/general/OptionsMenu.tscn:701
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 "การจำลองคลาวด์ขั้นต่ำ\n"
 "ช่วงเวลา:"
 
-#: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(ค่าที่สูงขึ้นจะเพิ่มประสิทธิภาพ)"
 
-#: ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:743
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "ตัวหารความละเอียดของคลาวด์:"
 
-#: ../src/general/OptionsMenu.tscn:783
+#: ../src/general/OptionsMenu.tscn:784
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "เรียกใช้ auto-evo ระหว่างการเล่นเกม"
 
-#: ../src/general/OptionsMenu.tscn:803
+#: ../src/general/OptionsMenu.tscn:804
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:821
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "บันทึกและดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:853
 msgid "THREADS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:954
 msgid "RESET_INPUTS"
 msgstr "รีเซ็ตอินพุต"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:981
 msgid "PLAY_INTRO_VIDEO"
 msgstr "เล่นวิดีโอแนะนำ"
 
-#: ../src/general/OptionsMenu.tscn:988
+#: ../src/general/OptionsMenu.tscn:989
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "เล่น Microbe Intro ในเกมใหม่"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "บันทึกอัตโนมัติระหว่างเกม"
 
-#: ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "จำนวนการบันทึกอัตโนมัติที่จะเก็บไว้:"
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "จำนวนการบันทึกด่วนที่จะเก็บไว้:"
 
-#: ../src/general/OptionsMenu.tscn:1060
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "แสดงบทช่วยสอน (ในเกมใหม่)"
 
-#: ../src/general/OptionsMenu.tscn:1067
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "แสดงบทช่วยสอน (ในเกมปัจจุบัน)"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1074
+#, fuzzy
+msgid "SHOW_UNSAVED_PROGRESS_WARNING"
+msgstr ""
+"คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะถูกยกเลิก\n"
+"คุณต้องการดำเนินการต่อหรือไม่"
+
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "เปิดใช้งานโกงคีย์"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "ใช้ชื่อผู้ใช้ที่กำหนดเอง"
 
-#: ../src/general/OptionsMenu.tscn:1098
+#: ../src/general/OptionsMenu.tscn:1105
 msgid "CUSTOM_USERNAME"
 msgstr "ชื่อผู้ใช้ที่กำหนดเอง:"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 
-#: ../src/general/OptionsMenu.tscn:1132
+#: ../src/general/OptionsMenu.tscn:1139
 msgid "OPEN_LOGS_FOLDER"
 msgstr "เปิดโฟลเดอร์บันทึก"
 
-#: ../src/general/OptionsMenu.tscn:1142
+#: ../src/general/OptionsMenu.tscn:1149
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1156 ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1163 ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1193 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "เซฟ"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "ค่าเริ่มต้น"
 
-#: ../src/general/OptionsMenu.tscn:1221
+#: ../src/general/OptionsMenu.tscn:1228
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าทั้งหมดเป็นค่าเริ่มต้น"
 
-#: ../src/general/OptionsMenu.tscn:1222
+#: ../src/general/OptionsMenu.tscn:1229
 msgid "RESET_TO_DEFAULTS"
 msgstr "รีเซ็ตเป็นค่าเริ่มต้นไหม"
 
-#: ../src/general/OptionsMenu.tscn:1230
+#: ../src/general/OptionsMenu.tscn:1237
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าการป้อนข้อมูลเป็นค่าเริ่มต้น"
 
-#: ../src/general/OptionsMenu.tscn:1231
+#: ../src/general/OptionsMenu.tscn:1238
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "รีเซ็ตอินพุตเป็นค่าเริ่มต้น?"
 
-#: ../src/general/OptionsMenu.tscn:1240
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "CLOSE_OPTIONS"
 msgstr "ปิดตัวเลือกไหม"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะถูกยกเลิก\n"
 "คุณต้องการดำเนินการต่อหรือไม่"
 
-#: ../src/general/OptionsMenu.tscn:1283
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "SAVE_AND_CONTINUE"
 msgstr "บันทึกและดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.tscn:1293
+#: ../src/general/OptionsMenu.tscn:1300
 msgid "DISCARD_AND_CONTINUE"
 msgstr "ทิ้งและดำเนินการต่อ"
 
-#: ../src/general/OptionsMenu.tscn:1310
+#: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
 msgid "CANCEL"
 msgstr "ยกเลิก"
 
-#: ../src/general/OptionsMenu.tscn:1321 ../src/general/OptionsMenu.tscn:1330
+#: ../src/general/OptionsMenu.tscn:1328 ../src/general/OptionsMenu.tscn:1337
 msgid "ERROR"
 msgstr "ผิดพลาด"
 
-#: ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "ผิดพลาด: บันทึกการตั้งค่าใหม่ลงในไฟล์กำหนดค่าไม่สำเร็จ"
 
-#: ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1347
 #, fuzzy
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "จับภาพหน้าจอ"
 
-#: ../src/general/OptionsMenu.tscn:1342
+#: ../src/general/OptionsMenu.tscn:1349
 #, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 
-#: ../src/general/PauseMenu.tscn:59
+#: ../src/general/PauseMenu.cs:237
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "กลับไปที่เมนู"
+
+#: ../src/general/PauseMenu.cs:254
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "คำเตือนโหมด GLES2"
+
+#: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
 msgstr "ดำเนินการต่อ"
 
-#: ../src/general/PauseMenu.tscn:66
+#: ../src/general/PauseMenu.tscn:67
 msgid "SAVE_GAME"
 msgstr "บันทึกเกม"
 
-#: ../src/general/PauseMenu.tscn:81
+#: ../src/general/PauseMenu.tscn:82
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2540
 msgid "STATISTICS"
 msgstr "สถิติ"
 
-#: ../src/general/PauseMenu.tscn:88
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "ช่วยเหลือ"
 
-#: ../src/general/PauseMenu.tscn:102
+#: ../src/general/PauseMenu.tscn:103
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
 msgid "RETURN_TO_MENU"
 msgstr "กลับไปที่เมนู"
 
-#: ../src/general/PauseMenu.tscn:109
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "ออก"
+
+#: ../src/general/PauseMenu.tscn:161
+msgid "CONFIRM_EXIT"
+msgstr ""
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -2652,7 +2673,14 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
+#, fuzzy
+msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
+msgstr ""
+"คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะถูกยกเลิก\n"
+"คุณต้องการดำเนินการต่อหรือไม่"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3051
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "TEMPERATURE"
@@ -3298,7 +3326,7 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:224
+#: ../src/saving/InProgressLoad.cs:227
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -3338,20 +3366,20 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:382
+#: ../src/saving/SaveHelper.cs:412
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:383
+#: ../src/saving/SaveHelper.cs:413
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "สูญพันธุ์ไปแล้วใน {0}"
 
-#: ../src/saving/SaveHelper.cs:392
+#: ../src/saving/SaveHelper.cs:422
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:402
+#: ../src/saving/SaveHelper.cs:432
 msgid "SAVING_FAILED"
 msgstr ""
 

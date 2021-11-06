@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-05 19:05+0100\n"
+"POT-Creation-Date: 2021-11-06 11:30+0100\n"
 "PO-Revision-Date: 2021-10-28 07:11+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
@@ -750,7 +750,7 @@ msgid "NITROGEN"
 msgstr "Nitrogén"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
 msgid "SUNLIGHT"
 msgstr "Napfény"
@@ -898,6 +898,8 @@ msgstr "Indítás"
 #: ../src/auto-evo/AutoEvoRun.cs:286
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
+"A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok "
+"miatt: {2}"
 
 #: ../src/auto-evo/RunResults.cs:424
 msgid "POPULATION"
@@ -909,7 +911,7 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:440
 msgid "PREVIOUS"
-msgstr ""
+msgstr "előző:"
 
 #: ../src/auto-evo/RunResults.cs:457
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -973,71 +975,71 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
 msgid "KEY_ENTER"
-msgstr ""
+msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr ""
+msgstr "Insert"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
-msgstr ""
+msgstr "Delete"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr ""
+msgstr "Pause"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "Clear"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
-msgstr ""
+msgstr "Home"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
-msgstr ""
+msgstr "End"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
-msgstr ""
+msgstr "Bal"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr ""
+msgstr "Fel"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "KEY_RIGHT"
-msgstr ""
+msgstr "Jobbra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr ""
+msgstr "Le"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr ""
+msgstr "Menu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
-msgstr ""
+msgstr "Help"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "KEY_BACK"
-msgstr ""
+msgstr "Back"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Stop"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr ""
+msgstr "Refresh"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Search"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
@@ -1385,12 +1387,12 @@ msgstr "Bezár"
 msgid "NEW_GAME"
 msgstr "Új játék"
 
-#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:73
+#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Játék betöltése"
 
-#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:95
+#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Beállítások"
 
@@ -1420,7 +1422,7 @@ msgstr "Sejtszerkesztő"
 
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
 #: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:477
-#: ../src/general/OptionsMenu.tscn:1170 ../src/general/PauseMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1446,358 +1448,377 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 mód figyelmeztetés"
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:845
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Alap kimeneti eszköz"
 
-#: ../src/general/OptionsMenu.cs:870
+#: ../src/general/OptionsMenu.cs:877
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "A játék erre a nyelvre még nincs teljesen lefordítva ({0}% kész). Kérünk, "
 "hogy segíts nekünk ez ügyben te is!"
 
-#: ../src/general/OptionsMenu.cs:874
+#: ../src/general/OptionsMenu.cs:881
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 "A játéknak erre a nyelvre való lefordítása még mindig készülőben van ({0}% "
 "kész)"
 
-#: ../src/general/OptionsMenu.cs:878
+#: ../src/general/OptionsMenu.cs:885
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Erre a nyelvre való fordítás {0}%-a van elkészülve"
 
-#: ../src/general/OptionsMenu.tscn:133
+#: ../src/general/OptionsMenu.tscn:134
 msgid "GRAPHICS"
 msgstr "Grafika"
 
-#: ../src/general/OptionsMenu.tscn:144
+#: ../src/general/OptionsMenu.tscn:145
 msgid "SOUND"
 msgstr "Hang"
 
-#: ../src/general/OptionsMenu.tscn:155
+#: ../src/general/OptionsMenu.tscn:156
 msgid "PERFORMANCE"
 msgstr "Teljesítmény"
 
-#: ../src/general/OptionsMenu.tscn:166
+#: ../src/general/OptionsMenu.tscn:167
 msgid "INPUTS"
 msgstr "Bemenet"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:178
 msgid "MISC"
 msgstr "Egyéb"
 
-#: ../src/general/OptionsMenu.tscn:209
+#: ../src/general/OptionsMenu.tscn:210
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "Teljes képernyő"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Többszörös élsimítás:"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(a nagyobb értékek ronthatják a teljesítményt)"
 
-#: ../src/general/OptionsMenu.tscn:260 ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
 msgstr "Kikapcsolva"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "Felbontás:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "Auto"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "Maximum FPS:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Színvakság javító:"
 
-#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:339 ../src/general/OptionsMenu.tscn:340
 msgid "NONE"
 msgstr "Semmi"
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:356
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:382
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:441 ../src/general/OptionsMenu.tscn:481
-#: ../src/general/OptionsMenu.tscn:513 ../src/general/OptionsMenu.tscn:545
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:514 ../src/general/OptionsMenu.tscn:546
+#: ../src/general/OptionsMenu.tscn:578
 msgid "MUTE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:456
 msgid "MUSIC_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.tscn:488
 msgid "AMBIANCE_VOLUME"
 msgstr "Környezeti hangerő"
 
-#: ../src/general/OptionsMenu.tscn:519
+#: ../src/general/OptionsMenu.tscn:520
 msgid "SFX_VOLUME"
 msgstr "SFX hangerő"
 
-#: ../src/general/OptionsMenu.tscn:551
+#: ../src/general/OptionsMenu.tscn:552
 msgid "GUI_VOLUME"
 msgstr "GUI hangerő"
 
-#: ../src/general/OptionsMenu.tscn:595
+#: ../src/general/OptionsMenu.tscn:596
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Audio eszköz:"
 
-#: ../src/general/OptionsMenu.tscn:623
+#: ../src/general/OptionsMenu.tscn:624
 msgid "LANGUAGE"
 msgstr "Nyelv:"
 
-#: ../src/general/OptionsMenu.tscn:641 ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:1188
 msgid "RESET"
 msgstr "Visszaállít"
 
-#: ../src/general/OptionsMenu.tscn:659
+#: ../src/general/OptionsMenu.tscn:660
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Segíts a játék fordításában"
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:686
 msgid "COMPOUND_CLOUDS"
 msgstr "Vegyületfelhők"
 
-#: ../src/general/OptionsMenu.tscn:700
+#: ../src/general/OptionsMenu.tscn:701
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Felhőszimuláció minimum intervalluma:"
 
-#: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(a nagyobb értékek javíthatják a teljesítményt)"
 
-#: ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:743
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Felhő felbontásának osztója:"
 
-#: ../src/general/OptionsMenu.tscn:783
+#: ../src/general/OptionsMenu.tscn:784
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Auto-evo futtatása játék alatt"
 
-#: ../src/general/OptionsMenu.tscn:803
+#: ../src/general/OptionsMenu.tscn:804
 msgid "DETECTED_CPU_COUNT"
 msgstr "Észlelt processzorszám:"
 
-#: ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:821
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Észlelhető szálak:"
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ASSUME_HYPERTHREADING"
 msgstr "A CPU hyperthread engedélyezésének feltételezése"
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "A háttérben futó szálak számának manuális beállítása"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:853
 msgid "THREADS"
 msgstr "Szálak:"
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:954
 msgid "RESET_INPUTS"
 msgstr "Bemeneti eszközök visszaállítása"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:981
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Intró videó lejátszása"
 
-#: ../src/general/OptionsMenu.tscn:988
+#: ../src/general/OptionsMenu.tscn:989
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Új játék esetén az intró lejátszása"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automata mentés a játék során"
 
-#: ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Megtartható automentések mennyisége:"
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Megtartható gyorsmentések mennyisége:"
 
-#: ../src/general/OptionsMenu.tscn:1060
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Tutoriálok mutatása (új játék esetén)"
 
-#: ../src/general/OptionsMenu.tscn:1067
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Tutoriálok mutatása (jelenlegi játékban)"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1074
+msgid "SHOW_UNSAVED_PROGRESS_WARNING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Csalások engedélyezve"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Adj meg egy saját felhasználónevet"
 
-#: ../src/general/OptionsMenu.tscn:1098
+#: ../src/general/OptionsMenu.tscn:1105
 msgid "CUSTOM_USERNAME"
 msgstr "Saját felhasználónév:"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Képernyőkép mappa megnyitása"
 
-#: ../src/general/OptionsMenu.tscn:1132
+#: ../src/general/OptionsMenu.tscn:1139
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Feljegyzés mappa megnyitása"
 
-#: ../src/general/OptionsMenu.tscn:1142
+#: ../src/general/OptionsMenu.tscn:1149
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON debug mód:"
 
-#: ../src/general/OptionsMenu.tscn:1156 ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1163 ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automatikusan"
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Mindig"
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Soha"
 
-#: ../src/general/OptionsMenu.tscn:1193 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Mentés"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Alapok"
 
-#: ../src/general/OptionsMenu.tscn:1221
+#: ../src/general/OptionsMenu.tscn:1228
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "Biztos MINDEN beállítást vissza akarsz állítani alap értékekre?"
 
-#: ../src/general/OptionsMenu.tscn:1222
+#: ../src/general/OptionsMenu.tscn:1229
 msgid "RESET_TO_DEFAULTS"
 msgstr "Visszaállítja-e az alap dolgokat?"
 
-#: ../src/general/OptionsMenu.tscn:1230
+#: ../src/general/OptionsMenu.tscn:1237
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Biztos vissza akarod állítani a bemeneti beállításokat az alapokra?"
 
-#: ../src/general/OptionsMenu.tscn:1231
+#: ../src/general/OptionsMenu.tscn:1238
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
 
-#: ../src/general/OptionsMenu.tscn:1240
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "CLOSE_OPTIONS"
 msgstr "Bezárod a beállítás panelt?"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1283
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "SAVE_AND_CONTINUE"
 msgstr "Mentés és folytatás"
 
-#: ../src/general/OptionsMenu.tscn:1293
+#: ../src/general/OptionsMenu.tscn:1300
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Elvet és folytatás"
 
-#: ../src/general/OptionsMenu.tscn:1310
+#: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
 msgid "CANCEL"
 msgstr "Mégse"
 
-#: ../src/general/OptionsMenu.tscn:1321 ../src/general/OptionsMenu.tscn:1330
+#: ../src/general/OptionsMenu.tscn:1328 ../src/general/OptionsMenu.tscn:1337
 msgid "ERROR"
 msgstr "Hiba"
 
-#: ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1347
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Próbálj pár képernyőképet készíteni!"
 
-#: ../src/general/OptionsMenu.tscn:1342
+#: ../src/general/OptionsMenu.tscn:1349
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:59
+#: ../src/general/PauseMenu.cs:237
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "Vissza a menübe"
+
+#: ../src/general/PauseMenu.cs:254
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "GLES2 mód figyelmeztetés"
+
+#: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
 msgstr "Folytatás"
 
-#: ../src/general/PauseMenu.tscn:66
+#: ../src/general/PauseMenu.tscn:67
 msgid "SAVE_GAME"
 msgstr "Játék mentése"
 
-#: ../src/general/PauseMenu.tscn:81
+#: ../src/general/PauseMenu.tscn:82
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2540
 msgid "STATISTICS"
 msgstr "Statisztikák"
 
-#: ../src/general/PauseMenu.tscn:88
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Segítség"
 
-#: ../src/general/PauseMenu.tscn:102
+#: ../src/general/PauseMenu.tscn:103
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
 msgid "RETURN_TO_MENU"
 msgstr "Vissza a menübe"
 
-#: ../src/general/PauseMenu.tscn:109
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Kilépés"
+
+#: ../src/general/PauseMenu.tscn:161
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "ELFOGAD"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -2516,7 +2537,11 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
+msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3051
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "TEMPERATURE"
@@ -3115,23 +3140,29 @@ msgstr "KIHALTÁL"
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:95
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
+"Mint azon fajok 99%-a, melyek egykor léteztek, kihaltak, mint a te fajod. "
+"Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl "
+"fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás "
+"kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
-msgstr ""
+msgstr "TÚLÉLTÉL!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
+"Gratulálok, a Thrive ezen verzióját végigvitted! Ha akarsz, még játszhatsz "
+"tovább, miután ez az ablak bezárul, vagy egy új játékot is kezdhetsz."
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
 msgid "LOADING_GAME"
-msgstr ""
+msgstr "A játék betöltése"
 
 #: ../src/saving/InProgressLoad.cs:80
 msgid "READING_SAVE_DATA"
-msgstr ""
+msgstr "Mentési információ olvasása"
 
 #: ../src/saving/InProgressLoad.cs:100
 msgid "CREATING_OBJECTS_FROM_SAVE"
@@ -3165,7 +3196,7 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:224
+#: ../src/saving/InProgressLoad.cs:227
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -3205,19 +3236,19 @@ msgstr "Létező mentés felülírása:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Felülírod a már meglévő mentést?"
 
-#: ../src/saving/SaveHelper.cs:382
+#: ../src/saving/SaveHelper.cs:412
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "A mentés nem sikerült a következő ok(ok)miatt:"
 
-#: ../src/saving/SaveHelper.cs:383
+#: ../src/saving/SaveHelper.cs:413
 msgid "PLAYER_EXTINCT"
 msgstr "A játékos faja kihalt"
 
-#: ../src/saving/SaveHelper.cs:392
+#: ../src/saving/SaveHelper.cs:422
 msgid "SAVING_SUCCEEDED"
 msgstr "Sikeres mentés"
 
-#: ../src/saving/SaveHelper.cs:402
+#: ../src/saving/SaveHelper.cs:432
 msgid "SAVING_FAILED"
 msgstr "A mentés sikertelen! Hiba történt"
 

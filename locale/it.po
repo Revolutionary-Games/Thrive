@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-05 19:05+0100\n"
+"POT-Creation-Date: 2021-11-06 11:30+0100\n"
 "PO-Revision-Date: 2021-10-28 07:11+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -220,7 +220,8 @@ msgstr ""
 "Ogni volta che ti riproduci, entrerai nell'Editor Microbico, dove potrai "
 "fare cambiamenti alla tua specie (aggiungere, muovere o rimuovere "
 "organuli) per aumentarne il successo. Ogni visita all'editor nella Fase "
-"Microbica rappresenta 100 milioni di anni di evoluzione."
+"Microbica rappresenta [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/"
+"thrive:constant] milioni di anni di evoluzione."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
@@ -763,7 +764,7 @@ msgid "NITROGEN"
 msgstr "Azoto"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3512
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
 msgid "SUNLIGHT"
 msgstr "Luce solare"
@@ -930,14 +931,12 @@ msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "codice genetico:"
 
 #: ../src/auto-evo/RunResults.cs:470
-#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "codice genetico:"
+msgstr "è emerso per occupare una nicchia"
 
 #: ../src/auto-evo/RunResults.cs:473
-#, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr "è migrato nelle zone:"
+msgstr "è emerso a causa di pressioni selettive diverse"
 
 #: ../src/auto-evo/RunResults.cs:491
 #, fuzzy
@@ -1404,12 +1403,12 @@ msgstr "Chiudi"
 msgid "NEW_GAME"
 msgstr "Nuova Partita"
 
-#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:73
+#: ../src/general/MainMenu.tscn:164 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Carica Partita"
 
-#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:95
+#: ../src/general/MainMenu.tscn:175 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Impostazioni"
 
@@ -1439,7 +1438,7 @@ msgstr "Editor Microbico Libero"
 
 #: ../src/general/MainMenu.tscn:312 ../src/general/MainMenu.tscn:392
 #: ../src/general/MainMenu.tscn:426 ../src/general/MainMenu.tscn:477
-#: ../src/general/OptionsMenu.tscn:1170 ../src/general/PauseMenu.tscn:135
+#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1464,360 +1463,382 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "Avvertimento Modalità GLES2"
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:845
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio di default"
 
-#: ../src/general/OptionsMenu.cs:870
+#: ../src/general/OptionsMenu.cs:877
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Questa traduzione è molto incompleta (siamo al {0}%). Perfavore, aiutaci!"
 
-#: ../src/general/OptionsMenu.cs:874
+#: ../src/general/OptionsMenu.cs:881
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Questa traduzione è in corso d'opera (siamo al {0}%)"
 
-#: ../src/general/OptionsMenu.cs:878
+#: ../src/general/OptionsMenu.cs:885
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Questa traduzione è completa al {0}%"
 
-#: ../src/general/OptionsMenu.tscn:133
+#: ../src/general/OptionsMenu.tscn:134
 msgid "GRAPHICS"
 msgstr "Grafica"
 
-#: ../src/general/OptionsMenu.tscn:144
+#: ../src/general/OptionsMenu.tscn:145
 msgid "SOUND"
 msgstr "Suono"
 
-#: ../src/general/OptionsMenu.tscn:155
+#: ../src/general/OptionsMenu.tscn:156
 msgid "PERFORMANCE"
 msgstr "Prestazioni"
 
-#: ../src/general/OptionsMenu.tscn:166
+#: ../src/general/OptionsMenu.tscn:167
 msgid "INPUTS"
 msgstr "Controlli"
 
-#: ../src/general/OptionsMenu.tscn:177
+#: ../src/general/OptionsMenu.tscn:178
 msgid "MISC"
 msgstr "Varie"
 
-#: ../src/general/OptionsMenu.tscn:209
+#: ../src/general/OptionsMenu.tscn:210
 msgid "VSYNC"
 msgstr "VSync"
 
-#: ../src/general/OptionsMenu.tscn:216
+#: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
 msgstr "Schermo intero"
 
-#: ../src/general/OptionsMenu.tscn:238
+#: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Anti-aliasing multicampionamento (MSAA):"
 
-#: ../src/general/OptionsMenu.tscn:245
+#: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(valori più elevati compromettono le prestazioni)"
 
-#: ../src/general/OptionsMenu.tscn:260 ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
 msgstr "Disattivato"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:261
+#: ../src/general/OptionsMenu.tscn:262
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:275
+#: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
 msgstr "Risoluzione:"
 
-#: ../src/general/OptionsMenu.tscn:288
+#: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
 msgstr "Automatica"
 
-#: ../src/general/OptionsMenu.tscn:298
+#: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
 msgstr "FPS massimi:"
 
-#: ../src/general/OptionsMenu.tscn:324
+#: ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Correzione colore (per daltonismo):"
 
-#: ../src/general/OptionsMenu.tscn:338 ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:339 ../src/general/OptionsMenu.tscn:340
 msgid "NONE"
 msgstr "Nessuna"
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopica (Rosso-Verde)"
 
-#: ../src/general/OptionsMenu.tscn:339
+#: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopica (Blu-Giallo)"
 
-#: ../src/general/OptionsMenu.tscn:355
+#: ../src/general/OptionsMenu.tscn:356
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberrazione cromatica:"
 
-#: ../src/general/OptionsMenu.tscn:381
+#: ../src/general/OptionsMenu.tscn:382
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostra la barra delle abilità"
 
-#: ../src/general/OptionsMenu.tscn:389
+#: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Abilita gli effetti di luce della GUI"
 
-#: ../src/general/OptionsMenu.tscn:415
+#: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
 msgstr "Volume principale"
 
-#: ../src/general/OptionsMenu.tscn:441 ../src/general/OptionsMenu.tscn:481
-#: ../src/general/OptionsMenu.tscn:513 ../src/general/OptionsMenu.tscn:545
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:514 ../src/general/OptionsMenu.tscn:546
+#: ../src/general/OptionsMenu.tscn:578
 msgid "MUTE"
 msgstr "Muto"
 
-#: ../src/general/OptionsMenu.tscn:455
+#: ../src/general/OptionsMenu.tscn:456
 msgid "MUSIC_VOLUME"
 msgstr "Volume della musica"
 
-#: ../src/general/OptionsMenu.tscn:487
+#: ../src/general/OptionsMenu.tscn:488
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume dell'ambiente"
 
-#: ../src/general/OptionsMenu.tscn:519
+#: ../src/general/OptionsMenu.tscn:520
 msgid "SFX_VOLUME"
 msgstr "Volume degli effetti sonori"
 
-#: ../src/general/OptionsMenu.tscn:551
+#: ../src/general/OptionsMenu.tscn:552
 msgid "GUI_VOLUME"
 msgstr "Volume della GUI"
 
-#: ../src/general/OptionsMenu.tscn:595
+#: ../src/general/OptionsMenu.tscn:596
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo di output audio:"
 
-#: ../src/general/OptionsMenu.tscn:623
+#: ../src/general/OptionsMenu.tscn:624
 msgid "LANGUAGE"
 msgstr "Lingua:"
 
-#: ../src/general/OptionsMenu.tscn:641 ../src/general/OptionsMenu.tscn:1181
+#: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:1188
 msgid "RESET"
 msgstr "Ripristina"
 
-#: ../src/general/OptionsMenu.tscn:659
+#: ../src/general/OptionsMenu.tscn:660
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Aiuta a tradurre il gioco"
 
-#: ../src/general/OptionsMenu.tscn:685
+#: ../src/general/OptionsMenu.tscn:686
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvole di composti"
 
-#: ../src/general/OptionsMenu.tscn:700
+#: ../src/general/OptionsMenu.tscn:701
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervallo minimo simulazione nuvole:"
 
-#: ../src/general/OptionsMenu.tscn:707 ../src/general/OptionsMenu.tscn:749
+#: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(valori più elevati migliorano le prestazioni)"
 
-#: ../src/general/OptionsMenu.tscn:742
+#: ../src/general/OptionsMenu.tscn:743
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisore risoluzione nuvole:"
 
-#: ../src/general/OptionsMenu.tscn:783
+#: ../src/general/OptionsMenu.tscn:784
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Esegui auto-evo in gioco"
 
-#: ../src/general/OptionsMenu.tscn:803
+#: ../src/general/OptionsMenu.tscn:804
 msgid "DETECTED_CPU_COUNT"
 msgstr "Numero di CPU rilevate:"
 
-#: ../src/general/OptionsMenu.tscn:820
+#: ../src/general/OptionsMenu.tscn:821
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Thread attuali:"
 
-#: ../src/general/OptionsMenu.tscn:834
+#: ../src/general/OptionsMenu.tscn:835
 msgid "ASSUME_HYPERTHREADING"
 msgstr "Presupponi che la CPU abbia attivato l'hyperthreading"
 
-#: ../src/general/OptionsMenu.tscn:842
+#: ../src/general/OptionsMenu.tscn:843
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Imposta manualmente il numero di thread in background"
 
-#: ../src/general/OptionsMenu.tscn:852
+#: ../src/general/OptionsMenu.tscn:853
 msgid "THREADS"
 msgstr "Thread:"
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:954
 msgid "RESET_INPUTS"
 msgstr "Ripristina i comandi"
 
-#: ../src/general/OptionsMenu.tscn:980
+#: ../src/general/OptionsMenu.tscn:981
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Riproduci video introduttivo"
 
-#: ../src/general/OptionsMenu.tscn:988
+#: ../src/general/OptionsMenu.tscn:989
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Riproduci filmato microbico iniziale in nuova partita"
 
-#: ../src/general/OptionsMenu.tscn:996
+#: ../src/general/OptionsMenu.tscn:997
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Salvataggio automatico durante il gioco"
 
-#: ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:1008
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Numero di salvataggi automatici da conservare:"
 
-#: ../src/general/OptionsMenu.tscn:1035
+#: ../src/general/OptionsMenu.tscn:1036
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Numero di salvataggi rapidi da conservare:"
 
-#: ../src/general/OptionsMenu.tscn:1060
+#: ../src/general/OptionsMenu.tscn:1061
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Mostra i tutorial (in nuove partite)"
 
-#: ../src/general/OptionsMenu.tscn:1067
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Mostra i tutorial (nella partita attuale)"
 
-#: ../src/general/OptionsMenu.tscn:1079
+#: ../src/general/OptionsMenu.tscn:1074
+#, fuzzy
+msgid "SHOW_UNSAVED_PROGRESS_WARNING"
+msgstr ""
+"Hai modifiche non salvate. Saranno eliminate.\n"
+"Vuoi procedere?"
+
+#: ../src/general/OptionsMenu.tscn:1086
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Abilita trucchi"
 
-#: ../src/general/OptionsMenu.tscn:1087
+#: ../src/general/OptionsMenu.tscn:1094
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utilizza uno username personalizzato"
 
-#: ../src/general/OptionsMenu.tscn:1098
+#: ../src/general/OptionsMenu.tscn:1105
 msgid "CUSTOM_USERNAME"
 msgstr "Username personalizzato:"
 
-#: ../src/general/OptionsMenu.tscn:1124
+#: ../src/general/OptionsMenu.tscn:1131
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Apri Cartella degli Screenshot"
 
-#: ../src/general/OptionsMenu.tscn:1132
+#: ../src/general/OptionsMenu.tscn:1139
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Apri Cartella dei Report"
 
-#: ../src/general/OptionsMenu.tscn:1142
+#: ../src/general/OptionsMenu.tscn:1149
 msgid "JSON_DEBUG_MODE"
 msgstr "Modalità di debug JSON:"
 
-#: ../src/general/OptionsMenu.tscn:1156 ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1163 ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Automaticamente"
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Sempre"
 
-#: ../src/general/OptionsMenu.tscn:1157
+#: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Mai"
 
-#: ../src/general/OptionsMenu.tscn:1193 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
 msgstr "Salva"
 
-#: ../src/general/OptionsMenu.tscn:1210
+#: ../src/general/OptionsMenu.tscn:1217
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Predefinite"
 
-#: ../src/general/OptionsMenu.tscn:1221
+#: ../src/general/OptionsMenu.tscn:1228
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "Sicuro di voler ripristinare TUTTE le impostazioni ai valori predefiniti?"
 
-#: ../src/general/OptionsMenu.tscn:1222
+#: ../src/general/OptionsMenu.tscn:1229
 msgid "RESET_TO_DEFAULTS"
 msgstr "Ripristinare le impostazioni predefinite?"
 
-#: ../src/general/OptionsMenu.tscn:1230
+#: ../src/general/OptionsMenu.tscn:1237
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "Sei sicuro di voler ripristinare i comandi ai valori iniziali?"
 
-#: ../src/general/OptionsMenu.tscn:1231
+#: ../src/general/OptionsMenu.tscn:1238
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Ripristinare i comandi?"
 
-#: ../src/general/OptionsMenu.tscn:1240
+#: ../src/general/OptionsMenu.tscn:1247
 msgid "CLOSE_OPTIONS"
 msgstr "Chiudere le impostazioni?"
 
-#: ../src/general/OptionsMenu.tscn:1260
+#: ../src/general/OptionsMenu.tscn:1267
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Hai modifiche non salvate. Saranno eliminate.\n"
 "Vuoi procedere?"
 
-#: ../src/general/OptionsMenu.tscn:1283
+#: ../src/general/OptionsMenu.tscn:1290
 msgid "SAVE_AND_CONTINUE"
 msgstr "Salva e continua"
 
-#: ../src/general/OptionsMenu.tscn:1293
+#: ../src/general/OptionsMenu.tscn:1300
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Continua senza salvare"
 
-#: ../src/general/OptionsMenu.tscn:1310
+#: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
 msgid "CANCEL"
 msgstr "Annulla"
 
-#: ../src/general/OptionsMenu.tscn:1321 ../src/general/OptionsMenu.tscn:1330
+#: ../src/general/OptionsMenu.tscn:1328 ../src/general/OptionsMenu.tscn:1337
 msgid "ERROR"
 msgstr "Errore"
 
-#: ../src/general/OptionsMenu.tscn:1332
+#: ../src/general/OptionsMenu.tscn:1339
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 "Errore: è stato impossibile salvare le nuove impostazioni su file di "
 "configurazione."
 
-#: ../src/general/OptionsMenu.tscn:1340
+#: ../src/general/OptionsMenu.tscn:1347
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Prova a scattare qualche screenshot!"
 
-#: ../src/general/OptionsMenu.tscn:1342
+#: ../src/general/OptionsMenu.tscn:1349
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Cartella degli Screenshot non trovata"
 
-#: ../src/general/PauseMenu.tscn:59
+#: ../src/general/PauseMenu.cs:237
+#, fuzzy
+msgid "RETURN_TO_MENU_WARNING"
+msgstr "Ritorna al Menù"
+
+#: ../src/general/PauseMenu.cs:254
+#, fuzzy
+msgid "QUIT_GAME_WARNING"
+msgstr "Avvertimento Modalità GLES2"
+
+#: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
 msgstr "Riprendi"
 
-#: ../src/general/PauseMenu.tscn:66
+#: ../src/general/PauseMenu.tscn:67
 msgid "SAVE_GAME"
 msgstr "Salva Partita"
 
-#: ../src/general/PauseMenu.tscn:81
+#: ../src/general/PauseMenu.tscn:82
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2540
 msgid "STATISTICS"
 msgstr "Statistiche"
 
-#: ../src/general/PauseMenu.tscn:88
+#: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
 msgstr "Aiuto"
 
-#: ../src/general/PauseMenu.tscn:102
+#: ../src/general/PauseMenu.tscn:103
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
 msgid "RETURN_TO_MENU"
 msgstr "Ritorna al Menù"
 
-#: ../src/general/PauseMenu.tscn:109
+#: ../src/general/PauseMenu.tscn:110
 msgid "EXIT"
 msgstr "Esci"
+
+#: ../src/general/PauseMenu.tscn:161
+#, fuzzy
+msgid "CONFIRM_EXIT"
+msgstr "CONFERMA"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -2358,9 +2379,9 @@ msgstr ""
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "I metabolosomi sono ammassi di proteine avvolti in involucri proteici. "
-"Sono in grado di convertire il glucosio in ATP a un tasso molto più alto "
-"rispetto a quello del citoplasma. Tale processo è chiamato Respirazione "
-"Aerobica. Tuttavia, richiedono ossigeno per funzionare: livelli più bassi "
+"Sono in grado di convertire il glucosio in ATP molto più velocemente "
+"rispetto al citoplasma. Tale processo è chiamato Respirazione Aerobica. "
+"Tuttavia, richiedono ossigeno per funzionare: livelli più bassi "
 "rallenteranno il loro tasso di produzione di ATP. Siccome i metabolosomi "
 "sono sospesi direttamente nel citoplasma, il fluido circostante fa una "
 "piccola quantità di glicolisi."
@@ -2759,7 +2780,14 @@ msgstr ""
 "Siccome i thread di hyperthreading non sono veloci quanto veri core di "
 "CPU, ciò influenza il numero di thread di default."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
+#, fuzzy
+msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
+msgstr ""
+"Hai modifiche non salvate. Saranno eliminate.\n"
+"Vuoi procedere?"
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3051
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "TEMPERATURE"
@@ -3146,24 +3174,20 @@ msgstr ""
 "nell'ambiente rallentano il suo tasso di produzione di ATP."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2147
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION"
-msgstr "{0:F1}% fatto. Fase {1:n0}/{2:n0}."
+msgstr "Previsione dell'Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2212
-#, fuzzy
 msgid "TOTAL_POPULATION_COLON"
-msgstr "La popolazione di {0} è cambiata di {1} per il seguente motivo: {2}"
+msgstr "Popolazione Totale:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2236
-#, fuzzy
 msgid "BEST_PATCH_COLON"
-msgstr "Specie:"
+msgstr "Miglior Zona:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2261
-#, fuzzy
 msgid "WORST_PATCH_COLON"
-msgstr "Specie:"
+msgstr "Peggior Zona:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 msgid "NEGATIVE_ATP_BALANCE"
@@ -3328,15 +3352,13 @@ msgstr "Salvataggio fallito"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1842
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1855
-#, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
-msgstr "POPOLAZIONE:"
+msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1847
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1860
-#, fuzzy
 msgid "N_A"
-msgstr "Disattiva AI"
+msgstr "N/A"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2056
 msgid "INVALID_SPECIES_NAME_POPUP"
@@ -3424,7 +3446,7 @@ msgstr "Caricamento completato"
 msgid "ERROR_LOADING"
 msgstr "Errore di Caricamento"
 
-#: ../src/saving/InProgressLoad.cs:224
+#: ../src/saving/InProgressLoad.cs:227
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Impossibile liberare le risorse già caricate: {0}"
 
@@ -3464,19 +3486,19 @@ msgstr "Sovrascrivi salvataggio esistente:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Vuoi sovrascrivere il salvataggio esistente?"
 
-#: ../src/saving/SaveHelper.cs:382
+#: ../src/saving/SaveHelper.cs:412
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Impossibile salvare, al momento, per questo motivo:"
 
-#: ../src/saving/SaveHelper.cs:383
+#: ../src/saving/SaveHelper.cs:413
 msgid "PLAYER_EXTINCT"
 msgstr "Il giocatore si è estinto"
 
-#: ../src/saving/SaveHelper.cs:392
+#: ../src/saving/SaveHelper.cs:422
 msgid "SAVING_SUCCEEDED"
 msgstr "Salvataggio riuscito"
 
-#: ../src/saving/SaveHelper.cs:402
+#: ../src/saving/SaveHelper.cs:432
 msgid "SAVING_FAILED"
 msgstr "Salvataggio fallito! Si è verificata un'eccezione"
 
@@ -3719,8 +3741,8 @@ msgstr ""
 "Puoi cliccare su una zona per vederne i dettagli a destra.\n"
 "\n"
 "Se selezioni una zona limitrofa alla tua, puoi premere il pulsante a "
-"destra per trasferirtici. Ciò permette alla popolazione della tua specie "
-"di espandersi in nuove zone.\n"
+"destra per trasferti lì. Ciò permette alla popolazione della tua specie di "
+"espandersi in nuove zone.\n"
 "\n"
 "Seleziona una zona per continuare."
 

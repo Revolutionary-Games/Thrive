@@ -224,6 +224,9 @@ public class InProgressSave : IDisposable
                 }
 
                 IsSaving = false;
+
+                SaveHelper.MarkLastSaveToCurrentTime();
+
                 return;
             }
 
