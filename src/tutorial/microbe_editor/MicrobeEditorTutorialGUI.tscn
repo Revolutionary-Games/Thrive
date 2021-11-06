@@ -140,21 +140,21 @@ text = "EDITOR_TUTORIAL_CELL_TEXT"
 autowrap = true
 
 [node name="UndoTutorial" parent="." instance=ExtResource( 4 )]
-anchor_left = 1.0
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -403.0
-margin_top = -134.0
-margin_right = -113.0
-margin_bottom = 216.0
+margin_left = -145.0
+margin_top = -175.0
+margin_right = 145.0
+margin_bottom = 175.0
 rect_min_size = Vector2( 290, 350 )
 rect_pivot_offset = Vector2( 145, 171 )
 theme = null
 script = ExtResource( 7 )
-WindowTitle = "TUTORIAL"
 ShowDelay = 0.0
 Resizable = true
+WindowTitle = "TUTORIAL"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
 anchor_right = 1.0
@@ -182,28 +182,28 @@ autowrap = true
 visible = false
 
 [node name="RedoTutorial" parent="." instance=ExtResource( 4 )]
-anchor_left = 1.0
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -455.0
-margin_top = -125.0
-margin_right = -85.0
-margin_bottom = 245.0
+margin_left = -185.0
+margin_top = -185.0
+margin_right = 185.0
+margin_bottom = 185.0
 rect_min_size = Vector2( 370, 370 )
 rect_pivot_offset = Vector2( 185, 185 )
 theme = null
 script = ExtResource( 7 )
-WindowTitle = "TUTORIAL"
 Resizable = true
+WindowTitle = "TUTORIAL"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="RedoTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 355.0
-margin_bottom = 355.0
+margin_right = -15.0
+margin_bottom = -15.0
 rect_min_size = Vector2( 340, 340 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -211,8 +211,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="RedoTutorial/ScrollContainer"]
-margin_right = 710.0
-margin_bottom = 710.0
+margin_right = 340.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
