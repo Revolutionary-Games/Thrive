@@ -573,6 +573,11 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();
 
+        if (!CurrentGame.TutorialState.Enabled)
+        {
+            tutorialGUI.EventReceiver?.OnTutorialDisabled();
+        }
+
         StartMusic();
 
         // Reset locale to assure the stage's language.
