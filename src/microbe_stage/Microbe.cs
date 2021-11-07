@@ -520,7 +520,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   </para>
     /// </remarks>
     /// <returns>Returns relative translation and rotation</returns>
-    private (Vector3 translation, Vector3 rotation) GetNewRelativeTransform()
+    private (Vector3 Translation, Vector3 Rotation) GetNewRelativeTransform()
     {
         // Gets the global rotation of the parent
         var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();

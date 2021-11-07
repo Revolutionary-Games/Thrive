@@ -33,28 +33,29 @@ Godot documentation you should read.
 Please follow our [styleguide](doc/style_guide.md) when making your
 changes to Thrive.
 
-Once your changes are complete, then open a pull request to this repo
+Once your changes are complete, then open a pull request (PR) to this repo
 and someone from the team will review your pull request. Note that
 currently it is not possible commit changes to Git LFS if you are not
 a team member, so you need to ask someone from the team for help if
 your PR includes changes to assets.
 
-When creating a pull request, include the "closes" or "fixes" keyword followed
-by the issue number that will be closed when the pull request is
-accepted. Example: `closes #1234`.
+When opening a pull request, please use the closes or fixes keywords
+to mark the issues the PR closes. For example `closes #2000`. When the
+PR is then merged the linked issues are automatically closed.
+
+If there is a problem in a PR, please include new commits to the same
+branch (PR). You can even force push to remove every single commit in
+the PR and replace them with different ones. So there is no reason to
+close a PR if changes are needed. Other than if you no longer plan to
+finish it.
 
 Before marking your PR as ready for review (not a draft) please work
 through the PR testing checklist to not waste the reviewer's time if
 they have to find basic issues in your PR:
 https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
 
-If you need to alter code for an issue, don't create a new pull request.
-Existing pull requests can be updated. Simply push further commits to
-the same branch.
-
-Unfortunately, Github issues are often created quickly with little detail
-and context. Please do not hesitate to ask questions regarding the
-issue for clarification and details.
+Requirements in Github issues are often vague, so please feel free to
+ask for more details in the issue.
 
 If you want to contribute a non-planned feature, then you must add
 code to disable your changes. Note: currently we don't have an options

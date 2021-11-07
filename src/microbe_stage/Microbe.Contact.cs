@@ -643,8 +643,8 @@ public partial class Microbe
 
         var newTransform = GetNewRelativeTransform();
 
-        Rotation = newTransform.rotation;
-        Translation = newTransform.translation;
+        Rotation = newTransform.Rotation;
+        Translation = newTransform.Translation;
 
         ChangeNodeParent(ColonyParent);
     }

@@ -108,6 +108,10 @@ custom_styles/panel = SubResource( 1 )
 Description = "CREATE_A_NEW_MICROBE"
 DescriptionLabelPath = NodePath("../../../GroupHolder/editor/newCellButton/MarginContainer/VBoxContainer/Description")
 
+[node name="randomizeNameButton" parent="GroupHolder/editor" instance=ExtResource( 1 )]
+visible = false
+Description = "RANDOMIZE_SPECIES_NAME"
+
 [node name="timeIndicator" parent="GroupHolder/editor" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
@@ -3493,6 +3497,10 @@ visible = false
 Description = "ASSUME_HYPERTHREADING_TOOLTIP"
 DisplayDelay = 0.5
 DescriptionLabelPath = NodePath("../addInputButton/cloudResolution/MarginContainer/VBoxContainer/Description")
+
+[node name="unsavedProgressWarning" parent="GroupHolder/options" instance=ExtResource( 1 )]
+Description = "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
+DisplayDelay = 0.5
 
 [node name="chartLegendPhysicalConditions" type="Control" parent="GroupHolder"]
 margin_right = 40.0

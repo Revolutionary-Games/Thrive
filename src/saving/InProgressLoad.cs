@@ -198,6 +198,9 @@ public class InProgressLoad
                 }
 
                 IsLoading = false;
+
+                SaveHelper.MarkLastSaveToCurrentTime();
+
                 return;
             }
 
