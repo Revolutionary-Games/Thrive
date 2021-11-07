@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.tscn" type="PackedScene" id=12]
 [ext_resource path="res://shaders/EditorHexGrid.shader" type="Shader" id=13]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/textures/editor_grid.png" type="Texture" id=15]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=18]
@@ -95,7 +94,6 @@ render_priority = -2
 shader = ExtResource( 13 )
 shader_param/color = Color( 0.745098, 0.745098, 0.745098, 1 )
 shader_param/gridSize = Vector2( 25, 25 )
-shader_param/gridTexture = ExtResource( 15 )
 shader_param/maskTexture = ExtResource( 18 )
 
 [sub_resource type="StyleBoxTexture" id=3]
