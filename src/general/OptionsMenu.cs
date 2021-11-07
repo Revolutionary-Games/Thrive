@@ -552,12 +552,6 @@ public class OptionsMenu : ControlWithInput
         if (!Visible)
             return false;
 
-        if (InputGroupList.WasListeningForInput)
-        {
-            // Listening for Inputs, should not do anything and should not pass through
-            return true;
-        }
-
         if (!Exit())
         {
             // We are prevented from exiting, consume this input
