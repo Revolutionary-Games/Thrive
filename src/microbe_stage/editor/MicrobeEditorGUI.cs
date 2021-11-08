@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 
@@ -2028,7 +2029,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnSpeciesNameTextChanged(string newText)
     {
-        if (newText.Split(" ").Length != 2)
+        if (!Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
         }
@@ -2046,7 +2047,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.NewName = newText;
 
         // Only defocus if the name is valid to indicate invalid namings to the player
-        if (newText.Split(" ").Length == 2)
+        if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
         {
             speciesNameEdit.ReleaseFocus();
         }
