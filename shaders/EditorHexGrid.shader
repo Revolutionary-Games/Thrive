@@ -7,13 +7,13 @@ render_mode unshaded;
 
 uniform sampler2D maskTexture;
 uniform vec4 color : hint_color;
-
-uniform vec2 gridSize;
+uniform float lineWidth = 0.02;
+uniform float edgeLength = 1.3;
 
 const vec2 hexSize = vec2(1.7320508, 1); // 1.7320508 = sqrt(3)
-const float edgeLength = 1.3;
 
-varying vec2 worldPos;
+varying vec3 worldPos;
+varying float minLineWidth;
 
 // Returns normalized distance to the nearest hex center.
 float calcHexCenterDistance(vec2 coord)
@@ -25,26 +25,24 @@ float calcHexCenterDistance(vec2 coord)
 }
 
 void vertex(){
-    worldPos = (CAMERA_MATRIX * vec4(0., 0., 0., 1.)).xz;
+    worldPos = (CAMERA_MATRIX * vec4(0., 0., 0., 1.)).xyz;
+
+    // min line width to not look unsteady
+    minLineWidth = (worldPos.y / VIEWPORT_SIZE.y);
 }
 
 void fragment(){
-    // Antialiasing for small grids.
-    float aa = fwidth(VERTEX.xy).x;
-
-    // Current coordinate (flip y)
-    vec2 coord = (VERTEX.xy + vec2(worldPos.x, -worldPos.y)) / edgeLength;
+    // Current coordinate
+    vec2 coord = (VERTEX.xy + vec2(worldPos.x, -worldPos.z)) / edgeLength;
 
     // Distance to the nearest Hex center.
     float dist = calcHexCenterDistance(coord);
 
-    // Half line width
-    float halfWidth = min(.02 + aa, .2);
+    float lineWidthInverse = 1. - max(minLineWidth, lineWidth);
 
     vec4 mask = texture(maskTexture, UV);
 
-    float halfWidthInverse = 1. - halfWidth;
-    ALPHA = dist < halfWidthInverse ? 0. : smoothstep(halfWidthInverse, 1., dist) * mask.a;
+    ALPHA = dist < lineWidthInverse ? 0. : smoothstep(lineWidthInverse, 1., dist) * mask.a;
 
     ALBEDO = color.rgb;
 }
