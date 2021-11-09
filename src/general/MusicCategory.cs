@@ -23,24 +23,21 @@ public class MusicCategory : IRegistryType
     public enum Transition
     {
         /// <summary>
-        ///   There is a fade between the categories
-        /// </summary>
-        Fade,
-    }
-
-    public enum TrackTransitionType
-    {
-        /// <summary>
-        ///   No transition between tracks
+        ///   No transition between tracks/categories
         /// </summary>
         None,
+
+        /// <summary>
+        ///   There is a fade between the tracks/categories
+        /// </summary>
+        Fade,
     }
 
     public ReturnType Return { get; set; } = ReturnType.Continue;
 
     public Transition CategoryTransition { get; set; } = Transition.Fade;
 
-    public TrackTransitionType TrackTransition { get; set; } = TrackTransitionType.None;
+    public Transition TrackTransition { get; set; } = Transition.Fade;
 
     /// <summary>
     ///   List of track lists. When the mode is concurrent one track from each list is played at once
