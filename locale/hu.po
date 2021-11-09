@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-06 11:30+0100\n"
-"PO-Revision-Date: 2021-10-28 07:11+0000\n"
+"PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/hu/>\n"
@@ -1797,9 +1797,10 @@ msgid "RETURN_TO_MENU_WARNING"
 msgstr "Vissza a menübe"
 
 #: ../src/general/PauseMenu.cs:254
-#, fuzzy
 msgid "QUIT_GAME_WARNING"
-msgstr "GLES2 mód figyelmeztetés"
+msgstr ""
+"Biztos ki akarsz lépni a játékból?\n"
+"A nem mentett játékállásaid el fognak veszni."
 
 #: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
@@ -1828,9 +1829,8 @@ msgid "EXIT"
 msgstr "Kilépés"
 
 #: ../src/general/PauseMenu.tscn:161
-#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "ELFOGAD"
+msgstr "Kilépés elfogadása"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1877,27 +1877,27 @@ msgstr "Fő programozók"
 
 #: ../src/gui_common/CreditsScroll.cs:234
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Vezető teoretikus"
 
 #: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Fő teoretikusok"
 
 #: ../src/gui_common/CreditsScroll.cs:240
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Vezető grafikus"
 
 #: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Fő grafikusok"
 
 #: ../src/gui_common/CreditsScroll.cs:246
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "A hanggal foglalkozó csapat vezetője"
 
 #: ../src/gui_common/CreditsScroll.cs:247
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "A hanggal foglalkozó csapat vezetői"
 
 #: ../src/gui_common/CreditsScroll.cs:252
 msgid "LEAD_OUTREACH_PERSON"
@@ -2577,7 +2577,7 @@ msgstr ""
 
 #: ../src/microbe_stage/Microbe.Contact.cs:589
 msgid "SUCCESSFUL_KILL"
-msgstr ""
+msgstr "sikeres ölés"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:796
 msgid "ESCAPE_ENGULFING"
@@ -2585,19 +2585,19 @@ msgstr ""
 
 #: ../src/microbe_stage/Microbe.Interior.cs:710
 msgid "REPRODUCED"
-msgstr ""
+msgstr "reprodukálva"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
 msgid "INFINITE_COMPOUNDS"
-msgstr ""
+msgstr "Végtelen vegyületek"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
-msgstr ""
+msgstr "Isten mód"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "NO_AI"
-msgstr ""
+msgstr "Nincs MI"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
 msgid "PLAYER_SPEED"
@@ -2607,11 +2607,11 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
 msgid "PLAYER_DUPLICATE"
-msgstr ""
+msgstr "A játékos megkettőzése"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
 msgid "SPAWN_ENEMY"
-msgstr ""
+msgstr "Ellenség spawnolása"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:683
 #: ../src/microbe_stage/MicrobeHUD.cs:675
@@ -2626,23 +2626,23 @@ msgstr "Játékos sejtje"
 #: ../src/microbe_stage/MicrobeHUD.cs:733
 #: ../src/microbe_stage/MicrobeHUD.cs:736
 msgid "SPECIES_N_TIMES"
-msgstr ""
+msgstr "{0} (x{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:778
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "bőség"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:780
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "egy kicsit"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:782
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "elég sok"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:784
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "pár"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:786
 #, fuzzy
@@ -2651,11 +2651,11 @@ msgstr "Elméleti csapat"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:788
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "egy kicsi"
 
 #: ../src/microbe_stage/MicrobeStage.cs:525
 msgid "PLAYER_REPRODUCED"
-msgstr ""
+msgstr "játékos szaporodott"
 
 #: ../src/microbe_stage/MicrobeStage.cs:667
 msgid "PLAYER_DIED"
@@ -2732,7 +2732,7 @@ msgstr "Játék folytatása"
 #: ../src/microbe_stage/MicrobeStage.tscn:1666
 #: ../src/microbe_stage/MicrobeStage.tscn:1656
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "A környezet és a vegyületek mutatása / elrejtése"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1671
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -2759,11 +2759,11 @@ msgstr "Pangóniai nyílások"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:182
 msgid "PATCH_PANGONIAN_MESOPELAGIC"
-msgstr ""
+msgstr "Pangóniai mezopelágikus zóna"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:183
 msgid "PATCH_PANGONIAN_EPIPELAGIC"
-msgstr ""
+msgstr "Pangóniai epipelágikus zóna"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:184
 msgid "PATCH_PANGONIAN_TIDEPOOL"
@@ -3229,7 +3229,7 @@ msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
-msgstr ""
+msgstr "Betöltési hiba"
 
 #: ../src/saving/InProgressLoad.cs:227 ../src/saving/InProgressLoad.cs:224
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
@@ -3364,7 +3364,7 @@ msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
-msgstr ""
+msgstr "Létrehozva ekkor:"
 
 #: ../src/saving/SaveListItem.tscn:137 ../src/saving/SaveListItem.tscn:156
 #: ../src/saving/SaveListItem.tscn:175 ../src/saving/SaveListItem.tscn:198
@@ -3390,7 +3390,7 @@ msgstr "Származás:"
 
 #: ../src/saving/SaveListItem.tscn:239
 msgid "CREATED_ON_PLATFORM"
-msgstr ""
+msgstr "Ezen platformon létrehozva:"
 
 #: ../src/saving/SaveListItem.tscn:271 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
@@ -3398,11 +3398,11 @@ msgstr "Töltés"
 
 #: ../src/saving/SaveListItem.tscn:278
 msgid "DELETE_SAVE_CONFIRMATION"
-msgstr ""
+msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
 #: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
-msgstr ""
+msgstr "Biztos végérvényesen törölni akarsz {0} mentést?"
 
 #: ../src/saving/SaveManagerGUI.cs:224
 msgid "DELETE_ALL_OLD_SAVE_WARNING"
@@ -3430,27 +3430,27 @@ msgstr "Összes mentés:"
 
 #: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
-msgstr ""
+msgstr "Mérete:"
 
 #: ../src/saving/SaveManagerGUI.tscn:172
 msgid "SELECTED_COLON"
-msgstr ""
+msgstr "Kijelölve:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
 msgid "DELETE_SELECTED_SAVES"
-msgstr ""
+msgstr "Biztos törlöd a kiválasztott mentést (/-eket)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
 msgid "DELETE_OLD_SAVES"
-msgstr ""
+msgstr "Törlöd a régi mentéseket?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Próbálj egy mentést létrehozni!"
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "NO_SAVE_DIRECTORY"
-msgstr ""
+msgstr "A mentések mappa nem található"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:81
@@ -3467,19 +3467,49 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:363
 msgid "TUTORIAL"
-msgstr ""
+msgstr "Tutorial"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta "
+"elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad "
+"kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a "
+"létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:104
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
+"Ez itt a patch térkép.\n"
+"Itt láthatod a különböző helyeket, ahol a sejtek élhetnek.\n"
+"Ki van külön emelve az a patch, ahol perpillanat tartózkodsz.\n"
+"Az egereddel ki tudod jelölni a különböző patch-eket, hogy a jobb oldalon "
+"láthasd róluk az információt.\n"
+"\n"
+"Ha a jelenlegi tartózkodási helyed melletti valamelyik patch-et kiválasztod, "
+"akkor a jobb oldalon lévő gomb megnyomásával abba a patch-be vándorolsz át. "
+"Ez lehetővé teszi a fajod számára, hogy új patch-ekbe terjedjenek el.\n"
+"\n"
+"Válassz ki egy patch-et a folytatáshoz."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:139
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
+"Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, "
+"vagy távolíthatsz el a sejtedről, amik mutáció pontokba (MP) kerülnek.\n"
+"\n"
+"A sejted többi tulajdonságát is megváltoztathatod a sejtszerkesztő többi "
+"részében.\n"
+"\n"
+"A folytatáshoz válassz ki egy sejtszervecskét a bal oldali panelről (a "
+"citoplazma egy jó választás elsőnek). Ezután a képernyő közepén elhelyezkedő "
+"valamelyik hexagonra való bal kattintással helyezd el az adott "
+"sejtszervecskét."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
