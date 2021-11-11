@@ -11,17 +11,17 @@ uniform float lineWidth = 0.02;
 uniform float edgeLength = 1.3;
 
 const vec2 hexSize = vec2(1.7320508, 1.0); // 1.7320508 = sqrt(3)
+const vec2 hexSizeHalf = hexSize * 0.5;
 
 varying vec3 worldPos;
 varying float minLineWidth;
 
 // Returns normalized distance to the nearest hex center.
-float calcHexCenterDistance(vec2 coord)
+float hexDist(vec2 coord)
 {
-    vec4 hexCenter = round(vec4(coord, coord - vec2(1.0, 0.5)) / hexSize.xyxy);
-    vec4 offset = vec4(coord - hexCenter.xy * hexSize, coord - (hexCenter.zw + 0.5) * hexSize);
-    vec2 position = dot(offset.xy, offset.xy) < dot(offset.zw, offset.zw) ? abs(offset.xy) : abs(offset.zw);
-    return max(dot(position, hexSize * 0.5), position.y) + 0.5;
+    vec4 dists = mod(vec4(coord, coord - hexSizeHalf), hexSize.xyxy) - hexSizeHalf.xyxy;    
+    vec2 dist = dot(dists.xy, dists.xy) < dot(dists.zw, dists.zw) ? abs(dists.xy) : abs(dists.zw);
+    return max(dot(dist, hexSizeHalf), dist.y) + 0.5;
 }
 
 void vertex(){
@@ -43,11 +43,9 @@ void fragment(){
     vec2 coord = (VERTEX.xy + vec2(worldPos.x, -worldPos.z)) / edgeLength;
 
     // Distance to the nearest Hex center.
-    float dist = calcHexCenterDistance(coord);
+    float dist = hexDist(coord);
 
-    float lineWidthInverse = 1.0 - max(minLineWidth, lineWidth);
-
-    ALPHA = dist < lineWidthInverse ? 0.0 : smoothstep(lineWidthInverse, 1.0, dist) * mask.a;
+    ALPHA = smoothstep(1.0 - max(minLineWidth, lineWidth), 1.0, dist) * mask.a;
 
     ALBEDO = color.rgb;
 }
