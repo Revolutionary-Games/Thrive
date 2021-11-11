@@ -511,8 +511,8 @@ margin_right = 680.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 680, 0 )
 popup_exclusive = false
-DialogText = "GLES2_MODE_WARNING_TEXT"
 HideCancelButton = true
+DialogText = "GLES2_MODE_WARNING_TEXT"
 WindowTitle = "GLES2_MODE_WARNING"
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]

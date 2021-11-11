@@ -38,6 +38,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                     return result;
                 case MicrobeActionInterferenceMode.ReplacesOther:
                     result -= cache[i].CalculateCost();
+                    action = cache[i];
                     break;
             }
         }

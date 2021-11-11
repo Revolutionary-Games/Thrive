@@ -39,6 +39,12 @@ public class MoveActionData : MicrobeEditorActionData
             placementActionData.Location == OldLocation)
             return MicrobeActionInterferenceMode.Combinable;
 
+        // If this organelle got removed in this session
+        if (other is RemoveActionData removeActionData &&
+            removeActionData.Organelle.Definition == Organelle.Definition &&
+            removeActionData.Location == NewLocation)
+            return MicrobeActionInterferenceMode.ReplacesOther;
+
         return MicrobeActionInterferenceMode.NoInterference;
     }
 

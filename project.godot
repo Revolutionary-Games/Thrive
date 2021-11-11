@@ -314,6 +314,7 @@ limits/message_queue/max_size_kb=8192
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/driver/fallback_to_gles2=true
 threads/thread_model=2
 environment/default_environment="res://default_env.tres"
