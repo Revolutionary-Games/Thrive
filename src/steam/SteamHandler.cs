@@ -36,13 +36,14 @@ public class SteamHandler : Node, ISteamSignalReceiver
 
     public override void _Ready()
     {
+        PauseMode = PauseModeEnum.Process;
+
         OnSteamInit();
     }
 
     public override void _Process(float delta)
     {
         steamClient?.Process(delta);
-        PauseMode = PauseModeEnum.Process;
     }
 
     /// <summary>
