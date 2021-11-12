@@ -15,8 +15,6 @@ public class InputGroupList : VBoxContainer
     [Export]
     public NodePath ResetInputsDialog;
 
-    private static bool wasListeningForInput;
-
     private IEnumerable<InputGroupItem> activeInputGroupList;
 
     private InputEventItem latestDialogCaller;
@@ -32,21 +30,6 @@ public class InputGroupList : VBoxContainer
     ///   Fired whenever some inputs were redefined.
     /// </summary>
     public event ControlsChangedDelegate OnControlsChanged;
-
-    /// <summary>
-    ///   If I was listening for inputs.
-    ///   Used by the pause menu to not close whenever escape is pressed if the user was redefining keys
-    /// </summary>
-    public static bool WasListeningForInput
-    {
-        get
-        {
-            var result = wasListeningForInput;
-            wasListeningForInput = false;
-            return result;
-        }
-        internal set => wasListeningForInput = value;
-    }
 
     public PackedScene InputEventItemScene { get; private set; }
     public PackedScene InputGroupItemScene { get; private set; }

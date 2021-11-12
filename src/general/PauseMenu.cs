@@ -27,11 +27,21 @@ public class PauseMenu : ControlWithInput
     [Export]
     public NodePath LoadSaveListPath;
 
+    [Export]
+    public NodePath UnsavedProgressWarningPath;
+
     private Control primaryMenu;
     private HelpScreen helpScreen;
     private Control loadMenu;
     private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
+    private CustomConfirmationDialog unsavedProgressWarning;
+
+    /// <summary>
+    ///   The assigned pending exit type, will be used to specify what kind of
+    ///   game exit will be performed on exit confirmation.
+    /// </summary>
+    private ExitType exitType;
 
     [Signal]
     public delegate void OnClosed();
@@ -48,6 +58,16 @@ public class PauseMenu : ControlWithInput
     /// <param name="name">Name of the save to make or empty string</param>
     [Signal]
     public delegate void MakeSave(string name);
+
+    /// <summary>
+    ///   Types of exit the player can request. Used to store the action for when the warning popup
+    ///   about this is closed.
+    /// </summary>
+    public enum ExitType
+    {
+        ReturnToMenu,
+        QuitGame,
+    }
 
     private enum ActiveMenuType
     {
@@ -140,6 +160,7 @@ public class PauseMenu : ControlWithInput
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
+        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -205,17 +226,34 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Unpause the game
-        GetTree().Paused = false;
+        exitType = ExitType.ReturnToMenu;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
-        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
+        {
+            ConfirmExit();
+        }
+        else
+        {
+            unsavedProgressWarning.DialogText = TranslationServer.Translate("RETURN_TO_MENU_WARNING");
+            unsavedProgressWarning.PopupCenteredShrink();
+        }
     }
 
     private void ExitPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        GetTree().Quit();
+
+        exitType = ExitType.QuitGame;
+
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
+        {
+            ConfirmExit();
+        }
+        else
+        {
+            unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
+            unsavedProgressWarning.PopupCenteredShrink();
+        }
     }
 
     private void OpenHelpPressed()
@@ -224,6 +262,33 @@ public class PauseMenu : ControlWithInput
 
         ActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
+    }
+
+    private void ConfirmExit()
+    {
+        switch (exitType)
+        {
+            case ExitType.ReturnToMenu:
+                ReturnToMenu();
+                break;
+            case ExitType.QuitGame:
+                Quit();
+                break;
+        }
+    }
+
+    private void ReturnToMenu()
+    {
+        // Unpause the game
+        GetTree().Paused = false;
+
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
+        TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
+    }
+
+    private void Quit()
+    {
+        GetTree().Quit();
     }
 
     private void CloseHelpPressed()

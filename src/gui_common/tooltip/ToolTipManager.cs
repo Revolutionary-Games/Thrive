@@ -113,15 +113,15 @@ public class ToolTipManager : CanvasLayer
         // Adjust position and size
         if (MainToolTip.ToolTipNode.Visible)
         {
-            Vector2 mousePos;
+            Vector2 position;
 
             switch (MainToolTip.Positioning)
             {
                 case ToolTipPositioning.LastMousePosition:
-                    mousePos = lastMousePosition;
+                    position = lastMousePosition;
                     break;
                 case ToolTipPositioning.FollowMousePosition:
-                    mousePos = GetViewport().GetMousePosition();
+                    position = GetViewport().GetMousePosition();
                     break;
                 default:
                     throw new Exception("Invalid tooltip positioning type");
@@ -132,9 +132,9 @@ public class ToolTipManager : CanvasLayer
             // Clamp tooltip position so it doesn't go offscreen
             // TODO: Take into consideration of viewport (window) resizing for the offsetting.
             MainToolTip.ToolTipNode.RectPosition = new Vector2(
-                Mathf.Clamp(mousePos.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
+                Mathf.Clamp(position.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
                     MainToolTip.ToolTipNode.RectSize.x),
-                Mathf.Clamp(mousePos.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
+                Mathf.Clamp(position.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
                     MainToolTip.ToolTipNode.RectSize.y));
 
             MainToolTip.ToolTipNode.RectSize = Vector2.Zero;
@@ -148,6 +148,7 @@ public class ToolTipManager : CanvasLayer
                 {
                     currentIsTemporary = false;
                     FinalizeToolTipVisibility(MainToolTip, false);
+                    MainToolTip = null;
                 }
             }
         }

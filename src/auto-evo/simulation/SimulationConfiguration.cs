@@ -8,14 +8,12 @@
     /// </summary>
     public class SimulationConfiguration
     {
-        public SimulationConfiguration(GameWorld world, int steps = 1)
+        public SimulationConfiguration(PatchMap initialConditions, int steps = 1)
         {
-            OriginalMap = world.Map;
-            World = world;
+            OriginalMap = initialConditions;
             StepsLeft = Math.Max(1, steps);
         }
 
-        public GameWorld World { get; }
         public PatchMap OriginalMap { get; }
         public int StepsLeft { get; set; }
 
@@ -53,5 +51,15 @@
         /// </summary>
         public List<Tuple<Species, SpeciesMigration>> Migrations { get; set; } =
             new List<Tuple<Species, SpeciesMigration>>();
+
+        /// <summary>
+        ///   If not empty, only the specified patches are ran
+        /// </summary>
+        /// <remarks>
+        ///    <para>
+        ///      TODO: change migration finding and mutation finding to only simulate patches they need
+        ///    </para>
+        /// </remarks>
+        public ISet<Patch> PatchesToRun { get; set; } = new HashSet<Patch>();
     }
 }

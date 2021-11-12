@@ -174,6 +174,34 @@ public class PatchMap
     }
 
     /// <summary>
+    ///   Updates the global population numbers in Species
+    /// </summary>
+    public void UpdateGlobalPopulations()
+    {
+        var seenPopulations = new Dictionary<Species, long>();
+
+        foreach (var entry in Patches)
+        {
+            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
+            {
+                Species species = speciesEntry.Key;
+
+                if (!seenPopulations.ContainsKey(species))
+                    seenPopulations[species] = 0;
+
+                if (speciesEntry.Value > 0)
+                    seenPopulations[species] += speciesEntry.Value;
+            }
+        }
+
+        // Apply the populations after calculating them
+        foreach (var entry in seenPopulations)
+        {
+            entry.Key.SetPopulationFromPatches(entry.Value);
+        }
+    }
+
+    /// <summary>
     ///   Removes species from patches where their population is &lt;= 0
     /// </summary>
     /// <returns>

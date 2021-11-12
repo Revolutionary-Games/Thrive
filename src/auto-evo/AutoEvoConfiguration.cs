@@ -14,6 +14,33 @@ public class AutoEvoConfiguration : IRegistryType
     [JsonProperty]
     public bool AllowNoMigration { get; private set; }
 
+    [JsonProperty]
+    public int LowBiodiversityLimit { get; private set; }
+
+    [JsonProperty]
+    public float SpeciesSplitByMutationThresholdPopulationFraction { get; private set; }
+
+    [JsonProperty]
+    public int SpeciesSplitByMutationThresholdPopulationAmount { get; private set; }
+
+    [JsonProperty]
+    public float BiodiversityAttemptFillChance { get; private set; }
+
+    [JsonProperty]
+    public bool UseBiodiversityForceSplit { get; private set; }
+
+    [JsonProperty]
+    public float BiodiversityFromNeighbourPatchChance { get; private set; }
+
+    [JsonProperty]
+    public bool BiodiversityNearbyPatchIsFreePopulation { get; private set; }
+
+    [JsonProperty]
+    public int NewBiodiversityIncreasingSpeciesPopulation { get; private set; }
+
+    [JsonProperty]
+    public bool BiodiversitySplitIsMutated { get; private set; }
+
     /// <summary>
     ///   Unused
     /// </summary>
@@ -31,6 +58,19 @@ public class AutoEvoConfiguration : IRegistryType
         {
             throw new InvalidRegistryDataException("AutoEvoConfiguration", GetType().Name,
                 "Move attempts per species must be positive");
+        }
+
+        if (SpeciesSplitByMutationThresholdPopulationFraction is < 0 or > 1)
+        {
+            throw new InvalidRegistryDataException("AutoEvoConfiguration", GetType().Name,
+                "SpeciesSplitByMutationThresholdPopulationFraction not between 0 and 1");
+        }
+
+        if (SpeciesSplitByMutationThresholdPopulationFraction <= 0 ||
+            SpeciesSplitByMutationThresholdPopulationAmount <= 0)
+        {
+            SpeciesSplitByMutationThresholdPopulationFraction = 0;
+            SpeciesSplitByMutationThresholdPopulationAmount = 0;
         }
     }
 

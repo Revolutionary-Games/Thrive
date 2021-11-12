@@ -8,18 +8,16 @@
     /// </summary>
     public class FindBestMigration : VariantTryingStep
     {
-        private readonly GameWorld world;
+        private readonly PatchMap map;
         private readonly Species species;
+        private readonly Random random;
 
-        // TODO: allow passing in a seed from the constructor to avoid problems where multiple instances have the same
-        // random sequence due to happening to be created at the same time
-        private readonly Random random = new Random();
-
-        public FindBestMigration(GameWorld world, Species species, int migrationsToTry, bool allowNoMigration)
-            : base(migrationsToTry, allowNoMigration)
+        public FindBestMigration(PatchMap map, Species species, Random random, int migrationsToTry, bool
+            allowNoMigration) : base(migrationsToTry, allowNoMigration)
         {
-            this.world = world;
+            this.map = map;
             this.species = species;
+            this.random = new Random(random.Next());
         }
 
         public override bool CanRunConcurrently => true;
@@ -36,7 +34,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(world, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             PopulationSimulation.Simulate(config);
 
@@ -53,7 +51,7 @@
             if (migration == null)
                 return new AttemptResult(null, -1);
 
-            var config = new SimulationConfiguration(world, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
             // TODO: this could be faster to just simulate the source and
@@ -86,7 +84,7 @@
                 --attemptsLeft;
 
                 // Randomly select starting patch
-                var entry = world.Map.Patches.Where(pair => pair.Value.SpeciesInPatch.ContainsKey(species))
+                var entry = map.Patches.Where(pair => pair.Value.SpeciesInPatch.ContainsKey(species))
                     .OrderBy(_ => random.Next()).Take(1).ToList();
 
                 if (entry.Count > 0)

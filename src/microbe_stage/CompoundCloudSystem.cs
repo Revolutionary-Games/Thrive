@@ -204,10 +204,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Returns the total amount of all compounds at position
     /// </summary>
-    public Dictionary<Compound, float> GetAllAvailableAt(Vector3 worldPosition)
+    public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result)
     {
-        var result = new Dictionary<Compound, float>();
-
         foreach (var cloud in clouds)
         {
             if (cloud.ContainsPosition(worldPosition, out var x, out var y))
@@ -215,8 +213,6 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
                 cloud.GetCompoundsAt(x, y, result);
             }
         }
-
-        return result;
     }
 
     /// <summary>
