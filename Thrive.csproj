@@ -308,6 +308,9 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\steam\ISteamClient.cs" />
+    <Compile Include="src\steam\ISteamSignalReceiver.cs" />
+    <Compile Include="src\steam\SteamHandler.cs" />
     <Compile Include="src\tutorial\ITutorialGUI.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
     <Compile Include="src\tutorial\microbe_editor\AutoEvoPrediction.cs" />
