@@ -249,6 +249,12 @@ public class Jukebox : Node
         if (changedTrack || !player.Playing)
         {
             var target = categories[PlayingCategory];
+
+            // TODO: It would be nice to skip the fade, if the same track is going to be played again.
+            //       e.g. New transition type FadeIfTrackChanges. This needs a lookahead to know what track is
+            //       played next. Microbe ambiance2 would sound better when it loops that it doesn't have the
+            //       fade in the middle of it.
+
             if (target.TrackTransition == MusicCategory.Transition.Crossfade)
             {
                 AddFadeIn(player);
@@ -315,13 +321,13 @@ public class Jukebox : Node
     {
         var data = new TimedOperationData(duration, audioPlayer);
 
-        var ops = operations;
+        var targetOperations = operations;
         if (audioPlayer != null)
         {
-            ops = audioPlayer.Operations;
+            targetOperations = audioPlayer.Operations;
         }
 
-        ops.Enqueue(new Operation(delta =>
+        targetOperations.Enqueue(new Operation(delta =>
         {
             data.TimeLeft -= delta;
 
@@ -336,13 +342,13 @@ public class Jukebox : Node
     {
         var data = new TimedOperationData(duration, audioPlayer) { StartVolume = startVolume, EndVolume = endVolume };
 
-        var ops = operations;
+        var targetOperations = operations;
         if (audioPlayer != null)
         {
-            ops = audioPlayer.Operations;
+            targetOperations = audioPlayer.Operations;
         }
 
-        ops.Enqueue(new Operation(delta =>
+        targetOperations.Enqueue(new Operation(delta =>
         {
             data.TimeLeft -= delta;
 
@@ -367,13 +373,13 @@ public class Jukebox : Node
 
     private void AddVolumeRestore(AudioPlayer audioPlayer = null)
     {
-        var ops = operations;
+        var targetOperations = operations;
         if (audioPlayer != null)
         {
-            ops = audioPlayer.Operations;
+            targetOperations = audioPlayer.Operations;
         }
 
-        ops.Enqueue(new Operation(_ =>
+        targetOperations.Enqueue(new Operation(_ =>
         {
             SetVolume(NORMAL_VOLUME, audioPlayer);
             return true;
@@ -382,13 +388,13 @@ public class Jukebox : Node
 
     private void AddVolumeRemove(AudioPlayer audioPlayer = null)
     {
-        var ops = operations;
+        var targetOperations = operations;
         if (audioPlayer != null)
         {
-            ops = audioPlayer.Operations;
+            targetOperations = audioPlayer.Operations;
         }
 
-        ops.Enqueue(new Operation(_ =>
+        targetOperations.Enqueue(new Operation(_ =>
         {
             SetVolume(FADE_LOW_VOLUME, audioPlayer);
             return true;
