@@ -176,7 +176,6 @@ public class InputEventItem : Node
                 {
                     GetTree().SetInputAsHandled();
 
-                    InputGroupList.WasListeningForInput = true;
                     WaitingForInput = false;
 
                     // Rebind canceled, alert the InputManager so it can resume getting input
@@ -281,7 +280,6 @@ public class InputEventItem : Node
     {
         WaitingForInput = false;
         JustAdded = false;
-        InputGroupList.WasListeningForInput = false;
 
         // Update the godot InputMap
         GroupList?.ControlsChanged();
