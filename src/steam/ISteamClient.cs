@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Interface specifying the Steam operations we use. Implemented in the Steam/Steam.csproj library
+///   Interface specifying the Steam operations we use. Implemented in the SteamClient.cs file
 /// </summary>
 public interface ISteamClient : ISteamSignalReceiver
 {
