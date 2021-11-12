@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-06 11:30+0100\n"
-"PO-Revision-Date: 2021-08-31 18:14+0000\n"
+"PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -379,7 +379,7 @@ msgstr "Aloita/lopeta nieleminen"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr ""
+msgstr "Irrota kaikki"
 
 #: ../simulation_parameters/common/input_options.json:58
 #, fuzzy
@@ -1031,7 +1031,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Print Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
@@ -1402,11 +1402,11 @@ msgstr "Takaisin"
 
 #: ../src/general/MainMenu.tscn:334
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Taidegalleria"
 
 #: ../src/general/MainMenu.tscn:346
 msgid "LICENSES"
-msgstr ""
+msgstr "Lisenssit"
 
 #: ../src/general/MainMenu.tscn:514
 msgid "GLES2_MODE_WARNING_TEXT"
@@ -1423,10 +1423,12 @@ msgstr "Oletus ulostulolaite"
 #: ../src/general/OptionsMenu.cs:877
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+"Tämä käännös on pahasti kesken ({0}% valmis) ole kiltti ja auta meitä sen "
+"kanssa!"
 
 #: ../src/general/OptionsMenu.cs:881
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
 #: ../src/general/OptionsMenu.cs:885
 #, fuzzy
@@ -1471,15 +1473,15 @@ msgstr "(suuremmat arvot heikentävät suorituskykyä)"
 
 #: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
-msgstr ""
+msgstr "Ei käytössä"
 
 #: ../src/general/OptionsMenu.tscn:262
 msgid "TWO_TIMES"
-msgstr ""
+msgstr "2x"
 
 #: ../src/general/OptionsMenu.tscn:262
 msgid "FOUR_TIMES"
-msgstr ""
+msgstr "4x"
 
 #: ../src/general/OptionsMenu.tscn:262
 #, fuzzy
@@ -1488,7 +1490,7 @@ msgstr "Hiiren oikea painike"
 
 #: ../src/general/OptionsMenu.tscn:262
 msgid "SIXTEEN_TIMES"
-msgstr ""
+msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
@@ -1508,7 +1510,7 @@ msgstr "Värisokeuden korjaus:"
 
 #: ../src/general/OptionsMenu.tscn:339 ../src/general/OptionsMenu.tscn:340
 msgid "NONE"
-msgstr ""
+msgstr "Ei mitään"
 
 #: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_PROTANOPE"
@@ -1608,15 +1610,15 @@ msgstr "Tallenna ja jatka"
 
 #: ../src/general/OptionsMenu.tscn:835
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Oleta, että prosessorissa on hyperthreading käytössä"
 
 #: ../src/general/OptionsMenu.tscn:843
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
 
 #: ../src/general/OptionsMenu.tscn:853
 msgid "THREADS"
-msgstr ""
+msgstr "Taustasuorittajia:"
 
 #: ../src/general/OptionsMenu.tscn:954
 msgid "RESET_INPUTS"
@@ -1679,19 +1681,19 @@ msgstr "Avaa lokien kansio"
 
 #: ../src/general/OptionsMenu.tscn:1149
 msgid "JSON_DEBUG_MODE"
-msgstr ""
+msgstr "JSON-virheenkäsittelymoodi:"
 
 #: ../src/general/OptionsMenu.tscn:1163 ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
+msgstr "Automaattisesti"
 
 #: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
+msgstr "Aina"
 
 #: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
+msgstr "Ei koskaan"
 
 #: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -1818,7 +1820,7 @@ msgstr "/sekunti"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
@@ -1899,27 +1901,29 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:278
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Nykyiset kehittäjät"
 
 #: ../src/gui_common/CreditsScroll.cs:294
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Entiset kehittäjät"
 
 #: ../src/gui_common/CreditsScroll.cs:310
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Ulkopuoliset avustajat"
 
 #: ../src/gui_common/CreditsScroll.cs:313
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive on avoimen lähdekoodin projekti.\n"
+"Voit avustaa avaamalla pull requestin ilman tiimiin liittymistä."
 
 #: ../src/gui_common/CreditsScroll.cs:328
 msgid "PATRONS"
-msgstr ""
+msgstr "Patreon-jäsenet"
 
 #: ../src/gui_common/CreditsScroll.cs:332
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Voit tukea Thriven jatkokehitystä Patreonissa."
 
 #: ../src/gui_common/CreditsScroll.cs:348
 #, fuzzy
@@ -1933,19 +1937,22 @@ msgstr "Auta pelin kääntämisessä"
 
 #: ../src/gui_common/CreditsScroll.cs:385
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Lisenssit ja käytetyt kirjastot"
 
 #: ../src/gui_common/CreditsScroll.cs:479
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Kiitos pelaamisesta!\n"
+"\n"
+"Jos tykkäsit pelistä, kerrothan kavereillesi meistä."
 
 #: ../src/gui_common/CreditsScroll.cs:488
 msgid "PROGRAMMING_TEAM"
-msgstr ""
+msgstr "Ohjelmointitiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:489
 msgid "THEORY_TEAM"
-msgstr ""
+msgstr "Teoriatiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:490
 #, fuzzy
@@ -1963,11 +1970,11 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:493
 msgid "GAME_DESIGN_TEAM"
-msgstr ""
+msgstr "Pelisuunnittelutiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:494
 msgid "TESTING_TEAM"
-msgstr ""
+msgstr "Testaustiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:495
 msgid "PROJECT_MANAGEMENT_TEAM"
@@ -1975,23 +1982,23 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:496
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
+msgstr "Pull Requests / ohjelmointi"
 
 #: ../src/gui_common/CreditsScroll.cs:497
 msgid "VIP_PATRONS"
-msgstr ""
+msgstr "VIP-tukijat"
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "DevBuild-tukijat"
 
 #: ../src/gui_common/CreditsScroll.cs:499
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Tukijat"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "JANUARY"
-msgstr ""
+msgstr "Tammikuu"
 
 #: ../src/gui_common/CreditsScroll.cs:501
 #, fuzzy
@@ -2000,35 +2007,35 @@ msgstr "Estuaari"
 
 #: ../src/gui_common/CreditsScroll.cs:502
 msgid "MARCH"
-msgstr ""
+msgstr "Maaliskuu"
 
 #: ../src/gui_common/CreditsScroll.cs:503
 msgid "APRIL"
-msgstr ""
+msgstr "Huhtikuu"
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "MAY"
-msgstr ""
+msgstr "Toukokuu"
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "JUNE"
-msgstr ""
+msgstr "Kesäkuu"
 
 #: ../src/gui_common/CreditsScroll.cs:506
 msgid "JULY"
-msgstr ""
+msgstr "Heinäkuu"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "AUGUST"
-msgstr ""
+msgstr "Elokuu"
 
 #: ../src/gui_common/CreditsScroll.cs:508
 msgid "SEPTEMBER"
-msgstr ""
+msgstr "Syyskuu"
 
 #: ../src/gui_common/CreditsScroll.cs:509
 msgid "OCTOBER"
-msgstr ""
+msgstr "Lokakuu"
 
 #: ../src/gui_common/CreditsScroll.cs:510
 #, fuzzy
@@ -2037,27 +2044,27 @@ msgstr "Liikkuminen"
 
 #: ../src/gui_common/CreditsScroll.cs:511
 msgid "DECEMBER"
-msgstr ""
+msgstr "Joulukuu"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Tehnyt Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Kehitystä tukee Revolutionary Games Studio ry"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Kehittäjät"
 
 #: ../src/gui_common/LicensesDisplay.cs:27
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "GPL-lisenssin teksti:"
 
 #: ../src/gui_common/LicensesDisplay.tscn:62
 msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
+msgstr "Lisenssit, jotka liittyvät Thriven osiin näytetään tässä"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -2137,7 +2144,7 @@ msgstr "Raaka"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Ei dataa näytettäväksi"
 
 #: ../src/gui_common/charts/line/LineChart.cs:949
 #: ../src/gui_common/charts/line/LineChart.cs:978
@@ -2192,7 +2199,7 @@ msgstr "Luo uusi mikrobi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr ""
+msgstr "Luo satunnainen lajin nimi"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "MEMBRANE_RIGIDITY"
@@ -2556,6 +2563,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3497
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Hyperthreadingin päällä oloa ei voida automaattisesti tunnistaa.\n"
+"Tämä säätää kuinka monta taustatyöskentelijää käytetään oletusarvoisesti, "
+"koska hyperthreading ei ole yhtä tehokasta kuin oikeat prosessoriytimet."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
 #, fuzzy
@@ -2601,7 +2611,7 @@ msgstr "Loputtomat Yhdisteet"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
-msgstr ""
+msgstr "Kuolemattomuus"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "NO_AI"
@@ -2620,7 +2630,7 @@ msgstr "pelaaja kuoli"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
 msgid "SPAWN_ENEMY"
-msgstr ""
+msgstr "Luo vihollinen"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:683
 msgid "STUFF_AT"
@@ -2645,19 +2655,19 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:782
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "kohtuullisesti"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:784
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "hieman"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:786
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "vähän"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:788
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "erittäin vähän"
 
 #: ../src/microbe_stage/MicrobeStage.cs:525
 msgid "PLAYER_REPRODUCED"
@@ -2717,7 +2727,7 @@ msgstr "Lisää uusi syöte"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "PAUSE_TOOLTIP"
-msgstr ""
+msgstr "Laita peli tauolle"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1653
 #, fuzzy
@@ -2762,7 +2772,7 @@ msgstr ""
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:184
 msgid "PATCH_PANGONIAN_TIDEPOOL"
-msgstr ""
+msgstr "Pangonian vuorovesiallas"
 
 #: ../src/microbe_stage/PatchMapGenerator.cs:185
 msgid "PATCH_PANGONIAN_BATHYPELAGIC"
@@ -2896,39 +2906,39 @@ msgstr "Väri"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1680
 msgid "PEACEFUL"
-msgstr ""
+msgstr "Rauhallinen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1697
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Agressiivinen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1731
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "Varovainen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1749
 msgid "OPPORTUNISTIC"
-msgstr ""
+msgstr "Opportunistinen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1783
 msgid "BRAVE"
-msgstr ""
+msgstr "Rohkea"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
 msgid "FEARFUL"
-msgstr ""
+msgstr "Pelokas"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1834
 msgid "SESSILE"
-msgstr ""
+msgstr "Sessiili"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
 msgid "ACTIVE"
-msgstr ""
+msgstr "Aktiivinen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1885
 msgid "RESPONSIVE"
-msgstr ""
+msgstr "Reagoiva"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1902
 msgid "FOCUSED"
