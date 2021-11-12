@@ -249,7 +249,7 @@ public class Jukebox : Node
         if (changedTrack || !player.Playing)
         {
             var target = categories[PlayingCategory];
-            if (target.TrackTransition == MusicCategory.Transition.Fade)
+            if (target.TrackTransition == MusicCategory.Transition.Crossfade)
             {
                 AddFadeIn(player);
                 AddWait(player.Player.Stream.GetLength() - fromPosition - 2 * FADE_TIME, player);
@@ -274,7 +274,7 @@ public class Jukebox : Node
         }
 
         // Add transitions
-        if (previouslyPlayedCategory?.CategoryTransition == MusicCategory.Transition.Fade)
+        if (previouslyPlayedCategory?.CategoryTransition == MusicCategory.Transition.Crossfade)
         {
             AddFadeOut();
             faded = true;
@@ -286,7 +286,7 @@ public class Jukebox : Node
             return true;
         }));
 
-        if (target.CategoryTransition == MusicCategory.Transition.Fade)
+        if (target.CategoryTransition == MusicCategory.Transition.Crossfade)
         {
             if (!faded)
             {

@@ -28,16 +28,16 @@ public class MusicCategory : IRegistryType
         None,
 
         /// <summary>
-        ///   There is a fade between the tracks/categories
+        ///   There is a crossfade between the tracks/categories
         /// </summary>
-        Fade,
+        Crossfade,
     }
 
     public ReturnType Return { get; set; } = ReturnType.Continue;
 
-    public Transition CategoryTransition { get; set; } = Transition.Fade;
+    public Transition CategoryTransition { get; set; } = Transition.Crossfade;
 
-    public Transition TrackTransition { get; set; } = Transition.Fade;
+    public Transition TrackTransition { get; set; } = Transition.Crossfade;
 
     /// <summary>
     ///   List of track lists. When the mode is concurrent one track from each list is played at once
