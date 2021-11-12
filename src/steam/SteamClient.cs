@@ -16,6 +16,8 @@ public class SteamClient : ISteamClient
     public ulong? SteamId { get; private set; }
     public bool? IsOwned { get; private set; }
 
+    public string DisplayName => Steam.GetPersonaName();
+
     public void Init()
     {
         if (initStarted)
@@ -30,7 +32,7 @@ public class SteamClient : ISteamClient
         {
             GD.Print("Steam load failed with code:", stats["status"]);
             GD.PrintErr("Verbal status: ", stats["verbal"]);
-            SetError("Steam client library initialization failed", stats["verbal"] as string);
+            SetError(TranslationServer.Translate("STEAM_CLIENT_INIT_FAILED"), stats["verbal"] as string);
             return;
         }
 

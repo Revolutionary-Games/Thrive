@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/LicensesDisplay.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -68,6 +69,7 @@ CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesView")
 GLES2PopupPath = NodePath("GLES2Popup")
+StoreLoggedInDisplayPath = NodePath("StoreUser")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -485,7 +487,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -298.0
-margin_top = -23.0
+margin_top = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -503,12 +505,36 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="StoreUser" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -892.0
+margin_right = -5.0
+margin_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "Store user: name"
+align = 2
+clip_text = true
+max_lines_visible = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
 
 [node name="GLES2Popup" parent="." instance=ExtResource( 4 )]
+margin_top = 28.0
 margin_right = 680.0
-margin_bottom = 85.0
+margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
 popup_exclusive = false
 DialogText = "GLES2_MODE_WARNING_TEXT"

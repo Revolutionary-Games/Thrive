@@ -34,6 +34,15 @@ public class SteamHandler : Node, ISteamSignalReceiver
     /// </summary>
     public bool WasLoadAttempted { get; private set; }
 
+    public string DisplayName
+    {
+        get
+        {
+            ThrowIfNotLoaded();
+            return steamClient.DisplayName;
+        }
+    }
+
     public override void _Ready()
     {
         PauseMode = PauseModeEnum.Process;
@@ -124,5 +133,11 @@ public class SteamHandler : Node, ISteamSignalReceiver
         }
 
         RegisterSteamClient((ISteamClient)Activator.CreateInstance(type));
+    }
+
+    private void ThrowIfNotLoaded()
+    {
+        if (!IsLoaded)
+            throw new InvalidOperationException("Steam is not loaded");
     }
 }

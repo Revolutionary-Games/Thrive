@@ -10,6 +10,8 @@ public interface ISteamClient : ISteamSignalReceiver
     /// </summary>
     bool IsLoaded { get; }
 
+    string DisplayName { get; }
+
     void Init();
 
     /// <summary>
