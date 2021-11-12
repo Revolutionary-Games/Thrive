@@ -3,7 +3,7 @@ render_mode unshaded;
 
 // Procedural hex grid tiling for a better looking and more uniform hexes.
 // This is heavily inspired by Andrew Hung's tutorial.
-// See andrewhungblog.wordpress.com/2018/07/28/shader-art-tutorial-hexagonal-grids
+// See https://andrewhungblog.wordpress.com/2018/07/28/shader-art-tutorial-hexagonal-grids
 
 uniform sampler2D maskTexture;
 uniform vec4 color : hint_color;
