@@ -14,6 +14,7 @@ require_relative 'RubySetupSystem/RubyCommon'
 
 require_relative 'scripts/dehydrate'
 require_relative 'scripts/version_reader'
+require_relative 'scripts/steam_version_helpers'
 
 FileUtils.mkdir_p 'builds'
 
@@ -56,12 +57,27 @@ SOURCE_ITEMS = [
 
 SET_EXECUTE_FOR_MAC = false
 
+SPECIAL_BUILDS = { steam:
+                     {
+                       prepare_compile: lambda {
+                         enable_steam_build
+                       },
+                       target_suffix: '_steam',
+                       godot_executable: 'godot-steam',
+                       folder_prepare: lambda { |target_folder|
+                         copy_steam_resources target_folder
+                       },
+                       mac_zip_postprocess: lambda {|target_folder, target_file|
+                                            }
+                     } }.freeze
+
 @options = {
   custom_targets: false,
   targets: ALL_TARGETS,
   retries: 2,
   zip: true,
-  include_source: true
+  include_source: true,
+  special: nil
 }
 
 OptionParser.new do |opts|
@@ -86,6 +102,9 @@ OptionParser.new do |opts|
   opts.on('-s', '--[no-]source', 'Include or exclude source code') do |b|
     @options[:include_source] = b
   end
+  opts.on('--special type', 'Enable special build mode') do |s|
+    @options[:special] = s.to_sym
+  end
 end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
@@ -94,6 +113,22 @@ VALID_TARGETS = @options[:dehydrate] ? DEVBUILD_TARGETS : ALL_TARGETS
 
 # Make sure godot ignores the builds folder in terms of imports
 File.write 'builds/.gdignore', '' unless File.exist? 'builds/.gdignore'
+
+if @options[:special]
+  onError 'dehydrate option conflicts with special' if @options[:dehydrate]
+
+  unless SPECIAL_BUILDS.include? @options[:special]
+    onError "invalid special build specified: #{@options[:special]}"
+  end
+
+  SPECIAL_BUILDS[@options[:special]][:prepare_compile].call
+
+  @options[:include_source] = false
+  @options[:zip] = false
+else
+  # Ensure normal build
+  disable_steam_build
+end
 
 if @options[:dehydrate]
   puts 'Making dehydrated devbuilds'
@@ -190,6 +225,22 @@ def copy_extra_linux_resources(target_folder)
   LINUX_EXTRA_FILES.each do |source, target|
     FileUtils.cp source, File.join(target_folder, target)
   end
+end
+
+def copy_steam_resources(target_folder)
+  File.open(File.join(target_folder, 'README.txt'), 'w') do |file|
+    file.puts 'Thrive'
+    file.puts ''
+    file.puts 'This is the Steam version of the game. Run the executable'\
+              " 'Thrive-Launcher' to play."
+    file.puts ''
+    file.puts 'Source code is available online: https://github.com/Revolutionary-Games/Thrive'
+    file.puts 'This version of Thrive is specially licensed and *not* under the GPLv3 license.'
+    file.puts ''
+    file.puts 'Exact version of this build is in revision.txt'
+  end
+
+  FileUtils.cp REVISION_FILE, target_folder
 end
 
 def gzip_to_target(source, target)
@@ -348,15 +399,19 @@ end
 
 def package(target, target_name, target_folder, target_file)
   if target_mac? target
-    puts 'Including licenses in mac .zip'
+    if @options[:special]
+      SPECIAL_BUILDS[@options[:special]][:mac_zip_postprocess].call target_folder, target_file
+    else
+      puts 'Including licenses in mac .zip'
 
-    Dir.chdir(target_folder) do
-      runOpen3Checked(*['zip', '-u', target_file,
-                        @extra_included_files.map { |i| i[1] }].flatten,
-                      'README.txt', 'revision.txt')
+      Dir.chdir(target_folder) do
+        runOpen3Checked(*['zip', '-u', target_file,
+                          @extra_included_files.map { |i| i[1] }].flatten,
+                        'README.txt', 'revision.txt')
+      end
+
+      puts 'Licenses added'
     end
-
-    puts 'Licenses added'
 
     if SET_EXECUTE_FOR_MAC
       puts 'Trying to set execute bit for .app for mac'
@@ -382,12 +437,26 @@ def package(target, target_name, target_folder, target_file)
   end
 end
 
+def godot_template_name(target)
+  if @options[:special]
+    target + SPECIAL_BUILDS[@options[:special]][:target_suffix]
+  else
+    target
+  end
+end
+
 # Performs the actual export for a target
 def perform_export(target)
   puts ''
   info "Starting export for target: #{target}"
 
   target_name = "Thrive_#{THRIVE_VERSION}_" + target.gsub(%r{[\s/]}i, '_').downcase
+  godot = 'godot'
+
+  if @options[:special]
+    target_name += SPECIAL_BUILDS[@options[:special]][:target_suffix]
+    godot = SPECIAL_BUILDS[@options[:special]][:godot_executable]
+  end
 
   target_folder = File.join BASE_BUILDS_FOLDER, target_name
 
@@ -395,14 +464,14 @@ def perform_export(target)
 
   puts "Exporting to folder: #{target_folder}"
 
-  target_file = File.join(target_folder, 'Thrive' + get_target_extension(target))
+  target_file = File.join(target_folder, "Thrive#{get_target_extension(target)}")
 
   attempts = 1 + @options[:retries]
 
   success = false
 
   (1..attempts).each do |attempt|
-    if runOpen3('godot', '--export', target, target_file).success?
+    if runOpen3(godot, '--export', godot_template_name(target), target_file).success?
       success = true
       break
     end
@@ -419,8 +488,12 @@ def perform_export(target)
     onError 'Exporting failed too many times'
   end
 
-  prepare_licenses target_folder
-  prepare_readme target_folder
+  if @options[:special]
+    SPECIAL_BUILDS[@options[:special]][:folder_prepare].call target_folder
+  else
+    prepare_licenses target_folder
+    prepare_readme target_folder
+  end
 
   copy_extra_linux_resources target_folder if target =~ /linux/i
 
