@@ -251,9 +251,9 @@ public class AutoEvoRun
     /// <param name="patch">The patch where this effect happened.</param>
     /// <param name="playerDeath">Is this a player died effect and therefore instant?</param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
-        Patch patch, bool playerDeath)
+        Patch patch)
     {
-        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch, playerDeath));
+        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch));
     }
 
     /// <summary>

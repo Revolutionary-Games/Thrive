@@ -5,15 +5,13 @@
 /// </summary>
 public class ExternalEffect
 {
-    public ExternalEffect(Species species, int constant, float coefficient, string eventType, Patch patch,
-        bool playerDeath)
+    public ExternalEffect(Species species, int constant, float coefficient, string eventType, Patch patch)
     {
         Species = species;
         Constant = constant;
         Coefficient = coefficient;
         EventType = eventType;
         Patch = patch;
-        PlayerDeath = playerDeath;
     }
 
     [JsonProperty]
@@ -30,7 +28,4 @@ public class ExternalEffect
 
     [JsonProperty]
     public Patch Patch { get; set; }
-
-    [JsonProperty]
-    public bool PlayerDeath { get; set; }
 }

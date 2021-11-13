@@ -464,7 +464,7 @@ __meta__ = {
 [node name="Statistics" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/TopRight"]
 margin_top = 10.0
 margin_right = 275.0
-margin_bottom = 421.0
+margin_bottom = 417.0
 rect_min_size = Vector2( 275, 407 )
 mouse_filter = 1
 __meta__ = {
@@ -1596,10 +1596,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 19 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 390.0
-margin_bottom = 588.0
+margin_left = 104.0
+margin_top = 104.0
+margin_right = 394.0
+margin_bottom = 592.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -2087,8 +2087,8 @@ __meta__ = {
 }
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/MiddleRight"]
-margin_right = 275.0
-margin_bottom = 196.0
+margin_right = 2.0
+margin_bottom = 2.0
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2257,14 +2257,12 @@ custom_styles/separator = SubResource( 9 )
 margin_right = 500.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 500, 0 )
-WindowTitle = "NEGATIVE_ATP_BALANCE"
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 
 [node name="IslandError" parent="MicrobeEditorGUI/CellEditor" instance=ExtResource( 3 )]
 margin_right = 600.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 600, 0 )
-WindowTitle = "DISCONNECTED_ORGANELLES"
 HideCancelButton = true
 DialogText = "DISCONNECTED_ORGANELLES_TEXT"
 
@@ -2838,6 +2836,7 @@ anchor_bottom = 0.0
 margin_right = 886.0
 margin_bottom = 598.0
 DrawDefaultMapIfEmpty = false
+MonochromeMaterial = null
 
 [node name="PatchPanel" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer" instance=ExtResource( 108 )]
 margin_left = 920.0
