@@ -312,7 +312,7 @@ public static class Constants
     public const int PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT = 50;
     public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
     public const int PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT = -35;
-    public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 2f;
+    public const float PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT = 1 / 2.0f;
 
     /// <summary>
     ///   How often a microbe can get the engulf escape population bonus
