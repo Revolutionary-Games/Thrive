@@ -152,9 +152,8 @@ rect_min_size = Vector2( 290, 350 )
 rect_pivot_offset = Vector2( 145, 171 )
 theme = null
 script = ExtResource( 7 )
-ShowDelay = 0.0
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
 anchor_right = 1.0
