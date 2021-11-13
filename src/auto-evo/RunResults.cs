@@ -579,8 +579,8 @@
                             if (effect.Species == entry.Species && effect.Patch.ID == patchPopulation.Key.ID)
                             {
                                 adjustedPopulation +=
-                                    effect.Constant + (long)(patchPopulation.Value * effect.Coefficient)
-                                    - patchPopulation.Value;
+                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
+                                    - effect.Species.Population;
                             }
                         }
                     }

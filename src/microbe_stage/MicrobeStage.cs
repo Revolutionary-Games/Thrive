@@ -583,7 +583,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Check win conditions
         if (!CurrentGame.FreeBuild && Player.Species.Generation >= 20 &&
-            GameWorld.GetGlobalSpeciesPopulation(Player.Species) >= 300 && !wonOnce)
+            Player.Species.Population >= 300 && !wonOnce)
         {
             HUD.ToggleWinBox();
             wonOnce = true;
@@ -704,7 +704,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (!CurrentGame.FreeBuild)
         {
-            if (GameWorld.IsSpeciesExtinctInPatch(playerSpecies, GameWorld.Map.CurrentPatch))
+            if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
             {
                 // Decrease the population by the constant for the player dying out in a patch
                 GameWorld.AlterSpeciesPopulationEverywhere(
@@ -714,7 +714,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 playerExtinctInCurrentPatch = true;
             }
 
-            if (GameWorld.IsPlayerExtinct())
+            if (playerSpecies.Population <= 0)
                 gameOver = true;
 
             if (gameOver || playerExtinctInCurrentPatch)

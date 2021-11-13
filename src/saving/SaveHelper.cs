@@ -406,7 +406,7 @@ public static class SaveHelper
 
     private static bool PreventSavingIfExtinct(InProgressSave inProgress, Save save)
     {
-        if (!save.SavedProperties.GameWorld.IsPlayerExtinct())
+        if (!save.SavedProperties.GameWorld.PlayerSpecies.IsExtinct)
             return false;
 
         inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_NOT_POSSIBLE"),
