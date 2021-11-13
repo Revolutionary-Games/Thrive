@@ -8,7 +8,7 @@ render_mode unshaded;
 uniform sampler2D maskTexture;
 uniform vec4 color : hint_color;
 uniform float lineWidth = 0.02;
-uniform float edgeLength = 1.3;
+uniform float edgeLength = 1.299;
 
 const vec2 hexSize = vec2(1.7320508, 1.0); // 1.7320508 = sqrt(3)
 const vec2 hexSizeHalf = hexSize * 0.5;
@@ -34,18 +34,13 @@ void vertex(){
 void fragment(){
     vec4 mask = texture(maskTexture, UV);
 
-    if (mask.a == 0.0){
-        ALPHA = 0.0;
-        return;
-    }
-
     // Current coordinate
     vec2 coord = (VERTEX.xy + vec2(worldPos.x, -worldPos.z)) / edgeLength;
 
     // Distance to the nearest Hex center.
     float dist = hexDist(coord);
 
-    ALPHA = smoothstep(1.0 - max(minLineWidth, lineWidth), 1.0, dist) * mask.a;
+    ALPHA = smoothstep(1.0 - max(minLineWidth, lineWidth), 1.0, dist) * 2.5 * mask.a;
 
     ALBEDO = color.rgb;
 }
