@@ -706,7 +706,7 @@ public partial class Microbe
             // Return the first cell to its normal, non duplicated cell arrangement.
             if (!Species.PlayerSpecies)
             {
-                GameWorld.AlterSpeciesPopulation(Species,
+                GameWorld.AlterSpeciesPopulationInCurrentPatch(Species,
                     Constants.CREATURE_REPRODUCE_POPULATION_GAIN, TranslationServer.Translate("REPRODUCED"));
             }
 

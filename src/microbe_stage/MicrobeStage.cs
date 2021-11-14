@@ -548,7 +548,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Increase the population by the constant for the player reproducing
         var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
             TranslationServer.Translate("PLAYER_REPRODUCED"),
             false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
@@ -695,7 +695,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         var playerSpecies = GameWorld.PlayerSpecies;
 
         // Decrease the population by the constant for the player dying
-        GameWorld.AlterSpeciesPopulation(
+        GameWorld.AlterSpeciesPopulationInCurrentPatch(
             playerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
@@ -707,7 +707,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
             {
                 // Decrease the population by the constant for the player dying out in a patch
-                GameWorld.AlterSpeciesPopulationEverywhere(
+                GameWorld.AlterSpeciesPopulation(
                     playerSpecies, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_CONSTANT,
                     TranslationServer.Translate("PATCH_EXTINCTION"),
                     true, Constants.PLAYER_PATCH_EXTINCTION_POPULATION_LOSS_COEFFICIENT);

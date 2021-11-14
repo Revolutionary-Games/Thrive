@@ -294,16 +294,10 @@ public class GameWorld
         autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, effectPatch);
     }
 
-    public void AlterSpeciesPopulationEverywhere(Species species, int constant, string description,
+    public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,
         bool immediate = false, float coefficient = 1)
     {
-        foreach (var patch in Map.Patches.Values)
-        {
-            if (patch.GetSpeciesPopulation(species) <= 0)
-                continue;
-
-            AlterSpeciesPopulation(species, constant, description, immediate, coefficient, patch);
-        }
+        AlterSpeciesPopulation(species, constant, description, immediate, coefficient, Map.CurrentPatch);
     }
 
     public void RemoveSpecies(Species species)
