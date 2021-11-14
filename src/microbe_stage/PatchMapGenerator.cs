@@ -65,7 +65,7 @@ public static class PatchMapGenerator
         map.AddPatch(tidepool);
 
         var bathypelagic = new Patch("PATCH_PANGONIAN_BATHYPELAGIC", 4,
-            GetBiomeTemplate("bathypelagic"), (long)(3000 * 3000) * 3000)
+            GetBiomeTemplate("bathypelagic"), 3000L * 3000 * 3000)
         {
             Depth =
             {
@@ -77,7 +77,7 @@ public static class PatchMapGenerator
         map.AddPatch(bathypelagic);
 
         var abyssopelagic = new Patch("PATHCH_PANGONIAN_ABYSSOPELAGIC", 5,
-            GetBiomeTemplate("abyssopelagic"), (long)(2000 * 2000) * 2000)
+            GetBiomeTemplate("abyssopelagic"), 2000L * 2000 * 2000)
         {
             Depth =
             {
@@ -137,7 +137,7 @@ public static class PatchMapGenerator
         map.AddPatch(iceShelf);
 
         var seafloor = new Patch("PATCH_PANGONIAN_SEAFLOOR", 10,
-            GetBiomeTemplate("seafloor"), (long)(2000 * 2000) * 2000)
+            GetBiomeTemplate("seafloor"), 2000L * 2000 * 2000)
         {
             Depth =
             {
