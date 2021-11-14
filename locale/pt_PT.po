@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-06 11:30+0100\n"
-"PO-Revision-Date: 2021-08-29 18:21+0000\n"
-"Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
+"PO-Revision-Date: 2021-11-12 08:17+0000\n"
+"Last-Translator: Dr. A. S. <Dr.A.S.Tuga@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1459,11 +1459,11 @@ msgstr "Voltar"
 
 #: ../src/general/MainMenu.tscn:334
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "Galeria de Arte"
 
 #: ../src/general/MainMenu.tscn:346
 msgid "LICENSES"
-msgstr ""
+msgstr "Licenças"
 
 #: ../src/general/MainMenu.tscn:514
 msgid "GLES2_MODE_WARNING_TEXT"
@@ -1483,10 +1483,11 @@ msgstr "Dispositivo de saída padrão"
 #: ../src/general/OptionsMenu.cs:877
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+"Esta tradução está muito incompleta ({0}% feita) por favor ajude-nos com ela!"
 
 #: ../src/general/OptionsMenu.cs:881
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Esta língua é ainda um trabalho em curso ({0}% feito)"
 
 #: ../src/general/OptionsMenu.cs:885
 #, fuzzy
@@ -1519,7 +1520,7 @@ msgstr "VSync"
 
 #: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
-msgstr "Fullscreen"
+msgstr "Ecrã inteiro"
 
 #: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
@@ -1531,15 +1532,15 @@ msgstr "(valores mais altos pioram o desempenho)"
 
 #: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
-msgstr ""
+msgstr "Desactivado"
 
 #: ../src/general/OptionsMenu.tscn:262
 msgid "TWO_TIMES"
-msgstr ""
+msgstr "2x"
 
 #: ../src/general/OptionsMenu.tscn:262
 msgid "FOUR_TIMES"
-msgstr ""
+msgstr "4x"
 
 #: ../src/general/OptionsMenu.tscn:262
 #, fuzzy
@@ -1548,7 +1549,7 @@ msgstr "Rato direito"
 
 #: ../src/general/OptionsMenu.tscn:262
 msgid "SIXTEEN_TIMES"
-msgstr ""
+msgstr "16x"
 
 #: ../src/general/OptionsMenu.tscn:276
 msgid "RESOLUTION"
@@ -1568,7 +1569,7 @@ msgstr "Correção de cor para daltónicos:"
 
 #: ../src/general/OptionsMenu.tscn:339 ../src/general/OptionsMenu.tscn:340
 msgid "NONE"
-msgstr ""
+msgstr "Nenhum"
 
 #: ../src/general/OptionsMenu.tscn:340
 msgid "CORRECTION_PROTANOPE"
@@ -1741,15 +1742,15 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1163 ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
+msgstr "Automaticamente"
 
 #: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
+msgstr "Sempre"
 
 #: ../src/general/OptionsMenu.tscn:1164
 msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
+msgstr "Nunca"
 
 #: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
 msgid "SAVE"
@@ -1855,9 +1856,8 @@ msgid "EXIT"
 msgstr "Sair"
 
 #: ../src/general/PauseMenu.tscn:161
-#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "CONFIRMAR"
+msgstr "Confirmar Saída"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1878,7 +1878,7 @@ msgstr "/segundo"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
+msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
@@ -1959,7 +1959,7 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:278
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Desenvolvedores Actuais"
 
 #: ../src/gui_common/CreditsScroll.cs:294
 msgid "PAST_DEVELOPERS"
@@ -1998,6 +1998,9 @@ msgstr ""
 #: ../src/gui_common/CreditsScroll.cs:479
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Obrigado por jogares!\n"
+"\n"
+"Se gostaste do jogo, por favor diz os teus amigos sobre nós."
 
 #: ../src/gui_common/CreditsScroll.cs:488
 msgid "PROGRAMMING_TEAM"
@@ -2047,11 +2050,11 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:499
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Apoiantes"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "JANUARY"
-msgstr ""
+msgstr "Janeiro"
 
 #: ../src/gui_common/CreditsScroll.cs:501
 #, fuzzy
@@ -2060,35 +2063,35 @@ msgstr "Estuário"
 
 #: ../src/gui_common/CreditsScroll.cs:502
 msgid "MARCH"
-msgstr ""
+msgstr "Março"
 
 #: ../src/gui_common/CreditsScroll.cs:503
 msgid "APRIL"
-msgstr ""
+msgstr "Abril"
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "MAY"
-msgstr ""
+msgstr "Maio"
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "JUNE"
-msgstr ""
+msgstr "Junho"
 
 #: ../src/gui_common/CreditsScroll.cs:506
 msgid "JULY"
-msgstr ""
+msgstr "Julho"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "AUGUST"
-msgstr ""
+msgstr "Agosto"
 
 #: ../src/gui_common/CreditsScroll.cs:508
 msgid "SEPTEMBER"
-msgstr ""
+msgstr "Setembro"
 
 #: ../src/gui_common/CreditsScroll.cs:509
 msgid "OCTOBER"
-msgstr ""
+msgstr "Outubro"
 
 #: ../src/gui_common/CreditsScroll.cs:510
 #, fuzzy
@@ -2097,19 +2100,19 @@ msgstr "Movimento"
 
 #: ../src/gui_common/CreditsScroll.cs:511
 msgid "DECEMBER"
-msgstr ""
+msgstr "Dezembro"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Da Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Desenvolvimento Apoiado pela Revolutionary Games Studio ry"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Desenvolvedores"
 
 #: ../src/gui_common/LicensesDisplay.cs:27
 msgid "GPL_LICENSE_HEADING"
@@ -2197,7 +2200,7 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Sem Dados a Mostrar"
 
 #: ../src/gui_common/charts/line/LineChart.cs:949
 #: ../src/gui_common/charts/line/LineChart.cs:978
@@ -2295,6 +2298,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:238
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Os micróbios medrosos fugirão a distâncias maiores\n"
+"e são mais propensos a fugir dos predadores em geral.\n"
+"Os micróbios corajosos não se deixam intimidar pelos predadores próximos\n"
+"e, mais provavelmente, irão atacar de volta."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "ACTIVITY_EXPLANATION"
@@ -2852,27 +2859,27 @@ msgstr "Lista de Espécies"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:778
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "uma abundância"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:780
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "um bocado"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:782
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "uma quantidade razoável"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:784
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "algum"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:786
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "pouco"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:788
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "muito pouco"
 
 #: ../src/microbe_stage/MicrobeStage.cs:525
 msgid "PLAYER_REPRODUCED"
@@ -2932,7 +2939,7 @@ msgstr "Adicionar um novo atalho de teclado"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1640
 msgid "PAUSE_TOOLTIP"
-msgstr ""
+msgstr "Pausa o jogo"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1653
 #, fuzzy
@@ -3111,27 +3118,27 @@ msgstr "Cor"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1680
 msgid "PEACEFUL"
-msgstr ""
+msgstr "Pacífico"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1697
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "Agressivo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1731
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "Cauteloso"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1749
 msgid "OPPORTUNISTIC"
-msgstr ""
+msgstr "Oportunista"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1783
 msgid "BRAVE"
-msgstr ""
+msgstr "Corajoso"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
 msgid "FEARFUL"
-msgstr ""
+msgstr "Temeroso"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1834
 msgid "SESSILE"
@@ -3139,7 +3146,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
 msgid "ACTIVE"
-msgstr ""
+msgstr "Activo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1885
 msgid "RESPONSIVE"
@@ -3147,7 +3154,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1902
 msgid "FOCUSED"
-msgstr ""
+msgstr "Focado"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "SPECIES_NAME_DOT_DOT_DOT"

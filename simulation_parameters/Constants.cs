@@ -651,6 +651,11 @@ public static class Constants
     public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 500f;
 
     /// <summary>
+    ///   Regex for species name validation.
+    /// </summary>
+    public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
+
+    /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
     /// <remarks>
