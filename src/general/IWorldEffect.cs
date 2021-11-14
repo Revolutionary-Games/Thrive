@@ -81,10 +81,10 @@ public class GasProductionEffect : IWorldEffect
             foreach (var species in patch.SpeciesInPatch.Keys)
             {
                 // TODO: only adapted for microbe species,
-                if (species as MicrobeSpecies != null)
+                if (species is MicrobeSpecies microbeSpecies)
                 {
                     var individualCompoundProduction = ProcessSystem.ComputeEnvironmentalBalance(
-                        ((MicrobeSpecies)species).Organelles, patch.Biome);
+                        microbeSpecies.Organelles, patch.Biome);
 
                     foreach (var compound in gasCompounds)
                     {
@@ -94,6 +94,7 @@ public class GasProductionEffect : IWorldEffect
                             {
                                 compoundsProduced[compound] = 0;
                             }
+
                             compoundsProduced[compound] += compoundProduction.Balance * patch.SpeciesInPatch[species] *
                                 Constants.DISSOLVED_PRODUCTION_FACTOR;
                         }
