@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -89,15 +88,13 @@ public class GasProductionEffect : IWorldEffect
 
                     foreach (var compound in gasCompounds)
                     {
-                        GD.Print("Dealing with gas compound:", compound);
                         if (individualCompoundProduction.TryGetValue(compound, out CompoundBalance compoundProduction))
                         {
                             if (!compoundsProduced.ContainsKey(compound))
                             {
                                 compoundsProduced[compound] = 0;
                             }
-                            GD.Print("Dealing with gas compound production:", compound, compoundProduction.Balance);
-                            compoundsProduced[compound] += compoundProduction.Balance * patch.SpeciesInPatch[species]*300000;
+                            compoundsProduced[compound] += compoundProduction.Balance * patch.SpeciesInPatch[species] * 3000;
                         }
                     }
                 }
@@ -105,16 +102,15 @@ public class GasProductionEffect : IWorldEffect
 
             foreach (var compound in compoundsProduced.Keys)
             {
-                if (patch.Biome.Compounds.ContainsKey(compound))
+                if (patch.Biome.Compounds.TryGetValue(compound, out EnvironmentalCompoundProperties compoundValue))
                 {
-                    GD.Print("Old dissolved:",patch.Biome.Compounds[compound].Dissolved);
-                    GD.Print("adding dissolved:", compound,"->", compoundsProduced[compound]," Vol:", patch.Volume);
-                    patch.Biome.Compounds[compound].AddDissolved(compoundsProduced[compound] / patch.Volume);
-                    GD.Print("new dissolved:", patch.Biome.Compounds[compound].Dissolved, "modified:", compoundsProduced[compound] / patch.Volume);
+                    compoundValue.Dissolved = Math.Max(
+                        compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume,
+                        0);
+                    patch.Biome.Compounds[compound] = compoundValue;
                 }
                 else
                 {
-                    GD.Print("Creating Dissolved");
                     patch.Biome.Compounds[compound] = new EnvironmentalCompoundProperties()
                     {
                         Amount = 0, Density = 0, Dissolved = compoundsProduced[compound] / patch.Volume,
