@@ -64,6 +64,10 @@ public static class MicrobeInternalCalculations
         // After getting the maximum-force direction we normalize it
         maximumMovementDirection = maximumMovementDirection.Normalized();
 
+        // If the flagella are positioned symetrically we assume the forward position as default
+        if (maximumMovementDirection == Vector3.Zero)
+            maximumMovementDirection = Vector3.Forward;
+
         // Calculate the maximum total force-factors in the maximum-force direction
         forwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Forward);
         backwardDirectionFactor = -forwardDirectionFactor;
