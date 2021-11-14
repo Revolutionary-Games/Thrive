@@ -262,7 +262,7 @@ public class AutoEvoRun
     /// <returns>The summary of external effects.</returns>
     public string MakeSummaryOfExternalEffects()
     {
-        var combinedExternalEffects = new Dictionary<(Species species, string @event, Patch patch), long>();
+        var combinedExternalEffects = new Dictionary<(Species Species, string Event, Patch Patch), long>();
 
         foreach (var entry in ExternalEffects)
         {
@@ -285,19 +285,19 @@ public class AutoEvoRun
 
         foreach (var entry in combinedExternalEffects)
         {
-            if (entry.Key.patch == null)
+            if (entry.Key.Patch == null)
             {
                 builder.Append(string.Format(CultureInfo.CurrentCulture,
                     TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"),
-                    entry.Key.species.FormattedName, entry.Value, entry.Key.@event));
+                    entry.Key.Species.FormattedName, entry.Value, entry.Key.Event));
             }
             else
             {
-                var patchName = TranslationServer.Translate(entry.Key.patch.Name);
+                var patchName = TranslationServer.Translate(entry.Key.Patch.Name);
 
                 builder.Append(string.Format(CultureInfo.CurrentCulture,
                     TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED"),
-                    entry.Key.species.FormattedName, entry.Value, patchName, entry.Key.@event));
+                    entry.Key.Species.FormattedName, entry.Value, patchName, entry.Key.Event));
             }
 
             builder.Append('\n');
