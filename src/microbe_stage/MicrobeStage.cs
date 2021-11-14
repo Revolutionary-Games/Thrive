@@ -526,6 +526,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         CurrentGame.GameWorld.Map.CurrentPatch = patch;
         UpdatePatchSettings();
         playerExtinctInCurrentPatch = false;
+        SpawnPlayer();
 
         // Auto save is wanted once possible
         wantsToSave = true;

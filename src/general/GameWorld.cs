@@ -266,7 +266,7 @@ public class GameWorld
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
     /// <param name="coefficient">Change amount (coefficient part)</param>
-    /// <param name="patch">The patch where this happened. Null for the current patch.</param>
+    /// <param name="patch">The patch where this happened. Null to apply everywhere.</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description,
         bool immediate = false, float coefficient = 1, Patch patch = null)
     {
@@ -276,8 +276,6 @@ public class GameWorld
         if (species == null)
             throw new ArgumentException("species is null");
 
-        var effectPatch = patch ?? Map.CurrentPatch;
-
         // Immediate is only allowed to use for the player dying
         if (immediate)
         {
@@ -286,12 +284,21 @@ public class GameWorld
 
             GD.Print("Applying immediate population effect " +
                 "(should only be used for the player dying)");
-            species.ApplyImmediatePopulationChange(constant, coefficient);
+
+            if (patch == null)
+            {
+                foreach (var iterPatch in Map.Patches.Values)
+                {
+                    species.ApplyImmediatePopulationChangeInPatch(constant, coefficient, iterPatch);
+                }
+            }
+            else
+                species.ApplyImmediatePopulationChangeInPatch(constant, coefficient, patch);
         }
 
         CreateRunIfMissing();
 
-        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, effectPatch);
+        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
     }
 
     public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,

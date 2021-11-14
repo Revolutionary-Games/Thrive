@@ -576,7 +576,7 @@
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == entry.Species && effect.Patch.ID == patchPopulation.Key.ID)
+                            if (effect.Species == entry.Species && effect.Patch?.ID == patchPopulation.Key.ID)
                             {
                                 adjustedPopulation +=
                                     effect.Constant + (long)(effect.Species.Population * effect.Coefficient)

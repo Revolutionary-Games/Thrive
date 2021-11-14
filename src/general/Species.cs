@@ -123,6 +123,21 @@ public abstract class Species : ICloneable
             Population = 0;
     }
 
+    public void ApplyImmediatePopulationChangeInPatch(long constant, float coefficient, Patch patch)
+    {
+        var oldPopulation = patch.GetSpeciesPopulation(this);
+        var population = (long)(oldPopulation * coefficient);
+        population += constant;
+
+        if (population < 0)
+            population = 0;
+
+        var populationChange = population - oldPopulation;
+
+        patch.UpdateSpeciesPopulation(this, population);
+        Population += populationChange;
+    }
+
     /// <summary>
     ///   Apply properties from the mutation that are mutable
     /// </summary>
