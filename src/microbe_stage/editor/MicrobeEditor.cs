@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 
@@ -572,11 +573,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             editedSpecies.FormattedName);
 
         // Update name
-        var splits = NewName.Split(" ");
-        if (splits.Length == 2)
+        var match = Regex.Match(NewName, Constants.SPECIES_NAME_REGEX);
+        if (match.Success)
         {
-            editedSpecies.Genus = splits[0];
-            editedSpecies.Epithet = splits[1];
+            editedSpecies.Genus = match.Groups["genus"].Value;
+            editedSpecies.Epithet = match.Groups["epithet"].Value;
 
             GD.Print("MicrobeEditor: edited species name is now ",
                 editedSpecies.FormattedName);
