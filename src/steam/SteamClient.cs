@@ -50,6 +50,15 @@ public class SteamClient : ISteamClient
         // Signal documentation: https://gramps.github.io/GodotSteam/signals-modules.html
         Steam.Singleton.Connect("steamworks_error", receiver, nameof(ISteamSignalReceiver.GenericSteamworksError));
         Steam.Singleton.Connect("overlay_toggled", receiver, nameof(ISteamSignalReceiver.OverlayStatusChanged));
+
+        Steam.Singleton.Connect("current_stats_received", receiver,
+            nameof(ISteamSignalReceiver.CurrentUserStatsReceived));
+        Steam.Singleton.Connect("user_stats_received", receiver, nameof(ISteamSignalReceiver.UserStatsReceived));
+        Steam.Singleton.Connect("user_stats_stored", receiver, nameof(ISteamSignalReceiver.UserStatsStored));
+
+        Steam.Singleton.Connect("low_power", receiver, nameof(ISteamSignalReceiver.LowPower));
+        Steam.Singleton.Connect("steam_api_call_completed", receiver, nameof(ISteamSignalReceiver.APICallComplete));
+        Steam.Singleton.Connect("steam_shutdown", receiver, nameof(ISteamSignalReceiver.ShutdownRequested));
     }
 
     public void Process(float delta)
@@ -66,6 +75,42 @@ public class SteamClient : ISteamClient
     }
 
     public void OverlayStatusChanged(bool active)
+    {
+    }
+
+    public void CurrentUserStatsReceived(int game, int result, int user)
+    {
+        if (result == Steam.ResultOk)
+        {
+            GD.Print("Received stats for current user");
+        }
+        else if (result == Steam.ResultFail)
+        {
+            GD.Print("Failed to receive stats for current user");
+        }
+        else
+        {
+            GD.PrintErr("Unknown result for CurrentUserStatsReceived: ", result);
+        }
+    }
+
+    public void UserStatsReceived(int game, int result, int user)
+    {
+    }
+
+    public void UserStatsStored(int game, int result)
+    {
+    }
+
+    public void LowPower(int power)
+    {
+    }
+
+    public void APICallComplete(int asyncCall, int callback, int parameter)
+    {
+    }
+
+    public void ShutdownRequested()
     {
     }
 

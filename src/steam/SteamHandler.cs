@@ -96,6 +96,40 @@ public class SteamHandler : Node, ISteamSignalReceiver
         steamClient?.OverlayStatusChanged(active);
     }
 
+    public void CurrentUserStatsReceived(int game, int result, int user)
+    {
+        steamClient?.CurrentUserStatsReceived(game, result, user);
+    }
+
+    public void UserStatsReceived(int game, int result, int user)
+    {
+        steamClient?.UserStatsReceived(game, result, user);
+    }
+
+    public void UserStatsStored(int game, int result)
+    {
+        steamClient?.UserStatsStored(game, result);
+    }
+
+    public void LowPower(int power)
+    {
+        // TODO: show a warning popup (once)
+        steamClient?.LowPower(power);
+    }
+
+    public void APICallComplete(int asyncCall, int callback, int parameter)
+    {
+        steamClient?.APICallComplete(asyncCall, callback, parameter);
+    }
+
+    public void ShutdownRequested()
+    {
+        steamClient?.ShutdownRequested();
+
+        GD.Print("Shutdown through Steam requested, closing the game");
+        GetTree().Quit();
+    }
+
     private void OnSteamInit()
     {
         if (steamClient == null)
