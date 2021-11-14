@@ -24,10 +24,10 @@ public static class MicrobeInternalCalculations
         float rightwardDirectionMovementForce = 0;
 
         // Force factor for each direction
-        float forwardDirectionFactor ;
-        float backwardDirectionFactor ;
-        float rightwardDirectionFactor ;
-        float leftwardDirectionFactor ;
+        float forwardDirectionFactor;
+        float backwardDirectionFactor;
+        float rightwardDirectionFactor;
+        float leftwardDirectionFactor;
 
         Vector3 maximumMovementDirection = Vector3.Zero;
         foreach (var organelle in organelles)
@@ -70,13 +70,11 @@ public static class MicrobeInternalCalculations
         rightwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Right);
         leftwardDirectionFactor = -rightwardDirectionFactor;
 
-        // Create a list so we can get the maximum value easier
-        var list = new List<float> {forwardsDirectionMovementForce, backwardsDirectionMovementForce,
-        leftwardDirectionMovementForce, rightwardDirectionMovementForce};
-
-        // The microbe's max speed is calculated using
-        // the greatest movement force from all direction's forces
-        organelleMovementForce = list.Max();
+        // Add each movement force to the total movement force in the maximum-force direction.
+        organelleMovementForce += MovementForce(forwardsDirectionMovementForce, forwardDirectionFactor);
+        organelleMovementForce += MovementForce(backwardsDirectionMovementForce, backwardDirectionFactor);
+        organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightwardDirectionFactor);
+        organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftwardDirectionFactor);
 
         float baseMovementForce = Constants.CELL_BASE_THRUST *
             (membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
