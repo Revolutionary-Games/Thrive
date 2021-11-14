@@ -42,6 +42,8 @@ public class InProgressSave : IDisposable
 
     private bool disposed;
 
+    private bool wasColourblindScreenFilterVisible;
+
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
         Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string saveName)
     {
@@ -166,11 +168,23 @@ public class InProgressSave : IDisposable
             case State.Initial:
                 // On this frame a pause menu might still be open, wait until next frame for it to close before
                 // taking a screenshot
+                wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
+                if (wasColourblindScreenFilterVisible)
+                {
+                    ColourblindScreenFilter.Instance.Hide();
+                }
+
                 state = State.Screenshot;
                 break;
             case State.Screenshot:
             {
                 save = createSaveData.Invoke(this);
+
+                if (wasColourblindScreenFilterVisible)
+                {
+                    ColourblindScreenFilter.Instance.Show();
+                }
+
                 SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING"),
                     Mathf.Inf);
 
@@ -210,6 +224,9 @@ public class InProgressSave : IDisposable
                 }
 
                 IsSaving = false;
+
+                SaveHelper.MarkLastSaveToCurrentTime();
+
                 return;
             }
 
@@ -239,7 +256,7 @@ public class InProgressSave : IDisposable
 
                 foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
                 {
-                    var match = Regex.Match(name, "^save_(\\d)+\\." + Constants.SAVE_EXTENSION);
+                    var match = Regex.Match(name, "^save_(\\d+)\\." + Constants.SAVE_EXTENSION);
 
                     if (match.Success)
                     {
@@ -256,13 +273,13 @@ public class InProgressSave : IDisposable
 
             case SaveInformation.SaveType.AutoSave:
             {
-                return GetNextNameForSaveType("^auto_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "auto_save",
+                return GetNextNameForSaveType("^auto_save_(\\d+)\\." + Constants.SAVE_EXTENSION, "auto_save",
                     Settings.Instance.MaxAutoSaves);
             }
 
             case SaveInformation.SaveType.QuickSave:
             {
-                return GetNextNameForSaveType("^quick_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "quick_save",
+                return GetNextNameForSaveType("^quick_save_(\\d+)\\." + Constants.SAVE_EXTENSION, "quick_save",
                     Settings.Instance.MaxQuickSaves);
             }
 

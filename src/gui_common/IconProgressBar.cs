@@ -21,8 +21,8 @@ public class IconProgressBar : ColorRect
         get => RectSize;
         set
         {
-            RectSize = value;
             RectMinSize = value;
+            RectSize = value;
 
             highlight.RectSize = value;
 

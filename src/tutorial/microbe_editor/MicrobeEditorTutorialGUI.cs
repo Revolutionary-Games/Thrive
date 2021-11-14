@@ -26,12 +26,19 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath CellEditorClosingWordsPath;
 
+    [Export]
+    public NodePath AutoEvoPredictionPath;
+
+    [Export]
+    public NodePath AutoEvoPredictionHighlightPath;
+
     private CustomDialog editorEntryReport;
     private CustomDialog patchMap;
     private CustomDialog cellEditorIntroduction;
     private CustomDialog cellEditorUndo;
     private CustomDialog cellEditorRedo;
     private CustomDialog cellEditorClosingWords;
+    private CustomDialog autoEvoPrediction;
 
     public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeEditor;
     public ITutorialInput EventReceiver { get; set; }
@@ -40,6 +47,8 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public Node GUINode => this;
 
     public ControlHighlight CellEditorUndoHighlight { get; private set; }
+
+    public ControlHighlight AutoEvoPredictionHighlight { get; private set; }
 
     public bool EditorEntryReportVisible
     {
@@ -155,6 +164,25 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool AutoEvoPredictionVisible
+    {
+        get => autoEvoPrediction.Visible;
+        set
+        {
+            if (value == autoEvoPrediction.Visible)
+                return;
+
+            if (value)
+            {
+                autoEvoPrediction.Show();
+            }
+            else
+            {
+                autoEvoPrediction.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomDialog>(EditorEntryReportPath);
@@ -163,7 +191,10 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         cellEditorUndo = GetNode<CustomDialog>(CellEditorUndoPath);
         cellEditorRedo = GetNode<CustomDialog>(CellEditorRedoPath);
         cellEditorClosingWords = GetNode<CustomDialog>(CellEditorClosingWordsPath);
+        autoEvoPrediction = GetNode<CustomDialog>(AutoEvoPredictionPath);
+
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
+        AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
     }
 
     public override void _Process(float delta)

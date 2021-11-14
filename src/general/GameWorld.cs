@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -43,6 +44,9 @@ public class GameWorld
     public GameWorld(WorldGenerationSettings settings) : this()
     {
         PlayerSpecies = CreatePlayerSpecies();
+
+        if (!PlayerSpecies.PlayerSpecies)
+            throw new Exception("PlayerSpecies flag for being player species is not set");
 
         Map = PatchMapGenerator.Generate(settings, PlayerSpecies);
 
@@ -180,7 +184,7 @@ public class GameWorld
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
-        TotalPassedTime += timePassed * 100000000;
+        TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
     }
@@ -197,6 +201,20 @@ public class GameWorld
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
+    }
+
+    /// <summary>
+    ///   Registers a species created by auto-evo in this world. Updates the ID
+    /// </summary>
+    /// <param name="species">The species to register</param>
+    public void RegisterAutoEvoCreatedSpecies(Species species)
+    {
+        if (worldSpecies.Any(p => p.Value == species))
+            throw new ArgumentException("Species is already in this world");
+
+        species.OnBecomePartOfWorld(++speciesIdCounter);
+        worldSpecies[species.ID] = species;
+        GD.Print("New species has become part of the world: ", species.FormattedIdentifier);
     }
 
     /// <summary>
