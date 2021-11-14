@@ -249,7 +249,6 @@ public class AutoEvoRun
     /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
     /// <param name="patch">The patch where this effect happened or null for a global event.</param>
-    /// <param name="playerDeath">Is this a player died effect and therefore instant?</param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
         Patch patch)
     {
