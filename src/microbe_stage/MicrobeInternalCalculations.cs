@@ -23,6 +23,12 @@ public static class MicrobeInternalCalculations
         float leftwardDirectionMovementForce = 0;
         float rightwardDirectionMovementForce = 0;
 
+        // Force factor for each direction
+        float forwardDirectionFactor ;
+        float backwardDirectionFactor ;
+        float rightwardDirectionFactor ;
+        float leftwardDirectionFactor ;
+
         Vector3 maximumMovementDirection = Vector3.Zero;
         foreach (var organelle in organelles)
         {
@@ -33,11 +39,16 @@ public static class MicrobeInternalCalculations
                 Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
                     - Hex.AxialToCartesian(organelle.Position)).Normalized();
 
+                if (maximumMovementDirection == Vector3.Zero)
+                    maximumMovementDirection = organelleDirection;
+                else
+                    maximumMovementDirection += organelleDirection;
+
                 // We decompose the vector of the organelle orientation in 2 vectors, forward and rightward
-                float forwardDirectionFactor = organelleDirection.Dot(Vector3.Forward);
-                float backwardDirectionFactor = -forwardDirectionFactor;
-                float rightwardDirectionFactor = organelleDirection.Dot(Vector3.Right);
-                float leftwardDirectionFactor = -rightwardDirectionFactor;
+                forwardDirectionFactor = organelleDirection.Dot(Vector3.Forward);
+                backwardDirectionFactor = -forwardDirectionFactor;
+                rightwardDirectionFactor = organelleDirection.Dot(Vector3.Right);
+                leftwardDirectionFactor = -rightwardDirectionFactor;
 
                 float movementConstant = Constants.FLAGELLA_BASE_FORCE
                     * organelle.Definition.Components.Movement.Momentum / 100.0f;
@@ -49,6 +60,15 @@ public static class MicrobeInternalCalculations
                 leftwardDirectionMovementForce += MovementForce(movementConstant, leftwardDirectionFactor);
             }
         }
+
+        // After getting the maximum-force direction we normalize it
+        maximumMovementDirection = maximumMovementDirection.Normalized();
+
+        // Calculate the maximum total force-factors in the maximum-force direction
+        forwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Forward);
+        backwardDirectionFactor = -forwardDirectionFactor;
+        rightwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Right);
+        leftwardDirectionFactor = -rightwardDirectionFactor;
 
         // Create a list so we can get the maximum value easier
         var list = new List<float> {forwardsDirectionMovementForce, backwardsDirectionMovementForce,
