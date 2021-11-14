@@ -35,4 +35,9 @@ public struct EnvironmentalCompoundProperties : IEquatable<EnvironmentalCompound
     {
         return Amount == other.Amount && Density == other.Density && Dissolved == other.Dissolved;
     }
+
+    public void AddDissolved(float dissolved)
+    {
+        Dissolved += dissolved;
+    }
 }
