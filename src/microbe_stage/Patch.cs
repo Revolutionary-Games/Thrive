@@ -24,6 +24,12 @@ public class Patch
     public readonly int[] Depth = new int[2] { -1, -1 };
 
     /// <summary>
+    ///   The volume of the patch, in meters cube.
+    /// </summary>
+    [JsonProperty]
+    public readonly long Volume;
+
+    /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
     [JsonProperty]
@@ -32,12 +38,13 @@ public class Patch
     [JsonProperty]
     private Deque<PatchSnapshot> history = new Deque<PatchSnapshot>();
 
-    public Patch(string name, int id, Biome biomeTemplate)
+    public Patch(string name, int id, Biome biomeTemplate, long volume)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         currentSnapshot.Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
+        Volume = volume;
     }
 
     [JsonProperty]
