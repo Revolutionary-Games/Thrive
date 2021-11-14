@@ -65,6 +65,9 @@ public class GameWorld
 
         // Register glucose reduction
         TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
+
+        // Register gas compounds production
+        TimedEffects.RegisterEffect("produce_gases", new GasProductionEffect(this));
     }
 
     [JsonProperty]

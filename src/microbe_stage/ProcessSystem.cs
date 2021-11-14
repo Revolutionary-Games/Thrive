@@ -175,6 +175,48 @@ public class ProcessSystem
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome);
     }
 
+    public static Dictionary<Compound, CompoundBalance> ComputeEnvironmentalBalance(
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+    {
+        var result = new Dictionary<Compound, CompoundBalance>();
+
+        void MakeSureResultExists(Compound compound)
+        {
+            if (!result.ContainsKey(compound))
+            {
+                result[compound] = new CompoundBalance();
+            }
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var process in organelle.RunnableProcesses)
+            {
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
+
+                foreach (var input in speedAdjusted.EnvironmentalInputs)
+                {
+                    MakeSureResultExists(input.Key);
+                    result[input.Key].AddConsumption(organelle.InternalName, input.Value);
+                }
+
+                foreach (var output in speedAdjusted.EnvironmentalOutputs)
+                {
+                    MakeSureResultExists(output.Key);
+                    result[output.Key].AddProduction(organelle.InternalName, output.Value);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static Dictionary<Compound, CompoundBalance> ComputeEnvironmentalBalance(
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome)
+    {
+        return ComputeEnvironmentalBalance(organelles.Select(o => o.Definition), biome);
+    }
+
     public void Process(float delta)
     {
         // Guard against Godot delta problems. https://github.com/Revolutionary-Games/Thrive/issues/1976

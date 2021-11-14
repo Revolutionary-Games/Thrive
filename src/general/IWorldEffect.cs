@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -48,6 +50,75 @@ public class GlucoseReductionEffect : IWorldEffect
                     glucoseValue.Density = Math.Max(glucoseValue.Density * Constants.GLUCOSE_REDUCTION_RATE,
                         Constants.GLUCOSE_MIN);
                     patch.Biome.Compounds[glucose] = glucoseValue;
+                }
+            }
+        }
+    }
+}
+
+public class GasProductionEffect : IWorldEffect
+{
+    [JsonProperty]
+    private GameWorld targetWorld;
+
+    public GasProductionEffect(GameWorld targetWorld)
+    {
+        this.targetWorld = targetWorld;
+    }
+
+    public void OnRegisterToWorld()
+    {
+    }
+
+    public void OnTimePassed(double elapsed, double totalTimePassed)
+    {
+        List<Compound> gasCompounds = SimulationParameters.Instance.GetGasCompounds();
+
+        foreach (var patch in targetWorld.Map.Patches.Values)
+        {
+            Dictionary<Compound, float> compoundsProduced = new Dictionary<Compound, float>(gasCompounds.Count);
+
+            // Here we consider species production only
+            foreach (var species in patch.SpeciesInPatch.Keys)
+            {
+                // TODO: only adapted for microbe species,
+                if (species as MicrobeSpecies != null)
+                {
+                    var individualCompoundProduction = ProcessSystem.ComputeEnvironmentalBalance(
+                        ((MicrobeSpecies)species).Organelles, patch.Biome);
+
+                    foreach (var compound in gasCompounds)
+                    {
+                        GD.Print("Dealing with gas compound:", compound);
+                        if (individualCompoundProduction.TryGetValue(compound, out CompoundBalance compoundProduction))
+                        {
+                            if (!compoundsProduced.ContainsKey(compound))
+                            {
+                                compoundsProduced[compound] = 0;
+                            }
+                            GD.Print("Dealing with gas compound production:", compound, compoundProduction.Balance);
+                            compoundsProduced[compound] += compoundProduction.Balance * patch.SpeciesInPatch[species]*300000;
+                        }
+                    }
+                }
+            }
+
+            foreach (var compound in compoundsProduced.Keys)
+            {
+                if (patch.Biome.Compounds.ContainsKey(compound))
+                {
+                    GD.Print("Old dissolved:",patch.Biome.Compounds[compound].Dissolved);
+                    GD.Print("adding dissolved:", compound,"->", compoundsProduced[compound]," Vol:", patch.Volume);
+                    patch.Biome.Compounds[compound].AddDissolved(compoundsProduced[compound] / patch.Volume);
+                    GD.Print("new dissolved:", patch.Biome.Compounds[compound].Dissolved, "modified:", compoundsProduced[compound] / patch.Volume);
+                }
+                else
+                {
+                    GD.Print("Creating Dissolved");
+                    patch.Biome.Compounds[compound] = new EnvironmentalCompoundProperties()
+                    {
+                        Amount = 0, Density = 0, Dissolved = compoundsProduced[compound] / patch.Volume,
+                    };
                 }
             }
         }
