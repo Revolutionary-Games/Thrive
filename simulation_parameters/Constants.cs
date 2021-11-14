@@ -456,6 +456,8 @@ public static class Constants
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
+    public const float DISSOLVED_PRODUCTION_FACTOR = 3000;
+    public const float DISSOLVED_MIN = 0.0f;
 
     public const int MAX_SPAWNS_PER_FRAME = 2;
     public const int MAX_DESPAWNS_PER_FRAME = 2;

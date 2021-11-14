@@ -94,7 +94,8 @@ public class GasProductionEffect : IWorldEffect
                             {
                                 compoundsProduced[compound] = 0;
                             }
-                            compoundsProduced[compound] += compoundProduction.Balance * patch.SpeciesInPatch[species] * 3000;
+                            compoundsProduced[compound] += compoundProduction.Balance * patch.SpeciesInPatch[species] *
+                                Constants.DISSOLVED_PRODUCTION_FACTOR;
                         }
                     }
                 }
@@ -106,7 +107,7 @@ public class GasProductionEffect : IWorldEffect
                 {
                     compoundValue.Dissolved = Math.Max(
                         compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume,
-                        0);
+                        Constants.DISSOLVED_MIN);
                     patch.Biome.Compounds[compound] = compoundValue;
                 }
                 else
