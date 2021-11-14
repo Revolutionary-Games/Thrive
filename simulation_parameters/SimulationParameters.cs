@@ -195,7 +195,7 @@ public class SimulationParameters : Node
         foreach (var entry in compounds)
         {
             // The ability to be distributed is a distinctive heuristic for molecular compounds
-            if (!entry.Value.IsCloud && entry.Value.CanBeDistributed)
+            if (!entry.Value.IsCloud && entry.Value.IsEnvironmental && entry.Value.CanBeDistributed)
             {
                 result.Add(entry.Value);
             }
