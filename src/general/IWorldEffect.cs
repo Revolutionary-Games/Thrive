@@ -113,7 +113,7 @@ public class GasProductionEffect : IWorldEffect
                 }
                 else
                 {
-                    patch.Biome.Compounds[compound] = new EnvironmentalCompoundProperties()
+                    patch.Biome.Compounds[compound] = new EnvironmentalCompoundProperties
                     {
                         Amount = 0, Density = 0, Dissolved = compoundsProduced[compound] / patch.Volume,
                     };
