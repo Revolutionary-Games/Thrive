@@ -60,6 +60,11 @@ SET_EXECUTE_FOR_MAC = false
 SPECIAL_BUILDS = { steam:
                      {
                        prepare_compile: lambda {
+                         warning 'This is the Steam build. This can only be distributed '\
+                                 'by Revolutionary Games Studio (under a special license) '\
+                                 'due to Steam being incompatible with GPL license!'
+                         @reprint_messages.append 'WARNING: This is the Steam version, see'\
+                                                  ' above the licensing caveats'
                          enable_steam_build
                        },
                        target_suffix: '_steam',
@@ -79,6 +84,9 @@ SPECIAL_BUILDS = { steam:
   include_source: true,
   special: nil
 }
+
+# Messages to print again after the end
+@reprint_messages = []
 
 OptionParser.new do |opts|
   opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
@@ -159,9 +167,6 @@ else
   puts "Release doesn't include source code"
   @extra_included_files = LICENSE_FILES
 end
-
-# Messages to print again after the end
-@reprint_messages = []
 
 THRIVE_VERSION = !@options[:dehydrate] ? find_thrive_version : git_commit
 
@@ -333,7 +338,7 @@ def devbuild_package(target, target_name, target_folder, target_file)
     next if File.directory? file
 
     # Always ignore some files despite their sizes
-    next if DEHYDRATE_IGNORE_FILES.include? file.sub(target_folder + '/', '')
+    next if DEHYDRATE_IGNORE_FILES.include? file.sub("#{target_folder}/", '')
 
     check_dehydrate_file file, normal_cache
   end
@@ -350,7 +355,7 @@ def devbuild_package(target, target_name, target_folder, target_file)
   FileUtils.mv final_file, DEVBUILDS_FOLDER
 
   # Write meta file needed for upload
-  File.write(File.join(DEVBUILDS_FOLDER, File.basename(final_file) + '.meta.json'),
+  File.write(File.join(DEVBUILDS_FOLDER, "#{File.basename(final_file)}.meta.json"),
              { dehydrated: { objects: normal_cache.hashes },
                branch: git_branch,
                platform: target,
@@ -365,21 +370,21 @@ def zip_package(target, target_name, target_folder, target_file)
   if target_mac? target
     puts 'Mac target is already zipped, moving it instead'
 
-    final_file = target_folder + '.zip'
+    final_file = "#{target_folder}.zip"
 
     File.unlink(final_file) if File.exist? final_file
 
     FileUtils.mv target_file, final_file
   else
     info 'Packaging for release...'
-    final_file = target_folder + '.7z'
+    final_file = "#{target_folder}.7z"
 
     # TODO: clean build option
     # File.unlink(final_file) if File.exist? final_file
 
     Dir.chdir(BASE_BUILDS_FOLDER) do
       if runSystemSafe(p7zip, 'a', "#{target_name}.7z", target_name) != 0
-        onError 'Failed to package the target: ' + target_folder
+        onError "Failed to package the target: #{target_folder}"
       end
     end
   end
@@ -387,8 +392,8 @@ def zip_package(target, target_name, target_folder, target_file)
   onError "Final file creation failed (#{final_file})" unless File.exist? final_file
 
   puts ''
-  message1 = 'Done: ' + final_file
-  message2 = 'SHA3: ' + SHA3::Digest::SHA256.file(final_file).hexdigest
+  message1 = "Done: #{final_file}"
+  message2 = "SHA3: #{SHA3::Digest::SHA256.file(final_file).hexdigest}"
 
   @reprint_messages.append '', message1, message2
 
