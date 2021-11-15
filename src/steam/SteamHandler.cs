@@ -43,6 +43,21 @@ public class SteamHandler : Node, ISteamSignalReceiver
         }
     }
 
+    /// <summary>
+    ///   Checks if current running code is an exported Thrive version for Steam
+    /// </summary>
+    /// <returns>Returns true if this is the Steam export</returns>
+    /// <remarks>
+    ///   <para>
+    ///     This is different from detecting if Steam features are loaded, as correct license information must be
+    ///     displayed even if Steam loading fails, for example.
+    ///   </para>
+    /// </remarks>
+    public static bool IsTaggedSteamRelease()
+    {
+        return OS.HasFeature("steam");
+    }
+
     public override void _Ready()
     {
         PauseMode = PauseModeEnum.Process;
