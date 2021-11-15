@@ -6,7 +6,8 @@
 public class SceneDisplayer : Spatial
 {
     private string currentScene;
-    private Node currentlyShown;
+
+    public Node CurrentlyShown { get; private set; }
 
     public string Scene
     {
@@ -23,11 +24,11 @@ public class SceneDisplayer : Spatial
 
     private void LoadNewScene()
     {
-        if (currentlyShown != null)
+        if (CurrentlyShown != null)
         {
-            RemoveChild(currentlyShown);
-            currentlyShown.QueueFree();
-            currentlyShown = null;
+            RemoveChild(CurrentlyShown);
+            CurrentlyShown.QueueFree();
+            CurrentlyShown = null;
         }
 
         if (string.IsNullOrEmpty(currentScene))
@@ -35,7 +36,7 @@ public class SceneDisplayer : Spatial
 
         var scene = GD.Load<PackedScene>(currentScene);
 
-        currentlyShown = scene.Instance();
-        AddChild(currentlyShown);
+        CurrentlyShown = scene.Instance();
+        AddChild(CurrentlyShown);
     }
 }

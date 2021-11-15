@@ -231,17 +231,48 @@ public struct Hex : IEquatable<Hex>
         return new Hex(-hex.Q, hex.Q + hex.R);
     }
 
+    /// <summary>
+    ///   Returns the RenderPriority for the hex.
+    ///   Currently between 1 and 42.
+    ///   This assures 4 distance before the same RenderIndex.
+    /// </summary>
+    /// <returns>RenderPriority</returns>
+    public static int GetRenderPriority(Hex hex)
+    {
+        int radius = (Math.Abs(hex.Q) + Math.Abs(hex.Q + hex.R) + Math.Abs(hex.R)) / 2;
+        if (radius == 0)
+            return 1;
+
+        var currentHex = HexNeighbourOffset[HexSide.BottomLeft] * radius;
+        int indexInRing = 0;
+        for (int i = 0; i < 6; ++i)
+        {
+            for (int j = 0; j < radius; ++j)
+            {
+                if (currentHex == hex)
+                {
+                    return (radius % 6 + 1) * 6 + (indexInRing % 6 + 1);
+                }
+
+                indexInRing++;
+                currentHex += HexNeighbourOffset[(HexSide)(i + 1)];
+            }
+        }
+
+        return 1;
+    }
+
+    public bool Equals(Hex other)
+    {
+        return Q == other.Q && R == other.R;
+    }
+
     public override bool Equals(object obj)
     {
         if (!(obj is Hex hex))
             return false;
 
         return Equals(hex);
-    }
-
-    public bool Equals(Hex other)
-    {
-        return Q == other.Q && R == other.R;
     }
 
     public override int GetHashCode()

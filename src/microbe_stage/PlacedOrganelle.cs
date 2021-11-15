@@ -607,6 +607,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Position the intermediate node relative to origin of cell
         var transform = new Transform(Quat.Identity,
             Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset());
+        if (organelleMaterial != null)
+        {
+            organelleMaterial.RenderPriority = Hex.GetRenderPriority(Position);
+        }
+
         OrganelleGraphics.Transform = transform;
 
         // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
