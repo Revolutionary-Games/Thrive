@@ -81,6 +81,29 @@ __meta__ = {
 "_editor_description_": "Randomizeable background"
 }
 
+[node name="StoreUser" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -892.0
+margin_right = -5.0
+margin_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "Store user: name"
+align = 2
+clip_text = true
+max_lines_visible = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
+}
+
 [node name="MenuContainers" type="Node" parent="."]
 __meta__ = {
 "_editor_description_": "The UI for the main menu is contained here"
@@ -497,29 +520,6 @@ theme = ExtResource( 1 )
 text = "x.y.z"
 align = 2
 valign = 2
-clip_text = true
-max_lines_visible = 1
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="StoreUser" type="Label" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -892.0
-margin_right = -5.0
-margin_bottom = 26.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 6
-theme = ExtResource( 1 )
-custom_fonts/font = ExtResource( 13 )
-text = "Store user: name"
-align = 2
 clip_text = true
 max_lines_visible = 1
 script = ExtResource( 5 )
