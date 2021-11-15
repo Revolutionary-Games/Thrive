@@ -101,26 +101,18 @@
             var children = property.Value.Children<JProperty>();
             var childrenNames = children.Select(c => c.Name);
 
-            //GD.Print(property.Name);
-
             if (property.Name != "Behaviour" && BehaviouralKeys.All(p => childrenNames.Contains(p)))
             {
                 UpgradeBehaviouralValues(property, children);
             }
 
-            /*if (childrenNames.Contains("Depth"))
+            // Add volume for named patches (properties)
+            if (childrenNames.Contains("Depth") && !childrenNames.Contains("Volume"))
             {
-                GD.Print("CHILDREN:", childrenNames.ToList());
-            }*/
+                UpgradePatchesVolume((JObject)property.Value, children);
+            }
 
-            /*var siblings = property.Parent.Children();
-
-            if (property.Name == "Depth" && !siblings.Any(t => ((JProperty)t).Name == "Volume"))
-            {
-                UpgradePatchesVolume(property.Parent, property);
-            }*/
-
-            // Most patches are defined through references to non named tokens of array "Adjacent"
+            // Most patches are defined through references to non-named tokens of array "Adjacent"
             if (property.Name == "Adjacent")
             {
                 foreach (var adjacent in property.Value)
@@ -133,12 +125,6 @@
                         UpgradePatchesVolume((JObject)adjacent, adjacentChildren);
                     }
                 }
-            }
-
-            // For named patches
-            if (childrenNames.Contains("Depth") && !childrenNames.Contains("Volume"))
-            {
-                UpgradePatchesVolume((JObject)property.Value, children);
             }
         }
 
@@ -191,29 +177,41 @@
                 new JObject(aggression, opportunism, fear, activity, focus));
         }
 
-        private void UpgradePatchesVolume(JProperty property, JEnumerable<JProperty> children)
-        {
-            GD.Print("!!!!! UPGRADE CALLED!!!");
-            var depth = children.First(p => p.Name == "Depth").Value;
-            var depthDifference = depth[1].Value<int>() - depth[0].Value<int>();
-
-            // Assume cubic patches for upgrade
-            ((JObject)property.Value).Add("Volume",
-                depthDifference * depthDifference * depthDifference);
-        }
-
-        private void UpgradePatchesVolumee(JContainer parent, JProperty depthProperty)
-        {
-            var depth = depthProperty.Value;
-            var depthDifference = depth[1].Value<int>() - depth[0].Value<int>();
-
-            // SAVE_UPGRADE_FAILED - SAVE_UPGRADE_FAILED_DESCRIPTION exception: One or more errors occurred. (Collection was modified; enumeration operation may not execute.)
-            parent.Add(new JProperty("Volume", depthDifference * depthDifference * depthDifference));
-        }
-
+        /// <summary>
+        ///   Updates patches values by adding volume to it as a cube.
+        /// </summary>
+        /// <param name="container">The JObject containing the patch definition.</param>
+        /// <param name="children">The children of this JObject.</param>
+        /// <remarks>
+        ///   <para>
+        ///     Changes a json either like:
+        ///       "0": {
+        ///         ...
+        ///         "Depth": [2500, 3000],
+        ///         ...
+        ///       }
+        ///     or
+        ///       "Adjacent": [
+        ///         {
+        ///           ...
+        ///           "Depth": [2500, 3000],
+        ///           ...
+        ///         },
+        ///         ...
+        ///       ]
+        ///     to
+        ///       ...
+        ///       {
+        ///         ...
+        ///         "Depth": [2500, 3000],
+        ///         "Volume": (3000 - 2500)^3,
+        ///         ...
+        ///       }
+        ///       ...
+        ///   </para>
+        /// </remarks>
         private void UpgradePatchesVolume(JObject container, JEnumerable<JProperty> children)
         {
-            GD.Print("!!!!! UPGRADE CALLED2!!!");
             var depth = children.First(p => p.Name == "Depth").Value;
             var depthDifference = depth[1].Value<int>() - depth[0].Value<int>();
 
