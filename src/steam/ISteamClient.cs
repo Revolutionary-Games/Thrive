@@ -6,7 +6,7 @@
 public interface ISteamClient : ISteamSignalReceiver
 {
     /// <summary>
-    ///   True if steam client has been initialized
+    ///   True if the Steam client has been initialized
     /// </summary>
     bool IsLoaded { get; }
 
