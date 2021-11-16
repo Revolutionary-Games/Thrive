@@ -233,33 +233,13 @@ public struct Hex : IEquatable<Hex>
 
     /// <summary>
     ///   Returns the RenderPriority for the hex.
-    ///   Currently between 1 and 42.
-    ///   This assures 4 distance before the same RenderIndex.
+    ///   Between 1 and HEX_RENDER_PRIORITY_DISTANCE^2.
     /// </summary>
     /// <returns>RenderPriority</returns>
     public static int GetRenderPriority(Hex hex)
     {
-        int radius = (Math.Abs(hex.Q) + Math.Abs(hex.Q + hex.R) + Math.Abs(hex.R)) / 2;
-        if (radius == 0)
-            return 1;
-
-        var currentHex = HexNeighbourOffset[HexSide.BottomLeft] * radius;
-        int indexInRing = 0;
-        for (int i = 0; i < 6; ++i)
-        {
-            for (int j = 0; j < radius; ++j)
-            {
-                if (currentHex == hex)
-                {
-                    return (radius % 6 + 1) * 6 + (indexInRing % 6 + 1);
-                }
-
-                indexInRing++;
-                currentHex += HexNeighbourOffset[(HexSide)(i + 1)];
-            }
-        }
-
-        return 1;
+        return hex.Q.PositiveModulo(Constants.HEX_RENDER_PRIORITY_DISTANCE) * Constants.HEX_RENDER_PRIORITY_DISTANCE
+            + hex.R.PositiveModulo(Constants.HEX_RENDER_PRIORITY_DISTANCE) + 1;
     }
 
     public bool Equals(Hex other)
