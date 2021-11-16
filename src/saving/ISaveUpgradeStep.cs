@@ -131,53 +131,26 @@
             if (property.Name == "effects")
             {
                 var gasProductionEffectName = "GasProductionEffect, Thrive";
-                GD.Print("test");
-                if (!PropertyHasNamedEffect(property, gasProductionEffectName, out var worldID))
+                if (!PropertyHasNamedEffect(property, gasProductionEffectName))
                 {
-                    /*GD.Print("It works!");
-                    throw new Exception("degbbu");*/
-                    //Newtonsoft.Json.JsonSerializationException: Error resolving type specified in JSON 'GasProductionEffect, Thrive'. Path 'TimedEffects.effects[1].$type', line 1, position 74595. ---> Newtonsoft.Json.JsonException: Dynamically typed JSON object is not allowed to be GasProductionEffect
-                    UpgradeGasProductionEffect(property, gasProductionEffectName, worldID);
+                    UpgradeGasProductionEffect(property, gasProductionEffectName);
                 }
             }
         }
 
-        private bool PropertyHasNamedEffect(JProperty property, string name, out string worldID)
+        private bool PropertyHasNamedEffect(JProperty property, string name)
         {
-            worldID = "'2'";
             if (property.Value is JArray tokenArray)
             {
                 foreach (var effect in property.Value)
                 {
                     var effectProperties = effect.Children<JProperty>();
-                    //var targetEffect = effectChildren.FirstOrDefault(p => p.Value<string>() == name);
+
                     if (effectProperties.Select(p => p.Value.ToString()).Contains(name))
                         return true;
-
-                    /*if (targetEffect != default(JProperty))
-                    {
-                        //THAT's STUPID YOU NEED WID When you don't have the effect registered
-                        //worldID = effectChildren.First(p => p.Name == "$ref").Value<string>();
-                        worldID = string.Empty;
-                        return true;
-                    }*/
                 }
             }
-            /*foreach (var effect in property.Value)
-            {
-                var effectChildren = effect.Children<JProperty>();
-                var targetEffect = effectChildren.FirstOrDefault(p => p.Value<string>() == name);
 
-                if (targetEffect != default(JProperty))
-                {
-                    //THAT's STUPID YOU NEED WID When you don't have the effect registered
-                    worldID = effectChildren.First(p => p.Name == "$ref").Value<string>();
-                    return true;
-                }
-            }*/
-
-            // TODO Temporarily hardcoded.
-            worldID = "'2'";
             return false;
         }
 
@@ -273,7 +246,36 @@
                 depthDifference * depthDifference * depthDifference);
         }
 
-        private void UpgradeGasProductionEffect(JProperty property, string gasProductionEffectName, string worldID)
+        /// <summary>
+        ///   Upgrades registered effect by adding gas production
+        /// </summary>
+        /// <param name="property">the property registering the effectes</param>
+        /// <param name="gasProductionEffectName">the pathname of the effect to add</param>
+        /// <remarks>
+        ///   <para>
+        ///     Changes a JSON like
+        ///       "effects":[{
+        ///         "$type": "GlucoseReductionEffect, Thrive",
+        ///         "targetWorld": {
+        ///           "$ref": "2"
+        ///         }
+        ///       }]
+        ///     to
+        ///       "effects":[{
+        ///         "$type": "GlucoseReductionEffect, Thrive",
+        ///         "targetWorld": {
+        ///           "$ref": "2"
+        ///         }
+        ///       },
+        ///       {
+        ///         "$type": "GasProductionEffect, Thrive",
+        ///         "targetWorld": {
+        ///           "$ref": "2"
+        ///         }
+        ///       }]
+        ///   </para>
+        /// </remarks>
+        private void UpgradeGasProductionEffect(JProperty property, string gasProductionEffectName)
         {
             if (property.Value is JArray effectsArray)
             {
