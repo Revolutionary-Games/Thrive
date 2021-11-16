@@ -2115,7 +2115,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
-        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
 
         if (name == "temperature")
         {
