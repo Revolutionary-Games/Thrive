@@ -307,7 +307,6 @@
                         " did not match gas effect registration.");
                 }
 
-
                 var typeTokenText = "'$type': '" + gasProductionEffectName + "'";
                 var targetWorldTokenText = "'targetWorld': { '$ref': '" + targetWorldRef + "' }";
                 var effectTokenText = "{" + typeTokenText + "," + targetWorldTokenText + "}";
