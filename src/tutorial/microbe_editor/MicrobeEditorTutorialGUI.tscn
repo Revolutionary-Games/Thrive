@@ -4,7 +4,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 
@@ -153,16 +153,16 @@ rect_pivot_offset = Vector2( 145, 171 )
 theme = null
 script = ExtResource( 7 )
 WindowTitle = "TUTORIAL"
-ShowDelay = 0.0
 Resizable = true
+ShowDelay = 0.3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 275.0
+margin_bottom = 335.0
 rect_min_size = Vector2( 260, 260 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -170,8 +170,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="UndoTutorial/ScrollContainer"]
-margin_right = 260.0
-margin_bottom = 320.0
+margin_right = 550.0
+margin_bottom = 670.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )

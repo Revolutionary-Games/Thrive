@@ -14,6 +14,11 @@ public enum ToolTipPositioning
     ///   Tooltip constantly positioned at the same position as the cursor.
     /// </summary>
     FollowMousePosition,
+
+    /// <summary>
+    ///   Tooltip is positioned at the bottom right edge of a Control.
+    /// </summary>
+    ControlBottomRightEdge,
 }
 
 /// <summary>
@@ -33,7 +38,7 @@ public enum ToolTipTransitioning
 }
 
 /// <summary>
-///   Interface for all custom tooltip Control nodes. Benefits from being highly-customizable
+///   Interface for all custom tooltip Controls. Benefits from being highly-customizable
 ///   than the default built-in tooltips.
 /// </summary>
 /// <remarks>

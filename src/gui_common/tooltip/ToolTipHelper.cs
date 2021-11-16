@@ -82,6 +82,22 @@ public static class ToolTipHelper
         control.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltip, group));
     }
 
+    public static Control GetControlAssociatedWithToolTip(string name, string group =
+        ToolTipManager.DEFAULT_GROUP_NAME)
+    {
+        var tooltip = ToolTipManager.Instance.GetToolTip(name, group);
+        var callbackData = ToolTipCallbacks.Find(match => match.ToolTip == tooltip);
+
+        return callbackData.ToolTipable;
+    }
+
+    public static Control GetControlAssociatedWithToolTip(ICustomToolTip tooltip)
+    {
+        var callbackData = ToolTipCallbacks.Find(match => match.ToolTip == tooltip);
+
+        return callbackData.ToolTipable;
+    }
+
     private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
     {
         return ToolTipCallbacks.Find(match => match.ToolTipable == control && match.ToolTip == tooltip);
