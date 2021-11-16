@@ -82,20 +82,25 @@ public static class ToolTipHelper
         control.RegisterToolTipForControl(ToolTipManager.Instance.GetToolTip(tooltip, group));
     }
 
-    public static Control GetControlAssociatedWithToolTip(string name, string group =
-        ToolTipManager.DEFAULT_GROUP_NAME)
-    {
-        var tooltip = ToolTipManager.Instance.GetToolTip(name, group);
-        var callbackData = ToolTipCallbacks.Find(match => match.ToolTip == tooltip);
-
-        return callbackData.ToolTipable;
-    }
-
+    /// <summary>
+    ///   Get the control the given tooltip is registered to. Doesn't take into account controls with multiple
+    ///   registered tooltips.
+    /// </summary>
     public static Control GetControlAssociatedWithToolTip(ICustomToolTip tooltip)
     {
         var callbackData = ToolTipCallbacks.Find(match => match.ToolTip == tooltip);
 
         return callbackData.ToolTipable;
+    }
+
+    /// <summary>
+    ///   Get the control the given tooltip is registered to. Doesn't take into account controls with multiple
+    ///   registered tooltips.
+    /// </summary>
+    public static Control GetControlAssociatedWithToolTip(string name, string group =
+        ToolTipManager.DEFAULT_GROUP_NAME)
+    {
+        return GetControlAssociatedWithToolTip(ToolTipManager.Instance.GetToolTip(name, group));
     }
 
     private static ToolTipCallbackData GetToolTipCallbackData(Control control, ICustomToolTip tooltip)
