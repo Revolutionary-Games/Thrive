@@ -99,7 +99,7 @@
         protected override void CheckAndUpdateProperty(JProperty property)
         {
             var children = property.Value.Children<JProperty>();
-            var childrenNames = children.Select(c => c.Name);
+            var childrenNames = children.Select(c => c.Name).ToList();
 
             if (property.Name != "Behaviour" && BehaviouralKeys.All(p => childrenNames.Contains(p)))
             {
@@ -118,7 +118,7 @@
                 foreach (var adjacent in property.Value)
                 {
                     var adjacentChildren = adjacent.Children<JProperty>();
-                    var adjacentChildrenNames = adjacentChildren.Select(p => p.Name);
+                    var adjacentChildrenNames = adjacentChildren.Select(p => p.Name).ToList();
 
                     if (adjacentChildrenNames.Contains("Depth") && !adjacentChildrenNames.Contains("Volume"))
                     {
@@ -142,7 +142,7 @@
         {
             if (property.Value is JArray tokenArray)
             {
-                foreach (var effect in property.Value)
+                foreach (var effect in tokenArray)
                 {
                     var effectProperties = effect.Children<JProperty>();
 
@@ -238,12 +238,23 @@
         /// </remarks>
         private void UpgradePatchesVolume(JObject container, JEnumerable<JProperty> children)
         {
-            var depth = children.First(p => p.Name == "Depth").Value;
-            var depthDifference = depth[1].Value<int>() - depth[0].Value<int>();
+            if (children.First(p => p.Name == "Depth").Value is JArray depth)
+            {
+                if (depth[1].Value<int?>() == null || depth[0].Value<int?>() == null)
+                {
+                    throw new ArgumentException("Depth array does not start with two integers!");
+                }
 
-            // Assume cubic patches for upgrade
-            container.Add("Volume",
-                depthDifference * depthDifference * depthDifference);
+                var depthDifference = depth[1].Value<int>() - depth[0].Value<int>();
+
+                // Assume cubic patches for upgrade
+                container.Add("Volume",
+                    depthDifference * depthDifference * depthDifference);
+            }
+            else
+            {
+                throw new ArgumentException("Depth value is not an array!");
+            }
         }
 
         /// <summary>
@@ -285,9 +296,20 @@
                         " did not have registered tokens in array.");
                 }
 
+                string targetWorldRef;
+                try
+                {
+                    targetWorldRef = effectsArray[0]["targetWorld"]["$ref"].ToString();
+                }
+                catch (NullReferenceException)
+                {
+                    throw new ArgumentException("Property " + property.Name +
+                        " did not match gas effect registration.");
+                }
+
+
                 var typeTokenText = "'$type': '" + gasProductionEffectName + "'";
-                var targetWorldTokenText = "'targetWorld': { '$ref': '" + effectsArray[0]["targetWorld"]["$ref"].ToString() +
-                    "' }";
+                var targetWorldTokenText = "'targetWorld': { '$ref': '" + targetWorldRef + "' }";
                 var effectTokenText = "{" + typeTokenText + "," + targetWorldTokenText + "}";
                 var effectToken = JToken.Parse(effectTokenText);
 
