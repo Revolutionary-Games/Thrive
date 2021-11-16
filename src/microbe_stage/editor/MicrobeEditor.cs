@@ -2307,21 +2307,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         string displayScene, OrganelleDefinition definition, int renderPriority)
     {
         organelleModel.Scene = displayScene;
-        if (organelleModel.CurrentlyShown != null)
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        if (material != null)
         {
-            GeometryInstance geometry;
-
-            // Fetch the actual model from the scene to get at the material we set the RenderPriority on
-            if (string.IsNullOrEmpty(definition.DisplaySceneModelPath))
-            {
-                geometry = (GeometryInstance)organelleModel.CurrentlyShown;
-            }
-            else
-            {
-                geometry = organelleModel.CurrentlyShown.GetNode<GeometryInstance>(definition.DisplaySceneModelPath);
-            }
-
-            geometry.MaterialOverride.RenderPriority = renderPriority;
+            material.RenderPriority = renderPriority;
         }
     }
 

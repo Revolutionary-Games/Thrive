@@ -115,4 +115,27 @@ public static class NodeHelpers
         node.GetParent().RemoveChild(node);
         newParent.AddChild(node);
     }
+
+    /// <summary>
+    ///   Get the material of this scenes model.
+    /// </summary>
+    /// <param name="node">Node to get material from.</param>
+    /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
+    /// <returns>ShaderMaterial or null if not found.</returns>
+    public static ShaderMaterial GetMaterial(this Node node, string modelPath = null)
+    {
+        GeometryInstance geometry;
+
+        // Fetch the actual model from the scene
+        if (string.IsNullOrEmpty(modelPath))
+        {
+            geometry = node as GeometryInstance;
+        }
+        else
+        {
+            geometry = node.GetNode<GeometryInstance>(modelPath);
+        }
+
+        return geometry?.MaterialOverride as ShaderMaterial;
+    }
 }

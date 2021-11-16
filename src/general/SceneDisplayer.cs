@@ -6,8 +6,7 @@
 public class SceneDisplayer : Spatial
 {
     private string currentScene;
-
-    public Node CurrentlyShown { get; private set; }
+    private Node currentlyShown;
 
     public string Scene
     {
@@ -22,13 +21,23 @@ public class SceneDisplayer : Spatial
         }
     }
 
+    /// <summary>
+    ///   Get the material of this scenes model.
+    /// </summary>
+    /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
+    /// <returns>ShaderMaterial or null if not found.</returns>
+    public ShaderMaterial GetMaterial(string modelPath = null)
+    {
+        return currentlyShown?.GetMaterial(modelPath);
+    }
+
     private void LoadNewScene()
     {
-        if (CurrentlyShown != null)
+        if (currentlyShown != null)
         {
-            RemoveChild(CurrentlyShown);
-            CurrentlyShown.QueueFree();
-            CurrentlyShown = null;
+            RemoveChild(currentlyShown);
+            currentlyShown.QueueFree();
+            currentlyShown = null;
         }
 
         if (string.IsNullOrEmpty(currentScene))
@@ -36,7 +45,7 @@ public class SceneDisplayer : Spatial
 
         var scene = GD.Load<PackedScene>(currentScene);
 
-        CurrentlyShown = scene.Instance();
-        AddChild(CurrentlyShown);
+        currentlyShown = scene.Instance();
+        AddChild(currentlyShown);
     }
 }

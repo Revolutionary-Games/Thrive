@@ -574,26 +574,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     {
         var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
 
-        // Store the material of the organelle to be updated
-        GeometryInstance geometry;
-
-        // Fetch the actual model from the scene to get at the material we set the tint on
-        if (string.IsNullOrEmpty(Definition.DisplaySceneModelPath))
-        {
-            geometry = (GeometryInstance)organelleSceneInstance;
-        }
-        else
-        {
-            geometry = organelleSceneInstance.GetNode<GeometryInstance>(Definition.DisplaySceneModelPath);
-        }
-
         // Store animation player for later use
         if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
         {
             OrganelleAnimation = organelleSceneInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
         }
 
-        organelleMaterial = (ShaderMaterial)geometry.MaterialOverride;
+        // Store the material of the organelle to be updated
+        organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneAnimation);
 
         // There is an intermediate node so that the organelle scene root rotation and scale work
         OrganelleGraphics = new Spatial();
