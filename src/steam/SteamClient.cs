@@ -21,7 +21,7 @@ public class SteamClient : ISteamClient
     public void Init()
     {
         if (initStarted)
-            throw new InvalidOperationException("Can't initialize steam more than once");
+            throw new InvalidOperationException("Can't initialize Steam more than once");
 
         initStarted = true;
         GD.Print("Starting Steam load");
