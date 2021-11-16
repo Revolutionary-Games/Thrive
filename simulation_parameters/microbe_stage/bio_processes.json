@@ -6,7 +6,8 @@
             "glucose": 0.2
         },
         "outputs": {
-            "atp": 87
+            "atp": 87,
+			"carbondioxide": 1
         }
     },
     "glycolysis": {
@@ -34,7 +35,8 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.08
+            "glucose": 0.08,
+			"oxygen": 0.09
         }
     },
     "oxytoxySynthesis": {
@@ -64,7 +66,7 @@
             "hydrogensulfide": 0.12
         },
         "outputs": {
-            "glucose": 0.08
+            "glucose": 0.08			
         }
     },
     "bacterial_ChemoSynthesis": {
@@ -85,7 +87,8 @@
             "atp": 2.5
         },
         "outputs": {
-            "ammonia": 0.12
+            "ammonia": 0.12,
+			"carbondioxide": 0.21
         }
     },
     "nitrogenaseReaction": {
@@ -105,7 +108,8 @@
             "glucose": 0.15
         },
         "outputs": {
-            "atp": 38
+            "atp": 38,
+			"carbondioxide": 1
         }
     },
     "chromatophore_photosynthesis": {
@@ -115,7 +119,8 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.015
+            "glucose": 0.015,
+			"oxygen": 0.09
         }
     },
     "iron_chemolithoautotrophy": {
