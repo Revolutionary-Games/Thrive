@@ -55,6 +55,7 @@ public class GlucoseReductionEffect : IWorldEffect
     }
 }
 
+[JSONDynamicTypeAllowed]
 public class GasProductionEffect : IWorldEffect
 {
     [JsonProperty]

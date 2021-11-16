@@ -126,6 +126,59 @@
                     }
                 }
             }
+
+            // Add gas production effect in effects array
+            if (property.Name == "effects")
+            {
+                var gasProductionEffectName = "GasProductionEffect, Thrive";
+                GD.Print("test");
+                if (!PropertyHasNamedEffect(property, gasProductionEffectName, out var worldID))
+                {
+                    /*GD.Print("It works!");
+                    throw new Exception("degbbu");*/
+                    //Newtonsoft.Json.JsonSerializationException: Error resolving type specified in JSON 'GasProductionEffect, Thrive'. Path 'TimedEffects.effects[1].$type', line 1, position 74595. ---> Newtonsoft.Json.JsonException: Dynamically typed JSON object is not allowed to be GasProductionEffect
+                    UpgradeGasProductionEffect(property, gasProductionEffectName, worldID);
+                }
+            }
+        }
+
+        private bool PropertyHasNamedEffect(JProperty property, string name, out string worldID)
+        {
+            worldID = "'2'";
+            if (property.Value is JArray tokenArray)
+            {
+                foreach (var effect in property.Value)
+                {
+                    var effectProperties = effect.Children<JProperty>();
+                    //var targetEffect = effectChildren.FirstOrDefault(p => p.Value<string>() == name);
+                    if (effectProperties.Select(p => p.Value.ToString()).Contains(name))
+                        return true;
+
+                    /*if (targetEffect != default(JProperty))
+                    {
+                        //THAT's STUPID YOU NEED WID When you don't have the effect registered
+                        //worldID = effectChildren.First(p => p.Name == "$ref").Value<string>();
+                        worldID = string.Empty;
+                        return true;
+                    }*/
+                }
+            }
+            /*foreach (var effect in property.Value)
+            {
+                var effectChildren = effect.Children<JProperty>();
+                var targetEffect = effectChildren.FirstOrDefault(p => p.Value<string>() == name);
+
+                if (targetEffect != default(JProperty))
+                {
+                    //THAT's STUPID YOU NEED WID When you don't have the effect registered
+                    worldID = effectChildren.First(p => p.Name == "$ref").Value<string>();
+                    return true;
+                }
+            }*/
+
+            // TODO Temporarily hardcoded.
+            worldID = "'2'";
+            return false;
         }
 
         /// <summary>
@@ -218,6 +271,31 @@
             // Assume cubic patches for upgrade
             container.Add("Volume",
                 depthDifference * depthDifference * depthDifference);
+        }
+
+        private void UpgradeGasProductionEffect(JProperty property, string gasProductionEffectName, string worldID)
+        {
+            if (property.Value is JArray effectsArray)
+            {
+                if (effectsArray.Count == 0)
+                {
+                    throw new ArgumentException("Property " + property.Name +
+                        " did not have registered tokens in array.");
+                }
+
+                var typeTokenText = "'$type': '" + gasProductionEffectName + "'";
+                var targetWorldTokenText = "'targetWorld': { '$ref': '" + effectsArray[0]["targetWorld"]["$ref"].ToString() +
+                    "' }";
+                var effectTokenText = "{" + typeTokenText + "," + targetWorldTokenText + "}";
+                var effectToken = JToken.Parse(effectTokenText);
+
+                effectsArray.Add(effectToken);
+                property.Value = effectsArray;
+            }
+            else
+            {
+                throw new ArgumentException("Property " + property.Name + " did not match an effect array!");
+            }
         }
     }
 
