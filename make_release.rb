@@ -62,7 +62,7 @@ SPECIAL_BUILDS = { steam:
                        prepare_compile: lambda {
                          warning 'This is the Steam build. This can only be distributed '\
                                  'by Revolutionary Games Studio (under a special license) '\
-                                 'due to Steam being incompatible with GPL license!'
+                                 'due to Steam being incompatible with the GPL license!'
                          @reprint_messages.append 'WARNING: This is the Steam version, see'\
                                                   ' above the licensing caveats'
                          enable_steam_build
