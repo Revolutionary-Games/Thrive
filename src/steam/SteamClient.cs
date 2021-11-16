@@ -45,7 +45,8 @@ public class SteamClient : ISteamClient
             GD.Print("Game is owned by current Steam user");
     }
 
-    public void ConnectSignals(Godot.Object receiver)
+    public void ConnectSignals<T>(T receiver)
+        where T : Godot.Object, ISteamSignalReceiver
     {
         // Signal documentation: https://gramps.github.io/GodotSteam/signals-modules.html
         Steam.Singleton.Connect("steamworks_error", receiver, nameof(ISteamSignalReceiver.GenericSteamworksError));

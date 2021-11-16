@@ -17,13 +17,15 @@ public interface ISteamClient : ISteamSignalReceiver
     /// <summary>
     ///   Sets up receiver to receive callbacks
     /// </summary>
-    /// <param name="receiver">The receiver. Must implement <see cref="ISteamSignalReceiver"/></param>
+    /// <param name="receiver">The receiver</param>
+    /// <typeparam name="T">Typeof the receiver object</typeparam>
     /// <remarks>
     ///   <para>
     ///     Note that for many of the received signals they need to be forwarded to this object for further processing.
     ///   </para>
     /// </remarks>
-    void ConnectSignals(Object receiver);
+    void ConnectSignals<T>(T receiver)
+        where T : Object, ISteamSignalReceiver;
 
     void Process(float delta);
 }
