@@ -581,7 +581,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         // Store the material of the organelle to be updated
-        organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneAnimation);
+        organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneModelPath);
+        organelleMaterial.RenderPriority = Hex.GetRenderPriority(Position);
 
         // There is an intermediate node so that the organelle scene root rotation and scale work
         OrganelleGraphics = new Spatial();
@@ -595,10 +596,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Position the intermediate node relative to origin of cell
         var transform = new Transform(Quat.Identity,
             Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset());
-        if (organelleMaterial != null)
-        {
-            organelleMaterial.RenderPriority = Hex.GetRenderPriority(Position);
-        }
 
         OrganelleGraphics.Transform = transform;
 
