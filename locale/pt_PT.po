@@ -85,7 +85,7 @@ msgstr ""
 "Castanho Ferrugem – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
 "[thrive:compound type=\"glucose\"][/thrive:compound] produz [thrive:compound "
-"type=\"atp\"][/thrive:compound]"
+"type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
@@ -222,7 +222,9 @@ msgstr ""
 "Cada vez que te reproduzires, entrarás no Editor de Microrganismos, onde "
 "poderás fazer alterações à tua espécie (ao adicionar, mover, ou remover "
 "organelos) de forma a aumentar o sucesso da tua espécie. Cada visita ao "
-"editor na Fase Microbial representa 100 milhões de anos de evolução."
+"editor na Fase Microbial representa [thrive:"
+"constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milhões de anos de "
+"evolução."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
@@ -1653,9 +1655,7 @@ msgstr "Nuvens de compostos"
 
 #: ../src/general/OptionsMenu.tscn:701
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-"Intervalo mínimo da\n"
-"simulação de nuvens:"
+msgstr "Intervalo mínimo da simulação de nuvens:"
 
 #: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1723,9 +1723,7 @@ msgstr "Mostrar tutoriais (no jogo atual)"
 
 #: ../src/general/OptionsMenu.tscn:1074
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
-msgstr ""
-"Mostrar aviso de progresso não guardado\n"
-"Desejas continuar?"
+msgstr "Mostrar aviso de progresso não guardado"
 
 #: ../src/general/OptionsMenu.tscn:1086
 msgid "CHEAT_KEYS_ENABLED"
@@ -3904,8 +3902,8 @@ msgstr ""
 "\n"
 "Estes números são provenientes da simulação da população da auto-evo.\n"
 "\n"
-"Eles não têm em conta o teu desempenho individual. No seu [?] actual, vais "
-"ter um melhor desempenho quando entrares no editor.\n"
+"Eles não têm em conta o teu desempenho individual. Portanto, na tua região "
+"actual, vais ter um melhor desempenho quando entrares no editor.\n"
 "\n"
 "Mas deves tentar manter a tua população elevada mesmo quando não estás "
 "directamente envolvido."
