@@ -102,6 +102,7 @@ public class MicrobeColony
 
         ColonyMembers.Add(microbe);
         Master.Mass += microbe.Mass;
+
         microbe.ColonyParent = master;
         master.ColonyChildren.Add(microbe);
         microbe.Colony = this;
