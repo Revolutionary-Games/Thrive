@@ -13,7 +13,6 @@ public class LicensesDisplay : CustomDialog
     [Export]
     public NodePath TextsContainerPath { get; set; }
 
-
     public override void _Ready()
     {
         textsContainer = GetNode<Container>(TextsContainerPath);
