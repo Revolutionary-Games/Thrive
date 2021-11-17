@@ -86,7 +86,7 @@ public class MovementComponent : ExternallyPositionedComponent
         // The movementDirection is the player or AI input
         Vector3 direction = microbe.MovementDirection;
 
-        // TO DO: Once this is merged, with the colony rotation PR
+        // TODO: Once this is merged, with the colony rotation PR
         // make a method to handle rotations inside the colony,
         // duplicate code with the placedOrganelle quaternions
         var rotation = Quat.Identity;
