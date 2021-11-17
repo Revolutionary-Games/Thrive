@@ -52,7 +52,7 @@ public class MainMenu : NodeWithInput
 
     private Control creditsContainer;
     private CreditsScroll credits;
-    private Control licensesDisplay;
+    private LicensesDisplay licensesDisplay;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -151,7 +151,7 @@ public class MainMenu : NodeWithInput
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
-        licensesDisplay = GetNode<Control>(LicensesDisplayPath);
+        licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
 
         MenuArray?.Clear();
 
@@ -397,23 +397,7 @@ public class MainMenu : NodeWithInput
     private void LicensesPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-
-        // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue, false);
-
-        // Show the licenses view
-        licensesDisplay.Visible = true;
-
-        thriveLogo.Hide();
-    }
-
-    private void OnReturnFromLicenses()
-    {
-        licensesDisplay.Visible = false;
-
-        SetCurrentMenu(0, false);
-
-        thriveLogo.Show();
+        licensesDisplay.PopupCenteredShrink();
     }
 
     private void OnEnteringGame()

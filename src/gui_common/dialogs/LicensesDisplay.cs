@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class LicensesDisplay : PanelContainer
+[Tool]
+public class LicensesDisplay : CustomDialog
 {
     private List<(string Heading, string File)> licensesToShow;
 
@@ -11,6 +12,7 @@ public class LicensesDisplay : PanelContainer
 
     [Export]
     public NodePath TextsContainerPath { get; set; }
+
 
     public override void _Ready()
     {
@@ -83,5 +85,11 @@ public class LicensesDisplay : PanelContainer
 
             textsContainer.AddChild(new Control { RectMinSize = new Vector2(0, 5) });
         }
+    }
+
+    private void OnCloseButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        Hide();
     }
 }
