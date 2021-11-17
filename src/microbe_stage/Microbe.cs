@@ -425,6 +425,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 }
 
                 totalMovement += queuedMovementForce;
+
                 ApplyMovementImpulse(totalMovement, delta);
 
                 // Play movement sound if one isn't already playing.
