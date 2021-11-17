@@ -121,9 +121,9 @@ public static class Constants
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
 
     /// <summary>
-    ///   If true a mutated copy of the (player) species is created when entering the editor
+    ///   Probability that entering the editor will create a species branching off the player
     /// </summary>
-    public const bool CREATE_COPY_OF_EDITED_SPECIES = true;
+    public const float CREATE_COPY_OF_EDITED_SPECIES_CHANCE = 0.5f;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be spawned per entity.

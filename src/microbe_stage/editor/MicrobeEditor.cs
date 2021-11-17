@@ -1491,7 +1491,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Disabled warning as this is a tweak constant
         // ReSharper disable ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
-        if (Constants.CREATE_COPY_OF_EDITED_SPECIES && new Random().NextDouble() > 0.5)
+        if (new Random().NextDouble() < Constants.CREATE_COPY_OF_EDITED_SPECIES_CHANCE)
         {
             // Create a mutated version of the current species code to compete against the player
             CreateMutatedSpeciesCopy(species);
