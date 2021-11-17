@@ -17,7 +17,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [node name="LicensesDisplay" type="Popup"]
-visible = true
 margin_right = 900.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 900, 600 )
@@ -105,6 +104,6 @@ margin_right = 485.0
 margin_bottom = 570.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 4
-text = "Close"
+text = "CLOSE"
 
 [connection signal="pressed" from="VBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-17 01:35+0700\n"
+"POT-Creation-Date: 2021-11-17 13:41+0700\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1389,6 +1389,7 @@ msgid "ART_BY"
 msgstr "Art by {0}"
 
 #: ../src/general/HelpScreen.tscn:107
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
@@ -2184,17 +2185,13 @@ msgstr "Copy Error To Clipboard"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL license text follows:"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:29
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenses"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:92
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Licenses covering parts of Thrive are shown here"
-
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:108
-msgid "Close"
-msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
