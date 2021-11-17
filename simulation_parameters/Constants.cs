@@ -123,7 +123,7 @@ public static class Constants
     /// <summary>
     ///   If true a mutated copy of the (player) species is created when entering the editor
     /// </summary>
-    public const bool CREATE_COPY_OF_EDITED_SPECIES = false;
+    public const bool CREATE_COPY_OF_EDITED_SPECIES = true;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be spawned per entity.
