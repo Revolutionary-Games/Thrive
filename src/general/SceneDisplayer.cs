@@ -26,7 +26,7 @@ public class SceneDisplayer : Spatial
     /// </summary>
     /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
     /// <returns>ShaderMaterial of the GeometryInstance. Null if no scene.</returns>
-    public ShaderMaterial GetMaterial(string modelPath = null)
+    public ShaderMaterial GetMaterial(NodePath modelPath = null)
     {
         return currentlyShown?.GetMaterial(modelPath);
     }
