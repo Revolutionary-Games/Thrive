@@ -299,7 +299,10 @@
                 string targetWorldRef;
                 try
                 {
+                    // ReSharper disable PossibleNullReferenceException
                     targetWorldRef = effectsArray[0]["targetWorld"]["$ref"].ToString();
+
+                    // ReSharper restore PossibleNullReferenceException
                 }
                 catch (NullReferenceException)
                 {
