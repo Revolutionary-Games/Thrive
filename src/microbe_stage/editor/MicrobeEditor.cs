@@ -1490,7 +1490,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 #pragma warning disable 162
 
         // Disabled warning as this is a tweak constant
-        // ReSharper disable ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
         if (new Random().NextDouble() < Constants.CREATE_COPY_OF_EDITED_SPECIES_CHANCE)
         {
             // Create a mutated version of the current species code to compete against the player
