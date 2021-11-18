@@ -103,12 +103,35 @@ public class GasProductionEffect : IWorldEffect
                 }
             }
 
+            // TODO: Temporary patch-wide constant addition of gaseous compounds for balance.
+            var constantCompoundsDissolvedIntake = new Dictionary<Compound, float>(gasCompounds.Count);
+            var oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+            var carbonDioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+            var nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+
+            constantCompoundsDissolvedIntake[oxygen] = Constants.PATCH_CONSTANT_OXYGEN_INPUT;
+            constantCompoundsDissolvedIntake[carbonDioxide] = Constants.PATCH_CONSTANT_CARBON_DIOXYDE_INPUT;
+            constantCompoundsDissolvedIntake[nitrogen] = Constants.PATCH_CONSTANT_NITROGEN_INPUT;
+
+            foreach (var compound in gasCompounds)
+            {
+                if (!compoundsProduced.ContainsKey(compound))
+                {
+                    compoundsProduced[compound] = 0;
+                }
+            }
+
+            // End of temporary block
+
             foreach (var compound in compoundsProduced.Keys)
             {
+                // TODO: Temporary patch-wide constant addition of gaseous compounds for balance.
+                var perPatchConstantIntake = constantCompoundsDissolvedIntake[compound];
+
                 if (patch.Biome.Compounds.TryGetValue(compound, out EnvironmentalCompoundProperties compoundValue))
                 {
                     compoundValue.Dissolved = Math.Max(
-                        compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume,
+                        compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume + perPatchConstantIntake,
                         Constants.DISSOLVED_MIN);
                     patch.Biome.Compounds[compound] = compoundValue;
                 }
