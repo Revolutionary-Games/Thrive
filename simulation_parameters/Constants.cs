@@ -693,6 +693,8 @@ public static class Constants
     /// </summary>
     public static string Version => GameVersion;
 
+    public static string UserFolderAsNativePath => OS.GetUserDataDir().Replace('\\', '/');
+
     private static string FetchVersion()
     {
         try
