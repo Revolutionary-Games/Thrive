@@ -44,6 +44,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath StoreLoggedInDisplayPath;
 
+    [Export]
+    public NodePath ModManagerPath;
+
     public Array MenuArray;
     public TextureRect Background;
 
@@ -53,6 +56,7 @@ public class MainMenu : NodeWithInput
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
     private SaveManagerGUI saves;
+    private ModManager modManager;
 
     private Control creditsContainer;
     private CreditsScroll credits;
@@ -159,6 +163,7 @@ public class MainMenu : NodeWithInput
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<Control>(LicensesDisplayPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
+        modManager = GetNode<ModManager>(ModManagerPath);
 
         MenuArray?.Clear();
 
@@ -433,6 +438,28 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromLicenses()
     {
         licensesDisplay.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void ModsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the mods view
+        modManager.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromMods()
+    {
+        modManager.Visible = false;
 
         SetCurrentMenu(0, false);
 

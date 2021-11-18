@@ -1,0 +1,349 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+
+[node name="ModManager" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = -46.0
+margin_right = 155.0
+margin_bottom = -17.0
+rect_min_size = Vector2( 150, 40 )
+mouse_filter = 1
+size_flags_horizontal = 4
+text = "BACK"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = -15.0
+margin_bottom = -52.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1249.0
+margin_bottom = 652.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
+margin_left = 120.0
+margin_top = 32.0
+margin_right = 1128.0
+margin_bottom = 619.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="UpperPart" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_right = 1008.0
+margin_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Left" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart"]
+margin_right = 427.0
+margin_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left"]
+margin_right = 427.0
+margin_bottom = 25.0
+text = "AVAILABLE_MODS"
+align = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left"]
+margin_top = 29.0
+margin_right = 427.0
+margin_bottom = 281.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 426.0
+margin_bottom = 251.0
+rect_min_size = Vector2( 425, 250 )
+
+[node name="AvailableMods" type="ItemList" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/PanelContainer/ScrollContainer"]
+margin_right = 425.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 300, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+allow_reselect = true
+fixed_icon_size = Vector2( 32, 32 )
+
+[node name="Refresh" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left"]
+margin_top = 285.0
+margin_right = 427.0
+margin_bottom = 320.0
+text = "REFRESH"
+
+[node name="Center" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart"]
+margin_left = 431.0
+margin_right = 577.0
+margin_bottom = 320.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center"]
+margin_top = 118.0
+margin_right = 146.0
+margin_bottom = 201.0
+
+[node name="Left" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+margin_right = 146.0
+margin_bottom = 35.0
+disabled = true
+text = "LEFT_ARROW"
+
+[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+margin_top = 39.0
+margin_right = 146.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Right" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+margin_top = 48.0
+margin_right = 146.0
+margin_bottom = 83.0
+disabled = true
+text = "RIGHT_ARROW"
+
+[node name="Right" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart"]
+margin_left = 581.0
+margin_right = 1008.0
+margin_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right"]
+margin_right = 427.0
+margin_bottom = 25.0
+text = "ENABLED_MODS"
+align = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right"]
+margin_top = 29.0
+margin_right = 427.0
+margin_bottom = 281.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/PanelContainer"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 426.0
+margin_bottom = 251.0
+rect_min_size = Vector2( 425, 250 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ActiveMods" type="ItemList" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/PanelContainer/ScrollContainer"]
+margin_right = 425.0
+margin_bottom = 250.0
+rect_min_size = Vector2( 300, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+allow_reselect = true
+fixed_icon_size = Vector2( 32, 32 )
+
+[node name="DisableAll" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right"]
+margin_top = 285.0
+margin_right = 427.0
+margin_bottom = 320.0
+disabled = true
+text = "DISABLE_ALL"
+
+[node name="Spacer" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 324.0
+margin_right = 1008.0
+margin_bottom = 339.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="CurrentlySelected" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 343.0
+margin_right = 1008.0
+margin_bottom = 529.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected"]
+margin_right = 1008.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer"]
+margin_top = 3.0
+margin_right = 154.0
+margin_bottom = 28.0
+text = "SELECTED_MOD"
+
+[node name="Spacer" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer"]
+margin_left = 158.0
+margin_right = 161.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 3, 0 )
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer"]
+margin_left = 165.0
+margin_right = 197.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+expand = true
+stretch_mode = 7
+
+[node name="Label2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer"]
+margin_left = 201.0
+margin_top = 3.0
+margin_right = 328.0
+margin_bottom = 28.0
+text = "My cool mod"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected"]
+margin_top = 36.0
+margin_right = 1008.0
+margin_bottom = 61.0
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer2"]
+margin_right = 134.0
+margin_bottom = 25.0
+text = "MOD_AUTHOR"
+
+[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer2"]
+margin_left = 138.0
+margin_right = 891.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer2"]
+margin_left = 895.0
+margin_right = 1008.0
+margin_bottom = 25.0
+text = "Some dude"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected"]
+margin_top = 65.0
+margin_right = 1008.0
+margin_bottom = 90.0
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer3"]
+margin_right = 138.0
+margin_bottom = 25.0
+text = "MOD_VERSION"
+
+[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer3"]
+margin_left = 142.0
+margin_right = 978.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer3"]
+margin_left = 982.0
+margin_right = 1008.0
+margin_bottom = 25.0
+text = "1.0"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected"]
+margin_top = 94.0
+margin_right = 1008.0
+margin_bottom = 147.0
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer4"]
+margin_top = 14.0
+margin_right = 182.0
+margin_bottom = 39.0
+text = "MOD_DESCRIPTION"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer4"]
+margin_left = 186.0
+margin_right = 1008.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer4/HBoxContainer"]
+margin_right = 822.0
+margin_bottom = 53.0
+size_flags_horizontal = 3
+text = "Mod description goes here that can get a bit long sometimes so this needs a bit of space here to allow it to fit here"
+align = 2
+autowrap = true
+max_lines_visible = 3
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected"]
+margin_top = 151.0
+margin_right = 1008.0
+margin_bottom = 186.0
+
+[node name="MoreInfo" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer5"]
+margin_right = 118.0
+margin_bottom = 35.0
+size_flags_horizontal = 0
+disabled = true
+text = "MORE_INFO"
+
+[node name="Url" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/HBoxContainer5"]
+margin_left = 122.0
+margin_right = 285.0
+margin_bottom = 35.0
+disabled = true
+text = "OPEN_MOD_URL"
+
+[node name="Spacer2" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 533.0
+margin_right = 1008.0
+margin_bottom = 548.0
+rect_min_size = Vector2( 0, 15 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 552.0
+margin_right = 1008.0
+margin_bottom = 587.0
+alignment = 1
+
+[node name="LoadAll" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 283.0
+margin_right = 544.0
+margin_bottom = 35.0
+text = "ENABLE_ALL_COMPATIBLE"
+
+[node name="Apply" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 416.0
+margin_right = 592.0
+margin_bottom = 35.0
+size_flags_horizontal = 0
+text = "APPLY_CHANGES"
+
+[connection signal="pressed" from="Quit" to="." method="BackPressed"]

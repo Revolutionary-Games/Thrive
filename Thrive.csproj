@@ -258,6 +258,11 @@
     <Compile Include="src\general\MusicCategory.cs" />
     <Compile Include="src\microbe_stage\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
+    <Compile Include="src\modding\IMod.cs" />
+    <Compile Include="src\modding\ModInfo.cs" />
+    <Compile Include="src\modding\ModInterface.cs" />
+    <Compile Include="src\modding\ModLoader.cs" />
+    <Compile Include="src\modding\ModManager.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
     <Compile Include="src\saving\IChildPropertiesLoadCallback.cs" />
     <Compile Include="src\saving\IGodotEarlyNodeResolve.cs" />

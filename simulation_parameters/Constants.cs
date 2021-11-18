@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
@@ -654,6 +655,8 @@ public static class Constants
     /// </summary>
     public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
 
+    public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
@@ -663,6 +666,11 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    ///   Locations mods are searched in. The last location is considered to be the user openable and editable folder
+    /// </summary>
+    public static readonly IReadOnlyList<string> ModLocations = new[] { "mods", "user://mods" };
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
