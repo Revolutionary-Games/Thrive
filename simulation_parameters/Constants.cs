@@ -461,8 +461,8 @@ public static class Constants
 
     // Concentration of dissolved gases "added" to all patches during time skips
     public const float PATCH_CONSTANT_OXYGEN_INPUT = 0.0f;
-    public const float PATCH_CONSTANT_CARBON_DIOXYDE_INPUT = 0.05f;
-    public const float PATCH_CONSTANT_NITROGEN_INPUT = 0.05f;
+    public const float PATCH_CONSTANT_CARBON_DIOXYDE_INPUT = 0.01f;
+    public const float PATCH_CONSTANT_NITROGEN_INPUT = 0.01f;
 
     public const int MAX_SPAWNS_PER_FRAME = 2;
     public const int MAX_DESPAWNS_PER_FRAME = 2;
