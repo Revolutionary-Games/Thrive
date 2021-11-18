@@ -31,6 +31,7 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 Invoke="*res://src/engine/Invoke.cs"
 StartupActions="*res://src/engine/StartupActions.cs"
+SteamHandler="*res://src/steam/SteamHandler.cs"
 SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
 InputManager="*res://src/engine/input/InputManager.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
