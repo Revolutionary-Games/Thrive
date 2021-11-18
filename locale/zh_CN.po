@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 16:48+0200\n"
+"POT-Creation-Date: 2021-11-18 20:36+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1392,7 +1392,7 @@ msgstr "微生物阶段自由编辑器"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:25 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
@@ -3259,70 +3259,99 @@ msgstr ""
 "恭喜你！你已赢得了这个版本的Thrive！如果你愿意你可以关掉这个页面并继续游"
 "玩，或者在新世界开始一场新游戏。"
 
-#: ../src/modding/ModManager.tscn:75
+#: ../src/modding/ModManager.cs:263
+#, fuzzy
+msgid "NO_SELECTED_MOD"
+msgstr "选中的："
+
+#: ../src/modding/ModManager.tscn:90
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:101 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "刷新"
 
-#: ../src/modding/ModManager.tscn:118
+#: ../src/modding/ModManager.tscn:130
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "打开日志文件夹"
+
+#: ../src/modding/ModManager.tscn:148
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "鼠标左键"
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:161
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "鼠标右键"
 
-#: ../src/modding/ModManager.tscn:142
+#: ../src/modding/ModManager.tscn:173
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "启用编辑器"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:203
 #, fuzzy
 msgid "DISABLE_ALL"
 msgstr "已禁用"
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:224
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "选中的："
 
-#: ../src/modding/ModManager.tscn:225
+#: ../src/modding/ModManager.tscn:258
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:283
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "版本："
 
-#: ../src/modding/ModManager.tscn:276
+#: ../src/modding/ModManager.tscn:309
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "介绍："
 
-#: ../src/modding/ModManager.tscn:306
+#: ../src/modding/ModManager.tscn:340
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:312
+#: ../src/modding/ModManager.tscn:347
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "打开网址"
 
-#: ../src/modding/ModManager.tscn:330
+#: ../src/modding/ModManager.tscn:366
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "选择的存档不兼容"
 
-#: ../src/modding/ModManager.tscn:337
+#: ../src/modding/ModManager.tscn:374
 msgid "APPLY_CHANGES"
 msgstr ""
+
+#: ../src/modding/ModManager.tscn:378
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+"最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是"
+"能允许细胞更轻松的移动与吸收营养。"
+
+#: ../src/modding/ModManager.tscn:379
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是"
+"能允许细胞更轻松的移动与吸收营养。"
+
+#: ../src/modding/ModManager.tscn:380
+#, fuzzy
+msgid "DISCARD_CHANGES"
+msgstr "放弃更改并继续"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147

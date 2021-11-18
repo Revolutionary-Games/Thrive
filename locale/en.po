@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 16:48+0200\n"
-"PO-Revision-Date: 2021-11-18 16:50+0200\n"
+"POT-Creation-Date: 2021-11-18 20:36+0200\n"
+"PO-Revision-Date: 2021-11-18 20:17+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -1439,7 +1439,7 @@ msgstr "Microbe Freebuild Editor"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:25 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Back"
@@ -3382,61 +3382,81 @@ msgstr ""
 "playing after this screen closes if you wish, or start a new game in a new "
 "world."
 
-#: ../src/modding/ModManager.tscn:75
+#: ../src/modding/ModManager.cs:263
+msgid "NO_SELECTED_MOD"
+msgstr "No Selected Mod"
+
+#: ../src/modding/ModManager.tscn:90
 msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
 
-#: ../src/modding/ModManager.tscn:101 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Refresh"
 
-#: ../src/modding/ModManager.tscn:118
+#: ../src/modding/ModManager.tscn:130
+msgid "OPEN_FOLDER"
+msgstr "Open Folder"
+
+#: ../src/modding/ModManager.tscn:148
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:161
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:142
+#: ../src/modding/ModManager.tscn:173
 msgid "ENABLED_MODS"
 msgstr "Enabled Mods"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:203
 msgid "DISABLE_ALL"
 msgstr "Disable All"
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:224
 msgid "SELECTED_MOD"
 msgstr "Selected Mod:"
 
-#: ../src/modding/ModManager.tscn:225
+#: ../src/modding/ModManager.tscn:258
 msgid "MOD_AUTHOR"
 msgstr "Mod Author:"
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:283
 msgid "MOD_VERSION"
 msgstr "Mod Version:"
 
-#: ../src/modding/ModManager.tscn:276
+#: ../src/modding/ModManager.tscn:309
 msgid "MOD_DESCRIPTION"
 msgstr "Mod Description:"
 
-#: ../src/modding/ModManager.tscn:306
+#: ../src/modding/ModManager.tscn:340
 msgid "MORE_INFO"
 msgstr "Show More Info"
 
-#: ../src/modding/ModManager.tscn:312
+#: ../src/modding/ModManager.tscn:347
 msgid "OPEN_MOD_URL"
 msgstr "Open Info URL"
 
-#: ../src/modding/ModManager.tscn:330
+#: ../src/modding/ModManager.tscn:366
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Enable All Compatible Mods"
 
-#: ../src/modding/ModManager.tscn:337
+#: ../src/modding/ModManager.tscn:374
 msgid "APPLY_CHANGES"
 msgstr "Apply Changes"
+
+#: ../src/modding/ModManager.tscn:378
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr "There are unapplied changes"
+
+#: ../src/modding/ModManager.tscn:379
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr "You need to apply your changes to load or unload any mods."
+
+#: ../src/modding/ModManager.tscn:380
+msgid "DISCARD_CHANGES"
+msgstr "Discard Changes"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147

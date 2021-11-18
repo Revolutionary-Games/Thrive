@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 16:48+0200\n"
+"POT-Creation-Date: 2021-11-18 20:36+0200\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -1402,7 +1402,7 @@ msgstr "微生物階段自由編輯器"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:25 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
@@ -3251,47 +3251,56 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:75
+#: ../src/modding/ModManager.cs:263
+#, fuzzy
+msgid "NO_SELECTED_MOD"
+msgstr "已選："
+
+#: ../src/modding/ModManager.tscn:90
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:101 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "刷新"
 
-#: ../src/modding/ModManager.tscn:118
+#: ../src/modding/ModManager.tscn:130
+msgid "OPEN_FOLDER"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:148
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "鼠標左鍵"
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:161
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "鼠標右鍵"
 
-#: ../src/modding/ModManager.tscn:142
+#: ../src/modding/ModManager.tscn:173
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "啟用編輯器"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:203
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:224
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "已選："
 
-#: ../src/modding/ModManager.tscn:225
+#: ../src/modding/ModManager.tscn:258
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:283
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:276
+#: ../src/modding/ModManager.tscn:309
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr ""
@@ -3300,21 +3309,44 @@ msgstr ""
 "因。它們產出葡萄糖的速度取決於二氧化碳的濃度和光的亮度。由於類囊體是直接懸"
 "浮在細胞質中的，所以它周圍的細胞質也能進行一些糖酵解。"
 
-#: ../src/modding/ModManager.tscn:306
+#: ../src/modding/ModManager.tscn:340
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:312
+#: ../src/modding/ModManager.tscn:347
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:330
+#: ../src/modding/ModManager.tscn:366
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:337
+#: ../src/modding/ModManager.tscn:374
 msgid "APPLY_CHANGES"
 msgstr ""
+
+#: ../src/modding/ModManager.tscn:378
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+"代謝體是一大堆被蛋白質殼包裹住的蛋白質。通過有氧呼吸它們可以以比細胞質快得"
+"多的速度將葡萄糖轉換成ATP。不管怎樣，它需要氧才能運作，低水平的氧氣環境會導"
+"致ATP產出減速。由於代謝體是直接懸浮在細胞質中的，所以它周圍的細胞質也能進行"
+"一些糖酵解。"
+
+#: ../src/modding/ModManager.tscn:379
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"代謝體是一大堆被蛋白質殼包裹住的蛋白質。通過有氧呼吸它們可以以比細胞質快得"
+"多的速度將葡萄糖轉換成ATP。不管怎樣，它需要氧才能運作，低水平的氧氣環境會導"
+"致ATP產出減速。由於代謝體是直接懸浮在細胞質中的，所以它周圍的細胞質也能進行"
+"一些糖酵解。"
+
+#: ../src/modding/ModManager.tscn:380
+#, fuzzy
+msgid "DISCARD_CHANGES"
+msgstr "取消並繼續"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147

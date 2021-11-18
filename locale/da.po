@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 16:48+0200\n"
+"POT-Creation-Date: 2021-11-18 20:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1265,7 +1265,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:25 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr ""
@@ -2963,60 +2963,80 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:75
+#: ../src/modding/ModManager.cs:263
+msgid "NO_SELECTED_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:90
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:101 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:118
+#: ../src/modding/ModManager.tscn:130
+msgid "OPEN_FOLDER"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:148
 msgid "LEFT_ARROW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:161
 msgid "RIGHT_ARROW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:142
+#: ../src/modding/ModManager.tscn:173
 msgid "ENABLED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:203
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:224
 msgid "SELECTED_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:225
+#: ../src/modding/ModManager.tscn:258
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:283
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:276
+#: ../src/modding/ModManager.tscn:309
 msgid "MOD_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:306
+#: ../src/modding/ModManager.tscn:340
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:312
+#: ../src/modding/ModManager.tscn:347
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:330
+#: ../src/modding/ModManager.tscn:366
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:337
+#: ../src/modding/ModManager.tscn:374
 msgid "APPLY_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:378
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:379
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:380
+msgid "DISCARD_CHANGES"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98

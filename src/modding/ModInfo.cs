@@ -83,4 +83,11 @@ public class ModInfo
     ///   If set needs to point to a C# compiled DLL file that. Needs to be outside any .pck files
     /// </summary>
     public string ModAssembly { get; set; }
+
+    /// <summary>
+    ///   If ModAssembly is set this needs to be a unique class name contained in ModAssembly (meaning that it must
+    ///   be named differently than inbuilt Thrive classes and other mods) that inherits IMod interface. This will be
+    ///   the entrypoint to executing code in the mod's assembly.
+    /// </summary>
+    public string AssemblyModClass { get; set; }
 }

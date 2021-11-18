@@ -256,6 +256,9 @@ public class Settings
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new SettingValue<InputDataList>(GetDefaultControls());
 
+    // Settings that are edited from elsewhere than the main options menu
+    public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
+
     // Computed properties from other settings
 
     [JsonIgnore]

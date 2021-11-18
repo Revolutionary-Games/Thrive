@@ -453,6 +453,7 @@ public class MainMenu : NodeWithInput
 
         // Show the mods view
         modManager.Visible = true;
+        modManager.OnOpened();
 
         thriveLogo.Hide();
     }

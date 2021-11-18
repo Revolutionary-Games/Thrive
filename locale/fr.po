@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 16:48+0200\n"
+"POT-Creation-Date: 2021-11-18 20:36+0200\n"
 "PO-Revision-Date: 2021-10-05 19:11+0000\n"
 "Last-Translator: Arya Rouinsard <shigasaa@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -1451,7 +1451,7 @@ msgstr "Éditeur Libre de Microbe"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:25 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Revenir"
@@ -3428,69 +3428,100 @@ msgstr ""
 "jouer après que cet écran se soit fermé si vous le souhaitez, ou démarrer "
 "une nouvelle partie dans un autre monde."
 
-#: ../src/modding/ModManager.tscn:75
+#: ../src/modding/ModManager.cs:263
+#, fuzzy
+msgid "NO_SELECTED_MOD"
+msgstr "Sélectionné :"
+
+#: ../src/modding/ModManager.tscn:90
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:101 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Rafraîchir"
 
-#: ../src/modding/ModManager.tscn:118
+#: ../src/modding/ModManager.tscn:130
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "Ouvrir le dossier des Logs"
+
+#: ../src/modding/ModManager.tscn:148
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Clic gauche"
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:161
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Clic droit"
 
-#: ../src/modding/ModManager.tscn:142
+#: ../src/modding/ModManager.tscn:173
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Activer l'éditeur"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:203
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:224
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Sélectionné :"
 
-#: ../src/modding/ModManager.tscn:225
+#: ../src/modding/ModManager.tscn:258
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:283
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Version :"
 
-#: ../src/modding/ModManager.tscn:276
+#: ../src/modding/ModManager.tscn:309
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Description :"
 
-#: ../src/modding/ModManager.tscn:306
+#: ../src/modding/ModManager.tscn:340
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:312
+#: ../src/modding/ModManager.tscn:347
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Ouvre l'URL"
 
-#: ../src/modding/ModManager.tscn:330
+#: ../src/modding/ModManager.tscn:366
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "La sauvegarde sélectionnée est incompatible"
 
-#: ../src/modding/ModManager.tscn:337
+#: ../src/modding/ModManager.tscn:374
 msgid "APPLY_CHANGES"
 msgstr ""
+
+#: ../src/modding/ModManager.tscn:378
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+"Étant la forme de membrane la plus simple, elle n'offre que très peu de "
+"protection et demande plus d'énergie pour ne pas se déformer. Par contre, "
+"elle permet à une cellule de se déplacer et se nourrir plus rapidement."
+
+#: ../src/modding/ModManager.tscn:379
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"Étant la forme de membrane la plus simple, elle n'offre que très peu de "
+"protection et demande plus d'énergie pour ne pas se déformer. Par contre, "
+"elle permet à une cellule de se déplacer et se nourrir plus rapidement."
+
+#: ../src/modding/ModManager.tscn:380
+#, fuzzy
+msgid "DISCARD_CHANGES"
+msgstr "Annuler et continuer"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147

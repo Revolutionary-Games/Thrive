@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 16:48+0200\n"
+"POT-Creation-Date: 2021-11-18 20:36+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Nathaniel Balderramas <nabm.utn@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -1458,7 +1458,7 @@ msgstr "Editor libre de microbios"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:25 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Atrás"
@@ -3471,69 +3471,100 @@ msgstr ""
 "Felicitaciones! Has ganado esta versión de Thrive! Puedes seguir jugando "
 "libremente luego de esta notificación, o puedes empezar una nueva partida."
 
-#: ../src/modding/ModManager.tscn:75
+#: ../src/modding/ModManager.cs:263
+#, fuzzy
+msgid "NO_SELECTED_MOD"
+msgstr "Selección:"
+
+#: ../src/modding/ModManager.tscn:90
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:101 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Actualizar"
 
-#: ../src/modding/ModManager.tscn:118
+#: ../src/modding/ModManager.tscn:130
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "Abrir carpeta de registros"
+
+#: ../src/modding/ModManager.tscn:148
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Clic izquierdo"
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:161
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Clic derecho"
 
-#: ../src/modding/ModManager.tscn:142
+#: ../src/modding/ModManager.tscn:173
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Activar editor"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:203
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:224
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Selección:"
 
-#: ../src/modding/ModManager.tscn:225
+#: ../src/modding/ModManager.tscn:258
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:283
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versión:"
 
-#: ../src/modding/ModManager.tscn:276
+#: ../src/modding/ModManager.tscn:309
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Descripción:"
 
-#: ../src/modding/ModManager.tscn:306
+#: ../src/modding/ModManager.tscn:340
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:312
+#: ../src/modding/ModManager.tscn:347
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Abrir URL"
 
-#: ../src/modding/ModManager.tscn:330
+#: ../src/modding/ModManager.tscn:366
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "La partida seleccionada es incompatible"
 
-#: ../src/modding/ModManager.tscn:337
+#: ../src/modding/ModManager.tscn:374
 msgid "APPLY_CHANGES"
 msgstr ""
+
+#: ../src/modding/ModManager.tscn:378
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+"Siendo la forma más básica de membrana, tiene poca protección. También "
+"necesita más energía para no deformarse. Su ventaja es su mayor mobilidad "
+"y velocidad de absorción de recursos."
+
+#: ../src/modding/ModManager.tscn:379
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"Siendo la forma más básica de membrana, tiene poca protección. También "
+"necesita más energía para no deformarse. Su ventaja es su mayor mobilidad "
+"y velocidad de absorción de recursos."
+
+#: ../src/modding/ModManager.tscn:380
+#, fuzzy
+msgid "DISCARD_CHANGES"
+msgstr "Descartar y continuar"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147

@@ -1,5 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Godot;
+using Newtonsoft.Json;
+using Directory = Godot.Directory;
+using File = Godot.File;
 using Path = System.IO.Path;
 
 /// <summary>
@@ -7,14 +13,322 @@ using Path = System.IO.Path;
 /// </summary>
 public class ModManager : Control
 {
+    [Export]
+    public NodePath LeftArrowPath;
+
+    [Export]
+    public NodePath RightArrowPath;
+
+    [Export]
+    public NodePath AvailableModsContainerPath;
+
+    [Export]
+    public NodePath EnabledModsContainerPath;
+
+    [Export]
+    public NodePath OpenModInfoButtonPath;
+
+    [Export]
+    public NodePath OpenModUrlButtonPath;
+
+    [Export]
+    public NodePath DisableAllModsButtonPath;
+
+    [Export]
+    public NodePath SelectedModNamePath;
+
+    [Export]
+    public NodePath SelectedModIconPath;
+
+    [Export]
+    public NodePath SelectedModAuthorPath;
+
+    [Export]
+    public NodePath SelectedModVersionPath;
+
+    [Export]
+    public NodePath SelectedModDescriptionPath;
+
+    [Export]
+    public NodePath ApplyChangesButtonPath;
+
+    [Export]
+    public NodePath UnAppliedChangesWarningPath;
+
+    private readonly List<FullModDetails> validMods = new();
+
+    private List<FullModDetails> notEnabledMods;
+    private List<FullModDetails> enabledMods;
+
+    private Button leftArrow;
+    private Button rightArrow;
+
+    private ItemList availableModsContainer;
+    private ItemList enabledModsContainer;
+
+    private Button openModInfoButton;
+    private Button openModUrlButton;
+    private Button disableAllModsButton;
+    private Label selectedModName;
+    private TextureRect selectedModIcon;
+    private Label selectedModAuthor;
+    private Label selectedModVersion;
+    private Label selectedModDescription;
+
+    private Button applyChangesButton;
+
+    private CustomDialog unAppliedChangesWarning;
+
+    private FullModDetails selectedMod;
+
     [Signal]
     public delegate void OnClosed();
+
+    public static ModInfo LoadModInfo(string folder)
+    {
+        var infoFile = Path.Combine(folder, Constants.MOD_INFO_FILE_NAME);
+
+        using var file = new File();
+
+        if (file.Open(infoFile, File.ModeFlags.Read) != Error.Ok)
+        {
+            GD.PrintErr("Can't read mod info file at: ", infoFile);
+            return null;
+        }
+
+        var data = file.GetAsText();
+
+        ModInfo info;
+
+        try
+        {
+            info = JsonSerializer.Create().Deserialize<ModInfo>(new JsonTextReader(new StringReader(data)));
+        }
+        catch (JsonException e)
+        {
+            GD.PrintErr("Can't read mod info due to JSON exception: ", e);
+            return null;
+        }
+
+        if (!string.IsNullOrEmpty(info?.Icon))
+        {
+            if (!IsAllowedModPath(info.Icon))
+            {
+                GD.PrintErr("Invalid icon specified for mod: ", info.Icon);
+                return null;
+            }
+        }
+
+        if (info?.InfoUrl != null)
+        {
+            if (info.InfoUrl.Scheme != "http" && info.InfoUrl.Scheme != "https")
+            {
+                GD.PrintErr("Disallowed URI scheme in: ", info.InfoUrl);
+                return null;
+            }
+        }
+
+        if (info?.ModAssembly != null && info.AssemblyModClass == null)
+        {
+            GD.PrintErr("AssemblyModClass must be set if ModAssembly is set");
+            return null;
+        }
+
+        return info;
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        leftArrow = GetNode<Button>(LeftArrowPath);
+        rightArrow = GetNode<Button>(RightArrowPath);
+
+        availableModsContainer = GetNode<ItemList>(AvailableModsContainerPath);
+        enabledModsContainer = GetNode<ItemList>(EnabledModsContainerPath);
+
+        openModInfoButton = GetNode<Button>(OpenModInfoButtonPath);
+        openModUrlButton = GetNode<Button>(OpenModUrlButtonPath);
+        disableAllModsButton = GetNode<Button>(DisableAllModsButtonPath);
+        selectedModName = GetNode<Label>(SelectedModNamePath);
+        selectedModIcon = GetNode<TextureRect>(SelectedModIconPath);
+        selectedModAuthor = GetNode<Label>(SelectedModAuthorPath);
+        selectedModVersion = GetNode<Label>(SelectedModVersionPath);
+        selectedModDescription = GetNode<Label>(SelectedModDescriptionPath);
+
+        applyChangesButton = GetNode<Button>(ApplyChangesButtonPath);
+
+        unAppliedChangesWarning = GetNode<CustomDialog>(UnAppliedChangesWarningPath);
+
+        UpdateSelectedModInfo();
+    }
+
+    /// <summary>
+    ///   Refreshes things that need refreshing when this is opened
+    /// </summary>
+    public void OnOpened()
+    {
+        enabledMods = new List<FullModDetails>();
+
+        RefreshAvailableMods();
+        RefreshEnabledMods();
+
+        availableModsContainer.UnselectAll();
+        enabledModsContainer.UnselectAll();
+
+        disableAllModsButton.Disabled = enabledMods.Count < 1;
+    }
+
+    private static bool IsAllowedModPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return false;
+
+        if (path.Contains("//") || path.Contains("..") || path.StartsWith("/", StringComparison.Ordinal))
+            return false;
+
+        return true;
+    }
+
+    private void RefreshAvailableMods()
+    {
+        if (availableModsContainer.IsAnythingSelected())
+        {
+            selectedMod = null;
+            UpdateSelectedModInfo();
+        }
+
+        availableModsContainer.Clear();
+
+        // TODO: only reload new or gone mods and not the entire list
+        // TODO: maybe this should be done in a background thread (or maybe icon loading is the slower part)
+        validMods.Clear();
+        validMods.AddRange(LoadValidMods());
+
+        notEnabledMods = validMods.Where(m => !IsModEnabled(m)).ToList();
+
+        foreach (var mod in notEnabledMods)
+        {
+            availableModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
+        }
+    }
+
+    private void RefreshEnabledMods()
+    {
+        if (enabledModsContainer.IsAnythingSelected())
+        {
+            selectedMod = null;
+            UpdateSelectedModInfo();
+        }
+
+        enabledModsContainer.Clear();
+
+        enabledMods = validMods.Where(IsModEnabled).ToList();
+
+        foreach (var mod in enabledMods)
+        {
+            enabledModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
+        }
+    }
+
+    private bool IsModEnabled(FullModDetails mod)
+    {
+        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName) || enabledMods.Contains(mod);
+    }
+
+    private void UpdateSelectedModInfo()
+    {
+        if (selectedMod != null)
+        {
+            selectedModName.Text = selectedMod.Info.Name;
+            selectedModIcon.Texture = LoadModIcon(selectedMod);
+            selectedModAuthor.Text = selectedMod.Info.Author;
+            selectedModVersion.Text = selectedMod.Info.Version;
+            selectedModDescription.Text = selectedMod.Info.Description;
+            openModUrlButton.Disabled = selectedMod.Info.InfoUrl == null;
+
+            openModInfoButton.Disabled = false;
+
+            if (notEnabledMods.Contains(selectedMod))
+            {
+                leftArrow.Disabled = true;
+                rightArrow.Disabled = false;
+            }
+            else
+            {
+                leftArrow.Disabled = false;
+                rightArrow.Disabled = true;
+            }
+        }
+        else
+        {
+            selectedModName.Text = TranslationServer.Translate("NO_SELECTED_MOD");
+            selectedModIcon.Texture = null;
+            selectedModAuthor.Text = string.Empty;
+            selectedModVersion.Text = string.Empty;
+            selectedModDescription.Text = string.Empty;
+            openModUrlButton.Disabled = true;
+            openModInfoButton.Disabled = true;
+
+            leftArrow.Disabled = true;
+            rightArrow.Disabled = true;
+        }
+    }
+
+    private Texture LoadModIcon(FullModDetails mod)
+    {
+        if (string.IsNullOrEmpty(mod.Info?.Icon))
+            return null;
+
+        var image = new Image();
+        image.Load(Path.Combine(mod.Folder, mod.Info.Icon));
+
+        var texture = new ImageTexture();
+        texture.CreateFromImage(image);
+
+        return texture;
+    }
+
+    /// <summary>
+    ///   Loads info for valid mods
+    /// </summary>
+    /// <returns>The valid mod names and their info</returns>
+    private List<FullModDetails> LoadValidMods()
+    {
+        var mods = FindModFolders();
+        var result = new List<FullModDetails> { Capacity = mods.Count };
+
+        foreach (var modFolder in mods)
+        {
+            var info = LoadModInfo(modFolder);
+
+            if (info == null)
+            {
+                GD.PrintErr("Can't read mod info from folder: ", modFolder);
+                continue;
+            }
+
+            result.Add(new FullModDetails(Path.GetFileName(modFolder))
+                { Folder = modFolder, Info = info });
+        }
+
+        var previousLength = result.Count;
+
+        result = result.Distinct().ToList();
+
+        if (result.Count != previousLength)
+        {
+            GD.PrintErr("Multiple mods detected with the same name, only one of them is usable");
+        }
+
+        return result;
+    }
 
     /// <summary>
     ///   Finds existing mod folders
     /// </summary>
     /// <returns>List of mod folders that contain mod files</returns>
-    public List<string> FindModFolders()
+    private List<string> FindModFolders()
     {
         var result = new List<string>();
 
@@ -48,7 +362,7 @@ public class ModManager : Control
                 {
                     var modsFolder = Path.Combine(location, item);
 
-                    if (currentDirectory.FileExists(Path.Combine(modsFolder, Constants.MOD_INFO_FILE_NAME)))
+                    if (currentDirectory.FileExists(Path.Combine(item, Constants.MOD_INFO_FILE_NAME)))
                     {
                         // Found a mod folder
                         result.Add(modsFolder);
@@ -65,7 +379,7 @@ public class ModManager : Control
     /// <summary>
     ///   Opens the user manageable mod folder. Creates it if it doesn't exist already
     /// </summary>
-    public void OpenModsFolder()
+    private void OpenModsFolder()
     {
         var folder = Constants.ModLocations[Constants.ModLocations.Count - 1];
 
@@ -76,6 +390,132 @@ public class ModManager : Control
         directory.MakeDirRecursive(folder);
 
         FolderHelpers.OpenFolder(folder);
+    }
+
+    private void EnableModPressed()
+    {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("No mod is selected");
+            return;
+        }
+
+        if (ModIncludesCode(selectedMod.Info))
+        {
+            // TODO: show a warning popup that can be permanently dismissed
+        }
+
+        Texture icon = null;
+
+        foreach (var index in availableModsContainer.GetSelectedItems())
+        {
+            icon = availableModsContainer.GetItemIcon(index);
+            availableModsContainer.RemoveItem(index);
+        }
+
+        enabledModsContainer.AddItem(selectedMod.InternalName, icon);
+
+        notEnabledMods.Remove(selectedMod);
+        enabledMods.Add(selectedMod);
+
+        OnModChangedLists();
+    }
+
+    private void DisableModPressed()
+    {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("No mod is selected");
+            return;
+        }
+
+        Texture icon = null;
+
+        foreach (var index in enabledModsContainer.GetSelectedItems())
+        {
+            icon = enabledModsContainer.GetItemIcon(index);
+            enabledModsContainer.RemoveItem(index);
+        }
+
+        availableModsContainer.AddItem(selectedMod.InternalName, icon);
+
+        enabledMods.Remove(selectedMod);
+        notEnabledMods.Add(selectedMod);
+
+        OnModChangedLists();
+    }
+
+    private void OnModChangedLists()
+    {
+        selectedMod = null;
+        UpdateSelectedModInfo();
+        enabledModsContainer.UnselectAll();
+        availableModsContainer.UnselectAll();
+
+        applyChangesButton.Disabled =
+            Settings.Instance.EnabledMods.Value.Equals(enabledMods.Select(m => m.InternalName));
+
+        disableAllModsButton.Disabled = enabledMods.Count < 1;
+    }
+
+    private void ApplyChanges()
+    {
+        GD.Print("Applying changes to enabled mods");
+
+        Settings.Instance.EnabledMods.Value = enabledMods.Select(m => m.InternalName).ToList();
+        ModLoader.Instance.LoadMods();
+
+        GD.Print("Saving settings with new mod list");
+        if (!Settings.Instance.Save())
+        {
+            GD.PrintErr("Failed to save settings");
+        }
+
+        applyChangesButton.Disabled = true;
+    }
+
+    private void AvailableModSelected(int index)
+    {
+        var newName = availableModsContainer.GetItemText(index);
+        var newItem = validMods.FirstOrDefault(m => m.InternalName == newName);
+
+        if (!Equals(selectedMod, newItem))
+        {
+            selectedMod = newItem;
+            UpdateSelectedModInfo();
+        }
+
+        if (enabledModsContainer.IsAnythingSelected())
+            enabledModsContainer.UnselectAll();
+    }
+
+    private void EnabledModSelected(int index)
+    {
+        var newName = enabledModsContainer.GetItemText(index);
+        var newItem = validMods.FirstOrDefault(m => m.InternalName == newName);
+
+        if (!Equals(selectedMod, newItem))
+        {
+            selectedMod = newItem;
+            UpdateSelectedModInfo();
+        }
+
+        if (availableModsContainer.IsAnythingSelected())
+            availableModsContainer.UnselectAll();
+    }
+
+    private void OpenInfoUrlPressed()
+    {
+        if (selectedMod?.Info == null)
+        {
+            GD.PrintErr("No mod is selected");
+            return;
+        }
+
+        if (OS.ShellOpen(selectedMod.Info.InfoUrl.ToString()) != Error.Ok)
+        {
+            GD.PrintErr("Failed to open mod URL: ", selectedMod.Info.InfoUrl);
+        }
     }
 
     private bool ModIncludesCode(ModInfo info)
@@ -89,7 +529,19 @@ public class ModManager : Control
 
     private void BackPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        if (applyChangesButton.Disabled)
+        {
+            GUICommon.Instance.PlayButtonPressSound();
+            EmitSignal(nameof(OnClosed));
+        }
+        else
+        {
+            unAppliedChangesWarning.PopupCenteredMinsize();
+        }
+    }
+
+    private void ConfirmBackWithUnAppliedChanges()
+    {
         EmitSignal(nameof(OnClosed));
     }
 }
