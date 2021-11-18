@@ -14,14 +14,14 @@ public class Jukebox : Node
 
     private static Jukebox instance;
 
-    /// <summary>
-    ///   Lists of music
-    /// </summary>
-    private readonly Dictionary<string, MusicCategory> categories;
-
     private readonly List<AudioPlayer> audioPlayers = new List<AudioPlayer>();
 
     private readonly Queue<Operation> operations = new Queue<Operation>();
+
+    /// <summary>
+    ///   Lists of music
+    /// </summary>
+    private Dictionary<string, MusicCategory> categories;
 
     /// <summary>
     ///   The current jukebox volume level in linear volume range 0-1.0f
@@ -43,10 +43,6 @@ public class Jukebox : Node
     private Jukebox()
     {
         instance = this;
-
-        categories = SimulationParameters.Instance.GetMusicCategories();
-
-        PauseMode = PauseModeEnum.Process;
     }
 
     public static Jukebox Instance => instance;
@@ -76,6 +72,10 @@ public class Jukebox : Node
 
     public override void _Ready()
     {
+        categories = SimulationParameters.Instance.GetMusicCategories();
+
+        PauseMode = PauseModeEnum.Process;
+
         // Preallocate one audio stream player, due to the dynamic number of simultaneous tracks to play this is a list
         NewPlayer();
     }
