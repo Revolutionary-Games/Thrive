@@ -98,6 +98,11 @@ public class TrackList
 
     public string TrackBus { get; set; } = "Music";
 
+    /// <summary>
+    ///   Repeat this track list if all tracks has been played at least once.
+    /// </summary>
+    public bool Repeat { get; set; } = true;
+
     public List<Track> Tracks { get; set; }
 
     [JsonIgnore]
@@ -124,6 +129,9 @@ public class TrackList
 
         [JsonIgnore]
         public float PreviousPlayedPosition { get; set; } = 0;
+
+        [JsonIgnore]
+        public bool PlayedOnce { get; set; } = false;
 
         public void Check()
         {

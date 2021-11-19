@@ -264,6 +264,8 @@ public class Jukebox : Node
 
             player.Player.Play(fromPosition);
             GD.Print("Jukebox: starting track: ", track.ResourcePath, " position: ", fromPosition);
+
+            track.PlayedOnce = true;
         }
     }
 
@@ -472,6 +474,9 @@ public class Jukebox : Node
 
         foreach (var list in needToStartFrom)
         {
+            if (!list.Repeat && list.Tracks.All(track => track.PlayedOnce))
+                continue;
+
             PlayNextTrackFromList(list, index =>
             {
                 if (index < usablePlayers.Count)
@@ -538,6 +543,8 @@ public class Jukebox : Node
             {
                 foreach (var track in list.Tracks)
                 {
+                    track.PlayedOnce = false;
+
                     if (activeTracks.Contains(track.ResourcePath))
                     {
                         track.WasPlaying = true;
