@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   How a tooltip should be positioned on display.
+///   Methods of where a tooltip should be positioned on display.
 /// </summary>
 public enum ToolTipPositioning
 {
@@ -16,13 +16,14 @@ public enum ToolTipPositioning
     FollowMousePosition,
 
     /// <summary>
-    ///   Tooltip is positioned at the bottom right edge of a Control.
+    ///   Tooltip is positioned relative to the bottom right edge of a Control rect. Useful for tooltips
+    ///   pertaining to items in a grid-based layout.
     /// </summary>
     ControlBottomRightEdge,
 }
 
 /// <summary>
-///   How a tooltip should transition on becoming visible and on being hidden.
+///   Methods of how a tooltip should transition on becoming visible and on being hidden.
 /// </summary>
 public enum ToolTipTransitioning
 {
@@ -63,8 +64,14 @@ public interface ICustomToolTip
     /// </summary>
     float DisplayDelay { get; set; }
 
+    /// <summary>
+    ///   Where a tooltip should be positioned on display.
+    /// </summary>
     ToolTipPositioning Positioning { get; set; }
 
+    /// <summary>
+    ///   How a tooltip should transition on becoming visible and on being hidden.
+    /// </summary>
     ToolTipTransitioning TransitionType { get; set; }
 
     bool HideOnMousePress { get; set; }
