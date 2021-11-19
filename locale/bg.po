@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-19 13:17+0200\n"
+"POT-Creation-Date: 2021-11-19 13:18+0200\n"
 "PO-Revision-Date: 2021-11-17 17:48+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -1397,7 +1397,7 @@ msgstr "От: {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:835
+#: ../src/modding/ModManager.tscn:836
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -3436,11 +3436,11 @@ msgstr "Изключено"
 msgid "SELECTED_MOD"
 msgstr "Избрани:"
 
-#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:553
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:554
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:576
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Версия:"
@@ -3454,7 +3454,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "Версия:"
 
-#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:597
+#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:598
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Описание:"
@@ -3497,7 +3497,7 @@ msgstr "Заредете невалиден запис?"
 
 #: ../src/modding/ModManager.tscn:495
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 "Това е най-обикновена мембрана, която не осигурява добра защита на "
 "клетката. Освен това, тя се нуждае от повече енергия за да не се "
@@ -3506,58 +3506,67 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:496
 #, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"Това е най-обикновена мембрана, която не осигурява добра защита на "
+"клетката. Освен това, тя се нуждае от повече енергия за да не се "
+"деформира. Предмиството ѝ е, че позволява на клетката да усвоява "
+"хранителните вещества по-бързо."
+
+#: ../src/modding/ModManager.tscn:497
+#, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Без запазване на промените"
 
-#: ../src/modding/ModManager.tscn:502
+#: ../src/modding/ModManager.tscn:503
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:531
+#: ../src/modding/ModManager.tscn:532
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Наименование:"
 
-#: ../src/modding/ModManager.tscn:619
+#: ../src/modding/ModManager.tscn:620
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Описание:"
 
-#: ../src/modding/ModManager.tscn:641
+#: ../src/modding/ModManager.tscn:642
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:663
+#: ../src/modding/ModManager.tscn:664
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:685
+#: ../src/modding/ModManager.tscn:686
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Лицензи"
 
-#: ../src/modding/ModManager.tscn:707
+#: ../src/modding/ModManager.tscn:708
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:729
+#: ../src/modding/ModManager.tscn:730
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:751
+#: ../src/modding/ModManager.tscn:752
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:773
+#: ../src/modding/ModManager.tscn:774
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Наименование на зоната"
 
-#: ../src/modding/ModManager.tscn:795
+#: ../src/modding/ModManager.tscn:796
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:817
+#: ../src/modding/ModManager.tscn:818
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
@@ -4034,14 +4043,6 @@ msgstr ""
 "\n"
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху "
 "Вашата клетка или да натиснете съответния клавиш."
-
-#, fuzzy
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr ""
-#~ "Това е най-обикновена мембрана, която не осигурява добра защита на "
-#~ "клетката. Освен това, тя се нуждае от повече енергия за да не се "
-#~ "деформира. Предмиството ѝ е, че позволява на клетката да усвоява "
-#~ "хранителните вещества по-бързо."
 
 #~ msgid "Cancel"
 #~ msgstr "Отказ"

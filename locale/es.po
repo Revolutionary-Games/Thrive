@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-19 13:17+0200\n"
+"POT-Creation-Date: 2021-11-19 13:18+0200\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: Nathaniel Balderramas <nabm.utn@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -1409,7 +1409,7 @@ msgstr "Arte por {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:835
+#: ../src/modding/ModManager.tscn:836
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Cerrar"
@@ -3514,11 +3514,11 @@ msgstr ""
 msgid "SELECTED_MOD"
 msgstr "Selección:"
 
-#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:553
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:554
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:576
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versión:"
@@ -3532,7 +3532,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "Versión:"
 
-#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:597
+#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:598
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Descripción:"
@@ -3575,7 +3575,7 @@ msgstr "¿Cargar partida inválida?"
 
 #: ../src/modding/ModManager.tscn:495
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 "Siendo la forma más básica de membrana, tiene poca protección. También "
 "necesita más energía para no deformarse. Su ventaja es su mayor mobilidad "
@@ -3583,57 +3583,65 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:496
 #, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"Siendo la forma más básica de membrana, tiene poca protección. También "
+"necesita más energía para no deformarse. Su ventaja es su mayor mobilidad "
+"y velocidad de absorción de recursos."
+
+#: ../src/modding/ModManager.tscn:497
+#, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Descartar y continuar"
 
-#: ../src/modding/ModManager.tscn:502
+#: ../src/modding/ModManager.tscn:503
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:531
+#: ../src/modding/ModManager.tscn:532
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nombre:"
 
-#: ../src/modding/ModManager.tscn:619
+#: ../src/modding/ModManager.tscn:620
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Descripción:"
 
-#: ../src/modding/ModManager.tscn:641
+#: ../src/modding/ModManager.tscn:642
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:663
+#: ../src/modding/ModManager.tscn:664
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:685
+#: ../src/modding/ModManager.tscn:686
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:707
+#: ../src/modding/ModManager.tscn:708
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:729
+#: ../src/modding/ModManager.tscn:730
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:751
+#: ../src/modding/ModManager.tscn:752
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:773
+#: ../src/modding/ModManager.tscn:774
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Nombre de la Región"
 
-#: ../src/modding/ModManager.tscn:795
+#: ../src/modding/ModManager.tscn:796
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:817
+#: ../src/modding/ModManager.tscn:818
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
@@ -4138,13 +4146,6 @@ msgstr ""
 "el centro de la pantalla, y el ratón para controlar la orientación.\n"
 "\n"
 "Prueba todas las teclas por unos segundos para continuar."
-
-#, fuzzy
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr ""
-#~ "Siendo la forma más básica de membrana, tiene poca protección. También "
-#~ "necesita más energía para no deformarse. Su ventaja es su mayor "
-#~ "mobilidad y velocidad de absorción de recursos."
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-19 13:17+0200\n"
+"POT-Creation-Date: 2021-11-19 13:18+0200\n"
 "PO-Revision-Date: 2021-04-28 19:41+0000\n"
 "Last-Translator: Max H <maaxood@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -1404,7 +1404,7 @@ msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:835
+#: ../src/modding/ModManager.tscn:836
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Aizvērt"
@@ -3238,11 +3238,11 @@ msgstr ""
 msgid "SELECTED_MOD"
 msgstr "Atlasīts:"
 
-#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:553
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:554
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:576
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versija:"
@@ -3256,7 +3256,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "Versija:"
 
-#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:597
+#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:598
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Apraksts:"
@@ -3295,61 +3295,66 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:495
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Apraksts:"
 
 #: ../src/modding/ModManager.tscn:496
 #, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr "Apraksts:"
+
+#: ../src/modding/ModManager.tscn:497
+#, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Atlaist un turpināt"
 
-#: ../src/modding/ModManager.tscn:502
+#: ../src/modding/ModManager.tscn:503
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:531
+#: ../src/modding/ModManager.tscn:532
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nosaukums:"
 
-#: ../src/modding/ModManager.tscn:619
+#: ../src/modding/ModManager.tscn:620
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Apraksts:"
 
-#: ../src/modding/ModManager.tscn:641
+#: ../src/modding/ModManager.tscn:642
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:663
+#: ../src/modding/ModManager.tscn:664
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:685
+#: ../src/modding/ModManager.tscn:686
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:707
+#: ../src/modding/ModManager.tscn:708
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:729
+#: ../src/modding/ModManager.tscn:730
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:751
+#: ../src/modding/ModManager.tscn:752
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:773
+#: ../src/modding/ModManager.tscn:774
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:795
+#: ../src/modding/ModManager.tscn:796
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:817
+#: ../src/modding/ModManager.tscn:818
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
@@ -3710,10 +3715,6 @@ msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
 "toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
-
-#, fuzzy
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr "Apraksts:"
 
 #~ msgid "Cancel"
 #~ msgstr "Atcelt"

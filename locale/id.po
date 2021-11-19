@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-19 13:17+0200\n"
+"POT-Creation-Date: 2021-11-19 13:18+0200\n"
 "PO-Revision-Date: 2021-10-02 16:11+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -1410,7 +1410,7 @@ msgstr "Seni oleh {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:835
+#: ../src/modding/ModManager.tscn:836
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Tutup"
@@ -3481,11 +3481,11 @@ msgstr ""
 msgid "SELECTED_MOD"
 msgstr "Terpilih:"
 
-#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:553
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:554
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:576
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versi:"
@@ -3499,7 +3499,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "Versi:"
 
-#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:597
+#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:598
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Deskripsi:"
@@ -3542,7 +3542,7 @@ msgstr "Muat save tidak valid?"
 
 #: ../src/modding/ModManager.tscn:495
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 "Bentuk membran yang paling dasar, mempunyai ketahanan yang kecil terhadap "
 "kerusakan. Juga membutuhkan energi yang lebih banyak agar tak berubah "
@@ -3551,56 +3551,65 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:496
 #, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"Bentuk membran yang paling dasar, mempunyai ketahanan yang kecil terhadap "
+"kerusakan. Juga membutuhkan energi yang lebih banyak agar tak berubah "
+"bentuk. Keuntungannya adalah memungkinkan sel bergerak dan menyerap "
+"nutrisi dengan cepat."
+
+#: ../src/modding/ModManager.tscn:497
+#, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Buang dan lanjut"
 
-#: ../src/modding/ModManager.tscn:502
+#: ../src/modding/ModManager.tscn:503
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:531
+#: ../src/modding/ModManager.tscn:532
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nama:"
 
-#: ../src/modding/ModManager.tscn:619
+#: ../src/modding/ModManager.tscn:620
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Deskripsi:"
 
-#: ../src/modding/ModManager.tscn:641
+#: ../src/modding/ModManager.tscn:642
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:663
+#: ../src/modding/ModManager.tscn:664
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:685
+#: ../src/modding/ModManager.tscn:686
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:707
+#: ../src/modding/ModManager.tscn:708
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:729
+#: ../src/modding/ModManager.tscn:730
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:751
+#: ../src/modding/ModManager.tscn:752
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:773
+#: ../src/modding/ModManager.tscn:774
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:795
+#: ../src/modding/ModManager.tscn:796
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:817
+#: ../src/modding/ModManager.tscn:818
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
@@ -4100,14 +4109,6 @@ msgstr ""
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri "
 "atau tekan tombol unbind all."
-
-#, fuzzy
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr ""
-#~ "Bentuk membran yang paling dasar, mempunyai ketahanan yang kecil "
-#~ "terhadap kerusakan. Juga membutuhkan energi yang lebih banyak agar tak "
-#~ "berubah bentuk. Keuntungannya adalah memungkinkan sel bergerak dan "
-#~ "menyerap nutrisi dengan cepat."
 
 #~ msgid "Cancel"
 #~ msgstr "Batal"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-19 13:17+0200\n"
+"POT-Creation-Date: 2021-11-19 13:18+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1343,7 +1343,7 @@ msgstr "由{0}创作"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:835
+#: ../src/modding/ModManager.tscn:836
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "关闭"
@@ -3303,11 +3303,11 @@ msgstr "已禁用"
 msgid "SELECTED_MOD"
 msgstr "选中的："
 
-#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:553
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:554
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:576
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "版本："
@@ -3321,7 +3321,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "版本："
 
-#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:597
+#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:598
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "介绍："
@@ -3364,65 +3364,72 @@ msgstr "载入无效的存档？"
 
 #: ../src/modding/ModManager.tscn:495
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 "最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是"
 "能允许细胞更轻松的移动与吸收营养。"
 
 #: ../src/modding/ModManager.tscn:496
 #, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是"
+"能允许细胞更轻松的移动与吸收营养。"
+
+#: ../src/modding/ModManager.tscn:497
+#, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "放弃更改并继续"
 
-#: ../src/modding/ModManager.tscn:502
+#: ../src/modding/ModManager.tscn:503
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:531
+#: ../src/modding/ModManager.tscn:532
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "名称："
 
-#: ../src/modding/ModManager.tscn:619
+#: ../src/modding/ModManager.tscn:620
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "介绍："
 
-#: ../src/modding/ModManager.tscn:641
+#: ../src/modding/ModManager.tscn:642
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:663
+#: ../src/modding/ModManager.tscn:664
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:685
+#: ../src/modding/ModManager.tscn:686
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "许可"
 
-#: ../src/modding/ModManager.tscn:707
+#: ../src/modding/ModManager.tscn:708
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:729
+#: ../src/modding/ModManager.tscn:730
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:751
+#: ../src/modding/ModManager.tscn:752
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:773
+#: ../src/modding/ModManager.tscn:774
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "地区名称"
 
-#: ../src/modding/ModManager.tscn:795
+#: ../src/modding/ModManager.tscn:796
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:817
+#: ../src/modding/ModManager.tscn:818
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
@@ -3874,12 +3881,6 @@ msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
 "为了离开细胞群你可以点击你自己的细胞或点击“解除所有连接”键。"
-
-#, fuzzy
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr ""
-#~ "最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处"
-#~ "是能允许细胞更轻松的移动与吸收营养。"
 
 #~ msgid "Cancel"
 #~ msgstr "取消"
