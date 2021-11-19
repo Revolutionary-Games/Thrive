@@ -109,6 +109,15 @@ public class CustomConfirmationDialog : CustomDialog
         UpdateButtons();
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateLabel();
+            UpdateButtons();
+        }
+    }
+
     private void UpdateLabel()
     {
         dialogLabel.Text = TranslationServer.Translate(dialogText);
