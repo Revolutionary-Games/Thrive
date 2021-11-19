@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/modding/NewModGUI.tscn" type="PackedScene" id=6]
 
 [node name="ModManager" type="Control"]
 anchor_right = 1.0
@@ -45,6 +46,7 @@ FullInfoMaximumThrivePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/
 FullInfoPckNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/PckName")
 FullInfoModAssemblyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModAssembly")
 FullInfoAssemblyModClassPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/AssemblyModClass")
+NewModGUIPath = NodePath("NewModGUI")
 
 [node name="Quit" type="Button" parent="."]
 anchor_top = 1.0
@@ -457,7 +459,6 @@ text = "UPLOAD"
 margin_left = 953.0
 margin_right = 1008.0
 margin_bottom = 35.0
-disabled = true
 text = "NEW"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
@@ -487,6 +488,9 @@ margin_right = 1008.0
 margin_bottom = 628.0
 custom_fonts/font = ExtResource( 5 )
 text = "MOD_LOAD_UNLOAD_CAVEATS"
+
+[node name="NewModGUI" parent="." instance=ExtResource( 6 )]
+visible = false
 
 [node name="UnAppliedChangesWarning" parent="." instance=ExtResource( 3 )]
 margin_top = 28.0
@@ -845,6 +849,7 @@ text = "CLOSE"
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/DisableAll" to="." method="DisableAllPressed"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/ButtonsLine/MoreInfo" to="." method="OpenModInfoPopup"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/ButtonsLine/Url" to="." method="OpenInfoUrlPressed"]
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/Button" to="." method="NewModPressed"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Apply" to="." method="ApplyChanges"]
 [connection signal="Confirmed" from="UnAppliedChangesWarning" to="." method="ConfirmBackWithUnAppliedChanges"]
 [connection signal="pressed" from="ModFullInfo/VBoxContainer/Button" to="." method="CloseModInfoPopup"]

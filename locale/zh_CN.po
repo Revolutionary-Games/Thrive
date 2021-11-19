@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-19 13:18+0200\n"
+"POT-Creation-Date: 2021-11-19 14:11+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1343,7 +1343,7 @@ msgstr "由{0}创作"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:836
+#: ../src/modding/ModManager.tscn:839
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "关闭"
@@ -1393,7 +1393,7 @@ msgstr "微生物阶段自由编辑器"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:59 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:61 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
@@ -1730,6 +1730,7 @@ msgstr "放弃更改并继续"
 
 #: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/modding/NewModGUI.tscn:424
 msgid "CANCEL"
 msgstr "取消"
 
@@ -3260,178 +3261,209 @@ msgstr ""
 "恭喜你！你已赢得了这个版本的Thrive！如果你愿意你可以关掉这个页面并继续游"
 "玩，或者在新世界开始一场新游戏。"
 
-#: ../src/modding/ModManager.cs:356
+#: ../src/modding/ModManager.cs:363
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "选中的："
 
-#: ../src/modding/ModManager.tscn:109
+#: ../src/modding/ModManager.tscn:111
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "刷新"
 
-#: ../src/modding/ModManager.tscn:149
+#: ../src/modding/ModManager.tscn:151
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "打开日志文件夹"
 
-#: ../src/modding/ModManager.tscn:167
+#: ../src/modding/ModManager.tscn:169
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "鼠标右键"
 
-#: ../src/modding/ModManager.tscn:180
+#: ../src/modding/ModManager.tscn:182
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "鼠标左键"
 
-#: ../src/modding/ModManager.tscn:192
+#: ../src/modding/ModManager.tscn:194
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "启用编辑器"
 
-#: ../src/modding/ModManager.tscn:222
+#: ../src/modding/ModManager.tscn:224
 #, fuzzy
 msgid "DISABLE_ALL"
 msgstr "已禁用"
 
-#: ../src/modding/ModManager.tscn:243
+#: ../src/modding/ModManager.tscn:245
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "选中的："
 
-#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:554
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:557
+#: ../src/modding/NewModGUI.tscn:125
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:309 ../src/modding/ModManager.tscn:579
+#: ../src/modding/NewModGUI.tscn:147
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "版本："
 
-#: ../src/modding/ModManager.tscn:333
+#: ../src/modding/ModManager.tscn:335
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:359
+#: ../src/modding/ModManager.tscn:361
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "版本："
 
-#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:598
+#: ../src/modding/ModManager.tscn:387 ../src/modding/ModManager.tscn:601
+#: ../src/modding/NewModGUI.tscn:169
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "介绍："
 
-#: ../src/modding/ModManager.tscn:416
+#: ../src/modding/ModManager.tscn:418
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:423
+#: ../src/modding/ModManager.tscn:425
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "打开网址"
 
-#: ../src/modding/ModManager.tscn:447
+#: ../src/modding/ModManager.tscn:449
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:454
+#: ../src/modding/ModManager.tscn:456
 #, fuzzy
 msgid "UPLOAD"
 msgstr "载入"
 
-#: ../src/modding/ModManager.tscn:461
+#: ../src/modding/ModManager.tscn:462
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:474
+#: ../src/modding/ModManager.tscn:475
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "选择的存档不兼容"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:483
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:489
+#: ../src/modding/ModManager.tscn:490
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "载入无效的存档？"
 
-#: ../src/modding/ModManager.tscn:495
+#: ../src/modding/ModManager.tscn:498
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 "最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是"
 "能允许细胞更轻松的移动与吸收营养。"
 
-#: ../src/modding/ModManager.tscn:496
+#: ../src/modding/ModManager.tscn:499
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
 "最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是"
 "能允许细胞更轻松的移动与吸收营养。"
 
-#: ../src/modding/ModManager.tscn:497
+#: ../src/modding/ModManager.tscn:500
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "放弃更改并继续"
 
-#: ../src/modding/ModManager.tscn:503
+#: ../src/modding/ModManager.tscn:506
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:535 ../src/modding/NewModGUI.tscn:103
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "名称："
 
-#: ../src/modding/ModManager.tscn:620
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:191
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "介绍："
 
-#: ../src/modding/ModManager.tscn:642
+#: ../src/modding/ModManager.tscn:645 ../src/modding/NewModGUI.tscn:214
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:664
+#: ../src/modding/ModManager.tscn:667 ../src/modding/NewModGUI.tscn:236
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:686
+#: ../src/modding/ModManager.tscn:689 ../src/modding/NewModGUI.tscn:258
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "许可"
 
-#: ../src/modding/ModManager.tscn:708
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:280
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:730
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:752
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:324
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:774
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:346
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "地区名称"
 
-#: ../src/modding/ModManager.tscn:796
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:368
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:818
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:390
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
+
+#: ../src/modding/NewModGUI.cs:163
+#, fuzzy
+msgid "NEW_MOD_DEFAULT_DESCRIPTION"
+msgstr "介绍："
+
+#: ../src/modding/NewModGUI.tscn:34
+#, fuzzy
+msgid "CREATE_NEW_MOD"
+msgstr "创建一个新微生物"
+
+#: ../src/modding/NewModGUI.tscn:62
+msgid "MODDING_INSTRUCTIONS_ON"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:69
+msgid "OUR_WIKI"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:81
+#, fuzzy
+msgid "MOD_INTERNAL_NAME"
+msgstr "名称："
+
+#: ../src/modding/NewModGUI.tscn:418
+#, fuzzy
+msgid "CREATE"
+msgstr "保存于："
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147

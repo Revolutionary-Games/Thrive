@@ -106,6 +106,9 @@ public class ModManager : Control
     [Export]
     public NodePath FullInfoAssemblyModClassPath;
 
+    [Export]
+    public NodePath NewModGUIPath;
+
     private readonly List<FullModDetails> validMods = new();
 
     private List<FullModDetails> notEnabledMods;
@@ -147,6 +150,8 @@ public class ModManager : Control
     private Label fullInfoPckName;
     private Label fullInfoModAssembly;
     private Label fullInfoAssemblyModClass;
+
+    private NewModGUI newModGUI;
 
     private FullModDetails selectedMod;
 
@@ -246,6 +251,11 @@ public class ModManager : Control
         fullInfoPckName = GetNode<Label>(FullInfoPckNamePath);
         fullInfoModAssembly = GetNode<Label>(FullInfoModAssemblyPath);
         fullInfoAssemblyModClass = GetNode<Label>(FullInfoAssemblyModClassPath);
+
+        newModGUI = GetNode<NewModGUI>(NewModGUIPath);
+
+        // This is hidden in the editor to make selecting UI elements there easier
+        newModGUI.Visible = true;
 
         UpdateSelectedModInfo();
     }
@@ -672,13 +682,18 @@ public class ModManager : Control
         fullInfoModAssembly.Text = info.ModAssembly;
         fullInfoAssemblyModClass.Text = info.AssemblyModClass;
 
-        modFullInfoPopup.PopupCenteredMinsize();
+        modFullInfoPopup.PopupCenteredShrink();
     }
 
     private void CloseModInfoPopup()
     {
         GUICommon.Instance.PlayButtonPressSound();
         modFullInfoPopup.Hide();
+    }
+
+    private void NewModPressed()
+    {
+        newModGUI.Open();
     }
 
     private void BackPressed()
@@ -690,7 +705,7 @@ public class ModManager : Control
         }
         else
         {
-            unAppliedChangesWarning.PopupCenteredMinsize();
+            unAppliedChangesWarning.PopupCenteredShrink();
         }
     }
 

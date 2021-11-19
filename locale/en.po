@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-19 13:18+0200\n"
-"PO-Revision-Date: 2021-11-19 13:13+0200\n"
+"POT-Creation-Date: 2021-11-19 14:11+0200\n"
+"PO-Revision-Date: 2021-11-19 14:12+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -1390,7 +1390,7 @@ msgstr "Art by {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:836
+#: ../src/modding/ModManager.tscn:839
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Close"
@@ -1440,7 +1440,7 @@ msgstr "Microbe Freebuild Editor"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:59 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:61 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Back"
@@ -1779,6 +1779,7 @@ msgstr "Discard and continue"
 
 #: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/modding/NewModGUI.tscn:424
 msgid "CANCEL"
 msgstr "Cancel"
 
@@ -3383,155 +3384,182 @@ msgstr ""
 "playing after this screen closes if you wish, or start a new game in a new "
 "world."
 
-#: ../src/modding/ModManager.cs:356
+#: ../src/modding/ModManager.cs:363
 msgid "NO_SELECTED_MOD"
 msgstr "No Selected Mod"
 
-#: ../src/modding/ModManager.tscn:109
+#: ../src/modding/ModManager.tscn:111
 msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
 
-#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Refresh"
 
-#: ../src/modding/ModManager.tscn:149
+#: ../src/modding/ModManager.tscn:151
 msgid "OPEN_FOLDER"
 msgstr "Open Folder"
 
-#: ../src/modding/ModManager.tscn:167
+#: ../src/modding/ModManager.tscn:169
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:180
+#: ../src/modding/ModManager.tscn:182
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:192
+#: ../src/modding/ModManager.tscn:194
 msgid "ENABLED_MODS"
 msgstr "Enabled Mods"
 
-#: ../src/modding/ModManager.tscn:222
+#: ../src/modding/ModManager.tscn:224
 msgid "DISABLE_ALL"
 msgstr "Disable All"
 
-#: ../src/modding/ModManager.tscn:243
+#: ../src/modding/ModManager.tscn:245
 msgid "SELECTED_MOD"
 msgstr "Selected Mod:"
 
-#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:554
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:557
+#: ../src/modding/NewModGUI.tscn:125
 msgid "MOD_AUTHOR"
 msgstr "Mod Author:"
 
-#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:309 ../src/modding/ModManager.tscn:579
+#: ../src/modding/NewModGUI.tscn:147
 msgid "MOD_VERSION"
 msgstr "Mod Version:"
 
-#: ../src/modding/ModManager.tscn:333
+#: ../src/modding/ModManager.tscn:335
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Recommended Thrive:"
 
-#: ../src/modding/ModManager.tscn:359
+#: ../src/modding/ModManager.tscn:361
 msgid "MINIMUM_VERSION"
 msgstr "Minimum:"
 
-#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:598
+#: ../src/modding/ModManager.tscn:387 ../src/modding/ModManager.tscn:601
+#: ../src/modding/NewModGUI.tscn:169
 msgid "MOD_DESCRIPTION"
 msgstr "Mod Description:"
 
-#: ../src/modding/ModManager.tscn:416
+#: ../src/modding/ModManager.tscn:418
 msgid "MORE_INFO"
 msgstr "Show More Info"
 
-#: ../src/modding/ModManager.tscn:423
+#: ../src/modding/ModManager.tscn:425
 msgid "OPEN_MOD_URL"
 msgstr "Open Info URL"
 
-#: ../src/modding/ModManager.tscn:447
+#: ../src/modding/ModManager.tscn:449
 msgid "BROWSE_WORKSHOP"
 msgstr "Browse Workshop"
 
-#: ../src/modding/ModManager.tscn:454
+#: ../src/modding/ModManager.tscn:456
 msgid "UPLOAD"
 msgstr "Upload"
 
-#: ../src/modding/ModManager.tscn:461
+#: ../src/modding/ModManager.tscn:462
 msgid "NEW"
 msgstr "New"
 
-#: ../src/modding/ModManager.tscn:474
+#: ../src/modding/ModManager.tscn:475
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Enable All Compatible Mods"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:483
 msgid "APPLY_CHANGES"
 msgstr "Apply Changes"
 
-#: ../src/modding/ModManager.tscn:489
+#: ../src/modding/ModManager.tscn:490
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 "Note: many mods require game restart to load or unload properly. Only load "
 "mods you trust as they may contain executable code."
 
-#: ../src/modding/ModManager.tscn:495
+#: ../src/modding/ModManager.tscn:498
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "There are unapplied changes"
 
-#: ../src/modding/ModManager.tscn:496
+#: ../src/modding/ModManager.tscn:499
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "You need to apply your changes to load or unload any mods."
 
-#: ../src/modding/ModManager.tscn:497
+#: ../src/modding/ModManager.tscn:500
 msgid "DISCARD_CHANGES"
 msgstr "Discard Changes"
 
-#: ../src/modding/ModManager.tscn:503
+#: ../src/modding/ModManager.tscn:506
 msgid "FULL_MOD_INFO"
 msgstr "Full Mod Info"
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:535 ../src/modding/NewModGUI.tscn:103
 msgid "MOD_NAME"
 msgstr "Mod Name:"
 
-#: ../src/modding/ModManager.tscn:620
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:191
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod Long Description:"
 
-#: ../src/modding/ModManager.tscn:642
+#: ../src/modding/ModManager.tscn:645 ../src/modding/NewModGUI.tscn:214
 msgid "MOD_ICON_FILE"
 msgstr "Icon File:"
 
-#: ../src/modding/ModManager.tscn:664
+#: ../src/modding/ModManager.tscn:667 ../src/modding/NewModGUI.tscn:236
 msgid "MOD_INFO_URL"
 msgstr "Mod Info URL:"
 
-#: ../src/modding/ModManager.tscn:686
+#: ../src/modding/ModManager.tscn:689 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_LICENSE"
 msgstr "Mod License:"
 
-#: ../src/modding/ModManager.tscn:708
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:280
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Recommended Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:730
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Minimum Required Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:752
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:324
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Maximum Supported Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:774
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:346
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck File:"
 
-#: ../src/modding/ModManager.tscn:796
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:368
 msgid "MOD_ASSEMBLY"
 msgstr "Mod Assembly:"
 
-#: ../src/modding/ModManager.tscn:818
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:390
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class:"
+
+#: ../src/modding/NewModGUI.cs:163
+msgid "NEW_MOD_DEFAULT_DESCRIPTION"
+msgstr "My Awesome Mod"
+
+#: ../src/modding/NewModGUI.tscn:34
+msgid "CREATE_NEW_MOD"
+msgstr "Create New Mod"
+
+#: ../src/modding/NewModGUI.tscn:62
+msgid "MODDING_INSTRUCTIONS_ON"
+msgstr "Modding instructions are available on"
+
+#: ../src/modding/NewModGUI.tscn:69
+msgid "OUR_WIKI"
+msgstr "our Wiki"
+
+#: ../src/modding/NewModGUI.tscn:81
+msgid "MOD_INTERNAL_NAME"
+msgstr "Internal (Folder) Name:"
+
+#: ../src/modding/NewModGUI.tscn:418
+msgid "CREATE"
+msgstr "Create"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -4226,9 +4254,6 @@ msgstr ""
 
 #~ msgid "EQUAL"
 #~ msgstr "="
-
-#~ msgid "GREATER"
-#~ msgstr ">"
 
 #~ msgid "QUESTION"
 #~ msgstr "?"
