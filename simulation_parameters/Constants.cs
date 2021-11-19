@@ -219,7 +219,7 @@ public static class Constants
     /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
-    public const float REGENERATION_RATE = 1.0f;
+    public const float REGENERATION_RATE = 1.5f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
@@ -265,7 +265,7 @@ public static class Constants
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
     /// </summary>
-    public const float ENGULFING_MOVEMENT_DIVISION = 2.0f;
+    public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
 
     /// <summary>
     ///   The speed reduction when a cell is being engulfed.
