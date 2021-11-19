@@ -41,6 +41,13 @@ public class Settings
 
     public static CultureInfo DefaultCulture => DefaultCultureValue;
 
+    /// <summary>
+    ///   If environment is steam returns SteamHandler.DisplayName, else Environment.UserName
+    /// </summary>
+    public static string EnvironmentUserName => SteamHandler.Instance.IsLoaded ?
+        SteamHandler.Instance.DisplayName :
+        Environment.UserName;
+
     // Graphics Properties
 
     /// <summary>
@@ -263,7 +270,7 @@ public class Settings
         CustomUsernameEnabled &&
         CustomUsername.Value != null ?
             CustomUsername.Value :
-            Environment.UserName;
+            EnvironmentUserName;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
