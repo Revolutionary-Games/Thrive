@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using Godot;
+
+/// <summary>
 ///   Base interface for all mods to implement
 /// </summary>
 /// <remarks>
@@ -29,4 +31,11 @@ public interface IMod
     /// </summary>
     /// <returns>True if successful, false if an error should be reported to the user</returns>
     bool Unload();
+
+    /// <summary>
+    ///   Called when it is safe for mods to attach nodes (ie. initial Node setup has finished and new children can
+    ///   be added without error)
+    /// </summary>
+    /// <param name="currentScene">The current root scene (should be the MainMenu)</param>
+    void CanAttachNodes(Node currentScene);
 }

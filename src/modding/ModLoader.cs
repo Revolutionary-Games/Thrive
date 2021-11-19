@@ -18,6 +18,7 @@ public class ModLoader : Node
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
 
     private ModInterface modInterface;
+    private bool firstExecute = true;
 
     private ModLoader()
     {
@@ -71,6 +72,23 @@ public class ModLoader : Node
         modInterface = new ModInterface(GetTree());
 
         LoadMods();
+    }
+
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (firstExecute)
+        {
+            var scene = modInterface.CurrentScene;
+
+            foreach (var tuple in loadedModAssemblies)
+            {
+                tuple.Value.CanAttachNodes(scene);
+            }
+
+            firstExecute = false;
+        }
     }
 
     public void LoadMods()
@@ -225,11 +243,11 @@ public class ModLoader : Node
 
         // This version doesn't load the classes into the current assembly find path (or whatever it is properly called
         // in C#)
-        // var result = Assembly.LoadFile(path);
+        var result = Assembly.LoadFile(path);
 
         // This version should load like that, however this still results in classes not being found from Godot
         // so special workaround is needed
-        var result = AppDomain.CurrentDomain.Load(File.ReadAllBytes(path));
+        // var result = AppDomain.CurrentDomain.Load(File.ReadAllBytes(path));
 
         GD.Print("Assembly load succeeded");
 
