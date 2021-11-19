@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
 [ext_resource path="res://src/gui_common/CustomCheckBox.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmall.tres" type="DynamicFont" id=9]
 
 [node name="MicrobeTutorialGUI" type="Control"]
 pause_mode = 2
@@ -76,7 +75,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="MicrobeWelcome/ScrollContainer/VBoxContainer"]
 margin_right = 420.0
 margin_bottom = 20.0
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_INITIAL"
 autowrap = true
 
@@ -132,16 +131,14 @@ margin_right = -231.0
 margin_bottom = -190.0
 rect_min_size = Vector2( 260, 260 )
 script = ExtResource( 7 )
-WindowTitle = "TUTORIAL"
-Resizable = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 245.0
+margin_bottom = 245.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -152,7 +149,7 @@ __meta__ = {
 margin_right = 230.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 230, 0 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_CONTROL_TEXT"
 autowrap = true
 
@@ -234,7 +231,7 @@ margin_right = 490.0
 margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_COLLECT_TEXT"
 autowrap = true
 
@@ -268,7 +265,7 @@ margin_right = 490.0
 margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_HEALTH_TEXT"
 autowrap = true
 
@@ -306,7 +303,7 @@ margin_right = 490.0
 margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 
@@ -344,7 +341,7 @@ __meta__ = {
 margin_right = 230.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 230, 0 )
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 autowrap = true
 
@@ -378,7 +375,7 @@ margin_right = 490.0
 margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 9 )
+custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_UNBIND_TEXT"
 autowrap = true
 

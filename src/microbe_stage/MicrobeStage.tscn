@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=2]
+[gd_scene load_steps=124 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -76,6 +76,7 @@
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=75]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=76]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=77]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=80]
@@ -672,6 +673,7 @@ custom_constants/separation = 6
 margin_right = 126.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 77 )
 text = "ENVIRONMENT"
 autowrap = true
 
@@ -1134,6 +1136,7 @@ margin_right = 186.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 145, 0 )
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 77 )
 text = "COMPOUNDS"
 autowrap = true
 
@@ -1519,6 +1522,7 @@ margin_top = 6.0
 margin_right = 239.0
 margin_bottom = 28.0
 size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 77 )
 text = "AGENTS"
 autowrap = true
 

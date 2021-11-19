@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/engine/LoadingScreen.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/planet.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=4]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=5]
 [ext_resource path="res://shaders/UVFlipper.shader" type="Shader" id=6]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
@@ -86,9 +87,9 @@ __meta__ = {
 [node name="ArtDescription" type="Label" parent="CenterContainer"]
 material = SubResource( 4 )
 margin_left = 240.0
-margin_top = 39.0
+margin_top = 37.0
 margin_right = 1040.0
-margin_bottom = 61.0
+margin_bottom = 62.0
 rect_min_size = Vector2( 800, 0 )
 text = "Shown image description goes here"
 align = 1
@@ -117,8 +118,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 8.0
 margin_top = 8.0
-margin_right = 78.0
+margin_right = 86.0
 margin_bottom = 56.0
 grow_horizontal = 0
 size_flags_vertical = 4
@@ -130,6 +132,7 @@ __meta__ = {
 margin_right = 78.0
 margin_bottom = 22.0
 grow_horizontal = 0
+custom_fonts/font = ExtResource( 7 )
 text = "LOADING"
 align = 2
 
@@ -138,11 +141,12 @@ margin_top = 26.0
 margin_right = 78.0
 margin_bottom = 48.0
 grow_horizontal = 0
+custom_fonts/font = ExtResource( 7 )
 align = 2
 
 [node name="Spinner" type="MarginContainer" parent="HBoxContainer"]
-margin_left = 93.0
-margin_right = 157.0
+margin_left = 101.0
+margin_right = 165.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 rect_pivot_offset = Vector2( 32, 32 )
