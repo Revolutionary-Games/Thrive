@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-19 14:11+0200\n"
+"POT-Creation-Date: 2021-11-19 15:23+0200\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio."
@@ -1388,7 +1388,7 @@ msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:839
+#: ../src/modding/ModManager.tscn:842
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Zatvori"
@@ -1438,7 +1438,7 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:61 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:63 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Nazad"
@@ -1790,7 +1790,7 @@ msgstr "Odbaci i nastavi"
 
 #: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:424
+#: ../src/modding/NewModGUI.tscn:426
 msgid "CANCEL"
 msgstr "Otkazati"
 
@@ -3448,64 +3448,84 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:363
+#: ../src/modding/ModManager.cs:236
+msgid "INVALID_ICON_PATH"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:250
+msgid "INVALID_URL_SCHEME"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:262
+msgid "ASSEMBLY_CLASS_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:426
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:111
+#: ../src/modding/ModManager.cs:790
+msgid "ERROR_CREATING_FOLDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:799
+msgid "ERROR_CREATING_INFO_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:113
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:151
+#: ../src/modding/ModManager.tscn:153
 msgid "OPEN_FOLDER"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:169
+#: ../src/modding/ModManager.tscn:171
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Desni miš"
 
-#: ../src/modding/ModManager.tscn:182
+#: ../src/modding/ModManager.tscn:184
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Levi miš"
 
-#: ../src/modding/ModManager.tscn:194
+#: ../src/modding/ModManager.tscn:196
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Omogućite uređivač"
 
-#: ../src/modding/ModManager.tscn:224
+#: ../src/modding/ModManager.tscn:226
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:245
+#: ../src/modding/ModManager.tscn:247
 msgid "SELECTED_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:557
+#: ../src/modding/ModManager.tscn:281 ../src/modding/ModManager.tscn:560
 #: ../src/modding/NewModGUI.tscn:125
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:309 ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:311 ../src/modding/ModManager.tscn:582
 #: ../src/modding/NewModGUI.tscn:147
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:335
+#: ../src/modding/ModManager.tscn:337
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:361
+#: ../src/modding/ModManager.tscn:363
 msgid "MINIMUM_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:387 ../src/modding/ModManager.tscn:601
+#: ../src/modding/ModManager.tscn:389 ../src/modding/ModManager.tscn:604
 #: ../src/modding/NewModGUI.tscn:169
 #, fuzzy
 msgid "MOD_DESCRIPTION"
@@ -3517,40 +3537,40 @@ msgstr ""
 "materije i druge supstance. Njihov oblik je tečan i može se razlikovati "
 "između ćelija."
 
-#: ../src/modding/ModManager.tscn:418
+#: ../src/modding/ModManager.tscn:420
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:425
+#: ../src/modding/ModManager.tscn:427
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:449
+#: ../src/modding/ModManager.tscn:451
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:456
+#: ../src/modding/ModManager.tscn:458
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Učitajte brzo"
 
-#: ../src/modding/ModManager.tscn:462
+#: ../src/modding/ModManager.tscn:464
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:475
+#: ../src/modding/ModManager.tscn:477
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:483
+#: ../src/modding/ModManager.tscn:485
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:490
+#: ../src/modding/ModManager.tscn:492
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:498
+#: ../src/modding/ModManager.tscn:501
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
@@ -3558,7 +3578,7 @@ msgstr ""
 "potrebno više energije da se ne bi deformisao. Prednost je u tome što "
 "omogućava ćeliji da se brzo kreće i apsorbuje hranljive materije."
 
-#: ../src/modding/ModManager.tscn:499
+#: ../src/modding/ModManager.tscn:502
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3566,20 +3586,20 @@ msgstr ""
 "potrebno više energije da se ne bi deformisao. Prednost je u tome što "
 "omogućava ćeliji da se brzo kreće i apsorbuje hranljive materije."
 
-#: ../src/modding/ModManager.tscn:500
+#: ../src/modding/ModManager.tscn:503
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Odbaci i nastavi"
 
-#: ../src/modding/ModManager.tscn:506
+#: ../src/modding/ModManager.tscn:509
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:535 ../src/modding/NewModGUI.tscn:103
+#: ../src/modding/ModManager.tscn:538 ../src/modding/NewModGUI.tscn:103
 msgid "MOD_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:191
+#: ../src/modding/ModManager.tscn:626 ../src/modding/NewModGUI.tscn:191
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3590,43 +3610,48 @@ msgstr ""
 "materije i druge supstance. Njihov oblik je tečan i može se razlikovati "
 "između ćelija."
 
-#: ../src/modding/ModManager.tscn:645 ../src/modding/NewModGUI.tscn:214
+#: ../src/modding/ModManager.tscn:648 ../src/modding/NewModGUI.tscn:214
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:667 ../src/modding/NewModGUI.tscn:236
+#: ../src/modding/ModManager.tscn:670 ../src/modding/NewModGUI.tscn:236
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:689 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:692 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:280
+#: ../src/modding/ModManager.tscn:714 ../src/modding/NewModGUI.tscn:280
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:302
+#: ../src/modding/ModManager.tscn:736 ../src/modding/NewModGUI.tscn:302
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:324
+#: ../src/modding/ModManager.tscn:758 ../src/modding/NewModGUI.tscn:324
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:346
+#: ../src/modding/ModManager.tscn:780 ../src/modding/NewModGUI.tscn:346
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:368
+#: ../src/modding/ModManager.tscn:802 ../src/modding/NewModGUI.tscn:368
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:390
+#: ../src/modding/ModManager.tscn:824 ../src/modding/NewModGUI.tscn:390
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:163
+#: ../src/modding/ModManager.tscn:847
+#, fuzzy
+msgid "MOD_CREATION_FAILED"
+msgstr "Automatska-evolucija nije uspela"
+
+#: ../src/modding/NewModGUI.cs:169
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
@@ -3636,6 +3661,31 @@ msgstr ""
 "Ispunjen je vodom koja se koristi da sadrži molekule, enzime, čvrste "
 "materije i druge supstance. Njihov oblik je tečan i može se razlikovati "
 "između ćelija."
+
+#: ../src/modding/NewModGUI.cs:225
+msgid "INVALID_URL_FORMAT"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:237
+msgid "INTERNAL_NAME_REQUIRED"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:243
+msgid "INTERNAL_NAME_IN_USE"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:262
+msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:273
+#, fuzzy
+msgid "ADDITIONAL_VALIDATION_FAILED"
+msgstr "Automatska-evolucija nije uspela"
+
+#: ../src/modding/NewModGUI.cs:287
+msgid "FORM_ERROR_MESSAGE"
+msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:34
 #, fuzzy
@@ -3654,7 +3704,7 @@ msgstr ""
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:418
+#: ../src/modding/NewModGUI.tscn:420
 msgid "CREATE"
 msgstr ""
 

@@ -22,7 +22,7 @@ IconFilePath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/IconFil
 InfoUrlPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/InfoURL")
 LicensePath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/License")
 RecommendedThrivePath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/RecommendedThrive")
-MinimumThrivePath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/RecommendedThrive")
+MinimumThrivePath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/MinimumThrive")
 MaximumThrivePath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/MaximumThrive")
 PckNamePath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/PckName")
 ModAssemblyPath = NodePath("CustomDialog/ScrollContainer/VBoxContainer/Form/ModAssembly")
@@ -48,7 +48,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog/ScrollContainer"]
 margin_right = 550.0
-margin_bottom = 1172.0
+margin_bottom = 1217.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -194,7 +194,7 @@ text = "MOD_EXTENDED_DESCRIPTION"
 margin_top = 374.0
 margin_right = 544.0
 margin_bottom = 454.0
-rect_min_size = Vector2( 0, 80 )
+rect_min_size = Vector2( 0, 125 )
 text = "Longer mod description"
 draw_tabs = true
 __meta__ = {
@@ -403,6 +403,8 @@ __meta__ = {
 margin_top = 1108.0
 margin_right = 544.0
 margin_bottom = 1133.0
+autowrap = true
+max_lines_visible = 5
 
 [node name="BottomButtons" type="HBoxContainer" parent="CustomDialog/ScrollContainer/VBoxContainer"]
 margin_top = 1137.0

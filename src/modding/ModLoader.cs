@@ -27,6 +27,42 @@ public class ModLoader : Node
 
     public static ModLoader Instance => instance;
 
+    /// <summary>
+    ///   Finds a mod and loads its info
+    /// </summary>
+    /// <param name="name">The internal (folder) name of the mod</param>
+    /// <param name="failureIsError">If true, failure to find a mod is printed out</param>
+    /// <returns>The mod details if the mod could be loaded</returns>
+    public static FullModDetails LoadModInfo(string name, bool failureIsError = true)
+    {
+        using var currentDirectory = new Directory();
+
+        foreach (var location in Constants.ModLocations)
+        {
+            var modsFolder = Path.Combine(location, name);
+
+            if (!currentDirectory.DirExists(modsFolder))
+                continue;
+
+            if (currentDirectory.FileExists(Path.Combine(modsFolder, Constants.MOD_INFO_FILE_NAME)))
+            {
+                var info = ModManager.LoadModInfo(modsFolder);
+
+                if (info == null)
+                {
+                    GD.PrintErr("Failed to load info for mod \"", name, "\" from: ", modsFolder);
+                    return null;
+                }
+
+                return new FullModDetails(name) { Folder = modsFolder, Info = info };
+            }
+        }
+
+        if (failureIsError)
+            GD.PrintErr("No folder found for mod: ", name);
+        return null;
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -56,35 +92,6 @@ public class ModLoader : Node
         }
 
         GD.Print("Mod loading finished");
-    }
-
-    private FullModDetails LoadModInfo(string name)
-    {
-        using var currentDirectory = new Directory();
-
-        foreach (var location in Constants.ModLocations)
-        {
-            var modsFolder = Path.Combine(location, name);
-
-            if (!currentDirectory.DirExists(modsFolder))
-                continue;
-
-            if (currentDirectory.FileExists(Path.Combine(modsFolder, Constants.MOD_INFO_FILE_NAME)))
-            {
-                var info = ModManager.LoadModInfo(modsFolder);
-
-                if (info == null)
-                {
-                    GD.PrintErr("Failed to load info for mod \"", name, "\" from: ", modsFolder);
-                    return null;
-                }
-
-                return new FullModDetails(name) { Folder = modsFolder, Info = info };
-            }
-        }
-
-        GD.PrintErr("No folder found for mod: ", name);
-        return null;
     }
 
     private void LoadMod(string name)

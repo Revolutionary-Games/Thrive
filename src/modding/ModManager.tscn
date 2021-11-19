@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/modding/NewModGUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=7]
 
 [node name="ModManager" type="Control"]
 anchor_right = 1.0
@@ -47,6 +48,7 @@ FullInfoPckNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxCo
 FullInfoModAssemblyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModAssembly")
 FullInfoAssemblyModClassPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/AssemblyModClass")
 NewModGUIPath = NodePath("NewModGUI")
+ModCreateErrorDialogPath = NodePath("CreateModError")
 
 [node name="Quit" type="Button" parent="."]
 anchor_top = 1.0
@@ -839,6 +841,12 @@ margin_bottom = 389.0
 size_flags_horizontal = 4
 text = "CLOSE"
 
+[node name="CreateModError" parent="." instance=ExtResource( 7 )]
+ErrorMessage = ""
+ExceptionInfo = ""
+WindowTitle = "MOD_CREATION_FAILED"
+Resizable = false
+
 [connection signal="pressed" from="Quit" to="." method="BackPressed"]
 [connection signal="item_selected" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/PanelContainer/ScrollContainer/AvailableMods" to="." method="AvailableModSelected"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer/Refresh" to="." method="RefreshAvailableMods"]
@@ -851,5 +859,6 @@ text = "CLOSE"
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/ButtonsLine/Url" to="." method="OpenInfoUrlPressed"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/Button" to="." method="NewModPressed"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Apply" to="." method="ApplyChanges"]
+[connection signal="OnAccepted" from="NewModGUI" to="." method="SetupNewModFolder"]
 [connection signal="Confirmed" from="UnAppliedChangesWarning" to="." method="ConfirmBackWithUnAppliedChanges"]
 [connection signal="pressed" from="ModFullInfo/VBoxContainer/Button" to="." method="CloseModInfoPopup"]

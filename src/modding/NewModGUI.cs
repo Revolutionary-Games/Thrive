@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Globalization;
+using System.IO;
 using Godot;
 using Newtonsoft.Json;
 using Path = System.IO.Path;
@@ -130,26 +132,24 @@ public class NewModGUI : Control
 
     private void Create()
     {
-        // TODO: validation
-        /*if (false)
+        if (!ReadControlsToEditedInfo())
         {
             GUICommon.Instance.PlayButtonPressSound();
-        }*/
+            return;
+        }
 
-        errorDisplay.Text = string.Empty;
+        var serialized = ValidateFormData();
 
-        var finalResult = new FullModDetails(internalName.Text)
+        if (serialized == null)
         {
-            Info = editedInfo,
-            Folder = Path.Combine(Constants.ModLocations[Constants.ModLocations.Count - 1], internalName.Text),
-        };
+            GUICommon.Instance.PlayButtonPressSound();
+            return;
+        }
 
-        var serialized = new StringWriter();
+        ClearError();
 
-        JsonSerializer.Create().Serialize(serialized, finalResult);
-
-        Hide();
-        EmitSignal(nameof(OnAccepted), serialized.ToString());
+        dialog.Hide();
+        EmitSignal(nameof(OnAccepted), serialized);
     }
 
     private void WikiLinkPressed()
@@ -192,5 +192,104 @@ public class NewModGUI : Control
         pckName.Text = editedInfo.PckToLoad;
         modAssembly.Text = editedInfo.ModAssembly;
         assemblyModClass.Text = editedInfo.AssemblyModClass;
+    }
+
+    private bool ReadControlsToEditedInfo()
+    {
+        editedInfo.Name = name.Text;
+        editedInfo.Author = author.Text;
+        editedInfo.Version = version.Text;
+        editedInfo.Description = description.Text;
+        editedInfo.LongDescription = longDescription.Text;
+        editedInfo.Icon = iconFile.Text;
+        editedInfo.License = license.Text;
+        editedInfo.RecommendedThriveVersion = recommendedThrive.Text;
+        editedInfo.MinimumThriveVersion = minimumThrive.Text;
+        editedInfo.MaximumThriveVersion = maximumThrive.Text;
+        editedInfo.PckToLoad = pckName.Text;
+        editedInfo.ModAssembly = modAssembly.Text;
+        editedInfo.AssemblyModClass = assemblyModClass.Text;
+
+        if (string.IsNullOrWhiteSpace(infoUrl.Text))
+        {
+            editedInfo.InfoUrl = null;
+        }
+        else
+        {
+            if (Uri.TryCreate(infoUrl.Text, UriKind.Absolute, out Uri parsed))
+            {
+                editedInfo.InfoUrl = parsed;
+            }
+            else
+            {
+                SetError(TranslationServer.Translate("INVALID_URL_FORMAT"));
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private string ValidateFormData()
+    {
+        if (string.IsNullOrWhiteSpace(internalName.Text))
+        {
+            SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRED"));
+            return null;
+        }
+
+        if (ModLoader.LoadModInfo(internalName.Text, false) != null)
+        {
+            SetError(TranslationServer.Translate("INTERNAL_NAME_IN_USE"));
+            return null;
+        }
+
+        var serialized = new StringWriter();
+
+        var finalResult = new FullModDetails(internalName.Text)
+        {
+            Info = editedInfo,
+            Folder = Path.Combine(Constants.ModLocations[Constants.ModLocations.Count - 1], internalName.Text),
+        };
+
+        try
+        {
+            JsonSerializer.Create().Serialize(serialized, finalResult);
+        }
+        catch (JsonSerializationException e)
+        {
+            SetError(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("MISSING_OR_INVALID_REQUIRED_FIELD"), e.Message));
+            return null;
+        }
+
+        try
+        {
+            ModManager.ValidateModInfo(editedInfo, true);
+        }
+        catch (Exception e)
+        {
+            SetError(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("ADDITIONAL_VALIDATION_FAILED"), e.Message));
+            return null;
+        }
+
+        return serialized.ToString();
+    }
+
+    private void SetError(string message)
+    {
+        if (message == null)
+        {
+            ClearError();
+        }
+
+        errorDisplay.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("FORM_ERROR_MESSAGE"),
+            message);
+    }
+
+    private void ClearError()
+    {
+        errorDisplay.Text = string.Empty;
     }
 }

@@ -109,6 +109,9 @@ public class ModManager : Control
     [Export]
     public NodePath NewModGUIPath;
 
+    [Export]
+    public NodePath ModCreateErrorDialogPath;
+
     private readonly List<FullModDetails> validMods = new();
 
     private List<FullModDetails> notEnabledMods;
@@ -153,11 +156,18 @@ public class ModManager : Control
 
     private NewModGUI newModGUI;
 
+    private ErrorDialog modCreateErrorDialog;
+
     private FullModDetails selectedMod;
 
     [Signal]
     public delegate void OnClosed();
 
+    /// <summary>
+    ///   Loads mod info from a folder
+    /// </summary>
+    /// <param name="folder">Folder to load from</param>
+    /// <returns>The info object if the info was valid, null otherwise</returns>
     public static ModInfo LoadModInfo(string folder)
     {
         var infoFile = Path.Combine(folder, Constants.MOD_INFO_FILE_NAME);
@@ -172,6 +182,21 @@ public class ModManager : Control
 
         var data = file.GetAsText();
 
+        return ParseModInfoString(data, false);
+    }
+
+    /// <summary>
+    ///   Parses a <see cref="ModInfo"/> object from a string
+    /// </summary>
+    /// <param name="data">The string to parse</param>
+    /// <param name="throwOnError">If true exceptions are thrown instead of returning null</param>
+    /// <returns>The parsed info</returns>
+    /// <exception cref="ArgumentException">
+    ///   If <see cref="throwOnError"/> is specified this is thrown if extra validation fails
+    /// </exception>
+    /// <exception cref="JsonException">Thrown if JSON parsing or JSON validation fails</exception>
+    public static ModInfo ParseModInfoString(string data, bool throwOnError)
+    {
         ModInfo info;
 
         try
@@ -180,16 +205,39 @@ public class ModManager : Control
         }
         catch (JsonException e)
         {
+            if (throwOnError)
+                throw;
+
             GD.PrintErr("Can't read mod info due to JSON exception: ", e);
             return null;
         }
 
+        if (!ValidateModInfo(info, throwOnError))
+            return null;
+
+        return info;
+    }
+
+    /// <summary>
+    ///   Checks that ModInfo has no invalid data
+    /// </summary>
+    /// <param name="info">The mod info to validate</param>
+    /// <param name="throwOnError">If true throws an error</param>
+    /// <returns>True if info is valid</returns>
+    /// <exception cref="ArgumentException">On invalid info if <see cref="throwOnError"/> is true</exception>
+    public static bool ValidateModInfo(ModInfo info, bool throwOnError)
+    {
         if (!string.IsNullOrEmpty(info?.Icon))
         {
             if (!IsAllowedModPath(info.Icon))
             {
+                if (throwOnError)
+                {
+                    throw new ArgumentException(TranslationServer.Translate("INVALID_ICON_PATH"));
+                }
+
                 GD.PrintErr("Invalid icon specified for mod: ", info.Icon);
-                return null;
+                return false;
             }
         }
 
@@ -197,18 +245,28 @@ public class ModManager : Control
         {
             if (info.InfoUrl.Scheme != "http" && info.InfoUrl.Scheme != "https")
             {
+                if (throwOnError)
+                {
+                    throw new ArgumentException(TranslationServer.Translate("INVALID_URL_SCHEME"));
+                }
+
                 GD.PrintErr("Disallowed URI scheme in: ", info.InfoUrl);
-                return null;
+                return false;
             }
         }
 
         if (info?.ModAssembly != null && info.AssemblyModClass == null)
         {
+            if (throwOnError)
+            {
+                throw new ArgumentException(TranslationServer.Translate("ASSEMBLY_CLASS_REQUIRED"));
+            }
+
             GD.PrintErr("AssemblyModClass must be set if ModAssembly is set");
-            return null;
+            return false;
         }
 
-        return info;
+        return true;
     }
 
     public override void _Ready()
@@ -257,6 +315,8 @@ public class ModManager : Control
         // This is hidden in the editor to make selecting UI elements there easier
         newModGUI.Visible = true;
 
+        modCreateErrorDialog = GetNode<ErrorDialog>(ModCreateErrorDialogPath);
+
         UpdateSelectedModInfo();
     }
 
@@ -304,6 +364,7 @@ public class ModManager : Control
         validMods.AddRange(LoadValidMods());
 
         notEnabledMods = validMods.Where(m => !IsModEnabled(m)).Concat(notEnabledMods.Where(validMods.Contains))
+            .Distinct()
             .ToList();
 
         foreach (var mod in notEnabledMods)
@@ -694,6 +755,61 @@ public class ModManager : Control
     private void NewModPressed()
     {
         newModGUI.Open();
+    }
+
+    private void SetupNewModFolder(string data)
+    {
+        FullModDetails parsedData;
+
+        try
+        {
+            parsedData = JsonSerializer.Create()
+                .Deserialize<FullModDetails>(new JsonTextReader(new StringReader(data)));
+
+            if (parsedData == null)
+                throw new Exception("deserialized value is null");
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Can't create mod due to parse failure on data: ", e);
+            return;
+        }
+
+        var serialized = new StringWriter();
+
+        JsonSerializer.Create(new JsonSerializerSettings
+        {
+            Formatting = Formatting.Indented,
+        }).Serialize(new JsonTextWriter(serialized) { Indentation = 4 }, parsedData.Info);
+        var modInfoText = serialized.ToString();
+
+        GD.Print("Creating new mod at: ", parsedData.Folder);
+
+        using var folder = new Directory();
+        if (folder.MakeDirRecursive(parsedData.Folder) != Error.Ok)
+        {
+            modCreateErrorDialog.ErrorMessage = TranslationServer.Translate("ERROR_CREATING_FOLDER");
+            modCreateErrorDialog.ExceptionInfo = null;
+            modCreateErrorDialog.PopupCenteredShrink();
+            return;
+        }
+
+        using var file = new File();
+        if (file.Open(Path.Combine(parsedData.Folder, Constants.MOD_INFO_FILE_NAME), File.ModeFlags.Write) != Error.Ok)
+        {
+            modCreateErrorDialog.ErrorMessage = TranslationServer.Translate("ERROR_CREATING_INFO_FILE");
+            modCreateErrorDialog.ExceptionInfo = null;
+            modCreateErrorDialog.PopupCenteredShrink();
+            return;
+        }
+
+        file.StoreString(modInfoText);
+        file.Close();
+
+        GD.Print("Mod folder created, trying to open: ", parsedData.Folder);
+        FolderHelpers.OpenFolder(parsedData.Folder);
+
+        RefreshAvailableMods();
     }
 
     private void BackPressed()
