@@ -60,11 +60,13 @@ public class ModInfo
     /// <summary>
     ///   This is shown as the version of Thrive this mod version is recommended to be used with
     /// </summary>
+    [JsonRequired]
     public string RecommendedThriveVersion { get; set; }
 
     /// <summary>
     ///   The mod will refuse to be loaded if current game version is lower than this version
     /// </summary>
+    [JsonRequired]
     public string MinimumThriveVersion { get; set; }
 
     /// <summary>

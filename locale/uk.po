@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 20:36+0200\n"
+"POT-Creation-Date: 2021-11-19 13:17+0200\n"
 "PO-Revision-Date: 2021-10-28 07:11+0000\n"
 "Last-Translator: Ivan Kurta <ivkurta1@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/"
@@ -1232,6 +1232,7 @@ msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/modding/ModManager.tscn:835
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr ""
@@ -1281,7 +1282,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:59 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
@@ -1307,19 +1308,19 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "Повернутись до меню"
 
-#: ../src/general/OptionsMenu.cs:839
+#: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:871
+#: ../src/general/OptionsMenu.cs:870
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:875
+#: ../src/general/OptionsMenu.cs:874
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:879
+#: ../src/general/OptionsMenu.cs:878
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
@@ -2986,84 +2987,152 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:263
+#: ../src/modding/ModManager.cs:356
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:90
+#: ../src/modding/ModManager.tscn:109
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:149
 msgid "OPEN_FOLDER"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:148
-msgid "LEFT_ARROW"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:161
+#: ../src/modding/ModManager.tscn:167
 msgid "RIGHT_ARROW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:173
+#: ../src/modding/ModManager.tscn:180
+msgid "LEFT_ARROW"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:192
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Увімкнути редактор"
 
-#: ../src/modding/ModManager.tscn:203
+#: ../src/modding/ModManager.tscn:222
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:224
+#: ../src/modding/ModManager.tscn:243
 msgid "SELECTED_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:258
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:553
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:283
+#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:575
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:309
+#: ../src/modding/ModManager.tscn:333
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:359
+msgid "MINIMUM_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:597
 msgid "MOD_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:340
+#: ../src/modding/ModManager.tscn:416
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:347
+#: ../src/modding/ModManager.tscn:423
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:366
+#: ../src/modding/ModManager.tscn:447
+msgid "BROWSE_WORKSHOP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:454
+#, fuzzy
+msgid "UPLOAD"
+msgstr "Завантаження"
+
+#: ../src/modding/ModManager.tscn:461
+msgid "NEW"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:474
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:374
+#: ../src/modding/ModManager.tscn:482
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:378
-#, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "Увімкнути редактор"
+#: ../src/modding/ModManager.tscn:489
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:379
+#: ../src/modding/ModManager.tscn:495
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:380
+#: ../src/modding/ModManager.tscn:496
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Відмінити й продовжити"
+
+#: ../src/modding/ModManager.tscn:502
+msgid "FULL_MOD_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:531
+msgid "MOD_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:619
+msgid "MOD_EXTENDED_DESCRIPTION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:641
+msgid "MOD_ICON_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:663
+msgid "MOD_INFO_URL"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:685
+msgid "MOD_LICENSE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:707
+msgid "MOD_RECOMMENDED_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:729
+msgid "MOD_MINIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:751
+msgid "MOD_MAXIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:773
+msgid "MOD_PCK_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:795
+msgid "MOD_ASSEMBLY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:817
+msgid "MOD_ASSEMBLY_CLASS"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -3409,3 +3478,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr "Увімкнути редактор"

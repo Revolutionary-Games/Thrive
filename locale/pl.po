@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 20:36+0200\n"
+"POT-Creation-Date: 2021-11-19 13:17+0200\n"
 "PO-Revision-Date: 2021-07-21 12:42+0000\n"
 "Last-Translator: Filip Szot <filip.szot08@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -1406,6 +1406,7 @@ msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/modding/ModManager.tscn:835
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Zamknij"
@@ -1455,7 +1456,7 @@ msgstr "Kreatywny Edytor Mikroba"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:59 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Cofnij"
@@ -1483,19 +1484,19 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "Ostrzeżenie Tryb GLES2"
 
-#: ../src/general/OptionsMenu.cs:839
+#: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Domyślne urządzenie wyjściowe"
 
-#: ../src/general/OptionsMenu.cs:871
+#: ../src/general/OptionsMenu.cs:870
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:875
+#: ../src/general/OptionsMenu.cs:874
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:879
+#: ../src/general/OptionsMenu.cs:878
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Pomóż W Tłumaczeniu Gry"
@@ -3418,90 +3419,108 @@ msgstr ""
 "kontynuować grę po zamknięciu tego ekranu lub rozpocząć nową grę w nowym "
 "świecie."
 
-#: ../src/modding/ModManager.cs:263
+#: ../src/modding/ModManager.cs:356
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Wybrane:"
 
-#: ../src/modding/ModManager.tscn:90
+#: ../src/modding/ModManager.tscn:109
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Odśwież"
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:149
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
-#: ../src/modding/ModManager.tscn:148
-#, fuzzy
-msgid "LEFT_ARROW"
-msgstr "Lewy myszy"
-
-#: ../src/modding/ModManager.tscn:161
+#: ../src/modding/ModManager.tscn:167
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Prawy myszy"
 
-#: ../src/modding/ModManager.tscn:173
+#: ../src/modding/ModManager.tscn:180
+#, fuzzy
+msgid "LEFT_ARROW"
+msgstr "Lewy myszy"
+
+#: ../src/modding/ModManager.tscn:192
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Włącz edytor"
 
-#: ../src/modding/ModManager.tscn:203
+#: ../src/modding/ModManager.tscn:222
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:224
+#: ../src/modding/ModManager.tscn:243
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Wybrane:"
 
-#: ../src/modding/ModManager.tscn:258
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:553
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:283
+#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:575
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Wersja:"
 
-#: ../src/modding/ModManager.tscn:309
+#: ../src/modding/ModManager.tscn:333
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:359
+#, fuzzy
+msgid "MINIMUM_VERSION"
+msgstr "Wersja:"
+
+#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:597
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Opis:"
 
-#: ../src/modding/ModManager.tscn:340
+#: ../src/modding/ModManager.tscn:416
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:347
+#: ../src/modding/ModManager.tscn:423
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Otwórz URL"
 
-#: ../src/modding/ModManager.tscn:366
+#: ../src/modding/ModManager.tscn:447
+msgid "BROWSE_WORKSHOP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:454
+#, fuzzy
+msgid "UPLOAD"
+msgstr "Wczytaj"
+
+#: ../src/modding/ModManager.tscn:461
+msgid "NEW"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:474
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Wybrany zapis jest niekompatybilny"
 
-#: ../src/modding/ModManager.tscn:374
+#: ../src/modding/ModManager.tscn:482
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:378
+#: ../src/modding/ModManager.tscn:489
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
-"Najbardziej podstawowa forma membrany, słabo chroni przed uszkodzeniami. "
-"Potrzebuję też więcej energii żeby się nie zdeformować. Przewagą jest to "
-"że pozwala komórce na szybkie poruszanie się i absorbcję składników "
-"odżywczych."
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr "Wczytać nieważny zapis?"
 
-#: ../src/modding/ModManager.tscn:379
+#: ../src/modding/ModManager.tscn:495
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3510,10 +3529,60 @@ msgstr ""
 "że pozwala komórce na szybkie poruszanie się i absorbcję składników "
 "odżywczych."
 
-#: ../src/modding/ModManager.tscn:380
+#: ../src/modding/ModManager.tscn:496
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Odrzuć i kontynuuj"
+
+#: ../src/modding/ModManager.tscn:502
+msgid "FULL_MOD_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:531
+#, fuzzy
+msgid "MOD_NAME"
+msgstr "Nazwa:"
+
+#: ../src/modding/ModManager.tscn:619
+#, fuzzy
+msgid "MOD_EXTENDED_DESCRIPTION"
+msgstr "Opis:"
+
+#: ../src/modding/ModManager.tscn:641
+msgid "MOD_ICON_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:663
+msgid "MOD_INFO_URL"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:685
+msgid "MOD_LICENSE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:707
+msgid "MOD_RECOMMENDED_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:729
+msgid "MOD_MINIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:751
+msgid "MOD_MAXIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:773
+msgid "MOD_PCK_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:795
+msgid "MOD_ASSEMBLY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:817
+msgid "MOD_ASSEMBLY_CLASS"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -3905,6 +3974,14 @@ msgstr ""
 "\n"
 "Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć "
 "klawisz 'odwiąż wszystkie'."
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr ""
+#~ "Najbardziej podstawowa forma membrany, słabo chroni przed "
+#~ "uszkodzeniami. Potrzebuję też więcej energii żeby się nie zdeformować. "
+#~ "Przewagą jest to że pozwala komórce na szybkie poruszanie się i "
+#~ "absorbcję składników odżywczych."
 
 #~ msgid "Cancel"
 #~ msgstr "Anuluj"

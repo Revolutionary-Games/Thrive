@@ -47,6 +47,12 @@ public class ModManager : Control
     public NodePath SelectedModVersionPath;
 
     [Export]
+    public NodePath SelectedModRecommendedThriveVersionPath;
+
+    [Export]
+    public NodePath SelectedModMinimumThriveVersionPath;
+
+    [Export]
     public NodePath SelectedModDescriptionPath;
 
     [Export]
@@ -54,6 +60,51 @@ public class ModManager : Control
 
     [Export]
     public NodePath UnAppliedChangesWarningPath;
+
+    [Export]
+    public NodePath ModFullInfoPopupPath;
+
+    [Export]
+    public NodePath FullInfoNamePath;
+
+    [Export]
+    public NodePath FullInfoAuthorPath;
+
+    [Export]
+    public NodePath FullInfoVersionPath;
+
+    [Export]
+    public NodePath FullInfoDescriptionPath;
+
+    [Export]
+    public NodePath FullInfoLongDescriptionPath;
+
+    [Export]
+    public NodePath FullInfoIconFilePath;
+
+    [Export]
+    public NodePath FullInfoInfoUrlPath;
+
+    [Export]
+    public NodePath FullInfoLicensePath;
+
+    [Export]
+    public NodePath FullInfoRecommendedThrivePath;
+
+    [Export]
+    public NodePath FullInfoMinimumThrivePath;
+
+    [Export]
+    public NodePath FullInfoMaximumThrivePath;
+
+    [Export]
+    public NodePath FullInfoPckNamePath;
+
+    [Export]
+    public NodePath FullInfoModAssemblyPath;
+
+    [Export]
+    public NodePath FullInfoAssemblyModClassPath;
 
     private readonly List<FullModDetails> validMods = new();
 
@@ -73,11 +124,29 @@ public class ModManager : Control
     private TextureRect selectedModIcon;
     private Label selectedModAuthor;
     private Label selectedModVersion;
+    private Label selectedModRecommendedThriveVersion;
+    private Label selectedModMinimumThriveVersion;
     private Label selectedModDescription;
 
     private Button applyChangesButton;
 
     private CustomDialog unAppliedChangesWarning;
+
+    private CustomDialog modFullInfoPopup;
+    private Label fullInfoName;
+    private Label fullInfoAuthor;
+    private Label fullInfoVersion;
+    private Label fullInfoDescription;
+    private Label fullInfoLongDescription;
+    private Label fullInfoIconFile;
+    private Label fullInfoInfoUrl;
+    private Label fullInfoLicense;
+    private Label fullInfoRecommendedThrive;
+    private Label fullInfoMinimumThrive;
+    private Label fullInfoMaximumThrive;
+    private Label fullInfoPckName;
+    private Label fullInfoModAssembly;
+    private Label fullInfoAssemblyModClass;
 
     private FullModDetails selectedMod;
 
@@ -154,11 +223,29 @@ public class ModManager : Control
         selectedModIcon = GetNode<TextureRect>(SelectedModIconPath);
         selectedModAuthor = GetNode<Label>(SelectedModAuthorPath);
         selectedModVersion = GetNode<Label>(SelectedModVersionPath);
+        selectedModRecommendedThriveVersion = GetNode<Label>(SelectedModRecommendedThriveVersionPath);
+        selectedModMinimumThriveVersion = GetNode<Label>(SelectedModMinimumThriveVersionPath);
         selectedModDescription = GetNode<Label>(SelectedModDescriptionPath);
 
         applyChangesButton = GetNode<Button>(ApplyChangesButtonPath);
 
         unAppliedChangesWarning = GetNode<CustomDialog>(UnAppliedChangesWarningPath);
+
+        modFullInfoPopup = GetNode<CustomDialog>(ModFullInfoPopupPath);
+        fullInfoName = GetNode<Label>(FullInfoNamePath);
+        fullInfoAuthor = GetNode<Label>(FullInfoAuthorPath);
+        fullInfoVersion = GetNode<Label>(FullInfoVersionPath);
+        fullInfoDescription = GetNode<Label>(FullInfoDescriptionPath);
+        fullInfoLongDescription = GetNode<Label>(FullInfoLongDescriptionPath);
+        fullInfoIconFile = GetNode<Label>(FullInfoIconFilePath);
+        fullInfoInfoUrl = GetNode<Label>(FullInfoInfoUrlPath);
+        fullInfoLicense = GetNode<Label>(FullInfoLicensePath);
+        fullInfoRecommendedThrive = GetNode<Label>(FullInfoRecommendedThrivePath);
+        fullInfoMinimumThrive = GetNode<Label>(FullInfoMinimumThrivePath);
+        fullInfoMaximumThrive = GetNode<Label>(FullInfoMaximumThrivePath);
+        fullInfoPckName = GetNode<Label>(FullInfoPckNamePath);
+        fullInfoModAssembly = GetNode<Label>(FullInfoModAssemblyPath);
+        fullInfoAssemblyModClass = GetNode<Label>(FullInfoAssemblyModClassPath);
 
         UpdateSelectedModInfo();
     }
@@ -169,6 +256,7 @@ public class ModManager : Control
     public void OnOpened()
     {
         enabledMods = new List<FullModDetails>();
+        notEnabledMods = new List<FullModDetails>();
 
         RefreshAvailableMods();
         RefreshEnabledMods();
@@ -205,7 +293,8 @@ public class ModManager : Control
         validMods.Clear();
         validMods.AddRange(LoadValidMods());
 
-        notEnabledMods = validMods.Where(m => !IsModEnabled(m)).ToList();
+        notEnabledMods = validMods.Where(m => !IsModEnabled(m)).Concat(notEnabledMods.Where(validMods.Contains))
+            .ToList();
 
         foreach (var mod in notEnabledMods)
         {
@@ -244,6 +333,8 @@ public class ModManager : Control
             selectedModIcon.Texture = LoadModIcon(selectedMod);
             selectedModAuthor.Text = selectedMod.Info.Author;
             selectedModVersion.Text = selectedMod.Info.Version;
+            selectedModRecommendedThriveVersion.Text = selectedMod.Info.RecommendedThriveVersion;
+            selectedModMinimumThriveVersion.Text = selectedMod.Info.MinimumThriveVersion;
             selectedModDescription.Text = selectedMod.Info.Description;
             openModUrlButton.Disabled = selectedMod.Info.InfoUrl == null;
 
@@ -266,6 +357,8 @@ public class ModManager : Control
             selectedModIcon.Texture = null;
             selectedModAuthor.Text = string.Empty;
             selectedModVersion.Text = string.Empty;
+            selectedModRecommendedThriveVersion.Text = string.Empty;
+            selectedModMinimumThriveVersion.Text = string.Empty;
             selectedModDescription.Text = string.Empty;
             openModUrlButton.Disabled = true;
             openModInfoButton.Disabled = true;
@@ -445,6 +538,29 @@ public class ModManager : Control
         OnModChangedLists();
     }
 
+    private void DisableAllPressed()
+    {
+        if (enabledModsContainer.IsAnythingSelected())
+        {
+            selectedMod = null;
+            UpdateSelectedModInfo();
+        }
+
+        while (enabledModsContainer.GetItemCount() > 0)
+        {
+            var icon = enabledModsContainer.GetItemIcon(0);
+            var text = enabledModsContainer.GetItemText(0);
+            enabledModsContainer.RemoveItem(0);
+
+            availableModsContainer.AddItem(text, icon);
+        }
+
+        notEnabledMods.AddRange(enabledMods);
+        enabledMods.Clear();
+
+        UpdateOverallModButtons();
+    }
+
     private void OnModChangedLists()
     {
         selectedMod = null;
@@ -452,6 +568,11 @@ public class ModManager : Control
         enabledModsContainer.UnselectAll();
         availableModsContainer.UnselectAll();
 
+        UpdateOverallModButtons();
+    }
+
+    private void UpdateOverallModButtons()
+    {
         applyChangesButton.Disabled =
             Settings.Instance.EnabledMods.Value.Equals(enabledMods.Select(m => m.InternalName));
 
@@ -525,6 +646,39 @@ public class ModManager : Control
 
         // For now just detect if a C# assembly is defined
         return !string.IsNullOrEmpty(info.ModAssembly);
+    }
+
+    private void OpenModInfoPopup()
+    {
+        var info = selectedMod?.Info;
+        if (info == null)
+        {
+            GD.PrintErr("No mod is selected");
+            return;
+        }
+
+        fullInfoName.Text = info.Name;
+        fullInfoAuthor.Text = info.Author;
+        fullInfoVersion.Text = info.Version;
+        fullInfoDescription.Text = info.Description;
+        fullInfoLongDescription.Text = info.LongDescription;
+        fullInfoIconFile.Text = info.Icon;
+        fullInfoInfoUrl.Text = info.InfoUrl == null ? string.Empty : info.InfoUrl.ToString();
+        fullInfoLicense.Text = info.License;
+        fullInfoRecommendedThrive.Text = info.RecommendedThriveVersion;
+        fullInfoMinimumThrive.Text = info.MinimumThriveVersion;
+        fullInfoMaximumThrive.Text = info.MaximumThriveVersion;
+        fullInfoPckName.Text = info.PckToLoad;
+        fullInfoModAssembly.Text = info.ModAssembly;
+        fullInfoAssemblyModClass.Text = info.AssemblyModClass;
+
+        modFullInfoPopup.PopupCenteredMinsize();
+    }
+
+    private void CloseModInfoPopup()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        modFullInfoPopup.Hide();
     }
 
     private void BackPressed()

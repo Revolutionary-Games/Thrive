@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=5]
 
 [node name="ModManager" type="Control"]
 anchor_right = 1.0
@@ -22,10 +24,27 @@ DisableAllModsButtonPath = NodePath("PanelContainer/CenterContainer/VBoxContaine
 SelectedModNamePath = NodePath("PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/NameLine/Label2")
 SelectedModIconPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/NameLine/Icon")
 SelectedModAuthorPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/AuthorLine/Label2")
-SelectedModVersionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/Label2")
+SelectedModVersionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModVersion/ModVersion")
+SelectedModRecommendedThriveVersionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModThriveVersion/Recommended")
+SelectedModMinimumThriveVersionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModMinimumThrive/Minimum")
 SelectedModDescriptionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/DescriptionLine/HBoxContainer/Label2")
 ApplyChangesButtonPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Apply")
 UnAppliedChangesWarningPath = NodePath("UnAppliedChangesWarning")
+ModFullInfoPopupPath = NodePath("ModFullInfo")
+FullInfoNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/Name")
+FullInfoAuthorPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/Author")
+FullInfoVersionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/Version")
+FullInfoDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/Description")
+FullInfoLongDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/LongDescription")
+FullInfoIconFilePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/IconFile")
+FullInfoInfoUrlPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/InfoURL")
+FullInfoLicensePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/License")
+FullInfoRecommendedThrivePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/RecommendedThrive")
+FullInfoMinimumThrivePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/MinimumThrive")
+FullInfoMaximumThrivePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/MaximumThrive")
+FullInfoPckNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/PckName")
+FullInfoModAssemblyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModAssembly")
+FullInfoAssemblyModClassPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/AssemblyModClass")
 
 [node name="Quit" type="Button" parent="."]
 anchor_top = 1.0
@@ -66,9 +85,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
 margin_left = 120.0
-margin_top = 32.0
+margin_top = 11.0
 margin_right = 1128.0
-margin_bottom = 619.0
+margin_bottom = 639.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -141,11 +160,11 @@ margin_top = 118.0
 margin_right = 146.0
 margin_bottom = 201.0
 
-[node name="Left" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+[node name="Right" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
 margin_right = 146.0
 margin_bottom = 35.0
 disabled = true
-text = "LEFT_ARROW"
+text = "RIGHT_ARROW"
 
 [node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
 margin_top = 39.0
@@ -153,12 +172,12 @@ margin_right = 146.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Right" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+[node name="Left" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
 margin_top = 48.0
 margin_right = 146.0
 margin_bottom = 83.0
 disabled = true
-text = "RIGHT_ARROW"
+text = "LEFT_ARROW"
 
 [node name="Right" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart"]
 margin_left = 581.0
@@ -277,22 +296,79 @@ margin_top = 65.0
 margin_right = 1008.0
 margin_bottom = 90.0
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine"]
+[node name="ModVersion" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine"]
+margin_right = 310.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModVersion"]
 margin_right = 138.0
 margin_bottom = 25.0
 text = "MOD_VERSION"
 
-[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine"]
+[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModVersion"]
 margin_left = 142.0
-margin_right = 978.0
+margin_right = 280.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine"]
-margin_left = 982.0
-margin_right = 1008.0
+[node name="ModVersion" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModVersion"]
+margin_left = 284.0
+margin_right = 310.0
 margin_bottom = 25.0
 text = "1.0"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="ModThriveVersion" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine"]
+margin_left = 314.0
+margin_right = 694.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModThriveVersion"]
+margin_right = 323.0
+margin_bottom = 25.0
+text = "RECOMMENDED_THRIVE_VERSION"
+
+[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModThriveVersion"]
+margin_left = 327.0
+margin_right = 327.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="Recommended" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModThriveVersion"]
+margin_left = 331.0
+margin_right = 380.0
+margin_bottom = 25.0
+text = "0.5.6"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="ModMinimumThrive" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine"]
+margin_left = 698.0
+margin_right = 1008.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModMinimumThrive"]
+margin_right = 182.0
+margin_bottom = 25.0
+text = "MINIMUM_VERSION"
+
+[node name="Control2" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModMinimumThrive"]
+margin_left = 186.0
+margin_right = 257.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="Minimum" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/VersionLine/ModMinimumThrive"]
+margin_left = 261.0
+margin_right = 310.0
+margin_bottom = 25.0
+text = "0.5.6"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
@@ -347,15 +423,47 @@ disabled = true
 text = "OPEN_MOD_URL"
 
 [node name="Spacer2" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer"]
+visible = false
 margin_top = 533.0
 margin_right = 1008.0
 margin_bottom = 548.0
 rect_min_size = Vector2( 0, 15 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
-margin_top = 552.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 533.0
 margin_right = 1008.0
-margin_bottom = 587.0
+margin_bottom = 568.0
+size_flags_horizontal = 3
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 643.0
+margin_right = 856.0
+margin_bottom = 35.0
+disabled = true
+text = "BROWSE_WORKSHOP"
+
+[node name="Button2" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 860.0
+margin_right = 949.0
+margin_bottom = 35.0
+disabled = true
+text = "UPLOAD"
+
+[node name="Button" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 953.0
+margin_right = 1008.0
+margin_bottom = 35.0
+disabled = true
+text = "NEW"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 572.0
+margin_right = 1008.0
+margin_bottom = 607.0
 alignment = 1
 
 [node name="LoadAll" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
@@ -373,19 +481,369 @@ size_flags_horizontal = 0
 disabled = true
 text = "APPLY_CHANGES"
 
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+margin_top = 611.0
+margin_right = 1008.0
+margin_bottom = 628.0
+custom_fonts/font = ExtResource( 5 )
+text = "MOD_LOAD_UNLOAD_CAVEATS"
+
 [node name="UnAppliedChangesWarning" parent="." instance=ExtResource( 3 )]
-margin_right = 185.0
-WindowTitle = "UNAPPLIED_MOD_CHANGES"
+margin_top = 28.0
+margin_right = 308.0
+margin_bottom = 171.0
 DialogText = "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 ConfirmText = "DISCARD_CHANGES"
+
+[node name="ModFullInfo" parent="." instance=ExtResource( 4 )]
+margin_top = 28.0
+margin_right = 330.0
+margin_bottom = 297.0
+WindowTitle = "FULL_MOD_INFO"
+Resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 565.0
+margin_bottom = 404.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ModFullInfo/VBoxContainer"]
+margin_right = 550.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 550, 350 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer"]
+margin_right = 550.0
+margin_bottom = 925.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_right = 544.0
+margin_bottom = 25.0
+text = "MOD_NAME"
+
+[node name="Name" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 544.0
+margin_bottom = 54.0
+text = "Name goes here..."
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 58.0
+margin_right = 544.0
+margin_bottom = 63.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label3" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 67.0
+margin_right = 544.0
+margin_bottom = 92.0
+text = "MOD_AUTHOR"
+
+[node name="Author" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 96.0
+margin_right = 544.0
+margin_bottom = 121.0
+text = "Author goes here..."
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer2" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 125.0
+margin_right = 544.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label4" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 134.0
+margin_right = 544.0
+margin_bottom = 159.0
+text = "MOD_VERSION"
+
+[node name="Version" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 163.0
+margin_right = 544.0
+margin_bottom = 188.0
+text = "1.0"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer3" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 192.0
+margin_right = 544.0
+margin_bottom = 197.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label5" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 201.0
+margin_right = 544.0
+margin_bottom = 226.0
+text = "MOD_DESCRIPTION"
+
+[node name="Description" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 230.0
+margin_right = 544.0
+margin_bottom = 255.0
+text = "Mod description"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer4" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 259.0
+margin_right = 544.0
+margin_bottom = 264.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label6" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 268.0
+margin_right = 544.0
+margin_bottom = 293.0
+text = "MOD_EXTENDED_DESCRIPTION"
+
+[node name="LongDescription" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 297.0
+margin_right = 544.0
+margin_bottom = 322.0
+text = "Longer mod description"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer5" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 326.0
+margin_right = 544.0
+margin_bottom = 331.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label7" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 335.0
+margin_right = 544.0
+margin_bottom = 360.0
+text = "MOD_ICON_FILE"
+
+[node name="IconFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 364.0
+margin_right = 544.0
+margin_bottom = 389.0
+text = "mod_icon.png"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer6" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 393.0
+margin_right = 544.0
+margin_bottom = 398.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label8" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 402.0
+margin_right = 544.0
+margin_bottom = 427.0
+text = "MOD_INFO_URL"
+
+[node name="InfoURL" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 431.0
+margin_right = 544.0
+margin_bottom = 456.0
+text = "some URL"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer7" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 460.0
+margin_right = 544.0
+margin_bottom = 465.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label9" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 469.0
+margin_right = 544.0
+margin_bottom = 494.0
+text = "MOD_LICENSE"
+
+[node name="License" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 498.0
+margin_right = 544.0
+margin_bottom = 523.0
+text = "MIT"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer8" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 527.0
+margin_right = 544.0
+margin_bottom = 532.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label10" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 536.0
+margin_right = 544.0
+margin_bottom = 561.0
+text = "MOD_RECOMMENDED_THRIVE"
+
+[node name="RecommendedThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 565.0
+margin_right = 544.0
+margin_bottom = 590.0
+text = "0.5.6"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer9" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 594.0
+margin_right = 544.0
+margin_bottom = 599.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label11" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 603.0
+margin_right = 544.0
+margin_bottom = 628.0
+text = "MOD_MINIMUM_THRIVE"
+
+[node name="MinimumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 632.0
+margin_right = 544.0
+margin_bottom = 657.0
+text = "0.5.6-alpha"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer10" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 661.0
+margin_right = 544.0
+margin_bottom = 666.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label12" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 670.0
+margin_right = 544.0
+margin_bottom = 695.0
+text = "MOD_MAXIMUM_THRIVE"
+
+[node name="MaximumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 699.0
+margin_right = 544.0
+margin_bottom = 724.0
+text = "0.5.6"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer11" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 728.0
+margin_right = 544.0
+margin_bottom = 733.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label13" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 737.0
+margin_right = 544.0
+margin_bottom = 762.0
+text = "MOD_PCK_NAME"
+
+[node name="PckName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 766.0
+margin_right = 544.0
+margin_bottom = 791.0
+text = "ModName.pck"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer12" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 795.0
+margin_right = 544.0
+margin_bottom = 800.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label14" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 804.0
+margin_right = 544.0
+margin_bottom = 829.0
+text = "MOD_ASSEMBLY"
+
+[node name="ModAssembly" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 833.0
+margin_right = 544.0
+margin_bottom = 858.0
+text = "Mod.dll"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer13" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 862.0
+margin_right = 544.0
+margin_bottom = 867.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 871.0
+margin_right = 544.0
+margin_bottom = 896.0
+text = "MOD_ASSEMBLY_CLASS"
+
+[node name="AssemblyModClass" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 900.0
+margin_right = 544.0
+margin_bottom = 925.0
+text = "ModClass"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Button" type="Button" parent="ModFullInfo/VBoxContainer"]
+margin_left = 237.0
+margin_top = 354.0
+margin_right = 312.0
+margin_bottom = 389.0
+size_flags_horizontal = 4
+text = "CLOSE"
 
 [connection signal="pressed" from="Quit" to="." method="BackPressed"]
 [connection signal="item_selected" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/PanelContainer/ScrollContainer/AvailableMods" to="." method="AvailableModSelected"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer/Refresh" to="." method="RefreshAvailableMods"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer/Browse" to="." method="OpenModsFolder"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Left" to="." method="DisableModPressed"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Right" to="." method="EnableModPressed"]
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Left" to="." method="DisableModPressed"]
 [connection signal="item_selected" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/PanelContainer/ScrollContainer/ActiveMods" to="." method="EnabledModSelected"]
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/DisableAll" to="." method="DisableAllPressed"]
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/ButtonsLine/MoreInfo" to="." method="OpenModInfoPopup"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/CurrentlySelected/ButtonsLine/Url" to="." method="OpenInfoUrlPressed"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Apply" to="." method="ApplyChanges"]
 [connection signal="Confirmed" from="UnAppliedChangesWarning" to="." method="ConfirmBackWithUnAppliedChanges"]
+[connection signal="pressed" from="ModFullInfo/VBoxContainer/Button" to="." method="CloseModInfoPopup"]

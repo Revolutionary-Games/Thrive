@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-18 20:36+0200\n"
+"POT-Creation-Date: 2021-11-19 13:17+0200\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -1402,6 +1402,7 @@ msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/modding/ModManager.tscn:835
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Sluit"
@@ -1451,7 +1452,7 @@ msgstr "Microbe Vrij Bouwen in de \"Editor\""
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:40 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:59 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Terug"
@@ -1479,19 +1480,19 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
 
-#: ../src/general/OptionsMenu.cs:839
+#: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:871
+#: ../src/general/OptionsMenu.cs:870
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:875
+#: ../src/general/OptionsMenu.cs:874
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:879
+#: ../src/general/OptionsMenu.cs:878
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Help met het spel te vertalen"
@@ -3493,89 +3494,107 @@ msgstr ""
 "nadat dit scherm is gesloten als je dat wenst, of een nieuw spel beginnen "
 "in een nieuwe wereld."
 
-#: ../src/modding/ModManager.cs:263
+#: ../src/modding/ModManager.cs:356
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Geselecteerd:"
 
-#: ../src/modding/ModManager.tscn:90
+#: ../src/modding/ModManager.tscn:109
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:123 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:142 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Vernieuwen"
 
-#: ../src/modding/ModManager.tscn:130
+#: ../src/modding/ModManager.tscn:149
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Open Logs Folder"
 
-#: ../src/modding/ModManager.tscn:148
-#, fuzzy
-msgid "LEFT_ARROW"
-msgstr "Linker muis"
-
-#: ../src/modding/ModManager.tscn:161
+#: ../src/modding/ModManager.tscn:167
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Rechter muis"
 
-#: ../src/modding/ModManager.tscn:173
+#: ../src/modding/ModManager.tscn:180
+#, fuzzy
+msgid "LEFT_ARROW"
+msgstr "Linker muis"
+
+#: ../src/modding/ModManager.tscn:192
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Schakel de editor in"
 
-#: ../src/modding/ModManager.tscn:203
+#: ../src/modding/ModManager.tscn:222
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:224
+#: ../src/modding/ModManager.tscn:243
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Geselecteerd:"
 
-#: ../src/modding/ModManager.tscn:258
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:553
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:283
+#: ../src/modding/ModManager.tscn:307 ../src/modding/ModManager.tscn:575
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versie:"
 
-#: ../src/modding/ModManager.tscn:309
+#: ../src/modding/ModManager.tscn:333
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:359
+#, fuzzy
+msgid "MINIMUM_VERSION"
+msgstr "Versie:"
+
+#: ../src/modding/ModManager.tscn:385 ../src/modding/ModManager.tscn:597
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Omschrijving:"
 
-#: ../src/modding/ModManager.tscn:340
+#: ../src/modding/ModManager.tscn:416
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:347
+#: ../src/modding/ModManager.tscn:423
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:366
+#: ../src/modding/ModManager.tscn:447
+msgid "BROWSE_WORKSHOP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:454
+#, fuzzy
+msgid "UPLOAD"
+msgstr "Laden"
+
+#: ../src/modding/ModManager.tscn:461
+msgid "NEW"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:474
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Geselecteerde opgeslagen bestand is niet-compatibel"
 
-#: ../src/modding/ModManager.tscn:374
+#: ../src/modding/ModManager.tscn:482
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:378
+#: ../src/modding/ModManager.tscn:489
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
-"De simpelste membraanvorm, het heeft weinig bescherming tegen schade. Het "
-"heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel "
-"is dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
-"absorberen."
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr "Ongeldig opgeslagen bestand laden?"
 
-#: ../src/modding/ModManager.tscn:379
+#: ../src/modding/ModManager.tscn:495
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3584,10 +3603,60 @@ msgstr ""
 "is dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
 "absorberen."
 
-#: ../src/modding/ModManager.tscn:380
+#: ../src/modding/ModManager.tscn:496
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Verwijderen en doorgaan"
+
+#: ../src/modding/ModManager.tscn:502
+msgid "FULL_MOD_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:531
+#, fuzzy
+msgid "MOD_NAME"
+msgstr "Naam:"
+
+#: ../src/modding/ModManager.tscn:619
+#, fuzzy
+msgid "MOD_EXTENDED_DESCRIPTION"
+msgstr "Omschrijving:"
+
+#: ../src/modding/ModManager.tscn:641
+msgid "MOD_ICON_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:663
+msgid "MOD_INFO_URL"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:685
+msgid "MOD_LICENSE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:707
+msgid "MOD_RECOMMENDED_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:729
+msgid "MOD_MINIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:751
+msgid "MOD_MAXIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:773
+msgid "MOD_PCK_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:795
+msgid "MOD_ASSEMBLY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:817
+msgid "MOD_ASSEMBLY_CLASS"
+msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -4054,6 +4123,14 @@ msgstr "Microbe Vrij Bouwen in de \"Editor\""
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr ""
+#~ "De simpelste membraanvorm, het heeft weinig bescherming tegen schade. "
+#~ "Het heeft ook meer energie nodig om zijn vorm niet te verliezen. Het "
+#~ "voordeel is dat het de cel toelaat om te bewegen en om voedingsstoffen "
+#~ "sneller te absorberen."
 
 #~ msgid "Cancel"
 #~ msgstr "Annuleren"
