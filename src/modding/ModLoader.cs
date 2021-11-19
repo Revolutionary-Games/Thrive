@@ -17,6 +17,8 @@ public class ModLoader : Node
 
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
 
+    private ModInterface modInterface;
+
     private ModLoader()
     {
         instance = this;
@@ -66,6 +68,7 @@ public class ModLoader : Node
     public override void _Ready()
     {
         base._Ready();
+        modInterface = new ModInterface(GetTree());
 
         LoadMods();
     }
@@ -114,20 +117,18 @@ public class ModLoader : Node
 
         if (!string.IsNullOrEmpty(info.Info.ModAssembly))
         {
-            Assembly assembly;
+            Assembly modAssembly;
             try
             {
-                assembly = Assembly.GetExecutingAssembly();
+                modAssembly = LoadCodeAssembly(Path.Combine(info.Folder, info.Info.ModAssembly));
             }
             catch (Exception e)
             {
-                GD.PrintErr("Could not get executing assembly due to: ", e, " can't load mod with an assembly");
+                GD.PrintErr("Could not load mod assembly due to exception: ", e);
                 return;
             }
 
-            LoadCodeAssembly(Path.Combine(info.Folder, info.Info.ModAssembly));
-
-            if (!CreateModInstance(name, info, assembly))
+            if (!CreateModInstance(name, info, modAssembly))
                 return;
 
             loadedSomething = true;
@@ -152,9 +153,17 @@ public class ModLoader : Node
         if (loadedModAssemblies.TryGetValue(name, out var mod))
         {
             GD.Print("Unloaded mod contained an assembly, sending it the unload method call");
-            if (!mod.Unload())
+
+            try
             {
-                GD.PrintErr("Mod's (", name, ") assembly unload method call failed");
+                if (!mod.Unload())
+                {
+                    GD.PrintErr("Mod's (", name, ") assembly unload method call failed");
+                }
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Mod's (", name, ") assembly unload method call failed with an exception: ", e);
             }
 
             loadedModAssemblies.Remove(name);
@@ -177,8 +186,7 @@ public class ModLoader : Node
         {
             var mod = (IMod)Activator.CreateInstance(type);
 
-            // TODO: ModInterface class
-            if (!mod.Initialize(null, info.Info))
+            if (!mod.Initialize(modInterface, info.Info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
             }
@@ -203,7 +211,7 @@ public class ModLoader : Node
         }
     }
 
-    private void LoadCodeAssembly(string path)
+    private Assembly LoadCodeAssembly(string path)
     {
         path = ProjectSettings.GlobalizePath(path);
 
@@ -215,8 +223,16 @@ public class ModLoader : Node
 
         GD.Print("Loading mod C# assembly from: ", path);
 
-        Assembly.LoadFile(path);
+        // This version doesn't load the classes into the current assembly find path (or whatever it is properly called
+        // in C#)
+        // var result = Assembly.LoadFile(path);
+
+        // This version should load like that, however this still results in classes not being found from Godot
+        // so special workaround is needed
+        var result = AppDomain.CurrentDomain.Load(File.ReadAllBytes(path));
 
         GD.Print("Assembly load succeeded");
+
+        return result;
     }
 }
