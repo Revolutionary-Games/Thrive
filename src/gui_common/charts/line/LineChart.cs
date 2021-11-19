@@ -1005,6 +1005,8 @@ public class LineChart : VBoxContainer
         private LineChartData data;
         private Tween tween;
 
+        private Color dataColour;
+
         public DataLine(LineChartData data, bool isDefault)
         {
             this.data = data;
@@ -1012,6 +1014,7 @@ public class LineChart : VBoxContainer
 
             Width = data.LineWidth;
             DefaultColor = data.DataColour;
+            dataColour = data.DataColour;
 
             tween = new Tween();
             AddChild(tween);
@@ -1028,14 +1031,18 @@ public class LineChart : VBoxContainer
 
         public void OnMouseEnter()
         {
-            DefaultColor = data.DataColour.IsLuminuous() ?
-                data.DataColour.Darkened(0.5f) :
-                data.DataColour.Lightened(0.5f);
+            var highlightColour = dataColour.IsLuminuous() ?
+                dataColour.Darkened(0.5f) :
+                dataColour.Lightened(0.5f);
+
+            DefaultColor = highlightColour;
+            data.DataColour = highlightColour;
         }
 
         public void OnMouseExit()
         {
-            DefaultColor = data.DataColour;
+            DefaultColor = dataColour;
+            data.DataColour = dataColour;
         }
 
         /// <summary>
@@ -1076,7 +1083,6 @@ public class LineChart : VBoxContainer
 
             Connect("mouse_entered", this, nameof(IconLegendMouseEnter));
             Connect("mouse_exited", this, nameof(IconLegendMouseExit));
-            Connect("pressed", this, nameof(IconLegendPressed));
 
             tween = new Tween();
             AddChild(tween);
@@ -1105,12 +1111,6 @@ public class LineChart : VBoxContainer
             {
                 Modulate = Colors.DarkGray;
             }
-        }
-
-        private void IconLegendPressed()
-        {
-            tween.InterpolateProperty(this, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
     }
 }
