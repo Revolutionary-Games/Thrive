@@ -116,6 +116,8 @@ public class CustomConfirmationDialog : CustomDialog
             UpdateLabel();
             UpdateButtons();
         }
+
+        base._Notification(what);
     }
 
     private void UpdateLabel()
