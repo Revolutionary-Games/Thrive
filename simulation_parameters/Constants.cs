@@ -61,7 +61,7 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 7.1f;
+    public const float FLAGELLA_ENERGY_COST = 7.0f;
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
@@ -450,7 +450,7 @@ public static class Constants
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.8f;
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.35f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
@@ -627,27 +627,27 @@ public static class Constants
     /// <summary>
     ///   Minimum amount for the little category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 5f;
+    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10f;
 
     /// <summary>
     ///   Minimum amount for the some category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_SOME = 20f;
+    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50f;
 
     /// <summary>
     ///   Minimum amount for the fair amount category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 50f;
+    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200f;
 
     /// <summary>
     ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 200f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 400f;
 
     /// <summary>
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 500f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
 
     /// <summary>
     ///   Regex for species name validation.
