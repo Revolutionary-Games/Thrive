@@ -424,10 +424,7 @@ visible = false
 
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
 margin_top = 28.0
-margin_right = 1280.0
-margin_bottom = 720.0
-Resizable = false
-Moveable = false
+margin_bottom = 628.0
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false
@@ -511,5 +508,6 @@ WindowTitle = "GLES2_MODE_WARNING"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]

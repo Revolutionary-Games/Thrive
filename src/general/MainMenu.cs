@@ -420,7 +420,21 @@ public class MainMenu : NodeWithInput
     private void LicensesPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        licensesDisplay.ShowModal(true);
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the licenses view
+        licensesDisplay.PopupCenteredShrink();
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromLicenses()
+    {
+        SetCurrentMenu(2, false);
+
+        thriveLogo.Show();
     }
 
     private void OnEnteringGame()
