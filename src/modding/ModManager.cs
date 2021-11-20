@@ -325,6 +325,9 @@ public class ModManager : Control
     /// </summary>
     public void OnOpened()
     {
+        // TODO: OnOpened being required to be called probably means that you can't directly run the mod manager
+        // scene from Godot editor, probably needs to change to the approach to be to automatically call this each
+        // time this becomes visible like the save manager
         enabledMods = new List<FullModDetails>();
         notEnabledMods = new List<FullModDetails>();
 
@@ -334,7 +337,7 @@ public class ModManager : Control
         availableModsContainer.UnselectAll();
         enabledModsContainer.UnselectAll();
 
-        disableAllModsButton.Disabled = enabledMods.Count < 1;
+        UpdateOverallModButtons();
     }
 
     private static bool IsAllowedModPath(string path)
@@ -371,6 +374,18 @@ public class ModManager : Control
         {
             availableModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
         }
+
+        // If we found new mod folders that happen to be enabled already, add the mods to that list
+        var foundStillEnabledMods = validMods.Where(IsModEnabled);
+
+        foreach (var newMod in foundStillEnabledMods.Where(m => !enabledMods.Contains(m)))
+        {
+            enabledMods.Add(newMod);
+
+            enabledModsContainer.AddItem(newMod.InternalName, LoadModIcon(newMod));
+        }
+
+        UpdateOverallModButtons();
     }
 
     private void RefreshEnabledMods()
@@ -645,7 +660,7 @@ public class ModManager : Control
     private void UpdateOverallModButtons()
     {
         applyChangesButton.Disabled =
-            Settings.Instance.EnabledMods.Value.Equals(enabledMods.Select(m => m.InternalName));
+            Settings.Instance.EnabledMods.Value.SequenceEqual(enabledMods.Select(m => m.InternalName));
 
         disableAllModsButton.Disabled = enabledMods.Count < 1;
     }
