@@ -82,6 +82,7 @@ public static class MathUtils
     /// <returns>The positive modulo</returns>
     public static int PositiveModulo(this int val, int mod)
     {
-        return (val % mod + mod) % mod;
+        int result = val % mod;
+        return (result < 0) ? result + mod : result;
     }
 }
