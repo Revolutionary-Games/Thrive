@@ -217,7 +217,7 @@ public static class Constants
     /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
-    public const float REGENERATION_RATE = 1.0f;
+    public const float REGENERATION_RATE = 1.5f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
@@ -263,7 +263,7 @@ public static class Constants
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
     /// </summary>
-    public const float ENGULFING_MOVEMENT_DIVISION = 2.0f;
+    public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
 
     /// <summary>
     ///   The speed reduction when a cell is being engulfed.
@@ -573,6 +573,7 @@ public static class Constants
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
 
     public const string LICENSE_FILE = "res://LICENSE.txt";
+    public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
     public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";

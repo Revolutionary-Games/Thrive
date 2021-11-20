@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -40,6 +41,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath GLES2PopupPath;
 
+    [Export]
+    public NodePath StoreLoggedInDisplayPath;
+
     public Array MenuArray;
     public TextureRect Background;
 
@@ -56,6 +60,8 @@ public class MainMenu : NodeWithInput
 
     private Button newGameButton;
     private Button freebuildButton;
+
+    private Label storeLoggedInDisplay;
 
     private CustomConfirmationDialog gles2Popup;
 
@@ -152,6 +158,7 @@ public class MainMenu : NodeWithInput
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
+        storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
 
         MenuArray?.Clear();
 
@@ -178,6 +185,8 @@ public class MainMenu : NodeWithInput
 
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
+
+        UpdateStoreNameLabel();
     }
 
     /// <summary>
@@ -195,6 +204,20 @@ public class MainMenu : NodeWithInput
     private void SetBackground(Texture backgroundImage)
     {
         Background.Texture = backgroundImage;
+    }
+
+    private void UpdateStoreNameLabel()
+    {
+        if (!SteamHandler.Instance.IsLoaded)
+        {
+            storeLoggedInDisplay.Visible = false;
+        }
+        else
+        {
+            storeLoggedInDisplay.Visible = true;
+            storeLoggedInDisplay.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("STORE_LOGGED_IN_AS"), SteamHandler.Instance.DisplayName);
+        }
     }
 
     /// <summary>

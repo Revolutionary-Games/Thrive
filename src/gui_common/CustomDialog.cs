@@ -169,6 +169,12 @@ public class CustomDialog : Popup, ICustomPopup
 
                 break;
             }
+
+            case NotificationTranslationChanged:
+            {
+                translatedWindowTitle = TranslationServer.Translate(windowTitle);
+                break;
+            }
         }
     }
 
