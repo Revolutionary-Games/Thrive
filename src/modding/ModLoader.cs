@@ -89,11 +89,11 @@ public class ModLoader : Node
 
         if (firstExecute)
         {
-            var scene = modInterface.CurrentScene;
+            GD.Print("Loading mod Nodes into the scene tree");
 
             foreach (var tuple in loadedModAssemblies)
             {
-                tuple.Value.CanAttachNodes(scene);
+                RunCodeModFirstRunCallbacks(tuple.Value);
             }
 
             firstExecute = false;
@@ -197,6 +197,13 @@ public class ModLoader : Node
         }
     }
 
+    private void RunCodeModFirstRunCallbacks(IMod mod)
+    {
+        var scene = modInterface.CurrentScene;
+
+        mod.CanAttachNodes(scene);
+    }
+
     private bool CreateModInstance(string name, FullModDetails info, Assembly assembly)
     {
         var className = info.Info.AssemblyModClass;
@@ -219,6 +226,12 @@ public class ModLoader : Node
             }
 
             loadedModAssemblies.Add(name, mod);
+
+            if (!firstExecute)
+            {
+                // We need to do the actions that would normally be delayed if this mod was loaded after game startup
+                RunCodeModFirstRunCallbacks(mod);
+            }
         }
         catch (Exception e)
         {
