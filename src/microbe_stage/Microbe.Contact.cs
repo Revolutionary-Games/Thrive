@@ -299,6 +299,8 @@ public partial class Microbe
 
         Hitpoints -= amount;
 
+        ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
+
         // Flash the microbe red
         Flash(1.0f, new Color(1, 0, 0, 0.5f), 1);
 

@@ -18,6 +18,13 @@
 /// </remarks>
 public interface IModInterface
 {
+    public delegate void OnDamageReceivedHandler(Node damageReceiver, float amount, bool isPlayer);
+
+    // Game events mods can listen to
+    // If something you'd want to use is missing, please request it:
+    // https://github.com/Revolutionary-Games/Thrive/issues or open a pull request adding it
+    public event OnDamageReceivedHandler OnDamageReceived;
+
     /// <summary>
     ///   Godot's main SceneTree
     /// </summary>

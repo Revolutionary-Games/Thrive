@@ -12,12 +12,12 @@ using Path = System.IO.Path;
 public class ModLoader : Node
 {
     private static ModLoader instance;
+    private static ModInterface modInterface;
 
     private readonly List<string> loadedMods = new();
 
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
 
-    private ModInterface modInterface;
     private bool firstExecute = true;
 
     private ModLoader()
@@ -29,6 +29,11 @@ public class ModLoader : Node
     }
 
     public static ModLoader Instance => instance;
+
+    /// <summary>
+    ///   The mod interface the game uses to trigger events that mods can react to
+    /// </summary>
+    public static ModInterface ModInterface => modInterface;
 
     /// <summary>
     ///   Finds a mod and loads its info
@@ -69,6 +74,10 @@ public class ModLoader : Node
     public override void _Ready()
     {
         base._Ready();
+
+        if (modInterface != null)
+            throw new InvalidOperationException("ModInterface has been created already");
+
         modInterface = new ModInterface(GetTree());
 
         LoadMods();
