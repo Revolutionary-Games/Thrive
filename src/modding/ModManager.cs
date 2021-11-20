@@ -660,7 +660,8 @@ public class ModManager : Control
     private void UpdateOverallModButtons()
     {
         applyChangesButton.Disabled =
-            Settings.Instance.EnabledMods.Value.SequenceEqual(enabledMods.Select(m => m.InternalName));
+            Settings.Instance.EnabledMods.Value.ToHashSet()
+                .SetEquals(enabledMods.Select(m => m.InternalName));
 
         disableAllModsButton.Disabled = enabledMods.Count < 1;
     }
