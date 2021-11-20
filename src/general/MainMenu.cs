@@ -420,7 +420,7 @@ public class MainMenu : NodeWithInput
     private void LicensesPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        licensesDisplay.PopupCenteredShrink();
+        licensesDisplay.ShowModal(true);
     }
 
     private void OnEnteringGame()
