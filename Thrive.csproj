@@ -138,6 +138,7 @@
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\gui\PatchDetailsPanel.cs" />
+    <Compile Include="src\microbe_stage\gui\PatchExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -170,7 +171,6 @@
     <Compile Include="src\microbe_stage\NucleusMesh.cs" />
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
-    <Compile Include="src\microbe_stage\PatchExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
