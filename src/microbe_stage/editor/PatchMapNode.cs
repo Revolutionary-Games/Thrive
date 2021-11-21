@@ -142,9 +142,13 @@ public class PatchMapNode : MarginContainer
             return;
 
         if (Enabled)
+        {
             highlightPanel.Visible = Highlighted || Selected;
+        }
         else
+        {
             highlightPanel.Visible = false;
+        }
     }
 
     private void UpdateMarkRing()
