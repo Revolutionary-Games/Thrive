@@ -39,7 +39,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_editor_description_": "The collision shape is created in code so the warning on this is not serious"
 }
-movementSounds = [ ExtResource( 7 ), ExtResource( 8 ) ]
+MovementSounds = [ ExtResource( 7 ), ExtResource( 8 ) ]
 
 [node name="Membrane" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )

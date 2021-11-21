@@ -767,7 +767,7 @@ public partial class Microbe
             movementSoundCooldownTimer <= 0)
         {
             movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
-            movementAudio.Stream = movementSounds[random.Next(movementSounds.Length)];
+            movementAudio.Stream = MovementSounds[random.Next(MovementSounds.Length)];
             movementAudio.Play();
         }
     }
