@@ -492,7 +492,16 @@ public partial class Microbe
             OnReproductionStatus?.Invoke(this, false);
         }
 
-        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        if (IsPlayerMicrobe)
+        {
+            // Playing from a positional audio player won't have any effect since the listener is
+            // directly in it.
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.3f);
+        }
+        else
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        }
 
         // Disable collisions
         CollisionLayer = 0;

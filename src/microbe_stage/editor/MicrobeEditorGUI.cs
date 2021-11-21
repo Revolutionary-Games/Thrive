@@ -1263,7 +1263,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void PlayInvalidActionSound()
     {
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.3f);
     }
 
     /// <summary>
