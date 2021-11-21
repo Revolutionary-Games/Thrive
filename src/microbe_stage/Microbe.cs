@@ -14,6 +14,9 @@ using Newtonsoft.Json;
 [DeserializedCallbackTarget]
 public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
 {
+    [Export]
+    public AudioStream[] movementSounds;
+
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
@@ -41,6 +44,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private int cachedHexCount;
 
     private Vector3 queuedMovementForce;
+
+    private Vector3 lastLinearVelocity;
+    private Vector3 lastLinearAcceleration;
+    private Vector3 linearAcceleration;
+
+    private float movementSoundCooldownTimer;
+
+    private Random random = new Random();
 
     [JsonProperty]
     private MicrobeAI ai;
@@ -405,30 +416,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             organelle.Update(delta);
         }
 
-        // Movement
-        if (ColonyParent == null)
-        {
-            if (MovementDirection != new Vector3(0, 0, 0) ||
-                queuedMovementForce != new Vector3(0, 0, 0))
-            {
-                // Movement direction should not be normalized to allow different speeds
-                Vector3 totalMovement = new Vector3(0, 0, 0);
-
-                if (MovementDirection != new Vector3(0, 0, 0))
-                {
-                    totalMovement += DoBaseMovementForce(delta);
-                }
-
-                totalMovement += queuedMovementForce;
-
-                ApplyMovementImpulse(totalMovement, delta);
-
-                // Play movement sound if one isn't already playing.
-                if (!movementAudio.Playing)
-                    movementAudio.Play();
-            }
-        }
-
         // Rotation is applied in the physics force callback as that's
         // the place where the body rotation can be directly set
         // without problems
@@ -460,6 +447,49 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 OnReproductionStatus(this, true);
             }
         }
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
+
+        // Movement
+        if (ColonyParent == null)
+        {
+            if (MovementDirection != new Vector3(0, 0, 0) ||
+                queuedMovementForce != new Vector3(0, 0, 0))
+            {
+                // Movement direction should not be normalized to allow different speeds
+                Vector3 totalMovement = new Vector3(0, 0, 0);
+
+                if (MovementDirection != new Vector3(0, 0, 0))
+                {
+                    totalMovement += DoBaseMovementForce(delta);
+                }
+
+                totalMovement += queuedMovementForce;
+
+                ApplyMovementImpulse(totalMovement, delta);
+
+                var deltaAcceleration = (linearAcceleration - lastLinearAcceleration).LengthSquared();
+
+                if (movementSoundCooldownTimer > 0)
+                    movementSoundCooldownTimer -= delta;
+
+                // Play movement sound if one isn't already playing and if there's a noticeable change
+                // in the microbe's acceleration.
+                if (!movementAudio.Playing && deltaAcceleration > lastLinearAcceleration.LengthSquared() &&
+                    movementSoundCooldownTimer <= 0)
+                {
+                    movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
+                    movementAudio.Stream = movementSounds[random.Next(movementSounds.Length)];
+                    movementAudio.Play();
+                }
+            }
+        }
+
+        lastLinearVelocity = LinearVelocity;
+        lastLinearAcceleration = linearAcceleration;
     }
 
     public override void _EnterTree()
