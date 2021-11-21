@@ -42,7 +42,8 @@ public class PatchExtinctionBox : Control
     private void NewPatchSelected(Patch patch)
     {
         animationPlayer.PlayBackwards();
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, animationPlayer.CurrentAnimationLength, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, animationPlayer.CurrentAnimationLength,
+            false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFadedToBlack));
         patchDetailsPanel.MouseFilter = MouseFilterEnum.Ignore;
     }
@@ -51,7 +52,8 @@ public class PatchExtinctionBox : Control
     {
         GoToNewPatch?.Invoke(patchDetailsPanel.Patch);
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, animationPlayer.CurrentAnimationLength, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, animationPlayer.CurrentAnimationLength,
+            false);
         TransitionManager.Instance.StartTransitions();
     }
 
