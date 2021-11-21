@@ -534,6 +534,18 @@ public class Jukebox : Node
     {
         var category = previouslyPlayedCategory;
 
+        if (category != null)
+        {
+            // Reset PlayedOnce flag in all tracks
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.Tracks)
+                {
+                    track.PlayedOnce = false;
+                }
+            }
+        }
+
         // Store continue positions
         if (category?.Return == MusicCategory.ReturnType.Continue)
         {
@@ -543,8 +555,6 @@ public class Jukebox : Node
             {
                 foreach (var track in list.Tracks)
                 {
-                    track.PlayedOnce = false;
-
                     if (activeTracks.Contains(track.ResourcePath))
                     {
                         track.WasPlaying = true;
