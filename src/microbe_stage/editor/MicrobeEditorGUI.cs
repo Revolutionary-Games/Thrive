@@ -1000,6 +1000,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
+    public void UpdatePatchDetails()
+    {
+        patchDetailsPanel.UpdateStatisticsPanel();
+    }
+
     internal void SetUndoButtonStatus(bool enabled)
     {
         undoButton.Disabled = !enabled;

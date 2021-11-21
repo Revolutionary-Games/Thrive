@@ -185,12 +185,7 @@ public class PatchDetailsPanel : PanelContainer
         phosphateSituation = GetNode<TextureRect>(PhosphateSituationPath);
     }
 
-    private void MoveToPatchClicked()
-    {
-        OnMoveToPatchClicked?.Invoke(Patch);
-    }
-
-    private void UpdateStatisticsPanel()
+    public void UpdateStatisticsPanel()
     {
         if (Patch == null)
         {
@@ -260,6 +255,11 @@ public class PatchDetailsPanel : PanelContainer
         }
 
         UpdateConditionDifferencesBetweenPatches();
+    }
+
+    private void MoveToPatchClicked()
+    {
+        OnMoveToPatchClicked?.Invoke(Patch);
     }
 
     /// <remarks>
