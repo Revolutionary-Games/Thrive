@@ -655,6 +655,11 @@ public static class Constants
     public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
 
     /// <summary>
+    ///   Minimum hex distance before the same render priority.
+    /// </summary>
+    public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
     /// <remarks>
