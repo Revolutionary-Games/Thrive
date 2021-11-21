@@ -125,20 +125,23 @@ public class GUICommon : NodeWithInput
     /// </summary>
     public void PlayButtonPressSound()
     {
-        PlayCustomSound(buttonPressSound);
+        PlayCustomSound(buttonPressSound, 0.2f);
     }
 
     /// <summary>
     ///   Plays the given sound non-positionally.
     /// </summary>
-    public void PlayCustomSound(AudioStream sound)
+    public void PlayCustomSound(AudioStream sound, float volume = 1.0f)
     {
+        volume = Mathf.Clamp(volume, 0.0f, 1.0f);
+
         if (AudioSource.Playing)
         {
             // Use backup player if it is available
             if (!AudioSource2.Playing)
             {
                 AudioSource2.Stream = sound;
+                AudioSource2.VolumeDb = GD.Linear2Db(volume);
                 AudioSource2.Play();
             }
 
@@ -146,6 +149,7 @@ public class GUICommon : NodeWithInput
         }
 
         AudioSource.Stream = sound;
+        AudioSource.VolumeDb = GD.Linear2Db(volume);
         AudioSource.Play();
     }
 
