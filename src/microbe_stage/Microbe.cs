@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
 {
     [Export]
-    public AudioStream[] movementSounds;
+    public AudioStream[] MovementSounds;
 
     /// <summary>
     ///   The point towards which the microbe will move to point to
