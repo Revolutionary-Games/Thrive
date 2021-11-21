@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-14 13:42+0100\n"
+"POT-Creation-Date: 2021-11-06 11:30+0100\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
@@ -37,23 +37,22 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor "
-"elpusztul."
+"A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor elpusztul."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor "
-"ammóniát (Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
+"Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor ammóniát "
+"(Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a "
-"[thrive:input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-"
-"t használsz, és lassabb is leszel. Ne felejtsd el a [thrive:"
+"Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a [thrive:"
+"input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-t "
+"használsz, és lassabb is leszel. Ne felejtsd el a [thrive:"
 "input]g_toggle_engulf[/thrive:input]-t lenyomni még egyszer az elnyelés "
 "befejezéséhez."
 
@@ -61,10 +60,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a "
-"sejted, annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra "
-"(vagy citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél "
-"kevesebb ATP-t veszíts, amikor egy helyhez vagy kötve."
+"Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a sejted, "
+"annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra (vagy "
+"citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél kevesebb "
+"ATP-t veszíts, amikor egy helyhez vagy kötve."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -81,8 +80,7 @@ msgstr ""
 "Fehérek – [thrive:compound type=\"glucose\"]Glükóz[/thrive:compound]\n"
 "Citromsárgák – [thrive:compound type=\"hydrogensulfide\"]Hidrogén-szulfid[/"
 "thrive:compound]\n"
-"Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:"
-"compound]\n"
+"Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:compound]\n"
 "Lilák – [thrive:compound type=\"phosphates\"]Foszfátok[/thrive:compound]\n"
 "Rozsdabarnák – [thrive:compound type=\"iron\"]Vas[/thrive:compound]\n"
 "\n"
@@ -100,22 +98,21 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és "
-"foszfátra van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
+"A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és foszfátra "
+"van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr ""
-"Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz "
-"halni."
+"Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz halni."
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a "
-"játékot (a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak "
-"jelenik meg, és utána még addig játszhatsz tovább, ameddig csak akarsz."
+"De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a játékot "
+"(a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak jelenik meg, és "
+"utána még addig játszhatsz tovább, ameddig csak akarsz."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
@@ -128,16 +125,15 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Több sejthez való kapcsolódás által ki tudsz alakítani egy sejtkolóniát, "
-"melyek egymással vegyületeket osztanak meg, amiket elnyelnek és "
-"előállítanak közösen. Egy másik sejthez való csatlakozáshoz egy "
-"kötőszövetre lesz szükséged. Ha ez megvan, akkor át kell váltanod "
-"összekapcsolás módba, és neki kell menned a másik sejtnek. Csak a saját "
-"fajod egyedeivel tudsz összekapcsolódni. Amíg egy kolóniában vagy, addig "
-"nem tudsz osztódni, és belépni a szerkesztőbe (perpillanat). Hogy a "
-"szerkesztőbe beléphess, ahhoz először hagyd el a kolóniát akkor, amikor "
-"elegendő nyersanyagot gyűjtöttél, és utána lépj be. A nagy sejtkolóniák "
-"fognak majd előrevinni a többsejtűség felé (perpillanat még nincs a "
-"játékban)."
+"melyek egymással vegyületeket osztanak meg, amiket elnyelnek és előállítanak "
+"közösen. Egy másik sejthez való csatlakozáshoz egy kötőszövetre lesz "
+"szükséged. Ha ez megvan, akkor át kell váltanod összekapcsolás módba, és "
+"neki kell menned a másik sejtnek. Csak a saját fajod egyedeivel tudsz "
+"összekapcsolódni. Amíg egy kolóniában vagy, addig nem tudsz osztódni, és "
+"belépni a szerkesztőbe (perpillanat). Hogy a szerkesztőbe beléphess, ahhoz "
+"először hagyd el a kolóniát akkor, amikor elegendő nyersanyagot gyűjtöttél, "
+"és utána lépj be. A nagy sejtkolóniák fognak majd előrevinni a többsejtűség "
+"felé (perpillanat még nincs a játékban)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -146,9 +142,9 @@ msgstr ""
 "\n"
 "Metaboloszómák: A gülkózból ATP-t állít elő.\n"
 "\n"
-"Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá "
-"alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon "
-"területet foglal el\n"
+"Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá alakítja, "
+"mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon területet foglal "
+"el\n"
 "\n"
 "Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de "
 "glikolízist is végez, és 1 hexagon helyet foglal\n"
@@ -184,8 +180,7 @@ msgstr ""
 "Mitokondrium: Glükózból és oxigénből (O2) állít elő ATP-t, méghozzá sokkal "
 "hatékonyabban, mint egy citoplazma\n"
 "\n"
-"Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) "
-"segítségével\n"
+"Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) segítségével\n"
 "\n"
 "Kemoplasztisz: Glükózt állít elő hidrogén-szulfidból\n"
 "\n"
@@ -194,30 +189,30 @@ msgstr ""
 "\n"
 "Sejtnedvüreg: 15 egységnyi vegyületet tud raktározni\n"
 "\n"
-"Mérget tartalmazó sejtnedvüreg: Mérget állít elő (Neve [thrive:compound "
-"type=\"oxytoxy\"][/thrive:compound])"
+"Mérget tartalmazó sejtnedvüreg: Mérget állít elő (Neve [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, "
-"melyet mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos "
-"mennyiségű MP-be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, "
-"amit éppen abban a mutációs szekcióban raktál le, akkor annyi pontot kapsz "
-"vissza, amennyit ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is "
-"törölhetsz egy sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, "
-"és kiválasztod a neked megfelelő műveletet a felugró ablakban. Forgathatod "
-"is a sejtszervecskéket, miközben lerakod őket a [thrive:"
-"input]e_rotate_left[/thrive:input] vagy a [thrive:input]e_rotate_right[/"
-"thrive:input] megnyomásával."
+"Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, melyet "
+"mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos mennyiségű MP-"
+"be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, amit éppen abban a "
+"mutációs szekcióban raktál le, akkor annyi pontot kapsz vissza, amennyit "
+"ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is törölhetsz egy "
+"sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, és kiválasztod a "
+"neked megfelelő műveletet a felugró ablakban. Forgathatod is a "
+"sejtszervecskéket, miközben lerakod őket a [thrive:input]e_rotate_left[/"
+"thrive:input] vagy a [thrive:input]e_rotate_right[/thrive:input] "
+"megnyomásával."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz "
-"belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy "
-"hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld "
-"túlélési esélyüket. Minden egyes látogatás a szerkesztőben [thrive:"
+"Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz belépni, "
+"ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy hozzáadsz, "
+"áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld túlélési "
+"esélyüket. Minden egyes látogatás a szerkesztőben [thrive:"
 "constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millió évnyi "
 "fejlődést jelent a fajod számára."
 
@@ -232,23 +227,22 @@ msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a "
 "ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. "
-"És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A "
-"ragadozóhoz, vagy a zsákmányhoz?"
+"És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A ragadozóhoz, "
+"vagy a zsákmányhoz?"
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss "
-"el magad elől, ha elég gyors vagy."
+"Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss el "
+"magad elől, ha elég gyors vagy."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Itt egy kis tanács. Az ozmoreguláció másodpercenként 1 ATP-be kerül "
-"hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt "
-"jelenti, hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a "
-"sejtedhez egy pár hexagonnyi citoplazmát, és távolíts el pár "
-"sejtszervecskét."
+"hexagononként. Mindegyik citoplazma hexagon 5 ATP-t termel, ami azt jelenti, "
+"hogy ha az ozmoreguláció során ATP-t veszítesz, akkor csak adj a sejtedhez "
+"egy pár hexagonnyi citoplazmát, és távolíts el pár sejtszervecskét."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
@@ -280,8 +274,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz "
-"írtani, viszont ezt ők is megtehetik veled."
+"Itt egy kis tanács. Ha nem vigyázol, akkor akár fajokat is ki tudsz írtani, "
+"viszont ezt ők is megtehetik veled."
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
@@ -299,8 +293,7 @@ msgstr "Na azok a kék sejtek."
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 "Itt egy kis tanács. A biomok kicsivel többek, mint egy csicsás háttér. "
-"Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak "
-"meg."
+"Bizonyos vegyületek bizonyos biomokban különböző mértékekben találhatóak meg."
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
@@ -310,8 +303,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
-"Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
+msgstr "Itt egy kis tanács. Darabkákat is el tudsz nyelni, akár vas, akár más."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -327,8 +319,8 @@ msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 "Érdekesség: A Stentor egy olyan csillós egysejtű, mely képes megnyúlni, és "
-"elkapni zsákmányát a trombitaszerű sejtszájával úgy, hogy a sejtszáj "
-"körüli csillókkal áramlatot generál."
+"elkapni zsákmányát a trombitaszerű sejtszájával úgy, hogy a sejtszáj körüli "
+"csillókkal áramlatot generál."
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
@@ -349,8 +341,8 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
 "A Thrive zenei csapatának vezetője (Oliver Lugg) elég sok számot csinált, "
-"amik még nem kerültek be a játékba. Meghallgathatod őket, vagy nézhetsz "
-"tőle élő adásokat, ahogy ezeket a dalokat készíti."
+"amik még nem kerültek be a játékba. Meghallgathatod őket, vagy nézhetsz tőle "
+"élő adásokat, ahogy ezeket a dalokat készíti."
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
@@ -408,17 +400,20 @@ msgid "ABILITIES"
 msgstr "Képességek"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2111
+#: ../src/microbe_stage/MicrobeStage.tscn:2107
+#: ../src/microbe_stage/MicrobeStage.tscn:2097
 msgid "FIRE_TOXIN"
 msgstr "Méreg lövése"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2095
+#: ../src/microbe_stage/MicrobeStage.tscn:2085
 msgid "TOGGLE_ENGULF"
 msgstr "Elnyelés be/ki"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2122
+#: ../src/microbe_stage/MicrobeStage.tscn:2118
+#: ../src/microbe_stage/MicrobeStage.tscn:2108
 msgid "TOGGLE_BINDING"
 msgstr "Összekapcsolás be/ki"
 
@@ -447,7 +442,7 @@ msgid "ZOOM_IN"
 msgstr "Közelítés"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2954
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3786
 msgid "EDITOR"
 msgstr "Szerkesztő"
 
@@ -710,58 +705,64 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1294
-#: ../src/microbe_stage/gui/PatchPanel.tscn:664
+#: ../src/microbe_stage/MicrobeStage.tscn:1290
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3433
+#: ../src/microbe_stage/MicrobeStage.tscn:1280
 msgid "AMMONIA"
 msgstr "Ammónia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
-#: ../src/microbe_stage/gui/PatchPanel.tscn:735
+#: ../src/microbe_stage/MicrobeStage.tscn:1344
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3504
+#: ../src/microbe_stage/MicrobeStage.tscn:1334
 msgid "PHOSPHATE"
 msgstr "Foszfát"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1402
-#: ../src/microbe_stage/gui/PatchPanel.tscn:629
+#: ../src/microbe_stage/MicrobeStage.tscn:1398
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3398
+#: ../src/microbe_stage/MicrobeStage.tscn:1388
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrogén-szulfid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1240
-#: ../src/microbe_stage/gui/PatchPanel.tscn:699
+#: ../src/microbe_stage/MicrobeStage.tscn:1236
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3468
+#: ../src/microbe_stage/MicrobeStage.tscn:1226
 msgid "GLUCOSE"
 msgstr "Glükóz"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1588
+#: ../src/microbe_stage/MicrobeStage.tscn:1584
+#: ../src/microbe_stage/MicrobeStage.tscn:1574
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1456
-#: ../src/microbe_stage/gui/PatchPanel.tscn:770
+#: ../src/microbe_stage/MicrobeStage.tscn:1452
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3539
+#: ../src/microbe_stage/MicrobeStage.tscn:1442
 msgid "IRON"
 msgstr "Vas"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/gui/PatchPanel.tscn:465
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3234
 msgid "OXYGEN"
 msgstr "Oxigén"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/gui/PatchPanel.tscn:519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3288
 msgid "CARBON_DIOXIDE"
 msgstr "Szén-dioxid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/gui/PatchPanel.tscn:492
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3261
 msgid "NITROGEN"
 msgstr "Nitrogén"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-#: ../src/microbe_stage/gui/PatchPanel.tscn:345
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
 msgid "SUNLIGHT"
 msgstr "Napfény"
 
@@ -905,14 +906,7 @@ msgstr "{0:F1}% kész. {1:n0}/{2:n0} lépés."
 msgid "STARTING"
 msgstr "Indítás"
 
-#: ../src/auto-evo/AutoEvoRun.cs:291
-#, fuzzy
-msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
-msgstr ""
-"A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok "
-"miatt: {2}"
-
-#: ../src/auto-evo/AutoEvoRun.cs:299
+#: ../src/auto-evo/AutoEvoRun.cs:286
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok "
@@ -974,11 +968,11 @@ msgstr "kihalt a bolygón"
 msgid "LOADING"
 msgstr "Betöltés"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:322
+#: ../src/engine/input/key_mapping/InputEventItem.cs:324
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Nyomj le egy gombot..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:118
+#: ../src/engine/input/key_mapping/InputGroupList.cs:135
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 
@@ -1394,8 +1388,7 @@ msgstr "\"{0}\" - {1}"
 msgid "ART_BY"
 msgstr "A rajzot {0} készítette"
 
-#: ../src/general/HelpScreen.tscn:107
-#: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/general/HelpScreen.tscn:107 ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Bezár"
@@ -1465,23 +1458,23 @@ msgstr ""
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 mód figyelmeztetés"
 
-#: ../src/general/OptionsMenu.cs:839
+#: ../src/general/OptionsMenu.cs:845
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Alap kimeneti eszköz"
 
-#: ../src/general/OptionsMenu.cs:871
+#: ../src/general/OptionsMenu.cs:877
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "A játék erre a nyelvre még nincs teljesen lefordítva ({0}% kész). Kérünk, "
 "hogy segíts nekünk ez ügyben te is!"
 
-#: ../src/general/OptionsMenu.cs:875
+#: ../src/general/OptionsMenu.cs:881
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 "A játéknak erre a nyelvre való lefordítása még mindig készülőben van ({0}% "
 "kész)"
 
-#: ../src/general/OptionsMenu.cs:879
+#: ../src/general/OptionsMenu.cs:885
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Erre a nyelvre való fordítás {0}%-a van elkészülve"
 
@@ -1818,7 +1811,7 @@ msgid "SAVE_GAME"
 msgstr "Játék mentése"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2514
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2540
 msgid "STATISTICS"
 msgstr "Statisztikák"
 
@@ -1862,10 +1855,11 @@ msgstr "@"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:657
-#: ../src/microbe_stage/PatchPanel.cs:222
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:523
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:818
+#: ../src/microbe_stage/MicrobeHUD.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:656
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:951
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1094
+#: ../src/microbe_stage/MicrobeHUD.cs:617
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2563,8 +2557,8 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:723
-#: ../src/microbe_stage/gui/PatchPanel.tscn:282
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3051
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "TEMPERATURE"
 msgstr ""
 
@@ -2619,129 +2613,143 @@ msgstr "A játékos megkettőzése"
 msgid "SPAWN_ENEMY"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:713
+#: ../src/microbe_stage/MicrobeHUD.cs:683
+#: ../src/microbe_stage/MicrobeHUD.cs:675
 msgid "STUFF_AT"
 msgstr "Dolgok {0:F1}, {1:F1} környékén:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:746
+#: ../src/microbe_stage/MicrobeHUD.cs:716
+#: ../src/microbe_stage/MicrobeHUD.cs:719
 msgid "PLAYER_CELL"
 msgstr "Játékos sejtje"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:763
+#: ../src/microbe_stage/MicrobeHUD.cs:733
+#: ../src/microbe_stage/MicrobeHUD.cs:736
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:808
+#: ../src/microbe_stage/MicrobeHUD.cs:778
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "bőség"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:810
+#: ../src/microbe_stage/MicrobeHUD.cs:780
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "egy kicsit"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:812
+#: ../src/microbe_stage/MicrobeHUD.cs:782
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "elég sok"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:814
+#: ../src/microbe_stage/MicrobeHUD.cs:784
 msgid "CATEGORY_SOME"
 msgstr "pár"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:816
+#: ../src/microbe_stage/MicrobeHUD.cs:786
 #, fuzzy
 msgid "CATEGORY_LITTLE"
 msgstr "Elméleti csapat"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:818
+#: ../src/microbe_stage/MicrobeHUD.cs:788
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "egy kicsi"
 
-#: ../src/microbe_stage/MicrobeStage.cs:554
+#: ../src/microbe_stage/MicrobeStage.cs:525
 msgid "PLAYER_REPRODUCED"
 msgstr "játékos szaporodott"
 
-#: ../src/microbe_stage/MicrobeStage.cs:701
+#: ../src/microbe_stage/MicrobeStage.cs:667
 msgid "PLAYER_DIED"
 msgstr "A játékos meghalt"
 
-#: ../src/microbe_stage/MicrobeStage.cs:713
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:62
-#, fuzzy
-msgid "PATCH_EXTINCTION"
-msgstr "Kihalt: {0}"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:506
+#: ../src/microbe_stage/MicrobeStage.tscn:505
+#: ../src/microbe_stage/MicrobeStage.tscn:498
 msgid "AT_CURSOR"
 msgstr "A kurzornál:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:532
+#: ../src/microbe_stage/MicrobeStage.tscn:531
+#: ../src/microbe_stage/MicrobeStage.tscn:523
 msgid "NOTHING_HERE"
 msgstr "Semmi nincs itt"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:557
+#: ../src/microbe_stage/MicrobeStage.tscn:556
+#: ../src/microbe_stage/MicrobeStage.tscn:548
 msgid "COMPOUNDS_COLON"
 msgstr "Vegyületek:"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:597
+#: ../src/microbe_stage/MicrobeStage.tscn:596
+#: ../src/microbe_stage/MicrobeStage.tscn:586
 msgid "SPECIES_COLON"
 msgstr "Fajok:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:677
+#: ../src/microbe_stage/MicrobeStage.tscn:667
 msgid "ENVIRONMENT"
 msgstr "Környezet"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:946
+#: ../src/microbe_stage/MicrobeStage.tscn:944
+#: ../src/microbe_stage/MicrobeStage.tscn:934
 msgid "TEMPERATURE_SHORT"
 msgstr "Hőm."
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1002
+#: ../src/microbe_stage/MicrobeStage.tscn:1000
+#: ../src/microbe_stage/MicrobeStage.tscn:990
 msgid "LIGHT"
 msgstr "Fény"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1057
+#: ../src/microbe_stage/MicrobeStage.tscn:1055
+#: ../src/microbe_stage/MicrobeStage.tscn:1045
 msgid "PRESSURE_SHORT"
 msgstr "Nyomás"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2716
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
-#: ../src/microbe_stage/gui/PatchPanel.tscn:589
+#: ../src/microbe_stage/MicrobeStage.tscn:1138
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2724
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3358
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/MicrobeStage.tscn:1128
 msgid "COMPOUNDS"
 msgstr "Vegyületek"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1526
+#: ../src/microbe_stage/MicrobeStage.tscn:1522
+#: ../src/microbe_stage/MicrobeStage.tscn:1512
 msgid "AGENTS"
 msgstr "Ágensek"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1626
+#: ../src/microbe_stage/MicrobeStage.tscn:1622
+#: ../src/microbe_stage/MicrobeStage.tscn:1612
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menü"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1644
+#: ../src/microbe_stage/MicrobeStage.tscn:1640
+#: ../src/microbe_stage/MicrobeStage.tscn:1630
 msgid "PAUSE_TOOLTIP"
 msgstr "Játék szüneteltetése"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1657
+#: ../src/microbe_stage/MicrobeStage.tscn:1653
+#: ../src/microbe_stage/MicrobeStage.tscn:1643
 msgid "RESUME_TOOLTIP"
 msgstr "Játék folytatása"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1670
+#: ../src/microbe_stage/MicrobeStage.tscn:1666
+#: ../src/microbe_stage/MicrobeStage.tscn:1656
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "A környezet és a vegyületek mutatása / elrejtése"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1685
+#: ../src/microbe_stage/MicrobeStage.tscn:1671
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "A sejt folyamatainak mutatása/elrejtése"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1718
+#: ../src/microbe_stage/MicrobeStage.tscn:1708
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Segítség"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1734
+#: ../src/microbe_stage/MicrobeStage.tscn:1730
+#: ../src/microbe_stage/MicrobeStage.tscn:1720
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Öngyilkosság"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeStage.tscn:1781
+#: ../src/microbe_stage/MicrobeStage.tscn:1771
 msgid "POPULATION_CAPITAL"
 msgstr "POPULÁCIÓ:"
 
@@ -2789,18 +2797,6 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/PatchPanel.cs:213
-msgid "BIOME_LABEL"
-msgstr "Biom: {0}"
-
-#: ../src/microbe_stage/PatchPanel.cs:218
-msgid "BELOW_SEA_LEVEL"
-msgstr "{0}-{1}m-el a tenger alatt"
-
-#: ../src/microbe_stage/PatchPanel.cs:257
-msgid "WITH_POPULATION"
-msgstr ""
-
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:117
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
@@ -2813,12 +2809,12 @@ msgstr "Sejtfolyamatok"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:623
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:622
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1435
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Sejtszerkesztő betöltése"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:625
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:624
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Várakozás az auto-evo-ra:"
 
@@ -2830,213 +2826,241 @@ msgstr "Auto-evo futtatása sikertelen"
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "futtatási státusz:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:494
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:546
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizmus statisztikái"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:557
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:609
 msgid "SPEED_COLON"
 msgstr "Sebesség:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:587
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:639
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:669
 msgid "SIZE_COLON"
 msgstr "Méret:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:638
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:690
 msgid "GENERATION_COLON"
 msgstr "Generáció:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:732
 msgid "ATP_BALANCE"
 msgstr "ATP egyensúly"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:886
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:938
 msgid "MUTATION_POINTS"
 msgstr "Mutáció pont"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1021
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1073
 msgid "STRUCTURE"
 msgstr "Struktúra"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1043
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1095
 msgid "MEMBRANE"
 msgstr "Membrán"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1065
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1117
 msgid "BEHAVIOUR"
 msgstr "Viselkedés"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1169
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Keresés..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1124
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1176
 msgid "STRUCTURAL"
 msgstr "Strukturális"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1166
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1212
 msgid "PROTEINS"
 msgstr "Proteinek"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1248
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1288
 msgid "EXTERNAL"
 msgstr "Külső"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1308
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1342
 msgid "ORGANELLES"
 msgstr "Sejtszervecskék"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1463
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1491
 msgid "MEMBRANE_TYPES"
 msgstr "Membrán típusok"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1548
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1576
 msgid "FLUIDITY_RIGIDITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1587
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1615
 msgid "COLOUR"
 msgstr "Szín"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1652
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1680
 msgid "PEACEFUL"
 msgstr "Békés"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1669
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1697
 msgid "AGGRESSIVE"
 msgstr "Agresszív"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1703
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1731
 msgid "CAUTIOUS"
 msgstr "Gyanakvó"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1721
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1749
 msgid "OPPORTUNISTIC"
 msgstr "Opportunista"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1755
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1783
 msgid "BRAVE"
 msgstr "Bátor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1772
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
 msgid "FEARFUL"
 msgstr "Félelmetes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1806
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1834
 msgid "SESSILE"
 msgstr "Rögzült"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1823
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
 msgid "ACTIVE"
 msgstr "Aktív"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1857
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1885
 msgid "RESPONSIVE"
 msgstr "Reszponzív"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1874
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1902
 msgid "FOCUSED"
 msgstr "Fókuszált"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2007
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Faj neve..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2058
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2072
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2099
 msgid "CONFIRM_CAPITAL"
 msgstr "ELFOGAD"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2144
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr "Növeli a sejt tárkapacitását."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2120
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2147
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "ATP előállítás"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2185
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2212
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "POPULÁCIÓ:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2209
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2236
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Fajok:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2234
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2261
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Fajok:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2261
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
+msgid "NEGATIVE_ATP_BALANCE"
+msgstr "Negatív ATP egyensúly"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "A sejted nem termel annyi ATP-t, hogy képes legyen túlélni!\n"
 "Biztos folytatni akarod?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2268
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2295
+msgid "DISCONNECTED_ORGANELLES"
+msgstr "Levált sejtszervecskék"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2297
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Vannak olyan sejtszervecskék, melyek nem kötődnek egymáshoz.\n"
-"Kérlek kapcsold össze a sejtszervecskéket egymással, vagy vond vissza "
-"eddigi változtatásaidat."
+"Kérlek kapcsold össze a sejtszervecskéket egymással, vagy vond vissza eddigi "
+"változtatásaidat."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2365
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2393
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2379
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2406
 msgid "FOOD_CHAIN"
 msgstr "Tápláléklánc"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2393
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2419
 msgid "TIMELINE"
 msgstr "Idővonal"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2446
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2472
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-Evo eredmények:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2465
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2491
 msgid "EXTERNAL_EFFECTS"
 msgstr "Külső effektek:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2523
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2549
 msgid "SPECIES_POPULATION"
 msgstr "A fajok populációi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2562
-#: ../src/microbe_stage/gui/PatchPanel.tscn:241
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2582
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3010
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fizikai körülmények"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2672
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
-#: ../src/microbe_stage/gui/PatchPanel.tscn:424
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2686
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3193
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Légköri gázok"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2777
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2870
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2779
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3702
 msgid "NEXT_CAPITAL"
 msgstr "KÖVETKEZŐ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2912
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2892
+msgid "SELECT_A_PATCH"
+msgstr "Válassz ki egy patch-et a további részletek megtekintéséhez"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2927
+msgid "CURRENT_LOCATION_CAPITAL"
+msgstr "JELENLEGI TARTÓZKODÁSI HELY"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3087
+msgid "PRESSURE"
+msgstr "Nyomás"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3618
+msgid "SPECIES_PRESENT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3675
+msgid "MOVE_TO_THIS_PATCH"
+msgstr "Átvándorlás ebbe a patch-be"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3744
 msgid "REPORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2933
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3765
 msgid "PATCH_MAP"
 msgstr "Patch térkép"
 
@@ -3044,73 +3068,85 @@ msgstr "Patch térkép"
 msgid "INFINITE_MP"
 msgstr "Végtelen MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:529
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:662
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:536
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:669
 msgid "MEGA_YEARS"
 msgstr "Myr"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:540
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:824
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:673
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:957
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:958
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:960
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:962
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
 msgid "YEARS"
 msgstr "évek"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:582
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:587
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:715
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
 msgid "ATP_PRODUCTION"
 msgstr "ATP előállítás"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:588
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "AZ ATP TERMELŐDÉSE TÚL ALACSONY!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:614
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:747
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:631
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:764
 msgid "OSMOREGULATION"
 msgstr "Ozmoreguláció"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:637
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:770
 msgid "BASE_MOVEMENT"
 msgstr "Alap mozgás"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:649
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:782
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:829
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:962
 msgid "SPECIES_LIST"
 msgstr "Fajlista"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:855
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:988
 msgid "FREEBUILDING"
 msgstr "Szabad szerkesztés"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1613
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1085
+msgid "BIOME_LABEL"
+msgstr "Biom: {0}"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1090
+msgid "BELOW_SEA_LEVEL"
+msgstr "{0}-{1}m-el a tenger alatt"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1129
+msgid "WITH_POPULATION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1811
 #, fuzzy
 msgid "FAILED"
 msgstr "A mentés sikertelen! Hiba történt"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1644
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1657
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1842
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1855
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULÁCIÓ:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1649
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1662
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1847
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1860
 msgid "N_A"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1736
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2056
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -3143,35 +3179,6 @@ msgstr ""
 "Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl "
 "fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás "
 "kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
-
-#: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
-#, fuzzy
-msgid "PATCH_EXTINCTION_BOX_TEXT"
-msgstr ""
-"Mint azon fajok 99%-a, melyek egykor léteztek, kihaltak, mint a te fajod. "
-"Pár faj ki fogja tölteni az ürességet, amit fajod veszte okozott, és túl "
-"fognak élni, de az nem te leszel. A fajod az evolúció egyik hibás "
-"kísérleteként lesz mostantól számontartva, és a feledésbe fog merülni."
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:123
-msgid "SELECT_A_PATCH"
-msgstr "Válassz ki egy patch-et a további részletek megtekintéséhez"
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:158
-msgid "CURRENT_LOCATION_CAPITAL"
-msgstr "JELENLEGI TARTÓZKODÁSI HELY"
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:318
-msgid "PRESSURE"
-msgstr "Nyomás"
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:849
-msgid "SPECIES_PRESENT"
-msgstr ""
-
-#: ../src/microbe_stage/gui/PatchPanel.tscn:906
-msgid "MOVE_TO_THIS_PATCH"
-msgstr "Átvándorlás ebbe a patch-be"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
@@ -3224,7 +3231,7 @@ msgstr ""
 msgid "ERROR_LOADING"
 msgstr "Betöltési hiba"
 
-#: ../src/saving/InProgressLoad.cs:227
+#: ../src/saving/InProgressLoad.cs:227 ../src/saving/InProgressLoad.cs:224
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
@@ -3264,19 +3271,19 @@ msgstr "Létező mentés felülírása:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Felülírod a már meglévő mentést?"
 
-#: ../src/saving/SaveHelper.cs:412
+#: ../src/saving/SaveHelper.cs:412 ../src/saving/SaveHelper.cs:397
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "A mentés nem sikerült a következő ok(ok)miatt:"
 
-#: ../src/saving/SaveHelper.cs:413
+#: ../src/saving/SaveHelper.cs:413 ../src/saving/SaveHelper.cs:398
 msgid "PLAYER_EXTINCT"
 msgstr "A játékos faja kihalt"
 
-#: ../src/saving/SaveHelper.cs:422
+#: ../src/saving/SaveHelper.cs:422 ../src/saving/SaveHelper.cs:407
 msgid "SAVING_SUCCEEDED"
 msgstr "Sikeres mentés"
 
-#: ../src/saving/SaveHelper.cs:432
+#: ../src/saving/SaveHelper.cs:432 ../src/saving/SaveHelper.cs:418
 msgid "SAVING_FAILED"
 msgstr "A mentés sikertelen! Hiba történt"
 
@@ -3315,8 +3322,8 @@ msgstr "Ez a mentés nem kompatibilis. Be akarod tölteni?"
 #: ../src/saving/SaveList.tscn:69
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
-"Ez a mentés a Thrive egyik frissebb verziójából származik, és nagy "
-"eséllyel nem kompatibilis.\n"
+"Ez a mentés a Thrive egyik frissebb verziójából származik, és nagy eséllyel "
+"nem kompatibilis.\n"
 "Így is be akarod tölteni a mentést?"
 
 #: ../src/saving/SaveList.tscn:77
@@ -3484,10 +3491,9 @@ msgstr ""
 "Az egereddel ki tudod jelölni a különböző patch-eket, hogy a jobb oldalon "
 "láthasd róluk az információt.\n"
 "\n"
-"Ha a jelenlegi tartózkodási helyed melletti valamelyik patch-et "
-"kiválasztod, akkor a jobb oldalon lévő gomb megnyomásával abba a patch-be "
-"vándorolsz át. Ez lehetővé teszi a fajod számára, hogy új patch-ekbe "
-"terjedjenek el.\n"
+"Ha a jelenlegi tartózkodási helyed melletti valamelyik patch-et kiválasztod, "
+"akkor a jobb oldalon lévő gomb megnyomásával abba a patch-be vándorolsz át. "
+"Ez lehetővé teszi a fajod számára, hogy új patch-ekbe terjedjenek el.\n"
 "\n"
 "Válassz ki egy patch-et a folytatáshoz."
 
@@ -3501,9 +3507,9 @@ msgstr ""
 "részében.\n"
 "\n"
 "A folytatáshoz válassz ki egy sejtszervecskét a bal oldali panelről (a "
-"citoplazma egy jó választás elsőnek). Ezután a képernyő közepén "
-"elhelyezkedő valamelyik hexagonra való bal kattintással helyezd el az "
-"adott sejtszervecskét."
+"citoplazma egy jó választás elsőnek). Ezután a képernyő közepén elhelyezkedő "
+"valamelyik hexagonra való bal kattintással helyezd el az adott "
+"sejtszervecskét."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
@@ -3560,12 +3566,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-
-#~ msgid "NEGATIVE_ATP_BALANCE"
-#~ msgstr "Negatív ATP egyensúly"
-
-#~ msgid "DISCONNECTED_ORGANELLES"
-#~ msgstr "Levált sejtszervecskék"
 
 #~ msgid "Cancel"
 #~ msgstr "Kihagyás"
