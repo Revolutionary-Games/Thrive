@@ -7,10 +7,9 @@
 [ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 1 )
+bg_color = Color( 0, 0, 0, 0.196078 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "FadeIn"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -25,37 +24,47 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="PatchExtinctionBox" type="PanelContainer"]
+[node name="PatchExtinctionBox" type="Control"]
 modulate = Color( 1, 1, 1, 0 )
+anchor_top = 0.05
 anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = 0.000457764
-mouse_filter = 2
-custom_styles/panel = SubResource( 1 )
+anchor_bottom = 0.95
 script = ExtResource( 4 )
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
-PatchMapDrawerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/PatchMapDrawer")
-PatchDetailsPanelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PatchDetailsPanel")
+PatchMapDrawerPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2/PatchMapDrawer")
+PatchDetailsPanelPath = NodePath("PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer/PatchDetailsPanel")
 AnimationPlayer = NodePath("AnimationPlayer")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 margin_right = 1280.0
-margin_bottom = 720.0
-custom_constants/margin_right = 150
-custom_constants/margin_top = 103
-custom_constants/margin_left = 150
+margin_bottom = 648.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 150.0
-margin_top = 103.0
-margin_right = 1130.0
-margin_bottom = 720.0
+[node name="PatchExtinctionBoxMenu" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1260.0
+margin_bottom = 628.0
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 980.0
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
+margin_right = 1240.0
 margin_bottom = 66.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.2, 0.2, 1 )
@@ -63,50 +72,52 @@ text = "PATCH_EXTINCTION"
 align = 1
 valign = 1
 
-[node name="Message" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Message" type="Label" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
 margin_top = 70.0
-margin_right = 980.0
-margin_bottom = 94.0
+margin_right = 1240.0
+margin_bottom = 99.0
 custom_fonts/font = ExtResource( 1 )
 text = "PATCH_EXTINCTION_BOX_TEXT"
 align = 1
 valign = 1
 autowrap = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 98.0
-margin_right = 980.0
-margin_bottom = 617.0
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu"]
+margin_top = 103.0
+margin_right = 1240.0
+margin_bottom = 608.0
 size_flags_vertical = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 260.0
-margin_right = 370.0
-margin_bottom = 519.0
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
+margin_left = 390.0
+margin_right = 500.0
+margin_bottom = 505.0
 size_flags_horizontal = 6
 size_flags_vertical = 3
 custom_constants/margin_right = 110
+custom_constants/margin_top = -20
 
-[node name="PatchMapDrawer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2" instance=ExtResource( 3 )]
+[node name="PatchMapDrawer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_bottom = 519.0
+margin_top = -20.0
+margin_bottom = 505.0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 DrawDefaultMapIfEmpty = false
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 634.0
-margin_right = 980.0
-margin_bottom = 519.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
+margin_left = 894.0
+margin_right = 1240.0
+margin_bottom = 505.0
 custom_constants/margin_top = 15
 custom_constants/margin_bottom = 45
 
-[node name="PatchDetailsPanel" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource( 5 )]
+[node name="PatchDetailsPanel" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer" instance=ExtResource( 5 )]
 margin_left = 0.0
 margin_top = 15.0
 margin_right = 346.0
-margin_bottom = 474.0
+margin_bottom = 460.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"

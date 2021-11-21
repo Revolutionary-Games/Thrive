@@ -105,7 +105,7 @@ scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
 margin_right = 318.0
-margin_bottom = 477.0
+margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -126,7 +126,7 @@ autowrap = true
 
 [node name="PatchDetailsContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_right = 318.0
-margin_bottom = 477.0
+margin_bottom = 490.0
 size_flags_vertical = 3
 custom_constants/separation = 10
 __meta__ = {
@@ -135,11 +135,11 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_right = 318.0
-margin_bottom = 46.0
+margin_bottom = 53.0
 
 [node name="PatchName" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
 margin_right = 318.0
-margin_bottom = 24.0
+margin_bottom = 29.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 17 )
 text = "Patch Name Goes Here"
@@ -150,9 +150,9 @@ __meta__ = {
 }
 
 [node name="PlayerHereLabel" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
-margin_top = 28.0
+margin_top = 33.0
 margin_right = 318.0
-margin_bottom = 46.0
+margin_bottom = 53.0
 custom_fonts/font = ExtResource( 15 )
 custom_colors/font_color = Color( 0, 1, 0.117647, 1 )
 text = "CURRENT_LOCATION_CAPITAL"
@@ -163,9 +163,9 @@ __meta__ = {
 }
 
 [node name="Biome" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 56.0
+margin_top = 63.0
 margin_right = 318.0
-margin_bottom = 78.0
+margin_bottom = 88.0
 custom_fonts/font = ExtResource( 3 )
 text = "Biome: BIOME HERE"
 align = 1
@@ -175,9 +175,9 @@ __meta__ = {
 }
 
 [node name="Depth" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 88.0
+margin_top = 98.0
 margin_right = 318.0
-margin_bottom = 110.0
+margin_bottom = 123.0
 custom_fonts/font = ExtResource( 3 )
 text = "200-340m below sea level"
 align = 1
@@ -187,9 +187,9 @@ __meta__ = {
 }
 
 [node name="PhysicalConditions" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 120.0
+margin_top = 133.0
 margin_right = 318.0
-margin_bottom = 208.0
+margin_bottom = 221.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -234,15 +234,14 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
 margin_left = 24.0
-margin_top = 1.0
-margin_right = 175.0
-margin_bottom = 19.0
+margin_right = 198.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "PHYSICAL_CONDITIONS"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
-margin_left = 179.0
+margin_left = 202.0
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 1
@@ -370,9 +369,9 @@ expand = true
 [node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 
 [node name="AtmosphericGasses" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 218.0
+margin_top = 231.0
 margin_right = 318.0
-margin_bottom = 306.0
+margin_bottom = 319.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -417,15 +416,14 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
 margin_left = 24.0
-margin_top = 1.0
-margin_right = 178.0
-margin_bottom = 19.0
+margin_right = 201.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "ATMOSPHERIC_GASSES"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/HBoxContainer"]
-margin_left = 182.0
+margin_left = 205.0
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 1
@@ -535,9 +533,9 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
 
 [node name="Compounds" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 316.0
+margin_top = 329.0
 margin_right = 318.0
-margin_bottom = 433.0
+margin_bottom = 446.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -582,15 +580,14 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
 margin_left = 24.0
-margin_top = 1.0
-margin_right = 108.0
-margin_bottom = 19.0
+margin_right = 123.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "COMPOUNDS"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
-margin_left = 112.0
+margin_left = 127.0
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 1
@@ -795,9 +792,9 @@ expand = true
 [node name="Tween" type="Tween" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 
 [node name="SpeciesBox" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-margin_top = 443.0
+margin_top = 456.0
 margin_right = 318.0
-margin_bottom = 477.0
+margin_bottom = 490.0
 script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -842,15 +839,14 @@ __meta__ = {
 
 [node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
 margin_left = 24.0
-margin_top = 1.0
-margin_right = 149.0
-margin_bottom = 19.0
+margin_right = 162.0
+margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "SPECIES_PRESENT"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer"]
-margin_left = 153.0
+margin_left = 166.0
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 1
