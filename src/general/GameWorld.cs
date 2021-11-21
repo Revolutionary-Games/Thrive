@@ -293,7 +293,9 @@ public class GameWorld
                 }
             }
             else
+            {
                 species.ApplyImmediatePopulationChangeInPatch(constant, coefficient, patch);
+            }
         }
 
         CreateRunIfMissing();
