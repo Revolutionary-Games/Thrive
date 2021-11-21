@@ -52,6 +52,8 @@ public class GameWorld
 
         if (!Map.Verify())
             throw new ArgumentException("generated patch map with settings is not valid");
+
+        Map.UpdateGlobalPopulations();
     }
 
     /// <summary>
