@@ -24,6 +24,9 @@ public class LoadingScreen : Control
     [Export]
     public NodePath RandomizeTipTimerPath;
 
+    [Export]
+    public NodePath SpinnerPath;
+
     /// <summary>
     ///   How fast the loading indicator spins
     /// </summary>
@@ -149,8 +152,7 @@ public class LoadingScreen : Control
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
         tipLabel = GetNode<Label>(TipLabelPath);
         randomizeTipTimer = GetNode<Timer>(RandomizeTipTimerPath);
-
-        spinner = GetNode<Control>("HBoxContainer/Spinner");
+        spinner = GetNode<Control>(SpinnerPath);
 
         UpdateMessage();
         UpdateDescription();
