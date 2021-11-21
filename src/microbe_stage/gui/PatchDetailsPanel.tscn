@@ -3,7 +3,7 @@
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostHuge.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Normal.tres" type="DynamicFont" id=3]
-[ext_resource path="res://src/microbe_stage/PatchPanel.cs" type="Script" id=4]
+[ext_resource path="res://src/microbe_stage/PatchDetailsPanel.cs" type="Script" id=4]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/sunlight.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/nitrogen.png" type="Texture" id=7]
@@ -39,7 +39,7 @@ default_font = ExtResource( 18 )
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
-[node name="PatchPanel" type="PanelContainer"]
+[node name="PatchDetailsPanel" type="PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 347.0

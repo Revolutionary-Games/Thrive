@@ -7,13 +7,13 @@ public class PatchExtinctionBox : PanelContainer
     public NodePath PatchMapDrawerPath;
 
     [Export]
-    public NodePath PatchPanelPath;
+    public NodePath PatchDetailsPanelPath;
 
     [Export]
     public NodePath AnimationPlayer;
 
     private PatchMapDrawer patchMapDrawer;
-    private PatchPanel patchPanel;
+    private PatchDetailsPanel patchDetailsPanel;
     private AnimationPlayer animationPlayer;
 
     public PatchMap Map { get; set; }
@@ -23,13 +23,13 @@ public class PatchExtinctionBox : PanelContainer
     public override void _Ready()
     {
         patchMapDrawer = GetNode<PatchMapDrawer>(PatchMapDrawerPath);
-        patchPanel = GetNode<PatchPanel>(PatchPanelPath);
+        patchDetailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayer);
 
         patchMapDrawer.Map = Map;
-        patchPanel.CurrentPatch = Map.CurrentPatch;
-        patchPanel.Patch = null;
-        patchPanel.OnMoveToPatchClicked = NewPatchSelected;
+        patchDetailsPanel.CurrentPatch = Map.CurrentPatch;
+        patchDetailsPanel.Patch = null;
+        patchDetailsPanel.OnMoveToPatchClicked = NewPatchSelected;
 
         patchMapDrawer.OnSelectedPatchChanged = SelectedPatchChanged;
 
@@ -47,7 +47,7 @@ public class PatchExtinctionBox : PanelContainer
 
     private void SelectedPatchChanged(PatchMapDrawer drawer)
     {
-        patchPanel.IsPatchMoveValid = drawer.SelectedPatch != null;
-        patchPanel.Patch = drawer.SelectedPatch;
+        patchDetailsPanel.IsPatchMoveValid = drawer.SelectedPatch != null;
+        patchDetailsPanel.Patch = drawer.SelectedPatch;
     }
 }

@@ -4,7 +4,7 @@
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/microbe_stage/PatchExtinctionBox.cs" type="Script" id=4]
-[ext_resource path="res://src/microbe_stage/gui/PatchPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -37,7 +37,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 PatchMapDrawerPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/PatchMapDrawer")
-PatchPanelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PatchPanel")
+PatchDetailsPanelPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/PatchDetailsPanel")
 AnimationPlayer = NodePath("AnimationPlayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -102,7 +102,7 @@ margin_bottom = 519.0
 custom_constants/margin_top = 15
 custom_constants/margin_bottom = 45
 
-[node name="PatchPanel" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource( 5 )]
+[node name="PatchDetailsPanel" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" instance=ExtResource( 5 )]
 margin_left = 0.0
 margin_top = 15.0
 margin_right = 346.0

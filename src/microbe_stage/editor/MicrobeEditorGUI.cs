@@ -218,7 +218,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath CompoundBalancePath;
 
     [Export]
-    public NodePath PatchPanelPath;
+    public NodePath PatchDetailsPanelPath;
 
     private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
     private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
@@ -343,7 +343,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private CompoundBalanceDisplay compoundBalance;
 
-    private PatchPanel patchPanel;
+    private PatchDetailsPanel patchDetailsPanel;
 
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
@@ -467,7 +467,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         menu = GetNode<PauseMenu>(MenuPath);
 
-        patchPanel = GetNode<PatchPanel>(PatchPanelPath);
+        patchDetailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
@@ -475,7 +475,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
 
-        patchPanel.OnMoveToPatchClicked = MoveToPatchClicked;
+        patchDetailsPanel.OnMoveToPatchClicked = MoveToPatchClicked;
 
         SetupMicrobePartSelections();
         UpdateMicrobePartSelections();
@@ -1418,7 +1418,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (editor.IsPatchMoveValid(patch))
             editor.SetPlayerPatch(patch);
 
-        patchPanel.CurrentPatch = patch;
+        patchDetailsPanel.CurrentPatch = patch;
     }
 
     private void SetEditorTab(string tab)
@@ -1667,9 +1667,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var patch = mapDrawer.SelectedPatch;
 
-        patchPanel.CurrentPatch = editor.CurrentPatch;
-        patchPanel.IsPatchMoveValid = editor.IsPatchMoveValid(patch);
-        patchPanel.Patch = patch;
+        patchDetailsPanel.CurrentPatch = editor.CurrentPatch;
+        patchDetailsPanel.IsPatchMoveValid = editor.IsPatchMoveValid(patch);
+        patchDetailsPanel.Patch = patch;
 
         if (patch == null)
             return;

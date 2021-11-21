@@ -2,7 +2,7 @@
 using System.Globalization;
 using Godot;
 
-public class PatchPanel : PanelContainer
+public class PatchDetailsPanel : PanelContainer
 {
     [Export]
     public NodePath NothingSelectedPath;

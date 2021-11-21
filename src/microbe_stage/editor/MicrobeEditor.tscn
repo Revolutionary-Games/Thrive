@@ -69,7 +69,7 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=101]
 [ext_resource path="res://src/gui_common/charts/line/LineChart.tscn" type="PackedScene" id=103]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=107]
-[ext_resource path="res://src/microbe_stage/gui/PatchPanel.tscn" type="PackedScene" id=108]
+[ext_resource path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" type="PackedScene" id=108]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 15, 15 )
@@ -437,7 +437,7 @@ IslandErrorPath = NodePath("CellEditor/IslandError")
 OrganelleMenuPath = NodePath("OrganellePopupMenu")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
 CompoundBalancePath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
-PatchPanelPath = NodePath("PatchMap/MarginContainer/HSplitContainer/PatchPanel")
+PatchDetailsPanelPath = NodePath("PatchMap/MarginContainer/HSplitContainer/PatchDetailsPanel")
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
 visible = false
@@ -2839,7 +2839,7 @@ margin_bottom = 598.0
 DrawDefaultMapIfEmpty = false
 MonochromeMaterial = null
 
-[node name="PatchPanel" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer" instance=ExtResource( 108 )]
+[node name="PatchDetailsPanel" parent="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer" instance=ExtResource( 108 )]
 margin_left = 920.0
 margin_top = 0.0
 margin_right = 1260.0
