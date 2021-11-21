@@ -56,7 +56,7 @@ public class MainMenu : NodeWithInput
 
     private Control creditsContainer;
     private CreditsScroll credits;
-    private Control licensesDisplay;
+    private LicensesDisplay licensesDisplay;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -157,7 +157,7 @@ public class MainMenu : NodeWithInput
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
-        licensesDisplay = GetNode<Control>(LicensesDisplayPath);
+        licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
 
         MenuArray?.Clear();
@@ -425,16 +425,14 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(uint.MaxValue, false);
 
         // Show the licenses view
-        licensesDisplay.Visible = true;
+        licensesDisplay.PopupCenteredShrink();
 
         thriveLogo.Hide();
     }
 
     private void OnReturnFromLicenses()
     {
-        licensesDisplay.Visible = false;
-
-        SetCurrentMenu(0, false);
+        SetCurrentMenu(2, false);
 
         thriveLogo.Show();
     }

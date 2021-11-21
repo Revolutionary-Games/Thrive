@@ -122,6 +122,11 @@ public class TrackList
     /// </summary>
     public class Track
     {
+        /// <summary>
+        ///   The track's base volume level in linear volume range 0-1.0f
+        /// </summary>
+        public float Volume { get; set; } = 1.0f;
+
         public string ResourcePath { get; set; }
 
         [JsonIgnore]
