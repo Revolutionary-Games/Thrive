@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -11,7 +11,8 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=9]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=10]
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/gui_common/LicensesDisplay.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -66,8 +67,9 @@ NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewG
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor")
 CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
-LicensesDisplayPath = NodePath("LicensesView")
+LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
+StoreLoggedInDisplayPath = NodePath("StoreUser")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -77,6 +79,29 @@ stretch_mode = 7
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "Randomizeable background"
+}
+
+[node name="StoreUser" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -892.0
+margin_right = -5.0
+margin_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 13 )
+text = "Logged in as: name"
+align = 2
+clip_text = true
+max_lines_visible = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="MenuContainers" type="Node" parent="."]
@@ -397,6 +422,12 @@ visible = false
 [node name="SaveManagerGUI" parent="." instance=ExtResource( 2 )]
 visible = false
 
+[node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
+margin_top = 28.0
+margin_bottom = 628.0
+Resizable = false
+WindowTitle = null
+
 [node name="CreditsView" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -428,64 +459,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LicensesView" type="Control" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="LicensesView"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LicensesView/MarginContainer"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1270.0
-margin_bottom = 710.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LicensesDisplay" parent="LicensesView/MarginContainer/VBoxContainer" instance=ExtResource( 12 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1260.0
-margin_bottom = 656.0
-size_flags_vertical = 3
-
-[node name="Back" type="Button" parent="LicensesView/MarginContainer/VBoxContainer"]
-margin_top = 660.0
-margin_right = 150.0
-margin_bottom = 700.0
-rect_min_size = Vector2( 150, 40 )
-mouse_filter = 1
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "BACK"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="VersionNumber" type="Label" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -298.0
-margin_top = -23.0
+margin_top = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -507,9 +487,10 @@ __meta__ = {
 anims/MenuSlide = SubResource( 1 )
 
 [node name="GLES2Popup" parent="." instance=ExtResource( 4 )]
-margin_top = 28.0
-margin_right = 680.0
-margin_bottom = 125.0
+margin_left = -680.0
+margin_top = -97.0
+margin_right = 0.0
+margin_bottom = 0.0
 rect_min_size = Vector2( 680, 0 )
 popup_exclusive = false
 HideCancelButton = true
@@ -529,6 +510,6 @@ DialogText = "GLES2_MODE_WARNING_TEXT"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
-[connection signal="pressed" from="LicensesView/MarginContainer/VBoxContainer/Back" to="." method="OnReturnFromLicenses"]

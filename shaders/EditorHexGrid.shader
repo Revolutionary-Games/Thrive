@@ -1,27 +1,46 @@
 shader_type spatial;
 render_mode unshaded;
 
-// TODO: implement our own version of procedural hex grid tiling for a better
-// looking and more uniform hexes.
-// See andrewhungblog.wordpress.com/2018/07/28/shader-art-tutorial-hexagonal-grids/
+// Procedural hex grid tiling for a better looking and more uniform hexes.
+// This is heavily inspired by Andrew Hung's tutorial.
+// See https://andrewhungblog.wordpress.com/2018/07/28/shader-art-tutorial-hexagonal-grids
 
-uniform sampler2D gridTexture;
 uniform sampler2D maskTexture;
 uniform vec4 color : hint_color;
+uniform float lineWidth = 0.02;
+uniform float edgeLength = 1.299;
 
-uniform vec2 gridSize;
+const vec2 hexSize = vec2(1.7320508, 1.0); // 1.7320508 = sqrt(3)
+const vec2 hexSizeHalf = hexSize * 0.5;
 
 varying vec3 worldPos;
+varying float minLineWidth;
+
+// Returns normalized distance to the nearest hex center.
+float hexDist(vec2 coord)
+{
+    vec4 dists = mod(vec4(coord, coord - hexSizeHalf), hexSize.xyxy) - hexSizeHalf.xyxy;    
+    vec2 dist = dot(dists.xy, dists.xy) < dot(dists.zw, dists.zw) ? abs(dists.xy) : abs(dists.zw);
+    return max(dot(dist, hexSizeHalf), dist.y) + 0.5;
+}
 
 void vertex(){
-    worldPos = (WORLD_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    worldPos = (CAMERA_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+
+    // min line width to not look unsteady
+    minLineWidth = (worldPos.y / VIEWPORT_SIZE.y);
 }
 
 void fragment(){
-    vec4 gridTex = texture(gridTexture, (worldPos.xz / gridSize) *
-        vec2(2.778, 4.811));
     vec4 mask = texture(maskTexture, UV);
 
-    ALBEDO = gridTex.rgb * color.rgb;
-    ALPHA = gridTex.a * mask.a;
+    // Current coordinate
+    vec2 coord = (VERTEX.xy + vec2(worldPos.x, -worldPos.z)) / edgeLength;
+
+    // Distance to the nearest Hex center.
+    float dist = hexDist(coord);
+
+    ALPHA = smoothstep(1.0 - max(minLineWidth, lineWidth), 1.0, dist) * 2.5 * mask.a;
+
+    ALBEDO = color.rgb;
 }

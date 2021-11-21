@@ -1764,8 +1764,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -135.0
-margin_top = -274.0
+margin_left = -141.0
+margin_top = -260.0
 margin_right = -10.0
 margin_bottom = -241.0
 grow_horizontal = 0
@@ -1776,9 +1776,9 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
-margin_right = 82.0
+margin_right = 87.0
 margin_bottom = 37.0
-rect_min_size = Vector2( 82, 0 )
+rect_min_size = Vector2( 87, 0 )
 size_flags_horizontal = 3
 custom_styles/normal = SubResource( 28 )
 custom_fonts/font = ExtResource( 12 )
@@ -1790,11 +1790,11 @@ __meta__ = {
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
-margin_left = 86.0
+margin_left = 91.0
 margin_top = 9.0
-margin_right = 125.0
+margin_right = 131.0
 margin_bottom = 28.0
-rect_min_size = Vector2( 35, 0 )
+rect_min_size = Vector2( 40, 0 )
 size_flags_horizontal = 3
 custom_styles/normal = SubResource( 28 )
 custom_fonts/font = ExtResource( 12 )

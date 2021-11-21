@@ -16,6 +16,7 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 require_relative 'scripts/check_file_list'
 require_relative 'scripts/po_helpers'
 require_relative 'scripts/json_helpers'
+require_relative 'scripts/steam_version_helpers'
 
 MAX_LINE_LENGTH = 120
 DUPLICATE_THRESHOLD = 105
@@ -319,7 +320,7 @@ def handle_shader_file(path)
         errors = true
       end
     end
-    
+
     if line.include? "\t"
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} contains a tab"
@@ -444,7 +445,7 @@ def handle_export_presets(path)
         errors = true
       end
     end
-  
+
     matches = line.match(CFG_VERSION_LINE)
 
     if matches
@@ -665,6 +666,13 @@ def run_files
       end
       raise e
     end
+  end
+
+  if steam_build_enabled?
+    OUTPUT_MUTEX.synchronize do
+      puts 'Steam build is enabled, it should not be enabled when committing'
+    end
+    issues_found = true
   end
 
   return unless issues_found

@@ -104,7 +104,7 @@
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
     <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
     <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
-    <Compile Include="src\gui_common\LicensesDisplay.cs" />
+    <Compile Include="src\gui_common\dialogs\LicensesDisplay.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
@@ -310,6 +310,9 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\steam\ISteamClient.cs" />
+    <Compile Include="src\steam\ISteamSignalReceiver.cs" />
+    <Compile Include="src\steam\SteamHandler.cs" />
     <Compile Include="src\tutorial\ITutorialGUI.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
     <Compile Include="src\tutorial\microbe_editor\AutoEvoPrediction.cs" />
@@ -359,7 +362,9 @@
     <PackageReference Include="Nito.Collections.Deque">
       <Version>1.1.1</Version>
     </PackageReference>
-    <PackageReference Update="StyleCop.Analyzers" Version="1.2.0-beta.354" />
+    <PackageReference Include="StyleCop.Analyzers">
+      <Version>1.2.0-beta.354</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="export_presets.cfg" />

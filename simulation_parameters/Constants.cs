@@ -61,7 +61,7 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 7.1f;
+    public const float FLAGELLA_ENERGY_COST = 7.0f;
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
@@ -217,7 +217,7 @@ public static class Constants
     /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
-    public const float REGENERATION_RATE = 1.0f;
+    public const float REGENERATION_RATE = 1.5f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
@@ -263,7 +263,7 @@ public static class Constants
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
     /// </summary>
-    public const float ENGULFING_MOVEMENT_DIVISION = 2.0f;
+    public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
 
     /// <summary>
     ///   The speed reduction when a cell is being engulfed.
@@ -452,7 +452,7 @@ public static class Constants
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.8f;
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.35f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
@@ -575,6 +575,7 @@ public static class Constants
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
 
     public const string LICENSE_FILE = "res://LICENSE.txt";
+    public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
     public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
@@ -628,32 +629,37 @@ public static class Constants
     /// <summary>
     ///   Minimum amount for the little category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 5f;
+    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10f;
 
     /// <summary>
     ///   Minimum amount for the some category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_SOME = 20f;
+    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50f;
 
     /// <summary>
     ///   Minimum amount for the fair amount category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 50f;
+    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200f;
 
     /// <summary>
     ///   Minimum amount for the quite a bit category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 200f;
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 400f;
 
     /// <summary>
     ///   Minimum amount for the an abundance category in the hover info.
     /// </summary>
-    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 500f;
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
 
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>
     public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
+
+    /// <summary>
+    ///   Minimum hex distance before the same render priority.
+    /// </summary>
+    public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

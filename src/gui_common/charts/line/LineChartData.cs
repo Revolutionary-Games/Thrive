@@ -30,7 +30,10 @@ public class LineChartData
             dataColour = value;
 
             foreach (var point in DataPoints)
+            {
                 point.MarkerColour = dataColour;
+                point.Update();
+            }
         }
     }
 

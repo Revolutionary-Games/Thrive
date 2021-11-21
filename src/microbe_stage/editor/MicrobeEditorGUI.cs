@@ -501,8 +501,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Set the right tabs if they aren't the defaults
         ApplyEditorTab();
         ApplySelectionMenuTab();
-
-        UpdateMutationPointsBar();
     }
 
     public void SetMap(PatchMap map)
@@ -834,17 +832,27 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         OnPhysicalConditionsChartLegendPressed("temperature");
     }
 
-    public void UpdateMutationPointsBar()
+    public void UpdateMutationPointsBar(bool tween = true)
     {
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
             editor.MutationPoints - editor.CalculateCurrentOrganelleCost();
 
-        GUICommon.Instance.TweenBarValue(
-            mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
-        GUICommon.Instance.TweenBarValue(
-            mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        if (tween)
+        {
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        }
+        else
+        {
+            mutationPointsBar.Value = possibleMutationPoints;
+            mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+            mutationPointsSubtractBar.Value = editor.MutationPoints;
+            mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+        }
 
         if (editor.FreeBuilding)
         {
@@ -1739,6 +1747,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         {
             // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
             ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+
+            speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
         }
     }
 
@@ -1789,7 +1799,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
-        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
 
         if (name == "temperature")
         {
@@ -1797,9 +1806,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.DarkGray;
             sunlightChart.Hide();
             temperatureChart.Show();
-
-            tween.InterpolateProperty(temperatureButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
         else if (name == "sunlight")
         {
@@ -1807,9 +1813,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.White;
             sunlightChart.Show();
             temperatureChart.Hide();
-
-            tween.InterpolateProperty(sunlightButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
     }
 
