@@ -14,8 +14,8 @@ public class FullScreenToggle : NodeWithInput
     [RunOnKeyDown("toggle_fullscreen", OnlyUnhandled = false)]
     public void ToggleFullScreenPressed()
     {
-        GD.Print("Toggling fullscreen with keypress");
         Settings.Instance.FullScreen.Value = !Settings.Instance.FullScreen.Value;
+        GD.Print("Toggling fullscreen with keypress, new value: ", Settings.Instance.FullScreen.Value);
         Settings.Instance.ApplyWindowSettings();
     }
 }

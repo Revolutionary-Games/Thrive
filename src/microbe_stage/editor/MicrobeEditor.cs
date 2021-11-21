@@ -1389,6 +1389,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         UpdateArrow(false);
 
+        gui.UpdateMutationPointsBar(false);
+
         // Send freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
 
