@@ -265,6 +265,8 @@ public class Jukebox : Node
 
             player.Player.Play(fromPosition);
             GD.Print("Jukebox: starting track: ", track.ResourcePath, " position: ", fromPosition);
+
+            track.PlayedOnce = true;
         }
     }
 
@@ -473,6 +475,9 @@ public class Jukebox : Node
 
         foreach (var list in needToStartFrom)
         {
+            if (!list.Repeat && list.Tracks.All(track => track.PlayedOnce))
+                continue;
+
             PlayNextTrackFromList(list, index =>
             {
                 if (index < usablePlayers.Count)
@@ -529,6 +534,20 @@ public class Jukebox : Node
     private void OnCategoryEnded()
     {
         var category = previouslyPlayedCategory;
+
+        if (category != null)
+        {
+            // Reset PlayedOnce flag in all tracks
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.Tracks)
+                {
+                    track.PlayedOnce = false;
+                }
+            }
+        }
+
+        // We don't have to do anything for the Reset return type here
 
         // Store continue positions
         if (category?.Return == MusicCategory.ReturnType.Continue)
