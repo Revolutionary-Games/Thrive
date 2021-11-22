@@ -8,8 +8,8 @@ public static class CollisionObjectHelpers
     /// <summary>
     ///  Creates and returns new shape owner for a shape and the given entity.
     ///  Applies a given transform to the new shapeOwner.
-    ///  Returns the shapeOwner.
     /// </summary>
+    /// <returns>The shapeOwner.</returns>
     public static uint CreateShapeOwnerWithTransform(this CollisionObject entity, Transform transform, Shape shape)
     {
         var newShapeOwnerId = entity.CreateShapeOwner(shape);
