@@ -202,6 +202,11 @@ public class PauseMenu : ControlWithInput
         helpScreen.RandomizeEasterEgg();
     }
 
+    public void SetNewSaveName(string name)
+    {
+        saveMenu.SetSaveName(name, true);
+    }
+
     private Control GetControlFromMenuEnum(ActiveMenuType value)
     {
         return value switch
