@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-22 22:51+0200\n"
+"POT-Creation-Date: 2021-11-22 22:53+0200\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -3355,7 +3355,7 @@ msgstr ""
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:34
+#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:35
 #, fuzzy
 msgid "UPLOAD"
 msgstr "加載"
@@ -3464,43 +3464,48 @@ msgstr ""
 msgid "FORM_ERROR_MESSAGE"
 msgstr "保存時出錯"
 
-#: ../src/modding/ModUploader.tscn:72
+#: ../src/modding/ModUploader.tscn:33
+#, fuzzy
+msgid "MOD_UPLOADER"
+msgstr "加載"
+
+#: ../src/modding/ModUploader.tscn:73
 #, fuzzy
 msgid "MOD_TO_UPLOAD"
 msgstr "加載"
 
-#: ../src/modding/ModUploader.tscn:96
+#: ../src/modding/ModUploader.tscn:97
 #, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "鼠標未知鍵"
 
-#: ../src/modding/ModUploader.tscn:108
+#: ../src/modding/ModUploader.tscn:109
 #, fuzzy
 msgid "CREATE_NEW"
 msgstr "建立一个新微生物"
 
-#: ../src/modding/ModUploader.tscn:115
+#: ../src/modding/ModUploader.tscn:116
 #, fuzzy
 msgid "ENTER_EXISTING_ID"
 msgstr "覆寫現有的存檔："
 
-#: ../src/modding/ModUploader.tscn:125
+#: ../src/modding/ModUploader.tscn:126
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:139
+#: ../src/modding/ModUploader.tscn:140
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:145
+#: ../src/modding/ModUploader.tscn:146
 msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:155
+#: ../src/modding/ModUploader.tscn:156
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:173
+#: ../src/modding/ModUploader.tscn:174
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr ""
@@ -3509,31 +3514,31 @@ msgstr ""
 "糖。這些色素也是賦予其獨特顏色的原因。產出葡萄糖的速率取決於二氧化碳的濃度"
 "和光的強度。"
 
-#: ../src/modding/ModUploader.tscn:195
+#: ../src/modding/ModUploader.tscn:196
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:196
+#: ../src/modding/ModUploader.tscn:197
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:202
+#: ../src/modding/ModUploader.tscn:203
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:220
+#: ../src/modding/ModUploader.tscn:221
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:252
+#: ../src/modding/ModUploader.tscn:253
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:264
+#: ../src/modding/ModUploader.tscn:265
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:286
+#: ../src/modding/ModUploader.tscn:287
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
@@ -4023,10 +4028,6 @@ msgstr ""
 "向。\n"
 "\n"
 "請花幾秒時間嘗試所有按鍵以繼續。"
-
-#, fuzzy
-#~ msgid "MOD_UPLOADER"
-#~ msgstr "加載"
 
 #, fuzzy
 #~ msgid "UNAPPLIED_MOD_CHANGES"

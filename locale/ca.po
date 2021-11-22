@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-22 22:51+0200\n"
+"POT-Creation-Date: 2021-11-22 22:53+0200\n"
 "PO-Revision-Date: 2021-10-29 07:14+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -3548,7 +3548,7 @@ msgstr "Obrir l'URL"
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:34
+#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:35
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Carregar"
@@ -3661,44 +3661,49 @@ msgstr ""
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error amb l'acció de guardat"
 
-#: ../src/modding/ModUploader.tscn:72
+#: ../src/modding/ModUploader.tscn:33
+#, fuzzy
+msgid "MOD_UPLOADER"
+msgstr "Carregar"
+
+#: ../src/modding/ModUploader.tscn:73
 #, fuzzy
 msgid "MOD_TO_UPLOAD"
 msgstr "Carregar"
 
-#: ../src/modding/ModUploader.tscn:96
+#: ../src/modding/ModUploader.tscn:97
 #, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Desconegut ratolí"
 
-#: ../src/modding/ModUploader.tscn:108
+#: ../src/modding/ModUploader.tscn:109
 #, fuzzy
 msgid "CREATE_NEW"
 msgstr "Crear un nou microbi"
 
-#: ../src/modding/ModUploader.tscn:115
+#: ../src/modding/ModUploader.tscn:116
 #, fuzzy
 msgid "ENTER_EXISTING_ID"
 msgstr "Sobreescriure l'arxiu de guardat existent:"
 
-#: ../src/modding/ModUploader.tscn:125
+#: ../src/modding/ModUploader.tscn:126
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:139
+#: ../src/modding/ModUploader.tscn:140
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:145
+#: ../src/modding/ModUploader.tscn:146
 msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:155
+#: ../src/modding/ModUploader.tscn:156
 #, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/modding/ModUploader.tscn:173
+#: ../src/modding/ModUploader.tscn:174
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr ""
@@ -3712,31 +3717,31 @@ msgstr ""
 "proporcionalment amb la concentració de Diòxid de Carboni i la intensitat "
 "de la Llum."
 
-#: ../src/modding/ModUploader.tscn:195
+#: ../src/modding/ModUploader.tscn:196
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:196
+#: ../src/modding/ModUploader.tscn:197
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:202
+#: ../src/modding/ModUploader.tscn:203
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:220
+#: ../src/modding/ModUploader.tscn:221
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:252
+#: ../src/modding/ModUploader.tscn:253
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:264
+#: ../src/modding/ModUploader.tscn:265
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:286
+#: ../src/modding/ModUploader.tscn:287
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
@@ -4381,10 +4386,6 @@ msgstr ""
 "\n"
 "Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia "
 "cèl·lula o pressionar la tecla per desunir-les a totes."
-
-#, fuzzy
-#~ msgid "MOD_UPLOADER"
-#~ msgstr "Carregar"
 
 #, fuzzy
 #~ msgid "UNAPPLIED_MOD_CHANGES"
