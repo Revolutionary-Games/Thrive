@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-21 23:17+0100\n"
+"POT-Creation-Date: 2021-11-22 08:50+0100\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -403,17 +403,17 @@ msgid "ABILITIES"
 msgstr "Habilidades"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2111
+#: ../src/microbe_stage/MicrobeStage.tscn:2106
 msgid "FIRE_TOXIN"
 msgstr "Disparar toxina"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2094
 msgid "TOGGLE_ENGULF"
 msgstr "Engolir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2122
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 msgid "TOGGLE_BINDING"
 msgstr "Ativar modo de ligação"
 
@@ -442,7 +442,7 @@ msgid "ZOOM_IN"
 msgstr "Aumentar o zoom"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2965
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -1436,7 +1436,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor de Micróbio Livre"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:417
-#: ../src/general/MainMenu.tscn:457 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:148
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
@@ -1451,12 +1451,16 @@ msgstr "Galeria de Arte"
 msgid "LICENSES"
 msgstr "Licenças"
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Você está usando Thrive usando GLES2, que não é testado e pode causar "
 "problemas. Tente atualizar seus drivers de vídeo e/ou forçar o uso do AMD "
 "ou Nvidia."
+
+#: ../src/general/MainMenu.tscn:495
+msgid "GLES2_MODE_WARNING"
+msgstr "Aviso do Modo GLES2"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1811,7 +1815,7 @@ msgid "SAVE_GAME"
 msgstr "Salvar Jogo"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2557
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2559
 msgid "STATISTICS"
 msgstr "Estatísticas"
 
@@ -2933,7 +2937,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Pressione."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2755
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2757
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:586
 msgid "COMPOUNDS"
@@ -3197,61 +3201,69 @@ msgid "WORST_PATCH_COLON"
 msgstr "Pior Região:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2279
+msgid "NEGATIVE_ATP_BALANCE"
+msgstr "Balanceamento de ATP Negativo"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Seu micróbio não está produzindo ATP suficiente para sobreviver!\n"
 "Deseja continuar?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2286
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2287
+msgid "DISCONNECTED_ORGANELLES"
+msgstr "Organelas Desconectadas"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Há organelas desconectadas do resto da célula.\n"
 "Por favor conecte todas as organelas ou desfaça suas mudanças."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2383
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2385
 msgid "AUTO_EVO"
 msgstr "Auto-evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2397
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2399
 msgid "FOOD_CHAIN"
 msgstr "Cadeia Alimentar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2411
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2413
 msgid "TIMELINE"
 msgstr "Linha do Tempo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2464
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2466
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados da Auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2483
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2485
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efeitos externos:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2566
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2568
 msgid "SPECIES_POPULATION"
 msgstr "População da espécie"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2604
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2606
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:240
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condições Físicas"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2712
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2714
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:422
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gases Atmosféricos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2815
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2817
 msgid "NEXT_CAPITAL"
 msgstr "PRÓXIMO"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2923
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2925
 msgid "REPORT"
 msgstr "Relatório"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2944
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2946
 msgid "PATCH_MAP"
 msgstr "Mapa de Regiões"
 
@@ -3894,15 +3906,6 @@ msgstr ""
 "\n"
 "Para sair da colônia você pode clicar em sua própria célula ou apertar a "
 "tecla “desconectar todos”."
-
-#~ msgid "GLES2_MODE_WARNING"
-#~ msgstr "Aviso do Modo GLES2"
-
-#~ msgid "NEGATIVE_ATP_BALANCE"
-#~ msgstr "Balanceamento de ATP Negativo"
-
-#~ msgid "DISCONNECTED_ORGANELLES"
-#~ msgstr "Organelas Desconectadas"
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"

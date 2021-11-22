@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-21 23:17+0100\n"
+"POT-Creation-Date: 2021-11-22 08:50+0100\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -377,17 +377,17 @@ msgid "ABILITIES"
 msgstr "Kapabloj"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2111
+#: ../src/microbe_stage/MicrobeStage.tscn:2106
 msgid "FIRE_TOXIN"
 msgstr "Pafu toksinon"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2094
 msgid "TOGGLE_ENGULF"
 msgstr "Ŝaltu engluton"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2122
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Ŝaltu engluton"
@@ -419,7 +419,7 @@ msgid "ZOOM_IN"
 msgstr "Zomu"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2965
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
 msgid "EDITOR"
 msgstr "Redaktilo"
 
@@ -1444,7 +1444,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Libra Redaktilo de"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:417
-#: ../src/general/MainMenu.tscn:457 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:148
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
@@ -1459,12 +1459,16 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Vi uzas Thrive kun GLES2. Ĉi tio estas tre neprovita kaj probable kaŭzas "
 "problemojn. Provu ĝisdatigi viajn video-pelilojn kaj/aŭ devigi uzi AMD aŭ "
 "Nvidia-grafikaĵojn por ke Thrive funkciu."
+
+#: ../src/general/MainMenu.tscn:495
+msgid "GLES2_MODE_WARNING"
+msgstr "Averto Modo GLES2"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1830,7 +1834,7 @@ msgid "SAVE_GAME"
 msgstr "Konservu"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2557
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2559
 msgid "STATISTICS"
 msgstr "Statistiko"
 
@@ -2972,7 +2976,7 @@ msgid "PRESSURE_SHORT"
 msgstr "Premo."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2755
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2757
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:586
 msgid "COMPOUNDS"
@@ -3252,12 +3256,20 @@ msgid "WORST_PATCH_COLON"
 msgstr "Specioj:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2279
+msgid "NEGATIVE_ATP_BALANCE"
+msgstr "Negativa ATP-Balanco"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Via mikrobo ne produktas sufiĉe da ATP por ke ĝi travivu!\n"
 "Ĉu vi volas daŭrigi?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2286
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2287
+msgid "DISCONNECTED_ORGANELLES"
+msgstr "Malkonektitaj Organetoj"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Inter metitaj organetoj, estas organetoj kiu ne estas ligitaj al la "
@@ -3265,50 +3277,50 @@ msgstr ""
 "Bonvolu konekti ĉiujn metitajn organetojn unu kun la alia aŭ malfari viajn "
 "ŝanĝojn."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2383
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2385
 msgid "AUTO_EVO"
 msgstr "Aŭto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2397
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2399
 msgid "FOOD_CHAIN"
 msgstr "Manĝoĉeno"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2411
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2413
 msgid "TIMELINE"
 msgstr "Templinio"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2464
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2466
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultoj de aŭtomata evoluo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2483
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2485
 msgid "EXTERNAL_EFFECTS"
 msgstr "Eksteraj efikoj:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2566
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2568
 msgid "SPECIES_POPULATION"
 msgstr "Specio loĝantaro"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2604
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2606
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:240
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fizikaj Kondiĉoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2712
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2714
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:422
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferaj Gasoj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2815
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2817
 msgid "NEXT_CAPITAL"
 msgstr "SEKVA"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2923
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2925
 msgid "REPORT"
 msgstr "Ra"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2944
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2946
 msgid "PATCH_MAP"
 msgstr "Mapo"
 
@@ -3977,15 +3989,6 @@ msgstr ""
 "(centro de ekrano) kaj la muson por regi la ĉelan orientiĝon.\n"
 "\n"
 "Provu ĉiujn klavojn dum kelkaj sekundoj por daŭrigi."
-
-#~ msgid "GLES2_MODE_WARNING"
-#~ msgstr "Averto Modo GLES2"
-
-#~ msgid "NEGATIVE_ATP_BALANCE"
-#~ msgstr "Negativa ATP-Balanco"
-
-#~ msgid "DISCONNECTED_ORGANELLES"
-#~ msgstr "Malkonektitaj Organetoj"
 
 #~ msgid "Cancel"
 #~ msgstr "Nuligi"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-21 23:17+0100\n"
+"POT-Creation-Date: 2021-11-22 08:50+0100\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -353,17 +353,17 @@ msgid "ABILITIES"
 msgstr "능력"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2111
+#: ../src/microbe_stage/MicrobeStage.tscn:2106
 msgid "FIRE_TOXIN"
 msgstr "독소 공격"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2094
 msgid "TOGGLE_ENGULF"
 msgstr "삼키기 전환"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2122
+#: ../src/microbe_stage/MicrobeStage.tscn:2117
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "삼키기 전환"
@@ -395,7 +395,7 @@ msgid "ZOOM_IN"
 msgstr "확대"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2965
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2967
 msgid "EDITOR"
 msgstr "편집기"
 
@@ -1419,7 +1419,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:417
-#: ../src/general/MainMenu.tscn:457 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:148
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
@@ -1434,12 +1434,16 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생"
 "할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래"
 "픽을 사용하여 Thrive를 실행해주시기 바랍니다."
+
+#: ../src/general/MainMenu.tscn:495
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2 모드 경고"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1802,7 +1806,7 @@ msgid "SAVE_GAME"
 msgstr "저장"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2557
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2559
 msgid "STATISTICS"
 msgstr "상태"
 
@@ -2890,7 +2894,7 @@ msgid "PRESSURE_SHORT"
 msgstr "압력."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2755
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2757
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:830
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:586
 msgid "COMPOUNDS"
@@ -3178,62 +3182,70 @@ msgid "WORST_PATCH_COLON"
 msgstr "종:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2279
+msgid "NEGATIVE_ATP_BALANCE"
+msgstr "부정적 ATP 균형"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "미생물이 생존에 필요한 만큼의 ATP를 생산하지 않습니다!\n"
 "계속하시겠습니까?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2286
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2287
+msgid "DISCONNECTED_ORGANELLES"
+msgstr "단절된 세포기관"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "연결되지 않은 세포 기관이 배치되어 있습니다.\n"
 "배치된 모든 세포 기관을 서로 연결하거나 변경을 취소하세요."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2383
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2385
 msgid "AUTO_EVO"
 msgstr "자동 진화"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2397
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2399
 msgid "FOOD_CHAIN"
 msgstr "먹이 사슬"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2411
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2413
 msgid "TIMELINE"
 msgstr "연대"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2464
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2466
 msgid "AUTO_EVO_RESULTS"
 msgstr "자동 진화 결과:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2483
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2485
 msgid "EXTERNAL_EFFECTS"
 msgstr "외부 효과:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2566
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2568
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "종:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2604
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2606
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:240
 msgid "PHYSICAL_CONDITIONS"
 msgstr "물리적 상태"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2712
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2714
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:422
 msgid "ATMOSPHERIC_GASSES"
 msgstr "대기 가스"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2815
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2817
 msgid "NEXT_CAPITAL"
 msgstr "다음"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2923
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2925
 msgid "REPORT"
 msgstr "보고"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2944
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2946
 msgid "PATCH_MAP"
 msgstr "파편 지도"
 
@@ -3875,15 +3887,6 @@ msgstr ""
 "세요.\n"
 "\n"
 "모든 키로 수 초간 움직여서 진행하세요."
-
-#~ msgid "GLES2_MODE_WARNING"
-#~ msgstr "GLES2 모드 경고"
-
-#~ msgid "NEGATIVE_ATP_BALANCE"
-#~ msgstr "부정적 ATP 균형"
-
-#~ msgid "DISCONNECTED_ORGANELLES"
-#~ msgstr "단절된 세포기관"
 
 #~ msgid "Cancel"
 #~ msgstr "취소"
