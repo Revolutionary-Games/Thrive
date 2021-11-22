@@ -2885,6 +2885,18 @@ margin_top = 0.0
 margin_right = 1260.0
 margin_bottom = 620.0
 
+[node name="NextTabButton" type="Button" parent="MicrobeEditorGUI/PatchMap/MarginContainer2"]
+margin_right = 140.0
+margin_bottom = 40.0
+mouse_filter = 1
+custom_styles/hover = SubResource( 26 )
+custom_styles/normal = SubResource( 27 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "NEXT_CAPITAL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TopLeft" type="MarginContainer" parent="MicrobeEditorGUI"]
 margin_right = 353.0
 margin_bottom = 45.0
