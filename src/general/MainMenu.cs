@@ -345,7 +345,6 @@ public class MainMenu : NodeWithInput
 
     private void QuitPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
     }
 
