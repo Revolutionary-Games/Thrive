@@ -186,13 +186,13 @@ public class Jukebox : Node
         {
             foreach (var player in audioPlayers)
             {
-                var dbValue = GD.Linear2Db(linearVolume * player.LinearVolume);
+                var dbValue = GD.Linear2Db(linearVolume * player.BaseVolume * player.LinearVolume);
                 player.Player.VolumeDb = dbValue;
             }
         }
         else
         {
-            var dbValue = GD.Linear2Db(linearVolume * audioPlayer.LinearVolume);
+            var dbValue = GD.Linear2Db(linearVolume * audioPlayer.BaseVolume * audioPlayer.LinearVolume);
             audioPlayer.Player.VolumeDb = dbValue;
         }
     }
@@ -236,6 +236,7 @@ public class Jukebox : Node
 
             player.Player.Stream = stream;
             player.CurrentTrack = track.ResourcePath;
+            player.BaseVolume = track.Volume;
 
             changedTrack = true;
         }
@@ -591,6 +592,8 @@ public class Jukebox : Node
         ///   The current AudioPlayer volume level in linear volume range 0-1.0f
         /// </summary>
         public float LinearVolume { get; set; } = 1.0f;
+
+        public float BaseVolume { get; set; } = 1.0f;
 
         public bool StreamPaused
         {
