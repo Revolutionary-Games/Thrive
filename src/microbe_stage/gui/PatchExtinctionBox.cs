@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 
 public class PatchExtinctionBox : Control
@@ -33,10 +34,7 @@ public class PatchExtinctionBox : Control
 
         patchMapDrawer.OnSelectedPatchChanged = SelectedPatchChanged;
 
-        foreach (var patch in Map.Patches.Values)
-        {
-            patchMapDrawer.SetPatchEnabledStatus(patch, patch.GetSpeciesPopulation(PlayerSpecies) > 0);
-        }
+        patchMapDrawer.SetPatchEnabledStatuses(Map.Patches.Values, p => p.GetSpeciesPopulation(PlayerSpecies) > 0);
     }
 
     private void NewPatchSelected(Patch patch)

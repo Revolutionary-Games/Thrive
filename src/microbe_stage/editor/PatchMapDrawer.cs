@@ -125,6 +125,17 @@ public class PatchMapDrawer : Control
             SelectedPatch = null;
     }
 
+    public void SetPatchEnabledStatuses(Dictionary<Patch, bool> statuses)
+    {
+        SetPatchEnabledStatuses(statuses.Keys, p => statuses[p]);
+    }
+
+    public void SetPatchEnabledStatuses(IEnumerable<Patch> patches, Func<Patch, bool> func)
+    {
+        foreach (var patch in patches)
+            SetPatchEnabledStatus(patch, func(patch));
+    }
+
     private Vector2 Center(Vector2 pos)
     {
         return new Vector2(pos.x + PatchNodeWidth / 2, pos.y + PatchNodeHeight / 2);
