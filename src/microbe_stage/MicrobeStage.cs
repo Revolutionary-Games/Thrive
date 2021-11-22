@@ -587,6 +587,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Auto save is wanted once possible
         wantsToSave = true;
+
+        pauseMenu.SetNewSaveName(Player.Species.FormattedName);
     }
 
     public void OnFinishTransitioning()
