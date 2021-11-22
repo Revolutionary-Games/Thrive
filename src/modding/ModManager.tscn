@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/modding/ModManager.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=11]
+[ext_resource path="res://src/modding/ModUploader.tscn" type="PackedScene" id=12]
 
 [node name="ModManager" type="Control"]
 anchor_right = 1.0
@@ -53,6 +54,7 @@ FullInfoModAssemblyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/Ma
 FullInfoAssemblyModClassPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/AssemblyModClass")
 NewModGUIPath = NodePath("NewModGUI")
 ModCreateErrorDialogPath = NodePath("CreateModError")
+ModUploaderPath = NodePath("ModUploader")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_top = 1.0
@@ -510,7 +512,6 @@ margin_left = 618.0
 margin_right = 700.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 11 )
-disabled = true
 text = "UPLOAD"
 
 [node name="Button" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
@@ -572,18 +573,19 @@ text = "APPLY_CHANGES"
 visible = false
 
 [node name="UnAppliedChangesWarning" parent="." instance=ExtResource( 3 )]
-margin_top = 28.0
-margin_right = 308.0
-margin_bottom = 171.0
+margin_left = -500.0
+margin_top = -143.0
+margin_right = 0.0
+margin_bottom = 0.0
 rect_min_size = Vector2( 500, 0 )
-WindowTitle = "UNAPPLIED_MOD_CHANGES"
-ConfirmText = "DISCARD_CHANGES"
 DialogText = "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+ConfirmText = "DISCARD_CHANGES"
 
 [node name="ModFullInfo" parent="." instance=ExtResource( 4 )]
-margin_top = 28.0
-margin_right = 330.0
-margin_bottom = 297.0
+margin_left = -580.0
+margin_top = -416.0
+margin_right = 0.0
+margin_bottom = 0.0
 WindowTitle = "FULL_MOD_INFO"
 Resizable = true
 
@@ -934,10 +936,16 @@ custom_fonts/font = ExtResource( 9 )
 text = "CLOSE"
 
 [node name="CreateModError" parent="." instance=ExtResource( 7 )]
-ExceptionInfo = ""
+margin_left = -67.0
+margin_top = -87.0
+margin_right = 0.0
+margin_bottom = 0.0
 ErrorMessage = ""
-WindowTitle = "MOD_CREATION_FAILED"
+ExceptionInfo = ""
 Resizable = false
+
+[node name="ModUploader" parent="." instance=ExtResource( 12 )]
+visible = false
 
 [connection signal="pressed" from="HBoxContainer/Quit" to="." method="BackPressed"]
 [connection signal="item_selected" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods" to="." method="AvailableModSelected"]
@@ -949,6 +957,7 @@ Resizable = false
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/DisableAll" to="." method="DisableAllPressed"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/MoreInfo" to="." method="OpenModInfoPopup"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/Url" to="." method="OpenInfoUrlPressed"]
+[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/Button2" to="." method="OpenModUploader"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/Button" to="." method="NewModPressed"]
 [connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Apply" to="." method="ApplyChanges"]
 [connection signal="OnAccepted" from="NewModGUI" to="." method="SetupNewModFolder"]

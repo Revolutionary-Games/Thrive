@@ -265,7 +265,9 @@
     <Compile Include="src\modding\ModInterface.cs" />
     <Compile Include="src\modding\ModLoader.cs" />
     <Compile Include="src\modding\ModManager.cs" />
+    <Compile Include="src\modding\ModUploader.cs" />
     <Compile Include="src\modding\NewModGUI.cs" />
+    <Compile Include="src\modding\WorkshopData.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
     <Compile Include="src\saving\IChildPropertiesLoadCallback.cs" />
     <Compile Include="src\saving\IGodotEarlyNodeResolve.cs" />
@@ -320,6 +322,10 @@
     <Compile Include="src\steam\ISteamClient.cs" />
     <Compile Include="src\steam\ISteamSignalReceiver.cs" />
     <Compile Include="src\steam\SteamHandler.cs" />
+    <Compile Include="src\steam\SteamItemVisibility.cs" />
+    <Compile Include="src\steam\SteamUploadProgress.cs" />
+    <Compile Include="src\steam\WorkshopItemData.cs" />
+    <Compile Include="src\steam\WorkshopResult.cs" />
     <Compile Include="src\tutorial\ITutorialGUI.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
     <Compile Include="src\tutorial\microbe_editor\AutoEvoPrediction.cs" />

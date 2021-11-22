@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-21 11:41+0200\n"
+"POT-Creation-Date: 2021-11-22 22:51+0200\n"
 "PO-Revision-Date: 2021-10-05 19:11+0000\n"
 "Last-Translator: Arya Rouinsard <shigasaa@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -1402,7 +1402,7 @@ msgstr "Œuvre de {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:934
+#: ../src/modding/ModManager.tscn:936
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Fermer"
@@ -1452,7 +1452,7 @@ msgstr "Éditeur Libre de Microbe"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:75 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:77 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Revenir"
@@ -3430,143 +3430,130 @@ msgstr ""
 "jouer après que cet écran se soit fermé si vous le souhaitez, ou démarrer "
 "une nouvelle partie dans un autre monde."
 
-#: ../src/modding/ModManager.cs:236
+#: ../src/modding/ModManager.cs:260
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:250
+#: ../src/modding/ModManager.cs:274
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:262
+#: ../src/modding/ModManager.cs:286
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:442
+#: ../src/modding/ModManager.cs:468
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Sélectionné :"
 
-#: ../src/modding/ModManager.cs:807
+#: ../src/modding/ModManager.cs:819
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Ouvrir le dossier des Logs"
 
-#: ../src/modding/ModManager.cs:816
+#: ../src/modding/ModManager.cs:828
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:123
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Rafraîchir"
 
-#: ../src/modding/ModManager.tscn:152
+#: ../src/modding/ModManager.tscn:154
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Ouvrir le dossier des Logs"
 
-#: ../src/modding/ModManager.tscn:170
+#: ../src/modding/ModManager.tscn:172
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Clic droit"
 
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:185
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Clic gauche"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:197
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Activer l'éditeur"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:215
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:252
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Sélectionné :"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:650
+#: ../src/modding/ModManager.tscn:286 ../src/modding/ModManager.tscn:652
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:672
+#: ../src/modding/ModManager.tscn:317 ../src/modding/ModManager.tscn:674
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Version :"
 
-#: ../src/modding/ModManager.tscn:371
+#: ../src/modding/ModManager.tscn:373
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:417
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Version :"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:694
+#: ../src/modding/ModManager.tscn:444 ../src/modding/ModManager.tscn:696
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Description :"
 
-#: ../src/modding/ModManager.tscn:474
+#: ../src/modding/ModManager.tscn:476
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:484
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Ouvre l'URL"
 
-#: ../src/modding/ModManager.tscn:506
+#: ../src/modding/ModManager.tscn:508
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:514
+#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:34
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Charger"
 
-#: ../src/modding/ModManager.tscn:521
+#: ../src/modding/ModManager.tscn:522
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:534
+#: ../src/modding/ModManager.tscn:535
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Charger la sauvegarde invalide ?"
 
-#: ../src/modding/ModManager.tscn:560
+#: ../src/modding/ModManager.tscn:561
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "La sauvegarde sélectionnée est incompatible"
 
-#: ../src/modding/ModManager.tscn:569
+#: ../src/modding/ModManager.tscn:570
 msgid "APPLY_CHANGES"
 msgstr ""
-
-#: ../src/modding/ModManager.tscn:579
-#, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
-"Étant la forme de membrane la plus simple, elle n'offre que très peu de "
-"protection et demande plus d'énergie pour ne pas se déformer. Par contre, "
-"elle permet à une cellule de se déplacer et se nourrir plus rapidement."
-
-#: ../src/modding/ModManager.tscn:580
-#, fuzzy
-msgid "DISCARD_CHANGES"
-msgstr "Annuler et continuer"
 
 #: ../src/modding/ModManager.tscn:581
 #, fuzzy
@@ -3576,61 +3563,164 @@ msgstr ""
 "protection et demande plus d'énergie pour ne pas se déformer. Par contre, "
 "elle permet à une cellule de se déplacer et se nourrir plus rapidement."
 
-#: ../src/modding/ModManager.tscn:587
+#: ../src/modding/ModManager.tscn:582
+#, fuzzy
+msgid "DISCARD_CHANGES"
+msgstr "Annuler et continuer"
+
+#: ../src/modding/ModManager.tscn:589
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:628 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:630 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nom :"
 
-#: ../src/modding/ModManager.tscn:716 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:718 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Description :"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:740 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:760 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:762 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:782 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:784 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:804 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:806 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:826 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:828 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:848 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:850 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:870 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:872 ../src/modding/NewModGUI.tscn:373
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Nom de la Parcelle"
 
-#: ../src/modding/ModManager.tscn:892 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:894 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:914 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:916 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:939
+#: ../src/modding/ModUploader.cs:235
 #, fuzzy
-msgid "MOD_CREATION_FAILED"
-msgstr "L'Auto-évo n'a pas pu se lancer"
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "Sauvegarde échoué! Une exception a eu lieu"
+
+#: ../src/modding/ModUploader.cs:268
+#, fuzzy
+msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
+msgstr ""
+"Le chloroplaste est une structure a double membrane contenant des pigments "
+"photosensibles contenus ensemble dans des sacs de membrane. C'est un "
+"procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. "
+"Les pigments dans le chloroplaste sont capable d'utiliser l'énergie de la "
+"lumière pour produire du glucose à partir d'eau et de dioxyde de carbone "
+"gazeux lors d'un processus nommé Photosynthèse. Ces pigments sont aussi ce "
+"qui leur donnent cette couleur particulière. Le taux de glucose produit "
+"est proportionnel avec la concentration de dioxyde de carbone, et "
+"l'intensité de la lumière."
+
+#: ../src/modding/ModUploader.cs:278 ../src/modding/NewModGUI.cs:287
+#, fuzzy
+msgid "FORM_ERROR_MESSAGE"
+msgstr "Erreur de Sauvegarde"
+
+#: ../src/modding/ModUploader.tscn:72
+#, fuzzy
+msgid "MOD_TO_UPLOAD"
+msgstr "Charger"
+
+#: ../src/modding/ModUploader.tscn:96
+#, fuzzy
+msgid "UNKNOWN_WORKSHOP_ID"
+msgstr "Souris inconnue"
+
+#: ../src/modding/ModUploader.tscn:108
+#, fuzzy
+msgid "CREATE_NEW"
+msgstr "Créer un nouveau microbe"
+
+#: ../src/modding/ModUploader.tscn:115
+#, fuzzy
+msgid "ENTER_EXISTING_ID"
+msgstr "Réécriture sur la sauvegarde existante :"
+
+#: ../src/modding/ModUploader.tscn:125
+msgid "ENTER_EXISTING_WORKSHOP_ID"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:139
+msgid "ID_NUMBER"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:145
+msgid "APPLY"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:155
+#, fuzzy
+msgid "WORKSHOP_ITEM_TITLE"
+msgstr "\"{0}\" - {1}"
+
+#: ../src/modding/ModUploader.tscn:173
+#, fuzzy
+msgid "WORKSHOP_ITEM_DESCRIPTION"
+msgstr ""
+"Le chloroplaste est une structure a double membrane contenant des pigments "
+"photosensibles contenus ensemble dans des sacs de membrane. C'est un "
+"procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. "
+"Les pigments dans le chloroplaste sont capable d'utiliser l'énergie de la "
+"lumière pour produire du glucose à partir d'eau et de dioxyde de carbone "
+"gazeux lors d'un processus nommé Photosynthèse. Ces pigments sont aussi ce "
+"qui leur donnent cette couleur particulière. Le taux de glucose produit "
+"est proportionnel avec la concentration de dioxyde de carbone, et "
+"l'intensité de la lumière."
+
+#: ../src/modding/ModUploader.tscn:195
+msgid "WORKSHOP_VISIBILITY_TOOLTIP"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:196
+msgid "VISIBLE"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:202
+msgid "WORKSHOP_ITEM_TAGS"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:220
+msgid "WORKSHOP_ITEM_PREVIEW"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:252
+msgid "BROWSE"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:264
+msgid "CONTENT_UPLOADED_FROM"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:286
+msgid "SELECT_PREVIEW_IMAGE"
+msgstr ""
 
 #: ../src/modding/NewModGUI.cs:169
 #, fuzzy
@@ -3659,11 +3749,6 @@ msgstr ""
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
-
-#: ../src/modding/NewModGUI.cs:287
-#, fuzzy
-msgid "FORM_ERROR_MESSAGE"
-msgstr "Erreur de Sauvegarde"
 
 #: ../src/modding/NewModGUI.tscn:35
 #, fuzzy
@@ -3987,8 +4072,67 @@ msgstr "Essayez de sauvegarder !"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Pas de dossier de sauvegarde trouvé"
 
-#: ../src/steam/SteamClient.cs:35
+#: ../src/steam/SteamClient.cs:44
 msgid "STEAM_CLIENT_INIT_FAILED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:352
+msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:354
+msgid "STEAM_ERROR_BANNED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:356
+msgid "STEAM_ERROR_TIMEOUT"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:358
+msgid "STEAM_ERROR_NOT_LOGGED_IN"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:360
+msgid "STEAM_ERROR_UNAVAILABLE"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:362
+#, fuzzy
+msgid "STEAM_ERROR_INVALID_PARAMETER"
+msgstr "La sauvegarde a un état scénique de jeu invalide"
+
+#: ../src/steam/SteamClient.cs:364
+msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:366
+msgid "STEAM_ERROR_FILE_NOT_FOUND"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:368
+msgid "STEAM_ERROR_ALREADY_UPLOADED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:370
+#, fuzzy
+msgid "STEAM_ERROR_DUPLICATE_NAME"
+msgstr "joueur en double"
+
+#: ../src/steam/SteamClient.cs:372
+msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:374
+msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:376
+#, fuzzy
+msgid "STEAM_ERROR_LOCKING_FAILED"
+msgstr "Sauvegarde échoué! Une exception a eu lieu"
+
+#: ../src/steam/SteamClient.cs:378
+msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
@@ -4202,6 +4346,22 @@ msgstr ""
 "\n"
 "To leave the colony completely, you can click on your own cell or press "
 "the Ungroup All button."
+
+#, fuzzy
+#~ msgid "MOD_UPLOADER"
+#~ msgstr "Charger"
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr ""
+#~ "Étant la forme de membrane la plus simple, elle n'offre que très peu de "
+#~ "protection et demande plus d'énergie pour ne pas se déformer. Par "
+#~ "contre, elle permet à une cellule de se déplacer et se nourrir plus "
+#~ "rapidement."
+
+#, fuzzy
+#~ msgid "MOD_CREATION_FAILED"
+#~ msgstr "L'Auto-évo n'a pas pu se lancer"
 
 #~ msgid "Cancel"
 #~ msgstr "Annuler"

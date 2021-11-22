@@ -562,6 +562,7 @@ public static class Constants
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
+    public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 
     public const string SAVE_FOLDER = "user://saves";
 

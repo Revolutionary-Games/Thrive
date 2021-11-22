@@ -1,5 +1,9 @@
 ﻿using System;
 using Godot;
+using Directory = System.IO.Directory;
+using File = System.IO.File;
+using Object = Godot.Object;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Concrete implementation of the Steam integration handling. Only compiled for the Steam version of the game.
@@ -8,6 +12,9 @@ public class SteamClient : ISteamClient
 {
     private bool initStarted;
 
+    private Action<WorkshopResult> workshopCreateCallback;
+    private Action<WorkshopResult> workshopUpdateCallback;
+
     public bool IsLoaded { get; private set; }
     public string LoadError { get; private set; }
     public string ExtraErrorInfo { get; private set; }
@@ -15,6 +22,8 @@ public class SteamClient : ISteamClient
     public bool? IsOnline { get; private set; }
     public ulong? SteamId { get; private set; }
     public bool? IsOwned { get; private set; }
+
+    public uint AppId { get; private set; }
 
     public string DisplayName => Steam.GetPersonaName();
 
@@ -43,10 +52,14 @@ public class SteamClient : ISteamClient
 
         if (IsOwned == true)
             GD.Print("Game is owned by current Steam user");
+
+        AppId = (uint)Steam.GetAppID();
+
+        GD.Print("Our app id is: ", AppId);
     }
 
     public void ConnectSignals<T>(T receiver)
-        where T : Godot.Object, ISteamSignalReceiver
+        where T : Object, ISteamSignalReceiver
     {
         // Signal documentation: https://gramps.github.io/GodotSteam/signals-modules.html
         Steam.Singleton.Connect("steamworks_error", receiver, nameof(ISteamSignalReceiver.GenericSteamworksError));
@@ -60,6 +73,15 @@ public class SteamClient : ISteamClient
         Steam.Singleton.Connect("low_power", receiver, nameof(ISteamSignalReceiver.LowPower));
         Steam.Singleton.Connect("steam_api_call_completed", receiver, nameof(ISteamSignalReceiver.APICallComplete));
         Steam.Singleton.Connect("steam_shutdown", receiver, nameof(ISteamSignalReceiver.ShutdownRequested));
+
+        // Workshop
+        Steam.Singleton.Connect("item_created", receiver, nameof(ISteamSignalReceiver.WorkshopItemCreated));
+        Steam.Singleton.Connect("item_downloaded", receiver,
+            nameof(ISteamSignalReceiver.WorkshopItemDownloadedLocally));
+        Steam.Singleton.Connect("item_installed", receiver,
+            nameof(ISteamSignalReceiver.WorkshopItemInstalledOrUpdatedLocally));
+        Steam.Singleton.Connect("item_deleted", receiver, nameof(ISteamSignalReceiver.WorkshopItemDeletedRemotely));
+        Steam.Singleton.Connect("item_updated", receiver, nameof(ISteamSignalReceiver.WorkshopItemInfoUpdateFinished));
     }
 
     public void Process(float delta)
@@ -68,6 +90,127 @@ public class SteamClient : ISteamClient
             return;
 
         Steam.RunCallbacks();
+    }
+
+    public void CreateWorkshopItem(Action<WorkshopResult> callback)
+    {
+        if (workshopCreateCallback != null)
+            throw new InvalidOperationException("Workshop create is already in-progress");
+
+        workshopCreateCallback = callback ?? throw new ArgumentException("callback is required");
+
+        GD.Print("Attempting new workshop item create");
+        Steam.CreateItem(AppId, Steam.WorkshopFileTypeCommunity);
+    }
+
+    public ulong StartWorkshopItemUpdate(ulong itemId)
+    {
+        GD.Print("Beginning workshop update of: ", itemId);
+        return Steam.StartItemUpdate(AppId, itemId);
+    }
+
+    public bool SetWorkshopItemTitle(ulong updateHandle, string title)
+    {
+        if (string.IsNullOrWhiteSpace(title))
+            throw new ArgumentException("Title is required");
+
+        return Steam.SetItemTitle(updateHandle, title);
+    }
+
+    public bool SetWorkshopItemDescription(ulong updateHandle, string description)
+    {
+        description ??= string.Empty;
+
+        if (description.Length > 8000)
+            throw new ArgumentException("Description is too long");
+
+        return Steam.SetItemDescription(updateHandle, description);
+    }
+
+    public bool SetWorkshopItemVisibility(ulong updateHandle, SteamItemVisibility visibility)
+    {
+        int value;
+
+        switch (visibility)
+        {
+            case SteamItemVisibility.Public:
+                value = Steam.RemoteStoragePublishedVisiblityPublic;
+                break;
+            case SteamItemVisibility.FriendsOnly:
+                value = Steam.RemoteStoragePublishedVisiblityFriendsOnly;
+                break;
+            case SteamItemVisibility.Private:
+                value = Steam.RemoteStoragePublishedVisiblityPrivate;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(visibility), visibility, null);
+        }
+
+        return Steam.SetItemVisibility(updateHandle, value);
+    }
+
+    public bool SetWorkshopItemContentFolder(ulong updateHandle, string contentFolder)
+    {
+        if (!Directory.Exists(contentFolder))
+            throw new ArgumentException("content folder doesn't exist");
+
+        return Steam.SetItemContent(updateHandle, Path.GetFullPath(contentFolder));
+    }
+
+    public bool SetWorkshopItemPreview(ulong updateHandle, string previewImage)
+    {
+        if (previewImage == null || !File.Exists(previewImage))
+            throw new ArgumentException("preview image doesn't exist");
+
+        if (!previewImage.EndsWith(".png", StringComparison.Ordinal) &&
+            !previewImage.EndsWith(".gif", StringComparison.Ordinal) &&
+            !previewImage.EndsWith(".jpg", StringComparison.Ordinal))
+        {
+            throw new ArgumentException("Non-recommended image type given as preview image");
+        }
+
+        return Steam.SetItemPreview(updateHandle, Path.GetFullPath(previewImage));
+    }
+
+    public void SubmitWorkshopItemUpdate(ulong updateHandle, string changeNotes, Action<WorkshopResult> callback)
+    {
+        if (workshopUpdateCallback != null)
+            throw new InvalidOperationException("Workshop update is already in-progress");
+
+        workshopUpdateCallback = callback ?? throw new ArgumentException("callback is required");
+
+        GD.Print("Submitting workshop update with handle: ", updateHandle);
+
+        Steam.SubmitItemUpdate(updateHandle, changeNotes);
+    }
+
+    public SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId)
+    {
+        var result = new SteamUploadProgress();
+
+        var rawData = Steam.GetItemUpdateProgress(itemId);
+
+        if (rawData.Contains("status") && rawData["status"] is int status)
+        {
+            result.ErrorHappened = status != Steam.ResultOk;
+        }
+        else
+        {
+            result.ErrorHappened = true;
+            GD.PrintErr($"Failed to read status in {nameof(GetWorkshopItemUpdateProgress)}");
+        }
+
+        if (rawData.Contains("processed") && rawData["processed"] is ulong processed)
+        {
+            result.ProcessedBytes = processed;
+        }
+
+        if (rawData.Contains("total") && rawData["total"] is ulong total)
+        {
+            result.ProcessedBytes = total;
+        }
+
+        return result;
     }
 
     public void GenericSteamworksError(string failedSignal, string message)
@@ -115,11 +258,125 @@ public class SteamClient : ISteamClient
     {
     }
 
+    public void WorkshopItemCreated(int result, ulong fileId, bool acceptTermsOfService)
+    {
+        GD.Print("Workshop item create result: ", result, " file: ", fileId, " TOS: ", acceptTermsOfService);
+
+        if (workshopCreateCallback == null)
+        {
+            GD.PrintErr($"Got {nameof(WorkshopItemCreated)} even with no active callbacks");
+            return;
+        }
+
+        var convertedResult = new WorkshopResult
+        {
+            TermsOfServiceSigningRequired = acceptTermsOfService,
+            ItemId = fileId,
+        };
+
+        if (result == Steam.ResultOk)
+        {
+            convertedResult.Success = true;
+        }
+        else
+        {
+            convertedResult.Success = false;
+            convertedResult.TranslatedError = GetDescriptiveSteamError(result);
+        }
+
+        workshopCreateCallback.Invoke(convertedResult);
+        workshopCreateCallback = null;
+    }
+
+    public void WorkshopItemDownloadedLocally(int result, ulong fileId, int appId)
+    {
+        if (appId != AppId)
+            return;
+    }
+
+    public void WorkshopItemInstalledOrUpdatedLocally(int appId, ulong fileId)
+    {
+        GD.Print("Workshop item downloaded or updated, file: ", fileId);
+    }
+
+    public void WorkshopItemDeletedRemotely(int result, ulong fileId)
+    {
+    }
+
+    public void WorkshopItemInfoUpdateFinished(int result, bool acceptTermsOfService)
+    {
+        GD.Print("Workshop item update result: ", result, " TOS: ", acceptTermsOfService);
+
+        if (workshopUpdateCallback == null)
+        {
+            GD.PrintErr($"Got {nameof(WorkshopItemInfoUpdateFinished)} even with no active callbacks");
+            return;
+        }
+
+        var convertedResult = new WorkshopResult
+        {
+            TermsOfServiceSigningRequired = acceptTermsOfService,
+        };
+
+        if (result == Steam.ResultOk)
+        {
+            convertedResult.Success = true;
+        }
+        else
+        {
+            convertedResult.Success = false;
+            convertedResult.TranslatedError = GetDescriptiveSteamError(result);
+        }
+
+        workshopUpdateCallback.Invoke(convertedResult);
+        workshopUpdateCallback = null;
+    }
+
     private void RefreshCurrentUserInfo()
     {
         IsOnline = Steam.LoggedOn();
         SteamId = Steam.GetSteamID();
         IsOwned = Steam.IsSubscribed();
+    }
+
+    private string GetDescriptiveSteamError(int result)
+    {
+        // Note: the exact problem varies a bit based on the action being performed, but for faster implementation
+        // these are not separated by operation type (yet)
+        switch (result)
+        {
+            case Steam.ResultOk:
+                return null;
+
+            case Steam.ResultInsufficientPrivilege:
+                return TranslationServer.Translate("STEAM_ERROR_INSUFFICIENT_PRIVILEGE");
+            case Steam.ResultBanned:
+                return TranslationServer.Translate("STEAM_ERROR_BANNED");
+            case Steam.ResultTimeout:
+                return TranslationServer.Translate("STEAM_ERROR_TIMEOUT");
+            case Steam.ResultNotLoggedOn:
+                return TranslationServer.Translate("STEAM_ERROR_NOT_LOGGED_IN");
+            case Steam.ResultServiceUnavailable:
+                return TranslationServer.Translate("STEAM_ERROR_UNAVAILABLE");
+            case Steam.ResultInvalidParam:
+                return TranslationServer.Translate("STEAM_ERROR_INVALID_PARAMETER");
+            case Steam.ResultLimitExceeded:
+                return TranslationServer.Translate("STEAM_ERROR_CLOUD_LIMIT_EXCEEDED");
+            case Steam.ResultFileNotFound:
+                return TranslationServer.Translate("STEAM_ERROR_FILE_NOT_FOUND");
+            case Steam.ResultDuplicateRequest:
+                return TranslationServer.Translate("STEAM_ERROR_ALREADY_UPLOADED");
+            case Steam.ResultDuplicateName:
+                return TranslationServer.Translate("STEAM_ERROR_DUPLICATE_NAME");
+            case Steam.ResultServiceReadOnly:
+                return TranslationServer.Translate("STEAM_ERROR_ACCOUNT_READ_ONLY");
+            case Steam.ResultAccessDenied:
+                return TranslationServer.Translate("STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT");
+            case Steam.ResultLockingFailed:
+                return TranslationServer.Translate("STEAM_ERROR_LOCKING_FAILED");
+            default:
+                return TranslationServer.Translate("STEAM_ERROR_UNKNOWN");
+        }
     }
 
     private void SetError(string error, string extraDescription = null)

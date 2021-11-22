@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Object = Godot.Object;
 
 /// <summary>
 ///   Interface specifying the Steam operations we use. Implemented in the SteamClient.cs file
@@ -11,6 +12,8 @@ public interface ISteamClient : ISteamSignalReceiver
     bool IsLoaded { get; }
 
     string DisplayName { get; }
+
+    public uint AppId { get; }
 
     void Init();
 
@@ -28,4 +31,13 @@ public interface ISteamClient : ISteamSignalReceiver
         where T : Object, ISteamSignalReceiver;
 
     void Process(float delta);
+    void CreateWorkshopItem(Action<WorkshopResult> callback);
+    ulong StartWorkshopItemUpdate(ulong itemId);
+    bool SetWorkshopItemTitle(ulong updateHandle, string title);
+    bool SetWorkshopItemDescription(ulong updateHandle, string description);
+    bool SetWorkshopItemVisibility(ulong updateHandle, SteamItemVisibility visibility);
+    bool SetWorkshopItemContentFolder(ulong updateHandle, string contentFolder);
+    bool SetWorkshopItemPreview(ulong updateHandle, string previewImage);
+    void SubmitWorkshopItemUpdate(ulong updateHandle, string changeNotes, Action<WorkshopResult> callback);
+    SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId);
 }

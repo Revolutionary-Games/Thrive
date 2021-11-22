@@ -112,6 +112,9 @@ public class ModManager : Control
     [Export]
     public NodePath ModCreateErrorDialogPath;
 
+    [Export]
+    public NodePath ModUploaderPath;
+
     private readonly List<FullModDetails> validMods = new();
 
     private List<FullModDetails> notEnabledMods;
@@ -158,6 +161,8 @@ public class ModManager : Control
 
     private ErrorDialog modCreateErrorDialog;
 
+    private ModUploader modUploader;
+
     private FullModDetails selectedMod;
 
     [Signal]
@@ -183,6 +188,25 @@ public class ModManager : Control
         var data = file.GetAsText();
 
         return ParseModInfoString(data, false);
+    }
+
+    /// <summary>
+    ///   Loads the icon for a mod
+    /// </summary>
+    /// <param name="mod">Mod to load the icon for</param>
+    /// <returns>The loaded icon or null if mod doesn't have icon set</returns>
+    public static Texture LoadModIcon(FullModDetails mod)
+    {
+        if (string.IsNullOrEmpty(mod.Info?.Icon))
+            return null;
+
+        var image = new Image();
+        image.Load(Path.Combine(mod.Folder, mod.Info.Icon));
+
+        var texture = new ImageTexture();
+        texture.CreateFromImage(image);
+
+        return texture;
     }
 
     /// <summary>
@@ -311,9 +335,11 @@ public class ModManager : Control
         fullInfoAssemblyModClass = GetNode<Label>(FullInfoAssemblyModClassPath);
 
         newModGUI = GetNode<NewModGUI>(NewModGUIPath);
+        modUploader = GetNode<ModUploader>(ModUploaderPath);
 
-        // This is hidden in the editor to make selecting UI elements there easier
+        // These are hidden in the editor to make selecting UI elements there easier
         newModGUI.Visible = true;
+        modUploader.Visible = true;
 
         modCreateErrorDialog = GetNode<ErrorDialog>(ModCreateErrorDialogPath);
 
@@ -452,20 +478,6 @@ public class ModManager : Control
             leftArrow.Disabled = true;
             rightArrow.Disabled = true;
         }
-    }
-
-    private Texture LoadModIcon(FullModDetails mod)
-    {
-        if (string.IsNullOrEmpty(mod.Info?.Icon))
-            return null;
-
-        var image = new Image();
-        image.Load(Path.Combine(mod.Folder, mod.Info.Icon));
-
-        var texture = new ImageTexture();
-        texture.CreateFromImage(image);
-
-        return texture;
     }
 
     /// <summary>
@@ -826,6 +838,12 @@ public class ModManager : Control
         FolderHelpers.OpenFolder(parsedData.Folder);
 
         RefreshAvailableMods();
+    }
+
+    private void OpenModUploader()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        modUploader.Open(validMods);
     }
 
     private void BackPressed()
