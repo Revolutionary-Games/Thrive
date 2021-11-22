@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-20 16:19+0700\n"
+"POT-Creation-Date: 2021-11-22 21:05+0700\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -974,7 +974,7 @@ msgstr "arazilerdeki popülasyon:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "gezegende nesli tükendi"
 
-#: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:136
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
 msgstr "Yükleniyor"
 
@@ -1401,7 +1401,7 @@ msgid "ART_BY"
 msgstr "Resmi yapan: {0}"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:107
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
@@ -2208,12 +2208,12 @@ msgstr "Panoya Kopyalama Hatası"
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL lisans metni aşağıdaki gibidir:"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:29
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 #, fuzzy
 msgid "THRIVE_LICENSES"
 msgstr "Lisanslar"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.tscn:92
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
 msgstr "Thrive'ın bir bölümünü kapsayan lisanslar burada gösterilmektedir"
 
@@ -2896,7 +2896,12 @@ msgstr "çok az miktarda"
 msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
-#: ../src/microbe_stage/MicrobeStage.cs:672
+#: ../src/microbe_stage/MicrobeStage.cs:609
+#, fuzzy
+msgid "SPAWN_ENEMY_CHEAT_FAIL"
+msgstr "Düşman Oluştur"
+
+#: ../src/microbe_stage/MicrobeStage.cs:673
 msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
 
@@ -3040,11 +3045,11 @@ msgstr "Mikrop Editörü Yükleniyor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Oto-evrim bekleniyor:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2459
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
 msgid "AUTO_EVO_FAILED"
 msgstr "Oto-evrim çalıştırılamadı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2460
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
