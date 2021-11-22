@@ -425,8 +425,6 @@ visible = false
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
 margin_top = 28.0
 margin_bottom = 628.0
-Resizable = false
-WindowTitle = null
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false
@@ -487,14 +485,14 @@ __meta__ = {
 anims/MenuSlide = SubResource( 1 )
 
 [node name="GLES2Popup" parent="." instance=ExtResource( 4 )]
-margin_left = -680.0
-margin_top = -97.0
-margin_right = 0.0
-margin_bottom = 0.0
+margin_top = 28.0
+margin_right = 680.0
+margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
 popup_exclusive = false
-HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
+HideCancelButton = true
+WindowTitle = "GLES2_MODE_WARNING"
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]

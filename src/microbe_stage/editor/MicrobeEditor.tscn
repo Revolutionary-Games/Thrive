@@ -2276,6 +2276,7 @@ custom_styles/separator = SubResource( 9 )
 margin_right = 500.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 500, 0 )
+WindowTitle = "NEGATIVE_ATP_BALANCE"
 DialogText = "NEGATIVE_ATP_BALANCE_TEXT"
 
 [node name="IslandError" parent="MicrobeEditorGUI/CellEditor" instance=ExtResource( 3 )]
@@ -2283,6 +2284,7 @@ margin_right = 600.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 600, 0 )
 HideCancelButton = true
+WindowTitle = "DISCONNECTED_ORGANELLES"
 DialogText = "DISCONNECTED_ORGANELLES_TEXT"
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
