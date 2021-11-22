@@ -301,6 +301,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         patchManager.CurrentGame = CurrentGame;
 
+        pauseMenu.SetNewSaveName(Player.Species.FormattedName);
+
         StartMusic();
 
         if (IsLoadedFromSave)
