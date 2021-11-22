@@ -15,6 +15,11 @@ public class MusicCategory : IRegistryType
     public enum ReturnType
     {
         /// <summary>
+        ///   Previous tracks are reset.
+        /// </summary>
+        Reset,
+
+        /// <summary>
         ///   Previous tracks are continued
         /// </summary>
         Continue,

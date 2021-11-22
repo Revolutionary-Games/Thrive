@@ -546,6 +546,8 @@ public class Jukebox : Node
             }
         }
 
+        // We don't have to do anything for the Reset return type here
+
         // Store continue positions
         if (category?.Return == MusicCategory.ReturnType.Continue)
         {
