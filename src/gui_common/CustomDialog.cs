@@ -99,10 +99,22 @@ public class CustomDialog : Popup, ICustomPopup
     }
 
     /// <summary>
+    ///   If true, the dialog window size is locked to the size of the viewport.
+    /// </summary>
+    [Export]
+    public bool FullRect { get; set; }
+
+    /// <summary>
     ///   If true, the user can resize the window.
     /// </summary>
     [Export]
     public bool Resizable { get; set; }
+
+    /// <summary>
+    ///   If true, the user can move the window around the viewport by dragging the titlebar.
+    /// </summary>
+    [Export]
+    public bool Moveable { get; set; } = true;
 
     /// <summary>
     ///   If true, the window's position is clamped inside the screen so it doesn't go out of bounds.
@@ -140,6 +152,10 @@ public class CustomDialog : Popup, ICustomPopup
             case NotificationResized:
             {
                 UpdateChildRects();
+
+                if (FullRect)
+                    SetToFullRect();
+
                 break;
             }
 
@@ -148,6 +164,9 @@ public class CustomDialog : Popup, ICustomPopup
                 if (Visible)
                 {
                     OnShown();
+
+                    if (FullRect)
+                        SetToFullRect();
                 }
                 else
                 {
@@ -208,7 +227,7 @@ public class CustomDialog : Popup, ICustomPopup
         // Handle title bar dragging
         if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == (int)ButtonList.Left)
         {
-            if (mouseButton.Pressed)
+            if (mouseButton.Pressed && Moveable)
             {
                 // Begin a possible dragging operation
                 dragType = DragHitTest(new Vector2(mouseButton.Position.x, mouseButton.Position.y));
@@ -501,6 +520,14 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
+    private void SetToFullRect()
+    {
+        var viewportSize = GetViewport().GetVisibleRect().Size;
+
+        RectPosition = new Vector2(0, titleBarHeight);
+        RectSize = new Vector2(viewportSize.x, viewportSize.y - titleBarHeight);
+    }
+
     private void OnCloseButtonMouseEnter()
     {
         closeHovered = true;
@@ -522,5 +549,8 @@ public class CustomDialog : Popup, ICustomPopup
     {
         if (BoundToScreenArea)
             FixRect();
+
+        if (FullRect)
+            SetToFullRect();
     }
 }

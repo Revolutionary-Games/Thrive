@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-20 21:59+0700\n"
+"POT-Creation-Date: 2021-11-22 12:51+0700\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -962,7 +962,7 @@ msgstr "population in patches:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "went extinct from the planet"
 
-#: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:136
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
 msgstr "Loading"
 
@@ -1389,6 +1389,7 @@ msgid "ART_BY"
 msgstr "Art by {0}"
 
 #: ../src/general/HelpScreen.tscn:107
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
@@ -1436,8 +1437,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:417
-#: ../src/general/MainMenu.tscn:451 ../src/general/MainMenu.tscn:502
-#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
+#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1451,14 +1452,14 @@ msgstr "Art Gallery"
 msgid "LICENSES"
 msgstr "Licenses"
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "You are running Thrive with GLES2. This is severely untested and is likely "
 "to cause issues. Try to update your video drivers and/or force AMD or "
 "Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/MainMenu.tscn:542
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
@@ -2085,14 +2086,6 @@ msgstr "Development Supported By Revolutionary Games Studio ry"
 msgid "DEVELOPERS"
 msgstr "Developers"
 
-#: ../src/gui_common/LicensesDisplay.cs:32
-msgid "GPL_LICENSE_HEADING"
-msgstr "GPL license text follows:"
-
-#: ../src/gui_common/LicensesDisplay.tscn:62
-msgid "LICENSES_COVERING_THRIVE"
-msgstr "Licenses covering parts of Thrive are shown here"
-
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
@@ -2191,6 +2184,18 @@ msgstr "OK"
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copy Error To Clipboard"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:33
+msgid "GPL_LICENSE_HEADING"
+msgstr "GPL license text follows:"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
+msgid "THRIVE_LICENSES"
+msgstr "Thrive Licenses"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
+msgid "LICENSES_COVERING_THRIVE"
+msgstr "Licenses covering parts of Thrive are shown here"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -3007,11 +3012,11 @@ msgstr "Loading Microbe Editor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2459
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2460
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 

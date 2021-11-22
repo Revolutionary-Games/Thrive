@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-20 21:59+0700\n"
+"POT-Creation-Date: 2021-11-22 12:51+0700\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -943,7 +943,7 @@ msgstr "אוכלוסיה באזורים:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "נכחד מהכוכב"
 
-#: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:136
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
 msgstr "טוען"
 
@@ -1370,6 +1370,7 @@ msgid "ART_BY"
 msgstr "ציור מאת {0}"
 
 #: ../src/general/HelpScreen.tscn:107
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
@@ -1417,8 +1418,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "עורך ארגז חול המיקרובי"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:417
-#: ../src/general/MainMenu.tscn:451 ../src/general/MainMenu.tscn:502
-#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
+#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1432,14 +1433,14 @@ msgstr "גלרית אומנות"
 msgid "LICENSES"
 msgstr "רישיונות"
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. "
 "אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או "
 "Nvidia על מנת להפעלת את Thrive."
 
-#: ../src/general/MainMenu.tscn:542
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING"
 msgstr "אזהרת GLES2"
 
@@ -2065,14 +2066,6 @@ msgstr "פיתוח נתמך על ידי Revolutionary Games Studio"
 msgid "DEVELOPERS"
 msgstr "מפתחים"
 
-#: ../src/gui_common/LicensesDisplay.cs:32
-msgid "GPL_LICENSE_HEADING"
-msgstr "להלן טקסט רישיון GPL:"
-
-#: ../src/gui_common/LicensesDisplay.tscn:62
-msgid "LICENSES_COVERING_THRIVE"
-msgstr "רישונות המכסים חלקים מThrive מוצגים כאן"
-
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
@@ -2170,6 +2163,19 @@ msgstr "בסדר"
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "מעתיק שגיאה ללוח העתקה"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:33
+msgid "GPL_LICENSE_HEADING"
+msgstr "להלן טקסט רישיון GPL:"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
+#, fuzzy
+msgid "THRIVE_LICENSES"
+msgstr "רישיונות"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
+msgid "LICENSES_COVERING_THRIVE"
+msgstr "רישונות המכסים חלקים מThrive מוצגים כאן"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2952,11 +2958,11 @@ msgstr "טוען עורך המיקרובי"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "מחכה למפתח האוטומטי:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2459
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2460
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "מריץ סטטוס:"
 

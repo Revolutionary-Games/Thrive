@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-20 21:59+0700\n"
+"POT-Creation-Date: 2021-11-22 12:51+0700\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -920,7 +920,7 @@ msgstr "주변 개체 수:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:136
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
 msgstr "불러오는 중"
 
@@ -1366,6 +1366,7 @@ msgid "ART_BY"
 msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
@@ -1413,8 +1414,8 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:417
-#: ../src/general/MainMenu.tscn:451 ../src/general/MainMenu.tscn:502
-#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
+#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1428,14 +1429,14 @@ msgstr ""
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생"
 "할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래"
 "픽을 사용하여 Thrive를 실행해주시기 바랍니다."
 
-#: ../src/general/MainMenu.tscn:542
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 모드 경고"
 
@@ -2074,14 +2075,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/gui_common/LicensesDisplay.cs:32
-msgid "GPL_LICENSE_HEADING"
-msgstr ""
-
-#: ../src/gui_common/LicensesDisplay.tscn:62
-msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
-
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
@@ -2186,6 +2179,18 @@ msgstr "확인"
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "클립보드에 오류 복사"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:33
+msgid "GPL_LICENSE_HEADING"
+msgstr ""
+
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
+msgid "THRIVE_LICENSES"
+msgstr ""
+
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
+msgid "LICENSES_COVERING_THRIVE"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -3000,11 +3005,11 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2459
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2460
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
