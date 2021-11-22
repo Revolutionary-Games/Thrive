@@ -265,10 +265,11 @@ public class ModLoader : Node
 
         // This version doesn't load the classes into the current assembly find path (or whatever it is properly called
         // in C#)
-        var result = Assembly.LoadFile(path);
+        var result = Assembly.LoadFrom(path);
 
         // This version should load like that, however this still results in classes not being found from Godot
         // so special workaround is needed
+        // TODO: now that upper call is changed to LoadFrom this might not work as a replacement anymore
         // var result = AppDomain.CurrentDomain.Load(File.ReadAllBytes(path));
 
         GD.Print("Assembly load succeeded");
