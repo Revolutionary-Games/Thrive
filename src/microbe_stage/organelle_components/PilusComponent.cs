@@ -104,6 +104,9 @@ public class PilusComponent : ExternallyPositionedComponent
             pilusSize *= 0.5f;
         }
 
+        // TODO: Godot doesn't have Cone shape.
+        // https://github.com/godotengine/godot-proposals/issues/610
+        // So this uses a cylinder for now
         // Create the shape
         var shape = new CylinderShape();
         shape.Radius = pilusSize / 10.0f;
