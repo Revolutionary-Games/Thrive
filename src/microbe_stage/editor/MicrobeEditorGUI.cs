@@ -320,21 +320,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [JsonProperty]
     private float initialCellHp;
 
-    [JsonProperty]
-    private bool? autoEvoRunSuccessfull;
-
-    [JsonProperty]
-    private string bestPatchName;
-
-    [JsonProperty]
-    private long bestPatchPopulation;
-
-    [JsonProperty]
-    private string worstPatchName;
-
-    [JsonProperty]
-    private long worstPatchPopulation;
-
     private MicrobeEditor editor;
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements =
@@ -1222,41 +1207,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            if (autoEvoRunSuccessfull.HasValue && autoEvoRunSuccessfull.Value == false)
-            {
-                totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
-            }
-
-            if (!string.IsNullOrEmpty(bestPatchName))
-            {
-                bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                    TranslationServer.Translate(bestPatchName),
-                    bestPatchPopulation);
-            }
-            else
-            {
-                bestPatchLabel.Text = TranslationServer.Translate("N_A");
-            }
-
-            if (!string.IsNullOrEmpty(worstPatchName))
-            {
-                worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                    TranslationServer.Translate(worstPatchName),
-                    worstPatchPopulation);
-            }
-            else
-            {
-                worstPatchLabel.Text = TranslationServer.Translate("N_A");
-            }
-        }
-    }
-
     internal void SetUndoButtonStatus(bool enabled)
     {
         undoButton.Disabled = !enabled;
@@ -1867,7 +1817,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (!run.AutoEvoRun.WasSuccessful)
         {
             GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
-            autoEvoRunSuccessfull = false;
             totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
             return;
         }
@@ -1890,7 +1839,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             totalPopulationIndicator.Texture = null;
         }
 
-        autoEvoRunSuccessfull = true;
         totalPopulationLabel.Text = newPopulation.ToString(CultureInfo.CurrentCulture);
 
         var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
@@ -1899,15 +1847,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (sorted.Count > 0)
         {
             var patch = sorted[0];
-            bestPatchName = patch.Key.Name;
-            bestPatchPopulation = patch.Value;
             bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
                 patch.Value);
         }
         else
         {
-            bestPatchName = null;
             bestPatchLabel.Text = TranslationServer.Translate("N_A");
         }
 
@@ -1915,15 +1860,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (sorted.Count > 1)
         {
             var patch = sorted[sorted.Count - 1];
-            worstPatchName = patch.Key.Name;
-            worstPatchPopulation = patch.Value;
             worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
                 patch.Value);
         }
         else
         {
-            worstPatchName = null;
             worstPatchLabel.Text = TranslationServer.Translate("N_A");
         }
     }
