@@ -11,8 +11,6 @@ using Path = System.IO.Path;
 /// </summary>
 public class SteamClient : ISteamClient
 {
-    private static readonly string[] RecommendedFileEndings = { ".jpg", ".png", ".gif" };
-
     private bool initStarted;
 
     private Action<WorkshopResult> workshopCreateCallback;
@@ -165,7 +163,7 @@ public class SteamClient : ISteamClient
         if (previewImage == null || !File.Exists(previewImage))
             throw new ArgumentException("preview image doesn't exist");
 
-        if (!RecommendedFileEndings.Contains(Path.GetExtension(previewImage)))
+        if (!SteamHandler.RecommendedFileEndings.Contains(Path.GetExtension(previewImage)))
         {
             throw new ArgumentException("Non-recommended image type given as preview image");
         }
@@ -291,8 +289,8 @@ public class SteamClient : ISteamClient
 
     public void WorkshopItemDownloadedLocally(int result, ulong fileId, int appId)
     {
-        if (appId != AppId)
-            return;
+        /*if (appId != AppId)
+            return;*/
     }
 
     public void WorkshopItemInstalledOrUpdatedLocally(int appId, ulong fileId)

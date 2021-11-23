@@ -34,6 +34,27 @@ public class ModUploader : Control
     public NodePath DetailsEditorPath;
 
     [Export]
+    public NodePath EditedTitlePath;
+
+    [Export]
+    public NodePath EditedDescriptionPath;
+
+    [Export]
+    public NodePath EditedVisibilityPath;
+
+    [Export]
+    public NodePath EditedTagsPath;
+
+    [Export]
+    public NodePath PreviewImageRectPath;
+
+    [Export]
+    public NodePath ToBeUploadedContentLocationPath;
+
+    [Export]
+    public NodePath Edited;
+
+    [Export]
     public NodePath ErrorDisplayPath;
 
     [Export]
@@ -41,6 +62,12 @@ public class ModUploader : Control
 
     [Export]
     public NodePath WorkshopNoticePath;
+
+    [Export]
+    public NodePath UploadSucceededDialogPath;
+
+    [Export]
+    public NodePath UploadSucceededTextPath;
 
     private CustomConfirmationDialog uploadDialog;
 
@@ -55,6 +82,15 @@ public class ModUploader : Control
     private Control manualEnterIdSection;
 
     private Control detailsEditor;
+    private LineEdit editedTitle;
+    private TextEdit editedDescription;
+    private CheckBox editedVisibility;
+    private LineEdit editedTags;
+    private TextureRect previewImageRect;
+    private Label toBeUploadedContentLocation;
+
+    private CustomDialog uploadSucceededDialog;
+    private CustomRichTextLabel uploadSucceededText;
 
     private FileDialog fileSelectDialog;
 
@@ -66,6 +102,7 @@ public class ModUploader : Control
     private WorkshopData workshopData;
 
     private FullModDetails selectedMod;
+    private string toBeUploadedPreviewImagePath;
 
     private bool manualEnterWorkshopId;
     private bool processing;
@@ -84,11 +121,24 @@ public class ModUploader : Control
         manualEnterIdSection = GetNode<Control>(ManualEnterIdSectionPath);
 
         detailsEditor = GetNode<Control>(DetailsEditorPath);
+        editedTitle = GetNode<LineEdit>(EditedTitlePath);
+        editedDescription = GetNode<TextEdit>(EditedDescriptionPath);
+        editedVisibility = GetNode<CheckBox>(EditedVisibilityPath);
+        editedTags = GetNode<LineEdit>(EditedTagsPath);
+        previewImageRect = GetNode<TextureRect>(PreviewImageRectPath);
+        toBeUploadedContentLocation = GetNode<Label>(ToBeUploadedContentLocationPath);
 
         workshopNotice = GetNode<CustomRichTextLabel>(WorkshopNoticePath);
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
 
+        uploadSucceededDialog = GetNode<CustomConfirmationDialog>(UploadSucceededDialogPath);
+        uploadSucceededText = GetNode<CustomRichTextLabel>(UploadSucceededTextPath);
+
         fileSelectDialog = GetNode<FileDialog>(FileSelectDialogPath);
+
+        fileSelectDialog.Filters = SteamHandler.RecommendedFileEndings.Select(e => "*" + e).ToArray();
+        fileSelectDialog.CurrentDir = "usr://";
+        fileSelectDialog.CurrentPath = "usr://";
 
         UpdateWorkshopNoticeTexts();
     }
@@ -171,7 +221,7 @@ public class ModUploader : Control
         }
         else
         {
-            uploadDialog.SetConfirmDisabled(false);
+            uploadDialog.SetConfirmDisabled(ValidateForm());
         }
     }
 
@@ -179,6 +229,83 @@ public class ModUploader : Control
     {
         if (selectedMod == null)
             return;
+
+        editedTitle.Text = selectedMod.Info.Name;
+        editedDescription.Text = selectedMod.Info.LongDescription;
+        editedVisibility.Pressed = true;
+        editedTags.Text = string.Empty;
+
+        toBeUploadedPreviewImagePath = selectedMod.Info.Icon;
+
+        toBeUploadedContentLocation.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("CONTENT_UPLOADED_FROM"), ProjectSettings.GlobalizePath(selectedMod.Folder));
+
+        UpdatePreviewRect();
+    }
+
+    private void UpdatePreviewRect()
+    {
+        if (string.IsNullOrEmpty(toBeUploadedPreviewImagePath))
+        {
+            previewImageRect.Texture = null;
+            return;
+        }
+
+        var image = new Image();
+        image.Load(toBeUploadedPreviewImagePath);
+
+        var texture = new ImageTexture();
+        texture.CreateFromImage(image);
+
+        previewImageRect.Texture = texture;
+    }
+
+    /// <summary>
+    ///   Checks that all the new info in the upload form is good
+    /// </summary>
+    /// <returns>True if good, false if not good (also sets the general error message)</returns>
+    private bool ValidateForm()
+    {
+        if (string.IsNullOrWhiteSpace(editedTitle.Text))
+        {
+            SetError(TranslationServer.Translate("MISSING_TITLE"));
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(editedDescription.Text))
+        {
+            SetError(TranslationServer.Translate("MISSING_DESCRIPTION"));
+            return false;
+        }
+
+        // TODO: would be nice to somehow get the Steam constants in here...
+
+        if (editedDescription.Text.Length > 8000)
+        {
+            SetError(TranslationServer.Translate("DESCRIPTION_TOO_LONG"));
+            return false;
+        }
+
+        if (editedTags.Text != null)
+        {
+            if (string.IsNullOrWhiteSpace(editedTags.Text))
+            {
+                SetError(TranslationServer.Translate("TAGS_IS_WHITESPACE"));
+                return false;
+            }
+
+            foreach (var tag in editedTags.Text.Split(','))
+            {
+                if (!SteamHandler.Tags.Contains(tag))
+                {
+                    SetError(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("INVALID_TAG"),
+                        tag));
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private void ModSelected(int index)
@@ -210,7 +337,7 @@ public class ModUploader : Control
     private void CreateNewPressed()
     {
         GD.Print("Create new workshop item button pressed");
-        SetProcessingStatus(false);
+        SetProcessingStatus(true);
 
         SteamHandler.Instance.CreateWorkshopItem(result =>
         {
@@ -239,7 +366,63 @@ public class ModUploader : Control
 
             ClearError();
             UpdateLayout();
-            UpdateModDetails();
+        });
+    }
+
+    private void UploadPressed()
+    {
+        if (!ValidateForm())
+        {
+            GD.PrintErr("Invalid data, not starting upload");
+            return;
+        }
+
+        GD.Print("Form validation passed, starting mod upload");
+
+        SetProcessingStatus(true);
+
+        var updateData = new WorkshopItemData
+        {
+            Id = workshopData.KnownModWorkshopIds[selectedMod.InternalName],
+            Title = editedTitle.Text,
+            Description = editedDescription.Text,
+            Visibility = editedVisibility.Pressed ? SteamItemVisibility.Public : SteamItemVisibility.Private,
+            ContentFolder = ProjectSettings.GlobalizePath(selectedMod.Folder),
+            PreviewImagePath = ProjectSettings.GlobalizePath(toBeUploadedPreviewImagePath),
+        };
+
+        // TODO: implement change notes text input
+        SteamHandler.Instance.UpdateWorkshopItem(updateData, null, result =>
+        {
+            SetProcessingStatus(false);
+
+            // TODO: save the details in workshopData so that the uploaded info can be pre-filled when
+            // uploading an update
+
+            if (!result.Success)
+            {
+                SetError(result.TranslatedError);
+                return;
+            }
+
+            GD.Print($"Workshop item updated for \"{selectedMod.InternalName}\"");
+
+            ClearError();
+            uploadDialog.Hide();
+
+            // Doesn't work inside Translate method calls for text extraction
+            // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+            if (result.TermsOfServiceSigningRequired)
+            {
+                uploadSucceededText.ExtendedBbcode = TranslationServer.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED");
+            }
+            else
+            {
+                uploadSucceededText.ExtendedBbcode =
+                    TranslationServer.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED");
+            }
+
+            uploadSucceededDialog.PopupCenteredShrink();
         });
     }
 
@@ -247,6 +430,33 @@ public class ModUploader : Control
     {
         processing = newStatus;
         UpdateButtonDisabledStates();
+    }
+
+    private void BrowseForPreviewImage()
+    {
+        fileSelectDialog.DeselectItems();
+        fileSelectDialog.PopupCenteredMinsize();
+    }
+
+    private void OnFileSelected(string selected)
+    {
+        if (selected == null)
+        {
+            toBeUploadedPreviewImagePath = null;
+            UpdatePreviewRect();
+            return;
+        }
+
+        using var file = new File();
+
+        if (!file.FileExists(selected))
+        {
+            GD.PrintErr("Selected preview image file doesn't exist");
+            return;
+        }
+
+        toBeUploadedPreviewImagePath = selected;
+        UpdatePreviewRect();
     }
 
     private void UpdateButtonDisabledStates()

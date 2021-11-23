@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/modding/ModUploader.cs" type="Script" id=3]
 [ext_resource path="res://src/gui_common/CustomRichTextLabel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=5]
 
 [node name="ModUploader" type="Control"]
 anchor_right = 1.0
@@ -109,6 +110,7 @@ margin_bottom = 35.0
 text = "CREATE_NEW"
 
 [node name="Existing" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer"]
+visible = false
 margin_left = 259.0
 margin_right = 458.0
 margin_bottom = 35.0
@@ -220,12 +222,6 @@ margin_right = 574.0
 margin_bottom = 389.0
 text = "WORKSHOP_ITEM_PREVIEW"
 
-[node name="Spacer4" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
-margin_top = 393.0
-margin_right = 574.0
-margin_bottom = 397.0
-rect_min_size = Vector2( 0, 4 )
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
 margin_top = 401.0
 margin_right = 574.0
@@ -258,7 +254,7 @@ margin_right = 574.0
 margin_bottom = 537.0
 rect_min_size = Vector2( 0, 4 )
 
-[node name="Label5" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+[node name="ContentLocation" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
 margin_top = 541.0
 margin_right = 574.0
 margin_bottom = 566.0
@@ -289,6 +285,12 @@ mode = 0
 access = 2
 current_dir = "/home/hhyyrylainen/Projects/Thrive"
 current_path = "/home/hhyyrylainen/Projects/Thrive/"
+
+[node name="UploadSuccess" parent="." instance=ExtResource( 5 )]
+popup_exclusive = true
+WindowTitle = "UPLOAD_SUCCEEDED"
+
+[node name="CustomRichTextLabel" parent="UploadSuccess" instance=ExtResource( 4 )]
 
 [connection signal="item_selected" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/Mods" to="." method="ModSelected"]
 [connection signal="pressed" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer/New" to="." method="CreateNewPressed"]

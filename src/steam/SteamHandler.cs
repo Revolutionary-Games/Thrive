@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Godot;
@@ -11,6 +12,13 @@ using Godot;
 /// </summary>
 public class SteamHandler : Node, ISteamSignalReceiver
 {
+    /// <summary>
+    ///   All valid tags. Need to be the same as: https://partner.steamgames.com/apps/workshoptags/1779200
+    /// </summary>
+    public static readonly string[] ValidTags = { "graphics", "gameplay", "microbe" };
+
+    public static readonly string[] RecommendedFileEndings = { ".jpg", ".png", ".gif" };
+
     private static SteamHandler instance;
 
     private bool wePaused;
@@ -23,6 +31,11 @@ public class SteamHandler : Node, ISteamSignalReceiver
     }
 
     public static SteamHandler Instance => instance;
+
+    /// <summary>
+    ///   All the valid tags for Thrive's Steam workshop items
+    /// </summary>
+    public static IEnumerable<string> Tags => ValidTags;
 
     /// <summary>
     ///   True if Steam has been properly loaded
@@ -96,11 +109,20 @@ public class SteamHandler : Node, ISteamSignalReceiver
 
         GD.Print("Using workshop update handle: ", handle);
 
-        steamClient.SetWorkshopItemTitle(handle, item.Title);
-        steamClient.SetWorkshopItemDescription(handle, item.Description);
-        steamClient.SetWorkshopItemVisibility(handle, item.Visibility);
-        steamClient.SetWorkshopItemContentFolder(handle, item.ContentFolder);
-        steamClient.SetWorkshopItemPreview(handle, item.PreviewImagePath);
+        if (!steamClient.SetWorkshopItemTitle(handle, item.Title))
+            throw new ArgumentException("Invalid title");
+
+        if (!steamClient.SetWorkshopItemDescription(handle, item.Description))
+            throw new ArgumentException("Description is invalid");
+
+        if (!steamClient.SetWorkshopItemVisibility(handle, item.Visibility))
+            throw new ArgumentException("Visibility is invalid");
+
+        if (!steamClient.SetWorkshopItemContentFolder(handle, item.ContentFolder))
+            throw new ArgumentException("Content folder is invalid");
+
+        if (!steamClient.SetWorkshopItemPreview(handle, item.PreviewImagePath))
+            throw new ArgumentException("Preview image is invalid");
 
         steamClient.SubmitWorkshopItemUpdate(handle, changeNotes, callback);
     }

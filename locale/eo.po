@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-22 22:53+0200\n"
+"POT-Creation-Date: 2021-11-23 19:10+0200\n"
 "PO-Revision-Date: 2021-04-02 10:19+0000\n"
 "Last-Translator: Fredy Ivan Sucari Callohuanca <fredsu92@gmail.com>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/"
@@ -1392,7 +1392,7 @@ msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:936
+#: ../src/modding/ModManager.tscn:927
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Fermu"
@@ -3490,105 +3490,105 @@ msgstr "Malfermu Dosierujon de Registroj"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:123
+#: ../src/modding/ModManager.tscn:114
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:146 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:137 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Aktualigu"
 
-#: ../src/modding/ModManager.tscn:154
+#: ../src/modding/ModManager.tscn:145
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Malfermu Dosierujon de Registroj"
 
-#: ../src/modding/ModManager.tscn:172
+#: ../src/modding/ModManager.tscn:163
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Dekstra musbutono"
 
-#: ../src/modding/ModManager.tscn:185
+#: ../src/modding/ModManager.tscn:176
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Maldekstra musbutono"
 
-#: ../src/modding/ModManager.tscn:197
+#: ../src/modding/ModManager.tscn:188
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Ebligu la redaktilon"
 
-#: ../src/modding/ModManager.tscn:215
+#: ../src/modding/ModManager.tscn:206
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:252
+#: ../src/modding/ModManager.tscn:243
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Elektita(j):"
 
-#: ../src/modding/ModManager.tscn:286 ../src/modding/ModManager.tscn:652
+#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:643
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:317 ../src/modding/ModManager.tscn:674
+#: ../src/modding/ModManager.tscn:308 ../src/modding/ModManager.tscn:665
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versio:"
 
-#: ../src/modding/ModManager.tscn:373
+#: ../src/modding/ModManager.tscn:364
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:417
+#: ../src/modding/ModManager.tscn:408
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Versio:"
 
-#: ../src/modding/ModManager.tscn:444 ../src/modding/ModManager.tscn:696
+#: ../src/modding/ModManager.tscn:435 ../src/modding/ModManager.tscn:687
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Priskribo:"
 
-#: ../src/modding/ModManager.tscn:476
+#: ../src/modding/ModManager.tscn:467
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:484
+#: ../src/modding/ModManager.tscn:475
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:508
+#: ../src/modding/ModManager.tscn:499
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:515 ../src/modding/ModUploader.tscn:35
+#: ../src/modding/ModManager.tscn:506 ../src/modding/ModUploader.tscn:36
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Ŝarĝu"
 
-#: ../src/modding/ModManager.tscn:522
+#: ../src/modding/ModManager.tscn:513
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:535
+#: ../src/modding/ModManager.tscn:526
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Ĉu ŝargu nevalidan konservadon?"
 
-#: ../src/modding/ModManager.tscn:561
+#: ../src/modding/ModManager.tscn:552
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Elektita konservado ne kongruas"
 
-#: ../src/modding/ModManager.tscn:570
+#: ../src/modding/ModManager.tscn:561
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:581
+#: ../src/modding/ModManager.tscn:572
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3596,67 +3596,104 @@ msgstr ""
 "damaĝo. Ĝi ankaŭ bezonas pli da energio por ne misformi. La avantaĝo "
 "estas, ke ĝi permesas al la ĉelo moviĝi kaj sorbi nutraĵojn rapide."
 
-#: ../src/modding/ModManager.tscn:582
+#: ../src/modding/ModManager.tscn:573
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Forĵetu kaj"
 
-#: ../src/modding/ModManager.tscn:589
+#: ../src/modding/ModManager.tscn:580
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:630 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:621 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nomo:"
 
-#: ../src/modding/ModManager.tscn:718 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:709 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Priskribo:"
 
-#: ../src/modding/ModManager.tscn:740 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:731 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:762 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:753 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:784 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:775 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:806 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:797 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:828 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:819 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:850 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:841 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:872 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:863 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:894 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:885 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:916 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:907 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:235
+#: ../src/modding/ModUploader.cs:241 ../src/modding/ModUploader.tscn:261
+msgid "CONTENT_UPLOADED_FROM"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:271
+#, fuzzy
+msgid "MISSING_TITLE"
+msgstr "VI PROSPERIS!"
+
+#: ../src/modding/ModUploader.cs:277
+#, fuzzy
+msgid "MISSING_DESCRIPTION"
+msgstr "Priskribo:"
+
+#: ../src/modding/ModUploader.cs:285
+#, fuzzy
+msgid "DESCRIPTION_TOO_LONG"
+msgstr "Priskribo:"
+
+#: ../src/modding/ModUploader.cs:293
+msgid "TAGS_IS_WHITESPACE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:301
+#, fuzzy
+msgid "INVALID_TAG"
+msgstr "Ĉu ŝargu nevalidan konservadon?"
+
+#: ../src/modding/ModUploader.cs:362
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Konservado malsukcesis! Escepto okazis"
 
-#: ../src/modding/ModUploader.cs:268
+#: ../src/modding/ModUploader.cs:417
+#, fuzzy
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
+msgstr "VI PROSPERIS!"
+
+#: ../src/modding/ModUploader.cs:422
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:478
 #, fuzzy
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
@@ -3669,54 +3706,54 @@ msgstr ""
 "glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de "
 "lumo."
 
-#: ../src/modding/ModUploader.cs:278 ../src/modding/NewModGUI.cs:287
+#: ../src/modding/ModUploader.cs:488 ../src/modding/NewModGUI.cs:287
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Eraro de konservado"
 
-#: ../src/modding/ModUploader.tscn:33
+#: ../src/modding/ModUploader.tscn:34
 #, fuzzy
 msgid "MOD_UPLOADER"
 msgstr "Ŝarĝu"
 
-#: ../src/modding/ModUploader.tscn:73
+#: ../src/modding/ModUploader.tscn:74
 #, fuzzy
 msgid "MOD_TO_UPLOAD"
 msgstr "Ŝarĝu"
 
-#: ../src/modding/ModUploader.tscn:97
+#: ../src/modding/ModUploader.tscn:98
 #, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Nekonata musbutono"
 
-#: ../src/modding/ModUploader.tscn:109
+#: ../src/modding/ModUploader.tscn:110
 #, fuzzy
 msgid "CREATE_NEW"
 msgstr "Kreu novan mikrobon"
 
-#: ../src/modding/ModUploader.tscn:116
+#: ../src/modding/ModUploader.tscn:118
 #, fuzzy
 msgid "ENTER_EXISTING_ID"
 msgstr "Anstataŭigi ekzistantan konservadon:"
 
-#: ../src/modding/ModUploader.tscn:126
+#: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:140
+#: ../src/modding/ModUploader.tscn:142
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:146
+#: ../src/modding/ModUploader.tscn:148
 msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:156
+#: ../src/modding/ModUploader.tscn:158
 #, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "VI PROSPERIS!"
 
-#: ../src/modding/ModUploader.tscn:174
+#: ../src/modding/ModUploader.tscn:176
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr ""
@@ -3729,33 +3766,34 @@ msgstr ""
 "glukozo dependas de la koncentriĝo de karbona dioksido kaj la intenseco de "
 "lumo."
 
-#: ../src/modding/ModUploader.tscn:196
+#: ../src/modding/ModUploader.tscn:198
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:197
+#: ../src/modding/ModUploader.tscn:199
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:203
+#: ../src/modding/ModUploader.tscn:205
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:221
+#: ../src/modding/ModUploader.tscn:223
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:253
+#: ../src/modding/ModUploader.tscn:249
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:265
-msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
-
-#: ../src/modding/ModUploader.tscn:287
+#: ../src/modding/ModUploader.tscn:283
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
+
+#: ../src/modding/ModUploader.tscn:291
+#, fuzzy
+msgid "UPLOAD_SUCCEEDED"
+msgstr "Konservado sukcesis"
 
 #: ../src/modding/NewModGUI.cs:169
 #, fuzzy
@@ -4109,66 +4147,66 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Malfermu Konservadan Adresaron"
 
-#: ../src/steam/SteamClient.cs:44
+#: ../src/steam/SteamClient.cs:45
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:352
+#: ../src/steam/SteamClient.cs:351
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:354
+#: ../src/steam/SteamClient.cs:353
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:356
+#: ../src/steam/SteamClient.cs:355
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:358
+#: ../src/steam/SteamClient.cs:357
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:360
+#: ../src/steam/SteamClient.cs:359
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:362
+#: ../src/steam/SteamClient.cs:361
 #, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Konservado havas malvalidan ludstatan scenon"
 
-#: ../src/steam/SteamClient.cs:364
+#: ../src/steam/SteamClient.cs:363
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:366
+#: ../src/steam/SteamClient.cs:365
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:368
+#: ../src/steam/SteamClient.cs:367
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:370
+#: ../src/steam/SteamClient.cs:369
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "ludanto mortis"
 
-#: ../src/steam/SteamClient.cs:372
+#: ../src/steam/SteamClient.cs:371
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:374
+#: ../src/steam/SteamClient.cs:373
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:376
+#: ../src/steam/SteamClient.cs:375
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Konservado malsukcesis! Escepto okazis"
 
-#: ../src/steam/SteamClient.cs:378
+#: ../src/steam/SteamClient.cs:377
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
