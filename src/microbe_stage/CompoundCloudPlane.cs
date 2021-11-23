@@ -614,7 +614,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                         out var s1, out var s0, out var t1, out var t0);
 
                     // NOTE: we add modulo to avoid overflow due to large time steps
-                    // This makes this function a duplicate of PartialAdvectCenter
+                    // This makes this function a duplicate of PartialAdvectEdges
                     // TODO: check for refactorization (and in general of the whole file) --Maxonovien
                     q0 = MathUtils.PositiveModulo(q0, Size);
                     q1 = MathUtils.PositiveModulo(q1, Size);
