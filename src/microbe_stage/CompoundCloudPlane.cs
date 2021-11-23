@@ -587,7 +587,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     private void PartialDiffuseEdges(int x0, int y0, int width, int height, float delta)
     {
-        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+        float diffusion = delta * Constants.CLOUD_DIFFUSION_RATE;
 
         for (int x = x0; x < x0 + width; x++)
         {
@@ -595,13 +595,19 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 int adjacentClouds = 4;
                 OldDensity[x, y] =
-                    Density[x, y] * (1 - a) +
-                    (Density[x, (y - 1 + Size) % Size] +
-                        Density[x, (y + 1) % Size] +
-                        Density[(x - 1 + Size) % Size, y] +
-                        Density[(x + 1) % Size, y]) * (a / adjacentClouds);
+                    Density[x, y] * (1 - diffusion) +
+                    GetNeighbouringDensities(x, y) * (diffusion / adjacentClouds);
             }
         }
+    }
+
+    private Vector4 GetNeighbouringDensities(int x, int y)
+    {
+        // Looping on edges
+        return Density[x, MathUtils.PositiveModulo(y - 1, Size)] +
+            Density[x, (y + 1) % Size] +
+            Density[MathUtils.PositiveModulo(x - 1, Size), y] +
+            Density[(x + 1) % Size, y];
     }
 
     /// <summary>
