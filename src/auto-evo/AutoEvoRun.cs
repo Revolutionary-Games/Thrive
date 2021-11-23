@@ -256,7 +256,7 @@ public class AutoEvoRun
     ///   Makes a summary of external effects
     /// </summary>
     /// <returns>The summary of external effects.</returns>
-    public TranslatingStringBuilder MakeSummaryOfExternalEffects()
+    public LocalizedStringBuilder MakeSummaryOfExternalEffects()
     {
         var combinedExternalEffects = new Dictionary<Tuple<Species, string>, long>();
 
@@ -276,12 +276,12 @@ public class AutoEvoRun
             }
         }
 
-        var builder = new TranslatingStringBuilder(300);
+        var builder = new LocalizedStringBuilder(300);
 
         foreach (var entry in combinedExternalEffects)
         {
             // entry.Value is the amount, Item2 is the reason string
-            builder.Append(new TranslatingString("AUTO-EVO_POPULATION_CHANGED",
+            builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
                 entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
             builder.Append('\n');
         }

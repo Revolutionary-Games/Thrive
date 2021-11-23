@@ -5,8 +5,15 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Like a StringBuilder but with localization.
+///   When adding a IFormattable(e.g. Number, or LocalizedString),
+///   the object is cached in a list and a string format index ({0}) is added to the StringBuilder.
+///   Calling ToString formats all the IFormattable's to the current culture and returns the formatted string.
+///   This class is json serializable as long as all IFormattable's are serializable.
+/// </summary>
 [JSONDynamicTypeAllowed]
-public class TranslatingStringBuilder : IFormattable
+public class LocalizedStringBuilder : IFormattable
 {
     [JsonProperty]
     private readonly List<IFormattable> items = new List<IFormattable>();
@@ -15,12 +22,12 @@ public class TranslatingStringBuilder : IFormattable
     private string formatString = string.Empty;
     private bool stringBuilderChanged;
 
-    public TranslatingStringBuilder()
+    public LocalizedStringBuilder()
     {
         stringBuilder = new StringBuilder();
     }
 
-    public TranslatingStringBuilder(int capacity)
+    public LocalizedStringBuilder(int capacity)
     {
         stringBuilder = new StringBuilder(capacity);
     }
@@ -44,34 +51,34 @@ public class TranslatingStringBuilder : IFormattable
 
     /// <summary>
     ///   Explicit conversion from string to support backward compatibility with older saves,
-    ///   where the JsonProperty was a string.
+    ///   where the JsonProperty was a string and now is a LocalizedStringBuilder.
     /// </summary>
-    public static explicit operator TranslatingStringBuilder(string value)
+    public static explicit operator LocalizedStringBuilder(string value)
     {
-        return new TranslatingStringBuilder { FormatString = value };
+        return new LocalizedStringBuilder { FormatString = value };
     }
 
-    public TranslatingStringBuilder Append(TranslatingString translatingString)
+    public LocalizedStringBuilder Append(LocalizedString translatingString)
     {
         return Append((object)translatingString);
     }
 
-    public TranslatingStringBuilder Append(string value)
+    public LocalizedStringBuilder Append(string value)
     {
         return Append((object)value);
     }
 
-    public TranslatingStringBuilder Append(string value, params object[] args)
+    public LocalizedStringBuilder Append(string value, params object[] args)
     {
         return Append((object)string.Format(CultureInfo.CurrentCulture, value, args));
     }
 
-    public TranslatingStringBuilder Append(char value)
+    public LocalizedStringBuilder Append(char value)
     {
         return Append((object)value);
     }
 
-    public TranslatingStringBuilder Append(object value)
+    public LocalizedStringBuilder Append(object value)
     {
         stringBuilderChanged = true;
 

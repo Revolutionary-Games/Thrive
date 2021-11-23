@@ -181,10 +181,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private int organelleRot;
 
     [JsonProperty]
-    private TranslatingStringBuilder autoEvoSummary;
+    private LocalizedStringBuilder autoEvoSummary;
 
     [JsonProperty]
-    private TranslatingStringBuilder autoEvoExternal;
+    private LocalizedStringBuilder autoEvoExternal;
 
     [JsonProperty]
     private string activeActionName;

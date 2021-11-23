@@ -3,8 +3,13 @@ using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   This class caches the translationKey.
+///   ToString returns the translated text for the current locale.
+///   This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
+/// </summary>
 [JSONDynamicTypeAllowed]
-public class TranslatingString : IFormattable
+public class LocalizedString : IFormattable
 {
     [JsonProperty]
     private string translationKey;
@@ -12,13 +17,13 @@ public class TranslatingString : IFormattable
     [JsonProperty]
     private object[] formatStringArgs;
 
-    public TranslatingString(string translationKey)
+    public LocalizedString(string translationKey)
         : this(translationKey, null)
     {
     }
 
     [JsonConstructor]
-    public TranslatingString(string translationKey, params object[] formatStringArgs)
+    public LocalizedString(string translationKey, params object[] formatStringArgs)
     {
         this.translationKey = translationKey;
         this.formatStringArgs = formatStringArgs;
