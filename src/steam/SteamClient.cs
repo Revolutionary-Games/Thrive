@@ -342,7 +342,7 @@ public class SteamClient : ISteamClient
     private string GetDescriptiveSteamError(int result)
     {
         // Note: the exact problem varies a bit based on the action being performed, but for faster implementation
-        // these are not separated by operation type (yet)
+        // these are not separated by operation type TODO: (yet)
         switch (result)
         {
             case Steam.ResultOk:
