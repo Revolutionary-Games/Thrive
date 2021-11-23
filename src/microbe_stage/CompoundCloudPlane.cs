@@ -613,6 +613,14 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);
 
+                    // NOTE: we add modulo to avoid overflow due to large time steps
+                    // This makes this function a duplicate of PartialAdvectCenter
+                    // TODO: check for refactorization (and in general of the whole file) --Maxonovien
+                    q0 = MathUtils.PositiveModulo(q0, Size);
+                    q1 = MathUtils.PositiveModulo(q1, Size);
+                    r0 = MathUtils.PositiveModulo(r0, Size);
+                    r1 = MathUtils.PositiveModulo(r1, Size);
+
                     Density[q0, r0] += OldDensity[x, y] * s0 * t0;
                     Density[q0, r1] += OldDensity[x, y] * s0 * t1;
                     Density[q1, r0] += OldDensity[x, y] * s1 * t0;
