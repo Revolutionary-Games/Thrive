@@ -124,6 +124,9 @@ public class SteamHandler : Node, ISteamSignalReceiver
         if (!steamClient.SetWorkshopItemPreview(handle, item.PreviewImagePath))
             throw new ArgumentException("Preview image is invalid");
 
+        if (!steamClient.SetWorkshopItemTags(handle, item.Tags))
+            throw new ArgumentException("Item tags are invalid");
+
         steamClient.SubmitWorkshopItemUpdate(handle, changeNotes, callback);
     }
 

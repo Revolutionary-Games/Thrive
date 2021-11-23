@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Object = Godot.Object;
 
 /// <summary>
@@ -40,4 +41,5 @@ public interface ISteamClient : ISteamSignalReceiver
     bool SetWorkshopItemPreview(ulong updateHandle, string previewImage);
     void SubmitWorkshopItemUpdate(ulong updateHandle, string changeNotes, Action<WorkshopResult> callback);
     SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId);
+    bool SetWorkshopItemTags(ulong updateHandle, List<string> tags);
 }

@@ -35,7 +35,7 @@ ErrorDisplayPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer
 FileSelectDialogPath = NodePath("PreviewSelector")
 WorkshopNoticePath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/WorkshopNotice")
 UploadSucceededDialogPath = NodePath("UploadSuccess")
-UploadSucceededTextPath = NodePath("UploadSuccess/CustomRichTextLabel")
+UploadSucceededTextPath = NodePath("UploadSuccess/VBoxContainer/CustomRichTextLabel")
 
 [node name="Dialog" parent="." instance=ExtResource( 2 )]
 margin_right = 580.0
@@ -303,14 +303,28 @@ current_path = "user://"
 popup_exclusive = true
 WindowTitle = "UPLOAD_SUCCEEDED"
 
-[node name="CustomRichTextLabel" parent="UploadSuccess" instance=ExtResource( 4 )]
+[node name="VBoxContainer" type="VBoxContainer" parent="UploadSuccess"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CustomRichTextLabel" parent="UploadSuccess/VBoxContainer" instance=ExtResource( 4 )]
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 212.0
-margin_bottom = 37.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 100, 50 )
+size_flags_horizontal = 3
 
+[node name="Button" type="Button" parent="UploadSuccess/VBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+text = "OK"
+
+[connection signal="Confirmed" from="Dialog" to="." method="UploadPressed"]
 [connection signal="item_selected" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/HBoxContainer/Mods" to="." method="ModSelected"]
 [connection signal="pressed" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer/New" to="." method="CreateNewPressed"]
 [connection signal="toggled" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer/Existing" to="." method="SelectManualIdEnterMode"]
 [connection signal="pressed" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2/Browse" to="." method="BrowseForPreviewImage"]
 [connection signal="file_selected" from="PreviewSelector" to="." method="OnFileSelected"]
+[connection signal="pressed" from="UploadSuccess/VBoxContainer/Button" to="." method="DismissSuccessDialog"]

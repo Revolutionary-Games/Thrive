@@ -107,6 +107,12 @@ public class ModManager : Control
     public NodePath FullInfoAssemblyModClassPath;
 
     [Export]
+    public NodePath OpenWorkshopButtonPath;
+
+    [Export]
+    public NodePath ModUploaderButtonPath;
+
+    [Export]
     public NodePath NewModGUIPath;
 
     [Export]
@@ -156,6 +162,9 @@ public class ModManager : Control
     private Label fullInfoPckName;
     private Label fullInfoModAssembly;
     private Label fullInfoAssemblyModClass;
+
+    private Button openWorkshopButton;
+    private Button modUploaderButton;
 
     private NewModGUI newModGUI;
 
@@ -334,6 +343,9 @@ public class ModManager : Control
         fullInfoModAssembly = GetNode<Label>(FullInfoModAssemblyPath);
         fullInfoAssemblyModClass = GetNode<Label>(FullInfoAssemblyModClassPath);
 
+        openWorkshopButton = GetNode<Button>(OpenWorkshopButtonPath);
+        modUploaderButton = GetNode<Button>(ModUploaderButtonPath);
+
         newModGUI = GetNode<NewModGUI>(NewModGUIPath);
         modUploader = GetNode<ModUploader>(ModUploaderPath);
 
@@ -344,6 +356,12 @@ public class ModManager : Control
         modCreateErrorDialog = GetNode<ErrorDialog>(ModCreateErrorDialogPath);
 
         UpdateSelectedModInfo();
+
+        if (!SteamHandler.Instance.IsLoaded)
+        {
+            openWorkshopButton.Visible = false;
+            modUploaderButton.Visible = false;
+        }
     }
 
     /// <summary>

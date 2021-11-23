@@ -52,6 +52,8 @@ FullInfoMaximumThrivePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/
 FullInfoPckNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12/PckName")
 FullInfoModAssemblyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13/ModAssembly")
 FullInfoAssemblyModClassPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14/AssemblyModClass")
+OpenWorkshopButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/Workshop")
+ModUploaderButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/Upload")
 NewModGUIPath = NodePath("NewModGUI")
 ModCreateErrorDialogPath = NodePath("CreateModError")
 ModUploaderPath = NodePath("ModUploader")
@@ -490,7 +492,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Workshop" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 421.0
 margin_right = 614.0
 margin_bottom = 32.0
@@ -498,14 +500,14 @@ custom_fonts/font = ExtResource( 11 )
 disabled = true
 text = "BROWSE_WORKSHOP"
 
-[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Upload" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 618.0
 margin_right = 700.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 11 )
 text = "UPLOAD"
 
-[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="New" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 704.0
 margin_right = 754.0
 margin_bottom = 32.0
@@ -948,8 +950,8 @@ visible = false
 [connection signal="pressed" from="CenterContainer/VBoxContainer/UpperPart/Right/DisableAll" to="." method="DisableAllPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/MoreInfo" to="." method="OpenModInfoPopup"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/Url" to="." method="OpenInfoUrlPressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Button2" to="." method="OpenModUploader"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Button" to="." method="NewModPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Upload" to="." method="OpenModUploader"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/New" to="." method="NewModPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Apply" to="." method="ApplyChanges"]
 [connection signal="OnAccepted" from="NewModGUI" to="." method="SetupNewModFolder"]
 [connection signal="Confirmed" from="UnAppliedChangesWarning" to="." method="ConfirmBackWithUnAppliedChanges"]

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-23 19:10+0200\n"
+"POT-Creation-Date: 2021-11-23 20:05+0200\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -1367,7 +1367,7 @@ msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:927
+#: ../src/modding/ModManager.tscn:929
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "닫기"
@@ -1417,7 +1417,7 @@ msgstr "미생물 자유 편집기"
 #: ../src/general/MainMenu.tscn:452 ../src/general/MainMenu.tscn:503
 #: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:77 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "뒤로가기"
@@ -2187,6 +2187,7 @@ msgstr ""
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
+#: ../src/modding/ModUploader.tscn:322
 msgid "OK"
 msgstr "확인"
 
@@ -3390,131 +3391,131 @@ msgstr ""
 "현재 버전의 Thrive에서 승리하신 것을 축하드립니다! 창이 닫히면 계속 진행하"
 "거나, 새로운 세계에서 새로운 시작을 하실 수 있습니다."
 
-#: ../src/modding/ModManager.cs:260
+#: ../src/modding/ModManager.cs:269
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:274
+#: ../src/modding/ModManager.cs:283
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:286
+#: ../src/modding/ModManager.cs:295
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:468
+#: ../src/modding/ModManager.cs:486
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
 
-#: ../src/modding/ModManager.cs:819
+#: ../src/modding/ModManager.cs:837
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/modding/ModManager.cs:828
+#: ../src/modding/ModManager.cs:846
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:114
+#: ../src/modding/ModManager.tscn:116
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:137 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:139 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "새로 고침"
 
-#: ../src/modding/ModManager.tscn:145
+#: ../src/modding/ModManager.tscn:147
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/modding/ModManager.tscn:163
+#: ../src/modding/ModManager.tscn:165
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "마우스 오른쪽 버튼"
 
-#: ../src/modding/ModManager.tscn:176
+#: ../src/modding/ModManager.tscn:178
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "마우스 왼쪽 버튼"
 
-#: ../src/modding/ModManager.tscn:188
+#: ../src/modding/ModManager.tscn:190
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "편집기 활성화"
 
-#: ../src/modding/ModManager.tscn:206
+#: ../src/modding/ModManager.tscn:208
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:243
+#: ../src/modding/ModManager.tscn:245
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "선택됨:"
 
-#: ../src/modding/ModManager.tscn:277 ../src/modding/ModManager.tscn:643
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:308 ../src/modding/ModManager.tscn:665
+#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "버전:"
 
-#: ../src/modding/ModManager.tscn:364
+#: ../src/modding/ModManager.tscn:366
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:408
+#: ../src/modding/ModManager.tscn:410
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "버전:"
 
-#: ../src/modding/ModManager.tscn:435 ../src/modding/ModManager.tscn:687
+#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "설명:"
 
-#: ../src/modding/ModManager.tscn:467
+#: ../src/modding/ModManager.tscn:469
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:475
+#: ../src/modding/ModManager.tscn:477
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:499
+#: ../src/modding/ModManager.tscn:501
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:506 ../src/modding/ModUploader.tscn:36
+#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:45
 #, fuzzy
 msgid "UPLOAD"
 msgstr "불러오기"
 
-#: ../src/modding/ModManager.tscn:513
+#: ../src/modding/ModManager.tscn:515
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:526
+#: ../src/modding/ModManager.tscn:528
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.tscn:552
+#: ../src/modding/ModManager.tscn:554
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "선택된 저장은 호환되지 않습니다"
 
-#: ../src/modding/ModManager.tscn:561
+#: ../src/modding/ModManager.tscn:563
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:572
+#: ../src/modding/ModManager.tscn:574
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3522,105 +3523,110 @@ msgstr ""
 "지 않기 위해선 더 많은 에너지가 필요합니다. 장점은 세포가 더 빠르게 움직이"
 "고 영양분을 흡수 할 수 있다는 것입니다."
 
-#: ../src/modding/ModManager.tscn:573
+#: ../src/modding/ModManager.tscn:575
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "취소 및 계속"
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:582
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:621 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "이름:"
 
-#: ../src/modding/ModManager.tscn:709 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "설명:"
 
-#: ../src/modding/ModManager.tscn:731 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:753 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:775 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:797 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:819 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:841 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:863 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "파편 이름"
 
-#: ../src/modding/ModManager.tscn:885 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:907 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:241 ../src/modding/ModUploader.tscn:261
+#: ../src/modding/ModUploader.cs:233 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:271
+#: ../src/modding/ModUploader.cs:263
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "번영했습니다!"
 
-#: ../src/modding/ModUploader.cs:277
+#: ../src/modding/ModUploader.cs:269
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "설명:"
 
-#: ../src/modding/ModUploader.cs:285
+#: ../src/modding/ModUploader.cs:277
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "설명:"
 
-#: ../src/modding/ModUploader.cs:293
+#: ../src/modding/ModUploader.cs:285
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:301
+#: ../src/modding/ModUploader.cs:293
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModUploader.cs:362
+#: ../src/modding/ModUploader.cs:341
+#, fuzzy
+msgid "UPLOADING_DOT_DOT_DOT"
+msgstr "불러오는 중..."
+
+#: ../src/modding/ModUploader.cs:363
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "저장 실패! 예외 발생"
 
-#: ../src/modding/ModUploader.cs:417
+#: ../src/modding/ModUploader.cs:427
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:431
 #, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "번영했습니다!"
 
-#: ../src/modding/ModUploader.cs:422
-msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr ""
-
-#: ../src/modding/ModUploader.cs:478
+#: ../src/modding/ModUploader.cs:491
 #, fuzzy
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
@@ -3630,54 +3636,54 @@ msgstr ""
 "생성 할 수 있습니다. 이 안료는 또한 독특한 색상을 제공합니다. 포도당 생산 "
 "속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다."
 
-#: ../src/modding/ModUploader.cs:488 ../src/modding/NewModGUI.cs:287
+#: ../src/modding/ModUploader.cs:507 ../src/modding/NewModGUI.cs:287
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "저장 오류"
 
-#: ../src/modding/ModUploader.tscn:34
+#: ../src/modding/ModUploader.tscn:43
 #, fuzzy
 msgid "MOD_UPLOADER"
 msgstr "불러오기"
 
-#: ../src/modding/ModUploader.tscn:74
+#: ../src/modding/ModUploader.tscn:83
 #, fuzzy
 msgid "MOD_TO_UPLOAD"
 msgstr "불러오기"
 
-#: ../src/modding/ModUploader.tscn:98
+#: ../src/modding/ModUploader.tscn:108
 #, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "마우스 미확인 키"
 
-#: ../src/modding/ModUploader.tscn:110
+#: ../src/modding/ModUploader.tscn:120
 #, fuzzy
 msgid "CREATE_NEW"
 msgstr "새 미생물 생성"
 
-#: ../src/modding/ModUploader.tscn:118
+#: ../src/modding/ModUploader.tscn:128
 #, fuzzy
 msgid "ENTER_EXISTING_ID"
 msgstr "저장 덮어쓰기:"
 
-#: ../src/modding/ModUploader.tscn:128
+#: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:142
+#: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:148
+#: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:158
+#: ../src/modding/ModUploader.tscn:168
 #, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "번영했습니다!"
 
-#: ../src/modding/ModUploader.tscn:176
+#: ../src/modding/ModUploader.tscn:186
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr ""
@@ -3687,31 +3693,31 @@ msgstr ""
 "생성 할 수 있습니다. 이 안료는 또한 독특한 색상을 제공합니다. 포도당 생산 "
 "속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다."
 
-#: ../src/modding/ModUploader.tscn:198
+#: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:199
+#: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:205
+#: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:223
+#: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:249
+#: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:283
+#: ../src/modding/ModUploader.tscn:294
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:291
+#: ../src/modding/ModUploader.tscn:304
 #, fuzzy
 msgid "UPLOAD_SUCCEEDED"
 msgstr "저장 성공"
@@ -4059,66 +4065,66 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "저장 폴더 열기"
 
-#: ../src/steam/SteamClient.cs:45
+#: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:351
+#: ../src/steam/SteamClient.cs:368
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:353
+#: ../src/steam/SteamClient.cs:370
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:355
+#: ../src/steam/SteamClient.cs:372
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:357
+#: ../src/steam/SteamClient.cs:374
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:359
+#: ../src/steam/SteamClient.cs:376
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:361
+#: ../src/steam/SteamClient.cs:378
 #, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "저장된 게임 상태가 올바르지 않습니다"
 
-#: ../src/steam/SteamClient.cs:363
+#: ../src/steam/SteamClient.cs:380
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:365
+#: ../src/steam/SteamClient.cs:382
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:367
+#: ../src/steam/SteamClient.cs:384
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:369
+#: ../src/steam/SteamClient.cs:386
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "플레이어 사망함"
 
-#: ../src/steam/SteamClient.cs:371
+#: ../src/steam/SteamClient.cs:388
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:373
+#: ../src/steam/SteamClient.cs:390
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:375
+#: ../src/steam/SteamClient.cs:392
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "저장 실패! 예외 발생"
 
-#: ../src/steam/SteamClient.cs:377
+#: ../src/steam/SteamClient.cs:394
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 

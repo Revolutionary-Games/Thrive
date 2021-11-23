@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Path = System.IO.Path;
 
 public class ModUploader : Control
 {
@@ -50,9 +51,6 @@ public class ModUploader : Control
 
     [Export]
     public NodePath ToBeUploadedContentLocationPath;
-
-    [Export]
-    public NodePath Edited;
 
     [Export]
     public NodePath ErrorDisplayPath;
@@ -131,23 +129,15 @@ public class ModUploader : Control
         workshopNotice = GetNode<CustomRichTextLabel>(WorkshopNoticePath);
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
 
-        uploadSucceededDialog = GetNode<CustomConfirmationDialog>(UploadSucceededDialogPath);
+        uploadSucceededDialog = GetNode<CustomDialog>(UploadSucceededDialogPath);
         uploadSucceededText = GetNode<CustomRichTextLabel>(UploadSucceededTextPath);
 
         fileSelectDialog = GetNode<FileDialog>(FileSelectDialogPath);
 
         fileSelectDialog.Filters = SteamHandler.RecommendedFileEndings.Select(e => "*" + e).ToArray();
-        fileSelectDialog.CurrentDir = "usr://";
-        fileSelectDialog.CurrentPath = "usr://";
 
         UpdateWorkshopNoticeTexts();
     }
-
-    /*public override void _Process(float delta)
-    {
-        if (!uploadDialog.Visible)
-            return;
-    }*/
 
     public override void _Notification(int what)
     {
@@ -221,7 +211,7 @@ public class ModUploader : Control
         }
         else
         {
-            uploadDialog.SetConfirmDisabled(ValidateForm());
+            uploadDialog.SetConfirmDisabled(false);
         }
     }
 
@@ -231,11 +221,13 @@ public class ModUploader : Control
             return;
 
         editedTitle.Text = selectedMod.Info.Name;
-        editedDescription.Text = selectedMod.Info.LongDescription;
+        editedDescription.Text = string.IsNullOrEmpty(selectedMod.Info.LongDescription) ?
+            selectedMod.Info.Description :
+            selectedMod.Info.LongDescription;
         editedVisibility.Pressed = true;
         editedTags.Text = string.Empty;
 
-        toBeUploadedPreviewImagePath = selectedMod.Info.Icon;
+        toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
 
         toBeUploadedContentLocation.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("CONTENT_UPLOADED_FROM"), ProjectSettings.GlobalizePath(selectedMod.Folder));
@@ -286,7 +278,7 @@ public class ModUploader : Control
             return false;
         }
 
-        if (editedTags.Text != null)
+        if (editedTags.Text is { Length: > 0 })
         {
             if (string.IsNullOrWhiteSpace(editedTags.Text))
             {
@@ -324,20 +316,29 @@ public class ModUploader : Control
 
         selectedMod = mods.FirstOrDefault(m => m.InternalName == name);
 
+        ClearError();
         UpdateLayout();
         UpdateModDetails();
     }
 
     private void SelectManualIdEnterMode(bool selected)
     {
+        // TODO: play sound so that when this is reset it doesn't play
+        // GUICommon.Instance.PlayButtonPressSound();
+
         manualEnterWorkshopId = selected;
         UpdateLayout();
     }
 
     private void CreateNewPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         GD.Print("Create new workshop item button pressed");
         SetProcessingStatus(true);
+
+        // TODO: proper progress bar
+        SetError(TranslationServer.Translate("UPLOADING_DOT_DOT_DOT"));
 
         SteamHandler.Instance.CreateWorkshopItem(result =>
         {
@@ -371,6 +372,8 @@ public class ModUploader : Control
 
     private void UploadPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         if (!ValidateForm())
         {
             GD.PrintErr("Invalid data, not starting upload");
@@ -390,6 +393,12 @@ public class ModUploader : Control
             ContentFolder = ProjectSettings.GlobalizePath(selectedMod.Folder),
             PreviewImagePath = ProjectSettings.GlobalizePath(toBeUploadedPreviewImagePath),
         };
+
+        if (!string.IsNullOrWhiteSpace(editedTags.Text))
+        {
+            updateData.Tags = editedTags.Text.Split(',').ToList();
+            GD.Print("Setting item tags: ", updateData.Tags);
+        }
 
         // TODO: implement change notes text input
         SteamHandler.Instance.UpdateWorkshopItem(updateData, null, result =>
@@ -414,12 +423,12 @@ public class ModUploader : Control
             // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
             if (result.TermsOfServiceSigningRequired)
             {
-                uploadSucceededText.ExtendedBbcode = TranslationServer.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED");
+                uploadSucceededText.ExtendedBbcode =
+                    TranslationServer.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED");
             }
             else
             {
-                uploadSucceededText.ExtendedBbcode =
-                    TranslationServer.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED");
+                uploadSucceededText.ExtendedBbcode = TranslationServer.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED");
             }
 
             uploadSucceededDialog.PopupCenteredShrink();
@@ -434,8 +443,12 @@ public class ModUploader : Control
 
     private void BrowseForPreviewImage()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         fileSelectDialog.DeselectItems();
-        fileSelectDialog.PopupCenteredMinsize();
+        fileSelectDialog.CurrentDir = "user://";
+        fileSelectDialog.CurrentPath = "user://";
+        fileSelectDialog.PopupCenteredClamped(new Vector2(700, 400));
     }
 
     private void OnFileSelected(string selected)
@@ -476,6 +489,12 @@ public class ModUploader : Control
     {
         // Rich text labels don't seem to automatically translate their text, so we do it for the label here
         workshopNotice.ExtendedBbcode = TranslationServer.Translate("WORKSHOP_TERMS_OF_SERVICE_NOTICE");
+    }
+
+    private void DismissSuccessDialog()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        uploadSucceededDialog.Hide();
     }
 
     private void SetError(string message)

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Array = Godot.Collections.Array;
 using Directory = System.IO.Directory;
 using File = System.IO.File;
 using Object = Godot.Object;
@@ -169,6 +171,21 @@ public class SteamClient : ISteamClient
         }
 
         return Steam.SetItemPreview(updateHandle, Path.GetFullPath(previewImage));
+    }
+
+    public bool SetWorkshopItemTags(ulong updateHandle, List<string> tags)
+    {
+        var array = new Array();
+
+        if (tags != null)
+        {
+            foreach (var tag in tags)
+            {
+                array.Add(tag);
+            }
+        }
+
+        return Steam.SetItemTags(updateHandle, array);
     }
 
     public void SubmitWorkshopItemUpdate(ulong updateHandle, string changeNotes, Action<WorkshopResult> callback)
