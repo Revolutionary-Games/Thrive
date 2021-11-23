@@ -92,6 +92,12 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     private void ParseCustomTags()
     {
+        if (extendedBbcode == null)
+        {
+            BbcodeText = null;
+            return;
+        }
+
         var result = new StringBuilder(extendedBbcode.Length);
         var currentTagBlock = new StringBuilder(50);
 
