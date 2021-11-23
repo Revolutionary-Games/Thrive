@@ -320,9 +320,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         {
             for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
             {
-                var affectedRectangle = new IntRect(i * SquaresSize, j * SquaresSize, SquaresSize, SquaresSize);
+                var targetSquare = new IntRect(i * SquaresSize, j * SquaresSize, SquaresSize, SquaresSize);
 
-                var task = new Task(() => PartialUpdateCenter(affectedRectangle, delta, pos));
+                var task = new Task(() => PartialUpdateCenter(targetSquare, delta, pos));
                 queue.Add(task);
             }
         }
@@ -339,9 +339,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         {
             for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
             {
-                var affectedRectangle = new IntRect(i * SquaresSize, j * SquaresSize, SquaresSize, SquaresSize);
+                var targetSquare = new IntRect(i * SquaresSize, j * SquaresSize, SquaresSize, SquaresSize);
 
-                var task = new Task(() => PartialUpdateTextureImage(affectedRectangle));
+                var task = new Task(() => PartialUpdateTextureImage(targetSquare));
                 queue.Add(task);
             }
         }
