@@ -17,6 +17,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///   <para>
     ///     A cloud is designed as a Size * Size grid of Vector4 densities, a grid relative to the cloud position.
     ///     Each density of the Vector4 is the density of a compound, in the order recorder in Compounds array below.
+    ///     TODO: Investigate why it should loop on edges
     ///   </para>
     /// </remarks>
     public Vector4[,] Density;
@@ -454,9 +455,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
         // Floor is used here because otherwise the last coordinate is wrong
         x = ((int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution)
-            + position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
+            + position.x * SquaresSize) % Size;
         y = ((int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution)
-            + position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
+            + position.y * SquaresSize) % Size;
     }
 
     /// <summary>
@@ -677,37 +678,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         return coordinate >= 0 && coordinate < Size;
     }
-
-    /*private void PartialAdvect(int x0, int y0, int width, int height, float delta, Vector2 pos)
-    {
-        // TODO CHECK THAT LOOPING WON'T BE HURTFUL
-        *//*for (int x = x0; x < x0 + width; x++)
-        {
-            for (int y = y0; y < y0 + height; y++)
-            {
-                // Discard too small densities
-                if (OldDensity[x, y].LengthSquared() > 1)
-                {
-                    var velocity = fluidSystem.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
-
-                    // This is ran in parallel, this may not touch the other compound clouds
-                    float dx = x + (delta * velocity.x);
-                    float dy = y + (delta * velocity.y);
-
-                    CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
-                        out var s1, out var s0, out var t1, out var t0);
-
-                    Density[MathUtils.PositiveModulo(q0, Size), MathUtils.PositiveModulo(r0, Size)] += OldDensity[x, y] * s0 * t0;
-                    Density[(q0 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s0 * t1;
-                    Density[(q1 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s1 * t0;
-                    Density[(q1 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s1 * t1;
-                }
-            }
-        }*//*
-
-        PartialAdvect(x0, y0, width, height, delta, pos);
-    }*/
 
     private void PartialUpdateTextureImage(IntRect affectedRectangle)
     {
