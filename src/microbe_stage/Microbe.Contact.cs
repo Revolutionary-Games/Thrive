@@ -496,7 +496,7 @@ public partial class Microbe
         {
             // Playing from a positional audio player won't have any effect since the listener is
             // directly on it.
-            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.3f);
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
         }
         else
         {
