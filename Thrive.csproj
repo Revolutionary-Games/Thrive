@@ -17,6 +17,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="src\microbe_stage\PatchManager.cs" />
     <Compile Include="src\microbe_stage\OrganelleTemplate.cs" />
     <Compile Include="src\general\Int2.cs" />
+    <Compile Include="src\general\IntRect.cs" />
     <Compile Include="src\microbe_stage\IPositionedOrganelle.cs" />
     <Compile Include="src\general\ListUtils.cs" />
     <Compile Include="src\general\ActionHistory.cs" />

@@ -44,6 +44,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     [JsonProperty]
     public int Size { get; private set; }
 
+    public int SquaresSize => Size / Constants.CLOUD_SQUARES_PER_SIDE;
+
     public bool IsLoadedFromSave { get; set; }
 
     // Called when the node enters the scene tree for the first time.
@@ -73,35 +75,34 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     public void UpdatePosition(Int2 newPosition)
     {
-        // Whoever made the modulus operator return negatives: i hate u.
-        int newX = ((newPosition.x % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
-            % Constants.CLOUD_SQUARES_PER_SIDE;
-        int newY = ((newPosition.y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
-            % Constants.CLOUD_SQUARES_PER_SIDE;
+        int newX = newPosition.x.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+        int newY = newPosition.y.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
 
+        // TODO investigate one var + positivemods.
         if (newX == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
+            var rectangle = new IntRect(position.x * SquaresSize, 0,
+                SquaresSize, Size);
+            PartialClearDensity(rectangle);
         }
-        else if (newX == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
-            % Constants.CLOUD_SQUARES_PER_SIDE)
+        else if (newX == (position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            PartialClearDensity(((position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
-                    % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                0, Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
+            var rectangle = new IntRect((position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE) * SquaresSize, 0,
+                SquaresSize, Size);
+            PartialClearDensity(rectangle);
         }
 
         if (newY == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(0, position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
+            var rectangle = new IntRect(0, position.y * SquaresSize,
+                Size, SquaresSize);
+            PartialClearDensity(rectangle);
         }
-        else if (newY == (position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        else if (newY == (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            PartialClearDensity(0, ((position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
-                    % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
+            var rectangle = new IntRect(0, (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE) * SquaresSize,
+                Size, SquaresSize);
+            PartialClearDensity(rectangle);
         }
 
         position = new Int2(newX, newY);
@@ -135,6 +136,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///   Updates the edge concentrations of this cloud before the rest of the cloud.
     ///   This is not ran in parallel.
     /// </summary>
+    /// <remarks>
+    ///   This has a structure very similar to UpdateEdgesAfterCenter below.
+    ///   TODO: Possible refactory?
+    /// </remarks>
     public void UpdateEdgesBeforeCenter(float delta)
     {
         // The diffusion rate seems to have a bigger effect
@@ -142,76 +147,76 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
         if (position.x != 0)
         {
-            PartialDiffuseEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
-            PartialDiffuseEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
+            var rectangle = new IntRect(0, 0,
+                Constants.CLOUD_EDGE_WIDTH, Size);
+            PartialDiffuse(rectangle, delta, true);
+
+            rectangle.X += Size - rectangle.Width;
+            PartialDiffuse(rectangle, delta, true);
         }
 
         if (position.x != 1)
         {
-            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Constants.CLOUD_EDGE_WIDTH, Size, delta);
+            var rectangle = new IntRect(SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                Constants.CLOUD_EDGE_WIDTH, Size);
+            PartialDiffuse(rectangle, delta, true);
         }
 
         if (position.x != 2)
         {
-            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Constants.CLOUD_EDGE_WIDTH, Size, delta);
+            var rectangle = new IntRect(2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                Constants.CLOUD_EDGE_WIDTH, Size);
+            PartialDiffuse(rectangle, delta, true);
         }
 
         if (position.y != 0)
         {
-            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta);
-            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta);
-            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta);
-            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size - Constants.CLOUD_EDGE_WIDTH / 2, Size / Constants.CLOUD_SQUARES_PER_SIDE
-                - Constants.CLOUD_EDGE_WIDTH, Constants.CLOUD_EDGE_WIDTH / 2, delta);
-            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta);
-            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            var rectangle = new IntRect(Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                SquaresSize - Constants.CLOUD_EDGE_WIDTH,
+                Constants.CLOUD_EDGE_WIDTH / 2);
+
+            PartialDiffuse(rectangle, delta, true);
+            rectangle.X += SquaresSize;
+            PartialDiffuse(rectangle, delta, true);
+            rectangle.X += SquaresSize;
+            PartialDiffuse(rectangle, delta, true);
+
+            rectangle.Y += Size - Constants.CLOUD_EDGE_WIDTH / 2;
+
+            PartialDiffuse(rectangle, delta, true);
+            rectangle.X -= SquaresSize;
+            PartialDiffuse(rectangle, delta, true);
+            rectangle.X -= SquaresSize;
+            PartialDiffuse(rectangle, delta, true);
         }
 
         if (position.y != 1)
         {
-            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta);
-            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta);
-            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta);
+            var rectangle = new IntRect(Constants.CLOUD_EDGE_WIDTH / 2,
+                SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
+                SquaresSize - Constants.CLOUD_EDGE_WIDTH,
+                Constants.CLOUD_EDGE_WIDTH);
+
+            PartialDiffuse(rectangle, delta, true);
+            rectangle.X += SquaresSize;
+            PartialDiffuse(rectangle, delta, true);
+            rectangle.X += SquaresSize;
+            PartialDiffuse(rectangle, delta, true);
         }
 
         if (position.y != 2)
         {
-            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2,
-                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta);
-            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE
-                - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta);
-            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta);
+            var rectangle = new IntRect(
+                    Constants.CLOUD_EDGE_WIDTH / 2,
+                    2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
+                    SquaresSize - Constants.CLOUD_EDGE_WIDTH,
+                    Constants.CLOUD_EDGE_WIDTH);
+
+            PartialDiffuse(rectangle, delta, true);
+            rectangle.X += SquaresSize;
+            PartialDiffuse(rectangle, delta, true);
+            rectangle.X += SquaresSize;
+            PartialDiffuse(rectangle, delta, true);
         }
     }
 
@@ -227,78 +232,77 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
         if (position.x != 0)
         {
-            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
-            PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2,
-                Size, delta, pos);
+            var rectangle = new IntRect(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size);
+            PartialAdvect(rectangle, delta, pos, true);
+
+            rectangle.X += Size - rectangle.Width;
+            PartialAdvect(rectangle, delta, pos, true);
         }
 
         if (position.x != 1)
         {
-            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
+            var rectangle = new IntRect(SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                Constants.CLOUD_EDGE_WIDTH, Size);
+            PartialAdvect(rectangle, delta, pos, true);
         }
 
         if (position.x != 2)
         {
-            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
+            var rectangle = new IntRect(2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                Constants.CLOUD_EDGE_WIDTH, Size);
+            PartialAdvect(rectangle, delta, pos, true);
         }
 
         if (position.y != 0)
         {
-            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
-            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
-            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
-            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
-            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
-            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            var rectangle = new IntRect(Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                SquaresSize - Constants.CLOUD_EDGE_WIDTH,
+                Constants.CLOUD_EDGE_WIDTH / 2);
+
+            PartialAdvect(rectangle, delta, pos, true);
+            rectangle.X += SquaresSize;
+            PartialAdvect(rectangle, delta, pos, true);
+            rectangle.X += SquaresSize;
+            PartialAdvect(rectangle, delta, pos, true);
+
+            rectangle.Y += Size - rectangle.Height;
+
+            // NOTE here we swapped order from original but this should not be an issue.
+            // TODO check
+            PartialAdvect(rectangle, delta, pos, true);
+            rectangle.X -= SquaresSize;
+            PartialAdvect(rectangle, delta, pos, true);
+            rectangle.X -= SquaresSize;
+            PartialAdvect(rectangle, delta, pos, true);
         }
 
         if (position.y != 1)
         {
-            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
-            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
-            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            var rectangle = new IntRect(Constants.CLOUD_EDGE_WIDTH / 2,
+                SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
+                SquaresSize - Constants.CLOUD_EDGE_WIDTH,
+                Constants.CLOUD_EDGE_WIDTH);
+
+            PartialAdvect(rectangle, delta, pos, true);
+            rectangle.X += SquaresSize;
+            PartialAdvect(rectangle, delta, pos, true);
+            rectangle.X += SquaresSize;
+            PartialAdvect(rectangle, delta, pos, true);
         }
 
         if (position.y != 2)
         {
-            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
-                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
-            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE
-                - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
-            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
-                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
-                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
-                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            var rectangle = new IntRect(
+                    Constants.CLOUD_EDGE_WIDTH / 2,
+                    2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
+                    SquaresSize - Constants.CLOUD_EDGE_WIDTH,
+                    Constants.CLOUD_EDGE_WIDTH);
+
+            PartialAdvect(rectangle, delta, pos, true);
+            rectangle.X += SquaresSize;
+            PartialAdvect(rectangle, delta, pos, true);
+            rectangle.X += SquaresSize;
+            PartialAdvect(rectangle, delta, pos, true);
         }
     }
 
@@ -315,13 +319,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         {
             for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
             {
-                var x0 = i;
-                var y0 = j;
-                var task = new Task(() => PartialUpdateCenter(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                    y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                    Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                    Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                    delta, pos));
+                var affectedRectangle = new IntRect(i * SquaresSize, j * SquaresSize, SquaresSize, SquaresSize);
+
+                var task = new Task(() => PartialUpdateCenter(affectedRectangle, delta, pos));
                 queue.Add(task);
             }
         }
@@ -338,12 +338,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         {
             for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
             {
-                var x0 = i;
-                var y0 = j;
-                var task = new Task(() => PartialUpdateTextureImage(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                    y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                    Size / Constants.CLOUD_SQUARES_PER_SIDE,
-                    Size / Constants.CLOUD_SQUARES_PER_SIDE));
+                var affectedRectangle = new IntRect(i * SquaresSize, j * SquaresSize, SquaresSize, SquaresSize);
+
+                var task = new Task(() => PartialUpdateTextureImage(affectedRectangle));
                 queue.Add(task);
             }
         }
@@ -468,10 +465,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     public Vector3 ConvertToWorld(int cloudX, int cloudY)
     {
         return new Vector3(
-            cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * SquaresSize -
             Constants.CLOUD_WIDTH,
             0,
-            cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * SquaresSize -
             Constants.CLOUD_HEIGHT) + Translation;
     }
 
@@ -568,46 +565,42 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         yCeilingCorrection = 1.0f - yFloorCorrection;
     }
 
-    private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)
+    /// <remarks>
+    ///   <para>
+    ///     Merge the two functions
+    ///   </para>
+    /// </remarks>
+    private void PartialDiffuse(IntRect affectedRectangle, float delta, bool isEdge)
     {
-        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        for (int x = x0; x < x0 + width; x++)
-        {
-            for (int y = y0; y < y0 + height; y++)
-            {
-                int adjacentClouds = 4;
-                OldDensity[x, y] =
-                    Density[x, y] * (1 - a) +
-                    (Density[x, y - 1] + Density[x, y + 1] + Density[x - 1, y] + Density[x + 1, y])
-                    * (a / adjacentClouds);
-            }
-        }
-    }
-
-    private void PartialDiffuseEdges(int x0, int y0, int width, int height, float delta)
-    {
         float diffusion = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = affectedRectangle.Y; y < affectedRectangle.EndY; y++)
             {
                 int adjacentClouds = 4;
                 OldDensity[x, y] =
                     Density[x, y] * (1 - diffusion) +
-                    GetNeighbouringDensities(x, y) * (diffusion / adjacentClouds);
+                    GetNeighbouringDensities(x, y, isEdge) * (diffusion / adjacentClouds);
             }
         }
     }
 
-    private Vector4 GetNeighbouringDensities(int x, int y)
+    private Vector4 GetNeighbouringDensities(int x, int y, bool loopOnEdges)
     {
-        // Looping on edges
-        return Density[x, MathUtils.PositiveModulo(y - 1, Size)] +
-            Density[x, (y + 1) % Size] +
-            Density[MathUtils.PositiveModulo(x - 1, Size), y] +
-            Density[(x + 1) % Size, y];
+        if (loopOnEdges)
+        {
+            return Density[x, (y - 1).PositiveModulo(Size)] +
+               Density[x, (y + 1) % Size] +
+               Density[(x - 1).PositiveModulo(Size), y] +
+               Density[(x + 1) % Size, y];
+        }
+
+        return Density[x, y - 1] +
+                Density[x, y + 1] +
+                Density[x - 1, y] +
+                Density[x + 1, y];
     }
 
     /// <summary>
@@ -621,11 +614,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///     TODO: check for refactor.
     ///   </para>
     /// </remarks>
-    private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
+    private void PartialAdvect(IntRect affectedRectangle, float delta, Vector2 pos, bool isCenter)
     {
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = affectedRectangle.Y; y < affectedRectangle.EndY; y++)
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
@@ -638,27 +631,42 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
                     // So this is clamped to not go to the other clouds
                     // TODO CHECK THAT IT WONT GO OVERBOARD
-                    advectedX = advectedX.Clamp(x0 - 0.5f, x0 + width + 0.5f);
-                    advectedY = advectedY.Clamp(y0 - 0.5f, y0 + height + 0.5f);
+                    advectedX = advectedX.Clamp(affectedRectangle.X - 0.5f, affectedRectangle.EndX + 0.5f); ;
+                    advectedY = advectedY.Clamp(affectedRectangle.Y - 0.5f, affectedRectangle.EndY + 0.5f);
 
                     CalculateMovementFactors(advectedX, advectedY,
                         out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);
 
-                    if (IsARelativeCoordinate(q0))
+                    if (isCenter)
                     {
-                        if (IsARelativeCoordinate(r0))
-                            Density[q0, r0] += OldDensity[x, y] * s0 * t0;
-                        if (IsARelativeCoordinate(r1))
-                            Density[q0, r1] += OldDensity[x, y] * s0 * t1;
-                    }
+                        if (IsARelativeCoordinate(q0))
+                        {
+                            if (IsARelativeCoordinate(r0))
+                                Density[q0, r0] += OldDensity[x, y] * s0 * t0;
+                            if (IsARelativeCoordinate(r1))
+                                Density[q0, r1] += OldDensity[x, y] * s0 * t1;
+                        }
 
-                    if (IsARelativeCoordinate(q1))
+                        if (IsARelativeCoordinate(q1))
+                        {
+                            if (IsARelativeCoordinate(r0))
+                                Density[q1, r0] += OldDensity[x, y] * s1 * t0;
+                            if (IsARelativeCoordinate(r1))
+                                Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                        }
+                    }
+                    else
                     {
-                        if (IsARelativeCoordinate(r0))
-                            Density[q1, r0] += OldDensity[x, y] * s1 * t0;
-                        if (IsARelativeCoordinate(r1))
-                            Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                        q0 = q0.PositiveModulo(Size);
+                        q1 = q1.PositiveModulo(Size);
+                        r0 = r0.PositiveModulo(Size);
+                        r1 = r1.PositiveModulo(Size);
+
+                        Density[q0, r0] += OldDensity[x, y] * s0 * t0;
+                        Density[q0, r1] += OldDensity[x, y] * s0 * t1;
+                        Density[q1, r0] += OldDensity[x, y] * s1 * t0;
+                        Density[q1, r1] += OldDensity[x, y] * s1 * t1;
                     }
                 }
             }
@@ -670,10 +678,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         return coordinate >= 0 && coordinate < Size;
     }
 
-    private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta, Vector2 pos)
+    /*private void PartialAdvect(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
         // TODO CHECK THAT LOOPING WON'T BE HURTFUL
-        /*for (int x = x0; x < x0 + width; x++)
+        *//*for (int x = x0; x < x0 + width; x++)
         {
             for (int y = y0; y < y0 + height; y++)
             {
@@ -696,16 +704,16 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     Density[(q1 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s1 * t1;
                 }
             }
-        }*/
+        }*//*
 
-        PartialAdvectCenter(x0, y0, width, height, delta, pos);
-    }
+        PartialAdvect(x0, y0, width, height, delta, pos);
+    }*/
 
-    private void PartialUpdateTextureImage(int x0, int y0, int width, int height)
+    private void PartialUpdateTextureImage(IntRect affectedRectangle)
     {
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = affectedRectangle.Y; y < affectedRectangle.EndY; y++)
             {
                 var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
                 image.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
@@ -713,24 +721,25 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         }
     }
 
-    private void PartialClearDensity(int x0, int y0, int width, int height)
+    private void PartialClearDensity(IntRect affectedRectangle)
     {
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = affectedRectangle.Y; y < affectedRectangle.EndY; y++)
             {
                 Density[x, y] = Vector4.Zero;
             }
         }
     }
 
-    private void PartialUpdateCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
+    private void PartialUpdateCenter(IntRect centerRectangle, float delta, Vector2 pos)
     {
-        PartialDiffuseCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
-            - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta);
-        PartialClearDensity(x0, y0, width, height);
-        PartialAdvectCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
-            - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta, pos);
+        // TODO find name
+        var xxxRectangle = centerRectangle.CreateSubRectangle(Constants.CLOUD_EDGE_WIDTH);
+
+        PartialDiffuse(xxxRectangle, delta, false);
+        PartialClearDensity(centerRectangle);
+        PartialAdvect(xxxRectangle, delta, pos, false);
     }
 
     private float HackyAddress(Vector4 vector, int index)
