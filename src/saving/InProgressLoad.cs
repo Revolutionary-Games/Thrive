@@ -63,6 +63,9 @@ public class InProgressLoad
         SceneManager.Instance.DetachCurrentScene();
         SceneManager.Instance.GetTree().Paused = true;
 
+        // TODO: Find a way to make loading screen theme plays as jukebox music category change
+        //       does not work here.
+
         Invoke.Instance.Perform(Step);
     }
 

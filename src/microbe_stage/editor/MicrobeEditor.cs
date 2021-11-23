@@ -1240,8 +1240,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         InitEditor();
 
-        StartMusic();
-
         if (!IsLoadedFromSave)
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
@@ -1374,6 +1372,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             gui.SetSymmetry(Symmetry);
             gui.UpdatePlayerPatch(targetPatch);
+
+            StartMusic();
         }
 
         // Setup the display cell
@@ -1438,6 +1438,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_MICROBE_EDITOR"),
                 MainGameState.MicrobeEditor,
                 CurrentGame.GameWorld.GetAutoEvoRun().Status);
+
+            Jukebox.Instance.PlayCategory("LoadingScreen");
 
             CurrentGame.GameWorld.FinishAutoEvoRunAtFullSpeed();
         }
@@ -2481,6 +2483,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateReportTabStatistics(CurrentPatch);
 
         FadeIn();
+
+        StartMusic();
     }
 
     private void OnLoadedEditorReady()

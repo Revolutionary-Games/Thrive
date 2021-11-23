@@ -90,5 +90,26 @@
                 ]
             }
         ]
+    },
+    "LoadingScreen": {
+        "Return": "Reset",
+        "TrackLists": [
+            {
+                "Tracks": [
+                    {
+                        "Volume": 0.45,
+                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-1.ogg"
+                    },
+                    {
+                        "Volume": 0.45,
+                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-2.ogg"
+                    },
+                    {
+                        "Volume": 0.45,
+                        "ResourcePath": "res://assets/sounds/microbe-loading-screen-3.ogg"
+                    }
+                ]
+            }
+        ]
     }
 }
