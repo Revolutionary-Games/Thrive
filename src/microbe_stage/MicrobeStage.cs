@@ -301,7 +301,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         patchManager.CurrentGame = CurrentGame;
 
-        pauseMenu.SetNewSaveName(Player.Species.FormattedName);
+        pauseMenu.SetNewSaveName(CurrentGame.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
 
         StartMusic();
 
@@ -590,7 +590,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // Auto save is wanted once possible
         wantsToSave = true;
 
-        pauseMenu.SetNewSaveName(Player.Species.FormattedName);
+        pauseMenu.SetNewSaveName(Player.Species.FormattedName.Replace(' ', '_'));
     }
 
     public void OnFinishTransitioning()

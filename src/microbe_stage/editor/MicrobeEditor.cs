@@ -1527,7 +1527,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.UpdateGeneration(species.Generation);
         gui.UpdateHitpoints(CalculateHitpoints());
 
-        pauseMenu.SetNewSaveName(NewName);
+        pauseMenu.SetNewSaveName(NewName.Replace(' ', '_'));
     }
 
     private void CreateMutatedSpeciesCopy(Species species)
