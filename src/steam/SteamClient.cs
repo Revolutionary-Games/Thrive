@@ -162,9 +162,9 @@ public class SteamClient : ISteamClient
         if (previewImage == null || !File.Exists(previewImage))
             throw new ArgumentException("preview image doesn't exist");
 
-        if (!previewImage.EndsWith(".png", StringComparison.Ordinal) &&
-            !previewImage.EndsWith(".gif", StringComparison.Ordinal) &&
-            !previewImage.EndsWith(".jpg", StringComparison.Ordinal))
+        var recommendedFileEndings = new[] { ".jpg", ".png", ".gif" };
+        var fileEnding = Path.GetExtension(previewImage);
+        if (!recommendedFileEndings.Contains(fileEnding))
         {
             throw new ArgumentException("Non-recommended image type given as preview image");
         }
