@@ -13,6 +13,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     A cloud is designed as a Size * Size grid of Vector4 densities, a grid relative to the cloud position.
+    ///     Each density of the Vector4 is the density of a compound, in the order recorder in Compounds array below.
+    ///   </para>
+    /// </remarks>
     public Vector4[,] Density;
 
     [JsonIgnore]
@@ -540,19 +546,26 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///   <para>
     ///     The name might not be super accurate as I just picked something to reduce code duplication
     ///   </para>
+    ///   <para>
+    ///     As most parameters are obtainable by +-1, I doubt it is useful to output them so much...
+    ///   </para>
     /// </remarks>
-    private static void CalculateMovementFactors(float dx, float dy, out int q0, out int q1, out int r0, out int r1,
-        out float s1, out float s0, out float t1, out float t0)
+    private static void CalculateMovementFactors(float advectedX, float advectedY, out int advectedXFloored, out int advectedXCeiled, out int advectedYFloored, out int advectedYCaped,
+        out float xFloorCorrection, out float xCeilingCorrection, out float yFloorCorrection, out float yCeilingCorrection)
     {
-        q0 = (int)Math.Floor(dx);
-        q1 = q0 + 1;
-        r0 = (int)Math.Floor(dy);
-        r1 = r0 + 1;
+        advectedXFloored = (int)Math.Floor(advectedX);
+        advectedXCeiled = advectedXFloored + 1;
+        advectedYFloored = (int)Math.Floor(advectedY);
+        advectedYCaped = advectedYFloored + 1;
 
-        s1 = Math.Abs(dx - q0);
-        s0 = 1.0f - s1;
-        t1 = Math.Abs(dy - r0);
-        t0 = 1.0f - t1;
+        // advectedXFloored is always smaller than advectedX,
+        // as both (int) and Math.Floor() return a smaller (or equal number)
+        xFloorCorrection = advectedX - advectedXFloored;
+        xCeilingCorrection = 1.0f - xFloorCorrection;
+
+        // Same here
+        yFloorCorrection = advectedY - advectedYFloored;
+        yCeilingCorrection = 1.0f - yFloorCorrection;
     }
 
     private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)
@@ -591,6 +604,17 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         }
     }
 
+    /// <summary>
+    ///  Advects a part of a cloud as a rectangular area.
+    /// </summary>
+    /// <param name="delta">The time step for advection.</param>
+    /// <param name="pos"> The absolute position of the cloud in the world.</param>
+    /// <remarks>
+    ///   <para>
+    ///     Using pos as a parameter seems rather weird as this is the method of the cloud...
+    ///     TODO: check for refactor.
+    ///   </para>
+    /// </remarks>
     private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
         for (int x = x0; x < x0 + width; x++)
@@ -603,31 +627,51 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                         pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
-                    float dx = x + (delta * velocity.x);
-                    float dy = y + (delta * velocity.y);
+                    float advectedX = x + (delta * velocity.x);
+                    float advectedY = y + (delta * velocity.y);
 
                     // So this is clamped to not go to the other clouds
-                    dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
-                    dy = dy.Clamp(y0 - 0.5f, y0 + height + 0.5f);
+                    // TODO CHECK THAT IT WONT GO OVERBOARD
+                    advectedX = advectedX.Clamp(x0 - 0.5f, x0 + width + 0.5f);
+                    advectedY = advectedY.Clamp(y0 - 0.5f, y0 + height + 0.5f);
 
-                    CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
+                    CalculateMovementFactors(advectedX, advectedY,
+                        out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);
 
-                    Density[q0, r0] += OldDensity[x, y] * s0 * t0;
-                    Density[q0, r1] += OldDensity[x, y] * s0 * t1;
-                    Density[q1, r0] += OldDensity[x, y] * s1 * t0;
-                    Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                    if (IsARelativeCoordinate(q0))
+                    {
+                        if (IsARelativeCoordinate(r0))
+                            Density[q0, r0] += OldDensity[x, y] * s0 * t0;
+                        if (IsARelativeCoordinate(r1))
+                            Density[q0, r1] += OldDensity[x, y] * s0 * t1;
+                    }
+
+                    if (IsARelativeCoordinate(q1))
+                    {
+                        if (IsARelativeCoordinate(r0))
+                            Density[q1, r0] += OldDensity[x, y] * s1 * t0;
+                        if (IsARelativeCoordinate(r1))
+                            Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                    }
                 }
             }
         }
     }
 
+    private bool IsARelativeCoordinate(int coordinate)
+    {
+        return coordinate >= 0 && coordinate < Size;
+    }
+
     private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
-        for (int x = x0; x < x0 + width; x++)
+        // TODO CHECK THAT LOOPING WON'T BE HURTFUL
+        /*for (int x = x0; x < x0 + width; x++)
         {
             for (int y = y0; y < y0 + height; y++)
             {
+                // Discard too small densities
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
                     var velocity = fluidSystem.VelocityAt(
@@ -640,13 +684,15 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);
 
-                    Density[(q0 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s0 * t0;
+                    Density[MathUtils.PositiveModulo(q0, Size), MathUtils.PositiveModulo(r0, Size)] += OldDensity[x, y] * s0 * t0;
                     Density[(q0 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s0 * t1;
                     Density[(q1 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s1 * t0;
                     Density[(q1 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s1 * t1;
                 }
             }
-        }
+        }*/
+
+        PartialAdvectCenter(x0, y0, width, height, delta, pos);
     }
 
     private void PartialUpdateTextureImage(int x0, int y0, int width, int height)
