@@ -21,21 +21,21 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-LeftArrowPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Left")
-RightArrowPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Right")
-AvailableModsContainerPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods")
-EnabledModsContainerPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/ActiveMods")
-OpenModInfoButtonPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/MoreInfo")
-OpenModUrlButtonPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/Url")
-DisableAllModsButtonPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/DisableAll")
-SelectedModNamePath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine/Label2")
-SelectedModIconPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine/Icon")
-SelectedModAuthorPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine/Label2")
-SelectedModVersionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion/ModVersion")
-SelectedModRecommendedThriveVersionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion/Recommended")
-SelectedModMinimumThriveVersionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive/Minimum")
-SelectedModDescriptionPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer/Label2")
-ApplyChangesButtonPath = NodePath("PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Apply")
+LeftArrowPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Left")
+RightArrowPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Right")
+AvailableModsContainerPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods")
+EnabledModsContainerPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Right/ActiveMods")
+OpenModInfoButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/MoreInfo")
+OpenModUrlButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/Url")
+DisableAllModsButtonPath = NodePath("CenterContainer/VBoxContainer/UpperPart/Right/DisableAll")
+SelectedModNamePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine/Label2")
+SelectedModIconPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine/Icon")
+SelectedModAuthorPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine/Label2")
+SelectedModVersionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion/ModVersion")
+SelectedModRecommendedThriveVersionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion/Recommended")
+SelectedModMinimumThriveVersionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive/Minimum")
+SelectedModDescriptionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer/Label2")
+ApplyChangesButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Apply")
 UnAppliedChangesWarningPath = NodePath("UnAppliedChangesWarning")
 ModFullInfoPopupPath = NodePath("ModFullInfo")
 FullInfoNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Name")
@@ -79,51 +79,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 15.0
-margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -52.0
+margin_bottom = -47.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 1249.0
-margin_bottom = 652.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer"]
-margin_left = 247.0
-margin_top = 9.0
-margin_right = 1001.0
-margin_bottom = 642.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 263.0
+margin_top = 20.0
+margin_right = 1017.0
+margin_bottom = 653.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="UpperPart" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="UpperPart" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 754.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Left" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart"]
+[node name="Left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
 margin_right = 300.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
 margin_right = 300.0
 margin_bottom = 25.0
 text = "AVAILABLE_MODS"
 align = 1
 
-[node name="AvailableMods" type="ItemList" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left"]
+[node name="AvailableMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
 margin_top = 29.0
 margin_right = 300.0
 margin_bottom = 229.0
@@ -132,20 +123,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 fixed_icon_size = Vector2( 32, 32 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
 margin_top = 233.0
 margin_right = 300.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
 
-[node name="Refresh" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
+[node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
 margin_right = 148.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 11 )
 text = "REFRESH"
 
-[node name="Browse" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
+[node name="Browse" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
 margin_left = 152.0
 margin_right = 300.0
 margin_bottom = 32.0
@@ -153,51 +144,51 @@ size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 11 )
 text = "OPEN_FOLDER"
 
-[node name="Center" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart"]
+[node name="Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
 margin_left = 304.0
 margin_right = 450.0
 margin_bottom = 265.0
 size_flags_vertical = 3
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Center"]
 margin_top = 91.0
 margin_right = 146.0
 margin_bottom = 174.0
 
-[node name="Right" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+[node name="Right" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
 margin_right = 146.0
 margin_bottom = 35.0
 disabled = true
 text = "RIGHT_ARROW"
 
-[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
 margin_top = 39.0
 margin_right = 146.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Left" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
+[node name="Left" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
 margin_top = 48.0
 margin_right = 146.0
 margin_bottom = 83.0
 disabled = true
 text = "LEFT_ARROW"
 
-[node name="Right" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart"]
+[node name="Right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
 margin_left = 454.0
 margin_right = 754.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
 margin_right = 300.0
 margin_bottom = 25.0
 text = "ENABLED_MODS"
 align = 1
 
-[node name="ActiveMods" type="ItemList" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right"]
+[node name="ActiveMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
 margin_top = 29.0
 margin_right = 300.0
 margin_bottom = 229.0
@@ -206,7 +197,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 fixed_icon_size = Vector2( 32, 32 )
 
-[node name="DisableAll" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right"]
+[node name="DisableAll" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
 margin_top = 233.0
 margin_right = 300.0
 margin_bottom = 265.0
@@ -214,18 +205,18 @@ custom_fonts/font = ExtResource( 11 )
 disabled = true
 text = "DISABLE_ALL"
 
-[node name="Spacer" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_top = 269.0
 margin_right = 754.0
 margin_bottom = 274.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 278.0
 margin_right = 754.0
 margin_bottom = 513.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 753.0
@@ -235,29 +226,29 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="CurrentlySelected" type="VBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="CurrentlySelected" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 742.0
 margin_bottom = 223.0
 
-[node name="NameLine" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="NameLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_right = 732.0
 margin_bottom = 32.0
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
 margin_top = 3.0
 margin_right = 154.0
 margin_bottom = 28.0
 text = "SELECTED_MOD"
 
-[node name="Spacer" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
 margin_left = 158.0
 margin_right = 161.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 3, 0 )
 
-[node name="Icon" type="TextureRect" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
+[node name="Icon" type="TextureRect" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
 margin_left = 165.0
 margin_right = 197.0
 margin_bottom = 32.0
@@ -265,7 +256,7 @@ rect_min_size = Vector2( 32, 32 )
 expand = true
 stretch_mode = 7
 
-[node name="Label2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
 margin_left = 201.0
 margin_top = 3.0
 margin_right = 328.0
@@ -275,23 +266,23 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="AuthorLine" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="AuthorLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_top = 36.0
 margin_right = 732.0
 margin_bottom = 61.0
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
 margin_right = 134.0
 margin_bottom = 25.0
 text = "MOD_AUTHOR"
 
-[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
 margin_left = 138.0
 margin_right = 615.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 
-[node name="Label2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
 margin_left = 619.0
 margin_right = 732.0
 margin_bottom = 25.0
@@ -300,30 +291,30 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="VersionLine" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="VersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_top = 65.0
 margin_right = 732.0
 margin_bottom = 92.0
 
-[node name="ModVersion" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
+[node name="ModVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
 margin_right = 175.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
 margin_top = 1.0
 margin_right = 138.0
 margin_bottom = 26.0
 text = "MOD_VERSION"
 
-[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
 margin_left = 142.0
 margin_right = 145.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 3, 0 )
 size_flags_horizontal = 3
 
-[node name="ModVersion" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
+[node name="ModVersion" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
 margin_left = 149.0
 margin_top = 1.0
 margin_right = 175.0
@@ -333,23 +324,23 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
 margin_left = 179.0
 margin_right = 230.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 
-[node name="ThriveVersionLine" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
+[node name="ThriveVersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
 margin_left = 234.0
 margin_right = 732.0
 margin_bottom = 27.0
 alignment = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine"]
 margin_right = 300.0
 margin_bottom = 27.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 299.0
@@ -359,26 +350,26 @@ custom_constants/margin_top = 3
 custom_constants/margin_left = 3
 custom_constants/margin_bottom = 3
 
-[node name="ModThriveVersion" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer"]
+[node name="ModThriveVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer"]
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 295.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
 margin_right = 251.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 8 )
 text = "RECOMMENDED_THRIVE_VERSION"
 
-[node name="Control" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
 margin_left = 255.0
 margin_right = 255.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 
-[node name="Recommended" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
+[node name="Recommended" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer/MarginContainer/ModThriveVersion"]
 margin_left = 259.0
 margin_right = 292.0
 margin_bottom = 19.0
@@ -388,12 +379,12 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine"]
+[node name="PanelContainer2" type="PanelContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine"]
 margin_left = 304.0
 margin_right = 498.0
 margin_bottom = 27.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 193.0
@@ -403,26 +394,26 @@ custom_constants/margin_top = 3
 custom_constants/margin_left = 3
 custom_constants/margin_bottom = 3
 
-[node name="ModMinimumThrive" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer"]
+[node name="ModMinimumThrive" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer"]
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 189.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
 margin_right = 145.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 8 )
 text = "MINIMUM_VERSION"
 
-[node name="Control2" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
+[node name="Control2" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
 margin_left = 149.0
 margin_right = 149.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 
-[node name="Minimum" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
+[node name="Minimum" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ThriveVersionLine/PanelContainer2/MarginContainer/ModMinimumThrive"]
 margin_left = 153.0
 margin_right = 186.0
 margin_bottom = 19.0
@@ -432,25 +423,25 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="DescriptionLine" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="DescriptionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_top = 96.0
 margin_right = 732.0
 margin_bottom = 177.0
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
 margin_top = 28.0
 margin_right = 182.0
 margin_bottom = 53.0
 text = "MOD_DESCRIPTION"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
 margin_left = 186.0
 margin_right = 732.0
 margin_bottom = 81.0
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Label2" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer"]
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer"]
 margin_right = 546.0
 margin_bottom = 81.0
 size_flags_horizontal = 3
@@ -462,12 +453,12 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="ButtonsLine" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
+[node name="ButtonsLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_top = 181.0
 margin_right = 732.0
 margin_bottom = 213.0
 
-[node name="MoreInfo" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
+[node name="MoreInfo" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
 margin_right = 109.0
 margin_bottom = 32.0
 size_flags_horizontal = 0
@@ -475,7 +466,7 @@ custom_fonts/font = ExtResource( 11 )
 disabled = true
 text = "MORE_INFO"
 
-[node name="Url" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
+[node name="Url" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
 margin_left = 113.0
 margin_right = 262.0
 margin_bottom = 32.0
@@ -483,13 +474,13 @@ custom_fonts/font = ExtResource( 11 )
 disabled = true
 text = "OPEN_MOD_URL"
 
-[node name="Spacer2" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_top = 517.0
 margin_right = 754.0
 margin_bottom = 522.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 526.0
 margin_right = 754.0
 margin_bottom = 558.0
@@ -499,7 +490,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button3" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 421.0
 margin_right = 614.0
 margin_bottom = 32.0
@@ -507,27 +498,27 @@ custom_fonts/font = ExtResource( 11 )
 disabled = true
 text = "BROWSE_WORKSHOP"
 
-[node name="Button2" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 618.0
 margin_right = 700.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 11 )
 text = "UPLOAD"
 
-[node name="Button" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 704.0
 margin_right = 754.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 11 )
 text = "NEW"
 
-[node name="Spacer3" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_top = 562.0
 margin_right = 754.0
 margin_bottom = 567.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label" type="Label" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_top = 571.0
 margin_right = 754.0
 margin_bottom = 588.0
@@ -535,7 +526,7 @@ custom_fonts/font = ExtResource( 5 )
 text = "MOD_LOAD_UNLOAD_CAVEATS"
 align = 1
 
-[node name="Spacer4" type="Control" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="Spacer4" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_top = 592.0
 margin_right = 754.0
 margin_bottom = 597.0
@@ -544,13 +535,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 601.0
 margin_right = 754.0
 margin_bottom = 633.0
 alignment = 1
 
-[node name="LoadAll" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="LoadAll" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 visible = false
 margin_left = 560.0
 margin_top = 20.0
@@ -560,7 +551,7 @@ size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 11 )
 text = "ENABLE_ALL_COMPATIBLE"
 
-[node name="Apply" type="Button" parent="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="Apply" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 297.0
 margin_right = 456.0
 margin_bottom = 32.0
@@ -940,26 +931,26 @@ margin_left = -67.0
 margin_top = -87.0
 margin_right = 0.0
 margin_bottom = 0.0
-ErrorMessage = ""
 ExceptionInfo = ""
+ErrorMessage = ""
 Resizable = false
 
 [node name="ModUploader" parent="." instance=ExtResource( 12 )]
 visible = false
 
 [connection signal="pressed" from="HBoxContainer/Quit" to="." method="BackPressed"]
-[connection signal="item_selected" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods" to="." method="AvailableModSelected"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer/Refresh" to="." method="RefreshAvailableMods"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer/Browse" to="." method="OpenModsFolder"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Right" to="." method="EnableModPressed"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Left" to="." method="DisableModPressed"]
-[connection signal="item_selected" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/ActiveMods" to="." method="EnabledModSelected"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/UpperPart/Right/DisableAll" to="." method="DisableAllPressed"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/MoreInfo" to="." method="OpenModInfoPopup"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/Url" to="." method="OpenInfoUrlPressed"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/Button2" to="." method="OpenModUploader"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer2/Button" to="." method="NewModPressed"]
-[connection signal="pressed" from="PanelContainer/CenterContainer/VBoxContainer/HBoxContainer/Apply" to="." method="ApplyChanges"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods" to="." method="AvailableModSelected"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer/Refresh" to="." method="RefreshAvailableMods"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer/Browse" to="." method="OpenModsFolder"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Right" to="." method="EnableModPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer/Left" to="." method="DisableModPressed"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/UpperPart/Right/ActiveMods" to="." method="EnabledModSelected"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/UpperPart/Right/DisableAll" to="." method="DisableAllPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/MoreInfo" to="." method="OpenModInfoPopup"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/Url" to="." method="OpenInfoUrlPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Button2" to="." method="OpenModUploader"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Button" to="." method="NewModPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Apply" to="." method="ApplyChanges"]
 [connection signal="OnAccepted" from="NewModGUI" to="." method="SetupNewModFolder"]
 [connection signal="Confirmed" from="UnAppliedChangesWarning" to="." method="ConfirmBackWithUnAppliedChanges"]
 [connection signal="pressed" from="ModFullInfo/VBoxContainer/Button" to="." method="CloseModInfoPopup"]
