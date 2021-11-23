@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Godot;
 using Directory = System.IO.Directory;
 using File = System.IO.File;
@@ -10,6 +11,8 @@ using Path = System.IO.Path;
 /// </summary>
 public class SteamClient : ISteamClient
 {
+    private static readonly string[] RecommendedFileEndings = { ".jpg", ".png", ".gif" };
+
     private bool initStarted;
 
     private Action<WorkshopResult> workshopCreateCallback;
@@ -162,9 +165,7 @@ public class SteamClient : ISteamClient
         if (previewImage == null || !File.Exists(previewImage))
             throw new ArgumentException("preview image doesn't exist");
 
-        var recommendedFileEndings = new[] { ".jpg", ".png", ".gif" };
-        var fileEnding = Path.GetExtension(previewImage);
-        if (!recommendedFileEndings.Contains(fileEnding))
+        if (!RecommendedFileEndings.Contains(Path.GetExtension(previewImage)))
         {
             throw new ArgumentException("Non-recommended image type given as preview image");
         }
