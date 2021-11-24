@@ -571,6 +571,7 @@ margin_top = -143.0
 margin_right = 0.0
 margin_bottom = 0.0
 rect_min_size = Vector2( 500, 0 )
+WindowTitle = "UNAPPLIED_MOD_CHANGES"
 DialogText = "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 ConfirmText = "DISCARD_CHANGES"
 
@@ -933,8 +934,9 @@ margin_left = -67.0
 margin_top = -87.0
 margin_right = 0.0
 margin_bottom = 0.0
-ExceptionInfo = ""
 ErrorMessage = ""
+ExceptionInfo = ""
+WindowTitle = "MOD_CREATION_FAILED"
 Resizable = false
 
 [node name="ModUploader" parent="." instance=ExtResource( 12 )]

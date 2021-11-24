@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-23 20:05+0200\n"
+"POT-Creation-Date: 2021-11-24 18:51+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -1394,7 +1394,7 @@ msgstr "Di {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:929
+#: ../src/modding/ModManager.tscn:930
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Chiudi"
@@ -2200,7 +2200,7 @@ msgstr "Impossibile mostrare meno di {0} set di dati!"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:322
+#: ../src/modding/ModUploader.tscn:326
 msgid "OK"
 msgstr "OK"
 
@@ -3421,17 +3421,17 @@ msgstr ""
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:486
+#: ../src/modding/ModManager.cs:501
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Selezionati:"
 
-#: ../src/modding/ModManager.cs:837
+#: ../src/modding/ModManager.cs:861
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Apri Cartella dei Report"
 
-#: ../src/modding/ModManager.cs:846
+#: ../src/modding/ModManager.cs:870
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
@@ -3473,12 +3473,12 @@ msgstr "Disattivato"
 msgid "SELECTED_MOD"
 msgstr "Selezionati:"
 
-#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:646
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
+#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:668
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
@@ -3493,7 +3493,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "Versione:"
 
-#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
+#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:690
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
@@ -3537,7 +3537,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:574
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 "La forma più basilare di membrana, offre poca protezione ai danni. "
 "Inoltre, ha bisogno di più energia per evitare di deformarsi. Il vantaggio "
@@ -3546,109 +3546,128 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:575
 #, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"La forma più basilare di membrana, offre poca protezione ai danni. "
+"Inoltre, ha bisogno di più energia per evitare di deformarsi. Il vantaggio "
+"è che permette alla cellula di muoversi e di assorbire i nutrienti più "
+"velocemente."
+
+#: ../src/modding/ModManager.tscn:576
+#, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Continua senza salvare"
 
-#: ../src/modding/ModManager.tscn:582
+#: ../src/modding/ModManager.tscn:583
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:624 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nome:"
 
-#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:712 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Descrizione:"
 
-#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:281
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Licenze"
 
-#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:373
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Nome della zona"
 
-#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:233 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModManager.tscn:939
+#, fuzzy
+msgid "MOD_CREATION_FAILED"
+msgstr "L'Auto-evo non ha funzionato"
+
+#: ../src/modding/ModUploader.cs:235 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:263
+#: ../src/modding/ModUploader.cs:265
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "HAI PROSPERATO!"
 
-#: ../src/modding/ModUploader.cs:269
+#: ../src/modding/ModUploader.cs:271
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "Descrizione:"
 
-#: ../src/modding/ModUploader.cs:277
+#: ../src/modding/ModUploader.cs:279
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Descrizione:"
 
-#: ../src/modding/ModUploader.cs:285
+#: ../src/modding/ModUploader.cs:287
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:293
+#: ../src/modding/ModUploader.cs:295
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "Vuoi caricare il salvataggio non valido?"
 
-#: ../src/modding/ModUploader.cs:341
+#: ../src/modding/ModUploader.cs:342
 #, fuzzy
-msgid "UPLOADING_DOT_DOT_DOT"
+msgid "CREATING_DOT_DOT_DOT"
 msgstr "Caricamento..."
 
-#: ../src/modding/ModUploader.cs:363
+#: ../src/modding/ModUploader.cs:364
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Salvataggio fallito! Si è verificata un'eccezione"
 
-#: ../src/modding/ModUploader.cs:427
+#: ../src/modding/ModUploader.cs:405
+#, fuzzy
+msgid "UPLOADING_DOT_DOT_DOT"
+msgstr "Caricamento..."
+
+#: ../src/modding/ModUploader.cs:433
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:431
+#: ../src/modding/ModUploader.cs:437
 #, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/modding/ModUploader.cs:491
+#: ../src/modding/ModUploader.cs:497
 #, fuzzy
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
@@ -3662,7 +3681,7 @@ msgstr ""
 "glucosio aumenta con la concentrazione di diossido di carbonio e con "
 "l'intensità luminosa."
 
-#: ../src/modding/ModUploader.cs:507 ../src/modding/NewModGUI.cs:287
+#: ../src/modding/ModUploader.cs:519 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Errore di Salvataggio"
@@ -3757,25 +3776,25 @@ msgstr "Salvataggio riuscito"
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Descrizione:"
 
-#: ../src/modding/NewModGUI.cs:225
+#: ../src/modding/NewModGUI.cs:226
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:237
+#: ../src/modding/NewModGUI.cs:238
 #, fuzzy
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Nome:"
 
-#: ../src/modding/NewModGUI.cs:243
+#: ../src/modding/NewModGUI.cs:244
 #, fuzzy
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Nome:"
 
-#: ../src/modding/NewModGUI.cs:262
+#: ../src/modding/NewModGUI.cs:263
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:273
+#: ../src/modding/NewModGUI.cs:274
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "L'Auto-evo non ha funzionato"
@@ -4102,62 +4121,62 @@ msgstr "Cartella dei Salvataggi non trovata"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:368
+#: ../src/steam/SteamClient.cs:460
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:370
+#: ../src/steam/SteamClient.cs:462
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:372
+#: ../src/steam/SteamClient.cs:464
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:374
+#: ../src/steam/SteamClient.cs:466
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:376
+#: ../src/steam/SteamClient.cs:468
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:378
+#: ../src/steam/SteamClient.cs:470
 #, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Il salvataggio contiene uno stato di gioco non valido"
 
-#: ../src/steam/SteamClient.cs:380
+#: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:382
+#: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:384
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:386
+#: ../src/steam/SteamClient.cs:478
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Duplica Giocatore"
 
-#: ../src/steam/SteamClient.cs:388
+#: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:390
+#: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:392
+#: ../src/steam/SteamClient.cs:484
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Salvataggio fallito! Si è verificata un'eccezione"
 
-#: ../src/steam/SteamClient.cs:394
+#: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
@@ -4348,18 +4367,6 @@ msgstr ""
 "\n"
 "Per abbandonare interamente la colonia, clicca sulla tua stessa cellula, "
 "oppure premi il tasto per slegare tutti."
-
-#, fuzzy
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr ""
-#~ "La forma più basilare di membrana, offre poca protezione ai danni. "
-#~ "Inoltre, ha bisogno di più energia per evitare di deformarsi. Il "
-#~ "vantaggio è che permette alla cellula di muoversi e di assorbire i "
-#~ "nutrienti più velocemente."
-
-#, fuzzy
-#~ msgid "MOD_CREATION_FAILED"
-#~ msgstr "L'Auto-evo non ha funzionato"
 
 #~ msgid "Cancel"
 #~ msgstr "Annulla"

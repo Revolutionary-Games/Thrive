@@ -339,8 +339,7 @@ public class ModUploader : Control
         GD.Print("Create new workshop item button pressed");
         SetProcessingStatus(true);
 
-        // TODO: proper progress bar
-        SetError(TranslationServer.Translate("UPLOADING_DOT_DOT_DOT"));
+        SetError(TranslationServer.Translate("CREATING_DOT_DOT_DOT"));
 
         SteamHandler.Instance.CreateWorkshopItem(result =>
         {
@@ -401,6 +400,9 @@ public class ModUploader : Control
             updateData.Tags = editedTags.Text.Split(',').ToList();
             GD.Print("Setting item tags: ", string.Join(", ", updateData.Tags));
         }
+
+        // TODO: proper progress bar
+        SetError(TranslationServer.Translate("UPLOADING_DOT_DOT_DOT"));
 
         // TODO: implement change notes text input
         SteamHandler.Instance.UpdateWorkshopItem(updateData, null, result =>
