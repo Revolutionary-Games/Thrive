@@ -41,8 +41,8 @@ UploadSucceededTextPath = NodePath("UploadSuccess/VBoxContainer/CustomRichTextLa
 margin_right = 580.0
 margin_bottom = 530.0
 WindowTitle = "MOD_UPLOADER"
-HideOnOk = false
 ConfirmText = "UPLOAD"
+HideOnOk = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Dialog"]
 margin_left = 15.0
@@ -300,15 +300,15 @@ current_dir = "user://"
 current_path = "user://"
 
 [node name="UploadSuccess" parent="." instance=ExtResource( 5 )]
+rect_min_size = Vector2( 100, 50 )
 popup_exclusive = true
 WindowTitle = "UPLOAD_SUCCEEDED"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UploadSuccess"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 212.0
+margin_right = 115.0
 margin_bottom = 104.0
-rect_min_size = Vector2( 100, 50 )
 size_flags_horizontal = 3
 
 [node name="CustomRichTextLabel" parent="UploadSuccess/VBoxContainer" instance=ExtResource( 4 )]
