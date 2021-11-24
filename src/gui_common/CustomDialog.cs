@@ -40,11 +40,10 @@ using Godot;
 ///     any custom dialogs.
 ///     NOTE: should always be commented in master branch to avoid Godot breaking exported properties. Uncomment this
 ///     only locally if needed.
-///     TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 ///   </para>
 /// </remarks>
-
-// [Tool]
+/// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+/// [Tool]
 public class CustomDialog : Popup, ICustomPopup
 {
     private string windowTitle;

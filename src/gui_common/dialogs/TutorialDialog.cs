@@ -3,8 +3,8 @@
 /// <summary>
 ///   A window dialog for tutorials with custom behaviors such as show (pop-up) delay and animation.
 /// </summary>
-
-// [Tool]
+/// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+/// [Tool]
 public class TutorialDialog : CustomDialog
 {
     private Tween tween;
