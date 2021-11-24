@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-[Tool]
+// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+// [Tool]
 public class LicensesDisplay : CustomDialog
 {
     private List<(string Heading, string File)> licensesToShow;
