@@ -74,6 +74,8 @@ public class CustomRichTextLabel : RichTextLabel
     {
         // Make sure bbcode is enabled
         BbcodeEnabled = true;
+
+        Connect("meta_clicked", this, nameof(OnMetaClicked));
     }
 
     public override void _Draw()
@@ -385,5 +387,18 @@ public class CustomRichTextLabel : RichTextLabel
     private void OnInputsRemapped(object sender, EventArgs args)
     {
         ParseCustomTags();
+    }
+
+    private void OnMetaClicked(object meta)
+    {
+        if (meta is string metaString)
+        {
+            // TODO: should there be stronger validation than this? that this is actually an URL? Maybe Uri.TryParse
+            if (metaString.StartsWith("http", StringComparison.Ordinal))
+            {
+                GD.Print("Opening clicked link: ", metaString);
+                OS.ShellOpen(metaString);
+            }
+        }
     }
 }
