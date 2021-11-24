@@ -21,6 +21,16 @@ public class SceneDisplayer : Spatial
         }
     }
 
+    /// <summary>
+    ///   Get the material of this scene's model.
+    /// </summary>
+    /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
+    /// <returns>ShaderMaterial of the GeometryInstance. Null if no scene.</returns>
+    public ShaderMaterial GetMaterial(NodePath modelPath = null)
+    {
+        return currentlyShown?.GetMaterial(modelPath);
+    }
+
     private void LoadNewScene()
     {
         if (currentlyShown != null)

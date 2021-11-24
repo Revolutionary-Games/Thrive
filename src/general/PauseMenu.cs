@@ -241,8 +241,6 @@ public class PauseMenu : ControlWithInput
 
     private void ExitPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         exitType = ExitType.QuitGame;
 
         if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
@@ -251,6 +249,7 @@ public class PauseMenu : ControlWithInput
         }
         else
         {
+            GUICommon.Instance.PlayButtonPressSound();
             unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
         }

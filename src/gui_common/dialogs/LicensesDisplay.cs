@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class LicensesDisplay : PanelContainer
+// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+// [Tool]
+public class LicensesDisplay : CustomDialog
 {
     private List<(string Heading, string File)> licensesToShow;
 
@@ -87,5 +89,11 @@ public class LicensesDisplay : PanelContainer
 
             textsContainer.AddChild(new Control { RectMinSize = new Vector2(0, 5) });
         }
+    }
+
+    private void OnCloseButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        Hide();
     }
 }
