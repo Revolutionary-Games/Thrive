@@ -409,7 +409,18 @@ public class ModManager : Control
         // TODO: maybe this should be done in a background thread (or maybe icon loading is the slower part)
         validMods.Clear();
         validMods.AddRange(LoadValidMods());
-        validMods.AddRange(ModLoader.LoadWorkshopModsList());
+
+        foreach (var workshopMod in ModLoader.LoadWorkshopModsList())
+        {
+            if (validMods.Any(m => m.InternalName == workshopMod.InternalName))
+            {
+                GD.Print("Hiding workshop mod \"", workshopMod.InternalName,
+                    "\" as there's already an existing mod with that name");
+                continue;
+            }
+
+            validMods.Add(workshopMod);
+        }
 
         // Clear the mods the mod loader will use to make sure it doesn't use outdated workshop mod list
         ModLoader.Instance.OnNewWorkshopModsInstalled();
