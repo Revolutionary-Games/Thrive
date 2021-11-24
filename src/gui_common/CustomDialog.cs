@@ -38,9 +38,12 @@ using Godot;
 ///     This uses Tool attribute to make this class be run in the Godot editor for live feedback as this class
 ///     handles UI visuals extensively through code. Not necessary but very helpful when editing scenes involving
 ///     any custom dialogs.
+///     NOTE: should always be commented in master branch to avoid Godot breaking exported properties. Uncomment this
+///     only locally if needed.
+///     TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 ///   </para>
 /// </remarks>
-[Tool]
+// [Tool]
 public class CustomDialog : Popup, ICustomPopup
 {
     private string windowTitle;

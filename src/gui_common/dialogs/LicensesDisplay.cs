@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-[Tool]
+// [Tool]
 public class LicensesDisplay : CustomDialog
 {
     private List<(string Heading, string File)> licensesToShow;
