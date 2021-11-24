@@ -91,6 +91,15 @@ public class ScreenShotTaker : NodeWithInput
             return;
         }
 
+        if (SteamHandler.Instance.IsLoaded)
+        {
+            if (Input.IsKeyPressed((int)KeyList.F12))
+            {
+                GD.Print("Ignoring F12 as Steam is probably taking a screenshot with that");
+                return;
+            }
+        }
+
         isCurrentlyTakingScreenshot = true;
 
         // If ScreenFilter is active, turn it off before taking a screenshot.
