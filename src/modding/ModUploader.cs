@@ -182,6 +182,14 @@ public class ModUploader : Control
         }
     }
 
+    private bool SelectedModHasItemId()
+    {
+        if (selectedMod == null)
+            return false;
+
+        return workshopData.KnownModWorkshopIds.TryGetValue(selectedMod.InternalName, out _);
+    }
+
     private void UpdateLayout()
     {
         if (selectedMod == null)
@@ -191,7 +199,7 @@ public class ModUploader : Control
             return;
         }
 
-        if (!workshopData.KnownModWorkshopIds.TryGetValue(selectedMod.InternalName, out _))
+        if (!SelectedModHasItemId())
         {
             unknownItemActions.Visible = true;
             detailsEditor.Visible = false;
@@ -207,7 +215,7 @@ public class ModUploader : Control
 
     private void UpdateUploadButtonStatus()
     {
-        if (selectedMod == null || processing)
+        if (!SelectedModHasItemId() || processing)
         {
             uploadDialog.SetConfirmDisabled(true);
         }
@@ -321,6 +329,7 @@ public class ModUploader : Control
         ClearError();
         UpdateLayout();
         UpdateModDetails();
+        UpdateUploadButtonStatus();
     }
 
     private void SelectManualIdEnterMode(bool selected)
@@ -368,6 +377,7 @@ public class ModUploader : Control
 
             ClearError();
             UpdateLayout();
+            UpdateUploadButtonStatus();
         });
     }
 
