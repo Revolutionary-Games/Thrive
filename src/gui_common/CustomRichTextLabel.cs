@@ -397,7 +397,10 @@ public class CustomRichTextLabel : RichTextLabel
             if (metaString.StartsWith("http", StringComparison.Ordinal))
             {
                 GD.Print("Opening clicked link: ", metaString);
-                OS.ShellOpen(metaString);
+                if (OS.ShellOpen(metaString) != Error.Ok)
+                {
+                    GD.PrintErr("Opening the link failed");
+                }
             }
         }
     }
