@@ -890,6 +890,15 @@ public class ModManager : Control
         modUploader.Open(validMods.Where(m => !m.Workshop));
     }
 
+    private void OpenWorkshopSite()
+    {
+        // TODO: once in-game mod downloads works this could open in the Steam overlay browser
+        if (OS.ShellOpen("https://steamcommunity.com/app/1779200/workshop/") != Error.Ok)
+        {
+            GD.PrintErr("Failed to open workshop URL");
+        }
+    }
+
     private void BackPressed()
     {
         if (applyChangesButton.Disabled)

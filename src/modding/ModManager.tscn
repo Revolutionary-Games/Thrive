@@ -497,7 +497,6 @@ margin_left = 421.0
 margin_right = 614.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 11 )
-disabled = true
 text = "BROWSE_WORKSHOP"
 
 [node name="Upload" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
@@ -934,10 +933,10 @@ margin_left = -67.0
 margin_top = -87.0
 margin_right = 0.0
 margin_bottom = 0.0
-ErrorMessage = ""
-ExceptionInfo = ""
 WindowTitle = "MOD_CREATION_FAILED"
 Resizable = false
+ErrorMessage = ""
+ExceptionInfo = ""
 
 [node name="ModUploader" parent="." instance=ExtResource( 12 )]
 visible = false
@@ -952,6 +951,7 @@ visible = false
 [connection signal="pressed" from="CenterContainer/VBoxContainer/UpperPart/Right/DisableAll" to="." method="DisableAllPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/MoreInfo" to="." method="OpenModInfoPopup"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine/Url" to="." method="OpenInfoUrlPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Workshop" to="." method="OpenWorkshopSite"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/Upload" to="." method="OpenModUploader"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer2/New" to="." method="NewModPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Apply" to="." method="ApplyChanges"]
