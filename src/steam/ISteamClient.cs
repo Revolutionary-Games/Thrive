@@ -42,4 +42,6 @@ public interface ISteamClient : ISteamSignalReceiver
     void SubmitWorkshopItemUpdate(ulong updateHandle, string changeNotes, Action<WorkshopResult> callback);
     SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId);
     bool SetWorkshopItemTags(ulong updateHandle, List<string> tags);
+    List<string> GetInstalledWorkshopItemFolders();
+    void OpenWorkshopItemInOverlayBrowser(ulong itemId);
 }

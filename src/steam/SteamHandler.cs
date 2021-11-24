@@ -131,6 +131,27 @@ public class SteamHandler : Node, ISteamSignalReceiver
     }
 
     /// <summary>
+    ///   Returns the folders of installed workshop items
+    /// </summary>
+    /// <returns>List of folders</returns>
+    public List<string> GetWorkshopItemFolders()
+    {
+        ThrowIfNotLoaded();
+
+        return steamClient.GetInstalledWorkshopItemFolders();
+    }
+
+    /// <summary>
+    ///   Opens a workshop item in the Steam in-game browser overlay
+    /// </summary>
+    public void OpenWorkshopItemInOverlayBrowser(ulong itemId)
+    {
+        ThrowIfNotLoaded();
+
+        steamClient.OpenWorkshopItemInOverlayBrowser(itemId);
+    }
+
+    /// <summary>
     ///   Should only be called by the Steam handling library when its loaded
     /// </summary>
     /// <param name="client">The Steam handler to register</param>

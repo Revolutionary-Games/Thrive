@@ -117,6 +117,9 @@ public class SteamClient : ISteamClient
         if (string.IsNullOrWhiteSpace(title))
             throw new ArgumentException("Title is required");
 
+        if (title.Length > Steam.PublishedDocumentTitleMax)
+            throw new ArgumentException("Title is too long");
+
         return Steam.SetItemTitle(updateHandle, title);
     }
 
@@ -124,7 +127,7 @@ public class SteamClient : ISteamClient
     {
         description ??= string.Empty;
 
-        if (description.Length > 8000)
+        if (description.Length > Steam.PublishedDocumentDescriptionMax)
             throw new ArgumentException("Description is too long");
 
         return Steam.SetItemDescription(updateHandle, description);
@@ -200,6 +203,30 @@ public class SteamClient : ISteamClient
         Steam.SubmitItemUpdate(updateHandle, changeNotes);
     }
 
+    public List<string> GetInstalledWorkshopItemFolders()
+    {
+        var result = new List<string>();
+
+        foreach (var itemId in GetSubscribedWorkshopItems())
+        {
+            if (GetWorkshopItemLocalState(itemId).Installed)
+            {
+                var installInfo = Steam.GetItemInstallInfo(itemId);
+
+                if (!installInfo.Contains("ret") || installInfo["ret"] as bool? != true)
+                {
+                    GD.PrintErr("Workshop item ", itemId, " failed to retrieve install info");
+                }
+                else
+                {
+                    result.Add((string)installInfo["folder"]);
+                }
+            }
+        }
+
+        return result;
+    }
+
     public SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId)
     {
         var result = new SteamUploadProgress();
@@ -227,6 +254,11 @@ public class SteamClient : ISteamClient
         }
 
         return result;
+    }
+
+    public void OpenWorkshopItemInOverlayBrowser(ulong itemId)
+    {
+        Steam.ActivateGameOverlayToWebPage($"steam://url/CommunityFilePage/{itemId}");
     }
 
     public void GenericSteamworksError(string failedSignal, string message)
@@ -353,6 +385,66 @@ public class SteamClient : ISteamClient
         IsOnline = Steam.LoggedOn();
         SteamId = Steam.GetSteamID();
         IsOwned = Steam.IsSubscribed();
+    }
+
+    private IEnumerable<ulong> GetSubscribedWorkshopItems()
+    {
+        foreach (var item in Steam.GetSubscribedItems())
+        {
+            // TODO: GodotSteam bug that it doesn't return the proper type here
+            // yield return (ulong)item;
+
+            var raw = BitConverter.GetBytes((int)item);
+
+            uint hacked = BitConverter.ToUInt32(raw, 0);
+
+            yield return hacked;
+        }
+    }
+
+    private WorkshopItemState GetWorkshopItemLocalState(ulong itemId)
+    {
+        var result = new WorkshopItemState();
+
+        var state = Steam.GetItemState(itemId);
+
+        if (state == 0)
+        {
+            GD.PrintErr("Local state queried for workshop item that is not locally tracked: ", itemId);
+            result.Untracked = true;
+        }
+
+        if ((state & Steam.ItemStateSubscribed) != 0)
+        {
+            result.Subscribed = true;
+        }
+
+        // Not handled
+        if ((state & Steam.ItemStateLegacyItem) != 0)
+        {
+        }
+
+        if ((state & Steam.ItemStateInstalled) != 0)
+        {
+            result.Installed = true;
+        }
+
+        if ((state & Steam.ItemStateNeedsUpdate) != 0)
+        {
+            result.NeedsUpdate = true;
+        }
+
+        if ((state & Steam.ItemStateDownloading) != 0)
+        {
+            result.Downloading = true;
+        }
+
+        if ((state & Steam.ItemStateDownloadPending) != 0)
+        {
+            result.DownloadPending = true;
+        }
+
+        return result;
     }
 
     private string GetDescriptiveSteamError(int result)

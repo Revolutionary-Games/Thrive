@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 public class ModInfo
 {
     /// <summary>
-    ///   Name of the mod. Needs to be user readable
+    ///   Name of the mod. Needs to be user readable. Should be unique.
     /// </summary>
     [JsonRequired]
     public string Name { get; set; }

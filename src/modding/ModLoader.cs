@@ -18,6 +18,8 @@ public class ModLoader : Node
 
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
 
+    private List<FullModDetails> workshopMods;
+
     private bool firstExecute = true;
 
     private ModLoader()
@@ -69,6 +71,47 @@ public class ModLoader : Node
         if (failureIsError)
             GD.PrintErr("No folder found for mod: ", name);
         return null;
+    }
+
+    public static List<FullModDetails> LoadWorkshopModsList()
+    {
+        var steamHandler = SteamHandler.Instance;
+        if (!steamHandler.IsLoaded)
+            return new List<FullModDetails>();
+
+        var result = new List<FullModDetails>();
+
+        using var directory = new Directory();
+
+        foreach (var location in steamHandler.GetWorkshopItemFolders())
+        {
+            if (!directory.DirExists(location))
+            {
+                GD.PrintErr("Workshop item folder doesn't exist: ", location);
+                continue;
+            }
+
+            if (directory.FileExists(Path.Combine(location, Constants.MOD_INFO_FILE_NAME)))
+            {
+                var info = ModManager.LoadModInfo(location);
+
+                if (info == null)
+                {
+                    GD.PrintErr("Failed to load info for workshop mod at: ", location);
+                    return null;
+                }
+
+                // TODO: load proper name here
+                result.Add(new FullModDetails("DamageNumbers")
+                    { Folder = location, Info = info, Workshop = true });
+            }
+            else
+            {
+                GD.PrintErr("Workshop item folder is missing mod info JSON at: ", location);
+            }
+        }
+
+        return result;
     }
 
     public override void _Ready()
@@ -124,9 +167,14 @@ public class ModLoader : Node
         GD.Print("Mod loading finished");
     }
 
+    public void OnNewWorkshopModsInstalled()
+    {
+        workshopMods = null;
+    }
+
     private void LoadMod(string name)
     {
-        var info = LoadModInfo(name);
+        var info = FindMod(name);
 
         if (info == null)
         {
@@ -169,7 +217,7 @@ public class ModLoader : Node
 
     private void UnLoadMod(string name)
     {
-        var info = LoadModInfo(name);
+        var info = FindMod(name);
 
         if (info == null)
         {
@@ -195,6 +243,34 @@ public class ModLoader : Node
 
             loadedModAssemblies.Remove(name);
         }
+    }
+
+    /// <summary>
+    ///   Finds a mod by name to load. Also checks workshop mods
+    /// </summary>
+    /// <param name="name">The name of the mod</param>
+    /// <returns>The loaded mod info or null if not found</returns>
+    private FullModDetails FindMod(string name)
+    {
+        var info = LoadModInfo(name);
+
+        if (info == null)
+        {
+            if (workshopMods == null)
+            {
+                GD.Print("Checking for potentially installed workshop mods");
+                workshopMods = LoadWorkshopModsList();
+            }
+
+            info = workshopMods.FirstOrDefault(m => m.InternalName == name);
+
+            if (info != null)
+            {
+                GD.Print("Mod folder found as a workshop item");
+            }
+        }
+
+        return info;
     }
 
     private void RunCodeModFirstRunCallbacks(IMod mod)

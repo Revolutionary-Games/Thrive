@@ -15,6 +15,11 @@ public class FullModDetails : IEquatable<FullModDetails>
 
     public ModInfo Info { get; set; }
 
+    /// <summary>
+    ///   Mod is from the workshop / downloaded
+    /// </summary>
+    public bool Workshop { get; set; }
+
     public bool Equals(FullModDetails other)
     {
         if (ReferenceEquals(null, other))
