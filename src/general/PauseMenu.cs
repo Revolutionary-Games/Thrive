@@ -207,6 +207,11 @@ public class PauseMenu : ControlWithInput
         saveMenu.SetSaveName(name, true);
     }
 
+    public void SetNewSaveNameFromSpeciesName()
+    {
+        SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
     private Control GetControlFromMenuEnum(ActiveMenuType value)
     {
         return value switch
