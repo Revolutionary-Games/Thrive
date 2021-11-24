@@ -151,11 +151,11 @@ public class ModUploader : Control
         base._Notification(what);
     }
 
-    public void Open(List<FullModDetails> availableMods)
+    public void Open(IEnumerable<FullModDetails> availableMods)
     {
         workshopData = WorkshopData.Load();
 
-        mods = availableMods;
+        mods = availableMods.ToList();
 
         UpdateAvailableModsList();
         UpdateLayout();

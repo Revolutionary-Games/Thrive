@@ -409,6 +409,10 @@ public class ModManager : Control
         // TODO: maybe this should be done in a background thread (or maybe icon loading is the slower part)
         validMods.Clear();
         validMods.AddRange(LoadValidMods());
+        validMods.AddRange(ModLoader.LoadWorkshopModsList());
+
+        // Clear the mods the mod loader will use to make sure it doesn't use outdated workshop mod list
+        ModLoader.Instance.OnNewWorkshopModsInstalled();
 
         notEnabledMods = validMods.Where(m => !IsModEnabled(m)).Concat(notEnabledMods.Where(validMods.Contains))
             .Distinct()
@@ -870,7 +874,9 @@ public class ModManager : Control
     private void OpenModUploader()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        modUploader.Open(validMods);
+
+        // Don't allow uploading workshop mods again
+        modUploader.Open(validMods.Where(m => !m.Workshop));
     }
 
     private void BackPressed()

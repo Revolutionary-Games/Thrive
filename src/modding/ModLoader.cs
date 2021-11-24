@@ -105,7 +105,7 @@ public class ModLoader : Node
                 if (info == null)
                 {
                     GD.PrintErr("Failed to load info for workshop mod at: ", location);
-                    return null;
+                    continue;
                 }
 
                 result.Add(new FullModDetails(info.InternalName)
