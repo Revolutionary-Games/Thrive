@@ -3,6 +3,7 @@
 /// <summary>
 ///   A custom reimplementation of ConfirmationDialog and AcceptDialog combined into one.
 /// </summary>
+
 // [Tool]
 public class CustomConfirmationDialog : CustomDialog
 {

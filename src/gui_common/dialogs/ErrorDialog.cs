@@ -4,7 +4,8 @@ using Godot;
 /// <summary>
 ///   A dialog popup dedicated for showing error and Exception messages.
 /// </summary>
-[Tool]
+
+// [Tool]
 public class ErrorDialog : CustomDialog
 {
     private string errorMessage;

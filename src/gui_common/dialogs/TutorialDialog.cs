@@ -3,6 +3,7 @@
 /// <summary>
 ///   A window dialog for tutorials with custom behaviors such as show (pop-up) delay and animation.
 /// </summary>
+
 // [Tool]
 public class TutorialDialog : CustomDialog
 {

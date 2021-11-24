@@ -43,6 +43,7 @@ using Godot;
 ///     TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
 ///   </para>
 /// </remarks>
+
 // [Tool]
 public class CustomDialog : Popup, ICustomPopup
 {
