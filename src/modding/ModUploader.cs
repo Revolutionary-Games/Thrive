@@ -105,6 +105,8 @@ public class ModUploader : Control
     private bool manualEnterWorkshopId;
     private bool processing;
 
+    private ulong uploadedItemId;
+
     public override void _Ready()
     {
         uploadDialog = GetNode<CustomConfirmationDialog>(UploadDialogPath);
@@ -414,6 +416,8 @@ public class ModUploader : Control
                 return;
             }
 
+            uploadedItemId = updateData.Id;
+
             GD.Print($"Workshop item updated for \"{selectedMod.InternalName}\"");
 
             ClearError();
@@ -495,6 +499,12 @@ public class ModUploader : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         uploadSucceededDialog.Hide();
+    }
+
+    private void SuccessDialogClosed()
+    {
+        // TODO: add a settings option to disable this
+        SteamHandler.Instance.OpenWorkshopItemInOverlayBrowser(uploadedItemId);
     }
 
     private void SetError(string message)

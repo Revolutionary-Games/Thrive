@@ -327,4 +327,5 @@ text = "OK"
 [connection signal="toggled" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/UnknownItem/HBoxContainer/Existing" to="." method="SelectManualIdEnterMode"]
 [connection signal="pressed" from="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2/Browse" to="." method="BrowseForPreviewImage"]
 [connection signal="file_selected" from="PreviewSelector" to="." method="OnFileSelected"]
+[connection signal="popup_hide" from="UploadSuccess" to="." method="SuccessDialogClosed"]
 [connection signal="pressed" from="UploadSuccess/VBoxContainer/Button" to="." method="DismissSuccessDialog"]
