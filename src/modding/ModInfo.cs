@@ -13,6 +13,13 @@ public class ModInfo
     public string Name { get; set; }
 
     /// <summary>
+    ///   Internal name of the mod. Needs to be unique. Shouldn't contain spaces and should match the name of the
+    ///   folder the mod is distributed in.
+    /// </summary>
+    [JsonRequired]
+    public string InternalName { get; set; }
+
+    /// <summary>
     ///   Author of the mod
     /// </summary>
     [JsonRequired]

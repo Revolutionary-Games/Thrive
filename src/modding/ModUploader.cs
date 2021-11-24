@@ -399,7 +399,7 @@ public class ModUploader : Control
         if (!string.IsNullOrWhiteSpace(editedTags.Text))
         {
             updateData.Tags = editedTags.Text.Split(',').ToList();
-            GD.Print("Setting item tags: ", updateData.Tags);
+            GD.Print("Setting item tags: ", string.Join(", ", updateData.Tags));
         }
 
         // TODO: implement change notes text input

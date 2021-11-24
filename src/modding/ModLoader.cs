@@ -64,6 +64,13 @@ public class ModLoader : Node
                     return null;
                 }
 
+                if (info.InternalName != name)
+                {
+                    GD.PrintErr("Mod internal name (", info.InternalName, ") doesn't match name of folder (", name,
+                        ")");
+                    return null;
+                }
+
                 return new FullModDetails(name) { Folder = modsFolder, Info = info };
             }
         }
@@ -101,8 +108,7 @@ public class ModLoader : Node
                     return null;
                 }
 
-                // TODO: load proper name here
-                result.Add(new FullModDetails("DamageNumbers")
+                result.Add(new FullModDetails(info.InternalName)
                     { Folder = location, Info = info, Workshop = true });
             }
             else

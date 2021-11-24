@@ -517,7 +517,16 @@ public class ModManager : Control
                 continue;
             }
 
-            result.Add(new FullModDetails(Path.GetFileName(modFolder))
+            var name = Path.GetFileName(modFolder);
+
+            if (info.InternalName != name)
+            {
+                GD.PrintErr("Mod internal name (", info.InternalName, ") doesn't match name of folder (", name,
+                    ")");
+                continue;
+            }
+
+            result.Add(new FullModDetails(name)
                 { Folder = modFolder, Info = info });
         }
 

@@ -177,8 +177,8 @@ public class NewModGUI : Control
 
     private void ApplyEditedInfoToControls()
     {
-        internalName.Text = string.Empty;
         name.Text = editedInfo.Name;
+        internalName.Text = editedInfo.InternalName;
         author.Text = editedInfo.Author;
         version.Text = editedInfo.Version;
         description.Text = editedInfo.Description;
@@ -197,6 +197,7 @@ public class NewModGUI : Control
     private bool ReadControlsToEditedInfo()
     {
         editedInfo.Name = name.Text;
+        editedInfo.InternalName = internalName.Text;
         editedInfo.Author = author.Text;
         editedInfo.Version = version.Text;
         editedInfo.Description = description.Text;
@@ -232,13 +233,13 @@ public class NewModGUI : Control
 
     private string ValidateFormData()
     {
-        if (string.IsNullOrWhiteSpace(internalName.Text))
+        if (string.IsNullOrWhiteSpace(editedInfo.InternalName))
         {
             SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRED"));
             return null;
         }
 
-        if (ModLoader.LoadModInfo(internalName.Text, false) != null)
+        if (ModLoader.LoadModInfo(editedInfo.InternalName, false) != null)
         {
             SetError(TranslationServer.Translate("INTERNAL_NAME_IN_USE"));
             return null;
@@ -246,7 +247,7 @@ public class NewModGUI : Control
 
         var serialized = new StringWriter();
 
-        var finalResult = new FullModDetails(internalName.Text)
+        var finalResult = new FullModDetails(editedInfo.InternalName)
         {
             Info = editedInfo,
             Folder = Path.Combine(Constants.ModLocations[Constants.ModLocations.Count - 1], internalName.Text),
