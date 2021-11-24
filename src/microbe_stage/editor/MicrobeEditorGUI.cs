@@ -1226,34 +1226,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         if (what == NotificationTranslationChanged)
         {
-            if (autoEvoRunSuccessful.HasValue && autoEvoRunSuccessful.Value == false)
-            {
-                totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
-            }
-
-            if (!string.IsNullOrEmpty(bestPatchName))
-            {
-                bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                    TranslationServer.Translate(bestPatchName),
-                    bestPatchPopulation);
-            }
-            else
-            {
-                bestPatchLabel.Text = TranslationServer.Translate("N_A");
-            }
-
-            if (!string.IsNullOrEmpty(worstPatchName))
-            {
-                worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
-                    TranslationServer.Translate(worstPatchName),
-                    worstPatchPopulation);
-            }
-            else
-            {
-                worstPatchLabel.Text = TranslationServer.Translate("N_A");
-            }
+            UpdateAutoEvoPredictionTranslations();
         }
     }
 
@@ -1862,13 +1835,45 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
+    private void UpdateAutoEvoPredictionTranslations()
+    {
+        if (autoEvoRunSuccessful.HasValue && autoEvoRunSuccessful.Value == false)
+        {
+            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+        }
+
+        if (!string.IsNullOrEmpty(bestPatchName))
+        {
+            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(bestPatchName),
+                bestPatchPopulation);
+        }
+        else
+        {
+            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+
+        if (!string.IsNullOrEmpty(worstPatchName))
+        {
+            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(worstPatchName),
+                worstPatchPopulation);
+        }
+        else
+        {
+            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+    }
+
     private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
     {
         if (!run.AutoEvoRun.WasSuccessful)
         {
             GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
             autoEvoRunSuccessful = false;
-            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+            UpdateAutoEvoPredictionTranslations();
             return;
         }
 
@@ -1901,14 +1906,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             var patch = sorted[0];
             bestPatchName = patch.Key.Name;
             bestPatchPopulation = patch.Value;
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
-                patch.Value);
         }
         else
         {
             bestPatchName = null;
-            bestPatchLabel.Text = TranslationServer.Translate("N_A");
         }
 
         // And worst patch
@@ -1917,15 +1918,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             var patch = sorted[sorted.Count - 1];
             worstPatchName = patch.Key.Name;
             worstPatchPopulation = patch.Value;
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
-                patch.Value);
         }
         else
         {
             worstPatchName = null;
-            worstPatchLabel.Text = TranslationServer.Translate("N_A");
         }
+
+        UpdateAutoEvoPredictionTranslations();
     }
 
     /// <remarks>
