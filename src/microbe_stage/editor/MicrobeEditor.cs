@@ -1415,6 +1415,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.SendUndoToTutorial(TutorialState);
 
         gui.UpdateCancelButtonVisibility();
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     private void InitEditorFresh()
