@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-25 15:31+0700\n"
+"POT-Creation-Date: 2021-11-25 18:07+0200\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -1355,7 +1355,8 @@ msgstr ""
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:929
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:404
 msgid "CLOSE"
 msgstr "關閉"
 
@@ -1422,14 +1423,14 @@ msgid "LICENSES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:497
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2模式警告"
+
+#: ../src/general/MainMenu.tscn:499
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應"
 "該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
-
-#: ../src/general/MainMenu.tscn:499
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2模式警告"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1773,12 +1774,12 @@ msgstr "截屏"
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:237
+#: ../src/general/PauseMenu.cs:247
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "返回目錄"
 
-#: ../src/general/PauseMenu.cs:253
+#: ../src/general/PauseMenu.cs:263
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "GLES2模式警告"
@@ -2736,15 +2737,15 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:527
+#: ../src/microbe_stage/MicrobeStage.cs:529
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:611
+#: ../src/microbe_stage/MicrobeStage.cs:615
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:675
+#: ../src/microbe_stage/MicrobeStage.cs:679
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -2881,7 +2882,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1438
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "在加載微生物編輯器"
 
@@ -2889,11 +2890,11 @@ msgstr "在加載微生物編輯器"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待自動進化："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_FAILED"
 msgstr "自動進化啟動失敗"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
 
@@ -3708,7 +3709,7 @@ msgstr "保存失敗"
 msgid "ERROR_SAVING"
 msgstr "保存時出錯"
 
-#: ../src/saving/NewSaveMenu.cs:61
+#: ../src/saving/NewSaveMenu.cs:77
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目標文件名({0})已存在。確定要覆蓋嗎？"
 
@@ -3984,69 +3985,75 @@ msgstr "保存失敗！發生了一個異常"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:81
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:120
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:298
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
 msgid "TUTORIAL"
 msgstr "教學"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:139
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:179
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:219
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:220
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:263
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:264
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:281
 #, fuzzy
 msgid "GOT_IT"
 msgstr "明白了"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:387
+msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
 msgstr "顯示教學"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "要控制細胞，請使用在細胞附近（屏幕中心）顯示的按鍵和鼠標來控制細胞的方"
@@ -4054,19 +4061,19 @@ msgstr ""
 "\n"
 "請花幾秒時間嘗試所有按鍵以繼續。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
@@ -4075,7 +4082,7 @@ msgstr ""
 "\n"
 "請花幾秒時間嘗試所有按鍵以繼續。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:380
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -4083,6 +4090,17 @@ msgstr ""
 "向。\n"
 "\n"
 "請花幾秒時間嘗試所有按鍵以繼續。"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgstr ""
+"W，A，S，D和鼠標移動。如果你有一個毒素液泡，用E射擊氧化毒素。 G可以切換吞噬"
+"模式。"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
+msgid "VIEW_NOW"
+msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "取消"

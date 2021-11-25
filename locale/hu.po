@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-25 15:31+0700\n"
+"POT-Creation-Date: 2021-11-25 18:07+0200\n"
 "PO-Revision-Date: 2021-11-24 16:56+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
@@ -1389,7 +1389,8 @@ msgstr "A rajzot {0} készítette"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:929
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:404
 msgid "CLOSE"
 msgstr "Bezár"
 
@@ -1456,16 +1457,16 @@ msgid "LICENSES"
 msgstr "Licenszek"
 
 #: ../src/general/MainMenu.tscn:497
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2 mód figyelmeztetés"
+
+#: ../src/general/MainMenu.tscn:499
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "A Thrive-ot GLES2 módban futtatod. Ennek a módnak a használata nincs "
 "letesztelve, és nagy eséllyel hibákat okozhat. Próbáld meg frissíteni a "
 "videókártyád driverét vagy/és kényszerítsd az AMD vagy Nvidia grafikai "
 "szoftverét a Thrive futtatására."
-
-#: ../src/general/MainMenu.tscn:499
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 mód figyelmeztetés"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1801,12 +1802,12 @@ msgstr "Próbálj pár képernyőképet készíteni!"
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:237
+#: ../src/general/PauseMenu.cs:247
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Vissza a menübe"
 
-#: ../src/general/PauseMenu.cs:253
+#: ../src/general/PauseMenu.cs:263
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Biztos ki akarsz lépni a játékból?\n"
@@ -2684,16 +2685,16 @@ msgstr "Elméleti csapat"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "nagyon kicsi mennyiség"
 
-#: ../src/microbe_stage/MicrobeStage.cs:527
+#: ../src/microbe_stage/MicrobeStage.cs:529
 msgid "PLAYER_REPRODUCED"
 msgstr "játékos szaporodott"
 
-#: ../src/microbe_stage/MicrobeStage.cs:611
+#: ../src/microbe_stage/MicrobeStage.cs:615
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Ellenség spawnolása"
 
-#: ../src/microbe_stage/MicrobeStage.cs:675
+#: ../src/microbe_stage/MicrobeStage.cs:679
 msgid "PLAYER_DIED"
 msgstr "A játékos meghalt"
 
@@ -2829,7 +2830,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1438
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Sejtszerkesztő betöltése"
 
@@ -2837,11 +2838,11 @@ msgstr "Sejtszerkesztő betöltése"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Várakozás az auto-evo-ra:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo futtatása sikertelen"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "futtatási státusz:"
 
@@ -3648,7 +3649,7 @@ msgstr "Mentés sikertelen"
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
 
-#: ../src/saving/NewSaveMenu.cs:61
+#: ../src/saving/NewSaveMenu.cs:77
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
 
@@ -3917,24 +3918,26 @@ msgstr "A mentés sikertelen! Hiba történt"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:81
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:120
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:298
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Üdvözöllek a Sejtszerkesztőben.\n"
@@ -3947,7 +3950,7 @@ msgstr ""
 "\n"
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Ez itt a patch térkép.\n"
@@ -3963,7 +3966,7 @@ msgstr ""
 "\n"
 "Válassz ki egy patch-et a folytatáshoz."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:139
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, "
@@ -3977,27 +3980,42 @@ msgstr ""
 "elhelyezkedő valamelyik hexagonra való bal kattintással helyezd el az "
 "adott sejtszervecskét."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:179
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:219
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:220
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:263
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:264
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:281
 msgid "GOT_IT"
 msgstr "Rendben"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:387
+#, fuzzy
+msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgstr ""
+"Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, "
+"vagy távolíthatsz el a sejtedről, amik mutáció pontokba (MP) kerülnek.\n"
+"\n"
+"A sejted többi tulajdonságát is megváltoztathatod a sejtszerkesztő többi "
+"részében.\n"
+"\n"
+"A folytatáshoz válassz ki egy sejtszervecskét a bal oldali panelről (a "
+"citoplazma egy jó választás elsőnek). Ezután a képernyő közepén "
+"elhelyezkedő valamelyik hexagonra való bal kattintással helyezd el az "
+"adott sejtszervecskét."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és "
@@ -4013,15 +4031,15 @@ msgstr ""
 "gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció "
 "során, hogy versenyképesek maradjanak a többi fajjal."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
 msgstr "Tutorial-ok mutatása"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr "A túlélés kezdése"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "A sejted irányításához használd azokat a gombokat, amik a sejted közelében "
@@ -4031,7 +4049,7 @@ msgstr ""
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a "
 "folytatáshoz."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Gyűjts glükózt úgy, hogy áthaladsz a fehér felhőkön.\n"
@@ -4039,7 +4057,7 @@ msgstr ""
 "tudjon így élni.\n"
 "Kövesd a vonalat, hogy találj egy kis glükózt."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Tartsd szemmel az életerő csíkot az ATP mérő mellett (jobb alsó sarok).\n"
@@ -4047,7 +4065,7 @@ msgstr ""
 "Addig regenerálódik a sejted, amíg rendelkezik ATP-vel.\n"
 "Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Ahhoz, hogy szaporodni tudj, meg kell dupláznod a sejted "
@@ -4056,7 +4074,7 @@ msgstr ""
 "A képernyő jobb alsó sarkában láthatsz egy mérőt, ami mutatja, hogy "
 "mennyire van még szükséged ebből a két anyagból."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Elegendő nyersanyagot gyűjtöttél, hogy a sejted osztódni tudjon.\n"
@@ -4066,8 +4084,25 @@ msgstr ""
 "A szerkesztőbe való belépéshez kattints a villogó szerkesztő gombra a "
 "képernyő jobb alsó sarkában."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:380
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "MICROBE_STAGE_UNBIND_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgstr ""
+"A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a "
+"forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha "
+"rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:"
+"input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy "
+"kikapcsolni."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
+msgid "VIEW_NOW"
 msgstr ""
 
 #~ msgid "Cancel"

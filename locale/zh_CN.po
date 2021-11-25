@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-25 15:31+0700\n"
+"POT-Creation-Date: 2021-11-25 18:07+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1345,7 +1345,8 @@ msgstr "由{0}创作"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/modding/ModManager.tscn:929
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:404
 msgid "CLOSE"
 msgstr "关闭"
 
@@ -1412,14 +1413,14 @@ msgid "LICENSES"
 msgstr "许可"
 
 #: ../src/general/MainMenu.tscn:497
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2模式警告"
+
+#: ../src/general/MainMenu.tscn:499
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应"
 "该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
-
-#: ../src/general/MainMenu.tscn:499
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2模式警告"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1751,13 +1752,13 @@ msgstr "试着截一些图吧！"
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "找不到截图目录"
 
-#: ../src/general/PauseMenu.cs:237
+#: ../src/general/PauseMenu.cs:247
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "你确定要退出到主菜单吗？\n"
 "你会失去任何未保存的进度。"
 
-#: ../src/general/PauseMenu.cs:253
+#: ../src/general/PauseMenu.cs:263
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "你确定要退出游戏吗？\n"
@@ -2755,16 +2756,16 @@ msgstr "少"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "很少"
 
-#: ../src/microbe_stage/MicrobeStage.cs:527
+#: ../src/microbe_stage/MicrobeStage.cs:529
 msgid "PLAYER_REPRODUCED"
 msgstr "玩家繁殖"
 
-#: ../src/microbe_stage/MicrobeStage.cs:611
+#: ../src/microbe_stage/MicrobeStage.cs:615
 #, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "生成敌人"
 
-#: ../src/microbe_stage/MicrobeStage.cs:675
+#: ../src/microbe_stage/MicrobeStage.cs:679
 msgid "PLAYER_DIED"
 msgstr "玩家死亡"
 
@@ -2900,7 +2901,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1438
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
 
@@ -2908,11 +2909,11 @@ msgstr "载入微生物编辑器中"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo中："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
@@ -3719,7 +3720,7 @@ msgstr "保存失败"
 msgid "ERROR_SAVING"
 msgstr "存档时出错"
 
-#: ../src/saving/NewSaveMenu.cs:61
+#: ../src/saving/NewSaveMenu.cs:77
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目标文件名{0}已存在。确定要覆盖吗？"
 
@@ -4004,24 +4005,26 @@ msgstr "Steam 客户端库初始化失败"
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:81
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:120
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:298
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
 msgid "TUTORIAL"
 msgstr "教程"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "欢迎来到微生物编辑器。\n"
@@ -4033,7 +4036,7 @@ msgstr ""
 "\n"
 "要进入下一个编辑器选项卡，请按右下角的下一个按钮。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "这里是地区地图。\n"
@@ -4046,7 +4049,7 @@ msgstr ""
 "\n"
 "选择一个地区以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:139
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "这里是你的细胞编辑器，你可以在这通过花费变异点来添加或移除细胞器。\n"
@@ -4056,7 +4059,7 @@ msgstr ""
 "想要继续的话，从左侧面板选中一个细胞器（细胞质是个好选择）。然后再点击右侧"
 "面板中央附近的六角格以将此细胞器放入你的物种中。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:179
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "移除细胞器也需要消耗变异点，除非这些细胞器是在当代内添加的。\n"
@@ -4067,7 +4070,7 @@ msgstr ""
 "\n"
 "按撤销按钮以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:219
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:220
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "当选择要添加的细胞器时，请注意用于细胞器的工具提示，它们的功能以及使用和产"
@@ -4079,7 +4082,7 @@ msgstr ""
 "\n"
 "按下重做按钮（和撤销按钮在一起）以继续。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:263
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:264
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "这些就是改变物种的基础操作了。你可以自己试试看其它选项卡里提供的选项。\n"
@@ -4090,11 +4093,11 @@ msgstr ""
 "\n"
 "祝你好运！"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:281
 msgid "GOT_IT"
 msgstr "明白了"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
 "这个面板显示对你未来种群数量的预测。\n"
@@ -4106,7 +4109,18 @@ msgstr ""
 "\n"
 "但即使你不直接参与你也应该努力保持你的种群数量。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:387
+#, fuzzy
+msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgstr ""
+"这里是你的细胞编辑器，你可以在这通过花费变异点来添加或移除细胞器。\n"
+"\n"
+"你还可以在细胞编辑器里修改你的物种的其它属性。\n"
+"\n"
+"想要继续的话，从左侧面板选中一个细胞器（细胞质是个好选择）。然后再点击右侧"
+"面板中央附近的六角格以将此细胞器放入你的物种中。"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
@@ -4119,29 +4133,29 @@ msgstr ""
 "要在这个艰难的世界存活下来，你将需要收集各种化合物并不断进化，才能跟其它的"
 "微生物竞争。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
 msgstr "显示教程"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr "开始游戏"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:154
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "使用屏幕中央显示的按键来控制你的细胞，鼠标控制细胞朝向。\n"
 "\n"
 "尝试所有按键几秒钟以继续。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通过移动到白色的云上来收集葡萄糖。\n"
 "你需要葡萄糖才能产生能量并存活。\n"
 "请跟随显示的线到最近的葡萄糖云中。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "随时注意你的ATP条旁边的生命值条（在屏幕右下角）。\n"
@@ -4149,13 +4163,13 @@ msgstr ""
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "你已经收集了足够让你的细胞分裂的资源。\n"
@@ -4164,12 +4178,26 @@ msgstr ""
 "\n"
 "按右下角闪烁的编辑器按钮以进入编辑器。"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:380
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
 "为了离开细胞群你可以点击你自己的细胞或点击“解除所有连接”键。"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgstr ""
+"用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/"
+"thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:"
+"input]g_move_right[/thrive:input]键和鼠标进行移动。如有一个毒素液泡，可按下"
+"[thrive:input]g_fire_toxin[/thrive:input]发射氧化毒素。[thrive:"
+"input]g_toggle_engulf[/thrive:input]键可以切换至吞噬模式。"
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
+msgid "VIEW_NOW"
+msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "取消"
