@@ -8,4 +8,10 @@
     void LowPower(int power);
     void APICallComplete(int asyncCall, int callback, int parameter);
     void ShutdownRequested();
+
+    void WorkshopItemCreated(int result, ulong fileId, bool acceptTermsOfService);
+    void WorkshopItemDownloadedLocally(int result, ulong fileId, int appId);
+    void WorkshopItemInstalledOrUpdatedLocally(int appId, ulong fileId);
+    void WorkshopItemDeletedRemotely(int result, ulong fileId);
+    void WorkshopItemInfoUpdateFinished(int result, bool acceptTermsOfService);
 }

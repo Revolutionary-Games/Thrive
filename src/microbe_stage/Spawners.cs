@@ -330,12 +330,16 @@ public class MicrobeSpawner : Spawner
 
         yield return first;
 
+        ModLoader.ModInterface.TriggerOnMicrobeSpawned(first);
+
         if (first.Species.IsBacteria)
         {
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
                 cloudSystem, currentGame, random))
             {
                 yield return colonyMember;
+
+                ModLoader.ModInterface.TriggerOnMicrobeSpawned(colonyMember);
             }
         }
     }
@@ -389,5 +393,7 @@ public class ChunkSpawner : Spawner
             cloudSystem, random);
 
         yield return chunk;
+
+        ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, true);
     }
 }

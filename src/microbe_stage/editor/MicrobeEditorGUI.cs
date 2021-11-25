@@ -1241,7 +1241,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
 
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
     internal void OnInsufficientMp(bool playSound = true)
@@ -1263,7 +1263,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void PlayInvalidActionSound()
     {
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
     /// <summary>
