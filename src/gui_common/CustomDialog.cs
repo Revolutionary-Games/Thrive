@@ -117,7 +117,7 @@ public class CustomDialog : Popup, ICustomPopup
     ///   If true, the user can move the window around the viewport by dragging the titlebar.
     /// </summary>
     [Export]
-    public bool Moveable { get; set; } = true;
+    public bool Movable { get; set; } = true;
 
     /// <summary>
     ///   If true, the window's position is clamped inside the screen so it doesn't go out of bounds.
@@ -230,7 +230,7 @@ public class CustomDialog : Popup, ICustomPopup
         // Handle title bar dragging
         if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == (int)ButtonList.Left)
         {
-            if (mouseButton.Pressed && Moveable)
+            if (mouseButton.Pressed && Movable)
             {
                 // Begin a possible dragging operation
                 dragType = DragHitTest(new Vector2(mouseButton.Position.x, mouseButton.Position.y));

@@ -1323,7 +1323,7 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER)) == Error.FileNotFound)
+        if (!FolderHelpers.OpenFolder(Constants.SCREENSHOT_FOLDER))
             screenshotDirectoryWarningBox.PopupCenteredShrink();
     }
 
@@ -1398,6 +1398,6 @@ public class OptionsMenu : ControlWithInput
     private void OnLogButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
+        FolderHelpers.OpenFolder(Constants.LOGS_FOLDER);
     }
 }
