@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-25 15:31+0700\n"
-"PO-Revision-Date: 2021-11-24 18:52+0200\n"
+"PO-Revision-Date: 2021-11-25 15:44+0700\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 2.4.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -2877,9 +2877,10 @@ msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
 #: ../src/microbe_stage/MicrobeStage.cs:611
-#, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Spawn Enemy"
+msgstr ""
+"Can't use spawn enemy cheat because this patch does not contain any enemy "
+"species"
 
 #: ../src/microbe_stage/MicrobeStage.cs:675
 msgid "PLAYER_DIED"
