@@ -377,6 +377,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
+
+        ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
     }
 
     public override void _PhysicsProcess(float delta)
