@@ -72,12 +72,27 @@ public struct IntRect : IEquatable<IntRect>
         Height *= factor;
     }
 
-    public IEnumerable<Int2> GetPointEnumerator()
+    public IEnumerable<Int2> GetPointEnumerator() => GetPointEnumerator(1);
+
+    /// <summary>
+    ///   Enumerator to the points contained within the rectangle with a step between two consecutive points.
+    /// </summary>
+    /// <param name="step">The distance between two points enumerated</param>
+    public IEnumerable<Int2> GetPointEnumerator(int step)
     {
         var width = Width;
         var x = X;
         var y = Y;
 
-        return Enumerable.Range(0, Width * Height).Select(p => new Int2(x + p / width, y + p % width));
+        return Enumerable.Range(0, Width / step * Height / step).Select(p => new Int2(x + step * p / width, y + step * p % width));
+    }
+
+    public IEnumerable<IntRect> GetSubdivisionEnumerator(int subdivisionSize)
+    {
+        var width = Width;
+        var x = X;
+        var y = Y;
+
+        return GetPointEnumerator(subdivisionSize).Select(p => new IntRect(p.x, p.y, subdivisionSize, subdivisionSize));
     }
 }

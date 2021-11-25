@@ -325,16 +325,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         var pos = new Vector2(Translation.x, Translation.z);
 
-        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
+        var cloud = new IntRect(0, 0, Size, Size);
+        foreach (var targetSquare in cloud.GetSubdivisionEnumerator(SquaresSize))
         {
-            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
-            {
-                var targetSquare = new IntRect(i, j, 1, 1);
-                targetSquare.ScaleByOrigin(SquaresSize);
-
-                var task = new Task(() => PartialUpdateCenter(targetSquare, delta, pos));
-                queue.Add(task);
-            }
+            var task = new Task(() => PartialUpdateCenter(targetSquare, delta, pos));
+            queue.Add(task);
         }
     }
 
@@ -345,16 +340,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         image.Lock();
 
-        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
+        var cloud = new IntRect(0, 0, Size, Size);
+        foreach (var targetSquare in cloud.GetSubdivisionEnumerator(SquaresSize))
         {
-            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
-            {
-                var targetSquare = new IntRect(i, j, 1, 1);
-                targetSquare.ScaleByOrigin(SquaresSize);
-
-                var task = new Task(() => PartialUpdateTextureImage(targetSquare));
-                queue.Add(task);
-            }
+            var task = new Task(() => PartialUpdateTextureImage(targetSquare));
+            queue.Add(task);
         }
     }
 
@@ -538,13 +528,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     public void ClearContents()
     {
-        for (int x = 0; x < Size; ++x)
+        var cloud = new IntRect(0, 0, Size, Size);
+        foreach (var point in cloud.GetPointEnumerator())
         {
-            for (int y = 0; y < Size; ++y)
-            {
-                Density[x, y] = Vector4.Zero;
-                OldDensity[x, y] = Vector4.Zero;
-            }
+            Density[point.x, point.y] = Vector4.Zero;
+            OldDensity[point.x, point.y] = Vector4.Zero;
         }
     }
 
