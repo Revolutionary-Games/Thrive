@@ -637,17 +637,17 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     if (IsARelativeCoordinate(q0))
                     {
                         if (IsARelativeCoordinate(r0))
-                            Density[q0, r0] += OldDensity[x, y] * s0 * t0;
+                            Density[q0, r0] += OldDensity[point.x, point.y] * s0 * t0;
                         if (IsARelativeCoordinate(r1))
-                            Density[q0, r1] += OldDensity[x, y] * s0 * t1;
+                            Density[q0, r1] += OldDensity[point.x, point.y] * s0 * t1;
                     }
 
                     if (IsARelativeCoordinate(q1))
                     {
                         if (IsARelativeCoordinate(r0))
-                            Density[q1, r0] += OldDensity[x, y] * s1 * t0;
+                            Density[q1, r0] += OldDensity[point.x, point.y] * s1 * t0;
                         if (IsARelativeCoordinate(r1))
-                            Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                            Density[q1, r1] += OldDensity[point.x, point.y] * s1 * t1;
                     }
                 }
                 else
@@ -657,10 +657,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     r0 = r0.PositiveModulo(Size);
                     r1 = r1.PositiveModulo(Size);
 
-                    Density[q0, r0] += OldDensity[x, y] * s0 * t0;
-                    Density[q0, r1] += OldDensity[x, y] * s0 * t1;
-                    Density[q1, r0] += OldDensity[x, y] * s1 * t0;
-                    Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                    Density[q0, r0] += OldDensity[point.x, point.y] * s0 * t0;
+                    Density[q0, r1] += OldDensity[point.x, point.y] * s0 * t1;
+                    Density[q1, r0] += OldDensity[point.x, point.y] * s1 * t0;
+                    Density[q1, r1] += OldDensity[point.x, point.y] * s1 * t1;
                 }
             }
         }
