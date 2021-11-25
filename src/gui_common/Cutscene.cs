@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Controls video cutscene
+///   Controls a video cutscene
 /// </summary>
 public class Cutscene : CanvasLayer, ITransition
 {
