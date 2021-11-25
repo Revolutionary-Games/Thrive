@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-22 12:51+0700\n"
-"PO-Revision-Date: 2021-11-10 19:36+0000\n"
+"POT-Creation-Date: 2021-11-25 09:51+0200\n"
+"PO-Revision-Date: 2021-11-24 18:52+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Poedit 3.0\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1391,75 +1391,81 @@ msgstr "Art by {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/modding/ModManager.tscn:929
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Close"
 
-#: ../src/general/MainMenu.cs:219
+#: ../src/general/MainMenu.cs:224
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
 
-#: ../src/general/MainMenu.tscn:176
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "New Game"
 
-#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Load Game"
 
-#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:96
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Options"
 
-#: ../src/general/MainMenu.tscn:211
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Tools"
 
-#: ../src/general/MainMenu.tscn:222
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "View Source Code"
 
-#: ../src/general/MainMenu.tscn:233
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:244
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/general/MainMenu.tscn:255
+#: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
 msgstr "Quit"
 
-#: ../src/general/MainMenu.tscn:277
+#: ../src/general/MainMenu.tscn:279
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuild Editor"
 
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:417
-#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Back"
 
-#: ../src/general/MainMenu.tscn:359
+#: ../src/general/MainMenu.tscn:362
+msgid "MODS"
+msgstr "Mods"
+
+#: ../src/general/MainMenu.tscn:376
 msgid "ART_GALLERY"
 msgstr "Art Gallery"
 
-#: ../src/general/MainMenu.tscn:371
+#: ../src/general/MainMenu.tscn:388
 msgid "LICENSES"
 msgstr "Licenses"
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:497
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "You are running Thrive with GLES2. This is severely untested and is likely "
 "to cause issues. Try to update your video drivers and/or force AMD or "
 "Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/MainMenu.tscn:495
+#: ../src/general/MainMenu.tscn:499
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
@@ -1774,6 +1780,7 @@ msgstr "Discard and continue"
 
 #: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
 msgstr "Cancel"
 
@@ -1799,7 +1806,7 @@ msgstr ""
 "Are you sure you want to exit to the main menu?\n"
 "You will lose any unsaved progress."
 
-#: ../src/general/PauseMenu.cs:254
+#: ../src/general/PauseMenu.cs:253
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Are you sure you want to quit the game?\n"
@@ -2178,6 +2185,7 @@ msgstr "Not allowed to show less than {0} dataset(s)!"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
+#: ../src/modding/ModUploader.tscn:326
 msgid "OK"
 msgstr "OK"
 
@@ -2185,7 +2193,7 @@ msgstr "OK"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copy Error To Clipboard"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:33
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:34
 msgid "GPL_LICENSE_HEADING"
 msgstr "GPL license text follows:"
 
@@ -2782,23 +2790,23 @@ msgstr "Temperature"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:486
+#: ../src/microbe_stage/Microbe.Contact.cs:494
 msgid "DEATH"
 msgstr "death"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:582
+#: ../src/microbe_stage/Microbe.Contact.cs:590
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:589
+#: ../src/microbe_stage/Microbe.Contact.cs:597
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:796
+#: ../src/microbe_stage/Microbe.Contact.cs:804
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:710
+#: ../src/microbe_stage/Microbe.Interior.cs:712
 msgid "REPRODUCED"
 msgstr "reproduced"
 
@@ -2864,11 +2872,11 @@ msgstr "little"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
-#: ../src/microbe_stage/MicrobeStage.cs:525
+#: ../src/microbe_stage/MicrobeStage.cs:527
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:672
+#: ../src/microbe_stage/MicrobeStage.cs:674
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -3382,6 +3390,353 @@ msgstr ""
 "playing after this screen closes if you wish, or start a new game in a new "
 "world."
 
+#: ../src/modding/ModManager.cs:269
+msgid "INVALID_ICON_PATH"
+msgstr "Invalid mod icon path"
+
+#: ../src/modding/ModManager.cs:283
+msgid "INVALID_URL_SCHEME"
+msgstr "Invalid URL scheme"
+
+#: ../src/modding/ModManager.cs:295
+msgid "ASSEMBLY_CLASS_REQUIRED"
+msgstr "Mod assembly class is required when assembly is specified"
+
+#: ../src/modding/ModManager.cs:501
+msgid "NO_SELECTED_MOD"
+msgstr "No Selected Mod"
+
+#: ../src/modding/ModManager.cs:861
+msgid "ERROR_CREATING_FOLDER"
+msgstr "Error creating folder for the mod"
+
+#: ../src/modding/ModManager.cs:870
+msgid "ERROR_CREATING_INFO_FILE"
+msgstr "Error creating mod info file"
+
+#: ../src/modding/ModManager.tscn:116
+msgid "AVAILABLE_MODS"
+msgstr "Available Mods"
+
+#: ../src/modding/ModManager.tscn:139 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Refresh"
+
+#: ../src/modding/ModManager.tscn:147
+msgid "OPEN_FOLDER"
+msgstr "Open Folder"
+
+#: ../src/modding/ModManager.tscn:165
+msgid "RIGHT_ARROW"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:178
+msgid "LEFT_ARROW"
+msgstr "←"
+
+#: ../src/modding/ModManager.tscn:190
+msgid "ENABLED_MODS"
+msgstr "Enabled Mods"
+
+#: ../src/modding/ModManager.tscn:208
+msgid "DISABLE_ALL"
+msgstr "Disable All"
+
+#: ../src/modding/ModManager.tscn:245
+msgid "SELECTED_MOD"
+msgstr "Selected Mod:"
+
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
+#: ../src/modding/NewModGUI.tscn:142
+msgid "MOD_AUTHOR"
+msgstr "Mod Author:"
+
+#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
+#: ../src/modding/NewModGUI.tscn:165
+msgid "MOD_VERSION"
+msgstr "Mod Version:"
+
+#: ../src/modding/ModManager.tscn:366
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Recommended Thrive:"
+
+#: ../src/modding/ModManager.tscn:410
+msgid "MINIMUM_VERSION"
+msgstr "Minimum:"
+
+#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
+#: ../src/modding/NewModGUI.tscn:188
+msgid "MOD_DESCRIPTION"
+msgstr "Mod Description:"
+
+#: ../src/modding/ModManager.tscn:469
+msgid "MORE_INFO"
+msgstr "Show More Info"
+
+#: ../src/modding/ModManager.tscn:477
+msgid "OPEN_MOD_URL"
+msgstr "Open Info URL"
+
+#: ../src/modding/ModManager.tscn:500
+msgid "BROWSE_WORKSHOP"
+msgstr "Browse Workshop"
+
+#: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
+msgid "UPLOAD"
+msgstr "Upload"
+
+#: ../src/modding/ModManager.tscn:514
+msgid "NEW"
+msgstr "New"
+
+#: ../src/modding/ModManager.tscn:527
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr ""
+"Note: many mods require game restart to load or unload properly. Only load "
+"mods you trust as they may contain executable code."
+
+#: ../src/modding/ModManager.tscn:553
+msgid "ENABLE_ALL_COMPATIBLE"
+msgstr "Enable All Compatible Mods"
+
+#: ../src/modding/ModManager.tscn:562
+msgid "APPLY_CHANGES"
+msgstr "Apply Changes"
+
+#: ../src/modding/ModManager.tscn:573
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr "There are unapplied changes"
+
+#: ../src/modding/ModManager.tscn:574
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr "You need to apply your changes to load or unload any mods."
+
+#: ../src/modding/ModManager.tscn:575
+msgid "DISCARD_CHANGES"
+msgstr "Discard Changes"
+
+#: ../src/modding/ModManager.tscn:582
+msgid "FULL_MOD_INFO"
+msgstr "Full Mod Info"
+
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
+msgid "MOD_NAME"
+msgstr "Mod Name:"
+
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
+msgid "MOD_EXTENDED_DESCRIPTION"
+msgstr "Mod Long Description:"
+
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
+msgid "MOD_ICON_FILE"
+msgstr "Icon File:"
+
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
+msgid "MOD_INFO_URL"
+msgstr "Mod Info URL:"
+
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
+msgid "MOD_LICENSE"
+msgstr "Mod License:"
+
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
+msgid "MOD_RECOMMENDED_THRIVE"
+msgstr "Recommended Thrive Version:"
+
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
+msgid "MOD_MINIMUM_THRIVE"
+msgstr "Minimum Required Thrive Version:"
+
+#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
+msgid "MOD_MAXIMUM_THRIVE"
+msgstr "Maximum Supported Thrive Version:"
+
+#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
+msgid "MOD_PCK_NAME"
+msgstr "Mod .pck File:"
+
+#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
+msgid "MOD_ASSEMBLY"
+msgstr "Mod Assembly:"
+
+#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
+msgid "MOD_ASSEMBLY_CLASS"
+msgstr "Mod Assembly Main Class:"
+
+#: ../src/modding/ModManager.tscn:936
+msgid "MOD_CREATION_FAILED"
+msgstr "Mod Creation Failed"
+
+#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
+msgid "CONTENT_UPLOADED_FROM"
+msgstr "Workshop content will be uploaded from folder: {0}"
+
+#: ../src/modding/ModUploader.cs:273
+msgid "MISSING_TITLE"
+msgstr "Title is missing"
+
+#: ../src/modding/ModUploader.cs:279
+msgid "MISSING_DESCRIPTION"
+msgstr "Description is missing"
+
+#: ../src/modding/ModUploader.cs:287
+msgid "DESCRIPTION_TOO_LONG"
+msgstr "Description is too long"
+
+#: ../src/modding/ModUploader.cs:295
+msgid "TAGS_IS_WHITESPACE"
+msgstr "Tags contains only whitespace"
+
+#: ../src/modding/ModUploader.cs:303
+msgid "INVALID_TAG"
+msgstr "Invalid tag \"{0}\" specified"
+
+#: ../src/modding/ModUploader.cs:351
+msgid "CREATING_DOT_DOT_DOT"
+msgstr "Creating..."
+
+#: ../src/modding/ModUploader.cs:373
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "Saving information failed due to exception: {0}"
+
+#: ../src/modding/ModUploader.cs:415
+msgid "UPLOADING_DOT_DOT_DOT"
+msgstr "Uploading..."
+
+#: ../src/modding/ModUploader.cs:443
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
+msgstr ""
+"Item upload to the Steam Workshop has succeeded, but you need to accept "
+"the Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"workshoplegalagreement]terms of service[/url][/color] before it is visible"
+
+#: ../src/modding/ModUploader.cs:447
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
+msgstr "Item upload to the Steam Workshop has succeeded"
+
+#: ../src/modding/ModUploader.cs:507
+msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
+msgstr ""
+"By submitting this item, you agree to Steam Workshop's [color=#3796e1]"
+"[url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms "
+"of service[/url][/color]"
+
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+msgid "FORM_ERROR_MESSAGE"
+msgstr "Error: {0}"
+
+#: ../src/modding/ModUploader.tscn:43
+msgid "MOD_UPLOADER"
+msgstr "Mod Uploader"
+
+#: ../src/modding/ModUploader.tscn:83
+msgid "MOD_TO_UPLOAD"
+msgstr "Mod To Upload:"
+
+#: ../src/modding/ModUploader.tscn:108
+msgid "UNKNOWN_WORKSHOP_ID"
+msgstr "Unknown Workshop ID For This Mod"
+
+#: ../src/modding/ModUploader.tscn:120
+msgid "CREATE_NEW"
+msgstr "Create New"
+
+#: ../src/modding/ModUploader.tscn:128
+msgid "ENTER_EXISTING_ID"
+msgstr "Enter Existing ID"
+
+#: ../src/modding/ModUploader.tscn:138
+msgid "ENTER_EXISTING_WORKSHOP_ID"
+msgstr "Enter Existing Workshop ID"
+
+#: ../src/modding/ModUploader.tscn:152
+msgid "ID_NUMBER"
+msgstr "ID Number"
+
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "Apply"
+
+#: ../src/modding/ModUploader.tscn:168
+msgid "WORKSHOP_ITEM_TITLE"
+msgstr "Item Title:"
+
+#: ../src/modding/ModUploader.tscn:186
+msgid "WORKSHOP_ITEM_DESCRIPTION"
+msgstr "Item Description:"
+
+#: ../src/modding/ModUploader.tscn:208
+msgid "WORKSHOP_VISIBILITY_TOOLTIP"
+msgstr "Once an item is made visible it will be visible to everyone"
+
+#: ../src/modding/ModUploader.tscn:209
+msgid "VISIBLE"
+msgstr "Visible"
+
+#: ../src/modding/ModUploader.tscn:215
+msgid "WORKSHOP_ITEM_TAGS"
+msgstr "Item Tags (comma \",\" separated):"
+
+#: ../src/modding/ModUploader.tscn:233
+msgid "WORKSHOP_ITEM_PREVIEW"
+msgstr "Item Preview Image:"
+
+#: ../src/modding/ModUploader.tscn:259
+msgid "BROWSE"
+msgstr "Browse"
+
+#: ../src/modding/ModUploader.tscn:294
+msgid "SELECT_PREVIEW_IMAGE"
+msgstr "Select Preview Image"
+
+#: ../src/modding/ModUploader.tscn:305
+msgid "UPLOAD_SUCCEEDED"
+msgstr "Upload Succeeded"
+
+#: ../src/modding/NewModGUI.cs:169
+msgid "NEW_MOD_DEFAULT_DESCRIPTION"
+msgstr "My Awesome Mod"
+
+#: ../src/modding/NewModGUI.cs:226
+msgid "INVALID_URL_FORMAT"
+msgstr "Invalid URL format"
+
+#: ../src/modding/NewModGUI.cs:238
+msgid "INTERNAL_NAME_REQUIRED"
+msgstr "Internal name is required"
+
+#: ../src/modding/NewModGUI.cs:244
+msgid "INTERNAL_NAME_IN_USE"
+msgstr "There is already a mod with the specified internal name"
+
+#: ../src/modding/NewModGUI.cs:263
+msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
+msgstr "Missing or invalid format of a required field: {0}"
+
+#: ../src/modding/NewModGUI.cs:274
+msgid "ADDITIONAL_VALIDATION_FAILED"
+msgstr "Additional validations detected an issue: {0}"
+
+#: ../src/modding/NewModGUI.tscn:35
+msgid "CREATE_NEW_MOD"
+msgstr "Create New Mod"
+
+#: ../src/modding/NewModGUI.tscn:69
+msgid "MODDING_INSTRUCTIONS_ON"
+msgstr "Modding instructions are available on"
+
+#: ../src/modding/NewModGUI.tscn:76
+msgid "OUR_WIKI"
+msgstr "our Wiki"
+
+#: ../src/modding/NewModGUI.tscn:96
+msgid "MOD_INTERNAL_NAME"
+msgstr "Internal (Folder) Name:"
+
+#: ../src/modding/NewModGUI.tscn:450
+msgid "CREATE"
+msgstr "Create"
+
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
 msgid "LOADING_GAME"
@@ -3631,10 +3986,6 @@ msgstr ""
 " - {0} Auto save(s)\n"
 " - {1} Quick save(s)"
 
-#: ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Refresh"
-
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
 msgstr "Delete Selected"
@@ -3675,9 +4026,69 @@ msgstr "Try making a save!"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "No saves directory found"
 
-#: ../src/steam/SteamClient.cs:35
+#: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam client library initialization failed"
+
+#: ../src/steam/SteamClient.cs:460
+msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
+msgstr ""
+"Your Steam account is currently restricted from uploading content. Please "
+"contact Steam support."
+
+#: ../src/steam/SteamClient.cs:462
+msgid "STEAM_ERROR_BANNED"
+msgstr "Your Steam account is banned from uploading content"
+
+#: ../src/steam/SteamClient.cs:464
+msgid "STEAM_ERROR_TIMEOUT"
+msgstr "Steam operation timed out, please try again"
+
+#: ../src/steam/SteamClient.cs:466
+msgid "STEAM_ERROR_NOT_LOGGED_IN"
+msgstr "Not logged in to Steam"
+
+#: ../src/steam/SteamClient.cs:468
+msgid "STEAM_ERROR_UNAVAILABLE"
+msgstr "Steam is unavailable currently, please retry"
+
+#: ../src/steam/SteamClient.cs:470
+msgid "STEAM_ERROR_INVALID_PARAMETER"
+msgstr "Invalid parameter passed to Steam"
+
+#: ../src/steam/SteamClient.cs:472
+msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
+msgstr "Steam cloud storage quota or file size limit exceeded"
+
+#: ../src/steam/SteamClient.cs:474
+msgid "STEAM_ERROR_FILE_NOT_FOUND"
+msgstr "File not found"
+
+#: ../src/steam/SteamClient.cs:476
+msgid "STEAM_ERROR_ALREADY_UPLOADED"
+msgstr "Steam reported the file already as uploaded, please refresh"
+
+#: ../src/steam/SteamClient.cs:478
+msgid "STEAM_ERROR_DUPLICATE_NAME"
+msgstr "Steam reported a duplicate name error"
+
+#: ../src/steam/SteamClient.cs:480
+msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
+msgstr ""
+"Your Steam account is currently in read only mode due to a recent account "
+"change"
+
+#: ../src/steam/SteamClient.cs:482
+msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
+msgstr "Your Steam account does not own a license for Thrive"
+
+#: ../src/steam/SteamClient.cs:484
+msgid "STEAM_ERROR_LOCKING_FAILED"
+msgstr "Steam failed to acquire UGC lock"
+
+#: ../src/steam/SteamClient.cs:486
+msgid "STEAM_ERROR_UNKNOWN"
+msgstr "Unknown Steam error happened"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:81
@@ -3687,11 +4098,12 @@ msgstr "Steam client library initialization failed"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:298
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:323
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:134
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:216
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:250
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:285
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:324
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:360
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
@@ -3817,7 +4229,7 @@ msgstr "Show tutorials"
 msgid "BEGIN_THRIVING"
 msgstr "Begin Thriving"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:153
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:154
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 "To control your cell use the keys shown near your cell (center of screen) "
@@ -3825,14 +4237,14 @@ msgstr ""
 "\n"
 "Try all of the keys for a few seconds to continue."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:236
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Collect glucose (white clouds) by moving over them.\n"
 "Your cell needs glucose in order to produce energy to stay alive.\n"
 "Follow the line from your cell to nearby glucose."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:269
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:270
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 "Keep an eye on your health bar next to the ATP bar (bottom right).\n"
@@ -3840,14 +4252,14 @@ msgstr ""
 "You regenerate health while you have ATP.\n"
 "Make sure to collect enough glucose to produce ATP."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:307
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:308
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by "
 "collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:345
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:346
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "You have collected enough resources for your cell to divide.\n"
@@ -3856,7 +4268,7 @@ msgstr ""
 "\n"
 "To enter the editor press the flashing editor button in the bottom right."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:379
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:380
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "You have entered unbind mode. In this mode you can click on colony members "
@@ -3864,6 +4276,9 @@ msgstr ""
 "\n"
 "To leave the colony entirely you can click on your own cell or press the "
 "unbind all key."
+
+#~ msgid "INFO_FOR_MOD"
+#~ msgstr "Full Info For Mod"
 
 #~ msgid "Cancel"
 #~ msgstr "Cancel"
@@ -4001,9 +4416,6 @@ msgstr ""
 #~ msgid "QUOTEDBL"
 #~ msgstr "\""
 
-#~ msgid "NUMBERSIGN"
-#~ msgstr "#"
-
 #~ msgid "DOLLAR"
 #~ msgstr "$"
 
@@ -4075,9 +4487,6 @@ msgstr ""
 
 #~ msgid "EQUAL"
 #~ msgstr "="
-
-#~ msgid "GREATER"
-#~ msgstr ">"
 
 #~ msgid "QUESTION"
 #~ msgstr "?"
@@ -4303,9 +4712,6 @@ msgstr ""
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Appearance"
-
-#~ msgid "PATCH_NAME"
-#~ msgstr "Patch Name"
 
 #~ msgid "CARBON"
 #~ msgstr "Carbon"
