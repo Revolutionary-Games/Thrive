@@ -41,6 +41,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
 
+    private Vector3 collisionForce;
+
     private Vector3 queuedMovementForce;
 
     [JsonProperty]
@@ -531,6 +533,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // TODO: should movement also be applied here?
 
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
+
+        collisionForce = Vector3.Zero;
+
+        for (var i = 0; i < physicsState.GetContactCount(); ++i)
+        {
+            collisionForce += physicsState.GetContactImpulse(i) * physicsState.GetContactLocalNormal(i);
+        }
     }
 
     /// <summary>

@@ -132,6 +132,11 @@ public static class Constants
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
 
+    public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
+
+    public const float COLLISION_IMPULSE_TO_BUMP_SOUND_SQUARED =
+        CONTACT_IMPULSE_TO_BUMP_SOUND * CONTACT_IMPULSE_TO_BUMP_SOUND;
+
     /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>
