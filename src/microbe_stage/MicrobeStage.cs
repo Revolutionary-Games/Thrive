@@ -301,6 +301,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         patchManager.CurrentGame = CurrentGame;
 
+        pauseMenu.SetNewSaveNameFromSpeciesName();
+
         StartMusic();
 
         if (IsLoadedFromSave)
@@ -589,6 +591,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Auto save is wanted once possible
         wantsToSave = true;
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     public void OnFinishTransitioning()
