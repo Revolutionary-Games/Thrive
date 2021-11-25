@@ -159,9 +159,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </remarks>
     public void UpdateEdgesBeforeCenter(float delta)
     {
-        // The diffusion rate seems to have a bigger effect
-        delta *= 100.0f;
-
         if (position.x != 0)
         {
             var rectangle = new IntRect(0, 0,
@@ -243,8 +240,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </summary>
     public void UpdateEdgesAfterCenter(float delta)
     {
-        // The diffusion rate seems to have a bigger effect
-        delta *= 100.0f;
         var pos = new Vector2(Translation.x, Translation.z);
 
         if (position.x != 0)
@@ -328,8 +323,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </summary>
     public void QueueUpdateCloud(float delta, List<Task> queue)
     {
-        // The diffusion rate seems to have a bigger effect
-        delta *= 100.0f;
         var pos = new Vector2(Translation.x, Translation.z);
 
         for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
@@ -589,7 +582,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </remarks>
     private void PartialDiffuse(IntRect affectedRectangle, float delta, bool isEdge)
     {
-
         float diffusion = delta * Constants.CLOUD_DIFFUSION_RATE;
 
         for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
