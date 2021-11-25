@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public struct IntRect : IEquatable<IntRect>
 {
@@ -60,5 +62,19 @@ public struct IntRect : IEquatable<IntRect>
     public IntRect CreateSubRectangle(int cutSize)
     {
         return CreateSubRectangle(cutSize, cutSize);
+    }
+
+    public void ScaleByOrigin(int factor)
+    {
+        X *= factor;
+        Y *= factor;
+        Width *= factor;
+        Height *= factor;
+    }
+
+    public IEnumerable<Int2> GetPointEnumerator()
+    {
+        var width = Width;
+        return Enumerable.Range(0, Width * Height).Select(p => new Int2(p / width, p % width));
     }
 }
