@@ -76,34 +76,34 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     public void UpdatePosition(Int2 newPosition)
     {
-        int newX = newPosition.x.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
-        int newY = newPosition.y.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+        var newX = newPosition.x.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+        var newY = newPosition.y.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
 
         // TODO investigate one var + positivemods.
         if (newX == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            var rectangle = new IntRect(position.x * SquaresSize, 0,
+            var currentVerticalSlice = new IntRect(position.x * SquaresSize, 0,
                 SquaresSize, Size);
-            PartialClearDensity(rectangle);
+            PartialClearDensity(currentVerticalSlice);
         }
         else if (newX == (position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            var rectangle = new IntRect((position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE) * SquaresSize, 0,
+            var previousVerticalSlice = new IntRect((position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE) * SquaresSize, 0,
                 SquaresSize, Size);
-            PartialClearDensity(rectangle);
+            PartialClearDensity(previousVerticalSlice);
         }
 
         if (newY == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            var rectangle = new IntRect(0, position.y * SquaresSize,
+            var currentHorizontalSlice = new IntRect(0, position.y * SquaresSize,
                 Size, SquaresSize);
-            PartialClearDensity(rectangle);
+            PartialClearDensity(currentHorizontalSlice);
         }
         else if (newY == (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            var rectangle = new IntRect(0, (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE) * SquaresSize,
+            var previousHorizontalSlice = new IntRect(0, (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE) * SquaresSize,
                 Size, SquaresSize);
-            PartialClearDensity(rectangle);
+            PartialClearDensity(previousHorizontalSlice);
         }
 
         position = new Int2(newX, newY);
@@ -320,9 +320,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         {
             for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
             {
-                var targetSquare = new IntRect(i * SquaresSize, j * SquaresSize, SquaresSize, SquaresSize);
+                var affectedRectangle = new IntRect(i * SquaresSize, j * SquaresSize, SquaresSize, SquaresSize);
 
-                var task = new Task(() => PartialUpdateCenter(targetSquare, delta, pos));
+                var task = new Task(() => PartialUpdateCenter(affectedRectangle, delta, pos));
                 queue.Add(task);
             }
         }
