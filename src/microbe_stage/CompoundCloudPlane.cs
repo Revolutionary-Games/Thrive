@@ -36,15 +36,29 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     private ImageTexture texture;
     private FluidSystem fluidSystem;
 
+    /// <summary>
+    ///   The reference position of the cloud in terms of square subdivisions.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The coordinates are comprised within 0 and Constants.CLOUD_SQUARES_PER_SIDE - 1
+    ///   </para>
+    /// </remarks>
     [JsonProperty]
     private Int2 position = new Int2(0, 0);
 
     [JsonProperty]
     public int Resolution { get; private set; }
 
+    /// <summary>
+    ///   The size, as a number of grid cells, of the cloud.
+    /// </summary>
     [JsonProperty]
     public int Size { get; private set; }
 
+    /// <summary>
+    ///   The size, as a number of grid cells, of the big square subdivisions of the cloud.
+    /// </summary>
     public int SquaresSize => Size / Constants.CLOUD_SQUARES_PER_SIDE;
 
     public bool IsLoadedFromSave { get; set; }
@@ -79,6 +93,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         var newX = newPosition.x.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
         var newY = newPosition.y.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
 
+        // TODO, Factor squares per size in rect
+        // Todo use rotate ?
         // TODO investigate one var + positivemods.
         if (newX == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
