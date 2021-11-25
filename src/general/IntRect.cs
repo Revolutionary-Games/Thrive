@@ -75,6 +75,9 @@ public struct IntRect : IEquatable<IntRect>
     public IEnumerable<Int2> GetPointEnumerator()
     {
         var width = Width;
-        return Enumerable.Range(0, Width * Height).Select(p => new Int2(p / width, p % width));
+        var x = X;
+        var y = Y;
+
+        return Enumerable.Range(0, Width * Height).Select(p => new Int2(x + p / width, y + p % width));
     }
 }
