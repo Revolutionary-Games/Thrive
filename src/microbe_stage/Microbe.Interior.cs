@@ -738,35 +738,35 @@ public partial class Microbe
 
     private void HandleMovement(float delta)
     {
-        if (MovementDirection == new Vector3(0, 0, 0) ||
-            queuedMovementForce == new Vector3(0, 0, 0))
-            return;
-
-        // Movement direction should not be normalized to allow different speeds
-        Vector3 totalMovement = new Vector3(0, 0, 0);
-
-        if (MovementDirection != new Vector3(0, 0, 0))
+        if (MovementDirection != new Vector3(0, 0, 0) ||
+            queuedMovementForce != new Vector3(0, 0, 0))
         {
-            totalMovement += DoBaseMovementForce(delta);
-        }
+            // Movement direction should not be normalized to allow different speeds
+            Vector3 totalMovement = new Vector3(0, 0, 0);
 
-        totalMovement += queuedMovementForce;
+            if (MovementDirection != new Vector3(0, 0, 0))
+            {
+                totalMovement += DoBaseMovementForce(delta);
+            }
 
-        ApplyMovementImpulse(totalMovement, delta);
+            totalMovement += queuedMovementForce;
 
-        var deltaAcceleration = (linearAcceleration - lastLinearAcceleration).LengthSquared();
+            ApplyMovementImpulse(totalMovement, delta);
 
-        if (movementSoundCooldownTimer > 0)
-            movementSoundCooldownTimer -= delta;
+            var deltaAcceleration = (linearAcceleration - lastLinearAcceleration).LengthSquared();
 
-        // Play movement sound if one isn't already playing and if there's a noticeable change
-        // in the microbe's acceleration.
-        if (!movementAudio.Playing && deltaAcceleration > lastLinearAcceleration.LengthSquared() &&
-            movementSoundCooldownTimer <= 0)
-        {
-            movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
-            movementAudio.Stream = MovementSounds[random.Next(MovementSounds.Length)];
-            movementAudio.Play();
+            if (movementSoundCooldownTimer > 0)
+                movementSoundCooldownTimer -= delta;
+
+            // Play movement sound if one isn't already playing and if there's a noticeable change
+            // in the microbe's acceleration.
+            if (!movementAudio.Playing && deltaAcceleration > lastLinearAcceleration.LengthSquared() &&
+                movementSoundCooldownTimer <= 0)
+            {
+                movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
+                movementAudio.Stream = MovementSounds[random.Next(MovementSounds.Length)];
+                movementAudio.Play();
+            }
         }
     }
 
