@@ -296,7 +296,7 @@ public class MainMenu : NodeWithInput
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
             TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
+            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm", 0.6f);
         }
         else
         {

@@ -69,17 +69,18 @@ public class TransitionManager : NodeWithInput
     }
 
     /// <summary>
-    ///   Creates and queues a cutscene.
+    ///   Creates and queues a video cutscene.
     /// </summary>
     /// <param name="path">The video file to play</param>
     /// <param name="allowSkipping">Allow the user to skip this</param>
-    public void AddCutscene(string path, bool allowSkipping = true)
+    public void AddCutscene(string path, float volume = 1.0f, bool allowSkipping = true)
     {
         // Instantiate scene
         var cutscene = (Cutscene)cutsceneScene.Instance();
         AddChild(cutscene);
 
         cutscene.Skippable = allowSkipping;
+        cutscene.Volume = volume;
         cutscene.Stream = GD.Load<VideoStream>(path);
 
         cutscene.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
