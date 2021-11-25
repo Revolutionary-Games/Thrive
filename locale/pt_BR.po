@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-24 19:00+0200\n"
+"POT-Creation-Date: 2021-11-25 09:51+0200\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -98,7 +98,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Para reproduzir você precisa dividir cada uma de suas organelas em dois. "
+"Para reproduzir você precisa dividir cada uma de suas organelas em duas. "
 "As organelas precisam de amônia e fosfato para se dividirem."
 
 #: ../simulation_parameters/common/help_texts.json:42
@@ -1385,14 +1385,14 @@ msgstr "Arte por {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:930
+#: ../src/modding/ModManager.tscn:929
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Fechar"
 
 #: ../src/general/MainMenu.cs:224
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Entrou como: {0}"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
@@ -1491,7 +1491,7 @@ msgstr "Som"
 
 #: ../src/general/OptionsMenu.tscn:156
 msgid "PERFORMANCE"
-msgstr "Performance"
+msgstr "Desempenho"
 
 #: ../src/general/OptionsMenu.tscn:167
 msgid "INPUTS"
@@ -1515,7 +1515,7 @@ msgstr "Multisample anti-aliasing:"
 
 #: ../src/general/OptionsMenu.tscn:246
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr "(valores mais altos diminuem a performance)"
+msgstr "(valores mais altos diminuem o desempenho)"
 
 #: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
 msgid "DISABLED"
@@ -1613,7 +1613,7 @@ msgstr "Idioma:"
 
 #: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:1188
 msgid "RESET"
-msgstr "Configuração padrão"
+msgstr "Redefinir"
 
 #: ../src/general/OptionsMenu.tscn:660
 msgid "OPEN_TRANSLATION_SITE"
@@ -1629,7 +1629,7 @@ msgstr "Intervalo mínimo da simulação de nuvens:"
 
 #: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr "(valores mais altos melhoram a performance)"
+msgstr "(valores mais altos melhoram o desempenho)"
 
 #: ../src/general/OptionsMenu.tscn:743
 msgid "CLOUD_RESOLUTION_DIVISOR"
@@ -1737,7 +1737,7 @@ msgstr "Salvar"
 
 #: ../src/general/OptionsMenu.tscn:1217
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr "Padrão"
+msgstr "Configurações padrão"
 
 #: ../src/general/OptionsMenu.tscn:1228
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
@@ -2285,7 +2285,7 @@ msgstr "Saúde"
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "Micróbios agressivos perseguirão sua presa por mais tempo\n"
-"e são mais propensos a lutar com predadores quanto atacados.\n"
+"e são mais propensos a lutar com predadores quando atacados.\n"
 "Entretanto, os micróbios mais pacíficos não vão perseguir outros por tanto "
 "tempo\n"
 "e são menos inclinados a usar toxinas contra predadores."
@@ -2391,7 +2391,7 @@ msgstr "Custo da Osmorregulação"
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Quantidade escala com a "
+"compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a "
 "concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:366
@@ -2413,7 +2413,7 @@ msgstr "Tilacoide"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade "
-"escala com a concentração de [thrive:compound type=\"carbondioxide\"][/"
+"aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/"
 "thrive:compound] e a intensidade de [thrive:compound type=\"sunlight\"][/"
 "thrive:compound]."
 
@@ -2432,7 +2432,7 @@ msgstr ""
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade escala "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta "
 "com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:"
 "compound]. Também transforma [thrive:compound type=\"glucose\"][/thrive:"
 "compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
@@ -2451,7 +2451,7 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Quantidade escala com a "
+"compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a "
 "concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] "
 "e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -2466,7 +2466,7 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:"
-"compound type=\"ammonia\"][/thrive:compound]. Quantidade escala com a "
+"compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a "
 "concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:754
@@ -2482,7 +2482,7 @@ msgstr ""
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Quantidade escala com a "
+"compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a "
 "concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode "
 "liberar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -2567,7 +2567,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Quantidade escala com "
+"compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com "
 "concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
@@ -2585,7 +2585,7 @@ msgstr ""
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade "
-"escala com a concentração de [thrive:compound type=\"carbondioxide\"][/"
+"aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/"
 "thrive:compound] e intensidade de [thrive:compound type=\"sunlight\"][/"
 "thrive:compound]."
 
@@ -2608,7 +2608,7 @@ msgstr "Termoplasto"
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade "
-"escala com a concentração de [thrive:compound type=\"carbondioxide\"][/"
+"aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/"
 "thrive:compound] e temperatura."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1510
@@ -2631,7 +2631,7 @@ msgstr "Nenhum processo"
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade escala "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta "
 "com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:"
 "compound]."
 
@@ -2648,7 +2648,7 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:"
-"compound type=\"ammonia\"][/thrive:compound]. Quantidade escala com a "
+"compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a "
 "concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e "
 "[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -2662,12 +2662,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1806
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"O vacúolo é uma organela membranosa interna usada para o armazenamento da "
-"célula. Composta de várias vesículas, estruturas membranosas menores "
-"amplamente usadas nas células para o armazenamento que se fundiram. É "
-"preenchida com água usada para conter moléculas, enzimas, sólidos, e "
-"outras substâncias. Sua forma é fluida e pode variar em cada célula."
+msgstr "Aumenta o espaço de armazenamento da célula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1807
 msgid "VACUOLE_DESCRIPTION"
@@ -2682,7 +2677,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Quantidade escala com a "
+"compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a "
 "concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode "
 "liberar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -2811,23 +2806,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:488
+#: ../src/microbe_stage/Microbe.Contact.cs:494
 msgid "DEATH"
 msgstr "morte"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:584
+#: ../src/microbe_stage/Microbe.Contact.cs:590
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "busca de recursos bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:591
+#: ../src/microbe_stage/Microbe.Contact.cs:597
 msgid "SUCCESSFUL_KILL"
 msgstr "caça bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:798
+#: ../src/microbe_stage/Microbe.Contact.cs:804
 msgid "ESCAPE_ENGULFING"
 msgstr "escapou de predação"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:710
+#: ../src/microbe_stage/Microbe.Interior.cs:712
 msgid "REPRODUCED"
 msgstr "reproduziu"
 
@@ -2893,11 +2888,11 @@ msgstr "pouco"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
-#: ../src/microbe_stage/MicrobeStage.cs:525
+#: ../src/microbe_stage/MicrobeStage.cs:527
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduziu"
 
-#: ../src/microbe_stage/MicrobeStage.cs:672
+#: ../src/microbe_stage/MicrobeStage.cs:674
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
@@ -3476,12 +3471,12 @@ msgstr "Desativado"
 msgid "SELECTED_MOD"
 msgstr "Selecionado:"
 
-#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:646
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:668
+#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
@@ -3496,7 +3491,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "Versão:"
 
-#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:690
+#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
@@ -3511,38 +3506,38 @@ msgstr ""
 msgid "OPEN_MOD_URL"
 msgstr "Abrir URL"
 
-#: ../src/modding/ModManager.tscn:501
+#: ../src/modding/ModManager.tscn:500
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Carregar"
 
-#: ../src/modding/ModManager.tscn:515
+#: ../src/modding/ModManager.tscn:514
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:528
+#: ../src/modding/ModManager.tscn:527
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Carregar salvamento inválido?"
 
-#: ../src/modding/ModManager.tscn:554
+#: ../src/modding/ModManager.tscn:553
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "O jogo salvo selecionado é incompatível"
 
-#: ../src/modding/ModManager.tscn:563
+#: ../src/modding/ModManager.tscn:562
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:574
+#: ../src/modding/ModManager.tscn:573
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:574
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3550,21 +3545,21 @@ msgstr ""
 "precisa de mais energia para não deformar. A vantagem é que ela permite a "
 "célula se mover e absorver nutrientes mais rapidamente."
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:575
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Descartar e continuar"
 
-#: ../src/modding/ModManager.tscn:583
+#: ../src/modding/ModManager.tscn:582
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:624 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nome:"
 
-#: ../src/modding/ModManager.tscn:712 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3574,105 +3569,105 @@ msgstr ""
 "Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os "
 "fluidos em volta realizam a Fermentação."
 
-#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Licenças"
 
-#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Nome da Região"
 
-#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:939
+#: ../src/modding/ModManager.tscn:936
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "A auto-evo falhou"
 
-#: ../src/modding/ModUploader.cs:235 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:265
+#: ../src/modding/ModUploader.cs:273
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "VOCÊ PROSPEROU!"
 
-#: ../src/modding/ModUploader.cs:271
+#: ../src/modding/ModUploader.cs:279
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "Descrição:"
 
-#: ../src/modding/ModUploader.cs:279
+#: ../src/modding/ModUploader.cs:287
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Descrição:"
 
-#: ../src/modding/ModUploader.cs:287
+#: ../src/modding/ModUploader.cs:295
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:295
+#: ../src/modding/ModUploader.cs:303
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "Carregar salvamento inválido?"
 
-#: ../src/modding/ModUploader.cs:342
+#: ../src/modding/ModUploader.cs:351
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Pesquisar…"
 
-#: ../src/modding/ModUploader.cs:364
+#: ../src/modding/ModUploader.cs:373
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "O salvamento falhou! Uma exceção ocorreu"
 
-#: ../src/modding/ModUploader.cs:405
+#: ../src/modding/ModUploader.cs:415
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Carregando..."
 
-#: ../src/modding/ModUploader.cs:433
+#: ../src/modding/ModUploader.cs:443
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:437
+#: ../src/modding/ModUploader.cs:447
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:497
+#: ../src/modding/ModUploader.cs:507
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:519 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erro ao salvar"
@@ -3753,7 +3748,7 @@ msgstr ""
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:304
+#: ../src/modding/ModUploader.tscn:305
 #, fuzzy
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Salvo com sucesso"
@@ -4119,8 +4114,9 @@ msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
 #: ../src/steam/SteamClient.cs:466
+#, fuzzy
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr ""
+msgstr "Entrou como: {0}"
 
 #: ../src/steam/SteamClient.cs:468
 msgid "STEAM_ERROR_UNAVAILABLE"
@@ -4187,7 +4183,7 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Bem-vindo ao Editor de Micróbios.\n"
 "Aqui você poderá rever o que aconteceu desde o início do jogo ou desde a "
-"última vez que esteve no editor, e fazer mudanças á sua espécie.\n"
+"última vez que esteve no editor, e fazer mudanças a sua espécie.\n"
 "\n"
 "Nessa aba você pode ver um relatório de quais espécies existem, onde, e "
 "qual são suas populações. Você também pode ver mudanças ambientais no "

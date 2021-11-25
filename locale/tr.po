@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-24 19:00+0200\n"
+"POT-Creation-Date: 2021-11-25 09:51+0200\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -202,7 +202,7 @@ msgstr ""
 "compound] ile atmosferdeki Azot ve Oksijenden [thrive:compound type="
 "\"ammonia\"]amonyak[/thrive:compound] yapar\n"
 "\n"
-"Koful: Toplanan 15 bileşiği depolar\n"
+"Koful: Toplanan 8 bileşiği depolar\n"
 "\n"
 "Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy"
 "\"]OksiToksi NT[/thrive:compound] diye adlandırılır)"
@@ -223,10 +223,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Hücren her çoğaldığında, Mikrop Editörüne giriş yaparsın. Burada, türünün "
+"Hücren her çoğaldığında, Mikrop Editörü'ne giriş yaparsın. Burada, türünün "
 "başarısını arttırmak için onda değişiklikler yapabilirsin (organelleri "
 "ekleyerek, taşıyarak veya kaldırarak). Editöre yapılan her ziyaret, Mikrop "
-"Evresinde [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:"
+"Evresi'nde [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:"
 "constant] milyon yıllık evrimi temsil eder."
 
 #: ../simulation_parameters/common/help_texts.json:119
@@ -383,8 +383,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-"İlginç Gerçek: Thrive, açık kaynak kodlu Godot oyun motoru ile yapıldı!"
+msgstr "İlginç Gerçek: Thrive, açık kaynaklı Godot oyun motoru ile yapıldı!"
 
 #: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_27"
@@ -1403,14 +1402,14 @@ msgstr "Resmi yapan: {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:930
+#: ../src/modding/ModManager.tscn:929
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Kapat"
 
 #: ../src/general/MainMenu.cs:224
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "{0} olarak giriş yapıldı"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
@@ -1522,7 +1521,7 @@ msgstr "Diğer"
 
 #: ../src/general/OptionsMenu.tscn:210
 msgid "VSYNC"
-msgstr "Dikey Eşitleme"
+msgstr "Dikey eşitleme"
 
 #: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
@@ -1668,7 +1667,7 @@ msgstr "Mevcut iş parçacıkları:"
 
 #: ../src/general/OptionsMenu.tscn:835
 msgid "ASSUME_HYPERTHREADING"
-msgstr "CPU'da hiper iş parçacığı etkin varsayılıyor"
+msgstr "CPU'da hiper iş parçacığını etkin varsay"
 
 #: ../src/general/OptionsMenu.tscn:843
 msgid "USE_MANUAL_THREAD_COUNT"
@@ -1830,7 +1829,7 @@ msgstr ""
 
 #: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
-msgstr "Devam"
+msgstr "Devam Et"
 
 #: ../src/general/PauseMenu.tscn:67
 msgid "SAVE_GAME"
@@ -1971,7 +1970,7 @@ msgstr "Katkıda Bulunanlar"
 #: ../src/gui_common/CreditsScroll.cs:317
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
-"Thrive açık kaynak kodlu bir projedir.\n"
+"Thrive, açık kaynaklı bir projedir.\n"
 "Oyun ekibine başvurmadan, bir çekme isteği göndererek oyuna katkıda "
 "bulunabilirsin."
 
@@ -2217,9 +2216,8 @@ msgid "GPL_LICENSE_HEADING"
 msgstr "GPL lisans metni aşağıdaki gibidir:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
-#, fuzzy
 msgid "THRIVE_LICENSES"
-msgstr "Lisanslar"
+msgstr "Thrive Lisansları"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
@@ -2309,7 +2307,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:238
 msgid "FEAR_EXPLANATION"
 msgstr ""
-"Kaygılı mikroplar, çok uzun mesafelerde kaçarlar\n"
+"Kaygılı mikroplar, çok uzun mesafelerde akıp giderler\n"
 "ve genelde, yırtıcılardan kaçmaları muhtemeldir.\n"
 "Cesur mikroplar, yakında bulunan yırtıcılardan korkmaz\n"
 "ve onların saldırılarına karşılık verir."
@@ -2327,7 +2325,7 @@ msgstr ""
 "Odaklanmış mikroplar, büyük parçaları veya avları çok uzun mesafelerde "
 "arar\n"
 "ve büyük parçalara daha heveslidir.\n"
-"Duyarlı mikroplar, yeni hedeflere daha erken geçiş yapar."
+"Duyarlı mikroplar, yeni hedeflere daha çabuk geçiş yapar."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:267
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -2568,7 +2566,8 @@ msgstr ""
 "işlemlerin farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve "
 "bu işlemlerin birbirine karışmasını engeller. Bu yapı, yeni zarlı "
 "organellerin, sitoplazmadaki serbest yapılardan daha kompleks, etkili ve "
-"özelleşmiş olmasını sağlar."
+"özelleşmiş olmasını sağlar. Ancak bunun, hücrenin daha büyük olması ve "
+"bakım için hücrenin enerjisini daha fazla kullanması gibi bedelleri var."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1341
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
@@ -2818,23 +2817,23 @@ msgstr "Sıcaklık"
 msgid "N_A_MP"
 msgstr "Bilinmeyen MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:488
+#: ../src/microbe_stage/Microbe.Contact.cs:494
 msgid "DEATH"
 msgstr "ölüm"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:584
+#: ../src/microbe_stage/Microbe.Contact.cs:590
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "başarılı yiyecek avı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:591
+#: ../src/microbe_stage/Microbe.Contact.cs:597
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:798
+#: ../src/microbe_stage/Microbe.Contact.cs:804
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:710
+#: ../src/microbe_stage/Microbe.Interior.cs:712
 msgid "REPRODUCED"
 msgstr "çoğaldı"
 
@@ -2900,11 +2899,11 @@ msgstr "az miktarda"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "çok az miktarda"
 
-#: ../src/microbe_stage/MicrobeStage.cs:525
+#: ../src/microbe_stage/MicrobeStage.cs:527
 msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
-#: ../src/microbe_stage/MicrobeStage.cs:672
+#: ../src/microbe_stage/MicrobeStage.cs:674
 msgid "PLAYER_DIED"
 msgstr "oyuncu öldü"
 
@@ -3481,12 +3480,12 @@ msgstr "Devre Dışı"
 msgid "SELECTED_MOD"
 msgstr "Seçilen:"
 
-#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:646
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:668
+#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
@@ -3501,7 +3500,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "Sürüm:"
 
-#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:690
+#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
@@ -3516,38 +3515,38 @@ msgstr ""
 msgid "OPEN_MOD_URL"
 msgstr "Open URL"
 
-#: ../src/modding/ModManager.tscn:501
+#: ../src/modding/ModManager.tscn:500
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Yükle"
 
-#: ../src/modding/ModManager.tscn:515
+#: ../src/modding/ModManager.tscn:514
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:528
+#: ../src/modding/ModManager.tscn:527
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Geçersiz kayıt yüklensin mi?"
 
-#: ../src/modding/ModManager.tscn:554
+#: ../src/modding/ModManager.tscn:553
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Seçilen kayıt uyumsuz"
 
-#: ../src/modding/ModManager.tscn:563
+#: ../src/modding/ModManager.tscn:562
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:574
+#: ../src/modding/ModManager.tscn:573
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:574
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3555,21 +3554,21 @@ msgstr ""
 "şeklinin bozulmaması için fazla enerji gerektirir. Avantajı, hücrenin "
 "hareketine izin vermesi ve besinlerin çabuk emilimini sağlaması."
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:575
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Yoksay ve devam et"
 
-#: ../src/modding/ModManager.tscn:583
+#: ../src/modding/ModManager.tscn:582
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:624 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Ad:"
 
-#: ../src/modding/ModManager.tscn:712 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3579,105 +3578,105 @@ msgstr ""
 "direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz "
 "yapabilir."
 
-#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Lisanslar"
 
-#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Arazi Adı"
 
-#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:939
+#: ../src/modding/ModManager.tscn:936
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
-msgstr "Oto-evrim çalıştırılamadı"
+msgstr "Steam istemci kütüphanesi başlatma başarısız"
 
-#: ../src/modding/ModUploader.cs:235 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:265
+#: ../src/modding/ModUploader.cs:273
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "BAŞARDIN!"
 
-#: ../src/modding/ModUploader.cs:271
+#: ../src/modding/ModUploader.cs:279
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "Açıklama:"
 
-#: ../src/modding/ModUploader.cs:279
+#: ../src/modding/ModUploader.cs:287
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Açıklama:"
 
-#: ../src/modding/ModUploader.cs:287
+#: ../src/modding/ModUploader.cs:295
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:295
+#: ../src/modding/ModUploader.cs:303
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "Geçersiz kayıt yüklensin mi?"
 
-#: ../src/modding/ModUploader.cs:342
+#: ../src/modding/ModUploader.cs:351
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Ara..."
 
-#: ../src/modding/ModUploader.cs:364
+#: ../src/modding/ModUploader.cs:373
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Kaydetme başarısız! Bir sorun oluştu"
 
-#: ../src/modding/ModUploader.cs:405
+#: ../src/modding/ModUploader.cs:415
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Yükleniyor..."
 
-#: ../src/modding/ModUploader.cs:433
+#: ../src/modding/ModUploader.cs:443
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:437
+#: ../src/modding/ModUploader.cs:447
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:497
+#: ../src/modding/ModUploader.cs:507
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:519 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Kaydetme Hatası"
@@ -3758,7 +3757,7 @@ msgstr ""
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:304
+#: ../src/modding/ModUploader.tscn:305
 #, fuzzy
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Kaydetme başarılı"
@@ -4109,7 +4108,7 @@ msgstr "Kayıt dizini bulunamadı"
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
-msgstr ""
+msgstr "Steam istemci kütüphanesi başlatma başarısız"
 
 #: ../src/steam/SteamClient.cs:460
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
@@ -4124,8 +4123,9 @@ msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
 #: ../src/steam/SteamClient.cs:466
+#, fuzzy
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr ""
+msgstr "{0} olarak giriş yapıldı"
 
 #: ../src/steam/SteamClient.cs:468
 msgid "STEAM_ERROR_UNAVAILABLE"
@@ -4164,7 +4164,7 @@ msgstr ""
 #: ../src/steam/SteamClient.cs:484
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "Kaydetme başarısız! Bir sorun oluştu"
+msgstr "Steam istemci kütüphanesi başlatma başarısız"
 
 #: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_UNKNOWN"
@@ -4190,7 +4190,7 @@ msgstr "Oyun Rehberi"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Mikrop Editörüne hoşgeldin.\n"
+"Mikrop Editörü'ne hoşgeldin.\n"
 "Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman "
 "kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
@@ -4218,7 +4218,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:139
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
-"Bu hücre editörü. Burada mutasyon puanlarını (MP) harcayarak türüne "
+"Bu hücre editörü. Burada mutasyon puanları (MP) harcayarak türüne "
 "organeller ekleyebilir veya organelleri kaldırabilirsin.\n"
 "\n"
 "Ayrıca hücre editörünün diğer sekmelerinde türünün başka özelliklerini "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-24 19:00+0200\n"
+"POT-Creation-Date: 2021-11-25 09:51+0200\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: Dr. A. S. <Dr.A.S.Tuga@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -1402,7 +1402,7 @@ msgstr "Arte por {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:930
+#: ../src/modding/ModManager.tscn:929
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Fechar"
@@ -2817,23 +2817,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:488
+#: ../src/microbe_stage/Microbe.Contact.cs:494
 msgid "DEATH"
 msgstr "morte"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:584
+#: ../src/microbe_stage/Microbe.Contact.cs:590
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "limpeza bem-sucedida"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:591
+#: ../src/microbe_stage/Microbe.Contact.cs:597
 msgid "SUCCESSFUL_KILL"
 msgstr "morte com sucesso"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:798
+#: ../src/microbe_stage/Microbe.Contact.cs:804
 msgid "ESCAPE_ENGULFING"
 msgstr "escapou de ser engolido"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:710
+#: ../src/microbe_stage/Microbe.Interior.cs:712
 msgid "REPRODUCED"
 msgstr "reproduzido"
 
@@ -2899,11 +2899,11 @@ msgstr "pouco"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "muito pouco"
 
-#: ../src/microbe_stage/MicrobeStage.cs:525
+#: ../src/microbe_stage/MicrobeStage.cs:527
 msgid "PLAYER_REPRODUCED"
 msgstr "jogador reproduzido"
 
-#: ../src/microbe_stage/MicrobeStage.cs:672
+#: ../src/microbe_stage/MicrobeStage.cs:674
 msgid "PLAYER_DIED"
 msgstr "jogador morreu"
 
@@ -3482,12 +3482,12 @@ msgstr "Desactivado"
 msgid "SELECTED_MOD"
 msgstr "Selecionado:"
 
-#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:646
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:668
+#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
@@ -3502,7 +3502,7 @@ msgstr ""
 msgid "MINIMUM_VERSION"
 msgstr "Versão:"
 
-#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:690
+#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
@@ -3517,38 +3517,38 @@ msgstr ""
 msgid "OPEN_MOD_URL"
 msgstr "Abrir URL"
 
-#: ../src/modding/ModManager.tscn:501
+#: ../src/modding/ModManager.tscn:500
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Carregar"
 
-#: ../src/modding/ModManager.tscn:515
+#: ../src/modding/ModManager.tscn:514
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:528
+#: ../src/modding/ModManager.tscn:527
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Carregar jogo guardado inválido?"
 
-#: ../src/modding/ModManager.tscn:554
+#: ../src/modding/ModManager.tscn:553
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "O jogo guardado selecionado é incompatível"
 
-#: ../src/modding/ModManager.tscn:563
+#: ../src/modding/ModManager.tscn:562
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:574
+#: ../src/modding/ModManager.tscn:573
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:574
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3556,21 +3556,21 @@ msgstr ""
 "precisa de mais energia para não se deformar. A vantagem é que permite que "
 "a célula se mova e absorva nutrientes rapidamente."
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:575
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Descartar e continuar"
 
-#: ../src/modding/ModManager.tscn:583
+#: ../src/modding/ModManager.tscn:582
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:624 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nome:"
 
-#: ../src/modding/ModManager.tscn:712 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3580,104 +3580,104 @@ msgstr ""
 "Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso "
 "diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
 
-#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Licenças"
 
-#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:939
+#: ../src/modding/ModManager.tscn:936
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "A auto-evo falhou"
 
-#: ../src/modding/ModUploader.cs:235 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:265
+#: ../src/modding/ModUploader.cs:273
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "TU PROSPERASTE!"
 
-#: ../src/modding/ModUploader.cs:271
+#: ../src/modding/ModUploader.cs:279
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "Descrição:"
 
-#: ../src/modding/ModUploader.cs:279
+#: ../src/modding/ModUploader.cs:287
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Descrição:"
 
-#: ../src/modding/ModUploader.cs:287
+#: ../src/modding/ModUploader.cs:295
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:295
+#: ../src/modding/ModUploader.cs:303
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "Carregar jogo guardado inválido?"
 
-#: ../src/modding/ModUploader.cs:342
+#: ../src/modding/ModUploader.cs:351
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Procurar..."
 
-#: ../src/modding/ModUploader.cs:364
+#: ../src/modding/ModUploader.cs:373
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Falha ao gravar! Ocorreu um erro"
 
-#: ../src/modding/ModUploader.cs:405
+#: ../src/modding/ModUploader.cs:415
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "A carregar..."
 
-#: ../src/modding/ModUploader.cs:433
+#: ../src/modding/ModUploader.cs:443
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:437
+#: ../src/modding/ModUploader.cs:447
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:497
+#: ../src/modding/ModUploader.cs:507
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:519 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erro ao gravar"
@@ -3758,7 +3758,7 @@ msgstr ""
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:304
+#: ../src/modding/ModUploader.tscn:305
 #, fuzzy
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Guardado com sucesso"

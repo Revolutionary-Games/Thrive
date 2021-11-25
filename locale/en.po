@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-24 19:00+0200\n"
+"POT-Creation-Date: 2021-11-25 09:51+0200\n"
 "PO-Revision-Date: 2021-11-24 18:52+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1391,7 +1391,7 @@ msgstr "Art by {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:930
+#: ../src/modding/ModManager.tscn:929
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
 msgid "CLOSE"
 msgstr "Close"
@@ -2790,23 +2790,23 @@ msgstr "Temperature"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:488
+#: ../src/microbe_stage/Microbe.Contact.cs:494
 msgid "DEATH"
 msgstr "death"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:584
+#: ../src/microbe_stage/Microbe.Contact.cs:590
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:591
+#: ../src/microbe_stage/Microbe.Contact.cs:597
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:798
+#: ../src/microbe_stage/Microbe.Contact.cs:804
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:710
+#: ../src/microbe_stage/Microbe.Interior.cs:712
 msgid "REPRODUCED"
 msgstr "reproduced"
 
@@ -2872,11 +2872,11 @@ msgstr "little"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
-#: ../src/microbe_stage/MicrobeStage.cs:525
+#: ../src/microbe_stage/MicrobeStage.cs:527
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
-#: ../src/microbe_stage/MicrobeStage.cs:672
+#: ../src/microbe_stage/MicrobeStage.cs:674
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -3446,12 +3446,12 @@ msgstr "Disable All"
 msgid "SELECTED_MOD"
 msgstr "Selected Mod:"
 
-#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:646
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr "Mod Author:"
 
-#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:668
+#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
 #: ../src/modding/NewModGUI.tscn:165
 msgid "MOD_VERSION"
 msgstr "Mod Version:"
@@ -3464,7 +3464,7 @@ msgstr "Recommended Thrive:"
 msgid "MINIMUM_VERSION"
 msgstr "Minimum:"
 
-#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:690
+#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
 #: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
 msgstr "Mod Description:"
@@ -3477,151 +3477,151 @@ msgstr "Show More Info"
 msgid "OPEN_MOD_URL"
 msgstr "Open Info URL"
 
-#: ../src/modding/ModManager.tscn:501
+#: ../src/modding/ModManager.tscn:500
 msgid "BROWSE_WORKSHOP"
 msgstr "Browse Workshop"
 
-#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
 msgid "UPLOAD"
 msgstr "Upload"
 
-#: ../src/modding/ModManager.tscn:515
+#: ../src/modding/ModManager.tscn:514
 msgid "NEW"
 msgstr "New"
 
-#: ../src/modding/ModManager.tscn:528
+#: ../src/modding/ModManager.tscn:527
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 "Note: many mods require game restart to load or unload properly. Only load "
 "mods you trust as they may contain executable code."
 
-#: ../src/modding/ModManager.tscn:554
+#: ../src/modding/ModManager.tscn:553
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Enable All Compatible Mods"
 
-#: ../src/modding/ModManager.tscn:563
+#: ../src/modding/ModManager.tscn:562
 msgid "APPLY_CHANGES"
 msgstr "Apply Changes"
 
-#: ../src/modding/ModManager.tscn:574
+#: ../src/modding/ModManager.tscn:573
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "There are unapplied changes"
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:574
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "You need to apply your changes to load or unload any mods."
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:575
 msgid "DISCARD_CHANGES"
 msgstr "Discard Changes"
 
-#: ../src/modding/ModManager.tscn:583
+#: ../src/modding/ModManager.tscn:582
 msgid "FULL_MOD_INFO"
 msgstr "Full Mod Info"
 
-#: ../src/modding/ModManager.tscn:624 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
 msgid "MOD_NAME"
 msgstr "Mod Name:"
 
-#: ../src/modding/ModManager.tscn:712 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod Long Description:"
 
-#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "Icon File:"
 
-#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Mod Info URL:"
 
-#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr "Mod License:"
 
-#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Recommended Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Minimum Required Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Maximum Supported Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck File:"
 
-#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr "Mod Assembly:"
 
-#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class:"
 
-#: ../src/modding/ModManager.tscn:939
+#: ../src/modding/ModManager.tscn:936
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod Creation Failed"
 
-#: ../src/modding/ModUploader.cs:235 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop content will be uploaded from folder: {0}"
 
-#: ../src/modding/ModUploader.cs:265
+#: ../src/modding/ModUploader.cs:273
 msgid "MISSING_TITLE"
 msgstr "Title is missing"
 
-#: ../src/modding/ModUploader.cs:271
+#: ../src/modding/ModUploader.cs:279
 msgid "MISSING_DESCRIPTION"
 msgstr "Description is missing"
 
-#: ../src/modding/ModUploader.cs:279
+#: ../src/modding/ModUploader.cs:287
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Description is too long"
 
-#: ../src/modding/ModUploader.cs:287
+#: ../src/modding/ModUploader.cs:295
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Tags contains only whitespace"
 
-#: ../src/modding/ModUploader.cs:295
+#: ../src/modding/ModUploader.cs:303
 msgid "INVALID_TAG"
 msgstr "Invalid tag \"{0}\" specified"
 
-#: ../src/modding/ModUploader.cs:342
+#: ../src/modding/ModUploader.cs:351
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Creating..."
 
-#: ../src/modding/ModUploader.cs:364
+#: ../src/modding/ModUploader.cs:373
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Saving information failed due to exception: {0}"
 
-#: ../src/modding/ModUploader.cs:405
+#: ../src/modding/ModUploader.cs:415
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Uploading..."
 
-#: ../src/modding/ModUploader.cs:433
+#: ../src/modding/ModUploader.cs:443
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 "Item upload to the Steam Workshop has succeeded, but you need to accept "
 "the Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
 "workshoplegalagreement]terms of service[/url][/color] before it is visible"
 
-#: ../src/modding/ModUploader.cs:437
+#: ../src/modding/ModUploader.cs:447
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Item upload to the Steam Workshop has succeeded"
 
-#: ../src/modding/ModUploader.cs:497
+#: ../src/modding/ModUploader.cs:507
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "By submitting this item, you agree to Steam Workshop's [color=#3796e1]"
 "[url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms "
 "of service[/url][/color]"
 
-#: ../src/modding/ModUploader.cs:519 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -3689,7 +3689,7 @@ msgstr "Browse"
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Select Preview Image"
 
-#: ../src/modding/ModUploader.tscn:304
+#: ../src/modding/ModUploader.tscn:305
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload Succeeded"
 
