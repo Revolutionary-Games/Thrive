@@ -437,7 +437,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     private void UpdateCloudContents(float delta)
     {
         // The diffusion rate seems to have a bigger effect
-        delta *= 100.0f;
+        delta *= Constants.CLOUD_OPERATIONS_SPEED_FACTOR;
 
         // Do moving compounds on the edges of the clouds serially
         foreach (var cloud in clouds)

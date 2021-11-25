@@ -42,6 +42,7 @@ public static class Constants
     public const float CLOUD_Y_COORDINATE = 0;
 
     public const float CLOUD_DIFFUSION_RATE = 0.007f;
+    public const float CLOUD_OPERATIONS_SPEED_FACTOR = 100.0f;
 
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
