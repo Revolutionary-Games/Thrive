@@ -1415,6 +1415,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.SendUndoToTutorial(TutorialState);
 
         gui.UpdateCancelButtonVisibility();
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     private void InitEditorFresh()
@@ -1526,8 +1528,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity, Behaviour);
         gui.UpdateGeneration(species.Generation);
         gui.UpdateHitpoints(CalculateHitpoints());
-
-        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     private void CreateMutatedSpeciesCopy(Species species)
