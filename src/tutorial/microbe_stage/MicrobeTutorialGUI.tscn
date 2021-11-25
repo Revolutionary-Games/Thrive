@@ -31,6 +31,7 @@ StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
+CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
@@ -380,6 +381,54 @@ custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_UNBIND_TEXT"
 autowrap = true
 
+[node name="CheckHelpMenu" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -273.0
+margin_top = -210.0
+margin_right = -13.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 260, 260 )
+script = ExtResource( 7 )
+WindowTitle = "TUTORIAL"
+Resizable = true
+ShowDelay = 0.5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CheckHelpMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 245.0
+margin_bottom = 245.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CheckHelpMenu/ScrollContainer"]
+margin_right = 490.0
+margin_bottom = 490.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
+margin_right = 490.0
+margin_bottom = 490.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+autowrap = true
+
+[node name="Control" type="Control" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+text = "VIEW_NOW"
+
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
@@ -395,3 +444,6 @@ autowrap = true
 [connection signal="popup_hide" from="EditorButtonTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorPress" ]]
 [connection signal="hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
 [connection signal="popup_hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
+[connection signal="hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
+[connection signal="popup_hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
+[connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]
