@@ -586,15 +586,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         float diffusion = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
+        foreach (var point in affectedRectangle.GetPointEnumerator())
         {
-            for (int y = affectedRectangle.Y; y < affectedRectangle.EndY; y++)
-            {
-                int adjacentClouds = 4;
-                OldDensity[x, y] =
-                    Density[x, y] * (1 - diffusion) +
-                    GetNeighbouringDensities(x, y, isEdge) * (diffusion / adjacentClouds);
-            }
+            int adjacentClouds = 4;
+            OldDensity[point.x, point.y] =
+                Density[point.x, point.y] * (1 - diffusion) +
+                GetNeighbouringDensities(point.x, point.y, isEdge) * (diffusion / adjacentClouds);
         }
     }
 
@@ -627,58 +624,55 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </remarks>
     private void PartialAdvect(IntRect affectedRectangle, float delta, Vector2 pos, bool isCenter)
     {
-        for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
+        foreach (var point in affectedRectangle.GetPointEnumerator())
         {
-            for (int y = affectedRectangle.Y; y < affectedRectangle.EndY; y++)
-            {
-                if (OldDensity[x, y].LengthSquared() > 1)
+            if (OldDensity[point.x, point.y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
+                var velocity = fluidSystem.VelocityAt(
+                    pos + (new Vector2(point.x, point.y) * Resolution)) * VISCOSITY;
 
-                    // This is ran in parallel, this may not touch the other compound clouds
-                    float advectedX = x + (delta * velocity.x);
-                    float advectedY = y + (delta * velocity.y);
+                // This is ran in parallel, this may not touch the other compound clouds
+                float advectedX = point.x + (delta * velocity.x);
+                float advectedY = point.y + (delta * velocity.y);
 
-                    // So this is clamped to not go to the other clouds
-                    // TODO CHECK THAT IT WONT GO OVERBOARD
-                    advectedX = advectedX.Clamp(affectedRectangle.X - 0.5f, affectedRectangle.EndX + 0.5f); ;
-                    advectedY = advectedY.Clamp(affectedRectangle.Y - 0.5f, affectedRectangle.EndY + 0.5f);
+                // So this is clamped to not go to the other clouds
+                // TODO CHECK THAT IT WONT GO OVERBOARD
+                advectedX = advectedX.Clamp(affectedRectangle.X - 0.5f, affectedRectangle.EndX + 0.5f); ;
+                advectedY = advectedY.Clamp(affectedRectangle.Y - 0.5f, affectedRectangle.EndY + 0.5f);
 
-                    CalculateMovementFactors(advectedX, advectedY,
-                        out var q0, out var q1, out var r0, out var r1,
-                        out var s1, out var s0, out var t1, out var t0);
+                CalculateMovementFactors(advectedX, advectedY,
+                    out var q0, out var q1, out var r0, out var r1,
+                    out var s1, out var s0, out var t1, out var t0);
 
-                    if (isCenter)
+                if (isCenter)
+                {
+                    if (IsARelativeCoordinate(q0))
                     {
-                        if (IsARelativeCoordinate(q0))
-                        {
-                            if (IsARelativeCoordinate(r0))
-                                Density[q0, r0] += OldDensity[x, y] * s0 * t0;
-                            if (IsARelativeCoordinate(r1))
-                                Density[q0, r1] += OldDensity[x, y] * s0 * t1;
-                        }
-
-                        if (IsARelativeCoordinate(q1))
-                        {
-                            if (IsARelativeCoordinate(r0))
-                                Density[q1, r0] += OldDensity[x, y] * s1 * t0;
-                            if (IsARelativeCoordinate(r1))
-                                Density[q1, r1] += OldDensity[x, y] * s1 * t1;
-                        }
+                        if (IsARelativeCoordinate(r0))
+                            Density[q0, r0] += OldDensity[x, y] * s0 * t0;
+                        if (IsARelativeCoordinate(r1))
+                            Density[q0, r1] += OldDensity[x, y] * s0 * t1;
                     }
-                    else
+
+                    if (IsARelativeCoordinate(q1))
                     {
-                        q0 = q0.PositiveModulo(Size);
-                        q1 = q1.PositiveModulo(Size);
-                        r0 = r0.PositiveModulo(Size);
-                        r1 = r1.PositiveModulo(Size);
-
-                        Density[q0, r0] += OldDensity[x, y] * s0 * t0;
-                        Density[q0, r1] += OldDensity[x, y] * s0 * t1;
-                        Density[q1, r0] += OldDensity[x, y] * s1 * t0;
-                        Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                        if (IsARelativeCoordinate(r0))
+                            Density[q1, r0] += OldDensity[x, y] * s1 * t0;
+                        if (IsARelativeCoordinate(r1))
+                            Density[q1, r1] += OldDensity[x, y] * s1 * t1;
                     }
+                }
+                else
+                {
+                    q0 = q0.PositiveModulo(Size);
+                    q1 = q1.PositiveModulo(Size);
+                    r0 = r0.PositiveModulo(Size);
+                    r1 = r1.PositiveModulo(Size);
+
+                    Density[q0, r0] += OldDensity[x, y] * s0 * t0;
+                    Density[q0, r1] += OldDensity[x, y] * s0 * t1;
+                    Density[q1, r0] += OldDensity[x, y] * s1 * t0;
+                    Density[q1, r1] += OldDensity[x, y] * s1 * t1;
                 }
             }
         }
@@ -691,24 +685,18 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     private void PartialUpdateTextureImage(IntRect affectedRectangle)
     {
-        for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
+        foreach (var point in affectedRectangle.GetPointEnumerator())
         {
-            for (int y = affectedRectangle.Y; y < affectedRectangle.EndY; y++)
-            {
-                var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
-                image.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
-            }
+            var pixel = Density[point.x, point.y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
+            image.SetPixel(point.x, point.y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
         }
     }
 
     private void PartialClearDensity(IntRect affectedRectangle)
     {
-        for (int x = affectedRectangle.X; x < affectedRectangle.EndX; x++)
+        foreach (var point in affectedRectangle.GetPointEnumerator())
         {
-            for (int y = affectedRectangle.Y; y < affectedRectangle.EndY; y++)
-            {
-                Density[x, y] = Vector4.Zero;
-            }
+            Density[point.x, point.y] = Vector4.Zero;
         }
     }
 
