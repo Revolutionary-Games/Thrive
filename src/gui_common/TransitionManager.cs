@@ -72,6 +72,7 @@ public class TransitionManager : NodeWithInput
     ///   Creates and queues a video cutscene.
     /// </summary>
     /// <param name="path">The video file to play</param>
+    /// <param name="volume">The video player's volume in linear value</param>
     /// <param name="allowSkipping">Allow the user to skip this</param>
     public void AddCutscene(string path, float volume = 1.0f, bool allowSkipping = true)
     {
