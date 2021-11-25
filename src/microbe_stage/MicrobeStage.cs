@@ -608,6 +608,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // No enemy species to spawn in this patch
         if (species.Count == 0)
         {
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
             GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
             return;
         }
