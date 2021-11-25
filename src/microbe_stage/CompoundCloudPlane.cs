@@ -41,7 +41,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     The coordinates are comprised within 0 and Constants.CLOUD_SQUARES_PER_SIDE - 1
+    ///     The coordinates are comprised within 0 and (Constants.CLOUD_SQUARES_PER_SIDE - 1)
     ///   </para>
     /// </remarks>
     [JsonProperty]
@@ -104,7 +104,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         }
         else if (newX == (position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            var previousVerticalSlice = new IntRect((position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE) * SquaresSize, 0,
+            var previousVerticalSlice = new IntRect(newX * SquaresSize, 0,
                 SquaresSize, Size);
             PartialClearDensity(previousVerticalSlice);
         }
@@ -117,7 +117,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         }
         else if (newY == (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            var previousHorizontalSlice = new IntRect(0, (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE) * SquaresSize,
+            var previousHorizontalSlice = new IntRect(0, newX * SquaresSize,
                 Size, SquaresSize);
             PartialClearDensity(previousHorizontalSlice);
         }
