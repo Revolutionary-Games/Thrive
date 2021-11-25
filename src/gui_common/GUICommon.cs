@@ -125,7 +125,7 @@ public class GUICommon : NodeWithInput
     /// </summary>
     public void PlayButtonPressSound()
     {
-        PlayCustomSound(buttonPressSound, 0.2f);
+        PlayCustomSound(buttonPressSound, 0.4f);
     }
 
     /// <summary>
