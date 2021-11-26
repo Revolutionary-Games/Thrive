@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-25 18:07+0200\n"
-"PO-Revision-Date: 2021-08-23 16:43+0000\n"
-"Last-Translator: the80hz <dnl.vlgv@mail.ru>\n"
+"PO-Revision-Date: 2021-11-26 16:55+0000\n"
+"Last-Translator: Vladislav Kuznetsov <vlad.pnz98@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.7.2\n"
+"X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -187,21 +187,21 @@ msgstr ""
 "\n"
 "Связующее вещество: Позволяет связываться с другими клетками\n"
 "\n"
-"Митохондрия: Производит [thrive:compound type=\"atp\"][/thrive:compound] "
-"из [thrive:compound type=\"glucose\"][/thrive:compound] и атмосферного "
+"Митохондрия: Производит [thrive:compound type=\"atp\"][/thrive:compound] из "
+"[thrive:compound type=\"glucose\"][/thrive:compound] и атмосферного "
 "кислорода, делает это намного эффективнее цитоплазмы\n"
 "\n"
-"Хлоропласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] "
-"из солнечного света и атмосферного углекислого газа\n"
+"Хлоропласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] из "
+"солнечного света и атмосферного углекислого газа\n"
 "\n"
 "Хемопласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] из "
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Азотфиксирующий пластид: Создает [thrive:compound type=\"ammonia\"][/"
-"thrive:compound] из [thrive:compound type=\"atp\"][/thrive:compound], "
+"Азотфиксирующий пластид: Создает [thrive:compound type=\"ammonia\""
+"][/thrive:compound] из [thrive:compound type=\"atp\"][/thrive:compound], "
 "атмосферного азота и кислорода\n"
 "\n"
-"Вакуоль: Вмещает до 15 соединений\n"
+"Вакуоль: Вмещает до 8 соединений\n"
 "\n"
 "Токсиновая вакуоль: Производит токсины (в игре - [thrive:compound type="
 "\"oxytoxy\"][/thrive:compound])"
@@ -223,10 +223,12 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы "
-"можете изменить свой вида (добавляя, передвигая или удаляя органеллы), "
-"чтобы повысить успех вашего вида. Каждое посещение редактора в Микробной "
-"Фазе представляет 100 миллионов лет эволюции."
+"Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы можете "
+"изменить свой вида (добавляя, передвигая или удаляя органеллы), чтобы "
+"повысить успех вашего вида. Каждое посещение редактора в Микробной Фазе "
+"представляет "
+"[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] миллионов "
+"лет эволюции."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
@@ -1411,7 +1413,7 @@ msgstr "Закрыть"
 
 #: ../src/general/MainMenu.cs:224
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Авторизован как: {0}"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
@@ -1461,7 +1463,7 @@ msgstr "Назад"
 
 #: ../src/general/MainMenu.tscn:362
 msgid "MODS"
-msgstr ""
+msgstr "Моды"
 
 #: ../src/general/MainMenu.tscn:376
 msgid "ART_GALLERY"
@@ -1711,11 +1713,8 @@ msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Показать туториал (в текущей игре)"
 
 #: ../src/general/OptionsMenu.tscn:1074
-#, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
-msgstr ""
-"Вы имеете не сохранённые изменения, которые можете потерять.\n"
-"Вы хотите продолжить?"
+msgstr "Показать предупреждение о несохраненном прогрессе"
 
 #: ../src/general/OptionsMenu.tscn:1086
 msgid "CHEAT_KEYS_ENABLED"
@@ -1821,14 +1820,16 @@ msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Папка скриншотов не найдена"
 
 #: ../src/general/PauseMenu.cs:247
-#, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
-msgstr "Вернуться в Меню"
+msgstr ""
+"Вы действительно хотите вернуться в главное меню?\n"
+"Весь несохраненный прогресс будет утерян."
 
 #: ../src/general/PauseMenu.cs:263
-#, fuzzy
 msgid "QUIT_GAME_WARNING"
-msgstr "Предупреждение режима GLES2"
+msgstr ""
+"Вы действительно хотите выйти из игры?\n"
+"Весь несохраненный прогресс будет утерян."
 
 #: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
@@ -1857,9 +1858,8 @@ msgid "EXIT"
 msgstr "Выход"
 
 #: ../src/general/PauseMenu.tscn:161
-#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "ПОДТВЕРДИТЬ"
+msgstr "Подтвердить выход"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -2265,7 +2265,7 @@ msgstr "Создать нового микроба"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr ""
+msgstr "Случайное название вида"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "MEMBRANE_RIGIDITY"
@@ -3059,7 +3059,7 @@ msgstr "статус запуска:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:648
 msgid "MUTATION_POINTS"
-msgstr "Мутационные Очки"
+msgstr "Очки мутации"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:783
 msgid "STRUCTURE"
@@ -3378,15 +3378,13 @@ msgstr "Сохранение не удалось"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1851
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1864
-#, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
-msgstr "ПОПУЛЯЦИЯ:"
+msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1856
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1869
-#, fuzzy
 msgid "N_A"
-msgstr "Выключить ИИ"
+msgstr "Нет данных"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2065
 msgid "INVALID_SPECIES_NAME_POPUP"
@@ -3499,13 +3497,12 @@ msgstr "Выбрано:"
 #: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
-msgstr ""
+msgstr "Автор мода:"
 
 #: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
 #: ../src/modding/NewModGUI.tscn:165
-#, fuzzy
 msgid "MOD_VERSION"
-msgstr "Версия:"
+msgstr "Версия мода:"
 
 #: ../src/modding/ModManager.tscn:366
 msgid "RECOMMENDED_THRIVE_VERSION"
@@ -3518,13 +3515,12 @@ msgstr "Версия:"
 
 #: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
 #: ../src/modding/NewModGUI.tscn:188
-#, fuzzy
 msgid "MOD_DESCRIPTION"
-msgstr "Описание:"
+msgstr "Описание мода:"
 
 #: ../src/modding/ModManager.tscn:469
 msgid "MORE_INFO"
-msgstr ""
+msgstr "Показать больше информации"
 
 #: ../src/modding/ModManager.tscn:477
 #, fuzzy
@@ -3533,7 +3529,7 @@ msgstr "Открыть URL-ссылку"
 
 #: ../src/modding/ModManager.tscn:500
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Просмотреть мастерскую"
 
 #: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
 #, fuzzy
@@ -3542,7 +3538,7 @@ msgstr "Загрузить"
 
 #: ../src/modding/ModManager.tscn:514
 msgid "NEW"
-msgstr ""
+msgstr "Новый"
 
 #: ../src/modding/ModManager.tscn:527
 #, fuzzy
@@ -3550,17 +3546,16 @@ msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Загрузить недействительное сохранение?"
 
 #: ../src/modding/ModManager.tscn:553
-#, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Выбранное сохранение несовместимо"
+msgstr "Включить все совместимые моды"
 
 #: ../src/modding/ModManager.tscn:562
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Применить изменения"
 
 #: ../src/modding/ModManager.tscn:573
 msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
+msgstr "Есть непримененные изменения"
 
 #: ../src/modding/ModManager.tscn:574
 #, fuzzy
@@ -3572,33 +3567,24 @@ msgstr ""
 "поглощать питательные вещества."
 
 #: ../src/modding/ModManager.tscn:575
-#, fuzzy
 msgid "DISCARD_CHANGES"
-msgstr "Отменить и продолжить"
+msgstr "Отменить изменения"
 
 #: ../src/modding/ModManager.tscn:582
 msgid "FULL_MOD_INFO"
-msgstr ""
+msgstr "Полная информация о моде"
 
 #: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
-#, fuzzy
 msgid "MOD_NAME"
-msgstr "Имя:"
+msgstr "Имя мода:"
 
 #: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
-#, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr ""
-"Нитрогеназа - это белок, способный использовать газообразный азот и "
-"клеточную энергию в форме АТФ для производства аммиака, ключевого "
-"питательного вещества для роста клеток. Этот процесс называется Анаэробной "
-"Азотфиксацией. Поскольку нитрогеназа находится во взвешенном состоянии "
-"непосредственно в цитоплазме, окружающая жидкость выполняет некоторую "
-"часть гликолиза."
+msgstr "Полное описание мода:"
 
 #: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
-msgstr ""
+msgstr "Иконка файла:"
 
 #: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
@@ -3611,66 +3597,59 @@ msgstr "Лицензии"
 
 #: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
-msgstr ""
+msgstr "Рекомендованная версия Thrive:"
 
 #: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
-msgstr ""
+msgstr "Минимальная требуемая версия Thrive:"
 
 #: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
-msgstr ""
+msgstr "Максимально поддерживаемая версия Thrive:"
 
 #: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
-#, fuzzy
 msgid "MOD_PCK_NAME"
-msgstr "Название Участка"
+msgstr "Файл мода .pck:"
 
 #: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
-msgstr ""
+msgstr "Сборка мода:"
 
 #: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:936
-#, fuzzy
 msgid "MOD_CREATION_FAILED"
-msgstr "Авто-эво не удалось запустить"
+msgstr "Не удалось создать мод"
 
 #: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:273
-#, fuzzy
 msgid "MISSING_TITLE"
-msgstr "ВЫ РАСЦВЕЛИ!"
+msgstr "Название отсутствует"
 
 #: ../src/modding/ModUploader.cs:279
-#, fuzzy
 msgid "MISSING_DESCRIPTION"
-msgstr "Описание:"
+msgstr "Описание отсутствует"
 
 #: ../src/modding/ModUploader.cs:287
-#, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
-msgstr "Описание:"
+msgstr "Описание слишком длинное"
 
 #: ../src/modding/ModUploader.cs:295
 msgid "TAGS_IS_WHITESPACE"
-msgstr ""
+msgstr "Теги содержат только пробелы"
 
 #: ../src/modding/ModUploader.cs:303
-#, fuzzy
 msgid "INVALID_TAG"
-msgstr "Загрузить недействительное сохранение?"
+msgstr "Указан неверный тег \"{0}\""
 
 #: ../src/modding/ModUploader.cs:351
-#, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
-msgstr "Поиск..."
+msgstr "Создание..."
 
 #: ../src/modding/ModUploader.cs:373
 #, fuzzy
@@ -3678,7 +3657,6 @@ msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Сохранение не удалось! Бывает же"
 
 #: ../src/modding/ModUploader.cs:415
-#, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Загрузка..."
 
@@ -3688,69 +3666,58 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:447
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr ""
+msgstr "Загрузка предмета в Мастерскую Steam прошла успешно"
 
 #: ../src/modding/ModUploader.cs:507
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
+"Отправляя этот предмет, вы соглашаетесь с "
+"[color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"workshoplegalagreement]условиями обслуживания[/url][/color] Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
-#, fuzzy
 msgid "FORM_ERROR_MESSAGE"
-msgstr "Ошибка Сохранения"
+msgstr "Ошибка: {0}"
 
 #: ../src/modding/ModUploader.tscn:43
 msgid "MOD_UPLOADER"
-msgstr ""
+msgstr "Загрузчик модов"
 
 #: ../src/modding/ModUploader.tscn:83
 msgid "MOD_TO_UPLOAD"
-msgstr ""
+msgstr "Мод для загрузки:"
 
 #: ../src/modding/ModUploader.tscn:108
-#, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "Неизвестная кнопка мыши"
+msgstr "Неизвестный Workshop ID для этого мода"
 
 #: ../src/modding/ModUploader.tscn:120
-#, fuzzy
 msgid "CREATE_NEW"
-msgstr "Создать Новое Сохранение"
+msgstr "Создать Новый"
 
 #: ../src/modding/ModUploader.tscn:128
-#, fuzzy
 msgid "ENTER_EXISTING_ID"
-msgstr "Перезаписать существующее сохранение:"
+msgstr "Ввести существующий ID"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr ""
+msgstr "Ввести существующий Workshop ID"
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
+msgstr "Номер ID"
 
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr ""
+msgstr "Применить"
 
 #: ../src/modding/ModUploader.tscn:168
-#, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "Название предмета:"
 
 #: ../src/modding/ModUploader.tscn:186
-#, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
-"Хлоропласт представляет собой двумембранную органеллу, содержащую "
-"фоточувствительные пигменты, сложенные вместе в мембранных мешочках. Это "
-"прокариота, которая была ассимилирована для использования ее "
-"эукариотическим хозяином. Пигменты в хлоропласте способны использовать "
-"энергию света для получения глюкозы из воды и газообразного углекислого "
-"газа в процессе, называемом Фотосинтезом. Эти пигменты также придают ей "
-"особый цвет. Скорость выработки глюкозы зависит от концентрации "
-"углекислого газа в атмсофере и интенсивности света."
+msgstr "Описание предмета:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -3766,7 +3733,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr ""
+msgstr "Превью предмета:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
@@ -3774,29 +3741,23 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "SELECT_PREVIEW_IMAGE"
-msgstr ""
+msgstr "Выбрать превью"
 
 #: ../src/modding/ModUploader.tscn:305
-#, fuzzy
 msgid "UPLOAD_SUCCEEDED"
-msgstr "Сохранение успешно"
+msgstr "Загрузка выполнена успешно"
 
 #: ../src/modding/NewModGUI.cs:169
-#, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr ""
-"Хемопласт - это двумембранная структура из белков, способная превращать "
-"сероводород, воду и углекислый газ в глюкозу в процессе Сероводородного "
-"Хемосинтеза. Скорость производства глюкозы зависит от концентрации "
-"углекислого газа в атмосфере."
+msgstr "Мой потрясающий мод"
 
 #: ../src/modding/NewModGUI.cs:226
 msgid "INVALID_URL_FORMAT"
-msgstr ""
+msgstr "Неверный формат URL"
 
 #: ../src/modding/NewModGUI.cs:238
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "Требуется внутреннее имя"
 
 #: ../src/modding/NewModGUI.cs:244
 msgid "INTERNAL_NAME_IN_USE"
@@ -3807,14 +3768,12 @@ msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
 #: ../src/modding/NewModGUI.cs:274
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Авто-эво не удалось запустить"
+msgstr "Дополнительные проверки обнаружили проблему: {0}"
 
 #: ../src/modding/NewModGUI.tscn:35
-#, fuzzy
 msgid "CREATE_NEW_MOD"
-msgstr "Создать нового микроба"
+msgstr "Создать новый мод"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
@@ -3822,7 +3781,7 @@ msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
-msgstr ""
+msgstr "наша Wiki"
 
 #: ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"

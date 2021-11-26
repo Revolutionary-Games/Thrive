@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-25 18:07+0200\n"
-"PO-Revision-Date: 2021-11-24 16:56+0000\n"
+"PO-Revision-Date: 2021-11-26 16:55+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/hu/>\n"
@@ -24,14 +24,15 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:"
-"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
-"input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a "
+"A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:in"
+"put]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],"
+"[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a "
 "forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a "
 "[thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha "
-"rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:"
-"input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy "
-"kikapcsolni."
+"rendelkezel mérget tartalmazó sejtnedvüreggel. A "
+"[thrive:input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, "
+"vagy kikapcsolni. Az egér görgőjével tudsz közelíteni a sejtedhez, és "
+"távolodni a sejtedtől."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -361,6 +362,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
+"A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok értelme "
+"van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit más "
+"fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be tudod-e "
+"őket azonosítani."
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
@@ -603,7 +608,7 @@ msgstr "Anaerob Nitrifikáció"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:122
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr ""
+msgstr "Vas oxidálása"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:3
 msgid "EPIPELAGIC"
@@ -939,7 +944,7 @@ msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:507
 msgid "RUN_RESULT_HAS_A_MUTATION"
-msgstr ""
+msgstr "mutációval rendelkezik"
 
 #: ../src/auto-evo/RunResults.cs:512
 msgid "RUN_RESULT_GENE_CODE"
@@ -947,11 +952,11 @@ msgstr "gén kód:"
 
 #: ../src/auto-evo/RunResults.cs:523
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "ezen patch-ekben terjed:"
 
 #: ../src/auto-evo/RunResults.cs:532
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0}, úgy, hogy {1} egyed vándorolt át ebből a patch-ből: {2}"
 
 #: ../src/auto-evo/RunResults.cs:551
 msgid "RUN_RESULT_POP_IN_PATCHES"
@@ -1396,7 +1401,7 @@ msgstr "Bezár"
 
 #: ../src/general/MainMenu.cs:224
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Belépve mint: {0}"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
@@ -1446,7 +1451,7 @@ msgstr "Vissza"
 
 #: ../src/general/MainMenu.tscn:362
 msgid "MODS"
-msgstr ""
+msgstr "Modok"
 
 #: ../src/general/MainMenu.tscn:376
 msgid "ART_GALLERY"
@@ -1582,7 +1587,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:390
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr ""
+msgstr "GUI fényeffektjeinek engedélyezése"
 
 #: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
@@ -1792,7 +1797,7 @@ msgstr "Hiba"
 
 #: ../src/general/OptionsMenu.tscn:1339
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Hiba: A beállításokat nem sikerült menteni."
 
 #: ../src/general/OptionsMenu.tscn:1347
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
@@ -1800,12 +1805,13 @@ msgstr "Próbálj pár képernyőképet készíteni!"
 
 #: ../src/general/OptionsMenu.tscn:1349
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr ""
+msgstr "A képernyőképmappa nem található"
 
 #: ../src/general/PauseMenu.cs:247
-#, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
-msgstr "Vissza a menübe"
+msgstr ""
+"Biztos vissza akarsz lépni a főmenübe?\n"
+"Az eddigi teljesítményeid el fognak veszni (hacsak nem mentettél)."
 
 #: ../src/general/PauseMenu.cs:263
 msgid "QUIT_GAME_WARNING"
@@ -1935,7 +1941,7 @@ msgstr "Fő teszterek"
 
 #: ../src/gui_common/CreditsScroll.cs:274
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Fő projekt menedzser"
 
 #: ../src/gui_common/CreditsScroll.cs:275
 msgid "LEAD_PROJECT_MANAGERS"
@@ -2021,7 +2027,7 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
+msgstr "Pull requestek / Programozás"
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "VIP_PATRONS"
@@ -2152,6 +2158,9 @@ msgstr ""
 #: ../src/gui_common/TweakedColourPicker.cs:492
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"Szín: {0}\n"
+"Bal egérgomb: beállítás használata\n"
+"Jobb egérgomb: beállítás törlése"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:42
 msgid "HSV"
@@ -2163,7 +2172,7 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Nincs adat"
 
 #: ../src/gui_common/charts/line/LineChart.cs:949
 #: ../src/gui_common/charts/line/LineChart.cs:978
@@ -2183,16 +2192,15 @@ msgstr "OK"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Hiba másolása vágólapra"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:34
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
-#, fuzzy
 msgid "THRIVE_LICENSES"
-msgstr "Licenszek"
+msgstr "Thrive licenszek"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
@@ -2200,11 +2208,11 @@ msgstr "A Thrive egyes részeire vonatkozó licenszek itt láthatóak"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Nyisd meg a menüt"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:53
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Nyisd meg a segítség ablakot"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:67
 msgid "WILL_YOU_THRIVE"
@@ -2224,7 +2232,7 @@ msgstr "Utolsó akció visszavonása"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Vond vissza az előző műveletet"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "CREATE_A_NEW_MICROBE"
@@ -2304,10 +2312,19 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:267
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
+"[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:"
+"compound type=\"atp\"][/thrive:compound]-vé."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:268
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
+"A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, "
+"víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az "
+"egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. "
+"Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, "
+"hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk "
+"az energia előállítására. A sejtek még használják molekulák raktáraként, és "
+"hogy ezzel növelni tudják méretüket."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:383
@@ -2354,11 +2371,14 @@ msgstr "Tárhely"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2888
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3158
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Ozmoreguláció ára"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:365
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
+"[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:"
+"compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:"
+"compound type=\"oxygen\"][/thrive:compound] mennyiségétől."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:366
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -2959,9 +2979,12 @@ msgid "ATP_BALANCE"
 msgstr "ATP egyensúly"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1996
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
-msgstr "Növeli a sejt tárkapacitását."
+msgstr ""
+"Ez a panel megmutatja a szerkesztett élőlényeknek az auto-evo által "
+"megbecsült populációinak egyedszámait.\n"
+"Az auto-evo egy populáció szimulációt futtat, ami a saját fajod populációját "
+"(és a játék teljesítményét) is befolyásolja."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1999
 #, fuzzy
@@ -3221,9 +3244,8 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
 #: ../src/modding/ModManager.cs:501
-#, fuzzy
 msgid "NO_SELECTED_MOD"
-msgstr "Kijelölve:"
+msgstr "Egy mod sincs kijelölve"
 
 #: ../src/modding/ModManager.cs:861
 #, fuzzy
@@ -3321,9 +3343,11 @@ msgid "NEW"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:527
-#, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Betöltöd ezt az érvénytelen mentést?"
+msgstr ""
+"Megjegyzés: sok modnál szükség van a játék újraindítására, hogy betöltsenek, "
+"vagy törlődjenek. Csak azokat a modokat töltsd be, melyekben megbízol, mivel "
+"ezek futtatható kódokat tartalmazhatnak."
 
 #: ../src/modding/ModManager.tscn:553
 #, fuzzy
@@ -3358,11 +3382,8 @@ msgid "MOD_NAME"
 msgstr "Név:"
 
 #: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
-#, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr ""
-"Minél merevebb egy sejt membránja, annál ellenállóbb, de nehezebben fog "
-"tudni mozogni."
+msgstr "Mod hosszú leírása:"
 
 #: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
@@ -3373,9 +3394,8 @@ msgid "MOD_INFO_URL"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
-#, fuzzy
 msgid "MOD_LICENSE"
-msgstr "Licenszek"
+msgstr "Mod licensze:"
 
 #: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
@@ -3411,19 +3431,16 @@ msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:273
-#, fuzzy
 msgid "MISSING_TITLE"
-msgstr "TÚLÉLTÉL!"
+msgstr "Nincs cím"
 
 #: ../src/modding/ModUploader.cs:279
-#, fuzzy
 msgid "MISSING_DESCRIPTION"
-msgstr "Leírás:"
+msgstr "Nincs leírás"
 
 #: ../src/modding/ModUploader.cs:287
-#, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
-msgstr "Leírás:"
+msgstr "A leírás túl hosszú"
 
 #: ../src/modding/ModUploader.cs:295
 msgid "TAGS_IS_WHITESPACE"
@@ -3440,9 +3457,8 @@ msgid "CREATING_DOT_DOT_DOT"
 msgstr "Keresés..."
 
 #: ../src/modding/ModUploader.cs:373
-#, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "A mentés sikertelen! Hiba történt"
+msgstr "Az információ mentése sikertelen a következő ok miatt: {0}"
 
 #: ../src/modding/ModUploader.cs:415
 #, fuzzy
@@ -3462,9 +3478,8 @@ msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
-#, fuzzy
 msgid "FORM_ERROR_MESSAGE"
-msgstr "Mentési hiba"
+msgstr "Hiba: {0}"
 
 #: ../src/modding/ModUploader.tscn:43
 msgid "MOD_UPLOADER"
@@ -3485,9 +3500,8 @@ msgid "CREATE_NEW"
 msgstr "Új mentés létrehozása"
 
 #: ../src/modding/ModUploader.tscn:128
-#, fuzzy
 msgid "ENTER_EXISTING_ID"
-msgstr "Létező mentés felülírása:"
+msgstr "Írj be egy létező ID-t"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
@@ -3502,16 +3516,12 @@ msgid "APPLY"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:168
-#, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "Tárgy neve:"
 
 #: ../src/modding/ModUploader.tscn:186
-#, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
-"Minél merevebb egy sejt membránja, annál ellenállóbb, de nehezebben fog "
-"tudni mozogni."
+msgstr "Tárgy leírása:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -3543,11 +3553,8 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "Sikeres mentés"
 
 #: ../src/modding/NewModGUI.cs:169
-#, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr ""
-"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
-"{0}"
+msgstr "Az én király modom"
 
 #: ../src/modding/NewModGUI.cs:226
 msgid "INVALID_URL_FORMAT"
@@ -3588,9 +3595,8 @@ msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:450
-#, fuzzy
 msgid "CREATE"
-msgstr "Létrehozva ekkor:"
+msgstr "Létrehozás"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
