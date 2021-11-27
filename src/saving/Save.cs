@@ -231,7 +231,11 @@ public class Save
     private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string tempScreenshot)
     {
         using var file = new File();
-        file.Open(target, File.ModeFlags.Write);
+        if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
+        {
+            GD.PrintErr("Cannot open file to write.");
+            throw new Exception("Cannot open: " + target);
+        }
 
         using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
