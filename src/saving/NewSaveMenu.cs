@@ -17,8 +17,12 @@ public class NewSaveMenu : Control
     [Export]
     public NodePath OverwriteConfirmPath;
 
+    [Export]
+    public NodePath SaveButtonPath;
+
     private SaveList saveList;
     private LineEdit saveNameBox;
+    private Button saveButton;
     private CustomConfirmationDialog overwriteConfirm;
 
     private bool usingSelectedSaveName;
@@ -33,6 +37,7 @@ public class NewSaveMenu : Control
     {
         saveList = GetNode<SaveList>(SaveListPath);
         saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
+        saveButton = GetNode<Button>(SaveButtonPath);
         overwriteConfirm = GetNode<CustomConfirmationDialog>(OverwriteConfirmPath);
     }
 
@@ -130,6 +135,20 @@ public class NewSaveMenu : Control
 
         saveNameBox.Text = selected.Last().SaveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
         usingSelectedSaveName = true;
+    }
+
+    private void OnSaveNameTextChanged(string newName)
+    {
+        if (newName.Length != 0 && newName.All(Constants.SAVE_NAME_DICT.Contains))
+        {
+            saveNameBox.Set("custom_colors/font_color", new Color(1, 1, 1));
+            saveButton.Disabled = false;
+        }
+        else
+        {
+            saveNameBox.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+            saveButton.Disabled = true;
+        }
     }
 
     private void OnSaveNameTextEntered(string newName)

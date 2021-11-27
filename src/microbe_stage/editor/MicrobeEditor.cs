@@ -574,7 +574,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         // Update name
         var match = Regex.Match(NewName, Constants.SPECIES_NAME_REGEX);
-        if (match.Success)
+        if (match.Success && NewName.All(Constants.SPECIES_NAME_DICT.Contains))
         {
             editedSpecies.Genus = match.Groups["genus"].Value;
             editedSpecies.Epithet = match.Groups["epithet"].Value;

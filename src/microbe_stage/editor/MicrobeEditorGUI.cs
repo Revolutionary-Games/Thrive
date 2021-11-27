@@ -2037,7 +2037,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnSpeciesNameTextChanged(string newText)
     {
-        if (!Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
+        if (!Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX) || !newText.All(Constants.SPECIES_NAME_DICT.Contains))
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
         }
@@ -2055,7 +2055,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.NewName = newText;
 
         // Only defocus if the name is valid to indicate invalid namings to the player
-        if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
+        if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX) && newText.All(Constants.SPECIES_NAME_DICT.Contains))
         {
             speciesNameEdit.ReleaseFocus();
         }
