@@ -202,6 +202,16 @@ public class PauseMenu : ControlWithInput
         helpScreen.RandomizeEasterEgg();
     }
 
+    public void SetNewSaveName(string name)
+    {
+        saveMenu.SetSaveName(name, true);
+    }
+
+    public void SetNewSaveNameFromSpeciesName()
+    {
+        SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
     private Control GetControlFromMenuEnum(ActiveMenuType value)
     {
         return value switch

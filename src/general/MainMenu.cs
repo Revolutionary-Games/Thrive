@@ -44,6 +44,9 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath StoreLoggedInDisplayPath;
 
+    [Export]
+    public NodePath ModManagerPath;
+
     public Array MenuArray;
     public TextureRect Background;
 
@@ -53,6 +56,7 @@ public class MainMenu : NodeWithInput
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
     private SaveManagerGUI saves;
+    private ModManager modManager;
 
     private Control creditsContainer;
     private CreditsScroll credits;
@@ -75,7 +79,7 @@ public class MainMenu : NodeWithInput
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
         {
-            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
+            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm", 0.65f);
             TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
         }
         else
@@ -159,6 +163,7 @@ public class MainMenu : NodeWithInput
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
         licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
         storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
+        modManager = GetNode<ModManager>(ModManagerPath);
 
         MenuArray?.Clear();
 
@@ -296,7 +301,7 @@ public class MainMenu : NodeWithInput
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
             TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
+            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm", 0.65f);
         }
         else
         {
@@ -432,6 +437,29 @@ public class MainMenu : NodeWithInput
     private void OnReturnFromLicenses()
     {
         SetCurrentMenu(2, false);
+
+        thriveLogo.Show();
+    }
+
+    private void ModsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the mods view
+        modManager.Visible = true;
+        modManager.OnOpened();
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromMods()
+    {
+        modManager.Visible = false;
+
+        SetCurrentMenu(0, false);
 
         thriveLogo.Show();
     }

@@ -400,7 +400,7 @@ public class CreditsScroll : Container
         // This is purposefully not translatable
         var extraLicenseInfo = CreateDynamicPart(offset,
             "Godot and other license texts should have been provided along with this copy of Thrive\n" +
-            "if not, please visit our Github at \nhttps://github.com/Revolutionary-Games/Thrive/tree/master/doc" +
+            "if not, please visit our Github at \nhttps://github.com/Revolutionary-Games/Thrive/tree/master/doc " +
             "to find the licenses.\n\nThrive assets are licensed under the\n" +
             "Creative Commons Attribution-ShareAlike 3.0 Unported License");
 
