@@ -430,6 +430,11 @@ public static class Constants
     /// </summary>
     public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
+    /// <summary>
+    ///   Maximum number of species kept in a patch at the end of auto-evo
+    /// </summary>
+    public const int AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH = 10;
+
     // Auto evo population algorithm tweak variables
     // TODO: move all of these into auto-evo_parameters.json
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 200;

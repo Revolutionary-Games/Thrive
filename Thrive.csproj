@@ -19,6 +19,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
     <Compile Include="simulation_parameters\GameCredits.cs" />
@@ -366,7 +367,6 @@
   <ItemGroup>
     <Folder Include="shaders\" />
     <Folder Include="src\microbe_stage\organelle_components\" />
-    <Folder Include="src\auto-evo\steps\" />
     <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>
   <ItemGroup>

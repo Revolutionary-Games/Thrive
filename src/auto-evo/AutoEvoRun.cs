@@ -358,6 +358,12 @@ public class AutoEvoRun
             {
                 steps.Enqueue(new IncreaseBiodiversity(map, entry.Value, random, autoEvoConfiguration));
             }
+
+            // TODO use autoEvoConfig here
+            if (entry.Value.SpeciesInPatch.Count > Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
+            {
+                steps.Enqueue(new ForceExtinction(entry.Value));
+            }
         }
 
         // The new populations don't depend on the mutations, this is so that when
