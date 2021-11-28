@@ -23,11 +23,9 @@ public class MarineSnowFoodSource : FoodSource
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        var predatorSpeed = microbeSpecies.BaseSpeed;
-
         var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch);
 
-        predatorSpeed += energyBalance.FinalBalance;
+        var predatorSpeed = microbeSpecies.BaseSpeed + energyBalance.FinalBalance;
 
         var score = predatorSpeed * species.Behaviour.Activity;
 
