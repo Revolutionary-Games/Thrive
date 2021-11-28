@@ -36,6 +36,8 @@
         {
             var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
+            config.SetPatchesToRunBySpeciesPresence(species);
+
             PopulationSimulation.Simulate(config);
 
             var population = config.Results.GetGlobalPopulation(species);
@@ -52,6 +54,11 @@
                 return new AttemptResult(null, -1);
 
             var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+
+            config.SetPatchesToRunBySpeciesPresence(species);
+            config.PatchesToRun.Add(migration.From);
+            config.PatchesToRun.Add(migration.To);
+
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
             // TODO: this could be faster to just simulate the source and
