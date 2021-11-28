@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Godot;
-using Godot.Collections;
+﻿using Godot;
 
 /// <summary>
 ///   Applies the tint to the defined children
