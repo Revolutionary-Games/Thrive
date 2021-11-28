@@ -14,7 +14,7 @@
 [ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.tscn" type="PackedScene" id=12]
 [ext_resource path="res://shaders/EditorHexGrid.shader" type="Shader" id=13]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/textures/editor_grid.png" type="Texture" id=15]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=15]
 [ext_resource path="res://assets/textures/gui/bevel/buttonDisabled.png" type="Texture" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=17]
 [ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=18]
@@ -87,7 +87,6 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=102]
 [ext_resource path="res://src/gui_common/charts/line/LineChart.tscn" type="PackedScene" id=103]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=107]
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=108]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=109]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -775,7 +774,7 @@ custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
@@ -798,7 +797,7 @@ custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
@@ -820,7 +819,7 @@ custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
@@ -2431,7 +2430,7 @@ margin_right = 638.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
 size_flags_vertical = 8
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -2445,7 +2444,7 @@ margin_right = 742.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
 size_flags_vertical = 8
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 disabled = true
 toggle_mode = true
 action_mode = 0
@@ -2459,7 +2458,7 @@ margin_right = 846.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
 size_flags_vertical = 8
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 disabled = true
 toggle_mode = true
 action_mode = 0
@@ -3827,7 +3826,7 @@ custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 pressed = true
@@ -3849,7 +3848,7 @@ custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 action_mode = 0
@@ -3870,7 +3869,7 @@ custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 108 )
+custom_fonts/font = ExtResource( 15 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 action_mode = 0
