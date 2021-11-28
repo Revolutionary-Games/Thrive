@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Controls the cutscene
+///   Controls a video cutscene
 /// </summary>
 public class Cutscene : CanvasLayer, ITransition
 {
@@ -23,6 +23,15 @@ public class Cutscene : CanvasLayer, ITransition
     {
         get => cutsceneVideoPlayer.Stream;
         set => cutsceneVideoPlayer.Stream = value;
+    }
+
+    /// <summary>
+    ///   The video player's volume in linear value.
+    /// </summary>
+    public float Volume
+    {
+        get => cutsceneVideoPlayer.Volume;
+        set => cutsceneVideoPlayer.Volume = value;
     }
 
     public override void _Ready()
