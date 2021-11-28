@@ -9,7 +9,7 @@ or if you are a team member you can ask on the development discord or open a git
 
 If you are a team member you can ask for help on the [Private
 Developer
-Forums](https://forum.revolutionarygamesstudio.com/c/programming)
+Forums](https://forum.revolutionarygamesstudio.com/c/programming/14)
 
 You can also join and ask on our [community
 discord](https://discordapp.com/invite/FZxDQ4H) please use the
@@ -389,7 +389,8 @@ package manager to install it.
 
 On windows it is recommended to use RubyInstaller, version 2.4 or
 newer, when installing make sure to also install the MSYS option in
-order to be able to install gems.
+order to be able to install gems and allow the ridk post-install step
+to run.
 
 After installing ruby open a terminal / command prompt and run:
 

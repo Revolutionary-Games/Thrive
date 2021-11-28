@@ -7,13 +7,16 @@
     {
         private int variantsToTry;
         private bool tryCurrentVariant;
+        private bool storeSecondBest;
 
         private IAttemptResult currentBest;
+        private IAttemptResult secondBest;
 
-        protected VariantTryingStep(int variantsToTry, bool tryCurrentVariant)
+        protected VariantTryingStep(int variantsToTry, bool tryCurrentVariant, bool storeSecondBest = false)
         {
             this.variantsToTry = variantsToTry;
             this.tryCurrentVariant = tryCurrentVariant;
+            this.storeSecondBest = storeSecondBest;
         }
 
         public interface IAttemptResult
@@ -33,10 +36,7 @@
             {
                 var result = TryCurrentVariant();
 
-                if (currentBest == null || result.Score > currentBest.Score)
-                {
-                    currentBest = result;
-                }
+                CheckScore(result);
 
                 tryCurrentVariant = false;
                 ran = true;
@@ -46,10 +46,7 @@
             {
                 var result = TryVariant();
 
-                if (currentBest == null || result.Score > currentBest.Score)
-                {
-                    currentBest = result;
-                }
+                CheckScore(result);
 
                 --variantsToTry;
             }
@@ -80,5 +77,27 @@
         /// <param name="results">Results to apply the found solution to.</param>
         /// <param name="bestVariant">Best variant found.</param>
         protected abstract void OnBestResultFound(RunResults results, IAttemptResult bestVariant);
+
+        protected IAttemptResult GetSecondBest()
+        {
+            return secondBest;
+        }
+
+        private void CheckScore(IAttemptResult result)
+        {
+            if (currentBest == null || result.Score > currentBest.Score)
+            {
+                if (storeSecondBest)
+                    secondBest = currentBest;
+
+                currentBest = result;
+                return;
+            }
+
+            if (storeSecondBest && (secondBest == null || result.Score > secondBest.Score))
+            {
+                secondBest = result;
+            }
+        }
     }
 }

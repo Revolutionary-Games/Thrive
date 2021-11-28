@@ -70,8 +70,7 @@ public class CallbackConverter : JsonConverter
             // ReSharper restore PossibleNullReferenceException
         }
         catch (Exception e) when (
-            e is NullReferenceException ||
-            e is ArgumentNullException)
+            e is NullReferenceException or ArgumentNullException)
         {
             throw new JsonException("can't read callback (missing property)", e);
         }
@@ -106,8 +105,7 @@ public class CallbackConverter : JsonConverter
             // ReSharper restore PossibleNullReferenceException
         }
         catch (Exception e) when (
-            e is NullReferenceException ||
-            e is ArgumentNullException)
+            e is NullReferenceException or ArgumentNullException)
         {
             throw new JsonException("can't read callback (missing property)", e);
         }

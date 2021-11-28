@@ -16,6 +16,7 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 require_relative 'scripts/check_file_list'
 require_relative 'scripts/po_helpers'
 require_relative 'scripts/json_helpers'
+require_relative 'scripts/steam_version_helpers'
 
 MAX_LINE_LENGTH = 120
 DUPLICATE_THRESHOLD = 105
@@ -31,6 +32,7 @@ DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localiza
 
 LOCALE_TEMP_SUFFIX = '.temp_check'
 TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
+GIT_MERGE_CONFLICT_MARKERS = /^<{7}\s+\S+\s*$/.freeze
 NODE_NAME_REGEX = /\[node\s+name="([^"]+)"/.freeze
 NODE_NAME_UPPERCASE_REQUIRED_LENGTH = 25
 NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
@@ -205,6 +207,14 @@ def required_babel_thrive_version
   raise "Could not read required Babel-Thrive verion from #{REQUIREMENTS_TXT_FILE}."
 end
 
+def contains_merge_marker(line)
+  line =~ GIT_MERGE_CONFLICT_MARKERS
+end
+
+def merge_error(line_number)
+  error "Line #{line_number + 1} contains a merge conflict marker"
+end
+
 def file_begins_with_bom(path)
   raw_data = File.binread(path, 3)
 
@@ -271,7 +281,15 @@ def handle_cs_file(path)
 end
 
 def handle_json_file(path)
-  digest_before = Digest::MD5.hexdigest File.read(path, encoding: 'utf-8')
+  contents = File.read(path, encoding: 'utf-8')
+  if contains_merge_marker(contents)
+    OUTPUT_MUTEX.synchronize do
+      error 'Contains a merge conflict marker'
+    end
+    return true
+  end
+
+  digest_before = Digest::MD5.hexdigest contents
 
   unless jsonlint_on_file(path)
     OUTPUT_MUTEX.synchronize do
@@ -296,6 +314,13 @@ def handle_shader_file(path)
   errors = false
 
   File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if contains_merge_marker(line)
+      OUTPUT_MUTEX.synchronize do
+        merge_error(line_number)
+        errors = true
+      end
+    end
+
     if line.include? "\t"
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} contains a tab"
@@ -323,6 +348,13 @@ def handle_tscn_file(path)
   File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
     # For some reason this reports 1 too high
     length = line.length - 1
+
+    if contains_merge_marker(line)
+      OUTPUT_MUTEX.synchronize do
+        merge_error(line_number)
+        errors = true
+      end
+    end
 
     if length > SCENE_EMBEDDED_LENGTH_HEURISTIC
       OUTPUT_MUTEX.synchronize do
@@ -407,6 +439,13 @@ def handle_export_presets(path)
   required_version = game_version
 
   File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if contains_merge_marker(line)
+      OUTPUT_MUTEX.synchronize do
+        merge_error(line_number)
+        errors = true
+      end
+    end
+
     matches = line.match(CFG_VERSION_LINE)
 
     if matches
@@ -445,6 +484,13 @@ def handle_po_file(path)
   msg_ids = Set[]
 
   File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if contains_merge_marker(line)
+      OUTPUT_MUTEX.synchronize do
+        merge_error(line_number)
+        errors = true
+      end
+    end
+
     if is_english && line.match(FUZZY_TRANSLATION_REGEX)
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} has fuzzy (marked needs changes) translation, not allowed for en"
@@ -620,6 +666,13 @@ def run_files
       end
       raise e
     end
+  end
+
+  if steam_build_enabled?
+    OUTPUT_MUTEX.synchronize do
+      puts 'Steam build is enabled, it should not be enabled when committing'
+    end
+    issues_found = true
   end
 
   return unless issues_found

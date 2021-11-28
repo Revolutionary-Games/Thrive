@@ -31,6 +31,19 @@
         private readonly ConcurrentDictionary<Species, SpeciesResult> results =
             new ConcurrentDictionary<Species, SpeciesResult>();
 
+        public enum NewSpeciesType
+        {
+            /// <summary>
+            ///   New species was created as there was lack of species / empty niche so to speak for it to fill
+            /// </summary>
+            FillNiche,
+
+            /// <summary>
+            ///   The new species was added due to experiencing different selection pressure
+            /// </summary>
+            SplitDueToMutation,
+        }
+
         public void AddMutationResultForSpecies(Species species, Species mutated)
         {
             MakeSureResultExistsForSpecies(species);
@@ -57,10 +70,65 @@
             results[species].SpreadToPatches.Add(migration);
         }
 
+        /// <summary>
+        ///   Removes migrations specified for species for to/from patches where it split
+        /// </summary>
+        /// <param name="species">The species to check</param>
+        public void RemoveMigrationsForSplitPatches(Species species)
+        {
+            SpeciesResult result;
+
+            lock (results)
+            {
+                if (!results.TryGetValue(species, out result))
+                    return;
+            }
+
+            if (result.SplitOffPatches == null)
+                return;
+
+            result.SpreadToPatches.RemoveAll(s =>
+                result.SplitOffPatches.Contains(s.From) || result.SplitOffPatches.Contains(s.To));
+        }
+
+        public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPatches,
+            NewSpeciesType addType, Species parentSpecies)
+        {
+            MakeSureResultExistsForSpecies(species);
+
+            results[species].NewlyCreated = addType;
+            results[species].SplitFrom = parentSpecies;
+
+            foreach (var initialPatch in initialPatches)
+            {
+                results[species].NewPopulationInPatches[initialPatch.Key] = Math.Max(initialPatch.Value, 0);
+            }
+        }
+
+        public void AddSplitResultForSpecies(Species species, Species splitSpecies, List<Patch> patchesToConvert)
+        {
+            if (patchesToConvert == null || patchesToConvert.Count < 1)
+                throw new ArgumentException("split patches is missing", nameof(patchesToConvert));
+
+            MakeSureResultExistsForSpecies(species);
+            MakeSureResultExistsForSpecies(splitSpecies);
+
+            results[species].SplitOff = splitSpecies;
+            results[species].SplitOffPatches = patchesToConvert;
+
+            results[splitSpecies].NewlyCreated = NewSpeciesType.SplitDueToMutation;
+            results[splitSpecies].SplitFrom = species;
+        }
+
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
             foreach (var entry in results)
             {
+                if (entry.Value.NewlyCreated != null)
+                {
+                    world.RegisterAutoEvoCreatedSpecies(entry.Key);
+                }
+
                 if (!skipMutations && entry.Value.MutatedProperties != null)
                 {
                     entry.Key.ApplyMutation(entry.Value.MutatedProperties);
@@ -79,6 +147,34 @@
                     else
                     {
                         GD.PrintErr("RunResults has population of a species for invalid patch");
+                    }
+                }
+
+                if (entry.Value.NewlyCreated != null)
+                {
+                    // If we split off from a species that didn't take a population hit, we need to register ourselves
+                    bool register = false;
+                    if (entry.Value.SplitFrom == null)
+                    {
+                        register = true;
+                    }
+                    else if (results[entry.Value.SplitFrom].SplitOff != entry.Key)
+                    {
+                        register = true;
+                    }
+
+                    if (register)
+                    {
+                        foreach (var populationEntry in entry.Value.NewPopulationInPatches)
+                        {
+                            var patch = world.Map.GetPatch(populationEntry.Key.ID);
+
+                            if (patch?.AddSpecies(entry.Key, populationEntry.Value) != true)
+                            {
+                                GD.PrintErr(
+                                    "RunResults has new species with invalid patch or it was failed to be added");
+                            }
+                        }
                     }
                 }
 
@@ -110,45 +206,95 @@
                         }
                     }
                 }
+
+                if (entry.Value.SplitOff != null)
+                {
+                    if (entry.Value.SplitOffPatches != null)
+                    {
+                        // Set populations to 0 for the patches that moved and replace the results for the split off
+                        // species with those
+                        foreach (var splitOffPatch in entry.Value.SplitOffPatches)
+                        {
+                            var patch = world.Map.GetPatch(splitOffPatch.ID);
+
+                            if (patch == null)
+                            {
+                                GD.PrintErr("RunResults has a species split in an invalid patch");
+                                continue;
+                            }
+
+                            var population = patch.GetSpeciesPopulation(entry.Key);
+
+                            if (population <= 0)
+                                continue;
+
+                            if (!patch.UpdateSpeciesPopulation(entry.Key, 0))
+                            {
+                                GD.PrintErr("RunResults failed to update population for a species that split");
+                            }
+
+                            if (!patch.AddSpecies(entry.Value.SplitOff, population))
+                            {
+                                GD.PrintErr("RunResults failed to add species to patch that split off");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        GD.PrintErr("List of split off patches is null, can't actually perform the split");
+                    }
+                }
             }
         }
 
         /// <summary>
         ///   Sums up the populations of a species (ignores negative population)
         /// </summary>
+        /// <param name="species">The species to calculate population for</param>
+        /// <param name="resolveMigrations">If true migrations effects on population are taken into account</param>
+        /// <param name="resolveSplits">If true species splits are taken into account in population numbers</param>
+        /// <returns>The global population</returns>
         /// <remarks>
         ///   <para>
         ///     Throws an exception if no population is found
         ///   </para>
         /// </remarks>
-        public long GetGlobalPopulation(Species species, bool resolveMoves = false)
+        public long GetGlobalPopulation(Species species, bool resolveMigrations = false, bool resolveSplits = false)
         {
             long result = 0;
 
             foreach (var entry in results[species].NewPopulationInPatches)
             {
-                var population = entry.Value;
-
-                if (resolveMoves)
+                if (!resolveMigrations)
                 {
-                    foreach (var migration in results[species].SpreadToPatches)
+                    result += Math.Max(entry.Value, 0);
+                    continue;
+                }
+
+                var adjustedPopulation = entry.Value;
+
+                foreach (var migration in results[species].SpreadToPatches)
+                {
+                    if (migration.From == entry.Key)
                     {
-                        if (migration.From == entry.Key)
-                        {
-                            population -= migration.Population;
-                        }
-                        else if (migration.To == entry.Key)
-                        {
-                            population += migration.Population;
-                        }
+                        adjustedPopulation -= migration.Population;
+                    }
+                    else if (migration.To == entry.Key)
+                    {
+                        adjustedPopulation += migration.Population;
                     }
                 }
 
-                result += Math.Max(population, 0);
+                if (resolveSplits && results[species].SplitOffPatches?.Contains(entry.Key) == true)
+                {
+                    adjustedPopulation = 0;
+                }
+
+                result += Math.Max(adjustedPopulation, 0);
             }
 
-            // Find patches that were moved to but don't include population results
-            if (resolveMoves)
+            // Find patches that were migrated to but don't include population results
+            if (resolveMigrations)
             {
                 foreach (var migration in results[species].SpreadToPatches)
                 {
@@ -170,15 +316,58 @@
                 }
             }
 
+            // Patches that were this split off in
+            if (resolveSplits && results[species].SplitFrom != null)
+            {
+                var splitFromData = results[results[species].SplitFrom];
+
+                if (splitFromData.SplitOffPatches != null && splitFromData.SplitOff == species)
+                {
+                    foreach (var patch in splitFromData.SplitOffPatches)
+                    {
+                        result += Math.Max(splitFromData.NewPopulationInPatches[patch], 0);
+                    }
+                }
+            }
+
             return result;
         }
 
         /// <summary>
-        ///   variant of GetGlobalPopulation for a single patch
+        ///   Variant of GetGlobalPopulation for a single patch
         /// </summary>
         public long GetPopulationInPatch(Species species, Patch patch)
         {
             return Math.Max(results[species].NewPopulationInPatches[patch], 0);
+        }
+
+        /// <summary>
+        ///   Variant of GetGlobalPopulation for a single patch that returns null if patch not found
+        /// </summary>
+        public long? GetPopulationInPatchIfExists(Species species, Patch patch)
+        {
+            if (results[species].NewPopulationInPatches.TryGetValue(patch, out long population))
+            {
+                return Math.Max(population, 0);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///   Returns all patches that have population for the given species
+        /// </summary>
+        /// <param name="species">The species to get population for</param>
+        /// <returns>The patches along with the population amount</returns>
+        public IEnumerable<KeyValuePair<Patch, long>> GetPopulationInPatches(Species species)
+        {
+            foreach (var newPopulationInPatch in results[species].NewPopulationInPatches)
+            {
+                if (newPopulationInPatch.Value <= 0)
+                    continue;
+
+                yield return newPopulationInPatch;
+            }
         }
 
         /// <summary>
@@ -199,10 +388,12 @@
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
         /// <param name="playerReadable">if true ids are removed from the output</param>
         /// <param name="effects">if not null these effects are applied to the population numbers</param>
+        /// <returns>The generated summary text</returns>
         public string MakeSummary(PatchMap previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect> effects = null)
         {
-            const bool resolveMoves = true;
+            const bool resolveMigrations = true;
+            const bool resolveSplits = true;
 
             var builder = new StringBuilder(500);
 
@@ -223,10 +414,12 @@
 
             void OutputPopulationForPatch(Species species, Patch patch, long population)
             {
+                builder.Append("  ");
+                var patchName = PatchString(patch);
+
                 if (population > 0)
                 {
-                    builder.Append("  ");
-                    builder.Append(PatchString(patch));
+                    builder.Append(patchName);
                     builder.Append(' ');
                     builder.Append(TranslationServer.Translate("POPULATION"));
                     builder.Append(' ');
@@ -234,9 +427,11 @@
                 }
                 else
                 {
-                    builder.Append("   ");
+                    // For some reason this line had one more space padding than the case that the population
+                    // wasn't extinct in this patch
+
                     builder.Append(string.Format(CultureInfo.CurrentCulture,
-                        TranslationServer.Translate("WENT_EXTINCT_IN"), PatchString(patch)));
+                        TranslationServer.Translate("WENT_EXTINCT_IN"), patchName));
                 }
 
                 if (previousPopulations != null)
@@ -254,6 +449,57 @@
             {
                 builder.Append(playerReadable ? entry.Species.FormattedName : entry.Species.FormattedIdentifier);
                 builder.Append(":\n");
+
+                if (entry.SplitFrom != null)
+                {
+                    builder.Append(' ');
+                    builder.Append(string.Format(CultureInfo.CurrentCulture,
+                        TranslationServer.Translate("RUN_RESULT_SPLIT_FROM"),
+                        playerReadable ? entry.SplitFrom.FormattedName : entry.SplitFrom.FormattedIdentifier));
+
+                    builder.Append('\n');
+                }
+
+                if (entry.NewlyCreated != null)
+                {
+                    builder.Append(' ');
+
+                    switch (entry.NewlyCreated.Value)
+                    {
+                        case NewSpeciesType.FillNiche:
+                            builder.Append(TranslationServer.Translate("RUN_RESULT_NICHE_FILL"));
+                            break;
+                        case NewSpeciesType.SplitDueToMutation:
+                            builder.Append(TranslationServer.Translate("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
+                            break;
+                        default:
+                            GD.PrintErr("Unhandled newly created species type: ", entry.NewlyCreated.Value);
+                            builder.Append(entry.NewlyCreated.Value);
+                            break;
+                    }
+
+                    builder.Append('\n');
+                }
+
+                if (entry.SplitOff != null)
+                {
+                    if (entry.SplitOffPatches == null)
+                        throw new InvalidOperationException("List of split off patches is null");
+
+                    builder.Append(' ');
+                    builder.Append(string.Format(CultureInfo.CurrentCulture,
+                        TranslationServer.Translate("RUN_RESULT_SPLIT_OFF_TO"),
+                        playerReadable ? entry.SplitOff.FormattedName : entry.SplitOff.FormattedIdentifier));
+                    builder.Append('\n');
+
+                    foreach (var patch in entry.SplitOffPatches)
+                    {
+                        builder.Append("   ");
+
+                        builder.Append(TranslationServer.Translate(patch.Name));
+                        builder.Append('\n');
+                    }
+                }
 
                 if (entry.MutatedProperties != null)
                 {
@@ -309,10 +555,19 @@
                 {
                     long adjustedPopulation = patchPopulation.Value;
 
-                    if (resolveMoves)
+                    if (resolveMigrations)
                     {
                         adjustedPopulation +=
                             CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
+                    }
+
+                    if (resolveSplits)
+                    {
+                        if (entry.SplitOffPatches?.Contains(patchPopulation.Key) == true)
+                        {
+                            // All population splits off
+                            adjustedPopulation = 0;
+                        }
                     }
 
                     // Apply external effects
@@ -354,7 +609,7 @@
 
                 // Also print new patches the species moved to (as the moves don't get
                 // included in newPopulationInPatches
-                if (resolveMoves)
+                if (resolveMigrations)
                 {
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
@@ -379,7 +634,25 @@
                     }
                 }
 
-                if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
+                // Print populations from splits
+                // Warning suppressed on resolveSplits to allow keeping the variable
+                // ReSharper disable once RedundantLogicalConditionalExpressionOperand
+                if (resolveSplits && entry.SplitFrom != null)
+                {
+                    var splitFrom = results[entry.SplitFrom];
+
+                    // Skip if the SplitFrom variable was used just to indicate this didn't pop out of thin air
+                    if (splitFrom.SplitOff == entry.Species)
+                    {
+                        foreach (var patchPopulation in splitFrom.SplitOffPatches)
+                        {
+                            OutputPopulationForPatch(entry.Species, patchPopulation,
+                                splitFrom.NewPopulationInPatches[patchPopulation]);
+                        }
+                    }
+                }
+
+                if (GetGlobalPopulation(entry.Species, resolveMigrations, resolveSplits) <= 0)
                 {
                     builder.Append(' ');
                     builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
@@ -395,6 +668,9 @@
 
         private void MakeSureResultExistsForSpecies(Species species)
         {
+            if (species == null)
+                throw new ArgumentException("species to add result to is null", nameof(species));
+
             lock (results)
             {
                 if (results.ContainsKey(species))
@@ -445,6 +721,27 @@
             ///   List of patches this species has spread to
             /// </summary>
             public List<SpeciesMigration> SpreadToPatches = new List<SpeciesMigration>();
+
+            /// <summary>
+            ///   If not null, this is a new species that was created
+            /// </summary>
+            public NewSpeciesType? NewlyCreated;
+
+            /// <summary>
+            ///   If set, the specified species split off from this species taking all the population listed in
+            ///   <see cref="SplitOffPatches"/>
+            /// </summary>
+            public Species SplitOff;
+
+            /// <summary>
+            ///   Patches that moved to the split off population
+            /// </summary>
+            public List<Patch> SplitOffPatches;
+
+            /// <summary>
+            ///   Info on which species this split from. Not used for anything other than informational display
+            /// </summary>
+            public Species SplitFrom;
 
             public SpeciesResult(Species species)
             {

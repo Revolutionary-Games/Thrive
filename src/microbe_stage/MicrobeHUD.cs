@@ -182,6 +182,9 @@ public class MicrobeHUD : Control
     private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
         new System.Collections.Generic.Dictionary<Species, int>();
 
+    private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
+        new System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl>();
+
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
     private VBoxContainer hoveredCompoundsContainer;
@@ -287,7 +290,7 @@ public class MicrobeHUD : Control
     {
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
 
-        winExtinctBoxHolder = GetNode<Control>("WinExtinctBoxHolder");
+        winExtinctBoxHolder = GetNode<Control>("../WinExtinctBoxHolder");
 
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
@@ -345,6 +348,13 @@ public class MicrobeHUD : Control
 
         SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
         Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
+
+        foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
+        {
+            var hoveredCompoundControl = new HoveredCompoundControl(compound);
+            hoveredCompoundControls.Add(compound, hoveredCompoundControl);
+            hoveredCompoundsContainer.AddChild(hoveredCompoundControl);
+        }
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -384,6 +394,17 @@ public class MicrobeHUD : Control
     public void Init(MicrobeStage stage)
     {
         this.stage = stage;
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            foreach (var hoveredCompoundControl in hoveredCompoundControls)
+            {
+                hoveredCompoundControl.Value.UpdateTranslation();
+            }
+        }
     }
 
     public void ResizeEnvironmentPanel(string mode)
@@ -650,21 +671,8 @@ public class MicrobeHUD : Control
 
         hoverInfoTimeElapsed = 0;
 
-        // Refresh compounds list
-
-        // Using QueueFree leaves a gap at the bottom of the panel
-        hoveredCompoundsContainer.FreeChildren();
-
         // Refresh cells list
         hoveredCellsContainer.FreeChildren();
-
-        if (mouseHoverPanel.RectSize != new Vector2(240, 80))
-            mouseHoverPanel.RectSize = new Vector2(240, 80);
-
-        if (mouseHoverPanel.MarginLeft != -240)
-            mouseHoverPanel.MarginLeft = -240;
-        if (mouseHoverPanel.MarginRight != 0)
-            mouseHoverPanel.MarginRight = 0;
 
         var container = mouseHoverPanel.GetNode("PanelContainer/MarginContainer/VBoxContainer");
         var mousePosLabel = container.GetNode<Label>("MousePos");
@@ -676,38 +684,27 @@ public class MicrobeHUD : Control
                 stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z) + "\n";
         }
 
-        if (stage.HoverInfo.HoveredCompounds.Count == 0)
+        // Show hovered compound information in GUI
+        bool anyCompoundVisible = false;
+        foreach (var compound in hoveredCompoundControls)
         {
-            hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = false;
-        }
-        else
-        {
-            hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = true;
+            var compoundControl = compound.Value;
+            stage.HoverInfo.HoveredCompounds.TryGetValue(compound.Key, out float amount);
 
-            // Create for each compound the information in GUI
-            foreach (var compound in stage.HoverInfo.HoveredCompounds)
+            // It is not useful to show trace amounts of a compound, so those are skipped
+            if (amount < Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE)
             {
-                // It is not useful to show trace amounts of a compound, so those are skipped
-                if (compound.Value < 0.1)
-                    continue;
-
-                var hBox = new HBoxContainer();
-                var compoundName = new Label();
-                var compoundValue = new Label();
-
-                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(compound.Key.InternalName, 20, 20);
-
-                compoundName.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-                compoundName.Text = compound.Key.Name;
-
-                compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", compound.Value);
-
-                hBox.AddChild(compoundIcon);
-                hBox.AddChild(compoundName);
-                hBox.AddChild(compoundValue);
-                hoveredCompoundsContainer.AddChild(hBox);
+                compoundControl.Visible = false;
+                continue;
             }
+
+            compoundControl.Category = GetCompoundDensityCategory(amount);
+            compoundControl.CategoryColor = GetCompoundDensityCategoryColor(amount);
+            compoundControl.Visible = true;
+            anyCompoundVisible = true;
         }
+
+        hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = anyCompoundVisible;
 
         // Show the species name and count of hovered cells
         hoveredSpeciesCounts.Clear();
@@ -743,11 +740,11 @@ public class MicrobeHUD : Control
         }
 
         hoveredCellsSeparator.Visible = hoveredCellsContainer.GetChildCount() > 0 &&
-            hoveredCompoundsContainer.GetChildCount() > 0;
+            anyCompoundVisible;
 
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
 
-        nothingHere.Visible = !stage.HoverInfo.IsHoveringOverAnything;
+        nothingHere.Visible = hoveredCellsContainer.GetChildCount() == 0 && !anyCompoundVisible;
     }
 
     private void AddHoveredCellLabel(string cellInfo)
@@ -759,6 +756,40 @@ public class MicrobeHUD : Control
         });
     }
 
+    private Color GetCompoundDensityCategoryColor(float amount)
+    {
+        return amount switch
+        {
+            >= Constants.COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE => new Color(0.282f, 0.788f, 0.011f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT => new Color(0.011f, 0.768f, 0.466f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT => new Color(0.011f, 0.768f, 0.717f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_SOME => new Color(0.011f, 0.705f, 0.768f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE => new Color(0.011f, 0.552f, 0.768f),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE => new Color(0.011f, 0.290f, 0.768f),
+            _ => new Color(1f, 1f, 1f),
+        };
+    }
+
+    private string GetCompoundDensityCategory(float amount)
+    {
+        return amount switch
+        {
+            >= Constants.COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE =>
+                TranslationServer.Translate("CATEGORY_AN_ABUNDANCE"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT =>
+                TranslationServer.Translate("CATEGORY_QUITE_A_BIT"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT =>
+                TranslationServer.Translate("CATEGORY_A_FAIR_AMOUNT"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_SOME =>
+                TranslationServer.Translate("CATEGORY_SOME"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_LITTLE =>
+                TranslationServer.Translate("CATEGORY_LITTLE"),
+            >= Constants.COMPOUND_DENSITY_CATEGORY_VERY_LITTLE =>
+                TranslationServer.Translate("CATEGORY_VERY_LITTLE"),
+            _ => null,
+        };
+    }
+
     /// <summary>
     ///   Updates the compound bars with the correct values.
     /// </summary>
@@ -766,28 +797,28 @@ public class MicrobeHUD : Control
     {
         var compounds = GetPlayerColonyOrPlayerStorage();
 
-        glucoseBar.MaxValue = compounds.Capacity;
+        glucoseBar.MaxValue = compounds.GetCapacityForCompound(glucose);
         glucoseBar.Value = compounds.GetCompoundAmount(glucose);
         glucoseBar.GetNode<Label>("Value").Text = glucoseBar.Value + " / " + glucoseBar.MaxValue;
 
-        ammoniaBar.MaxValue = compounds.Capacity;
+        ammoniaBar.MaxValue = compounds.GetCapacityForCompound(ammonia);
         ammoniaBar.Value = compounds.GetCompoundAmount(ammonia);
         ammoniaBar.GetNode<Label>("Value").Text = ammoniaBar.Value + " / " + ammoniaBar.MaxValue;
 
-        phosphateBar.MaxValue = compounds.Capacity;
+        phosphateBar.MaxValue = compounds.GetCapacityForCompound(phosphates);
         phosphateBar.Value = compounds.GetCompoundAmount(phosphates);
         phosphateBar.GetNode<Label>("Value").Text = phosphateBar.Value + " / " + phosphateBar.MaxValue;
 
-        hydrogenSulfideBar.MaxValue = compounds.Capacity;
+        hydrogenSulfideBar.MaxValue = compounds.GetCapacityForCompound(hydrogensulfide);
         hydrogenSulfideBar.Value = compounds.GetCompoundAmount(hydrogensulfide);
         hydrogenSulfideBar.GetNode<Label>("Value").Text = hydrogenSulfideBar.Value + " / " +
             hydrogenSulfideBar.MaxValue;
 
-        ironBar.MaxValue = compounds.Capacity;
+        ironBar.MaxValue = compounds.GetCapacityForCompound(iron);
         ironBar.Value = compounds.GetCompoundAmount(iron);
         ironBar.GetNode<Label>("Value").Text = ironBar.Value + " / " + ironBar.MaxValue;
 
-        oxytoxyBar.MaxValue = compounds.Capacity;
+        oxytoxyBar.MaxValue = compounds.GetCapacityForCompound(oxytoxy);
         oxytoxyBar.Value = compounds.GetCompoundAmount(oxytoxy);
         oxytoxyBar.GetNode<Label>("Value").Text = oxytoxyBar.Value + " / " + oxytoxyBar.MaxValue;
     }
@@ -859,7 +890,7 @@ public class MicrobeHUD : Control
             var compounds = GetPlayerColonyOrPlayerStorage();
 
             atpAmount = compounds.GetCompoundAmount(atp);
-            maxATP = compounds.Capacity;
+            maxATP = compounds.GetCapacityForCompound(atp);
         }
 
         atpBar.MaxValue = maxATP * 10.0f;
@@ -1075,5 +1106,50 @@ public class MicrobeHUD : Control
     private void OnAbilitiesHotBarDisplayChanged(bool displayed)
     {
         hotBar.Visible = displayed;
+    }
+
+    private class HoveredCompoundControl : HBoxContainer
+    {
+        private Label compoundName;
+        private Label compoundValue;
+
+        public HoveredCompoundControl(Compound compound)
+        {
+            Compound = compound;
+        }
+
+        public Compound Compound { get; }
+
+        public string Category
+        {
+            get => compoundValue.Text;
+            set => compoundValue.Text = value;
+        }
+
+        public Color CategoryColor
+        {
+            get => compoundValue.Modulate;
+            set => compoundValue.Modulate = value;
+        }
+
+        public override void _Ready()
+        {
+            compoundName = new Label();
+            compoundValue = new Label();
+
+            MouseFilter = MouseFilterEnum.Ignore;
+            TextureRect compoundIcon = GUICommon.Instance.CreateCompoundIcon(Compound.InternalName, 20, 20);
+            compoundName.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+            compoundName.Text = Compound.Name;
+            AddChild(compoundIcon);
+            AddChild(compoundName);
+            AddChild(compoundValue);
+            Visible = false;
+        }
+
+        public void UpdateTranslation()
+        {
+            compoundName.Text = Compound.Name;
+        }
     }
 }
