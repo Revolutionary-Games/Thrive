@@ -931,7 +931,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
 
         var hexes = GetHexesWithSymmetryMode(q, r);
-        var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.hex)).ToList();
+        var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex)).ToList();
 
         gui.ShowOrganelleMenu(organelle, organelles);
     }
@@ -1103,7 +1103,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Returns the cost of the organelle that is about to be placed
     /// </summary>
-    public float CalculateCurrentOrganelleCost(IEnumerable<(Hex hex, int orientation)> mouseHoverHexes)
+    public float CalculateCurrentOrganelleCost(IEnumerable<(Hex Hex, int Orientation)> mouseHoverHexes)
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !ShowHover)
             return 0;
@@ -1114,7 +1114,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return organelleDefinition.MPCost * GetPositionsOfSymmetryMode(Symmetry);
 
         var organelleTemplate = mouseHoverHexes
-            .Select(hex => new OrganelleTemplate(organelleDefinition, hex.hex, hex.orientation)).ToList();
+            .Select(hex => new OrganelleTemplate(organelleDefinition, hex.Hex, hex.Orientation)).ToList();
 
         var placementActionData = organelleTemplate
             .Select(p => (MicrobeEditorActionData)new PlacementActionData(p, p.Position, p.Orientation));
@@ -1806,9 +1806,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         membraneOrganellePositionsAreDirty = false;
     }
 
-    private List<(Hex hex, int orientation)> GetHexesWithSymmetryMode(int q, int r)
+    private List<(Hex Hex, int Orientation)> GetHexesWithSymmetryMode(int q, int r)
     {
-        var hexes = new List<(Hex hex, int orientation)>();
+        var hexes = new List<(Hex Hex, int Orientation)>();
 
         switch (Symmetry)
         {
@@ -1904,7 +1904,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var organelleDefinition = GetOrganelleDefinition(organelleType);
 
         var organelleTemplates = hexes
-            .Select(hex => new OrganelleTemplate(organelleDefinition, hex.hex, hex.orientation)).ToList();
+            .Select(hex => new OrganelleTemplate(organelleDefinition, hex.Hex, hex.Orientation)).ToList();
 
         bool placedSomething = false;
 

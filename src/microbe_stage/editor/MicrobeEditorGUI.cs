@@ -471,7 +471,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private CompoundBalanceDisplay compoundBalance;
 
-    private IEnumerable<(Hex hex, int orientation)> mouseHoverHexes;
+    private IEnumerable<(Hex Hex, int Orientation)> mouseHoverHexes;
 
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
@@ -500,7 +500,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
-    public IEnumerable<(Hex hex, int orientation)> MouseHoverHexes
+    public IEnumerable<(Hex Hex, int Orientation)> MouseHoverHexes
     {
         get => mouseHoverHexes;
         set
