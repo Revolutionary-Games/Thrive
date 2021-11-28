@@ -12,7 +12,7 @@ public abstract class FoodSource
     /// </summary>
     /// <param name="microbe">The species to be evaluated.</param>
     /// <param name="simulationCache">
-    ///   Cache that should be used to reduce amount of times expensive computations are ran
+    ///   Cache that should be used to reduce amount of times expensive computations are run
     /// </param>
     /// <returns>
     ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
