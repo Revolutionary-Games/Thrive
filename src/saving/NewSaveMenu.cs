@@ -153,8 +153,13 @@ public class NewSaveMenu : Control
 
     private void OnSaveNameTextEntered(string newName)
     {
-        _ = newName;
-
-        SaveButtonPressed();
+        if (newName.Length != 0 && !newName.Any(Constants.SAVE_NAME_BLACKLIST.Contains))
+        {
+            SaveButtonPressed();
+        }
+        else
+        {
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
+        }
     }
 }

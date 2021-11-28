@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-25 18:07+0200\n"
+"POT-Creation-Date: 2021-11-28 11:39+0800\n"
 "PO-Revision-Date: 2021-11-26 16:55+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
@@ -24,15 +24,15 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:in"
-"put]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],"
-"[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a "
+"A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a "
 "forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a "
 "[thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha "
-"rendelkezel mérget tartalmazó sejtnedvüreggel. A "
-"[thrive:input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, "
-"vagy kikapcsolni. Az egér görgőjével tudsz közelíteni a sejtedhez, és "
-"távolodni a sejtedtől."
+"rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:"
+"input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy "
+"kikapcsolni. Az egér görgőjével tudsz közelíteni a sejtedhez, és távolodni "
+"a sejtedtől."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -362,10 +362,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok értelme "
-"van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit más "
-"fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be tudod-e "
-"őket azonosítani."
+"A Thrive egy idegen bolygó szimulálását veszi célba, szóval elég sok "
+"értelme van annak, hogy a körülötted lévő fajok hasonlítani fognak kicsit "
+"más fajokra. Ez főleg az evolúció miatt történik. Lássuk csak, vajon be "
+"tudod-e őket azonosítani."
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
@@ -1444,7 +1444,7 @@ msgstr "Sejtszerkesztő"
 #: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Vissza"
@@ -1743,7 +1743,7 @@ msgstr "Mindig"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Soha"
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Mentés"
 
@@ -2319,12 +2319,12 @@ msgstr ""
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, "
-"víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az "
-"egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. "
+"víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. "
+"Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. "
 "Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, "
-"hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk "
-"az energia előállítására. A sejtek még használják molekulák raktáraként, és "
-"hogy ezzel növelni tudják méretüket."
+"hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen "
+"támaszuk az energia előállítására. A sejtek még használják molekulák "
+"raktáraként, és hogy ezzel növelni tudják méretüket."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:285
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:383
@@ -2983,8 +2983,8 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ez a panel megmutatja a szerkesztett élőlényeknek az auto-evo által "
 "megbecsült populációinak egyedszámait.\n"
-"Az auto-evo egy populáció szimulációt futtat, ami a saját fajod populációját "
-"(és a játék teljesítményét) is befolyásolja."
+"Az auto-evo egy populáció szimulációt futtat, ami a saját fajod "
+"populációját (és a játék teljesítményét) is befolyásolja."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1999
 #, fuzzy
@@ -3345,9 +3345,9 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:527
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
-"Megjegyzés: sok modnál szükség van a játék újraindítására, hogy betöltsenek, "
-"vagy törlődjenek. Csak azokat a modokat töltsd be, melyekben megbízol, mivel "
-"ezek futtatható kódokat tartalmazhatnak."
+"Megjegyzés: sok modnál szükség van a játék újraindítására, hogy "
+"betöltsenek, vagy törlődjenek. Csak azokat a modokat töltsd be, melyekben "
+"megbízol, mivel ezek futtatható kódokat tartalmazhatnak."
 
 #: ../src/modding/ModManager.tscn:553
 #, fuzzy
@@ -3655,27 +3655,32 @@ msgstr "Mentés sikertelen"
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
 
-#: ../src/saving/NewSaveMenu.cs:77
+#: ../src/saving/NewSaveMenu.cs:82
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
 
-#: ../src/saving/NewSaveMenu.tscn:30
+#: ../src/saving/NewSaveMenu.cs:162
+#, fuzzy
+msgid "INVALID_SAVE_NAME_POPUP"
+msgstr "Betöltöd ezt az érvénytelen mentést?"
+
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "Új mentés létrehozása"
 
-#: ../src/saving/NewSaveMenu.tscn:47
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "Név:"
 
-#: ../src/saving/NewSaveMenu.tscn:65
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "Extra opciók"
 
-#: ../src/saving/NewSaveMenu.tscn:83
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Létező mentés felülírása:"
 
-#: ../src/saving/NewSaveMenu.tscn:115
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Felülírod a már meglévő mentést?"
 

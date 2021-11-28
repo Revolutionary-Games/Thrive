@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-25 18:07+0200\n"
+"POT-Creation-Date: 2021-11-28 11:39+0800\n"
 "PO-Revision-Date: 2021-11-26 16:55+0000\n"
 "Last-Translator: Vladislav Kuznetsov <vlad.pnz98@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -187,18 +187,18 @@ msgstr ""
 "\n"
 "Связующее вещество: Позволяет связываться с другими клетками\n"
 "\n"
-"Митохондрия: Производит [thrive:compound type=\"atp\"][/thrive:compound] из "
-"[thrive:compound type=\"glucose\"][/thrive:compound] и атмосферного "
+"Митохондрия: Производит [thrive:compound type=\"atp\"][/thrive:compound] "
+"из [thrive:compound type=\"glucose\"][/thrive:compound] и атмосферного "
 "кислорода, делает это намного эффективнее цитоплазмы\n"
 "\n"
-"Хлоропласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] из "
-"солнечного света и атмосферного углекислого газа\n"
+"Хлоропласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] "
+"из солнечного света и атмосферного углекислого газа\n"
 "\n"
 "Хемопласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] из "
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Азотфиксирующий пластид: Создает [thrive:compound type=\"ammonia\""
-"][/thrive:compound] из [thrive:compound type=\"atp\"][/thrive:compound], "
+"Азотфиксирующий пластид: Создает [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] из [thrive:compound type=\"atp\"][/thrive:compound], "
 "атмосферного азота и кислорода\n"
 "\n"
 "Вакуоль: Вмещает до 8 соединений\n"
@@ -223,12 +223,11 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
-"Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы можете "
-"изменить свой вида (добавляя, передвигая или удаляя органеллы), чтобы "
-"повысить успех вашего вида. Каждое посещение редактора в Микробной Фазе "
-"представляет "
-"[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] миллионов "
-"лет эволюции."
+"Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы "
+"можете изменить свой вида (добавляя, передвигая или удаляя органеллы), "
+"чтобы повысить успех вашего вида. Каждое посещение редактора в Микробной "
+"Фазе представляет [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:"
+"constant] миллионов лет эволюции."
 
 #: ../simulation_parameters/common/help_texts.json:119
 msgid "LOADING_TIP"
@@ -1456,7 +1455,7 @@ msgstr "Микробный Креативный Редактор"
 #: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
@@ -1752,7 +1751,7 @@ msgstr "Всегда"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Никогда"
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Сохранить"
 
@@ -3671,9 +3670,9 @@ msgstr "Загрузка предмета в Мастерскую Steam прош
 #: ../src/modding/ModUploader.cs:507
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
-"Отправляя этот предмет, вы соглашаетесь с "
-"[color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
-"workshoplegalagreement]условиями обслуживания[/url][/color] Steam Workshop"
+"Отправляя этот предмет, вы соглашаетесь с [color=#3796e1][url=https://"
+"steamcommunity.com/sharedfiles/workshoplegalagreement]условиями "
+"обслуживания[/url][/color] Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
 msgid "FORM_ERROR_MESSAGE"
@@ -3849,27 +3848,32 @@ msgstr "Сохранение не удалось"
 msgid "ERROR_SAVING"
 msgstr "Ошибка Сохранения"
 
-#: ../src/saving/NewSaveMenu.cs:77
+#: ../src/saving/NewSaveMenu.cs:82
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Выбранное имя файла ({0}) уже существует. Перезаписать?"
 
-#: ../src/saving/NewSaveMenu.tscn:30
+#: ../src/saving/NewSaveMenu.cs:162
+#, fuzzy
+msgid "INVALID_SAVE_NAME_POPUP"
+msgstr "Загрузить недействительное сохранение?"
+
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "Создать Новое Сохранение"
 
-#: ../src/saving/NewSaveMenu.tscn:47
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "Имя:"
 
-#: ../src/saving/NewSaveMenu.tscn:65
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "Дополнительные Настройки"
 
-#: ../src/saving/NewSaveMenu.tscn:83
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Перезаписать существующее сохранение:"
 
-#: ../src/saving/NewSaveMenu.tscn:115
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Перезаписать существующее сохранение?"
 
