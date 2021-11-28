@@ -1806,8 +1806,60 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         membraneOrganellePositionsAreDirty = false;
     }
 
-
     private List<(Hex hex, int orientation)> GetHexesWithSymmetryMode(int q, int r)
+    {
+        var hexes = new List<(Hex hex, int orientation)>();
+
+        switch (Symmetry)
+        {
+            case MicrobeSymmetry.None:
+            {
+                hexes.Add((new Hex(q, r), organelleRot));
+                break;
+            }
+
+            case MicrobeSymmetry.XAxisSymmetry:
+            {
+                if (q != -1 * q || r != r + q)
+                {
+                    hexes.Add((new Hex(-1 * q, r + q), 6 + (-1 * organelleRot)));
+                }
+
+                goto case MicrobeSymmetry.None;
+            }
+
+            case MicrobeSymmetry.FourWaySymmetry:
+            {
+                if (q != -1 * q || r != r + q)
+                {
+                    hexes.Add((new Hex(-1 * q, r + q), 6 + (-1 * organelleRot)));
+                    hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
+                    hexes.Add((new Hex(q, -1 * (r + q)), (9 + (-1 * organelleRot)) % 6));
+                }
+                else
+                {
+                    hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
+                }
+
+                goto case MicrobeSymmetry.None;
+            }
+
+            case MicrobeSymmetry.SixWaySymmetry:
+            {
+                hexes.Add((new Hex(-1 * r, r + q), (organelleRot + 1) % 6));
+                hexes.Add((new Hex(-1 * (r + q), q), (organelleRot + 2) % 6));
+                hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
+                hexes.Add((new Hex(r, -1 * (r + q)), (organelleRot + 4) % 6));
+                hexes.Add((new Hex(r + q, -1 * q), (organelleRot + 5) % 6));
+                goto case MicrobeSymmetry.None;
+            }
+
+            default:
+                throw new Exception("unimplemented symmetry in AddOrganelle");
+        }
+
+        return hexes;
+    }
 
     /// <summary>
     ///   Copies current editor state to a species
