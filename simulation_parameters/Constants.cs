@@ -583,6 +583,8 @@ public static class Constants
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
+    public const string GENERATE_SPAWN_SYSTEM_NOISE_IMAGE_PATH = "user://spawn_system_noise.bmp";
+
     /// <summary>
     ///   Internal Godot name for the default audio output device
     /// </summary>

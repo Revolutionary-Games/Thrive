@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Linq;
+using System.Runtime.InteropServices;
 using Godot;
 using Newtonsoft.Json;
+using Color = Godot.Color;
 
 /// <summary>
 ///   Spawns AI cells and other environmental things as the player moves around
@@ -26,6 +31,8 @@ public class SpawnSystem
 
     [JsonProperty]
     private Random random = new Random();
+
+    private FastNoiseLite noise;
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag
@@ -75,6 +82,8 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
+    private Sector? currentSector;
+
     /// <summary>
     ///   Estimate count of existing spawn entities within the current spawn radius of the player;
     ///   Used to prevent a "spawn belt" of densely spawned entities when player doesn't move.
@@ -92,6 +101,20 @@ public class SpawnSystem
     {
         worldRoot = root;
         spawnTypes = new ShuffleBag<Spawner>(random);
+        noise = new FastNoiseLite(25565);
+        noise.SetFrequency(5f);
+        noise.SetDomainWarpType(FastNoiseLite.DomainWarpType.BasicGrid);
+    }
+
+    public Sector CurrentSector
+    {
+        get
+        {
+            if (currentSector?.IsInSector(lastRecordedPlayerPosition) != true)
+                currentSector = Sector.FromPosition(lastRecordedPlayerPosition, noise);
+
+            return currentSector.Value;
+        }
     }
 
     // Needs no params constructor for loading saves?
@@ -104,6 +127,40 @@ public class SpawnSystem
     {
         entity.DespawnRadiusSquared = (int)(radius * radius);
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
+    }
+
+    /// <summary>
+    ///   Saves a image to the disk containing the density values of nearby chunks. Darker spots are richer.
+    ///   The player is in the middle.
+    /// </summary>
+    public void GenerateNoiseImage(int size = 31)
+    {
+        var bitmap = new Bitmap(size, size, PixelFormat.Format24bppRgb);
+        var data = bitmap.LockBits(new Rectangle(0, 0, size, size), ImageLockMode.WriteOnly, bitmap.PixelFormat);
+
+        var sizeHalf = size / 2;
+
+        unsafe
+        {
+            var ptr = (byte*)data.Scan0;
+            if (ptr == null)
+                return;
+
+            for (var y = 0; y < size; y++)
+            {
+                for (var x = 0; x < size; x++)
+                {
+                    var grayscaleValue = (byte)((1 - new Sector(x - sizeHalf, y - sizeHalf, noise).NoiseDensity) *
+                        byte.MaxValue);
+                    ptr[x * 3 + y * data.Stride] = grayscaleValue;
+                    ptr[x * 3 + y * data.Stride + 1] = grayscaleValue;
+                    ptr[x * 3 + y * data.Stride + 2] = grayscaleValue;
+                }
+            }
+        }
+
+        bitmap.UnlockBits(data);
+        bitmap.Save(ProjectSettings.GlobalizePath(Constants.GENERATE_SPAWN_SYSTEM_NOISE_IMAGE_PATH), ImageFormat.Bmp);
     }
 
     /// <summary>

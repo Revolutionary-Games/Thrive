@@ -20,6 +20,8 @@ DisableAIPath = NodePath("VBoxContainer/DisableAI")
 SpeedSliderPath = NodePath("VBoxContainer/Speed/SpeedSlider")
 PlayerDividePath = NodePath("VBoxContainer/PlayerDuplicate")
 SpawnEnemyPath = NodePath("VBoxContainer/SpawnEnemy")
+GenerateSpawnMapPath = NodePath("VBoxContainer/GenerateSpawnMap")
+CurrentSectorPath = NodePath("VBoxContainer/CurrentSector")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 177.0
@@ -92,8 +94,24 @@ margin_right = 177.0
 margin_bottom = 142.0
 custom_fonts/font = ExtResource( 3 )
 text = "SPAWN_ENEMY"
+
+[node name="GenerateSpawnMap" type="Button" parent="VBoxContainer"]
+margin_top = 115.0
+margin_right = 185.0
+margin_bottom = 142.0
+custom_fonts/font = ExtResource( 3 )
+text = "GENERATE_SPAWN_MAP"
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="CurrentSector" type="Label" parent="VBoxContainer"]
+margin_top = 146.0
+margin_right = 185.0
+margin_bottom = 168.0
+text = "1;1: 0.5"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
 }
 
 [connection signal="toggled" from="VBoxContainer/InfiniteCompounds" to="." method="SetInfiniteCompounds"]
