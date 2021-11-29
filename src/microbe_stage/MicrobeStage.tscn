@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -2050,20 +2050,9 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
 anims/EditorButtonFlash = SubResource( 30 )
 
-[node name="ProcessPanel" parent="MicrobeHUD" instance=ExtResource( 58 )]
-margin_left = 8.0
-margin_top = 72.0
-margin_right = -872.0
-margin_bottom = -48.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideLeftPanels = SubResource( 31 )
 anims/ShowLeftPanels = SubResource( 32 )
-
-[node name="MicrobeCheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
-margin_left = 10.0
-margin_top = 30.0
-margin_right = 207.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeHUD"]
 anchor_left = 0.5
@@ -2123,6 +2112,17 @@ hint_tooltip = "TOGGLE_BINDING"
 toggle_mode = true
 ActionIcon = ExtResource( 82 )
 ActionName = "g_toggle_binding"
+
+[node name="ProcessPanel" parent="MicrobeHUD" instance=ExtResource( 58 )]
+margin_left = 8.0
+margin_top = 72.0
+margin_right = -872.0
+margin_bottom = -48.0
+
+[node name="MicrobeCheatMenu" parent="MicrobeHUD" instance=ExtResource( 73 )]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 207.0
 
 [node name="HintText" type="Label" parent="MicrobeHUD"]
 anchor_right = 1.0
@@ -2209,10 +2209,10 @@ visible = false
 [connection signal="mouse_entered" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
-[connection signal="OnClosed" from="MicrobeHUD/ProcessPanel" to="MicrobeHUD" method="OnProcessPanelClosed"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/Engulfment" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
+[connection signal="OnClosed" from="MicrobeHUD/ProcessPanel" to="MicrobeHUD" method="OnProcessPanelClosed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="PauseMenu" to="MicrobeHUD" method="CloseMenu"]

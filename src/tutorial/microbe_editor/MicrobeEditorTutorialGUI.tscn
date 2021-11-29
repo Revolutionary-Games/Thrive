@@ -3,7 +3,7 @@
 [ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/CustomControlDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
@@ -30,6 +30,7 @@ AutoEvoPredictionHighlightPath = NodePath("AutoEvoPredictionHighlight")
 StaySmallTutorialPath = NodePath("StaySmall")
 
 [node name="EditorEntryReport" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -67,6 +68,7 @@ text = "EDITOR_TUTORIAL_EDITOR_TEXT"
 autowrap = true
 
 [node name="PatchMapTutorial" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -106,6 +108,7 @@ text = "EDITOR_TUTORIAL_PATCH_TEXT"
 autowrap = true
 
 [node name="CellEditorIntro" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -141,6 +144,7 @@ text = "EDITOR_TUTORIAL_CELL_TEXT"
 autowrap = true
 
 [node name="UndoTutorial" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -184,6 +188,7 @@ autowrap = true
 visible = false
 
 [node name="RedoTutorial" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -222,6 +227,7 @@ text = "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 autowrap = true
 
 [node name="CellEditorClosingWords" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -285,6 +291,7 @@ text = "GOT_IT"
 visible = false
 
 [node name="AutoEvoPrediction" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -345,6 +352,7 @@ custom_fonts/font = ExtResource( 6 )
 text = "CLOSE"
 
 [node name="StaySmall" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -405,21 +413,13 @@ custom_fonts/font = ExtResource( 6 )
 text = "CLOSE"
 
 [connection signal="hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
-[connection signal="popup_hide" from="EditorEntryReport" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorReport" ]]
 [connection signal="hide" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= [ "PatchMap" ]]
-[connection signal="popup_hide" from="PatchMapTutorial" to="." method="OnSpecificCloseClicked" binds= [ "PatchMap" ]]
 [connection signal="hide" from="CellEditorIntro" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorIntroduction" ]]
-[connection signal="popup_hide" from="CellEditorIntro" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorIntroduction" ]]
 [connection signal="hide" from="UndoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorUndo" ]]
-[connection signal="popup_hide" from="UndoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorUndo" ]]
 [connection signal="hide" from="RedoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorRedo" ]]
-[connection signal="popup_hide" from="RedoTutorial" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorRedo" ]]
 [connection signal="hide" from="CellEditorClosingWords" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
-[connection signal="popup_hide" from="CellEditorClosingWords" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="pressed" from="CellEditorClosingWords/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
-[connection signal="popup_hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
 [connection signal="pressed" from="AutoEvoPrediction/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
 [connection signal="hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
-[connection signal="popup_hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
 [connection signal="pressed" from="StaySmall/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]

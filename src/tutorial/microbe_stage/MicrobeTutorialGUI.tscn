@@ -3,7 +3,7 @@
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/gui_common/CustomControlDialog.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/gui_common/dialogs/TutorialDialog.cs" type="Script" id=7]
@@ -34,6 +34,7 @@ UnbindTutorialPath = NodePath("UnbindTutorial")
 CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -44,11 +45,9 @@ margin_right = -190.0
 margin_bottom = 118.0
 rect_min_size = Vector2( 450, 450 )
 rect_pivot_offset = Vector2( 225, 225 )
-popup_exclusive = true
 script = ExtResource( 7 )
 WindowTitle = "TUTORIAL"
 Resizable = true
-ExclusiveAllowCloseOnEscape = false
 ShowDelay = 0.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
@@ -122,6 +121,7 @@ __meta__ = {
 }
 
 [node name="ExplainingPopup" parent="MicrobeMovementTutorial" instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -204,6 +204,7 @@ rect_min_size = Vector2( 40, 40 )
 ActionName = "g_move_right"
 
 [node name="GlucoseTutorial" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -238,6 +239,7 @@ text = "MICROBE_STAGE_COLLECT_TEXT"
 autowrap = true
 
 [node name="StayingAliveTutorial" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -272,6 +274,7 @@ text = "MICROBE_STAGE_HEALTH_TEXT"
 autowrap = true
 
 [node name="ReproductionTutorial" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -310,6 +313,7 @@ text = "MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 
 [node name="EditorButtonTutorial" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -348,6 +352,7 @@ text = "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 autowrap = true
 
 [node name="UnbindTutorial" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -382,6 +387,7 @@ text = "MICROBE_STAGE_UNBIND_TEXT"
 autowrap = true
 
 [node name="CheckHelpMenu" parent="." instance=ExtResource( 4 )]
+visible = false
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -429,21 +435,14 @@ margin_right = 10.0
 margin_bottom = 35.0
 text = "VIEW_NOW"
 
-[connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
+[connection signal="hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/ScrollContainer/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
 [connection signal="hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
-[connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
-[connection signal="popup_hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
 [connection signal="hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
-[connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
 [connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
-[connection signal="popup_hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
 [connection signal="hide" from="EditorButtonTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorPress" ]]
-[connection signal="popup_hide" from="EditorButtonTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorPress" ]]
 [connection signal="hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
-[connection signal="popup_hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
 [connection signal="hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
-[connection signal="popup_hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
 [connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]

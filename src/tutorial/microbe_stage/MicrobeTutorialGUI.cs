@@ -48,19 +48,19 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath CheckTheHelpMenuPath;
 
-    private CustomDialog microbeWelcomeMessage;
+    private CustomControlDialog microbeWelcomeMessage;
     private Control microbeMovementKeyPrompts;
     private Control microbeMovementKeyForward;
     private Control microbeMovementKeyLeft;
     private Control microbeMovementKeyRight;
     private Control microbeMovementKeyBackwards;
-    private CustomDialog microbeMovementPopup;
-    private CustomDialog glucoseTutorial;
-    private CustomDialog stayingAlive;
-    private CustomDialog reproductionTutorial;
-    private CustomDialog editorButtonTutorial;
-    private CustomDialog unbindTutorial;
-    private CustomDialog checkTheHelpMenu;
+    private CustomControlDialog microbeMovementPopup;
+    private CustomControlDialog glucoseTutorial;
+    private CustomControlDialog stayingAlive;
+    private CustomControlDialog reproductionTutorial;
+    private CustomControlDialog editorButtonTutorial;
+    private CustomControlDialog unbindTutorial;
+    private CustomControlDialog checkTheHelpMenu;
 
     [Signal]
     public delegate void OnHelpMenuOpenRequested();
@@ -85,7 +85,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
             if (value)
             {
-                microbeWelcomeMessage.PopupCenteredShrink();
+                microbeWelcomeMessage.ControlCenteredShrink();
             }
             else
             {
@@ -271,19 +271,19 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
+        microbeWelcomeMessage = GetNode<CustomControlDialog>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
-        microbeMovementPopup = GetNode<CustomDialog>(MicrobeMovementPopupPath);
+        microbeMovementPopup = GetNode<CustomControlDialog>(MicrobeMovementPopupPath);
         microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
         microbeMovementKeyLeft = GetNode<Control>(MicrobeMovementKeyLeftPath);
         microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
-        glucoseTutorial = GetNode<CustomDialog>(GlucoseTutorialPath);
-        stayingAlive = GetNode<CustomDialog>(StayingAlivePath);
-        reproductionTutorial = GetNode<CustomDialog>(ReproductionTutorialPath);
-        editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
-        unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
-        checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
+        glucoseTutorial = GetNode<CustomControlDialog>(GlucoseTutorialPath);
+        stayingAlive = GetNode<CustomControlDialog>(StayingAlivePath);
+        reproductionTutorial = GetNode<CustomControlDialog>(ReproductionTutorialPath);
+        editorButtonTutorial = GetNode<CustomControlDialog>(EditorButtonTutorialPath);
+        unbindTutorial = GetNode<CustomControlDialog>(UnbindTutorialPath);
+        checkTheHelpMenu = GetNode<CustomControlDialog>(CheckTheHelpMenuPath);
     }
 
     public override void _Process(float delta)

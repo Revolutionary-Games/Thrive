@@ -35,14 +35,14 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath StaySmallTutorialPath;
 
-    private CustomDialog editorEntryReport;
-    private CustomDialog patchMap;
-    private CustomDialog cellEditorIntroduction;
-    private CustomDialog cellEditorUndo;
-    private CustomDialog cellEditorRedo;
-    private CustomDialog cellEditorClosingWords;
-    private CustomDialog autoEvoPrediction;
-    private CustomDialog staySmallTutorial;
+    private CustomControlDialog editorEntryReport;
+    private CustomControlDialog patchMap;
+    private CustomControlDialog cellEditorIntroduction;
+    private CustomControlDialog cellEditorUndo;
+    private CustomControlDialog cellEditorRedo;
+    private CustomControlDialog cellEditorClosingWords;
+    private CustomControlDialog autoEvoPrediction;
+    private CustomControlDialog staySmallTutorial;
 
     public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeEditor;
     public ITutorialInput EventReceiver { get; set; }
@@ -208,14 +208,14 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
 
     public override void _Ready()
     {
-        editorEntryReport = GetNode<CustomDialog>(EditorEntryReportPath);
-        patchMap = GetNode<CustomDialog>(PatchMapPath);
-        cellEditorIntroduction = GetNode<CustomDialog>(CellEditorIntroductionPath);
-        cellEditorUndo = GetNode<CustomDialog>(CellEditorUndoPath);
-        cellEditorRedo = GetNode<CustomDialog>(CellEditorRedoPath);
-        cellEditorClosingWords = GetNode<CustomDialog>(CellEditorClosingWordsPath);
-        autoEvoPrediction = GetNode<CustomDialog>(AutoEvoPredictionPath);
-        staySmallTutorial = GetNode<CustomDialog>(StaySmallTutorialPath);
+        editorEntryReport = GetNode<CustomControlDialog>(EditorEntryReportPath);
+        patchMap = GetNode<CustomControlDialog>(PatchMapPath);
+        cellEditorIntroduction = GetNode<CustomControlDialog>(CellEditorIntroductionPath);
+        cellEditorUndo = GetNode<CustomControlDialog>(CellEditorUndoPath);
+        cellEditorRedo = GetNode<CustomControlDialog>(CellEditorRedoPath);
+        cellEditorClosingWords = GetNode<CustomControlDialog>(CellEditorClosingWordsPath);
+        autoEvoPrediction = GetNode<CustomControlDialog>(AutoEvoPredictionPath);
+        staySmallTutorial = GetNode<CustomControlDialog>(StaySmallTutorialPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
         AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
