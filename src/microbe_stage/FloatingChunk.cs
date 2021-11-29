@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
+public class FloatingChunk : SpawnedRigidBody, ISaveLoadedTracked
 {
     [Export]
     [JsonProperty]
@@ -54,7 +54,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
-    public Node EntityNode => this;
+    public override Node EntityNode => this;
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
@@ -104,7 +104,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
-    public AliveMarker AliveMarker { get; } = new AliveMarker();
+    public override AliveMarker AliveMarker { get; } = new AliveMarker();
 
     /// <summary>
     ///   Grabs data from the type to initialize this
@@ -306,7 +306,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         }
     }
 
-    public void OnDestroyed()
+    public override void OnDestroyed()
     {
         AliveMarker.Alive = false;
     }
@@ -316,7 +316,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     /// </summary>
     private void VentCompounds(float delta)
     {
-        var pos = Translation;
+        var pos = Translation.ToVector2();
 
         var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
 
@@ -346,7 +346,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         }
     }
 
-    private void VentCompound(Vector3 pos, Compound compound, float amount)
+    private void VentCompound(Vector2 pos, Compound compound, float amount)
     {
         compoundClouds.AddCloud(
             compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);

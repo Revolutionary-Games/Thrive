@@ -12,7 +12,7 @@
         private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
         [JsonProperty]
-        private Vector3? glucosePosition;
+        private Vector2? glucosePosition;
 
         public GlucoseCollecting()
         {
@@ -87,7 +87,7 @@
             return false;
         }
 
-        public override Vector3 GetPositionGuidance()
+        public override Vector2 GetPositionGuidance()
         {
             if (glucosePosition != null)
                 return glucosePosition.Value;

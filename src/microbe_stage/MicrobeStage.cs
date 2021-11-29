@@ -40,7 +40,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     private MicrobeTutorialGUI tutorialGUI;
     private GuidanceLine guidanceLine;
-    private Vector3? guidancePosition;
+    private Vector2? guidancePosition;
     private PauseMenu pauseMenu;
     private bool transitionFinished;
 
@@ -73,6 +73,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     [JsonProperty]
     private float playerRespawnTimer;
+
+    private Sector? previousPlayerSector;
 
     /// <summary>
     ///   True if auto save should trigger ASAP
@@ -288,8 +290,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (!IsLoadedFromSave)
         {
-            Spawner.Init();
-
             if (CurrentGame == null)
             {
                 StartNewGame();
@@ -353,7 +353,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Player != null)
             return;
 
-        Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
+        Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, Vector2.Zero,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds,
             CurrentGame);
         Player.AddToGroup("player");
@@ -414,7 +414,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         if (Player != null)
         {
-            Spawner.Process(delta, Player.Translation, Player.Rotation);
+            Spawner.Process(delta);
             Clouds.ReportPlayerPosition(Player.Translation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
@@ -435,7 +435,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.Translation, glucose)),
+                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.Translation
+                            .ToVector2(), glucose)),
                         this);
                 }
 
@@ -445,12 +446,19 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.Translation;
+                guidanceLine.LineStart = Player.Translation.ToVector2();
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
             {
                 guidanceLine.Visible = false;
+            }
+
+            var currentPlayerSector = Player.CurrentSector;
+            if (previousPlayerSector != currentPlayerSector)
+            {
+                Spawner.OnPlayerSectorChanged(previousPlayerSector, currentPlayerSector);
+                previousPlayerSector = currentPlayerSector;
             }
         }
         else
@@ -622,7 +630,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         var randomSpecies = species.Random(random);
 
-        SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
+        SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation.ToVector2() + Vector2.Up * 20,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
             CurrentGame);
     }

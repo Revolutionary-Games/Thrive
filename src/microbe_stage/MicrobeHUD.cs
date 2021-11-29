@@ -681,7 +681,7 @@ public class MicrobeHUD : Control
         if (showMouseCoordinates)
         {
             mousePosLabel.Text = string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("STUFF_AT"),
-                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z) + "\n";
+                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.y) + "\n";
         }
 
         // Show hovered compound information in GUI

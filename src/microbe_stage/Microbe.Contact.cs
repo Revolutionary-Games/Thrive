@@ -132,7 +132,7 @@ public partial class Microbe
     public bool IsBeingEngulfed { get; private set; }
 
     [JsonIgnore]
-    public AliveMarker AliveMarker { get; } = new AliveMarker();
+    public override AliveMarker AliveMarker { get; } = new();
 
     /// <summary>
     ///   The current state of the microbe. Shared across the colony
@@ -340,13 +340,11 @@ public partial class Microbe
         Dead = true;
 
         OnDeath?.Invoke(this);
-        ModLoader.ModInterface.TriggerOnMicrobeDied(this, IsPlayerMicrobe);
-
         OnDestroyed();
 
         // Reset some stuff
         State = MicrobeState.Normal;
-        MovementDirection = new Vector3(0, 0, 0);
+        MovementDirection = new Vector2(0, 0);
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
 
@@ -368,19 +366,16 @@ public partial class Microbe
 
             var agentScene = SpawnHelpers.LoadAgentScene();
 
-            while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
+            while (amount > Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
             {
-                var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
-                    0, random.Next(0.0f, 1.0f) * 2 - 1);
+                var direction = new Vector2(random.Next(0.0f, 1.0f) * 2 - 1,
+                    random.Next(0.0f, 1.0f) * 2 - 1);
 
-                var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
-                    Constants.EMITTED_AGENT_LIFETIME,
-                    Translation, direction, GetStageAsParent(),
+                SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
+                    Translation.ToVector2(), direction, GetStageAsParent(),
                     agentScene, this);
 
-                ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
-
-                amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
+                amount -= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
                 ++createdAgents;
 
                 if (createdAgents >= Constants.MAX_EMITTED_AGENTS_ON_DEATH)
@@ -423,8 +418,7 @@ public partial class Microbe
             // Amount of compound in one chunk
             float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
-            var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
-                random.Next(-2.0f, 2.0f));
+            var positionAdded = new Vector2(random.Next(-2.0f, 2.0f), random.Next(-2.0f, 2.0f));
 
             var chunkType = new ChunkConfiguration
             {
@@ -481,10 +475,8 @@ public partial class Microbe
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
+            SpawnHelpers.SpawnChunk(chunkType, Translation.ToVector2() + positionAdded, GetStageAsParent(),
                 chunkScene, cloudSystem, random);
-
-            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
 
         // Subtract population
@@ -500,16 +492,7 @@ public partial class Microbe
             OnReproductionStatus?.Invoke(this, false);
         }
 
-        if (IsPlayerMicrobe)
-        {
-            // Playing from a positional audio player won't have any effect since the listener is
-            // directly on it.
-            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
-        }
-        else
-        {
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
-        }
+        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
 
         // Disable collisions
         CollisionLayer = 0;
@@ -518,7 +501,7 @@ public partial class Microbe
         // Some pre-death actions are going to be run now
     }
 
-    public void OnDestroyed()
+    public override void OnDestroyed()
     {
         Colony?.RemoveFromColony(this);
 
@@ -563,7 +546,7 @@ public partial class Microbe
             RemoveCollisionExceptionWith(microbe);
     }
 
-    internal void ReParentShapes(Microbe to, Vector3 offset)
+    internal void ReParentShapes(Microbe to, Vector2 offset)
     {
         // TODO: if microbeRotation is the rotation of *this* instance we should use the variable here directly
         // An object doesn't need to be told its own member variable in a method...
@@ -625,10 +608,10 @@ public partial class Microbe
         throw new InvalidOperationException();
     }
 
-    private Vector3 GetOffsetRelativeToMaster()
+    private Vector2 GetOffsetRelativeToMaster()
     {
-        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
-            Colony.Master.Rotation.y);
+        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).ToVector2()
+            .Rotated(Colony.Master.Rotation.y);
     }
 
     private void OnIGotAddedToColony()
@@ -641,8 +624,8 @@ public partial class Microbe
 
         var newTransform = GetNewRelativeTransform();
 
-        Rotation = newTransform.Rotation;
-        Translation = newTransform.Translation;
+        Rotation = new Vector3(0, newTransform.Rotation, 0);
+        Translation = newTransform.Translation.ToVector3();
 
         ChangeNodeParent(ColonyParent);
     }
@@ -922,7 +905,7 @@ public partial class Microbe
         foreach (var entry in organelles.Organelles)
         {
             var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.y));
         }
 
         Membrane.OrganellePositions = organellePositions;
@@ -1104,7 +1087,7 @@ public partial class Microbe
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
-        other.MovementDirection = Vector3.Zero;
+        other.MovementDirection = Vector2.Zero;
 
         // Create a colony if there isn't one yet
         if (Colony == null)

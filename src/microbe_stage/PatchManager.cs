@@ -114,16 +114,10 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Chunks)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
-                () =>
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, () =>
+                new CreatedSpawner(entry.Value.Name)
                 {
-                    var spawner = new CreatedSpawner(entry.Value.Name);
-                    spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
-                        compoundCloudSystem);
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
+                    Spawner = Spawners.MakeChunkSpawner(entry.Value, compoundCloudSystem),
                 });
         }
     }
@@ -134,15 +128,10 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, entry.Value.Density,
-                () =>
+            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, () =>
+                new CreatedSpawner(entry.Key.InternalName)
                 {
-                    var spawner = new CreatedSpawner(entry.Key.InternalName);
-                    spawner.Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount);
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                        Constants.CLOUD_SPAWN_RADIUS);
-                    return spawner;
+                    Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount),
                 });
         }
     }
@@ -161,54 +150,29 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
-                Math.Min(Constants.MAX_SPAWN_DENSITY,
-                    species.Population * 5));
-
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
-            HandleSpawnHelper(microbeSpawners, name, density,
-                () =>
+            HandleSpawnHelper(microbeSpawners, name, () =>
+                new CreatedSpawner(name)
                 {
-                    var spawner = new CreatedSpawner(name);
-                    spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                        compoundCloudSystem, CurrentGame);
-
-                    spawnSystem.AddSpawnType(spawner.Spawner, density,
-                        Constants.MICROBE_SPAWN_RADIUS);
-                    return spawner;
+                    Spawner = Spawners.MakeMicrobeSpawner(species, compoundCloudSystem, CurrentGame),
                 });
         }
     }
 
     private void HandleSpawnHelper(List<CreatedSpawner> existingSpawners, string itemName,
-        float density, Func<CreatedSpawner> createNew)
+        Func<CreatedSpawner> createNew)
     {
-        if (density <= 0)
-        {
-            GD.Print(itemName, " spawn density is 0. It won't spawn");
-            return;
-        }
-
         var existing = existingSpawners.Find(s => s.Name == itemName);
 
         if (existing != null)
         {
             existing.Marked = true;
-
-            float oldFrequency = existing.Spawner.SpawnFrequency;
-            existing.Spawner.SetFrequencyFromDensity(density);
-
-            if (oldFrequency != existing.Spawner.SpawnFrequency)
-            {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
-                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
-            }
         }
         else
         {
             // New spawner needed
-            GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
+            GD.Print("Registering new spawner: Name: ", itemName);
 
             existingSpawners.Add(createNew());
         }

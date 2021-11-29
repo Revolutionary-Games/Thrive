@@ -391,7 +391,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// <summary>
     ///  Re-parents the organelle shape to the "to" microbe.
     /// </summary>
-    public void ReParentShapes(Microbe to, Vector3 offset)
+    public void ReParentShapes(Microbe to, Vector2 offset)
     {
         if (to == currentShapesParent)
             return;
@@ -405,7 +405,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         for (int i = 0; i < shapes.Count; i++)
         {
             var rotation = Quat.Identity;
-            Vector3 shapePosition = ShapeTruePosition(hexes[i]);
+            Vector2 shapePosition = ShapeTruePosition(hexes[i]);
             if (ParentMicrobe.Colony != null)
             {
                 var parent = ParentMicrobe;
@@ -421,7 +421,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             rotation = rotation.Normalized();
 
             // Transform the vector with the rotation quaternion
-            shapePosition = rotation.Xform(shapePosition);
+            shapePosition = rotation.Xform(shapePosition.ToVector3()).ToVector2();
 
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
@@ -429,7 +429,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             shapePosition += offset;
 
-            var transform = new Transform(Quat.Identity, shapePosition);
+            var transform = new Transform(Quat.Identity, shapePosition.ToVector3());
 
             var ownerId = shapes[i];
 
@@ -445,7 +445,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         foreach (var component in Components)
         {
-            component.OnShapeParentChanged(to, offset);
+            component.OnShapeParentChanged(to, offset.ToVector3());
         }
 
         currentShapesParent = to;
@@ -493,7 +493,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         growthValueDirty = true;
     }
 
-    private Vector3 ShapeTruePosition(Hex parentOffset)
+    private Vector2 ShapeTruePosition(Hex parentOffset)
     {
         return Hex.AxialToCartesian(parentOffset) + Hex.AxialToCartesian(Position);
     }
@@ -534,13 +534,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             // The shape is in our parent so the final position is our
             // offset plus the hex offset
-            Vector3 shapePosition = ShapeTruePosition(hex);
+            Vector2 shapePosition = ShapeTruePosition(hex);
 
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
                 shapePosition *= 0.5f;
 
-            var transform = new Transform(Quat.Identity, shapePosition);
+            var transform = new Transform(Quat.Identity, shapePosition.ToVector3());
             to.ShapeOwnerSetTransform(ownerId, transform);
 
             shapes.Add(ownerId);
@@ -595,7 +595,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         // Position the intermediate node relative to origin of cell
         var transform = new Transform(Quat.Identity,
-            Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset());
+            (Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset()).ToVector3());
 
         OrganelleGraphics.Transform = transform;
 

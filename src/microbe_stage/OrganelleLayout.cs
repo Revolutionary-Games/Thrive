@@ -48,7 +48,7 @@ public class OrganelleLayout<T> : ICollection<T>
         get
         {
             float totalMass = 0;
-            Vector3 weightedSum = Vector3.Zero;
+            Vector2 weightedSum = Vector2.Zero;
             foreach (var organelle in Organelles)
             {
                 totalMass += organelle.Definition.Mass;

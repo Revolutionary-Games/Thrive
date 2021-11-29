@@ -112,22 +112,22 @@ public struct Hex : IEquatable<Hex>
     ///   Converts axial hex coordinates to cartesian coordinates.
     /// </summary>
     /// <returns>Cartesian coordinates of the hex's center.</returns>
-    public static Vector3 AxialToCartesian(Hex hex)
+    public static Vector2 AxialToCartesian(Hex hex)
     {
         float x = hex.Q * Constants.DEFAULT_HEX_SIZE * 3.0f / 2.0f;
-        float z = Constants.DEFAULT_HEX_SIZE * Mathf.Sqrt(3) * (hex.R + hex.Q / 2.0f);
-        return new Vector3(x, 0, z);
+        float y = Constants.DEFAULT_HEX_SIZE * Mathf.Sqrt(3) * (hex.R + hex.Q / 2.0f);
+        return new Vector2(x, y);
     }
 
     /// <summary>
     ///   Converts cartesian coordinates to axial hex coordinates.
     /// </summary>
     /// <returns>Hex position.</returns>
-    public static Hex CartesianToAxial(Vector3 pos)
+    public static Hex CartesianToAxial(Vector2 pos)
     {
         // Getting the cube coordinates.
         float cx = pos.x * (2.0f / 3.0f) / Constants.DEFAULT_HEX_SIZE;
-        float cy = pos.z / (Constants.DEFAULT_HEX_SIZE * Mathf.Sqrt(3)) - cx / 2.0f;
+        float cy = pos.y / (Constants.DEFAULT_HEX_SIZE * Mathf.Sqrt(3)) - cx / 2.0f;
         float cz = -(cx + cy);
 
         // Rounding the result.

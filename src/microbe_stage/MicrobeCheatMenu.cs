@@ -62,7 +62,9 @@ public class MicrobeCheatMenu : CheatMenu
 
     public override void _Process(float delta)
     {
-        currentSector.Text = microbeStage.Spawner.CurrentSector.ToString();
+        var sector = microbeStage.Player.CurrentSector;
+        var density = microbeStage.Spawner.GetSectorDensity(sector);
+        currentSector.Text = $"{sector}: {density}";
         base._Process(delta);
     }
 

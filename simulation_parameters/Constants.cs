@@ -76,9 +76,6 @@ public static class Constants
 
     public const int PROCESS_OBJECTS_PER_TASK = 50;
 
-    public const int MICROBE_SPAWN_RADIUS = 170;
-    public const int CLOUD_SPAWN_RADIUS = 170;
-
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
     public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
@@ -665,6 +662,8 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const float SECTOR_SIZE = 64f;
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

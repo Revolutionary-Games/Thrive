@@ -10,12 +10,12 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     /// <summary>
     ///   Needed to calculate final pos on update
     /// </summary>
-    protected Vector3 organellePos;
+    protected Vector2 organellePos;
 
     /// <summary>
     ///   Last calculated position, Used to not have to recreate the physics all the time
     /// </summary>
-    protected Vector3 lastCalculatedPosition = new Vector3(0, 0, 0);
+    protected Vector2 lastCalculatedPosition = new Vector2(0, 0);
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
@@ -37,15 +37,15 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         // TODO: it would be nicer if this were notified when the
         // membrane changes to not recheck this constantly
 
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        Vector2 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePos;
-        Vector3 exit = middle - delta;
+        Vector2 exit = middle - delta;
         var membraneCoords = organelle.ParentMicrobe.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
-            exit.z);
+            exit.y);
 
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
-            float angle = Mathf.Atan2(-delta.z, delta.x);
+            float angle = Mathf.Atan2(-delta.y, delta.x);
             if (angle < 0)
             {
                 angle = angle + (2 * Mathf.Pi);
@@ -79,5 +79,5 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     }
 
     protected abstract void OnPositionChanged(Quat rotation, float angle,
-        Vector3 membraneCoords);
+        Vector2 membraneCoords);
 }

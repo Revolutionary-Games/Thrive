@@ -16,7 +16,7 @@ public class PlayerHoverInfo : Node
     private MicrobeCamera camera;
     private CompoundCloudSystem cloudSystem;
 
-    private Vector3? lastCursorWorldPos;
+    private Vector2? lastCursorWorldPos;
 
     /// <summary>
     ///   List off all cloud compounds to iterate.
@@ -95,7 +95,7 @@ public class PlayerHoverInfo : Node
 
         foreach (Microbe microbe in allMicrobes)
         {
-            var distanceSquared = (microbe.GlobalTransform.origin - camera.CursorWorldPos).LengthSquared();
+            var distanceSquared = (microbe.GlobalTransform.origin.ToVector2() - camera.CursorWorldPos).LengthSquared();
 
             // Find only cells that have the mouse position within their membrane
             if (distanceSquared > microbe.RadiusSquared + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED)

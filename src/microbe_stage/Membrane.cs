@@ -234,7 +234,7 @@ public class Membrane : MeshInstance
     ///     everywhere this is used.
     ///   </para>
     /// </remarks>
-    public Vector3 GetVectorTowardsNearestPointOfMembrane(float x, float y)
+    public Vector2 GetVectorTowardsNearestPointOfMembrane(float x, float y)
     {
         // Calculate now if dirty to make flagella positioning only have to be done once
         // NOTE: that flagella position should only be read once all organelles that are
@@ -258,7 +258,7 @@ public class Membrane : MeshInstance
             }
         }
 
-        return new Vector3(closestSoFar.x, 0, closestSoFar.y);
+        return new Vector2(closestSoFar.x, closestSoFar.y);
     }
 
     /// <summary>

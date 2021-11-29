@@ -1,24 +1,16 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
-public readonly struct Sector : System.IEquatable<Sector>
+public readonly struct Sector : IEquatable<Sector>
 {
-    private const int SECTOR_SIZE = 64;
-    private const float NOISE_MULTIPLIER = 0.01f;
-
-    public Sector(int x, int y, float noiseDensity)
+    public Sector(int x, int y)
     {
         X = x;
         Y = y;
-        NoiseDensity = noiseDensity;
-    }
-
-    public Sector(int x, int y, FastNoiseLite noise) : this(x, y, GetNormalizedNoiseValue(noise, x, y))
-    {
     }
 
     public int X { get; }
     public int Y { get; }
-    public float NoiseDensity { get; }
 
     public static bool operator ==(Sector left, Sector right)
     {
@@ -30,14 +22,13 @@ public readonly struct Sector : System.IEquatable<Sector>
         return !(left == right);
     }
 
-    public static Sector FromPosition(Vector3 position, FastNoiseLite noise)
+    public static Sector FromPosition(Vector2 position)
     {
         var (x, y) = GetSectorCoords(position);
-        var density = GetNormalizedNoiseValue(noise, x, y);
-        return new Sector(x, y, density);
+        return new Sector(x, y);
     }
 
-    public bool IsInSector(Vector3 position)
+    public bool IsInSector(Vector2 position)
     {
         var (x, y) = GetSectorCoords(position);
         return x == X && y == Y;
@@ -63,18 +54,13 @@ public readonly struct Sector : System.IEquatable<Sector>
 
     public override string ToString()
     {
-        return $"{X};{Y}: {NoiseDensity}";
+        return $"{X};{Y}";
     }
 
-    private static float GetNormalizedNoiseValue(FastNoiseLite noise, int x, int y)
+    private static (int X, int Y) GetSectorCoords(Vector2 position)
     {
-        return (noise.GetNoise(x * NOISE_MULTIPLIER, y * NOISE_MULTIPLIER) + 1f) / 2f;
-    }
-
-    private static (int x, int y) GetSectorCoords(Vector3 position)
-    {
-        var x = (int)position.x / SECTOR_SIZE;
-        var y = (int)position.z / SECTOR_SIZE;
+        var x = (int)(position.x / Constants.SECTOR_SIZE);
+        var y = (int)(position.y / Constants.SECTOR_SIZE);
         return (x, y);
     }
 }

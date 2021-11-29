@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
 using Vector2 = Godot.Vector2;
-using Vector3 = Godot.Vector3;
 
 [SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
 public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
@@ -420,7 +419,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Checks if position is in this cloud, also returns relative coordinates
     /// </summary>
-    public bool ContainsPosition(Vector3 worldPosition, out int x, out int y)
+    public bool ContainsPosition(Vector2 worldPosition, out int x, out int y)
     {
         ConvertToCloudLocal(worldPosition, out x, out y);
         return x >= 0 && y >= 0 && x < Constants.CLOUD_WIDTH && y < Constants.CLOUD_HEIGHT;
@@ -430,13 +429,13 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///   Returns true if position with radius around it contains any
     ///   points that are within this cloud.
     /// </summary>
-    public bool ContainsPositionWithRadius(Vector3 worldPosition,
+    public bool ContainsPositionWithRadius(Vector2 worldPosition,
         float radius)
     {
         if (worldPosition.x + radius < Translation.x - Constants.CLOUD_WIDTH ||
             worldPosition.x - radius >= Translation.x + Constants.CLOUD_WIDTH ||
-            worldPosition.z + radius < Translation.z - Constants.CLOUD_HEIGHT ||
-            worldPosition.z - radius >= Translation.z + Constants.CLOUD_HEIGHT)
+            worldPosition.y + radius < Translation.z - Constants.CLOUD_HEIGHT ||
+            worldPosition.y - radius >= Translation.z + Constants.CLOUD_HEIGHT)
             return false;
 
         return true;
@@ -445,28 +444,27 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Converts world coordinate to cloud relative (top left) coordinates
     /// </summary>
-    public void ConvertToCloudLocal(Vector3 worldPosition, out int x, out int y)
+    public void ConvertToCloudLocal(Vector2 worldPosition, out int x, out int y)
     {
-        var topLeftRelative = worldPosition - Translation;
+        var topLeftRelative = worldPosition - new Vector2(Translation.x, Translation.z);
 
         // Floor is used here because otherwise the last coordinate is wrong
         x = ((int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution)
             + position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
-        y = ((int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution)
+        y = ((int)Math.Floor((topLeftRelative.y + Constants.CLOUD_HEIGHT) / Resolution)
             + position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
     }
 
     /// <summary>
     ///   Converts cloud local coordinates to world coordinates
     /// </summary>
-    public Vector3 ConvertToWorld(int cloudX, int cloudY)
+    public Vector2 ConvertToWorld(int cloudX, int cloudY)
     {
-        return new Vector3(
+        return new Vector2(
             cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
             Constants.CLOUD_WIDTH,
-            0,
             cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
-            Constants.CLOUD_HEIGHT) + Translation;
+            Constants.CLOUD_HEIGHT) + Translation.ToVector2();
     }
 
     /// <summary>

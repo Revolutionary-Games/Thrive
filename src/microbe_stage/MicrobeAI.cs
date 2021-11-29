@@ -31,7 +31,7 @@ public class MicrobeAI
     private float previousAngle;
 
     [JsonProperty]
-    private Vector3 targetPosition = new Vector3(0, 0, 0);
+    private Vector2 targetPosition = new Vector2(0, 0);
 
     [JsonIgnore]
     private EntityReference<Microbe> focusedPrey = new EntityReference<Microbe>();
@@ -100,10 +100,10 @@ public class MicrobeAI
     public void ResetAI()
     {
         previousAngle = 0;
-        targetPosition = Vector3.Zero;
+        targetPosition = Vector2.Zero;
         focusedPrey.Value = null;
         pursuitThreshold = 0;
-        microbe.MovementDirection = Vector3.Zero;
+        microbe.MovementDirection = Vector2.Zero;
         microbe.TotalAbsorbedCompounds.Clear();
     }
 
@@ -116,7 +116,7 @@ public class MicrobeAI
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2323
-        Vector3? predator = GetNearestPredatorItem(data.AllMicrobes)?.GlobalTransform.origin;
+        Vector2? predator = GetNearestPredatorItem(data.AllMicrobes)?.GlobalTransform.origin.ToVector2();
         if (predator.HasValue &&
             DistanceFromMe(predator.Value) < (1500.0 * SpeciesFear / Constants.MAX_SPECIES_FEAR))
         {
@@ -130,7 +130,7 @@ public class MicrobeAI
             Vector3? targetChunk = GetNearestChunkItem(data.AllChunks, data.AllMicrobes, random)?.Translation;
             if (targetChunk.HasValue)
             {
-                PursueAndConsumeChunks(targetChunk.Value, random);
+                PursueAndConsumeChunks(targetChunk.Value.ToVector2(), random);
                 return;
             }
         }
@@ -139,11 +139,11 @@ public class MicrobeAI
         var possiblePrey = GetNearestPreyItem(data.AllMicrobes);
         if (possiblePrey != null)
         {
+            var preyPosition = possiblePrey.GlobalTransform.origin.ToVector2();
             bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
-                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
-            Vector3? prey = possiblePrey.GlobalTransform.origin;
+                DistanceFromMe(preyPosition) < 10.0f * microbe.EngulfSize;
 
-            EngagePrey(prey.Value, random, engulfPrey);
+            EngagePrey(preyPosition, random, engulfPrey);
             return;
         }
 
@@ -245,7 +245,7 @@ public class MicrobeAI
         var focused = focusedPrey.Value;
         if (focused != null)
         {
-            var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin);
+            var distanceToFocusedPrey = DistanceFromMe(focused.GlobalTransform.origin.ToVector2());
             if (!focused.Dead && distanceToFocusedPrey <
                 (3500.0f * SpeciesFocus / Constants.MAX_SPECIES_FOCUS))
             {
@@ -270,7 +270,7 @@ public class MicrobeAI
         {
             if (!otherMicrobe.Dead)
             {
-                if (DistanceFromMe(otherMicrobe.GlobalTransform.origin) <
+                if (DistanceFromMe(otherMicrobe.GlobalTransform.origin.ToVector2()) <
                     (2500.0f * SpeciesAggression / Constants.MAX_SPECIES_AGGRESSION)
                     && CanTryToEatMicrobe(otherMicrobe))
                 {
@@ -285,7 +285,9 @@ public class MicrobeAI
         }
 
         focusedPrey.Value = chosenPrey;
-        pursuitThreshold = chosenPrey != null ? DistanceFromMe(chosenPrey.GlobalTransform.origin) * 3.0f : 0.0f;
+        pursuitThreshold = chosenPrey != null ?
+            DistanceFromMe(chosenPrey.GlobalTransform.origin.ToVector2()) * 3.0f :
+            0.0f;
         return chosenPrey;
     }
 
@@ -309,8 +311,8 @@ public class MicrobeAI
                 && !otherMicrobe.Dead
                 && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
             {
-                if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >
-                    DistanceFromMe(otherMicrobe.GlobalTransform.origin))
+                if (predator == null || DistanceFromMe(predator.GlobalTransform.origin.ToVector2()) >
+                    DistanceFromMe(otherMicrobe.GlobalTransform.origin.ToVector2()))
                 {
                     predator = otherMicrobe;
                 }
@@ -320,10 +322,10 @@ public class MicrobeAI
         return predator;
     }
 
-    private void PursueAndConsumeChunks(Vector3 chunk, Random random)
+    private void PursueAndConsumeChunks(Vector2 chunk, Random random)
     {
         // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
-        targetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
+        targetPosition = chunk + new Vector2(0.5f, 0.5f);
         microbe.LookAtPoint = targetPosition;
         SetEngulfIfClose();
 
@@ -344,11 +346,12 @@ public class MicrobeAI
         }
     }
 
-    private void FleeFromPredators(Random random, Vector3 predatorLocation)
+    private void FleeFromPredators(Random random, Vector2 predatorLocation)
     {
         microbe.State = Microbe.MicrobeState.Normal;
 
-        targetPosition = (2 * (microbe.Translation - predatorLocation)) + microbe.Translation;
+        var microbeTranslation2 = microbe.Translation.ToVector2();
+        targetPosition = (2 * (microbeTranslation2 - predatorLocation)) + microbeTranslation2;
 
         microbe.LookAtPoint = targetPosition;
 
@@ -372,7 +375,7 @@ public class MicrobeAI
         SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
     }
 
-    private void EngagePrey(Vector3 target, Random random, bool engulf)
+    private void EngagePrey(Vector2 target, Random random, bool engulf)
     {
         microbe.State = engulf ? Microbe.MicrobeState.Engulf : Microbe.MicrobeState.Normal;
         targetPosition = target;
@@ -503,7 +506,7 @@ public class MicrobeAI
     {
         // Turn on engulf mode if close
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
-        if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
+        if ((microbe.Translation.ToVector2() - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
         {
             microbe.State = Microbe.MicrobeState.Engulf;
         }
@@ -513,10 +516,10 @@ public class MicrobeAI
         }
     }
 
-    private void LaunchToxin(Vector3 target)
+    private void LaunchToxin(Vector2 target)
     {
         if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
-            (microbe.Translation - target).LengthSquared() <= SpeciesFocus * 10.0f)
+            (microbe.Translation.ToVector2() - target).LengthSquared() <= SpeciesFocus * 10.0f)
         {
             if (CanShootToxin())
             {
@@ -535,9 +538,8 @@ public class MicrobeAI
         }
 
         var randDist = random.Next(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY);
-        targetPosition = microbe.Translation
-            + new Vector3(Mathf.Cos(previousAngle + turn) * randDist,
-                0,
+        targetPosition = microbe.Translation.ToVector2()
+            + new Vector2(Mathf.Cos(previousAngle + turn) * randDist,
                 Mathf.Sin(previousAngle + turn) * randDist);
         previousAngle = previousAngle + turn;
         microbe.LookAtPoint = targetPosition;
@@ -546,7 +548,7 @@ public class MicrobeAI
 
     private void SetMoveSpeed(float speed)
     {
-        microbe.MovementDirection = new Vector3(0, 0, -speed);
+        microbe.MovementDirection = new Vector2(0, -speed);
     }
 
     private bool CanTryToEatMicrobe(Microbe targetMicrobe)
@@ -564,9 +566,9 @@ public class MicrobeAI
             Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * SpeciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
-    private float DistanceFromMe(Vector3 target)
+    private float DistanceFromMe(Vector2 target)
     {
-        return (target - microbe.Translation).LengthSquared();
+        return (target - microbe.Translation.ToVector2()).LengthSquared();
     }
 
     private bool RollCheck(float ourStat, float dc, Random random)

@@ -186,9 +186,9 @@ public partial class Microbe
         props.Species = Species;
 
         // Find the direction the microbe is facing
-        var direction = (LookAtPoint - Translation).Normalized();
+        var direction = (LookAtPoint - Translation.ToVector2()).Normalized();
 
-        var position = Translation + (direction * ejectionDistance);
+        var position = Translation.ToVector2() + direction * ejectionDistance;
 
         var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
@@ -266,10 +266,10 @@ public partial class Microbe
     public void ForceDivide()
     {
         // Separate the two cells.
-        var separation = new Vector3(Radius, 0, 0);
+        var separation = new Vector2(Radius, 0);
 
         // Create the one daughter cell.
-        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
+        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation.ToVector2() + separation,
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal
@@ -393,8 +393,9 @@ public partial class Microbe
 
     /// <summary>
     ///   Calculates total compounds needed for a cell to reproduce,
-    /// used by calculateReproductionProgress to calculate the
-    /// fraction done.  </summary>
+    ///   used by calculateReproductionProgress to calculate the
+    ///   fraction done.
+    /// </summary>
     public Dictionary<Compound, float> CalculateTotalCompounds()
     {
         var result = new Dictionary<Compound, float>();
@@ -441,7 +442,7 @@ public partial class Microbe
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
-        cloudSystem.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
+        cloudSystem.AbsorbCompounds(GlobalTransform.origin.ToVector2(), grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
@@ -822,11 +823,11 @@ public partial class Microbe
     /// <summary>
     ///   Calculates a world pos for emitting compounds
     /// </summary>
-    private Vector3 CalculateNearbyWorldPosition()
+    private Vector2 CalculateNearbyWorldPosition()
     {
         // The back of the microbe
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
-        var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.z);
+        var membraneCoords = Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x, exit.y);
 
         // Get the distance to eject the compounds
         var ejectionDistance = Membrane.EncompassingCircleRadius;
@@ -853,9 +854,9 @@ public partial class Microbe
         var s = Mathf.Sin(finalAngle / 180 * Mathf.Pi);
         var c = Mathf.Cos(finalAngle / 180 * Mathf.Pi);
 
-        var ejectionDirection = new Vector3(-membraneCoords.x * c + membraneCoords.z * s, 0,
-            membraneCoords.x * s + membraneCoords.z * c);
+        var ejectionDirection = new Vector2(-membraneCoords.x * c + membraneCoords.y * s,
+            membraneCoords.x * s + membraneCoords.y * c);
 
-        return Translation + (ejectionDirection * ejectionDistance);
+        return Translation.ToVector2() + (ejectionDirection * ejectionDistance);
     }
 }

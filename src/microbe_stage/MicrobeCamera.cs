@@ -62,7 +62,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     private ShaderMaterial materialToUpdate;
 
-    private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
+    private Vector2 cursorWorldPos = new Vector2(0, 0);
     private bool cursorDirty = true;
 
     /// <summary>
@@ -84,7 +84,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     ///   Returns the position the player is pointing to with their cursor
     /// </summary>
     [JsonIgnore]
-    public Vector3 CursorWorldPos
+    public Vector2 CursorWorldPos
     {
         get
         {
@@ -240,7 +240,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
         if (intersection.HasValue)
         {
-            CursorWorldPos = intersection.Value;
+            CursorWorldPos = intersection.Value.ToVector2();
         }
 
         cursorDirty = false;

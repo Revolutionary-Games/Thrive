@@ -25,17 +25,17 @@ public class PilusComponent : ExternallyPositionedComponent
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle,
-        Vector3 membraneCoords)
+        Vector2 membraneCoords)
     {
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords.ToVector3());
 
         // TODO: fix attaching to the wrong parent
         // This if is only true when loading a save
         if (organelle.ParentMicrobe.ColonyParent != null)
             return;
 
-        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        Vector3 membranePointDirection = (membraneCoords - middle).Normalized();
+        Vector2 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        Vector2 membranePointDirection = (membraneCoords - middle).Normalized();
 
         membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
 
@@ -77,7 +77,7 @@ public class PilusComponent : ExternallyPositionedComponent
         // parentMicrobe what is a pilus part of the collision
         // pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
 
-        var transform = new Transform(physicsRotation, membraneCoords);
+        var transform = new Transform(physicsRotation, membraneCoords.ToVector3());
         parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
 
         parentMicrobe.AddPilus(ownerId);
