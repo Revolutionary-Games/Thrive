@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/models/Snowflake.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/textures/Snowflake_Normals.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+params_cull_mode = 2
+albedo_color = Color( 0.882353, 1, 0.996078, 0.192157 )
+metallic_specular = 1.0
+roughness = 0.05
+normal_enabled = true
+normal_scale = 10.0
+normal_texture = ExtResource( 2 )
+refraction_enabled = true
+refraction_scale = 0.1
+refraction_texture_channel = 0
+
+[node name="Spatial" type="MeshInstance"]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
