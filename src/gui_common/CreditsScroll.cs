@@ -41,6 +41,8 @@ public class CreditsScroll : Container
     private float scrollOffset;
     private float smoothOffset;
 
+    private bool steamVersion;
+
     private GameCredits credits;
 
     private Control logo;
@@ -103,6 +105,8 @@ public class CreditsScroll : Container
             throw new InvalidOperationException($"{nameof(SectionNameFont)} not set");
 
         credits = SimulationParameters.Instance.GetCredits();
+
+        steamVersion = SteamHandler.IsTaggedSteamRelease();
 
         if (phase == CreditsPhase.NotRunning && AutoStart)
         {
@@ -328,9 +332,12 @@ public class CreditsScroll : Container
         var currentLabel = CreateDynamicPart(offset, TranslationServer.Translate("PATRONS"), SectionNameFont);
         offset += (int)currentLabel.Height + 15;
 
-        var patreonPromptLabel =
-            CreateDynamicPart(offset, TranslationServer.Translate("YOU_CAN_SUPPORT_THRIVE_ON_PATREON"));
-        offset += (int)patreonPromptLabel.Height + 35;
+        if (!steamVersion)
+        {
+            var patreonPromptLabel =
+                CreateDynamicPart(offset, TranslationServer.Translate("YOU_CAN_SUPPORT_THRIVE_ON_PATREON"));
+            offset += (int)patreonPromptLabel.Height + 35;
+        }
 
         offset = CreateTeamNameList(offset, "VIP_PATRONS", credits.Patrons.VIPPatrons);
         offset = CreateTeamNameList(offset, "DEV_BUILD_PATRONS",
@@ -386,13 +393,14 @@ public class CreditsScroll : Container
             SectionNameFont);
         offset += (int)currentLabel.Height + OffsetAfterSection;
 
-        var licenseTextLabel = CreateFileLoadedPart(offset, Constants.LICENSE_FILE);
+        var licenseTextLabel =
+            CreateFileLoadedPart(offset, steamVersion ? Constants.STEAM_LICENSE_FILE : Constants.LICENSE_FILE);
         offset += (int)licenseTextLabel.Height + ExtraOffsetAfterTeam;
 
         // This is purposefully not translatable
         var extraLicenseInfo = CreateDynamicPart(offset,
             "Godot and other license texts should have been provided along with this copy of Thrive\n" +
-            "if not, please visit our Github at \nhttps://github.com/Revolutionary-Games/Thrive/tree/master/doc" +
+            "if not, please visit our Github at \nhttps://github.com/Revolutionary-Games/Thrive/tree/master/doc " +
             "to find the licenses.\n\nThrive assets are licensed under the\n" +
             "Creative Commons Attribution-ShareAlike 3.0 Unported License");
 
@@ -425,7 +433,7 @@ public class CreditsScroll : Container
             // As licenses are boring speed this up
             ScrollSpeed = normalScrollSpeed * LicenseTextSpeedMultiplier;
 
-            if (ShowGPLLicense)
+            if (ShowGPLLicense && !steamVersion)
             {
                 LoadGPLLicense();
             }

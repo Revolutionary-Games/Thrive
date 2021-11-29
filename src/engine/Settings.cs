@@ -41,6 +41,13 @@ public class Settings
 
     public static CultureInfo DefaultCulture => DefaultCultureValue;
 
+    /// <summary>
+    ///   If environment is steam returns SteamHandler.DisplayName, else Environment.UserName
+    /// </summary>
+    public static string EnvironmentUserName => SteamHandler.Instance.IsLoaded ?
+        SteamHandler.Instance.DisplayName :
+        Environment.UserName;
+
     // Graphics Properties
 
     /// <summary>
@@ -256,6 +263,9 @@ public class Settings
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new SettingValue<InputDataList>(GetDefaultControls());
 
+    // Settings that are edited from elsewhere than the main options menu
+    public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
+
     // Computed properties from other settings
 
     [JsonIgnore]
@@ -263,7 +273,7 @@ public class Settings
         CustomUsernameEnabled &&
         CustomUsername.Value != null ?
             CustomUsername.Value :
-            Environment.UserName;
+            EnvironmentUserName;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 

@@ -10,7 +10,7 @@ public class ProcessPanel : CustomDialog
     public NodePath ProcessListPath;
 
     [Export]
-    public bool ShowCloseButton;
+    public bool ShowCustomCloseButton;
 
     [Export]
     public NodePath CloseButtonContainerPath;
@@ -29,7 +29,7 @@ public class ProcessPanel : CustomDialog
         processList = GetNode<ProcessList>(ProcessListPath);
         closeButtonContainer = GetNode<Container>(CloseButtonContainerPath);
 
-        closeButtonContainer.Visible = ShowCloseButton;
+        closeButtonContainer.Visible = ShowCustomCloseButton;
     }
 
     public override void _Process(float delta)

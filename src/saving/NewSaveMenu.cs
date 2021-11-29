@@ -36,9 +36,25 @@ public class NewSaveMenu : Control
         overwriteConfirm = GetNode<CustomConfirmationDialog>(OverwriteConfirmPath);
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationVisibilityChanged && Visible)
+        {
+            saveNameBox.GrabFocus();
+        }
+    }
+
     public void RefreshExisting()
     {
         saveList.Refresh();
+    }
+
+    public void SetSaveName(string name, bool selectText = false)
+    {
+        saveNameBox.Text = name;
+
+        if (selectText)
+            saveNameBox.SelectAll();
     }
 
     private void ClosePressed()

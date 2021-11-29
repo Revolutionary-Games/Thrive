@@ -32,6 +32,9 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath AutoEvoPredictionHighlightPath;
 
+    [Export]
+    public NodePath StaySmallTutorialPath;
+
     private CustomDialog editorEntryReport;
     private CustomDialog patchMap;
     private CustomDialog cellEditorIntroduction;
@@ -39,6 +42,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     private CustomDialog cellEditorRedo;
     private CustomDialog cellEditorClosingWords;
     private CustomDialog autoEvoPrediction;
+    private CustomDialog staySmallTutorial;
 
     public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeEditor;
     public ITutorialInput EventReceiver { get; set; }
@@ -183,6 +187,25 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         }
     }
 
+    public bool StaySmallTutorialVisible
+    {
+        get => staySmallTutorial.Visible;
+        set
+        {
+            if (value == staySmallTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                staySmallTutorial.Show();
+            }
+            else
+            {
+                staySmallTutorial.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         editorEntryReport = GetNode<CustomDialog>(EditorEntryReportPath);
@@ -192,6 +215,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
         cellEditorRedo = GetNode<CustomDialog>(CellEditorRedoPath);
         cellEditorClosingWords = GetNode<CustomDialog>(CellEditorClosingWordsPath);
         autoEvoPrediction = GetNode<CustomDialog>(AutoEvoPredictionPath);
+        staySmallTutorial = GetNode<CustomDialog>(StaySmallTutorialPath);
 
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
         AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);

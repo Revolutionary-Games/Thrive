@@ -572,26 +572,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     {
         var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
 
-        // Store the material of the organelle to be updated
-        GeometryInstance geometry;
-
-        // Fetch the actual model from the scene to get at the material we set the tint on
-        if (string.IsNullOrEmpty(Definition.DisplaySceneModelPath))
-        {
-            geometry = (GeometryInstance)organelleSceneInstance;
-        }
-        else
-        {
-            geometry = organelleSceneInstance.GetNode<GeometryInstance>(Definition.DisplaySceneModelPath);
-        }
-
         // Store animation player for later use
         if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
         {
             OrganelleAnimation = organelleSceneInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
         }
 
-        organelleMaterial = (ShaderMaterial)geometry.MaterialOverride;
+        // Store the material of the organelle to be updated
+        organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneModelPath);
+        organelleMaterial.RenderPriority = Hex.GetRenderPriority(Position);
 
         // There is an intermediate node so that the organelle scene root rotation and scale work
         OrganelleGraphics = new Spatial();
@@ -605,6 +594,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Position the intermediate node relative to origin of cell
         var transform = new Transform(Quat.Identity,
             Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset());
+
         OrganelleGraphics.Transform = transform;
 
         // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
