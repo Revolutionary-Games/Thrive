@@ -1,16 +1,16 @@
-﻿public class MarineSnowFoodSource : FoodSource
+﻿using AutoEvo;
+
+public class MarineSnowFoodSource : FoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
-    private Patch patch;
-    private BiomeConditions biomeConditions;
-    private float totalEnergy;
-    private float chunkSize;
+    private readonly Patch patch;
+    private readonly float totalEnergy;
+    private readonly float chunkSize;
 
     public MarineSnowFoodSource(Patch patch)
     {
         this.patch = patch;
-        biomeConditions = patch.Biome;
 
         if (patch.Biome.Chunks.TryGetValue("marineSnow", out ChunkConfiguration chunk))
         {
@@ -19,14 +19,13 @@
         }
     }
 
-    public override float FitnessScore(Species species)
+    public override float FitnessScore(Species species, SimulationCache simulationCache)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
-        var predatorSpeed = microbeSpecies.BaseSpeed;
-        predatorSpeed += ProcessSystem
-            .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
-                microbeSpecies.MembraneType).FinalBalance;
+        var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch);
+
+        var predatorSpeed = microbeSpecies.BaseSpeed + energyBalance.FinalBalance;
 
         var score = predatorSpeed * species.Behaviour.Activity;
 
@@ -37,9 +36,7 @@
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        score /= ProcessSystem.ComputeEnergyBalance(
-            microbeSpecies.Organelles.Organelles,
-            biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
+        score /= energyBalance.FinalBalanceStationary;
 
         return score;
     }
