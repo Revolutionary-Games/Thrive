@@ -276,6 +276,23 @@ public class OrganelleLayout<T> : ICollection<T>
     }
 
     /// <summary>
+    ///   Computes all the hex positions
+    /// </summary>
+    /// <returns>The set of hex positions</returns>
+    internal HashSet<Hex> ComputeHexCache()
+    {
+        var set = new HashSet<Hex>();
+
+        foreach (var hex in Organelles.SelectMany(o =>
+            o.Definition.GetRotatedHexes(o.Orientation).Select(h => h + o.Position)))
+        {
+            set.Add(hex);
+        }
+
+        return set;
+    }
+
+    /// <summary>
     ///   Adds the neighbors of the element in checked to checked, as well as their neighbors, and so on
     /// </summary>
     /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
@@ -295,23 +312,6 @@ public class OrganelleLayout<T> : ICollection<T>
                 @checked.Add(neighbor);
             }
         }
-    }
-
-    /// <summary>
-    ///   Computes all the hex positions
-    /// </summary>
-    /// <returns>The set of hex positions</returns>
-    private HashSet<Hex> ComputeHexCache()
-    {
-        var set = new HashSet<Hex>();
-
-        foreach (var hex in Organelles.SelectMany(o =>
-            o.Definition.GetRotatedHexes(o.Orientation).Select(h => h + o.Position)))
-        {
-            set.Add(hex);
-        }
-
-        return set;
     }
 
     /// <summary>
