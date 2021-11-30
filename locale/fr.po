@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-12 14:12+0200\n"
+"POT-Creation-Date: 2021-11-25 18:07+0200\n"
 "PO-Revision-Date: 2021-10-05 19:11+0000\n"
 "Last-Translator: Arya Rouinsard <shigasaa@hotmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -453,7 +453,7 @@ msgid "ZOOM_IN"
 msgstr "Zoomer"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3787
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3875
 msgid "EDITOR"
 msgstr "Éditeur"
 
@@ -720,25 +720,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1294
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3434
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3522
 msgid "AMMONIA"
 msgstr "Ammoniaque"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1348
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3505
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3593
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1402
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3399
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3487
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfure d'Hydrogène"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1240
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3469
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3557
 msgid "GLUCOSE"
 msgstr "Glucose"
 
@@ -749,28 +749,28 @@ msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1456
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3540
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3628
 msgid "IRON"
 msgstr "Fer"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3235
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3323
 msgid "OXYGEN"
 msgstr "Oxygène"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3289
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3377
 msgid "CARBON_DIOXIDE"
 msgstr "Gaz carbonique"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3262
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3350
 msgid "NITROGEN"
 msgstr "Azote"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3115
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3203
 msgid "SUNLIGHT"
 msgstr "Lumière du soleil"
 
@@ -974,7 +974,7 @@ msgstr "population dans les zones :"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "a disparu de la planète"
 
-#: ../src/engine/LoadingScreen.cs:65 ../src/engine/LoadingScreen.tscn:135
+#: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
 msgstr "Chargement"
 
@@ -1401,94 +1401,102 @@ msgid "ART_BY"
 msgstr "Œuvre de {0}"
 
 #: ../src/general/HelpScreen.tscn:107
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
+#: ../src/modding/ModManager.tscn:929
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:404
 msgid "CLOSE"
 msgstr "Fermer"
 
-#: ../src/general/MainMenu.cs:219
+#: ../src/general/MainMenu.cs:224
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:153
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Nouvelle partie"
 
-#: ../src/general/MainMenu.tscn:166 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Charger une partie"
 
-#: ../src/general/MainMenu.tscn:177 ../src/general/PauseMenu.tscn:96
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Options"
 
-#: ../src/general/MainMenu.tscn:188
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Outils"
 
-#: ../src/general/MainMenu.tscn:199
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "Voir le code source"
 
-#: ../src/general/MainMenu.tscn:210
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Extras"
 
-#: ../src/general/MainMenu.tscn:221
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Crédits"
 
-#: ../src/general/MainMenu.tscn:232
+#: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
 msgstr "Quitter"
 
-#: ../src/general/MainMenu.tscn:254
+#: ../src/general/MainMenu.tscn:279
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Éditeur Libre de Microbe"
 
-#: ../src/general/MainMenu.tscn:314 ../src/general/MainMenu.tscn:394
-#: ../src/general/MainMenu.tscn:428 ../src/general/MainMenu.tscn:479
-#: ../src/general/OptionsMenu.tscn:1177 ../src/general/PauseMenu.tscn:136
+#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Revenir"
 
-#: ../src/general/MainMenu.tscn:336
+#: ../src/general/MainMenu.tscn:362
+msgid "MODS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:376
 msgid "ART_GALLERY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:348
+#: ../src/general/MainMenu.tscn:388
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:540
+#: ../src/general/MainMenu.tscn:497
+msgid "GLES2_MODE_WARNING"
+msgstr "Alerte Mode GLES2"
+
+#: ../src/general/MainMenu.tscn:499
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Vous utilisez Thrive avec le GLES2. Cela demeure non testé et risque de "
 "causer des problèmes. Essayez de mettre à jour vos pilotes vidéos et/ou de "
 "forcer l'utilisation des graphiques AMD ou Nvidia pour lancer Thrive."
 
-#: ../src/general/MainMenu.tscn:542
-msgid "GLES2_MODE_WARNING"
-msgstr "Alerte Mode GLES2"
-
-#: ../src/general/OptionsMenu.cs:839
+#: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Périphérique de sortie par défaut"
 
-#: ../src/general/OptionsMenu.cs:871
+#: ../src/general/OptionsMenu.cs:870
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Cette traduction est très incomplète ({0}% effectué). Aidez-nous à la "
 "terminer !"
 
-#: ../src/general/OptionsMenu.cs:875
+#: ../src/general/OptionsMenu.cs:874
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Cette langue est encore en cours de rédaction ({0}% effectué)"
 
-#: ../src/general/OptionsMenu.cs:879
+#: ../src/general/OptionsMenu.cs:878
 #, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Aidez nous à traduire le jeu"
@@ -1796,6 +1804,7 @@ msgstr "Annuler et continuer"
 
 #: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
 msgstr "Annuler"
 
@@ -1817,12 +1826,12 @@ msgstr "Essayez de prendre une capture d'écran!"
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Pas de dossier de captures d'écrans trouvé"
 
-#: ../src/general/PauseMenu.cs:237
+#: ../src/general/PauseMenu.cs:247
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Retour au menu"
 
-#: ../src/general/PauseMenu.cs:254
+#: ../src/general/PauseMenu.cs:263
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "Alerte Mode GLES2"
@@ -1836,7 +1845,7 @@ msgid "SAVE_GAME"
 msgstr "Sauvegarder"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2541
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2610
 msgid "STATISTICS"
 msgstr "Statistiques"
 
@@ -1882,225 +1891,225 @@ msgstr "@"
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:638
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:657
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:952
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1095
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:655
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:950
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1103
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/gui_common/CreditsScroll.cs:222
+#: ../src/gui_common/CreditsScroll.cs:226
 msgid "LEAD_DEVELOPERS"
 msgstr "Développeur principal"
 
-#: ../src/gui_common/CreditsScroll.cs:228
+#: ../src/gui_common/CreditsScroll.cs:232
 msgid "LEAD_PROGRAMMER"
 msgstr "Programmeur principal"
 
-#: ../src/gui_common/CreditsScroll.cs:229
+#: ../src/gui_common/CreditsScroll.cs:233
 msgid "LEAD_PROGRAMMERS"
 msgstr "Programmeurs principaux"
 
-#: ../src/gui_common/CreditsScroll.cs:234
+#: ../src/gui_common/CreditsScroll.cs:238
 msgid "LEAD_THEORIST"
 msgstr "Théoricien principal"
 
-#: ../src/gui_common/CreditsScroll.cs:235
+#: ../src/gui_common/CreditsScroll.cs:239
 msgid "LEAD_THEORISTS"
 msgstr "Théoriciens principaux"
 
-#: ../src/gui_common/CreditsScroll.cs:240
+#: ../src/gui_common/CreditsScroll.cs:244
 msgid "LEAD_ARTIST"
 msgstr "Artiste principal"
 
-#: ../src/gui_common/CreditsScroll.cs:241
+#: ../src/gui_common/CreditsScroll.cs:245
 msgid "LEAD_ARTISTS"
 msgstr "Artistes principaux"
 
-#: ../src/gui_common/CreditsScroll.cs:246
+#: ../src/gui_common/CreditsScroll.cs:250
 msgid "SOUND_TEAM_LEAD"
 msgstr "Équipe son principale"
 
-#: ../src/gui_common/CreditsScroll.cs:247
+#: ../src/gui_common/CreditsScroll.cs:251
 msgid "SOUND_TEAM_LEADS"
 msgstr "Équipe son principales"
 
-#: ../src/gui_common/CreditsScroll.cs:252
+#: ../src/gui_common/CreditsScroll.cs:256
 msgid "LEAD_OUTREACH_PERSON"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:253
+#: ../src/gui_common/CreditsScroll.cs:257
 msgid "LEAD_OUTREACH_PEOPLE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:258
+#: ../src/gui_common/CreditsScroll.cs:262
 msgid "LEAD_GAME_DESIGNER"
 msgstr "Concepteur de jeu principal"
 
-#: ../src/gui_common/CreditsScroll.cs:259
+#: ../src/gui_common/CreditsScroll.cs:263
 msgid "LEAD_GAME_DESIGNERS"
 msgstr "Concepteurs de jeu principaux"
 
-#: ../src/gui_common/CreditsScroll.cs:264
+#: ../src/gui_common/CreditsScroll.cs:268
 msgid "LEAD_TESTER"
 msgstr "Testeur principal"
 
-#: ../src/gui_common/CreditsScroll.cs:265
+#: ../src/gui_common/CreditsScroll.cs:269
 msgid "LEAD_TESTERS"
 msgstr "Testeurs principaux"
 
-#: ../src/gui_common/CreditsScroll.cs:270
+#: ../src/gui_common/CreditsScroll.cs:274
 msgid "LEAD_PROJECT_MANAGER"
 msgstr "Chef de projet principal"
 
-#: ../src/gui_common/CreditsScroll.cs:271
+#: ../src/gui_common/CreditsScroll.cs:275
 msgid "LEAD_PROJECT_MANAGERS"
 msgstr "Chef de projets principaux"
 
-#: ../src/gui_common/CreditsScroll.cs:278
+#: ../src/gui_common/CreditsScroll.cs:282
 msgid "CURRENT_DEVELOPERS"
 msgstr "Développeurs actuels"
 
-#: ../src/gui_common/CreditsScroll.cs:294
+#: ../src/gui_common/CreditsScroll.cs:298
 msgid "PAST_DEVELOPERS"
 msgstr "Anciens développeurs"
 
-#: ../src/gui_common/CreditsScroll.cs:310
+#: ../src/gui_common/CreditsScroll.cs:314
 msgid "OUTSIDE_CONTRIBUTORS"
 msgstr "Contributeurs éxterieurs"
 
-#: ../src/gui_common/CreditsScroll.cs:313
+#: ../src/gui_common/CreditsScroll.cs:317
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
 "Thrive est un projet open-source.\n"
 "Vous pouvez proposer un correctif sans avoir besoin de faire partie de "
 "l'équipe (de développement)."
 
-#: ../src/gui_common/CreditsScroll.cs:328
+#: ../src/gui_common/CreditsScroll.cs:332
 msgid "PATRONS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:332
+#: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Vous pouvez financer le développement de Thrive sur Patreon"
 
-#: ../src/gui_common/CreditsScroll.cs:348
+#: ../src/gui_common/CreditsScroll.cs:355
 msgid "DONATIONS"
 msgstr "Dons"
 
-#: ../src/gui_common/CreditsScroll.cs:371
+#: ../src/gui_common/CreditsScroll.cs:378
 msgid "TRANSLATORS"
 msgstr "Traducteurs"
 
-#: ../src/gui_common/CreditsScroll.cs:385
+#: ../src/gui_common/CreditsScroll.cs:392
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licences et bibliothèques utilisés"
 
-#: ../src/gui_common/CreditsScroll.cs:479
+#: ../src/gui_common/CreditsScroll.cs:487
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 "Merci d'avoir joué !\n"
 "\n"
 "Si vous avez aimé le jeu, n'hésitez pas à en parler à vos amis."
 
-#: ../src/gui_common/CreditsScroll.cs:488
+#: ../src/gui_common/CreditsScroll.cs:496
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:489
+#: ../src/gui_common/CreditsScroll.cs:497
 msgid "THEORY_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:490
+#: ../src/gui_common/CreditsScroll.cs:498
 #, fuzzy
 msgid "GRAPHICS_TEAM"
 msgstr "Graphiques"
 
-#: ../src/gui_common/CreditsScroll.cs:491
+#: ../src/gui_common/CreditsScroll.cs:499
 #, fuzzy
 msgid "SOUND_TEAM"
 msgstr "Équipe son principale"
 
-#: ../src/gui_common/CreditsScroll.cs:492
-msgid "OUTREACH_TEAM"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:493
-#, fuzzy
-msgid "GAME_DESIGN_TEAM"
-msgstr "Concepteur de jeu principal"
-
-#: ../src/gui_common/CreditsScroll.cs:494
-msgid "TESTING_TEAM"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:495
-#, fuzzy
-msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr "Chef de projet principal"
-
-#: ../src/gui_common/CreditsScroll.cs:496
-msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:497
-msgid "VIP_PATRONS"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:498
-msgid "DEV_BUILD_PATRONS"
-msgstr ""
-
-#: ../src/gui_common/CreditsScroll.cs:499
-msgid "SUPPORTER_PATRONS"
-msgstr ""
-
 #: ../src/gui_common/CreditsScroll.cs:500
-msgid "JANUARY"
+msgid "OUTREACH_TEAM"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:501
 #, fuzzy
-msgid "FEBRUARY"
-msgstr "Estuaire"
+msgid "GAME_DESIGN_TEAM"
+msgstr "Concepteur de jeu principal"
 
 #: ../src/gui_common/CreditsScroll.cs:502
-msgid "MARCH"
+msgid "TESTING_TEAM"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:503
-msgid "APRIL"
-msgstr ""
+#, fuzzy
+msgid "PROJECT_MANAGEMENT_TEAM"
+msgstr "Chef de projet principal"
 
 #: ../src/gui_common/CreditsScroll.cs:504
-msgid "MAY"
+msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:505
-msgid "JUNE"
+msgid "VIP_PATRONS"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:506
-msgid "JULY"
+msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:507
-msgid "AUGUST"
+msgid "SUPPORTER_PATRONS"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:508
-msgid "SEPTEMBER"
+msgid "JANUARY"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:509
+#, fuzzy
+msgid "FEBRUARY"
+msgstr "Estuaire"
+
+#: ../src/gui_common/CreditsScroll.cs:510
+msgid "MARCH"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:511
+msgid "APRIL"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:512
+msgid "MAY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:513
+msgid "JUNE"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:514
+msgid "JULY"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:515
+msgid "AUGUST"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:516
+msgid "SEPTEMBER"
+msgstr ""
+
+#: ../src/gui_common/CreditsScroll.cs:517
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:518
 #, fuzzy
 msgid "NOVEMBER"
 msgstr "Mouvement"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:519
 msgid "DECEMBER"
 msgstr ""
 
@@ -2115,14 +2124,6 @@ msgstr ""
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
 msgstr "Développeurs"
-
-#: ../src/gui_common/LicensesDisplay.cs:27
-msgid "GPL_LICENSE_HEADING"
-msgstr ""
-
-#: ../src/gui_common/LicensesDisplay.tscn:62
-msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
@@ -2212,12 +2213,26 @@ msgstr "Il n'est pas permis d'afficher moins de {0} datasets !"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
+#: ../src/modding/ModUploader.tscn:326
 msgid "OK"
 msgstr "OK"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copier l'Erreur"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:34
+msgid "GPL_LICENSE_HEADING"
+msgstr ""
+
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
+#, fuzzy
+msgid "THRIVE_LICENSES"
+msgstr "Licences et bibliothèques utilisés"
+
+#: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
+msgid "LICENSES_COVERING_THRIVE"
+msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2796,8 +2811,8 @@ msgstr ""
 "Voulez-vous continuer ?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3052
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:857
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3140
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:855
 msgid "TEMPERATURE"
 msgstr "Température"
 
@@ -2806,23 +2821,23 @@ msgstr "Température"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:486
+#: ../src/microbe_stage/Microbe.Contact.cs:494
 msgid "DEATH"
 msgstr "mort"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:582
+#: ../src/microbe_stage/Microbe.Contact.cs:599
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "récupération réussie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:589
+#: ../src/microbe_stage/Microbe.Contact.cs:606
 msgid "SUCCESSFUL_KILL"
 msgstr "élimination réussie"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:796
+#: ../src/microbe_stage/Microbe.Contact.cs:813
 msgid "ESCAPE_ENGULFING"
 msgstr "échapper à l'engloutissement"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:710
+#: ../src/microbe_stage/Microbe.Interior.cs:712
 msgid "REPRODUCED"
 msgstr "reproduit"
 
@@ -2887,11 +2902,15 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:525
+#: ../src/microbe_stage/MicrobeStage.cs:529
 msgid "PLAYER_REPRODUCED"
 msgstr "joueur reproduit"
 
-#: ../src/microbe_stage/MicrobeStage.cs:672
+#: ../src/microbe_stage/MicrobeStage.cs:615
+msgid "SPAWN_ENEMY_CHEAT_FAIL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:679
 msgid "PLAYER_DIED"
 msgstr "joueur mort"
 
@@ -2928,9 +2947,9 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2725
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3359
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2808
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:964
 msgid "COMPOUNDS"
 msgstr "Composés"
 
@@ -3033,7 +3052,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1436
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Chargement de l'Éditeur de Microbes"
 
@@ -3041,140 +3060,128 @@ msgstr "Chargement de l'Éditeur de Microbes"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Attente pour l'auto-évo :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2457
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2458
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:546
-msgid "ORGANISM_STATISTICS"
-msgstr "Statistiques de l'Organisme"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:609
-msgid "SPEED_COLON"
-msgstr "Vitesse :"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:639
-msgid "HP_COLON"
-msgstr "PV :"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:669
-msgid "SIZE_COLON"
-msgstr "Taille :"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:690
-msgid "GENERATION_COLON"
-msgstr "Génération :"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:732
-msgid "ATP_BALANCE"
-msgstr "Niveau d'ATP"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:938
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:648
 msgid "MUTATION_POINTS"
 msgstr "Points de mutation"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1073
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:783
 msgid "STRUCTURE"
 msgstr "Structure"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1095
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:805
 msgid "MEMBRANE"
 msgstr "Membrane"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:827
 #, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Comportement"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1169
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:879
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Rechercher..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1176
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:886
 msgid "STRUCTURAL"
 msgstr "Structure"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1212
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:928
 msgid "PROTEINS"
 msgstr "Protéines"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1288
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1010
 msgid "EXTERNAL"
 msgstr "Externe"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1342
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1070
 msgid "ORGANELLES"
 msgstr "Organites"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1491
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1225
 msgid "MEMBRANE_TYPES"
 msgstr "Types de Membranes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1310
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidité / Rigidité"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1615
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1349
 msgid "COLOUR"
 msgstr "Couleur"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1414
 msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1697
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1431
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1731
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1465
 msgid "CAUTIOUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1749
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1483
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1783
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1517
 msgid "BRAVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1800
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1534
 msgid "FEARFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1834
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1568
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1585
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1885
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1619
 msgid "RESPONSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1902
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1636
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2035
-msgid "SPECIES_NAME_DOT_DOT_DOT"
-msgstr "Nom de l’espèce..."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1702
+msgid "ORGANISM_STATISTICS"
+msgstr "Statistiques de l'Organisme"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2086
-msgid "CANCEL_ACTION_CAPITAL"
-msgstr "ANNULER L'ACTION"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1764
+msgid "SPEED_COLON"
+msgstr "Vitesse :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2100
-msgid "CONFIRM_CAPITAL"
-msgstr "ACCEPTER"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1794
+msgid "HP_COLON"
+msgstr "PV :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2145
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1824
+msgid "SIZE_COLON"
+msgstr "Taille :"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1845
+msgid "GENERATION_COLON"
+msgstr "Génération :"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1887
+msgid "ATP_BALANCE"
+msgstr "Niveau d'ATP"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1996
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
@@ -3187,112 +3194,124 @@ msgstr ""
 "faibles niveaux d'oxygènes dans l'environnement vont ralentir son taux de "
 "production d'ATP."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2148
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1999
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% terminé. {1:n0}/{2:n0} étapes."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2213
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2064
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "{0} changement de population de {1} en raison de : {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2237
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2088
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Espèces :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2262
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2113
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Espèces :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2253
+msgid "SPECIES_NAME_DOT_DOT_DOT"
+msgstr "Nom de l’espèce..."
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2307
+msgid "CANCEL_ACTION_CAPITAL"
+msgstr "ANNULER L'ACTION"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2321
+msgid "CONFIRM_CAPITAL"
+msgstr "ACCEPTER"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2330
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Quantité d'ATP Négative"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2290
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2331
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Votre microbe ne produit pas assez d'ATP pour survivre!\n"
 "Voulez-vous continuer?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2296
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2337
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Organites Déconnectés"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2298
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2339
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Il y a des organites placées qui ne sont pas connectés au reste.\n"
 "Veuillez connecter toutes les organites placées avec les autres ou annulez "
 "vos changements."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2394
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2436
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2407
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2450
 msgid "FOOD_CHAIN"
 msgstr "Chaîne Alimentaire"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2420
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2464
 msgid "TIMELINE"
 msgstr "Chronologie"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2473
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2517
 msgid "AUTO_EVO_RESULTS"
 msgstr "Résultats de l'auto-évo :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2492
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2536
 msgid "EXTERNAL_EFFECTS"
 msgstr "Effets externes :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2550
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2619
 msgid "SPECIES_POPULATION"
 msgstr "Espèces"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2583
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2657
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3099
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Conditions Physique"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2687
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3194
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:961
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2765
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3282
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:959
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gaz Atmosphériques"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2780
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3703
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2868
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3791
 msgid "NEXT_CAPITAL"
 msgstr "SUIVANT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2893
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2981
 msgid "SELECT_A_PATCH"
 msgstr "Choisir une parcelle pour voir ses détails ici"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2928
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3016
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3088
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3176
 msgid "PRESSURE"
 msgstr "Pression"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3619
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3707
 msgid "SPECIES_PRESENT"
 msgstr "Espèces Présentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3676
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3764
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Se Déplacer vers Cette Parcelle"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3745
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3833
 msgid "REPORT"
 msgstr "Rapport"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3766
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3854
 msgid "PATCH_MAP"
 msgstr "Carte de Parcelles"
 
@@ -3300,86 +3319,86 @@ msgstr "Carte de Parcelles"
 msgid "INFINITE_MP"
 msgstr "MP illimités"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:663
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "La quantité de glucose a été réduite a {0} se sa valeur précédente."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:674
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:958
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:956
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:957
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:959
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:961
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:963
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:964
 msgid "YEARS"
 msgstr "années"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:716
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:721
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:719
 msgid "ATP_PRODUCTION"
 msgstr "Production d'ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:722
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCTION D'ATP EST TROP FAIBLE!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:746
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:765
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:763
 msgid "OSMOREGULATION"
 msgstr "Osmorégulation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:771
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:769
 msgid "BASE_MOVEMENT"
 msgstr "Mouvement de Base"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:783
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:963
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:961
 msgid "SPECIES_LIST"
 msgstr "Espèces Présentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:989
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:997
 msgid "FREEBUILDING"
 msgstr "Construction Libre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1086
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1094
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1091
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1099
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sous la mer"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1130
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1138
 msgid "WITH_POPULATION"
 msgstr "{0} avec population : {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1812
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1820
 #, fuzzy
 msgid "FAILED"
 msgstr "Sauvegarde Échouée"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1843
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1856
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1851
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1864
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULATION :"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1848
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1861
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1856
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1869
 #, fuzzy
 msgid "N_A"
 msgstr "Pas d'IA"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2057
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2065
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -3422,6 +3441,406 @@ msgstr ""
 "Bravo, vous avez gagné cette version de Thrive! vous pouvez continuer à "
 "jouer après que cet écran se soit fermé si vous le souhaitez, ou démarrer "
 "une nouvelle partie dans un autre monde."
+
+#: ../src/modding/ModManager.cs:269
+msgid "INVALID_ICON_PATH"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:283
+msgid "INVALID_URL_SCHEME"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:295
+msgid "ASSEMBLY_CLASS_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:501
+#, fuzzy
+msgid "NO_SELECTED_MOD"
+msgstr "Sélectionné :"
+
+#: ../src/modding/ModManager.cs:861
+#, fuzzy
+msgid "ERROR_CREATING_FOLDER"
+msgstr "Erreur de Sauvegarde"
+
+#: ../src/modding/ModManager.cs:870
+msgid "ERROR_CREATING_INFO_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:116
+msgid "AVAILABLE_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:139 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Rafraîchir"
+
+#: ../src/modding/ModManager.tscn:147
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "Ouvrir le dossier des Logs"
+
+#: ../src/modding/ModManager.tscn:165
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "Clic droit"
+
+#: ../src/modding/ModManager.tscn:178
+#, fuzzy
+msgid "LEFT_ARROW"
+msgstr "Clic gauche"
+
+#: ../src/modding/ModManager.tscn:190
+#, fuzzy
+msgid "ENABLED_MODS"
+msgstr "Activer l'éditeur"
+
+#: ../src/modding/ModManager.tscn:208
+msgid "DISABLE_ALL"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:245
+#, fuzzy
+msgid "SELECTED_MOD"
+msgstr "Sélectionné :"
+
+#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
+#: ../src/modding/NewModGUI.tscn:142
+msgid "MOD_AUTHOR"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
+#: ../src/modding/NewModGUI.tscn:165
+#, fuzzy
+msgid "MOD_VERSION"
+msgstr "Version :"
+
+#: ../src/modding/ModManager.tscn:366
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:410
+#, fuzzy
+msgid "MINIMUM_VERSION"
+msgstr "Version :"
+
+#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
+#: ../src/modding/NewModGUI.tscn:188
+#, fuzzy
+msgid "MOD_DESCRIPTION"
+msgstr "Description :"
+
+#: ../src/modding/ModManager.tscn:469
+msgid "MORE_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:477
+#, fuzzy
+msgid "OPEN_MOD_URL"
+msgstr "Ouvre l'URL"
+
+#: ../src/modding/ModManager.tscn:500
+msgid "BROWSE_WORKSHOP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
+#, fuzzy
+msgid "UPLOAD"
+msgstr "Charger"
+
+#: ../src/modding/ModManager.tscn:514
+msgid "NEW"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:527
+#, fuzzy
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr "Charger la sauvegarde invalide ?"
+
+#: ../src/modding/ModManager.tscn:553
+#, fuzzy
+msgid "ENABLE_ALL_COMPATIBLE"
+msgstr "La sauvegarde sélectionnée est incompatible"
+
+#: ../src/modding/ModManager.tscn:562
+msgid "APPLY_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:573
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:574
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"Étant la forme de membrane la plus simple, elle n'offre que très peu de "
+"protection et demande plus d'énergie pour ne pas se déformer. Par contre, "
+"elle permet à une cellule de se déplacer et se nourrir plus rapidement."
+
+#: ../src/modding/ModManager.tscn:575
+#, fuzzy
+msgid "DISCARD_CHANGES"
+msgstr "Annuler et continuer"
+
+#: ../src/modding/ModManager.tscn:582
+msgid "FULL_MOD_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
+#, fuzzy
+msgid "MOD_NAME"
+msgstr "Nom :"
+
+#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
+#, fuzzy
+msgid "MOD_EXTENDED_DESCRIPTION"
+msgstr ""
+"L'Azotéase est une protéine capable d'utiliser l'azote gazeux et l'énergie "
+"de la cellule sous forme d'ATP pour produire de l'ammoniaque, un nutriment "
+"de croissance clé pour une cellule. C'est un processus nommé la Fixation "
+"Anaérobique d'Azote. Puisque l'azotéase est suspendu directement dans le "
+"cytoplasme, les fluides l'entourant réalisent un peu la glycolyse."
+
+#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
+msgid "MOD_ICON_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
+msgid "MOD_INFO_URL"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
+#, fuzzy
+msgid "MOD_LICENSE"
+msgstr "Licences et bibliothèques utilisés"
+
+#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
+msgid "MOD_RECOMMENDED_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
+msgid "MOD_MINIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
+msgid "MOD_MAXIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
+#, fuzzy
+msgid "MOD_PCK_NAME"
+msgstr "Nom de la Parcelle"
+
+#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
+msgid "MOD_ASSEMBLY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
+msgid "MOD_ASSEMBLY_CLASS"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:936
+#, fuzzy
+msgid "MOD_CREATION_FAILED"
+msgstr "L'Auto-évo n'a pas pu se lancer"
+
+#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
+msgid "CONTENT_UPLOADED_FROM"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:273
+#, fuzzy
+msgid "MISSING_TITLE"
+msgstr "VOUS AVEZ PROSPÉRÉ !"
+
+#: ../src/modding/ModUploader.cs:279
+#, fuzzy
+msgid "MISSING_DESCRIPTION"
+msgstr "Description :"
+
+#: ../src/modding/ModUploader.cs:287
+#, fuzzy
+msgid "DESCRIPTION_TOO_LONG"
+msgstr "Description :"
+
+#: ../src/modding/ModUploader.cs:295
+msgid "TAGS_IS_WHITESPACE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:303
+#, fuzzy
+msgid "INVALID_TAG"
+msgstr "Charger la sauvegarde invalide ?"
+
+#: ../src/modding/ModUploader.cs:351
+#, fuzzy
+msgid "CREATING_DOT_DOT_DOT"
+msgstr "Rechercher..."
+
+#: ../src/modding/ModUploader.cs:373
+#, fuzzy
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "Sauvegarde échoué! Une exception a eu lieu"
+
+#: ../src/modding/ModUploader.cs:415
+#, fuzzy
+msgid "UPLOADING_DOT_DOT_DOT"
+msgstr "Chargement..."
+
+#: ../src/modding/ModUploader.cs:443
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:447
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:507
+msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#, fuzzy
+msgid "FORM_ERROR_MESSAGE"
+msgstr "Erreur de Sauvegarde"
+
+#: ../src/modding/ModUploader.tscn:43
+msgid "MOD_UPLOADER"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:83
+msgid "MOD_TO_UPLOAD"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:108
+#, fuzzy
+msgid "UNKNOWN_WORKSHOP_ID"
+msgstr "Souris inconnue"
+
+#: ../src/modding/ModUploader.tscn:120
+#, fuzzy
+msgid "CREATE_NEW"
+msgstr "Créer une Nouvelle Sauvegarde"
+
+#: ../src/modding/ModUploader.tscn:128
+#, fuzzy
+msgid "ENTER_EXISTING_ID"
+msgstr "Réécriture sur la sauvegarde existante :"
+
+#: ../src/modding/ModUploader.tscn:138
+msgid "ENTER_EXISTING_WORKSHOP_ID"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:152
+msgid "ID_NUMBER"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:168
+#, fuzzy
+msgid "WORKSHOP_ITEM_TITLE"
+msgstr "\"{0}\" - {1}"
+
+#: ../src/modding/ModUploader.tscn:186
+#, fuzzy
+msgid "WORKSHOP_ITEM_DESCRIPTION"
+msgstr ""
+"Le chloroplaste est une structure a double membrane contenant des pigments "
+"photosensibles contenus ensemble dans des sacs de membrane. C'est un "
+"procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. "
+"Les pigments dans le chloroplaste sont capable d'utiliser l'énergie de la "
+"lumière pour produire du glucose à partir d'eau et de dioxyde de carbone "
+"gazeux lors d'un processus nommé Photosynthèse. Ces pigments sont aussi ce "
+"qui leur donnent cette couleur particulière. Le taux de glucose produit "
+"est proportionnel avec la concentration de dioxyde de carbone, et "
+"l'intensité de la lumière."
+
+#: ../src/modding/ModUploader.tscn:208
+msgid "WORKSHOP_VISIBILITY_TOOLTIP"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:209
+msgid "VISIBLE"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:215
+msgid "WORKSHOP_ITEM_TAGS"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:233
+msgid "WORKSHOP_ITEM_PREVIEW"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:259
+msgid "BROWSE"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:294
+msgid "SELECT_PREVIEW_IMAGE"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:305
+#, fuzzy
+msgid "UPLOAD_SUCCEEDED"
+msgstr "Sauvegarde réussi"
+
+#: ../src/modding/NewModGUI.cs:169
+#, fuzzy
+msgid "NEW_MOD_DEFAULT_DESCRIPTION"
+msgstr ""
+"Le chimioplaste est une structure à double membrane contenant des "
+"protéines capable de convertir le sulfure d'hydrogène, l'eau et le dioxyde "
+"de carbone gazeux en glucose avec un processus nommé Chimiosynthèse de "
+"Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la "
+"concentration en dioxyde de carbone."
+
+#: ../src/modding/NewModGUI.cs:226
+msgid "INVALID_URL_FORMAT"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:238
+msgid "INTERNAL_NAME_REQUIRED"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:244
+msgid "INTERNAL_NAME_IN_USE"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:263
+msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:274
+#, fuzzy
+msgid "ADDITIONAL_VALIDATION_FAILED"
+msgstr "L'Auto-évo n'a pas pu se lancer"
+
+#: ../src/modding/NewModGUI.tscn:35
+#, fuzzy
+msgid "CREATE_NEW_MOD"
+msgstr "Créer un nouveau microbe"
+
+#: ../src/modding/NewModGUI.tscn:69
+msgid "MODDING_INSTRUCTIONS_ON"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:76
+msgid "OUR_WIKI"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:96
+msgid "MOD_INTERNAL_NAME"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:450
+#, fuzzy
+msgid "CREATE"
+msgstr "Créé à :"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -3481,7 +3900,7 @@ msgstr "Sauvegarde Échouée"
 msgid "ERROR_SAVING"
 msgstr "Erreur de Sauvegarde"
 
-#: ../src/saving/NewSaveMenu.cs:61
+#: ../src/saving/NewSaveMenu.cs:77
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Réécrire par dessus?"
 
@@ -3682,10 +4101,6 @@ msgstr ""
 "- {0} Auto sauvegarde(s)\n"
 "- {1} sauvegarde(s) Rapide"
 
-#: ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Rafraîchir"
-
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
 msgstr "Supprimer la Sélection"
@@ -3726,28 +4141,89 @@ msgstr "Essayez de sauvegarder !"
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Pas de dossier de sauvegarde trouvé"
 
-#: ../src/steam/SteamClient.cs:35
+#: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:81
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:120
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:298
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:50
+#: ../src/steam/SteamClient.cs:460
+msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:462
+msgid "STEAM_ERROR_BANNED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:464
+msgid "STEAM_ERROR_TIMEOUT"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:466
+msgid "STEAM_ERROR_NOT_LOGGED_IN"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:468
+msgid "STEAM_ERROR_UNAVAILABLE"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:470
+#, fuzzy
+msgid "STEAM_ERROR_INVALID_PARAMETER"
+msgstr "La sauvegarde a un état scénique de jeu invalide"
+
+#: ../src/steam/SteamClient.cs:472
+msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:474
+msgid "STEAM_ERROR_FILE_NOT_FOUND"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:476
+msgid "STEAM_ERROR_ALREADY_UPLOADED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:478
+#, fuzzy
+msgid "STEAM_ERROR_DUPLICATE_NAME"
+msgstr "joueur en double"
+
+#: ../src/steam/SteamClient.cs:480
+msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:482
+msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:484
+#, fuzzy
+msgid "STEAM_ERROR_LOCKING_FAILED"
+msgstr "Sauvegarde échoué! Une exception a eu lieu"
+
+#: ../src/steam/SteamClient.cs:486
+msgid "STEAM_ERROR_UNKNOWN"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:299
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:219
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:253
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:288
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:327
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:363
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
 msgid "TUTORIAL"
 msgstr "Tutoriel"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Bienvenue à l'Éditeur de mode Microbe.\n"
@@ -3762,7 +4238,7 @@ msgstr ""
 "Pour aller au prochain onglet de l'éditeur, appuyez sur le bouton suivant "
 "en bas à droite."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "C'est la carte des parcelles.\n"
@@ -3779,7 +4255,7 @@ msgstr ""
 "\n"
 "Sélectionnez une parcelle pour continuer."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:139
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "C'est l'éditeur de cellule ou vous pouvez ajouter ou retirer des organites "
@@ -3793,7 +4269,7 @@ msgstr ""
 "l'hexagone montré au milieu de l'écran pour ajouter cet organite à votre "
 "espèce."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:179
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Retirer des organites coûte aussi des PM car c'est aussi une mutation de "
@@ -3806,7 +4282,7 @@ msgstr ""
 "\n"
 "Cliquez sur le bouton d'annulation pour continuer."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:219
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:220
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "En sélectionnant quelles organites ajouter, faites attention aux "
@@ -3821,7 +4297,7 @@ msgstr ""
 "\n"
 "Pressez le bouton refaire (près du bouton d'annulation) pour continuer."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:263
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:264
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "Voila les bases de l'édition de votre espèce. Vous pouvez consulter les "
@@ -3835,11 +4311,11 @@ msgstr ""
 "\n"
 "Bonne chance !"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:281
 msgid "GOT_IT"
 msgstr "Bien reçu"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
 #, fuzzy
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -3857,7 +4333,22 @@ msgstr ""
 "\n"
 "Sélectionnez une parcelle pour continuer."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:387
+#, fuzzy
+msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgstr ""
+"C'est l'éditeur de cellule ou vous pouvez ajouter ou retirer des organites "
+"à votre espèce en dépensant des points de mutation (PM).\n"
+"\n"
+"Vous pouvez aussi changer d'autres propriétés de votre espèce dans les "
+"autres onglets de l'éditeur de cellule.\n"
+"\n"
+"Pour continuer, sélectionnez un organite sur le panneau de gauche (le "
+"cytoplasme est un bon choix). Ensuite faites un clique gauche à côté de "
+"l'hexagone montré au milieu de l'écran pour ajouter cet organite à votre "
+"espèce."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Sur une planète distante et étrangère, des éternités d'activité volcanique "
@@ -3874,11 +4365,11 @@ msgstr ""
 "n'importe quel composant que vous pourrez trouver et évoluer à chaque "
 "génération en étant en compétition contre d'autres espèces de microbes."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
 msgstr "Montrer les tutoriels"
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr "Commencer à Prospérer"
 
@@ -3941,6 +4432,17 @@ msgstr ""
 "\n"
 "To leave the colony completely, you can click on your own cell or press "
 "the Ungroup All button."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgstr ""
+"W,A,S,D et souris pour bouger. E pour tirer des OxyToxy NT si vous avez "
+"une vacuole à toxines. G pour passer en mode absorption."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
+msgid "VIEW_NOW"
+msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Annuler"
@@ -4145,9 +4647,6 @@ msgstr ""
 
 #~ msgid "APPEARANCE"
 #~ msgstr "Apparence"
-
-#~ msgid "PATCH_NAME"
-#~ msgstr "Nom de la Parcelle"
 
 #~ msgid "CARBON"
 #~ msgstr "Carbone"

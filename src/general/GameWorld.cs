@@ -107,14 +107,20 @@ public class GameWorld
         {
             // Make sure there is an existing run, as that isn't saved, so when loading we need to create the run to
             // store things in it. Creating the run here doesn't interfere with it being started
+
+            // We skip starting a run if the list of external effects would be empty anyway, as is the case
+            // when loading a save made in the editor
+            if (value == null || value.Count < 1)
+            {
+                autoEvo?.ExternalEffects.Clear();
+                return;
+            }
+
             CreateRunIfMissing();
 
             var effects = autoEvo.ExternalEffects;
 
             effects.Clear();
-
-            if (value == null)
-                return;
 
             effects.AddRange(value);
         }

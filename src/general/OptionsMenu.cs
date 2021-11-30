@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Saving;
-using Environment = System.Environment;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -539,7 +538,7 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
         customUsername.Text = settings.CustomUsername.Value != null ?
             settings.CustomUsername :
-            Environment.UserName;
+            Settings.EnvironmentUserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
@@ -1324,7 +1323,7 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER)) == Error.FileNotFound)
+        if (!FolderHelpers.OpenFolder(Constants.SCREENSHOT_FOLDER))
             screenshotDirectoryWarningBox.PopupCenteredShrink();
     }
 
@@ -1338,7 +1337,7 @@ public class OptionsMenu : ControlWithInput
 
     private void OnCustomUsernameTextChanged(string text)
     {
-        if (text.Equals(Environment.UserName, StringComparison.CurrentCulture))
+        if (text.Equals(Settings.EnvironmentUserName, StringComparison.CurrentCulture))
         {
             Settings.Instance.CustomUsername.Value = null;
         }
@@ -1399,6 +1398,6 @@ public class OptionsMenu : ControlWithInput
     private void OnLogButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
+        FolderHelpers.OpenFolder(Constants.LOGS_FOLDER);
     }
 }

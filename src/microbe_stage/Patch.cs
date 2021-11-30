@@ -166,10 +166,10 @@ public class Patch
 
     public long GetSpeciesPopulation(Species species)
     {
-        if (!currentSnapshot.SpeciesInPatch.ContainsKey(species))
+        if (!currentSnapshot.SpeciesInPatch.TryGetValue(species, out var population))
             return 0;
 
-        return currentSnapshot.SpeciesInPatch[species];
+        return population;
     }
 
     public float GetTotalChunkCompoundAmount(Compound compound)
