@@ -2,13 +2,13 @@
     <PropertyGroup>
         <BaseIntermediateOutputPath>../.mono/temp/third_party_obj/</BaseIntermediateOutputPath>
     </PropertyGroup>
-    <!-- StyleCop Analyzers configuration and FxCop enabling -->
+    <!-- StyleCop Analyzers configuration and NetAnalyzers enabling -->
     <PropertyGroup>
         <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)StyleCop.ruleset</CodeAnalysisRuleSet>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.354" PrivateAssets="all" />
         <AdditionalFiles Include="$(MSBuildThisFileDirectory)../stylecop.json" Link="stylecop.json" />
-        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.2" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0" PrivateAssets="all" />
     </ItemGroup>
 </Project>
