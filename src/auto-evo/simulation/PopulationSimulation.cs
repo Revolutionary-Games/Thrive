@@ -31,9 +31,11 @@
                 patchesToSimulate = patchesToSimulate.Where(p => parameters.PatchesToRun.Contains(p.Value));
             }
 
+            var patchesList = patchesToSimulate.ToList();
+
             while (parameters.StepsLeft > 0)
             {
-                RunSimulationStep(parameters, speciesToSimulate, patchesToSimulate, random, cache);
+                RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache);
                 --parameters.StepsLeft;
             }
         }
