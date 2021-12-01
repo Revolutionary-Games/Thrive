@@ -60,9 +60,9 @@ public class SaveManagerGUI : Control
     private int currentAutoSaveCount;
     private int currentQuickSaveCount;
 
-    private Task<(int Count, long DiskSpace)> getTotalSaveCountTask;
-    private Task<(int Count, long DiskSpace)> getAutoSaveCountTask;
-    private Task<(int Count, long DiskSpace)> getQuickSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)> getTotalSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)> getAutoSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)> getQuickSaveCountTask;
 
     [Signal]
     public delegate void OnBackPressed();
@@ -159,9 +159,9 @@ public class SaveManagerGUI : Control
         saveCountRefreshed = true;
         refreshing = true;
 
-        getTotalSaveCountTask = new Task<(int Count, long DiskSpace)>(() => SaveHelper.CountSaves());
-        getAutoSaveCountTask = new Task<(int Count, long DiskSpace)>(() => SaveHelper.CountSaves("auto_save"));
-        getQuickSaveCountTask = new Task<(int Count, long DiskSpace)>(() => SaveHelper.CountSaves("quick_save"));
+        getTotalSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves());
+        getAutoSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("auto_save"));
+        getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("quick_save"));
 
         TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
         TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
