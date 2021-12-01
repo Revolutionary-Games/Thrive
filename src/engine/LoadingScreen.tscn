@@ -39,6 +39,7 @@ LoadingMessagePath = NodePath("HBoxContainer/VBoxContainer/LoadingMessage")
 LoadingDescriptionPath = NodePath("HBoxContainer/VBoxContainer/LoadingDescription")
 TipLabelPath = NodePath("TipLabel")
 RandomizeTipTimerPath = NodePath("TipTimer")
+SpinnerPath = NodePath("HBoxContainer/Spinner/TextureRect")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -149,7 +150,6 @@ margin_left = 101.0
 margin_right = 165.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
-rect_pivot_offset = Vector2( 32, 32 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -158,6 +158,7 @@ __meta__ = {
 margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 32, 32 )
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6

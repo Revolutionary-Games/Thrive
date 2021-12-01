@@ -202,6 +202,16 @@ public class PauseMenu : ControlWithInput
         helpScreen.RandomizeEasterEgg();
     }
 
+    public void SetNewSaveName(string name)
+    {
+        saveMenu.SetSaveName(name, true);
+    }
+
+    public void SetNewSaveNameFromSpeciesName()
+    {
+        SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
     private Control GetControlFromMenuEnum(ActiveMenuType value)
     {
         return value switch
@@ -241,8 +251,6 @@ public class PauseMenu : ControlWithInput
 
     private void ExitPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
         exitType = ExitType.QuitGame;
 
         if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
@@ -251,6 +259,7 @@ public class PauseMenu : ControlWithInput
         }
         else
         {
+            GUICommon.Instance.PlayButtonPressSound();
             unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
             unsavedProgressWarning.PopupCenteredShrink();
         }

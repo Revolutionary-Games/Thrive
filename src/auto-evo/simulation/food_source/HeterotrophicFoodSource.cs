@@ -1,12 +1,14 @@
-﻿public class HeterotrophicFoodSource : FoodSource
+﻿using AutoEvo;
+
+public class HeterotrophicFoodSource : FoodSource
 {
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
-    private MicrobeSpecies prey;
-    private Patch patch;
-    private float preyHexSize;
-    private float preySpeed;
-    private float totalEnergy;
+    private readonly MicrobeSpecies prey;
+    private readonly Patch patch;
+    private readonly float preyHexSize;
+    private readonly float preySpeed;
+    private readonly float totalEnergy;
 
     public HeterotrophicFoodSource(Patch patch, MicrobeSpecies prey)
     {
@@ -18,7 +20,7 @@
         totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
     }
 
-    public override float FitnessScore(Species species)
+    public override float FitnessScore(Species species, SimulationCache simulationCache)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
@@ -32,9 +34,7 @@
 
         var microbeSpeciesHexSize = microbeSpecies.BaseHexSize;
         var predatorSpeed = microbeSpecies.BaseSpeed;
-        predatorSpeed += ProcessSystem
-            .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
-                microbeSpecies.MembraneType).FinalBalance;
+        predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).FinalBalance;
 
         // It's great if you can engulf this prey, but only if you can catch it
         var engulfScore = 0.0f;

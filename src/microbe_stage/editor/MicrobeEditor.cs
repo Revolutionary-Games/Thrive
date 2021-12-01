@@ -1414,6 +1414,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.SendUndoToTutorial(TutorialState);
 
         gui.UpdateCancelButtonVisibility();
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     private void InitEditorFresh()
@@ -1733,7 +1735,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             organelleModel.Visible = true;
 
-            UpdateOrganellePlaceHolderScene(organelleModel, shownOrganelle.DisplayScene);
+            UpdateOrganellePlaceHolderScene(organelleModel, shownOrganelle.DisplayScene,
+                shownOrganelle, Hex.GetRenderPriority(new Hex(q, r)));
         }
     }
 
@@ -2282,7 +2285,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 organelleModel.Visible = !MicrobePreviewMode;
 
                 UpdateOrganellePlaceHolderScene(organelleModel,
-                    organelle.Definition.DisplayScene);
+                    organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
             }
         }
 
@@ -2303,9 +2306,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
-    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel, string displayScene)
+    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        string displayScene, OrganelleDefinition definition, int renderPriority)
     {
         organelleModel.Scene = displayScene;
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        if (material != null)
+        {
+            material.RenderPriority = renderPriority;
+        }
     }
 
     [DeserializedCallbackAllowed]

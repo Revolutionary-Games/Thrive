@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -560,6 +562,7 @@ public static class Constants
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
+    public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 
     public const string SAVE_FOLDER = "user://saves";
 
@@ -654,6 +657,13 @@ public static class Constants
     /// </summary>
     public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
 
+    public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
+
+    /// <summary>
+    ///   Minimum hex distance before the same render priority.
+    /// </summary>
+    public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
@@ -663,6 +673,27 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    ///   Locations mods are searched in. The last location is considered to be the user openable and editable folder
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     These must be preprocessed with GlobalizePath as otherwise relative paths will break when the first mod
+    ///     .pck file is loaded.
+    ///     TODO: might be nice to move to some other place as this got pretty long and complicated due to pck loading
+    ///     messing with the current working directory.
+    ///   </para>
+    /// </remarks>
+    public static readonly IReadOnlyList<string> ModLocations = new[]
+    {
+        OS.HasFeature("standalone") ?
+            Path.Combine(
+                Path.GetDirectoryName(OS.GetExecutablePath()) ??
+                throw new InvalidOperationException("no current executable path"), "mods") :
+            ProjectSettings.GlobalizePath("res://mods"),
+        "user://mods",
+    };
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
@@ -692,6 +723,8 @@ public static class Constants
     ///   Game version
     /// </summary>
     public static string Version => GameVersion;
+
+    public static string UserFolderAsNativePath => OS.GetUserDataDir().Replace('\\', '/');
 
     private static string FetchVersion()
     {

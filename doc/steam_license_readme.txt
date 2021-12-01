@@ -5,6 +5,9 @@ This version of Thrive is distributed through Valve's digital distribution
 service Steam by Revolutionary Games Studio and licensed only for use as
 defined in Steam's End User License Agreement.
 
+Steam version of Thrive uses additional libraries:
+
+GodotSteam: MIT License Copyright (c) 2017 GP Garcia
 
 In addition to Godot Engine, Thrive uses the following third party libraries:
 
