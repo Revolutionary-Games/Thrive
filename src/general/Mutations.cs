@@ -273,13 +273,13 @@ public class Mutations
                         minDistance = distance;
                         minSubHex = sub;
 
-                        // early exit if distance == 2
+                        // early exit if minDistance == 2 (distance 1 == direct neighbour => not an island)
                         if (minDistance == 2)
                             break;
                     }
                 }
 
-                // early exit if distance == 2
+                // early exit if minDistance == 2 (distance 1 == direct neighbour => not an island)
                 if (minDistance == 2)
                     break;
             }
