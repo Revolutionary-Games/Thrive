@@ -236,10 +236,10 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int Count, long DiskSpace) CountSaves(string nameStartsWith = null)
+    public static (int Count, ulong DiskSpace) CountSaves(string nameStartsWith = null)
     {
         int count = 0;
-        long totalSize = 0;
+        ulong totalSize = 0;
 
         using var file = new File();
         foreach (var save in CreateListOfSaves())
@@ -248,7 +248,7 @@ public static class SaveHelper
             {
                 file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
                 ++count;
-                totalSize += checked((long)file.GetLen());
+                totalSize += file.GetLen();
             }
         }
 
