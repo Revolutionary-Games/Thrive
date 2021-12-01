@@ -24,7 +24,6 @@ public static class CollisionObjectHelpers
     ///  Doesn't destroy the oldDhapeOwner.
     /// </summary>
     /// <returns>Returns the new ShapeOwnerId.</returns>
-
     public static uint CreateNewOwnerId(this CollisionObject oldParent,
         CollisionObject newParent, Transform transform, uint oldShapeOwnerId)
     {
