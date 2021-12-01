@@ -6,12 +6,14 @@ using System.Text;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Like a StringBuilder but with localization.
-///   When adding a IFormattable(e.g. Number, or LocalizedString),
-///   the object is cached in a list and a string format index ({0}) is added to the StringBuilder.
+///   Like a StringBuilder but with on demand localization.
 ///   Calling ToString formats all the IFormattable's to the current culture and returns the formatted string.
 ///   This class is json serializable as long as all IFormattable's are serializable.
 /// </summary>
+/// <remarks>
+///   When adding a IFormattable(e.g. Number, or LocalizedString),
+///   the object is cached in a list and a string format index ({0}) is added to the StringBuilder.
+/// </remarks>
 [JSONDynamicTypeAllowed]
 public class LocalizedStringBuilder : IFormattable
 {

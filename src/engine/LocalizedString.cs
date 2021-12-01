@@ -4,10 +4,13 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
+///   String that can be localized on demand for different locales.
 ///   This class caches the translationKey.
 ///   ToString returns the translated text for the current locale.
-///   This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
 /// </summary>
+/// <remarks>
+///   This class can be used on its own, but was designed for the use within LocalizedStringBuilder.
+/// </remarks>
 [JSONDynamicTypeAllowed]
 public class LocalizedString : IFormattable
 {
@@ -36,9 +39,12 @@ public class LocalizedString : IFormattable
 
     public string ToString(string format, IFormatProvider formatProvider)
     {
-        return formatStringArgs == null || formatStringArgs.Length == 0 ?
-            format ?? TranslationServer.Translate(translationKey) :
-            string.Format(formatProvider ?? CultureInfo.CurrentCulture,
-                format ?? TranslationServer.Translate(translationKey), formatStringArgs);
+        if (formatStringArgs == null || formatStringArgs.Length == 0)
+        {
+            return format ?? TranslationServer.Translate(translationKey);
+        }
+
+        return string.Format(formatProvider ?? CultureInfo.CurrentCulture,
+            format ?? TranslationServer.Translate(translationKey), formatStringArgs);
     }
 }
