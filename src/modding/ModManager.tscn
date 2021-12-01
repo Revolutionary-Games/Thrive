@@ -39,6 +39,7 @@ ApplyChangesButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/A
 UnAppliedChangesWarningPath = NodePath("UnAppliedChangesWarning")
 ModFullInfoPopupPath = NodePath("ModFullInfo")
 FullInfoNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/Name")
+FullInfoInternalNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15/InternalName")
 FullInfoAuthorPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/Author")
 FullInfoVersionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/Version")
 FullInfoDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/Description")
@@ -91,9 +92,9 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 263.0
-margin_top = 30.0
+margin_top = 20.0
 margin_right = 1017.0
-margin_bottom = 663.0
+margin_bottom = 653.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -602,31 +603,31 @@ size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer"]
 margin_right = 550.0
-margin_bottom = 867.0
+margin_bottom = 930.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer"]
 margin_right = 540.0
-margin_bottom = 867.0
+margin_bottom = 930.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 
 [node name="Label2" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_NAME"
 
 [node name="Name" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "Name goes here..."
 autowrap = true
@@ -634,21 +635,42 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 65.0
+[node name="VBoxContainer15" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 63.0
 margin_right = 534.0
-margin_bottom = 115.0
+margin_bottom = 111.0
+
+[node name="Label16" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15"]
+margin_right = 534.0
+margin_bottom = 22.0
+custom_fonts/font = ExtResource( 9 )
+text = "MOD_INTERNAL_NAME"
+
+[node name="InternalName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer15"]
+margin_top = 26.0
+margin_right = 534.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 10 )
+text = "Internal name goes here..."
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 126.0
+margin_right = 534.0
+margin_bottom = 174.0
 
 [node name="Label3" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_AUTHOR"
 
 [node name="Author" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "Author goes here..."
 autowrap = true
@@ -657,20 +679,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 130.0
+margin_top = 189.0
 margin_right = 534.0
-margin_bottom = 180.0
+margin_bottom = 237.0
 
 [node name="Label4" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_VERSION"
 
 [node name="Version" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "1.0"
 autowrap = true
@@ -679,20 +701,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 195.0
+margin_top = 252.0
 margin_right = 534.0
-margin_bottom = 245.0
+margin_bottom = 300.0
 
 [node name="Label5" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_DESCRIPTION"
 
 [node name="Description" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "Mod description"
 autowrap = true
@@ -701,20 +723,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 260.0
+margin_top = 315.0
 margin_right = 534.0
-margin_bottom = 310.0
+margin_bottom = 363.0
 
 [node name="Label6" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_EXTENDED_DESCRIPTION"
 
 [node name="LongDescription" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "Longer mod description"
 autowrap = true
@@ -723,20 +745,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 325.0
+margin_top = 378.0
 margin_right = 534.0
-margin_bottom = 375.0
+margin_bottom = 426.0
 
 [node name="Label7" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_ICON_FILE"
 
 [node name="IconFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "mod_icon.png"
 autowrap = true
@@ -745,20 +767,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer7" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 390.0
+margin_top = 441.0
 margin_right = 534.0
-margin_bottom = 440.0
+margin_bottom = 489.0
 
 [node name="Label8" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_INFO_URL"
 
 [node name="InfoURL" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "some URL"
 autowrap = true
@@ -767,20 +789,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer8" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 455.0
+margin_top = 504.0
 margin_right = 534.0
-margin_bottom = 505.0
+margin_bottom = 552.0
 
 [node name="Label9" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_LICENSE"
 
 [node name="License" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "MIT"
 autowrap = true
@@ -789,20 +811,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer9" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 520.0
+margin_top = 567.0
 margin_right = 534.0
-margin_bottom = 570.0
+margin_bottom = 615.0
 
 [node name="Label10" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_RECOMMENDED_THRIVE"
 
 [node name="RecommendedThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer9"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "0.5.6"
 autowrap = true
@@ -811,20 +833,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer10" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 585.0
+margin_top = 630.0
 margin_right = 534.0
-margin_bottom = 635.0
+margin_bottom = 678.0
 
 [node name="Label11" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_MINIMUM_THRIVE"
 
 [node name="MinimumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer10"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "0.5.6-alpha"
 autowrap = true
@@ -833,20 +855,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer11" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 650.0
+margin_top = 693.0
 margin_right = 534.0
-margin_bottom = 700.0
+margin_bottom = 741.0
 
 [node name="Label12" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_MAXIMUM_THRIVE"
 
 [node name="MaximumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer11"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "0.5.6"
 autowrap = true
@@ -855,20 +877,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer12" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 715.0
+margin_top = 756.0
 margin_right = 534.0
-margin_bottom = 765.0
+margin_bottom = 804.0
 
 [node name="Label13" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_PCK_NAME"
 
 [node name="PckName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer12"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "ModName.pck"
 autowrap = true
@@ -877,20 +899,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer13" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 780.0
+margin_top = 819.0
 margin_right = 534.0
-margin_bottom = 830.0
+margin_bottom = 867.0
 
 [node name="Label14" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_ASSEMBLY"
 
 [node name="ModAssembly" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer13"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "Mod.dll"
 autowrap = true
@@ -899,20 +921,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer14" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 845.0
+margin_top = 882.0
 margin_right = 534.0
-margin_bottom = 895.0
+margin_bottom = 930.0
 
 [node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14"]
 margin_right = 534.0
-margin_bottom = 25.0
+margin_bottom = 22.0
 custom_fonts/font = ExtResource( 9 )
 text = "MOD_ASSEMBLY_CLASS"
 
 [node name="AssemblyModClass" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer14"]
-margin_top = 25.0
+margin_top = 26.0
 margin_right = 534.0
-margin_bottom = 50.0
+margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "ModClass"
 autowrap = true
