@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://shaders/Organelle.shader" type="Shader" id=1]
 [ext_resource path="res://assets/textures/BindingAgent_Fibers_Albedo.png" type="Texture" id=2]
@@ -6,27 +6,30 @@
 [ext_resource path="res://assets/textures/dissolve_noise.tres" type="Texture" id=4]
 [ext_resource path="res://assets/models/organelles/BindingAgent_Membrane.mesh" type="ArrayMesh" id=5]
 [ext_resource path="res://assets/models/organelles/BindingAgent_Fibers.mesh" type="ArrayMesh" id=6]
+[ext_resource path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" type="Script" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
 shader_param/fresnelActive = true
 shader_param/outlineWidth = 0.0
-shader_param/growColor = Color( 0, 1, 1, 1 )
+shader_param/growColor = Color( 0.431373, 0.431373, 0.431373, 1 )
 shader_param/tint = Color( 0, 1, 0.701961, 1 )
 shader_param/texture = ExtResource( 3 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
 render_priority = -1
 shader = ExtResource( 1 )
 shader_param/dissolveValue = 0.0
 shader_param/fresnelValue = 1.0
 shader_param/fresnelActive = false
 shader_param/outlineWidth = null
-shader_param/growColor = Color( 0.545098, 0.87451, 0.788235, 1 )
-shader_param/tint = Color( 0.545098, 0.87451, 0.788235, 1 )
+shader_param/growColor = Color( 0.431373, 0.431373, 0.431373, 1 )
+shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 2 )
 shader_param/dissolveTexture = ExtResource( 4 )
 
@@ -35,6 +38,7 @@ transform = Transform( 100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0
 material_override = SubResource( 1 )
 mesh = ExtResource( 5 )
 material/0 = null
+script = ExtResource( 7 )
 
 [node name="Fibers" type="MeshInstance" parent="."]
 material_override = SubResource( 2 )
