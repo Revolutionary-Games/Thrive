@@ -2471,7 +2471,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
         else
         {
-            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true,
+            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld, CurrentGame.GameWorld.Map, true,
                 run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
@@ -2481,6 +2481,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         ApplyAutoEvoResults();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
+        gui.UpdateTimeline();
 
         FadeIn();
     }

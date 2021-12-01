@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=59 format=2]
+[gd_resource type="Theme" load_steps=60 format=2]
 
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=4]
@@ -503,6 +504,7 @@ FileDialog/icons/folder = null
 FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
+Fonts/fonts/jura_smaller = ExtResource( 1 )
 Fonts/fonts/large = null
 Fonts/fonts/lato_bold_normal = ExtResource( 16 )
 Fonts/fonts/lato_normal = ExtResource( 15 )

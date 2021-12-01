@@ -26,6 +26,9 @@ public class GameWorld
     [JsonProperty]
     private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
 
+    [JsonProperty]
+    private Dictionary<double, List<string>> worldTimeline = new();
+
     /// <summary>
     ///   This world's auto-evo run
     /// </summary>
@@ -308,6 +311,25 @@ public class GameWorld
     public Species GetSpecies(uint id)
     {
         return worldSpecies[id];
+    }
+
+    public void LogWorldEvent(string description)
+    {
+        // TODO: add limit to only 10 entries
+
+        if (!worldTimeline.ContainsKey(TotalPassedTime))
+            worldTimeline.Add(TotalPassedTime, new List<string>());
+
+        // Event already logged in timeline
+        if (worldTimeline[TotalPassedTime].Any(entry => entry == description))
+            return;
+
+        worldTimeline[TotalPassedTime].Add(description);
+    }
+
+    public IReadOnlyDictionary<double, List<string>> GetTimeline()
+    {
+        return worldTimeline;
     }
 
     private void CreateRunIfMissing()

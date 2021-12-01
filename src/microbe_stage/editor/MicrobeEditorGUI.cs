@@ -26,6 +26,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath CellEditorButtonPath;
 
     [Export]
+    public NodePath AutoEvoSubtabButtonPath;
+
+    [Export]
+    public NodePath TimelineSubtabButtonPath;
+
+    [Export]
     public NodePath StructureTabButtonPath;
 
     [Export]
@@ -33,6 +39,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     [Export]
     public NodePath BehaviourTabButtonPath;
+
+    [Export]
+    public NodePath AutoEvoSubtabPath;
+
+    [Export]
+    public NodePath TimelineSubtabPath;
 
     [Export]
     public NodePath StructureTabPath;
@@ -295,19 +307,19 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
-    private readonly Compound nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-    private readonly Compound oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-    private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    private Compound atp;
+    private Compound ammonia;
+    private Compound carbondioxide;
+    private Compound glucose;
+    private Compound hydrogensulfide;
+    private Compound iron;
+    private Compound nitrogen;
+    private Compound oxygen;
+    private Compound phosphates;
+    private Compound sunlight;
 
-    private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
-    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    private OrganelleDefinition protoplasm;
+    private OrganelleDefinition nucleus;
 
     private EnergyBalanceInfo energyBalanceInfo;
 
@@ -350,10 +362,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Button patchMapButton;
     private Button cellEditorButton;
 
+    private Button autoEvoSubtabButton;
+    private Button timelineSubtabButton;
+
     // Selection menu tab selector buttons
     private Button structureTabButton;
     private Button appearanceTabButton;
     private Button behaviourTabButton;
+
+    private PanelContainer autoEvoSubtab;
+    private PanelContainer timelineSubtab;
 
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
@@ -475,6 +493,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private EditorTab selectedEditorTab = EditorTab.Report;
 
     [JsonProperty]
+    private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
+
+    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
@@ -486,6 +507,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         Report,
         PatchMap,
         CellEditor,
+    }
+
+    public enum ReportSubtab
+    {
+        AutoEvo,
+        Timeline,
     }
 
     public enum SelectionMenuTab
@@ -502,6 +529,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         reportTabButton = GetNode<Button>(ReportTabButtonPath);
         patchMapButton = GetNode<Button>(PatchMapButtonPath);
         cellEditorButton = GetNode<Button>(CellEditorButtonPath);
+
+        autoEvoSubtab = GetNode<PanelContainer>(AutoEvoSubtabPath);
+        autoEvoSubtabButton = GetNode<Button>(AutoEvoSubtabButtonPath);
+
+        timelineSubtab = GetNode<PanelContainer>(TimelineSubtabPath);
+        timelineSubtabButton = GetNode<Button>(TimelineSubtabButtonPath);
 
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         structureTabButton = GetNode<Button>(StructureTabButtonPath);
@@ -620,6 +653,20 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         menu = GetNode<PauseMenu>(MenuPath);
 
+        atp = SimulationParameters.Instance.GetCompound("atp");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+        nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
@@ -649,6 +696,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Set the right tabs if they aren't the defaults
         ApplyEditorTab();
+        ApplyReportSubtab();
         ApplySelectionMenuTab();
     }
 
@@ -683,8 +731,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             + TranslationServer.Translate("MEGA_YEARS");
 
         ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
-                CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " "
-            + TranslationServer.Translate("YEARS");
+                CultureInfo.CurrentCulture, TranslationServer.Translate("TIME_INDICATOR_TOOLTIP"),
+                editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
     public void SetInitialCellStats()
@@ -979,6 +1027,34 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"));
 
         OnPhysicalConditionsChartLegendPressed("temperature");
+    }
+
+    public void UpdateTimeline()
+    {
+        var container = timelineSubtab.GetNode<VBoxContainer>(
+            "MarginContainer/ScrollContainer/MarginContainer/VBoxContainer");
+
+        container.FreeChildren();
+
+        foreach (var snapshot in editor.CurrentGame.GameWorld.GetTimeline())
+        {
+            var timePeriodLabel = new Label
+            {
+                Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", snapshot.Key) + " "
+                    + TranslationServer.Translate("MEGA_YEARS"),
+                RectMinSize = new Vector2(0, 60),
+                Valign = Label.VAlign.Center,
+            };
+
+            container.AddChild(timePeriodLabel);
+
+            foreach (var entry in snapshot.Value)
+            {
+                var eventLabel = new Label { Text = entry };
+                eventLabel.AddFontOverride("font", GetFont("jura_smaller", "Fonts"));
+                container.AddChild(eventLabel);
+            }
+        }
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
@@ -1707,6 +1783,39 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             default:
                 throw new Exception("Invalid editor tab");
+        }
+    }
+
+    private void SetReportSubtab(string tab)
+    {
+        var selection = (ReportSubtab)Enum.Parse(typeof(ReportSubtab), tab);
+
+        if (selection == selectedReportSubtab)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        selectedReportSubtab = selection;
+        ApplyReportSubtab();
+    }
+
+    private void ApplyReportSubtab()
+    {
+        autoEvoSubtab.Hide();
+        timelineSubtab.Hide();
+
+        switch (selectedReportSubtab)
+        {
+            case ReportSubtab.AutoEvo:
+                autoEvoSubtab.Show();
+                autoEvoSubtabButton.Pressed = true;
+                break;
+            case ReportSubtab.Timeline:
+                timelineSubtab.Show();
+                timelineSubtabButton.Pressed = true;
+                break;
+            default:
+                throw new Exception("Invalid report subtab");
         }
     }
 

@@ -373,11 +373,11 @@
         /// <summary>
         ///   Prints to log a summary of the results
         /// </summary>
-        public void PrintSummary(PatchMap previousPopulations = null)
+        public void PrintSummary(GameWorld world, PatchMap previousPopulations = null)
         {
             GD.Print("Start of auto-evo results summary (entries: ", results.Count, ")");
 
-            GD.Print(MakeSummary(previousPopulations));
+            GD.Print(MakeSummary(world, previousPopulations));
 
             GD.Print("End of results summary");
         }
@@ -385,11 +385,12 @@
         /// <summary>
         ///   Makes summary text
         /// </summary>
+        /// <param name="world">The current global game data</param>
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
         /// <param name="playerReadable">if true ids are removed from the output</param>
         /// <param name="effects">if not null these effects are applied to the population numbers</param>
         /// <returns>The generated summary text</returns>
-        public string MakeSummary(PatchMap previousPopulations = null,
+        public string MakeSummary(GameWorld world, PatchMap previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect> effects = null)
         {
             const bool resolveMigrations = true;
@@ -468,9 +469,11 @@
                     {
                         case NewSpeciesType.FillNiche:
                             builder.Append(TranslationServer.Translate("RUN_RESULT_NICHE_FILL"));
+                            world.LogWorldEvent(entry.SplitFrom.FormattedName + " has split into " + entry.Species.FormattedName + " to fill a niche");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
                             builder.Append(TranslationServer.Translate("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
+                            world.LogWorldEvent(entry.SplitFrom.FormattedName + " has split into " + entry.Species.FormattedName + " due to differing selection pressures");
                             break;
                         default:
                             GD.PrintErr("Unhandled newly created species type: ", entry.NewlyCreated.Value);
@@ -523,8 +526,12 @@
                     builder.Append(TranslationServer.Translate("RUN_RESULT_SPREAD_TO_PATCHES"));
                     builder.Append('\n');
 
+                    var numberOfPatches = 0;
+
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
+                        ++numberOfPatches;
+
                         if (playerReadable)
                         {
                             builder.Append("  ");
@@ -544,6 +551,15 @@
                         }
 
                         builder.Append('\n');
+                    }
+
+                    if (numberOfPatches < 2)
+                    {
+                        world.LogWorldEvent(entry.Species.FormattedName + " has migrated to " + TranslationServer.Translate(entry.SpreadToPatches[0].To.Name));
+                    }
+                    else
+                    {
+                        world.LogWorldEvent(entry.Species.FormattedName + " has migrated to multiple patches");
                     }
                 }
 
@@ -652,11 +668,33 @@
                     }
                 }
 
-                if (GetGlobalPopulation(entry.Species, resolveMigrations, resolveSplits) <= 0)
+                var globalPopulation = GetGlobalPopulation(entry.Species, resolveMigrations, resolveSplits);
+                var previousTotalPopulations = previousPopulations.GetSpeciesPopulation(entry.Species);
+
+                if (globalPopulation <= 0)
                 {
                     builder.Append(' ');
                     builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append('\n');
+
+                    world.LogWorldEvent(entry.Species.FormattedName + " has gone extinct!");
+                }
+                else
+                {
+                    if (previousPopulations != null && previousTotalPopulations > 0 &&
+                        globalPopulation != previousTotalPopulations)
+                    {
+                        if (globalPopulation > previousTotalPopulations)
+                        {
+                            world.LogWorldEvent(
+                                entry.Species.FormattedName + " populations have increased to " + globalPopulation);
+                        }
+                        else
+                        {
+                            world.LogWorldEvent(
+                                entry.Species.FormattedName + " populations have decreased to " + globalPopulation);
+                        }
+                    }
                 }
 
                 if (playerReadable)

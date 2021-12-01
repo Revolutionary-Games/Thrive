@@ -201,6 +201,18 @@ public class PatchMap
         }
     }
 
+    public long GetSpeciesPopulation(Species species)
+    {
+        long sum = 0;
+
+        foreach (var entry in Patches.Values)
+        {
+            sum += entry.GetSpeciesPopulation(species);
+        }
+
+        return sum;
+    }
+
     /// <summary>
     ///   Removes species from patches where their population is &lt;= 0
     /// </summary>

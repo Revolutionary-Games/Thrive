@@ -417,9 +417,13 @@ MenuPath = NodePath("../PauseMenu")
 ReportTabButtonPath = NodePath("TopLeft/HBoxContainer/ReportButton")
 PatchMapButtonPath = NodePath("TopLeft/HBoxContainer/PatchMapButton")
 CellEditorButtonPath = NodePath("TopLeft/HBoxContainer/CellEditorButton")
+AutoEvoSubtabButtonPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton")
+TimelineSubtabButtonPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
 StructureTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure")
 AppearanceTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Membrane")
 BehaviourTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour")
+AutoEvoSubtabPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel")
+TimelineSubtabPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel")
 StructureTabPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 AppearanceTabPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane")
 BehaviourTabPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
@@ -1204,7 +1208,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
 margin_right = 319.0
-margin_bottom = 899.0
+margin_bottom = 919.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
@@ -1214,7 +1218,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
 margin_right = 309.0
-margin_bottom = 899.0
+margin_bottom = 919.0
 custom_constants/separation = 15
 
 [node name="MembraneTypes" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
@@ -1358,10 +1362,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 148.0
-margin_top = 148.0
-margin_right = 438.0
-margin_bottom = 636.0
+margin_left = 156.0
+margin_top = 156.0
+margin_right = 446.0
+margin_bottom = 644.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -2457,7 +2461,6 @@ margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 15 )
-disabled = true
 toggle_mode = true
 action_mode = 0
 group = SubResource( 28 )
@@ -2555,6 +2558,66 @@ expand = true
 flip_v = true
 
 [node name="BottomFade" type="TextureRect" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
+modulate = Color( 1, 1, 1, 0.392157 )
+margin_left = 1.0
+margin_top = 462.0
+margin_right = 845.0
+margin_bottom = 492.0
+rect_min_size = Vector2( 0, 30 )
+mouse_filter = 2
+size_flags_vertical = 8
+texture = ExtResource( 21 )
+expand = true
+
+[node name="TimelinePanel" type="PanelContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+margin_top = 40.0
+margin_right = 846.0
+margin_bottom = 533.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 29 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 845.0
+margin_bottom = 492.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 25
+custom_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer"]
+margin_left = 25.0
+margin_top = 10.0
+margin_right = 834.0
+margin_bottom = 481.0
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer"]
+margin_bottom = 471.0
+size_flags_vertical = 3
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+margin_bottom = 451.0
+custom_constants/separation = 0
+
+[node name="TopFade" type="TextureRect" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
+modulate = Color( 1, 1, 1, 0.392157 )
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 845.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 0, 30 )
+mouse_filter = 2
+size_flags_vertical = 0
+texture = ExtResource( 21 )
+expand = true
+flip_v = true
+
+[node name="BottomFade" type="TextureRect" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 modulate = Color( 1, 1, 1, 0.392157 )
 margin_left = 1.0
 margin_top = 462.0
@@ -4002,6 +4065,8 @@ HelpCategory = "MicrobeEditor"
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/CancelButton" to="MicrobeEditorGUI" method="OnCancelActionClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/ConfirmButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
 [connection signal="Confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton" to="MicrobeEditorGUI" method="SetReportSubtab" binds= [ "AutoEvo" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton" to="MicrobeEditorGUI" method="SetReportSubtab" binds= [ "Timeline" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", true ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", false ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendPressed" binds= [ "temperature" ]]
