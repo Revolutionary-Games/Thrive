@@ -3,7 +3,8 @@
 /// <summary>
 ///   A custom reimplementation of ConfirmationDialog and AcceptDialog combined into one.
 /// </summary>
-[Tool]
+/// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+/// [Tool]
 public class CustomConfirmationDialog : CustomDialog
 {
     [Export]
@@ -118,6 +119,11 @@ public class CustomConfirmationDialog : CustomDialog
         }
 
         base._Notification(what);
+    }
+
+    public void SetConfirmDisabled(bool disabled)
+    {
+        confirmButton.Disabled = disabled;
     }
 
     private void UpdateLabel()
