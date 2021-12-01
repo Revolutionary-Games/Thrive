@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 
@@ -319,6 +320,21 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [JsonProperty]
     private float initialCellHp;
 
+    [JsonProperty]
+    private bool? autoEvoRunSuccessful;
+
+    [JsonProperty]
+    private string bestPatchName;
+
+    [JsonProperty]
+    private long bestPatchPopulation;
+
+    [JsonProperty]
+    private string worstPatchName;
+
+    [JsonProperty]
+    private long worstPatchPopulation;
+
     private MicrobeEditor editor;
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements =
@@ -634,8 +650,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Set the right tabs if they aren't the defaults
         ApplyEditorTab();
         ApplySelectionMenuTab();
-
-        UpdateMutationPointsBar();
     }
 
     public void SetMap(PatchMap map)
@@ -967,17 +981,27 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         OnPhysicalConditionsChartLegendPressed("temperature");
     }
 
-    public void UpdateMutationPointsBar()
+    public void UpdateMutationPointsBar(bool tween = true)
     {
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
             editor.MutationPoints - editor.CalculateCurrentOrganelleCost();
 
-        GUICommon.Instance.TweenBarValue(
-            mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
-        GUICommon.Instance.TweenBarValue(
-            mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        if (tween)
+        {
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        }
+        else
+        {
+            mutationPointsBar.Value = possibleMutationPoints;
+            mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+            mutationPointsSubtractBar.Value = editor.MutationPoints;
+            mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+        }
 
         if (editor.FreeBuilding)
         {
@@ -1198,6 +1222,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateAutoEvoPredictionTranslations();
+        }
+    }
+
     internal void SetUndoButtonStatus(bool enabled)
     {
         undoButton.Disabled = !enabled;
@@ -1232,7 +1264,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
 
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
     internal void OnInsufficientMp(bool playSound = true)
@@ -1254,7 +1286,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void PlayInvalidActionSound()
     {
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
     /// <summary>
@@ -1803,12 +1835,45 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
+    private void UpdateAutoEvoPredictionTranslations()
+    {
+        if (autoEvoRunSuccessful.HasValue && autoEvoRunSuccessful.Value == false)
+        {
+            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+        }
+
+        if (!string.IsNullOrEmpty(bestPatchName))
+        {
+            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(bestPatchName),
+                bestPatchPopulation);
+        }
+        else
+        {
+            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+
+        if (!string.IsNullOrEmpty(worstPatchName))
+        {
+            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(worstPatchName),
+                worstPatchPopulation);
+        }
+        else
+        {
+            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+    }
+
     private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
     {
         if (!run.AutoEvoRun.WasSuccessful)
         {
             GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
-            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+            autoEvoRunSuccessful = false;
+            UpdateAutoEvoPredictionTranslations();
             return;
         }
 
@@ -1830,6 +1895,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             totalPopulationIndicator.Texture = null;
         }
 
+        autoEvoRunSuccessful = true;
         totalPopulationLabel.Text = newPopulation.ToString(CultureInfo.CurrentCulture);
 
         var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
@@ -1838,27 +1904,27 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (sorted.Count > 0)
         {
             var patch = sorted[0];
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
-                patch.Value);
+            bestPatchName = patch.Key.Name;
+            bestPatchPopulation = patch.Value;
         }
         else
         {
-            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+            bestPatchName = null;
         }
 
         // And worst patch
         if (sorted.Count > 1)
         {
             var patch = sorted[sorted.Count - 1];
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
-                patch.Value);
+            worstPatchName = patch.Key.Name;
+            worstPatchPopulation = patch.Value;
         }
         else
         {
-            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+            worstPatchName = null;
         }
+
+        UpdateAutoEvoPredictionTranslations();
     }
 
     /// <remarks>
@@ -2028,7 +2094,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnSpeciesNameTextChanged(string newText)
     {
-        if (newText.Split(" ").Length != 2)
+        if (!Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
         }
@@ -2046,7 +2112,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.NewName = newText;
 
         // Only defocus if the name is valid to indicate invalid namings to the player
-        if (newText.Split(" ").Length == 2)
+        if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
         {
             speciesNameEdit.ReleaseFocus();
         }
@@ -2054,6 +2120,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         {
             // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
             ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+
+            speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
         }
     }
 
@@ -2104,7 +2172,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
-        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
 
         if (name == "temperature")
         {
@@ -2112,9 +2179,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.DarkGray;
             sunlightChart.Hide();
             temperatureChart.Show();
-
-            tween.InterpolateProperty(temperatureButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
         else if (name == "sunlight")
         {
@@ -2122,9 +2186,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.White;
             sunlightChart.Show();
             temperatureChart.Hide();
-
-            tween.InterpolateProperty(sunlightButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
     }
 

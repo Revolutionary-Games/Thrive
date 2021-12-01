@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Tutorial;
 
 /// <summary>
 ///   GUI control that contains the microbe stage tutorial.
@@ -44,6 +45,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath UnbindTutorialPath;
 
+    [Export]
+    public NodePath CheckTheHelpMenuPath;
+
     private CustomDialog microbeWelcomeMessage;
     private Control microbeMovementKeyPrompts;
     private Control microbeMovementKeyForward;
@@ -56,6 +60,10 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomDialog reproductionTutorial;
     private CustomDialog editorButtonTutorial;
     private CustomDialog unbindTutorial;
+    private CustomDialog checkTheHelpMenu;
+
+    [Signal]
+    public delegate void OnHelpMenuOpenRequested();
 
     public ITutorialInput EventReceiver { get; set; }
 
@@ -242,6 +250,25 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         set => microbeMovementKeyBackwards.Visible = value;
     }
 
+    public bool CheckTheHelpMenuVisible
+    {
+        get => checkTheHelpMenu.Visible;
+        set
+        {
+            if (value == checkTheHelpMenu.Visible)
+                return;
+
+            if (value)
+            {
+                checkTheHelpMenu.Show();
+            }
+            else
+            {
+                checkTheHelpMenu.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
@@ -256,6 +283,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         reproductionTutorial = GetNode<CustomDialog>(ReproductionTutorialPath);
         editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
         unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
+        checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
     }
 
     public override void _Process(float delta)
@@ -276,5 +304,14 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public void OnTutorialEnabledValueChanged(bool value)
     {
         TutorialEnabledSelected = value;
+    }
+
+    private void CheckHelpMenuPressed()
+    {
+        TutorialHelper.HandleCloseSpecificForGUI(this, CheckTheHelpMenu.TUTORIAL_NAME);
+
+        // Note that this opening while the tutorial box is still visible is a bit problematic due to:
+        // https://github.com/Revolutionary-Games/Thrive/issues/2326
+        EmitSignal(nameof(OnHelpMenuOpenRequested));
     }
 }

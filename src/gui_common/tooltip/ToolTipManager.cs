@@ -114,15 +114,27 @@ public class ToolTipManager : CanvasLayer
         if (MainToolTip.ToolTipNode.Visible)
         {
             Vector2 position;
+            var offset = 0.0f;
 
             switch (MainToolTip.Positioning)
             {
                 case ToolTipPositioning.LastMousePosition:
                     position = lastMousePosition;
+                    offset = Constants.TOOLTIP_OFFSET;
                     break;
                 case ToolTipPositioning.FollowMousePosition:
                     position = GetViewport().GetMousePosition();
+                    offset = Constants.TOOLTIP_OFFSET;
                     break;
+                case ToolTipPositioning.ControlBottomRightEdge:
+                {
+                    var control = ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
+                    position = new Vector2(
+                        control.RectGlobalPosition.x + control.RectSize.x,
+                        control.RectGlobalPosition.y + control.RectSize.y);
+                    break;
+                }
+
                 default:
                     throw new Exception("Invalid tooltip positioning type");
             }
@@ -132,10 +144,8 @@ public class ToolTipManager : CanvasLayer
             // Clamp tooltip position so it doesn't go offscreen
             // TODO: Take into consideration of viewport (window) resizing for the offsetting.
             MainToolTip.ToolTipNode.RectPosition = new Vector2(
-                Mathf.Clamp(position.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
-                    MainToolTip.ToolTipNode.RectSize.x),
-                Mathf.Clamp(position.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
-                    MainToolTip.ToolTipNode.RectSize.y));
+                Mathf.Clamp(position.x + offset, 0, screenSize.x - MainToolTip.ToolTipNode.RectSize.x),
+                Mathf.Clamp(position.y + offset, 0, screenSize.y - MainToolTip.ToolTipNode.RectSize.y));
 
             MainToolTip.ToolTipNode.RectSize = Vector2.Zero;
 
