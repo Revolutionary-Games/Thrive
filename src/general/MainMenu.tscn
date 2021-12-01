@@ -131,9 +131,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
-"MenuItem",
-]]
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
 margin_right = 1280.0
 margin_bottom = 455.0
 custom_constants/separation = 10
@@ -229,9 +227,7 @@ mouse_filter = 1
 size_flags_horizontal = 4
 text = "QUIT"
 
-[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
-"MenuItem",
-]]
+[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
 visible = false
 margin_right = 1280.0
 margin_bottom = 455.0
@@ -311,9 +307,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
-[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
-"MenuItem",
-]]
+[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
 visible = false
 margin_right = 1280.0
 margin_bottom = 455.0
