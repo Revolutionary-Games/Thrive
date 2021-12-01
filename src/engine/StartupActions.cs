@@ -16,7 +16,7 @@ public class StartupActions : Node
         GD.Print("Startup C# locale is: ", CultureInfo.CurrentCulture, " Godot locale is: ",
             TranslationServer.GetLocale());
 
-        var userDir = OS.GetUserDataDir().Replace('\\', '/');
+        var userDir = Constants.UserFolderAsNativePath;
 
         GD.Print("user:// directory is: ", userDir);
 

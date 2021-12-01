@@ -190,9 +190,11 @@ public partial class Microbe
 
         var position = Translation + (direction * ejectionDistance);
 
-        SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
+        var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
             SpawnHelpers.LoadAgentScene(), this);
+
+        ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
         if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Godot;
@@ -11,6 +12,13 @@ using Godot;
 /// </summary>
 public class SteamHandler : Node, ISteamSignalReceiver
 {
+    /// <summary>
+    ///   All valid tags. Need to be the same as: https://partner.steamgames.com/apps/workshoptags/1779200
+    /// </summary>
+    public static readonly string[] ValidTags = { "graphics", "gameplay", "microbe" };
+
+    public static readonly string[] RecommendedFileEndings = { ".jpg", ".png", ".gif" };
+
     private static SteamHandler instance;
 
     private bool wePaused;
@@ -23,6 +31,11 @@ public class SteamHandler : Node, ISteamSignalReceiver
     }
 
     public static SteamHandler Instance => instance;
+
+    /// <summary>
+    ///   All the valid tags for Thrive's Steam workshop items
+    /// </summary>
+    public static IEnumerable<string> Tags => ValidTags;
 
     /// <summary>
     ///   True if Steam has been properly loaded
@@ -68,6 +81,74 @@ public class SteamHandler : Node, ISteamSignalReceiver
     public override void _Process(float delta)
     {
         steamClient?.Process(delta);
+    }
+
+    /// <summary>
+    ///   Starts workshop item creation
+    /// </summary>
+    /// <param name="callback">Callback to be called when it is ready</param>
+    public void CreateWorkshopItem(Action<WorkshopResult> callback)
+    {
+        ThrowIfNotLoaded();
+
+        steamClient.CreateWorkshopItem(callback);
+    }
+
+    /// <summary>
+    ///   Updates a workshop item
+    /// </summary>
+    /// <param name="item">The item information to update</param>
+    /// <param name="changeNotes">Optional change notes to set</param>
+    /// <param name="callback">Callback to be called when everything has been uploaded or failed</param>
+    /// <exception cref="ArgumentException">If something is wrong with the given data</exception>
+    public void UpdateWorkshopItem(WorkshopItemData item, string changeNotes, Action<WorkshopResult> callback)
+    {
+        ThrowIfNotLoaded();
+
+        var handle = steamClient.StartWorkshopItemUpdate(item.Id);
+
+        GD.Print("Using workshop update handle: ", handle);
+
+        if (!steamClient.SetWorkshopItemTitle(handle, item.Title))
+            throw new ArgumentException("Invalid title");
+
+        if (!steamClient.SetWorkshopItemDescription(handle, item.Description))
+            throw new ArgumentException("Description is invalid");
+
+        if (!steamClient.SetWorkshopItemVisibility(handle, item.Visibility))
+            throw new ArgumentException("Visibility is invalid");
+
+        if (!steamClient.SetWorkshopItemContentFolder(handle, item.ContentFolder))
+            throw new ArgumentException("Content folder is invalid");
+
+        if (!steamClient.SetWorkshopItemPreview(handle, item.PreviewImagePath))
+            throw new ArgumentException("Preview image is invalid");
+
+        if (!steamClient.SetWorkshopItemTags(handle, item.Tags))
+            throw new ArgumentException("Item tags are invalid");
+
+        steamClient.SubmitWorkshopItemUpdate(handle, changeNotes, callback);
+    }
+
+    /// <summary>
+    ///   Returns the folders of installed workshop items
+    /// </summary>
+    /// <returns>List of folders</returns>
+    public List<string> GetWorkshopItemFolders()
+    {
+        ThrowIfNotLoaded();
+
+        return steamClient.GetInstalledWorkshopItemFolders();
+    }
+
+    /// <summary>
+    ///   Opens a workshop item in the Steam in-game browser overlay
+    /// </summary>
+    public void OpenWorkshopItemInOverlayBrowser(ulong itemId)
+    {
+        ThrowIfNotLoaded();
+
+        steamClient.OpenWorkshopItemInOverlayBrowser(itemId);
     }
 
     /// <summary>
@@ -143,6 +224,36 @@ public class SteamHandler : Node, ISteamSignalReceiver
 
         GD.Print("Shutdown through Steam requested, closing the game");
         GetTree().Quit();
+    }
+
+    public void WorkshopItemCreated(int result, ulong fileId, bool acceptTermsOfService)
+    {
+        steamClient?.WorkshopItemCreated(result, fileId, acceptTermsOfService);
+    }
+
+    public void WorkshopItemDownloadedLocally(int result, ulong fileId, int appId)
+    {
+        steamClient?.WorkshopItemDownloadedLocally(result, fileId, appId);
+    }
+
+    public void WorkshopItemInstalledOrUpdatedLocally(int appId, ulong fileId)
+    {
+        if (appId != steamClient?.AppId)
+            return;
+
+        steamClient?.WorkshopItemInstalledOrUpdatedLocally(appId, fileId);
+
+        // TODO: notify mod manager
+    }
+
+    public void WorkshopItemDeletedRemotely(int result, ulong fileId)
+    {
+        steamClient?.WorkshopItemDeletedRemotely(result, fileId);
+    }
+
+    public void WorkshopItemInfoUpdateFinished(int result, bool acceptTermsOfService)
+    {
+        steamClient?.WorkshopItemInfoUpdateFinished(result, acceptTermsOfService);
     }
 
     private void OnSteamInit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://src/gui_common/CreditsScroll.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
+[ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -70,6 +71,7 @@ CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
+ModManagerPath = NodePath("ModManager")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -347,6 +349,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Mods" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
+margin_left = 515.0
+margin_top = 100.0
+margin_right = 765.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "MODS"
+__meta__ = {
+"_editor_description_": ""
+}
+
 [node name="ArtGallery" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
 margin_left = 502.0
 margin_right = 777.0
@@ -371,22 +388,6 @@ size_flags_vertical = 0
 text = "LICENSES"
 __meta__ = {
 "_editor_description_": ""
-}
-
-[node name="unknown2" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 515.0
-margin_top = 100.0
-margin_right = 765.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
-focus_mode = 0
-mouse_filter = 1
-size_flags_horizontal = 4
-size_flags_vertical = 0
-disabled = true
-text = "???"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
@@ -457,6 +458,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ModManager" parent="." instance=ExtResource( 14 )]
+visible = false
+
 [node name="VersionNumber" type="Label" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -490,9 +494,9 @@ margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
 popup_exclusive = false
-DialogText = "GLES2_MODE_WARNING_TEXT"
-HideCancelButton = true
 WindowTitle = "GLES2_MODE_WARNING"
+HideCancelButton = true
+DialogText = "GLES2_MODE_WARNING_TEXT"
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
@@ -504,6 +508,7 @@ WindowTitle = "GLES2_MODE_WARNING"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
@@ -511,3 +516,4 @@ WindowTitle = "GLES2_MODE_WARNING"
 [connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
+[connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]

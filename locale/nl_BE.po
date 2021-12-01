@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-22 12:51+0700\n"
+"POT-Creation-Date: 2021-11-30 13:22-0600\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -1403,77 +1403,84 @@ msgstr ""
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:343
+#: ../src/modding/ModManager.tscn:952
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
 msgstr "Sluit"
 
-#: ../src/general/MainMenu.cs:219
+#: ../src/general/MainMenu.cs:224
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:176
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
-#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Spel Laden"
 
-#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:96
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Opties"
 
-#: ../src/general/MainMenu.tscn:211
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Hulpmiddelen"
 
-#: ../src/general/MainMenu.tscn:222
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "Bekijk de broncode"
 
-#: ../src/general/MainMenu.tscn:233
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Extra's"
 
-#: ../src/general/MainMenu.tscn:244
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Credits"
 
-#: ../src/general/MainMenu.tscn:255
+#: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
 msgstr "Stoppen"
 
-#: ../src/general/MainMenu.tscn:277
+#: ../src/general/MainMenu.tscn:279
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
-#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:417
-#: ../src/general/MainMenu.tscn:455 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:418
+#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/saving/NewSaveMenu.tscn:108 ../src/saving/SaveManagerGUI.tscn:120
+#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Terug"
 
-#: ../src/general/MainMenu.tscn:359
+#: ../src/general/MainMenu.tscn:362
+msgid "MODS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:376
 msgid "ART_GALLERY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:371
+#: ../src/general/MainMenu.tscn:388
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:497
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2 Moduswaarschuwing"
+
+#: ../src/general/MainMenu.tscn:499
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal "
 "waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten "
 "en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
-
-#: ../src/general/MainMenu.tscn:495
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Moduswaarschuwing"
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1802,6 +1809,7 @@ msgstr "Verwijderen en doorgaan"
 
 #: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
+#: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
 msgstr "Annuleer"
 
@@ -1825,12 +1833,12 @@ msgstr "Neem een schermopname"
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Open Screenshotfolder"
 
-#: ../src/general/PauseMenu.cs:237
+#: ../src/general/PauseMenu.cs:247
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Ga terug naar het menu"
 
-#: ../src/general/PauseMenu.cs:254
+#: ../src/general/PauseMenu.cs:263
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "GLES2 Moduswaarschuwing"
@@ -1890,9 +1898,9 @@ msgstr ""
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:638
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:950
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1103
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1118
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -2217,6 +2225,7 @@ msgstr ""
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
+#: ../src/modding/ModUploader.tscn:326
 msgid "OK"
 msgstr "OK"
 
@@ -2224,7 +2233,7 @@ msgstr "OK"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Kopieer fout naar het klembord"
 
-#: ../src/gui_common/dialogs/LicensesDisplay.cs:33
+#: ../src/gui_common/dialogs/LicensesDisplay.cs:34
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
@@ -2859,7 +2868,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3140
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:855
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:870
 msgid "TEMPERATURE"
 msgstr "Temperatuur"
 
@@ -2868,23 +2877,23 @@ msgstr "Temperatuur"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:486
+#: ../src/microbe_stage/Microbe.Contact.cs:494
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:582
+#: ../src/microbe_stage/Microbe.Contact.cs:599
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "succesvolle doorzoeking"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:589
+#: ../src/microbe_stage/Microbe.Contact.cs:606
 msgid "SUCCESSFUL_KILL"
 msgstr "succesvolle moord"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:796
+#: ../src/microbe_stage/Microbe.Contact.cs:813
 msgid "ESCAPE_ENGULFING"
 msgstr "ontsnap omsluiting"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:710
+#: ../src/microbe_stage/Microbe.Interior.cs:712
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Produceert"
@@ -2953,11 +2962,15 @@ msgstr ""
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:525
+#: ../src/microbe_stage/MicrobeStage.cs:529
 msgid "PLAYER_REPRODUCED"
 msgstr "speler reproduceerde"
 
-#: ../src/microbe_stage/MicrobeStage.cs:672
+#: ../src/microbe_stage/MicrobeStage.cs:615
+msgid "SPAWN_ENEMY_CHEAT_FAIL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:679
 msgid "PLAYER_DIED"
 msgstr "speler stierf"
 
@@ -2996,7 +3009,7 @@ msgstr "Druk"
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2808
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:964
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:979
 msgid "COMPOUNDS"
 msgstr "Chemische verbindingen"
 
@@ -3099,7 +3112,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balansen van de chemische verbindingen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1438
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe editor laden"
 
@@ -3107,11 +3120,11 @@ msgstr "Microbe editor laden"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten voor auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo mislukt"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "loopstatus:"
 
@@ -3326,7 +3339,7 @@ msgstr "Fysieke Omstandigheden"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2765
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3282
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:959
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:974
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferische Gassen"
 
@@ -3368,87 +3381,87 @@ msgstr "Kaart met plekken"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:676
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 "De hoeveelheid glucose is teruggebracht tot {0} van de vorige hoeveelheid."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "MEGA_YEARS"
 msgstr "myr"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:956
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:957
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:959
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:961
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:964
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:971
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:974
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:976
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:979
 msgid "YEARS"
 msgstr "jaren"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:719
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:729
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
 msgid "ATP_PRODUCTION"
 msgstr "ATP Productie"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:735
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTIE TE LAAG!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:746
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:761
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:763
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:778
 msgid "OSMOREGULATION"
 msgstr "Osmoregulatie"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:769
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:784
 msgid "BASE_MOVEMENT"
 msgstr "Basisbeweging"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:796
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:961
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:976
 msgid "SPECIES_LIST"
 msgstr "Soortenlijst"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:997
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1012
 msgid "FREEBUILDING"
 msgstr "Vrij bouwen"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1094
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1109
 msgid "BIOME_LABEL"
 msgstr "Bioom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1099
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1114
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m onder zeeniveau"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1138
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1153
 msgid "WITH_POPULATION"
 msgstr "{0} met populatie: {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1820
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1842
 #, fuzzy
 msgid "FAILED"
 msgstr "Opslaan mislukt"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1851
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1864
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1848
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1860
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "BEVOLKING:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1856
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1869
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1854
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1866
 #, fuzzy
 msgid "N_A"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2065
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2122
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -3492,6 +3505,403 @@ msgstr ""
 "Proficiat, je hebt gewonnen in deze versie van Thrive! Je kan verderspelen "
 "nadat dit scherm is gesloten als je dat wenst, of een nieuw spel beginnen "
 "in een nieuwe wereld."
+
+#: ../src/modding/ModManager.cs:273
+msgid "INVALID_ICON_PATH"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:287
+msgid "INVALID_URL_SCHEME"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:299
+msgid "ASSEMBLY_CLASS_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:506
+#, fuzzy
+msgid "NO_SELECTED_MOD"
+msgstr "Geselecteerd:"
+
+#: ../src/modding/ModManager.cs:867
+#, fuzzy
+msgid "ERROR_CREATING_FOLDER"
+msgstr "Fout bij het opslaan"
+
+#: ../src/modding/ModManager.cs:876
+msgid "ERROR_CREATING_INFO_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:117
+msgid "AVAILABLE_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:140 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Vernieuwen"
+
+#: ../src/modding/ModManager.tscn:148
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "Open Logs Folder"
+
+#: ../src/modding/ModManager.tscn:166
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "Rechter muis"
+
+#: ../src/modding/ModManager.tscn:179
+#, fuzzy
+msgid "LEFT_ARROW"
+msgstr "Linker muis"
+
+#: ../src/modding/ModManager.tscn:191
+#, fuzzy
+msgid "ENABLED_MODS"
+msgstr "Schakel de editor in"
+
+#: ../src/modding/ModManager.tscn:209
+msgid "DISABLE_ALL"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:246
+#, fuzzy
+msgid "SELECTED_MOD"
+msgstr "Geselecteerd:"
+
+#: ../src/modding/ModManager.tscn:280 ../src/modding/ModManager.tscn:668
+#: ../src/modding/NewModGUI.tscn:142
+msgid "MOD_AUTHOR"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:311 ../src/modding/ModManager.tscn:690
+#: ../src/modding/NewModGUI.tscn:165
+#, fuzzy
+msgid "MOD_VERSION"
+msgstr "Versie:"
+
+#: ../src/modding/ModManager.tscn:367
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:411
+#, fuzzy
+msgid "MINIMUM_VERSION"
+msgstr "Versie:"
+
+#: ../src/modding/ModManager.tscn:438 ../src/modding/ModManager.tscn:712
+#: ../src/modding/NewModGUI.tscn:188
+#, fuzzy
+msgid "MOD_DESCRIPTION"
+msgstr "Omschrijving:"
+
+#: ../src/modding/ModManager.tscn:470
+msgid "MORE_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:478
+msgid "OPEN_MOD_URL"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:501
+msgid "BROWSE_WORKSHOP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:44
+#, fuzzy
+msgid "UPLOAD"
+msgstr "Laden"
+
+#: ../src/modding/ModManager.tscn:515
+msgid "NEW"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:528
+#, fuzzy
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr "Ongeldig opgeslagen bestand laden?"
+
+#: ../src/modding/ModManager.tscn:555
+#, fuzzy
+msgid "ENABLE_ALL_COMPATIBLE"
+msgstr "Geselecteerde opgeslagen bestand is niet-compatibel"
+
+#: ../src/modding/ModManager.tscn:564
+msgid "APPLY_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:575
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:576
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"De simpelste membraanvorm, het heeft weinig bescherming tegen schade. Het "
+"heeft ook meer energie nodig om zijn vorm niet te verliezen. Het voordeel "
+"is dat het de cel toelaat om te bewegen en om voedingsstoffen sneller te "
+"absorberen."
+
+#: ../src/modding/ModManager.tscn:577
+#, fuzzy
+msgid "DISCARD_CHANGES"
+msgstr "Verwijderen en doorgaan"
+
+#: ../src/modding/ModManager.tscn:584
+msgid "FULL_MOD_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:625 ../src/modding/NewModGUI.tscn:119
+#, fuzzy
+msgid "MOD_NAME"
+msgstr "Naam:"
+
+#: ../src/modding/ModManager.tscn:647 ../src/modding/NewModGUI.tscn:96
+msgid "MOD_INTERNAL_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:211
+#, fuzzy
+msgid "MOD_EXTENDED_DESCRIPTION"
+msgstr ""
+"Nitrogenase is een proteïne dat stikstof en cellulaire energie in de vorm "
+"van ATP kan gebruiken om ammoniak, een belangrijke stof voor de groei van "
+"cellen, aan te maken. Dit proces noemt men Anaërobe stikstoffixatie. "
+"Doordat nitrogenase als een suspensie in het cytoplasma zit, voert de "
+"omliggende vloeistof fermentatie uit."
+
+#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:235
+msgid "MOD_ICON_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:258
+msgid "MOD_INFO_URL"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:281
+msgid "MOD_LICENSE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:304
+msgid "MOD_RECOMMENDED_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:327
+msgid "MOD_MINIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:350
+msgid "MOD_MAXIMUM_THRIVE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:373
+msgid "MOD_PCK_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:396
+msgid "MOD_ASSEMBLY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:932 ../src/modding/NewModGUI.tscn:419
+msgid "MOD_ASSEMBLY_CLASS"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:959
+#, fuzzy
+msgid "MOD_CREATION_FAILED"
+msgstr "Auto-evo mislukt"
+
+#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
+msgid "CONTENT_UPLOADED_FROM"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:273
+#, fuzzy
+msgid "MISSING_TITLE"
+msgstr "JE HEBT OVERWONNEN!"
+
+#: ../src/modding/ModUploader.cs:279
+#, fuzzy
+msgid "MISSING_DESCRIPTION"
+msgstr "Omschrijving:"
+
+#: ../src/modding/ModUploader.cs:287
+#, fuzzy
+msgid "DESCRIPTION_TOO_LONG"
+msgstr "Omschrijving:"
+
+#: ../src/modding/ModUploader.cs:295
+msgid "TAGS_IS_WHITESPACE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:303
+#, fuzzy
+msgid "INVALID_TAG"
+msgstr "Ongeldig opgeslagen bestand laden?"
+
+#: ../src/modding/ModUploader.cs:351
+#, fuzzy
+msgid "CREATING_DOT_DOT_DOT"
+msgstr "Zoeken..."
+
+#: ../src/modding/ModUploader.cs:373
+#, fuzzy
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "Opslaan mislukt! Een uitzondering is opgetreden"
+
+#: ../src/modding/ModUploader.cs:415
+#, fuzzy
+msgid "UPLOADING_DOT_DOT_DOT"
+msgstr "Laden..."
+
+#: ../src/modding/ModUploader.cs:443
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:447
+msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:507
+msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#, fuzzy
+msgid "FORM_ERROR_MESSAGE"
+msgstr "Fout bij het opslaan"
+
+#: ../src/modding/ModUploader.tscn:43
+msgid "MOD_UPLOADER"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:83
+msgid "MOD_TO_UPLOAD"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:108
+#, fuzzy
+msgid "UNKNOWN_WORKSHOP_ID"
+msgstr "Onbekende muis"
+
+#: ../src/modding/ModUploader.tscn:120
+#, fuzzy
+msgid "CREATE_NEW"
+msgstr "Maak een nieuw opslagen bestand"
+
+#: ../src/modding/ModUploader.tscn:128
+#, fuzzy
+msgid "ENTER_EXISTING_ID"
+msgstr "Bestaande opgeslagen bestand overschrijven:"
+
+#: ../src/modding/ModUploader.tscn:138
+msgid "ENTER_EXISTING_WORKSHOP_ID"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:152
+msgid "ID_NUMBER"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:168
+#, fuzzy
+msgid "WORKSHOP_ITEM_TITLE"
+msgstr "JE HEBT OVERWONNEN!"
+
+#: ../src/modding/ModUploader.tscn:186
+#, fuzzy
+msgid "WORKSHOP_ITEM_DESCRIPTION"
+msgstr ""
+"De choloroplast is een door twee membranen omsloten celorganel dat "
+"lichtgevoelige pigmenten bevat, op elkaar gestapeld in een membraanzak. "
+"Het is een prokaryoot die door zijn eukaryotische gastheer geabsorbeerd is "
+"voor diens gebruik. De pigmenten in de chloroplast zijn in staat om "
+"lichtenergie te gebruiken om glucose uit water en gasvormige "
+"koolstofdioxide te produceren in een proces dat fotosynthese heet. Deze "
+"pigmenten zijn ook wat het zijn opmerkelijke kleur geeft. De snelheid van "
+"de glucoseproductie hangt af van de koolstofdioxideconcentratie en de "
+"lichtintensiteit."
+
+#: ../src/modding/ModUploader.tscn:208
+msgid "WORKSHOP_VISIBILITY_TOOLTIP"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:209
+msgid "VISIBLE"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:215
+msgid "WORKSHOP_ITEM_TAGS"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:233
+msgid "WORKSHOP_ITEM_PREVIEW"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:259
+msgid "BROWSE"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:294
+msgid "SELECT_PREVIEW_IMAGE"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:305
+#, fuzzy
+msgid "UPLOAD_SUCCEEDED"
+msgstr "Opslaan geslaagd"
+
+#: ../src/modding/NewModGUI.cs:169
+#, fuzzy
+msgid "NEW_MOD_DEFAULT_DESCRIPTION"
+msgstr ""
+"De chemoplast is een door twee membranen omsloten celorganel die proteïnen "
+"die in staat zijn om waterstofsulfide, water en gasvormige koolstofdioxide "
+"in glucose om te zetten bevat. Dit proces heegt chemosynthese. De snelheid "
+"van de glucoseproductie hangt af van de water- en koolstofconcentratie."
+
+#: ../src/modding/NewModGUI.cs:226
+msgid "INVALID_URL_FORMAT"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:238
+msgid "INTERNAL_NAME_REQUIRED"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:244
+msgid "INTERNAL_NAME_IN_USE"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:263
+msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:274
+#, fuzzy
+msgid "ADDITIONAL_VALIDATION_FAILED"
+msgstr "Auto-evo mislukt"
+
+#: ../src/modding/NewModGUI.tscn:35
+#, fuzzy
+msgid "CREATE_NEW_MOD"
+msgstr "Maak een nieuwe microbe"
+
+#: ../src/modding/NewModGUI.tscn:69
+msgid "MODDING_INSTRUCTIONS_ON"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:76
+msgid "OUR_WIKI"
+msgstr ""
+
+#: ../src/modding/NewModGUI.tscn:450
+#, fuzzy
+msgid "CREATE"
+msgstr "Gemaakt op:"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -3552,7 +3962,7 @@ msgstr "Opslaan mislukt"
 msgid "ERROR_SAVING"
 msgstr "Fout bij het opslaan"
 
-#: ../src/saving/NewSaveMenu.cs:61
+#: ../src/saving/NewSaveMenu.cs:77
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "De gekozen bestandsnaam ({0}) bestaat al. Wil je dit overschrijven?"
 
@@ -3759,10 +4169,6 @@ msgstr ""
 " - {0} Automatisch opgeslagen bestand(en)\n"
 " - {1} Snel opgeslagen bestand(en)"
 
-#: ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Vernieuwen"
-
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
 msgstr "Verwijder het geselecteerde"
@@ -3804,27 +4210,89 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Open adresboek van opgeslagen bestanden"
 
-#: ../src/steam/SteamClient.cs:35
+#: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:43
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:81
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:120
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:155
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:197
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:235
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:298
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:48
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:215
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:249
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:284
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:323
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:359
+#: ../src/steam/SteamClient.cs:460
+msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:462
+msgid "STEAM_ERROR_BANNED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:464
+msgid "STEAM_ERROR_TIMEOUT"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:466
+msgid "STEAM_ERROR_NOT_LOGGED_IN"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:468
+msgid "STEAM_ERROR_UNAVAILABLE"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:470
+#, fuzzy
+msgid "STEAM_ERROR_INVALID_PARAMETER"
+msgstr "Opgeslagen bestand heeft ongeldige \"game state scene\""
+
+#: ../src/steam/SteamClient.cs:472
+msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:474
+msgid "STEAM_ERROR_FILE_NOT_FOUND"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:476
+msgid "STEAM_ERROR_ALREADY_UPLOADED"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:478
+#, fuzzy
+msgid "STEAM_ERROR_DUPLICATE_NAME"
+msgstr "speler stierf"
+
+#: ../src/steam/SteamClient.cs:480
+msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:482
+msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
+msgstr ""
+
+#: ../src/steam/SteamClient.cs:484
+#, fuzzy
+msgid "STEAM_ERROR_LOCKING_FAILED"
+msgstr "Opslaan mislukt! Een uitzondering is opgetreden"
+
+#: ../src/steam/SteamClient.cs:486
+msgid "STEAM_ERROR_UNKNOWN"
+msgstr ""
+
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:251
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:286
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:325
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:361
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:395
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:65
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 "Welkom bij de Microbe Editor.\n"
@@ -3839,7 +4307,7 @@ msgstr ""
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts "
 "onder."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Dit is de kaart van de plekken.\n"
@@ -3855,7 +4323,7 @@ msgstr ""
 "\n"
 "Selecteer een plek om verder te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:139
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
 msgid "EDITOR_TUTORIAL_CELL_TEXT"
 msgstr ""
 "Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen "
@@ -3869,7 +4337,7 @@ msgstr ""
 "naast de zeshoek die getoond is in het midden van het scherm om dat "
 "organel toe te voegen aan je soort."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:178
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Het verwijderen van organellen kost ook MP, want het is een mutatie aan je "
@@ -3883,7 +4351,7 @@ msgstr ""
 "\n"
 "Klik de \"ongedaan maken\" knop om verder te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:219
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "wanneer je selecteerd welk organel je wilt toevoegen, hou dan rekening met "
@@ -3899,15 +4367,15 @@ msgstr ""
 "Druk op de \"opnieuw\" knop (dicht bij de \"ongedaan maken\" knop) om "
 "verder te gaan."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:263
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:265
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:280
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:282
 msgid "GOT_IT"
 msgstr ""
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:326
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
 #, fuzzy
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -3924,43 +4392,69 @@ msgstr ""
 "\n"
 "Selecteer een plek om verder te gaan."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:79
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
+#, fuzzy
+msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgstr ""
+"Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen "
+"van je soort door mutatiepunten (MP) te besteden.\n"
+"\n"
+"Je kan ook andere eigenschappen van je soort aanpassen in de andere "
+"tabbladen van de cel editor.\n"
+"\n"
+"Om verder te gaan selecteer je een organel van het paneel aan de "
+"linkerkant (cytoplasma is een goede keuze). Klik dan met de linkermuisknop "
+"naast de zeshoek die getoond is in het midden van het scherm om dat "
+"organel toe te voegen aan je soort."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:104
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:113
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:114
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:153
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:155
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:235
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:237
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:269
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:307
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:345
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 #, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:379
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 #, fuzzy
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
+#, fuzzy
+msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgstr ""
+"W,A,S,D en de muis om te bewegen. E om OxyToxy NT te schieten als je een "
+"toxine vacuole hebt. G om de omsluitmodus aan te zetten."
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
+msgid "VIEW_NOW"
+msgstr ""
 
 #~ msgid "Cancel"
 #~ msgstr "Annuleren"
