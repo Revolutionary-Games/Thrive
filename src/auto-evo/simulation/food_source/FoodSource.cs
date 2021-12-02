@@ -1,4 +1,6 @@
-﻿public abstract class FoodSource
+﻿using AutoEvo;
+
+public abstract class FoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
@@ -9,11 +11,14 @@
     ///   Provides a fitness metric to determine population adjustments for species in a patch.
     /// </summary>
     /// <param name="microbe">The species to be evaluated.</param>
+    /// <param name="simulationCache">
+    ///   Cache that should be used to reduce amount of times expensive computations are run
+    /// </param>
     /// <returns>
     ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
     ///   so different implementations do not need to worry about scale.
     /// </returns>
-    public abstract float FitnessScore(Species microbe);
+    public abstract float FitnessScore(Species microbe, SimulationCache simulationCache);
 
     protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
     {

@@ -29,6 +29,7 @@
     <Compile Include="src\auto-evo\simulation\food_source\MarineSnowFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
@@ -167,7 +168,7 @@
     <Compile Include="src\microbe_stage\MicrobeInternalCalculations.cs" />
     <Compile Include="src\general\SpeciesInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
-    <Compile Include="src\microbe_stage\NucleusMesh.cs" />
+    <Compile Include="src\microbe_stage\OrganelleMeshWithChildren.cs" />
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
