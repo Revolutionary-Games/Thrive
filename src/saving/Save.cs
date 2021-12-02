@@ -152,18 +152,11 @@ public class Save
         // a JSON structure
         var saveResult = JObject.Parse(saveStr);
 
-        Image imageResult;
+        var imageResult = new Image();
 
-        // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
-        // this lock. See: https://github.com/godotengine/godot/issues/55528
-        lock (ResourceLoading.ImageLoadingLock)
+        if (screenshotData?.Length > 0)
         {
-            imageResult = new Image();
-
-            if (screenshotData?.Length > 0)
-            {
-                imageResult.LoadPngFromBuffer(screenshotData);
-            }
+            imageResult.LoadPngFromBuffer(screenshotData);
         }
 
         return (infoResult, saveResult, imageResult);
@@ -310,16 +303,11 @@ public class Save
 
         if (screenshot)
         {
-            // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
-            // this lock. See: https://github.com/godotengine/godot/issues/55528
-            lock (ResourceLoading.ImageLoadingLock)
-            {
-                imageResult = new Image();
+            imageResult = new Image();
 
-                if (screenshotData?.Length > 0)
-                {
-                    imageResult.LoadPngFromBuffer(screenshotData);
-                }
+            if (screenshotData?.Length > 0)
+            {
+                imageResult.LoadPngFromBuffer(screenshotData);
             }
 
             // Not a critical error that screenshot is missing even if it was requested
