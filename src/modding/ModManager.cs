@@ -68,6 +68,9 @@ public class ModManager : Control
     public NodePath FullInfoNamePath;
 
     [Export]
+    public NodePath FullInfoInternalNamePath;
+
+    [Export]
     public NodePath FullInfoAuthorPath;
 
     [Export]
@@ -149,6 +152,7 @@ public class ModManager : Control
 
     private CustomDialog modFullInfoPopup;
     private Label fullInfoName;
+    private Label fullInfoInternalName;
     private Label fullInfoAuthor;
     private Label fullInfoVersion;
     private Label fullInfoDescription;
@@ -329,6 +333,7 @@ public class ModManager : Control
 
         modFullInfoPopup = GetNode<CustomDialog>(ModFullInfoPopupPath);
         fullInfoName = GetNode<Label>(FullInfoNamePath);
+        fullInfoInternalName = GetNode<Label>(FullInfoInternalNamePath);
         fullInfoAuthor = GetNode<Label>(FullInfoAuthorPath);
         fullInfoVersion = GetNode<Label>(FullInfoVersionPath);
         fullInfoDescription = GetNode<Label>(FullInfoDescriptionPath);
@@ -799,6 +804,7 @@ public class ModManager : Control
         }
 
         fullInfoName.Text = info.Name;
+        fullInfoInternalName.Text = info.InternalName;
         fullInfoAuthor.Text = info.Author;
         fullInfoVersion.Text = info.Version;
         fullInfoDescription.Text = info.Description;
