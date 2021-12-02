@@ -52,6 +52,9 @@ public class OptionsMenu : ControlWithInput
     public NodePath MSAAResolutionPath;
 
     [Export]
+    public NodePath MaxFramesPerSecondPath;
+
+    [Export]
     public NodePath ColourblindSettingPath;
 
     [Export]
@@ -225,6 +228,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox vsync;
     private CustomCheckBox fullScreen;
     private OptionButton msaaResolution;
+    private OptionButton maxFramesPerSecond;
     private OptionButton colourblindSetting;
     private CustomCheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
@@ -346,6 +350,7 @@ public class OptionsMenu : ControlWithInput
         vsync = GetNode<CustomCheckBox>(VSyncPath);
         fullScreen = GetNode<CustomCheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
+        maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
@@ -487,6 +492,7 @@ public class OptionsMenu : ControlWithInput
         vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
@@ -766,6 +772,54 @@ public class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid MSAA resolution index");
                 return Viewport.MSAA.Disabled;
+        }
+    }
+
+    private int MaxFPSValueToIndex(int value)
+    {
+        switch (value)
+        {
+            case 30:
+                return 0;
+            case 60:
+                return 1;
+            case 90:
+                return 2;
+            case 120:
+                return 3;
+            case 144:
+                return 4;
+            case 240:
+                return 5;
+            case 0:
+                return 6;
+            default:
+                return 6;
+        }
+    }
+
+    private int MaxFPSIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return 30;
+            case 1:
+                return 60;
+            case 2:
+                return 90;
+            case 3:
+                return 120;
+            case 4:
+                return 144;
+            case 5:
+                return 240;
+            case 6:
+                // Godot interprets a TargetFps of 0 as an unlocked framerate
+                return 0;
+            default:
+                GD.PrintErr("invalid max frames per second index");
+                return 0;
         }
     }
 
@@ -1055,6 +1109,14 @@ public class OptionsMenu : ControlWithInput
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMaxFramesPerSecondSelected(int index)
+    {
+        Settings.Instance.MaxFramesPerSecond.Value = MaxFPSIndexToValue(index);
         Settings.Instance.ApplyGraphicsSettings();
 
         UpdateResetSaveButtonState();
