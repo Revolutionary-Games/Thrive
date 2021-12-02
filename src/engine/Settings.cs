@@ -543,7 +543,9 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
-        Engine.TargetFps = MaxFramesPerSecond;
+
+        // Values less than 0 are undefined behaviour
+        Engine.TargetFps = MaxFramesPerSecond >= 0 ? MaxFramesPerSecond : 0;
         ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
