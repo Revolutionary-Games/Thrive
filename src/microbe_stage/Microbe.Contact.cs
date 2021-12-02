@@ -299,6 +299,8 @@ public partial class Microbe
 
         Hitpoints -= amount;
 
+        ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
+
         // Flash the microbe red
         Flash(1.0f, new Color(1, 0, 0, 0.5f), 1);
 
@@ -338,6 +340,8 @@ public partial class Microbe
         Dead = true;
 
         OnDeath?.Invoke(this);
+        ModLoader.ModInterface.TriggerOnMicrobeDied(this, IsPlayerMicrobe);
+
         OnDestroyed();
 
         // Reset some stuff
@@ -369,10 +373,12 @@ public partial class Microbe
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
+                var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
                     Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetStageAsParent(),
                     agentScene, this);
+
+                ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
                 amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
                 ++createdAgents;
@@ -475,8 +481,10 @@ public partial class Microbe
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
+            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
                 chunkScene, cloudSystem, random);
+
+            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
 
         // Subtract population
@@ -492,7 +500,16 @@ public partial class Microbe
             OnReproductionStatus?.Invoke(this, false);
         }
 
-        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        if (IsPlayerMicrobe)
+        {
+            // Playing from a positional audio player won't have any effect since the listener is
+            // directly on it.
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
+        }
+        else
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        }
 
         // Disable collisions
         CollisionLayer = 0;
@@ -624,8 +641,8 @@ public partial class Microbe
 
         var newTransform = GetNewRelativeTransform();
 
-        Rotation = newTransform.rotation;
-        Translation = newTransform.translation;
+        Rotation = newTransform.Rotation;
+        Translation = newTransform.Translation;
 
         ChangeNodeParent(ColonyParent);
     }

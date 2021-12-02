@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Godot;
 using Newtonsoft.Json;
 
@@ -58,6 +59,18 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath GenerationLabelPath;
 
     [Export]
+    public NodePath AutoEvoPredictionPanelPath;
+
+    [Export]
+    public NodePath TotalPopulationLabelPath;
+
+    [Export]
+    public NodePath WorstPatchLabelPath;
+
+    [Export]
+    public NodePath BestPatchLabelPath;
+
+    [Export]
     public NodePath CurrentMutationPointsLabelPath;
 
     [Export]
@@ -95,6 +108,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     [Export]
     public NodePath RedoButtonPath;
+
+    [Export]
+    public NodePath RandomizeSpeciesNameButtonPath;
 
     [Export]
     public NodePath FinishButtonPath;
@@ -244,6 +260,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath SizeIndicatorPath;
 
     [Export]
+    public NodePath TotalPopulationIndicatorPath;
+
+    [Export]
     public NodePath RigiditySliderPath;
 
     [Export]
@@ -301,6 +320,21 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [JsonProperty]
     private float initialCellHp;
 
+    [JsonProperty]
+    private bool? autoEvoRunSuccessful;
+
+    [JsonProperty]
+    private string bestPatchName;
+
+    [JsonProperty]
+    private long bestPatchPopulation;
+
+    [JsonProperty]
+    private string worstPatchName;
+
+    [JsonProperty]
+    private long worstPatchPopulation;
+
     private MicrobeEditor editor;
 
     private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements =
@@ -329,6 +363,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Label speedLabel;
     private Label hpLabel;
     private Label generationLabel;
+    private Label totalPopulationLabel;
+    private Label bestPatchLabel;
+    private Label worstPatchLabel;
+
+    private Control autoEvoPredictionPanel;
 
     private Label currentMutationPointsLabel;
     private TextureRect mutationPointsArrow;
@@ -350,6 +389,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private TextureButton redoButton;
     private TextureButton newCellButton;
     private LineEdit speciesNameEdit;
+    private TextureButton randomizeSpeciesNameButton;
 
     private Button finishButton;
     private Button cancelButton;
@@ -409,6 +449,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private TextureRect speedIndicator;
     private TextureRect hpIndicator;
     private TextureRect sizeIndicator;
+    private TextureRect totalPopulationIndicator;
 
     private Texture symmetryIconDefault;
     private Texture symmetryIcon2X;
@@ -416,6 +457,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Texture symmetryIcon6X;
     private Texture increaseIcon;
     private Texture decreaseIcon;
+    private Texture questionIcon;
     private AudioStream unableToPlaceHexSound;
     private Texture temperatureIcon;
 
@@ -436,6 +478,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
+
+    private PendingAutoEvoPrediction waitingForPrediction;
 
     public enum EditorTab
     {
@@ -472,6 +516,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speedLabel = GetNode<Label>(SpeedLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
+        totalPopulationLabel = GetNode<Label>(TotalPopulationLabelPath);
+        worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
+        bestPatchLabel = GetNode<Label>(BestPatchLabelPath);
+
+        autoEvoPredictionPanel = GetNode<Control>(AutoEvoPredictionPanelPath);
 
         currentMutationPointsLabel = GetNode<Label>(CurrentMutationPointsLabelPath);
         mutationPointsArrow = GetNode<TextureRect>(MutationPointsArrowPath);
@@ -498,6 +547,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         finishButton = GetNode<Button>(FinishButtonPath);
         cancelButton = GetNode<Button>(CancelButtonPath);
+        randomizeSpeciesNameButton = GetNode<TextureButton>(RandomizeSpeciesNameButtonPath);
 
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
@@ -550,6 +600,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speedIndicator = GetNode<TextureRect>(SpeedIndicatorPath);
         hpIndicator = GetNode<TextureRect>(HpIndicatorPath);
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
+        totalPopulationIndicator = GetNode<TextureRect>(TotalPopulationIndicatorPath);
 
         symmetryIconDefault = GD.Load<Texture>("res://assets/textures/gui/bevel/1xSymmetry.png");
         symmetryIcon2X = GD.Load<Texture>("res://assets/textures/gui/bevel/2xSymmetry.png");
@@ -559,6 +610,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         decreaseIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/decrease.png");
         unableToPlaceHexSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/click_place_blocked.ogg");
         temperatureIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/Temperature.png");
+        questionIcon = GD.Load<Texture>("res://assets/textures/gui/bevel/helpButton.png");
 
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
@@ -580,6 +632,17 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         RegisterTooltips();
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        if (waitingForPrediction?.Finished != true)
+            return;
+
+        OnAutoEvoPredictionComplete(waitingForPrediction);
+        waitingForPrediction = null;
+    }
+
     public void Init(MicrobeEditor editor)
     {
         this.editor = editor ?? throw new ArgumentNullException(nameof(editor));
@@ -587,8 +650,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Set the right tabs if they aren't the defaults
         ApplyEditorTab();
         ApplySelectionMenuTab();
-
-        UpdateMutationPointsBar();
     }
 
     public void SetMap(PatchMap map)
@@ -764,6 +825,33 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         compoundBalance.UpdateBalances(balances);
     }
 
+    public void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, MicrobeSpecies playerSpeciesOriginal,
+        MicrobeSpecies playerSpeciesNew)
+    {
+        // Cancel previous one if there is one
+        waitingForPrediction?.AutoEvoRun.Abort();
+
+        totalPopulationIndicator.Show();
+        totalPopulationIndicator.Texture = questionIcon;
+
+        var prediction = new PendingAutoEvoPrediction
+        {
+            AutoEvoRun = startedRun,
+            PlayerSpeciesOriginal = playerSpeciesOriginal,
+            PlayerSpeciesNew = playerSpeciesNew,
+        };
+
+        if (startedRun.Finished)
+        {
+            OnAutoEvoPredictionComplete(prediction);
+            waitingForPrediction = null;
+        }
+        else
+        {
+            waitingForPrediction = prediction;
+        }
+    }
+
     public void UpdateReportTabStatistics(Patch patch)
     {
         temperatureChart.ClearDataSets();
@@ -893,17 +981,27 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         OnPhysicalConditionsChartLegendPressed("temperature");
     }
 
-    public void UpdateMutationPointsBar()
+    public void UpdateMutationPointsBar(bool tween = true)
     {
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
             editor.MutationPoints - editor.CalculateCurrentOrganelleCost();
 
-        GUICommon.Instance.TweenBarValue(
-            mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
-        GUICommon.Instance.TweenBarValue(
-            mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        if (tween)
+        {
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        }
+        else
+        {
+            mutationPointsBar.Value = possibleMutationPoints;
+            mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+            mutationPointsSubtractBar.Value = editor.MutationPoints;
+            mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+        }
 
         if (editor.FreeBuilding)
         {
@@ -1124,22 +1222,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
-    /// <summary>
-    ///   Called once when the mouse enters the editor GUI.
-    /// </summary>
-    internal void OnMouseEnter()
+    public override void _Notification(int what)
     {
-        editor.ShowHover = false;
-        UpdateMutationPointsBar();
-    }
-
-    /// <summary>
-    ///   Called when the mouse is no longer hovering the editor GUI.
-    /// </summary>
-    internal void OnMouseExit()
-    {
-        editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
-        UpdateMutationPointsBar();
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateAutoEvoPredictionTranslations();
+        }
     }
 
     internal void SetUndoButtonStatus(bool enabled)
@@ -1176,7 +1264,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
 
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
     internal void OnInsufficientMp(bool playSound = true)
@@ -1198,7 +1286,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void PlayInvalidActionSound()
     {
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
     /// <summary>
@@ -1404,10 +1492,44 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void SendUndoToTutorial(TutorialState tutorial)
     {
-        if (tutorial.EditorUndoTutorial == null)
+        if (tutorial.EditorUndoTutorial != null)
+            tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+
+        if (tutorial.AutoEvoPrediction != null)
+            tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+    }
+
+    /// <summary>
+    ///   Called once when the mouse enters the background.
+    /// </summary>
+    private void OnCellEditorMouseEntered()
+    {
+        editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
+        UpdateMutationPointsBar();
+    }
+
+    /// <summary>
+    ///   Called when the mouse is no longer hovering the background.
+    /// </summary>
+    private void OnCellEditorMouseExited()
+    {
+        editor.ShowHover = false;
+        UpdateMutationPointsBar();
+    }
+
+    /// <summary>
+    ///   To get MouseEnter/Exit the CellEditor needs MouseFilter != Ignore.
+    ///   Controls with MouseFilter != Ignore always handle mouse events.
+    ///   So to get MouseClicks via the normal InputManager, this must be forwarded.
+    ///   This is needed to respect the current Key Settings.
+    /// </summary>
+    /// <param name="inputEvent">The event the user fired</param>
+    private void OnCellEditorGuiInput(InputEvent inputEvent)
+    {
+        if (!editor.ShowHover)
             return;
 
-        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+        InputManager.ForwardInput(inputEvent);
     }
 
     private void UpdateSymmetryIcon()
@@ -1713,6 +1835,98 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
+    private void UpdateAutoEvoPredictionTranslations()
+    {
+        if (autoEvoRunSuccessful.HasValue && autoEvoRunSuccessful.Value == false)
+        {
+            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+        }
+
+        if (!string.IsNullOrEmpty(bestPatchName))
+        {
+            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(bestPatchName),
+                bestPatchPopulation);
+        }
+        else
+        {
+            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+
+        if (!string.IsNullOrEmpty(worstPatchName))
+        {
+            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(worstPatchName),
+                worstPatchPopulation);
+        }
+        else
+        {
+            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+    }
+
+    private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
+    {
+        if (!run.AutoEvoRun.WasSuccessful)
+        {
+            GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
+            autoEvoRunSuccessful = false;
+            UpdateAutoEvoPredictionTranslations();
+            return;
+        }
+
+        var results = run.AutoEvoRun.Results;
+
+        // Total population
+        var newPopulation = results.GetGlobalPopulation(run.PlayerSpeciesNew);
+
+        if (newPopulation > run.PlayerSpeciesOriginal.Population)
+        {
+            totalPopulationIndicator.Texture = increaseIcon;
+        }
+        else if (newPopulation < run.PlayerSpeciesOriginal.Population)
+        {
+            totalPopulationIndicator.Texture = decreaseIcon;
+        }
+        else
+        {
+            totalPopulationIndicator.Texture = null;
+        }
+
+        autoEvoRunSuccessful = true;
+        totalPopulationLabel.Text = newPopulation.ToString(CultureInfo.CurrentCulture);
+
+        var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
+
+        // Best
+        if (sorted.Count > 0)
+        {
+            var patch = sorted[0];
+            bestPatchName = patch.Key.Name;
+            bestPatchPopulation = patch.Value;
+        }
+        else
+        {
+            bestPatchName = null;
+        }
+
+        // And worst patch
+        if (sorted.Count > 1)
+        {
+            var patch = sorted[sorted.Count - 1];
+            worstPatchName = patch.Key.Name;
+            worstPatchPopulation = patch.Value;
+        }
+        else
+        {
+            worstPatchName = null;
+        }
+
+        UpdateAutoEvoPredictionTranslations();
+    }
+
     /// <remarks>
     ///   TODO: this function should be cleaned up by generalizing the adding
     ///   the increase or decrease icons in order to remove the duplicated
@@ -1869,6 +2083,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         finishButton.RegisterToolTipForControl("finishButton", "editor");
         cancelButton.RegisterToolTipForControl("cancelButton", "editor");
         menuButton.RegisterToolTipForControl("menuButton");
+        randomizeSpeciesNameButton.RegisterToolTipForControl("randomizeNameButton", "editor");
 
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
@@ -1879,7 +2094,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnSpeciesNameTextChanged(string newText)
     {
-        if (newText.Split(" ").Length != 2)
+        if (!Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
         }
@@ -1897,8 +2112,28 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.NewName = newText;
 
         // Only defocus if the name is valid to indicate invalid namings to the player
-        if (newText.Split(" ").Length == 2)
+        if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
+        {
             speciesNameEdit.ReleaseFocus();
+        }
+        else
+        {
+            // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+
+            speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
+        }
+    }
+
+    private void OnRandomizeSpeciesNamePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+        var randomizedName = nameGenerator.GenerateNameSection() + " " + nameGenerator.GenerateNameSection();
+
+        speciesNameEdit.Text = randomizedName;
+        OnSpeciesNameTextChanged(randomizedName);
     }
 
     /// <summary>
@@ -1937,7 +2172,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
-        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
 
         if (name == "temperature")
         {
@@ -1945,9 +2179,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.DarkGray;
             sunlightChart.Hide();
             temperatureChart.Show();
-
-            tween.InterpolateProperty(temperatureButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
         else if (name == "sunlight")
         {
@@ -1955,9 +2186,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.White;
             sunlightChart.Show();
             temperatureChart.Hide();
-
-            tween.InterpolateProperty(sunlightButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
     }
 
@@ -2080,5 +2308,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             return string.Compare(stringA, stringB, StringComparison.InvariantCulture);
         }
+    }
+
+    private class PendingAutoEvoPrediction
+    {
+        public AutoEvoRun AutoEvoRun;
+        public Species PlayerSpeciesOriginal;
+        public Species PlayerSpeciesNew;
+
+        public bool Finished => AutoEvoRun.Finished;
     }
 }

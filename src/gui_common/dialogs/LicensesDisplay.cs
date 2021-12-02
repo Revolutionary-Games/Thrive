@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class LicensesDisplay : PanelContainer
+// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+// [Tool]
+public class LicensesDisplay : CustomDialog
 {
-    private List<(string heading, string file)> licensesToShow;
+    private List<(string Heading, string File)> licensesToShow;
 
     private bool licensesLoaded;
 
@@ -16,16 +18,20 @@ public class LicensesDisplay : PanelContainer
     {
         textsContainer = GetNode<Container>(TextsContainerPath);
 
+        bool isSteamVersion = SteamHandler.IsTaggedSteamRelease();
+
         // These don't react to language change, but I doubt it's important enough to fix
-        licensesToShow = new List<(string heading, string file)>
+        licensesToShow = new List<(string Heading, string File)>
         {
-            (string.Empty, Constants.LICENSE_FILE),
+            (string.Empty, isSteamVersion ? Constants.STEAM_LICENSE_FILE : Constants.LICENSE_FILE),
             (string.Empty, Constants.ASSETS_README),
             (string.Empty, Constants.ASSETS_LICENSE_FILE),
             (string.Empty, Constants.OFL_LICENSE_FILE),
             (string.Empty, Constants.GODOT_LICENSE_FILE),
-            (TranslationServer.Translate("GPL_LICENSE_HEADING"), Constants.GPL_LICENSE_FILE),
         };
+
+        if (!isSteamVersion)
+            licensesToShow.Add((TranslationServer.Translate("GPL_LICENSE_HEADING"), Constants.GPL_LICENSE_FILE));
     }
 
     public override void _Process(float delta)
@@ -54,21 +60,21 @@ public class LicensesDisplay : PanelContainer
     {
         foreach (var licenseTuple in licensesToShow)
         {
-            var heading = new Label { Text = licenseTuple.heading };
+            var heading = new Label { Text = licenseTuple.Heading };
             heading.AddFontOverride("font", GetFont("lato_bold_regular", "Fonts"));
             textsContainer.AddChild(heading);
 
             string text;
             using var reader = new File();
 
-            if (reader.Open(licenseTuple.file, File.ModeFlags.Read) == Error.Ok)
+            if (reader.Open(licenseTuple.File, File.ModeFlags.Read) == Error.Ok)
             {
                 text = reader.GetAsText();
             }
             else
             {
                 text = "Missing file to show here!";
-                GD.PrintErr("Can't load file to show in licenses: ", licenseTuple.file);
+                GD.PrintErr("Can't load file to show in licenses: ", licenseTuple.File);
             }
 
             var content = new Label
@@ -83,5 +89,11 @@ public class LicensesDisplay : PanelContainer
 
             textsContainer.AddChild(new Control { RectMinSize = new Vector2(0, 5) });
         }
+    }
+
+    private void OnCloseButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        Hide();
     }
 }

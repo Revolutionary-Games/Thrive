@@ -390,8 +390,8 @@ public abstract class BaseThriveConverter : JsonConverter
     {
         var customRead = ReadCustomJson(reader, objectType, existingValue, serializer);
 
-        if (customRead.performed)
-            return customRead.read;
+        if (customRead.Performed)
+            return customRead.Read;
 
         if (reader.TokenType != JsonToken.StartObject)
             return null;
@@ -631,7 +631,7 @@ public abstract class BaseThriveConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    protected virtual (object read, bool performed) ReadCustomJson(JsonReader reader, Type objectType,
+    protected virtual (object Read, bool Performed) ReadCustomJson(JsonReader reader, Type objectType,
         object existingValue, JsonSerializer serializer)
     {
         return (null, false);

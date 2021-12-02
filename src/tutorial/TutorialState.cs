@@ -32,47 +32,55 @@ public class TutorialState : ITutorialInput
     // Tutorial states
 
     [JsonProperty]
-    public MicrobeStageWelcome MicrobeStageWelcome { get; private set; } = new MicrobeStageWelcome();
+    public MicrobeStageWelcome MicrobeStageWelcome { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeMovement MicrobeMovement { get; private set; } = new MicrobeMovement();
+    public MicrobeMovement MicrobeMovement { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeMovementExplanation MicrobeMovementExplanation { get; private set; } =
-        new MicrobeMovementExplanation();
+    public MicrobeMovementExplanation MicrobeMovementExplanation { get; private set; } = new();
 
     [JsonProperty]
-    public GlucoseCollecting GlucoseCollecting { get; private set; } = new GlucoseCollecting();
+    public GlucoseCollecting GlucoseCollecting { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeStayingAlive MicrobeStayingAlive { get; private set; } = new MicrobeStayingAlive();
+    public MicrobeStayingAlive MicrobeStayingAlive { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeReproduction MicrobeReproduction { get; private set; } = new MicrobeReproduction();
+    public MicrobeReproduction MicrobeReproduction { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobePressEditorButton MicrobePressEditorButton { get; private set; } = new MicrobePressEditorButton();
+    public MicrobePressEditorButton MicrobePressEditorButton { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeUnbind MicrobeUnbind { get; private set; } = new MicrobeUnbind();
+    public MicrobeUnbind MicrobeUnbind { get; private set; } = new();
 
     [JsonProperty]
-    public EditorWelcome EditorWelcome { get; private set; } = new EditorWelcome();
+    public CheckTheHelpMenu CheckTheHelpMenu { get; private set; } = new();
 
     [JsonProperty]
-    public Tutorial.PatchMap PatchMap { get; private set; } = new Tutorial.PatchMap();
+    public EditorWelcome EditorWelcome { get; private set; } = new();
 
     [JsonProperty]
-    public CellEditorIntroduction CellEditorIntroduction { get; private set; } = new CellEditorIntroduction();
+    public Tutorial.PatchMap PatchMap { get; private set; } = new();
 
     [JsonProperty]
-    public EditorUndoTutorial EditorUndoTutorial { get; private set; } = new EditorUndoTutorial();
+    public CellEditorIntroduction CellEditorIntroduction { get; private set; } = new();
 
     [JsonProperty]
-    public EditorRedoTutorial EditorRedoTutorial { get; private set; } = new EditorRedoTutorial();
+    public EditorUndoTutorial EditorUndoTutorial { get; private set; } = new();
 
     [JsonProperty]
-    public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new EditorTutorialEnd();
+    public EditorRedoTutorial EditorRedoTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new();
+
+    [JsonProperty]
+    public AutoEvoPrediction AutoEvoPrediction { get; private set; } = new();
+
+    [JsonProperty]
+    public StaySmallTutorial StaySmallTutorial { get; private set; } = new();
 
     // End of tutorial state variables
 
@@ -327,12 +335,15 @@ public class TutorialState : ITutorialInput
             MicrobeReproduction,
             MicrobePressEditorButton,
             MicrobeUnbind,
+            CheckTheHelpMenu,
             EditorWelcome,
             PatchMap,
             CellEditorIntroduction,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
+            AutoEvoPrediction,
+            StaySmallTutorial,
         };
     }
 }

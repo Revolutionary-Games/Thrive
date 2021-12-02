@@ -33,6 +33,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
+    private Spatial organelleSceneInstance;
+
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
     {
         Definition = definition;
@@ -565,27 +567,20 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private void UpdateColour()
     {
-        organelleMaterial?.SetShaderParam("tint", CalculateHSVForOrganelle(Colour));
+        var color = CalculateHSVForOrganelle(Colour);
+        if (organelleSceneInstance is OrganelleMeshWithChildren organelleMeshWithChildren)
+        {
+            organelleMeshWithChildren.SetTintOfChildren(color);
+        }
+
+        organelleMaterial?.SetShaderParam("tint", color);
 
         needsColourUpdate = false;
     }
 
     private void SetupOrganelleGraphics()
     {
-        var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
-
-        // Store the material of the organelle to be updated
-        GeometryInstance geometry;
-
-        // Fetch the actual model from the scene to get at the material we set the tint on
-        if (string.IsNullOrEmpty(Definition.DisplaySceneModelPath))
-        {
-            geometry = (GeometryInstance)organelleSceneInstance;
-        }
-        else
-        {
-            geometry = organelleSceneInstance.GetNode<GeometryInstance>(Definition.DisplaySceneModelPath);
-        }
+        organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
 
         // Store animation player for later use
         if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
@@ -593,7 +588,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             OrganelleAnimation = organelleSceneInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
         }
 
-        organelleMaterial = (ShaderMaterial)geometry.MaterialOverride;
+        // Store the material of the organelle to be updated
+        organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneModelPath);
+        organelleMaterial.RenderPriority = Hex.GetRenderPriority(Position);
 
         // There is an intermediate node so that the organelle scene root rotation and scale work
         OrganelleGraphics = new Spatial();
@@ -607,6 +604,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Position the intermediate node relative to origin of cell
         var transform = new Transform(Quat.Identity,
             Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset());
+
         OrganelleGraphics.Transform = transform;
 
         // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work

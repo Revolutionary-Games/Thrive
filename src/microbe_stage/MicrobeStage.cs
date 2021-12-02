@@ -301,6 +301,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         patchManager.CurrentGame = CurrentGame;
 
+        pauseMenu.SetNewSaveNameFromSpeciesName();
+
         StartMusic();
 
         if (IsLoadedFromSave)
@@ -375,6 +377,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
+
+        ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
     }
 
     public override void _PhysicsProcess(float delta)
@@ -487,9 +491,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [RunOnKeyDown("g_quick_save")]
     public void QuickSave()
     {
-        if (!TransitionFinished)
+        if (!TransitionFinished || wantsToSave)
         {
-            GD.Print("quick save is disabled while transitioning");
+            GD.Print("Skipping quick save as stage transition is not finished or saving is queued");
             return;
         }
 
@@ -573,6 +577,11 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();
 
+        if (!CurrentGame.TutorialState.Enabled)
+        {
+            tutorialGUI.EventReceiver?.OnTutorialDisabled();
+        }
+
         StartMusic();
 
         // Reset locale to assure the stage's language.
@@ -582,6 +591,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Auto save is wanted once possible
         wantsToSave = true;
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     public void OnFinishTransitioning()
@@ -601,6 +612,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // No enemy species to spawn in this patch
         if (species.Count == 0)
         {
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
             GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
             return;
         }
