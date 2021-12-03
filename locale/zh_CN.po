@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 12:03+0200\n"
+"POT-Creation-Date: 2021-12-03 14:23+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1345,7 +1345,7 @@ msgstr "由{0}创作"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:955
+#: ../src/modding/ModManager.tscn:971
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
@@ -3325,27 +3325,36 @@ msgstr "Mod Assembly Main Class："
 msgid "PCK_LOAD_FAILED"
 msgstr "载入完成"
 
-#: ../src/modding/ModManager.cs:283
+#: ../src/modding/ModManager.cs:292
 msgid "INVALID_ICON_PATH"
 msgstr "无效的mod图标路径"
 
-#: ../src/modding/ModManager.cs:297
+#: ../src/modding/ModManager.cs:306
 msgid "INVALID_URL_SCHEME"
 msgstr "无效的URL Schemes"
 
-#: ../src/modding/ModManager.cs:309
+#: ../src/modding/ModManager.cs:318
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "当指定了Mod的assembly后你还需要Mod assembly class"
 
-#: ../src/modding/ModManager.cs:519
+#: ../src/modding/ModManager.cs:544
 msgid "NO_SELECTED_MOD"
 msgstr "未选择Mod"
 
-#: ../src/modding/ModManager.cs:898
+#: ../src/modding/ModManager.cs:869
+#, fuzzy
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr "输入已有的创意工坊编号"
+
+#: ../src/modding/ModManager.cs:870
+msgid "THIS_IS_LOCAL_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:926
 msgid "ERROR_CREATING_FOLDER"
 msgstr "为mod创建文件夹时出错"
 
-#: ../src/modding/ModManager.cs:907
+#: ../src/modding/ModManager.cs:935
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "为mod创建info文件时出错"
 
@@ -3466,58 +3475,58 @@ msgstr "内部（文件夹）名称："
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod的完整描叙："
 
-#: ../src/modding/ModManager.tscn:759 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:775 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "图标文件："
 
-#: ../src/modding/ModManager.tscn:781 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:797 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Mod信息网址："
 
-#: ../src/modding/ModManager.tscn:803 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:819 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr "此Mod的许可："
 
-#: ../src/modding/ModManager.tscn:825 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:841 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "推荐的Thrive版本："
 
-#: ../src/modding/ModManager.tscn:847 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:863 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "最低Thrive版本："
 
-#: ../src/modding/ModManager.tscn:869 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:885 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "支持的最高Thrive版本："
 
-#: ../src/modding/ModManager.tscn:891 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:907 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr "Mod的.pck文件："
 
-#: ../src/modding/ModManager.tscn:913 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:929 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr "Mod Assembly："
 
-#: ../src/modding/ModManager.tscn:935 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:951 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class："
 
-#: ../src/modding/ModManager.tscn:962
+#: ../src/modding/ModManager.tscn:978
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod创建失败"
 
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:988
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 "注意：许多mod需要重新启动游戏才能正常加载或卸载。只加载你信任的mods，因为它"
 "们可能包含可执行代码。"
 
-#: ../src/modding/ModManager.tscn:976
+#: ../src/modding/ModManager.tscn:993
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:978
+#: ../src/modding/ModManager.tscn:995
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""

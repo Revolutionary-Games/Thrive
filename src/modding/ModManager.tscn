@@ -44,6 +44,7 @@ FullInfoAuthorPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginC
 FullInfoVersionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/Version")
 FullInfoDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/Description")
 FullInfoLongDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/LongDescription")
+FullInfoFromWorkshopPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/IsWorkshop")
 FullInfoIconFilePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/IconFile")
 FullInfoInfoUrlPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/InfoURL")
 FullInfoLicensePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/License")
@@ -742,6 +743,22 @@ margin_right = 534.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "Longer mod description"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="VBoxContainer16" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 315.0
+margin_right = 534.0
+margin_bottom = 363.0
+
+[node name="IsWorkshop" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16"]
+margin_top = 26.0
+margin_right = 534.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 10 )
+text = "Is from workshop"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"

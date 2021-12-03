@@ -83,6 +83,9 @@ public class ModManager : Control
     public NodePath FullInfoLongDescriptionPath;
 
     [Export]
+    public NodePath FullInfoFromWorkshopPath;
+
+    [Export]
     public NodePath FullInfoIconFilePath;
 
     [Export]
@@ -163,6 +166,7 @@ public class ModManager : Control
     private Label fullInfoVersion;
     private Label fullInfoDescription;
     private Label fullInfoLongDescription;
+    private Label fullInfoFromWorkshop;
     private Label fullInfoIconFile;
     private Label fullInfoInfoUrl;
     private Label fullInfoLicense;
@@ -354,6 +358,7 @@ public class ModManager : Control
         fullInfoDescription = GetNode<Label>(FullInfoDescriptionPath);
         fullInfoLongDescription = GetNode<Label>(FullInfoLongDescriptionPath);
         fullInfoIconFile = GetNode<Label>(FullInfoIconFilePath);
+        fullInfoFromWorkshop = GetNode<Label>(FullInfoFromWorkshopPath);
         fullInfoInfoUrl = GetNode<Label>(FullInfoInfoUrlPath);
         fullInfoLicense = GetNode<Label>(FullInfoLicensePath);
         fullInfoRecommendedThrive = GetNode<Label>(FullInfoRecommendedThrivePath);
@@ -860,6 +865,9 @@ public class ModManager : Control
         fullInfoVersion.Text = info.Version;
         fullInfoDescription.Text = info.Description;
         fullInfoLongDescription.Text = info.LongDescription;
+        fullInfoFromWorkshop.Text = selectedMod.Workshop ?
+            TranslationServer.Translate("THIS_IS_WORKSHOP_MOD") :
+            TranslationServer.Translate("THIS_IS_LOCAL_MOD");
         fullInfoIconFile.Text = info.Icon;
         fullInfoInfoUrl.Text = info.InfoUrl == null ? string.Empty : info.InfoUrl.ToString();
         fullInfoLicense.Text = info.License;
