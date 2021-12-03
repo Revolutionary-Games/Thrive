@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 17:15+0200\n"
+"POT-Creation-Date: 2021-12-03 17:48+0200\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
@@ -3741,75 +3741,75 @@ msgstr ""
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Ungültiger Speicherstand laden?"
 
-#: ../src/modding/ModUploader.cs:248 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:273
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:280
+#: ../src/modding/ModUploader.cs:298
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "DU HAST DICH ENTWICKELT!"
 
-#: ../src/modding/ModUploader.cs:286
+#: ../src/modding/ModUploader.cs:304
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "Beschreibung:"
 
-#: ../src/modding/ModUploader.cs:294
+#: ../src/modding/ModUploader.cs:312
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Beschreibung:"
 
-#: ../src/modding/ModUploader.cs:300 ../src/steam/SteamClient.cs:208
+#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Beschreibung:"
 
-#: ../src/modding/ModUploader.cs:308
+#: ../src/modding/ModUploader.cs:326
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:316
+#: ../src/modding/ModUploader.cs:334
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "Ungültiger Speicherstand laden?"
 
-#: ../src/modding/ModUploader.cs:330
+#: ../src/modding/ModUploader.cs:348
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:337
+#: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:383
+#: ../src/modding/ModUploader.cs:401
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Suche..."
 
-#: ../src/modding/ModUploader.cs:405
-#, fuzzy
-msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "Speichern fehlgeschlagen! Eine Ausnahme ist aufgetreten"
-
-#: ../src/modding/ModUploader.cs:447
+#: ../src/modding/ModUploader.cs:456
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Lade..."
 
-#: ../src/modding/ModUploader.cs:481
+#: ../src/modding/ModUploader.cs:493
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:485
+#: ../src/modding/ModUploader.cs:497
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:545
+#: ../src/modding/ModUploader.cs:557
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:567 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:582
+#, fuzzy
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "Speichern fehlgeschlagen! Eine Ausnahme ist aufgetreten"
+
+#: ../src/modding/ModUploader.cs:597 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Fehler beim Speichern"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 17:15+0200\n"
+"POT-Creation-Date: 2021-12-03 17:48+0200\n"
 "PO-Revision-Date: 2021-03-31 07:21+0000\n"
 "Last-Translator: tomato747 <ngheito@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -3534,75 +3534,75 @@ msgstr ""
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:248 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:273
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:280
+#: ../src/modding/ModUploader.cs:298
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "保存失敗！發生了一個異常"
 
-#: ../src/modding/ModUploader.cs:286
+#: ../src/modding/ModUploader.cs:304
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "更剛性的細胞膜有助於抵抗擋傷，但是也會讓細胞更難移動。"
 
-#: ../src/modding/ModUploader.cs:294
+#: ../src/modding/ModUploader.cs:312
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "ATP產出太低！"
 
-#: ../src/modding/ModUploader.cs:300 ../src/steam/SteamClient.cs:208
+#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "ATP產出太低！"
 
-#: ../src/modding/ModUploader.cs:308
+#: ../src/modding/ModUploader.cs:326
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:316
+#: ../src/modding/ModUploader.cs:334
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "無效"
 
-#: ../src/modding/ModUploader.cs:330
+#: ../src/modding/ModUploader.cs:348
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:337
+#: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:383
+#: ../src/modding/ModUploader.cs:401
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "選擇一個按鍵..."
 
-#: ../src/modding/ModUploader.cs:405
-#, fuzzy
-msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "保存失敗！發生了一個異常"
-
-#: ../src/modding/ModUploader.cs:447
+#: ../src/modding/ModUploader.cs:456
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "加載中..."
 
-#: ../src/modding/ModUploader.cs:481
+#: ../src/modding/ModUploader.cs:493
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:485
+#: ../src/modding/ModUploader.cs:497
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:545
+#: ../src/modding/ModUploader.cs:557
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:567 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:582
+#, fuzzy
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "保存失敗！發生了一個異常"
+
+#: ../src/modding/ModUploader.cs:597 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "保存時出錯"

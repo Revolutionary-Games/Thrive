@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 17:15+0200\n"
+"POT-Creation-Date: 2021-12-03 17:48+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -3533,74 +3533,74 @@ msgstr ""
 "注意：许多mod需要重新启动游戏才能正常加载或卸载。只加载你信任的mods，因为它"
 "们可能包含可执行代码。"
 
-#: ../src/modding/ModUploader.cs:248 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:273
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "文件夹{0}的内容将会上传到创意工坊"
 
-#: ../src/modding/ModUploader.cs:280
+#: ../src/modding/ModUploader.cs:298
 msgid "MISSING_TITLE"
 msgstr "缺少标题"
 
-#: ../src/modding/ModUploader.cs:286
+#: ../src/modding/ModUploader.cs:304
 msgid "MISSING_DESCRIPTION"
 msgstr "缺少描叙"
 
-#: ../src/modding/ModUploader.cs:294
+#: ../src/modding/ModUploader.cs:312
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "描叙过长"
 
-#: ../src/modding/ModUploader.cs:300 ../src/steam/SteamClient.cs:208
+#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "描叙过长"
 
-#: ../src/modding/ModUploader.cs:308
+#: ../src/modding/ModUploader.cs:326
 msgid "TAGS_IS_WHITESPACE"
 msgstr "标签里只有空格"
 
-#: ../src/modding/ModUploader.cs:316
+#: ../src/modding/ModUploader.cs:334
 msgid "INVALID_TAG"
 msgstr "指定的标签“{0}”无效"
 
-#: ../src/modding/ModUploader.cs:330
+#: ../src/modding/ModUploader.cs:348
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:337
+#: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:383
+#: ../src/modding/ModUploader.cs:401
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "创建中……"
 
-#: ../src/modding/ModUploader.cs:405
-msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "由于异常，保存信息失败：{0}"
-
-#: ../src/modding/ModUploader.cs:447
+#: ../src/modding/ModUploader.cs:456
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "上传中……"
 
-#: ../src/modding/ModUploader.cs:481
+#: ../src/modding/ModUploader.cs:493
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 "项目已经上传到了Steam创意工坊，但是在其变得可见之前你需要同意创意工坊的"
 "[color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
 "workshoplegalagreement]服务条款[/url][/color]"
 
-#: ../src/modding/ModUploader.cs:485
+#: ../src/modding/ModUploader.cs:497
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "项目已成功上传到Steam创意工坊"
 
-#: ../src/modding/ModUploader.cs:545
+#: ../src/modding/ModUploader.cs:557
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "通过提交此项目，你表示你同意Steam创意工坊的[color=#3796e1][url=https://"
 "steamcommunity.com/sharedfiles/workshoplegalagreement]服务条款[/url][/"
 "color]"
 
-#: ../src/modding/ModUploader.cs:567 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:582
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "由于异常，保存信息失败：{0}"
+
+#: ../src/modding/ModUploader.cs:597 ../src/modding/NewModGUI.cs:288
 msgid "FORM_ERROR_MESSAGE"
 msgstr "错误：{0}"
 

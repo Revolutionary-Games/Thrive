@@ -12,6 +12,9 @@ public class WorkshopData
     [JsonProperty]
     public Dictionary<string, ulong> KnownModWorkshopIds { get; private set; } = new();
 
+    [JsonProperty]
+    public Dictionary<string, WorkshopItemData> PreviouslyUploadedItemData { get; private set; } = new();
+
     public static WorkshopData Load()
     {
         using var file = new File();
