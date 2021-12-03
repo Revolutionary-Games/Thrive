@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-30 13:22-0600\n"
-"PO-Revision-Date: 2021-12-02 11:12+0000\n"
+"POT-Creation-Date: 2021-12-02 17:22-0600\n"
+"PO-Revision-Date: 2021-11-26 16:55+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -891,80 +891,80 @@ msgstr "Цитоплазма"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/auto-evo/AutoEvoRun.cs:123
+#: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
 msgstr "Прекратена."
 
-#: ../src/auto-evo/AutoEvoRun.cs:126
+#: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "FINISHED"
 msgstr "Завършена."
 
-#: ../src/auto-evo/AutoEvoRun.cs:129
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING"
 msgstr "Не се изпълнява."
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1} % на стъпка {1:n0} от {2:n0}."
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
 msgstr "Започната"
 
-#: ../src/auto-evo/AutoEvoRun.cs:286
+#: ../src/auto-evo/AutoEvoRun.cs:284
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
 
-#: ../src/auto-evo/RunResults.cs:424
+#: ../src/auto-evo/RunResults.cs:421
 msgid "POPULATION"
 msgstr "популация:"
 
-#: ../src/auto-evo/RunResults.cs:434
+#: ../src/auto-evo/RunResults.cs:430
 msgid "WENT_EXTINCT_IN"
 msgstr "изчезнаха от {0}"
 
-#: ../src/auto-evo/RunResults.cs:440
+#: ../src/auto-evo/RunResults.cs:436
 msgid "PREVIOUS"
 msgstr "предишна:"
 
-#: ../src/auto-evo/RunResults.cs:457
+#: ../src/auto-evo/RunResults.cs:452
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "отделиха се от популацията на „{0}“"
 
-#: ../src/auto-evo/RunResults.cs:470
+#: ../src/auto-evo/RunResults.cs:465
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "появиха се за да запълнят ниша"
 
-#: ../src/auto-evo/RunResults.cs:473
+#: ../src/auto-evo/RunResults.cs:468
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "появиха се поради селекционен натиск"
 
-#: ../src/auto-evo/RunResults.cs:491
+#: ../src/auto-evo/RunResults.cs:485
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "от популацията в следните зони се отделиха „{0}“:"
 
-#: ../src/auto-evo/RunResults.cs:507
+#: ../src/auto-evo/RunResults.cs:501
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "претърпяха мутация"
 
-#: ../src/auto-evo/RunResults.cs:512
+#: ../src/auto-evo/RunResults.cs:506
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генен код:"
 
-#: ../src/auto-evo/RunResults.cs:523
+#: ../src/auto-evo/RunResults.cs:517
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:532
+#: ../src/auto-evo/RunResults.cs:525
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "към {0} се преселиха {1} индивида от популацията в {2}"
 
-#: ../src/auto-evo/RunResults.cs:551
+#: ../src/auto-evo/RunResults.cs:544
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "текуща популация в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:658
+#: ../src/auto-evo/RunResults.cs:651
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изчезнаха от планетата"
 
@@ -1396,7 +1396,8 @@ msgstr "От: {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/microbe_stage/ProcessPanel.tscn:72 ../src/modding/ModManager.tscn:952
+#: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/modding/ModManager.tscn:953
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 #: ../src/modding/ModManager.tscn:929
@@ -1410,45 +1411,45 @@ msgstr "Затваряне"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Зареждане"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:96
+#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:213
+#: ../src/general/MainMenu.tscn:211
 msgid "TOOLS"
 msgstr "Инструменти"
 
-#: ../src/general/MainMenu.tscn:224
+#: ../src/general/MainMenu.tscn:222
 msgid "VIEW_SOURCE_CODE"
 msgstr "Изходен код"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:233
 msgid "EXTRAS"
 msgstr "Екстри"
 
-#: ../src/general/MainMenu.tscn:246
+#: ../src/general/MainMenu.tscn:244
 msgid "CREDITS"
 msgstr "Екип"
 
-#: ../src/general/MainMenu.tscn:257
+#: ../src/general/MainMenu.tscn:255
 msgid "QUIT"
 msgstr "Изход"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:275
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробен редактор"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:418
-#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:335 ../src/general/MainMenu.tscn:412
+#: ../src/general/MainMenu.tscn:450 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
@@ -1456,23 +1457,23 @@ msgstr "Микробен редактор"
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:356
 msgid "MODS"
 msgstr "Модификации"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:370
 msgid "ART_GALLERY"
 msgstr "Галерия"
 
-#: ../src/general/MainMenu.tscn:388
+#: ../src/general/MainMenu.tscn:382
 msgid "LICENSES"
 msgstr "Лицензи"
 
-#: ../src/general/MainMenu.tscn:497 ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:491
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение за „GLES2“"
 
-#: ../src/general/MainMenu.tscn:499 ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "В момента „Thrive“ се изпълнява с „GLES2“. Това не е препоръчително и може "
@@ -3037,8 +3038,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1438
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
@@ -3046,13 +3046,11 @@ msgstr "Зареждане на микробния редактор"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Изчакване на автоматичната еволюция:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2466
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "Автоматичната еволюция не успя да стартира"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "състояние:"
 
@@ -3470,177 +3468,161 @@ msgstr "Грешка при създаване на папката на моди
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Грешка при създаване на информационния файл на модификацията"
 
-#: ../src/modding/ModManager.tscn:117 ../src/modding/ModManager.tscn:116
+#: ../src/modding/ModManager.tscn:118
 msgid "AVAILABLE_MODS"
 msgstr "Налични"
 
-#: ../src/modding/ModManager.tscn:140 ../src/saving/SaveManagerGUI.tscn:69
-#: ../src/modding/ModManager.tscn:139
+#: ../src/modding/ModManager.tscn:141 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Опресняване"
 
-#: ../src/modding/ModManager.tscn:148 ../src/modding/ModManager.tscn:147
+#: ../src/modding/ModManager.tscn:149
 msgid "OPEN_FOLDER"
 msgstr "Местоположение"
 
-#: ../src/modding/ModManager.tscn:166 ../src/modding/ModManager.tscn:165
+#: ../src/modding/ModManager.tscn:167
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:179 ../src/modding/ModManager.tscn:178
+#: ../src/modding/ModManager.tscn:180
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:191 ../src/modding/ModManager.tscn:190
+#: ../src/modding/ModManager.tscn:192
 msgid "ENABLED_MODS"
 msgstr "Включени"
 
-#: ../src/modding/ModManager.tscn:209 ../src/modding/ModManager.tscn:208
+#: ../src/modding/ModManager.tscn:210
 msgid "DISABLE_ALL"
 msgstr "Изключване"
 
-#: ../src/modding/ModManager.tscn:246 ../src/modding/ModManager.tscn:245
+#: ../src/modding/ModManager.tscn:247
 msgid "SELECTED_MOD"
 msgstr "Избрана:"
 
-#: ../src/modding/ModManager.tscn:280 ../src/modding/ModManager.tscn:668
-#: ../src/modding/NewModGUI.tscn:142 ../src/modding/ModManager.tscn:279
-#: ../src/modding/ModManager.tscn:645
+#: ../src/modding/ModManager.tscn:281 ../src/modding/ModManager.tscn:669
+#: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr "Автор:"
 
-#: ../src/modding/ModManager.tscn:311 ../src/modding/ModManager.tscn:690
-#: ../src/modding/NewModGUI.tscn:165 ../src/modding/ModManager.tscn:310
-#: ../src/modding/ModManager.tscn:667
+#: ../src/modding/ModManager.tscn:312 ../src/modding/ModManager.tscn:691
+#: ../src/modding/NewModGUI.tscn:165
 msgid "MOD_VERSION"
 msgstr "Версия:"
 
-#: ../src/modding/ModManager.tscn:367 ../src/modding/ModManager.tscn:366
+#: ../src/modding/ModManager.tscn:368
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Препоръчителна:"
 
-#: ../src/modding/ModManager.tscn:411 ../src/modding/ModManager.tscn:410
+#: ../src/modding/ModManager.tscn:412
 msgid "MINIMUM_VERSION"
 msgstr "Минимална:"
 
-#: ../src/modding/ModManager.tscn:438 ../src/modding/ModManager.tscn:712
-#: ../src/modding/NewModGUI.tscn:188 ../src/modding/ModManager.tscn:437
-#: ../src/modding/ModManager.tscn:689
+#: ../src/modding/ModManager.tscn:439 ../src/modding/ModManager.tscn:713
+#: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
 msgstr "Описание:"
 
-#: ../src/modding/ModManager.tscn:470 ../src/modding/ModManager.tscn:469
+#: ../src/modding/ModManager.tscn:471
 msgid "MORE_INFO"
 msgstr "Свойства"
 
-#: ../src/modding/ModManager.tscn:478 ../src/modding/ModManager.tscn:477
+#: ../src/modding/ModManager.tscn:479
 msgid "OPEN_MOD_URL"
 msgstr "Хранилище"
 
-#: ../src/modding/ModManager.tscn:501 ../src/modding/ModManager.tscn:500
+#: ../src/modding/ModManager.tscn:502
 msgid "BROWSE_WORKSHOP"
 msgstr "Работилница"
 
-#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:44
-#: ../src/modding/ModManager.tscn:507
+#: ../src/modding/ModManager.tscn:509 ../src/modding/ModUploader.tscn:44
 msgid "UPLOAD"
 msgstr "Качване"
 
-#: ../src/modding/ModManager.tscn:515 ../src/modding/ModManager.tscn:514
+#: ../src/modding/ModManager.tscn:516
 msgid "NEW"
 msgstr "Създаване"
 
-#: ../src/modding/ModManager.tscn:528 ../src/modding/ModManager.tscn:527
+#: ../src/modding/ModManager.tscn:529
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 "Важно: Повечето модификации се нуждаят от рестартиране на играта за да "
 "функционират правилно. Бъдете внимателни, защото някои модификации може да "
 "съдържат злонамерен код."
 
-#: ../src/modding/ModManager.tscn:555 ../src/modding/ModManager.tscn:553
+#: ../src/modding/ModManager.tscn:556
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Включване на съвместимите модификации"
 
-#: ../src/modding/ModManager.tscn:564 ../src/modding/ModManager.tscn:562
+#: ../src/modding/ModManager.tscn:565
 msgid "APPLY_CHANGES"
 msgstr "Прилагане"
 
-#: ../src/modding/ModManager.tscn:575 ../src/modding/ModManager.tscn:573
+#: ../src/modding/ModManager.tscn:576
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Промените не са приложени"
 
-#: ../src/modding/ModManager.tscn:576 ../src/modding/ModManager.tscn:574
+#: ../src/modding/ModManager.tscn:577
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Трябва да приложите Вашите промени за смяна на модификациите."
 
-#: ../src/modding/ModManager.tscn:577 ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:578
 msgid "DISCARD_CHANGES"
 msgstr "Отхвърляне на промените"
 
-#: ../src/modding/ModManager.tscn:584 ../src/modding/ModManager.tscn:582
+#: ../src/modding/ModManager.tscn:585
 msgid "FULL_MOD_INFO"
 msgstr "Подробна информация"
 
-#: ../src/modding/ModManager.tscn:625 ../src/modding/NewModGUI.tscn:119
-#: ../src/modding/ModManager.tscn:623
+#: ../src/modding/ModManager.tscn:626 ../src/modding/NewModGUI.tscn:119
 msgid "MOD_NAME"
 msgstr "Наименование:"
 
-#: ../src/modding/ModManager.tscn:647 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:648 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
 msgstr "Наименование на папката:"
 
-#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:211
-#: ../src/modding/ModManager.tscn:711
+#: ../src/modding/ModManager.tscn:735 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Подробно описание:"
 
-#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:235
-#: ../src/modding/ModManager.tscn:733
+#: ../src/modding/ModManager.tscn:757 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "Икона:"
 
-#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:258
-#: ../src/modding/ModManager.tscn:755
+#: ../src/modding/ModManager.tscn:779 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Връзка:"
 
-#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:281
-#: ../src/modding/ModManager.tscn:777
+#: ../src/modding/ModManager.tscn:801 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr "Лиценз:"
 
-#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:304
-#: ../src/modding/ModManager.tscn:799
+#: ../src/modding/ModManager.tscn:823 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Препоръчителна версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:327
-#: ../src/modding/ModManager.tscn:821
+#: ../src/modding/ModManager.tscn:845 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Минимална версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:350
-#: ../src/modding/ModManager.tscn:843
+#: ../src/modding/ModManager.tscn:867 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Максимална версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:373
-#: ../src/modding/ModManager.tscn:865
+#: ../src/modding/ModManager.tscn:889 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr "Основен файл:"
 
-#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:396
-#: ../src/modding/ModManager.tscn:887
+#: ../src/modding/ModManager.tscn:911 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr "Програмна библиотека:"
 
-#: ../src/modding/ModManager.tscn:932 ../src/modding/NewModGUI.tscn:419
-#: ../src/modding/ModManager.tscn:909
+#: ../src/modding/ModManager.tscn:933 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основна програмна библиотека:"
 
-#: ../src/modding/ModManager.tscn:959 ../src/modding/ModManager.tscn:936
+#: ../src/modding/ModManager.tscn:960
 msgid "MOD_CREATION_FAILED"
 msgstr "Създаването на модификацията е неуспешно"
 
@@ -3698,7 +3680,7 @@ msgstr ""
 "[url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]условията "
 "за ползване[/url][/color] на „Steam Workshop“"
 
-#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:294
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Грешка: {0}"
 
@@ -3783,14 +3765,19 @@ msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Изисква се наименование на папката"
 
 #: ../src/modding/NewModGUI.cs:244
+#, fuzzy
+msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
+msgstr "Изисква се вътрешно име"
+
+#: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Модификация с това наименование на папката вече съществува"
 
-#: ../src/modding/NewModGUI.cs:263
+#: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Липсващ или невалиден формат на задължително поле: {0}"
 
-#: ../src/modding/NewModGUI.cs:274
+#: ../src/modding/NewModGUI.cs:280
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Допълнителните проверки откриха проблем: {0}"
 

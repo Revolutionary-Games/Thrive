@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-30 13:22-0600\n"
+"POT-Creation-Date: 2021-12-02 17:22-0600\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -838,79 +838,79 @@ msgstr "细胞质"
 msgid "NUCLEUS"
 msgstr "细胞核"
 
-#: ../src/auto-evo/AutoEvoRun.cs:123
+#: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
 msgstr "取消。"
 
-#: ../src/auto-evo/AutoEvoRun.cs:126
+#: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "FINISHED"
 msgstr "完成。"
 
-#: ../src/auto-evo/AutoEvoRun.cs:129
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING"
 msgstr "未运行。"
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
 msgstr "启动中"
 
-#: ../src/auto-evo/AutoEvoRun.cs:286
+#: ../src/auto-evo/AutoEvoRun.cs:284
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0}种群数量变化了{1}，原因：{2}"
 
-#: ../src/auto-evo/RunResults.cs:424
+#: ../src/auto-evo/RunResults.cs:421
 msgid "POPULATION"
 msgstr "种群数量："
 
-#: ../src/auto-evo/RunResults.cs:434
+#: ../src/auto-evo/RunResults.cs:430
 msgid "WENT_EXTINCT_IN"
 msgstr "在 {0} 中灭绝"
 
-#: ../src/auto-evo/RunResults.cs:440
+#: ../src/auto-evo/RunResults.cs:436
 msgid "PREVIOUS"
 msgstr "先前："
 
-#: ../src/auto-evo/RunResults.cs:457
+#: ../src/auto-evo/RunResults.cs:452
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "来自{0}的分支"
 
-#: ../src/auto-evo/RunResults.cs:470
+#: ../src/auto-evo/RunResults.cs:465
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "为了填补生态位"
 
-#: ../src/auto-evo/RunResults.cs:473
+#: ../src/auto-evo/RunResults.cs:468
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "由于不同的演化压力而出现的"
 
-#: ../src/auto-evo/RunResults.cs:491
+#: ../src/auto-evo/RunResults.cs:485
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "在一些地区的种群分支成了新的物种{0}："
 
-#: ../src/auto-evo/RunResults.cs:507
+#: ../src/auto-evo/RunResults.cs:501
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "有变异"
 
-#: ../src/auto-evo/RunResults.cs:512
+#: ../src/auto-evo/RunResults.cs:506
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "基因编码："
 
-#: ../src/auto-evo/RunResults.cs:523
+#: ../src/auto-evo/RunResults.cs:517
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "传播到的地区："
 
-#: ../src/auto-evo/RunResults.cs:532
+#: ../src/auto-evo/RunResults.cs:525
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "通过由{2}派出的{1}个生物扩散到了：{0}"
 
-#: ../src/auto-evo/RunResults.cs:551
+#: ../src/auto-evo/RunResults.cs:544
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "地区中的种群数量："
 
-#: ../src/auto-evo/RunResults.cs:658
+#: ../src/auto-evo/RunResults.cs:651
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "从这个星球上灭绝了"
 
@@ -1342,7 +1342,8 @@ msgstr "由{0}创作"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
-#: ../src/microbe_stage/ProcessPanel.tscn:72 ../src/modding/ModManager.tscn:952
+#: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/modding/ModManager.tscn:953
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 #: ../src/modding/ModManager.tscn:929
@@ -1355,45 +1356,45 @@ msgstr "关闭"
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "新游戏"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "载入游戏"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:96
+#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "选项"
 
-#: ../src/general/MainMenu.tscn:213
+#: ../src/general/MainMenu.tscn:211
 msgid "TOOLS"
 msgstr "工具"
 
-#: ../src/general/MainMenu.tscn:224
+#: ../src/general/MainMenu.tscn:222
 msgid "VIEW_SOURCE_CODE"
 msgstr "查看源代码"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:233
 msgid "EXTRAS"
 msgstr "额外内容"
 
-#: ../src/general/MainMenu.tscn:246
+#: ../src/general/MainMenu.tscn:244
 msgid "CREDITS"
 msgstr "制作人名单"
 
-#: ../src/general/MainMenu.tscn:257
+#: ../src/general/MainMenu.tscn:255
 msgid "QUIT"
 msgstr "退出"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:275
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:418
-#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:335 ../src/general/MainMenu.tscn:412
+#: ../src/general/MainMenu.tscn:450 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
@@ -1401,23 +1402,23 @@ msgstr "微生物阶段自由编辑器"
 msgid "BACK"
 msgstr "返回"
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:356
 msgid "MODS"
 msgstr "Mods"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:370
 msgid "ART_GALLERY"
 msgstr "艺术画廊"
 
-#: ../src/general/MainMenu.tscn:388
+#: ../src/general/MainMenu.tscn:382
 msgid "LICENSES"
 msgstr "许可"
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:491
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应该"
@@ -2906,7 +2907,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
 
@@ -2914,11 +2915,11 @@ msgstr "载入微生物编辑器中"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "等待auto-evo中："
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
 
@@ -3329,84 +3330,102 @@ msgstr "为mod创建文件夹时出错"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "为mod创建info文件时出错"
 
-#: ../src/modding/ModManager.tscn:116
+#: ../src/modding/ModManager.tscn:118
 msgid "AVAILABLE_MODS"
 msgstr "可用的Mod"
 
-#: ../src/modding/ModManager.tscn:140 ../src/saving/SaveManagerGUI.tscn:69
-#: ../src/modding/ModManager.tscn:139
+#: ../src/modding/ModManager.tscn:141 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "刷新"
 
-#: ../src/modding/ModManager.tscn:147
+#: ../src/modding/ModManager.tscn:149
+#, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
 
-#: ../src/modding/ModManager.tscn:165
+#: ../src/modding/ModManager.tscn:167
+#, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:178
+#: ../src/modding/ModManager.tscn:180
+#, fuzzy
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:190
+#: ../src/modding/ModManager.tscn:192
+#, fuzzy
 msgid "ENABLED_MODS"
 msgstr "启用Mod"
 
-#: ../src/modding/ModManager.tscn:208
+#: ../src/modding/ModManager.tscn:210
+#, fuzzy
 msgid "DISABLE_ALL"
 msgstr "全部禁用"
 
-#: ../src/modding/ModManager.tscn:245
+#: ../src/modding/ModManager.tscn:247
+#, fuzzy
 msgid "SELECTED_MOD"
 msgstr "选中的Mod："
 
-#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
+#: ../src/modding/ModManager.tscn:281 ../src/modding/ModManager.tscn:669
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr "Mod作者："
 
-#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
+#: ../src/modding/ModManager.tscn:312 ../src/modding/ModManager.tscn:691
 #: ../src/modding/NewModGUI.tscn:165
 msgid "MOD_VERSION"
 msgstr "Mod版本："
 
-#: ../src/modding/ModManager.tscn:366
+#: ../src/modding/ModManager.tscn:368
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推荐的Thrive版本："
 
-#: ../src/modding/ModManager.tscn:410
+#: ../src/modding/ModManager.tscn:412
+#, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "最低："
 
-#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
+#: ../src/modding/ModManager.tscn:439 ../src/modding/ModManager.tscn:713
 #: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
 msgstr "Mod介绍："
 
-#: ../src/modding/ModManager.tscn:469
+#: ../src/modding/ModManager.tscn:471
 msgid "MORE_INFO"
 msgstr "显示更多信息"
 
-#: ../src/modding/ModManager.tscn:477
+#: ../src/modding/ModManager.tscn:479
+#, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "打开Mod网址"
 
-#: ../src/modding/ModManager.tscn:500
+#: ../src/modding/ModManager.tscn:502
 msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
 
-#: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModManager.tscn:509 ../src/modding/ModUploader.tscn:44
+#, fuzzy
 msgid "UPLOAD"
 msgstr "上传"
 
-#: ../src/modding/ModManager.tscn:514
+#: ../src/modding/ModManager.tscn:516
 msgid "NEW"
 msgstr "新的"
 
-#: ../src/modding/ModManager.tscn:527
+#: ../src/modding/ModManager.tscn:529
+#, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr "载入无效的存档？"
+
+#: ../src/modding/ModManager.tscn:556
+#, fuzzy
+msgid "ENABLE_ALL_COMPATIBLE"
+msgstr "选择的存档不兼容"
+
+#: ../src/modding/ModManager.tscn:565
+msgid "APPLY_CHANGES"
 msgstr ""
 "注意：许多mod需要重新启动游戏才能正常加载或卸载。只加载你信任的mods，因为它们"
 "可能包含可执行代码。"
@@ -3427,63 +3446,80 @@ msgstr "有未应用的更变"
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "你需要应用更变才能加载或卸载任何mod。"
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:576
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:577
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr ""
+"最基础的细胞膜，基本没啥保护能力。同时也需要很多能量才能确保不变形。好处是"
+"能允许细胞更轻松的移动与吸收营养。"
+
+#: ../src/modding/ModManager.tscn:578
+#, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "放弃更变"
 
-#: ../src/modding/ModManager.tscn:582
+#: ../src/modding/ModManager.tscn:585
 msgid "FULL_MOD_INFO"
 msgstr "完整的Mod信息"
 
-#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:626 ../src/modding/NewModGUI.tscn:119
+#, fuzzy
 msgid "MOD_NAME"
 msgstr "Mod名称："
 
-#: ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:648 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
 msgstr "内部（文件夹）名称："
 
-#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:735 ../src/modding/NewModGUI.tscn:211
+#, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod的完整描叙："
 
-#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:757 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "图标文件："
 
-#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:779 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Mod信息网址："
 
-#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:801 ../src/modding/NewModGUI.tscn:281
+#, fuzzy
 msgid "MOD_LICENSE"
 msgstr "此Mod的许可："
 
-#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:823 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "推荐的Thrive版本："
 
-#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:845 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "最低Thrive版本："
 
-#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:867 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "支持的最高Thrive版本："
 
-#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:889 ../src/modding/NewModGUI.tscn:373
+#, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Mod的.pck文件："
 
-#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:911 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr "Mod Assembly："
 
-#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:933 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class："
 
-#: ../src/modding/ModManager.tscn:936
+#: ../src/modding/ModManager.tscn:960
+#, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod创建失败"
 
@@ -3540,7 +3576,8 @@ msgstr ""
 "通过提交此项目，你表示你同意Steam创意工坊的[color=#3796e1][url=https://"
 "steamcommunity.com/sharedfiles/workshoplegalagreement]服务条款[/url][/color]"
 
-#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:294
+#, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "错误：{0}"
 
@@ -3625,14 +3662,19 @@ msgid "INTERNAL_NAME_REQUIRED"
 msgstr "需要内部名称"
 
 #: ../src/modding/NewModGUI.cs:244
+msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "已经有一个内部名称相同的mod了"
 
-#: ../src/modding/NewModGUI.cs:263
+#: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "缺少或无效的必填字段的格式：{0}"
 
-#: ../src/modding/NewModGUI.cs:274
+#: ../src/modding/NewModGUI.cs:280
+#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "额外验证检测到了一个问题：{0}"
 
