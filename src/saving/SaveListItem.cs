@@ -47,6 +47,8 @@ public class SaveListItem : PanelContainer
     [Export]
     public NodePath HighlightPath;
 
+    private static readonly object ResizeLock = new();
+
     private Label saveNameLabel;
     private TextureRect screenshot;
     private Label version;
@@ -283,8 +285,15 @@ public class SaveListItem : PanelContainer
 
                 if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
                 {
-                    save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
-                        Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                    // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
+                    // this lock. See: https://github.com/godotengine/godot/issues/55528
+                    // Partly resolves: https://github.com/Revolutionary-Games/Thrive/issues/2078
+                    // but not for all people and save amounts
+                    lock (ResizeLock)
+                    {
+                        save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
+                            Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                    }
                 }
             }
 

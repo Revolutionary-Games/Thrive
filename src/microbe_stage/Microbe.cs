@@ -28,6 +28,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private AudioStreamPlayer3D bindingAudio;
     private AudioStreamPlayer3D movementAudio;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
+    private List<AudioStreamPlayer> nonPositionalAudioPlayers = new List<AudioStreamPlayer>();
 
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
@@ -302,7 +303,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce += force;
     }
 
-    public void PlaySoundEffect(string effect)
+    public void PlaySoundEffect(string effect, float volume = 1.0f)
     {
         // TODO: make these sound objects only be loaded once
         var sound = GD.Load<AudioStream>(effect);
@@ -317,12 +318,38 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 return;
 
             player = new AudioStreamPlayer3D();
-            player.UnitDb = 50.0f;
+            player.UnitDb = GD.Linear2Db(volume);
             player.MaxDistance = 100.0f;
             player.Bus = "SFX";
 
             AddChild(player);
             otherAudioPlayers.Add(player);
+        }
+
+        player.Stream = sound;
+        player.Play();
+    }
+
+    public void PlayNonPositionalSoundEffect(string effect, float volume = 1.0f)
+    {
+        // TODO: make these sound objects only be loaded once
+        var sound = GD.Load<AudioStream>(effect);
+
+        // Find a player not in use or create a new one if none are available.
+        var player = nonPositionalAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
+
+        if (player == null)
+        {
+            // If we hit the player limit just return and ignore the sound.
+            if (nonPositionalAudioPlayers.Count >= Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY)
+                return;
+
+            player = new AudioStreamPlayer();
+            player.VolumeDb = GD.Linear2Db(volume);
+            player.Bus = "SFX";
+
+            AddChild(player);
+            nonPositionalAudioPlayers.Add(player);
         }
 
         player.Stream = sound;
@@ -520,7 +547,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   </para>
     /// </remarks>
     /// <returns>Returns relative translation and rotation</returns>
-    private (Vector3 translation, Vector3 rotation) GetNewRelativeTransform()
+    private (Vector3 Translation, Vector3 Rotation) GetNewRelativeTransform()
     {
         // Gets the global rotation of the parent
         var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();

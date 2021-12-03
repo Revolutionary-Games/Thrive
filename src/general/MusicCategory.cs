@@ -15,6 +15,11 @@ public class MusicCategory : IRegistryType
     public enum ReturnType
     {
         /// <summary>
+        ///   Previous tracks are reset.
+        /// </summary>
+        Reset,
+
+        /// <summary>
         ///   Previous tracks are continued
         /// </summary>
         Continue,
@@ -23,24 +28,21 @@ public class MusicCategory : IRegistryType
     public enum Transition
     {
         /// <summary>
-        ///   There is a fade between the categories
-        /// </summary>
-        Fade,
-    }
-
-    public enum TrackTransitionType
-    {
-        /// <summary>
-        ///   No transition between tracks
+        ///   No transition between tracks/categories
         /// </summary>
         None,
+
+        /// <summary>
+        ///   There is a crossfade between the tracks/categories
+        /// </summary>
+        Crossfade,
     }
 
     public ReturnType Return { get; set; } = ReturnType.Continue;
 
-    public Transition CategoryTransition { get; set; } = Transition.Fade;
+    public Transition CategoryTransition { get; set; } = Transition.Crossfade;
 
-    public TrackTransitionType TrackTransition { get; set; } = TrackTransitionType.None;
+    public Transition TrackTransition { get; set; } = Transition.Crossfade;
 
     /// <summary>
     ///   List of track lists. When the mode is concurrent one track from each list is played at once
@@ -101,6 +103,11 @@ public class TrackList
 
     public string TrackBus { get; set; } = "Music";
 
+    /// <summary>
+    ///   Repeat this track list if all tracks has been played at least once.
+    /// </summary>
+    public bool Repeat { get; set; } = true;
+
     public List<Track> Tracks { get; set; }
 
     [JsonIgnore]
@@ -120,6 +127,11 @@ public class TrackList
     /// </summary>
     public class Track
     {
+        /// <summary>
+        ///   The track's base volume level in linear volume range 0-1.0f
+        /// </summary>
+        public float Volume { get; set; } = 1.0f;
+
         public string ResourcePath { get; set; }
 
         [JsonIgnore]
@@ -127,6 +139,9 @@ public class TrackList
 
         [JsonIgnore]
         public float PreviousPlayedPosition { get; set; } = 0;
+
+        [JsonIgnore]
+        public bool PlayedOnce { get; set; } = false;
 
         public void Check()
         {

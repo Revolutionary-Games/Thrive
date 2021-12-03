@@ -55,6 +55,8 @@ public class SceneManager : Node
             return null;
         }
 
+        ModLoader.ModInterface.TriggerOnSceneChanged(newSceneRoot);
+
         return oldRoot;
     }
 

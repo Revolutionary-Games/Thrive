@@ -25,8 +25,7 @@ public class InputManager : Node
     ///     This is sorted based on priority, so if Dictionary doesn't keep key order this will break.
     ///   </para>
     /// </remarks>
-    private Dictionary<InputAttribute, List<WeakReference>> attributes
-        = new Dictionary<InputAttribute, List<WeakReference>>();
+    private Dictionary<InputAttribute, List<WeakReference>> attributes = new();
 
     public InputManager()
     {
@@ -40,9 +39,9 @@ public class InputManager : Node
     }
 
     /// <summary>
-    ///   Indicates whether a rebinding is in progress
+    ///   Set to true when a rebinding is being performed, used to discard input
     /// </summary>
-    public static bool RebindingIsActive { get; set; }
+    public static bool PerformingRebind { get; set; }
 
     /// <summary>
     ///   Adds the instance to the list of objects receiving input.
@@ -100,6 +99,16 @@ public class InputManager : Node
     }
 
     /// <summary>
+    ///   Used for Controls to forward mouse events to the InputManager,
+    ///   as Controls swallow the MouseEvents if MouseFilter != Ignore.
+    /// </summary>
+    /// <param name="inputEvent">The event the user fired</param>
+    public static void ForwardInput(InputEvent inputEvent)
+    {
+        staticInstance._UnhandledInput(inputEvent);
+    }
+
+    /// <summary>
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
     /// <param name="delta">The time since the last _Process call</param>
@@ -121,6 +130,9 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (PerformingRebind)
+            return;
+
         OnInput(true, @event);
     }
 
@@ -132,6 +144,9 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _Input(InputEvent @event)
     {
+        if (PerformingRebind)
+            return;
+
         OnInput(false, @event);
     }
 
@@ -229,10 +244,6 @@ public class InputManager : Node
 
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
-        // Ignore input while rebinding
-        if (RebindingIsActive)
-            return;
-
         // Ignore mouse motion
         // TODO: support mouse movement input as well
         if (@event is InputEventMouseMotion)

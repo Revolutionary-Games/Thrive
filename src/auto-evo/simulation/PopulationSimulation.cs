@@ -14,16 +14,28 @@
         private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
         private static readonly Compound HydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
         private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
+        private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
         public static void Simulate(SimulationConfiguration parameters)
         {
             var random = new Random();
+            var cache = new SimulationCache();
 
             var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
 
+            IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate = parameters.OriginalMap.Patches;
+
+            // Skip patches not configured to be simulated in order to run faster
+            if (parameters.PatchesToRun.Count > 0)
+            {
+                patchesToSimulate = patchesToSimulate.Where(p => parameters.PatchesToRun.Contains(p.Value));
+            }
+
+            var patchesList = patchesToSimulate.ToList();
+
             while (parameters.StepsLeft > 0)
             {
-                RunSimulationStep(parameters, speciesToSimulate, random);
+                RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache);
                 --parameters.StepsLeft;
             }
         }
@@ -106,31 +118,32 @@
             return species;
         }
 
-        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species, Random random)
+        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
+            IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache)
         {
-            foreach (var entry in parameters.OriginalMap.Patches)
+            foreach (var entry in patchesToSimulate)
             {
                 // Simulate the species in each patch taking into account the already computed populations
                 SimulatePatchStep(parameters.Results, entry.Value,
-                    species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0).ToList(),
-                    random);
+                    species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0),
+                    random, cache);
             }
         }
 
         /// <summary>
         ///   The heart of the simulation that handles the processed parameters and calculates future populations.
         /// </summary>
-        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> genericSpecies,
-            Random random)
+        private static void SimulatePatchStep(RunResults populations, Patch patch, IEnumerable<Species> genericSpecies,
+            Random random, SimulationCache cache)
         {
             _ = random;
 
-            // Skip if there aren't any species in this patch
-            if (genericSpecies.Count < 1)
-                return;
-
             // This algorithm version is for microbe species
             var species = genericSpecies.Select(s => (MicrobeSpecies)s).ToList();
+
+            // Skip if there aren't any species in this patch
+            if (species.Count < 1)
+                return;
 
             var energyBySpecies = new Dictionary<MicrobeSpecies, float>();
             foreach (var currentSpecies in species)
@@ -140,7 +153,7 @@
 
             var niches = new List<FoodSource>
             {
-                new EnvironmentalFoodSource(patch, "sunlight", Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT),
+                new EnvironmentalFoodSource(patch, Sunlight, Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT),
                 new CompoundFoodSource(patch, Glucose),
                 new CompoundFoodSource(patch, HydrogenSulfide),
                 new CompoundFoodSource(patch, Iron),
@@ -166,7 +179,8 @@
                 {
                     // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
                     // by exaggerating fitness differences
-                    var thisSpeciesFitness = Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies), 2.5f), 0.0f);
+                    var thisSpeciesFitness =
+                        Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies, cache), 2.5f), 0.0f);
                     fitnessBySpecies[currentSpecies] = thisSpeciesFitness;
                     totalNicheFitness += thisSpeciesFitness;
                 }
@@ -186,15 +200,14 @@
 
             foreach (var currentSpecies in species)
             {
+                var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch);
+
                 // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
-                    / ProcessSystem.ComputeEnergyBalance(
-                        currentSpecies.Organelles.Organelles,
-                        patch.Biome, currentSpecies.MembraneType).FinalBalanceStationary);
+                    / energyBalanceInfo.FinalBalanceStationary);
 
                 // Severely penalize a species that can't osmoregulate
-                if (ProcessSystem.ComputeEnergyBalance(currentSpecies.Organelles,
-                    patch.Biome, currentSpecies.MembraneType).FinalBalance < 0)
+                if (energyBalanceInfo.FinalBalance < 0)
                 {
                     newPopulation /= 10;
                 }

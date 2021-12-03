@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -61,7 +63,7 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
-    public const float FLAGELLA_ENERGY_COST = 7.1f;
+    public const float FLAGELLA_ENERGY_COST = 7.0f;
 
     public const float FLAGELLA_BASE_FORCE = 75.7f;
 
@@ -119,6 +121,11 @@ public static class Constants
     // Right now these are used for species split from the player
     public const int INITIAL_SPLIT_POPULATION_MIN = 600;
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
+
+    /// <summary>
+    ///   If true a mutated copy of the (player) species is created when entering the editor
+    /// </summary>
+    public const bool CREATE_COPY_OF_EDITED_SPECIES = false;
 
     /// <summary>
     ///   Max number of concurrent audio players that may be spawned per entity.
@@ -212,7 +219,7 @@ public static class Constants
     /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
-    public const float REGENERATION_RATE = 1.0f;
+    public const float REGENERATION_RATE = 1.5f;
 
     /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
@@ -258,7 +265,7 @@ public static class Constants
     /// <summary>
     ///   The speed reduction when a cell is in engulfing mode.
     /// </summary>
-    public const float ENGULFING_MOVEMENT_DIVISION = 2.0f;
+    public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
 
     /// <summary>
     ///   The speed reduction when a cell is being engulfed.
@@ -424,7 +431,8 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
     // Auto evo population algorithm tweak variables
-    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
+    // TODO: move all of these into auto-evo_parameters.json
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 200;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
     public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
@@ -438,6 +446,15 @@ public static class Constants
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
+    public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
+    public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
+
+    /// <summary>
+    ///   How much auto-evo affects the player species compared to the normal amount
+    /// </summary>
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.35f;
+
+    public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
@@ -499,18 +516,11 @@ public static class Constants
     public const int PATCH_HISTORY_RANGE = 10;
 
     /// <summary>
-    ///   When checking if the mouse is hovering over a microbe, this increments
-    ///   the testing area as an addition to microbe radius, so it's easier to hover
-    ///   over smaller microbes.
-    /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
-
-    /// <summary>
-    ///   Squared value of <see cref="MICROBE_HOVER_DETECTION_EXTRA_RADIUS"/>.
+    ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
+    ///   to see what small cells are.
     ///   Specifically for use with LengthSquared.
     /// </summary>
-    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED =
-        MICROBE_HOVER_DETECTION_EXTRA_RADIUS * MICROBE_HOVER_DETECTION_EXTRA_RADIUS;
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
@@ -552,6 +562,7 @@ public static class Constants
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
+    public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 
     public const string SAVE_FOLDER = "user://saves";
 
@@ -565,6 +576,7 @@ public static class Constants
     public const string JSON_DEBUG_OUTPUT_FILE = LOGS_FOLDER + "/json_debug.txt";
 
     public const string LICENSE_FILE = "res://LICENSE.txt";
+    public const string STEAM_LICENSE_FILE = "res://doc/steam_license_readme.txt";
     public const string ASSETS_README = "res://assets/README.txt";
     public const string ASSETS_LICENSE_FILE = "res://assets/LICENSE.txt";
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
@@ -600,6 +612,89 @@ public static class Constants
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
 
+    /// <summary>
+    ///   Delay for the compound row to hide when standing still and compound amount is 0.
+    /// </summary>
+    public const float COMPOUND_HOVER_INFO_REMOVE_DELAY = 0.5f;
+
+    /// <summary>
+    ///   Compound changes below this value are ignored while mouse world position doesn't change.
+    /// </summary>
+    public const float COMPOUND_HOVER_INFO_THRESHOLD = 2.5f;
+
+    /// <summary>
+    ///   Minimum amount for the very little category in the hover info.
+    /// </summary>
+    public const float COMPOUND_DENSITY_CATEGORY_VERY_LITTLE = 0.5f;
+
+    /// <summary>
+    ///   Minimum amount for the little category in the hover info.
+    /// </summary>
+    public const float COMPOUND_DENSITY_CATEGORY_LITTLE = 10f;
+
+    /// <summary>
+    ///   Minimum amount for the some category in the hover info.
+    /// </summary>
+    public const float COMPOUND_DENSITY_CATEGORY_SOME = 50f;
+
+    /// <summary>
+    ///   Minimum amount for the fair amount category in the hover info.
+    /// </summary>
+    public const float COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT = 200f;
+
+    /// <summary>
+    ///   Minimum amount for the quite a bit category in the hover info.
+    /// </summary>
+    public const float COMPOUND_DENSITY_CATEGORY_QUITE_A_BIT = 400f;
+
+    /// <summary>
+    ///   Minimum amount for the an abundance category in the hover info.
+    /// </summary>
+    public const float COMPOUND_DENSITY_CATEGORY_AN_ABUNDANCE = 600f;
+
+    /// <summary>
+    ///   Regex for species name validation.
+    /// </summary>
+    public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
+
+    public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
+
+    /// <summary>
+    ///   Minimum hex distance before the same render priority.
+    /// </summary>
+    public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    /// <summary>
+    ///   The duration for which a save is considered recently performed.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Not a const because TimeSpan is not a primitive.
+    ///   </para>
+    /// </remarks>
+    public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    ///   Locations mods are searched in. The last location is considered to be the user openable and editable folder
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     These must be preprocessed with GlobalizePath as otherwise relative paths will break when the first mod
+    ///     .pck file is loaded.
+    ///     TODO: might be nice to move to some other place as this got pretty long and complicated due to pck loading
+    ///     messing with the current working directory.
+    ///   </para>
+    /// </remarks>
+    public static readonly IReadOnlyList<string> ModLocations = new[]
+    {
+        OS.HasFeature("standalone") ?
+            Path.Combine(
+                Path.GetDirectoryName(OS.GetExecutablePath()) ??
+                throw new InvalidOperationException("no current executable path"), "mods") :
+            ProjectSettings.GlobalizePath("res://mods"),
+        "user://mods",
+    };
+
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
     // Or maybe it raises an actual error. Anyway this seems good enough for now to do some stuff
@@ -628,6 +723,8 @@ public static class Constants
     ///   Game version
     /// </summary>
     public static string Version => GameVersion;
+
+    public static string UserFolderAsNativePath => OS.GetUserDataDir().Replace('\\', '/');
 
     private static string FetchVersion()
     {

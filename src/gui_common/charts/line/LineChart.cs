@@ -231,39 +231,6 @@ public class LineChart : VBoxContainer
         UpdateAxesName();
     }
 
-    public override void _Process(float delta)
-    {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        // Apply coordinates (with interpolation for smooth animations)
-        foreach (var data in dataSets)
-        {
-            foreach (var point in data.Value.DataPoints)
-            {
-                if (!IsInstanceValid(point))
-                    continue;
-
-                var coordinate = Vector2.Zero;
-
-                if (IsMinMaxValid())
-                {
-                    coordinate = ConvertToCoordinate(point.Value);
-                }
-                else
-                {
-                    // Hide the marker as its positioning won't be pretty at zero coordinate
-                    point.Visible = false;
-                    data.Value.Draw = false;
-                }
-
-                point.Coordinate = point.Coordinate.LinearInterpolate(coordinate, 3.0f * delta);
-                UpdateLineSegments();
-            }
-        }
-    }
-
     /// <summary>
     ///   Add a dataset into this chart (overwrites existing one if the name already existed)
     /// </summary>
@@ -469,12 +436,14 @@ public class LineChart : VBoxContainer
             return DataSetVisibilityUpdateResult.MinVisibleLimitReached;
         }
 
-        if (dataLines.ContainsKey(name) && !data.Draw)
-            FlattenLines(name);
+        var initiallyVisible = data.Draw;
 
         data.Draw = visible;
         UpdateMinimumAndMaximumValues();
         drawArea.Update();
+
+        if (dataLines.ContainsKey(name) && !initiallyVisible)
+            FlattenLines(name);
 
         // Update the legend
         switch (LegendMode)
@@ -573,7 +542,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Draw the chart visuals. Mainly used by the Drawer node to connect its 'draw()' signal here.
+    ///   Draws the chart visuals. The Drawer node connect its 'draw()' signal to here.
     /// </summary>
     private void RenderChart()
     {
@@ -581,10 +550,13 @@ public class LineChart : VBoxContainer
         if (dataSets == null || VisibleDataSets <= 0)
         {
             DrawNoDataText();
-            return;
+        }
+        else
+        {
+            DrawOrdinateLines();
         }
 
-        DrawOrdinateLines();
+        ApplyCoordinatesToDataPoints();
         UpdateLineSegments();
     }
 
@@ -602,7 +574,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Connects the points with line segments
+    ///   Connects data points with line segments.
     /// </summary>
     private void UpdateLineSegments()
     {
@@ -629,7 +601,8 @@ public class LineChart : VBoxContainer
 
                 if (index < dataLine.Points.Length)
                 {
-                    dataLine.SetPointPosition(index, point.Coordinate);
+                    dataLine.InterpolatePointPosition(
+                        index, point.RectPosition + (point.RectSize / 2), point.Coordinate);
                 }
                 else
                 {
@@ -723,19 +696,17 @@ public class LineChart : VBoxContainer
 
         foreach (var point in data.DataPoints)
         {
-            // Had to apply the coordinate on the next frame to compensate with Godot's UI update delay,
-            // so the coordinates could be correctly calculated (since it depends on the Control container
-            // rect sizes) just after Plot() call. This may result to a subtle glitchy look in the first
-            // few frame where all the points were positioned at the top-left. But this works just fine for now.
-            Invoke.Instance.Queue(() =>
-            {
-                if (!IsInstanceValid(point))
-                    return;
+            if (!IsInstanceValid(point))
+                continue;
 
-                point.Coordinate = new Vector2(
-                    ConvertToXCoordinate(point.Value.x), drawArea.RectSize.y);
-            });
+            // First we move the point marker to the bottom of the chart
+            point.SetCoordinate(new Vector2(ConvertToXCoordinate(point.Value.x), drawArea.RectSize.y), false);
+
+            // Next start interpolating it into its assigned position
+            point.SetCoordinate(ConvertToCoordinate(point.Value));
         }
+
+        UpdateLineSegments();
     }
 
     /// <summary>
@@ -836,6 +807,28 @@ public class LineChart : VBoxContainer
                 i * (MaxValues.y - MinValues.y) / (YAxisTicks - 1) + MinValues.y, 1).FormatNumber();
 
             verticalLabelsContainer.AddChild(label);
+        }
+    }
+
+    private void ApplyCoordinatesToDataPoints()
+    {
+        foreach (var data in dataSets)
+        {
+            foreach (var point in data.Value.DataPoints)
+            {
+                if (IsMinMaxValid())
+                {
+                    point.SetCoordinate(ConvertToCoordinate(point.Value));
+                }
+                else
+                {
+                    // Hide marker as its positioning won't be pretty at zero coordinate
+                    point.Visible = false;
+                    data.Value.Draw = false;
+
+                    point.SetCoordinate(Vector2.Zero, false);
+                }
+            }
         }
     }
 
@@ -1010,6 +1003,9 @@ public class LineChart : VBoxContainer
         public Dictionary<DataPoint, Control> CollisionBoxes = new Dictionary<DataPoint, Control>();
 
         private LineChartData data;
+        private Tween tween;
+
+        private Color dataColour;
 
         public DataLine(LineChartData data, bool isDefault)
         {
@@ -1018,20 +1014,44 @@ public class LineChart : VBoxContainer
 
             Width = data.LineWidth;
             DefaultColor = data.DataColour;
+            dataColour = data.DataColour;
+
+            tween = new Tween();
+            AddChild(tween);
 
             // Antialiasing is turned off as it's a bit unreliable currently
         }
 
+        public void InterpolatePointPosition(int i, Vector2 initialPos, Vector2 targetPos)
+        {
+            tween.InterpolateMethod(this, nameof(ChangePointPos), new Vector3(i, initialPos.x, initialPos.y),
+                new Vector3(i, targetPos.x, targetPos.y), 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
+            tween.Start();
+        }
+
         public void OnMouseEnter()
         {
-            DefaultColor = data.DataColour.IsLuminuous() ?
-                data.DataColour.Darkened(0.5f) :
-                data.DataColour.Lightened(0.5f);
+            var highlightColour = dataColour.IsLuminuous() ?
+                dataColour.Darkened(0.5f) :
+                dataColour.Lightened(0.5f);
+
+            DefaultColor = highlightColour;
+            data.DataColour = highlightColour;
         }
 
         public void OnMouseExit()
         {
-            DefaultColor = data.DataColour;
+            DefaultColor = dataColour;
+            data.DataColour = dataColour;
+        }
+
+        /// <summary>
+        ///   This is a really hacky way to get Godot to tween methods with multiple parameters.
+        ///   Got extremely lucky that all parameters can fit into a single Godot primitive type here...
+        /// </summary>
+        private void ChangePointPos(Vector3 arguments)
+        {
+            SetPointPosition((int)arguments.x, new Vector2(arguments.y, arguments.z));
         }
     }
 
@@ -1063,7 +1083,6 @@ public class LineChart : VBoxContainer
 
             Connect("mouse_entered", this, nameof(IconLegendMouseEnter));
             Connect("mouse_exited", this, nameof(IconLegendMouseExit));
-            Connect("pressed", this, nameof(IconLegendPressed));
 
             tween = new Tween();
             AddChild(tween);
@@ -1092,12 +1111,6 @@ public class LineChart : VBoxContainer
             {
                 Modulate = Colors.DarkGray;
             }
-        }
-
-        private void IconLegendPressed()
-        {
-            tween.InterpolateProperty(this, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
     }
 }
