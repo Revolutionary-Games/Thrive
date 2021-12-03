@@ -791,7 +791,7 @@ public class OptionsMenu : ControlWithInput
                 return 4;
             case 240:
                 return 5;
-            case 400:
+            case 360:
                 return 6;
             case 1000:
                 return 7;
@@ -820,14 +820,14 @@ public class OptionsMenu : ControlWithInput
             case 5:
                 return 240;
             case 6:
-                return 400;
+                return 360;
             case 7:
                 return 1000;
             case 8:
                 return 0;
             default:
                 GD.PrintErr("invalid max frames per second index");
-                return 400;
+                return 360;
         }
     }
 

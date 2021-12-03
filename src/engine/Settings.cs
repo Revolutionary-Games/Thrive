@@ -69,7 +69,7 @@ public class Settings
     /// <summary>
     ///   Sets the maximum framerate of the game window
     /// </summary>
-    public SettingValue<int> MaxFramesPerSecond { get; set; } = new SettingValue<int>(400);
+    public SettingValue<int> MaxFramesPerSecond { get; set; } = new SettingValue<int>(360);
 
     /// <summary>
     ///   Optionally applies a colour filter to the screen to aid colourblind individuals
