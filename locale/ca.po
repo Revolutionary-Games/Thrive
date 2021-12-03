@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 14:47+0200\n"
+"POT-Creation-Date: 2021-12-03 17:15+0200\n"
 "PO-Revision-Date: 2021-11-25 19:57+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -3751,19 +3751,27 @@ msgstr "Les etiquetes només contenen espai en blanc"
 msgid "INVALID_TAG"
 msgstr "Etiqueta invàlida \"{0}\" especificada"
 
-#: ../src/modding/ModUploader.cs:364
+#: ../src/modding/ModUploader.cs:330
+msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:337
+msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:383
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Creant..."
 
-#: ../src/modding/ModUploader.cs:386
+#: ../src/modding/ModUploader.cs:405
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "La informació de guardat ha estat fallida degut a l'excepció: {0}"
 
-#: ../src/modding/ModUploader.cs:428
+#: ../src/modding/ModUploader.cs:447
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Carregant..."
 
-#: ../src/modding/ModUploader.cs:462
+#: ../src/modding/ModUploader.cs:481
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 "Càrrega de l'element al Workshop d'Steam ha estat un èxit, però has "
@@ -3771,18 +3779,18 @@ msgstr ""
 "com/sharedfiles/workshoplegalagreement]del Workshop[/url][/color] abans "
 "que sigui visible"
 
-#: ../src/modding/ModUploader.cs:466
+#: ../src/modding/ModUploader.cs:485
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "La càrrega de l'element a l'Steam Workshop ha estat un èxit"
 
-#: ../src/modding/ModUploader.cs:526
+#: ../src/modding/ModUploader.cs:545
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "Presentant aquest element, acceptes els termes de servei [color=#3796e1]"
 "[url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]de "
 "l'Steam Workshop[/url][/color]"
 
-#: ../src/modding/ModUploader.cs:548 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:567 ../src/modding/NewModGUI.cs:288
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 

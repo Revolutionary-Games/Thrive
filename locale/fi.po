@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 14:47+0200\n"
+"POT-Creation-Date: 2021-12-03 17:15+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -3526,34 +3526,42 @@ msgstr ""
 msgid "INVALID_TAG"
 msgstr "Lataa rikkinäinen tallennus?"
 
-#: ../src/modding/ModUploader.cs:364
+#: ../src/modding/ModUploader.cs:330
+msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:337
+msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:383
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Hae..."
 
-#: ../src/modding/ModUploader.cs:386
+#: ../src/modding/ModUploader.cs:405
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
-#: ../src/modding/ModUploader.cs:428
+#: ../src/modding/ModUploader.cs:447
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Ladataan..."
 
-#: ../src/modding/ModUploader.cs:462
+#: ../src/modding/ModUploader.cs:481
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:466
+#: ../src/modding/ModUploader.cs:485
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:526
+#: ../src/modding/ModUploader.cs:545
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:548 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:567 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Virhe tallennettaessa"

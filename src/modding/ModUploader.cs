@@ -320,6 +320,25 @@ public class ModUploader : Control
             }
         }
 
+        if (!string.IsNullOrEmpty(toBeUploadedPreviewImagePath))
+        {
+            using var file = new File();
+
+            if (!file.FileExists(toBeUploadedPreviewImagePath) ||
+                file.Open(toBeUploadedPreviewImagePath, File.ModeFlags.Read) != Error.Ok)
+            {
+                SetError(TranslationServer.Translate("PREVIEW_IMAGE_DOES_NOT_EXIST"));
+                return false;
+            }
+
+            // Let's hope Steam uses megabytes and not mebibytes as the limit
+            if (file.GetLen() >= 1000000)
+            {
+                SetError(TranslationServer.Translate("PREVIEW_IMAGE_IS_TOO_LARGE"));
+                return false;
+            }
+        }
+
         return true;
     }
 
