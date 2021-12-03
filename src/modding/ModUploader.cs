@@ -391,6 +391,40 @@ public class ModUploader : Control
         UpdateLayout();
     }
 
+    private void OnManualIdEntered()
+    {
+        if (!ulong.TryParse(manualIdEntry.Text, out ulong id))
+        {
+            SetError(TranslationServer.Translate("ID_IS_NOT_A_NUMBER"));
+            return;
+        }
+
+        GD.Print($"Workshop item id manually set for \"{selectedMod.InternalName}\", to: ", id);
+        workshopData.KnownModWorkshopIds[selectedMod.InternalName] = id;
+
+        ClearError();
+        UpdateLayout();
+        UpdateUploadButtonStatus();
+    }
+
+    private void OnForgetDataPressed()
+    {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("Can't forget a null mod");
+            return;
+        }
+
+        GD.Print("Forgetting local data about workshop mod: ", selectedMod.InternalName);
+
+        workshopData.RemoveDataForMod(selectedMod.InternalName);
+
+        if (!SaveWorkshopData())
+            return;
+
+        ModSelected(modSelect.Selected);
+    }
+
     private void CreateNewPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();

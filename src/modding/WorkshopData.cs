@@ -42,4 +42,14 @@ public class WorkshopData
 
         file.StoreString(serialized.ToString());
     }
+
+    /// <summary>
+    ///   Removes all data regarding a mod
+    /// </summary>
+    /// <param name="mod">The internal name of the mod</param>
+    public void RemoveDataForMod(string mod)
+    {
+        KnownModWorkshopIds.Remove(mod);
+        PreviouslyUploadedItemData.Remove(mod);
+    }
 }

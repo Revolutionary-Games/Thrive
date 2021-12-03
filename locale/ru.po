@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 17:48+0200\n"
+"POT-Creation-Date: 2021-12-03 18:13+0200\n"
 "PO-Revision-Date: 2021-12-02 20:03+0000\n"
 "Last-Translator: Vladimir Didenko <didenkovladimir12@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -2216,7 +2216,7 @@ msgstr "Невозможно показать меньше, чем {0} набо�
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:348
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "ОК"
 
@@ -3697,7 +3697,7 @@ msgstr ""
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Загрузить недействительное сохранение?"
 
-#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
@@ -3734,35 +3734,40 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:401
+#: ../src/modding/ModUploader.cs:398
+#, fuzzy
+msgid "ID_IS_NOT_A_NUMBER"
+msgstr "Номер ID"
+
+#: ../src/modding/ModUploader.cs:435
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Создание..."
 
-#: ../src/modding/ModUploader.cs:456
+#: ../src/modding/ModUploader.cs:490
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Загрузка..."
 
-#: ../src/modding/ModUploader.cs:493
+#: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:497
+#: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Загрузка предмета в Мастерскую Steam прошла успешно"
 
-#: ../src/modding/ModUploader.cs:557
+#: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "Отправляя этот предмет, вы соглашаетесь с [color=#3796e1][url=https://"
 "steamcommunity.com/sharedfiles/workshoplegalagreement]условиями "
 "обслуживания[/url][/color] Steam Workshop"
 
-#: ../src/modding/ModUploader.cs:582
+#: ../src/modding/ModUploader.cs:616
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Сохранение не удалось! Бывает же"
 
-#: ../src/modding/ModUploader.cs:597 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:288
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Ошибка: {0}"
 
@@ -3782,65 +3787,74 @@ msgstr "Неизвестный Workshop ID для этого мода"
 msgid "CREATE_NEW"
 msgstr "Создать Новый"
 
-#: ../src/modding/ModUploader.tscn:129
+#: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
 msgstr "Ввести существующий ID"
 
-#: ../src/modding/ModUploader.tscn:139
+#: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr "Ввести существующий Workshop ID"
 
-#: ../src/modding/ModUploader.tscn:153
+#: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "Номер ID"
 
-#: ../src/modding/ModUploader.tscn:159
+#: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr "Применить"
 
-#: ../src/modding/ModUploader.tscn:169
+#: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "Название предмета:"
 
-#: ../src/modding/ModUploader.tscn:187
+#: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "Описание предмета:"
 
-#: ../src/modding/ModUploader.tscn:209
+#: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:210
+#: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:216
+#: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:234
+#: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr "Превью предмета:"
 
-#: ../src/modding/ModUploader.tscn:260
+#: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:286 ../src/modding/ModUploader.tscn:295
+#: ../src/modding/ModUploader.tscn:284
+#, fuzzy
+msgid "FORGET_MOD_DETAILS_TOOLTIP"
+msgstr "Продолжить игру"
+
+#: ../src/modding/ModUploader.tscn:286
+msgid "FORGET_MOD_DETAILS"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr "Название предмета:"
 
-#: ../src/modding/ModUploader.tscn:288
+#: ../src/modding/ModUploader.tscn:294
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "Название предмета:"
 
-#: ../src/modding/ModUploader.tscn:316
+#: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Выбрать превью"
 
-#: ../src/modding/ModUploader.tscn:327
+#: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Загрузка выполнена успешно"
 

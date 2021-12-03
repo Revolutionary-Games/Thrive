@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 17:48+0200\n"
+"POT-Creation-Date: 2021-12-03 18:13+0200\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -2189,7 +2189,7 @@ msgstr ""
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:348
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "확인"
 
@@ -3673,7 +3673,7 @@ msgstr ""
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
@@ -3714,34 +3714,38 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:401
+#: ../src/modding/ModUploader.cs:398
+msgid "ID_IS_NOT_A_NUMBER"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:435
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "검색..."
 
-#: ../src/modding/ModUploader.cs:456
+#: ../src/modding/ModUploader.cs:490
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "불러오는 중..."
 
-#: ../src/modding/ModUploader.cs:493
+#: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:497
+#: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:557
+#: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:582
+#: ../src/modding/ModUploader.cs:616
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "저장 실패! 예외 발생"
 
-#: ../src/modding/ModUploader.cs:597 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "저장 오류"
@@ -3764,29 +3768,29 @@ msgstr "마우스 미확인 키"
 msgid "CREATE_NEW"
 msgstr "새 저장 생성"
 
-#: ../src/modding/ModUploader.tscn:129
+#: ../src/modding/ModUploader.tscn:128
 #, fuzzy
 msgid "ENTER_EXISTING_ID"
 msgstr "저장 덮어쓰기:"
 
-#: ../src/modding/ModUploader.tscn:139
+#: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:153
+#: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:159
+#: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:169
+#: ../src/modding/ModUploader.tscn:168
 #, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "번영했습니다!"
 
-#: ../src/modding/ModUploader.tscn:187
+#: ../src/modding/ModUploader.tscn:186
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr ""
@@ -3796,41 +3800,50 @@ msgstr ""
 "생성 할 수 있습니다. 이 안료는 또한 독특한 색상을 제공합니다. 포도당 생산 "
 "속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다."
 
-#: ../src/modding/ModUploader.tscn:209
+#: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:210
+#: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:216
+#: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:234
+#: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:260
+#: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:286 ../src/modding/ModUploader.tscn:295
+#: ../src/modding/ModUploader.tscn:284
+#, fuzzy
+msgid "FORGET_MOD_DETAILS_TOOLTIP"
+msgstr "재개"
+
+#: ../src/modding/ModUploader.tscn:286
+msgid "FORGET_MOD_DETAILS"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr "번영했습니다!"
 
-#: ../src/modding/ModUploader.tscn:288
+#: ../src/modding/ModUploader.tscn:294
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "번영했습니다!"
 
-#: ../src/modding/ModUploader.tscn:316
+#: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:327
+#: ../src/modding/ModUploader.tscn:336
 #, fuzzy
 msgid "UPLOAD_SUCCEEDED"
 msgstr "저장 성공"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 17:48+0200\n"
+"POT-Creation-Date: 2021-12-03 18:13+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -2146,7 +2146,7 @@ msgstr "不允许显示少于{0}个数据集！"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:348
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "好的"
 
@@ -3533,7 +3533,7 @@ msgstr ""
 "注意：许多mod需要重新启动游戏才能正常加载或卸载。只加载你信任的mods，因为它"
 "们可能包含可执行代码。"
 
-#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:273
+#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "文件夹{0}的内容将会上传到创意工坊"
 
@@ -3570,37 +3570,42 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:401
+#: ../src/modding/ModUploader.cs:398
+#, fuzzy
+msgid "ID_IS_NOT_A_NUMBER"
+msgstr "编号"
+
+#: ../src/modding/ModUploader.cs:435
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "创建中……"
 
-#: ../src/modding/ModUploader.cs:456
+#: ../src/modding/ModUploader.cs:490
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "上传中……"
 
-#: ../src/modding/ModUploader.cs:493
+#: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 "项目已经上传到了Steam创意工坊，但是在其变得可见之前你需要同意创意工坊的"
 "[color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
 "workshoplegalagreement]服务条款[/url][/color]"
 
-#: ../src/modding/ModUploader.cs:497
+#: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "项目已成功上传到Steam创意工坊"
 
-#: ../src/modding/ModUploader.cs:557
+#: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "通过提交此项目，你表示你同意Steam创意工坊的[color=#3796e1][url=https://"
 "steamcommunity.com/sharedfiles/workshoplegalagreement]服务条款[/url][/"
 "color]"
 
-#: ../src/modding/ModUploader.cs:582
+#: ../src/modding/ModUploader.cs:616
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "由于异常，保存信息失败：{0}"
 
-#: ../src/modding/ModUploader.cs:597 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:288
 msgid "FORM_ERROR_MESSAGE"
 msgstr "错误：{0}"
 
@@ -3620,65 +3625,74 @@ msgstr "此Mod的创意工坊编号未知"
 msgid "CREATE_NEW"
 msgstr "创建新的Mod"
 
-#: ../src/modding/ModUploader.tscn:129
+#: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
 msgstr "输入已有的编号"
 
-#: ../src/modding/ModUploader.tscn:139
+#: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr "输入已有的创意工坊编号"
 
-#: ../src/modding/ModUploader.tscn:153
+#: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "编号"
 
-#: ../src/modding/ModUploader.tscn:159
+#: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
 msgstr "应用"
 
-#: ../src/modding/ModUploader.tscn:169
+#: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "项目标题："
 
-#: ../src/modding/ModUploader.tscn:187
+#: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "项目描叙："
 
-#: ../src/modding/ModUploader.tscn:209
+#: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr "一旦一个项目变得可见，它就会被所有人看到"
 
-#: ../src/modding/ModUploader.tscn:210
+#: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
 msgstr "可见"
 
-#: ../src/modding/ModUploader.tscn:216
+#: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr "项目标签（由英文逗号“,”分隔）："
 
-#: ../src/modding/ModUploader.tscn:234
+#: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr "项目预览图："
 
-#: ../src/modding/ModUploader.tscn:260
+#: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
 msgstr "浏览"
 
-#: ../src/modding/ModUploader.tscn:286 ../src/modding/ModUploader.tscn:295
+#: ../src/modding/ModUploader.tscn:284
+#, fuzzy
+msgid "FORGET_MOD_DETAILS_TOOLTIP"
+msgstr "返回游戏"
+
+#: ../src/modding/ModUploader.tscn:286
+msgid "FORGET_MOD_DETAILS"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr "项目标签（由英文逗号“,”分隔）："
 
-#: ../src/modding/ModUploader.tscn:288
+#: ../src/modding/ModUploader.tscn:294
 #, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "项目标签（由英文逗号“,”分隔）："
 
-#: ../src/modding/ModUploader.tscn:316
+#: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "选择预览图"
 
-#: ../src/modding/ModUploader.tscn:327
+#: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
 msgstr "上传成功"
 
