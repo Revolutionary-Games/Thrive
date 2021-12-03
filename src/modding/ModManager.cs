@@ -188,6 +188,11 @@ public class ModManager : Control
 
     private FullModDetails selectedMod;
 
+    /// <summary>
+    ///   Used to automatically refresh this object when it becomes visible after being invisible
+    /// </summary>
+    private bool wasVisible;
+
     [Signal]
     public delegate void OnClosed();
 
@@ -382,10 +387,36 @@ public class ModManager : Control
         }
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        bool isCurrentlyVisible = IsVisibleInTree();
+
+        if (isCurrentlyVisible && !wasVisible)
+        {
+            GD.Print("Mod loader has become visible");
+            OnOpened();
+        }
+
+        wasVisible = isCurrentlyVisible;
+    }
+
+    private static bool IsAllowedModPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return false;
+
+        if (path.Contains("//") || path.Contains("..") || path.StartsWith("/", StringComparison.Ordinal))
+            return false;
+
+        return true;
+    }
+
     /// <summary>
     ///   Refreshes things that need refreshing when this is opened
     /// </summary>
-    public void OnOpened()
+    private void OnOpened()
     {
         // TODO: OnOpened being required to be called probably means that you can't directly run the mod manager
         // scene from Godot editor, probably needs to change to the approach to be to automatically call this each
@@ -400,17 +431,6 @@ public class ModManager : Control
         enabledModsContainer.UnselectAll();
 
         UpdateOverallModButtons();
-    }
-
-    private static bool IsAllowedModPath(string path)
-    {
-        if (string.IsNullOrWhiteSpace(path))
-            return false;
-
-        if (path.Contains("//") || path.Contains("..") || path.StartsWith("/", StringComparison.Ordinal))
-            return false;
-
-        return true;
     }
 
     private void RefreshAvailableMods()
