@@ -798,6 +798,7 @@ public class OptionsMenu : ControlWithInput
             case 0:
                 return 8;
             default:
+                GD.PrintErr("invalid max frames per second value");
                 return 6;
         }
     }
