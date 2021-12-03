@@ -791,8 +791,12 @@ public class OptionsMenu : ControlWithInput
                 return 4;
             case 240:
                 return 5;
-            case 0:
+            case 400:
                 return 6;
+            case 1000:
+                return 7;
+            case 0:
+                return 8;
             default:
                 return 6;
         }
@@ -815,11 +819,14 @@ public class OptionsMenu : ControlWithInput
             case 5:
                 return 240;
             case 6:
-                // Godot interprets a TargetFps of 0 as an unlocked framerate
+                return 400;
+            case 7:
+                return 1000;
+            case 8:
                 return 0;
             default:
                 GD.PrintErr("invalid max frames per second index");
-                return 0;
+                return 400;
         }
     }
 
