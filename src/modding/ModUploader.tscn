@@ -34,6 +34,7 @@ ToBeUploadedContentLocationPath = NodePath("Dialog/VBoxContainer2/ScrollContaine
 ErrorDisplayPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/Error")
 FileSelectDialogPath = NodePath("PreviewSelector")
 WorkshopNoticePath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/WorkshopNotice")
+ChangeNotesPath = NodePath("Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/ChangeNotes")
 UploadSucceededDialogPath = NodePath("UploadSuccess")
 UploadSucceededTextPath = NodePath("UploadSuccess/VBoxContainer/CustomRichTextLabel")
 
@@ -68,7 +69,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Dialog/VBoxContainer2/ScrollContainer"]
 margin_right = 580.0
-margin_bottom = 784.0
+margin_bottom = 880.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -271,6 +272,27 @@ margin_bottom = 566.0
 custom_fonts/font = ExtResource( 6 )
 text = "CONTENT_UPLOADED_FROM"
 autowrap = true
+
+[node name="Spacer6" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+margin_top = 533.0
+margin_right = 574.0
+margin_bottom = 537.0
+rect_min_size = Vector2( 0, 4 )
+
+[node name="Label5" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+margin_top = 72.0
+margin_right = 574.0
+margin_bottom = 97.0
+hint_tooltip = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
+mouse_filter = 1
+text = "WORKSHOP_ITEM_CHANGE_NOTES"
+
+[node name="ChangeNotes" type="TextEdit" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+margin_top = 101.0
+margin_right = 20.0
+margin_bottom = 151.0
+rect_min_size = Vector2( 0, 55 )
+hint_tooltip = "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 
 [node name="WorkshopNotice" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
 ExtendedBbcode = "MOD_UPLOADER"

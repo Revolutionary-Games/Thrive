@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 14:23+0200\n"
+"POT-Creation-Date: 2021-12-03 14:47+0200\n"
 "PO-Revision-Date: 2021-12-02 11:12+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -1399,7 +1399,7 @@ msgstr "От: {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:971
+#: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
@@ -1450,7 +1450,7 @@ msgstr "Микробен редактор"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:82 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
@@ -2203,7 +2203,7 @@ msgstr "Не е възможно показването на по-малко о�
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:326
+#: ../src/modding/ModUploader.tscn:348
 msgid "OK"
 msgstr "ОК"
 
@@ -3491,165 +3491,165 @@ msgstr "Грешка при създаване на папката на моди
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Грешка при създаване на информационния файл на модификацията"
 
-#: ../src/modding/ModManager.tscn:120
+#: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
 msgstr "Налични"
 
-#: ../src/modding/ModManager.tscn:143 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Опресняване"
 
-#: ../src/modding/ModManager.tscn:151
+#: ../src/modding/ModManager.tscn:152
 msgid "OPEN_FOLDER"
 msgstr "Местоположение"
 
-#: ../src/modding/ModManager.tscn:169
+#: ../src/modding/ModManager.tscn:170
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:182
+#: ../src/modding/ModManager.tscn:183
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:194
+#: ../src/modding/ModManager.tscn:195
 msgid "ENABLED_MODS"
 msgstr "Включени"
 
-#: ../src/modding/ModManager.tscn:212
+#: ../src/modding/ModManager.tscn:213
 msgid "DISABLE_ALL"
 msgstr "Изключване"
 
-#: ../src/modding/ModManager.tscn:249
+#: ../src/modding/ModManager.tscn:250
 msgid "SELECTED_MOD"
 msgstr "Избрана:"
 
-#: ../src/modding/ModManager.tscn:283 ../src/modding/ModManager.tscn:671
+#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr "Автор:"
 
-#: ../src/modding/ModManager.tscn:314 ../src/modding/ModManager.tscn:693
+#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
 #: ../src/modding/NewModGUI.tscn:165
 msgid "MOD_VERSION"
 msgstr "Версия:"
 
-#: ../src/modding/ModManager.tscn:370
+#: ../src/modding/ModManager.tscn:371
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Препоръчителна:"
 
-#: ../src/modding/ModManager.tscn:414
+#: ../src/modding/ModManager.tscn:415
 msgid "MINIMUM_VERSION"
 msgstr "Минимална:"
 
-#: ../src/modding/ModManager.tscn:441 ../src/modding/ModManager.tscn:715
+#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
 #: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
 msgstr "Описание:"
 
-#: ../src/modding/ModManager.tscn:473
+#: ../src/modding/ModManager.tscn:474
 msgid "MORE_INFO"
 msgstr "Свойства"
 
-#: ../src/modding/ModManager.tscn:481
+#: ../src/modding/ModManager.tscn:482
 msgid "OPEN_MOD_URL"
 msgstr "Хранилище"
 
-#: ../src/modding/ModManager.tscn:504
+#: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
 msgstr "Работилница"
 
-#: ../src/modding/ModManager.tscn:511 ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
 msgstr "Качване"
 
-#: ../src/modding/ModManager.tscn:518
+#: ../src/modding/ModManager.tscn:519
 msgid "NEW"
 msgstr "Създаване"
 
-#: ../src/modding/ModManager.tscn:531
+#: ../src/modding/ModManager.tscn:532
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 "Важно: Повечето модификации се нуждаят от рестартиране на играта за да "
 "функционират правилно. Бъдете внимателни, защото някои модификации може да "
 "съдържат злонамерен код."
 
-#: ../src/modding/ModManager.tscn:558
+#: ../src/modding/ModManager.tscn:559
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Включване на съвместимите модификации"
 
-#: ../src/modding/ModManager.tscn:567
+#: ../src/modding/ModManager.tscn:568
 msgid "APPLY_CHANGES"
 msgstr "Прилагане"
 
-#: ../src/modding/ModManager.tscn:578
+#: ../src/modding/ModManager.tscn:579
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Промените не са приложени"
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:580
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "Трябва да приложите Вашите промени за смяна на модификациите."
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:581
 msgid "DISCARD_CHANGES"
 msgstr "Отхвърляне на промените"
 
-#: ../src/modding/ModManager.tscn:587
+#: ../src/modding/ModManager.tscn:588
 msgid "FULL_MOD_INFO"
 msgstr "Подробна информация"
 
-#: ../src/modding/ModManager.tscn:628 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
 msgid "MOD_NAME"
 msgstr "Наименование:"
 
-#: ../src/modding/ModManager.tscn:650 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
 msgstr "Наименование на папката:"
 
-#: ../src/modding/ModManager.tscn:737 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Подробно описание:"
 
-#: ../src/modding/ModManager.tscn:775 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "Икона:"
 
-#: ../src/modding/ModManager.tscn:797 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Връзка:"
 
-#: ../src/modding/ModManager.tscn:819 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr "Лиценз:"
 
-#: ../src/modding/ModManager.tscn:841 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Препоръчителна версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:863 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Минимална версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:885 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Максимална версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:907 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr "Основен файл:"
 
-#: ../src/modding/ModManager.tscn:929 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr "Програмна библиотека:"
 
-#: ../src/modding/ModManager.tscn:951 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основна програмна библиотека:"
 
-#: ../src/modding/ModManager.tscn:978
+#: ../src/modding/ModManager.tscn:979
 msgid "MOD_CREATION_FAILED"
 msgstr "Създаването на модификацията е неуспешно"
 
-#: ../src/modding/ModManager.tscn:988
+#: ../src/modding/ModManager.tscn:989
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
@@ -3657,11 +3657,11 @@ msgstr ""
 "функционират правилно. Бъдете внимателни, защото някои модификации може да "
 "съдържат злонамерен код."
 
-#: ../src/modding/ModManager.tscn:993
+#: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:995
+#: ../src/modding/ModManager.tscn:996
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
@@ -3669,43 +3669,48 @@ msgstr ""
 "функционират правилно. Бъдете внимателни, защото някои модификации може да "
 "съдържат злонамерен код."
 
-#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:248 ../src/modding/ModUploader.tscn:273
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Съдържанието за работилницата ще бъде качено от следната папка: {0}"
 
-#: ../src/modding/ModUploader.cs:273
+#: ../src/modding/ModUploader.cs:280
 msgid "MISSING_TITLE"
 msgstr "Заглавието липсва"
 
-#: ../src/modding/ModUploader.cs:279
+#: ../src/modding/ModUploader.cs:286
 msgid "MISSING_DESCRIPTION"
 msgstr "Описанието липсва"
 
-#: ../src/modding/ModUploader.cs:287
+#: ../src/modding/ModUploader.cs:294
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Описанието е твърде дълго"
 
-#: ../src/modding/ModUploader.cs:295
+#: ../src/modding/ModUploader.cs:300 ../src/steam/SteamClient.cs:208
+#, fuzzy
+msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr "Описанието е твърде дълго"
+
+#: ../src/modding/ModUploader.cs:308
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Етикетите са празни"
 
-#: ../src/modding/ModUploader.cs:303
+#: ../src/modding/ModUploader.cs:316
 msgid "INVALID_TAG"
 msgstr "Невалиден етикет: „{0}“"
 
-#: ../src/modding/ModUploader.cs:351
+#: ../src/modding/ModUploader.cs:364
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Създаване..."
 
-#: ../src/modding/ModUploader.cs:373
+#: ../src/modding/ModUploader.cs:386
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Запазването на информацията е неуспешно поради следната грешка: {0}"
 
-#: ../src/modding/ModUploader.cs:415
+#: ../src/modding/ModUploader.cs:428
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Качване..."
 
-#: ../src/modding/ModUploader.cs:443
+#: ../src/modding/ModUploader.cs:462
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 "Качването на модификацията в „Steam Workshop“ е успешно, но трябва да "
@@ -3713,11 +3718,11 @@ msgstr ""
 "workshoplegalagreement]условията за ползване[/url][/color], за да бъде "
 "видима"
 
-#: ../src/modding/ModUploader.cs:447
+#: ../src/modding/ModUploader.cs:466
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Качването на модификацията в „Steam Workshop“ е успешно"
 
-#: ../src/modding/ModUploader.cs:507
+#: ../src/modding/ModUploader.cs:526
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "С публикуването на тази модификация, Вие се съгласявате с [color=#3796e1]"
@@ -3725,75 +3730,85 @@ msgstr ""
 "workshoplegalagreement]условията за ползване[/url][/color] на „Steam "
 "Workshop“"
 
-#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:548 ../src/modding/NewModGUI.cs:288
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Грешка: {0}"
 
-#: ../src/modding/ModUploader.tscn:43
+#: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
 msgstr "Инструмент за качване на модификации"
 
-#: ../src/modding/ModUploader.tscn:83
+#: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
 msgstr "За качване:"
 
-#: ../src/modding/ModUploader.tscn:108
+#: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Неизвестен идентификационен № за работилницата"
 
-#: ../src/modding/ModUploader.tscn:120
+#: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
 msgstr "Създаване на нов"
 
-#: ../src/modding/ModUploader.tscn:128
+#: ../src/modding/ModUploader.tscn:129
 msgid "ENTER_EXISTING_ID"
 msgstr "Въвеждане на съществуващ идентификационен №"
 
-#: ../src/modding/ModUploader.tscn:138
+#: ../src/modding/ModUploader.tscn:139
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr "Въвеждане на съществуващ идентификационен № за работилницата"
 
-#: ../src/modding/ModUploader.tscn:152
+#: ../src/modding/ModUploader.tscn:153
 msgid "ID_NUMBER"
 msgstr "Идентификационен №"
 
-#: ../src/modding/ModUploader.tscn:158
+#: ../src/modding/ModUploader.tscn:159
 msgid "APPLY"
 msgstr "Прилагане"
 
-#: ../src/modding/ModUploader.tscn:168
+#: ../src/modding/ModUploader.tscn:169
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "Заглавие:"
 
-#: ../src/modding/ModUploader.tscn:186
+#: ../src/modding/ModUploader.tscn:187
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "Описание:"
 
-#: ../src/modding/ModUploader.tscn:208
+#: ../src/modding/ModUploader.tscn:209
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr "След като модификацията стане видима, тя ще бъде видима за всички"
 
-#: ../src/modding/ModUploader.tscn:209
+#: ../src/modding/ModUploader.tscn:210
 msgid "VISIBLE"
 msgstr "Видима"
 
-#: ../src/modding/ModUploader.tscn:215
+#: ../src/modding/ModUploader.tscn:216
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr "Етикети (разделени с запетая):"
 
-#: ../src/modding/ModUploader.tscn:233
+#: ../src/modding/ModUploader.tscn:234
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr "Изображение:"
 
-#: ../src/modding/ModUploader.tscn:259
+#: ../src/modding/ModUploader.tscn:260
 msgid "BROWSE"
 msgstr "Търсене"
 
-#: ../src/modding/ModUploader.tscn:294
+#: ../src/modding/ModUploader.tscn:286 ../src/modding/ModUploader.tscn:295
+#, fuzzy
+msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
+msgstr "Етикети (разделени с запетая):"
+
+#: ../src/modding/ModUploader.tscn:288
+#, fuzzy
+msgid "WORKSHOP_ITEM_CHANGE_NOTES"
+msgstr "Етикети (разделени с запетая):"
+
+#: ../src/modding/ModUploader.tscn:316
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Избиране на изображение"
 
-#: ../src/modding/ModUploader.tscn:305
+#: ../src/modding/ModUploader.tscn:327
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Качването е успешно"
 
@@ -4125,65 +4140,65 @@ msgstr "Папката с записи не съществува"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
 
-#: ../src/steam/SteamClient.cs:460
+#: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 "Вашият профил в „Steam“ временно не може да качва ново съдържание. Моля, "
 "свържете се с поддръжката на „Steam“."
 
-#: ../src/steam/SteamClient.cs:462
+#: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
 msgstr "Вашият профил в „Steam“ не може да качва ново съдържание"
 
-#: ../src/steam/SteamClient.cs:464
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr "Времето за изчакване на „Steam“ изтече, моля, опитайте отново"
 
-#: ../src/steam/SteamClient.cs:466
+#: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "Не сте влезли в „Steam“"
 
-#: ../src/steam/SteamClient.cs:468
+#: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr "„Steam“ не е достъпен в момента, моля, опитайте отново"
 
-#: ../src/steam/SteamClient.cs:470
+#: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Предаден е невалиден параметър на „Steam“"
 
-#: ../src/steam/SteamClient.cs:472
+#: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 "Квотата за съхранение в облака на „Steam“ или максималния размер на файла "
 "са превишени"
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "Файлът не е намерен"
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr "„Steam“ отчита, че файлът вече е качен, моля, опреснете съдържанието"
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:490
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "„Steam“ отчита грешка за повтарящо се наименование"
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:492
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 "Вашият профил в „Steam“ е в режим само за четене, поради скорошна промяна "
 "на профилите"
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:494
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Вашият профил в „Steam“ не притежава лиценз за „Thrive“"
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:496
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "„Steam“ не успя да придобие заключването на „UGC“"
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Неизвестна грешка на „Steam“"
 

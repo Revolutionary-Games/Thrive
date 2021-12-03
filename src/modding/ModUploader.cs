@@ -62,6 +62,9 @@ public class ModUploader : Control
     public NodePath WorkshopNoticePath;
 
     [Export]
+    public NodePath ChangeNotesPath;
+
+    [Export]
     public NodePath UploadSucceededDialogPath;
 
     [Export]
@@ -86,6 +89,7 @@ public class ModUploader : Control
     private LineEdit editedTags;
     private TextureRect previewImageRect;
     private Label toBeUploadedContentLocation;
+    private TextEdit changeNotes;
 
     private CustomDialog uploadSucceededDialog;
     private CustomRichTextLabel uploadSucceededText;
@@ -127,6 +131,7 @@ public class ModUploader : Control
         editedTags = GetNode<LineEdit>(EditedTagsPath);
         previewImageRect = GetNode<TextureRect>(PreviewImageRectPath);
         toBeUploadedContentLocation = GetNode<Label>(ToBeUploadedContentLocationPath);
+        changeNotes = GetNode<TextEdit>(ChangeNotesPath);
 
         workshopNotice = GetNode<CustomRichTextLabel>(WorkshopNoticePath);
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
@@ -242,6 +247,8 @@ public class ModUploader : Control
         toBeUploadedContentLocation.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("CONTENT_UPLOADED_FROM"), ProjectSettings.GlobalizePath(selectedMod.Folder));
 
+        changeNotes.Text = string.Empty;
+
         UpdatePreviewRect();
     }
 
@@ -285,6 +292,12 @@ public class ModUploader : Control
         if (editedDescription.Text.Length > 8000)
         {
             SetError(TranslationServer.Translate("DESCRIPTION_TOO_LONG"));
+            return false;
+        }
+
+        if (changeNotes.Text.Length > 8000)
+        {
+            SetError(TranslationServer.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG"));
             return false;
         }
 
@@ -414,8 +427,14 @@ public class ModUploader : Control
         // TODO: proper progress bar
         errorDisplay.Text = TranslationServer.Translate("UPLOADING_DOT_DOT_DOT");
 
-        // TODO: implement change notes text input
-        SteamHandler.Instance.UpdateWorkshopItem(updateData, null, result =>
+        string notes = null;
+
+        if (!string.IsNullOrWhiteSpace(changeNotes.Text))
+        {
+            notes = changeNotes.Text;
+        }
+
+        SteamHandler.Instance.UpdateWorkshopItem(updateData, notes, result =>
         {
             SetProcessingStatus(false);
 

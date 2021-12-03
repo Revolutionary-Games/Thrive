@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 14:23+0200\n"
+"POT-Creation-Date: 2021-12-03 14:47+0200\n"
 "PO-Revision-Date: 2021-12-02 11:12+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -1388,7 +1388,7 @@ msgstr "Ilustraci vytvořil(a) {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:971
+#: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
@@ -1439,7 +1439,7 @@ msgstr "Editor mikrobů"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:82 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Zpět"
@@ -2194,7 +2194,7 @@ msgstr "Není povoleno zobrazit méně než {0} datových sad!"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:326
+#: ../src/modding/ModUploader.tscn:348
 msgid "OK"
 msgstr "OK"
 
@@ -3479,111 +3479,111 @@ msgstr "Chyba při ukládání"
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:120
+#: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:143 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Obnovit"
 
-#: ../src/modding/ModManager.tscn:151
+#: ../src/modding/ModManager.tscn:152
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Otevřít složku záznamů"
 
-#: ../src/modding/ModManager.tscn:169
+#: ../src/modding/ModManager.tscn:170
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Pravé tlačítko myši"
 
-#: ../src/modding/ModManager.tscn:182
+#: ../src/modding/ModManager.tscn:183
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Levé tlačítko myši"
 
-#: ../src/modding/ModManager.tscn:194
+#: ../src/modding/ModManager.tscn:195
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Zapnout editor"
 
-#: ../src/modding/ModManager.tscn:212
+#: ../src/modding/ModManager.tscn:213
 #, fuzzy
 msgid "DISABLE_ALL"
 msgstr "Vypnuto"
 
-#: ../src/modding/ModManager.tscn:249
+#: ../src/modding/ModManager.tscn:250
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Vybráno:"
 
-#: ../src/modding/ModManager.tscn:283 ../src/modding/ModManager.tscn:671
+#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:314 ../src/modding/ModManager.tscn:693
+#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Verze:"
 
-#: ../src/modding/ModManager.tscn:370
+#: ../src/modding/ModManager.tscn:371
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:414
+#: ../src/modding/ModManager.tscn:415
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Verze:"
 
-#: ../src/modding/ModManager.tscn:441 ../src/modding/ModManager.tscn:715
+#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Popis:"
 
-#: ../src/modding/ModManager.tscn:473
+#: ../src/modding/ModManager.tscn:474
 msgid "MORE_INFO"
 msgstr "Zobrazit více info"
 
-#: ../src/modding/ModManager.tscn:481
+#: ../src/modding/ModManager.tscn:482
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Otevřít URL"
 
-#: ../src/modding/ModManager.tscn:504
+#: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
 msgstr "Procházet Workshop"
 
-#: ../src/modding/ModManager.tscn:511 ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Načíst"
 
-#: ../src/modding/ModManager.tscn:518
+#: ../src/modding/ModManager.tscn:519
 msgid "NEW"
 msgstr "Nový"
 
-#: ../src/modding/ModManager.tscn:531
+#: ../src/modding/ModManager.tscn:532
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Načíst neplatné uložení?"
 
-#: ../src/modding/ModManager.tscn:558
+#: ../src/modding/ModManager.tscn:559
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Vybrané uložení je nekompatibilní"
 
-#: ../src/modding/ModManager.tscn:567
+#: ../src/modding/ModManager.tscn:568
 msgid "APPLY_CHANGES"
 msgstr "Použít změny"
 
-#: ../src/modding/ModManager.tscn:578
+#: ../src/modding/ModManager.tscn:579
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:579
+#: ../src/modding/ModManager.tscn:580
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3591,25 +3591,25 @@ msgstr ""
 "také více energie, aby se nedeformovala. Výhodou je, že umožňuje buňce "
 "pohybovat se a rychle absorbovat živiny."
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:581
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Zahodit a pokračovat"
 
-#: ../src/modding/ModManager.tscn:587
+#: ../src/modding/ModManager.tscn:588
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:628 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Jméno:"
 
-#: ../src/modding/ModManager.tscn:650 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:737 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3619,164 +3619,169 @@ msgstr ""
 "suspendován přímo v cytoplazmě, okolní tekutina do určité míry provádí "
 "glykolýzu."
 
-#: ../src/modding/ModManager.tscn:775 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:797 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:819 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Licence a použité knihovny"
 
-#: ../src/modding/ModManager.tscn:841 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:863 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:885 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:907 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Název lokace"
 
-#: ../src/modding/ModManager.tscn:929 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:951 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:978
+#: ../src/modding/ModManager.tscn:979
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "Automatickou evoluci se nepodařilo spustit"
 
-#: ../src/modding/ModManager.tscn:988
+#: ../src/modding/ModManager.tscn:989
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Načíst neplatné uložení?"
 
-#: ../src/modding/ModManager.tscn:993
+#: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:995
+#: ../src/modding/ModManager.tscn:996
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Načíst neplatné uložení?"
 
-#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:248 ../src/modding/ModUploader.tscn:273
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:273
+#: ../src/modding/ModUploader.cs:280
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "PROSPERUJEŠ!"
 
-#: ../src/modding/ModUploader.cs:279
+#: ../src/modding/ModUploader.cs:286
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "Popis:"
 
-#: ../src/modding/ModUploader.cs:287
+#: ../src/modding/ModUploader.cs:294
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Popis:"
 
-#: ../src/modding/ModUploader.cs:295
+#: ../src/modding/ModUploader.cs:300 ../src/steam/SteamClient.cs:208
+#, fuzzy
+msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr "Popis:"
+
+#: ../src/modding/ModUploader.cs:308
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:303
+#: ../src/modding/ModUploader.cs:316
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "Načíst neplatné uložení?"
 
-#: ../src/modding/ModUploader.cs:351
+#: ../src/modding/ModUploader.cs:364
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Vyhledat..."
 
-#: ../src/modding/ModUploader.cs:373
+#: ../src/modding/ModUploader.cs:386
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Uložení se nezdařilo! Nastala výjimka"
 
-#: ../src/modding/ModUploader.cs:415
+#: ../src/modding/ModUploader.cs:428
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Načítání..."
 
-#: ../src/modding/ModUploader.cs:443
+#: ../src/modding/ModUploader.cs:462
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:447
+#: ../src/modding/ModUploader.cs:466
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:507
+#: ../src/modding/ModUploader.cs:526
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:548 ../src/modding/NewModGUI.cs:288
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Chyba při ukládání"
 
-#: ../src/modding/ModUploader.tscn:43
+#: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:83
+#: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:108
+#: ../src/modding/ModUploader.tscn:109
 #, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Neznámá myš"
 
-#: ../src/modding/ModUploader.tscn:120
+#: ../src/modding/ModUploader.tscn:121
 #, fuzzy
 msgid "CREATE_NEW"
 msgstr "Uložit hru"
 
-#: ../src/modding/ModUploader.tscn:128
+#: ../src/modding/ModUploader.tscn:129
 #, fuzzy
 msgid "ENTER_EXISTING_ID"
 msgstr "Nahradit existující uloženou pozici:"
 
-#: ../src/modding/ModUploader.tscn:138
+#: ../src/modding/ModUploader.tscn:139
 msgid "ENTER_EXISTING_WORKSHOP_ID"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:152
+#: ../src/modding/ModUploader.tscn:153
 msgid "ID_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:158
+#: ../src/modding/ModUploader.tscn:159
 msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:168
+#: ../src/modding/ModUploader.tscn:169
 #, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/modding/ModUploader.tscn:186
+#: ../src/modding/ModUploader.tscn:187
 #, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr ""
@@ -3788,31 +3793,41 @@ msgstr ""
 "pigmenty mu také dodávají výraznou barvu. Rychlost jeho produkce glukózy "
 "se mění s koncentrací oxidu uhličitého a intenzitou světla."
 
-#: ../src/modding/ModUploader.tscn:208
+#: ../src/modding/ModUploader.tscn:209
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:209
+#: ../src/modding/ModUploader.tscn:210
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:215
+#: ../src/modding/ModUploader.tscn:216
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:233
+#: ../src/modding/ModUploader.tscn:234
 msgid "WORKSHOP_ITEM_PREVIEW"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:259
+#: ../src/modding/ModUploader.tscn:260
 msgid "BROWSE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:294
+#: ../src/modding/ModUploader.tscn:286 ../src/modding/ModUploader.tscn:295
+#, fuzzy
+msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
+msgstr "\"{0}\" - {1}"
+
+#: ../src/modding/ModUploader.tscn:288
+#, fuzzy
+msgid "WORKSHOP_ITEM_CHANGE_NOTES"
+msgstr "\"{0}\" - {1}"
+
+#: ../src/modding/ModUploader.tscn:316
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.tscn:305
+#: ../src/modding/ModUploader.tscn:327
 #, fuzzy
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Ukládání provedeno"
@@ -4158,62 +4173,62 @@ msgstr "Složka uložených pozic nebyla nalezena"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:460
+#: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:462
+#: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:464
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:466
+#: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:468
+#: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:470
+#: ../src/steam/SteamClient.cs:482
 #, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Uložená hra má neplatný stav herní scény"
 
-#: ../src/steam/SteamClient.cs:472
+#: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:490
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Duplicitní hráč"
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:492
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:494
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Váš Steam účet nevlastní licenci pro Thrive"
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:496
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Uložení se nezdařilo! Nastala výjimka"
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
