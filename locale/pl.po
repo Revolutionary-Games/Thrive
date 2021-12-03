@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-30 13:22-0600\n"
+"POT-Creation-Date: 2021-12-03 12:03+0200\n"
 "PO-Revision-Date: 2021-07-21 12:42+0000\n"
 "Last-Translator: Filip Szot <filip.szot08@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -890,83 +890,83 @@ msgstr "Cytoplazma"
 msgid "NUCLEUS"
 msgstr "Jądro Komórkowe"
 
-#: ../src/auto-evo/AutoEvoRun.cs:123
+#: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
 msgstr "Przerwano."
 
-#: ../src/auto-evo/AutoEvoRun.cs:126
+#: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "FINISHED"
 msgstr "Ukończono."
 
-#: ../src/auto-evo/AutoEvoRun.cs:129
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING"
 msgstr "Nie jest uruchomione."
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
 msgstr "Zaczynanie"
 
-#: ../src/auto-evo/AutoEvoRun.cs:286
+#: ../src/auto-evo/AutoEvoRun.cs:284
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} populacja zmieniła się o {1} z powodu: {2}"
 
-#: ../src/auto-evo/RunResults.cs:424
+#: ../src/auto-evo/RunResults.cs:421
 msgid "POPULATION"
 msgstr "populacja:"
 
-#: ../src/auto-evo/RunResults.cs:434
+#: ../src/auto-evo/RunResults.cs:430
 msgid "WENT_EXTINCT_IN"
 msgstr "wyginął w {0}"
 
-#: ../src/auto-evo/RunResults.cs:440
+#: ../src/auto-evo/RunResults.cs:436
 msgid "PREVIOUS"
 msgstr "poprzedni:"
 
-#: ../src/auto-evo/RunResults.cs:457
+#: ../src/auto-evo/RunResults.cs:452
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "kod genetyczny:"
 
-#: ../src/auto-evo/RunResults.cs:470
+#: ../src/auto-evo/RunResults.cs:465
 #, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "kod genetyczny:"
 
-#: ../src/auto-evo/RunResults.cs:473
+#: ../src/auto-evo/RunResults.cs:468
 #, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "rozszedł się do biomów:"
 
-#: ../src/auto-evo/RunResults.cs:491
+#: ../src/auto-evo/RunResults.cs:485
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "rozszedł się do biomów:"
 
-#: ../src/auto-evo/RunResults.cs:507
+#: ../src/auto-evo/RunResults.cs:501
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "Zmutował się"
 
-#: ../src/auto-evo/RunResults.cs:512
+#: ../src/auto-evo/RunResults.cs:506
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "kod genetyczny:"
 
-#: ../src/auto-evo/RunResults.cs:523
+#: ../src/auto-evo/RunResults.cs:517
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "rozszedł się do biomów:"
 
-#: ../src/auto-evo/RunResults.cs:532
+#: ../src/auto-evo/RunResults.cs:525
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} wysyłając: {1} populacji z biomu: {2}"
 
-#: ../src/auto-evo/RunResults.cs:551
+#: ../src/auto-evo/RunResults.cs:544
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "Populacja w biomie:"
 
-#: ../src/auto-evo/RunResults.cs:658
+#: ../src/auto-evo/RunResults.cs:651
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "wyginął z planety"
 
@@ -1407,13 +1407,13 @@ msgstr ""
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:952
+#: ../src/modding/ModManager.tscn:955
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
 msgstr "Zamknij"
 
-#: ../src/general/MainMenu.cs:224
+#: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -1450,41 +1450,49 @@ msgstr "Twórcy"
 msgid "QUIT"
 msgstr "Wyjdź"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Kreatywny Edytor Mikroba"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:418
-#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:82 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Cofnij"
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:388
+#: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "Ostrzeżenie Tryb GLES2"
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Uruchomiłeś Thrive w GLES2. Jest to poważnie nietestowane i prawdopodobnie "
 "spowoduje problemy. Zaaktualizuj sterowniki graficzne i/lub wymuś użycie "
 "grafiki AMD lub Nvidia do uruchamiania Trive."
+
+#: ../src/general/MainMenu.tscn:499
+msgid "MOD_LOAD_ERRORS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:500
+msgid "MOD_LOAD_ERRORS_OCCURRED"
+msgstr ""
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -3043,7 +3051,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balans Związków"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Wczytywanie edytora mikrobów"
 
@@ -3051,11 +3059,11 @@ msgstr "Wczytywanie edytora mikrobów"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Czekanie na auto-ewolucje:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-ewolucja nie może się uruchomić"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "Status działania:"
 
@@ -3431,136 +3439,173 @@ msgstr ""
 "kontynuować grę po zamknięciu tego ekranu lub rozpocząć nową grę w nowym "
 "świecie."
 
-#: ../src/modding/ModManager.cs:273
+#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+msgid "CANT_LOAD_MOD_INFO"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:235
+msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:252
+msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:279
+msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:287
+msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:351
+msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:364
+msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:380
+msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:394
+#, fuzzy
+msgid "PCK_LOAD_FAILED"
+msgstr "Wczytywanie zakończone"
+
+#: ../src/modding/ModManager.cs:283
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:287
+#: ../src/modding/ModManager.cs:297
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:299
+#: ../src/modding/ModManager.cs:309
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:506
+#: ../src/modding/ModManager.cs:519
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Wybrane:"
 
-#: ../src/modding/ModManager.cs:867
+#: ../src/modding/ModManager.cs:898
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Błąd zapisu"
 
-#: ../src/modding/ModManager.cs:876
+#: ../src/modding/ModManager.cs:907
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:117
+#: ../src/modding/ModManager.tscn:120
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:140 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:143 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Odśwież"
 
-#: ../src/modding/ModManager.tscn:148
+#: ../src/modding/ModManager.tscn:151
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Otwórz Folder z Logami"
 
-#: ../src/modding/ModManager.tscn:166
+#: ../src/modding/ModManager.tscn:169
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Prawy myszy"
 
-#: ../src/modding/ModManager.tscn:179
+#: ../src/modding/ModManager.tscn:182
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Lewy myszy"
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:194
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Włącz edytor"
 
-#: ../src/modding/ModManager.tscn:209
+#: ../src/modding/ModManager.tscn:212
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:246
+#: ../src/modding/ModManager.tscn:249
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Wybrane:"
 
-#: ../src/modding/ModManager.tscn:280 ../src/modding/ModManager.tscn:668
+#: ../src/modding/ModManager.tscn:283 ../src/modding/ModManager.tscn:671
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:311 ../src/modding/ModManager.tscn:690
+#: ../src/modding/ModManager.tscn:314 ../src/modding/ModManager.tscn:693
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Wersja:"
 
-#: ../src/modding/ModManager.tscn:367
+#: ../src/modding/ModManager.tscn:370
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:411
+#: ../src/modding/ModManager.tscn:414
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Wersja:"
 
-#: ../src/modding/ModManager.tscn:438 ../src/modding/ModManager.tscn:712
+#: ../src/modding/ModManager.tscn:441 ../src/modding/ModManager.tscn:715
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Opis:"
 
-#: ../src/modding/ModManager.tscn:470
+#: ../src/modding/ModManager.tscn:473
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:478
+#: ../src/modding/ModManager.tscn:481
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Otwórz URL"
 
-#: ../src/modding/ModManager.tscn:501
+#: ../src/modding/ModManager.tscn:504
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModManager.tscn:511 ../src/modding/ModUploader.tscn:44
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Wczytaj"
 
-#: ../src/modding/ModManager.tscn:515
+#: ../src/modding/ModManager.tscn:518
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:528
+#: ../src/modding/ModManager.tscn:531
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Wczytać nieważny zapis?"
 
-#: ../src/modding/ModManager.tscn:555
+#: ../src/modding/ModManager.tscn:558
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Wybrany zapis jest niekompatybilny"
 
-#: ../src/modding/ModManager.tscn:564
+#: ../src/modding/ModManager.tscn:567
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:578
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:579
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3569,25 +3614,25 @@ msgstr ""
 "że pozwala komórce na szybkie poruszanie się i absorbcję składników "
 "odżywczych."
 
-#: ../src/modding/ModManager.tscn:577
+#: ../src/modding/ModManager.tscn:580
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "Odrzuć i kontynuuj"
 
-#: ../src/modding/ModManager.tscn:584
+#: ../src/modding/ModManager.tscn:587
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:625 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:628 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nazwa:"
 
-#: ../src/modding/ModManager.tscn:647 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:650 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:737 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3597,46 +3642,60 @@ msgstr ""
 "nitrogenaza jest zawieszona bezpośrednio w cytoplazmie, otaczający płyn "
 "dokonuje fermentacji."
 
-#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:759 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:781 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:803 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:825 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:847 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:869 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:891 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:913 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:932 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:935 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:959
+#: ../src/modding/ModManager.tscn:962
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "Auto-ewolucja nie może się uruchomić"
+
+#: ../src/modding/ModManager.tscn:972
+#, fuzzy
+msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
+msgstr "Wczytać nieważny zapis?"
+
+#: ../src/modding/ModManager.tscn:976
+msgid "RESTART_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:978
+#, fuzzy
+msgid "MOD_LOAD_UNLOAD_RESTART"
+msgstr "Wczytać nieważny zapis?"
 
 #: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"

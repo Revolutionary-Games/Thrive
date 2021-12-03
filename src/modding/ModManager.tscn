@@ -58,6 +58,8 @@ ModUploaderButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/U
 NewModGUIPath = NodePath("NewModGUI")
 ModCreateErrorDialogPath = NodePath("CreateModError")
 ModUploaderPath = NodePath("ModUploader")
+ModErrorDialogPath = NodePath("LoadUnloadErrors")
+RestartRequiredPath = NodePath("RestartRequired")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_top = 1.0
@@ -964,6 +966,17 @@ ExceptionInfo = ""
 
 [node name="ModUploader" parent="." instance=ExtResource( 12 )]
 visible = false
+
+[node name="LoadUnloadErrors" parent="." instance=ExtResource( 7 )]
+rect_min_size = Vector2( 400, 350 )
+ErrorMessage = "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
+ExceptionInfo = ""
+
+[node name="RestartRequired" parent="." instance=ExtResource( 3 )]
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "RESTART_REQUIRED"
+HideCancelButton = true
+DialogText = "MOD_LOAD_UNLOAD_RESTART"
 
 [connection signal="pressed" from="HBoxContainer/Quit" to="." method="BackPressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods" to="." method="AvailableModSelected"]

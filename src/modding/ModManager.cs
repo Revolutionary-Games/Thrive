@@ -124,6 +124,12 @@ public class ModManager : Control
     [Export]
     public NodePath ModUploaderPath;
 
+    [Export]
+    public NodePath ModErrorDialogPath;
+
+    [Export]
+    public NodePath RestartRequiredPath;
+
     private readonly List<FullModDetails> validMods = new();
 
     private List<FullModDetails> notEnabledMods;
@@ -175,6 +181,10 @@ public class ModManager : Control
     private ErrorDialog modCreateErrorDialog;
 
     private ModUploader modUploader;
+
+    private ErrorDialog modErrorDialog;
+
+    private CustomDialog restartRequired;
 
     private FullModDetails selectedMod;
 
@@ -353,6 +363,9 @@ public class ModManager : Control
 
         newModGUI = GetNode<NewModGUI>(NewModGUIPath);
         modUploader = GetNode<ModUploader>(ModUploaderPath);
+
+        modErrorDialog = GetNode<ErrorDialog>(ModErrorDialogPath);
+        restartRequired = GetNode<CustomDialog>(RestartRequiredPath);
 
         // These are hidden in the editor to make selecting UI elements there easier
         newModGUI.Visible = true;
@@ -718,6 +731,9 @@ public class ModManager : Control
 
     private void UpdateOverallModButtons()
     {
+        // TODO: once mod load order controlling is added, this use of HashSet needs to be removed to allow reorder
+        // be applied. For reorder perhaps mod loader needs to first unload *all* mods so that it can then load
+        // everything in the right order
         applyChangesButton.Disabled =
             Settings.Instance.EnabledMods.Value.ToHashSet()
                 .SetEquals(enabledMods.Select(m => m.InternalName));
@@ -730,7 +746,22 @@ public class ModManager : Control
         GD.Print("Applying changes to enabled mods");
 
         Settings.Instance.EnabledMods.Value = enabledMods.Select(m => m.InternalName).ToList();
-        ModLoader.Instance.LoadMods();
+
+        var modLoader = ModLoader.Instance;
+        modLoader.LoadMods();
+
+        var errors = modLoader.GetAndClearModErrors();
+
+        if (errors.Count > 0)
+        {
+            modErrorDialog.ExceptionInfo = string.Join("\n", errors);
+            modErrorDialog.PopupCenteredShrink();
+        }
+
+        if (modLoader.RequiresRestart)
+        {
+            restartRequired.PopupCenteredShrink();
+        }
 
         GD.Print("Saving settings with new mod list");
         if (!Settings.Instance.Save())

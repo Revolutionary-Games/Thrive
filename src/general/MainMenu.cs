@@ -42,6 +42,9 @@ public class MainMenu : NodeWithInput
     public NodePath GLES2PopupPath;
 
     [Export]
+    public NodePath ModLoadFailuresPath;
+
+    [Export]
     public NodePath StoreLoggedInDisplayPath;
 
     [Export]
@@ -68,6 +71,7 @@ public class MainMenu : NodeWithInput
     private Label storeLoggedInDisplay;
 
     private CustomConfirmationDialog gles2Popup;
+    private ErrorDialog modLoadFailures;
 
     public override void _Ready()
     {
@@ -89,6 +93,8 @@ public class MainMenu : NodeWithInput
 
         // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
+
+        CheckModFailures();
     }
 
     public void StartMusic()
@@ -181,6 +187,7 @@ public class MainMenu : NodeWithInput
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
+        modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
 
         // Set initial menu
         SwitchMenu();
@@ -251,6 +258,17 @@ public class MainMenu : NodeWithInput
             {
                 menu.Show();
             }
+        }
+    }
+
+    private void CheckModFailures()
+    {
+        var errors = ModLoader.Instance.GetAndClearModErrors();
+
+        if (errors.Count > 0)
+        {
+            modLoadFailures.ExceptionInfo = string.Join("\n", errors);
+            modLoadFailures.PopupCenteredShrink();
         }
     }
 
