@@ -467,6 +467,22 @@
             return speciesInPatches;
         }
 
+        public Dictionary<Species, SpeciesResult> GetNewSpeciesResults(Patch patch)
+        {
+            var newSpeciesResults = new Dictionary<Species, SpeciesResult>();
+
+            foreach (var resultEntry in results)
+            {
+                if (resultEntry.Value.NewlyCreated != null &&
+                    resultEntry.Value.NewPopulationInPatches.TryGetValue(patch, out var population) && population > 0)
+                {
+                    newSpeciesResults.Add(resultEntry.Key, resultEntry.Value);
+                }
+            }
+
+            return newSpeciesResults;
+        }
+
         /// <summary>
         ///   Prints to log a summary of the results
         /// </summary>

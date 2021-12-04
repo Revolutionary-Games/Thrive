@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo
 {
     using Godot;
+    using System;
 
     /// <summary>
     ///   Forces extinction of worse-faring species to limit the number of steps in next auto-evo run
@@ -28,9 +29,10 @@
         {
             // TODO cache
             var speciesInPatch = results.GetPopulationsByPatch(true, true, true)[patch];
+            var newSpeciesCount = results.GetNewSpeciesResults(patch).Count;
 
             // Only bother if we're above the limit
-            if (speciesInPatch.Count <= Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
+            if (speciesInPatch.Count + newSpeciesCount <= Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
             {
                 return true;
             }
@@ -73,7 +75,12 @@
 
             // Remove worst-faring species, except for the player's species
             // TODO: Use auto-evo configuratio instead of constant
-            for (int i = 0; i < orderedSpeciesInPatch.Length - Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH; i++)
+            // TODO: if we remove everything, better skip the sorting
+            var speciesToRemoveCount = Math.Max(
+                speciesInPatch.Count + newSpeciesCount - Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH,
+                orderedSpeciesInPatch.Length);
+
+            for (int i = 0; i < speciesToRemoveCount; i++)
             {
                 if (orderedSpeciesInPatch[i].PlayerSpecies)
                     continue;
