@@ -1,8 +1,8 @@
 ﻿namespace AutoEvo
 {
-    using Godot;
     using System;
     using System.Collections.Generic;
+    using Godot;
 
     /// <summary>
     ///   Forces extinction of worse-faring species to limit the number of steps in next auto-evo run
@@ -51,39 +51,7 @@
 
             GD.Print("Running extinction step in patch ", patch.Name, ".");
 
-            var orderedSpeciesInPatch = new Species[speciesInPatch.Count];
-            speciesInPatch.Keys.CopyTo(orderedSpeciesInPatch, 0);
-
-            // Sorting by insertion, asymptotically sub-optimal but usually efficient on small datasets like here.
-            for (int i = 1; i < orderedSpeciesInPatch.Length; i++)
-            {
-                var speciesToSort = orderedSpeciesInPatch[i];
-                var population = speciesInPatch[speciesToSort];
-
-                // Sort value at index i within the previous ones, already sorted from low to high
-                for (int j = i; j >= 0; j--)
-                {
-                    // No smaller value found, just place it at the bottom.
-                    if (j == 0)
-                    {
-                        orderedSpeciesInPatch[j] = speciesToSort;
-                        break;
-                    }
-
-                    var referenceSpecies = orderedSpeciesInPatch[j - 1];
-
-                    // If we are above the before index, just plug it here and stop.
-                    // Note that the strict operator *may* favor more recent species for equality in population.
-                    if (population > speciesInPatch[referenceSpecies])
-                    {
-                        orderedSpeciesInPatch[j] = speciesToSort;
-                        break;
-                    }
-
-                    // Else just shift the hole to place the species in and continue.
-                    orderedSpeciesInPatch[j] = referenceSpecies;
-                }
-            }
+            var orderedSpeciesInPatch = speciesInPatch.GetSortedKeyArray();
 
             // Remove worst-faring species, except for the player's species
             // TODO: Use auto-evo configuratio instead of constant

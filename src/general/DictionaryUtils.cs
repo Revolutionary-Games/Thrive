@@ -75,4 +75,42 @@ public static class DictionaryUtils
             dictionary[key] /= divisor;
         }
     }
+
+    public static T[] GetSortedKeyArray<T>(this Dictionary<T, long> dictionary)
+    {
+        var orderedArray = new T[dictionary.Count];
+        dictionary.Keys.CopyTo(orderedArray, 0);
+
+        // Sorting by insertion, asymptotically sub-optimal (quadratic) but usually efficient on small datasets.
+        for (int i = 1; i < orderedArray.Length; i++)
+        {
+            var keyToSort = orderedArray[i];
+            var valueToSort = dictionary[keyToSort];
+
+            // Sort value at index i within the previous ones, already sorted from low to high
+            for (int j = i; j >= 0; j--)
+            {
+                // No smaller value found, just place it at the bottom.
+                if (j == 0)
+                {
+                    orderedArray[j] = keyToSort;
+                    break;
+                }
+
+                var referenceObject = orderedArray[j - 1];
+
+                // If we are above the before index, just plug it here and stop.
+                if (valueToSort > dictionary[referenceObject])
+                {
+                    orderedArray[j] = keyToSort;
+                    break;
+                }
+
+                // Else just shift the hole to place the key in and continue.
+                orderedArray[j] = referenceObject;
+            }
+        }
+
+        return orderedArray;
+    }
 }
