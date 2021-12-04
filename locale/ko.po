@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-25 18:07+0200\n"
+"POT-Creation-Date: 2021-12-02 17:22-0600\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -840,83 +840,83 @@ msgstr "세포질"
 msgid "NUCLEUS"
 msgstr "핵"
 
-#: ../src/auto-evo/AutoEvoRun.cs:123
+#: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
 msgstr "취소됨."
 
-#: ../src/auto-evo/AutoEvoRun.cs:126
+#: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "FINISHED"
 msgstr "완료됨."
 
-#: ../src/auto-evo/AutoEvoRun.cs:129
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING"
 msgstr "진행 중이 아님."
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
 msgstr "시작"
 
-#: ../src/auto-evo/AutoEvoRun.cs:286
+#: ../src/auto-evo/AutoEvoRun.cs:284
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
-#: ../src/auto-evo/RunResults.cs:424
+#: ../src/auto-evo/RunResults.cs:421
 msgid "POPULATION"
 msgstr "개체수:"
 
-#: ../src/auto-evo/RunResults.cs:434
+#: ../src/auto-evo/RunResults.cs:430
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:440
+#: ../src/auto-evo/RunResults.cs:436
 msgid "PREVIOUS"
 msgstr "이전:"
 
-#: ../src/auto-evo/RunResults.cs:457
+#: ../src/auto-evo/RunResults.cs:452
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "유전자 코드:"
 
-#: ../src/auto-evo/RunResults.cs:470
+#: ../src/auto-evo/RunResults.cs:465
 #, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "유전자 코드:"
 
-#: ../src/auto-evo/RunResults.cs:473
+#: ../src/auto-evo/RunResults.cs:468
 #, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "퍼뜨리기:"
 
-#: ../src/auto-evo/RunResults.cs:491
+#: ../src/auto-evo/RunResults.cs:485
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "퍼뜨리기:"
 
-#: ../src/auto-evo/RunResults.cs:507
+#: ../src/auto-evo/RunResults.cs:501
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "변이 소유"
 
-#: ../src/auto-evo/RunResults.cs:512
+#: ../src/auto-evo/RunResults.cs:506
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "유전자 코드:"
 
-#: ../src/auto-evo/RunResults.cs:523
+#: ../src/auto-evo/RunResults.cs:517
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "퍼뜨리기:"
 
-#: ../src/auto-evo/RunResults.cs:532
+#: ../src/auto-evo/RunResults.cs:525
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} 으로의: {1} 개체 전송: {2} 로부터"
 
-#: ../src/auto-evo/RunResults.cs:551
+#: ../src/auto-evo/RunResults.cs:544
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "주변 개체 수:"
 
-#: ../src/auto-evo/RunResults.cs:658
+#: ../src/auto-evo/RunResults.cs:651
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
@@ -1368,9 +1368,9 @@ msgstr ""
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:929
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:404
+#: ../src/modding/ModManager.tscn:953
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
 msgstr "닫기"
 
@@ -1378,69 +1378,69 @@ msgstr "닫기"
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:178
+#: ../src/general/MainMenu.tscn:176
 msgid "NEW_GAME"
 msgstr "새 게임"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "불러오기"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:96
+#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "설정"
 
-#: ../src/general/MainMenu.tscn:213
+#: ../src/general/MainMenu.tscn:211
 msgid "TOOLS"
 msgstr "도구"
 
-#: ../src/general/MainMenu.tscn:224
+#: ../src/general/MainMenu.tscn:222
 msgid "VIEW_SOURCE_CODE"
 msgstr "소스 코드 보기"
 
-#: ../src/general/MainMenu.tscn:235
+#: ../src/general/MainMenu.tscn:233
 msgid "EXTRAS"
 msgstr "추가요소"
 
-#: ../src/general/MainMenu.tscn:246
+#: ../src/general/MainMenu.tscn:244
 msgid "CREDITS"
 msgstr "크레딧"
 
-#: ../src/general/MainMenu.tscn:257
+#: ../src/general/MainMenu.tscn:255
 msgid "QUIT"
 msgstr "종료"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:275
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:418
-#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:335 ../src/general/MainMenu.tscn:412
+#: ../src/general/MainMenu.tscn:450 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:79 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "뒤로가기"
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:356
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:370
 msgid "ART_GALLERY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:388
+#: ../src/general/MainMenu.tscn:382
 msgid "LICENSES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:491
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 모드 경고"
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생"
@@ -1855,9 +1855,9 @@ msgstr ""
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:638
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:655
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:950
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1103
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:670
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:965
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1118
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -2757,7 +2757,7 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3140
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:855
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:870
 msgid "TEMPERATURE"
 msgstr "온도"
 
@@ -2898,7 +2898,7 @@ msgstr "압력."
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2808
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:964
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:979
 msgid "COMPOUNDS"
 msgstr "화합물"
 
@@ -3010,7 +3010,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
@@ -3018,11 +3018,11 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
@@ -3235,7 +3235,7 @@ msgstr "물리적 상태"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2765
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3282
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:959
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:974
 msgid "ATMOSPHERIC_GASSES"
 msgstr "대기 가스"
 
@@ -3277,87 +3277,87 @@ msgstr "파편 지도"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:661
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:676
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "포도당의 양이 이전 양보다 {0} 만큼 감소되었습니다."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:668
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:683
 msgid "MEGA_YEARS"
 msgstr "백만년"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:672
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:956
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:957
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:959
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:961
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:964
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:687
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:971
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:972
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:974
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:976
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:979
 msgid "YEARS"
 msgstr "년"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:714
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:719
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:729
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
 msgid "ATP_PRODUCTION"
 msgstr "ATP 생산"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:720
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:735
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP 생산이 너무 적음!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:746
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:761
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:763
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:778
 msgid "OSMOREGULATION"
 msgstr "삼투압 조절"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:769
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:784
 msgid "BASE_MOVEMENT"
 msgstr "기초 이동"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:781
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:796
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:961
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:976
 #, fuzzy
 msgid "SPECIES_LIST"
 msgstr "존재하는 종"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:997
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1012
 msgid "FREEBUILDING"
 msgstr "자유 구성"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1094
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1109
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1099
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1114
 msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1138
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1153
 msgid "WITH_POPULATION"
 msgstr "{0} 의 개체수: {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1820
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1842
 #, fuzzy
 msgid "FAILED"
 msgstr "저장 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1851
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1864
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1848
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1860
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "개체수:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1856
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1869
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1854
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1866
 #, fuzzy
 msgid "N_A"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2065
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2122
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
@@ -3401,135 +3401,135 @@ msgstr ""
 "현재 버전의 Thrive에서 승리하신 것을 축하드립니다! 창이 닫히면 계속 진행하"
 "거나, 새로운 세계에서 새로운 시작을 하실 수 있습니다."
 
-#: ../src/modding/ModManager.cs:269
+#: ../src/modding/ModManager.cs:273
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:283
+#: ../src/modding/ModManager.cs:287
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:295
+#: ../src/modding/ModManager.cs:299
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:501
+#: ../src/modding/ModManager.cs:506
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
 
-#: ../src/modding/ModManager.cs:861
+#: ../src/modding/ModManager.cs:867
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "저장 오류"
 
-#: ../src/modding/ModManager.cs:870
+#: ../src/modding/ModManager.cs:876
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:116
+#: ../src/modding/ModManager.tscn:118
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:139 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:141 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "새로 고침"
 
-#: ../src/modding/ModManager.tscn:147
+#: ../src/modding/ModManager.tscn:149
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "로그 폴더 열기"
 
-#: ../src/modding/ModManager.tscn:165
+#: ../src/modding/ModManager.tscn:167
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "마우스 오른쪽 버튼"
 
-#: ../src/modding/ModManager.tscn:178
+#: ../src/modding/ModManager.tscn:180
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "마우스 왼쪽 버튼"
 
-#: ../src/modding/ModManager.tscn:190
+#: ../src/modding/ModManager.tscn:192
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "편집기 활성화"
 
-#: ../src/modding/ModManager.tscn:208
+#: ../src/modding/ModManager.tscn:210
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:245
+#: ../src/modding/ModManager.tscn:247
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "선택됨:"
 
-#: ../src/modding/ModManager.tscn:279 ../src/modding/ModManager.tscn:645
+#: ../src/modding/ModManager.tscn:281 ../src/modding/ModManager.tscn:669
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:310 ../src/modding/ModManager.tscn:667
+#: ../src/modding/ModManager.tscn:312 ../src/modding/ModManager.tscn:691
 #: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "버전:"
 
-#: ../src/modding/ModManager.tscn:366
+#: ../src/modding/ModManager.tscn:368
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:410
+#: ../src/modding/ModManager.tscn:412
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "버전:"
 
-#: ../src/modding/ModManager.tscn:437 ../src/modding/ModManager.tscn:689
+#: ../src/modding/ModManager.tscn:439 ../src/modding/ModManager.tscn:713
 #: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "설명:"
 
-#: ../src/modding/ModManager.tscn:469
+#: ../src/modding/ModManager.tscn:471
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:477
+#: ../src/modding/ModManager.tscn:479
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:500
+#: ../src/modding/ModManager.tscn:502
 msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:507 ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModManager.tscn:509 ../src/modding/ModUploader.tscn:44
 #, fuzzy
 msgid "UPLOAD"
 msgstr "불러오기"
 
-#: ../src/modding/ModManager.tscn:514
+#: ../src/modding/ModManager.tscn:516
 msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:527
+#: ../src/modding/ModManager.tscn:529
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.tscn:553
+#: ../src/modding/ModManager.tscn:556
 #, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "선택된 저장은 호환되지 않습니다"
 
-#: ../src/modding/ModManager.tscn:562
+#: ../src/modding/ModManager.tscn:565
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:573
+#: ../src/modding/ModManager.tscn:576
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:574
+#: ../src/modding/ModManager.tscn:577
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3537,21 +3537,25 @@ msgstr ""
 "지 않기 위해선 더 많은 에너지가 필요합니다. 장점은 세포가 더 빠르게 움직이"
 "고 영양분을 흡수 할 수 있다는 것입니다."
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:578
 #, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "취소 및 계속"
 
-#: ../src/modding/ModManager.tscn:582
+#: ../src/modding/ModManager.tscn:585
 msgid "FULL_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:623 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:626 ../src/modding/NewModGUI.tscn:119
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "이름:"
 
-#: ../src/modding/ModManager.tscn:711 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:648 ../src/modding/NewModGUI.tscn:96
+msgid "MOD_INTERNAL_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:735 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3560,44 +3564,44 @@ msgstr ""
 "고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 "
 "주변 유체가 일부 발효를 수행합니다."
 
-#: ../src/modding/ModManager.tscn:733 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:757 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:755 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:779 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:777 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:801 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:799 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:823 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:821 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:845 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:843 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:867 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:865 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:889 ../src/modding/NewModGUI.tscn:373
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "파편 이름"
 
-#: ../src/modding/ModManager.tscn:887 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:911 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:909 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:933 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:936
+#: ../src/modding/ModManager.tscn:960
 #, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "자동 진화 실행 실패"
@@ -3657,7 +3661,7 @@ msgstr ""
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:294
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "저장 오류"
@@ -3758,14 +3762,18 @@ msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
 #: ../src/modding/NewModGUI.cs:244
+msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:263
+#: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:274
+#: ../src/modding/NewModGUI.cs:280
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "자동 진화 실행 실패"
@@ -3781,10 +3789,6 @@ msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
-msgstr ""
-
-#: ../src/modding/NewModGUI.tscn:96
-msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:450
@@ -4151,10 +4155,10 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:198
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:236
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:299
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:359
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4203,7 +4207,7 @@ msgstr ""
 "리고 화면 중앙에 표시된 세포칸 옆을 마우스 왼쪽 버튼으로 클릭해서 세포 기관"
 "을 종에 추가하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:179
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "세포 기관 제거 또한 종의 변이이므로 MP를 소모합니다. 마우스 오른쪽 클릭으"
@@ -4214,7 +4218,7 @@ msgstr ""
 "\n"
 "되돌리기 버튼을 눌러 진행하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:220
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "추가할 세포 기관을 고를 땐, 툴팁의 세포 기관이 어떤 일을 하고 어떤 화합물"
@@ -4226,7 +4230,7 @@ msgstr ""
 "\n"
 "다시 실행 버튼(되돌리기 버튼 근처)을 눌러 진행하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:264
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:265
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "이것은 종 편집의 기초 단계입니다. 다른 세포 편집기 탭에서 더 많은 설정을 확"
@@ -4238,11 +4242,11 @@ msgstr ""
 "\n"
 "행운을 빕니다!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:281
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:282
 msgid "GOT_IT"
 msgstr "알겠습니다"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:327
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
 #, fuzzy
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
@@ -4256,7 +4260,7 @@ msgstr ""
 "\n"
 "파편을 선택하여 진행하세요."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:387
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
 #, fuzzy
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
