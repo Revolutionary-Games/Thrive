@@ -118,6 +118,25 @@
             results[splitSpecies].SplitFrom = species;
         }
 
+        public void KillSpeciesInPatch(Species species, Patch patch)
+        {
+            AddPopulationResultForSpecies(species, patch, 0);
+
+            // We copy migration list to be able to modify it
+            foreach (var migration in results[species].SpreadToPatches.ToArray())
+            {
+                if (results[species].SplitOff != null && results[species].SplitOffPatches?.Contains(patch) == true)
+                    continue;
+
+                if (migration.To == patch)
+                {
+                    // We still penalize the origin patch, the migration just died off on its way.
+                    results[species].NewPopulationInPatches[migration.From] -= migration.Population;
+                    results[species].SpreadToPatches.Remove(migration);
+                }
+            }
+        }
+
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
             foreach (var entry in results)

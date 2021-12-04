@@ -34,43 +34,38 @@
             foreach (Patch patch in patches)
             {
                 var speciesInPatch = populationsByPatch[patch];
-                RunStepInPatch(results, patch, speciesInPatch);
-            }
+                var newSpeciesCount = results.GetNewSpeciesResults(patch).Count;
 
-            return true;
-        }
+                GD.Print("Debuggin extinction step in patch ", patch.Name, ". Count: ", speciesInPatch.Count + newSpeciesCount);
+                foreach (var temp in speciesInPatch) GD.Print(temp.Key.FormattedName, " -> ", temp.Value);
+                foreach (var temp in results.GetNewSpeciesResults(patch).Keys) GD.Print("New: ", temp.FormattedName);
 
-        private bool RunStepInPatch(RunResults results, Patch patch, Dictionary<Species, long> speciesInPatch)
-        {
-            var newSpeciesCount = results.GetNewSpeciesResults(patch).Count;
-
-            GD.Print("Debuggin extinction step in patch ", patch.Name, ". Count: ", speciesInPatch.Count + newSpeciesCount);
-
-            // Only bother if we're above the limit
-            if (speciesInPatch.Count + newSpeciesCount <= Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
-            {
-                return true;
-            }
-
-            GD.Print("Running extinction step in patch ", patch.Name, ".");
-
-            var orderedSpeciesInPatch = speciesInPatch.GetSortedKeyArray();
-
-            // Remove worst-faring species, except for the player's species
-            // TODO: Use auto-evo configuratio instead of constant
-            // TODO: if we remove everything, better skip the sorting
-            var speciesToRemoveCount = Math.Max(
-                speciesInPatch.Count + newSpeciesCount - Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH,
-                orderedSpeciesInPatch.Length);
-
-            for (int i = 0; i < speciesToRemoveCount; i++)
-            {
-                if (orderedSpeciesInPatch[i].PlayerSpecies)
+                // Only bother if we're above the limit
+                if (speciesInPatch.Count + newSpeciesCount <= Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
+                {
                     continue;
+                }
 
-                GD.Print("Forced extinction of species ", orderedSpeciesInPatch[i].FormattedName,
-                    " in patch ", patch.Name, ".");
-                results.AddPopulationResultForSpecies(orderedSpeciesInPatch[i], patch, 0);
+                GD.Print("Running extinction step in patch ", patch.Name, ".");
+
+                var orderedSpeciesInPatch = speciesInPatch.GetSortedKeyArray();
+
+                // Remove worst-faring species, except for the player's species
+                // TODO: Use auto-evo configuratio instead of constant
+                // TODO: if we remove everything, better skip the sorting
+                var speciesToRemoveCount = Math.Min(
+                    speciesInPatch.Count + newSpeciesCount - Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH,
+                    orderedSpeciesInPatch.Length);
+
+                for (int i = 0; i < speciesToRemoveCount; i++)
+                {
+                    if (orderedSpeciesInPatch[i].PlayerSpecies)
+                        continue;
+
+                    GD.Print("Forced extinction of species ", orderedSpeciesInPatch[i].FormattedName,
+                        " in patch ", patch.Name, ".");
+                    results.KillSpeciesInPatch(orderedSpeciesInPatch[i], patch);
+                }
             }
 
             return true;
