@@ -26,9 +26,17 @@ namespace AutoEvo
 
         public bool RunStep(RunResults results)
         {
-            GD.Print("!!!Running extinction step in patch ", patch.Name, "!");
+
             // TODO cache
             var speciesInPatch = results.GetPopulationsByPatch(true, true)[patch];
+
+            // Only bother if we're above the limit
+            if (speciesInPatch.Count <= Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
+            {
+                return true;
+            }
+
+            GD.Print("Running extinction step in patch ", patch.Name, ".");
 
             var orderedSpeciesInPatch = new Species[speciesInPatch.Count];
             GD.Print(speciesInPatch.Count);
