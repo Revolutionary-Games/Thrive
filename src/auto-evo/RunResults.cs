@@ -718,6 +718,13 @@
         {
             public Species Species;
 
+            /// <summary>
+            ///   Dictionary of the new species population for relevant patches,
+            ///   limited to natural increase/decrease and emergence.
+            /// </summary>
+            /// <remarks>
+            ///   Does not consider migrations.
+            /// </remarks>
             public Dictionary<Patch, long> NewPopulationInPatches = new Dictionary<Patch, long>();
 
             /// <summary>
