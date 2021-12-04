@@ -381,7 +381,7 @@
         ///   </para>
         /// </remarks>
         public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(
-            bool resolveMigrations = false, bool resolveSplits = false)
+            bool resolveMigrations = false, bool resolveSplits = false,  bool excludeNewSpecies = false)
         {
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
             foreach (var speciesResultEntry in results)
@@ -396,8 +396,11 @@
 
                     if (patchPopulationEntry.Value > 0)
                     {
-                        speciesInPatches[patchPopulationEntry.Key].Add(
+                        if (excludeNewSpecies && speciesResultEntry.Value.NewlyCreated != null)
+                        {
+                            speciesInPatches[patchPopulationEntry.Key].Add(
                             speciesResultEntry.Key, patchPopulationEntry.Value);
+                        }
                     }
                 }
 

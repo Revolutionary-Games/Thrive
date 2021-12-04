@@ -27,7 +27,7 @@
         public bool RunStep(RunResults results)
         {
             // TODO cache
-            var speciesInPatch = results.GetPopulationsByPatch(true, true)[patch];
+            var speciesInPatch = results.GetPopulationsByPatch(true, true, true)[patch];
 
             // Only bother if we're above the limit
             if (speciesInPatch.Count <= Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
