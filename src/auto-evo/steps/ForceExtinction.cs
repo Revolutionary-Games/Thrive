@@ -1,4 +1,6 @@
-﻿namespace AutoEvo
+﻿using Godot;
+
+namespace AutoEvo
 {
     /// <summary>
     ///   Forces extinction of worse-faring species to limit the number of steps in next auto-evo run
@@ -24,8 +26,13 @@
 
         public bool RunStep(RunResults results)
         {
-            var orderedSpeciesInPatch = new Species[patch.SpeciesInPatch.Count];
-            patch.SpeciesInPatch.Keys.CopyTo(orderedSpeciesInPatch, 0);
+            GD.Print("!!!Running extinction step in patch ", patch.Name, "!");
+            var speciesInPatch = results.SpeciesInPatch(patch);
+
+            var orderedSpeciesInPatch = new Species[speciesInPatch.Count];
+            GD.Print(speciesInPatch.Count);
+            foreach (var trash in speciesInPatch) GD.Print(trash.Key, " -> ", trash.Value);
+            speciesInPatch.Keys.CopyTo(orderedSpeciesInPatch, 0);
 
             // Sorting by insertion, asymptotically sub-optimal but usually efficient on small datasets like here.
             for (int i = 1; i < orderedSpeciesInPatch.Length; i++)
@@ -56,6 +63,7 @@
             {
                 if (orderedSpeciesInPatch[i].PlayerSpecies)
                     continue;
+                GD.Print("!!!Removed species ", orderedSpeciesInPatch[i].FormattedName, " in patch ", patch.Name, "!");
                 results.AddPopulationResultForSpecies(orderedSpeciesInPatch[i], patch, 0);
             }
 

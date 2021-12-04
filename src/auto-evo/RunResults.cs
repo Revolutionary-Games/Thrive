@@ -699,6 +699,21 @@
             return totalPopulation;
         }
 
+        public Dictionary<Species, long> SpeciesInPatch(Patch patch)
+        {
+            var speciesInPatch = new Dictionary<Species, long>();
+            foreach (var entry in results)
+            {
+                if (entry.Value.NewPopulationInPatches.TryGetValue(patch, out var populationInPatch) &&
+                    populationInPatch > 0)
+                {
+                    speciesInPatch.Add(entry.Key, populationInPatch);
+                }
+            }
+
+            return speciesInPatch;
+        }
+
         public class SpeciesResult
         {
             public Species Species;
