@@ -33,8 +33,8 @@
         public bool RunStep(RunResults results)
         {
             GD.Print("!RUNning debug step");
-            var populationsByPatch = results.GetPopulationsByPatch(configuration.ProtectMigrationsFromSpeciesCap,
-                !configuration.AllowNoMutation, configuration.ProtectNewCellsFromSpeciesCap);
+            var populationsByPatch = results.GetPopulationsByPatch(!configuration.ProtectMigrationsFromSpeciesCap,
+                !configuration.AllowNoMutation, !configuration.ProtectNewCellsFromSpeciesCap);
 
             foreach (Patch patch in patches)
             {
@@ -48,7 +48,7 @@
                 if (configuration.ProtectMigrationsFromSpeciesCap)
                     protectedSpeciesCount += results.GetMigrationsTo(patch).Count;
 
-                GD.Print("Debuggin extinction step in patch ", patch.Name, ". Count: ", speciesInPatch.Count + protectedSpeciesCount);
+                GD.Print("Debuggin extinction step in patch ", patch.Name, ". Total count: ", speciesInPatch.Count + protectedSpeciesCount);
                 foreach (var temp in speciesInPatch) GD.Print(temp.Key.FormattedName, " -> ", temp.Value);
                 foreach (var temp in results.GetNewSpeciesResults(patch).Keys) GD.Print("New: ", temp.FormattedName);
 
