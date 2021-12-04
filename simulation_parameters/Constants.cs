@@ -657,6 +657,7 @@ public static class Constants
     ///   Regex for species name validation.
     /// </summary>
     public const string SPECIES_NAME_REGEX = "^(?<genus>[a-zA-Z0-9]+) (?<epithet>[a-zA-Z0-9]+)$";
+
     public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
 
     /// <summary>
