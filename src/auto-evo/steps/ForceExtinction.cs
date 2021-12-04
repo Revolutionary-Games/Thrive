@@ -39,14 +39,21 @@
             foreach (Patch patch in patches)
             {
                 var speciesInPatch = populationsByPatch[patch];
-                var newSpeciesCount = results.GetNewSpeciesResults(patch).Count;
 
-                GD.Print("Debuggin extinction step in patch ", patch.Name, ". Count: ", speciesInPatch.Count + newSpeciesCount);
+                // This does not take player into account as the species can never go extinct this way.
+                var protectedSpeciesCount = 0;
+
+                if (configuration.ProtectNewCellsFromSpeciesCap)
+                    protectedSpeciesCount += results.GetNewSpeciesResults(patch).Count;
+                if (configuration.ProtectMigrationsFromSpeciesCap)
+                    protectedSpeciesCount += results.GetMigrationsTo(patch).Count;
+
+                GD.Print("Debuggin extinction step in patch ", patch.Name, ". Count: ", speciesInPatch.Count + protectedSpeciesCount);
                 foreach (var temp in speciesInPatch) GD.Print(temp.Key.FormattedName, " -> ", temp.Value);
                 foreach (var temp in results.GetNewSpeciesResults(patch).Keys) GD.Print("New: ", temp.FormattedName);
 
                 // Only bother if we're above the limit
-                if (speciesInPatch.Count + newSpeciesCount <= configuration.MaximumSpeciesInPatch)
+                if (speciesInPatch.Count + protectedSpeciesCount <= configuration.MaximumSpeciesInPatch)
                 {
                     continue;
                 }
@@ -54,16 +61,13 @@
                 GD.Print("Running extinction step in patch ", patch.Name, ".");
 
                 // Sort the species in the patch, unless protected species fill up all the place already...
-                var orderedSpeciesInPatch = (configuration.MaximumSpeciesInPatch > newSpeciesCount) ?
+                var orderedSpeciesInPatch = (configuration.MaximumSpeciesInPatch > protectedSpeciesCount) ?
                         speciesInPatch.GetSortedKeyArray() : speciesInPatch.GetKeyArray();
 
-                // Remove worst-faring species, except for the player's species
-                var speciesToRemoveCount = Math.Min(
-                    speciesInPatch.Count + newSpeciesCount - configuration.MaximumSpeciesInPatch,
-                    orderedSpeciesInPatch.Length);
+                var speciesToRemoveCount = speciesInPatch.Count - Math.Max(
+                    configuration.MaximumSpeciesInPatch - protectedSpeciesCount, 0);
 
-
-
+                // Remove worst-faring species, except for the player's and protected species
                 for (int i = 0; i < speciesToRemoveCount; i++)
                 {
                     if (orderedSpeciesInPatch[i].PlayerSpecies)

@@ -501,6 +501,23 @@
             return newSpeciesResults;
         }
 
+        public Dictionary<Species, SpeciesMigration> GetMigrationsTo(Patch patch)
+        {
+            var migrationsToPatch = new Dictionary<Species, SpeciesMigration>();
+
+            foreach (var resultEntry in results)
+            {
+                foreach (var migration in resultEntry.Value.SpreadToPatches)
+                {
+                    // Theoretically, nothing prevents migration from several patches, so no continue.
+                    if (migration.To == patch)
+                        migrationsToPatch.Add(resultEntry.Key, migration);
+                }
+            }
+
+            return migrationsToPatch;
+        }
+
         /// <summary>
         ///   Prints to log a summary of the results
         /// </summary>
