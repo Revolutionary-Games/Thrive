@@ -16,10 +16,14 @@
     public class ForceExtinction : IRunStep
     {
         private readonly List<Patch> patches;
+        private readonly AutoEvoConfiguration configuration;
 
-        public ForceExtinction(List<Patch> patches)
+        public ForceExtinction(List<Patch> patches, AutoEvoConfiguration configuration)
         {
             this.patches = patches;
+            this.configuration = configuration;
+
+            GD.Print("!!!!", configuration.ProtectMigrationsFromSpeciesCap, configuration.ProtectNewCellsFromSpeciesCap, configuration.MaximumSpeciesInPatch);
         }
 
         public bool CanRunConcurrently => false;
@@ -29,7 +33,8 @@
         public bool RunStep(RunResults results)
         {
             GD.Print("!RUNning debug step");
-            var populationsByPatch = results.GetPopulationsByPatch(true, true, false);
+            var populationsByPatch = results.GetPopulationsByPatch(configuration.ProtectMigrationsFromSpeciesCap,
+                !configuration.AllowNoMutation, configuration.ProtectNewCellsFromSpeciesCap);
 
             foreach (Patch patch in patches)
             {
@@ -41,7 +46,7 @@
                 foreach (var temp in results.GetNewSpeciesResults(patch).Keys) GD.Print("New: ", temp.FormattedName);
 
                 // Only bother if we're above the limit
-                if (speciesInPatch.Count + newSpeciesCount <= Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
+                if (speciesInPatch.Count + newSpeciesCount <= configuration.MaximumSpeciesInPatch)
                 {
                     continue;
                 }
@@ -51,10 +56,9 @@
                 var orderedSpeciesInPatch = speciesInPatch.GetSortedKeyArray();
 
                 // Remove worst-faring species, except for the player's species
-                // TODO: Use auto-evo configuratio instead of constant
                 // TODO: if we remove everything, better skip the sorting
                 var speciesToRemoveCount = Math.Min(
-                    speciesInPatch.Count + newSpeciesCount - Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH,
+                    speciesInPatch.Count + newSpeciesCount - configuration.MaximumSpeciesInPatch,
                     orderedSpeciesInPatch.Length);
 
                 for (int i = 0; i < speciesToRemoveCount; i++)
