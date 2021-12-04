@@ -139,7 +139,7 @@ public class NewSaveMenu : Control
 
     private void OnSaveNameTextChanged(string newName)
     {
-        if (newName.Length != 0 && !newName.Any(Constants.SAVE_NAME_BLACKLIST.Contains))
+        if (!string.IsNullOrWhiteSpace(newName) && !newName.Any(Constants.SAVE_NAME_BLACKLIST.Contains))
         {
             saveNameBox.Set("custom_colors/font_color", new Color(1, 1, 1));
             saveButton.Disabled = false;
@@ -153,7 +153,7 @@ public class NewSaveMenu : Control
 
     private void OnSaveNameTextEntered(string newName)
     {
-        if (newName.Length != 0 && !newName.Any(Constants.SAVE_NAME_BLACKLIST.Contains))
+        if (!string.IsNullOrWhiteSpace(newName) && !newName.Any(Constants.SAVE_NAME_BLACKLIST.Contains))
         {
             SaveButtonPressed();
         }
