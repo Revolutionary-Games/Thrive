@@ -376,11 +376,8 @@ public class AutoEvoRun
 
         foreach (var patch in map.Patches.Values)
         {
-            // TODO use autoEvoConfig here
-            if (patch.SpeciesInPatch.Count > Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
-            {
-                steps.Enqueue(new ForceExtinction(patch));
-            }
+            // TODO consider using configuration here
+            steps.Enqueue(new ForceExtinction(patch));
         }
     }
 
