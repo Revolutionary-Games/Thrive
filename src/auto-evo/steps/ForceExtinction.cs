@@ -2,6 +2,7 @@
 {
     using Godot;
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     ///   Forces extinction of worse-faring species to limit the number of steps in next auto-evo run
@@ -14,11 +15,11 @@
     /// </remarks>
     public class ForceExtinction : IRunStep
     {
-        private readonly Patch patch;
+        private readonly List<Patch> patches;
 
-        public ForceExtinction(Patch patch)
+        public ForceExtinction(List<Patch> patches)
         {
-            this.patch = patch;
+            this.patches = patches;
         }
 
         public bool CanRunConcurrently => false;
@@ -27,8 +28,19 @@
 
         public bool RunStep(RunResults results)
         {
-            // TODO cache
-            var speciesInPatch = results.GetPopulationsByPatch(true, true, true)[patch];
+            var populationsByPatch = results.GetPopulationsByPatch(true, true, true);
+
+            foreach (Patch patch in patches)
+            {
+                var speciesInPatch = populationsByPatch[patch];
+                RunStepInPatch(results, patch, speciesInPatch);
+            }
+
+            return true;
+        }
+
+        private bool RunStepInPatch(RunResults results, Patch patch, Dictionary<Species, long> speciesInPatch)
+        {
             var newSpeciesCount = results.GetNewSpeciesResults(patch).Count;
 
             // Only bother if we're above the limit
@@ -85,7 +97,8 @@
                 if (orderedSpeciesInPatch[i].PlayerSpecies)
                     continue;
 
-                GD.Print("Forced extinction of species ", orderedSpeciesInPatch[i].FormattedName, " in patch ", patch.Name, ".");
+                GD.Print("Forced extinction of species ", orderedSpeciesInPatch[i].FormattedName,
+                    " in patch ", patch.Name, ".");
                 results.AddPopulationResultForSpecies(orderedSpeciesInPatch[i], patch, 0);
             }
 

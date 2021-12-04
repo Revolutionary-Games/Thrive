@@ -374,11 +374,7 @@ public class AutoEvoRun
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
 
-        foreach (var patch in map.Patches.Values)
-        {
-            // TODO consider using configuration here
-            steps.Enqueue(new ForceExtinction(patch));
-        }
+        steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList()));
     }
 
     /// <summary>
