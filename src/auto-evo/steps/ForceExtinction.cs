@@ -26,7 +26,6 @@ namespace AutoEvo
 
         public bool RunStep(RunResults results)
         {
-
             // TODO cache
             var speciesInPatch = results.GetPopulationsByPatch(true, true)[patch];
 
@@ -39,8 +38,6 @@ namespace AutoEvo
             GD.Print("Running extinction step in patch ", patch.Name, ".");
 
             var orderedSpeciesInPatch = new Species[speciesInPatch.Count];
-            GD.Print(speciesInPatch.Count);
-            foreach (var trash in speciesInPatch) GD.Print(trash.Key, " -> ", trash.Value);
             speciesInPatch.Keys.CopyTo(orderedSpeciesInPatch, 0);
 
             // Sorting by insertion, asymptotically sub-optimal but usually efficient on small datasets like here.
@@ -48,7 +45,6 @@ namespace AutoEvo
             {
                 var speciesToSort = orderedSpeciesInPatch[i];
                 var population = speciesInPatch[speciesToSort];
-                GD.Print(orderedSpeciesInPatch[i].FormattedName, " population: ", population);
 
                 // Sort value at index i within the previous ones, already sorted from low to high
                 for (int j = i; j >= 0; j--)
@@ -81,7 +77,8 @@ namespace AutoEvo
             {
                 if (orderedSpeciesInPatch[i].PlayerSpecies)
                     continue;
-                GD.Print("!!!Removed species ", orderedSpeciesInPatch[i].FormattedName, " in patch ", patch.Name, "!");
+
+                GD.Print("Forced extinction of species ", orderedSpeciesInPatch[i].FormattedName, " in patch ", patch.Name, ".");
                 results.AddPopulationResultForSpecies(orderedSpeciesInPatch[i], patch, 0);
             }
 
