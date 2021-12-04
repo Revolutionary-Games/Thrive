@@ -1,7 +1,7 @@
-﻿using Godot;
-
-namespace AutoEvo
+﻿namespace AutoEvo
 {
+    using Godot;
+
     /// <summary>
     ///   Forces extinction of worse-faring species to limit the number of steps in next auto-evo run
     /// </summary>
