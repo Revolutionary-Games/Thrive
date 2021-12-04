@@ -373,7 +373,6 @@
         /// </summary>
         /// <remarks>
         ///   <para>
-        ///     TODO: Ensure cache.
         ///     TODO: Currently no enforced correlation with actual changes applied.
         ///   </para>
         ///   <para>
