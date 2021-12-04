@@ -89,7 +89,7 @@
                 result.SplitOffPatches.Contains(s.From) || result.SplitOffPatches.Contains(s.To));
         }
 
-        public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPatches,
+        public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
             NewSpeciesType addType, Species parentSpecies)
         {
             MakeSureResultExistsForSpecies(species);
@@ -97,9 +97,9 @@
             results[species].NewlyCreated = addType;
             results[species].SplitFrom = parentSpecies;
 
-            foreach (var initialPatch in initialPatches)
+            foreach (var patchPopulation in initialPopulationInPatches)
             {
-                results[species].NewPopulationInPatches[initialPatch.Key] = Math.Max(initialPatch.Value, 0);
+                results[species].NewPopulationInPatches[patchPopulation.Key] = Math.Max(patchPopulation.Value, 0);
             }
         }
 
