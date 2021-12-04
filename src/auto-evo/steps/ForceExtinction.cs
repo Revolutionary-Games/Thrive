@@ -59,7 +59,7 @@ namespace AutoEvo
 
             // Remove worst-faring species, except for the player's species
             // TODO: Use auto-evo configuratio instead of constant
-            for (int i = Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH; i < orderedSpeciesInPatch.Length; i++)
+            for (int i = 0; i < orderedSpeciesInPatch.Length - Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH; i++)
             {
                 if (orderedSpeciesInPatch[i].PlayerSpecies)
                     continue;
