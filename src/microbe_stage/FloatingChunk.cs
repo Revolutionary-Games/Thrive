@@ -51,10 +51,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     [JsonProperty]
     private bool isParticles;
 
-    public int DespawnRadiusSqr { get; set; }
+    public int DespawnRadiusSquared { get; set; }
 
     [JsonIgnore]
-    public Node SpawnedNode => this;
+    public Node EntityNode => this;
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
@@ -369,8 +369,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         if (dissolveEffectValue >= 1)
         {
-            OnDestroyed();
-            this.DetachAndQueueFree();
+            this.DestroyDetachAndQueueFree();
         }
     }
 
@@ -393,8 +392,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         if (Damages > 0 || DeleteOnTouch || Size > 0)
         {
             ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-            Connect("body_shape_entered", this, "OnContactBegin");
-            Connect("body_shape_exited", this, "OnContactEnd");
+            Connect("body_shape_entered", this, nameof(OnContactBegin));
+            Connect("body_shape_exited", this, nameof(OnContactEnd));
         }
     }
 
@@ -409,7 +408,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
                 return;
 
-            touchingMicrobes.Add(microbe);
+            microbe = microbe.GetMicrobeFromShape(bodyShape);
+            if (microbe != null)
+                touchingMicrobes.Add(microbe);
         }
     }
 
@@ -420,11 +421,21 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
         if (body is Microbe microbe)
         {
+            var shapeOwner = microbe.ShapeFindOwner(bodyShape);
+
+            // This can happen when a microbe unbinds while also touching a floating chunk
+            // TODO: Do something more elegant to stop the error messages in the log
+            if (shapeOwner == 0)
+            {
+                touchingMicrobes.Remove(microbe);
+                return;
+            }
+
             // This might help in a case where the cell is touching with both a pilus and non-pilus part
-            if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
+            if (microbe.IsPilus(shapeOwner))
                 return;
 
-            touchingMicrobes.Remove(microbe);
+            touchingMicrobes.Remove(microbe.GetMicrobeFromShape(bodyShape));
         }
     }
 
@@ -449,8 +460,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         }
         else if (!isParticles)
         {
-            OnDestroyed();
-            this.DetachAndQueueFree();
+            this.DestroyDetachAndQueueFree();
         }
     }
 }

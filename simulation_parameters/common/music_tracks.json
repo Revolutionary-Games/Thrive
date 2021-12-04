@@ -5,9 +5,11 @@
                 "TrackOrder": "Sequential",
                 "Tracks": [
                     {
+                        "Volume": 0.4,
                         "ResourcePath": "res://assets/sounds/main-menu-theme-1.ogg"
                     },
                     {
+                        "Volume": 0.4,
                         "ResourcePath": "res://assets/sounds/main-menu-theme-2.ogg"
                     }
                 ]
@@ -22,6 +24,7 @@
                         "ResourcePath": "res://assets/sounds/microbe-theme-1.ogg"
                     },
                     {
+                        "Volume": 0.6,
                         "ResourcePath": "res://assets/sounds/microbe-theme-3.ogg"
                     },
                     {
@@ -40,11 +43,13 @@
             },
             {
                 "TrackBus": "Ambiance",
+                "TrackOrder": "EntirelyRandom",
                 "Tracks": [
                     {
                         "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience.ogg"
                     },
                     {
+                        "Volume": 0.1,
                         "ResourcePath": "res://assets/sounds/soundeffects/microbe-ambience2.ogg"
                     }
                 ]
@@ -69,6 +74,20 @@
                     },
                     {
                         "ResourcePath": "res://assets/sounds/microbe-editor-theme-5.ogg"
+                    }
+                ]
+            }
+        ]
+    },
+    "Extinction": {
+        "Return": "Reset",
+        "TrackLists": [
+            {
+                "Repeat": false,
+                "Tracks": [
+                    {
+                        "Volume": 0.25,
+                        "ResourcePath": "res://assets/sounds/extinct2.ogg"
                     }
                 ]
             }

@@ -73,11 +73,8 @@ public class RandomConverter : JsonConverter
 
             return random;
         }
-        catch (ArgumentException e)
-        {
-            throw new JsonException("Can't read Random (missing property)", e);
-        }
-        catch (NullReferenceException e)
+        catch (Exception e) when (
+            e is ArgumentException or NullReferenceException)
         {
             throw new JsonException("Can't read Random (missing property)", e);
         }

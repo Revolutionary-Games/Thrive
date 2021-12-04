@@ -13,7 +13,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -21,11 +21,27 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="simulation_parameters\CompoundLoader.cs" />
+    <Compile Include="simulation_parameters\GameCredits.cs" />
+    <Compile Include="simulation_parameters\TranslationsInfo.cs" />
+    <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\MarineSnowFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
+    <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
+    <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\LocalizedString.cs" />
+    <Compile Include="src\engine\LocalizedStringBuilder.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
+    <Compile Include="src\engine\EntityReference.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
+    <Compile Include="src\engine\FileDropHandler.cs" />
+    <Compile Include="src\engine\FolderHelpers.cs" />
     <Compile Include="src\engine\FullScreenToggle.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
     <Compile Include="src\engine\GuidanceLine.cs" />
@@ -60,10 +76,13 @@
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
     <Compile Include="src\general\AliveMarker.cs" />
+    <Compile Include="src\general\BehaviouralValueType.cs" />
+    <Compile Include="src\general\BehaviourDictionary.cs" />
     <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
     <Compile Include="src\general\IEntity.cs" />
+    <Compile Include="src\general\JSONHelpers.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
@@ -71,15 +90,25 @@
     <Compile Include="src\general\StringUtils.cs" />
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
+    <Compile Include="src\general\ShuffleBag.cs" />
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\DataPoint.cs" />
+    <Compile Include="src\gui_common\ActionButton.cs" />
     <Compile Include="src\gui_common\CheatMenu.cs" />
     <Compile Include="src\gui_common\ChemicalEquation.cs" />
     <Compile Include="src\gui_common\CompoundAmount.cs" />
     <Compile Include="src\gui_common\CompoundListBox.cs" />
+    <Compile Include="src\gui_common\CustomCheckBox.cs" />
+    <Compile Include="src\gui_common\CreditsScroll.cs" />
+    <Compile Include="src\gui_common\CustomDialog.cs" />
     <Compile Include="src\gui_common\CustomDropDown.cs" />
+    <Compile Include="src\gui_common\dialogs\TutorialDialog.cs" />
+    <Compile Include="src\gui_common\ICustomPopup.cs" />
     <Compile Include="src\gui_common\CustomRichTextLabel.cs" />
+    <Compile Include="src\gui_common\dialogs\CustomConfirmationDialog.cs" />
+    <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
+    <Compile Include="src\gui_common\dialogs\LicensesDisplay.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
@@ -100,6 +129,7 @@
     <Compile Include="src\gui_common\QuickLoadHandler.cs" />
     <Compile Include="src\gui_common\SegmentedBar.cs" />
     <Compile Include="src\gui_common\TransitionManager.cs" />
+    <Compile Include="src\gui_common\TweakedColourPicker.cs" />
     <Compile Include="src\gui_common\VersionNumber.cs" />
     <Compile Include="simulation_parameters\Constants.cs" />
     <Compile Include="src\engine\FPSCounter.cs" />
@@ -110,6 +140,9 @@
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
+    <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
+    <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
+    <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
     <Compile Include="src\microbe_stage\ChunkConfiguration.cs" />
     <Compile Include="src\microbe_stage\ColonyCompoundBag.cs" />
@@ -134,11 +167,14 @@
     <Compile Include="src\microbe_stage\Microbe.cs" />
     <Compile Include="src\microbe_stage\MicrobeCamera.cs" />
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
+    <Compile Include="src\microbe_stage\MicrobeInternalCalculations.cs" />
+    <Compile Include="src\general\SpeciesInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
-    <Compile Include="src\microbe_stage\NucleusMesh.cs" />
+    <Compile Include="src\microbe_stage\OrganelleMeshWithChildren.cs" />
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
+    <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\ProcessList.cs" />
     <Compile Include="src\microbe_stage\ProcessPanel.cs" />
@@ -225,7 +261,18 @@
     <Compile Include="src\general\MusicCategory.cs" />
     <Compile Include="src\microbe_stage\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
+    <Compile Include="src\modding\FullModDetails.cs" />
+    <Compile Include="src\modding\IMod.cs" />
+    <Compile Include="src\modding\ModInfo.cs" />
+    <Compile Include="src\modding\IModInterface.cs" />
+    <Compile Include="src\modding\ModInterface.cs" />
+    <Compile Include="src\modding\ModLoader.cs" />
+    <Compile Include="src\modding\ModManager.cs" />
+    <Compile Include="src\modding\ModUploader.cs" />
+    <Compile Include="src\modding\NewModGUI.cs" />
+    <Compile Include="src\modding\WorkshopData.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
+    <Compile Include="src\saving\IChildPropertiesLoadCallback.cs" />
     <Compile Include="src\saving\IGodotEarlyNodeResolve.cs" />
     <Compile Include="src\saving\ILoadableGameState.cs" />
     <Compile Include="src\saving\InProgressLoad.cs" />
@@ -234,6 +281,8 @@
     <Compile Include="src\saving\ISaveContext.cs" />
     <Compile Include="src\saving\ISaveLoadable.cs" />
     <Compile Include="src\saving\ISaveLoadedTracked.cs" />
+    <Compile Include="src\saving\ISaveUpgradeStep.cs" />
+    <Compile Include="src\saving\JSONDebug.cs" />
     <Compile Include="src\saving\NewSaveMenu.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveApplyHelper.cs" />
@@ -247,12 +296,14 @@
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\SaveManagerGUI.cs" />
     <Compile Include="src\saving\SaveStatusOverlay.cs" />
+    <Compile Include="src\saving\SaveUpgrader.cs" />
     <Compile Include="src\saving\serializers\AssignOnlyChildItemsOnDeserializeAttribute.cs" />
     <Compile Include="src\saving\serializers\Base64BinaryConverter.cs" />
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
     <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
+    <Compile Include="src\saving\serializers\EntityReferenceConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\GodotBasisConverter.cs" />
     <Compile Include="src\saving\serializers\NodeConverter.cs" />
@@ -271,18 +322,31 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\steam\ISteamClient.cs" />
+    <Compile Include="src\steam\ISteamSignalReceiver.cs" />
+    <Compile Include="src\steam\SteamHandler.cs" />
+    <Compile Include="src\steam\SteamItemVisibility.cs" />
+    <Compile Include="src\steam\SteamUploadProgress.cs" />
+    <Compile Include="src\steam\WorkshopItemData.cs" />
+    <Compile Include="src\steam\WorkshopItemState.cs" />
+    <Compile Include="src\steam\WorkshopResult.cs" />
     <Compile Include="src\tutorial\ITutorialGUI.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
+    <Compile Include="src\tutorial\microbe_editor\AutoEvoPrediction.cs" />
     <Compile Include="src\tutorial\microbe_editor\CellEditorIntroduction.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorEntryCountingTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorRedoTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorTutorialEnd.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorUndoTutorial.cs" />
     <Compile Include="src\tutorial\microbe_editor\EditorWelcome.cs" />
     <Compile Include="src\tutorial\microbe_editor\MicrobeEditorTutorialGUI.cs" />
     <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
+    <Compile Include="src\tutorial\microbe_editor\StaySmallTutorial.cs" />
+    <Compile Include="src\tutorial\microbe_stage\CheckTheHelpMenu.cs" />
     <Compile Include="src\tutorial\microbe_stage\GlucoseCollecting.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeMovement.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeMovementExplanation.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobePressEditorButton.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeReproduction.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeStageWelcome.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeStayingAlive.cs" />
@@ -307,23 +371,30 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
+      <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.5.0</Version>
     </PackageReference>
     <PackageReference Include="SharpZipLib">
-      <Version>1.3.0</Version>
+      <Version>1.3.3</Version>
     </PackageReference>
     <PackageReference Include="Nito.Collections.Deque">
-      <Version>1.1.0</Version>
+      <Version>1.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers">
+      <Version>1.2.0-beta.354</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="export_presets.cfg" />
+    <Content Include="simulation_parameters\common\auto-evo_parameters.json" />
+    <Content Include="simulation_parameters\common\credits.json" />
+    <Content Include="simulation_parameters\common\gallery.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\input_options.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
+    <Content Include="simulation_parameters\common\translations_info.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />
     <Content Include="simulation_parameters\microbe_stage\bio_processes.json" />

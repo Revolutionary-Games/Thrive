@@ -9,7 +9,7 @@ or if you are a team member you can ask on the development discord or open a git
 
 If you are a team member you can ask for help on the [Private
 Developer
-Forums](https://forum.revolutionarygamesstudio.com/c/programming)
+Forums](https://forum.revolutionarygamesstudio.com/c/programming/14)
 
 You can also join and ask on our [community
 discord](https://discordapp.com/invite/FZxDQ4H) please use the
@@ -43,13 +43,15 @@ To clone the Thrive repository properly you need Git with Git LFS.
 
 You need at least Git LFS version 2.8.0, old versions do not work.
 
-On Linux and mac use your package manager to install git. Git lfs is
-likely available as a package named `git-lfs`. If it is not install it
-manually. After installing remember to run `git lfs install` in terminal.
+On Linux use your package manager to install Git. On Mac install the
+package manager [homebrew](https://brew.sh/) if you don't already have
+it, and use it to install Git. On Mac and Linux Git LFS is likely available
+as a package named `git-lfs`. If it is not install it manually. After
+installing remember to run `git lfs install` in terminal.
 
 On Windows install Git with the official installer from:
 https://git-scm.com/download/win You can use this installer to also
-install git lfs for you. After installing you need to run `git lfs
+install Git LFS for you. After installing you need to run `git lfs
 install` in command prompt. You'll probably want to turn autocrlf on
 with the command `git config --global core.autocrlf true`. If you don't,
 there is a risk that you accidentally commit Windows-style line
@@ -66,7 +68,7 @@ have to deleted all your cloned folders to avoid errors, and reboot
 your computer to have everything detect that Git is now in a different
 place.
 
-If you haven't used git before you can read a free online book to learn
+If you haven't used Git before you can read a free online book to learn
 it here https://git-scm.com/book/en/v2 or if you prefer video learning
 these two are recommended https://www.youtube.com/watch?v=SWYqp7iY_Tc
 https://www.youtube.com/watch?v=HVsySz-h9r4
@@ -266,7 +268,7 @@ have build errors, check if this is setup properly.
 On Linux dotnet is the recommended build tool.
 
 Even if you do not use the Godot script editor, Godot automatically opens some files and replaces the spaces with tabs.
-To stop Godot from messing with you files, go to Text Editor -> Indent and set Type to spaces
+To stop Godot from messing with your files, go to Text Editor -> Indent and set Type to spaces
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_use_spaces.png" alt="set intend to spaces" width="550px">
 
@@ -387,7 +389,8 @@ package manager to install it.
 
 On windows it is recommended to use RubyInstaller, version 2.4 or
 newer, when installing make sure to also install the MSYS option in
-order to be able to install gems.
+order to be able to install gems and allow the ridk post-install step
+to run.
 
 After installing ruby open a terminal / command prompt and run:
 
@@ -451,7 +454,7 @@ sudo npm install -g jsonlint
 Download from:
 https://www.jetbrains.com/resharper/download/#section=commandline
 unzip and add to PATH. Currently used version is:
-JetBrains.ReSharper.CommandLineTools.2021.1.3
+JetBrains.ReSharper.CommandLineTools.2021.2.1
 
 NOTE: there is more documentation on the install process here:
 https://www.jetbrains.com/help/resharper/InspectCode.html
@@ -512,6 +515,48 @@ plain install command won't do it. So it is recommended that you use
 the above command with the provided `requirements.txt` file which
 tells pip the exact versions that should be installed.
 
+#### virtualenv
+
+You can use virtualenv to not have to install the Thrive required
+python packages globally. This can especially help if you have
+conflicting globally installed packages.
+
+First install virtualenv:
+```sh
+pip install virtualenv
+```
+
+Then create the virtualenv folder (for example in the Thrive root
+folder):
+
+```sh
+virtualenv venv -p python3
+```
+
+This creates a folder called `venv` that will contain the python
+environment.
+
+You need to activate it each time in terminal or command prompt you
+want to use python from that environment.
+
+On unix like systems:
+```sh
+source venv/bin/activate
+```
+
+On Windows:
+```sh
+\venv\Scripts\activate.bat
+```
+
+Then install the required packages and run the localization scripts
+while in the environment:
+
+```sh
+pip install -r docker/jsonlint/requirements.txt
+ruby scripts/update_localization.rb
+```
+
 ### Poedit (optional)
 
 [Poedit](https://poedit.net/) is a free .pot and .po file editor that may
@@ -542,6 +587,12 @@ before committing.
 
 When running the script like that it can take a long time to run. See
 the pre-commit hook section for how to speed things up.
+
+Alternatively you can run the script `create_changes_list.rb` each
+time before you run the formatting check. That script will build a
+list of changed files that the formatting checks will use to skip
+checking non-changed files. But the pre-commit hook is recommended as
+it is easier to use.
 
 Pre-commit hook
 ---------------

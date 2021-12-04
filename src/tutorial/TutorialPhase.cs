@@ -23,12 +23,6 @@ public abstract class TutorialPhase
     public bool HandlesEvents { get; protected set; } = true;
 
     /// <summary>
-    ///   True when this tutorial uses an exclusive popup preventing all other GUI from being interacted with
-    /// </summary>
-    [JsonProperty]
-    public bool Exclusive { get; protected set; }
-
-    /// <summary>
     ///   When true this tutorial wants the game paused
     /// </summary>
     [JsonProperty]
@@ -54,9 +48,6 @@ public abstract class TutorialPhase
 
     [JsonIgnore]
     public bool Complete => !ShownCurrently && HasBeenShown;
-
-    [JsonIgnore]
-    public bool CurrentlyExclusivelyOpen => Exclusive && ShownCurrently;
 
     [JsonIgnore]
     public bool WantsPaused => Pauses && ShownCurrently;
@@ -117,6 +108,20 @@ public abstract class TutorialPhase
 
         CanTrigger = true;
         ProcessWhileHidden = true;
+    }
+
+    /// <summary>
+    ///   Inhibits this tutorial from processing or being shown in the future. And also hides if shown currently
+    /// </summary>
+    public void Inhibit()
+    {
+        HasBeenShown = true;
+        ProcessWhileHidden = false;
+
+        if (ShownCurrently)
+        {
+            Hide();
+        }
     }
 
     public virtual Vector3 GetPositionGuidance()

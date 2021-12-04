@@ -19,7 +19,7 @@ public class NewSaveMenu : Control
 
     private SaveList saveList;
     private LineEdit saveNameBox;
-    private ConfirmationDialog overwriteConfirm;
+    private CustomConfirmationDialog overwriteConfirm;
 
     private bool usingSelectedSaveName;
 
@@ -33,12 +33,28 @@ public class NewSaveMenu : Control
     {
         saveList = GetNode<SaveList>(SaveListPath);
         saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
-        overwriteConfirm = GetNode<ConfirmationDialog>(OverwriteConfirmPath);
+        overwriteConfirm = GetNode<CustomConfirmationDialog>(OverwriteConfirmPath);
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationVisibilityChanged && Visible)
+        {
+            saveNameBox.GrabFocus();
+        }
     }
 
     public void RefreshExisting()
     {
         saveList.Refresh();
+    }
+
+    public void SetSaveName(string name, bool selectText = false)
+    {
+        saveNameBox.Text = name;
+
+        if (selectText)
+            saveNameBox.SelectAll();
     }
 
     private void ClosePressed()
@@ -57,7 +73,7 @@ public class NewSaveMenu : Control
         if (FileHelpers.Exists(PathUtils.Join(Constants.SAVE_FOLDER, name)))
         {
             // The chosen filename ({0}) already exists. Overwrite?
-            overwriteConfirm.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
+            overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
                 name);
             overwriteConfirm.PopupCenteredShrink();

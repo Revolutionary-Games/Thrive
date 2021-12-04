@@ -25,7 +25,7 @@ The available input attributes
 | Attribute | Description | Parameters | Method parameters | Multiple |
 | --------- | ----------- | ---------- | ----------------- | -------- |
 | RunOnKey  | Fires repeatedly when the input is held down | input : string | delta : float | yes |
-| RunOnKeyChange | Fires once when the input is pressed or released | input : string | none | yes |
+| RunOnKeyChange | Fires once when the input is pressed or released | input : string | state : bool | yes |
 | RunOnKeyDown | Fires once when the input is pressed | input : string | none | yes |
 | RunOnKeyUp | Fires once when the input is released | input : string | none | yes |
 | RunOnKeyToggle | Fires once when the input is pressed and provides an alternating bool | input : string | state : bool | yes |

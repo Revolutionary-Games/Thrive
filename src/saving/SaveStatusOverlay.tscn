@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "SavingStatusFadeOut"
@@ -71,9 +71,7 @@ __meta__ = {
 }
 StatusLabelPath = NodePath("CenterContainer/StatusLabel")
 AnimationPlayerPath = NodePath("CenterContainer/AnimationPlayer")
-ErrorDialogPath = NodePath("CenterContainer2/ErrorPopup")
-ExtraErrorDescriptionPath = NodePath("CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer/ExtraErrorDescription")
-ExceptionPath = NodePath("CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer/Exception")
+ErrorDialogPath = NodePath("CenterContainer2/ErrorDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -108,78 +106,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ErrorPopup" type="AcceptDialog" parent="CenterContainer2"]
-visible = true
-margin_left = 315.0
-margin_top = 185.0
-margin_right = 965.0
-margin_bottom = 535.0
-rect_min_size = Vector2( 650, 350 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-popup_exclusive = true
-window_title = "SAVING_ERROR"
-resizable = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/ErrorPopup"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 640.0
-margin_bottom = 298.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
-margin_right = 630.0
-margin_bottom = 252.0
-rect_min_size = Vector2( 300, 200 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer"]
-margin_right = 630.0
-margin_bottom = 252.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ExtraErrorDescription" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_right = 630.0
-margin_bottom = 22.0
-custom_fonts/font = ExtResource( 3 )
-text = "Extra description goes here"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="Exception" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 630.0
-margin_bottom = 48.0
-custom_fonts/font = ExtResource( 3 )
-text = "Exception info goes here"
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
-margin_top = 256.0
-margin_right = 630.0
-margin_bottom = 288.0
-size_flags_horizontal = 5
-size_flags_vertical = 9
-alignment = 2
-
-[node name="CopyErrorButton" type="Button" parent="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2"]
-margin_right = 630.0
-margin_bottom = 32.0
-size_flags_horizontal = 5
-size_flags_vertical = 9
-text = "COPY_ERROR_TO_CLIPBOARD"
-[connection signal="popup_hide" from="CenterContainer2/ErrorPopup" to="." method="OnErrorDialogDismissed"]
-[connection signal="pressed" from="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]
+[node name="ErrorDialog" parent="CenterContainer2" instance=ExtResource( 3 )]
+margin_left = 613.0
+margin_top = 320.0
+margin_right = 667.0
+margin_bottom = 400.0

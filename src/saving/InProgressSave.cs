@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
+using Saving;
 
 /// <summary>
 ///   Holds data needed for an in-progress save action. And manages stepping through all the actions that need to happen
@@ -30,9 +31,18 @@ public class InProgressSave : IDisposable
 
     private bool success;
     private string message;
-    private string exception;
+
+    /// <summary>
+    ///   Failure exception or message describing the problem. Which one it is depends on
+    ///   <see cref="exceptionOrMessageIsException"/>
+    /// </summary>
+    private string exceptionOrFailureMessage;
+
+    private bool exceptionOrMessageIsException = true;
 
     private bool disposed;
+
+    private bool wasColourblindScreenFilterVisible;
 
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
         Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string saveName)
@@ -59,12 +69,18 @@ public class InProgressSave : IDisposable
         Finished,
     }
 
+    /// <summary>
+    ///   True when a save is currently being made. Used to prevent another save or load starting
+    /// </summary>
+    public static bool IsSaving { get; private set; }
+
     public SaveInformation.SaveType Type { get; }
 
     public void Start()
     {
         currentGameRoot.Invoke().GetTree().Paused = true;
 
+        IsSaving = true;
         Invoke.Instance.Perform(Step);
     }
 
@@ -74,11 +90,12 @@ public class InProgressSave : IDisposable
         GC.SuppressFinalize(this);
     }
 
-    internal void ReportStatus(bool success, string message, string exception = "")
+    internal void ReportStatus(bool success, string message, string exceptionOrFailure = "", bool isException = true)
     {
         this.success = success;
         this.message = message;
-        this.exception = exception;
+        exceptionOrFailureMessage = exceptionOrFailure;
+        exceptionOrMessageIsException = isException;
     }
 
     protected virtual void Dispose(bool disposing)
@@ -151,15 +168,28 @@ public class InProgressSave : IDisposable
             case State.Initial:
                 // On this frame a pause menu might still be open, wait until next frame for it to close before
                 // taking a screenshot
+                wasColourblindScreenFilterVisible = ColourblindScreenFilter.Instance.Visible;
+                if (wasColourblindScreenFilterVisible)
+                {
+                    ColourblindScreenFilter.Instance.Hide();
+                }
+
                 state = State.Screenshot;
                 break;
             case State.Screenshot:
             {
                 save = createSaveData.Invoke(this);
+
+                if (wasColourblindScreenFilterVisible)
+                {
+                    ColourblindScreenFilter.Instance.Show();
+                }
+
                 SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING"),
                     Mathf.Inf);
 
                 state = State.SaveData;
+                JSONDebug.FlushJSONTracesOut();
                 break;
             }
 
@@ -178,6 +208,8 @@ public class InProgressSave : IDisposable
                 stopwatch.Stop();
                 GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
 
+                JSONDebug.FlushJSONTracesOut();
+
                 if (success)
                 {
                     SaveStatusOverlay.Instance.ShowMessage(message);
@@ -188,8 +220,12 @@ public class InProgressSave : IDisposable
                 {
                     SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_FAILED"));
                     SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_SAVING"),
-                        message, exception);
+                        message, exceptionOrFailureMessage, false, null, exceptionOrMessageIsException);
                 }
+
+                IsSaving = false;
+
+                SaveHelper.MarkLastSaveToCurrentTime();
 
                 return;
             }
@@ -220,7 +256,7 @@ public class InProgressSave : IDisposable
 
                 foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
                 {
-                    var match = Regex.Match(name, "^save_(\\d)+\\." + Constants.SAVE_EXTENSION);
+                    var match = Regex.Match(name, "^save_(\\d+)\\." + Constants.SAVE_EXTENSION);
 
                     if (match.Success)
                     {
@@ -237,13 +273,13 @@ public class InProgressSave : IDisposable
 
             case SaveInformation.SaveType.AutoSave:
             {
-                return GetNextNameForSaveType("^auto_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "auto_save",
+                return GetNextNameForSaveType("^auto_save_(\\d+)\\." + Constants.SAVE_EXTENSION, "auto_save",
                     Settings.Instance.MaxAutoSaves);
             }
 
             case SaveInformation.SaveType.QuickSave:
             {
-                return GetNextNameForSaveType("^quick_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "quick_save",
+                return GetNextNameForSaveType("^quick_save_(\\d+)\\." + Constants.SAVE_EXTENSION, "quick_save",
                     Settings.Instance.MaxQuickSaves);
             }
 

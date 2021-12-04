@@ -14,6 +14,7 @@ using Godot;
 /// </remarks>
 public class InputManager : Node
 {
+    private static readonly List<WeakReference> DestroyedListeners = new List<WeakReference>();
     private static InputManager staticInstance;
 
     /// <summary>
@@ -24,8 +25,7 @@ public class InputManager : Node
     ///     This is sorted based on priority, so if Dictionary doesn't keep key order this will break.
     ///   </para>
     /// </remarks>
-    private Dictionary<InputAttribute, List<WeakReference>> attributes
-        = new Dictionary<InputAttribute, List<WeakReference>>();
+    private Dictionary<InputAttribute, List<WeakReference>> attributes = new();
 
     public InputManager()
     {
@@ -39,9 +39,9 @@ public class InputManager : Node
     }
 
     /// <summary>
-    ///   Indicates whether a rebinding is in progress
+    ///   Set to true when a rebinding is being performed, used to discard input
     /// </summary>
-    public static bool RebindingIsActive { get; set; }
+    public static bool PerformingRebind { get; set; }
 
     /// <summary>
     ///   Adds the instance to the list of objects receiving input.
@@ -99,6 +99,16 @@ public class InputManager : Node
     }
 
     /// <summary>
+    ///   Used for Controls to forward mouse events to the InputManager,
+    ///   as Controls swallow the MouseEvents if MouseFilter != Ignore.
+    /// </summary>
+    /// <param name="inputEvent">The event the user fired</param>
+    public static void ForwardInput(InputEvent inputEvent)
+    {
+        staticInstance._UnhandledInput(inputEvent);
+    }
+
+    /// <summary>
     ///   Calls all OnProcess methods of all input attributes
     /// </summary>
     /// <param name="delta">The time since the last _Process call</param>
@@ -120,6 +130,9 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (PerformingRebind)
+            return;
+
         OnInput(true, @event);
     }
 
@@ -131,6 +144,9 @@ public class InputManager : Node
     /// <param name="event">The event the user fired</param>
     public override void _Input(InputEvent @event)
     {
+        if (PerformingRebind)
+            return;
+
         OnInput(false, @event);
     }
 
@@ -153,7 +169,6 @@ public class InputManager : Node
         if (method == null)
             return true;
 
-        var disposed = new List<WeakReference>();
         var instances = staticInstance.attributes[attribute];
         var result = false;
 
@@ -179,7 +194,7 @@ public class InputManager : Node
                 if (!instance.IsAlive)
                 {
                     // if the WeakReference is no longer valid
-                    disposed.Add(instance);
+                    DestroyedListeners.Add(instance);
                     continue;
                 }
 
@@ -201,11 +216,11 @@ public class InputManager : Node
                         GD.PrintErr("Failed to perform input method invoke: ", e);
                     }
 
-                    disposed.Add(instance);
+                    DestroyedListeners.Add(instance);
                     continue;
                 }
 
-                if (invokeResult != null && invokeResult is bool asBool)
+                if (invokeResult is bool asBool)
                 {
                     thisInstanceResult = asBool;
                 }
@@ -221,17 +236,14 @@ public class InputManager : Node
             }
         }
 
-        disposed.ForEach(p => instances.Remove(p));
+        DestroyedListeners.ForEach(p => instances.Remove(p));
+        DestroyedListeners.Clear();
 
         return result;
     }
 
     private void OnInput(bool unhandledInput, InputEvent @event)
     {
-        // Ignore input while rebinding
-        if (RebindingIsActive)
-            return;
-
         // Ignore mouse motion
         // TODO: support mouse movement input as well
         if (@event is InputEventMouseMotion)
@@ -243,6 +255,12 @@ public class InputManager : Node
 
         foreach (var entry in attributes)
         {
+            // Skip attributes that have no active listener objects (if this is a key down)
+            // TODO: only CallMethod currently removes the invalid references from the list so the object might be dead
+            // already and we don't know that yet
+            if (isDown && entry.Value.Count < 1)
+                continue;
+
             var attribute = entry.Key;
 
             if (unhandledInput || !attribute.OnlyUnhandled)
@@ -273,7 +291,7 @@ public class InputManager : Node
             PauseMode = PauseModeEnum.Process,
             WaitTime = 1,
         };
-        timer.Connect("timeout", this, "ClearExpiredReferences");
+        timer.Connect("timeout", this, nameof(ClearExpiredReferences));
         AddChild(timer);
     }
 

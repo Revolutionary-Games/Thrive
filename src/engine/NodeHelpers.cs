@@ -6,6 +6,15 @@
 public static class NodeHelpers
 {
     /// <summary>
+    ///   Properly destroys a game entity. In addition to the normal Godot Free, Destroy must be called
+    /// </summary>
+    public static void DestroyDetachAndQueueFree(this IEntity entity)
+    {
+        entity.OnDestroyed();
+        entity.EntityNode.DetachAndQueueFree();
+    }
+
+    /// <summary>
     ///   Safely frees a Node. Detaches from parent if attached to not leave disposed objects in scene tree.
     ///   This should always be preferred over Free, except when multiple children should be deleted.
     ///   For that see <see cref="NodeHelpers.FreeChildren"/>
@@ -105,5 +114,28 @@ public static class NodeHelpers
 
         node.GetParent().RemoveChild(node);
         newParent.AddChild(node);
+    }
+
+    /// <summary>
+    ///   Get the material of this scene's model.
+    /// </summary>
+    /// <param name="node">Node to get material from.</param>
+    /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
+    /// <returns>ShaderMaterial of the GeometryInstance.</returns>
+    public static ShaderMaterial GetMaterial(this Node node, NodePath modelPath = null)
+    {
+        GeometryInstance geometry;
+
+        // Fetch the actual model from the scene
+        if (string.IsNullOrEmpty(modelPath))
+        {
+            geometry = (GeometryInstance)node;
+        }
+        else
+        {
+            geometry = node.GetNode<GeometryInstance>(modelPath);
+        }
+
+        return (ShaderMaterial)geometry.MaterialOverride;
     }
 }

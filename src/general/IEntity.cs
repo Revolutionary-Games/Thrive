@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   All game entities implement this interface to provide support for needed operations regarding them
@@ -16,6 +17,12 @@ public interface IEntity
     /// </remarks>
     [JsonIgnore]
     AliveMarker AliveMarker { get; }
+
+    /// <summary>
+    ///   The Node that this entity is in the game world as
+    /// </summary>
+    [JsonIgnore]
+    Node EntityNode { get; }
 
     void OnDestroyed();
 

@@ -27,11 +27,21 @@ public class PauseMenu : ControlWithInput
     [Export]
     public NodePath LoadSaveListPath;
 
+    [Export]
+    public NodePath UnsavedProgressWarningPath;
+
     private Control primaryMenu;
     private HelpScreen helpScreen;
     private Control loadMenu;
     private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
+    private CustomConfirmationDialog unsavedProgressWarning;
+
+    /// <summary>
+    ///   The assigned pending exit type, will be used to specify what kind of
+    ///   game exit will be performed on exit confirmation.
+    /// </summary>
+    private ExitType exitType;
 
     [Signal]
     public delegate void OnClosed();
@@ -50,9 +60,91 @@ public class PauseMenu : ControlWithInput
     public delegate void MakeSave(string name);
 
     /// <summary>
+    ///   Types of exit the player can request. Used to store the action for when the warning popup
+    ///   about this is closed.
+    /// </summary>
+    public enum ExitType
+    {
+        ReturnToMenu,
+        QuitGame,
+    }
+
+    private enum ActiveMenuType
+    {
+        Primary,
+        Help,
+        Load,
+        Options,
+        Save,
+        None,
+    }
+
+    /// <summary>
     ///   The GameProperties object holding settings and state for the current game session.
     /// </summary>
     public GameProperties GameProperties { get; set; }
+
+    public bool GameLoading { get; set; }
+
+    /// <summary>
+    ///   If true the user may not open the pause menu.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Does not automatically close the pause menu when set to true.
+    ///   </para>
+    /// </remarks>
+    public bool IsPausingBlocked
+    {
+        get
+        {
+            if (GameLoading)
+                return true;
+
+            if (GUICommon.Instance.IsAnyExclusivePopupActive)
+                return true;
+
+            if (TransitionManager.Instance.HasQueuedTransitions)
+                return true;
+
+            return false;
+        }
+    }
+
+    private ActiveMenuType ActiveMenu
+    {
+        get
+        {
+            foreach (ActiveMenuType menuEnumValue in Enum.GetValues(typeof(ActiveMenuType)))
+            {
+                if (GetControlFromMenuEnum(menuEnumValue)?.Visible == true)
+                    return menuEnumValue;
+            }
+
+            return ActiveMenuType.None;
+        }
+        set
+        {
+            var currentActiveMenu = ActiveMenu;
+            if (value == currentActiveMenu)
+                return;
+
+            GetControlFromMenuEnum(currentActiveMenu)?.Hide();
+
+            switch (value)
+            {
+                case ActiveMenuType.Options:
+                    optionsMenu.OpenFromInGame(GameProperties);
+                    break;
+                case ActiveMenuType.None:
+                    // just close the current menu
+                    break;
+                default:
+                    GetControlFromMenuEnum(value).Show();
+                    break;
+            }
+        }
+    }
 
     public override void _EnterTree()
     {
@@ -68,6 +160,7 @@ public class PauseMenu : ControlWithInput
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
+        unsavedProgressWarning = GetNode<CustomConfirmationDialog>(UnsavedProgressWarningPath);
     }
 
     [RunOnKeyDown("ui_cancel", Priority = Constants.PAUSE_MENU_CANCEL_PRIORITY)]
@@ -75,42 +168,62 @@ public class PauseMenu : ControlWithInput
     {
         if (Visible)
         {
-            SetActiveMenu("primary");
+            ActiveMenu = ActiveMenuType.Primary;
 
             EmitSignal(nameof(OnClosed));
 
             return true;
         }
 
-        if (NoExclusiveTutorialActive())
-        {
-            EmitSignal(nameof(OnOpenWithKeyPress));
-            return true;
-        }
+        if (IsPausingBlocked)
+            return false;
 
-        // Not handled, pass through.
-        return false;
+        EmitSignal(nameof(OnOpenWithKeyPress));
+        return true;
     }
 
     [RunOnKeyDown("help")]
-    public void ShowHelpPressed()
+    public bool ShowHelpPressed()
     {
-        if (NoExclusiveTutorialActive())
-        {
-            EmitSignal(nameof(OnOpenWithKeyPress));
-            ShowHelpScreen();
-        }
+        if (IsPausingBlocked)
+            return false;
+
+        EmitSignal(nameof(OnOpenWithKeyPress));
+        ShowHelpScreen();
+        return true;
     }
 
     public void ShowHelpScreen()
     {
-        SetActiveMenu("help");
+        if (ActiveMenu == ActiveMenuType.Help)
+            return;
+
+        ActiveMenu = ActiveMenuType.Help;
         helpScreen.RandomizeEasterEgg();
     }
 
-    private bool NoExclusiveTutorialActive()
+    public void SetNewSaveName(string name)
     {
-        return GameProperties.TutorialState?.ExclusiveTutorialActive() != true;
+        saveMenu.SetSaveName(name, true);
+    }
+
+    public void SetNewSaveNameFromSpeciesName()
+    {
+        SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
+    }
+
+    private Control GetControlFromMenuEnum(ActiveMenuType value)
+    {
+        return value switch
+        {
+            ActiveMenuType.Primary => primaryMenu,
+            ActiveMenuType.Help => helpScreen,
+            ActiveMenuType.Load => loadMenu,
+            ActiveMenuType.Options => optionsMenu,
+            ActiveMenuType.Save => saveMenu,
+            ActiveMenuType.None => null,
+            _ => throw new NotSupportedException($"{value} is not supported"),
+        };
     }
 
     private void ClosePressed()
@@ -123,6 +236,58 @@ public class PauseMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        exitType = ExitType.ReturnToMenu;
+
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
+        {
+            ConfirmExit();
+        }
+        else
+        {
+            unsavedProgressWarning.DialogText = TranslationServer.Translate("RETURN_TO_MENU_WARNING");
+            unsavedProgressWarning.PopupCenteredShrink();
+        }
+    }
+
+    private void ExitPressed()
+    {
+        exitType = ExitType.QuitGame;
+
+        if (SaveHelper.SavedRecently || !Settings.Instance.ShowUnsavedProgressWarning)
+        {
+            ConfirmExit();
+        }
+        else
+        {
+            GUICommon.Instance.PlayButtonPressSound();
+            unsavedProgressWarning.DialogText = TranslationServer.Translate("QUIT_GAME_WARNING");
+            unsavedProgressWarning.PopupCenteredShrink();
+        }
+    }
+
+    private void OpenHelpPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        ActiveMenu = ActiveMenuType.Help;
+        helpScreen.RandomizeEasterEgg();
+    }
+
+    private void ConfirmExit()
+    {
+        switch (exitType)
+        {
+            case ExitType.ReturnToMenu:
+                ReturnToMenu();
+                break;
+            case ExitType.QuitGame:
+                Quit();
+                break;
+        }
+    }
+
+    private void ReturnToMenu()
+    {
         // Unpause the game
         GetTree().Paused = false;
 
@@ -130,104 +295,65 @@ public class PauseMenu : ControlWithInput
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
     }
 
-    private void ExitPressed()
+    private void Quit()
     {
-        GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
-    }
-
-    private void OpenHelpPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        SetActiveMenu("help");
-        helpScreen.RandomizeEasterEgg();
     }
 
     private void CloseHelpPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("load");
+        ActiveMenu = ActiveMenuType.Load;
     }
 
     private void CloseLoadPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenOptionsPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("options");
+        ActiveMenu = ActiveMenuType.Options;
     }
 
     private void OnOptionsClosed()
     {
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("save");
+        ActiveMenu = ActiveMenuType.Save;
     }
 
     private void CloseSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
     }
 
     private void ForwardSaveAction(string name)
     {
-        SetActiveMenu("primary");
+        ActiveMenu = ActiveMenuType.Primary;
 
         // Close this first to get the menus out of the way to capture the save screenshot
         EmitSignal(nameof(OnClosed));
         EmitSignal(nameof(MakeSave), name);
-    }
-
-    private void SetActiveMenu(string menu)
-    {
-        helpScreen.Hide();
-        primaryMenu.Hide();
-        loadMenu.Hide();
-        optionsMenu.Hide();
-        saveMenu.Hide();
-
-        switch (menu)
-        {
-            case "primary":
-                primaryMenu.Show();
-                break;
-            case "help":
-                helpScreen.Show();
-                break;
-            case "load":
-                loadMenu.Show();
-                break;
-            case "options":
-                optionsMenu.OpenFromInGame(GameProperties);
-                break;
-            case "save":
-                saveMenu.Show();
-                break;
-            default:
-                throw new ArgumentException("unknown menu", nameof(menu));
-        }
     }
 
     /// <summary>

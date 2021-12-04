@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Globalization;
+using Godot;
 
 /// <summary>
 ///   This is the first autoloaded class. Used to perform some actions that should happen
@@ -12,7 +13,10 @@ public class StartupActions : Node
         // TODO: for devbuilds it would be nice to print the hash here
         GD.Print("This is Thrive version: ", Constants.Version);
 
-        var userDir = OS.GetUserDataDir().Replace('\\', '/');
+        GD.Print("Startup C# locale is: ", CultureInfo.CurrentCulture, " Godot locale is: ",
+            TranslationServer.GetLocale());
+
+        var userDir = Constants.UserFolderAsNativePath;
 
         GD.Print("user:// directory is: ", userDir);
 

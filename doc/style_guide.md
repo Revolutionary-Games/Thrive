@@ -31,6 +31,18 @@ Code style rules
   math), e used in `catch` blocks as the exception name. Other
   variables in loops and elsewhere need to be named with actually
   descriptive variable names.
+  
+- Similarly, some very common abbreviations are used in the code,
+  and can (and should) thus be used when naming variables. These are
+  however *rare* exceptions, not the rule. The allowed abbreviations 
+  are listed below. No other abbreviation should be used without prior
+  discussion (and good reasons).
+  - `min`
+  - `max`
+  - `pos`
+  - `rot`
+  - `str`
+  - `rect` (when related to class names and variables holding instances of those classes)
 
 - Variables and functions are camelCase or PascalCase depending on
   their visibilty. Classes are PascalCase with leading upper
@@ -140,6 +152,10 @@ Code style rules
   bodies are just a single line. Just a single if (without else) with
   a single line body can be written without braces, and this style
   should be preferred.
+  
+- Ternary operators (`a ? b : c`) can be used instead of `if ... else`
+  statements as long as they are kept readable. Nested ternaries are 
+  always banned and should be systematically replaced by if-blocks.
 
 - Single line variables (and properties) can be next to each other
   without a blank line. Other variables and class elements should have
@@ -250,6 +266,9 @@ Godot usage
 
 - Node names should not contain spaces, instead use PascalCase naming.
 
+- For connecting signals, use `nameof` to refer to methods whenever possible
+  to reduce the chance of mistakes when methods are renamed.
+
 - If you need to keep track of child elements that are added through a
   single place, keep them in a List or Dictionary instead of asking
   Godot for the children and doing a bunch of extra casts.
@@ -259,6 +278,17 @@ Godot usage
   causes issues, as that doesn't happen if you just call
   `QueueFree`. You can instead call `DetachAndQueueFree`
   instead to detach them from parents automatically.
+
+- To support keeping references to game objects, we have `IEntity` interface
+  that all game objects need to implement. To keep references to these
+  entities, use the `EntityReference<T>` class. That class will
+  automatically clear the reference when the entity is destroyed. To
+  make this work all entity types need to properly implement the
+  `OnDestroyed` method and all code destroying entities must call that
+  method before freeing the Godot Node. Normal references can be used
+  for a single frame, and in fact if a single `EntityReference` needs
+  to be used multiple times, it is preferred to read out the value
+  from it to a local variable first.
 
 - The order of Godot overridden methods in a class should be in the
   following order: (class constructor), _Ready, _ExitTree, _Process,
@@ -284,6 +314,11 @@ Godot usage
 
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
+
+- When adding window dialogs to the game, consider using the
+  `CustomDialog` type rather than the built-in `WindowDialog` to ensure
+  consistency across the GUI. This is because the custom implementation
+  offer a much more customized styling and additional functionality.
 
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also
@@ -326,6 +361,11 @@ Other files
 
 - New JSON files should prefer PascalCase keys. Existing JSON files
   should stick to what other parts of that file use.
+
+- Registry items (for example organelles) should use camelCase for their
+  internal names (IRegistryType.InternalName), and not snake_case.
+  Otherwise other names that follow the internal names will violate other
+  naming conventions.
 
 - Do not use `<br>` in markdown unless it is a table where line breaks
   need to be tightly controlled. Use blank lines instead of

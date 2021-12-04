@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -12,7 +13,7 @@ public class CustomRichTextLabel : RichTextLabel
     private string extendedBbcode;
 
     /// <summary>
-    ///   Custom Bbcodes exclusive for Thrive. Acts more like an extension to the built-in tags.
+    ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
     /// </summary>
     public enum ThriveBbCode
     {
@@ -26,14 +27,20 @@ public class CustomRichTextLabel : RichTextLabel
         ///   Turns input action string into a key prompt image of its primary input event.
         /// </summary>
         Input,
+
+        /// <summary>
+        ///   Retrieves value by key. Special handling for every key. Expandable.
+        /// </summary>
+        Constant,
     }
 
     /// <summary>
-    ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound]glucose[/thrive:compound])
+    ///   This supports custom bbcode tags specific to Thrive (for example: [thrive:compound type="glucose"]
+    ///   [/thrive:compound])
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     NOTE: including "thrive" namespace in the tag is a must, otherwise the custom parser wouldn't parse it.
+    ///     NOTE: including "thrive" namespace in a tag is a must, otherwise the custom parser wouldn't parse it.
     ///   </para>
     /// </remarks>
     [Export]
@@ -51,10 +58,34 @@ public class CustomRichTextLabel : RichTextLabel
         }
     }
 
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        InputDataList.InputsRemapped += OnInputsRemapped;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        InputDataList.InputsRemapped -= OnInputsRemapped;
+    }
+
     public override void _Ready()
     {
         // Make sure bbcode is enabled
         BbcodeEnabled = true;
+
+        Connect("meta_clicked", this, nameof(OnMetaClicked));
+    }
+
+    public override void _Draw()
+    {
+        // A workaround to get RichTextLabel's height properly update on tooltip size change
+        // See https://github.com/Revolutionary-Games/Thrive/issues/2236
+        // Queue to run on the next frame due to null RID error with some bbcode image display if otherwise
+#pragma warning disable CA2245 // Necessary for workaround
+        Invoke.Instance.Queue(() => BbcodeText = BbcodeText);
+#pragma warning restore CA2245
     }
 
     /// <summary>
@@ -63,6 +94,12 @@ public class CustomRichTextLabel : RichTextLabel
     /// </summary>
     private void ParseCustomTags()
     {
+        if (extendedBbcode == null)
+        {
+            BbcodeText = null;
+            return;
+        }
+
         var result = new StringBuilder(extendedBbcode.Length);
         var currentTagBlock = new StringBuilder(50);
 
@@ -72,7 +109,7 @@ public class CustomRichTextLabel : RichTextLabel
         var isIteratingContent = false;
 
         // The index of a closing bracket in a last iterated opening tag, used
-        // to retrieve the tagged substring
+        // to retrieve the substring enclosed between start and end tag
         var lastStartingTagEndIndex = 0;
 
         for (int index = 0; index < extendedBbcode.Length; ++index)
@@ -110,7 +147,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                     if (character == '[' || index == extendedBbcode.Length - 1)
                     {
-                        // No closing bracket found, just write normally to the final string and abort trying to parse
+                        // No closing bracket found, just write normally into the final string and abort
+                        // trying to parse
                         result.Append($"[{currentTagBlock}");
                         isIteratingTag = false;
                     }
@@ -132,7 +170,7 @@ public class CustomRichTextLabel : RichTextLabel
 
                 var leftHandSide = tagBlock.Split(":");
 
-                // Invalid tag syntax, probably not a thrive tag or missing a part
+                // Invalid bbcode syntax, probably not a thrive bbcode or missing a part
                 if (leftHandSide.Length != 2)
                 {
                     result.Append($"[{tagBlock}]");
@@ -143,7 +181,7 @@ public class CustomRichTextLabel : RichTextLabel
                 // Custom bbcode Thrive namespace
                 var bbcodeNamespace = leftHandSide[0];
 
-                // Not a thrive custom bbcode, don't parse this
+                // Not a thrive bbcode, don't parse this
                 if (!bbcodeNamespace.Contains("thrive"))
                 {
                     result.Append($"[{tagBlock}]");
@@ -171,7 +209,7 @@ public class CustomRichTextLabel : RichTextLabel
                         continue;
                     }
 
-                    // Finally try building the bbcode template for the tagged substring
+                    // Finally try building the bbcode template for the enclosed substring
 
                     var closingTagStartIndex = extendedBbcode.IndexOf("[", lastStartingTagEndIndex,
                         StringComparison.InvariantCulture);
@@ -189,7 +227,7 @@ public class CustomRichTextLabel : RichTextLabel
                     }
                     else
                     {
-                        // BBcode is not present in the enum
+                        // BBCode is not present in the enum
                         result.Append(input);
                         GD.PrintErr($"Failed parsing custom thrive bbcode: {bbcode}, it probably doesn't exist");
                     }
@@ -217,40 +255,61 @@ public class CustomRichTextLabel : RichTextLabel
     /// <summary>
     ///   Returns a templated bbcode string for the given custom tag.
     /// </summary>
-    /// <param name="input">The string tagged by custom tags</param>
+    /// <param name="input">The string enclosed by the custom tags</param>
     /// <param name="bbcode">Custom Thrive bbcode-styled tags</param>
-    /// <param name="attributes">Attributes specifying an additional functionality to the bbcode.</param>
-    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes = null)
+    /// <param name="attributes">Attributes specifying additional functionalities to the bbcode.</param>
+    private string BuildTemplateForTag(string input, ThriveBbCode bbcode, List<string> attributes)
     {
         // Defaults to input so if something fails output returns unchanged
         var output = input;
+
+        var simulationParameters = SimulationParameters.Instance;
 
         switch (bbcode)
         {
             case ThriveBbCode.Compound:
             {
-                if (!SimulationParameters.Instance.DoesCompoundExist(input))
-                {
-                    GD.Print($"Compound: \"{input}\" doesn't exist, referenced in bbcode");
-                    break;
-                }
-
-                var compound = SimulationParameters.Instance.GetCompound(input);
-
-                var name = compound.Name;
-
                 var pairs = StringUtils.ParseKeyValuePairs(attributes);
 
-                // Parse attributes if there are any
-                if (pairs.TryGetValue("text", out string value))
+                // Used to fallback to the old method if type attribute is not specified. Should be removed in
+                // roughly 6 months to give time for translations to be updated
+                // TODO: remove this fallback once it makes sense to do so
+                // https://github.com/Revolutionary-Games/Thrive/issues/2434
+                var fallback = false;
+
+                var internalName = string.Empty;
+
+                if (pairs.TryGetValue("type", out string value))
                 {
                     if (!value.StartsAndEndsWith("\""))
                         break;
 
-                    name = value.Substring(1, value.Length - 2);
+                    internalName = value.Substring(1, value.Length - 2);
                 }
 
-                output = $"[b]{name}[/b] [font=res://src/gui_common/fonts/" +
+                // Handle fallback
+                if (!string.IsNullOrEmpty(input) && string.IsNullOrEmpty(internalName))
+                {
+                    GD.Print("Compound type not specified in bbcode, fallback to using input as " +
+                        $"the internal name: {input}");
+                    internalName = input;
+                    fallback = true;
+                }
+
+                // Check compound existence and aborts if it's not valid
+                if (!simulationParameters.DoesCompoundExist(internalName))
+                {
+                    GD.Print($"Compound: \"{internalName}\" doesn't exist, referenced in bbcode");
+                    break;
+                }
+
+                var compound = simulationParameters.GetCompound(internalName);
+
+                // Just use the default compound's display name if input text is not specified
+                if (!fallback && string.IsNullOrEmpty(input))
+                    input = compound.Name;
+
+                output = $"[b]{(fallback ? compound.Name : input)}[/b] [font=res://src/gui_common/fonts/" +
                     $"BBCode-Image-VerticalCenterAlign-3.tres] [img=20]{compound.IconPath}[/img][/font]";
 
                 break;
@@ -269,8 +328,80 @@ public class CustomRichTextLabel : RichTextLabel
 
                 break;
             }
+
+            case ThriveBbCode.Constant:
+                var parsedAttributes = StringUtils.ParseKeyValuePairs(attributes);
+                parsedAttributes.TryGetValue("format", out string format);
+
+                switch (input)
+                {
+                    case "OXYTOXY_DAMAGE":
+                    {
+                        output = Constants.OXYTOXY_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENGULF_DAMAGE":
+                    {
+                        output = Constants.ENGULF_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "PILUS_BASE_DAMAGE":
+                    {
+                        output = Constants.PILUS_BASE_DAMAGE.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "BINDING_ATP_COST_PER_SECOND":
+                    {
+                        output = Constants.BINDING_ATP_COST_PER_SECOND.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "ENGULFING_ATP_COST_PER_SECOND":
+                    {
+                        output = Constants.ENGULFING_ATP_COST_PER_SECOND.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    case "EDITOR_TIME_JUMP_MILLION_YEARS":
+                    {
+                        output = Constants.EDITOR_TIME_JUMP_MILLION_YEARS.ToString(format, CultureInfo.CurrentCulture);
+                        break;
+                    }
+
+                    default:
+                    {
+                        GD.Print($"Constant: \"{input}\" doesn't exist, referenced in bbcode");
+                        break;
+                    }
+                }
+
+                break;
         }
 
         return output;
+    }
+
+    private void OnInputsRemapped(object sender, EventArgs args)
+    {
+        ParseCustomTags();
+    }
+
+    private void OnMetaClicked(object meta)
+    {
+        if (meta is string metaString)
+        {
+            // TODO: should there be stronger validation than this? that this is actually an URL? Maybe Uri.TryParse
+            if (metaString.StartsWith("http", StringComparison.Ordinal))
+            {
+                GD.Print("Opening clicked link: ", metaString);
+                if (OS.ShellOpen(metaString) != Error.Ok)
+                {
+                    GD.PrintErr("Opening the link failed");
+                }
+            }
+        }
     }
 }

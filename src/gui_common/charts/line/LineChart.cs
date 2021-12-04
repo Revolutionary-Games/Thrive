@@ -67,6 +67,30 @@ public class LineChart : VBoxContainer
     public int MinDisplayedDataSet;
 
     /// <summary>
+    ///   Specifies how the X axis value display should be formatted on the datapoint tooltip.
+    ///   Leave this null/empty to use the default.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Format should have maximum of one format item (e.g "{0}%") where it will be inserted with the actual value.
+    ///     This will only be applied after calling Plot().
+    ///   </para>
+    /// </remarks>
+    public string TooltipXAxisFormat;
+
+    /// <summary>
+    ///   Specifies how the Y axis value display should be formatted on the datapoint tooltip.
+    ///   Leave this null/empty to use the default.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Format should have maximum of one format item (e.g "{0}%") where it will be inserted with the actual value.
+    ///     This will only be applied after calling Plot().
+    ///   </para>
+    /// </remarks>
+    public string TooltipYAxisFormat;
+
+    /// <summary>
     ///   Fallback icon for the legend display mode using icons
     /// </summary>
     private Texture defaultIconLegendTexture;
@@ -85,8 +109,6 @@ public class LineChart : VBoxContainer
 
     private string xAxisName;
     private string yAxisName;
-
-    private List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
 
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
@@ -209,39 +231,6 @@ public class LineChart : VBoxContainer
         UpdateAxesName();
     }
 
-    public override void _Process(float delta)
-    {
-        // https://github.com/Revolutionary-Games/Thrive/issues/1976
-        if (delta <= 0)
-            return;
-
-        // Apply coordinates (with interpolation for smooth animations)
-        foreach (var data in dataSets)
-        {
-            foreach (var point in data.Value.DataPoints)
-            {
-                if (!IsInstanceValid(point))
-                    continue;
-
-                var coordinate = Vector2.Zero;
-
-                if (IsMinMaxValid())
-                {
-                    coordinate = ConvertToCoordinate(point.Value);
-                }
-                else
-                {
-                    // Hide the marker as its positioning won't be pretty at zero coordinate
-                    point.Visible = false;
-                    data.Value.Draw = false;
-                }
-
-                point.Coordinate = point.Coordinate.LinearInterpolate(coordinate, 3.0f * delta);
-                UpdateLineSegments();
-            }
-        }
-    }
-
     /// <summary>
     ///   Add a dataset into this chart (overwrites existing one if the name already existed)
     /// </summary>
@@ -272,7 +261,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Plots the chart from available datasets
+    ///   Plots and constructs the chart from available datasets
     /// </summary>
     /// <param name="xAxisName">Overrides the horizontal axis label title</param>
     /// <param name="yAxisName">Overrides the vertical axis label title</param>
@@ -335,14 +324,24 @@ public class LineChart : VBoxContainer
                 // Create tooltip for the point markers
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
+                var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
+                    $"{((double)point.Value.x).FormatNumber()} {XAxisName}" :
+                    string.Format(CultureInfo.CurrentCulture,
+                        TooltipXAxisFormat, point.Value.x);
+
+                var yValueForm = string.IsNullOrEmpty(TooltipYAxisFormat) ?
+                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}" :
+                    string.Format(CultureInfo.CurrentCulture,
+                        TooltipYAxisFormat, point.Value.y);
+
                 toolTip.DisplayName = data.Key + point.Value;
-                toolTip.Description = $"{data.Key}\n{((double)point.Value.x).FormatNumber()} {XAxisName}\n" +
-                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}";
+                toolTip.Description = $"{data.Key}\n{xValueForm}\n{yValueForm}";
+
                 toolTip.DisplayDelay = 0;
                 toolTip.HideOnMousePress = false;
-                toolTip.UseFadeIn = false;
+                toolTip.TransitionType = ToolTipTransitioning.Immediate;
 
-                point.RegisterToolTipForControl(toolTip, toolTipCallbacks);
+                point.RegisterToolTipForControl(toolTip);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
 
                 drawArea.AddChild(point);
@@ -382,8 +381,6 @@ public class LineChart : VBoxContainer
     /// </summary>
     public void ClearChart()
     {
-        toolTipCallbacks.Clear();
-
         foreach (var data in dataSets)
         {
             ToolTipManager.Instance.ClearToolTips("chartMarkers" + ChartName + data.Key);
@@ -439,12 +436,14 @@ public class LineChart : VBoxContainer
             return DataSetVisibilityUpdateResult.MinVisibleLimitReached;
         }
 
-        if (dataLines.ContainsKey(name) && !data.Draw)
-            FlattenLines(name);
+        var initiallyVisible = data.Draw;
 
         data.Draw = visible;
         UpdateMinimumAndMaximumValues();
         drawArea.Update();
+
+        if (dataLines.ContainsKey(name) && !initiallyVisible)
+            FlattenLines(name);
 
         // Update the legend
         switch (LegendMode)
@@ -496,7 +495,7 @@ public class LineChart : VBoxContainer
             toolTip.DisplayName = data.Key;
             toolTip.Description = data.Key;
 
-            icon.RegisterToolTipForControl(toolTip, toolTipCallbacks);
+            icon.RegisterToolTipForControl(toolTip);
             ToolTipManager.Instance.AddToolTip(toolTip, "chartLegend" + ChartName);
         }
     }
@@ -543,14 +542,21 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Draw the chart visuals. Mainly used by the Drawer node to connect its 'draw()' signal here.
+    ///   Draws the chart visuals. The Drawer node connect its 'draw()' signal to here.
     /// </summary>
     private void RenderChart()
     {
-        if (dataSets.Count <= 0)
-            return;
+        // Handle empty or entirely hidden datasets
+        if (dataSets == null || VisibleDataSets <= 0)
+        {
+            DrawNoDataText();
+        }
+        else
+        {
+            DrawOrdinateLines();
+        }
 
-        DrawOrdinateLines();
+        ApplyCoordinatesToDataPoints();
         UpdateLineSegments();
     }
 
@@ -568,7 +574,7 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Connects the points with line segments
+    ///   Connects data points with line segments.
     /// </summary>
     private void UpdateLineSegments()
     {
@@ -595,7 +601,8 @@ public class LineChart : VBoxContainer
 
                 if (index < dataLine.Points.Length)
                 {
-                    dataLine.SetPointPosition(index, point.Coordinate);
+                    dataLine.InterpolatePointPosition(
+                        index, point.RectPosition + (point.RectSize / 2), point.Coordinate);
                 }
                 else
                 {
@@ -635,7 +642,7 @@ public class LineChart : VBoxContainer
             tooltip.Description = datasetName;
             tooltip.DisplayDelay = 0.5f;
 
-            newCollisionRect.RegisterToolTipForControl(tooltip, toolTipCallbacks);
+            newCollisionRect.RegisterToolTipForControl(tooltip);
             ToolTipManager.Instance.AddToolTip(tooltip, "chartMarkers");
 
             dataLine.CollisionBoxes[firstPoint] = newCollisionRect;
@@ -664,6 +671,22 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
+    ///   Draws a text on the chart clarifying that there's no data to show to the user.
+    /// </summary>
+    private void DrawNoDataText()
+    {
+        var font = GetFont("jura_small", "Label");
+        var translated = TranslationServer.Translate("NO_DATA_TO_SHOW");
+
+        // Values are rounded to make the font not be blurry
+        var position = new Vector2(
+            Mathf.Round((drawArea.RectSize.x - font.GetStringSize(translated).x) / 2),
+            Mathf.Round(drawArea.RectSize.y / 2));
+
+        drawArea.DrawString(font, position, translated);
+    }
+
+    /// <summary>
     ///   Sets the y coordinate for all of the given dataset's points at the bottom of the chart.
     ///   This is used to animate the lines rising from the bottom.
     /// </summary>
@@ -673,19 +696,17 @@ public class LineChart : VBoxContainer
 
         foreach (var point in data.DataPoints)
         {
-            // Had to apply the coordinate on the next frame to compensate with Godot's UI update delay,
-            // so the coordinates could be correctly calculated (since it depends on the Control container
-            // rect sizes) just after Plot() call. This may result to a subtle glitchy look in the first
-            // few frame where all the points were positioned at the top-left. But this works just fine for now.
-            Invoke.Instance.Queue(() =>
-            {
-                if (!IsInstanceValid(point))
-                    return;
+            if (!IsInstanceValid(point))
+                continue;
 
-                point.Coordinate = new Vector2(
-                    ConvertToXCoordinate(point.Value.x), drawArea.RectSize.y);
-            });
+            // First we move the point marker to the bottom of the chart
+            point.SetCoordinate(new Vector2(ConvertToXCoordinate(point.Value.x), drawArea.RectSize.y), false);
+
+            // Next start interpolating it into its assigned position
+            point.SetCoordinate(ConvertToCoordinate(point.Value));
         }
+
+        UpdateLineSegments();
     }
 
     /// <summary>
@@ -752,6 +773,11 @@ public class LineChart : VBoxContainer
         horizontalLabelsContainer.QueueFreeChildren();
         verticalLabelsContainer.QueueFreeChildren();
 
+        // If no data is visible, don't create the labels as it will just have zero values
+        // and be potentially confusing to look at
+        if (VisibleDataSets <= 0)
+            return;
+
         // Populate the rows
         for (int i = 0; i < XAxisTicks; i++)
         {
@@ -773,7 +799,7 @@ public class LineChart : VBoxContainer
             var label = new Label
             {
                 SizeFlagsVertical = (int)SizeFlags.ExpandFill,
-                Align = Label.AlignEnum.Center,
+                Align = Label.AlignEnum.Right,
                 Valign = Label.VAlign.Center,
             };
 
@@ -781,6 +807,28 @@ public class LineChart : VBoxContainer
                 i * (MaxValues.y - MinValues.y) / (YAxisTicks - 1) + MinValues.y, 1).FormatNumber();
 
             verticalLabelsContainer.AddChild(label);
+        }
+    }
+
+    private void ApplyCoordinatesToDataPoints()
+    {
+        foreach (var data in dataSets)
+        {
+            foreach (var point in data.Value.DataPoints)
+            {
+                if (IsMinMaxValid())
+                {
+                    point.SetCoordinate(ConvertToCoordinate(point.Value));
+                }
+                else
+                {
+                    // Hide marker as its positioning won't be pretty at zero coordinate
+                    point.Visible = false;
+                    data.Value.Draw = false;
+
+                    point.SetCoordinate(Vector2.Zero, false);
+                }
+            }
         }
     }
 
@@ -955,6 +1003,9 @@ public class LineChart : VBoxContainer
         public Dictionary<DataPoint, Control> CollisionBoxes = new Dictionary<DataPoint, Control>();
 
         private LineChartData data;
+        private Tween tween;
+
+        private Color dataColour;
 
         public DataLine(LineChartData data, bool isDefault)
         {
@@ -963,20 +1014,44 @@ public class LineChart : VBoxContainer
 
             Width = data.LineWidth;
             DefaultColor = data.DataColour;
+            dataColour = data.DataColour;
+
+            tween = new Tween();
+            AddChild(tween);
 
             // Antialiasing is turned off as it's a bit unreliable currently
         }
 
+        public void InterpolatePointPosition(int i, Vector2 initialPos, Vector2 targetPos)
+        {
+            tween.InterpolateMethod(this, nameof(ChangePointPos), new Vector3(i, initialPos.x, initialPos.y),
+                new Vector3(i, targetPos.x, targetPos.y), 0.5f, Tween.TransitionType.Expo, Tween.EaseType.Out);
+            tween.Start();
+        }
+
         public void OnMouseEnter()
         {
-            DefaultColor = data.DataColour.IsLuminuous() ?
-                data.DataColour.Darkened(0.5f) :
-                data.DataColour.Lightened(0.5f);
+            var highlightColour = dataColour.IsLuminuous() ?
+                dataColour.Darkened(0.5f) :
+                dataColour.Lightened(0.5f);
+
+            DefaultColor = highlightColour;
+            data.DataColour = highlightColour;
         }
 
         public void OnMouseExit()
         {
-            DefaultColor = data.DataColour;
+            DefaultColor = dataColour;
+            data.DataColour = dataColour;
+        }
+
+        /// <summary>
+        ///   This is a really hacky way to get Godot to tween methods with multiple parameters.
+        ///   Got extremely lucky that all parameters can fit into a single Godot primitive type here...
+        /// </summary>
+        private void ChangePointPos(Vector3 arguments)
+        {
+            SetPointPosition((int)arguments.x, new Vector2(arguments.y, arguments.z));
         }
     }
 
@@ -1008,7 +1083,6 @@ public class LineChart : VBoxContainer
 
             Connect("mouse_entered", this, nameof(IconLegendMouseEnter));
             Connect("mouse_exited", this, nameof(IconLegendMouseExit));
-            Connect("pressed", this, nameof(IconLegendPressed));
 
             tween = new Tween();
             AddChild(tween);
@@ -1037,12 +1111,6 @@ public class LineChart : VBoxContainer
             {
                 Modulate = Colors.DarkGray;
             }
-        }
-
-        private void IconLegendPressed()
-        {
-            tween.InterpolateProperty(this, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
     }
 }

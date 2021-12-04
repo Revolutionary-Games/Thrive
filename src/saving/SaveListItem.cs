@@ -47,6 +47,8 @@ public class SaveListItem : PanelContainer
     [Export]
     public NodePath HighlightPath;
 
+    private static readonly object ResizeLock = new();
+
     private Label saveNameLabel;
     private TextureRect screenshot;
     private Label version;
@@ -70,6 +72,7 @@ public class SaveListItem : PanelContainer
 
     private bool isBroken;
     private bool isKnownIncompatible;
+    private bool isUpgradeable;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -79,6 +82,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnOldSaveLoaded();
+
+    [Signal]
+    public delegate void OnUpgradeableSaveLoaded(string saveName, bool incompatible);
 
     [Signal]
     public delegate void OnBrokenSaveLoaded();
@@ -189,8 +195,15 @@ public class SaveListItem : PanelContainer
 
         if (versionDifference != 0)
         {
+            if (versionDifference < 0 && SaveUpgrader.CanUpgradeSaveToVersion(save.Info))
+            {
+                isUpgradeable = true;
+            }
+
             if (SaveHelper.IsKnownIncompatible(save.Info.ThriveVersion))
+            {
                 isKnownIncompatible = true;
+            }
         }
 
         version.Text = save.Info.ThriveVersion;
@@ -221,6 +234,12 @@ public class SaveListItem : PanelContainer
         if (isBroken)
         {
             EmitSignal(nameof(OnBrokenSaveLoaded));
+            return;
+        }
+
+        if (versionDifference < 0 && isUpgradeable)
+        {
+            EmitSignal(nameof(OnUpgradeableSaveLoaded), SaveName, isKnownIncompatible);
             return;
         }
 
@@ -266,8 +285,15 @@ public class SaveListItem : PanelContainer
 
                 if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
                 {
-                    save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
-                        Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                    // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
+                    // this lock. See: https://github.com/godotengine/godot/issues/55528
+                    // Partly resolves: https://github.com/Revolutionary-Games/Thrive/issues/2078
+                    // but not for all people and save amounts
+                    lock (ResizeLock)
+                    {
+                        save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
+                            Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                    }
                 }
             }
 

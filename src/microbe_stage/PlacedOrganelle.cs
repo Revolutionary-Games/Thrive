@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -19,6 +20,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     private bool growthValueDirty = true;
     private float growthValue;
 
+    private Microbe currentShapesParent;
+
     /// <summary>
     ///   Used to update the tint
     /// </summary>
@@ -29,6 +32,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// </summary>
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
+
+    private Spatial organelleSceneInstance;
 
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
     {
@@ -150,6 +155,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     public bool IsLoadedFromSave { get; set; }
 
+    public bool HasShape(uint searchShape)
+    {
+        return shapes.Contains(searchShape);
+    }
+
     /// <summary>
     ///   Checks if this organelle has the specified component type
     /// </summary>
@@ -220,9 +230,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Remove our sub collisions
         foreach (var shape in shapes)
         {
-            ParentMicrobe.RemoveShapeOwner(shape);
+            currentShapesParent.RemoveShapeOwner(shape);
         }
 
+        currentShapesParent = null;
         shapes.Clear();
 
         // Remove components
@@ -379,6 +390,69 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
     }
 
+    /// <summary>
+    ///  Re-parents the organelle shape to the "to" microbe.
+    /// </summary>
+    public void ReParentShapes(Microbe to, Vector3 offset)
+    {
+        if (to == currentShapesParent)
+            return;
+
+        // TODO: we are in trouble if ever the hex count mismatches with the shapes. It's fine if this can never happen
+        // but a more bulletproof way would be to add code to at least detect and try to recover if there is no
+        // matching hex for a shape
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
+        var hexes = Definition.GetRotatedHexes(Orientation).ToArray();
+
+        for (int i = 0; i < shapes.Count; i++)
+        {
+            var rotation = Quat.Identity;
+            Vector3 shapePosition = ShapeTruePosition(hexes[i]);
+            if (ParentMicrobe.Colony != null)
+            {
+                var parent = ParentMicrobe;
+
+                // Get the rotation of all colony ancestors up to master
+                while (parent != ParentMicrobe.Colony.Master)
+                {
+                    rotation *= new Quat(parent.Transform.basis);
+                    parent = parent.ColonyParent;
+                }
+            }
+
+            rotation = rotation.Normalized();
+
+            // Transform the vector with the rotation quaternion
+            shapePosition = rotation.Xform(shapePosition);
+
+            // Scale for bacteria physics.
+            if (ParentMicrobe.Species.IsBacteria)
+                shapePosition *= 0.5f;
+
+            shapePosition += offset;
+
+            var transform = new Transform(Quat.Identity, shapePosition);
+
+            var ownerId = shapes[i];
+
+            var shape = currentShapesParent.ShapeOwnerGetShape(ownerId, 0);
+            var newOwnerId = to.CreateShapeOwner(shape);
+            to.ShapeOwnerAddShape(newOwnerId, shape);
+            to.ShapeOwnerSetTransform(newOwnerId, transform);
+
+            shapes[i] = newOwnerId;
+
+            currentShapesParent.RemoveShapeOwner(ownerId);
+        }
+
+        foreach (var component in Components)
+        {
+            component.OnShapeParentChanged(to, offset);
+        }
+
+        currentShapesParent = to;
+    }
+
     private static Color CalculateHSVForOrganelle(Color rawColour)
     {
         // Get hue saturation and brightness for the colour
@@ -397,39 +471,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             SetupOrganelleGraphics();
         }
 
-        float hexSize = Constants.DEFAULT_HEX_SIZE;
-
-        // Scale the physics hex size down for bacteria
-        if (ParentMicrobe.Species.IsBacteria)
-            hexSize *= 0.5f;
-
         // Physics
+        // TODO: shouldn't we also add the mass to the colony master?
         ParentMicrobe.Mass += Definition.Mass;
 
-        // Add hex collision shapes
-        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
-        {
-            var shape = new SphereShape();
-            shape.Radius = hexSize * 2.0f;
-
-            var ownerId = ParentMicrobe.CreateShapeOwner(shape);
-
-            // This is needed to actually add the shape
-            ParentMicrobe.ShapeOwnerAddShape(ownerId, shape);
-
-            // The shape is in our parent so the final position is our
-            // offset plus the hex offset
-            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Hex.AxialToCartesian(Position);
-
-            // Scale for bacteria physics.
-            if (ParentMicrobe.Species.IsBacteria)
-                shapePosition *= 0.5f;
-
-            var transform = new Transform(Quat.Identity, shapePosition);
-            ParentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
-
-            shapes.Add(ownerId);
-        }
+        MakeCollisionShapes(ParentMicrobe.Colony?.Master ?? ParentMicrobe);
 
         // Components
         Components = new List<IOrganelleComponent>();
@@ -447,6 +493,60 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         }
 
         growthValueDirty = true;
+    }
+
+    private Vector3 ShapeTruePosition(Hex parentOffset)
+    {
+        return Hex.AxialToCartesian(parentOffset) + Hex.AxialToCartesian(Position);
+    }
+
+    /// <summary>
+    ///   Creates the collision shape(s) necessary for this organelle
+    /// </summary>
+    /// <param name="to">The microbe to add the shapes to</param>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: make this take into initial colony membership into account so that calling ReParentShapes twice
+    ///     when loading a game is not necessary
+    ///   </para>
+    /// </remarks>
+    private void MakeCollisionShapes(Microbe to)
+    {
+        currentShapesParent = to;
+
+        float hexSize = Constants.DEFAULT_HEX_SIZE;
+
+        // Scale the physics hex size down for bacteria
+        if (ParentMicrobe.Species.IsBacteria)
+            hexSize *= 0.5f;
+
+        // Add hex collision shapes
+        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
+        {
+            var shape = new SphereShape();
+            shape.Radius = hexSize * 2.0f;
+
+            var ownerId = to.CreateShapeOwner(shape);
+
+            // This is needed to actually add the shape
+            to.ShapeOwnerAddShape(ownerId, shape);
+
+            // TODO: merge this common logic with ReParentShapes to a helper method
+            // https://github.com/Revolutionary-Games/Thrive/issues/2504
+
+            // The shape is in our parent so the final position is our
+            // offset plus the hex offset
+            Vector3 shapePosition = ShapeTruePosition(hex);
+
+            // Scale for bacteria physics.
+            if (ParentMicrobe.Species.IsBacteria)
+                shapePosition *= 0.5f;
+
+            var transform = new Transform(Quat.Identity, shapePosition);
+            to.ShapeOwnerSetTransform(ownerId, transform);
+
+            shapes.Add(ownerId);
+        }
     }
 
     private void RecalculateGrowthValue()
@@ -467,27 +567,20 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private void UpdateColour()
     {
-        organelleMaterial?.SetShaderParam("tint", CalculateHSVForOrganelle(Colour));
+        var color = CalculateHSVForOrganelle(Colour);
+        if (organelleSceneInstance is OrganelleMeshWithChildren organelleMeshWithChildren)
+        {
+            organelleMeshWithChildren.SetTintOfChildren(color);
+        }
+
+        organelleMaterial?.SetShaderParam("tint", color);
 
         needsColourUpdate = false;
     }
 
     private void SetupOrganelleGraphics()
     {
-        var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
-
-        // Store the material of the organelle to be updated
-        GeometryInstance geometry;
-
-        // Fetch the actual model from the scene to get at the material we set the tint on
-        if (string.IsNullOrEmpty(Definition.DisplaySceneModelPath))
-        {
-            geometry = (GeometryInstance)organelleSceneInstance;
-        }
-        else
-        {
-            geometry = organelleSceneInstance.GetNode<GeometryInstance>(Definition.DisplaySceneModelPath);
-        }
+        organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
 
         // Store animation player for later use
         if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
@@ -495,7 +588,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             OrganelleAnimation = organelleSceneInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
         }
 
-        organelleMaterial = (ShaderMaterial)geometry.MaterialOverride;
+        // Store the material of the organelle to be updated
+        organelleMaterial = organelleSceneInstance.GetMaterial(Definition.DisplaySceneModelPath);
+        organelleMaterial.RenderPriority = Hex.GetRenderPriority(Position);
 
         // There is an intermediate node so that the organelle scene root rotation and scale work
         OrganelleGraphics = new Spatial();
@@ -509,6 +604,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Position the intermediate node relative to origin of cell
         var transform = new Transform(Quat.Identity,
             Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset());
+
         OrganelleGraphics.Transform = transform;
 
         // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work

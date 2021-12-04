@@ -20,7 +20,7 @@
         /// <summary>
         ///   Results of the run are stored here
         /// </summary>
-        public RunResults Results { get; set; } = new RunResults();
+        public RunResults Results { get; set; } = new();
 
         /// <summary>
         ///   List of species to ignore in the map for simulation.
@@ -32,7 +32,7 @@
         ///   </para>
         /// </remarks>
         /// <value>The excluded species.</value>
-        public List<Species> ExcludedSpecies { get; set; } = new List<Species>();
+        public List<Species> ExcludedSpecies { get; set; } = new();
 
         /// <summary>
         ///   List of extra species to simulate in addition to the ones in the map.
@@ -44,12 +44,33 @@
         ///   </para>
         /// </remarks>
         /// <value>The extra species.</value>
-        public List<Species> ExtraSpecies { get; set; } = new List<Species>();
+        public List<Species> ExtraSpecies { get; set; } = new();
 
         /// <summary>
         ///   Migrations to apply before running the simulation.
         /// </summary>
-        public List<Tuple<Species, SpeciesMigration>> Migrations { get; set; } =
-            new List<Tuple<Species, SpeciesMigration>>();
+        public List<Tuple<Species, SpeciesMigration>> Migrations { get; set; } = new();
+
+        /// <summary>
+        ///   If not empty, only the specified patches are ran
+        /// </summary>
+        public ISet<Patch> PatchesToRun { get; set; } = new HashSet<Patch>();
+
+        /// <summary>
+        ///   Sets the patches to be simulated to be ones where the species is present (population > 0)
+        /// </summary>
+        /// <param name="species">The species to check for in the <see cref="OriginalMap"/> patches</param>
+        public void SetPatchesToRunBySpeciesPresence(Species species)
+        {
+            PatchesToRun.Clear();
+
+            foreach (var patchEntry in OriginalMap.Patches)
+            {
+                if (patchEntry.Value.GetSpeciesPopulation(species) > 0)
+                {
+                    PatchesToRun.Add(patchEntry.Value);
+                }
+            }
+        }
     }
 }

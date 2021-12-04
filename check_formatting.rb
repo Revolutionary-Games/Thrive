@@ -8,13 +8,18 @@ require 'find'
 require 'digest'
 require 'nokogiri'
 require 'set'
+require 'os'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
+require_relative 'scripts/check_file_list'
+require_relative 'scripts/po_helpers'
+require_relative 'scripts/json_helpers'
+require_relative 'scripts/steam_version_helpers'
 
 MAX_LINE_LENGTH = 120
-DUPLICATE_THRESSHOLD = 105
+DUPLICATE_THRESHOLD = 105
 
 LOCALIZATION_UPPERCASE_EXCEPTIONS = ['Cancel'].freeze
 
@@ -25,14 +30,20 @@ SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
 VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
 DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode localization].freeze
 
-ONLY_FILE_LIST = 'files_to_check.txt'
-
 LOCALE_TEMP_SUFFIX = '.temp_check'
-MSG_ID_REGEX = /^msgid "(.*)"$/.freeze
-FUZZY_TRANSLATION_REGEX = /^#, fuzzy/.freeze
-PLAIN_QUOTED_MESSAGE = /^"(.*)"/.freeze
-GETTEXT_HEADER_NAME = /^([\w-]+):\s+/.freeze
 TRAILING_SPACE = /(?<=\S)[\t ]+$/.freeze
+GIT_MERGE_CONFLICT_MARKERS = /^<{7}\s+\S+\s*$/.freeze
+NODE_NAME_REGEX = /\[node\s+name="([^"]+)"/.freeze
+NODE_NAME_UPPERCASE_REQUIRED_LENGTH = 25
+NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH = 4
+
+CFG_VERSION_LINE = %r{[/_]version="([\d.]+)"}.freeze
+ASSEMBLY_VERSION_FILE = 'Properties/AssemblyInfo.cs'
+ASSEMBLY_VERSION_REGEX = /AssemblyVersion\("([\d.]+)"\)/.freeze
+
+REQUIREMENTS_TXT_FILE = 'docker/jsonlint/requirements.txt'
+PIP_BABEL_THRIVE_VERSION = /^Babel-Thrive\s*([\d.]+)/.freeze
+REQUIREMENTS_BABEL_THRIVE_VERSION = /^Babel-Thrive==([\d.]+)$/.freeze
 
 EMBEDDED_FONT_SIGNATURE = 'sub_resource type="DynamicFont"'
 
@@ -74,7 +85,7 @@ def ide_file?(path)
 end
 
 def explicitly_ignored?(path)
-  path =~ %r{/ThirdParty/}i || %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
+  path =~ %r{/ThirdParty/}i || path =~ %r{/third_party/} || path =~ /GlobalSuppressions.cs/ ||
     path =~ %r{/RubySetupSystem/}
 end
 
@@ -140,6 +151,70 @@ def process_file?(filepath)
   end
 end
 
+@game_version = nil
+
+def game_version
+  return @game_version if @game_version
+
+  File.foreach(ASSEMBLY_VERSION_FILE, encoding: 'utf-8') do |line|
+    next unless line
+
+    matches = line.match(ASSEMBLY_VERSION_REGEX)
+
+    return @game_version = matches[1] if matches
+  end
+
+  raise 'Could not find AssemblyVersion'
+end
+
+@pip_name = nil
+
+def pip_name
+  return @pip_name if @pip_name
+
+  @pip_name = which 'pip'
+  return @pip_name if @pip_name
+
+  @pip_name = which 'pip3'
+  return @pip_name if @pip_name
+
+  raise 'Could not find pip nor pip3.'
+end
+
+@installed_babel_thrive_version = nil
+
+def installed_babel_thrive_version
+  return @installed_babel_thrive_version if @installed_babel_thrive_version
+
+  _, piplist = runOpen3CaptureOutput pip_name, 'list'
+  matches = piplist.match(PIP_BABEL_THRIVE_VERSION)
+
+  return @installed_babel_thrive_version = matches[1] if matches
+
+  raise 'Could not find Babel-Thrive.'
+end
+
+@required_babel_thrive_version = nil
+
+def required_babel_thrive_version
+  return @required_babel_thrive_version if @required_babel_thrive_version
+
+  requirements = File.read(REQUIREMENTS_TXT_FILE)
+  matches = requirements.match(REQUIREMENTS_BABEL_THRIVE_VERSION)
+
+  return @required_babel_thrive_version = matches[1] if matches
+
+  raise "Could not read required Babel-Thrive verion from #{REQUIREMENTS_TXT_FILE}."
+end
+
+def contains_merge_marker(line)
+  line =~ GIT_MERGE_CONFLICT_MARKERS
+end
+
+def merge_error(line_number)
+  error "Line #{line_number + 1} contains a merge conflict marker"
+end
+
 def file_begins_with_bom(path)
   raw_data = File.binread(path, 3)
 
@@ -157,6 +232,13 @@ def handle_gd_file(_path)
   true
 end
 
+def handle_mo_file(_path)
+  OUTPUT_MUTEX.synchronize do
+    error '.mo files are not allowed'
+  end
+  true
+end
+
 def handle_cs_file(path)
   errors = false
 
@@ -168,7 +250,7 @@ def handle_cs_file(path)
     end
   end
 
-  original = File.read(path)
+  original = File.read(path, encoding: 'utf-8')
   line_number = 0
 
   OUTPUT_MUTEX.synchronize do
@@ -199,16 +281,24 @@ def handle_cs_file(path)
 end
 
 def handle_json_file(path)
-  digest_before = Digest::MD5.hexdigest File.read(path)
+  contents = File.read(path, encoding: 'utf-8')
+  if contains_merge_marker(contents)
+    OUTPUT_MUTEX.synchronize do
+      error 'Contains a merge conflict marker'
+    end
+    return true
+  end
 
-  if runSystemSafe('jsonlint', '-i', path, '--indent', '    ') != 0
+  digest_before = Digest::MD5.hexdigest contents
+
+  unless jsonlint_on_file(path)
     OUTPUT_MUTEX.synchronize do
       error 'JSONLint failed on file'
     end
     return true
   end
 
-  digest_after = Digest::MD5.hexdigest File.read(path)
+  digest_after = Digest::MD5.hexdigest File.read(path, encoding: 'utf-8')
 
   if digest_before != digest_after
     OUTPUT_MUTEX.synchronize do
@@ -223,7 +313,14 @@ end
 def handle_shader_file(path)
   errors = false
 
-  File.foreach(path).with_index do |line, line_number|
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if contains_merge_marker(line)
+      OUTPUT_MUTEX.synchronize do
+        merge_error(line_number)
+        errors = true
+      end
+    end
+
     if line.include? "\t"
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} contains a tab"
@@ -248,9 +345,16 @@ end
 def handle_tscn_file(path)
   errors = false
 
-  File.foreach(path).with_index do |line, line_number|
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
     # For some reason this reports 1 too high
     length = line.length - 1
+
+    if contains_merge_marker(line)
+      OUTPUT_MUTEX.synchronize do
+        merge_error(line_number)
+        errors = true
+      end
+    end
 
     if length > SCENE_EMBEDDED_LENGTH_HEURISTIC
       OUTPUT_MUTEX.synchronize do
@@ -264,6 +368,38 @@ def handle_tscn_file(path)
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} contains embedded font. "\
               "Don't embed fonts in scenes, instead place font resources in a separate .tres"
+        errors = true
+      end
+    end
+
+    matches = line.match(NODE_NAME_REGEX)
+
+    if matches
+      name = matches[1]
+
+      if name =~ /\s/
+        error "Line #{line_number + 1} contains a name (#{name}) that has a space."
+        errors = true
+      end
+
+      if name.include? '_'
+        error "Line #{line_number + 1} contains a name (#{name}) that has an underscore."
+        errors = true
+      end
+
+      # Single word names can be without upper case letters so we use a length heuristic here
+      if name.length > NODE_NAME_UPPERCASE_REQUIRED_LENGTH && name.downcase == name
+        error "Line #{line_number + 1} contains a name (#{name}) that has no capital letters."
+        errors = true
+      end
+
+      # Short acronyms are ignored here if the name starts with a capital
+      # TODO: in the future might only want to allow node names that start with a
+      # lowercase letter
+      if name.upcase == name && (name.length > NODE_NAME_UPPERCASE_ACRONYM_ALLOWED_LENGTH ||
+                                 name !~ /^[A-Z]/)
+        error "Line #{line_number + 1} contains a name (#{name}) that doesn't " \
+              "contain lowercase letters (and isn't a short acronym)."
         errors = true
       end
     end
@@ -296,6 +432,46 @@ def handle_csproj_file(path)
   errors
 end
 
+def handle_export_presets(path)
+  errors = false
+  found = false
+
+  required_version = game_version
+
+  File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if contains_merge_marker(line)
+      OUTPUT_MUTEX.synchronize do
+        merge_error(line_number)
+        errors = true
+      end
+    end
+
+    matches = line.match(CFG_VERSION_LINE)
+
+    if matches
+
+      found = true
+
+      if matches[1] != required_version
+        OUTPUT_MUTEX.synchronize do
+          error "Line #{line_number + 1} has incorrect version. "\
+                "#{matches[1]} is not equal to #{required_version}"
+          errors = true
+        end
+      end
+    end
+  end
+
+  unless found
+    OUTPUT_MUTEX.synchronize do
+      error 'No line specifying version numbers was found'
+      errors = true
+    end
+  end
+
+  errors
+end
+
 def handle_po_file(path)
   errors = false
 
@@ -308,6 +484,13 @@ def handle_po_file(path)
   msg_ids = Set[]
 
   File.foreach(path, encoding: 'utf-8').with_index do |line, line_number|
+    if contains_merge_marker(line)
+      OUTPUT_MUTEX.synchronize do
+        merge_error(line_number)
+        errors = true
+      end
+    end
+
     if is_english && line.match(FUZZY_TRANSLATION_REGEX)
       OUTPUT_MUTEX.synchronize do
         error "Line #{line_number + 1} has fuzzy (marked needs changes) translation, not allowed for en"
@@ -434,6 +617,10 @@ def handle_file(path)
     handle_tscn_file path
   elsif path =~ /\.po$/
     handle_po_file path
+  elsif path =~ /\.mo$/
+    handle_mo_file path
+  elsif path =~ /export_presets.cfg$/
+    handle_export_presets path
   else
     false
   end
@@ -467,18 +654,25 @@ def run_files
     begin
       if handle_file path
         OUTPUT_MUTEX.synchronize  do
-          puts 'Problems found in file (see above): ' + path
+          puts "Problems found in file (see above): #{path}"
           puts ''
         end
         issues_found = true
       end
     rescue StandardError => e
       OUTPUT_MUTEX.synchronize do
-        puts 'Failed to handle path: ' + path
-        puts 'Error: ' + e.message
+        puts "Failed to handle path: #{path}"
+        puts "Error: #{e.message}"
       end
       raise e
     end
+  end
+
+  if steam_build_enabled?
+    OUTPUT_MUTEX.synchronize do
+      puts 'Steam build is enabled, it should not be enabled when committing'
+    end
+    issues_found = true
   end
 
   return unless issues_found
@@ -512,7 +706,7 @@ end
 def run_inspect_code
   return if skip_jetbrains?
 
-  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
+  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml', '--build']
 
   params.append "--include=#{@includes.join(';')}" if @includes
 
@@ -560,7 +754,7 @@ end
 def run_cleanup_code
   return if skip_jetbrains?
 
-  old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+  old_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
   params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
 
@@ -568,7 +762,7 @@ def run_cleanup_code
 
   runOpen3Checked(*params)
 
-  new_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+  new_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
   return if new_diff == old_diff
 
@@ -590,7 +784,7 @@ def run_duplicate_finder
   return if skip_jetbrains?
 
   params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
-            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=false',
+            "--discard-cost=#{DUPLICATE_THRESHOLD}", '--discard-literals=false',
             '--exclude-by-comment="NO_DUPLICATE_CHECK"', 'Thrive.csproj']
 
   # Duplicate code needs to always process all files to detect code
@@ -639,54 +833,6 @@ def cleanup_temp_check_locales
   Dir['locale/**/*' + LOCALE_TEMP_SUFFIX].each do |f|
     File.unlink f
   end
-end
-
-def find_next_msg_id(reader)
-  loop do
-    line = reader.gets
-
-    if line.nil?
-      # File ended
-      return nil
-    end
-
-    matches = line.match(MSG_ID_REGEX)
-
-    return matches[1] if matches
-  end
-end
-
-def read_gettext_header_order(reader)
-  expected_header_msg = find_next_msg_id reader
-
-  onError 'File ended when looking for gettext header' if expected_header_msg.nil?
-
-  if expected_header_msg != ''
-    error 'Could not find gettext header, expected blank msg id, ' \
-          "but got: #{expected_header_msg}"
-    return ['header not found...']
-  end
-
-  headers = []
-
-  # Read content lines
-  loop do
-    line = reader.gets
-
-    break if line.nil?
-
-    break if line.strip.empty?
-
-    matches = line.match(PLAIN_QUOTED_MESSAGE)
-
-    next unless matches
-
-    matches = matches[1].match(GETTEXT_HEADER_NAME)
-
-    headers.push matches[1] if matches
-  end
-
-  headers
 end
 
 def run_localization_checks
@@ -758,7 +904,17 @@ def run_localization_checks
   return unless issues_found
 
   OUTPUT_MUTEX.synchronize do
-    error 'Translations are not up to date. Please rerun scripts/update_localization.rb'
+    error 'Translations are not up to date.'
+    puts "Babel-Thrive version installed: #{installed_babel_thrive_version}; "\
+          "required: #{required_babel_thrive_version}"
+    if installed_babel_thrive_version == required_babel_thrive_version
+      warning 'Please verify your Babel-Thrive version meets the requirement '\
+            'and rerun "scripts/update_localization.rb"'
+    else
+      warning 'Mismatching Babel-Thrive version detected. Please update '\
+              '"pip install -r docker/jsonlint/requirements.txt --user" '\
+              'and rerun "scripts/update_localization.rb"'
+    end
   end
 
   exit 2

@@ -231,17 +231,28 @@ public struct Hex : IEquatable<Hex>
         return new Hex(-hex.Q, hex.Q + hex.R);
     }
 
+    /// <summary>
+    ///   Returns the RenderPriority for the hex.
+    ///   Between 1 and HEX_RENDER_PRIORITY_DISTANCE^2.
+    /// </summary>
+    /// <returns>RenderPriority</returns>
+    public static int GetRenderPriority(Hex hex)
+    {
+        return hex.Q.PositiveModulo(Constants.HEX_RENDER_PRIORITY_DISTANCE) * Constants.HEX_RENDER_PRIORITY_DISTANCE
+            + hex.R.PositiveModulo(Constants.HEX_RENDER_PRIORITY_DISTANCE) + 1;
+    }
+
+    public bool Equals(Hex other)
+    {
+        return Q == other.Q && R == other.R;
+    }
+
     public override bool Equals(object obj)
     {
         if (!(obj is Hex hex))
             return false;
 
         return Equals(hex);
-    }
-
-    public bool Equals(Hex other)
-    {
-        return Q == other.Q && R == other.R;
     }
 
     public override int GetHashCode()

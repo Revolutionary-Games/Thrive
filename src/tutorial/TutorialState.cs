@@ -32,44 +32,55 @@ public class TutorialState : ITutorialInput
     // Tutorial states
 
     [JsonProperty]
-    public MicrobeStageWelcome MicrobeStageWelcome { get; private set; } = new MicrobeStageWelcome();
+    public MicrobeStageWelcome MicrobeStageWelcome { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeMovement MicrobeMovement { get; private set; } = new MicrobeMovement();
+    public MicrobeMovement MicrobeMovement { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeMovementExplanation MicrobeMovementExplanation { get; private set; } =
-        new MicrobeMovementExplanation();
+    public MicrobeMovementExplanation MicrobeMovementExplanation { get; private set; } = new();
 
     [JsonProperty]
-    public GlucoseCollecting GlucoseCollecting { get; private set; } = new GlucoseCollecting();
+    public GlucoseCollecting GlucoseCollecting { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeStayingAlive MicrobeStayingAlive { get; private set; } = new MicrobeStayingAlive();
+    public MicrobeStayingAlive MicrobeStayingAlive { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeReproduction MicrobeReproduction { get; private set; } = new MicrobeReproduction();
+    public MicrobeReproduction MicrobeReproduction { get; private set; } = new();
 
     [JsonProperty]
-    public MicrobeUnbind MicrobeUnbind { get; private set; } = new MicrobeUnbind();
+    public MicrobePressEditorButton MicrobePressEditorButton { get; private set; } = new();
 
     [JsonProperty]
-    public EditorWelcome EditorWelcome { get; private set; } = new EditorWelcome();
+    public MicrobeUnbind MicrobeUnbind { get; private set; } = new();
 
     [JsonProperty]
-    public Tutorial.PatchMap PatchMap { get; private set; } = new Tutorial.PatchMap();
+    public CheckTheHelpMenu CheckTheHelpMenu { get; private set; } = new();
 
     [JsonProperty]
-    public CellEditorIntroduction CellEditorIntroduction { get; private set; } = new CellEditorIntroduction();
+    public EditorWelcome EditorWelcome { get; private set; } = new();
 
     [JsonProperty]
-    public EditorUndoTutorial EditorUndoTutorial { get; private set; } = new EditorUndoTutorial();
+    public Tutorial.PatchMap PatchMap { get; private set; } = new();
 
     [JsonProperty]
-    public EditorRedoTutorial EditorRedoTutorial { get; private set; } = new EditorRedoTutorial();
+    public CellEditorIntroduction CellEditorIntroduction { get; private set; } = new();
 
     [JsonProperty]
-    public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new EditorTutorialEnd();
+    public EditorUndoTutorial EditorUndoTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public EditorRedoTutorial EditorRedoTutorial { get; private set; } = new();
+
+    [JsonProperty]
+    public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new();
+
+    [JsonProperty]
+    public AutoEvoPrediction AutoEvoPrediction { get; private set; } = new();
+
+    [JsonProperty]
+    public StaySmallTutorial StaySmallTutorial { get; private set; } = new();
 
     // End of tutorial state variables
 
@@ -136,15 +147,6 @@ public class TutorialState : ITutorialInput
     public bool TutorialActive()
     {
         return Tutorials.Any(tutorial => tutorial.ShownCurrently);
-    }
-
-    /// <summary>
-    ///   Checks if any exclusive tutorial is visible. When one is active it prevents all other GUI buttons from working
-    /// </summary>
-    /// <returns>True if any exclusive tutorial is visible</returns>
-    public bool ExclusiveTutorialActive()
-    {
-        return Tutorials.Any(tutorial => tutorial.CurrentlyExclusivelyOpen);
     }
 
     /// <summary>
@@ -331,13 +333,17 @@ public class TutorialState : ITutorialInput
             GlucoseCollecting,
             MicrobeStayingAlive,
             MicrobeReproduction,
+            MicrobePressEditorButton,
             MicrobeUnbind,
+            CheckTheHelpMenu,
             EditorWelcome,
             PatchMap,
             CellEditorIntroduction,
             EditorUndoTutorial,
             EditorRedoTutorial,
             EditorTutorialEnd,
+            AutoEvoPrediction,
+            StaySmallTutorial,
         };
     }
 }

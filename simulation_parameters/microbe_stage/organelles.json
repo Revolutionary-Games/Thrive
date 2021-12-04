@@ -48,7 +48,7 @@
         },
         "prokaryoteChance": 2,
         "chanceToCreate": 0.5,
-        "mass": 0.09,
+        "mass": 0.08,
         "displayScene": "res://assets/models/organelles/Rusticyanin.tscn",
         "name": "RUSTICYANIN",
         "productionColour": "#3293f7",
@@ -328,8 +328,8 @@
     "flagellum": {
         "mpCost": 55,
         "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
+            "ammonia": 1,
+            "phosphates": 1
         },
         "hexes": [
             {
@@ -361,8 +361,8 @@
     "vacuole": {
         "mpCost": 50,
         "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
+            "ammonia": 1,
+            "phosphates": 1
         },
         "hexes": [
             {
@@ -373,7 +373,7 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 6
+                "capacity": 8
             }
         },
         "prokaryoteChance": 0,
@@ -424,8 +424,8 @@
     "oxytoxy": {
         "mpCost": 70,
         "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
+            "ammonia": 1,
+            "phosphates": 1
         },
         "hexes": [
             {
@@ -458,8 +458,8 @@
     "bindingAgent": {
         "mpCost": 55,
         "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
+            "ammonia": 1,
+            "phosphates": 1
         },
         "hexes": [
             {
@@ -470,13 +470,13 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 5
+                "capacity": 1
             },
             "bindingAgent": {}
         },
         "prokaryoteChance": 0,
         "chanceToCreate": 0,
-        "mass": 0.9,
+        "mass": 0.1,
         "displayScene": "res://assets/models/organelles/BindingAgent.tscn",
         "name": "BINDING_AGENT",
         "iconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
@@ -525,8 +525,8 @@
     "cytoplasm": {
         "mpCost": 22,
         "initialComposition": {
-            "ammonia": 2,
-            "phosphates": 2
+            "ammonia": 1,
+            "phosphates": 1
         },
         "hexes": [
             {
@@ -606,7 +606,7 @@
         "processes": {},
         "components": {
             "storage": {
-                "capacity": 2
+                "capacity": 4
             },
             "nucleus": {}
         },

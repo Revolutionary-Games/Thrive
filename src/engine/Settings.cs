@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Saving;
 using Environment = System.Environment;
 
 /// <summary>
@@ -10,7 +12,10 @@ using Environment = System.Environment;
 /// </summary>
 public class Settings
 {
-    private static readonly string DefaultLanguageValue = TranslationServer.GetLocale();
+    private static readonly List<string>
+        AvailableLocales = TranslationServer.GetLoadedLocales().Cast<string>().ToList();
+
+    private static readonly string DefaultLanguageValue = GetSupportedLocale(TranslationServer.GetLocale());
     private static readonly CultureInfo DefaultCultureValue = CultureInfo.CurrentCulture;
     private static readonly InputDataList DefaultControls = GetCurrentlyAppliedControls();
 
@@ -35,6 +40,13 @@ public class Settings
     public static string DefaultLanguage => DefaultLanguageValue;
 
     public static CultureInfo DefaultCulture => DefaultCultureValue;
+
+    /// <summary>
+    ///   If environment is steam returns SteamHandler.DisplayName, else Environment.UserName
+    /// </summary>
+    public static string EnvironmentUserName => SteamHandler.Instance.IsLoaded ?
+        SteamHandler.Instance.DisplayName :
+        Environment.UserName;
 
     // Graphics Properties
 
@@ -69,6 +81,17 @@ public class Settings
     ///   Enable or Disable Chromatic Aberration for screen
     /// </summary>
     public SettingValue<bool> ChromaticEnabled { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Display or hide the abilities hotbar in the microbe stage HUD.
+    /// </summary>
+    public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Enable or disable lighting effects on the GUI. Mainly Used to workaround a bug where the HUD area
+    ///   surrounding the editor button sometimes disappearing with the light effect turned on.
+    /// </summary>
+    public SettingValue<bool> GUILightEffectsEnabled { get; set; } = new SettingValue<bool>(true);
 
     // Sound Properties
 
@@ -122,6 +145,9 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
 
+    public SettingValue<string> SelectedAudioOutputDevice { get; set; } =
+        new SettingValue<string>(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
+
     public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
 
     // Performance Properties
@@ -152,6 +178,21 @@ public class Settings
     ///   taking up one of the background threads.
     /// </summary>
     public SettingValue<bool> RunAutoEvoDuringGamePlay { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
+    /// </summary>
+    public SettingValue<bool> AssumeCPUHasHyperthreading { get; set; } = new SettingValue<bool>(true);
+
+    /// <summary>
+    ///   Only if this is true the ThreadCount will be followed
+    /// </summary>
+    public SettingValue<bool> UseManualThreadCount { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Manually set number of background threads to use. Needs to be at least 2 if RunAutoEvoDuringGamePlay is true
+    /// </summary>
+    public SettingValue<int> ThreadCount { get; set; } = new SettingValue<int>(4);
 
     // Misc Properties
 
@@ -192,14 +233,6 @@ public class Settings
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
-    ///   The current controls of the game.
-    ///   It stores the godot actions like g_move_left and
-    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
-    /// </summary>
-    public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(GetDefaultControls());
-
-    /// <summary>
     ///   If false username will be set to System username
     /// </summary>
     public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
@@ -209,12 +242,38 @@ public class Settings
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
 
+    /// <summary>
+    ///   The Db value to be added to the master audio bus
+    /// </summary>
+    public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
+        new SettingValue<JSONDebug.DebugMode>(JSONDebug.DebugMode.Automatic);
+
+    /// <summary>
+    ///   Enables/disables the unsaved progress warning popup for when the player tries to quit the game.
+    /// </summary>
+    public SettingValue<bool> ShowUnsavedProgressWarning { get; set; } = new SettingValue<bool>(true);
+
+    // Input properties
+
+    /// <summary>
+    ///   The current controls of the game.
+    ///   It stores the godot actions like g_move_left and
+    ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
+    /// </summary>
+    public SettingValue<InputDataList> CurrentControls { get; set; } =
+        new SettingValue<InputDataList>(GetDefaultControls());
+
+    // Settings that are edited from elsewhere than the main options menu
+    public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
+
+    // Computed properties from other settings
+
     [JsonIgnore]
     public string ActiveUsername =>
         CustomUsernameEnabled &&
         CustomUsername.Value != null ?
             CustomUsername.Value :
-            Environment.UserName;
+            EnvironmentUserName;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
@@ -442,6 +501,14 @@ public class Settings
     /// </param>
     public void ApplyAll(bool delayedApply = false)
     {
+        if (Engine.EditorHint)
+        {
+            // Do not apply settings within the Godot editor.
+            return;
+        }
+
+        // Delayed apply was implemented to fix problems within the Godot editor.
+        // So this might no longer be necessary, as this is now skipped within editor.
         if (delayedApply)
         {
             GD.Print("Doing delayed apply for some settings");
@@ -460,6 +527,7 @@ public class Settings
             ApplyInputSettings();
         }
 
+        ApplyAudioOutputDeviceSettings();
         ApplyLanguageSettings();
         ApplyWindowSettings();
     }
@@ -522,6 +590,35 @@ public class Settings
     }
 
     /// <summary>
+    ///   Applies current output device settings to the audio system
+    /// </summary>
+    public void ApplyAudioOutputDeviceSettings()
+    {
+        var audioOutputDevice = SelectedAudioOutputDevice.Value;
+        if (string.IsNullOrEmpty(audioOutputDevice))
+        {
+            audioOutputDevice = Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME;
+        }
+
+        // If the selected output device is invalid Godot resets AudioServer.Device to Default.
+        // It seems like there is some kind of threading going on. The getter of AudioServer.Device
+        // only returns the new value after some time, therefore we can't check if the output device
+        // got applied successfully.
+        AudioServer.Device = audioOutputDevice;
+
+        GD.Print("Set audio output device to: ", audioOutputDevice);
+    }
+
+    /// <summary>
+    ///   Applies thread count settings, not necessary to call on startup as TaskExecutor reads the values itself from
+    ///   us when starting
+    /// </summary>
+    public void ApplyThreadSettings()
+    {
+        TaskExecutor.Instance.ReApplyThreadCount();
+    }
+
+    /// <summary>
     ///   Applies current language settings to any applicable engine systems.
     /// </summary>
     public void ApplyLanguageSettings()
@@ -537,6 +634,7 @@ public class Settings
         }
         else
         {
+            language = GetSupportedLocale(language);
             cultureInfo = GetCultureInfo(language);
         }
 
@@ -546,6 +644,8 @@ public class Settings
         // Set locale for the game. Called after C# locale change so that string
         // formatting uses could also get updated properly.
         TranslationServer.SetLocale(language);
+
+        GD.Print("Set C# locale to: ", cultureInfo, " Godot locale is: ", TranslationServer.GetLocale());
     }
 
     /// <summary>
@@ -564,9 +664,6 @@ public class Settings
             }
 
             settings.ApplyAll(true);
-
-            // Simulation parameters need to apply the initial translation
-            SimulationParameters.Instance.ApplyTranslations();
 
             return settings;
         }
@@ -615,6 +712,32 @@ public class Settings
 
             return settings;
         }
+    }
+
+    /// <summary>
+    ///   Tries to return the best supported Godot locale match.
+    ///   Godot locale is different from C# culture.
+    ///   Compare for example fi_FI (Godot) to fi-FI (C#).
+    /// </summary>
+    /// <param name="locale">locale to check</param>
+    /// <returns>supported locale</returns>
+    private static string GetSupportedLocale(string locale)
+    {
+        if (AvailableLocales.Contains(locale))
+        {
+            return locale;
+        }
+
+        if (locale.Contains('_'))
+        {
+            locale = locale.Split("_")[0];
+            if (AvailableLocales.Contains(locale))
+            {
+                return locale;
+            }
+        }
+
+        return "en";
     }
 
     /// <summary>

@@ -81,7 +81,7 @@ jobs:
    format_script:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/thrive-lint:v8
+       - image: hhyyrylainen/thrive-lint:v9
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:

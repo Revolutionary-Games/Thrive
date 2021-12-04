@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/NewSaveMenu.cs" type="Script" id=2]
-[ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=4]
 
 [node name="NewSaveMenu" type="Control"]
@@ -110,28 +110,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OverwriteConfirm" type="ConfirmationDialog" parent="."]
-margin_right = 500.0
-margin_bottom = 84.0
-rect_min_size = Vector2( 500, 84 )
-popup_exclusive = true
-window_title = "OVERWRITE_EXISTING_SAVE_TITLE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="OverwriteConfirm" parent="." instance=ExtResource( 3 )]
+rect_min_size = Vector2( 500, 0 )
+WindowTitle = "OVERWRITE_EXISTING_SAVE_TITLE"
 
-[node name="DialogText" type="Label" parent="OverwriteConfirm"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 490.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 3 )
-align = 1
-valign = 1
-autowrap = true
 [connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="SaveButtonPressed"]
 [connection signal="OnSelectedChanged" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Back" to="." method="ClosePressed"]
-[connection signal="confirmed" from="OverwriteConfirm" to="." method="OnConfirmSaveName"]
+[connection signal="Confirmed" from="OverwriteConfirm" to="." method="OnConfirmSaveName"]

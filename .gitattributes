@@ -1,10 +1,19 @@
 * text=auto
-*.lua text
+*.po text
+*.pot text
+*.rb text
+*.sln text
+*.csproj text
+*.json text
+*.md text
+*.txt text
 *.cs text
-*.cpp text
-*.h text
-*.tres text
+*.yml text
 *.tscn text
+*.tres text
+*.shader text
+*.xml text
+*.*.import text
 *.asset filter=lfs diff=lfs merge=lfs -text
 *.png filter=lfs diff=lfs merge=lfs -text
 *.mkv filter=lfs diff=lfs merge=lfs -text

@@ -18,6 +18,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [Export]
     public NodePath PauseMenuPath;
 
+    [Export]
+    public NodePath HUDRootPath;
+
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
     private Node world;
@@ -28,6 +31,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private SpawnSystem spawner;
 
     private MicrobeAISystem microbeAISystem;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private PatchManager patchManager;
 
     private DirectionalLight worldLight;
@@ -36,6 +42,13 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private GuidanceLine guidanceLine;
     private Vector3? guidancePosition;
     private PauseMenu pauseMenu;
+    private bool transitionFinished;
+
+    private Control hudRoot;
+
+    // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
+    // if null)
+    private Random random = new Random();
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -95,23 +108,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [JsonProperty]
     public Microbe Player { get; private set; }
 
+    [JsonIgnore]
+    public PlayerHoverInfo HoverInfo { get; private set; }
+
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
     [JsonProperty]
     public GameProperties CurrentGame { get; set; }
-
-    /// <summary>
-    ///   All compounds the user is hovering over
-    /// </summary>
-    [JsonIgnore]
-    public Dictionary<Compound, float> CompoundsAtMouse { get; private set; }
-
-    /// <summary>
-    ///   All microbes the user is hovering over
-    /// </summary>
-    [JsonIgnore]
-    public List<Microbe> MicrobesAtMouse { get; private set; } = new List<Microbe>();
 
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
@@ -127,7 +131,15 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     ///   True once stage fade-in is complete
     /// </summary>
     [JsonIgnore]
-    public bool TransitionFinished { get; internal set; }
+    public bool TransitionFinished
+    {
+        get => transitionFinished;
+        internal set
+        {
+            transitionFinished = value;
+            pauseMenu.GameLoading = !transitionFinished;
+        }
+    }
 
     /// <summary>
     ///   True when transitioning to the editor
@@ -204,9 +216,22 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         tutorialGUI.Visible = true;
         HUD.Init(this);
+        HoverInfo.Init(Camera, Clouds);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+        CheatManager.OnSpawnEnemyCheatUsed += OnSpawnEnemyCheatUsed;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+        CheatManager.OnSpawnEnemyCheatUsed -= OnSpawnEnemyCheatUsed;
     }
 
     public override void _Notification(int what)
@@ -225,12 +250,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         world = GetNode<Node>("World");
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
         tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
+        HoverInfo = GetNode<PlayerHoverInfo>("PlayerHoverInfo");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         worldLight = world.GetNode<DirectionalLight>("WorldLight");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
+        hudRoot = GetNode<Control>(HUDRootPath);
 
         // These need to be created here as well for child property save load to work
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
@@ -238,6 +265,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
+        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
+            worldLight, CurrentGame);
 
         NodeReferencesResolved = true;
     }
@@ -270,19 +299,20 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Clouds.Init(FluidSystem);
 
-        CreatePatchManagerIfNeeded();
+        patchManager.CurrentGame = CurrentGame;
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
 
         StartMusic();
 
         if (IsLoadedFromSave)
         {
             HUD.OnEnterStageTransition(false);
-            UpdatePatchSettings(true);
+            UpdatePatchSettings();
         }
         else
         {
             HUD.OnEnterStageTransition(true);
-            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
         }
     }
 
@@ -300,17 +330,16 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         CurrentGame = GameProperties.StartNewMicrobeGame();
 
-        CreatePatchManagerIfNeeded();
+        patchManager.CurrentGame = CurrentGame;
 
-        UpdatePatchSettings(false);
+        UpdatePatchSettings(!TutorialState.Enabled);
 
         SpawnPlayer();
     }
 
     public void StartMusic()
     {
-        Jukebox.Instance.PlayingCategory = "MicrobeStage";
-        Jukebox.Instance.Resume();
+        Jukebox.Instance.PlayCategory("MicrobeStage");
     }
 
     /// <summary>
@@ -339,7 +368,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (spawnedPlayer)
         {
             // Random location on respawn
-            var random = new Random();
             Player.Translation = new Vector3(
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
@@ -349,6 +377,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
+
+        ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
     }
 
     public override void _PhysicsProcess(float delta)
@@ -367,8 +397,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         ProcessSystem.Process(delta);
         microbeAISystem.Process(delta);
 
-        UpdateMouseHover();
-
         if (gameOver)
         {
             guidanceLine.Visible = false;
@@ -377,6 +405,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             // Show the game lost popup if not already visible
             HUD.ShowExtinctionBox();
 
+            Jukebox.Instance.PlayCategory("Extinction");
             return;
         }
 
@@ -462,9 +491,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [RunOnKeyDown("g_quick_save")]
     public void QuickSave()
     {
-        if (!TransitionFinished)
+        if (!TransitionFinished || wantsToSave)
         {
-            GD.Print("quick save is disabled while transitioning");
+            GD.Print("Skipping quick save as stage transition is not finished or saving is queued");
             return;
         }
 
@@ -472,11 +501,27 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         SaveHelper.QuickSave(this);
     }
 
+    [RunOnKeyDown("g_toggle_gui")]
+    public void ToggleGUI()
+    {
+        hudRoot.Visible = !hudRoot.Visible;
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
     public void MoveToEditor()
     {
+        // Might be related to saving but somehow the editor button can be enabled while in a colony
+        // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button becoming
+        // disabled properly
+        // https://github.com/Revolutionary-Games/Thrive/issues/2504
+        if (Player.Colony != null)
+        {
+            GD.PrintErr("Editor button was enabled and pressed while the player is in a colony");
+            return;
+        }
+
         // Increase the population by the constant for the player reproducing
         var playerSpecies = GameWorld.PlayerSpecies;
         GameWorld.AlterSpeciesPopulation(
@@ -505,7 +550,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void OnReturnFromEditor()
     {
-        UpdatePatchSettings(false);
+        UpdatePatchSettings();
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -532,49 +577,51 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         HUD.OnEnterStageTransition(false);
         HUD.HideReproductionDialog();
 
+        if (!CurrentGame.TutorialState.Enabled)
+        {
+            tutorialGUI.EventReceiver?.OnTutorialDisabled();
+        }
+
         StartMusic();
 
-        // Apply language settings here to be sure the stage doesn't continue to use the wrong language
-        // Because the stage scene tree being unattached during editor,
-        // if language was changed while in the editor, it doesn't properly propagate
-        Settings.Instance.ApplyLanguageSettings();
+        // Reset locale to assure the stage's language.
+        // Because the stage scene tree being unattached during editor, if language was
+        // changed while in the editor, it doesn't update this stage's translation cache.
+        TranslationServer.SetLocale(TranslationServer.GetLocale());
 
         // Auto save is wanted once possible
         wantsToSave = true;
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     public void OnFinishTransitioning()
     {
         TransitionFinished = true;
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
+        TutorialState.SendEvent(
+            TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
     }
 
-    /// <summary>
-    ///   Updates CompoundsAtMouse and MicrobesAtMouse
-    /// </summary>
-    private void UpdateMouseHover()
+    private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)
     {
-        CompoundsAtMouse = Clouds.GetAllAvailableAt(Camera.CursorWorldPos);
+        if (Player == null)
+            return;
 
-        var microbes = GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
+        var species = GameWorld.Map.CurrentPatch.SpeciesInPatch.Keys.Where(s => !s.PlayerSpecies).ToList();
 
-        foreach (var microbe in MicrobesAtMouse)
-            microbe.IsHoveredOver = false;
-
-        MicrobesAtMouse.Clear();
-
-        foreach (Microbe entry in microbes)
+        // No enemy species to spawn in this patch
+        if (species.Count == 0)
         {
-            var distance = (entry.GlobalTransform.origin - Camera.CursorWorldPos).Length();
-
-            // Find only cells that have the mouse
-            // position within their membrane
-            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
-                continue;
-
-            entry.IsHoveredOver = true;
-            MicrobesAtMouse.Add(entry);
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
+            GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
+            return;
         }
+
+        var randomSpecies = species.Random(random);
+
+        SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
+            CurrentGame);
     }
 
     [DeserializedCallbackAllowed]
@@ -619,15 +666,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TutorialState.SendEvent(TutorialEventType.MicrobePlayerUnbound, EventArgs.Empty, this);
     }
 
-    private void CreatePatchManagerIfNeeded()
-    {
-        if (patchManager != null)
-            return;
-
-        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            worldLight, CurrentGame);
-    }
-
     /// <summary>
     ///   Handles respawning the player and checking for extinction
     /// </summary>
@@ -655,9 +693,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
     }
 
-    private void UpdatePatchSettings(bool isLoading)
+    private void UpdatePatchSettings(bool promptPatchNameChange = true)
     {
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
+        // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
+        // going back to the stage
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch) && promptPatchNameChange)
+        {
+            HUD.PopupPatchInfo();
+        }
 
         HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);

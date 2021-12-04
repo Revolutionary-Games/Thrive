@@ -1,6 +1,15 @@
 {
     "MutationsPerSpecies": 3,
     "AllowNoMutation": true,
-    "MoveAttemptsPerSpecies": 5,
-    "AllowNoMigration": true
+    "MoveAttemptsPerSpecies": 7,
+    "AllowNoMigration": true,
+    "LowBiodiversityLimit": 2,
+    "SpeciesSplitByMutationThresholdPopulationFraction": 0.1,
+    "SpeciesSplitByMutationThresholdPopulationAmount": 200,
+    "BiodiversityAttemptFillChance": 0.7,
+    "UseBiodiversityForceSplit": false,
+    "BiodiversityFromNeighbourPatchChance": 0.55,
+    "BiodiversityNearbyPatchIsFreePopulation": true,
+    "NewBiodiversityIncreasingSpeciesPopulation": 100,
+    "BiodiversitySplitIsMutated": true
 }

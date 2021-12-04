@@ -4,6 +4,13 @@ using Godot;
 /// <summary>
 ///   Handles key input in the microbe stage
 /// </summary>
+/// <remarks>
+///   <para>
+///     Note that callbacks from other places directly call some methods in this class, so
+///     an extra care should be taken while modifying the methods as otherwise some stuff
+///     may no longer work.
+///   </para>
+/// </remarks>
 public class PlayerMicrobeInput : NodeWithInput
 {
     private bool autoMove;
@@ -124,10 +131,10 @@ public class PlayerMicrobeInput : NodeWithInput
         if (stage.Player?.State != Microbe.MicrobeState.Unbinding)
             return false;
 
-        if (stage.MicrobesAtMouse.Count == 0)
+        if (stage.HoverInfo.HoveredMicrobes.Count == 0)
             return false;
 
-        var target = stage.MicrobesAtMouse[0];
+        var target = stage.HoverInfo.HoveredMicrobes[0];
         RemoveCellFromColony(target);
 
         stage.HUD.HintText = string.Empty;
@@ -178,6 +185,6 @@ public class PlayerMicrobeInput : NodeWithInput
     private void SpawnCheatCloud(string name, float delta)
     {
         stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-            8000.0f * delta, stage.Camera.CursorWorldPos);
+            Constants.CLOUD_CHEAT_DENSITY * delta, stage.Camera.CursorWorldPos);
     }
 }

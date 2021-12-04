@@ -24,6 +24,9 @@ public class LoadingScreen : Control
     [Export]
     public NodePath RandomizeTipTimerPath;
 
+    [Export]
+    public NodePath SpinnerPath;
+
     /// <summary>
     ///   How fast the loading indicator spins
     /// </summary>
@@ -149,8 +152,7 @@ public class LoadingScreen : Control
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
         tipLabel = GetNode<Label>(TipLabelPath);
         randomizeTipTimer = GetNode<Timer>(RandomizeTipTimerPath);
-
-        spinner = GetNode<Control>("HBoxContainer/Spinner");
+        spinner = GetNode<Control>(SpinnerPath);
 
         UpdateMessage();
         UpdateDescription();
@@ -185,7 +187,7 @@ public class LoadingScreen : Control
         }
 
         var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState + "Tips");
-        var selectedTip = tips.Messages.Random(random);
+        var selectedTip = tips.Messages.Random(random).Message;
         Tip = selectedTip;
     }
 

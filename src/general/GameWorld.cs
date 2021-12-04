@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -43,6 +44,9 @@ public class GameWorld
     public GameWorld(WorldGenerationSettings settings) : this()
     {
         PlayerSpecies = CreatePlayerSpecies();
+
+        if (!PlayerSpecies.PlayerSpecies)
+            throw new Exception("PlayerSpecies flag for being player species is not set");
 
         Map = PatchMapGenerator.Generate(settings, PlayerSpecies);
 
@@ -100,14 +104,20 @@ public class GameWorld
         {
             // Make sure there is an existing run, as that isn't saved, so when loading we need to create the run to
             // store things in it. Creating the run here doesn't interfere with it being started
+
+            // We skip starting a run if the list of external effects would be empty anyway, as is the case
+            // when loading a save made in the editor
+            if (value == null || value.Count < 1)
+            {
+                autoEvo?.ExternalEffects.Clear();
+                return;
+            }
+
             CreateRunIfMissing();
 
             var effects = autoEvo.ExternalEffects;
 
             effects.Clear();
-
-            if (value == null)
-                return;
 
             effects.AddRange(value);
         }
@@ -177,7 +187,7 @@ public class GameWorld
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
-        TotalPassedTime += timePassed * 100000000;
+        TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
     }
@@ -197,6 +207,20 @@ public class GameWorld
     }
 
     /// <summary>
+    ///   Registers a species created by auto-evo in this world. Updates the ID
+    /// </summary>
+    /// <param name="species">The species to register</param>
+    public void RegisterAutoEvoCreatedSpecies(Species species)
+    {
+        if (worldSpecies.Any(p => p.Value == species))
+            throw new ArgumentException("Species is already in this world");
+
+        species.OnBecomePartOfWorld(++speciesIdCounter);
+        worldSpecies[species.ID] = species;
+        GD.Print("New species has become part of the world: ", species.FormattedIdentifier);
+    }
+
+    /// <summary>
     ///   Checks if an auto-evo run for this world is finished, optionally starting one if not in-progress already
     /// </summary>
     public bool IsAutoEvoFinished(bool autostart = true)
@@ -211,6 +235,15 @@ public class GameWorld
             return false;
 
         return autoEvo.Finished;
+    }
+
+    /// <summary>
+    ///   Makes the current auto-evo run run at full speed (all threads) until complete. If not active run does nothing
+    /// </summary>
+    public void FinishAutoEvoRunAtFullSpeed()
+    {
+        if (autoEvo?.FullSpeed == false)
+            autoEvo.FullSpeed = true;
     }
 
     public AutoEvoRun GetAutoEvoRun()

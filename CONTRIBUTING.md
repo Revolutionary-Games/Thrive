@@ -33,33 +33,39 @@ Godot documentation you should read.
 Please follow our [styleguide](doc/style_guide.md) when making your
 changes to Thrive.
 
-Once your changes are complete, then open a pull request to this repo
+Once your changes are complete, then open a pull request (PR) to this repo
 and someone from the team will review your pull request. Note that
 currently it is not possible commit changes to Git LFS if you are not
 a team member, so you need to ask someone from the team for help if
 your PR includes changes to assets.
 
-When creating a pull request, include the "closes" or "fixes" keyword followed
-by the issue number that will be closed when the pull request is
-accepted. Example: `closes #1234`.
+When opening a pull request, please use the closes or fixes keywords
+to mark the issues the PR closes. For example `closes #2000`. When the
+PR is then merged the linked issues are automatically closed.
+
+If there is a problem in a PR, please include new commits to the same
+branch (PR). You can even force push to remove every single commit in
+the PR and replace them with different ones. So there is no reason to
+close a PR if changes are needed. Other than if you no longer plan to
+finish it.
 
 Before marking your PR as ready for review (not a draft) please work
 through the PR testing checklist to not waste the reviewer's time if
 they have to find basic issues in your PR:
 https://wiki.revolutionarygamesstudio.com/wiki/Testing_Checklist
 
-If you need to alter code for an issue, don't create a new pull request.
-Existing pull requests can be updated. Simply push further commits to
-the same branch.
-
-Unfortunately, Github issues are often created quickly with little detail
-and context. Please do not hesitate to ask questions regarding the
-issue for clarification and details.
+Requirements in Github issues are often vague, so please feel free to
+ask for more details in the issue.
 
 If you want to contribute a non-planned feature, then you must add
 code to disable your changes. Note: currently we don't have an options
 menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
+
+If your PR breaks save compatibility (older saves no longer being
+loadable) you should include a save upgrader in your PR. Note that you
+may need to introduce a new sub version / bump the version number to
+make it possible to trigger the save upgrader.
 
 ## Translating the game
 
@@ -69,6 +75,28 @@ You can find the necessary informations about how to translate the game [here](d
 
 The planning board contains all issues and pull requests grouped
 by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
+
+## Continuous integration checks
+
+We use continuous integration (CI) systems to run automatic checks on
+code before accepting it. After making a pull request please make sure
+the CI jobs finish correctly on your code and fix any style
+etc. errors they detect. Note that sometimes the CI jobs can
+sporadically fail without you being at fault. If you are unsure if
+that's the case (even after using the code checks locally), you can
+ask someone from the team to look at the situation.
+
+To view CI build logs and other information, press the "details" button on Github in the 
+checks section.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/viewing_ci_results.png" alt="rider godot plugin">
+
+When updating Godot import settings (meaning changing the settings for
+an existing asset, if you just added a new one, you don't need to do
+this), or adding new C# dependencies, you should update the cache
+versions for CI. To do this you need to increment the relevant numbers
+by 1 in `CIConfiguration.yml`. If you are unsure which cache names to
+increment, please ask.
 
 ## Getting help
 

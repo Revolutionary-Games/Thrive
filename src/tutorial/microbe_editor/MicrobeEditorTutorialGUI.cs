@@ -26,12 +26,23 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath CellEditorClosingWordsPath;
 
-    private WindowDialog editorEntryReport;
-    private WindowDialog patchMap;
-    private WindowDialog cellEditorIntroduction;
-    private WindowDialog cellEditorUndo;
-    private WindowDialog cellEditorRedo;
-    private WindowDialog cellEditorClosingWords;
+    [Export]
+    public NodePath AutoEvoPredictionPath;
+
+    [Export]
+    public NodePath AutoEvoPredictionHighlightPath;
+
+    [Export]
+    public NodePath StaySmallTutorialPath;
+
+    private CustomDialog editorEntryReport;
+    private CustomDialog patchMap;
+    private CustomDialog cellEditorIntroduction;
+    private CustomDialog cellEditorUndo;
+    private CustomDialog cellEditorRedo;
+    private CustomDialog cellEditorClosingWords;
+    private CustomDialog autoEvoPrediction;
+    private CustomDialog staySmallTutorial;
 
     public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeEditor;
     public ITutorialInput EventReceiver { get; set; }
@@ -40,6 +51,8 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
     public Node GUINode => this;
 
     public ControlHighlight CellEditorUndoHighlight { get; private set; }
+
+    public ControlHighlight AutoEvoPredictionHighlight { get; private set; }
 
     public bool EditorEntryReportVisible
     {
@@ -55,7 +68,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                editorEntryReport.Visible = false;
+                editorEntryReport.Hide();
             }
         }
     }
@@ -74,7 +87,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                patchMap.Visible = false;
+                patchMap.Hide();
             }
         }
     }
@@ -93,7 +106,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorIntroduction.Visible = false;
+                cellEditorIntroduction.Hide();
             }
         }
     }
@@ -112,7 +125,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorUndo.Visible = false;
+                cellEditorUndo.Hide();
             }
         }
     }
@@ -131,7 +144,7 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorRedo.Visible = false;
+                cellEditorRedo.Hide();
             }
         }
     }
@@ -150,20 +163,62 @@ public class MicrobeEditorTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                cellEditorClosingWords.Visible = false;
+                cellEditorClosingWords.Hide();
+            }
+        }
+    }
+
+    public bool AutoEvoPredictionVisible
+    {
+        get => autoEvoPrediction.Visible;
+        set
+        {
+            if (value == autoEvoPrediction.Visible)
+                return;
+
+            if (value)
+            {
+                autoEvoPrediction.Show();
+            }
+            else
+            {
+                autoEvoPrediction.Hide();
+            }
+        }
+    }
+
+    public bool StaySmallTutorialVisible
+    {
+        get => staySmallTutorial.Visible;
+        set
+        {
+            if (value == staySmallTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                staySmallTutorial.Show();
+            }
+            else
+            {
+                staySmallTutorial.Hide();
             }
         }
     }
 
     public override void _Ready()
     {
-        editorEntryReport = GetNode<WindowDialog>(EditorEntryReportPath);
-        patchMap = GetNode<WindowDialog>(PatchMapPath);
-        cellEditorIntroduction = GetNode<WindowDialog>(CellEditorIntroductionPath);
-        cellEditorUndo = GetNode<WindowDialog>(CellEditorUndoPath);
-        cellEditorRedo = GetNode<WindowDialog>(CellEditorRedoPath);
-        cellEditorClosingWords = GetNode<WindowDialog>(CellEditorClosingWordsPath);
+        editorEntryReport = GetNode<CustomDialog>(EditorEntryReportPath);
+        patchMap = GetNode<CustomDialog>(PatchMapPath);
+        cellEditorIntroduction = GetNode<CustomDialog>(CellEditorIntroductionPath);
+        cellEditorUndo = GetNode<CustomDialog>(CellEditorUndoPath);
+        cellEditorRedo = GetNode<CustomDialog>(CellEditorRedoPath);
+        cellEditorClosingWords = GetNode<CustomDialog>(CellEditorClosingWordsPath);
+        autoEvoPrediction = GetNode<CustomDialog>(AutoEvoPredictionPath);
+        staySmallTutorial = GetNode<CustomDialog>(StaySmallTutorialPath);
+
         CellEditorUndoHighlight = GetNode<ControlHighlight>(CellEditorUndoHighlightPath);
+        AutoEvoPredictionHighlight = GetNode<ControlHighlight>(AutoEvoPredictionHighlightPath);
     }
 
     public override void _Process(float delta)

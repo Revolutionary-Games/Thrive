@@ -13,7 +13,7 @@ public class AgentProjectile : RigidBody, ITimedLife
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
     public AgentProperties Properties { get; set; }
-    public Node Emitter { get; set; }
+    public EntityReference<IEntity> Emitter { get; set; } = new EntityReference<IEntity>();
 
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
@@ -28,8 +28,12 @@ public class AgentProjectile : RigidBody, ITimedLife
     {
         particles = GetNode<Particles>("Particles");
 
-        AddCollisionExceptionWith(Emitter);
-        Connect("body_entered", this, "OnBodyEntered");
+        var emitterNode = Emitter.Value?.EntityNode;
+
+        if (emitterNode != null)
+            AddCollisionExceptionWith(emitterNode);
+
+        Connect("body_shape_entered", this, nameof(OnContactBegin));
     }
 
     public override void _Process(float delta)
@@ -42,15 +46,18 @@ public class AgentProjectile : RigidBody, ITimedLife
             Destroy();
     }
 
-    public void OnBodyEntered(Node body)
+    private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
+        _ = bodyID;
+        _ = localShape;
+
         if (body is Microbe microbe)
         {
             if (microbe.Species != Properties.Species)
             {
                 // If more stuff needs to be damaged we
                 // could make an IAgentDamageable interface.
-                microbe.Damage(Constants.OXYTOXY_DAMAGE, Properties.AgentType);
+                microbe.GetMicrobeFromShape(bodyShape).Damage(Constants.OXYTOXY_DAMAGE * Amount, Properties.AgentType);
             }
         }
 

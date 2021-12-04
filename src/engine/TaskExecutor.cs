@@ -21,7 +21,6 @@ public class TaskExecutor
 
     private bool running = true;
     private int currentThreadCount;
-    private bool assumeHyperThreading = true;
 
     /// <summary>
     ///   For naming the created threads.
@@ -40,34 +39,17 @@ public class TaskExecutor
         }
         else
         {
-            var logicalCPUs = Environment.ProcessorCount;
-
-            int targetTaskCount = logicalCPUs;
-
-            // No platform independent way to get this in c#
-            if (assumeHyperThreading && logicalCPUs % 2 == 0)
-                targetTaskCount /= 2;
-
-            // Actually it might make more sense to run auto evo as tasks to
-            // only take up resources when it is running
-            // // One thread for auto-evo
-            // targetTaskCount -= 1;
-
-            // There needs to be 2 threads as when auto-evo is running it hogs one thread
-            if (targetTaskCount < 2)
-            {
-                ParallelTasks = 2;
-            }
-            else
-            {
-                ParallelTasks = targetTaskCount;
-            }
+            ReApplyThreadCount();
         }
 
         // Mono doesn't have this for some reason
         // Thread.CurrentThread.Name = "main";
         GD.Print("TaskExecutor started with parallel job count: ", ParallelTasks);
     }
+
+    public static int CPUCount => Environment.ProcessorCount;
+    public static int MinimumThreadCount => Settings.Instance.RunAutoEvoDuringGamePlay.Value ? 2 : 1;
+    public static int MaximumThreadCount => CPUCount;
 
     public static TaskExecutor Instance => SingletonInstance;
 
@@ -92,6 +74,36 @@ public class TaskExecutor
     }
 
     /// <summary>
+    ///   Computes how many threads there should be by default
+    /// </summary>
+    /// <param name="hyperthreading">
+    ///   True if hyperthreading is on. There is no platform independent way to get this in C#.
+    /// </param>
+    /// <param name="autoEvoDuringGameplay">If true, reserves extra (minimum thread) for auto-evo</param>
+    /// <returns>The number of threads to use</returns>
+    public static int GetWantedThreadCount(bool hyperthreading, bool autoEvoDuringGameplay)
+    {
+        int targetTaskCount = CPUCount;
+
+        // The divisible by 2 check here makes sure there are 2n number of threads (where n is the number of real cores
+        // this holds for desktop hyperthreading where there's always 2 threads per core)
+        if (hyperthreading && targetTaskCount % 2 == 0)
+            targetTaskCount /= 2;
+
+        int max = MaximumThreadCount;
+        if (targetTaskCount > max)
+            targetTaskCount = max;
+
+        // There needs to be 2 threads as when auto-evo is running it hogs one thread
+        if (autoEvoDuringGameplay && targetTaskCount < 2)
+        {
+            targetTaskCount = 2;
+        }
+
+        return targetTaskCount;
+    }
+
+    /// <summary>
     ///   Sends a new task to be executed
     /// </summary>
     public void AddTask(Task task)
@@ -106,12 +118,26 @@ public class TaskExecutor
     ///   Runs a list of tasks and waits for them to complete. The
     ///   first task is ran on the calling thread before waiting.
     /// </summary>
-    public void RunTasks(IEnumerable<Task> tasks)
+    /// <param name="tasks">List of tasks to execute and wait to finish</param>
+    /// <param name="runExtraTasksOnCallingThread">
+    ///   If true the main thread processes tasks while there are queued tasks. Set this to false if you want to wait
+    ///   only for the tasks list to complete. If this is true then this call blocks until all tasks (for example
+    ///   ones queued from another thread while this method is executing) are complete, which may be unwanted in
+    ///   some cases.
+    /// </param>
+    public void RunTasks(IEnumerable<Task> tasks, bool runExtraTasksOnCallingThread = false)
     {
         // Queue all but the first task
         Task firstTask = null;
 
         var enumerated = tasks.ToList();
+
+        if (enumerated.Count < 1)
+        {
+            // No tasks given to execute. Should we throw here?
+            return;
+        }
+
         foreach (var task in enumerated)
         {
             if (firstTask != null)
@@ -125,9 +151,37 @@ public class TaskExecutor
         }
 
         // Run the first task on this thread
+        // This should always be non-null given the check above, but I don't feel like changing this now to not
+        // have to test this extensively
         firstTask?.RunSynchronously();
 
-        // Wait for all tasks to complete
+        // TODO: it should be plausible to make it so that only tasks in "tasks" are ran on the calling thread
+        // but due to implementation difficulty that is not currently done, instead this parameter is used
+        // to give control to the caller if they want to accept the tradeoffs regarding the current implementation
+        if (runExtraTasksOnCallingThread)
+        {
+            // Process tasks also on the main thread
+
+            // This should be the non-blocking variant so the current thread won't wait for more tasks,
+            // just immediately exits the loop if there are no tasks to run
+            while (queuedTasks.TryTake(out ThreadCommand command))
+            {
+                // If we take out a quit command here, we need to put it back for the actual threads to get and break
+                if (command.CommandType == ThreadCommand.Type.Quit)
+                {
+                    queuedTasks.Add(new ThreadCommand(ThreadCommand.Type.Quit, null));
+                    break;
+                }
+
+                if (ProcessNormalCommand(command))
+                    break;
+            }
+        }
+
+        // TODO: if Quit is called from another thread here, this thread will become permanently stuck waiting for the
+        // tasks
+
+        // Wait for all given tasks to complete
         foreach (var task in enumerated)
         {
             task.Wait();
@@ -138,6 +192,21 @@ public class TaskExecutor
     {
         running = false;
         ParallelTasks = 0;
+    }
+
+    public void ReApplyThreadCount()
+    {
+        var settings = Settings.Instance;
+
+        if (settings.UseManualThreadCount.Value)
+        {
+            ParallelTasks = Mathf.Clamp(settings.ThreadCount.Value, MinimumThreadCount, MaximumThreadCount);
+        }
+        else
+        {
+            ParallelTasks = GetWantedThreadCount(settings.AssumeCPUHasHyperthreading.Value,
+                settings.RunAutoEvoDuringGamePlay.Value);
+        }
     }
 
     private void SpawnThread()
@@ -170,29 +239,39 @@ public class TaskExecutor
                     return;
                 }
 
-                if (command.CommandType == ThreadCommand.Type.Task)
-                {
-                    try
-                    {
-                        command.Task.RunSynchronously();
-                    }
-                    catch (TaskSchedulerException exception)
-                    {
-                        GD.Print("Background task failed due to thread exiting: ", exception.Message);
-                        return;
-                    }
-
-                    // Make sure task exceptions aren't ignored.
-                    // Could perhaps in the future find some other way to handle this
-                    if (command.Task.Exception != null)
-                        throw command.Task.Exception;
-                }
-                else
-                {
-                    throw new Exception("invalid task type");
-                }
+                if (ProcessNormalCommand(command))
+                    return;
             }
         }
+    }
+
+    private bool ProcessNormalCommand(ThreadCommand command)
+    {
+        if (command.CommandType == ThreadCommand.Type.Task)
+        {
+            try
+            {
+                command.Task.RunSynchronously();
+            }
+            catch (TaskSchedulerException exception)
+            {
+                GD.Print("Background task failed due to thread exiting: ", exception.Message);
+                return true;
+            }
+
+            // Make sure task exceptions aren't ignored.
+            // TODO: it used to be that not all places properly waited for tasks, that's why this code is here
+            // but now some places actually want to handle the task exceptions themselves, so this should
+            // be removed after making sure no places ignore the exceptions
+            if (command.Task.Exception != null)
+                GD.Print("Background task caused an exception: ", command.Task.Exception);
+        }
+        else
+        {
+            throw new Exception("invalid task type");
+        }
+
+        return false;
     }
 
     private struct ThreadCommand

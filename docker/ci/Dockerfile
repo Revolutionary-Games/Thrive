@@ -6,11 +6,11 @@ RUN git lfs install
 RUN gem install os colorize rubyzip json sha3 httparty parallel nokogiri
 
 # Jetbrains CLI tools
-RUN wget https://download.jetbrains.com/resharper/dotUltimate.2021.1.3/JetBrains.ReSharper.CommandLineTools.2021.1.3.zip \
+RUN wget https://download.jetbrains.com/resharper/dotUltimate.2021.2.1/JetBrains.ReSharper.CommandLineTools.2021.2.1.zip \
     -O jetbrains.zip && unzip jetbrains.zip -d /usr/bin && rm -rf jetbrains.zip && chmod +x /usr/bin/*.sh
 
 # Godot install
-ENV GODOT_VERSION "3.3.2"
+ENV GODOT_VERSION "3.4"
 
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_linux_headless_64.zip \
     && wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \
@@ -31,7 +31,7 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot
 COPY editor_settings-3.tres /root/.config/godot/editor_settings-3.tres
 
 # Godot pck tool
-ENV PCK_TOOL_VERSION "v1.4"
+ENV PCK_TOOL_VERSION "v1.6"
 
 RUN wget https://github.com/hhyyrylainen/GodotPckTool/releases/download/${PCK_TOOL_VERSION}/godotpcktool -O /usr/bin/godotpcktool && \
     chmod +x /usr/bin/godotpcktool
