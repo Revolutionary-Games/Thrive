@@ -28,7 +28,8 @@
 
         public bool RunStep(RunResults results)
         {
-            var populationsByPatch = results.GetPopulationsByPatch(true, true, true);
+            GD.Print("!RUNning debug step");
+            var populationsByPatch = results.GetPopulationsByPatch(true, true, false);
 
             foreach (Patch patch in patches)
             {
@@ -42,6 +43,8 @@
         private bool RunStepInPatch(RunResults results, Patch patch, Dictionary<Species, long> speciesInPatch)
         {
             var newSpeciesCount = results.GetNewSpeciesResults(patch).Count;
+
+            GD.Print("Debuggin extinction step in patch ", patch.Name, ". Count: ", speciesInPatch.Count + newSpeciesCount);
 
             // Only bother if we're above the limit
             if (speciesInPatch.Count + newSpeciesCount <= Constants.AUTO_EVO_MAXIMUM_SPECIES_IN_PATCH)
