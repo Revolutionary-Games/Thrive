@@ -53,13 +53,16 @@
 
                 GD.Print("Running extinction step in patch ", patch.Name, ".");
 
-                var orderedSpeciesInPatch = speciesInPatch.GetSortedKeyArray();
+                // Sort the species in the patch, unless protected species fill up all the place already...
+                var orderedSpeciesInPatch = (configuration.MaximumSpeciesInPatch > newSpeciesCount) ?
+                        speciesInPatch.GetSortedKeyArray() : speciesInPatch.GetKeyArray();
 
                 // Remove worst-faring species, except for the player's species
-                // TODO: if we remove everything, better skip the sorting
                 var speciesToRemoveCount = Math.Min(
                     speciesInPatch.Count + newSpeciesCount - configuration.MaximumSpeciesInPatch,
                     orderedSpeciesInPatch.Length);
+
+
 
                 for (int i = 0; i < speciesToRemoveCount; i++)
                 {

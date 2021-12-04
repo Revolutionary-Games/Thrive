@@ -76,6 +76,13 @@ public static class DictionaryUtils
         }
     }
 
+    public static T[] GetKeyArray<T>(this Dictionary<T, long> dictionary)
+    {
+        var keyArray = new T[dictionary.Count];
+        dictionary.Keys.CopyTo(keyArray, 0);
+        return keyArray;
+    }
+
     public static T[] GetSortedKeyArray<T>(this Dictionary<T, long> dictionary)
     {
         var orderedArray = new T[dictionary.Count];
