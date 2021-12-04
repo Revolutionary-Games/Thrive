@@ -401,7 +401,6 @@
                     }
                 }
 
-
                 if (resolveSplits)
                 {
                     // Deal with splits-off
