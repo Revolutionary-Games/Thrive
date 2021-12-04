@@ -27,7 +27,8 @@ namespace AutoEvo
         public bool RunStep(RunResults results)
         {
             GD.Print("!!!Running extinction step in patch ", patch.Name, "!");
-            var speciesInPatch = results.SpeciesInPatch(patch);
+            // TODO cache
+            var speciesInPatch = results.GetPopulationsByPatch(true, true)[patch];
 
             var orderedSpeciesInPatch = new Species[speciesInPatch.Count];
             GD.Print(speciesInPatch.Count);
@@ -37,7 +38,8 @@ namespace AutoEvo
             // Sorting by insertion, asymptotically sub-optimal but usually efficient on small datasets like here.
             for (int i = 1; i < orderedSpeciesInPatch.Length; i++)
             {
-                var population = results.GetPopulationInPatch(orderedSpeciesInPatch[i], patch);
+                var population = speciesInPatch[orderedSpeciesInPatch[i]];
+                GD.Print(orderedSpeciesInPatch[i].FormattedName, " population: ", population);
 
                 // Sort value at index i within the previous ones, already sorted
                 for (int j = i; j > 0; j--)
@@ -46,7 +48,7 @@ namespace AutoEvo
 
                     // If we are above the before index, just plug it here and stop.
                     // Note that the strict operator *may* favor more recent species for equality in population.
-                    if (population > results.GetPopulationInPatch(referenceSpecies, patch))
+                    if (population > speciesInPatch[referenceSpecies])
                     {
                         orderedSpeciesInPatch[j] = orderedSpeciesInPatch[i];
                         break;

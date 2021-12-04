@@ -369,6 +369,103 @@
         }
 
         /// <summary>
+        ///   Computes the final population of species, by patch.
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     TODO: Ensure cache.
+        ///     TODO: Currently no enforced correlation with actual changes applied.
+        ///   </para>
+        ///   <para>
+        ///     Species are only registered if they population go above 0.
+        ///   </para>
+        /// </remarks>
+        public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(
+            bool resolveMigrations = false, bool resolveSplits = false)
+        {
+            var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
+            foreach (var speciesResultEntry in results)
+            {
+                // Get natural variations
+                foreach (var patchPopulationEntry in speciesResultEntry.Value.NewPopulationInPatches)
+                {
+                    if (!speciesInPatches.ContainsKey(patchPopulationEntry.Key))
+                    {
+                        speciesInPatches[patchPopulationEntry.Key] = new Dictionary<Species, long>();
+                    }
+
+                    if (patchPopulationEntry.Value > 0)
+                    {
+                        speciesInPatches[patchPopulationEntry.Key].Add(
+                            speciesResultEntry.Key, patchPopulationEntry.Value);
+                    }
+                }
+
+
+                if (resolveSplits)
+                {
+                    // Deal with splits-off
+                    if (speciesResultEntry.Value.SplitOff != null & speciesResultEntry.Value.SplitOffPatches != null)
+                    {
+                        foreach (var patch in speciesResultEntry.Value.SplitOffPatches)
+                        {
+                            speciesInPatches[patch].Remove(speciesResultEntry.Key);
+                            speciesInPatches[patch].Add(speciesResultEntry.Value.SplitOff,
+                                speciesResultEntry.Value.NewPopulationInPatches[patch]);
+                        }
+                    }
+                }
+
+                if (resolveMigrations)
+                {
+                    // Apply migrations
+                    foreach (var migration in speciesResultEntry.Value.SpreadToPatches)
+                    {
+                        // Only consider valid migrations
+                        if (migration.From == null || migration.To == null)
+                            continue;
+
+                        // Add entries if necessary
+                        if (!speciesInPatches.ContainsKey(migration.From))
+                        {
+                            speciesInPatches[migration.From] = new Dictionary<Species, long>();
+                        }
+
+                        if (!speciesInPatches.ContainsKey(migration.To))
+                        {
+                            speciesInPatches[migration.To] = new Dictionary<Species, long>();
+                        }
+
+                        // Only consider possible migrations
+                        // TODO check second condition to mimick actual effect. (> 0 ?)
+                        if (speciesInPatches[migration.From].TryGetValue(speciesResultEntry.Key, out var population) &&
+                            population >= migration.Population)
+                        {
+                            if (population - migration.Population == 0)
+                            {
+                                speciesInPatches[migration.From].Remove(speciesResultEntry.Key);
+                            }
+                            else
+                            {
+                                speciesInPatches[migration.From][speciesResultEntry.Key] =
+                                    population - migration.Population;
+                            }
+
+                            if (!speciesInPatches[migration.To].ContainsKey(speciesResultEntry.Key))
+                            {
+                                speciesInPatches[migration.To][speciesResultEntry.Key] = 0;
+                            }
+
+                            speciesInPatches[migration.To][speciesResultEntry.Key] += migration.Population;
+                        }
+                    }
+                }
+            }
+
+            return speciesInPatches;
+        }
+
+        /// <summary>
         ///   Prints to log a summary of the results
         /// </summary>
         public void PrintSummary(PatchMap previousPopulations = null)
@@ -697,21 +794,6 @@
             }
 
             return totalPopulation;
-        }
-
-        public Dictionary<Species, long> SpeciesInPatch(Patch patch)
-        {
-            var speciesInPatch = new Dictionary<Species, long>();
-            foreach (var entry in results)
-            {
-                if (entry.Value.NewPopulationInPatches.TryGetValue(patch, out var populationInPatch) &&
-                    populationInPatch > 0)
-                {
-                    speciesInPatch.Add(entry.Key, populationInPatch);
-                }
-            }
-
-            return speciesInPatch;
         }
 
         public class SpeciesResult
