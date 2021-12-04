@@ -69,6 +69,7 @@ public class CustomDialog : Popup, ICustomPopup
     private int titleHeight;
     private int scaleBorderSize;
     private int customMargin;
+    private bool showCloseButton = true;
 
     [Flags]
     private enum DragType
@@ -127,6 +128,20 @@ public class CustomDialog : Popup, ICustomPopup
 
     [Export]
     public bool ExclusiveAllowCloseOnEscape { get; set; } = true;
+
+    [Export]
+    public bool ShowCloseButton
+    {
+        get => showCloseButton;
+        set
+        {
+            if (showCloseButton == value)
+                return;
+
+            showCloseButton = value;
+            SetupCloseButton();
+        }
+    }
 
     public override void _EnterTree()
     {
@@ -479,6 +494,17 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void SetupCloseButton()
     {
+        if (!ShowCloseButton)
+        {
+            if (closeButton != null)
+            {
+                RemoveChild(closeButton);
+                closeButton = null;
+            }
+
+            return;
+        }
+
         if (closeButton != null)
             return;
 

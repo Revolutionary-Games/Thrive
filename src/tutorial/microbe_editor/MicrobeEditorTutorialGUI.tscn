@@ -155,6 +155,7 @@ theme = null
 script = ExtResource( 7 )
 WindowTitle = "TUTORIAL"
 Resizable = true
+ShowCloseButton = false
 ShowDelay = 0.3
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UndoTutorial"]

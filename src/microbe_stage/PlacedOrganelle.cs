@@ -33,6 +33,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
+    private Spatial organelleSceneInstance;
+
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
     {
         Definition = definition;
@@ -565,14 +567,20 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private void UpdateColour()
     {
-        organelleMaterial?.SetShaderParam("tint", CalculateHSVForOrganelle(Colour));
+        var color = CalculateHSVForOrganelle(Colour);
+        if (organelleSceneInstance is OrganelleMeshWithChildren organelleMeshWithChildren)
+        {
+            organelleMeshWithChildren.SetTintOfChildren(color);
+        }
+
+        organelleMaterial?.SetShaderParam("tint", color);
 
         needsColourUpdate = false;
     }
 
     private void SetupOrganelleGraphics()
     {
-        var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
+        organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
 
         // Store animation player for later use
         if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
