@@ -393,10 +393,10 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Used from the stage to update the player position to reposition the clouds
     /// </summary>
-    public void ReportPlayerPosition(Vector3 position)
+    public void ReportPlayerPosition(Vector3 playerPositionInWorld)
     {
         // Calculate what our center should be
-        var targetCenter = CalculateGridCenterForPlayerPos(position);
+        var targetCenter = CalculateGridCenterForPlayerPos(playerPositionInWorld);
 
         // TODO: because we no longer check if the player has moved at least a bit
         // it is possible that this gets triggered very often if the player spins
