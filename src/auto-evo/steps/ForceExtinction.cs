@@ -22,8 +22,6 @@
         {
             this.patches = patches;
             this.configuration = configuration;
-
-            GD.Print("!!!!", configuration.ProtectMigrationsFromSpeciesCap, configuration.ProtectNewCellsFromSpeciesCap, configuration.MaximumSpeciesInPatch);
         }
 
         public bool CanRunConcurrently => false;
