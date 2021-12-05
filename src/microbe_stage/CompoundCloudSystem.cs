@@ -409,16 +409,23 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         }
     }
 
+    /// <summary>
+    ///   Computes the coordinates of a given position on an infinite cloud subdivision grid of squares/rectangles.
+    /// </summary>
     [SuppressMessage("ReSharper", "PossibleLossOfFraction",
         Justification = "I'm not sure how I should fix this code I didn't write (hhyyrylainen)")]
     private static Vector3 CalculateGridCenterForPlayerPos(Vector3 pos)
     {
+        // TODO name "square" throughout files may not be accurate if X & Y extents differ.
+        var cloudSquareXExtent = Constants.CLOUD_X_EXTENT / Constants.CLOUD_SQUARES_PER_SIDE;
+        var cloudSquareYExtent = Constants.CLOUD_Y_EXTENT / Constants.CLOUD_SQUARES_PER_SIDE;
+
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
         return new Vector3(
-            (int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
+            (int)Math.Round(pos.x / cloudSquareXExtent),
             0,
-            (int)Math.Round(pos.z / (Constants.CLOUD_Y_EXTENT / 3)));
+            (int)Math.Round(pos.z / cloudSquareYExtent));
     }
 
     /// <summary>
