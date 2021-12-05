@@ -28,6 +28,15 @@ public static class Constants
     /// </summary>
     public const int CLOUDS_IN_ONE = 4;
 
+    /// <summary>
+    ///   The number of subdivisions used for the cloud grid in memory.
+    ///   Must be odd.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: investigate variations -- don't change this in the mean time!
+    ///   </para>
+    /// </remarks>
     public const int CLOUD_SQUARES_PER_SIDE = 3;
     public const int CLOUD_EDGE_WIDTH = 2;
 
