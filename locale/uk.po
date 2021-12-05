@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-02 17:22-0600\n"
+"POT-Creation-Date: 2021-12-04 17:19+0800\n"
 "PO-Revision-Date: 2021-12-02 20:03+0000\n"
 "Last-Translator: Ivan Kurta <ivkurta1@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/"
@@ -25,13 +25,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive"
-":input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_ri"
-"ght[/thrive:input] та миша для переміщення. "
-"[thrive:input]g_fire_toxin[/thrive:input] стріляти [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound] якщо маєте токсинову вакуоль. "
-"[thrive:input]g_toggle_engulf[/thrive:input] для перемикання режиму "
-"поглинання. Ви можете змінювати масштаб за допомогою колесика миші."
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] та миша для переміщення. [thrive:"
+"input]g_fire_toxin[/thrive:input] стріляти [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound] якщо маєте токсинову вакуоль. [thrive:"
+"input]g_toggle_engulf[/thrive:input] для перемикання режиму поглинання. Ви "
+"можете змінювати масштаб за допомогою колесика миші."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -54,10 +54,9 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "Ви також можете поглинати клітини, бактерії, шматки заліза та клітин що "
 "менщі за вас натиснувши [thrive:input]g_toggle_engulf[/thrive:input]. Це "
-"коштуватиме додаткові витрати [thrive:compound type=\"atp\""
-"][/thrive:compound] і сповільнить вас. Не забудьте натиснути "
-"[thrive:input]g_toggle_engulf[/thrive:input] ще раз, щоб припинити "
-"поглинання."
+"коштуватиме додаткові витрати [thrive:compound type=\"atp\"][/thrive:"
+"compound] і сповільнить вас. Не забудьте натиснути [thrive:"
+"input]g_toggle_engulf[/thrive:input] ще раз, щоб припинити поглинання."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
@@ -73,8 +72,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"У редакторі присутньо багато Органел, які ви можете розвинути, що відкриває "
-"широкий вибір різноманітних стилів гри."
+"У редакторі присутньо багато Органел, які ви можете розвинути, що "
+"відкриває широкий вибір різноманітних стилів гри."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
@@ -1314,7 +1313,7 @@ msgstr ""
 #: ../src/general/MainMenu.tscn:450 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
@@ -1606,7 +1605,7 @@ msgstr ""
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Зберегти"
 
@@ -3431,27 +3430,31 @@ msgstr ""
 msgid "ERROR_SAVING"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:77
+#: ../src/saving/NewSaveMenu.cs:82
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:30
+#: ../src/saving/NewSaveMenu.cs:162
+msgid "INVALID_SAVE_NAME_POPUP"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:47
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:65
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:83
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:115
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
