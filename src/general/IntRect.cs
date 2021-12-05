@@ -84,7 +84,8 @@ public struct IntRect : IEquatable<IntRect>
         var x = X;
         var y = Y;
 
-        return Enumerable.Range(0, Width / step * Height / step).Select(p => new Int2(x + step * p / width, y + step * p % width));
+        return Enumerable.Range(0, Width / step * Height / step).Select(
+            p => new Int2(x + step * p / width, y + step * p % width));
     }
 
     public IEnumerable<IntRect> GetSubdivisionEnumerator(int subdivisionSize)

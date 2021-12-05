@@ -554,8 +554,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     ///     As most parameters are obtainable by +-1, I doubt it is useful to output them so much...
     ///   </para>
     /// </remarks>
-    private static void CalculateMovementFactors(float advectedX, float advectedY, out int advectedXFloored, out int advectedXCeiled, out int advectedYFloored, out int advectedYCaped,
-        out float xFloorCorrection, out float xCeilingCorrection, out float yFloorCorrection, out float yCeilingCorrection)
+    private static void CalculateMovementFactors(float advectedX, float advectedY,
+        out int advectedXFloored, out int advectedXCeiled, out int advectedYFloored, out int advectedYCaped,
+        out float xFloorCorrection, out float xCeilingCorrection,
+        out float yFloorCorrection, out float yCeilingCorrection)
     {
         advectedXFloored = (int)Math.Floor(advectedX);
         advectedXCeiled = advectedXFloored + 1;
