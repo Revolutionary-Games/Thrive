@@ -54,7 +54,8 @@
 
                 // Sort the species in the patch, unless protected species fill up all the place already...
                 var orderedSpeciesInPatch = (configuration.MaximumSpeciesInPatch > protectedSpeciesCount) ?
-                    speciesInPatch.GetSortedKeyArray() : speciesInPatch.GetKeyArray();
+                    speciesInPatch.GetSortedKeyArray() :
+                    speciesInPatch.GetKeyArray();
 
                 var speciesToRemoveCount = speciesInPatch.Count - Math.Max(
                     configuration.MaximumSpeciesInPatch - protectedSpeciesCount, 0);

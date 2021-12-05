@@ -398,8 +398,8 @@
         ///     Species are only registered if they population go above 0.
         ///   </para>
         /// </remarks>
-        public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(
-            bool resolveMigrations = false, bool resolveSplits = false, bool includeNewSpecies = true)
+        public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(bool resolveMigrations = false,
+            bool resolveSplits = false, bool includeNewSpecies = true)
         {
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
             foreach (var speciesResultEntry in results)
