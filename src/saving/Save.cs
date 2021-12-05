@@ -234,7 +234,7 @@ public class Save
         if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
         {
             GD.PrintErr("Cannot open file for writing: ", target);
-            throw new Exception("Cannot open: " + target);
+            throw new IOException("Cannot open: " + target);
         }
 
         using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));

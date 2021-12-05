@@ -62,6 +62,11 @@ public class NewSaveMenu : Control
             saveNameBox.SelectAll();
     }
 
+    private static bool IsSaveNameValid(string name)
+    {
+        return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains);
+    }
+
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -139,7 +144,7 @@ public class NewSaveMenu : Control
 
     private void OnSaveNameTextChanged(string newName)
     {
-        if (!string.IsNullOrWhiteSpace(newName) && !newName.Any(Constants.SAVE_NAME_BLACKLIST.Contains))
+        if (IsSaveNameValid(newName))
         {
             saveNameBox.Set("custom_colors/font_color", new Color(1, 1, 1));
             saveButton.Disabled = false;
@@ -153,7 +158,7 @@ public class NewSaveMenu : Control
 
     private void OnSaveNameTextEntered(string newName)
     {
-        if (!string.IsNullOrWhiteSpace(newName) && !newName.Any(Constants.SAVE_NAME_BLACKLIST.Contains))
+        if (IsSaveNameValid(newName))
         {
             SaveButtonPressed();
         }

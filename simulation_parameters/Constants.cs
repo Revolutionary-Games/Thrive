@@ -603,7 +603,7 @@ public static class Constants
     /// </summary>
     public const int MAX_JSON_ERROR_LENGTH_FOR_CONSOLE = 20000;
 
-    public const string SAVE_NAME_BLACKLIST = "<>:\"/\\|?*\0";
+    public const string FILE_NAME_DISALLOWED_CHARACTERS = "<>:\"/\\|?*\0";
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
