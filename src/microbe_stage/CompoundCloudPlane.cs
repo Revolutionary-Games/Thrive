@@ -625,7 +625,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
                 // So this is clamped to not go to the other clouds
                 // TODO CHECK THAT IT WONT GO OVERBOARD
-                advectedX = advectedX.Clamp(affectedRectangle.X - 0.5f, affectedRectangle.EndX + 0.5f); ;
+                advectedX = advectedX.Clamp(affectedRectangle.X - 0.5f, affectedRectangle.EndX + 0.5f);
                 advectedY = advectedY.Clamp(affectedRectangle.Y - 0.5f, affectedRectangle.EndY + 0.5f);
 
                 CalculateMovementFactors(advectedX, advectedY,
