@@ -450,7 +450,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         foreach (var cloud in clouds)
         {
             // TODO: make sure the cloud knows where we moved.
-            cloud.Translation = cloudGridCenter * Constants.CLOUD_Y_EXTENT / Constants.CLOUD_SQUARES_PER_SIDE;
+            // TODO: here we assume divisions to be squares...
+            cloud.Translation = cloudGridCenter * CloudSubdivisionYExtent;
             cloud.UpdatePosition(new Int2((int)cloudGridCenter.x, (int)cloudGridCenter.z));
         }
     }
