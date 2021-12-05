@@ -47,6 +47,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
         if (relativeOrganellePosition == Vector3.Zero)
             relativeOrganellePosition = DefaultVisualPos;
+
         Vector3 exit = middle - relativeOrganellePosition;
         var membraneCoords = organelle.ParentMicrobe.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
             exit.z);
@@ -54,7 +55,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
 
-            float angle = GetAngle(delta);
+            float angle = GetAngle(relativeOrganellePosition);
 
             var rotation = MathUtils.CreateRotationForExternal(angle);
 
