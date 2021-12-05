@@ -459,7 +459,7 @@ public static class Constants
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 500;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 300;
     public const int MAX_SPAWNS_PER_FRAME = 1;
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 
