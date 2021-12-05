@@ -417,7 +417,7 @@
                         if (includeNewSpecies || speciesResultEntry.Value.NewlyCreated == null)
                         {
                             speciesInPatches[patchPopulationEntry.Key].Add(
-                            speciesResultEntry.Key, patchPopulationEntry.Value);
+                                speciesResultEntry.Key, patchPopulationEntry.Value);
                         }
                     }
                 }
