@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-02 17:22-0600\n"
+"POT-Creation-Date: 2021-12-04 17:19+0800\n"
 "PO-Revision-Date: 2021-10-02 16:11+0000\n"
 "Last-Translator: Nozt <alib.athq@gmail.com>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/"
@@ -1462,7 +1462,7 @@ msgstr "Editor Mikroba Bangun-bebas"
 #: ../src/general/MainMenu.tscn:450 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Kembali"
@@ -1766,7 +1766,7 @@ msgstr ""
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Simpan"
 
@@ -3910,27 +3910,32 @@ msgstr "Gagal menyimpan"
 msgid "ERROR_SAVING"
 msgstr "Error Menyimpan"
 
-#: ../src/saving/NewSaveMenu.cs:77
+#: ../src/saving/NewSaveMenu.cs:82
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Nama file yang dipilih {0} sudah ada. Timpa?"
 
-#: ../src/saving/NewSaveMenu.tscn:30
+#: ../src/saving/NewSaveMenu.cs:162
+#, fuzzy
+msgid "INVALID_SAVE_NAME_POPUP"
+msgstr "Muat save tidak valid?"
+
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "Buat Save Baru"
 
-#: ../src/saving/NewSaveMenu.tscn:47
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "Nama:"
 
-#: ../src/saving/NewSaveMenu.tscn:65
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "Pilihan Ekstra"
 
-#: ../src/saving/NewSaveMenu.tscn:83
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Timpa save yang sudah ada:"
 
-#: ../src/saving/NewSaveMenu.tscn:115
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Timpa save yang sudah ada?"
 

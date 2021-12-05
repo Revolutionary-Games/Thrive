@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 11:23-0600\n"
+"POT-Creation-Date: 2021-12-04 17:19+0800\n"
 "PO-Revision-Date: 2021-11-26 16:55+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
@@ -1444,7 +1444,7 @@ msgstr "Sejtszerkesztő"
 #: ../src/general/MainMenu.tscn:450 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Vissza"
@@ -1743,7 +1743,7 @@ msgstr "Mindig"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Soha"
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Mentés"
 
@@ -3656,27 +3656,32 @@ msgstr "Mentés sikertelen"
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
 
-#: ../src/saving/NewSaveMenu.cs:77
+#: ../src/saving/NewSaveMenu.cs:82
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
 
-#: ../src/saving/NewSaveMenu.tscn:30
+#: ../src/saving/NewSaveMenu.cs:162
+#, fuzzy
+msgid "INVALID_SAVE_NAME_POPUP"
+msgstr "Betöltöd ezt az érvénytelen mentést?"
+
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "Új mentés létrehozása"
 
-#: ../src/saving/NewSaveMenu.tscn:47
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "Név:"
 
-#: ../src/saving/NewSaveMenu.tscn:65
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "Extra opciók"
 
-#: ../src/saving/NewSaveMenu.tscn:83
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Létező mentés felülírása:"
 
-#: ../src/saving/NewSaveMenu.tscn:115
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Felülírod a már meglévő mentést?"
 
