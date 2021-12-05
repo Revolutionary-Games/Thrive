@@ -102,26 +102,30 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         var shiftX = (newX - position.x).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
         var shiftY = (newY - position.y).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
 
-        // TODO, Factor squares per size in rect
-        // Todo use rotate ?
-        // TODO investigate one var + positivemods.
-        // TODO introduce method get slice?
+        // The shift is interpreted as the closest shift that matches axis coordinate in either direction.
+        var shiftXSize = Math.Min(shiftX, Constants.CLOUD_SQUARES_PER_SIDE - shiftX);
+        var shiftYSize = Math.Min(shiftY, Constants.CLOUD_SQUARES_PER_SIDE - shiftY);
 
-        // Here we clean the outdated slices from the grid in memory, i.e. those that are too far away from the shifted center
-        // TODO here we only consider size 3 grids -> generalize, with more outdated slices -> shift / 2
-        if (shiftX != 0)
+        // Here we clean the outdated slices from the grid in memory
+        // We decompose the shift in size 1 shifts, one after another since it could loop through the grid.
+        for (var j = 0; j < shiftXSize; j++)
         {
-            var mirrorNewX = (position.x - shiftX).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
-            var outdatedVerticalSlice = new IntRect(mirrorNewX, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
+            var outdistancedX = (position.x - shiftX + j).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+
+            // TODO introduce method get slice?
+            var outdatedVerticalSlice = new IntRect(outdistancedX, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
             outdatedVerticalSlice.ScaleByOrigin(SquaresSize);
+
             PartialClearDensity(outdatedVerticalSlice);
         }
 
-        if (shiftY != 0)
+        for (var j = 0; j < shiftYSize; j++)
         {
-            var mirrorNewY = (position.y - shiftY).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
-            var outdatedHorizontalSlice = new IntRect(0, mirrorNewY, Constants.CLOUD_SQUARES_PER_SIDE, 1);
+            var outdistancedY = (position.y - shiftY + j).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+
+            var outdatedHorizontalSlice = new IntRect(0, outdistancedY, Constants.CLOUD_SQUARES_PER_SIDE, 1);
             outdatedHorizontalSlice.ScaleByOrigin(SquaresSize);
+
             PartialClearDensity(outdatedHorizontalSlice);
         }
 
