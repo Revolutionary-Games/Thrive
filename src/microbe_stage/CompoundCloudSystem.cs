@@ -37,6 +37,24 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     [JsonIgnore]
     public int Resolution => clouds[0].Resolution;
 
+    /// <summary>
+    ///   The size of cloud subdivisions along X axis of the world.
+    /// </summary>
+    [JsonIgnore]
+    public int CloudSubdivisionXExtent => Constants.CLOUD_X_EXTENT / Constants.CLOUD_SQUARES_PER_SIDE;
+
+    /// <summary>
+    ///   The size of cloud subdivisions along Y axis of the world.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Given that the square aspect is exploited afterwards,
+    ///     the possibility to have rectangle here may break things.
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public int CloudSubdivisionYExtent => Constants.CLOUD_Y_EXTENT / Constants.CLOUD_SQUARES_PER_SIDE;
+
     public bool IsLoadedFromSave { get; set; }
 
     public override void _Ready()
@@ -414,18 +432,14 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// </summary>
     [SuppressMessage("ReSharper", "PossibleLossOfFraction",
         Justification = "I'm not sure how I should fix this code I didn't write (hhyyrylainen)")]
-    private static Vector3 CalculateGridCenterForPlayerPos(Vector3 pos)
+    private Vector3 CalculateGridCenterForPlayerPos(Vector3 pos)
     {
-        // TODO name "square" throughout files may not be accurate if X & Y extents differ.
-        var cloudSquareXExtent = Constants.CLOUD_X_EXTENT / Constants.CLOUD_SQUARES_PER_SIDE;
-        var cloudSquareYExtent = Constants.CLOUD_Y_EXTENT / Constants.CLOUD_SQUARES_PER_SIDE;
-
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
         return new Vector3(
-            (int)Math.Round(pos.x / cloudSquareXExtent),
+            (int)Math.Round(pos.x / CloudSubdivisionXExtent),
             0,
-            (int)Math.Round(pos.z / cloudSquareYExtent));
+            (int)Math.Round(pos.z / CloudSubdivisionYExtent));
     }
 
     /// <summary>
@@ -436,7 +450,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         foreach (var cloud in clouds)
         {
             // TODO: make sure the cloud knows where we moved.
-            cloud.Translation = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
+            cloud.Translation = cloudGridCenter * Constants.CLOUD_Y_EXTENT / Constants.CLOUD_SQUARES_PER_SIDE;
             cloud.UpdatePosition(new Int2((int)cloudGridCenter.x, (int)cloudGridCenter.z));
         }
     }
