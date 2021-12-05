@@ -198,6 +198,18 @@ public class SteamClient : ISteamClient
 
         workshopUpdateCallback = callback ?? throw new ArgumentException("callback is required");
 
+        // Steam docs say this constant is unused, but at least currently it seems to be the same value as the document
+        // description max length
+        if (changeNotes?.Length > Steam.PublishedDocumentChangeDescriptionMax)
+        {
+            callback.Invoke(new WorkshopResult()
+            {
+                Success = false,
+                TranslatedError = TranslationServer.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG"),
+            });
+            return;
+        }
+
         GD.Print("Submitting workshop update with handle: ", updateHandle);
 
         Steam.SubmitItemUpdate(updateHandle, changeNotes);

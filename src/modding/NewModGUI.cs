@@ -239,6 +239,12 @@ public class NewModGUI : Control
             return null;
         }
 
+        if (!char.IsUpper(editedInfo.InternalName, 0))
+        {
+            SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRES_CAPITAL"));
+            return null;
+        }
+
         if (ModLoader.LoadModInfo(editedInfo.InternalName, false) != null)
         {
             SetError(TranslationServer.Translate("INTERNAL_NAME_IN_USE"));
