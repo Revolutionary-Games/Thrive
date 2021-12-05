@@ -423,7 +423,7 @@
                 if (resolveSplits)
                 {
                     // Deal with splits-off
-                    if (speciesResultEntry.Value.SplitOff != null & speciesResultEntry.Value.SplitOffPatches != null)
+                    if (speciesResultEntry.Value.SplitOff != null && speciesResultEntry.Value.SplitOffPatches != null)
                     {
                         foreach (var patch in speciesResultEntry.Value.SplitOffPatches)
                         {
