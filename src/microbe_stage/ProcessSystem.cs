@@ -49,6 +49,8 @@ public class ProcessSystem
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane)
     {
+        organelles = organelles.ToList();
+
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
         return ComputeEnergyBalance(organelles, biome, membrane, maximumMovementDirection);
     }
@@ -106,12 +108,12 @@ public class ProcessSystem
                     result.Flagella += amount;
                     result.AddConsumption(organelle.Definition.InternalName, amount);
                 }
-
             }
 
             // Store hex count
             hexCount += organelle.Definition.HexCount;
         }
+
         // Add movement consumption together
         result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
         result.AddConsumption("baseMovement", result.BaseMovement);

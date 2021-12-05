@@ -4,63 +4,34 @@ using Godot;
 
 public static class MicrobeInternalCalculations
 {
-    private static float MovementForce(float movementForce, float directionFactor)
-    {
-        if (directionFactor < 0)
-            return 0;
-        return movementForce * directionFactor;
-    }
-
-    public static Vector3 GetOrganelleDirection(OrganelleTemplate organelle)
-    {
-        return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
-    }
-
-    // Symetric flagella are a corner case for speed calculations because the sum of all
-    // directions is kinda of broken in their case, so we have to choose which one of the symmetric flagella
-    // we must discard from the direction calculation.
-    // Here we only discared if the flagella we input is the "bad" one
-    private static Vector3 ChooseFromSymetricFlagella(IEnumerable<OrganelleTemplate> inputOrganelles,
-        OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
-    {
-        foreach (var organelle in
-        inputOrganelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>()))
-        {
-            if (organelle != testedOrganelle &&
-                organelle.Position + testedOrganelle.Position == new Hex(0,0))
-            {
-                var organelleLength = (maximumMovementDirection - GetOrganelleDirection(organelle)).Length();
-                var testedOrganelleLength = (maximumMovementDirection -
-                    GetOrganelleDirection(testedOrganelle)).Length();
-
-                if (organelleLength > testedOrganelleLength)
-                    return maximumMovementDirection;
-                else
-                    return maximumMovementDirection - GetOrganelleDirection(testedOrganelle);
-            }
-        }
-        return maximumMovementDirection;
-    }
     public static Vector3 MaximumSpeedDirection(IEnumerable<OrganelleTemplate> inputOrganelles)
     {
         Vector3 maximumMovementDirection = Vector3.Zero;
-        foreach (var organelle in
-            inputOrganelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>()))
+
+        var organelles = inputOrganelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>())
+            .ToList();
+
+        foreach (var organelle in organelles)
         {
             maximumMovementDirection += GetOrganelleDirection(organelle);
         }
 
         // After calculating the sum of all organelle directions we substract the movement components which
         // are symetric and we chose the one who would benefit the max-speed the most.
-        foreach (var organelle in
-            inputOrganelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>()))
+        foreach (var organelle in organelles)
         {
-            maximumMovementDirection = ChooseFromSymetricFlagella(inputOrganelles, organelle, maximumMovementDirection);
+            maximumMovementDirection = ChooseFromSymetricFlagella(organelles, organelle, maximumMovementDirection);
         }
 
         if (maximumMovementDirection == Vector3.Zero)
             return Vector3.Forward;
+
         return maximumMovementDirection;
+    }
+
+    public static Vector3 GetOrganelleDirection(OrganelleTemplate organelle)
+    {
+        return (Hex.AxialToCartesian(new Hex(0, 0)) - Hex.AxialToCartesian(organelle.Position)).Normalized();
     }
 
     public static float CalculateSpeed(IEnumerable<OrganelleTemplate> organelles, MembraneType membraneType,
@@ -82,7 +53,8 @@ public static class MicrobeInternalCalculations
         float rightwardDirectionFactor;
         float leftwardDirectionFactor;
 
-        Vector3 maximumMovementDirection = Vector3.Zero;
+        organelles = organelles.ToList();
+
         foreach (var organelle in organelles)
         {
             microbeMass += organelle.Definition.Mass;
@@ -109,7 +81,7 @@ public static class MicrobeInternalCalculations
             }
         }
 
-        maximumMovementDirection = MaximumSpeedDirection(organelles);
+        var maximumMovementDirection = MaximumSpeedDirection(organelles);
 
         // After getting the maximum-force direction we normalize it
         maximumMovementDirection = maximumMovementDirection.Normalized();
@@ -136,5 +108,40 @@ public static class MicrobeInternalCalculations
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
         return finalSpeed;
+    }
+
+    private static float MovementForce(float movementForce, float directionFactor)
+    {
+        if (directionFactor < 0)
+            return 0;
+
+        return movementForce * directionFactor;
+    }
+
+    // Symetric flagella are a corner case for speed calculations because the sum of all
+    // directions is kinda of broken in their case, so we have to choose which one of the symmetric flagella
+    // we must discard from the direction calculation
+    // Here we only discared if the flagella we input is the "bad" one
+    private static Vector3 ChooseFromSymetricFlagella(IEnumerable<OrganelleTemplate> inputOrganelles,
+        OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
+    {
+        var organelles = inputOrganelles.ToList();
+        foreach (var organelle in organelles)
+        {
+            if (organelle != testedOrganelle &&
+                organelle.Position + testedOrganelle.Position == new Hex(0, 0))
+            {
+                var organelleLength = (maximumMovementDirection - GetOrganelleDirection(organelle)).Length();
+                var testedOrganelleLength = (maximumMovementDirection -
+                    GetOrganelleDirection(testedOrganelle)).Length();
+
+                if (organelleLength > testedOrganelleLength)
+                    return maximumMovementDirection;
+
+                return maximumMovementDirection - GetOrganelleDirection(testedOrganelle);
+            }
+        }
+
+        return maximumMovementDirection;
     }
 }
