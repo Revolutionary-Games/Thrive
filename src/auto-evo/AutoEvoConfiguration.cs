@@ -41,7 +41,7 @@ public class AutoEvoConfiguration : IRegistryType
     [JsonProperty]
     public bool BiodiversitySplitIsMutated { get; private set; }
 
-    [JsonProperty]
+
     /// <summary>
     ///   Maximum number of species kept in a patch at the end of auto-evo.
     /// </summary>
@@ -50,11 +50,13 @@ public class AutoEvoConfiguration : IRegistryType
     ///     Always ignore the player species, and may ignore new cells and migrations.
     ///   </para>
     /// </remarks>
+    [JsonProperty]
     public int MaximumSpeciesInPatch { get; private set; }
 
     [JsonProperty]
     public bool ProtectNewCellsFromSpeciesCap { get; private set; }
 
+    [JsonProperty]
     public bool ProtectMigrationsFromSpeciesCap { get; private set; }
 
     /// <summary>
