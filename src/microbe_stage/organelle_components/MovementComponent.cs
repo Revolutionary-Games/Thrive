@@ -86,26 +86,8 @@ public class MovementComponent : ExternallyPositionedComponent
         // The movementDirection is the player or AI input
         Vector3 direction = microbe.MovementDirection;
 
-        // TODO: Once this is merged, with the colony rotation PR
-        // make a method to handle rotations inside the colony,
-        // duplicate code with the placedOrganelle quaternions
-        var rotation = Quat.Identity;
-        if (microbe.Colony != null)
-        {
-            var parent = microbe;
-
-            // Get the rotation of all colony ancestors up to master
-            while (parent != microbe.Colony.Master)
-            {
-                rotation *= new Quat(parent.Transform.basis);
-                parent = parent.ColonyParent;
-            }
-        }
-
-        rotation = rotation.Normalized();
-
-        // Real force the flaggela applied to the colony
-        var realForce = rotation.Xform(force);
+        // Real force the flaggela applied to the colony (considering rotation)
+        var realForce = organelle.RotatedPositionInsideColony(force);
         var forceMagnitude = realForce.Dot(direction);
 
         if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
