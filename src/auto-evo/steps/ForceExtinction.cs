@@ -47,9 +47,7 @@
 
                 // Only bother if we're above the limit
                 if (speciesInPatch.Count + protectedSpeciesCount <= configuration.MaximumSpeciesInPatch)
-                {
                     continue;
-                }
 
                 GD.Print("Running extinction step in patch ", patch.Name, ". ",
                     "Total count:", speciesInPatch.Count + protectedSpeciesCount);
