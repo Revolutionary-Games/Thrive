@@ -59,6 +59,12 @@ public class AutoEvoConfiguration : IRegistryType
     public bool ProtectMigrationsFromSpeciesCap { get; private set; }
 
     /// <summary>
+    ///   Whether or not a migration wiped by a force extinction should be refunded in the original patch.
+    /// </summary>
+    [JsonProperty]
+    public bool RefundMigrationsInExtinctions { get; private set; }
+
+    /// <summary>
     ///   Unused
     /// </summary>
     public string InternalName { get; set; }

@@ -118,7 +118,7 @@
             results[splitSpecies].SplitFrom = species;
         }
 
-        public void KillSpeciesInPatch(Species species, Patch patch)
+        public void KillSpeciesInPatch(Species species, Patch patch, bool refundMigrations = false)
         {
             AddPopulationResultForSpecies(species, patch, 0);
 
@@ -130,9 +130,11 @@
 
                 if (migration.To == patch)
                 {
-                    // We still penalize the origin patch, the migration just died off on its way.
-                    results[species].NewPopulationInPatches[migration.From] -= migration.Population;
                     results[species].SpreadToPatches.Remove(migration);
+
+                    // We may still penalize the origin patch, the migration would just have died off on its way.
+                    if (!refundMigrations)
+                        results[species].NewPopulationInPatches[migration.From] -= migration.Population;
                 }
             }
         }
