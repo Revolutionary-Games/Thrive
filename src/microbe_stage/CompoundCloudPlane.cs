@@ -227,11 +227,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
         if (position.y != 2)
         {
-            var rectangle = new IntRect(
-                    Constants.CLOUD_EDGE_WIDTH / 2,
-                    2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
-                    SquaresSize - Constants.CLOUD_EDGE_WIDTH,
-                    Constants.CLOUD_EDGE_WIDTH);
+            var rectangle = new IntRect(Constants.CLOUD_EDGE_WIDTH / 2, 
+                2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
+                SquaresSize - Constants.CLOUD_EDGE_WIDTH,
+                Constants.CLOUD_EDGE_WIDTH);
 
             PartialDiffuse(rectangle, delta, true);
             rectangle.X += SquaresSize;
@@ -311,11 +310,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
         if (position.y != 2)
         {
-            var rectangle = new IntRect(
-                    Constants.CLOUD_EDGE_WIDTH / 2,
-                    2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
-                    SquaresSize - Constants.CLOUD_EDGE_WIDTH,
-                    Constants.CLOUD_EDGE_WIDTH);
+            var rectangle = new IntRect(Constants.CLOUD_EDGE_WIDTH / 2,
+                2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
+                SquaresSize - Constants.CLOUD_EDGE_WIDTH,
+                Constants.CLOUD_EDGE_WIDTH);
 
             PartialAdvect(rectangle, delta, pos, true);
             rectangle.X += SquaresSize;
@@ -597,22 +595,24 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         if (loopOnEdges)
         {
             return Density[x, (y - 1).PositiveModulo(Size)] +
-               Density[x, (y + 1) % Size] +
-               Density[(x - 1).PositiveModulo(Size), y] +
-               Density[(x + 1) % Size, y];
+                Density[x, (y + 1) % Size] +
+                Density[(x - 1).PositiveModulo(Size), y] +
+                Density[(x + 1) % Size, y];
         }
 
         return Density[x, y - 1] +
-                Density[x, y + 1] +
-                Density[x - 1, y] +
-                Density[x + 1, y];
+            Density[x, y + 1] +
+            Density[x - 1, y] +
+            Density[x + 1, y];
     }
 
     /// <summary>
     ///  Advects a part of a cloud as a rectangular area.
     /// </summary>
+    /// <param name="affectedRectangle"> The affected area, as a rectangle.</param>
     /// <param name="delta">The time step for advection.</param>
     /// <param name="pos"> The absolute position of the cloud in the world.</param>
+    /// <param name="isCenter"> Whether it is to be treated as center or edge of the cloud.</param>
     /// <remarks>
     ///   <para>
     ///     Using pos as a parameter seems rather weird as this is the method of the cloud...
@@ -624,7 +624,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         foreach (var point in affectedRectangle.GetPointEnumerator())
         {
             if (OldDensity[point.x, point.y].LengthSquared() > 1)
-                {
+            {
                 var velocity = fluidSystem.VelocityAt(
                     pos + (new Vector2(point.x, point.y) * Resolution)) * VISCOSITY;
 

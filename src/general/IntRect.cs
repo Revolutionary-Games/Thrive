@@ -38,10 +38,7 @@ public struct IntRect : IEquatable<IntRect>
 
     public bool Equals(IntRect other)
     {
-        return X == other.X &&
-               Y == other.Y &&
-               Width == other.Width &&
-               Height == other.Height;
+        return X == other.X && Y == other.Y && Width == other.Width && Height == other.Height;
     }
 
     public override int GetHashCode()
@@ -90,10 +87,6 @@ public struct IntRect : IEquatable<IntRect>
 
     public IEnumerable<IntRect> GetSubdivisionEnumerator(int subdivisionSize)
     {
-        var width = Width;
-        var x = X;
-        var y = Y;
-
         return GetPointEnumerator(subdivisionSize).Select(p => new IntRect(p.x, p.y, subdivisionSize, subdivisionSize));
     }
 }
