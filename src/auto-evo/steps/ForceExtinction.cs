@@ -68,7 +68,7 @@
 
                     GD.Print("Forced extinction of species ", orderedSpeciesInPatch[i].FormattedName,
                         " in patch ", patch.Name, ".");
-                    results.KillSpeciesInPatch(orderedSpeciesInPatch[i], patch, 
+                    results.KillSpeciesInPatch(orderedSpeciesInPatch[i], patch,
                         configuration.RefundMigrationsInExtinctions);
                 }
             }
