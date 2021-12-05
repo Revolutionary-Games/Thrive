@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-30 13:22-0600\n"
+"POT-Creation-Date: 2021-12-05 15:02+0200\n"
 "PO-Revision-Date: 2021-12-02 20:03+0000\n"
-"Last-Translator: Vladimir Didenko <didenkovladimir12@gmail.com>\n"
+"Last-Translator: Vladislav Kuznetsov <vlad.pnz98@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -895,81 +895,83 @@ msgstr "Цитоплазма"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/auto-evo/AutoEvoRun.cs:123
+#: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
 msgstr "Отменено."
 
-#: ../src/auto-evo/AutoEvoRun.cs:126
+#: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "FINISHED"
 msgstr "Завершено."
 
-#: ../src/auto-evo/AutoEvoRun.cs:129
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING"
 msgstr "Не работает."
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% завершено. {1:n0}/{2:n0} шагов."
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
 msgstr "Запуск"
 
-#: ../src/auto-evo/AutoEvoRun.cs:286
+#: ../src/auto-evo/AutoEvoRun.cs:284
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} популяция изменена на {1} потому что: {2}"
 
-#: ../src/auto-evo/RunResults.cs:424
+#: ../src/auto-evo/RunResults.cs:421
 msgid "POPULATION"
 msgstr "популяция:"
 
-#: ../src/auto-evo/RunResults.cs:434
+#: ../src/auto-evo/RunResults.cs:430
 msgid "WENT_EXTINCT_IN"
 msgstr "вымерли в {0}"
 
-#: ../src/auto-evo/RunResults.cs:440
+#: ../src/auto-evo/RunResults.cs:436
 msgid "PREVIOUS"
 msgstr "предыдущее:"
 
-#: ../src/auto-evo/RunResults.cs:457
+#: ../src/auto-evo/RunResults.cs:452
+#, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "отделились от {0}"
 
-#: ../src/auto-evo/RunResults.cs:470
+#: ../src/auto-evo/RunResults.cs:465
+#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "возникли, чтобы заполнить нишу"
 
-#: ../src/auto-evo/RunResults.cs:473
+#: ../src/auto-evo/RunResults.cs:468
 #, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "распространяется в биомы:"
 
-#: ../src/auto-evo/RunResults.cs:491
+#: ../src/auto-evo/RunResults.cs:485
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "распространяется в биомы:"
 
-#: ../src/auto-evo/RunResults.cs:507
+#: ../src/auto-evo/RunResults.cs:501
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "имеет мутацию"
 
-#: ../src/auto-evo/RunResults.cs:512
+#: ../src/auto-evo/RunResults.cs:506
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генетический код:"
 
-#: ../src/auto-evo/RunResults.cs:523
+#: ../src/auto-evo/RunResults.cs:517
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "распространяется в биомы:"
 
-#: ../src/auto-evo/RunResults.cs:532
+#: ../src/auto-evo/RunResults.cs:525
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} отправив: {1} популяции из биома: {2}"
 
-#: ../src/auto-evo/RunResults.cs:551
+#: ../src/auto-evo/RunResults.cs:544
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "популяция в биоме:"
 
-#: ../src/auto-evo/RunResults.cs:658
+#: ../src/auto-evo/RunResults.cs:651
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "вымерли с планеты"
 
@@ -1402,13 +1404,13 @@ msgstr "Картина от {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:952
+#: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
 msgstr "Закрыть"
 
-#: ../src/general/MainMenu.cs:224
+#: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
 
@@ -1445,41 +1447,50 @@ msgstr "Титры"
 msgid "QUIT"
 msgstr "Выйти"
 
-#: ../src/general/MainMenu.tscn:279
+#: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробный Креативный Редактор"
 
-#: ../src/general/MainMenu.tscn:339 ../src/general/MainMenu.tscn:418
-#: ../src/general/MainMenu.tscn:456 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/general/MainMenu.tscn:362
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr "Моды"
 
-#: ../src/general/MainMenu.tscn:376
+#: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
 msgstr "Галерея изображений"
 
-#: ../src/general/MainMenu.tscn:388
+#: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
 msgstr "Лицензии"
 
-#: ../src/general/MainMenu.tscn:497
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение режима GLES2"
 
-#: ../src/general/MainMenu.tscn:499
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать "
 "проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD "
 "или Nvidia видеокарты для запуска Thrive."
+
+#: ../src/general/MainMenu.tscn:499
+#, fuzzy
+msgid "MOD_LOAD_ERRORS"
+msgstr "Загрузчик модов"
+
+#: ../src/general/MainMenu.tscn:500
+msgid "MOD_LOAD_ERRORS_OCCURRED"
+msgstr ""
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1749,7 +1760,7 @@ msgstr "Всегда"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Никогда"
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Сохранить"
 
@@ -2207,7 +2218,7 @@ msgstr "Невозможно показать меньше, чем {0} набо�
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:326
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "ОК"
 
@@ -3038,7 +3049,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Компонентный Баланс"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка Микробного Редактора"
 
@@ -3046,11 +3057,11 @@ msgstr "Загрузка Микробного Редактора"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Ожидание авто-эво:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-эво не удалось запустить"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "статус запуска:"
 
@@ -3427,134 +3438,183 @@ msgstr ""
 "после закрытия этого экрана, если хотите, или начать новую игру в новом "
 "мире."
 
-#: ../src/modding/ModManager.cs:273
+#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#, fuzzy
+msgid "CANT_LOAD_MOD_INFO"
+msgstr "Полная информация о моде"
+
+#: ../src/modding/ModLoader.cs:235
+#, fuzzy
+msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
+msgstr "Сборка мода:"
+
+#: ../src/modding/ModLoader.cs:252
+msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:279
+msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:287
+msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:351
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
+msgstr "Сборка мода:"
+
+#: ../src/modding/ModLoader.cs:364
+msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:380
+msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:394
+#, fuzzy
+msgid "PCK_LOAD_FAILED"
+msgstr "Загрузка завершена"
+
+#: ../src/modding/ModManager.cs:292
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:287
+#: ../src/modding/ModManager.cs:306
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:299
+#: ../src/modding/ModManager.cs:318
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:506
+#: ../src/modding/ModManager.cs:544
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Выбрано:"
 
-#: ../src/modding/ModManager.cs:867
+#: ../src/modding/ModManager.cs:869
+#, fuzzy
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr "Ввести существующий Workshop ID"
+
+#: ../src/modding/ModManager.cs:870
+msgid "THIS_IS_LOCAL_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:926
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Ошибка Сохранения"
 
-#: ../src/modding/ModManager.cs:876
+#: ../src/modding/ModManager.cs:935
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:117
+#: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:140 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Обновить"
 
-#: ../src/modding/ModManager.tscn:148
+#: ../src/modding/ModManager.tscn:152
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Открыть Папку с Логами"
 
-#: ../src/modding/ModManager.tscn:166
+#: ../src/modding/ModManager.tscn:170
 #, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "Правая кнопка мыши"
 
-#: ../src/modding/ModManager.tscn:179
+#: ../src/modding/ModManager.tscn:183
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Левая кнопка мыши"
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:195
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Включить редактор"
 
-#: ../src/modding/ModManager.tscn:209
+#: ../src/modding/ModManager.tscn:213
 #, fuzzy
 msgid "DISABLE_ALL"
 msgstr "Отключено"
 
-#: ../src/modding/ModManager.tscn:246
+#: ../src/modding/ModManager.tscn:250
 #, fuzzy
 msgid "SELECTED_MOD"
 msgstr "Выбрано:"
 
-#: ../src/modding/ModManager.tscn:280 ../src/modding/ModManager.tscn:668
+#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr "Автор мода:"
 
-#: ../src/modding/ModManager.tscn:311 ../src/modding/ModManager.tscn:690
+#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
 #: ../src/modding/NewModGUI.tscn:165
 msgid "MOD_VERSION"
 msgstr "Версия мода:"
 
-#: ../src/modding/ModManager.tscn:367
+#: ../src/modding/ModManager.tscn:371
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:411
+#: ../src/modding/ModManager.tscn:415
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Версия:"
 
-#: ../src/modding/ModManager.tscn:438 ../src/modding/ModManager.tscn:712
+#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
 #: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
 msgstr "Описание мода:"
 
-#: ../src/modding/ModManager.tscn:470
+#: ../src/modding/ModManager.tscn:474
 msgid "MORE_INFO"
 msgstr "Показать больше информации"
 
-#: ../src/modding/ModManager.tscn:478
+#: ../src/modding/ModManager.tscn:482
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Открыть URL-ссылку"
 
-#: ../src/modding/ModManager.tscn:501
+#: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
 msgstr "Просмотреть мастерскую"
 
-#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
 #, fuzzy
 msgid "UPLOAD"
 msgstr "Загрузить"
 
-#: ../src/modding/ModManager.tscn:515
+#: ../src/modding/ModManager.tscn:519
 msgid "NEW"
 msgstr "Новый"
 
-#: ../src/modding/ModManager.tscn:528
+#: ../src/modding/ModManager.tscn:532
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Загрузить недействительное сохранение?"
 
-#: ../src/modding/ModManager.tscn:555
+#: ../src/modding/ModManager.tscn:559
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Включить все совместимые моды"
 
-#: ../src/modding/ModManager.tscn:564
+#: ../src/modding/ModManager.tscn:568
 msgid "APPLY_CHANGES"
 msgstr "Применить изменения"
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:579
 msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "Есть непримененные изменения"
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:580
 #, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
@@ -3563,136 +3623,168 @@ msgstr ""
 "заключается в том, что она позволяет клетке быстро перемещаться и быстро "
 "поглощать питательные вещества."
 
-#: ../src/modding/ModManager.tscn:577
+#: ../src/modding/ModManager.tscn:581
 msgid "DISCARD_CHANGES"
 msgstr "Отменить изменения"
 
-#: ../src/modding/ModManager.tscn:584
+#: ../src/modding/ModManager.tscn:588
 msgid "FULL_MOD_INFO"
 msgstr "Полная информация о моде"
 
-#: ../src/modding/ModManager.tscn:625 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
 msgid "MOD_NAME"
 msgstr "Имя мода:"
 
-#: ../src/modding/ModManager.tscn:647 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Полное описание мода:"
 
-#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "Иконка файла:"
 
-#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Лицензии"
 
-#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Рекомендованная версия Thrive:"
 
-#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Минимальная требуемая версия Thrive:"
 
-#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Максимально поддерживаемая версия Thrive:"
 
-#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr "Файл мода .pck:"
 
-#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr "Сборка мода:"
 
-#: ../src/modding/ModManager.tscn:932 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:959
+#: ../src/modding/ModManager.tscn:979
 msgid "MOD_CREATION_FAILED"
 msgstr "Не удалось создать мод"
 
-#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModManager.tscn:989
+#, fuzzy
+msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
+msgstr "Загрузить недействительное сохранение?"
+
+#: ../src/modding/ModManager.tscn:994
+msgid "RESTART_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:996
+#, fuzzy
+msgid "MOD_LOAD_UNLOAD_RESTART"
+msgstr "Загрузить недействительное сохранение?"
+
+#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:273
+#: ../src/modding/ModUploader.cs:298
 msgid "MISSING_TITLE"
 msgstr "Название отсутствует"
 
-#: ../src/modding/ModUploader.cs:279
+#: ../src/modding/ModUploader.cs:304
 msgid "MISSING_DESCRIPTION"
 msgstr "Описание отсутствует"
 
-#: ../src/modding/ModUploader.cs:287
+#: ../src/modding/ModUploader.cs:312
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Описание слишком длинное"
 
-#: ../src/modding/ModUploader.cs:295
+#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
+#, fuzzy
+msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr "Описание слишком длинное"
+
+#: ../src/modding/ModUploader.cs:326
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Теги содержат только пробелы"
 
-#: ../src/modding/ModUploader.cs:303
+#: ../src/modding/ModUploader.cs:334
 msgid "INVALID_TAG"
 msgstr "Указан неверный тег \"{0}\""
 
-#: ../src/modding/ModUploader.cs:351
+#: ../src/modding/ModUploader.cs:348
+msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:355
+msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:398
+#, fuzzy
+msgid "ID_IS_NOT_A_NUMBER"
+msgstr "Номер ID"
+
+#: ../src/modding/ModUploader.cs:435
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Создание..."
 
-#: ../src/modding/ModUploader.cs:373
-#, fuzzy
-msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "Сохранение не удалось! Бывает же"
-
-#: ../src/modding/ModUploader.cs:415
+#: ../src/modding/ModUploader.cs:490
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Загрузка..."
 
-#: ../src/modding/ModUploader.cs:443
+#: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:447
+#: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Загрузка предмета в Мастерскую Steam прошла успешно"
 
-#: ../src/modding/ModUploader.cs:507
+#: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "Отправляя этот предмет, вы соглашаетесь с [color=#3796e1][url=https://"
 "steamcommunity.com/sharedfiles/workshoplegalagreement]условиями "
 "обслуживания[/url][/color] Steam Workshop"
 
-#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:616
+#, fuzzy
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "Сохранение не удалось! Бывает же"
+
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Ошибка: {0}"
 
-#: ../src/modding/ModUploader.tscn:43
+#: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
 msgstr "Загрузчик модов"
 
-#: ../src/modding/ModUploader.tscn:83
+#: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
 msgstr "Мод для загрузки:"
 
-#: ../src/modding/ModUploader.tscn:108
+#: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Неизвестный Workshop ID для этого мода"
 
-#: ../src/modding/ModUploader.tscn:120
+#: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
 msgstr "Создать Новый"
 
@@ -3740,11 +3832,30 @@ msgstr "Превью предмета:"
 msgid "BROWSE"
 msgstr ""
 
+#: ../src/modding/ModUploader.tscn:284
+#, fuzzy
+msgid "FORGET_MOD_DETAILS_TOOLTIP"
+msgstr "Продолжить игру"
+
+#: ../src/modding/ModUploader.tscn:286
+msgid "FORGET_MOD_DETAILS"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
+#, fuzzy
+msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
+msgstr "Название предмета:"
+
 #: ../src/modding/ModUploader.tscn:294
+#, fuzzy
+msgid "WORKSHOP_ITEM_CHANGE_NOTES"
+msgstr "Название предмета:"
+
+#: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Выбрать превью"
 
-#: ../src/modding/ModUploader.tscn:305
+#: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Загрузка выполнена успешно"
 
@@ -3761,14 +3872,19 @@ msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Требуется внутреннее имя"
 
 #: ../src/modding/NewModGUI.cs:244
+#, fuzzy
+msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
+msgstr "Требуется внутреннее имя"
+
+#: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:263
+#: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:274
+#: ../src/modding/NewModGUI.cs:280
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Дополнительные проверки обнаружили проблему: {0}"
 
@@ -3846,27 +3962,32 @@ msgstr "Сохранение не удалось"
 msgid "ERROR_SAVING"
 msgstr "Ошибка Сохранения"
 
-#: ../src/saving/NewSaveMenu.cs:77
+#: ../src/saving/NewSaveMenu.cs:87
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Выбранное имя файла ({0}) уже существует. Перезаписать?"
 
-#: ../src/saving/NewSaveMenu.tscn:30
+#: ../src/saving/NewSaveMenu.cs:167
+#, fuzzy
+msgid "INVALID_SAVE_NAME_POPUP"
+msgstr "Загрузить недействительное сохранение?"
+
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "Создать Новое Сохранение"
 
-#: ../src/saving/NewSaveMenu.tscn:47
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "Имя:"
 
-#: ../src/saving/NewSaveMenu.tscn:65
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "Дополнительные Настройки"
 
-#: ../src/saving/NewSaveMenu.tscn:83
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Перезаписать существующее сохранение:"
 
-#: ../src/saving/NewSaveMenu.tscn:115
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Перезаписать существующее сохранение?"
 
@@ -4085,62 +4206,62 @@ msgstr "Папка сохранений не найдена"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:460
+#: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:462
+#: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:464
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:466
+#: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:468
+#: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:470
+#: ../src/steam/SteamClient.cs:482
 #, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Файл сохранения имеет недействительную сцену состояния игры"
 
-#: ../src/steam/SteamClient.cs:472
+#: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:490
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Клонировать Игрока"
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:492
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:494
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:496
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Сохранение не удалось! Бывает же"
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 

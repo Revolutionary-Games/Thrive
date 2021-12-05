@@ -117,8 +117,8 @@ public class ErrorDialog : CustomDialog
 
     private void OnCopyToClipboardPressed()
     {
-        OS.Clipboard = WindowTitle + " - " +
-            extraDescriptionLabel.Text + " exception: " +
+        OS.Clipboard = TranslationServer.Translate(WindowTitle) + " - " +
+            TranslationServer.Translate(extraDescriptionLabel.Text) + " exception: " +
             exceptionLabel.Text;
     }
 
