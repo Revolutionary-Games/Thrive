@@ -191,9 +191,9 @@ public class SimulationParameters : Node
     }
 
     /// <summary>
-    ///   Returns all *molecular* compounds that are dissolved in the environment, i.e. gas.
+    ///   Returns all environmental *molecular* compounds that are dissolved in the environment, i.e. gas.
     /// </summary>
-    /// <remarks>This excludes sunlight</remarks>
+    /// <remarks>This excludes sunlight, and includes O2, CO2, N...</remarks>
     public List<Compound> GetGasCompounds()
     {
         var result = new List<Compound>();
