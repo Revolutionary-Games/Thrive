@@ -14,7 +14,7 @@
         private readonly float splitThresholdFraction;
         private readonly int splitThresholdAmount;
 
-        private readonly Mutations mutations = new Mutations();
+        private readonly Mutations mutations = new();
 
         public FindBestMutation(PatchMap map, Species species, int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
@@ -43,6 +43,8 @@
         {
             var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
+            config.SetPatchesToRunBySpeciesPresence(species);
+
             PopulationSimulation.Simulate(config);
 
             return new AttemptResult(null, config.Results.GetPopulationInPatches(species));
@@ -55,6 +57,7 @@
 
             var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
+            config.SetPatchesToRunBySpeciesPresence(species);
             config.ExcludedSpecies.Add(species);
             config.ExtraSpecies.Add(mutated);
 

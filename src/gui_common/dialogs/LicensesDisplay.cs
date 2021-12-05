@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-public class LicensesDisplay : PanelContainer
+// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+// [Tool]
+public class LicensesDisplay : CustomDialog
 {
     private List<(string Heading, string File)> licensesToShow;
 
@@ -16,16 +18,20 @@ public class LicensesDisplay : PanelContainer
     {
         textsContainer = GetNode<Container>(TextsContainerPath);
 
+        bool isSteamVersion = SteamHandler.IsTaggedSteamRelease();
+
         // These don't react to language change, but I doubt it's important enough to fix
         licensesToShow = new List<(string Heading, string File)>
         {
-            (string.Empty, Constants.LICENSE_FILE),
+            (string.Empty, isSteamVersion ? Constants.STEAM_LICENSE_FILE : Constants.LICENSE_FILE),
             (string.Empty, Constants.ASSETS_README),
             (string.Empty, Constants.ASSETS_LICENSE_FILE),
             (string.Empty, Constants.OFL_LICENSE_FILE),
             (string.Empty, Constants.GODOT_LICENSE_FILE),
-            (TranslationServer.Translate("GPL_LICENSE_HEADING"), Constants.GPL_LICENSE_FILE),
         };
+
+        if (!isSteamVersion)
+            licensesToShow.Add((TranslationServer.Translate("GPL_LICENSE_HEADING"), Constants.GPL_LICENSE_FILE));
     }
 
     public override void _Process(float delta)
@@ -83,5 +89,11 @@ public class LicensesDisplay : PanelContainer
 
             textsContainer.AddChild(new Control { RectMinSize = new Vector2(0, 5) });
         }
+    }
+
+    private void OnCloseButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        Hide();
     }
 }

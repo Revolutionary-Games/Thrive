@@ -38,9 +38,12 @@ using Godot;
 ///     This uses Tool attribute to make this class be run in the Godot editor for live feedback as this class
 ///     handles UI visuals extensively through code. Not necessary but very helpful when editing scenes involving
 ///     any custom dialogs.
+///     NOTE: should always be commented in master branch to avoid Godot breaking exported properties. Uncomment this
+///     only locally if needed.
 ///   </para>
 /// </remarks>
-[Tool]
+/// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+/// [Tool]
 public class CustomDialog : Popup, ICustomPopup
 {
     private string windowTitle;
@@ -66,6 +69,7 @@ public class CustomDialog : Popup, ICustomPopup
     private int titleHeight;
     private int scaleBorderSize;
     private int customMargin;
+    private bool showCloseButton = true;
 
     [Flags]
     private enum DragType
@@ -99,10 +103,22 @@ public class CustomDialog : Popup, ICustomPopup
     }
 
     /// <summary>
+    ///   If true, the dialog window size is locked to the size of the viewport.
+    /// </summary>
+    [Export]
+    public bool FullRect { get; set; }
+
+    /// <summary>
     ///   If true, the user can resize the window.
     /// </summary>
     [Export]
     public bool Resizable { get; set; }
+
+    /// <summary>
+    ///   If true, the user can move the window around the viewport by dragging the titlebar.
+    /// </summary>
+    [Export]
+    public bool Movable { get; set; } = true;
 
     /// <summary>
     ///   If true, the window's position is clamped inside the screen so it doesn't go out of bounds.
@@ -112,6 +128,20 @@ public class CustomDialog : Popup, ICustomPopup
 
     [Export]
     public bool ExclusiveAllowCloseOnEscape { get; set; } = true;
+
+    [Export]
+    public bool ShowCloseButton
+    {
+        get => showCloseButton;
+        set
+        {
+            if (showCloseButton == value)
+                return;
+
+            showCloseButton = value;
+            SetupCloseButton();
+        }
+    }
 
     public override void _EnterTree()
     {
@@ -140,6 +170,10 @@ public class CustomDialog : Popup, ICustomPopup
             case NotificationResized:
             {
                 UpdateChildRects();
+
+                if (FullRect)
+                    SetToFullRect();
+
                 break;
             }
 
@@ -148,6 +182,9 @@ public class CustomDialog : Popup, ICustomPopup
                 if (Visible)
                 {
                     OnShown();
+
+                    if (FullRect)
+                        SetToFullRect();
                 }
                 else
                 {
@@ -167,6 +204,12 @@ public class CustomDialog : Popup, ICustomPopup
                         MouseDefaultCursorShape = CursorShape.Arrow;
                 }
 
+                break;
+            }
+
+            case NotificationTranslationChanged:
+            {
+                translatedWindowTitle = TranslationServer.Translate(windowTitle);
                 break;
             }
         }
@@ -202,7 +245,7 @@ public class CustomDialog : Popup, ICustomPopup
         // Handle title bar dragging
         if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == (int)ButtonList.Left)
         {
-            if (mouseButton.Pressed)
+            if (mouseButton.Pressed && Movable)
             {
                 // Begin a possible dragging operation
                 dragType = DragHitTest(new Vector2(mouseButton.Position.x, mouseButton.Position.y));
@@ -451,6 +494,17 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void SetupCloseButton()
     {
+        if (!ShowCloseButton)
+        {
+            if (closeButton != null)
+            {
+                RemoveChild(closeButton);
+                closeButton = null;
+            }
+
+            return;
+        }
+
         if (closeButton != null)
             return;
 
@@ -495,6 +549,14 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
+    private void SetToFullRect()
+    {
+        var viewportSize = GetViewport().GetVisibleRect().Size;
+
+        RectPosition = new Vector2(0, titleBarHeight);
+        RectSize = new Vector2(viewportSize.x, viewportSize.y - titleBarHeight);
+    }
+
     private void OnCloseButtonMouseEnter()
     {
         closeHovered = true;
@@ -516,5 +578,8 @@ public class CustomDialog : Popup, ICustomPopup
     {
         if (BoundToScreenArea)
             FixRect();
+
+        if (FullRect)
+            SetToFullRect();
     }
 }

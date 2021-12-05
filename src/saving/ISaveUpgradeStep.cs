@@ -52,6 +52,8 @@
                 { "0.5.5.0-alpha", new UpgradeJustVersionNumber("0.5.5.0-rc1") },
                 { "0.5.5.0-rc1", new UpgradeJustVersionNumber("0.5.5.0") },
                 { "0.5.5.0", new UpgradeStep055To056() },
+                { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
+                { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
             };
         }
     }

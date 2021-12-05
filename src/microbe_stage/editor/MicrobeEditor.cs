@@ -181,10 +181,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private int organelleRot;
 
     [JsonProperty]
-    private string autoEvoSummary;
+    private LocalizedStringBuilder autoEvoSummary;
 
     [JsonProperty]
-    private string autoEvoExternal;
+    private LocalizedStringBuilder autoEvoExternal;
 
     [JsonProperty]
     private string activeActionName;
@@ -649,13 +649,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             CalculateOrganelleEffectivenessInPatch(CurrentPatch);
             UpdatePatchDependentBalanceData();
+            gui.UpdateAutoEvoResults(autoEvoSummary?.ToString(), autoEvoExternal?.ToString());
             gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
-
-            // TODO: AutoEvo run results summary
         }
     }
 
@@ -1389,6 +1388,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         UpdateArrow(false);
 
+        gui.UpdateMutationPointsBar(false);
+
         // Send freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
 
@@ -1413,6 +1414,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         gui.SendUndoToTutorial(TutorialState);
 
         gui.UpdateCancelButtonVisibility();
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     private void InitEditorFresh()
@@ -1732,7 +1735,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
             organelleModel.Visible = true;
 
-            UpdateOrganellePlaceHolderScene(organelleModel, shownOrganelle.DisplayScene);
+            UpdateOrganellePlaceHolderScene(organelleModel, shownOrganelle.DisplayScene,
+                shownOrganelle, Hex.GetRenderPriority(new Hex(q, r)));
         }
     }
 
@@ -2281,7 +2285,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 organelleModel.Visible = !MicrobePreviewMode;
 
                 UpdateOrganellePlaceHolderScene(organelleModel,
-                    organelle.Definition.DisplayScene);
+                    organelle.Definition.DisplayScene, organelle.Definition, Hex.GetRenderPriority(organelle.Position));
             }
         }
 
@@ -2302,9 +2306,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
-    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel, string displayScene)
+    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        string displayScene, OrganelleDefinition definition, int renderPriority)
     {
         organelleModel.Scene = displayScene;
+        var material = organelleModel.GetMaterial(definition.DisplaySceneModelPath);
+        if (material != null)
+        {
+            material.RenderPriority = renderPriority;
+        }
     }
 
     [DeserializedCallbackAllowed]
@@ -2464,7 +2474,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
-            gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
+            gui.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
         ApplyAutoEvoResults();
@@ -2479,7 +2489,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (Ready != true)
             throw new InvalidOperationException("loaded editor isn't in the ready state");
 
-        gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
+        gui.UpdateAutoEvoResults(autoEvoSummary?.ToString(), autoEvoExternal?.ToString());
 
         gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
