@@ -90,20 +90,25 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
     public void UpdatePosition(Int2 newPosition)
     {
+        // As currently called, new position of the center of the cloudgrid
         var newX = newPosition.x.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
         var newY = newPosition.y.PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+
+        var shiftX = (newX - position.x).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+        var shiftY = (newY - position.y).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
 
         // TODO, Factor squares per size in rect
         // Todo use rotate ?
         // TODO investigate one var + positivemods.
-        if (newX == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        // TODO introduce method get slice?
+        if (shiftX == 1)
         {
             var currentVerticalSlice = new IntRect(position.x, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
             currentVerticalSlice.ScaleByOrigin(SquaresSize);
 
             PartialClearDensity(currentVerticalSlice);
         }
-        else if (newX == (position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
+        else if (shiftX == 2)
         {
             var previousVerticalSlice = new IntRect(newX, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
             previousVerticalSlice.ScaleByOrigin(SquaresSize);
@@ -111,14 +116,14 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             PartialClearDensity(previousVerticalSlice);
         }
 
-        if (newY == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        if (shiftY == 1)
         {
             var currentHorizontalSlice = new IntRect(0, position.y, Constants.CLOUD_SQUARES_PER_SIDE, 1);
             currentHorizontalSlice.ScaleByOrigin(SquaresSize);
 
             PartialClearDensity(currentHorizontalSlice);
         }
-        else if (newY == (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
+        else if (shiftY == 2)
         {
             var previousHorizontalSlice = new IntRect(0, newY, Constants.CLOUD_SQUARES_PER_SIDE, 1);
             previousHorizontalSlice.ScaleByOrigin(SquaresSize);
