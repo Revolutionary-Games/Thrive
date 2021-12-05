@@ -38,6 +38,7 @@ public class MovementComponent : ExternallyPositionedComponent
     protected override void CustomAttach()
     {
         force = CalculateForce(organelle.Position, Momentum);
+
         animation = organelle.OrganelleAnimation;
 
         if (animation == null)
@@ -51,9 +52,9 @@ public class MovementComponent : ExternallyPositionedComponent
     protected override bool NeedsUpdateAnyway()
     {
         // The basis of the transform represents the rotation, as long as the rotation is not modified,
-        // the organnel needs to be updated.
-        // TO DO:
-        // Calculated rotations should never equal the identity, it should be kept an eye on if it does
+        // the organnelle needs to be updated.
+        // TODO: Calculated rotations should never equal the identity, 
+        // it should be kept an eye on if it does
         return organelle.OrganelleGraphics.Transform.basis == Transform.Identity.basis;
     }
 
