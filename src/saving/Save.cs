@@ -233,7 +233,7 @@ public class Save
         using var file = new File();
         if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
         {
-            GD.PrintErr("Cannot open file to write.");
+            GD.PrintErr("Cannot open file for writing: ", target);
             throw new Exception("Cannot open: " + target);
         }
 
