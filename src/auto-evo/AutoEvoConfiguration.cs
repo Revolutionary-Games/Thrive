@@ -41,7 +41,6 @@ public class AutoEvoConfiguration : IRegistryType
     [JsonProperty]
     public bool BiodiversitySplitIsMutated { get; private set; }
 
-
     /// <summary>
     ///   Maximum number of species kept in a patch at the end of auto-evo.
     /// </summary>
