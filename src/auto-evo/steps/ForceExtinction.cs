@@ -32,7 +32,6 @@
 
         public bool RunStep(RunResults results)
         {
-            GD.Print("!RUNning debug step");
             var populationsByPatch = results.GetPopulationsByPatch(!configuration.ProtectMigrationsFromSpeciesCap,
                 !configuration.AllowNoMutation, !configuration.ProtectNewCellsFromSpeciesCap);
 
@@ -48,17 +47,14 @@
                 if (configuration.ProtectMigrationsFromSpeciesCap)
                     protectedSpeciesCount += results.GetMigrationsTo(patch).Count;
 
-                GD.Print("Debuggin extinction step in patch ", patch.Name, ". Total count: ", speciesInPatch.Count + protectedSpeciesCount);
-                foreach (var temp in speciesInPatch) GD.Print(temp.Key.FormattedName, " -> ", temp.Value);
-                foreach (var temp in results.GetNewSpeciesResults(patch).Keys) GD.Print("New: ", temp.FormattedName);
-
                 // Only bother if we're above the limit
                 if (speciesInPatch.Count + protectedSpeciesCount <= configuration.MaximumSpeciesInPatch)
                 {
                     continue;
                 }
 
-                GD.Print("Running extinction step in patch ", patch.Name, ".");
+                GD.Print("Running extinction step in patch ", patch.Name, ". ",
+                    "Total count:", speciesInPatch.Count + protectedSpeciesCount);
 
                 // Sort the species in the patch, unless protected species fill up all the place already...
                 var orderedSpeciesInPatch = (configuration.MaximumSpeciesInPatch > protectedSpeciesCount) ?
