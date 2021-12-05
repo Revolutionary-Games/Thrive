@@ -117,7 +117,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         }
         else if (newY == (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            var previousHorizontalSlice = new IntRect(0, newX * SquaresSize,
+            var previousHorizontalSlice = new IntRect(0, newY * SquaresSize,
                 Size, SquaresSize);
             PartialClearDensity(previousHorizontalSlice);
         }
