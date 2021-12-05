@@ -98,27 +98,31 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         // TODO investigate one var + positivemods.
         if (newX == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            var currentVerticalSlice = new IntRect(position.x * SquaresSize, 0,
-                SquaresSize, Size);
+            var currentVerticalSlice = new IntRect(position.x, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
+            currentVerticalSlice.ScaleByOrigin(SquaresSize);
+
             PartialClearDensity(currentVerticalSlice);
         }
         else if (newX == (position.x - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            var previousVerticalSlice = new IntRect(newX * SquaresSize, 0,
-                SquaresSize, Size);
+            var previousVerticalSlice = new IntRect(newX, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
+            previousVerticalSlice.ScaleByOrigin(SquaresSize);
+
             PartialClearDensity(previousVerticalSlice);
         }
 
         if (newY == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            var currentHorizontalSlice = new IntRect(0, position.y * SquaresSize,
-                Size, SquaresSize);
+            var currentHorizontalSlice = new IntRect(0, position.y, Constants.CLOUD_SQUARES_PER_SIDE, 1);
+            currentHorizontalSlice.ScaleByOrigin(SquaresSize);
+
             PartialClearDensity(currentHorizontalSlice);
         }
         else if (newY == (position.y - 1).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE))
         {
-            var previousHorizontalSlice = new IntRect(0, newY * SquaresSize,
-                Size, SquaresSize);
+            var previousHorizontalSlice = new IntRect(0, newY, Constants.CLOUD_SQUARES_PER_SIDE, 1);
+            previousHorizontalSlice.ScaleByOrigin(SquaresSize);
+
             PartialClearDensity(previousHorizontalSlice);
         }
 
