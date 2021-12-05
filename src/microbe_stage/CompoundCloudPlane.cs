@@ -106,34 +106,23 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         // Todo use rotate ?
         // TODO investigate one var + positivemods.
         // TODO introduce method get slice?
-        if (shiftX == 1)
-        {
-            var currentVerticalSlice = new IntRect(position.x, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE); // position.x = position.x - shiftX + 1 = newX - 2 * shiftX + 1 = newX + shiftX + 1
-            currentVerticalSlice.ScaleByOrigin(SquaresSize);
 
-            PartialClearDensity(currentVerticalSlice);
-        }
-        else if (shiftX == 2)
+        // Here we clean the outdated slices from the grid in memory, i.e. those that are too far away from the shifted center
+        // TODO here we only consider size 3 grids -> generalize, with more outdated slices -> shift / 2
+        if (shiftX != 0)
         {
-            var previousVerticalSlice = new IntRect(newX, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE); // newX = position.x + 2 = position.x - shiftX + 1 = newX - 2 * shiftX + 1 = newX + shiftX + 1 (3 and 2 primes)
-            previousVerticalSlice.ScaleByOrigin(SquaresSize);
-
-            PartialClearDensity(previousVerticalSlice);
+            var mirrorNewX = (position.x - shiftX).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+            var outdatedVerticalSlice = new IntRect(mirrorNewX, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
+            outdatedVerticalSlice.ScaleByOrigin(SquaresSize);
+            PartialClearDensity(outdatedVerticalSlice);
         }
 
-        if (shiftY == 1)
+        if (shiftY != 0)
         {
-            var currentHorizontalSlice = new IntRect(0, position.y, Constants.CLOUD_SQUARES_PER_SIDE, 1);
-            currentHorizontalSlice.ScaleByOrigin(SquaresSize);
-
-            PartialClearDensity(currentHorizontalSlice);
-        }
-        else if (shiftY == 2)
-        {
-            var previousHorizontalSlice = new IntRect(0, newY, Constants.CLOUD_SQUARES_PER_SIDE, 1);
-            previousHorizontalSlice.ScaleByOrigin(SquaresSize);
-
-            PartialClearDensity(previousHorizontalSlice);
+            var mirrorNewY = (position.y - shiftY).PositiveModulo(Constants.CLOUD_SQUARES_PER_SIDE);
+            var outdatedHorizontalSlice = new IntRect(0, mirrorNewY, Constants.CLOUD_SQUARES_PER_SIDE, 1);
+            outdatedHorizontalSlice.ScaleByOrigin(SquaresSize);
+            PartialClearDensity(outdatedHorizontalSlice);
         }
 
         position = new Int2(newX, newY);
