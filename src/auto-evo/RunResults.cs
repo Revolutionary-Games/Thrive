@@ -408,9 +408,7 @@
                 foreach (var patchPopulationEntry in speciesResultEntry.Value.NewPopulationInPatches)
                 {
                     if (!speciesInPatches.ContainsKey(patchPopulationEntry.Key))
-                    {
                         speciesInPatches[patchPopulationEntry.Key] = new Dictionary<Species, long>();
-                    }
 
                     if (patchPopulationEntry.Value > 0)
                     {
@@ -447,14 +445,10 @@
 
                         // Add entries if necessary
                         if (!speciesInPatches.ContainsKey(migration.From))
-                        {
                             speciesInPatches[migration.From] = new Dictionary<Species, long>();
-                        }
 
                         if (!speciesInPatches.ContainsKey(migration.To))
-                        {
                             speciesInPatches[migration.To] = new Dictionary<Species, long>();
-                        }
 
                         // Only consider possible migrations
                         // TODO check second condition to mimick actual effect. (> 0 ?)
@@ -472,9 +466,7 @@
                             }
 
                             if (!speciesInPatches[migration.To].ContainsKey(speciesResultEntry.Key))
-                            {
                                 speciesInPatches[migration.To][speciesResultEntry.Key] = 0;
-                            }
 
                             speciesInPatches[migration.To][speciesResultEntry.Key] += migration.Population;
                         }
