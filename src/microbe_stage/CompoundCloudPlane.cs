@@ -59,6 +59,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   The size, as a number of grid cells, of the big square subdivisions of the cloud.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO name "square" throughout files may not be accurate if X & Y extents differ.
+    ///   </para>
+    /// </remarks>
     public int SquaresSize => Size / Constants.CLOUD_SQUARES_PER_SIDE;
 
     public bool IsLoadedFromSave { get; set; }
@@ -103,14 +108,14 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         // TODO introduce method get slice?
         if (shiftX == 1)
         {
-            var currentVerticalSlice = new IntRect(position.x, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
+            var currentVerticalSlice = new IntRect(position.x, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE); // position.x = position.x - shiftX + 1 = newX - 2 * shiftX + 1 = newX + shiftX + 1
             currentVerticalSlice.ScaleByOrigin(SquaresSize);
 
             PartialClearDensity(currentVerticalSlice);
         }
         else if (shiftX == 2)
         {
-            var previousVerticalSlice = new IntRect(newX, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE);
+            var previousVerticalSlice = new IntRect(newX, 0, 1, Constants.CLOUD_SQUARES_PER_SIDE); // newX = position.x + 2 = position.x - shiftX + 1 = newX - 2 * shiftX + 1 = newX + shiftX + 1 (3 and 2 primes)
             previousVerticalSlice.ScaleByOrigin(SquaresSize);
 
             PartialClearDensity(previousVerticalSlice);
