@@ -54,7 +54,6 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
-
             float angle = GetAngle(relativeOrganellePosition);
 
             var rotation = MathUtils.CreateRotationForExternal(angle);
