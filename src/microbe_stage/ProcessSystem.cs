@@ -68,11 +68,10 @@ public class ProcessSystem
         int hexCount = 0;
 
         var organelleList = organelles.ToList();
-        var enumerated = (organelles.Select(o => o.Definition)).ToList();
-        
-        foreach (var organelle in enumerated)
+
+        foreach (var organelle in organelleList)
         {
-            foreach (var process in organelle.RunnableProcesses)
+            foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
 
@@ -82,7 +81,7 @@ public class ProcessSystem
 
                     processATPConsumption += amount;
 
-                    result.AddConsumption(organelle.InternalName, amount);
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
                 }
 
                 if (processData.WritableOutputs.ContainsKey(ATP))
@@ -91,28 +90,28 @@ public class ProcessSystem
 
                     processATPProduction += amount;
 
-                    result.AddProduction(organelle.InternalName, amount);
+                    result.AddProduction(organelle.Definition.InternalName, amount);
                 }
             }
 
             // Take special cell components that take energy into account
-            if (organelle.HasComponentFactory<MovementComponentFactory>())
+            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
                 var amount = Constants.FLAGELLA_ENERGY_COST;
 
-                movementATPConsumption += amount;
-                result.Flagella += amount;
-
-                var templateOrganelle = organelleList[enumerated.IndexOf(organelle)];
-                var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(templateOrganelle);
+                var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
                 if (organelleDirection.Dot(maximumMovementDirection) > 0)
-                    result.AddConsumption(organelle.InternalName, amount);
+                {
+                    movementATPConsumption += amount;
+                    result.Flagella += amount;
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
+                }
+
             }
 
             // Store hex count
-            hexCount += organelle.HexCount;
+            hexCount += organelle.Definition.HexCount;
         }
-
         // Add movement consumption together
         result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
         result.AddConsumption("baseMovement", result.BaseMovement);

@@ -58,6 +58,8 @@ public static class MicrobeInternalCalculations
             maximumMovementDirection = ChooseFromSymetricFlagella(inputOrganelles, organelle, maximumMovementDirection);
         }
 
+        if (maximumMovementDirection == Vector3.Zero)
+            return Vector3.Forward;
         return maximumMovementDirection;
     }
 
