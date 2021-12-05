@@ -399,7 +399,7 @@
         ///   </para>
         /// </remarks>
         public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(
-            bool resolveMigrations = false, bool resolveSplits = false,  bool includeNewSpecies = true)
+            bool resolveMigrations = false, bool resolveSplits = false, bool includeNewSpecies = true)
         {
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
             foreach (var speciesResultEntry in results)
