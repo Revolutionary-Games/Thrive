@@ -227,7 +227,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
         if (position.y != 2)
         {
-            var rectangle = new IntRect(Constants.CLOUD_EDGE_WIDTH / 2, 
+            var rectangle = new IntRect(Constants.CLOUD_EDGE_WIDTH / 2,
                 2 * SquaresSize - Constants.CLOUD_EDGE_WIDTH / 2,
                 SquaresSize - Constants.CLOUD_EDGE_WIDTH,
                 Constants.CLOUD_EDGE_WIDTH);
