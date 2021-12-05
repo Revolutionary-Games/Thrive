@@ -69,7 +69,10 @@ public struct IntRect : IEquatable<IntRect>
         Height *= factor;
     }
 
-    public IEnumerable<Int2> GetPointEnumerator() => GetPointEnumerator(1);
+    public IEnumerable<Int2> GetPointEnumerator()
+    {
+        return GetPointEnumerator(1);
+    }
 
     /// <summary>
     ///   Enumerator to the points contained within the rectangle with a step between two consecutive points.
