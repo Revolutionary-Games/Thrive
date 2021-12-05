@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-03 18:13+0200\n"
+"POT-Creation-Date: 2021-12-05 15:02+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1396,7 +1396,7 @@ msgstr "微生物阶段自由编辑器"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
@@ -1698,7 +1698,7 @@ msgstr "总是"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "从不"
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "保存"
 
@@ -3316,9 +3316,8 @@ msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "Mod Assembly Main Class："
 
 #: ../src/modding/ModLoader.cs:380
-#, fuzzy
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
-msgstr "Mod Assembly Main Class："
+msgstr ""
 
 #: ../src/modding/ModLoader.cs:394
 #, fuzzy
@@ -3367,26 +3366,32 @@ msgid "REFRESH"
 msgstr "刷新"
 
 #: ../src/modding/ModManager.tscn:152
+#, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "打开文件夹"
 
 #: ../src/modding/ModManager.tscn:170
+#, fuzzy
 msgid "RIGHT_ARROW"
 msgstr "→"
 
 #: ../src/modding/ModManager.tscn:183
+#, fuzzy
 msgid "LEFT_ARROW"
 msgstr "←"
 
 #: ../src/modding/ModManager.tscn:195
+#, fuzzy
 msgid "ENABLED_MODS"
 msgstr "启用Mod"
 
 #: ../src/modding/ModManager.tscn:213
+#, fuzzy
 msgid "DISABLE_ALL"
 msgstr "全部禁用"
 
 #: ../src/modding/ModManager.tscn:250
+#, fuzzy
 msgid "SELECTED_MOD"
 msgstr "选中的Mod："
 
@@ -3405,6 +3410,7 @@ msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "推荐的Thrive版本："
 
 #: ../src/modding/ModManager.tscn:415
+#, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "最低："
 
@@ -3418,6 +3424,7 @@ msgid "MORE_INFO"
 msgstr "显示更多信息"
 
 #: ../src/modding/ModManager.tscn:482
+#, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "打开Mod网址"
 
@@ -3426,6 +3433,7 @@ msgid "BROWSE_WORKSHOP"
 msgstr "浏览创意工坊"
 
 #: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+#, fuzzy
 msgid "UPLOAD"
 msgstr "上传"
 
@@ -3434,10 +3442,9 @@ msgid "NEW"
 msgstr "新的"
 
 #: ../src/modding/ModManager.tscn:532
+#, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr ""
-"注意：许多mod需要重新启动游戏才能正常加载或卸载。只加载你信任的mods，因为它"
-"们可能包含可执行代码。"
+msgstr "载入无效的存档？"
 
 #: ../src/modding/ModManager.tscn:559
 msgid "ENABLE_ALL_COMPATIBLE"
@@ -3456,6 +3463,7 @@ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr "你需要应用更变才能加载或卸载任何mod。"
 
 #: ../src/modding/ModManager.tscn:581
+#, fuzzy
 msgid "DISCARD_CHANGES"
 msgstr "放弃更变"
 
@@ -3464,6 +3472,7 @@ msgid "FULL_MOD_INFO"
 msgstr "完整的Mod信息"
 
 #: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#, fuzzy
 msgid "MOD_NAME"
 msgstr "Mod名称："
 
@@ -3472,6 +3481,7 @@ msgid "MOD_INTERNAL_NAME"
 msgstr "内部（文件夹）名称："
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod的完整描叙："
 
@@ -3484,6 +3494,7 @@ msgid "MOD_INFO_URL"
 msgstr "Mod信息网址："
 
 #: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#, fuzzy
 msgid "MOD_LICENSE"
 msgstr "此Mod的许可："
 
@@ -3500,6 +3511,7 @@ msgid "MOD_MAXIMUM_THRIVE"
 msgstr "支持的最高Thrive版本："
 
 #: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Mod的.pck文件："
 
@@ -3512,15 +3524,14 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class："
 
 #: ../src/modding/ModManager.tscn:979
+#, fuzzy
 msgid "MOD_CREATION_FAILED"
 msgstr "Mod创建失败"
 
 #: ../src/modding/ModManager.tscn:989
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr ""
-"注意：许多mod需要重新启动游戏才能正常加载或卸载。只加载你信任的mods，因为它"
-"们可能包含可执行代码。"
+msgstr "载入无效的存档？"
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
@@ -3529,9 +3540,7 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:996
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr ""
-"注意：许多mod需要重新启动游戏才能正常加载或卸载。只加载你信任的mods，因为它"
-"们可能包含可执行代码。"
+msgstr "载入无效的存档？"
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3605,7 +3614,8 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "由于异常，保存信息失败：{0}"
 
-#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
+#, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "错误：{0}"
 
@@ -3709,14 +3719,19 @@ msgid "INTERNAL_NAME_REQUIRED"
 msgstr "需要内部名称"
 
 #: ../src/modding/NewModGUI.cs:244
+msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
+msgstr ""
+
+#: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "已经有一个内部名称相同的mod了"
 
-#: ../src/modding/NewModGUI.cs:263
+#: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "缺少或无效的必填字段的格式：{0}"
 
-#: ../src/modding/NewModGUI.cs:274
+#: ../src/modding/NewModGUI.cs:280
+#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "额外验证检测到了一个问题：{0}"
 
@@ -3793,27 +3808,32 @@ msgstr "保存失败"
 msgid "ERROR_SAVING"
 msgstr "存档时出错"
 
-#: ../src/saving/NewSaveMenu.cs:77
+#: ../src/saving/NewSaveMenu.cs:87
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目标文件名{0}已存在。确定要覆盖吗？"
 
-#: ../src/saving/NewSaveMenu.tscn:30
+#: ../src/saving/NewSaveMenu.cs:167
+#, fuzzy
+msgid "INVALID_SAVE_NAME_POPUP"
+msgstr "物种名称必须符合双名法命名系统（属和表名）!"
+
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "创建新存档"
 
-#: ../src/saving/NewSaveMenu.tscn:47
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "名称："
 
-#: ../src/saving/NewSaveMenu.tscn:65
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "额外选项"
 
-#: ../src/saving/NewSaveMenu.tscn:83
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "覆写已有的存档："
 
-#: ../src/saving/NewSaveMenu.tscn:115
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "覆写已有的存档？"
 
