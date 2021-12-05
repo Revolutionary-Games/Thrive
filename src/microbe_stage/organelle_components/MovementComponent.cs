@@ -67,7 +67,7 @@ public class MovementComponent : ExternallyPositionedComponent
     ///   Calculate the momentum of the movement organelle based on
     ///   angle towards middle of cell
     ///   If the flagella is placed in the microbe's center, hence delta equals 0,
-    ///   consider defaultPos as the organelles "false" position.
+    ///   consider defaultPos as the organelle's "false" position.
     /// </summary>
     private static Vector3 CalculateForce(Hex pos, float momentum)
     {
