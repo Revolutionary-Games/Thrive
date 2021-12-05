@@ -105,7 +105,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     [Export]
     public float DisplayDelay { get; set; } = 0.0f;
 
-    public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.FollowMousePosition;
+    public ToolTipPositioning Positioning { get; set; } = ToolTipPositioning.ControlBottomRightEdge;
 
     public ToolTipTransitioning TransitionType { get; set; } = ToolTipTransitioning.Immediate;
 

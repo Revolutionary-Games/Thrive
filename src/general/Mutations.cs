@@ -40,6 +40,12 @@ public class Mutations
             throw new ArgumentException("Can't create a mutated version of an empty species");
         }
 
+        if (mutated.PlayerSpecies)
+        {
+            // This is mostly a sanity check against bugs elsewhere in the code
+            throw new ArgumentException("Don't mutate the player species");
+        }
+
         var simulation = SimulationParameters.Instance;
         var nameGenerator = simulation.NameGenerator;
 

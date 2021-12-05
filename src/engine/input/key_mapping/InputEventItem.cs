@@ -141,16 +141,19 @@ public class InputEventItem : Node
         {
             if (xButton.IsHovered() && !xButton.Disabled)
             {
+                GetTree().SetInputAsHandled();
+
                 Delete();
 
                 // Rebind canceled, alert the InputManager so it can resume getting input
-                InputManager.RebindingIsActive = false;
+                InputManager.PerformingRebind = false;
 
                 return;
             }
 
             if (button.IsHovered() && !WaitingForInput && mouseEvent.Pressed && !button.Disabled)
             {
+                GetTree().SetInputAsHandled();
                 OnButtonPressed(mouseEvent);
                 return;
             }
@@ -171,11 +174,12 @@ public class InputEventItem : Node
             {
                 case (uint)KeyList.Escape:
                 {
-                    InputGroupList.WasListeningForInput = true;
+                    GetTree().SetInputAsHandled();
+
                     WaitingForInput = false;
 
                     // Rebind canceled, alert the InputManager so it can resume getting input
-                    InputManager.RebindingIsActive = false;
+                    InputManager.PerformingRebind = false;
 
                     if (AssociatedEvent == null)
                     {
@@ -205,7 +209,6 @@ public class InputEventItem : Node
         var old = AssociatedEvent;
         AssociatedEvent = new SpecifiedInputKey((InputEventWithModifiers)@event);
 
-        // Consume current input event so it is only used for rebinding
         GetTree().SetInputAsHandled();
 
         // Check conflicts, and don't proceed if there is a conflict
@@ -277,7 +280,6 @@ public class InputEventItem : Node
     {
         WaitingForInput = false;
         JustAdded = false;
-        InputGroupList.WasListeningForInput = false;
 
         // Update the godot InputMap
         GroupList?.ControlsChanged();
@@ -285,8 +287,8 @@ public class InputEventItem : Node
         // Update the button text
         UpdateButtonText();
 
-        // Rebinding is done so we alert the InputManager that it can resume getting input
-        InputManager.RebindingIsActive = false;
+        // Rebind succeeded, alert the InputManager so it can resume getting input
+        InputManager.PerformingRebind = false;
     }
 
     /// <summary>
@@ -320,9 +322,8 @@ public class InputEventItem : Node
         button.Text = TranslationServer.Translate("PRESS_KEY_DOT_DOT_DOT");
         xButton.Visible = true;
 
-        // Signal to the input manager that a rebinding has started
-        // and it should ignore input until the rebind is finished
-        InputManager.RebindingIsActive = true;
+        // Notify InputManager that input rebinding has started and it should not react to input
+        InputManager.PerformingRebind = true;
     }
 
     private void UpdateButtonText()

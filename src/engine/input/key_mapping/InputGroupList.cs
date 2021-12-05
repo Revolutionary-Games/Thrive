@@ -15,16 +15,14 @@ public class InputGroupList : VBoxContainer
     [Export]
     public NodePath ResetInputsDialog;
 
-    private static bool wasListeningForInput;
-
     private IEnumerable<InputGroupItem> activeInputGroupList;
 
     private InputEventItem latestDialogCaller;
     private InputEventItem latestDialogConflict;
     private InputEventWithModifiers latestDialogNewEvent;
 
-    private ConfirmationDialog conflictDialog;
-    private ConfirmationDialog resetInputsDialog;
+    private CustomConfirmationDialog conflictDialog;
+    private CustomConfirmationDialog resetInputsDialog;
 
     public delegate void ControlsChangedDelegate(InputDataList data);
 
@@ -32,21 +30,6 @@ public class InputGroupList : VBoxContainer
     ///   Fired whenever some inputs were redefined.
     /// </summary>
     public event ControlsChangedDelegate OnControlsChanged;
-
-    /// <summary>
-    ///   If I was listening for inputs.
-    ///   Used by the pause menu to not close whenever escape is pressed if the user was redefining keys
-    /// </summary>
-    public static bool WasListeningForInput
-    {
-        get
-        {
-            var result = wasListeningForInput;
-            wasListeningForInput = false;
-            return result;
-        }
-        internal set => wasListeningForInput = value;
-    }
 
     public PackedScene InputEventItemScene { get; private set; }
     public PackedScene InputGroupItemScene { get; private set; }
@@ -68,8 +51,8 @@ public class InputGroupList : VBoxContainer
         InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
         InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
 
-        conflictDialog = GetNode<ConfirmationDialog>(ConflictDialogPath);
-        resetInputsDialog = GetNode<ConfirmationDialog>(ResetInputsDialog);
+        conflictDialog = GetNode<CustomConfirmationDialog>(ConflictDialogPath);
+        resetInputsDialog = GetNode<CustomConfirmationDialog>(ResetInputsDialog);
     }
 
     /// <summary>
@@ -131,7 +114,7 @@ public class InputGroupList : VBoxContainer
         latestDialogConflict = conflict;
         latestDialogNewEvent = newEvent;
 
-        conflictDialog.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
+        conflictDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
             inputActionItem.DisplayName,
             inputActionItem.DisplayName);

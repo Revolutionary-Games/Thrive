@@ -1,5 +1,6 @@
 ﻿using System;
 using Godot;
+using Tutorial;
 
 /// <summary>
 ///   GUI control that contains the microbe stage tutorial.
@@ -44,18 +45,25 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     [Export]
     public NodePath UnbindTutorialPath;
 
-    private WindowDialog microbeWelcomeMessage;
+    [Export]
+    public NodePath CheckTheHelpMenuPath;
+
+    private CustomDialog microbeWelcomeMessage;
     private Control microbeMovementKeyPrompts;
     private Control microbeMovementKeyForward;
     private Control microbeMovementKeyLeft;
     private Control microbeMovementKeyRight;
     private Control microbeMovementKeyBackwards;
-    private WindowDialog microbeMovementPopup;
-    private WindowDialog glucoseTutorial;
-    private WindowDialog stayingAlive;
-    private WindowDialog reproductionTutorial;
-    private WindowDialog editorButtonTutorial;
-    private WindowDialog unbindTutorial;
+    private CustomDialog microbeMovementPopup;
+    private CustomDialog glucoseTutorial;
+    private CustomDialog stayingAlive;
+    private CustomDialog reproductionTutorial;
+    private CustomDialog editorButtonTutorial;
+    private CustomDialog unbindTutorial;
+    private CustomDialog checkTheHelpMenu;
+
+    [Signal]
+    public delegate void OnHelpMenuOpenRequested();
 
     public ITutorialInput EventReceiver { get; set; }
 
@@ -81,7 +89,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                microbeWelcomeMessage.Visible = false;
+                microbeWelcomeMessage.Hide();
             }
         }
     }
@@ -106,7 +114,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                microbeMovementPopup.Visible = false;
+                microbeMovementPopup.Hide();
             }
         }
     }
@@ -125,7 +133,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                glucoseTutorial.Visible = false;
+                glucoseTutorial.Hide();
             }
         }
     }
@@ -144,7 +152,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                stayingAlive.Visible = false;
+                stayingAlive.Hide();
             }
         }
     }
@@ -163,7 +171,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                reproductionTutorial.Visible = false;
+                reproductionTutorial.Hide();
             }
         }
     }
@@ -182,7 +190,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                editorButtonTutorial.Visible = false;
+                editorButtonTutorial.Hide();
             }
         }
     }
@@ -201,7 +209,7 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
             }
             else
             {
-                unbindTutorial.Visible = false;
+                unbindTutorial.Hide();
             }
         }
     }
@@ -242,21 +250,40 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         set => microbeMovementKeyBackwards.Visible = value;
     }
 
+    public bool CheckTheHelpMenuVisible
+    {
+        get => checkTheHelpMenu.Visible;
+        set
+        {
+            if (value == checkTheHelpMenu.Visible)
+                return;
+
+            if (value)
+            {
+                checkTheHelpMenu.Show();
+            }
+            else
+            {
+                checkTheHelpMenu.Hide();
+            }
+        }
+    }
+
     public override void _Ready()
     {
-        microbeWelcomeMessage = GetNode<WindowDialog>(MicrobeWelcomeMessagePath);
+        microbeWelcomeMessage = GetNode<CustomDialog>(MicrobeWelcomeMessagePath);
         microbeMovementKeyPrompts = GetNode<Control>(MicrobeMovementKeyPromptsPath);
-        microbeMovementPopup = GetNode<WindowDialog>(MicrobeMovementPopupPath);
+        microbeMovementPopup = GetNode<CustomDialog>(MicrobeMovementPopupPath);
         microbeMovementKeyForward = GetNode<Control>(MicrobeMovementKeyForwardPath);
         microbeMovementKeyLeft = GetNode<Control>(MicrobeMovementKeyLeftPath);
         microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
-        glucoseTutorial = GetNode<WindowDialog>(GlucoseTutorialPath);
-        stayingAlive = GetNode<WindowDialog>(StayingAlivePath);
-        reproductionTutorial = GetNode<WindowDialog>(ReproductionTutorialPath);
-        editorButtonTutorial = GetNode<WindowDialog>(EditorButtonTutorialPath);
-
-        unbindTutorial = GetNode<WindowDialog>(UnbindTutorialPath);
+        glucoseTutorial = GetNode<CustomDialog>(GlucoseTutorialPath);
+        stayingAlive = GetNode<CustomDialog>(StayingAlivePath);
+        reproductionTutorial = GetNode<CustomDialog>(ReproductionTutorialPath);
+        editorButtonTutorial = GetNode<CustomDialog>(EditorButtonTutorialPath);
+        unbindTutorial = GetNode<CustomDialog>(UnbindTutorialPath);
+        checkTheHelpMenu = GetNode<CustomDialog>(CheckTheHelpMenuPath);
     }
 
     public override void _Process(float delta)
@@ -277,5 +304,14 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
     public void OnTutorialEnabledValueChanged(bool value)
     {
         TutorialEnabledSelected = value;
+    }
+
+    private void CheckHelpMenuPressed()
+    {
+        TutorialHelper.HandleCloseSpecificForGUI(this, CheckTheHelpMenu.TUTORIAL_NAME);
+
+        // Note that this opening while the tutorial box is still visible is a bit problematic due to:
+        // https://github.com/Revolutionary-Games/Thrive/issues/2326
+        EmitSignal(nameof(OnHelpMenuOpenRequested));
     }
 }

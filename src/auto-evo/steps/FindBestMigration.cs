@@ -10,16 +10,14 @@
     {
         private readonly PatchMap map;
         private readonly Species species;
+        private readonly Random random;
 
-        // TODO: allow passing in a seed from the constructor to avoid problems where multiple instances have the same
-        // random sequence due to happening to be created at the same time
-        private readonly Random random = new Random();
-
-        public FindBestMigration(PatchMap map, Species species, int migrationsToTry, bool allowNoMigration)
-            : base(migrationsToTry, allowNoMigration)
+        public FindBestMigration(PatchMap map, Species species, Random random, int migrationsToTry, bool
+            allowNoMigration) : base(migrationsToTry, allowNoMigration)
         {
             this.map = map;
             this.species = species;
+            this.random = new Random(random.Next());
         }
 
         public override bool CanRunConcurrently => true;
@@ -38,6 +36,8 @@
         {
             var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
+            config.SetPatchesToRunBySpeciesPresence(species);
+
             PopulationSimulation.Simulate(config);
 
             var population = config.Results.GetGlobalPopulation(species);
@@ -54,6 +54,11 @@
                 return new AttemptResult(null, -1);
 
             var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+
+            config.SetPatchesToRunBySpeciesPresence(species);
+            config.PatchesToRun.Add(migration.From);
+            config.PatchesToRun.Add(migration.To);
+
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
             // TODO: this could be faster to just simulate the source and

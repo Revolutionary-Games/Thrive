@@ -74,4 +74,15 @@ public static class MathUtils
 
         return Mathf.Lerp(from, to, weight);
     }
+
+    /// <summary>
+    ///   Standard modulo for negative values in C# produces negative results.
+    ///   This function returns modulo values between 0 and mod-1.
+    /// </summary>
+    /// <returns>The positive modulo</returns>
+    public static int PositiveModulo(this int val, int mod)
+    {
+        int result = val % mod;
+        return (result < 0) ? result + mod : result;
+    }
 }

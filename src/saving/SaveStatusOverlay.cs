@@ -15,30 +15,15 @@ public class SaveStatusOverlay : Control
     [Export]
     public NodePath ErrorDialogPath;
 
-    [Export]
-    public NodePath ExtraErrorDescriptionPath;
-
-    [Export]
-    public NodePath ExceptionPath;
-
-    [Export]
-    public NodePath CopyExceptionPath;
-
     private static SaveStatusOverlay instance;
 
     private Label statusLabel;
     private AnimationPlayer animationPlayer;
-    private Label extraDescriptionLabel;
-    private Label exceptionLabel;
-    private Control copyException;
 
-    private WindowDialog errorDialog;
+    private ErrorDialog errorDialog;
 
     private float hideTimer;
     private bool hidden;
-
-    private bool onDialogDismissReturnToMenu;
-    private Action onDialogCloseCallback;
 
     /// <summary>
     ///   If true the next delta update is ignored to make the time to display more consistent
@@ -56,10 +41,7 @@ public class SaveStatusOverlay : Control
     {
         statusLabel = GetNode<Label>(StatusLabelPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
-        errorDialog = GetNode<WindowDialog>(ErrorDialogPath);
-        extraDescriptionLabel = GetNode<Label>(ExtraErrorDescriptionPath);
-        exceptionLabel = GetNode<Label>(ExceptionPath);
-        copyException = GetNode<Control>(CopyExceptionPath);
+        errorDialog = GetNode<ErrorDialog>(ErrorDialogPath);
 
         Visible = false;
         hidden = true;
@@ -94,14 +76,7 @@ public class SaveStatusOverlay : Control
     public void ShowError(string title, string message, string exception, bool returnToMenu = false,
         Action onClosed = null, bool allowExceptionCopy = true)
     {
-        errorDialog.WindowTitle = title;
-        extraDescriptionLabel.Text = message;
-        exceptionLabel.Text = exception;
-        copyException.Visible = allowExceptionCopy;
-        errorDialog.PopupCenteredShrink();
-
-        onDialogDismissReturnToMenu = returnToMenu;
-        onDialogCloseCallback = onClosed;
+        errorDialog.ShowError(title, message, exception, returnToMenu, onClosed, allowExceptionCopy);
     }
 
     public override void _Process(float delta)
@@ -136,24 +111,5 @@ public class SaveStatusOverlay : Control
         Visible = visible;
         hidden = !visible;
         skipNextDelta = true;
-    }
-
-    private void OnErrorDialogDismissed()
-    {
-        SceneManager.Instance.GetTree().Paused = false;
-
-        if (onDialogDismissReturnToMenu)
-        {
-            SceneManager.Instance.ReturnToMenu();
-        }
-
-        onDialogCloseCallback?.Invoke();
-    }
-
-    private void OnCopyToClipboardPressed()
-    {
-        OS.Clipboard = errorDialog.WindowTitle + " - " +
-            extraDescriptionLabel.Text + " exception: " +
-            exceptionLabel.Text;
     }
 }

@@ -12,19 +12,19 @@ public class SimulationParameters : Node
 {
     private static SimulationParameters instance;
 
-    private readonly Dictionary<string, MembraneType> membranes;
-    private readonly Dictionary<string, Background> backgrounds;
-    private readonly Dictionary<string, Biome> biomes;
-    private readonly Dictionary<string, BioProcess> bioProcesses;
-    private readonly Dictionary<string, Compound> compounds;
-    private readonly Dictionary<string, OrganelleDefinition> organelles;
-    private readonly Dictionary<string, MusicCategory> musicCategories;
-    private readonly Dictionary<string, HelpTexts> helpTexts;
-    private readonly AutoEvoConfiguration autoEvoConfiguration;
-    private readonly List<NamedInputGroup> inputGroups;
-    private readonly Dictionary<string, Gallery> gallery;
-    private readonly TranslationsInfo translationsInfo;
-    private readonly GameCredits gameCredits;
+    private Dictionary<string, MembraneType> membranes;
+    private Dictionary<string, Background> backgrounds;
+    private Dictionary<string, Biome> biomes;
+    private Dictionary<string, BioProcess> bioProcesses;
+    private Dictionary<string, Compound> compounds;
+    private Dictionary<string, OrganelleDefinition> organelles;
+    private Dictionary<string, MusicCategory> musicCategories;
+    private Dictionary<string, HelpTexts> helpTexts;
+    private AutoEvoConfiguration autoEvoConfiguration;
+    private List<NamedInputGroup> inputGroups;
+    private Dictionary<string, Gallery> gallery;
+    private TranslationsInfo translationsInfo;
+    private GameCredits gameCredits;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -32,11 +32,25 @@ public class SimulationParameters : Node
     private List<OrganelleDefinition> eukaryoticOrganelles;
     private float eukaryoticOrganellesChance;
 
+    public static SimulationParameters Instance => instance;
+
+    public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
+
+    public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
+
+    public NameGenerator NameGenerator { get; private set; }
+
     /// <summary>
     ///   Loads the simulation configuration parameters from JSON files
     /// </summary>
-    private SimulationParameters()
+    /// <remarks>
+    ///   This is now loaded in _Ready as otherwise the <see cref="ModLoader"/>'s _Ready would run after simulation
+    ///   parameters are loaded causing some data that might want to be overridden by mods to be loaded too early.
+    /// </remarks>
+    public override void _Ready()
     {
+        base._Ready();
+
         // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
         instance = this;
 
@@ -91,14 +105,6 @@ public class SimulationParameters : Node
 
         GD.Print("SimulationParameters are good");
     }
-
-    public static SimulationParameters Instance => instance;
-
-    public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
-
-    public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
-
-    public NameGenerator NameGenerator { get; }
 
     public override void _Notification(int what)
     {

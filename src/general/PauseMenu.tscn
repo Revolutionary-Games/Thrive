@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/general/PauseMenu.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/saving/NewSaveMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
 
 [node name="PauseMenu" type="Control"]
 pause_mode = 2
@@ -23,6 +24,7 @@ LoadMenuPath = NodePath("CenterContainer/LoadMenu")
 OptionsMenuPath = NodePath("OptionsMenu")
 SaveMenuPath = NodePath("CenterContainer/NewSaveMenu")
 LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
+UnsavedProgressWarningPath = NodePath("UnsavedProgressWarning")
 
 [node name="Overlay" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -153,6 +155,11 @@ Category = "MicrobeStage"
 [node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
 visible = false
 
+[node name="UnsavedProgressWarning" parent="." instance=ExtResource( 7 )]
+margin_right = 391.0
+rect_min_size = Vector2( 391, 0 )
+WindowTitle = "CONFIRM_EXIT"
+
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
@@ -165,3 +172,4 @@ visible = false
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnOptionsClosed"]
+[connection signal="Confirmed" from="UnsavedProgressWarning" to="." method="ConfirmExit"]

@@ -47,9 +47,9 @@ public class SaveManagerGUI : Control
     private Button loadButton;
     private Button deleteSelectedButton;
     private Button deleteOldButton;
-    private ConfirmationDialog deleteSelectedConfirmDialog;
-    private ConfirmationDialog deleteOldConfirmDialog;
-    private AcceptDialog saveDirectoryWarningDialog;
+    private CustomConfirmationDialog deleteSelectedConfirmDialog;
+    private CustomConfirmationDialog deleteOldConfirmDialog;
+    private CustomConfirmationDialog saveDirectoryWarningDialog;
 
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
@@ -60,9 +60,9 @@ public class SaveManagerGUI : Control
     private int currentAutoSaveCount;
     private int currentQuickSaveCount;
 
-    private Task<(int count, long diskSpace)> getTotalSaveCountTask;
-    private Task<(int count, long diskSpace)> getAutoSaveCountTask;
-    private Task<(int count, long diskSpace)> getQuickSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)> getTotalSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)> getAutoSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)> getQuickSaveCountTask;
 
     [Signal]
     public delegate void OnBackPressed();
@@ -90,9 +90,9 @@ public class SaveManagerGUI : Control
         loadButton = GetNode<Button>(LoadButtonPath);
         deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
-        deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
-        deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
-        saveDirectoryWarningDialog = GetNode<AcceptDialog>(SaveDirectoryWarningDialogPath);
+        deleteSelectedConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteSelectedConfirmDialogPath);
+        deleteOldConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteOldConfirmDialogPath);
+        saveDirectoryWarningDialog = GetNode<CustomConfirmationDialog>(SaveDirectoryWarningDialogPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshSaveCounts));
     }
@@ -112,8 +112,8 @@ public class SaveManagerGUI : Control
             return;
 
         var info = getTotalSaveCountTask.Result;
-        currentAutoSaveCount = getAutoSaveCountTask.Result.count;
-        currentQuickSaveCount = getQuickSaveCountTask.Result.count;
+        currentAutoSaveCount = getAutoSaveCountTask.Result.Count;
+        currentQuickSaveCount = getQuickSaveCountTask.Result.Count;
 
         getTotalSaveCountTask.Dispose();
         getAutoSaveCountTask.Dispose();
@@ -122,9 +122,9 @@ public class SaveManagerGUI : Control
         getAutoSaveCountTask = null;
         getQuickSaveCountTask = null;
 
-        totalSaveCount.Text = info.count.ToString(CultureInfo.CurrentCulture);
+        totalSaveCount.Text = info.Count.ToString(CultureInfo.CurrentCulture);
         totalSaveSize.Text =
-            Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
+            Math.Round((float)info.DiskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
         UpdateSelectedCount();
         UpdateButtonsStatus();
@@ -159,9 +159,9 @@ public class SaveManagerGUI : Control
         saveCountRefreshed = true;
         refreshing = true;
 
-        getTotalSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
-        getAutoSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("auto_save"));
-        getQuickSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("quick_save"));
+        getTotalSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves());
+        getAutoSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("auto_save"));
+        getQuickSaveCountTask = new Task<(int Count, ulong DiskSpace)>(() => SaveHelper.CountSaves("quick_save"));
 
         TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
         TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
@@ -199,7 +199,7 @@ public class SaveManagerGUI : Control
 
     private void OpenSaveDirectoryPressed()
     {
-        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER)) == Error.FileNotFound)
+        if (!FolderHelpers.OpenFolder(Constants.SAVE_FOLDER))
             saveDirectoryWarningDialog.PopupCenteredShrink();
     }
 
@@ -207,7 +207,7 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        deleteSelectedConfirmDialog.GetNode<Label>("DialogText").Text =
+        deleteSelectedConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
                 Selected.Count);
@@ -219,7 +219,7 @@ public class SaveManagerGUI : Control
         int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
-        deleteOldConfirmDialog.GetNode<Label>("DialogText").Text =
+        deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount);

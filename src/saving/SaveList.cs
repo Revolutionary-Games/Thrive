@@ -51,13 +51,13 @@ public class SaveList : ScrollContainer
 
     private Control loadingItem;
     private BoxContainer savesList;
-    private ConfirmationDialog deleteConfirmDialog;
-    private ConfirmationDialog loadNewerConfirmDialog;
-    private ConfirmationDialog loadOlderConfirmDialog;
-    private ConfirmationDialog loadInvalidConfirmDialog;
-    private AcceptDialog loadIncompatibleDialog;
-    private ConfirmationDialog upgradeSaveDialog;
-    private AcceptDialog upgradeFailedDialog;
+    private CustomConfirmationDialog deleteConfirmDialog;
+    private CustomConfirmationDialog loadNewerConfirmDialog;
+    private CustomConfirmationDialog loadOlderConfirmDialog;
+    private CustomConfirmationDialog loadInvalidConfirmDialog;
+    private CustomConfirmationDialog loadIncompatibleDialog;
+    private CustomConfirmationDialog upgradeSaveDialog;
+    private ErrorDialog upgradeFailedDialog;
 
     private PackedScene listItemScene;
 
@@ -83,13 +83,13 @@ public class SaveList : ScrollContainer
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
         savesList = GetNode<BoxContainer>(SavesListPath);
-        deleteConfirmDialog = GetNode<ConfirmationDialog>(DeleteConfirmDialogPath);
-        loadOlderConfirmDialog = GetNode<ConfirmationDialog>(LoadOlderSaveDialogPath);
-        loadNewerConfirmDialog = GetNode<ConfirmationDialog>(LoadNewerSaveDialogPath);
-        loadInvalidConfirmDialog = GetNode<ConfirmationDialog>(LoadInvalidSaveDialogPath);
-        loadIncompatibleDialog = GetNode<AcceptDialog>(LoadIncompatibleDialogPath);
-        upgradeSaveDialog = GetNode<ConfirmationDialog>(UpgradeSaveDialogPath);
-        upgradeFailedDialog = GetNode<AcceptDialog>(UpgradeFailedDialogPath);
+        deleteConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmDialogPath);
+        loadOlderConfirmDialog = GetNode<CustomConfirmationDialog>(LoadOlderSaveDialogPath);
+        loadNewerConfirmDialog = GetNode<CustomConfirmationDialog>(LoadNewerSaveDialogPath);
+        loadInvalidConfirmDialog = GetNode<CustomConfirmationDialog>(LoadInvalidSaveDialogPath);
+        loadIncompatibleDialog = GetNode<CustomConfirmationDialog>(LoadIncompatibleDialogPath);
+        upgradeSaveDialog = GetNode<CustomConfirmationDialog>(UpgradeSaveDialogPath);
+        upgradeFailedDialog = GetNode<ErrorDialog>(UpgradeFailedDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -183,7 +183,7 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = saveName;
 
         // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
-        deleteConfirmDialog.GetNode<Label>("DialogText").Text = string.Format(CultureInfo.CurrentCulture,
+        deleteConfirmDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("SAVE_DELETE_WARNING"),
             saveName);
         deleteConfirmDialog.PopupCenteredShrink();
@@ -277,8 +277,7 @@ public class SaveList : ScrollContainer
         }
         catch (Exception e)
         {
-            upgradeFailedDialog.GetNode<Label>("Container/Label").Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVE_UPGRADE_FAILED_DESCRIPTION"), e);
+            upgradeFailedDialog.ExceptionInfo = e.Message;
             upgradeFailedDialog.PopupCenteredShrink();
 
             GD.PrintErr("Save upgrade failed: ", e);

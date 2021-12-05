@@ -134,7 +134,8 @@ public class Save
         return save;
     }
 
-    public static (SaveInformation, JObject, Image) LoadJSONStructureFromFile(string saveName)
+    public static (SaveInformation Info, JObject SaveObject, Image Screenshot) LoadJSONStructureFromFile(
+        string saveName)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
         var (infoStr, saveStr, screenshotData) = LoadDataFromFile(target, true, true, true);
@@ -230,7 +231,11 @@ public class Save
     private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string tempScreenshot)
     {
         using var file = new File();
-        file.Open(target, File.ModeFlags.Write);
+        if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
+        {
+            GD.PrintErr("Cannot open file for writing: ", target);
+            throw new IOException("Cannot open: " + target);
+        }
 
         using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
@@ -262,7 +267,7 @@ public class Save
         OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
     }
 
-    private static (SaveInformation info, Save save, Image screenshot) LoadFromFile(string file, bool info,
+    private static (SaveInformation Info, Save Save, Image Screenshot) LoadFromFile(string file, bool info,
         bool save, bool screenshot, Action readFinished)
     {
         using (var directory = new Directory())
@@ -315,7 +320,7 @@ public class Save
         return (infoResult, saveResult, imageResult);
     }
 
-    private static (string infoStr, string saveStr, byte[] screenshot) LoadDataFromFile(string file, bool info,
+    private static (string InfoStr, string SaveStr, byte[] Screenshot) LoadDataFromFile(string file, bool info,
         bool save, bool screenshot)
     {
         string infoStr = null;

@@ -20,6 +20,8 @@ public static class SaveHelper
         "0.5.5.0-alpha",
     };
 
+    private static DateTime? lastSave;
+
     public enum SaveOrder
     {
         /// <summary>
@@ -37,6 +39,17 @@ public static class SaveHelper
         /// </summary>
         FileSystem,
     }
+
+    /// <summary>
+    ///   Checks whether the last save is made within a timespan of set duration.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Used for knowing whether to show confirmation dialog on the pause menu when exiting the game.
+    ///   </para>
+    /// </remarks>
+    /// <returns>True if the last save is still recent, false if otherwise.</returns>
+    public static bool SavedRecently => lastSave != null ? DateTime.Now - lastSave < Constants.RecentSaveTime : false;
 
     /// <summary>
     ///   A save (and not a quick save) that the user triggered
@@ -223,10 +236,10 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int count, long diskSpace) CountSaves(string nameStartsWith = null)
+    public static (int Count, ulong DiskSpace) CountSaves(string nameStartsWith = null)
     {
         int count = 0;
-        long totalSize = 0;
+        ulong totalSize = 0;
 
         using var file = new File();
         foreach (var save in CreateListOfSaves())
@@ -342,6 +355,23 @@ public static class SaveHelper
         return currentVersionPlaceInList != savePlaceInList;
     }
 
+    /// <summary>
+    ///   Marks the last save time to the time this method is called at.
+    /// </summary>
+    public static void MarkLastSaveToCurrentTime()
+    {
+        lastSave = DateTime.Now;
+    }
+
+    /// <summary>
+    ///   Sets the stored lastSave time value to null. Can be used to override
+    ///   <see cref="SavedRecently"/> flag to false.
+    /// </summary>
+    public static void ClearLastSaveTime()
+    {
+        lastSave = null;
+    }
+
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
@@ -370,7 +400,7 @@ public static class SaveHelper
         {
             GameState = gameState,
             Info = { Type = type },
-            Screenshot = ScreenShotTaker.Instance.TakeScreenshot(),
+            Screenshot = ScreenShotTaker.Instance.GetViewportTextureAsImage(),
         };
     }
 

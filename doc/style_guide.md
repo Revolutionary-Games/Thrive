@@ -41,6 +41,7 @@ Code style rules
   - `max`
   - `pos`
   - `rot`
+  - `str`
   - `rect` (when related to class names and variables holding instances of those classes)
 
 - Variables and functions are camelCase or PascalCase depending on
@@ -313,6 +314,11 @@ Godot usage
 
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
+
+- When adding window dialogs to the game, consider using the
+  `CustomDialog` type rather than the built-in `WindowDialog` to ensure
+  consistency across the GUI. This is because the custom implementation
+  offer a much more customized styling and additional functionality.
 
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -40,6 +41,15 @@ public class MainMenu : NodeWithInput
     [Export]
     public NodePath GLES2PopupPath;
 
+    [Export]
+    public NodePath ModLoadFailuresPath;
+
+    [Export]
+    public NodePath StoreLoggedInDisplayPath;
+
+    [Export]
+    public NodePath ModManagerPath;
+
     public Array MenuArray;
     public TextureRect Background;
 
@@ -49,24 +59,31 @@ public class MainMenu : NodeWithInput
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
     private SaveManagerGUI saves;
+    private ModManager modManager;
 
     private Control creditsContainer;
     private CreditsScroll credits;
-    private Control licensesDisplay;
+    private LicensesDisplay licensesDisplay;
 
     private Button newGameButton;
     private Button freebuildButton;
 
-    private AcceptDialog gles2Popup;
+    private Label storeLoggedInDisplay;
+
+    private CustomConfirmationDialog gles2Popup;
+    private ErrorDialog modLoadFailures;
 
     public override void _Ready()
     {
+        // Unpause the game as the MainMenu should never be paused.
+        GetTree().Paused = false;
+
         RunMenuSetup();
 
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
         {
-            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
+            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm", 0.65f);
             TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
         }
         else
@@ -76,6 +93,8 @@ public class MainMenu : NodeWithInput
 
         // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
+
+        CheckModFailures();
     }
 
     public void StartMusic()
@@ -148,7 +167,9 @@ public class MainMenu : NodeWithInput
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
         creditsContainer = GetNode<Control>(CreditsContainerPath);
         credits = GetNode<CreditsScroll>(CreditsScrollPath);
-        licensesDisplay = GetNode<Control>(LicensesDisplayPath);
+        licensesDisplay = GetNode<LicensesDisplay>(LicensesDisplayPath);
+        storeLoggedInDisplay = GetNode<Label>(StoreLoggedInDisplayPath);
+        modManager = GetNode<ModManager>(ModManagerPath);
 
         MenuArray?.Clear();
 
@@ -165,7 +186,8 @@ public class MainMenu : NodeWithInput
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-        gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
+        gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
+        modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
 
         // Set initial menu
         SwitchMenu();
@@ -175,6 +197,8 @@ public class MainMenu : NodeWithInput
 
         if (OS.GetCurrentVideoDriver() == OS.VideoDriver.Gles2 && !IsReturningToMenu)
             gles2Popup.PopupCenteredShrink();
+
+        UpdateStoreNameLabel();
     }
 
     /// <summary>
@@ -192,6 +216,20 @@ public class MainMenu : NodeWithInput
     private void SetBackground(Texture backgroundImage)
     {
         Background.Texture = backgroundImage;
+    }
+
+    private void UpdateStoreNameLabel()
+    {
+        if (!SteamHandler.Instance.IsLoaded)
+        {
+            storeLoggedInDisplay.Visible = false;
+        }
+        else
+        {
+            storeLoggedInDisplay.Visible = true;
+            storeLoggedInDisplay.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("STORE_LOGGED_IN_AS"), SteamHandler.Instance.DisplayName);
+        }
     }
 
     /// <summary>
@@ -220,6 +258,17 @@ public class MainMenu : NodeWithInput
             {
                 menu.Show();
             }
+        }
+    }
+
+    private void CheckModFailures()
+    {
+        var errors = ModLoader.Instance.GetAndClearModErrors();
+
+        if (errors.Count > 0)
+        {
+            modLoadFailures.ExceptionInfo = string.Join("\n", errors);
+            modLoadFailures.PopupCenteredShrink();
         }
     }
 
@@ -260,8 +309,8 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Ignore mouse event on the button to prevent it being clicked twice
-        newGameButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+        // Disable the button to prevent it being executed again.
+        newGameButton.Disabled = true;
 
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
@@ -270,7 +319,7 @@ public class MainMenu : NodeWithInput
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
             TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
+            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm", 0.65f);
         }
         else
         {
@@ -297,8 +346,8 @@ public class MainMenu : NodeWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Ignore mouse event on the button to prevent it being clicked twice
-        freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+        // Disable the button to prevent it being executed again.
+        freebuildButton.Disabled = true;
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.15f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
@@ -319,7 +368,6 @@ public class MainMenu : NodeWithInput
 
     private void QuitPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
     }
 
@@ -399,14 +447,34 @@ public class MainMenu : NodeWithInput
         SetCurrentMenu(uint.MaxValue, false);
 
         // Show the licenses view
-        licensesDisplay.Visible = true;
+        licensesDisplay.PopupCenteredShrink();
 
         thriveLogo.Hide();
     }
 
     private void OnReturnFromLicenses()
     {
-        licensesDisplay.Visible = false;
+        SetCurrentMenu(2, false);
+
+        thriveLogo.Show();
+    }
+
+    private void ModsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the mods view
+        modManager.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromMods()
+    {
+        modManager.Visible = false;
 
         SetCurrentMenu(0, false);
 
@@ -416,15 +484,6 @@ public class MainMenu : NodeWithInput
     private void OnEnteringGame()
     {
         CheatManager.OnCheatsDisabled();
-    }
-
-    /// <summary>
-    ///   This never called method contains translation strings that exist, but cannot automatically be extracted.
-    ///   Examples are predefined Godot strings, like popup buttons.
-    /// </summary>
-    private void CallMiscTranslations()
-    {
-        _ = TranslationServer.Translate("OK");
-        _ = TranslationServer.Translate("Cancel");
+        SaveHelper.ClearLastSaveTime();
     }
 }

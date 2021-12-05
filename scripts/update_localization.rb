@@ -48,8 +48,9 @@ Dir.chdir(LOCALE_FOLDER) do
   runOpen3Checked 'pybabel', 'extract', '-F', File.join(LOCALE_FOLDER, 'babelrc'), '-k',
                   'LineEdit', '-k', 'text', '-k', 'DisplayName', '-k', 'Description', '-k',
                   'ProcessesDescription', '-k', 'window_title', '-k', 'dialog_text', '-k',
-                  'placeholder_text', '-k', 'hint_tooltip', '-k',
-                  'TranslationServer.Translate', '-o',
+                  'WindowTitle', '-k', 'DialogText', '-k', 'ConfirmText', '-k', 'CancelText',
+                  '-k', 'ErrorMessage', '-k', 'placeholder_text', '-k', 'hint_tooltip', '-k',
+                  'TranslationServer.Translate', '-k', 'LocalizedString', '-o',
                   File.join(LOCALE_FOLDER, "messages#{@options[:pot_suffix]}"),
                   '../simulation_parameters', '../assets', '../src'
 

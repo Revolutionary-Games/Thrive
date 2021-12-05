@@ -261,7 +261,7 @@ public partial class Microbe
             return;
         }
 
-        if (source == "toxin" || source == "oxytoxy")
+        if (source is "toxin" or "oxytoxy")
         {
             // TODO: Replace this take damage sound with a more appropriate one.
 
@@ -299,6 +299,8 @@ public partial class Microbe
 
         Hitpoints -= amount;
 
+        ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
+
         // Flash the microbe red
         Flash(1.0f, new Color(1, 0, 0, 0.5f), 1);
 
@@ -327,6 +329,31 @@ public partial class Microbe
         return EngulfSize >= target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
+    public Vector3 GetOffsetRelativeToMaster()
+    {
+        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
+            Colony.Master.Rotation.y);
+    }
+
+    /// <summary>
+    ///  Public because it needs to be called by external organelles only
+    ///  Not meant for other uses
+    /// </summary>
+    public void SendOrganellePositionsToMembrane()
+    {
+        var organellePositions = new List<Vector2>();
+
+        foreach (var entry in organelles.Organelles)
+        {
+            var cartesian = Hex.AxialToCartesian(entry.Position);
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+        }
+
+        Membrane.OrganellePositions = organellePositions;
+        Membrane.Dirty = true;
+        membraneOrganellePositionsAreDirty = false;
+    }
+
     /// <summary>
     ///   Instantly kills this microbe and queues this entity to be destroyed
     /// </summary>
@@ -338,6 +365,8 @@ public partial class Microbe
         Dead = true;
 
         OnDeath?.Invoke(this);
+        ModLoader.ModInterface.TriggerOnMicrobeDied(this, IsPlayerMicrobe);
+
         OnDestroyed();
 
         // Reset some stuff
@@ -369,10 +398,12 @@ public partial class Microbe
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
+                var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
                     Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetStageAsParent(),
                     agentScene, this);
+
+                ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
                 amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
                 ++createdAgents;
@@ -475,8 +506,10 @@ public partial class Microbe
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
+            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
                 chunkScene, cloudSystem, random);
+
+            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
 
         // Subtract population
@@ -492,7 +525,16 @@ public partial class Microbe
             OnReproductionStatus?.Invoke(this, false);
         }
 
-        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        if (IsPlayerMicrobe)
+        {
+            // Playing from a positional audio player won't have any effect since the listener is
+            // directly on it.
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
+        }
+        else
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        }
 
         // Disable collisions
         CollisionLayer = 0;
@@ -518,7 +560,7 @@ public partial class Microbe
     /// </remarks>
     public void UnbindAll()
     {
-        if (State == MicrobeState.Unbinding || State == MicrobeState.Binding)
+        if (State is MicrobeState.Unbinding or MicrobeState.Binding)
             State = MicrobeState.Normal;
 
         // TODO: once the colony leader can leave without the entire colony disbanding this perhaps should keep the
@@ -608,12 +650,6 @@ public partial class Microbe
         throw new InvalidOperationException();
     }
 
-    private Vector3 GetOffsetRelativeToMaster()
-    {
-        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
-            Colony.Master.Rotation.y);
-    }
-
     private void OnIGotAddedToColony()
     {
         State = MicrobeState.Normal;
@@ -624,8 +660,8 @@ public partial class Microbe
 
         var newTransform = GetNewRelativeTransform();
 
-        Rotation = newTransform.rotation;
-        Translation = newTransform.translation;
+        Rotation = newTransform.Rotation;
+        Translation = newTransform.Translation;
 
         ChangeNodeParent(ColonyParent);
     }
@@ -896,21 +932,6 @@ public partial class Microbe
         {
             this.DestroyDetachAndQueueFree();
         }
-    }
-
-    private void SendOrganellePositionsToMembrane()
-    {
-        var organellePositions = new List<Vector2>();
-
-        foreach (var entry in organelles.Organelles)
-        {
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
-        }
-
-        Membrane.OrganellePositions = organellePositions;
-        Membrane.Dirty = true;
-        membraneOrganellePositionsAreDirty = false;
     }
 
     private void ChangeNodeParent(Microbe parent)
