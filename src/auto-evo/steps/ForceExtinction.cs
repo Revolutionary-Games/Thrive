@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Godot;
 
     /// <summary>
@@ -54,8 +55,8 @@
 
                 // Sort the species in the patch, unless protected species fill up all the place already...
                 var orderedSpeciesInPatch = (configuration.MaximumSpeciesInPatch > protectedSpeciesCount) ?
-                    speciesInPatch.GetSortedKeyArray() :
-                    speciesInPatch.GetKeyArray();
+                    speciesInPatch.Keys.OrderBy(s => speciesInPatch[s]).ToArray() :
+                    speciesInPatch.Keys.ToArray();
 
                 var speciesToRemoveCount = speciesInPatch.Count - Math.Max(
                     configuration.MaximumSpeciesInPatch - protectedSpeciesCount, 0);
