@@ -10,7 +10,7 @@
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This was a hotfix to the 0.5.6 release.
+    ///     This was a hotfix to the 0.5.6.1 release.
     ///     TODO: Inquire more refined solution, such as random extinction with bias for smaller populations.
     ///   </para>
     /// </remarks>
