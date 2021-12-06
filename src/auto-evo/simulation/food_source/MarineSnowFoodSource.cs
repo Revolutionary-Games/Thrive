@@ -1,4 +1,5 @@
-﻿using AutoEvo;
+﻿using System;
+using AutoEvo;
 
 public class MarineSnowFoodSource : FoodSource
 {
@@ -25,9 +26,11 @@ public class MarineSnowFoodSource : FoodSource
 
         var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch);
 
-        var predatorSpeed = microbeSpecies.BaseSpeed + energyBalance.FinalBalance;
+        // Don't penalize species that can't move at full speed all the time as much here
+        var chunkEaterSpeed = Math.Max(microbeSpecies.BaseSpeed + energyBalance.FinalBalance,
+            microbeSpecies.BaseSpeed / 3);
 
-        var score = predatorSpeed * species.Behaviour.Activity;
+        var score = chunkEaterSpeed * species.Behaviour.Activity;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
         if (microbeSpecies.MembraneType.CellWall ||
@@ -36,7 +39,9 @@ public class MarineSnowFoodSource : FoodSource
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        score /= energyBalance.FinalBalanceStationary;
+        // I don't think it makes sense here to penalize species with positive ATP balance (with higher balance
+        // reducing the available energy), so that divide by final balance stationary here is gone - hhyyrylainen
+        score *= Constants.AUTO_EVO_MARINE_SNOW_BASE_MULTIPLIER;
 
         return score;
     }
