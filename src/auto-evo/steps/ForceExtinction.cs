@@ -55,21 +55,21 @@
 
                 // Sort the species in the patch, unless protected species fill up all the place already...
                 var orderedSpeciesInPatch = (configuration.MaximumSpeciesInPatch > protectedSpeciesCount) ?
-                    speciesInPatch.Keys.OrderBy(s => speciesInPatch[s]).ToArray() :
-                    speciesInPatch.Keys.ToArray();
+                    speciesInPatch.OrderBy(s => s.Value).Select(s => s.Key) :
+                    speciesInPatch.Keys;
 
                 var speciesToRemoveCount = speciesInPatch.Count - Math.Max(
                     configuration.MaximumSpeciesInPatch - protectedSpeciesCount, 0);
 
                 // Remove worst-faring species, except for the player's and protected species
-                for (int i = 0; i < speciesToRemoveCount; i++)
+                foreach (var speciesToRemove in orderedSpeciesInPatch.Take(speciesToRemoveCount))
                 {
-                    if (orderedSpeciesInPatch[i].PlayerSpecies)
+                    if (speciesToRemove.PlayerSpecies)
                         continue;
 
-                    GD.Print("Forced extinction of species ", orderedSpeciesInPatch[i].FormattedName,
+                    GD.Print("Forced extinction of species ", speciesToRemove.FormattedName,
                         " in patch ", patch.Name, ".");
-                    results.KillSpeciesInPatch(orderedSpeciesInPatch[i], patch,
+                    results.KillSpeciesInPatch(speciesToRemove, patch,
                         configuration.RefundMigrationsInExtinctions);
                 }
             }
