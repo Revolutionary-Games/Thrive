@@ -18,7 +18,15 @@ public class EnergyBalanceInfo
     public float TotalProduction { get; set; }
     public float TotalConsumption { get; set; }
     public float TotalConsumptionStationary { get; set; }
+
+    /// <summary>
+    ///   The absolutely final balance of ATP when a cell is going all out and running everything and moving
+    /// </summary>
     public float FinalBalance { get; set; }
+
+    /// <summary>
+    ///   Final balance of ATP when a cell is stationary (running processes + osmoregulation)
+    /// </summary>
     public float FinalBalanceStationary { get; set; }
 
     public void AddConsumption(string groupName, float amount)

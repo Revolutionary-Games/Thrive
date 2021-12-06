@@ -221,7 +221,7 @@
                     / energyBalanceInfo.FinalBalanceStationary);
 
                 // Severely penalize a species that can't osmoregulate
-                if (energyBalanceInfo.FinalBalance < 0)
+                if (energyBalanceInfo.FinalBalanceStationary < 0)
                 {
                     newPopulation /= 10;
                 }
