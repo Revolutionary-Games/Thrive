@@ -34,7 +34,7 @@
             var populationsByPatch = results.GetPopulationsByPatch(!configuration.ProtectMigrationsFromSpeciesCap,
                 !configuration.AllowNoMutation, !configuration.ProtectNewCellsFromSpeciesCap);
 
-            foreach (Patch patch in patches)
+            foreach (var patch in patches)
             {
                 var speciesInPatch = populationsByPatch[patch];
 
