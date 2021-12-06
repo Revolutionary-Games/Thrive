@@ -397,7 +397,7 @@
         ///     TODO: Currently no enforced correlation with actual changes applied.
         ///   </para>
         ///   <para>
-        ///     Species are only registered if they population go above 0.
+        ///     Species are only returned if their population is above 0.
         ///   </para>
         /// </remarks>
         public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(bool resolveMigrations = false,
