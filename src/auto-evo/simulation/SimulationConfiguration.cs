@@ -8,12 +8,15 @@
     /// </summary>
     public class SimulationConfiguration
     {
-        public SimulationConfiguration(PatchMap initialConditions, int steps = 1)
+        public SimulationConfiguration(AutoEvoConfiguration autoEvoConfiguration, PatchMap initialConditions,
+            int steps = 1)
         {
+            AutoEvoConfiguration = autoEvoConfiguration;
             OriginalMap = initialConditions;
             StepsLeft = Math.Max(1, steps);
         }
 
+        public AutoEvoConfiguration AutoEvoConfiguration { get; }
         public PatchMap OriginalMap { get; }
         public int StepsLeft { get; set; }
 

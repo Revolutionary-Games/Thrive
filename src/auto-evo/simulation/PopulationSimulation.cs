@@ -35,7 +35,8 @@
 
             while (parameters.StepsLeft > 0)
             {
-                RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache);
+                RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache,
+                    parameters.AutoEvoConfiguration);
                 --parameters.StepsLeft;
             }
         }
@@ -119,14 +120,15 @@
         }
 
         private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
-            IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache)
+            IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache,
+            AutoEvoConfiguration autoEvoConfiguration)
         {
             foreach (var entry in patchesToSimulate)
             {
                 // Simulate the species in each patch taking into account the already computed populations
                 SimulatePatchStep(parameters.Results, entry.Value,
                     species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0),
-                    random, cache);
+                    random, cache, autoEvoConfiguration);
             }
         }
 
@@ -134,7 +136,7 @@
         ///   The heart of the simulation that handles the processed parameters and calculates future populations.
         /// </summary>
         private static void SimulatePatchStep(RunResults populations, Patch patch, IEnumerable<Species> genericSpecies,
-            Random random, SimulationCache cache)
+            Random random, SimulationCache cache, AutoEvoConfiguration autoEvoConfiguration)
         {
             _ = random;
 
@@ -150,6 +152,8 @@
             {
                 energyBySpecies[currentSpecies] = 0.0f;
             }
+
+            bool strictCompetition = autoEvoConfiguration.StrictNicheCompetition;
 
             var niches = new List<FoodSource>
             {
@@ -177,10 +181,20 @@
                 var totalNicheFitness = 0.0f;
                 foreach (var currentSpecies in species)
                 {
-                    // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
-                    // by exaggerating fitness differences
-                    var thisSpeciesFitness =
-                        Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies, cache), 2.5f), 0.0f);
+                    float thisSpeciesFitness;
+
+                    if (strictCompetition)
+                    {
+                        // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
+                        // by exaggerating fitness differences
+                        thisSpeciesFitness =
+                            Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies, cache), 2.5f), 0.0f);
+                    }
+                    else
+                    {
+                        thisSpeciesFitness = Mathf.Max(niche.FitnessScore(currentSpecies, cache), 0.0f);
+                    }
+
                     fitnessBySpecies[currentSpecies] = thisSpeciesFitness;
                     totalNicheFitness += thisSpeciesFitness;
                 }
