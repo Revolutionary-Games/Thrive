@@ -38,7 +38,7 @@
             {
                 var speciesInPatch = populationsByPatch[patch];
 
-                // This does not take player into account as the species can never go extinct this way.
+                // This does not take player into account as the player species can never go extinct this way.
                 var protectedSpeciesCount = 0;
 
                 if (configuration.ProtectNewCellsFromSpeciesCap)
