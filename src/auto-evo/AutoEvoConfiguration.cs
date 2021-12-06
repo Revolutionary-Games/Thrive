@@ -46,7 +46,7 @@ public class AutoEvoConfiguration : IRegistryType
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Always ignore the player species, and may ignore new cells and migrations.
+    ///     Always ignores the player species, and may ignore new cells and migrations.
     ///   </para>
     /// </remarks>
     [JsonProperty]
