@@ -220,10 +220,23 @@
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
                     / energyBalanceInfo.FinalBalanceStationary);
 
-                // Severely penalize a species that can't osmoregulate
-                if (energyBalanceInfo.FinalBalanceStationary < 0)
+                // TODO: this is a hack for now to make the player experience better, try to get the same rules working
+                // for the player and AI species in the future.
+                if (currentSpecies.PlayerSpecies)
                 {
-                    newPopulation /= 10;
+                    // Severely penalize a species that can't osmoregulate
+                    if (energyBalanceInfo.FinalBalanceStationary < 0)
+                    {
+                        newPopulation /= 10;
+                    }
+                }
+                else
+                {
+                    // Severely penalize a species that can't move indefinitely
+                    if (energyBalanceInfo.FinalBalance < 0)
+                    {
+                        newPopulation /= 10;
+                    }
                 }
 
                 // Can't survive without enough population
