@@ -53,10 +53,7 @@
                 GD.Print("Running extinction step in patch ", patch.Name, ". ",
                     "Total count:", speciesInPatch.Count + protectedSpeciesCount);
 
-                // Sort the species in the patch, unless protected species fill up all the place already...
-                var orderedSpeciesInPatch = (configuration.MaximumSpeciesInPatch > protectedSpeciesCount) ?
-                    speciesInPatch.OrderBy(s => s.Value).Select(s => s.Key) :
-                    speciesInPatch.Keys;
+                var orderedSpeciesInPatch = speciesInPatch.OrderBy(s => s.Value).Select(s => s.Key);
 
                 var speciesToRemoveCount = speciesInPatch.Count - Math.Max(
                     configuration.MaximumSpeciesInPatch - protectedSpeciesCount, 0);
