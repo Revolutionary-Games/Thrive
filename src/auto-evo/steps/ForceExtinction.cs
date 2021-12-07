@@ -31,12 +31,17 @@
 
         public bool RunStep(RunResults results)
         {
-            var populationsByPatch = results.GetPopulationsByPatch(!configuration.ProtectMigrationsFromSpeciesCap,
-                !configuration.AllowNoMutation, !configuration.ProtectNewCellsFromSpeciesCap);
+            // We gather populations that may be targeted in the patch,
+            // Depending on the parameters, this may exclude migrated or newly created species.
+            // Excluded species are only protected for one generation, so the player is a target as well,
+            // although they will be rescued if failing.
+            var targetSpeciesPopulationsByPatch = results.GetPopulationsByPatch(
+                !configuration.ProtectMigrationsFromSpeciesCap, !configuration.AllowNoMutation,
+                !configuration.ProtectNewCellsFromSpeciesCap);
 
             foreach (var patch in patches)
             {
-                var speciesInPatch = populationsByPatch[patch];
+                var targetSpecies = targetSpeciesPopulationsByPatch[patch];
 
                 // This does not take player into account as the player species can never go extinct this way.
                 var protectedSpeciesCount = 0;
@@ -47,20 +52,21 @@
                     protectedSpeciesCount += results.GetMigrationsTo(patch).Count;
 
                 // Only bother if we're above the limit
-                if (speciesInPatch.Count + protectedSpeciesCount <= configuration.MaximumSpeciesInPatch)
+                if (targetSpecies.Count + protectedSpeciesCount <= configuration.MaximumSpeciesInPatch)
                     continue;
 
                 GD.Print("Running extinction step in patch ", patch.Name, ". ",
-                    "Total count:", speciesInPatch.Count + protectedSpeciesCount);
+                    "Total count:", targetSpecies.Count + protectedSpeciesCount);
 
-                var orderedSpeciesInPatch = speciesInPatch.OrderBy(s => s.Value).Select(s => s.Key);
+                var orderedTargetSpecies = targetSpecies.OrderBy(s => s.Value).Select(s => s.Key);
 
-                var speciesToRemoveCount = speciesInPatch.Count - Math.Max(
+                var speciesToRemoveCount = targetSpecies.Count - Math.Max(
                     configuration.MaximumSpeciesInPatch - protectedSpeciesCount, 0);
 
-                // Remove worst-faring species, except for the player's and protected species
-                foreach (var speciesToRemove in orderedSpeciesInPatch.Take(speciesToRemoveCount))
+                // Remove worst-faring species in targets (which again exclude *temporarily* protected ones).
+                foreach (var speciesToRemove in orderedTargetSpecies.Take(speciesToRemoveCount))
                 {
+                    // We rescue the player if needed
                     if (speciesToRemove.PlayerSpecies)
                         continue;
 
