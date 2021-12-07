@@ -73,10 +73,11 @@ public class MicrobeColony
 
 
         var rotation = microbe.RotationInsideColony();
+        var offset = microbe.GetOffsetRelativeToMaster();
 
         if (microbe != Master)
         GD.Print(rotation);
-
+        GD.Print(microbe.GlobalTransform.origin);
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
         
@@ -96,11 +97,15 @@ public class MicrobeColony
         {
             RemoveFromColony(microbe.ColonyParent);
         }
-
+        GD.Print(microbe.GlobalTransform.origin);
         // Apply the rotation
-        rotation = rotation.Normalized();
-        microbe.LookAtPoint = rotation.Xform(-Master.GlobalTransform.origin + microbe.GlobalTransform.origin);
-        microbe.LookAtPoint += microbe.GlobalTransform.origin;
+        if(microbe != Master)
+        {
+            rotation = rotation.Normalized();
+            microbe.LookAtPoint = rotation.Xform(offset);
+            microbe.LookAtPoint += microbe.GlobalTransform.origin;
+        }
+
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
