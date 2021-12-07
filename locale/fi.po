@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-05 15:02+0200\n"
+"POT-Creation-Date: 2021-12-07 18:51+0100\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -2612,19 +2612,19 @@ msgstr "Lämpötila"
 msgid "N_A_MP"
 msgstr "- MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:494
+#: ../src/microbe_stage/Microbe.Contact.cs:519
 msgid "DEATH"
 msgstr "kuolema"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:599
+#: ../src/microbe_stage/Microbe.Contact.cs:624
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "onnistunut raadonsyönti"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:606
+#: ../src/microbe_stage/Microbe.Contact.cs:631
 msgid "SUCCESSFUL_KILL"
 msgstr "onnistunut tappo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:813
+#: ../src/microbe_stage/Microbe.Contact.cs:832
 msgid "ESCAPE_ENGULFING"
 msgstr "pakeni nielaisulta"
 
@@ -3833,67 +3833,71 @@ msgstr "Tallenna Peli"
 msgid "SAVE_INVALID"
 msgstr "Virheellinen"
 
-#: ../src/saving/SaveList.cs:187
+#: ../src/saving/SaveList.cs:202
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti "
 "lopullisesti poistaa {0}?"
 
-#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:51
+msgid "NO_SAVEGAMES_FOUND"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Ladataan..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:69 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Poista tämä tallennus?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+#: ../src/saving/SaveList.tscn:76 ../src/saving/SaveList.tscn:84
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Lataa epäyhteensopiva tallennus?"
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:77
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Tämä tallennus on uudemmasta Thriven versiosta ja erittäin "
 "todennäköisesti\n"
 "se ei ole yhteensopiva. Lataa kuitenkin?"
 
-#: ../src/saving/SaveList.tscn:77
+#: ../src/saving/SaveList.tscn:85
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:84
+#: ../src/saving/SaveList.tscn:92
 msgid "LOAD_INVALID_SAVE"
 msgstr "Lataa rikkinäinen tallennus?"
 
-#: ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:92
+#: ../src/saving/SaveList.tscn:100
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Valittu tallennus ei ole yhteensopiva"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:102
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:111
 #, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "Valittu tallennus ei ole yhteensopiva"
 
-#: ../src/saving/SaveList.tscn:104
+#: ../src/saving/SaveList.tscn:112
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/saving/SaveList.tscn:111
+#: ../src/saving/SaveList.tscn:118
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Tallennus epäonnistui"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:119
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
@@ -3985,13 +3989,13 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Poista vanhat tallennukset?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
-msgid "TRY_MAKING_A_SAVE"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:202
 #, fuzzy
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Avaa tallennusten kansio"
+
+#: ../src/saving/SaveManagerGUI.tscn:202
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-05 15:02+0200\n"
-"PO-Revision-Date: 2021-11-25 18:34+0200\n"
+"POT-Creation-Date: 2021-12-07 18:51+0100\n"
+"PO-Revision-Date: 2021-12-07 18:20+0100\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -2802,19 +2802,19 @@ msgstr "Temperature"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:494
+#: ../src/microbe_stage/Microbe.Contact.cs:519
 msgid "DEATH"
 msgstr "death"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:599
+#: ../src/microbe_stage/Microbe.Contact.cs:624
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:606
+#: ../src/microbe_stage/Microbe.Contact.cs:631
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:813
+#: ../src/microbe_stage/Microbe.Contact.cs:832
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
@@ -3971,31 +3971,35 @@ msgstr "Quicksave"
 msgid "SAVE_INVALID"
 msgstr "Invalid"
 
-#: ../src/saving/SaveList.cs:187
+#: ../src/saving/SaveList.cs:202
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Deleting this save cannot be undone, are you sure you want to permanently "
 "delete {0}?"
 
-#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:51
+msgid "NO_SAVEGAMES_FOUND"
+msgstr "No Savegames Found"
+
+#: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Loading..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:69 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Delete this Save?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+#: ../src/saving/SaveList.tscn:76 ../src/saving/SaveList.tscn:84
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Load incompatible save?"
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:77
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "This save is from a newer version of Thrive and very likely incompatible.\n"
 "Do you want to try loading the save anyway?"
 
-#: ../src/saving/SaveList.tscn:77
+#: ../src/saving/SaveList.tscn:85
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "This save is from an old version of Thrive and may be incompatible.\n"
@@ -4005,11 +4009,11 @@ msgstr ""
 "priority right now.\n"
 "Do you want to try loading the save anyway?"
 
-#: ../src/saving/SaveList.tscn:84
+#: ../src/saving/SaveList.tscn:92
 msgid "LOAD_INVALID_SAVE"
 msgstr "Load invalid save?"
 
-#: ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Save information could not be loaded from this file.\n"
@@ -4017,11 +4021,11 @@ msgstr ""
 "version of Thrive.\n"
 "Do you want to try loading the save anyway?"
 
-#: ../src/saving/SaveList.tscn:92
+#: ../src/saving/SaveList.tscn:100
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Selected save is incompatible"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:102
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "The selected save to be loaded is known to be incompatible with this "
@@ -4030,11 +4034,11 @@ msgstr ""
 "As Thrive is still early in development save compatibility is not a high "
 "priority, as such there aren't save upgraders for all versions."
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:111
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "Selected save is upgradeable"
 
-#: ../src/saving/SaveList.tscn:104
+#: ../src/saving/SaveList.tscn:112
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "The selected save is from an older version of Thrive, but can be "
@@ -4043,11 +4047,11 @@ msgstr ""
 "If you skip upgrading, the save will be attempted to be loaded normally.\n"
 "Attempt to upgrade this save?"
 
-#: ../src/saving/SaveList.tscn:111
+#: ../src/saving/SaveList.tscn:118
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Save upgrade failed"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:119
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Upgrading the specified save failed due to the following error:\n"
@@ -4140,12 +4144,12 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Delete old Saves?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
-msgid "TRY_MAKING_A_SAVE"
-msgstr "Try making a save!"
-
-#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "NO_SAVE_DIRECTORY"
 msgstr "No saves directory found"
+
+#: ../src/saving/SaveManagerGUI.tscn:202
+msgid "TRY_MAKING_A_SAVE"
+msgstr "Try making a save!"
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"

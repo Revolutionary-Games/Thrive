@@ -16,6 +16,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 LoadingItemPath = NodePath("MarginContainer/VBoxContainer/LoadingLabel")
+NoSavesItemPath = NodePath("MarginContainer/VBoxContainer/NoSavesLabel")
 SavesListPath = NodePath("MarginContainer/VBoxContainer/ItemList")
 DeleteConfirmDialogPath = NodePath("MarginContainer/VBoxContainer/DeleteSaveConfirmDialog")
 LoadNewerSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadNewerSaveDialog")
@@ -43,10 +44,17 @@ margin_bottom = 715.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="NoSavesLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_right = 1270.0
+margin_bottom = 25.0
+text = "NO_SAVEGAMES_FOUND"
+align = 1
+
 [node name="LoadingLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 visible = false
-margin_right = 1280.0
-margin_bottom = 23.0
+margin_right = 1270.0
+margin_bottom = 25.0
 text = "LOADING_DOT"
 align = 1
 
@@ -104,7 +112,6 @@ WindowTitle = "SELECTED_SAVE_IS_UPGRADEABLE"
 DialogText = "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 
 [node name="SaveUpgradeFailedDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource( 4 )]
-visible = false
 margin_top = 4.0
 margin_right = 1270.0
 margin_bottom = 89.0

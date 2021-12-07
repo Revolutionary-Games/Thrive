@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-05 15:02+0200\n"
+"POT-Creation-Date: 2021-12-07 18:51+0100\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -2885,19 +2885,19 @@ msgstr "Temperatuur"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:494
+#: ../src/microbe_stage/Microbe.Contact.cs:519
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:599
+#: ../src/microbe_stage/Microbe.Contact.cs:624
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "succesvolle doorzoeking"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:606
+#: ../src/microbe_stage/Microbe.Contact.cs:631
 msgid "SUCCESSFUL_KILL"
 msgstr "succesvolle moord"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:813
+#: ../src/microbe_stage/Microbe.Contact.cs:832
 msgid "ESCAPE_ENGULFING"
 msgstr "ontsnap omsluiting"
 
@@ -4132,32 +4132,36 @@ msgstr "Snel opslaan"
 msgid "SAVE_INVALID"
 msgstr "Ongeldig"
 
-#: ../src/saving/SaveList.cs:187
+#: ../src/saving/SaveList.cs:202
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden "
 "gemaakt. Weet je zeker dat je {0} definitief wilt verwijderen?"
 
-#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:51
+msgid "NO_SAVEGAMES_FOUND"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:58 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Laden..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:69 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Dit opgeslagen bestand verwijderen?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+#: ../src/saving/SaveList.tscn:76 ../src/saving/SaveList.tscn:84
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Niet-compatibel opgeslagen bestand laden?"
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:77
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dit opgeslagen bestand is van een nieuwere versie van Thrive en is "
 "waarschijnlijk niet-compatibel.\n"
 "Wil je toch proberen het opgeslagen bestand te laden?"
 
-#: ../src/saving/SaveList.tscn:77
+#: ../src/saving/SaveList.tscn:85
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Dit opgeslagen bestand is van een oudere versie van Thrive en kan niet-"
@@ -4168,11 +4172,11 @@ msgstr ""
 "de hoogste prioriteit.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
-#: ../src/saving/SaveList.tscn:84
+#: ../src/saving/SaveList.tscn:92
 msgid "LOAD_INVALID_SAVE"
 msgstr "Ongeldig opgeslagen bestand laden?"
 
-#: ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:93
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Opgeslagen informatie kon niet worden geladen van dit bestand.\n"
@@ -4180,11 +4184,11 @@ msgstr ""
 "formaat dat niet wordt begrepen door deze versie van Thrive.\n"
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
-#: ../src/saving/SaveList.tscn:92
+#: ../src/saving/SaveList.tscn:100
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Geselecteerde opgeslagen bestand is niet-compatibel"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:102
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Het is bekend dat het geselecteerde opgeslagen bestand om te laden niet-"
@@ -4193,12 +4197,12 @@ msgstr ""
 "opslagcompatibiliteit geen hoge prioriteit, dus er is geen ingebouwde "
 "opslag-omzetter om oude opgeslagen bestanden te upgraden."
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:111
 #, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "Geselecteerde opgeslagen bestand is niet-compatibel"
 
-#: ../src/saving/SaveList.tscn:104
+#: ../src/saving/SaveList.tscn:112
 #, fuzzy
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
@@ -4209,12 +4213,12 @@ msgstr ""
 "substanties op te slaan. Hun vorm is veranderlijk en kan variëren tussen "
 "cellen."
 
-#: ../src/saving/SaveList.tscn:111
+#: ../src/saving/SaveList.tscn:118
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Opslaan mislukt"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:119
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
@@ -4314,13 +4318,13 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Verwijder oude opgeslagen bestanden?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
-msgid "TRY_MAKING_A_SAVE"
-msgstr ""
-
-#: ../src/saving/SaveManagerGUI.tscn:202
 #, fuzzy
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Open adresboek van opgeslagen bestanden"
+
+#: ../src/saving/SaveManagerGUI.tscn:202
+msgid "TRY_MAKING_A_SAVE"
+msgstr ""
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
