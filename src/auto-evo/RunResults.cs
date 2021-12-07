@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Linq;
     using Godot;
 
     /// <summary>
@@ -123,7 +124,7 @@
             AddPopulationResultForSpecies(species, patch, 0);
 
             // We copy migration list to be able to modify it
-            foreach (var migration in results[species].SpreadToPatches.ToArray())
+            foreach (var migration in results[species].SpreadToPatches.ToList())
             {
                 if (results[species].SplitOff != null && results[species].SplitOffPatches?.Contains(patch) == true)
                     continue;
