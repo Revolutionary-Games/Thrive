@@ -275,8 +275,10 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
                         foreach (var entry in ContainedCompounds)
                         {
-                            microbe.Compounds.AddCompound(entry.Key, entry.Value /
-                                Constants.CHUNK_ENGULF_COMPOUND_DIVISOR);
+                            var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
+                                Constants.CHUNK_ENGULF_COMPOUND_DIVISOR) * Constants.CHUNK_ENGULF_COMPOUND_DIVISOR;
+
+                            VentCompound(Translation, entry.Key, entry.Value - added);
                         }
                     }
 
