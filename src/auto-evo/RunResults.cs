@@ -283,71 +283,9 @@
         {
             long result = 0;
 
-            foreach (var entry in results[species].NewPopulationInPatches)
+            foreach (var patchPopulationsEntry in GetPopulationsByPatch(species, resolveMigrations, resolveSplits))
             {
-                if (!resolveMigrations)
-                {
-                    result += Math.Max(entry.Value, 0);
-                    continue;
-                }
-
-                var adjustedPopulation = entry.Value;
-
-                foreach (var migration in results[species].SpreadToPatches)
-                {
-                    if (migration.From == entry.Key)
-                    {
-                        adjustedPopulation -= migration.Population;
-                    }
-                    else if (migration.To == entry.Key)
-                    {
-                        adjustedPopulation += migration.Population;
-                    }
-                }
-
-                if (resolveSplits && results[species].SplitOffPatches?.Contains(entry.Key) == true)
-                {
-                    adjustedPopulation = 0;
-                }
-
-                result += Math.Max(adjustedPopulation, 0);
-            }
-
-            // Find patches that were migrated to but don't include population results
-            if (resolveMigrations)
-            {
-                foreach (var migration in results[species].SpreadToPatches)
-                {
-                    bool found = false;
-
-                    foreach (var populationResult in results[species].NewPopulationInPatches)
-                    {
-                        if (migration.To == populationResult.Key)
-                        {
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found)
-                    {
-                        result += Math.Max(migration.Population, 0);
-                    }
-                }
-            }
-
-            // Patches that were this split off in
-            if (resolveSplits && results[species].SplitFrom != null)
-            {
-                var splitFromData = results[results[species].SplitFrom];
-
-                if (splitFromData.SplitOffPatches != null && splitFromData.SplitOff == species)
-                {
-                    foreach (var patch in splitFromData.SplitOffPatches)
-                    {
-                        result += Math.Max(splitFromData.NewPopulationInPatches[patch], 0);
-                    }
-                }
+                result += patchPopulationsEntry.Value[species];
             }
 
             return result;
@@ -391,16 +329,8 @@
         }
 
         /// <summary>
-        ///   Computes the final population of species, by patch.
+        ///   Computes the final population of all species, by patch.
         /// </summary>
-        /// <remarks>
-        ///   <para>
-        ///     TODO: Currently no enforced correlation with actual changes applied.
-        ///   </para>
-        ///   <para>
-        ///     Species are only returned if their population is above 0.
-        ///   </para>
-        /// </remarks>
         public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(bool resolveMigrations = false,
             bool resolveSplits = false, bool includeNewSpecies = true)
         {
@@ -410,19 +340,36 @@
                 var populations = GetPopulationsByPatch(species, resolveMigrations, resolveSplits, includeNewSpecies);
                 foreach (var patchEntry in populations)
                 {
+                    if (!speciesInPatches.ContainsKey(patchEntry.Key))
+                        speciesInPatches[patchEntry.Key] = new Dictionary<Species, long>();
+
                     patchEntry.Value.ToList().ForEach(s =>
                         speciesInPatches[patchEntry.Key].Add(s.Key, s.Value));
                 }
             }
+
+            return speciesInPatches;
         }
 
-
+        /// <summary>
+        ///   Computes the final population of a species and its splitted forms, by patch.
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Species are only returned if their population is above 0.
+        ///   </para>
+        /// </remarks>
         public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(Species species,
             bool resolveMigrations = false, bool resolveSplits = false, bool includeNewSpecies = true)
         {
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
 
-            // TODO FAIL HERE IF NOT POSSIBLE
+            if (!results.ContainsKey(species))
+            {
+                GD.Print("Species ", species.FormattedName, "not found in results, returning empty dictionary.");
+                return speciesInPatches;
+            }
+
             var speciesResult = results[species];
 
             // Get natural variations
