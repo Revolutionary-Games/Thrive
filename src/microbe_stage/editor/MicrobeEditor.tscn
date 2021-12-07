@@ -773,13 +773,13 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 15 )
 custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 15 )
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -796,13 +796,13 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 15 )
 custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 15 )
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 13 )
@@ -818,13 +818,13 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
+custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 15 )
 custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 15 )
-custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 13 )
@@ -917,9 +917,7 @@ margin_right = 302.0
 margin_bottom = 103.0
 columns = 3
 
-[node name="cytoplasm" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer" index="0" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="cytoplasm" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural/Clip/GridContainer" index="0" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_right = 100.0
 SelectionGroup = SubResource( 15 )
 
@@ -959,46 +957,34 @@ margin_right = 302.0
 margin_bottom = 210.0
 columns = 3
 
-[node name="metabolosome" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="0" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="metabolosome" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="0" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_right = 98.0
 SelectionGroup = SubResource( 15 )
 
-[node name="chromatophore" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="1" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="chromatophore" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="1" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
 SelectionGroup = SubResource( 15 )
 
-[node name="chemoSynthesizingProteins" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="2" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="chemoSynthesizingProteins" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="2" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_right = 302.0
 SelectionGroup = SubResource( 15 )
 
-[node name="rusticyanin" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="3" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="rusticyanin" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="3" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_top = 107.0
 margin_right = 98.0
 margin_bottom = 210.0
 SelectionGroup = SubResource( 15 )
 
-[node name="nitrogenase" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="4" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="nitrogenase" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="4" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_top = 107.0
 margin_right = 200.0
 margin_bottom = 210.0
 SelectionGroup = SubResource( 15 )
 
-[node name="oxytoxyProteins" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="5" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="oxytoxyProteins" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein/Clip/GridContainer" index="5" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_top = 107.0
 margin_right = 302.0
@@ -1041,22 +1027,16 @@ margin_right = 302.0
 margin_bottom = 103.0
 columns = 3
 
-[node name="flagellum" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="0" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="flagellum" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="0" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_right = 98.0
 SelectionGroup = SubResource( 15 )
 
-[node name="pilus" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="1" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="pilus" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="1" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
 SelectionGroup = SubResource( 15 )
 
-[node name="cilia" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="2" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="cilia" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="2" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_right = 302.0
 MPCost = 40
@@ -1101,37 +1081,27 @@ margin_right = 302.0
 margin_bottom = 424.0
 columns = 3
 
-[node name="nucleus" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="0" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="nucleus" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="0" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_right = 98.0
 SelectionGroup = SubResource( 15 )
 
-[node name="bindingAgent" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="1" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="bindingAgent" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="1" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
 SelectionGroup = SubResource( 15 )
 
-[node name="mitochondrion" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="2" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="mitochondrion" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="2" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_right = 302.0
 SelectionGroup = SubResource( 15 )
 
-[node name="chloroplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="3" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="chloroplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="3" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_top = 107.0
 margin_right = 98.0
 margin_bottom = 210.0
 SelectionGroup = SubResource( 15 )
 
-[node name="thermoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="4" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="thermoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="4" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_top = 107.0
 margin_right = 200.0
@@ -1142,44 +1112,34 @@ PartName = "THERMOPLAST"
 Locked = true
 SelectionGroup = SubResource( 15 )
 
-[node name="chemoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="5" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="chemoplast" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="5" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_top = 107.0
 margin_right = 302.0
 margin_bottom = 210.0
 SelectionGroup = SubResource( 15 )
 
-[node name="nitrogenfixingplastid" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="6" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="nitrogenfixingplastid" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="6" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_top = 214.0
 margin_right = 98.0
 margin_bottom = 317.0
 SelectionGroup = SubResource( 15 )
 
-[node name="vacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="7" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="vacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="7" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_top = 214.0
 margin_right = 200.0
 margin_bottom = 317.0
 SelectionGroup = SubResource( 15 )
 
-[node name="oxytoxy" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="8" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="oxytoxy" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="8" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_top = 214.0
 margin_right = 302.0
 margin_bottom = 317.0
 SelectionGroup = SubResource( 15 )
 
-[node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=[
-"PlaceablePartSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
 margin_top = 321.0
 margin_right = 98.0
 margin_bottom = 424.0
@@ -1250,46 +1210,34 @@ margin_right = 302.0
 margin_bottom = 210.0
 columns = 3
 
-[node name="single" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="0" groups=[
-"MembraneSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="single" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="0" groups=["MembraneSelectionElement"] instance=ExtResource( 12 )]
 margin_right = 98.0
 SelectionGroup = SubResource( 17 )
 
-[node name="double" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="1" groups=[
-"MembraneSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="double" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="1" groups=["MembraneSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_right = 200.0
 SelectionGroup = SubResource( 17 )
 
-[node name="cellulose" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="2" groups=[
-"MembraneSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="cellulose" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="2" groups=["MembraneSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_right = 302.0
 SelectionGroup = SubResource( 17 )
 
-[node name="chitin" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="3" groups=[
-"MembraneSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="chitin" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="3" groups=["MembraneSelectionElement"] instance=ExtResource( 12 )]
 margin_top = 107.0
 margin_right = 98.0
 margin_bottom = 210.0
 SelectionGroup = SubResource( 17 )
 
-[node name="calciumCarbonate" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="4" groups=[
-"MembraneSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="calciumCarbonate" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="4" groups=["MembraneSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 102.0
 margin_top = 107.0
 margin_right = 200.0
 margin_bottom = 210.0
 SelectionGroup = SubResource( 17 )
 
-[node name="silica" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="5" groups=[
-"MembraneSelectionElement",
-] instance=ExtResource( 12 )]
+[node name="silica" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/Clip/GridContainer" index="5" groups=["MembraneSelectionElement"] instance=ExtResource( 12 )]
 margin_left = 204.0
 margin_top = 107.0
 margin_right = 302.0
@@ -1362,10 +1310,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 156.0
-margin_top = 156.0
-margin_right = 446.0
-margin_bottom = 644.0
+margin_left = 164.0
+margin_top = 164.0
+margin_right = 454.0
+margin_bottom = 652.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -2302,11 +2250,11 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 focus_mode = 0
 mouse_filter = 1
+custom_colors/font_color_disabled = Color( 0.498039, 0.529412, 0.541176, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 23 )
 custom_styles/pressed = SubResource( 24 )
 custom_styles/normal = SubResource( 25 )
-custom_colors/font_color_disabled = Color( 0.498039, 0.529412, 0.541176, 1 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 shortcut_in_tooltip = false
 text = "CANCEL_ACTION_CAPITAL"
 __meta__ = {
@@ -2319,9 +2267,9 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 140, 40 )
 focus_mode = 0
 mouse_filter = 1
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 26 )
 custom_styles/normal = SubResource( 27 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "CONFIRM_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2585,11 +2533,11 @@ margin_right = 845.0
 margin_bottom = 492.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
-custom_constants/margin_left = 25
+custom_constants/margin_left = 15
 custom_constants/margin_bottom = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer"]
-margin_left = 25.0
+margin_left = 15.0
 margin_top = 10.0
 margin_right = 834.0
 margin_bottom = 481.0
@@ -2925,9 +2873,9 @@ margin_right = 150.0
 margin_bottom = 40.0
 focus_mode = 0
 mouse_filter = 1
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 26 )
 custom_styles/normal = SubResource( 27 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "NEXT_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3074,8 +3022,8 @@ __meta__ = {
 margin_top = 28.0
 margin_right = 318.0
 margin_bottom = 46.0
-custom_fonts/font = ExtResource( 99 )
 custom_colors/font_color = Color( 0, 1, 0.117647, 1 )
+custom_fonts/font = ExtResource( 99 )
 text = "CURRENT_LOCATION_CAPITAL"
 align = 1
 autowrap = true
@@ -3848,9 +3796,9 @@ __meta__ = {
 margin_right = 150.0
 margin_bottom = 40.0
 mouse_filter = 1
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 custom_styles/hover = SubResource( 26 )
 custom_styles/normal = SubResource( 27 )
-custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 text = "NEXT_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3883,12 +3831,12 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 15 )
 custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 15 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 pressed = true
 action_mode = 0
@@ -3905,12 +3853,12 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 15 )
 custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 15 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 35 )
@@ -3926,12 +3874,12 @@ margin_bottom = 30.0
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 3
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 15 )
 custom_styles/hover = SubResource( 9 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/disabled = SubResource( 11 )
 custom_styles/normal = SubResource( 12 )
-custom_fonts/font = ExtResource( 15 )
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 toggle_mode = true
 action_mode = 0
 group = SubResource( 35 )

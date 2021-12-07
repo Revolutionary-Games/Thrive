@@ -1031,13 +1031,21 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateTimeline()
     {
-        var container = timelineSubtab.GetNode<VBoxContainer>(
-            "MarginContainer/ScrollContainer/MarginContainer/VBoxContainer");
+        var scrollContainer = timelineSubtab.GetNode<ScrollContainer>("MarginContainer/ScrollContainer");
+        var marginContainer = timelineSubtab.GetNode<Control>("MarginContainer/ScrollContainer/MarginContainer");
+        var mainContainer = timelineSubtab.GetNode<Control>("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer");
 
-        container.FreeChildren();
+        mainContainer.FreeChildren();
 
-        foreach (var snapshot in editor.CurrentGame.GameWorld.GetTimeline())
+        var timeline = editor.CurrentGame.GameWorld.GetTimeline();
+
+        // TODO: autoscroll to the last timeline
+
+        foreach (var snapshot in timeline)
         {
+            var headerContainer = new HBoxContainer();
+            var spacer = new Control { RectMinSize = new Vector2(23, 0) };
+
             var timePeriodLabel = new Label
             {
                 Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", snapshot.Key) + " "
@@ -1046,13 +1054,32 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 Valign = Label.VAlign.Center,
             };
 
-            container.AddChild(timePeriodLabel);
+            timePeriodLabel.AddFontOverride("font", GetFont("jura_demibold_bigger", "Fonts"));
+
+            headerContainer.AddChild(spacer);
+            headerContainer.AddChild(timePeriodLabel);
+            mainContainer.AddChild(headerContainer);
 
             foreach (var entry in snapshot.Value)
             {
-                var eventLabel = new Label { Text = entry };
-                eventLabel.AddFontOverride("font", GetFont("jura_smaller", "Fonts"));
-                container.AddChild(eventLabel);
+                var itemContainer = new HBoxContainer();
+                var iconRect = new TextureRect
+                {
+                    RectMinSize = new Vector2(15, 15),
+                    SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
+                    Texture = !string.IsNullOrEmpty(entry.IconPath) ?
+                        GD.Load<Texture>(entry.IconPath) : null,
+                    Expand = true,
+                };
+
+                itemContainer.AddConstantOverride("separation", 7);
+
+                var eventLabel = new Label { Text = entry.EventDescription };
+                eventLabel.AddFontOverride("font", GetFont("jura_normal", "Fonts"));
+
+                itemContainer.AddChild(iconRect);
+                itemContainer.AddChild(eventLabel);
+                mainContainer.AddChild(itemContainer);
             }
         }
     }

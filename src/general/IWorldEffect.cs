@@ -68,8 +68,10 @@ public class GlucoseReductionEffect : IWorldEffect
         {
             var initialGlucose = Math.Round(initialDensity * totalAmount + totalChunkAmount, 3);
             var finalGlucose = Math.Round(finalDensity * totalAmount + totalChunkAmount, 3);
+            var percentage = Math.Round(((initialGlucose - finalGlucose) / initialGlucose) * 100, 1);
 
-            targetWorld.LogWorldEvent(glucose.Name + " concentrations have decreased from " + initialGlucose + "% " + " to " + finalGlucose + "%");
+            targetWorld.LogWorldEvent(glucose.Name + " concentrations have decreased by " + percentage + "%",
+                "res://assets/textures/gui/bevel/decrease.png");
         }
     }
 }

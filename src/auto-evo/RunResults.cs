@@ -677,7 +677,8 @@
                     builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append('\n');
 
-                    world.LogWorldEvent(entry.Species.FormattedName + " has gone extinct!");
+                    world.LogWorldEvent(entry.Species.FormattedName + " has gone extinct!",
+                        "res://assets/textures/gui/bevel/SuicideIcon.png");
                 }
                 else
                 {
@@ -687,12 +688,14 @@
                         if (globalPopulation > previousTotalPopulations)
                         {
                             world.LogWorldEvent(
-                                entry.Species.FormattedName + " populations have increased to " + globalPopulation);
+                                entry.Species.FormattedName + " populations have increased to " + globalPopulation,
+                                "res://assets/textures/gui/bevel/increase.png");
                         }
                         else
                         {
                             world.LogWorldEvent(
-                                entry.Species.FormattedName + " populations have decreased to " + globalPopulation);
+                                entry.Species.FormattedName + " populations have decreased to " + globalPopulation,
+                                "res://assets/textures/gui/bevel/decrease.png");
                         }
                     }
                 }

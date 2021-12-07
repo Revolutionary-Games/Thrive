@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=60 format=2]
+[gd_resource type="Theme" load_steps=62 format=2]
 
-[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Smaller.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=4]
@@ -12,6 +12,8 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=12]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=13]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=15]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=18]
@@ -504,7 +506,9 @@ FileDialog/icons/folder = null
 FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
-Fonts/fonts/jura_smaller = ExtResource( 1 )
+Fonts/fonts/jura_almost_smaller = ExtResource( 1 )
+Fonts/fonts/jura_demibold_bigger = ExtResource( 13 )
+Fonts/fonts/jura_normal = ExtResource( 14 )
 Fonts/fonts/large = null
 Fonts/fonts/lato_bold_normal = ExtResource( 16 )
 Fonts/fonts/lato_normal = ExtResource( 15 )

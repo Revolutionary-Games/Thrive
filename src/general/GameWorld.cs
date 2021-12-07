@@ -27,7 +27,13 @@ public class GameWorld
     private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
 
     [JsonProperty]
-    private Dictionary<double, List<string>> worldTimeline = new();
+    private Dictionary<double, List<WorldEventDescription>> worldTimeline = new();
+
+    /// <summary>
+    ///   Another placement for worldTimeline keys to allow removing old dictionary keys
+    ///   through Queue functionalities
+    /// </summary>
+    private Queue<double> worldTimelineKeys = new();
 
     /// <summary>
     ///   This world's auto-evo run
@@ -313,21 +319,32 @@ public class GameWorld
         return worldSpecies[id];
     }
 
-    public void LogWorldEvent(string description)
+    public void LogWorldEvent(string description, string iconPath = null)
     {
-        // TODO: add limit to only 10 entries
+        // Enforce limit
+        if (worldTimeline.Count >= Constants.TIMELINE_HISTORY_RANGE)
+        {
+            var oldestKey = worldTimelineKeys.Dequeue();
+            worldTimeline.Remove(oldestKey);
+        }
 
         if (!worldTimeline.ContainsKey(TotalPassedTime))
-            worldTimeline.Add(TotalPassedTime, new List<string>());
+            worldTimeline.Add(TotalPassedTime, new List<WorldEventDescription>());
 
         // Event already logged in timeline
-        if (worldTimeline[TotalPassedTime].Any(entry => entry == description))
+        if (worldTimeline[TotalPassedTime].Any(entry => entry.EventDescription == description))
             return;
 
-        worldTimeline[TotalPassedTime].Add(description);
+        worldTimeline[TotalPassedTime].Add(new WorldEventDescription
+            {
+                EventDescription = description,
+                IconPath = iconPath,
+            });
+
+        worldTimelineKeys.Enqueue(TotalPassedTime);
     }
 
-    public IReadOnlyDictionary<double, List<string>> GetTimeline()
+    public IReadOnlyDictionary<double, List<WorldEventDescription>> GetTimeline()
     {
         return worldTimeline;
     }
@@ -339,4 +356,16 @@ public class GameWorld
 
         autoEvo = AutoEvo.AutoEvo.CreateRun(this);
     }
+}
+
+/// <summary>
+///   A description of what has happened in the game world to be added to the timeline.
+///   Includes icons and attributes (extra indicator besides the icon like decrease or increase
+///   icon once that's implemented)
+/// </summary>
+public class WorldEventDescription
+{
+    public double TimePeriod;
+    public string EventDescription;
+    public string IconPath;
 }

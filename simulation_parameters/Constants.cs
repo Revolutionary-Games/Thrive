@@ -515,6 +515,8 @@ public static class Constants
     /// </summary>
     public const int PATCH_HISTORY_RANGE = 10;
 
+    public const int TIMELINE_HISTORY_RANGE = 10;
+
     /// <summary>
     ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
     ///   to see what small cells are.
