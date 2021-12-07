@@ -405,74 +405,91 @@
             bool resolveSplits = false, bool includeNewSpecies = true)
         {
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
-            foreach (var speciesResultEntry in results)
+            foreach (var species in results.Keys)
             {
-                // Get natural variations
-                foreach (var patchPopulationEntry in speciesResultEntry.Value.NewPopulationInPatches)
+                var populations = GetPopulationsByPatch(species, resolveMigrations, resolveSplits, includeNewSpecies);
+                foreach (var patchEntry in populations)
                 {
-                    if (!speciesInPatches.ContainsKey(patchPopulationEntry.Key))
-                        speciesInPatches[patchPopulationEntry.Key] = new Dictionary<Species, long>();
+                    patchEntry.Value.ToList().ForEach(s =>
+                        speciesInPatches[patchEntry.Key].Add(s.Key, s.Value));
+                }
+            }
+        }
 
-                    if (patchPopulationEntry.Value > 0)
+
+        public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(Species species,
+            bool resolveMigrations = false, bool resolveSplits = false, bool includeNewSpecies = true)
+        {
+            var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
+
+            // TODO FAIL HERE IF NOT POSSIBLE
+            var speciesResult = results[species];
+
+            // Get natural variations
+            foreach (var patchPopulationEntry in speciesResult.NewPopulationInPatches)
+            {
+                if (!speciesInPatches.ContainsKey(patchPopulationEntry.Key))
+                    speciesInPatches[patchPopulationEntry.Key] = new Dictionary<Species, long>();
+
+                if (patchPopulationEntry.Value > 0)
+                {
+                    if (includeNewSpecies || speciesResult.NewlyCreated == null)
                     {
-                        if (includeNewSpecies || speciesResultEntry.Value.NewlyCreated == null)
-                        {
-                            speciesInPatches[patchPopulationEntry.Key].Add(
-                                speciesResultEntry.Key, patchPopulationEntry.Value);
-                        }
+                        speciesInPatches[patchPopulationEntry.Key].Add(
+                            species, patchPopulationEntry.Value);
                     }
                 }
+            }
 
-                if (resolveSplits)
+            if (resolveSplits)
+            {
+                // Deal with splits-off
+                if (speciesResult.SplitOff != null && speciesResult.SplitOffPatches != null)
                 {
-                    // Deal with splits-off
-                    if (speciesResultEntry.Value.SplitOff != null && speciesResultEntry.Value.SplitOffPatches != null)
+                    foreach (var patch in speciesResult.SplitOffPatches)
                     {
-                        foreach (var patch in speciesResultEntry.Value.SplitOffPatches)
-                        {
-                            speciesInPatches[patch].Remove(speciesResultEntry.Key);
-                            speciesInPatches[patch].Add(speciesResultEntry.Value.SplitOff,
-                                speciesResultEntry.Value.NewPopulationInPatches[patch]);
-                        }
+                        speciesInPatches[patch].Remove(species);
+                        speciesInPatches[patch].Add(speciesResult.SplitOff,
+                            speciesResult.NewPopulationInPatches[patch]);
                     }
                 }
+            }
 
-                if (resolveMigrations)
+            if (resolveMigrations)
+            {
+                // Apply migrations
+                foreach (var migration in speciesResult.SpreadToPatches)
                 {
-                    // Apply migrations
-                    foreach (var migration in speciesResultEntry.Value.SpreadToPatches)
+                    // Only consider valid migrations
+                    if (migration.From == null || migration.To == null)
+                        continue;
+
+                    // Add entries if necessary
+                    if (!speciesInPatches.ContainsKey(migration.From))
+                        speciesInPatches[migration.From] = new Dictionary<Species, long>();
+
+                    if (!speciesInPatches.ContainsKey(migration.To))
+                        speciesInPatches[migration.To] = new Dictionary<Species, long>();
+
+                    // Only consider possible migrations
+                    // TODO check second condition to mimick actual effect. (> 0 ?)
+                    if (speciesInPatches[migration.From].TryGetValue(species, out var population) &&
+                        population >= migration.Population)
                     {
-                        // Only consider valid migrations
-                        if (migration.From == null || migration.To == null)
-                            continue;
-
-                        // Add entries if necessary
-                        if (!speciesInPatches.ContainsKey(migration.From))
-                            speciesInPatches[migration.From] = new Dictionary<Species, long>();
-
-                        if (!speciesInPatches.ContainsKey(migration.To))
-                            speciesInPatches[migration.To] = new Dictionary<Species, long>();
-
-                        // Only consider possible migrations
-                        // TODO check second condition to mimick actual effect. (> 0 ?)
-                        if (speciesInPatches[migration.From].TryGetValue(speciesResultEntry.Key, out var population) &&
-                            population >= migration.Population)
+                        if (population - migration.Population == 0)
                         {
-                            if (population - migration.Population == 0)
-                            {
-                                speciesInPatches[migration.From].Remove(speciesResultEntry.Key);
-                            }
-                            else
-                            {
-                                speciesInPatches[migration.From][speciesResultEntry.Key] =
-                                    population - migration.Population;
-                            }
-
-                            if (!speciesInPatches[migration.To].ContainsKey(speciesResultEntry.Key))
-                                speciesInPatches[migration.To][speciesResultEntry.Key] = 0;
-
-                            speciesInPatches[migration.To][speciesResultEntry.Key] += migration.Population;
+                            speciesInPatches[migration.From].Remove(species);
                         }
+                        else
+                        {
+                            speciesInPatches[migration.From][species] =
+                                population - migration.Population;
+                        }
+
+                        if (!speciesInPatches[migration.To].ContainsKey(species))
+                            speciesInPatches[migration.To][species] = 0;
+
+                        speciesInPatches[migration.To][species] += migration.Population;
                     }
                 }
             }
