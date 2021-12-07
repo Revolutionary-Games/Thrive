@@ -853,7 +853,9 @@
             ///   limited to natural increase/decrease and emergence.
             /// </summary>
             /// <remarks>
-            ///   Does not consider migrations.
+            ///   <para>
+            ///     Does not consider migrations nor split-offs.
+            ///   </para>
             /// </remarks>
             public Dictionary<Patch, long> NewPopulationInPatches = new Dictionary<Patch, long>();
 
