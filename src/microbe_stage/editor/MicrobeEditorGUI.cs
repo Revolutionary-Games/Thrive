@@ -295,19 +295,25 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
-    private readonly Compound nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-    private readonly Compound oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-    private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    [Export]
+    public NodePath AutoEvoPredictionExplanationPopupPath;
 
-    private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
-    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    [Export]
+    public NodePath AutoEvoPredictionExplanationLabelPath;
+
+    private Compound atp;
+    private Compound ammonia;
+    private Compound carbondioxide;
+    private Compound glucose;
+    private Compound hydrogensulfide;
+    private Compound iron;
+    private Compound nitrogen;
+    private Compound oxygen;
+    private Compound phosphates;
+    private Compound sunlight;
+
+    private OrganelleDefinition protoplasm;
+    private OrganelleDefinition nucleus;
 
     private EnergyBalanceInfo energyBalanceInfo;
 
@@ -471,6 +477,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private CompoundBalanceDisplay compoundBalance;
 
+    private CustomDialog autoEvoPredictionExplanationPopup;
+    private Label autoEvoPredictionExplanationLabel;
+
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
 
@@ -618,6 +627,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
+        autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
+        autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
+
         menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
@@ -625,6 +637,20 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        atp = SimulationParameters.Instance.GetCompound("atp");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+        nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         SetupMicrobePartSelections();
         UpdateMicrobePartSelections();
@@ -1925,6 +1951,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
 
         UpdateAutoEvoPredictionTranslations();
+
+        // TODO: update panel for the energy sources
+        autoEvoPredictionExplanationLabel.Text = "TODO: the actual explanation text";
     }
 
     /// <remarks>
@@ -2208,6 +2237,18 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
         }
+    }
+
+    private void OpenAutoEvoPredictionDetails()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        autoEvoPredictionExplanationPopup.PopupCenteredShrink();
+    }
+
+    private void CloseAutoEvoPrediction()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        autoEvoPredictionExplanationPopup.Hide();
     }
 
     /// <summary>
