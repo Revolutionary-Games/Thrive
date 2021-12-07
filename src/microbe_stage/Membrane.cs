@@ -258,7 +258,7 @@ public class Membrane : MeshInstance
             }
         }
 
-        return new Vector2(closestSoFar.x, closestSoFar.y);
+        return closestSoFar;
     }
 
     /// <summary>

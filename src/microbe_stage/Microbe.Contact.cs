@@ -340,6 +340,8 @@ public partial class Microbe
         Dead = true;
 
         OnDeath?.Invoke(this);
+        ModLoader.ModInterface.TriggerOnMicrobeDied(this, IsPlayerMicrobe);
+
         OnDestroyed();
 
         // Reset some stuff
@@ -366,16 +368,18 @@ public partial class Microbe
 
             var agentScene = SpawnHelpers.LoadAgentScene();
 
-            while (amount > Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+            while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
             {
                 var direction = new Vector2(random.Next(0.0f, 1.0f) * 2 - 1,
                     random.Next(0.0f, 1.0f) * 2 - 1);
 
-                SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
-                    Translation.ToVector2(), direction, GetStageAsParent(),
+                var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
+                    Constants.EMITTED_AGENT_LIFETIME, Translation.ToVector2(), direction, GetStageAsParent(),
                     agentScene, this);
 
-                amount -= Constants.MINIMUM_AGENT_EMISSION_AMOUNT;
+                ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
+
+                amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
                 ++createdAgents;
 
                 if (createdAgents >= Constants.MAX_EMITTED_AGENTS_ON_DEATH)
@@ -475,8 +479,10 @@ public partial class Microbe
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            SpawnHelpers.SpawnChunk(chunkType, Translation.ToVector2() + positionAdded, GetStageAsParent(),
+            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation.ToVector2() + positionAdded, GetStageAsParent(),
                 chunkScene, cloudSystem, random);
+
+            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
 
         // Subtract population
@@ -492,7 +498,16 @@ public partial class Microbe
             OnReproductionStatus?.Invoke(this, false);
         }
 
-        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        if (IsPlayerMicrobe)
+        {
+            // Playing from a positional audio player won't have any effect since the listener is
+            // directly on it.
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
+        }
+        else
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        }
 
         // Disable collisions
         CollisionLayer = 0;

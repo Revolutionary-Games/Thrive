@@ -446,7 +446,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// </summary>
     public void ConvertToCloudLocal(Vector2 worldPosition, out int x, out int y)
     {
-        var topLeftRelative = worldPosition - new Vector2(Translation.x, Translation.z);
+        var topLeftRelative = worldPosition - Translation.ToVector2();
 
         // Floor is used here because otherwise the last coordinate is wrong
         x = ((int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution)

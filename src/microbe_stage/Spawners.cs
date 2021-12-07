@@ -50,7 +50,7 @@ public static class SpawnHelpers
         microbe.Init(cloudSystem, currentGame, !aiControlled);
 
         worldRoot.AddChild(microbe);
-        microbe.Translation = new Vector3(location.x, 0, location.y);
+        microbe.Translation = location.ToVector3();
 
         microbe.AddToGroup(Constants.AI_TAG_MICROBE);
         microbe.AddToGroup(Constants.PROCESS_GROUP);
