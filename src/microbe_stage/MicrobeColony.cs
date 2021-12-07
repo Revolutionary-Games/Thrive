@@ -71,8 +71,15 @@ public class MicrobeColony
         if (State == Microbe.MicrobeState.Unbinding)
             State = Microbe.MicrobeState.Normal;
 
+
+        var rotation = microbe.RotationInsideColony();
+
+        if (microbe != Master)
+        GD.Print(rotation);
+
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
+        
 
         microbe.Colony = null;
 
@@ -90,8 +97,14 @@ public class MicrobeColony
             RemoveFromColony(microbe.ColonyParent);
         }
 
+        // Apply the rotation
+        rotation = rotation.Normalized();
+        microbe.LookAtPoint = rotation.Xform(-Master.GlobalTransform.origin + microbe.GlobalTransform.origin);
+        microbe.LookAtPoint += microbe.GlobalTransform.origin;
+
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
+
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -107,5 +120,8 @@ public class MicrobeColony
         microbe.ColonyChildren = new List<Microbe>();
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
+
+        if(microbe != Master)
+        GD.Print(new Quat(microbe.Transform.basis),"Created\n");
     }
 }

@@ -568,6 +568,11 @@ public partial class Microbe
         Colony?.RemoveFromColony(this);
     }
 
+    internal Quat RotationInsideColony()
+    {
+        return organelles[0].RotationInsideColony();
+    }
+
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
         if (microbe == this)
