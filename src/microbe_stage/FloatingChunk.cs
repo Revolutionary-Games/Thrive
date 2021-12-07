@@ -271,8 +271,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                     // Can engulf
                     if (ContainedCompounds != null)
                     {
-                        // TODO: could spill the amount that was wasted here as a cloud
-
                         foreach (var entry in ContainedCompounds)
                         {
                             var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
