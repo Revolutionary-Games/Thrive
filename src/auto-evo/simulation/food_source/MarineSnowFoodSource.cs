@@ -39,9 +39,8 @@ public class MarineSnowFoodSource : FoodSource
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        // I don't think it makes sense here to penalize species with positive ATP balance (with higher balance
-        // reducing the available energy), so that divide by final balance stationary here is gone - hhyyrylainen
-        score *= Constants.AUTO_EVO_MARINE_SNOW_BASE_MULTIPLIER;
+        // Marine snow food source penalizes big creatures that try to rely on it
+        score /= energyBalance.TotalConsumptionStationary;
 
         return score;
     }

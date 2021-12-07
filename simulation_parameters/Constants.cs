@@ -446,7 +446,6 @@ public static class Constants
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
-    public const float AUTO_EVO_MARINE_SNOW_BASE_MULTIPLIER = 0.5f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 
