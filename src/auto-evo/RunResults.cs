@@ -352,7 +352,7 @@
         }
 
         /// <summary>
-        ///   Computes the final population of a species and its splitted forms, by patch.
+        ///   Computes the final population of a species and its split forms, by patch.
         /// </summary>
         /// <remarks>
         ///   <para>
