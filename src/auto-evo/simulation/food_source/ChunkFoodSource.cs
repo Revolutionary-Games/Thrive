@@ -1,21 +1,28 @@
-﻿using AutoEvo;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoEvo;
 
-public class MarineSnowFoodSource : FoodSource
+public class ChunkFoodSource : FoodSource
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
 
     private readonly Patch patch;
     private readonly float totalEnergy;
     private readonly float chunkSize;
+    private readonly Dictionary<Compound, float> energyCompounds;
 
-    public MarineSnowFoodSource(Patch patch)
+    public ChunkFoodSource(Patch patch, string chunkType)
     {
         this.patch = patch;
 
-        if (patch.Biome.Chunks.TryGetValue("marineSnow", out ChunkConfiguration chunk))
+        if (patch.Biome.Chunks.TryGetValue(chunkType, out ChunkConfiguration chunk))
         {
             chunkSize = chunk.Size;
-            totalEnergy = chunk.Compounds[glucose].Amount * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
+
+            // NOTE: Here we use the heuristic that only iron and glucose are useful in chunks
+            energyCompounds = chunk.Compounds.Where(c => c.Key == iron || c.Key == glucose).ToDictionary(c => c.Key, c => c.Value.Amount);
+            totalEnergy = energyCompounds.Sum(c => c.Value) * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
         }
     }
 
@@ -38,11 +45,24 @@ public class MarineSnowFoodSource : FoodSource
 
         score /= energyBalance.FinalBalanceStationary;
 
+        var ponderedEnergyGenerationScore = energyCompounds.Sum(
+            c => EnergyGenerationScore(microbeSpecies, c.Key) * ProportionOfTotalEnergy(c.Key));
+
+        score *= ponderedEnergyGenerationScore;
+
         return score;
     }
 
     public override float TotalEnergyAvailable()
     {
         return totalEnergy;
+    }
+
+    public float ProportionOfTotalEnergy(Compound compound)
+    {
+        if (energyCompounds.TryGetValue(compound, out var quantity))
+            return quantity / energyCompounds.Sum(c => c.Value);
+
+        return 0;
     }
 }
