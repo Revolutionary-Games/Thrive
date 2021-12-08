@@ -372,13 +372,10 @@
         {
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
 
-            if (!results.ContainsKey(species))
-            {
-                GD.PrintErr("Species ", species.FormattedName, "not found in results, returning empty dictionary.");
-                return speciesInPatches;
-            }
+            SpeciesResult speciesResult;
 
-            var speciesResult = results[species];
+            if (!results.TryGetValue(species, out speciesResult))
+                throw new ArgumentException("Species " + species.FormattedName + "not found in results.");
 
             // Get natural variations
             foreach (var patchPopulationEntry in speciesResult.NewPopulationInPatches)
