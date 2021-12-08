@@ -46,8 +46,10 @@ public class ChunkFoodSource : FoodSource
 
         score /= energyBalance.FinalBalanceStationary;
 
+        // We ponder the score for each compound by its amount, leading to pondering in proportion of total quantity,
+        // with a constant factor that will be eliminated when making ratios of scores for this niche.
         var ponderedEnergyGenerationScore = energyCompounds.Sum(
-            c => EnergyGenerationScore(microbeSpecies, c.Key) * ProportionOfTotalEnergy(c.Key));
+            c => EnergyGenerationScore(microbeSpecies, c.Key) * c.Value);
 
         score *= ponderedEnergyGenerationScore;
 
@@ -57,13 +59,5 @@ public class ChunkFoodSource : FoodSource
     public override float TotalEnergyAvailable()
     {
         return totalEnergy;
-    }
-
-    public float ProportionOfTotalEnergy(Compound compound)
-    {
-        if (energyCompounds.TryGetValue(compound, out var quantity))
-            return quantity / energyCompounds.Sum(c => c.Value);
-
-        return 0;
     }
 }
