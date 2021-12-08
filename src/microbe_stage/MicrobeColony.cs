@@ -75,12 +75,24 @@ public class MicrobeColony
         var rotation = microbe.RotationInsideColony();
         var offset = microbe.GetOffsetRelativeToMaster();
 
-        if (microbe != Master)
-        GD.Print(rotation);
-        GD.Print(microbe.GlobalTransform.origin);
+        // Apply the rotation
+        if(microbe != Master)
+        {
+            // For some reason the first cell needs to be rotated by the colony master rotation
+            if(microbe.ColonyParent == Master)
+                rotation *= new Quat(Master.Transform.basis);
+
+            // Normalize and apply the rotation
+            rotation = rotation.Normalized();
+            microbe.LookAtPoint = rotation.Xform(offset);
+
+            //Convert the vector to the lookupPoint true position
+            microbe.LookAtPoint += microbe.GlobalTransform.origin;
+        }
+
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
-        
+
 
         microbe.Colony = null;
 
@@ -97,15 +109,6 @@ public class MicrobeColony
         {
             RemoveFromColony(microbe.ColonyParent);
         }
-        GD.Print(microbe.GlobalTransform.origin);
-        // Apply the rotation
-        if(microbe != Master)
-        {
-            rotation = rotation.Normalized();
-            microbe.LookAtPoint = rotation.Xform(offset);
-            microbe.LookAtPoint += microbe.GlobalTransform.origin;
-        }
-
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
