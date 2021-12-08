@@ -26,7 +26,7 @@ public class CompoundFoodSource : FoodSource
 
         var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound);
 
-        var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).FinalBalanceStationary;
+        var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).TotalConsumptionStationary;
 
         return compoundUseScore / energyCost;
     }
