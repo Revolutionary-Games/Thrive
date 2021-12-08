@@ -23,7 +23,7 @@ public class EnvironmentalFoodSource : FoodSource
 
         var energyCreationScore = EnergyGenerationScore(microbeSpecies, compound);
 
-        var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).FinalBalanceStationary;
+        var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).TotalConsumptionStationary;
 
         return energyCreationScore / energyCost;
     }
