@@ -360,7 +360,7 @@
         }
 
         /// <summary>
-        ///   Computes the final population of a species and its splitted forms, by patch.
+        ///   Computes the final population of a species and its split forms, by patch.
         /// </summary>
         /// <remarks>
         ///   <para>
@@ -374,7 +374,7 @@
 
             if (!results.ContainsKey(species))
             {
-                GD.Print("Species ", species.FormattedName, "not found in results, returning empty dictionary.");
+                GD.PrintErr("Species ", species.FormattedName, "not found in results, returning empty dictionary.");
                 return speciesInPatches;
             }
 
