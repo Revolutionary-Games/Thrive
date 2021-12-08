@@ -12,7 +12,6 @@ public static class NodeHelpers
     {
         entity.OnDestroyed();
         entity.EntityNode.DetachAndQueueFree();
-        entity = null;
     }
 
     /// <summary>

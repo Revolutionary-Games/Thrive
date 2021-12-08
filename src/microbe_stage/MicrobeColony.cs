@@ -62,7 +62,7 @@ public class MicrobeColony
 
     public void RemoveFromColony(Microbe microbe)
     {
-        if (microbe?.Colony == null)
+        if (microbe?.Colony == null || !Godot.Object.IsInstanceValid(microbe))
             throw new ArgumentException("Microbe null or not a member of a colony");
 
         if (!Equals(microbe.Colony, this))
@@ -96,7 +96,7 @@ public class MicrobeColony
 
     public void AddToColony(Microbe microbe, Microbe master)
     {
-        if (microbe == null || master == null || microbe.Colony != null)
+        if (microbe == null || master == null || microbe.Colony != null || !Godot.Object.IsInstanceValid(microbe))
             throw new ArgumentException("Microbe or master null or microbe already is in a colony");
 
         ColonyMembers.Add(microbe);
