@@ -567,6 +567,7 @@ public partial class Microbe
         // disband entire colony functionality
         Colony?.RemoveFromColony(this);
     }
+
     /// <summary>
     ///   Returns the rotation of a microbe inside the colony.
     /// </summary>

@@ -71,15 +71,14 @@ public class MicrobeColony
         if (State == Microbe.MicrobeState.Unbinding)
             State = Microbe.MicrobeState.Normal;
 
-
         var rotation = microbe.RotationInsideColony();
         var offset = microbe.GetOffsetRelativeToMaster();
 
         // Apply the rotation
-        if(microbe != Master)
+        if (microbe != Master)
         {
             // For some reason the first cell needs to be rotated by the colony master rotation
-            if(microbe.ColonyParent == Master)
+            if (microbe.ColonyParent == Master)
                 rotation *= new Quat(Master.Transform.basis);
 
             // Normalize and apply the rotation
@@ -92,7 +91,6 @@ public class MicrobeColony
 
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
-
 
         microbe.Colony = null;
 
@@ -112,7 +110,6 @@ public class MicrobeColony
 
         microbe.ColonyParent = null;
         microbe.ColonyChildren = null;
-
     }
 
     public void AddToColony(Microbe microbe, Microbe master)
@@ -129,7 +126,7 @@ public class MicrobeColony
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
 
-        if(microbe != Master)
-        GD.Print(new Quat(microbe.Transform.basis),"Created\n");
+        if (microbe != Master)
+            GD.Print(new Quat(microbe.Transform.basis), "Created\n");
     }
 }
