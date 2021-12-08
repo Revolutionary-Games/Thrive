@@ -134,6 +134,8 @@
                     results[species].SpreadToPatches.Remove(migration);
 
                     // We may still penalize the origin patch, the migration would just have died off on its way.
+                    // TODO: It would be nice to leave some trace of this happening, so that it can be tracked
+                    // why the population in this patch was reduced.
                     if (!refundMigrations)
                         results[species].NewPopulationInPatches[migration.From] -= migration.Population;
                 }
