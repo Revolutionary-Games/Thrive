@@ -366,7 +366,7 @@
 
             if (!results.ContainsKey(species))
             {
-                GD.Print("Species ", species.FormattedName, "not found in results, returning empty dictionary.");
+                GD.PrintErr("Species ", species.FormattedName, "not found in results, returning empty dictionary.");
                 return speciesInPatches;
             }
 
