@@ -1036,6 +1036,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         var mainContainer = timelineSubtab.GetNode<Control>("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer");
 
         var customRTLScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
+        var timelineHighlight = GD.Load<StyleBoxTexture>("res://src/microbe_stage/editor/TimelineHighlight.tres");
 
         mainContainer.FreeChildren();
 
@@ -1046,13 +1047,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         foreach (var snapshot in timeline)
         {
             var headerContainer = new HBoxContainer();
-            var spacer = new Control { RectMinSize = new Vector2(23, 0) };
+            var spacer = new Control { RectMinSize = new Vector2(26, 0) };
 
             var timePeriodLabel = new Label
             {
                 Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", snapshot.Key) + " "
                     + TranslationServer.Translate("MEGA_YEARS"),
-                RectMinSize = new Vector2(0, 60),
+                RectMinSize = new Vector2(0, 55),
                 Valign = Label.VAlign.Center,
             };
 
@@ -1067,18 +1068,25 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 var itemContainer = new HBoxContainer();
                 var iconRect = new TextureRect
                 {
-                    RectMinSize = new Vector2(15, 15),
+                    RectMinSize = new Vector2(25, 25),
                     SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
                     Texture = !string.IsNullOrEmpty(entry.IconPath) ?
                         GD.Load<Texture>(entry.IconPath) : null,
                     Expand = true,
                 };
 
-                itemContainer.AddConstantOverride("separation", 7);
+                var highlight = new PanelContainer
+                {
+                    SelfModulate = entry.Highlighted ? Colors.White : Colors.Transparent,
+                    SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
+                };
+
+                highlight.AddStyleboxOverride("panel", timelineHighlight);
+                itemContainer.AddConstantOverride("separation", 5);
 
                 var eventLabel = customRTLScene.Instance<CustomRichTextLabel>();
                 eventLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-                eventLabel.ExtendedBbcode = entry.EventDescription;
+                eventLabel.ExtendedBbcode = entry.EventDescription.ToString();
                 eventLabel.FitContentHeight = true;
 
                 eventLabel.AddFontOverride("normal_font", GetFont("jura_almost_smaller", "Fonts"));
@@ -1086,7 +1094,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 eventLabel.AddConstantOverride("line_separation", 0);
 
                 itemContainer.AddChild(iconRect);
-                itemContainer.AddChild(eventLabel);
+                itemContainer.AddChild(highlight);
+                highlight.AddChild(eventLabel);
                 mainContainer.AddChild(itemContainer);
             }
         }

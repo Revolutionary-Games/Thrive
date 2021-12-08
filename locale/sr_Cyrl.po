@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 15:59+0700\n"
+"POT-Creation-Date: 2021-12-08 18:11+0700\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate."
@@ -890,61 +890,93 @@ msgstr "Почиње"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
-#: ../src/auto-evo/RunResults.cs:426
+#: ../src/auto-evo/RunResults.cs:422
 msgid "POPULATION"
 msgstr "популација:"
 
-#: ../src/auto-evo/RunResults.cs:435
+#: ../src/auto-evo/RunResults.cs:431
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:441
+#: ../src/auto-evo/RunResults.cs:437
 msgid "PREVIOUS"
 msgstr "претходна:"
 
-#: ../src/auto-evo/RunResults.cs:457
+#: ../src/auto-evo/RunResults.cs:453
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "генетски код:"
 
-#: ../src/auto-evo/RunResults.cs:471 ../src/auto-evo/RunResults.cs:478
+#: ../src/auto-evo/RunResults.cs:466
 #, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "генетски код:"
 
-#: ../src/auto-evo/RunResults.cs:475 ../src/auto-evo/RunResults.cs:481
+#: ../src/auto-evo/RunResults.cs:467
+#, fuzzy
+msgid "TIMELINE_NICHE_FILL"
+msgstr "генетски код:"
+
+#: ../src/auto-evo/RunResults.cs:471
 #, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "се проширила на зоне:"
 
-#: ../src/auto-evo/RunResults.cs:499
+#: ../src/auto-evo/RunResults.cs:472
+#, fuzzy
+msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
+msgstr "се проширила на зоне:"
+
+#: ../src/auto-evo/RunResults.cs:490
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "се проширила на зоне:"
 
-#: ../src/auto-evo/RunResults.cs:515
+#: ../src/auto-evo/RunResults.cs:506
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "има мутацију"
 
-#: ../src/auto-evo/RunResults.cs:520
+#: ../src/auto-evo/RunResults.cs:511
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генетски код:"
 
-#: ../src/auto-evo/RunResults.cs:531
+#: ../src/auto-evo/RunResults.cs:522
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "се проширила на зоне:"
 
-#: ../src/auto-evo/RunResults.cs:543
+#: ../src/auto-evo/RunResults.cs:534
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} због слања: {1} популација из зона: {2}"
 
-#: ../src/auto-evo/RunResults.cs:571
+#: ../src/auto-evo/RunResults.cs:553
+msgid "TIMELINE_SPECIES_MIGRATED_TO"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:559
+msgid "TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:565
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "популација у зонама:"
 
-#: ../src/auto-evo/RunResults.cs:681
+#: ../src/auto-evo/RunResults.cs:675
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:678
+msgid "TIMELINE_SPECIES_EXTINCT"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:688
+#, fuzzy
+msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
+msgstr "Врсте:"
+
+#: ../src/auto-evo/RunResults.cs:694
+#, fuzzy
+msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
+msgstr "Врсте:"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1399,6 +1431,23 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
 msgstr "Затвори"
+
+#: ../src/general/IWorldEffect.cs:77
+msgid "COMPOUND_CONCENTRATIONS_DRASTICALLY_DROPPED"
+msgstr ""
+
+#: ../src/general/IWorldEffect.cs:84 ../src/gui_common/CompoundAmount.cs:168
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
+#: ../src/microbe_stage/MicrobeHUD.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1013
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1229
+msgid "PERCENTAGE_VALUE"
+msgstr ""
+
+#: ../src/general/IWorldEffect.cs:82
+msgid "COMPOUND_CONCENTRATIONS_DECREASED"
+msgstr ""
 
 #: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
@@ -1889,15 +1938,6 @@ msgstr "/секунду"
 
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
-msgstr ""
-
-#: ../src/gui_common/CompoundAmount.cs:168
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:638
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1013
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1229
-msgid "PERCENTAGE_VALUE"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:226

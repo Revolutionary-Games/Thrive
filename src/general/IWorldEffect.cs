@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using Newtonsoft.Json;
+using Godot;
 
 /// <summary>
 ///   Time dependent effects running on a world
@@ -72,13 +74,15 @@ public class GlucoseReductionEffect : IWorldEffect
 
             if (percentage >= 20)
             {
-                targetWorld.LogWorldEvent(glucose.Name + " concentrations have drastically dropped!",
-                    "res://assets/textures/gui/bevel/decrease.png");      
+                targetWorld.LogWorldEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DRASTICALLY_DROPPED",
+                    glucose.Name), false, "res://assets/textures/gui/bevel/glucoseDown.png");
             }
             else
             {
-                targetWorld.LogWorldEvent(glucose.Name + " concentrations have decreased by " + percentage + "%",
-                    "res://assets/textures/gui/bevel/decrease.png");
+                targetWorld.LogWorldEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
+                    glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "PERCENTAGE_VALUE"), percentage)), false,
+                        "res://assets/textures/gui/bevel/glucoseDown.png");
             }
         }
     }

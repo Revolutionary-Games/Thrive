@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 15:59+0700\n"
+"POT-Creation-Date: 2021-12-08 18:11+0700\n"
 "PO-Revision-Date: 2021-11-26 16:55+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -918,57 +918,89 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
 
-#: ../src/auto-evo/RunResults.cs:426
+#: ../src/auto-evo/RunResults.cs:422
 msgid "POPULATION"
 msgstr "популация:"
 
-#: ../src/auto-evo/RunResults.cs:435
+#: ../src/auto-evo/RunResults.cs:431
 msgid "WENT_EXTINCT_IN"
 msgstr "изчезнаха от {0}"
 
-#: ../src/auto-evo/RunResults.cs:441
+#: ../src/auto-evo/RunResults.cs:437
 msgid "PREVIOUS"
 msgstr "предишна:"
 
-#: ../src/auto-evo/RunResults.cs:457
+#: ../src/auto-evo/RunResults.cs:453
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "отделиха се от популацията на „{0}“"
 
-#: ../src/auto-evo/RunResults.cs:471 ../src/auto-evo/RunResults.cs:478
+#: ../src/auto-evo/RunResults.cs:466
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "появиха се за да запълнят ниша"
 
-#: ../src/auto-evo/RunResults.cs:475 ../src/auto-evo/RunResults.cs:481
+#: ../src/auto-evo/RunResults.cs:467
+#, fuzzy
+msgid "TIMELINE_NICHE_FILL"
+msgstr "появиха се за да запълнят ниша"
+
+#: ../src/auto-evo/RunResults.cs:471
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "появиха се поради селекционен натиск"
 
-#: ../src/auto-evo/RunResults.cs:499
+#: ../src/auto-evo/RunResults.cs:472
+#, fuzzy
+msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
+msgstr "появиха се поради селекционен натиск"
+
+#: ../src/auto-evo/RunResults.cs:490
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "от популацията в следните зони се отделиха „{0}“:"
 
-#: ../src/auto-evo/RunResults.cs:515
+#: ../src/auto-evo/RunResults.cs:506
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "претърпяха мутация"
 
-#: ../src/auto-evo/RunResults.cs:520
+#: ../src/auto-evo/RunResults.cs:511
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генен код:"
 
-#: ../src/auto-evo/RunResults.cs:531
+#: ../src/auto-evo/RunResults.cs:522
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:543
+#: ../src/auto-evo/RunResults.cs:534
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "към {0} се преселиха {1} индивида от популацията в {2}"
 
-#: ../src/auto-evo/RunResults.cs:571
+#: ../src/auto-evo/RunResults.cs:553
+msgid "TIMELINE_SPECIES_MIGRATED_TO"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:559
+msgid "TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:565
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "текуща популация в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:681
+#: ../src/auto-evo/RunResults.cs:675
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изчезнаха от планетата"
+
+#: ../src/auto-evo/RunResults.cs:678
+msgid "TIMELINE_SPECIES_EXTINCT"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:688
+#, fuzzy
+msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
+msgstr "Популация на създанията"
+
+#: ../src/auto-evo/RunResults.cs:694
+#, fuzzy
+msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
+msgstr "Популация на създанията"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1404,6 +1436,23 @@ msgstr "От: {0}"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
 msgstr "Затваряне"
+
+#: ../src/general/IWorldEffect.cs:77
+msgid "COMPOUND_CONCENTRATIONS_DRASTICALLY_DROPPED"
+msgstr ""
+
+#: ../src/general/IWorldEffect.cs:84 ../src/gui_common/CompoundAmount.cs:168
+#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
+#: ../src/microbe_stage/MicrobeHUD.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1013
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1229
+msgid "PERCENTAGE_VALUE"
+msgstr "{0} %"
+
+#: ../src/general/IWorldEffect.cs:82
+msgid "COMPOUND_CONCENTRATIONS_DECREASED"
+msgstr ""
 
 #: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
@@ -1881,15 +1930,6 @@ msgstr "/в секунда"
 #: ../src/gui_common/ChemicalEquation.cs:298
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "при"
-
-#: ../src/gui_common/CompoundAmount.cs:168
-#: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:638
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1013
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1229
-msgid "PERCENTAGE_VALUE"
-msgstr "{0} %"
 
 #: ../src/gui_common/CreditsScroll.cs:226
 msgid "LEAD_DEVELOPERS"
@@ -4454,6 +4494,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr "Преглед"
+
+#, fuzzy
+#~ msgid "PERCENTAGE_FORMAT"
+#~ msgstr "{0} %"
 
 #~ msgid "Cancel"
 #~ msgstr "Отказ"

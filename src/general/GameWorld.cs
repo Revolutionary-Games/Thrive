@@ -319,7 +319,7 @@ public class GameWorld
         return worldSpecies[id];
     }
 
-    public void LogWorldEvent(string description, string iconPath = null)
+    public void LogWorldEvent(LocalizedString description, bool highlight = false, string iconPath = null)
     {
         // Enforce limit
         if (worldTimeline.Count >= Constants.TIMELINE_HISTORY_RANGE)
@@ -332,13 +332,14 @@ public class GameWorld
             worldTimeline.Add(TotalPassedTime, new List<WorldEventDescription>());
 
         // Event already logged in timeline
-        if (worldTimeline[TotalPassedTime].Any(entry => entry.EventDescription == description))
+        if (worldTimeline[TotalPassedTime].Any(entry => entry.EventDescription.ToString() == description.ToString()))
             return;
 
         worldTimeline[TotalPassedTime].Add(new WorldEventDescription
             {
                 EventDescription = description,
                 IconPath = iconPath,
+                Highlighted = highlight,
             });
 
         worldTimelineKeys.Enqueue(TotalPassedTime);
@@ -359,13 +360,12 @@ public class GameWorld
 }
 
 /// <summary>
-///   A description of what has happened in the game world to be added to the timeline.
-///   Includes icons and attributes (extra indicator besides the icon like decrease or increase
-///   icon once that's implemented)
+///   A description of what has happened in the game world to be added to the timeline. Decorated with an icon
+///   if there's any.
 /// </summary>
 public class WorldEventDescription
 {
-    public double TimePeriod;
-    public string EventDescription;
-    public string IconPath;
+    public LocalizedString EventDescription { get; set; }
+    public string IconPath { get; set; }
+    public bool Highlighted { get; set; }
 }

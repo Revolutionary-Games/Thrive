@@ -464,11 +464,15 @@
                     {
                         case NewSpeciesType.FillNiche:
                             builder.Append(new LocalizedString("RUN_RESULT_NICHE_FILL"));
-                            world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has split into " + entry.Species.FormattedName + " to fill a niche");
+                            world.LogWorldEvent(new LocalizedString("TIMELINE_NICHE_FILL",
+                                entry.SplitFrom.FormattedName, entry.Species.FormattedName),
+                                entry.SplitFrom.PlayerSpecies, "res://assets/textures/gui/bevel/newSpecies.png");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
                             builder.Append(new LocalizedString("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
-                            world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has split into " + entry.Species.FormattedName + " due to differing selection pressures");
+                            world.LogWorldEvent(new LocalizedString("TIMELINE_SELECTION_PRESSURE_SPLIT",
+                                entry.SplitFrom.FormattedName, entry.Species.FormattedName),
+                                entry.SplitFrom.PlayerSpecies, "res://assets/textures/gui/bevel/newSpecies.png");
                             break;
                         default:
                             GD.PrintErr("Unhandled newly created species type: ", entry.NewlyCreated.Value);
@@ -548,11 +552,16 @@
 
                     if (numberOfPatches < 2)
                     {
-                        world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has migrated to " + TranslationServer.Translate(entry.SpreadToPatches[0].To.Name));
+                        world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
+                            entry.Species.FormattedName, TranslationServer.Translate(
+                                entry.SpreadToPatches[0].To.Name)), entry.Species.PlayerSpecies,
+                                "res://assets/textures/gui/bevel/newSpecies.png");
                     }
                     else
                     {
-                        world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has migrated to multiple patches");
+                        world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE",
+                            entry.Species.FormattedName), entry.Species.PlayerSpecies,
+                            "res://assets/textures/gui/bevel/newSpecies.png");
                     }
                 }
 
@@ -670,8 +679,9 @@
                     builder.Append(new LocalizedString("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append('\n');
 
-                    world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has gone extinct!",
-                        "res://assets/textures/gui/bevel/SuicideIcon.png");
+                    world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT",
+                        entry.Species.FormattedName), entry.Species.PlayerSpecies,
+                        "res://assets/textures/gui/bevel/extinction.png");
                 }
                 else
                 {
@@ -680,15 +690,15 @@
                     {
                         if (globalPopulation > previousTotalPopulations)
                         {
-                            world.LogWorldEvent(
-                                "[u]" + entry.Species.FormattedName + "[/u]" + " populations have increased to " + globalPopulation,
-                                "res://assets/textures/gui/bevel/increase.png");
+                            world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
+                                entry.Species.FormattedName, ((double)globalPopulation).FormatNumber()),
+                                entry.Species.PlayerSpecies, "res://assets/textures/gui/bevel/popUp.png");
                         }
                         else
                         {
-                            world.LogWorldEvent(
-                                "[u]" + entry.Species.FormattedName + "[/u]" + " populations have decreased to " + globalPopulation,
-                                "res://assets/textures/gui/bevel/decrease.png");
+                            world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
+                                entry.Species.FormattedName, ((double)globalPopulation).FormatNumber()),
+                                entry.Species.PlayerSpecies, "res://assets/textures/gui/bevel/popDown.png");
                         }
                     }
                 }

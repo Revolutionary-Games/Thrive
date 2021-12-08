@@ -655,6 +655,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
+            gui.UpdateTimeline();
         }
     }
 
