@@ -1,4 +1,5 @@
-﻿using AutoEvo;
+﻿using System;
+using AutoEvo;
 
 public class HeterotrophicFoodSource : FoodSource
 {
@@ -76,6 +77,11 @@ public class HeterotrophicFoodSource : FoodSource
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
         return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+    }
+
+    public override IFormattable GetDescription()
+    {
+        return new LocalizedString("PREDATION_FOOD_SOURCE", prey.FormattedName);
     }
 
     public override float TotalEnergyAvailable()

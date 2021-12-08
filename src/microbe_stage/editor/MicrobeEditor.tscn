@@ -1309,10 +1309,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 164.0
-margin_top = 164.0
-margin_right = 454.0
-margin_bottom = 652.0
+margin_left = 168.0
+margin_top = 168.0
+margin_right = 458.0
+margin_bottom = 656.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -3949,7 +3949,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/PredictionExplanation/VBoxContainer/ScrollContainer"]
 margin_right = 75.0
-margin_bottom = 25.0
+margin_bottom = 17.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -3958,6 +3958,19 @@ margin_right = 1.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 83 )
+autowrap = true
+
+[node name="Spacer" type="Control" parent="MicrobeEditorGUI/PredictionExplanation/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Help" type="Label" parent="MicrobeEditorGUI/PredictionExplanation/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 83 )
+text = "AUTO-EVO_EXPLANATION_EXPLANATION"
 autowrap = true
 
 [node name="Close" type="Button" parent="MicrobeEditorGUI/PredictionExplanation/VBoxContainer"]

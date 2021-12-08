@@ -45,6 +45,11 @@ public class MarineSnowFoodSource : FoodSource
         return score;
     }
 
+    public override IFormattable GetDescription()
+    {
+        return new LocalizedString("MARINE_SNOW_FOOD_SOURCE");
+    }
+
     public override float TotalEnergyAvailable()
     {
         return totalEnergy;

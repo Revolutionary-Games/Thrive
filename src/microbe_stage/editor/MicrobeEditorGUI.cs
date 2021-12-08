@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -489,6 +490,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     private PendingAutoEvoPrediction waitingForPrediction;
+    private LocalizedStringBuilder predictionDetailsText;
 
     public enum EditorTab
     {
@@ -1253,6 +1255,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (what == NotificationTranslationChanged)
         {
             UpdateAutoEvoPredictionTranslations();
+            UpdateAutoEvoPredictionDetailsText();
         }
     }
 
@@ -1950,10 +1953,15 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             worstPatchName = null;
         }
 
+        CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
+            run.PlayerSpeciesOriginal.FormattedName);
+
         UpdateAutoEvoPredictionTranslations();
 
-        // TODO: update panel for the energy sources
-        autoEvoPredictionExplanationLabel.Text = "TODO: the actual explanation text";
+        if (autoEvoPredictionPanel.Visible)
+        {
+            UpdateAutoEvoPredictionDetailsText();
+        }
     }
 
     /// <remarks>
@@ -2242,6 +2250,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private void OpenAutoEvoPredictionDetails()
     {
         GUICommon.Instance.PlayButtonPressSound();
+
+        UpdateAutoEvoPredictionDetailsText();
+
         autoEvoPredictionExplanationPopup.PopupCenteredShrink();
     }
 
@@ -2249,6 +2260,48 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         GUICommon.Instance.PlayButtonPressSound();
         autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void CreateAutoEvoPredictionDetailsText(
+        Dictionary<Patch, RunResults.SpeciesPatchEnergyResults> energyResults, string playerSpeciesName)
+    {
+        predictionDetailsText = new LocalizedStringBuilder(300);
+
+        // This loop shows all the patches the player species is in. Could perhaps just show the current one
+        foreach (var energyResult in energyResults)
+        {
+            predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
+                new LocalizedString(energyResult.Key.Name), playerSpeciesName));
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
+                energyResult.Value.TotalEnergyGathered, energyResult.Value.IndividualCost,
+                energyResult.Value.UnadjustedPopulation));
+
+            predictionDetailsText.Append('\n');
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
+            predictionDetailsText.Append('\n');
+
+            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy)
+            {
+                var data = nicheInfo.Value;
+                predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
+                    data.CurrentSpeciesEnergy, data.CurrentSpeciesFitness, data.TotalAvailableEnergy,
+                    data.TotalFitness));
+                predictionDetailsText.Append('\n');
+            }
+
+            predictionDetailsText.Append('\n');
+        }
+    }
+
+    private void UpdateAutoEvoPredictionDetailsText()
+    {
+        autoEvoPredictionExplanationLabel.Text = predictionDetailsText != null ?
+            predictionDetailsText.ToString() :
+            TranslationServer.Translate("NO_DATA_TO_SHOW");
     }
 
     /// <summary>

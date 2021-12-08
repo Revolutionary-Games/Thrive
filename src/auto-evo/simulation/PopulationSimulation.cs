@@ -126,7 +126,7 @@
             foreach (var entry in patchesToSimulate)
             {
                 // Simulate the species in each patch taking into account the already computed populations
-                SimulatePatchStep(parameters.Results, entry.Value,
+                SimulatePatchStep(parameters, entry.Value,
                     species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0),
                     random, cache, autoEvoConfiguration);
             }
@@ -135,10 +135,14 @@
         /// <summary>
         ///   The heart of the simulation that handles the processed parameters and calculates future populations.
         /// </summary>
-        private static void SimulatePatchStep(RunResults populations, Patch patch, IEnumerable<Species> genericSpecies,
-            Random random, SimulationCache cache, AutoEvoConfiguration autoEvoConfiguration)
+        private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
+            IEnumerable<Species> genericSpecies, Random random, SimulationCache cache,
+            AutoEvoConfiguration autoEvoConfiguration)
         {
             _ = random;
+
+            var populations = simulationConfiguration.Results;
+            bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
             // This algorithm version is for microbe species
             var species = genericSpecies.Select(s => (MicrobeSpecies)s).ToList();
@@ -173,9 +177,7 @@
             {
                 // If there isn't a source of energy here, no need for more calculations
                 if (niche.TotalEnergyAvailable() <= MathUtils.EPSILON)
-                {
                     continue;
-                }
 
                 var fitnessBySpecies = new Dictionary<MicrobeSpecies, float>();
                 var totalNicheFitness = 0.0f;
@@ -207,8 +209,20 @@
 
                 foreach (var currentSpecies in species)
                 {
-                    energyBySpecies[currentSpecies] +=
-                        fitnessBySpecies[currentSpecies] * niche.TotalEnergyAvailable() / totalNicheFitness;
+                    var energy = fitnessBySpecies[currentSpecies] * niche.TotalEnergyAvailable() / totalNicheFitness;
+
+                    // If this species can't gain energy here, don't count it (this also prevents it from appearing
+                    // in food sources (if that's not what we want), if the species doesn't use this food source
+                    if (energy <= MathUtils.EPSILON)
+                        continue;
+
+                    energyBySpecies[currentSpecies] += energy;
+
+                    if (trackEnergy)
+                    {
+                        populations.AddTrackedEnergyForSpecies(currentSpecies, patch, niche,
+                            fitnessBySpecies[currentSpecies], energy, totalNicheFitness);
+                    }
                 }
             }
 
@@ -219,6 +233,12 @@
                 // Modify populations based on energy
                 var newPopulation = (long)(energyBySpecies[currentSpecies]
                     / energyBalanceInfo.FinalBalanceStationary);
+
+                if (trackEnergy)
+                {
+                    populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
+                        energyBySpecies[currentSpecies], energyBalanceInfo.FinalBalanceStationary);
+                }
 
                 // TODO: this is a hack for now to make the player experience better, try to get the same rules working
                 // for the player and AI species in the future.
