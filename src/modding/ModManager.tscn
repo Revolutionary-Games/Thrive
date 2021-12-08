@@ -44,6 +44,7 @@ FullInfoAuthorPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginC
 FullInfoVersionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer3/Version")
 FullInfoDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer4/Description")
 FullInfoLongDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer5/LongDescription")
+FullInfoFromWorkshopPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16/IsWorkshop")
 FullInfoIconFilePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer6/IconFile")
 FullInfoInfoUrlPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer7/InfoURL")
 FullInfoLicensePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer8/License")
@@ -58,6 +59,8 @@ ModUploaderButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/U
 NewModGUIPath = NodePath("NewModGUI")
 ModCreateErrorDialogPath = NodePath("CreateModError")
 ModUploaderPath = NodePath("ModUploader")
+ModErrorDialogPath = NodePath("LoadUnloadErrors")
+RestartRequiredPath = NodePath("RestartRequired")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_top = 1.0
@@ -91,35 +94,36 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 263.0
-margin_top = 20.0
-margin_right = 1017.0
-margin_bottom = 653.0
+margin_left = 215.0
+margin_top = 34.0
+margin_right = 1065.0
+margin_bottom = 639.0
+rect_min_size = Vector2( 850, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="UpperPart" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 754.0
+margin_right = 850.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-margin_right = 300.0
+margin_right = 348.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
-margin_right = 300.0
+margin_right = 348.0
 margin_bottom = 25.0
 text = "AVAILABLE_MODS"
 align = 1
 
 [node name="AvailableMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
 margin_top = 29.0
-margin_right = 300.0
+margin_right = 348.0
 margin_bottom = 229.0
 rect_min_size = Vector2( 300, 200 )
 size_flags_horizontal = 3
@@ -128,28 +132,28 @@ fixed_icon_size = Vector2( 32, 32 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
 margin_top = 233.0
-margin_right = 300.0
+margin_right = 348.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
 
 [node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
-margin_right = 148.0
+margin_right = 172.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 11 )
 text = "REFRESH"
 
 [node name="Browse" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
-margin_left = 152.0
-margin_right = 300.0
+margin_left = 176.0
+margin_right = 348.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 11 )
 text = "OPEN_FOLDER"
 
 [node name="Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-margin_left = 304.0
-margin_right = 450.0
+margin_left = 352.0
+margin_right = 498.0
 margin_bottom = 265.0
 size_flags_vertical = 3
 alignment = 1
@@ -179,21 +183,21 @@ disabled = true
 text = "LEFT_ARROW"
 
 [node name="Right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-margin_left = 454.0
-margin_right = 754.0
+margin_left = 502.0
+margin_right = 850.0
 margin_bottom = 265.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
-margin_right = 300.0
+margin_right = 348.0
 margin_bottom = 25.0
 text = "ENABLED_MODS"
 align = 1
 
 [node name="ActiveMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
 margin_top = 29.0
-margin_right = 300.0
+margin_right = 348.0
 margin_bottom = 229.0
 rect_min_size = Vector2( 300, 200 )
 size_flags_horizontal = 3
@@ -202,7 +206,7 @@ fixed_icon_size = Vector2( 32, 32 )
 
 [node name="DisableAll" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
 margin_top = 233.0
-margin_right = 300.0
+margin_right = 348.0
 margin_bottom = 265.0
 custom_fonts/font = ExtResource( 11 )
 disabled = true
@@ -210,20 +214,20 @@ text = "DISABLE_ALL"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
 margin_top = 269.0
-margin_right = 754.0
+margin_right = 850.0
 margin_bottom = 274.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 278.0
-margin_right = 754.0
-margin_bottom = 513.0
+margin_right = 850.0
+margin_bottom = 485.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 753.0
-margin_bottom = 234.0
+margin_right = 849.0
+margin_bottom = 206.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -232,11 +236,11 @@ custom_constants/margin_bottom = 10
 [node name="CurrentlySelected" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 742.0
-margin_bottom = 223.0
+margin_right = 838.0
+margin_bottom = 195.0
 
 [node name="NameLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-margin_right = 732.0
+margin_right = 828.0
 margin_bottom = 32.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
@@ -271,7 +275,7 @@ __meta__ = {
 
 [node name="AuthorLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_top = 36.0
-margin_right = 732.0
+margin_right = 828.0
 margin_bottom = 61.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
@@ -281,13 +285,13 @@ text = "MOD_AUTHOR"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
 margin_left = 138.0
-margin_right = 615.0
+margin_right = 711.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
-margin_left = 619.0
-margin_right = 732.0
+margin_left = 715.0
+margin_right = 828.0
 margin_bottom = 25.0
 text = "Some dude"
 __meta__ = {
@@ -296,7 +300,7 @@ __meta__ = {
 
 [node name="VersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_top = 65.0
-margin_right = 732.0
+margin_right = 828.0
 margin_bottom = 92.0
 
 [node name="ModVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
@@ -329,13 +333,13 @@ __meta__ = {
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
 margin_left = 179.0
-margin_right = 230.0
+margin_right = 326.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 
 [node name="ThriveVersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
-margin_left = 234.0
-margin_right = 732.0
+margin_left = 330.0
+margin_right = 828.0
 margin_bottom = 27.0
 alignment = 2
 
@@ -428,25 +432,25 @@ __meta__ = {
 
 [node name="DescriptionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_top = 96.0
-margin_right = 732.0
-margin_bottom = 177.0
+margin_right = 828.0
+margin_bottom = 149.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
-margin_top = 28.0
+margin_top = 14.0
 margin_right = 182.0
-margin_bottom = 53.0
+margin_bottom = 39.0
 text = "MOD_DESCRIPTION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
 margin_left = 186.0
-margin_right = 732.0
-margin_bottom = 81.0
+margin_right = 828.0
+margin_bottom = 53.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer"]
-margin_right = 546.0
-margin_bottom = 81.0
+margin_right = 642.0
+margin_bottom = 53.0
 size_flags_horizontal = 3
 text = "Mod description goes here that can get a bit long sometimes so this needs a bit of space here to allow it to fit here"
 align = 2
@@ -457,9 +461,9 @@ __meta__ = {
 }
 
 [node name="ButtonsLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-margin_top = 181.0
-margin_right = 732.0
-margin_bottom = 213.0
+margin_top = 153.0
+margin_right = 828.0
+margin_bottom = 185.0
 
 [node name="MoreInfo" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
 margin_right = 109.0
@@ -478,15 +482,15 @@ disabled = true
 text = "OPEN_MOD_URL"
 
 [node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_top = 517.0
-margin_right = 754.0
-margin_bottom = 522.0
+margin_top = 489.0
+margin_right = 850.0
+margin_bottom = 494.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 526.0
-margin_right = 754.0
-margin_bottom = 558.0
+margin_top = 498.0
+margin_right = 850.0
+margin_bottom = 530.0
 size_flags_horizontal = 3
 alignment = 2
 __meta__ = {
@@ -494,54 +498,54 @@ __meta__ = {
 }
 
 [node name="Workshop" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 421.0
-margin_right = 614.0
+margin_left = 517.0
+margin_right = 710.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 11 )
 text = "BROWSE_WORKSHOP"
 
 [node name="Upload" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 618.0
-margin_right = 700.0
+margin_left = 714.0
+margin_right = 796.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 11 )
 text = "UPLOAD"
 
 [node name="New" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 704.0
-margin_right = 754.0
+margin_left = 800.0
+margin_right = 850.0
 margin_bottom = 32.0
 custom_fonts/font = ExtResource( 11 )
 text = "NEW"
 
 [node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_top = 562.0
-margin_right = 754.0
-margin_bottom = 567.0
+margin_top = 534.0
+margin_right = 850.0
+margin_bottom = 539.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_top = 571.0
-margin_right = 754.0
-margin_bottom = 588.0
+margin_top = 543.0
+margin_right = 850.0
+margin_bottom = 560.0
 custom_fonts/font = ExtResource( 5 )
 text = "MOD_LOAD_UNLOAD_CAVEATS"
 align = 1
 autowrap = true
 
 [node name="Spacer4" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_top = 592.0
-margin_right = 754.0
-margin_bottom = 597.0
+margin_top = 564.0
+margin_right = 850.0
+margin_bottom = 569.0
 rect_min_size = Vector2( 0, 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 601.0
-margin_right = 754.0
-margin_bottom = 633.0
+margin_top = 573.0
+margin_right = 850.0
+margin_bottom = 605.0
 alignment = 1
 
 [node name="LoadAll" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
@@ -555,8 +559,8 @@ custom_fonts/font = ExtResource( 11 )
 text = "ENABLE_ALL_COMPATIBLE"
 
 [node name="Apply" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 297.0
-margin_right = 456.0
+margin_left = 345.0
+margin_right = 504.0
 margin_bottom = 32.0
 size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 11 )
@@ -603,13 +607,13 @@ size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer"]
 margin_right = 550.0
-margin_bottom = 930.0
+margin_bottom = 967.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer"]
 margin_right = 540.0
-margin_bottom = 930.0
+margin_bottom = 967.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 15
@@ -739,6 +743,22 @@ margin_right = 534.0
 margin_bottom = 48.0
 custom_fonts/font = ExtResource( 10 )
 text = "Longer mod description"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="VBoxContainer16" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 315.0
+margin_right = 534.0
+margin_bottom = 363.0
+
+[node name="IsWorkshop" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer16"]
+margin_top = 26.0
+margin_right = 534.0
+margin_bottom = 48.0
+custom_fonts/font = ExtResource( 10 )
+text = "Is from workshop"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
@@ -963,6 +983,17 @@ ExceptionInfo = ""
 
 [node name="ModUploader" parent="." instance=ExtResource( 12 )]
 visible = false
+
+[node name="LoadUnloadErrors" parent="." instance=ExtResource( 7 )]
+rect_min_size = Vector2( 400, 350 )
+ErrorMessage = "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
+ExceptionInfo = ""
+
+[node name="RestartRequired" parent="." instance=ExtResource( 3 )]
+rect_min_size = Vector2( 400, 0 )
+WindowTitle = "RESTART_REQUIRED"
+HideCancelButton = true
+DialogText = "MOD_LOAD_UNLOAD_RESTART"
 
 [connection signal="pressed" from="HBoxContainer/Quit" to="." method="BackPressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/UpperPart/Left/AvailableMods" to="." method="AvailableModSelected"]

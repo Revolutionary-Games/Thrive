@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-02 17:58+0700\n"
+"POT-Creation-Date: 2021-12-08 15:59+0700\n"
 "PO-Revision-Date: 2021-11-26 16:55+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -81,12 +81,12 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Видовете облаци са:\n"
 "\n"
-"Бял – [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
-"Жълт – [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:"
+"Бял — [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
+"Жълт — [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:"
 "compound]\n"
-"Оранжев – [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]\n"
-"Лилав – [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound]\n"
-"Ръждивокафяв – [thrive:compound type=\"iron\"]желязо[/thrive:compound]\n"
+"Оранжев — [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound]\n"
+"Лилав — [thrive:compound type=\"phosphates\"]фосфат[/thrive:compound]\n"
+"Ръждивокафяв — [thrive:compound type=\"iron\"]желязо[/thrive:compound]\n"
 "\n"
 "[thrive:compound type=\"glucose\"]Глюкозата[/thrive:compound] създава "
 "[thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
@@ -203,7 +203,7 @@ msgstr ""
 "\"]амоняк[/thrive:compound] от [thrive:compound type=\"atp\"]АТФ[/thrive:"
 "compound], атмосферния азот и кислорода\n"
 "\n"
-"Вакуола: Съхранява до 15 хранителни вещества\n"
+"Вакуола: Съхранява до 8 хранителни вещества\n"
 "\n"
 "Токсични вакуоли: Произвеждат токсини, известни като [thrive:compound type="
 "\"oxytoxy\"]окситоксини[/thrive:compound]"
@@ -238,18 +238,18 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Забавен факт е, че Дидиний и Парамеций са давани за пример като ловец и "
-"плячка. Вие от коя страна сте – ловецът или плячката?"
+"плячка. Вие от коя страна сте — ловецът или плячката?"
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"Ето един съвет – токсините може да се използват за да спрат токсините на "
+"Ето един съвет — токсините може да се използват за да спрат токсините на "
 "противника, ако сте достатъчно бързи, разбира се."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Ето един съвет – осморегулацията струва 1 АТФ на секунда за всеки "
+"Ето един съвет — осморегулацията струва 1 АТФ на секунда за всеки "
 "шестоъгълник на Вашата клетка, всеки празен шестоъгълник от цитоплазма "
 "създава 5 АТФ на секунда, с други думи, ако губите АТФ по време на "
 "осморегулация, просто добавете няколко празни шестоъгълника цитоплазма или "
@@ -267,24 +267,24 @@ msgstr "Забавен факт е, че метаболозомата предс
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "Ето един съвет – понякога просто бягайте от другите клетки."
+msgstr "Ето един съвет — понякога просто бягайте от другите клетки."
 
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"Ето един съвет – ако дадена клетка е 1/2 от Вашия размер, може да я "
+"Ето един съвет — ако дадена клетка е 1/2 от Вашия размер, може да я "
 "погълнете."
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Ето един съвет – бактериите може да са малки, но някои от тях са много "
+"Ето един съвет — бактериите може да са малки, но някои от тях са много "
 "опасни, могат да Ви убият!"
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Ето един съвет – ако ловувате дадени създания, без да искате, може напълно "
+"Ето един съвет — ако ловувате дадени създания, без да искате, може напълно "
 "да ги унищожите, но не само Вие сте способни на това."
 
 #: ../simulation_parameters/common/help_texts.json:153
@@ -302,23 +302,23 @@ msgstr "Ех тези сини клетки."
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Ето един съвет – биомите са нещо повече от фонове, химичните съединения в "
+"Ето един съвет — биомите са нещо повече от фонове, химичните съединения в "
 "различните биоми не се появяват по едно и също време."
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Ето един съвет – с повече флагели ще се движите по-бързо, бръм, бръм, но "
+"Ето един съвет — с повече флагели ще се движите по-бързо, бръм, бръм, но "
 "това ще Ви струва повече АТФ"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Ето един съвет – може да поглъщате дори и железните късове."
+msgstr "Ето един съвет — може да поглъщате дори и железните късове."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Ето един съвет – подгответе се преди да добавите ядрото. Това нещо е адски "
+"Ето един съвет — подгответе се преди да добавите ядрото. Това нещо е адски "
 "скъпо! И не е лесно да се поддържа."
 
 #: ../simulation_parameters/common/help_texts.json:174
@@ -348,7 +348,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Ето един съвет – пазете се от големите клетки и големите бактерии, няма да "
+"Ето един съвет — пазете се от големите клетки и големите бактерии, няма да "
 "е приятно, ако станете част от менюто им."
 
 #: ../simulation_parameters/common/help_texts.json:189
@@ -360,7 +360,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"Ето един съвет – може да поглъщате големите железни късове, ако Вашата "
+"Ето един съвет — може да поглъщате големите железни късове, ако Вашата "
 "клетка е с размер от 150 шестоъгълника."
 
 #: ../simulation_parameters/common/help_texts.json:195
@@ -456,7 +456,7 @@ msgid "ZOOM_IN"
 msgstr "Приближаване"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3938
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3890
 msgid "EDITOR"
 msgstr "Редактор"
 
@@ -565,7 +565,7 @@ msgstr "Снимка на екрана"
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "SHOW_HELP"
-msgstr "Показване на помощта"
+msgstr "Показване на ръководството"
 
 #: ../simulation_parameters/common/input_options.json:200
 msgid "TOGGLE_FULLSCREEN"
@@ -719,25 +719,25 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1294
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3585
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3537
 msgid "AMMONIA"
 msgstr "Амоняк"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1348
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3656
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3608
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1402
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3502
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1240
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3620
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3572
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -748,28 +748,28 @@ msgstr "Окситоксин"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1456
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3643
 msgid "IRON"
 msgstr "Желязо"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3386
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3338
 msgid "OXYGEN"
 msgstr "Кислород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3440
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3392
 msgid "CARBON_DIOXIDE"
 msgstr "Въглероден диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3413
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3365
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3266
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
 msgid "SUNLIGHT"
 msgstr "Слънчева светлина"
 
@@ -893,32 +893,32 @@ msgstr "Цитоплазма"
 msgid "NUCLEUS"
 msgstr "Ядро"
 
-#: ../src/auto-evo/AutoEvoRun.cs:123
+#: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
 msgstr "Прекратена."
 
-#: ../src/auto-evo/AutoEvoRun.cs:126
+#: ../src/auto-evo/AutoEvoRun.cs:125
 msgid "FINISHED"
 msgstr "Завършена."
 
-#: ../src/auto-evo/AutoEvoRun.cs:129
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "NOT_RUNNING"
 msgstr "Не се изпълнява."
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:138
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1} % на стъпка {1:n0} от {2:n0}."
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
 msgstr "Започната"
 
-#: ../src/auto-evo/AutoEvoRun.cs:286
+#: ../src/auto-evo/AutoEvoRun.cs:284
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
 
-#: ../src/auto-evo/RunResults.cs:425
+#: ../src/auto-evo/RunResults.cs:426
 msgid "POPULATION"
 msgstr "популация:"
 
@@ -930,43 +930,43 @@ msgstr "изчезнаха от {0}"
 msgid "PREVIOUS"
 msgstr "предишна:"
 
-#: ../src/auto-evo/RunResults.cs:458
+#: ../src/auto-evo/RunResults.cs:457
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "отделиха се от популацията на „{0}“"
 
-#: ../src/auto-evo/RunResults.cs:471
+#: ../src/auto-evo/RunResults.cs:471 ../src/auto-evo/RunResults.cs:478
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "появиха се за да запълнят ниша"
 
-#: ../src/auto-evo/RunResults.cs:475
+#: ../src/auto-evo/RunResults.cs:475 ../src/auto-evo/RunResults.cs:481
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "появиха се поради селекционен натиск"
 
-#: ../src/auto-evo/RunResults.cs:494
+#: ../src/auto-evo/RunResults.cs:499
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "от популацията в следните зони се отделиха „{0}“:"
 
-#: ../src/auto-evo/RunResults.cs:510
+#: ../src/auto-evo/RunResults.cs:515
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "претърпяха мутация"
 
-#: ../src/auto-evo/RunResults.cs:515
+#: ../src/auto-evo/RunResults.cs:520
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генен код:"
 
-#: ../src/auto-evo/RunResults.cs:526
+#: ../src/auto-evo/RunResults.cs:531
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:539
+#: ../src/auto-evo/RunResults.cs:543
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "към {0} се преселиха {1} индивида от популацията в {2}"
 
-#: ../src/auto-evo/RunResults.cs:567
+#: ../src/auto-evo/RunResults.cs:571
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "текуща популация в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:677
+#: ../src/auto-evo/RunResults.cs:681
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изчезнаха от планетата"
 
@@ -1390,7 +1390,7 @@ msgstr "Неизвестен бутон"
 
 #: ../src/general/Gallery.cs:70
 msgid "ARTWORK_TITLE"
-msgstr "„{0}“ – {1}"
+msgstr "„{0}“ — {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
@@ -1399,84 +1399,93 @@ msgstr "От: {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/modding/ModManager.tscn:952
+#: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
 msgid "CLOSE"
 msgstr "Затваряне"
 
-#: ../src/general/MainMenu.cs:224
+#: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
 
-#: ../src/general/MainMenu.tscn:176
+#: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
-#: ../src/general/MainMenu.tscn:189 ../src/general/PauseMenu.tscn:74
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
 msgstr "Зареждане"
 
-#: ../src/general/MainMenu.tscn:200 ../src/general/PauseMenu.tscn:96
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
 msgstr "Настройки"
 
-#: ../src/general/MainMenu.tscn:211
+#: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
 msgstr "Инструменти"
 
-#: ../src/general/MainMenu.tscn:222
+#: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
 msgstr "Изходен код"
 
-#: ../src/general/MainMenu.tscn:233
+#: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
 msgstr "Екстри"
 
-#: ../src/general/MainMenu.tscn:244
+#: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
 msgstr "Екип"
 
-#: ../src/general/MainMenu.tscn:255
+#: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
 msgstr "Изход"
 
-#: ../src/general/MainMenu.tscn:275
+#: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробен редактор"
 
-#: ../src/general/MainMenu.tscn:335 ../src/general/MainMenu.tscn:412
-#: ../src/general/MainMenu.tscn:450 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
+#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1177
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
-#: ../src/modding/ModManager.tscn:80 ../src/saving/NewSaveMenu.tscn:108
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
 
-#: ../src/general/MainMenu.tscn:356
+#: ../src/general/MainMenu.tscn:358
 msgid "MODS"
 msgstr "Модификации"
 
-#: ../src/general/MainMenu.tscn:370
+#: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
 msgstr "Галерия"
 
-#: ../src/general/MainMenu.tscn:382
+#: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
 msgstr "Лицензи"
 
-#: ../src/general/MainMenu.tscn:491
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение за „GLES2“"
 
-#: ../src/general/MainMenu.tscn:493
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "В момента „Thrive“ се изпълнява с „GLES2“. Това не е препоръчително и може "
 "да доведе до проблеми. Моля, обновете Вашите графични драйвери или "
 "използвайте графичните карти на „AMD“ или „Nvidia“."
+
+#: ../src/general/MainMenu.tscn:499
+#, fuzzy
+msgid "MOD_LOAD_ERRORS"
+msgstr "Инструмент за качване на модификации"
+
+#: ../src/general/MainMenu.tscn:500
+msgid "MOD_LOAD_ERRORS_OCCURRED"
+msgstr ""
 
 #: ../src/general/OptionsMenu.cs:838
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1744,7 +1753,7 @@ msgstr "Включено"
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Изключено"
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:72
+#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Запазване"
 
@@ -1759,7 +1768,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1229
 msgid "RESET_TO_DEFAULTS"
-msgstr "Възстановете настройките по подразбиране?"
+msgstr "Възстановяване на настройките по подразбиране?"
 
 #: ../src/general/OptionsMenu.tscn:1237
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
@@ -1768,16 +1777,16 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1238
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "Възстановете контролите по подразбиране?"
+msgstr "Възстановяване на контролите по подразбиране?"
 
 #: ../src/general/OptionsMenu.tscn:1247
 msgid "CLOSE_OPTIONS"
-msgstr "Затворете настройките?"
+msgstr "Затваряне настройките?"
 
 #: ../src/general/OptionsMenu.tscn:1267
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
-"Вашите промени не са запазени.\n"
+"Вашите промени не са запазени и ще бъдат отхвърлени.\n"
 "Искате ли да продължите?"
 
 #: ../src/general/OptionsMenu.tscn:1290
@@ -1786,7 +1795,7 @@ msgstr "Запазване на промените"
 
 #: ../src/general/OptionsMenu.tscn:1300
 msgid "DISCARD_AND_CONTINUE"
-msgstr "Без запазване на промените"
+msgstr "Отхвърляне и продължаване"
 
 #: ../src/general/OptionsMenu.tscn:1317
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
@@ -1831,13 +1840,13 @@ msgid "SAVE_GAME"
 msgstr "Запазване"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2673
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2625
 msgid "STATISTICS"
 msgstr "Статистика"
 
 #: ../src/general/PauseMenu.tscn:89
 msgid "HELP"
-msgstr "Помощ"
+msgstr "Ръководство"
 
 #: ../src/general/PauseMenu.tscn:103
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:116
@@ -1878,7 +1887,7 @@ msgstr "при"
 #: ../src/microbe_stage/MicrobeHUD.cs:638
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1013
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1194
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1229
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
@@ -2111,7 +2120,7 @@ msgstr ""
 
 #: ../src/gui_common/QuickLoadHandler.tscn:22
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr "Версията на записа е различна"
+msgstr "Записът е с различна версия"
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2137,15 +2146,15 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr "Оттенък – част от цвета"
+msgstr "Оттенък — част от цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Наситеност – количеството на сивото в цвета"
+msgstr "Наситеност — количеството на сивото в цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Стойност (яркост) – интензивността на цвета"
+msgstr "Стойност (яркост) — интензивността на цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
 msgid "COLOUR_PICKER_R_TOOLTIP"
@@ -2194,7 +2203,7 @@ msgstr "Не е възможно показването на по-малко о�
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
-#: ../src/modding/ModUploader.tscn:326
+#: ../src/modding/ModUploader.tscn:357
 msgid "OK"
 msgstr "ОК"
 
@@ -2220,7 +2229,7 @@ msgstr "Отваряне на менюто"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:53
 msgid "OPEN_HELP_SCREEN"
-msgstr "Отваряне на помощта"
+msgstr "Отваряне на ръководството"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:67
 msgid "WILL_YOU_THRIVE"
@@ -2291,7 +2300,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:231
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
-"Опортюнистичните микроби се съревновават за своята плячка\n"
+"Самонадеяните микроби се съревновават за своята плячка\n"
 "и са склонни да използват токсини срещу по-големите микроби.\n"
 "Предпазливите микроби не се излагат на опасност за своята плячка."
 
@@ -2327,7 +2336,7 @@ msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "Това е вътрешността на клетката. Цитоплазмата представлява комбинация от "
 "разтворени във вода йони, протеини и други вещества. Една от функциите, "
-"които изпълнява е гликолизата – превръщането на глюкоза в АТФ. Клетките, "
+"които изпълнява е гликолизата — превръщането на глюкоза в АТФ. Клетките, "
 "които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. "
 "Също така, цитоплазмата служи за съхранение на молекули в клетката за да "
 "може тя да увеличава размера си."
@@ -2664,7 +2673,7 @@ msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 "Вакуолата представлява вътрешен мембранен органел, който се използва като "
 "място за съхранение на хранителните вещества в клетката. Състои се от "
-"няколко секреторни мехурчета – малки мембранни структури, които са слети "
+"няколко секреторни мехурчета — малки мембранни структури, които са слети "
 "заедно. Изпълнена е с вода, която съдържа молекули, ензими и други "
 "вещества. Формата на вакуолата е течна и може да варира между различните "
 "клетки."
@@ -2791,7 +2800,7 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Превключване на предупреждението при излизане от играта."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3203
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3155
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:918
 msgid "TEMPERATURE"
 msgstr "Температура"
@@ -2801,19 +2810,19 @@ msgstr "Температура"
 msgid "N_A_MP"
 msgstr "Няма МТ"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:494
+#: ../src/microbe_stage/Microbe.Contact.cs:519
 msgid "DEATH"
 msgstr "измиране"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:599
+#: ../src/microbe_stage/Microbe.Contact.cs:624
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешно плячкосване"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:606
+#: ../src/microbe_stage/Microbe.Contact.cs:631
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:813
+#: ../src/microbe_stage/Microbe.Contact.cs:832
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -2928,8 +2937,8 @@ msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2871
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3510
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2823
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3462
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
@@ -2960,7 +2969,7 @@ msgstr "Превключване на клетъчните процеси"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1722
 msgid "HELP_BUTTON_TOOLTIP"
-msgstr "Отваряне на помощта"
+msgstr "Отваряне на ръководството"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1734
 msgid "SUICIDE_BUTTON_TOOLTIP"
@@ -3027,7 +3036,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
@@ -3035,11 +3044,11 @@ msgstr "Зареждане на микробния редактор"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Изчакване на автоматичната еволюция:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "Автоматичната еволюция не успя да стартира"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "състояние:"
 
@@ -3067,215 +3076,215 @@ msgstr "Търсене..."
 msgid "STRUCTURAL"
 msgstr "Строеж"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:932
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:930
 msgid "PROTEINS"
 msgstr "Протеини"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1014
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1000
 msgid "EXTERNAL"
 msgstr "Външна"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1074
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1054
 msgid "ORGANELLES"
 msgstr "Органели"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1229
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1189
 msgid "MEMBRANE_TYPES"
 msgstr "Видове"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1314
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1262
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Мека / Твърда"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1353
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1301
 msgid "COLOUR"
 msgstr "Цвят"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1418
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1366
 msgid "PEACEFUL"
 msgstr "Пасивно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1435
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1383
 msgid "AGGRESSIVE"
 msgstr "Агресивно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1469
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1417
 msgid "CAUTIOUS"
 msgstr "Предпазливо"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1487
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1435
 msgid "OPPORTUNISTIC"
-msgstr "Опортюнистично"
+msgstr "Самонадеяно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1521
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1469
 msgid "BRAVE"
 msgstr "Безразсъдно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1538
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1486
 msgid "FEARFUL"
 msgstr "Плашливо"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1572
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1520
 msgid "SESSILE"
 msgstr "Мудно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1589
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1537
 msgid "ACTIVE"
 msgstr "Енергично"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1623
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1571
 msgid "RESPONSIVE"
 msgstr "Бдително"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1640
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1588
 msgid "FOCUSED"
 msgstr "Вглъбено"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1706
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1654
 msgid "ORGANISM_STATISTICS"
 msgstr "Характеристика"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1768
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1716
 msgid "SPEED_COLON"
 msgstr "Скорост:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1798
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1746
 msgid "HP_COLON"
 msgstr "ТЗ:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1828
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1776
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1849
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1797
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1891
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1839
 msgid "ATP_BALANCE"
 msgstr "Баланс на АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2000
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1948
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Това е очакваната популация на Вашите създания според автоматичната "
 "еволюция.\n"
-"Тя симулира общата популация на Вашите създания, но изключва резултатите "
-"от Вашето представяне."
+"Тя симулира популацията на Вашите създания освен резултатите от Вашето "
+"представяне."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2003
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1951
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноза"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2068
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2016
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Обща популация:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2092
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2040
 msgid "BEST_PATCH_COLON"
 msgstr "Подходяща зона:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2065
 msgid "WORST_PATCH_COLON"
 msgstr "Неподходяща зона:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2257
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2205
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Наименование..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2311
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2259
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТКАЗ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2325
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2273
 msgid "CONFIRM_CAPITAL"
 msgstr "ГОТОВО"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2334
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2282
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицателен баланс на АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2335
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2283
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Вашият микроб не произвежда достатъчно АТФ за да оцелее!\n"
 "Искате ли да продължите?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2341
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Несвързани органели"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2343
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2291
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Има органели, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2440
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2388
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2454
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2402
 msgid "FOOD_CHAIN"
 msgstr "Хранителна верига"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2415
 msgid "TIMELINE"
 msgstr "Хронология"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2520
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2468
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2539
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2487
 msgid "EXTERNAL_EFFECTS"
 msgstr "Странични ефекти:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2682
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2634
 msgid "SPECIES_POPULATION"
 msgstr "Популация на създанията"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2720
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3162
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2672
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физически условия"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2828
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3345
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2780
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3297
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферни газове"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2931
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3854
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2883
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3806
 msgid "NEXT_CAPITAL"
 msgstr "НАПРЕД"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3044
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2996
 msgid "SELECT_A_PATCH"
 msgstr "Изберете зона"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3079
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3031
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3239
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3191
 msgid "PRESSURE"
 msgstr "Налягане"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3770
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3722
 msgid "SPECIES_PRESENT"
 msgstr "Настоящи създания"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3827
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3779
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Преселване"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3896
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3848
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3917
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3869
 msgid "PATCH_MAP"
 msgstr "Карта"
 
@@ -3288,7 +3297,7 @@ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Глюкозата се понижи на {0} от предишното си състояние."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:731
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1044
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
 msgid "MEGA_YEARS"
 msgstr "млн. г."
 
@@ -3333,37 +3342,37 @@ msgstr "години"
 msgid "SPECIES_LIST"
 msgstr "Списък на създанията"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1088
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1123
 msgid "FREEBUILDING"
 msgstr "Неограничени"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1185
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1220
 msgid "BIOME_LABEL"
 msgstr "Биом: „{0}“"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1190
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1225
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1229
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1264
 msgid "WITH_POPULATION"
 msgstr "{0}: {1} индивида"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1951
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1986
 msgid "FAILED"
 msgstr "Неуспешна"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1957
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1992
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2004
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1963
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1975
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1998
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2010
 msgid "N_A"
 msgstr "Няма"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2231
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2266
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Наименованието трябва да отговаря на бинарната номенклатура (родово "
@@ -3410,263 +3419,350 @@ msgstr ""
 "играта след като този прозорец се затвори или да започнете нова игра в нов "
 "свят."
 
-#: ../src/modding/ModManager.cs:273
+#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#, fuzzy
+msgid "CANT_LOAD_MOD_INFO"
+msgstr "Подробна информация"
+
+#: ../src/modding/ModLoader.cs:235
+#, fuzzy
+msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
+msgstr "Основна програмна библиотека:"
+
+#: ../src/modding/ModLoader.cs:252
+msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:279
+#, fuzzy
+msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
+msgstr "Основна програмна библиотека:"
+
+#: ../src/modding/ModLoader.cs:287
+msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:351
+#, fuzzy
+msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
+msgstr "Основна програмна библиотека:"
+
+#: ../src/modding/ModLoader.cs:364
+#, fuzzy
+msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
+msgstr "Основна програмна библиотека:"
+
+#: ../src/modding/ModLoader.cs:380
+msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
+msgstr ""
+
+#: ../src/modding/ModLoader.cs:394
+#, fuzzy
+msgid "PCK_LOAD_FAILED"
+msgstr "Зареждането приключи"
+
+#: ../src/modding/ModManager.cs:292
 msgid "INVALID_ICON_PATH"
 msgstr "Невалидно местоположение на иконата"
 
-#: ../src/modding/ModManager.cs:287
+#: ../src/modding/ModManager.cs:306
 msgid "INVALID_URL_SCHEME"
 msgstr "Невалидна връзка"
 
-#: ../src/modding/ModManager.cs:299
+#: ../src/modding/ModManager.cs:318
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr "Изисква се клас на сглобяване от модификацията"
+msgstr "Изисква се основна програмна библиотека"
 
-#: ../src/modding/ModManager.cs:506
+#: ../src/modding/ModManager.cs:544
 msgid "NO_SELECTED_MOD"
 msgstr "Няма"
 
-#: ../src/modding/ModManager.cs:867
+#: ../src/modding/ModManager.cs:869
+#, fuzzy
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr "Въвеждане на съществуващ идентификационен № за работилницата"
+
+#: ../src/modding/ModManager.cs:870
+msgid "THIS_IS_LOCAL_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:926
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Грешка при създаване на папката на модификацията"
 
-#: ../src/modding/ModManager.cs:876
+#: ../src/modding/ModManager.cs:935
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Грешка при създаване на информационния файл на модификацията"
 
-#: ../src/modding/ModManager.tscn:117
+#: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
 msgstr "Налични"
 
-#: ../src/modding/ModManager.tscn:140 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Опресняване"
 
-#: ../src/modding/ModManager.tscn:148
+#: ../src/modding/ModManager.tscn:152
 msgid "OPEN_FOLDER"
-msgstr "Отваряне на папката"
+msgstr "Местоположение"
 
-#: ../src/modding/ModManager.tscn:166
+#: ../src/modding/ModManager.tscn:170
 msgid "RIGHT_ARROW"
 msgstr "→"
 
-#: ../src/modding/ModManager.tscn:179
+#: ../src/modding/ModManager.tscn:183
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:191
+#: ../src/modding/ModManager.tscn:195
 msgid "ENABLED_MODS"
 msgstr "Включени"
 
-#: ../src/modding/ModManager.tscn:209
+#: ../src/modding/ModManager.tscn:213
 msgid "DISABLE_ALL"
-msgstr "Изключване на всички"
+msgstr "Изключване"
 
-#: ../src/modding/ModManager.tscn:246
+#: ../src/modding/ModManager.tscn:250
 msgid "SELECTED_MOD"
 msgstr "Избрана:"
 
-#: ../src/modding/ModManager.tscn:280 ../src/modding/ModManager.tscn:668
+#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr "Автор:"
 
-#: ../src/modding/ModManager.tscn:311 ../src/modding/ModManager.tscn:690
+#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
 #: ../src/modding/NewModGUI.tscn:165
 msgid "MOD_VERSION"
 msgstr "Версия:"
 
-#: ../src/modding/ModManager.tscn:367
+#: ../src/modding/ModManager.tscn:371
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr "Препоръчителна:"
 
-#: ../src/modding/ModManager.tscn:411
+#: ../src/modding/ModManager.tscn:415
 msgid "MINIMUM_VERSION"
 msgstr "Минимална:"
 
-#: ../src/modding/ModManager.tscn:438 ../src/modding/ModManager.tscn:712
+#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
 #: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
 msgstr "Описание:"
 
-#: ../src/modding/ModManager.tscn:470
+#: ../src/modding/ModManager.tscn:474
 msgid "MORE_INFO"
-msgstr "Повече информация"
+msgstr "Свойства"
 
-#: ../src/modding/ModManager.tscn:478
+#: ../src/modding/ModManager.tscn:482
 msgid "OPEN_MOD_URL"
-msgstr "Отваряне на връзката"
+msgstr "Хранилище"
 
-#: ../src/modding/ModManager.tscn:501
+#: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
 msgstr "Работилница"
 
-#: ../src/modding/ModManager.tscn:508 ../src/modding/ModUploader.tscn:44
+#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
 msgid "UPLOAD"
 msgstr "Качване"
 
-#: ../src/modding/ModManager.tscn:515
+#: ../src/modding/ModManager.tscn:519
 msgid "NEW"
 msgstr "Създаване"
 
-#: ../src/modding/ModManager.tscn:528
+#: ../src/modding/ModManager.tscn:532
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 "Важно: Повечето модификации се нуждаят от рестартиране на играта за да "
 "функционират правилно. Бъдете внимателни, защото някои модификации може да "
 "съдържат злонамерен код."
 
-#: ../src/modding/ModManager.tscn:555
+#: ../src/modding/ModManager.tscn:559
 msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Включване на съвместимите модификации"
 
-#: ../src/modding/ModManager.tscn:564
+#: ../src/modding/ModManager.tscn:568
 msgid "APPLY_CHANGES"
-msgstr "Запазване на промените"
+msgstr "Прилагане"
 
-#: ../src/modding/ModManager.tscn:575
+#: ../src/modding/ModManager.tscn:579
 msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "Промените не са запазени"
+msgstr "Промените не са приложени"
 
-#: ../src/modding/ModManager.tscn:576
+#: ../src/modding/ModManager.tscn:580
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr ""
-"Трябва да запазите Вашите промени за да включвате или изключвате "
-"модификациите."
+msgstr "Трябва да приложите Вашите промени за смяна на модификациите."
 
-#: ../src/modding/ModManager.tscn:577
+#: ../src/modding/ModManager.tscn:581
 msgid "DISCARD_CHANGES"
-msgstr "Без запазване на промените"
+msgstr "Отхвърляне на промените"
 
-#: ../src/modding/ModManager.tscn:584
+#: ../src/modding/ModManager.tscn:588
 msgid "FULL_MOD_INFO"
-msgstr "Подробна информация за модификацията"
+msgstr "Подробна информация"
 
-#: ../src/modding/ModManager.tscn:625 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
 msgid "MOD_NAME"
 msgstr "Наименование:"
 
-#: ../src/modding/ModManager.tscn:647 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
-msgstr "Вътрешно наименование (на папката):"
+msgstr "Наименование на папката:"
 
-#: ../src/modding/ModManager.tscn:734 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Подробно описание:"
 
-#: ../src/modding/ModManager.tscn:756 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "Икона:"
 
-#: ../src/modding/ModManager.tscn:778 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Връзка:"
 
-#: ../src/modding/ModManager.tscn:800 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr "Лиценз:"
 
-#: ../src/modding/ModManager.tscn:822 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Препоръчителна версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:844 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Минимална версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:866 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Максимална версия на „Thrive“:"
 
-#: ../src/modding/ModManager.tscn:888 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr "Основен файл:"
 
-#: ../src/modding/ModManager.tscn:910 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
-msgstr "Сглобяване:"
+msgstr "Програмна библиотека:"
 
-#: ../src/modding/ModManager.tscn:932 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr "Основен клас на сглобяване:"
+msgstr "Основна програмна библиотека:"
 
-#: ../src/modding/ModManager.tscn:959
+#: ../src/modding/ModManager.tscn:979
 msgid "MOD_CREATION_FAILED"
 msgstr "Създаването на модификацията е неуспешно"
 
-#: ../src/modding/ModUploader.cs:243 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModManager.tscn:989
+#, fuzzy
+msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
+msgstr ""
+"Важно: Повечето модификации се нуждаят от рестартиране на играта за да "
+"функционират правилно. Бъдете внимателни, защото някои модификации може да "
+"съдържат злонамерен код."
+
+#: ../src/modding/ModManager.tscn:994
+msgid "RESTART_REQUIRED"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:996
+#, fuzzy
+msgid "MOD_LOAD_UNLOAD_RESTART"
+msgstr ""
+"Важно: Повечето модификации се нуждаят от рестартиране на играта за да "
+"функционират правилно. Бъдете внимателни, защото някои модификации може да "
+"съдържат злонамерен код."
+
+#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Съдържанието за работилницата ще бъде качено от следната папка: {0}"
 
-#: ../src/modding/ModUploader.cs:273
+#: ../src/modding/ModUploader.cs:298
 msgid "MISSING_TITLE"
 msgstr "Заглавието липсва"
 
-#: ../src/modding/ModUploader.cs:279
+#: ../src/modding/ModUploader.cs:304
 msgid "MISSING_DESCRIPTION"
 msgstr "Описанието липсва"
 
-#: ../src/modding/ModUploader.cs:287
+#: ../src/modding/ModUploader.cs:312
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Описанието е твърде дълго"
 
-#: ../src/modding/ModUploader.cs:295
+#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
+#, fuzzy
+msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
+msgstr "Описанието е твърде дълго"
+
+#: ../src/modding/ModUploader.cs:326
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Етикетите са празни"
 
-#: ../src/modding/ModUploader.cs:303
+#: ../src/modding/ModUploader.cs:334
 msgid "INVALID_TAG"
-msgstr "Етикетът „{0}“ е невалиден"
+msgstr "Невалиден етикет: „{0}“"
 
-#: ../src/modding/ModUploader.cs:351
+#: ../src/modding/ModUploader.cs:348
+msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:355
+msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:398
+#, fuzzy
+msgid "ID_IS_NOT_A_NUMBER"
+msgstr "Идентификационен №"
+
+#: ../src/modding/ModUploader.cs:435
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Създаване..."
 
-#: ../src/modding/ModUploader.cs:373
-msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "Запазването на информацията е неуспешно поради следната грешка: {0}"
-
-#: ../src/modding/ModUploader.cs:415
+#: ../src/modding/ModUploader.cs:490
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Качване..."
 
-#: ../src/modding/ModUploader.cs:443
+#: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
-"Качването на модификацията в работилницата на „Steam“ е успешно, но трябва "
-"да приемете [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"Качването на модификацията в „Steam Workshop“ е успешно, но трябва да "
+"приемете [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
 "workshoplegalagreement]условията за ползване[/url][/color], за да бъде "
 "видима"
 
-#: ../src/modding/ModUploader.cs:447
+#: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr "Качването на модификацията в работилницата на „Steam“ е успешно"
+msgstr "Качването на модификацията в „Steam Workshop“ е успешно"
 
-#: ../src/modding/ModUploader.cs:507
+#: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "С публикуването на тази модификация, Вие се съгласявате с [color=#3796e1]"
 "[url=https://steamcommunity.com/sharedfiles/"
-"workshoplegalagreement]условията за ползване[/url][/color] на "
-"работилницата на „Steam“"
+"workshoplegalagreement]условията за ползване[/url][/color] на „Steam "
+"Workshop“"
 
-#: ../src/modding/ModUploader.cs:529 ../src/modding/NewModGUI.cs:288
+#: ../src/modding/ModUploader.cs:616
+msgid "SAVING_DATA_FAILED_DUE_TO"
+msgstr "Запазването на информацията е неуспешно поради следната грешка: {0}"
+
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Грешка: {0}"
 
-#: ../src/modding/ModUploader.tscn:43
+#: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
-msgstr "Инструмент за качване на модификациите"
+msgstr "Инструмент за качване на модификации"
 
-#: ../src/modding/ModUploader.tscn:83
+#: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
-msgstr "Модификация за качване:"
+msgstr "За качване:"
 
-#: ../src/modding/ModUploader.tscn:108
+#: ../src/modding/ModUploader.tscn:109
 msgid "UNKNOWN_WORKSHOP_ID"
 msgstr "Неизвестен идентификационен № за работилницата"
 
-#: ../src/modding/ModUploader.tscn:120
+#: ../src/modding/ModUploader.tscn:121
 msgid "CREATE_NEW"
 msgstr "Създаване на нов"
 
@@ -3714,11 +3810,30 @@ msgstr "Изображение:"
 msgid "BROWSE"
 msgstr "Търсене"
 
+#: ../src/modding/ModUploader.tscn:284
+#, fuzzy
+msgid "FORGET_MOD_DETAILS_TOOLTIP"
+msgstr "Продължаване на играта"
+
+#: ../src/modding/ModUploader.tscn:286
+msgid "FORGET_MOD_DETAILS"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
+#, fuzzy
+msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
+msgstr "Етикети (разделени с запетая):"
+
 #: ../src/modding/ModUploader.tscn:294
+#, fuzzy
+msgid "WORKSHOP_ITEM_CHANGE_NOTES"
+msgstr "Етикети (разделени с запетая):"
+
+#: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
 msgstr "Избиране на изображение"
 
-#: ../src/modding/ModUploader.tscn:305
+#: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Качването е успешно"
 
@@ -3732,23 +3847,28 @@ msgstr "Невалиден формат на връзката"
 
 #: ../src/modding/NewModGUI.cs:238
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr "Изисква се вътрешно име"
+msgstr "Изисква се наименование на папката"
 
 #: ../src/modding/NewModGUI.cs:244
+#, fuzzy
+msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
+msgstr "Изисква се вътрешно име"
+
+#: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
-msgstr "Модификация с посоченото вътрешно име вече съществува"
+msgstr "Модификация с това наименование на папката вече съществува"
 
-#: ../src/modding/NewModGUI.cs:263
+#: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
-msgstr "Липсващ или невалиден формат на задължителното поле: {0}"
+msgstr "Липсващ или невалиден формат на задължително поле: {0}"
 
-#: ../src/modding/NewModGUI.cs:274
+#: ../src/modding/NewModGUI.cs:280
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Допълнителните проверки откриха проблем: {0}"
 
 #: ../src/modding/NewModGUI.tscn:35
 msgid "CREATE_NEW_MOD"
-msgstr "Създаване на нова модификация"
+msgstr "Нова модификация"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
@@ -3789,7 +3909,7 @@ msgstr "Записът съдържа невалидно състояние на
 
 #: ../src/saving/InProgressLoad.cs:149
 msgid "PROCESSING_LOADED_OBJECTS"
-msgstr "Обработване на заредените обекти"
+msgstr "Обработка на заредените обекти"
 
 #: ../src/saving/InProgressLoad.cs:164
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
@@ -3819,29 +3939,36 @@ msgstr "Запазването е неуспешно"
 msgid "ERROR_SAVING"
 msgstr "Грешка по време на запазването"
 
-#: ../src/saving/NewSaveMenu.cs:77
+#: ../src/saving/NewSaveMenu.cs:87
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Наименованието „{0}“ вече съществува. Презаписване?"
 
-#: ../src/saving/NewSaveMenu.tscn:30
+#: ../src/saving/NewSaveMenu.cs:167
+#, fuzzy
+msgid "INVALID_SAVE_NAME_POPUP"
+msgstr ""
+"Наименованието трябва да отговаря на бинарната номенклатура (родово "
+"название и видов епитет)!"
+
+#: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
 msgstr "Създаване на нов запис"
 
-#: ../src/saving/NewSaveMenu.tscn:47
+#: ../src/saving/NewSaveMenu.tscn:48
 msgid "NAME"
 msgstr "Наименование:"
 
-#: ../src/saving/NewSaveMenu.tscn:65
+#: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
 msgstr "Допълнителни опции"
 
-#: ../src/saving/NewSaveMenu.tscn:83
+#: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr "Презаписване на съществуващ запис:"
+msgstr "Предишни записи:"
 
-#: ../src/saving/NewSaveMenu.tscn:115
+#: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Презапишете съществуващия запис?"
+msgstr "Презаписване на съществуващ запис?"
 
 #: ../src/saving/SaveHelper.cs:412
 msgid "SAVING_NOT_POSSIBLE"
@@ -3849,7 +3976,7 @@ msgstr "Запазването в момента не е възможно пор
 
 #: ../src/saving/SaveHelper.cs:413
 msgid "PLAYER_EXTINCT"
-msgstr "Измиране на създанията"
+msgstr "измиране на създанията"
 
 #: ../src/saving/SaveHelper.cs:422
 msgid "SAVING_SUCCEEDED"
@@ -3887,11 +4014,11 @@ msgstr "Зареждане..."
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
-msgstr "Изтрийте този запис?"
+msgstr "Изтриване на този запис?"
 
 #: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
 msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "Заредете несъвместим запис?"
+msgstr "Зареждане на несъвместим запис?"
 
 #: ../src/saving/SaveList.tscn:69
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -3909,7 +4036,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:84
 msgid "LOAD_INVALID_SAVE"
-msgstr "Заредете невалиден запис?"
+msgstr "Зареждане на невалиден запис?"
 
 #: ../src/saving/SaveList.tscn:85
 msgid "LOAD_INVALID_SAVE_WARNING"
@@ -4003,8 +4130,8 @@ msgid "DELETE_ALL_OLD_SAVE_WARNING"
 msgstr ""
 "Изтриването на старите автоматични и бързи записи не може да бъде "
 "отменено, сигурни ли сте?\n"
-"– автоматични записи: {0}\n"
-"– бързи записи: {1}"
+" - автоматични записи: {0}\n"
+" - бързи записи: {1}"
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
@@ -4032,11 +4159,11 @@ msgstr "Избрани:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
 msgid "DELETE_SELECTED_SAVES"
-msgstr "Изтрийте избраните записи?"
+msgstr "Изтриване на избраните записи?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
 msgid "DELETE_OLD_SAVES"
-msgstr "Изтрийте старите записи?"
+msgstr "Изтриване на старите записи?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "TRY_MAKING_A_SAVE"
@@ -4050,65 +4177,65 @@ msgstr "Папката с записи не съществува"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
 
-#: ../src/steam/SteamClient.cs:460
+#: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 "Вашият профил в „Steam“ временно не може да качва ново съдържание. Моля, "
 "свържете се с поддръжката на „Steam“."
 
-#: ../src/steam/SteamClient.cs:462
+#: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
 msgstr "Вашият профил в „Steam“ не може да качва ново съдържание"
 
-#: ../src/steam/SteamClient.cs:464
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr "Времето за изчакване на „Steam“ изтече, моля, опитайте отново"
 
-#: ../src/steam/SteamClient.cs:466
+#: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "Не сте влезли в „Steam“"
 
-#: ../src/steam/SteamClient.cs:468
+#: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr "„Steam“ не е достъпен в момента, моля, опитайте отново"
 
-#: ../src/steam/SteamClient.cs:470
+#: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_INVALID_PARAMETER"
-msgstr "Невалиден параметър е предаден на „Steam“"
+msgstr "Предаден е невалиден параметър на „Steam“"
 
-#: ../src/steam/SteamClient.cs:472
+#: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 "Квотата за съхранение в облака на „Steam“ или максималния размер на файла "
 "са превишени"
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "Файлът не е намерен"
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr "„Steam“ отчита, че файлът вече е качен, моля, опреснете съдържанието"
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:490
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr "„Steam“ отчита грешка за повтарящо се име"
+msgstr "„Steam“ отчита грешка за повтарящо се наименование"
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:492
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 "Вашият профил в „Steam“ е в режим само за четене, поради скорошна промяна "
 "на профилите"
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:494
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Вашият профил в „Steam“ не притежава лиценз за „Thrive“"
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:496
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "Получаването на заключването „UGC“ на „Steam“ е неуспешно"
+msgstr "„Steam“ не успя да придобие заключването на „UGC“"
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Неизвестна грешка на „Steam“"
 
@@ -4233,16 +4360,16 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
 "Трябва да се съсредоточите върху един или два енергийни източника, така че "
-"да не е необходимо да разполагате с всички химични съединения, за да "
-"създавате достатъчно АТФ.\n"
+"да не е необходимо да събирате всички хранителни вещества, за да може "
+"Вашата клетка да създава достатъчно АТФ за да оцелее.\n"
 "\n"
-"Също така внимателно помислете дали добавянето на органел е от полза, "
-"често е добра идея да не правите никакви промени, тъй като всяка структура "
-"се нуждае от ATФ и изисква повече химични съединения за осъщестяване на "
-"разделяне.\n"
+"Преценете внимателно дали добавянето на даден органел е от полза, често е "
+"добра идея да не правите никакви промени, защото всяка структура се нуждае "
+"от ATФ и изисква повече хранителни вещества за възпроизвеждането на Вашата "
+"клетка.\n"
 "\n"
-"Възможно е да не променяте Вашата клетка и просто да се отправите към "
-"повърхността, преди да еволюирате фотосинтезиращите органели."
+"Възможно е да не правите никакви промени и просто да се отправите към "
+"морската повърхност, преди да еволюирате фотосинтезиращите органели."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
@@ -4318,9 +4445,11 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Ако все още изпитвате затруднения, вижте помощното меню долу вляво.\n"
+"Ако все още изпитвате затруднения, отворете ръководството (въпросителния "
+"знак) долу вляво.\n"
 "\n"
-"Още един съвет: може да отдалечите изгледа си с колелцето на мишката."
+"Още един съвет — може да промените размера на изгледа с колелцето на "
+"мишката."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"

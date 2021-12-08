@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
@@ -257,7 +256,7 @@ public class AutoEvoRun
     ///   Makes a summary of external effects
     /// </summary>
     /// <returns>The summary of external effects.</returns>
-    public string MakeSummaryOfExternalEffects()
+    public LocalizedStringBuilder MakeSummaryOfExternalEffects()
     {
         var combinedExternalEffects = new Dictionary<Tuple<Species, string>, long>();
 
@@ -277,18 +276,17 @@ public class AutoEvoRun
             }
         }
 
-        var builder = new StringBuilder(300);
+        var builder = new LocalizedStringBuilder(300);
 
         foreach (var entry in combinedExternalEffects)
         {
             // entry.Value is the amount, Item2 is the reason string
-            builder.Append(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED"),
+            builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
                 entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
             builder.Append('\n');
         }
 
-        return builder.ToString();
+        return builder;
     }
 
     /// <summary>

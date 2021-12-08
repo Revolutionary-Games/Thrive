@@ -459,8 +459,9 @@ public static class Constants
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int MAX_SPAWNS_PER_FRAME = 2;
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 300;
+    public const int MAX_SPAWNS_PER_FRAME = 1;
+    public const int MAX_DESPAWNS_PER_FRAME = 1;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
@@ -605,6 +606,7 @@ public static class Constants
     /// </summary>
     public const int MAX_JSON_ERROR_LENGTH_FOR_CONSOLE = 20000;
 
+    public const string FILE_NAME_DISALLOWED_CHARACTERS = "<>:\"/\\|?*\0";
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
@@ -657,7 +659,7 @@ public static class Constants
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>
-    public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
+    public const string SPECIES_NAME_REGEX = "^(?<genus>[a-zA-Z0-9]+) (?<epithet>[a-zA-Z0-9]+)$";
 
     public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
 

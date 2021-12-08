@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
-    using System.Globalization;
-    using System.Text;
     using Godot;
 
     /// <summary>
@@ -390,27 +388,26 @@
         /// <param name="playerReadable">if true ids are removed from the output</param>
         /// <param name="effects">if not null these effects are applied to the population numbers</param>
         /// <returns>The generated summary text</returns>
-        public string MakeSummary(GameWorld world, PatchMap previousPopulations = null,
+        public LocalizedStringBuilder MakeSummary(GameWorld world, PatchMap previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect> effects = null)
         {
             const bool resolveMigrations = true;
             const bool resolveSplits = true;
 
-            var builder = new StringBuilder(500);
+            var builder = new LocalizedStringBuilder(500);
 
-            string PatchString(Patch patch)
+            LocalizedStringBuilder PatchString(Patch patch)
             {
-                var builder2 = new StringBuilder(80);
-
+                var builder2 = new LocalizedStringBuilder(80);
                 if (!playerReadable)
                 {
                     builder2.Append(patch.ID);
                 }
 
                 builder2.Append(' ');
-                builder2.Append(TranslationServer.Translate(patch.Name));
+                builder2.Append(new LocalizedString(patch.Name));
 
-                return builder2.ToString();
+                return builder2;
             }
 
             void OutputPopulationForPatch(Species species, Patch patch, long population)
@@ -422,7 +419,7 @@
                 {
                     builder.Append(patchName);
                     builder.Append(' ');
-                    builder.Append(TranslationServer.Translate("POPULATION"));
+                    builder.Append(new LocalizedString("POPULATION"));
                     builder.Append(' ');
                     builder.Append(population);
                 }
@@ -431,14 +428,13 @@
                     // For some reason this line had one more space padding than the case that the population
                     // wasn't extinct in this patch
 
-                    builder.Append(string.Format(CultureInfo.CurrentCulture,
-                        TranslationServer.Translate("WENT_EXTINCT_IN"), patchName));
+                    builder.Append(new LocalizedString("WENT_EXTINCT_IN", patchName));
                 }
 
                 if (previousPopulations != null)
                 {
                     builder.Append(' ');
-                    builder.Append(TranslationServer.Translate("PREVIOUS"));
+                    builder.Append(new LocalizedString("PREVIOUS"));
                     builder.Append(' ');
                     builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
                 }
@@ -454,8 +450,7 @@
                 if (entry.SplitFrom != null)
                 {
                     builder.Append(' ');
-                    builder.Append(string.Format(CultureInfo.CurrentCulture,
-                        TranslationServer.Translate("RUN_RESULT_SPLIT_FROM"),
+                    builder.Append(new LocalizedString("RUN_RESULT_SPLIT_FROM",
                         playerReadable ? entry.SplitFrom.FormattedName : entry.SplitFrom.FormattedIdentifier));
 
                     builder.Append('\n');
@@ -468,11 +463,11 @@
                     switch (entry.NewlyCreated.Value)
                     {
                         case NewSpeciesType.FillNiche:
-                            builder.Append(TranslationServer.Translate("RUN_RESULT_NICHE_FILL"));
+                            builder.Append(new LocalizedString("RUN_RESULT_NICHE_FILL"));
                             world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has split into " + entry.Species.FormattedName + " to fill a niche");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
-                            builder.Append(TranslationServer.Translate("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
+                            builder.Append(new LocalizedString("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
                             world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has split into " + entry.Species.FormattedName + " due to differing selection pressures");
                             break;
                         default:
@@ -490,8 +485,7 @@
                         throw new InvalidOperationException("List of split off patches is null");
 
                     builder.Append(' ');
-                    builder.Append(string.Format(CultureInfo.CurrentCulture,
-                        TranslationServer.Translate("RUN_RESULT_SPLIT_OFF_TO"),
+                    builder.Append(new LocalizedString("RUN_RESULT_SPLIT_OFF_TO",
                         playerReadable ? entry.SplitOff.FormattedName : entry.SplitOff.FormattedIdentifier));
                     builder.Append('\n');
 
@@ -499,7 +493,7 @@
                     {
                         builder.Append("   ");
 
-                        builder.Append(TranslationServer.Translate(patch.Name));
+                        builder.Append(new LocalizedString(patch.Name));
                         builder.Append('\n');
                     }
                 }
@@ -507,12 +501,12 @@
                 if (entry.MutatedProperties != null)
                 {
                     builder.Append(' ');
-                    builder.Append(TranslationServer.Translate("RUN_RESULT_HAS_A_MUTATION"));
+                    builder.Append(new LocalizedString("RUN_RESULT_HAS_A_MUTATION"));
 
                     if (!playerReadable)
                     {
                         builder.Append(", ");
-                        builder.Append(TranslationServer.Translate("RUN_RESULT_GENE_CODE"));
+                        builder.Append(new LocalizedString("RUN_RESULT_GENE_CODE"));
                         builder.Append(' ');
                         builder.Append(entry.MutatedProperties.StringCode);
                     }
@@ -523,7 +517,7 @@
                 if (entry.SpreadToPatches.Count > 0)
                 {
                     builder.Append(' ');
-                    builder.Append(TranslationServer.Translate("RUN_RESULT_SPREAD_TO_PATCHES"));
+                    builder.Append(new LocalizedString("RUN_RESULT_SPREAD_TO_PATCHES"));
                     builder.Append('\n');
 
                     var numberOfPatches = 0;
@@ -535,19 +529,18 @@
                         if (playerReadable)
                         {
                             builder.Append("  ");
-                            builder.Append(string.Format(CultureInfo.CurrentCulture,
-                                TranslationServer.Translate("RUN_RESULT_BY_SENDING_POPULATION"),
-                                TranslationServer.Translate(spreadEntry.To.Name), spreadEntry.Population,
-                                TranslationServer.Translate(spreadEntry.From.Name)));
+                            builder.Append(new LocalizedString("RUN_RESULT_BY_SENDING_POPULATION",
+                                new LocalizedString(spreadEntry.To.Name), spreadEntry.Population,
+                                new LocalizedString(spreadEntry.From.Name)));
                         }
                         else
                         {
                             builder.Append("  ");
-                            builder.Append(TranslationServer.Translate(spreadEntry.To.Name));
+                            builder.Append(new LocalizedString(spreadEntry.To.Name));
                             builder.Append(" pop: ");
                             builder.Append(spreadEntry.Population);
                             builder.Append(" from: ");
-                            builder.Append(TranslationServer.Translate(spreadEntry.From.Name));
+                            builder.Append(new LocalizedString(spreadEntry.From.Name));
                         }
 
                         builder.Append('\n');
@@ -564,7 +557,7 @@
                 }
 
                 builder.Append(' ');
-                builder.Append(TranslationServer.Translate("RUN_RESULT_POP_IN_PATCHES"));
+                builder.Append(new LocalizedString("RUN_RESULT_POP_IN_PATCHES"));
                 builder.Append('\n');
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
@@ -674,7 +667,7 @@
                 if (globalPopulation <= 0)
                 {
                     builder.Append(' ');
-                    builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
+                    builder.Append(new LocalizedString("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append('\n');
 
                     world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has gone extinct!",
@@ -704,7 +697,7 @@
                     builder.Append('\n');
             }
 
-            return builder.ToString();
+            return builder;
         }
 
         private void MakeSureResultExistsForSpecies(Species species)
