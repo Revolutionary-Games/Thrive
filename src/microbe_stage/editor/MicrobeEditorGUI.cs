@@ -1035,11 +1035,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         var marginContainer = timelineSubtab.GetNode<Control>("MarginContainer/ScrollContainer/MarginContainer");
         var mainContainer = timelineSubtab.GetNode<Control>("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer");
 
+        var customRTLScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
+
         mainContainer.FreeChildren();
 
         var timeline = editor.CurrentGame.GameWorld.GetTimeline();
 
-        // TODO: autoscroll to the last timeline
+        // TODO: autoscroll to the current time period
 
         foreach (var snapshot in timeline)
         {
@@ -1054,7 +1056,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 Valign = Label.VAlign.Center,
             };
 
-            timePeriodLabel.AddFontOverride("font", GetFont("jura_demibold_bigger", "Fonts"));
+            timePeriodLabel.AddFontOverride("font", GetFont("jura_bold", "Fonts"));
 
             headerContainer.AddChild(spacer);
             headerContainer.AddChild(timePeriodLabel);
@@ -1074,8 +1076,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
                 itemContainer.AddConstantOverride("separation", 7);
 
-                var eventLabel = new Label { Text = entry.EventDescription };
-                eventLabel.AddFontOverride("font", GetFont("jura_normal", "Fonts"));
+                var eventLabel = customRTLScene.Instance<CustomRichTextLabel>();
+                eventLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
+                eventLabel.ExtendedBbcode = entry.EventDescription;
+                eventLabel.FitContentHeight = true;
+
+                eventLabel.AddFontOverride("normal_font", GetFont("jura_almost_smaller", "Fonts"));
+                eventLabel.AddFontOverride("bold_font", GetFont("jura_demibold_almost_smaller", "Fonts"));
+                eventLabel.AddConstantOverride("line_separation", 0);
 
                 itemContainer.AddChild(iconRect);
                 itemContainer.AddChild(eventLabel);

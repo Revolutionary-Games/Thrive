@@ -2544,11 +2544,15 @@ margin_bottom = 481.0
 follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer"]
+margin_right = 819.0
 margin_bottom = 471.0
+size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/margin_right = 10
 custom_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
+margin_right = 809.0
 margin_bottom = 451.0
 custom_constants/separation = 0
 

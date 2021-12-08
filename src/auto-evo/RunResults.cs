@@ -469,11 +469,11 @@
                     {
                         case NewSpeciesType.FillNiche:
                             builder.Append(TranslationServer.Translate("RUN_RESULT_NICHE_FILL"));
-                            world.LogWorldEvent(entry.SplitFrom.FormattedName + " has split into " + entry.Species.FormattedName + " to fill a niche");
+                            world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has split into " + entry.Species.FormattedName + " to fill a niche");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
                             builder.Append(TranslationServer.Translate("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
-                            world.LogWorldEvent(entry.SplitFrom.FormattedName + " has split into " + entry.Species.FormattedName + " due to differing selection pressures");
+                            world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has split into " + entry.Species.FormattedName + " due to differing selection pressures");
                             break;
                         default:
                             GD.PrintErr("Unhandled newly created species type: ", entry.NewlyCreated.Value);
@@ -555,11 +555,11 @@
 
                     if (numberOfPatches < 2)
                     {
-                        world.LogWorldEvent(entry.Species.FormattedName + " has migrated to " + TranslationServer.Translate(entry.SpreadToPatches[0].To.Name));
+                        world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has migrated to " + TranslationServer.Translate(entry.SpreadToPatches[0].To.Name));
                     }
                     else
                     {
-                        world.LogWorldEvent(entry.Species.FormattedName + " has migrated to multiple patches");
+                        world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has migrated to multiple patches");
                     }
                 }
 
@@ -677,7 +677,7 @@
                     builder.Append(TranslationServer.Translate("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append('\n');
 
-                    world.LogWorldEvent(entry.Species.FormattedName + " has gone extinct!",
+                    world.LogWorldEvent("[u]" + entry.Species.FormattedName + "[/u]" + " has gone extinct!",
                         "res://assets/textures/gui/bevel/SuicideIcon.png");
                 }
                 else
@@ -688,13 +688,13 @@
                         if (globalPopulation > previousTotalPopulations)
                         {
                             world.LogWorldEvent(
-                                entry.Species.FormattedName + " populations have increased to " + globalPopulation,
+                                "[u]" + entry.Species.FormattedName + "[/u]" + " populations have increased to " + globalPopulation,
                                 "res://assets/textures/gui/bevel/increase.png");
                         }
                         else
                         {
                             world.LogWorldEvent(
-                                entry.Species.FormattedName + " populations have decreased to " + globalPopulation,
+                                "[u]" + entry.Species.FormattedName + "[/u]" + " populations have decreased to " + globalPopulation,
                                 "res://assets/textures/gui/bevel/decrease.png");
                         }
                     }
