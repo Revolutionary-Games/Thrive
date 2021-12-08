@@ -78,7 +78,7 @@ public class CompoundBag : ICompoundStorage
 
         Compounds[compound] = newAmount;
 
-        return newAmount - amount;
+        return newAmount - existingAmount;
     }
 
     public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
