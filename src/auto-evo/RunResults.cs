@@ -340,11 +340,17 @@
                 var populations = GetPopulationsByPatch(species, resolveMigrations, resolveSplits, includeNewSpecies);
                 foreach (var patchEntry in populations)
                 {
-                    if (!speciesInPatches.ContainsKey(patchEntry.Key))
-                        speciesInPatches[patchEntry.Key] = new Dictionary<Species, long>();
+                    Dictionary<Species, long> populationsInPatch;
 
-                    patchEntry.Value.ToList().ForEach(s =>
-                        speciesInPatches[patchEntry.Key].Add(s.Key, s.Value));
+                    if (!speciesInPatches.TryGetValue(patchEntry.Key, out populationsInPatch))
+                        populationsInPatch = new Dictionary<Species, long>();
+
+                    foreach (var speciesEntry in patchEntry.Value)
+                    {
+                        populationsInPatch.Add(speciesEntry.Key, speciesEntry.Value);
+                    }
+
+                    speciesInPatches[patchEntry.Key] = populationsInPatch;
                 }
             }
 
