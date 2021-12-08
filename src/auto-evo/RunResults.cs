@@ -380,17 +380,20 @@
             // Get natural variations
             foreach (var patchPopulationEntry in speciesResult.NewPopulationInPatches)
             {
-                if (!speciesInPatches.ContainsKey(patchPopulationEntry.Key))
-                    speciesInPatches[patchPopulationEntry.Key] = new Dictionary<Species, long>();
+                Dictionary<Species, long> populations;
+
+                if (!speciesInPatches.TryGetValue(patchPopulationEntry.Key, out populations))
+                    populations = new Dictionary<Species, long>();
 
                 if (patchPopulationEntry.Value > 0)
                 {
                     if (includeNewSpecies || speciesResult.NewlyCreated == null)
                     {
-                        speciesInPatches[patchPopulationEntry.Key].Add(
-                            species, patchPopulationEntry.Value);
+                        populations.Add(species, patchPopulationEntry.Value);
                     }
                 }
+
+                speciesInPatches[patchPopulationEntry.Key] = populations;
             }
 
             if (resolveSplits)
