@@ -85,7 +85,7 @@ public class MicrobeColony
             rotation = rotation.Normalized();
             microbe.LookAtPoint = rotation.Xform(offset);
 
-            //Convert the vector to the lookupPoint true position
+            // Convert the vector to the lookupPoint true position
             microbe.LookAtPoint += microbe.GlobalTransform.origin;
         }
 
