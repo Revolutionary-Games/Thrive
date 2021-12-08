@@ -417,35 +417,58 @@
                 {
                     // Only consider valid migrations
                     if (migration.From == null || migration.To == null)
-                        continue;
+                        throw new ArgumentException("Found invalid migration in auto-evo results: null patch!");
 
-                    // Add entries if necessary
-                    if (!speciesInPatches.ContainsKey(migration.From))
-                        speciesInPatches[migration.From] = new Dictionary<Species, long>();
+                    // Although zero population migrations are not invalid *per se*, we shouldn't have such migrations.
+                    if (migration.Population <= 0)
+                    {
+                        throw new ArgumentException(
+                            "Found invalid migration in auto-evo results: negative or null population!");
+                    }
 
-                    if (!speciesInPatches.ContainsKey(migration.To))
-                        speciesInPatches[migration.To] = new Dictionary<Species, long>();
+                    Dictionary<Species, long> populationsFrom;
+                    Dictionary<Species, long> populationsTo;
+
+                    // Create entries if necessary
+                    if (!speciesInPatches.TryGetValue(migration.From, out populationsFrom))
+                         populationsFrom = new Dictionary<Species, long>();
+
+                    if (!speciesInPatches.TryGetValue(migration.To, out populationsTo))
+                         populationsTo = new Dictionary<Species, long>();
 
                     // Only consider possible migrations
-                    // TODO check second condition to mimick actual effect. (> 0 ?)
-                    if (speciesInPatches[migration.From].TryGetValue(species, out var population) &&
-                        population >= migration.Population)
+                    if (populationsFrom.TryGetValue(species, out var originPopulation))
                     {
-                        if (population - migration.Population == 0)
+                        // Exclude migrations moving more population than initially
+                        if (originPopulation < migration.Population)
                         {
-                            speciesInPatches[migration.From].Remove(species);
+                            throw new ArgumentException("Found impossible migration! Initial pop: " +
+                                originPopulation + ", migrated: " + migration.Population);
+                        }
+
+                        // We remove the migrating population, and species that reach zero population...
+                        if (originPopulation - migration.Population == 0)
+                        {
+                            populationsFrom.Remove(species);
                         }
                         else
                         {
-                            speciesInPatches[migration.From][species] =
-                                population - migration.Population;
+                            populationsFrom[species] = originPopulation - migration.Population;
                         }
 
-                        if (!speciesInPatches[migration.To].ContainsKey(species))
-                            speciesInPatches[migration.To][species] = 0;
+                        // ...and we add the new population to the patch.
+                        long destinationPopulation;
 
-                        speciesInPatches[migration.To][species] += migration.Population;
+                        if (!populationsTo.TryGetValue(species, out destinationPopulation))
+                            destinationPopulation = 0;
+
+                        destinationPopulation += migration.Population;
+
+                        populationsTo[species] = destinationPopulation;
                     }
+
+                    speciesInPatches[migration.From] = populationsFrom;
+                    speciesInPatches[migration.To] = populationsTo;
                 }
             }
 
