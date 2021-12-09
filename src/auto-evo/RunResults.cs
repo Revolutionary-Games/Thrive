@@ -285,7 +285,7 @@
         {
             long result = 0;
 
-            foreach (var patchPopulationsEntry in GetPopulationsByPatch(species, resolveMigrations, resolveSplits))
+            foreach (var patchPopulationsEntry in GetCladePopulationsByPatch(species, resolveMigrations, resolveSplits))
             {
                 result += patchPopulationsEntry.Value[species];
             }
@@ -339,7 +339,7 @@
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
             foreach (var species in results.Keys)
             {
-                var populations = GetPopulationsByPatch(species, resolveMigrations, resolveSplits, includeNewSpecies);
+                var populations = GetCladePopulationsByPatch(species, resolveMigrations, resolveSplits, includeNewSpecies);
                 foreach (var patchEntry in populations)
                 {
                     Dictionary<Species, long> populationsInPatch;
@@ -367,7 +367,7 @@
         ///     Species are only returned if their population is above 0.
         ///   </para>
         /// </remarks>
-        public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(Species species,
+        public Dictionary<Patch, Dictionary<Species, long>> GetCladePopulationsByPatch(Species species,
             bool resolveMigrations = false, bool resolveSplits = false, bool includeNewSpecies = true)
         {
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
