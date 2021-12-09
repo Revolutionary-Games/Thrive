@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
 
@@ -10,6 +11,7 @@ public class ChunkFoodSource : FoodSource
     private readonly Patch patch;
     private readonly float totalEnergy;
     private readonly float chunkSize;
+    private readonly string chunkName;
     private readonly Dictionary<Compound, float> energyCompounds;
 
     public ChunkFoodSource(Patch patch, string chunkType)
@@ -19,6 +21,7 @@ public class ChunkFoodSource : FoodSource
         if (patch.Biome.Chunks.TryGetValue(chunkType, out ChunkConfiguration chunk))
         {
             chunkSize = chunk.Size;
+            chunkName = chunk.Name;
 
             // NOTE: Here we use the heuristic that only iron and glucose are useful in chunks
             energyCompounds = chunk.Compounds.Where(c => c.Key == iron || c.Key == glucose).ToDictionary(
@@ -51,6 +54,11 @@ public class ChunkFoodSource : FoodSource
         score /= energyBalance.FinalBalanceStationary;
 
         return score;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        return new LocalizedString("CHUNK_FOOD_SOURCE", chunkName);
     }
 
     public override float TotalEnergyAvailable()

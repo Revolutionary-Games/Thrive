@@ -452,7 +452,7 @@ public static class Constants
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.35f;
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
