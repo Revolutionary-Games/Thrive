@@ -679,6 +679,7 @@ public partial class Microbe
 
         Rotation = newTransform.Rotation;
         Translation = newTransform.Translation;
+
         ChangeNodeParent(ColonyParent);
     }
 
