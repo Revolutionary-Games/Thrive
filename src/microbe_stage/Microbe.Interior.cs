@@ -562,10 +562,11 @@ public partial class Microbe
             // We are in G1 phase of the cell cycle, duplicate all organelles.
 
             // Except the nucleus
-            if (organelle.Definition.InternalName == "nucleus")
+            if (organelle.Definition.InternalName == "nucleus" || organelle.Definition.InternalName == "bindingAgent");
                 continue;
 
             // If Give it some compounds to make it larger.
+
             organelle.GrowOrganelle(Compounds);
 
             if (organelle.GrowthValue >= 1.0f)
