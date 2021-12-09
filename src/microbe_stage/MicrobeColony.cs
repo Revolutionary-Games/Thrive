@@ -78,7 +78,7 @@ public class MicrobeColony
             colonyMember.OnColonyMemberRemoved(microbe);
 
         microbe.Colony = null;
-        
+
         microbe.ReParentShapes(microbe, Vector3.Zero);
 
         while (microbe.ColonyChildren.Count != 0)
@@ -110,6 +110,5 @@ public class MicrobeColony
         microbe.ColonyChildren = new List<Microbe>();
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
-
     }
 }

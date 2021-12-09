@@ -576,7 +576,7 @@ public partial class Microbe
         var rotation = new Quat(Rotation);
 
         // If the microbe is not the colony master we use its parent rotation
-        if (ColonyParent!= null)
+        if (ColonyParent != null)
             rotation *= new Quat(ColonyParent.Rotation);
 
         rotation = rotation.Normalized();
@@ -588,7 +588,6 @@ public partial class Microbe
     {
         if (microbe == this)
         {
-
             OnUnbound?.Invoke(this);
 
             RevertNodeParent();
@@ -676,7 +675,6 @@ public partial class Microbe
             return;
 
         var newTransform = GetNewRelativeTransform();
-
 
         Rotation = newTransform.Rotation;
         Translation = newTransform.Translation;
