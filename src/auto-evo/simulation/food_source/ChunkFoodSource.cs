@@ -35,7 +35,11 @@ public class ChunkFoodSource : FoodSource
 
         var predatorSpeed = microbeSpecies.BaseSpeed + energyBalance.FinalBalance;
 
-        var score = predatorSpeed * species.Behaviour.Activity;
+        // We ponder the score for each compound by its amount, leading to pondering in proportion of total quantity,
+        // with a constant factor that will be eliminated when making ratios of scores for this niche.
+        var score = energyCompounds.Sum(c => EnergyGenerationScore(microbeSpecies, c.Key) * c.Value);
+
+        score *= predatorSpeed * species.Behaviour.Activity;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
         if (microbeSpecies.MembraneType.CellWall ||
@@ -45,13 +49,6 @@ public class ChunkFoodSource : FoodSource
         }
 
         score /= energyBalance.FinalBalanceStationary;
-
-        // We ponder the score for each compound by its amount, leading to pondering in proportion of total quantity,
-        // with a constant factor that will be eliminated when making ratios of scores for this niche.
-        var ponderedEnergyGenerationScore = energyCompounds.Sum(
-            c => EnergyGenerationScore(microbeSpecies, c.Key) * c.Value);
-
-        score *= ponderedEnergyGenerationScore;
 
         return score;
     }
