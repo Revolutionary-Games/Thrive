@@ -71,29 +71,14 @@ public class MicrobeColony
         if (State == Microbe.MicrobeState.Unbinding)
             State = Microbe.MicrobeState.Normal;
 
-        var rotation = microbe.RotationInsideColony();
-        var offset = microbe.GetOffsetRelativeToMaster();
-
-        // Apply the rotation
-        if (microbe != Master)
-        {
-            // For some reason the first cell needs to be rotated by the colony master rotation
-            if (microbe.ColonyParent == Master)
-                rotation *= new Quat(Master.Transform.basis);
-
-            // Normalize and apply the rotation
-            rotation = rotation.Normalized();
-            microbe.LookAtPoint = rotation.Xform(offset);
-
-            // Convert the vector to the lookupPoint true position
-            microbe.LookAtPoint += microbe.GlobalTransform.origin;
-        }
+        // Update the rotation of the microbe
+        microbe.UpdateLookAtPoint();
 
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
 
         microbe.Colony = null;
-
+        
         microbe.ReParentShapes(microbe, Vector3.Zero);
 
         while (microbe.ColonyChildren.Count != 0)
@@ -126,7 +111,5 @@ public class MicrobeColony
 
         ColonyMembers.ForEach(m => m.OnColonyMemberAdded(microbe));
 
-        if (microbe != Master)
-            GD.Print(new Quat(microbe.Transform.basis), "Created\n");
     }
 }

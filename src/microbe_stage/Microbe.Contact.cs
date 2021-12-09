@@ -569,17 +569,26 @@ public partial class Microbe
     }
 
     /// <summary>
-    ///   Returns the rotation of a microbe inside the colony.
+    ///   Updates the microbes LookAtPoint
     /// </summary>
-    internal Quat RotationInsideColony()
+    internal void UpdateLookAtPoint()
     {
-        return organelles[0].RotationInsideColony();
+        var rotation = new Quat(Rotation);
+
+        // If the microbe is not the colony master we use its parent rotation
+        if (ColonyParent!= null)
+            rotation *= new Quat(ColonyParent.Rotation);
+
+        rotation = rotation.Normalized();
+        LookAtPoint = rotation.Xform(Vector3.Forward);
+        LookAtPoint += GlobalTransform.origin;
     }
 
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
         if (microbe == this)
         {
+
             OnUnbound?.Invoke(this);
 
             RevertNodeParent();
@@ -668,9 +677,9 @@ public partial class Microbe
 
         var newTransform = GetNewRelativeTransform();
 
+
         Rotation = newTransform.Rotation;
         Translation = newTransform.Translation;
-
         ChangeNodeParent(ColonyParent);
     }
 
