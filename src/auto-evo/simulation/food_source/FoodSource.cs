@@ -1,4 +1,5 @@
-﻿using AutoEvo;
+﻿using System;
+using AutoEvo;
 
 public abstract class FoodSource
 {
@@ -19,6 +20,12 @@ public abstract class FoodSource
     ///   so different implementations do not need to worry about scale.
     /// </returns>
     public abstract float FitnessScore(Species microbe, SimulationCache simulationCache);
+
+    /// <summary>
+    ///   A description of this niche. Needs to support translations changing and be player readable
+    /// </summary>
+    /// <returns>A formattable that has the description in it</returns>
+    public abstract IFormattable GetDescription();
 
     protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
     {
