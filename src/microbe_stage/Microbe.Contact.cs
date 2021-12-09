@@ -1107,7 +1107,7 @@ public partial class Microbe
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
-        Invoke.Instance.Perform(BeginBind);
+        Invoke.Instance.Queue(BeginBind);
     }
 
     private void BeginBind()
