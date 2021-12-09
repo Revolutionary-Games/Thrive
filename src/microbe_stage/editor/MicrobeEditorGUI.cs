@@ -731,8 +731,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             + TranslationServer.Translate("MEGA_YEARS");
 
         ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
-                CultureInfo.CurrentCulture, TranslationServer.Translate("TIME_INDICATOR_TOOLTIP"),
-                editor.CurrentGame.GameWorld.TotalPassedTime);
+            CultureInfo.CurrentCulture, TranslationServer.Translate("TIME_INDICATOR_TOOLTIP"),
+            editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
     public void SetInitialCellStats()
@@ -1031,11 +1031,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateTimeline()
     {
-        var scrollContainer = timelineSubtab.GetNode<ScrollContainer>("MarginContainer/ScrollContainer");
-        var marginContainer = timelineSubtab.GetNode<Control>("MarginContainer/ScrollContainer/MarginContainer");
-        var mainContainer = timelineSubtab.GetNode<Control>("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer");
+        var mainContainer = timelineSubtab.GetNode<Control>(
+            "MarginContainer/ScrollContainer/MarginContainer/VBoxContainer");
 
-        var customRTLScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
+        var customRtlScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
         var timelineHighlight = GD.Load<StyleBoxTexture>("res://src/microbe_stage/editor/TimelineHighlight.tres");
 
         mainContainer.FreeChildren();
@@ -1084,7 +1083,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 highlight.AddStyleboxOverride("panel", timelineHighlight);
                 itemContainer.AddConstantOverride("separation", 5);
 
-                var eventLabel = customRTLScene.Instance<CustomRichTextLabel>();
+                var eventLabel = customRtlScene.Instance<CustomRichTextLabel>();
                 eventLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
                 eventLabel.ExtendedBbcode = entry.EventDescription.ToString();
                 eventLabel.FitContentHeight = true;

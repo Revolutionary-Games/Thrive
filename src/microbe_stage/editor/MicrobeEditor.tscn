@@ -2556,6 +2556,10 @@ margin_right = 809.0
 margin_bottom = 451.0
 custom_constants/separation = 2
 
+[node name="Label" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 25.0
+
 [node name="TopFade" type="TextureRect" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 modulate = Color( 1, 1, 1, 0.392157 )
 margin_left = 1.0

@@ -336,11 +336,11 @@ public class GameWorld
             return;
 
         worldTimeline[TotalPassedTime].Add(new WorldEventDescription
-            {
-                EventDescription = description,
-                IconPath = iconPath,
-                Highlighted = highlight,
-            });
+        {
+            EventDescription = description,
+            IconPath = iconPath,
+            Highlighted = highlight,
+        });
 
         worldTimelineKeys.Enqueue(TotalPassedTime);
     }
@@ -357,15 +357,15 @@ public class GameWorld
 
         autoEvo = AutoEvo.AutoEvo.CreateRun(this);
     }
-}
 
-/// <summary>
-///   A description of what has happened in the game world to be added to the timeline. Decorated with an icon
-///   if there's any.
-/// </summary>
-public class WorldEventDescription
-{
-    public LocalizedString EventDescription { get; set; }
-    public string IconPath { get; set; }
-    public bool Highlighted { get; set; }
+    /// <summary>
+    ///   A description of what has happened in the game world to be added to the timeline. Decorated with an icon
+    ///   if there's any.
+    /// </summary>
+    public class WorldEventDescription
+    {
+        public LocalizedString EventDescription { get; set; }
+        public string IconPath { get; set; }
+        public bool Highlighted { get; set; }
+    }
 }

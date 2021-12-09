@@ -2500,6 +2500,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateReportTabStatistics(CurrentPatch);
 
+        gui.UpdateTimeline();
+
         FadeIn();
     }
 

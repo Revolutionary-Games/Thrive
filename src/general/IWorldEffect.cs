@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
-using Newtonsoft.Json;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Time dependent effects running on a world
@@ -82,7 +82,7 @@ public class GlucoseReductionEffect : IWorldEffect
                 targetWorld.LogWorldEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
                     glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
                         "PERCENTAGE_VALUE"), percentage)), false,
-                        "res://assets/textures/gui/bevel/glucoseDown.png");
+                    "res://assets/textures/gui/bevel/glucoseDown.png");
             }
         }
     }
