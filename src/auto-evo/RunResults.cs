@@ -343,7 +343,8 @@
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
             foreach (var species in results.Keys)
             {
-                var populations = GetCladePopulationsByPatch(species, resolveMigrations, resolveSplits, includeNewSpecies);
+                var populations = GetCladePopulationsByPatch(species, resolveMigrations, resolveSplits,
+                    includeNewSpecies);
                 foreach (var patchEntry in populations)
                 {
                     Dictionary<Species, long> populationsInPatch;
@@ -439,10 +440,10 @@
 
                     // Create entries if necessary
                     if (!speciesInPatches.TryGetValue(migration.From, out populationsFrom))
-                         populationsFrom = new Dictionary<Species, long>();
+                        populationsFrom = new Dictionary<Species, long>();
 
                     if (!speciesInPatches.TryGetValue(migration.To, out populationsTo))
-                         populationsTo = new Dictionary<Species, long>();
+                        populationsTo = new Dictionary<Species, long>();
 
                     // Only consider possible migrations
                     if (populationsFrom.TryGetValue(species, out var originPopulation))
