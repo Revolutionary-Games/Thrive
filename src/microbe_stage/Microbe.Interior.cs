@@ -566,7 +566,6 @@ public partial class Microbe
                 continue;
 
             // If Give it some compounds to make it larger.
-
             organelle.GrowOrganelle(Compounds);
 
             if (organelle.GrowthValue >= 1.0f)
