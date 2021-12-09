@@ -333,6 +333,10 @@
         /// <summary>
         ///   Computes the final population of all species, by patch.
         /// </summary>
+        /// <param name="resolveMigrations">If true migrations effects on population are taken into account</param>
+        /// <param name="resolveSplits">If true species splits are taken into account in population numbers</param>
+        /// <param name="includeNewSpecies">If true new species are included as entries</param>
+        /// <returns>The global population</returns>
         public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(bool resolveMigrations = false,
             bool resolveSplits = false, bool includeNewSpecies = true)
         {
@@ -367,6 +371,10 @@
         ///     Species are only returned if their population is above 0.
         ///   </para>
         /// </remarks>
+        /// <param name="species">The species of the clade to calculate population for</param>
+        /// <param name="resolveMigrations">If true migrations effects on population are taken into account</param>
+        /// <param name="resolveSplits">If true species splits are taken into account in population numbers</param>
+        /// <param name="includeNewSpecies">If true new species are included as entries</param>
         public Dictionary<Patch, Dictionary<Species, long>> GetCladePopulationsByPatch(Species species,
             bool resolveMigrations = false, bool resolveSplits = false, bool includeNewSpecies = true)
         {
