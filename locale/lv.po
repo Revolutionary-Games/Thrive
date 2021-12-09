@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-08 20:12+0200\n"
-"PO-Revision-Date: 2021-12-09 20:47+0000\n"
+"PO-Revision-Date: 2021-12-09 20:51+0000\n"
 "Last-Translator: Gr0vey <monkoftime1188@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/lv/>\n"
@@ -561,7 +561,7 @@ msgstr "Ieslēgt HUD"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
 msgid "RESPIRATION"
-msgstr "Elpošana"
+msgstr "Aerobiskā elpošana"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:13
 msgid "GLYCOLYSIS"
@@ -965,9 +965,8 @@ msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-#, fuzzy
 msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "Jūras sniegs"
+msgstr "Jūras sniega patēriņš"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1091,7 +1090,6 @@ msgid "ESCAPE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "BACKSPACE"
 msgstr "Atpakaļ"
 
@@ -1150,19 +1148,16 @@ msgid "DIRECTIONR"
 msgstr "Apraksts:"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
-#, fuzzy
 msgid "VOLUMEDOWN"
-msgstr "SFX skaļums"
+msgstr "Skaļums uz leju"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
-#, fuzzy
 msgid "VOLUMEMUTE"
-msgstr "SFX skaļums"
+msgstr "Skaļuma izslēgšana"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
-#, fuzzy
 msgid "VOLUMEUP"
-msgstr "SFX skaļums"
+msgstr "Skaļums uz augšu"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
@@ -1531,7 +1526,7 @@ msgstr "Vertikālā sinhronizācija"
 
 #: ../src/general/OptionsMenu.tscn:217
 msgid "FULLSCREEN"
-msgstr "Pilnekrāna režīms"
+msgstr "Pilnekrāns"
 
 #: ../src/general/OptionsMenu.tscn:239
 msgid "MULTISAMPLE_ANTI_ALIASING"
@@ -1554,9 +1549,8 @@ msgid "FOUR_TIMES"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:262
-#, fuzzy
 msgid "EIGHT_TIMES"
-msgstr "Peles labā poga"
+msgstr "8x"
 
 #: ../src/general/OptionsMenu.tscn:262
 msgid "SIXTEEN_TIMES"
@@ -1568,7 +1562,7 @@ msgstr "Izšķirtspēja:"
 
 #: ../src/general/OptionsMenu.tscn:289
 msgid "AUTO"
-msgstr "auto"
+msgstr "Automātiski"
 
 #: ../src/general/OptionsMenu.tscn:299
 msgid "MAX_FPS"
@@ -1599,9 +1593,8 @@ msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:390
-#, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Ārējie efekti:"
+msgstr "Ieslēgt GUI gaismas efektus"
 
 #: ../src/general/OptionsMenu.tscn:416
 msgid "MASTER_VOLUME"
@@ -1651,9 +1644,7 @@ msgstr "Savienojumu mākonis"
 
 #: ../src/general/OptionsMenu.tscn:701
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-"Mākoņa simulācijas minimālais\n"
-"intervāls:"
+msgstr "Mākoņa simulācijas minimālais intervāls:"
 
 #: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1668,14 +1659,12 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:804
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Atlasīts:"
+msgstr "Atklātais CPU skaits:"
 
 #: ../src/general/OptionsMenu.tscn:821
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Saglabāt un turpināt"
+msgstr "Esošie pavedieni:"
 
 #: ../src/general/OptionsMenu.tscn:835
 msgid "ASSUME_HYPERTHREADING"
