@@ -347,9 +347,7 @@
                     includeNewSpecies);
                 foreach (var patchEntry in populations)
                 {
-                    Dictionary<Species, long> populationsInPatch;
-
-                    if (!speciesInPatches.TryGetValue(patchEntry.Key, out populationsInPatch))
+                    if (!speciesInPatches.TryGetValue(patchEntry.Key, out var populationsInPatch))
                         populationsInPatch = new Dictionary<Species, long>();
 
                     foreach (var speciesEntry in patchEntry.Value)
@@ -381,17 +379,13 @@
         {
             var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
 
-            SpeciesResult speciesResult;
-
-            if (!results.TryGetValue(species, out speciesResult))
+            if (!results.TryGetValue(species, out var speciesResult))
                 throw new ArgumentException("Species " + species.FormattedName + "not found in results.");
 
             // Get natural variations
             foreach (var patchPopulationEntry in speciesResult.NewPopulationInPatches)
             {
-                Dictionary<Species, long> populations;
-
-                if (!speciesInPatches.TryGetValue(patchPopulationEntry.Key, out populations))
+                if (!speciesInPatches.TryGetValue(patchPopulationEntry.Key, out var populations))
                     populations = new Dictionary<Species, long>();
 
                 if (patchPopulationEntry.Value > 0)
@@ -435,14 +429,11 @@
                             "Found invalid migration in auto-evo results: negative or null population!");
                     }
 
-                    Dictionary<Species, long> populationsFrom;
-                    Dictionary<Species, long> populationsTo;
-
                     // Create entries if necessary
-                    if (!speciesInPatches.TryGetValue(migration.From, out populationsFrom))
+                    if (!speciesInPatches.TryGetValue(migration.From, out var populationsFrom))
                         populationsFrom = new Dictionary<Species, long>();
 
-                    if (!speciesInPatches.TryGetValue(migration.To, out populationsTo))
+                    if (!speciesInPatches.TryGetValue(migration.To, out var populationsTo))
                         populationsTo = new Dictionary<Species, long>();
 
                     // Only consider possible migrations
@@ -466,9 +457,7 @@
                         }
 
                         // ...and we add the new population to the patch.
-                        long destinationPopulation;
-
-                        if (!populationsTo.TryGetValue(species, out destinationPopulation))
+                        if (!populationsTo.TryGetValue(species, out var destinationPopulation))
                             destinationPopulation = 0;
 
                         destinationPopulation += migration.Population;
