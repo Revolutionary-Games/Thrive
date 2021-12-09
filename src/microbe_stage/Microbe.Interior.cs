@@ -561,7 +561,7 @@ public partial class Microbe
 
             // We are in G1 phase of the cell cycle, duplicate all organelles.
 
-            // Except the nucleus and the binding agent
+            // Except the unique organelles
             if (organelle.Definition.Unique)
                 continue;
 
