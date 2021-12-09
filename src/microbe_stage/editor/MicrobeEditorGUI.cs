@@ -2267,6 +2267,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         predictionDetailsText = new LocalizedStringBuilder(300);
 
+        double Round(float value)
+        {
+            if (value > 0.0005f)
+                return Math.Round(value, 3);
+
+            // Small values can get really small (and still be different from getting 0 energy due to fitness) so
+            // this is here for that reason
+            return Math.Round(value, 8);
+        }
+
         // This loop shows all the patches the player species is in. Could perhaps just show the current one
         foreach (var energyResult in energyResults)
         {
@@ -2275,7 +2285,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             predictionDetailsText.Append('\n');
 
             predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
-                energyResult.Value.TotalEnergyGathered, energyResult.Value.IndividualCost,
+                Round(energyResult.Value.TotalEnergyGathered), Round(energyResult.Value.IndividualCost),
                 energyResult.Value.UnadjustedPopulation));
 
             predictionDetailsText.Append('\n');
@@ -2288,8 +2298,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 var data = nicheInfo.Value;
                 predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
-                    data.CurrentSpeciesEnergy, data.CurrentSpeciesFitness, data.TotalAvailableEnergy,
-                    data.TotalFitness));
+                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness),
+                    Round(data.TotalAvailableEnergy),
+                    Round(data.TotalFitness)));
                 predictionDetailsText.Append('\n');
             }
 
