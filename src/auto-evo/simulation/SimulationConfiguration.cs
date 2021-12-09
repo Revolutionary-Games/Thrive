@@ -8,12 +8,15 @@
     /// </summary>
     public class SimulationConfiguration
     {
-        public SimulationConfiguration(PatchMap initialConditions, int steps = 1)
+        public SimulationConfiguration(AutoEvoConfiguration autoEvoConfiguration, PatchMap initialConditions,
+            int steps = 1)
         {
+            AutoEvoConfiguration = autoEvoConfiguration;
             OriginalMap = initialConditions;
             StepsLeft = Math.Max(1, steps);
         }
 
+        public AutoEvoConfiguration AutoEvoConfiguration { get; }
         public PatchMap OriginalMap { get; }
         public int StepsLeft { get; set; }
 
@@ -55,6 +58,11 @@
         ///   If not empty, only the specified patches are ran
         /// </summary>
         public ISet<Patch> PatchesToRun { get; set; } = new HashSet<Patch>();
+
+        /// <summary>
+        ///   If set to true then species energy sources will be stored for display to the player
+        /// </summary>
+        public bool CollectEnergyInformation { get; set; }
 
         /// <summary>
         ///   Sets the patches to be simulated to be ones where the species is present (population > 0)
