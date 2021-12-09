@@ -23,7 +23,7 @@ public class ChunkFoodSource : FoodSource
             // NOTE: Here we use the heuristic that only iron and glucose are useful in chunks
             energyCompounds = chunk.Compounds.Where(c => c.Key == iron || c.Key == glucose).ToDictionary(
                 c => c.Key, c => c.Value.Amount);
-            totalEnergy = energyCompounds.Sum(c => c.Value) * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
+            totalEnergy = energyCompounds.Sum(c => c.Value) * chunk.Density * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
         }
     }
 
