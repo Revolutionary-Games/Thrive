@@ -391,9 +391,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///  Returns the rotation as a quaternion, as it should be in the colony.
+    ///  Returns the rotated position, as it should be in the colony.
+    ///  Used for re-parenting shapes to other microbes
     /// </summary>
-    public Quat RotationInsideColony()
+    public Vector3 RotatedPositionInsideColony(Vector3 shapePosition)
     {
         var rotation = Quat.Identity;
         if (ParentMicrobe.Colony != null)
@@ -408,16 +409,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             }
         }
 
-        return rotation;
-    }
-
-    /// <summary>
-    ///  Returns the rotated position, as it should be in the colony.
-    ///  Used for re-parenting shapes to other microbes
-    /// </summary>
-    public Vector3 RotatedPositionInsideColony(Vector3 shapePosition)
-    {
-        var rotation = RotationInsideColony();
         rotation = rotation.Normalized();
 
         // Transform the vector with the rotation quaternion

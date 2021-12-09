@@ -568,23 +568,6 @@ public partial class Microbe
         Colony?.RemoveFromColony(this);
     }
 
-    /// <summary>
-    ///   Updates the microbes LookAtPoint to its true orientation using the microbes relative orientation inside
-    ///   the colony
-    /// </summary>
-    internal void UpdateLookAtPointAfterUnbind()
-    {
-        var rotation = new Quat(Rotation);
-
-        // If the microbe is not the colony master we use its parent rotation
-        if (ColonyParent != null)
-            rotation *= new Quat(ColonyParent.Rotation);
-
-        rotation = rotation.Normalized();
-        LookAtPoint = rotation.Xform(Vector3.Forward);
-        LookAtPoint += GlobalTransform.origin;
-    }
-
     internal void OnColonyMemberRemoved(Microbe microbe)
     {
         if (microbe == this)
