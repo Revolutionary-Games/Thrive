@@ -1,4 +1,5 @@
-﻿using AutoEvo;
+﻿using System;
+using AutoEvo;
 
 public class CompoundFoodSource : FoodSource
 {
@@ -29,6 +30,13 @@ public class CompoundFoodSource : FoodSource
         var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).TotalConsumptionStationary;
 
         return compoundUseScore / energyCost;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // TODO: somehow allow the compound name to translate properly. Maybe we need to use bbcode to refer to the
+        // compounds?
+        return new LocalizedString("COMPOUND_FOOD_SOURCE", compound.Name);
     }
 
     public override float TotalEnergyAvailable()
