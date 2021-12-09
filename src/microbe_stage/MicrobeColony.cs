@@ -71,6 +71,9 @@ public class MicrobeColony
         if (State == Microbe.MicrobeState.Unbinding)
             State = Microbe.MicrobeState.Normal;
 
+        // Update the rotation of the microbe
+        microbe.UpdateLookAtPointAfterUnbind();
+
         foreach (var colonyMember in ColonyMembers)
             colonyMember.OnColonyMemberRemoved(microbe);
 
