@@ -41,6 +41,9 @@ public class AutoEvoConfiguration : IRegistryType
     [JsonProperty]
     public bool BiodiversitySplitIsMutated { get; private set; }
 
+    [JsonProperty]
+    public bool StrictNicheCompetition { get; private set; }
+
     /// <summary>
     ///   Unused
     /// </summary>
