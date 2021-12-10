@@ -2254,6 +2254,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         UpdateAutoEvoPredictionDetailsText();
 
         autoEvoPredictionExplanationPopup.PopupCenteredShrink();
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorAutoEvoPredictionOpened, EventArgs.Empty, this);
     }
 
     private void CloseAutoEvoPrediction()
