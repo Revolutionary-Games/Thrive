@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 20:12+0200\n"
+"POT-Creation-Date: 2021-12-10 11:19+0200\n"
 "PO-Revision-Date: 2021-11-24 16:56+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -944,6 +944,11 @@ msgstr "אוכלוסיה באזורים:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "נכחד מהכוכב"
 
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
+#, fuzzy
+msgid "CHUNK_FOOD_SOURCE"
+msgstr "ענני תרכובות"
+
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
@@ -956,11 +961,6 @@ msgstr ""
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
-
-#: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-#, fuzzy
-msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "שלג ימי"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1391,7 +1391,7 @@ msgstr "ציור מאת {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3979
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3981
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
@@ -2169,16 +2169,16 @@ msgstr ""
 "עכבר שמאלי: להשתמש בקבוע זה\n"
 "עכבר ימני: מחק קבוע זה"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:42
+#: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:59
+#: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
 msgstr "\"טרי\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -3250,7 +3250,7 @@ msgstr "תסקיר"
 msgid "PATCH_MAP"
 msgstr "מפת האזורים"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3973
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "אוכלוסיית {0} השתנתה ב {1} בגלל: {2}"
@@ -3339,19 +3339,19 @@ msgstr "לא זמין"
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "שם המין חייב להתאים למערכת השמות הבינומית (סוג וכינוי)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2275
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2279
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2286
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2292
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4453,6 +4453,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr ""
+
+#, fuzzy
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "שלג ימי"
 
 #~ msgid "Cancel"
 #~ msgstr "ביטול"

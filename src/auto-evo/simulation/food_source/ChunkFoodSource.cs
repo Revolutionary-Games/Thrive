@@ -61,7 +61,7 @@ public class ChunkFoodSource : FoodSource
 
     public override IFormattable GetDescription()
     {
-        return new LocalizedString("CHUNK_FOOD_SOURCE", chunkName);
+        return new LocalizedString("CHUNK_FOOD_SOURCE", new LocalizedString(chunkName));
     }
 
     public override float TotalEnergyAvailable()

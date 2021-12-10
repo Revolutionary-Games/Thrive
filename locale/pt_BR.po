@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 20:12+0200\n"
+"POT-Creation-Date: 2021-12-10 11:19+0200\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -956,6 +956,11 @@ msgstr "população nas regiões:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "foi extinto do planeta"
 
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
+#, fuzzy
+msgid "CHUNK_FOOD_SOURCE"
+msgstr "Nuvens de compostos"
+
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
@@ -968,11 +973,6 @@ msgstr ""
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
-
-#: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-#, fuzzy
-msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "Neve marinha"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1403,7 +1403,7 @@ msgstr "Arte por {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3979
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3981
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
@@ -2198,16 +2198,16 @@ msgstr ""
 "Botão esquerdo: Utilizar esta predefinição\n"
 "Botão direito: Remover esta predefinição"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:42
+#: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:59
+#: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
 msgstr "Bruto"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nenhum Dado a Exibir"
 
@@ -3320,7 +3320,7 @@ msgstr "Relatório"
 msgid "PATCH_MAP"
 msgstr "Mapa de Regiões"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3973
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "A população de {0} foi alterada por {1} devido a: {2}"
@@ -3412,19 +3412,19 @@ msgstr ""
 "O nome da espécie deve se adequar a nomenclatura binomial (Gênero e "
 "Epípeto)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2275
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2279
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2286
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2292
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4546,6 +4546,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr ""
+
+#, fuzzy
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "Neve marinha"
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"

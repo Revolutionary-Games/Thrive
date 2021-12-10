@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 20:12+0200\n"
-"PO-Revision-Date: 2021-12-09 13:09+0200\n"
+"POT-Creation-Date: 2021-12-10 11:19+0200\n"
+"PO-Revision-Date: 2021-12-10 11:22+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -963,6 +963,10 @@ msgstr "population in patches:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "went extinct from the planet"
 
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
+msgid "CHUNK_FOOD_SOURCE"
+msgstr "{0} consumption"
+
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
@@ -974,10 +978,6 @@ msgstr "Uniformly spread environmental food source of {0}"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
-
-#: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "Marine snow consumption"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1408,7 +1408,7 @@ msgstr "Art by {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3979
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3981
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
@@ -2190,16 +2190,16 @@ msgstr ""
 "Left mouse: Use this preset\n"
 "Right mouse: Delete this preset"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:42
+#: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:59
+#: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
@@ -3305,7 +3305,7 @@ msgstr "Report"
 msgid "PATCH_MAP"
 msgstr "Patch Map"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3973
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 "This panel shows the numbers that the auto-evo prediction works from. The "
@@ -3405,21 +3405,21 @@ msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Species name must conform to binomial naming system (Genus and Epithet)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2275
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2279
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Total energy gathered is {0} with individual cost of {1} resulting in "
 "unadjusted population of {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2286
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2292
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: "
@@ -4481,6 +4481,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr "View Now"
+
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "Marine snow consumption"
 
 #~ msgid "INFO_FOR_MOD"
 #~ msgstr "Full Info For Mod"

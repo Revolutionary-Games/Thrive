@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 20:12+0200\n"
+"POT-Creation-Date: 2021-12-10 11:19+0200\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -920,6 +920,11 @@ msgstr "주변 개체 수:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
+#, fuzzy
+msgid "CHUNK_FOOD_SOURCE"
+msgstr "화합물 구름"
+
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
@@ -932,11 +937,6 @@ msgstr ""
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
-
-#: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-#, fuzzy
-msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "바다눈"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1386,7 +1386,7 @@ msgstr ""
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3979
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3981
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
@@ -2178,16 +2178,16 @@ msgstr "새로운 키 배치 추가"
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:42
+#: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:59
+#: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -3307,7 +3307,7 @@ msgstr "보고"
 msgid "PATCH_MAP"
 msgstr "파편 지도"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3973
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
@@ -3400,19 +3400,19 @@ msgstr "N/A 변이 점수"
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2275
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2279
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2286
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2292
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4514,6 +4514,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr ""
+
+#, fuzzy
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "바다눈"
 
 #~ msgid "Cancel"
 #~ msgstr "취소"

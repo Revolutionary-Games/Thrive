@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 20:12+0200\n"
+"POT-Creation-Date: 2021-12-10 11:19+0200\n"
 "PO-Revision-Date: 2021-12-09 20:51+0000\n"
 "Last-Translator: Gr0vey <monkoftime1188@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= "
-"19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 "
+"<= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
 "X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.9.0\n"
 
@@ -38,28 +38,27 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Lai atbloķētu redaktoru un vairoties, jums jāsavāc amonjaks (oranžs mākonis) "
-"un fosfāts (purpurs mākonis)."
+"Lai atbloķētu redaktoru un vairoties, jums jāsavāc amonjaks (oranžs "
+"mākonis) un fosfāts (purpurs mākonis)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Jūs varat arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, kas "
-"ir mazāki par jūs, nospiežot [thrive:input][g_toggle_engulf[/thrive:input]. "
-"Tas maksās papildu [thrive:compound type=\"atp\"][/thrive:compound], kā arī "
-"jūs palēninās. Neaizmirsti nospiest "
-"[thrive:input]g_toggle_engulf[/thrive:input] otrreiz, lai pārtrauktu "
-"absorbēšanu."
+"Jūs varat arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, "
+"kas ir mazāki par jūs, nospiežot [thrive:input][g_toggle_engulf[/thrive:"
+"input]. Tas maksās papildu [thrive:compound type=\"atp\"][/thrive:"
+"compound], kā arī jūs palēninās. Neaizmirsti nospiest [thrive:"
+"input]g_toggle_engulf[/thrive:input] otrreiz, lai pārtrauktu absorbēšanu."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulācija izmanto [thrive:compound type=\"atp\"][/thrive:compound]. Tas "
-"nozīmē, ka, jo lielāka ir tava šūna, jo vairāk [thrive:compound type=\"atp\""
-"][/thrive:compound] ražojošu organoīdu tev ir nepieciešams, lai nezaudētu "
-"ATP, kad nekusties."
+"Osmoregulācija izmanto [thrive:compound type=\"atp\"][/thrive:compound]. "
+"Tas nozīmē, ka, jo lielāka ir tava šūna, jo vairāk [thrive:compound type="
+"\"atp\"][/thrive:compound] ražojošu organoīdu tev ir nepieciešams, lai "
+"nezaudētu ATP, kad nekusties."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -111,21 +110,21 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Esiet uzmanīgi, jo jūsu konkurenti evolucionē vienlaikus jums. Katru reizi, "
-"kad jūs esiet rediģētājā, tie arī evolucionē."
+"Esiet uzmanīgi, jo jūsu konkurenti evolucionē vienlaikus jums. Katru "
+"reizi, kad jūs esiet rediģētājā, tie arī evolucionē."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Savienojot citas šūnas, jūs varat veidot koloniju, kurā šūnas dalās ar "
 "savienojumiem, ko absorbē un ražo ar vienu otru. Lai varētu savieno "
-"savienoties ar citu šūnu, jums ir nepieciešams saistvielas organoīds un tad "
-"virzieties pretī tai pēc savienošanas režīma ieslēgšanas. Jūs varat "
+"savienoties ar citu šūnu, jums ir nepieciešams saistvielas organoīds un "
+"tad virzieties pretī tai pēc savienošanas režīma ieslēgšanas. Jūs varat "
 "savienoties tikai ar savas sugas pārstāvjiem. Kāmēram esiet kolonijā, jūs "
 "nevariet sadalīt savu šūnu un ieiet redaktorā(pagaidām). Lai ieietu "
 "redaktorā, vispirms ir jāpamet kolonija tad, kad jums ir pietiekami daudz "
-"savienojumi savākti un tad ieejiet redaktorā. Lielās šūnu kolonijas ir ceļš "
-"uz daudžšūnību (tas nav vēl spēlē)."
+"savienojumi savākti un tad ieejiet redaktorā. Lielās šūnu kolonijas ir "
+"ceļš uz daudžšūnību (tas nav vēl spēlē)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -152,8 +151,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Ārējie organoīdi\n"
 "\n"
-"Vica: Pārvieto jūsu šūnu ātrāk, izmantojot [thrive:compound type=\"atp\""
-"][/thrive:compound]\n"
+"Vica: Pārvieto jūsu šūnu ātrāk, izmantojot [thrive:compound type=\"atp\"][/"
+"thrive:compound]\n"
 "\n"
 "Pīluss: Var sadurt citas šūnas"
 
@@ -163,7 +162,8 @@ msgstr ""
 "Membrānas piesaistītie organoīdi\n"
 "\n"
 "Kodols: Aizņem 11 heksades un atļauj membrānai piesaistītām organoīdu "
-"evolūcijai, kā arī dubultu šūnas lielumu (to var evolucionēt tikai 1 reizi)\n"
+"evolūcijai, kā arī dubultu šūnas lielumu (to var evolucionēt tikai 1 "
+"reizi)\n"
 "\n"
 "Saistviela: Atļauj savienoties ar citām šūnām\n"
 "\n"
@@ -180,26 +180,26 @@ msgstr ""
 "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk "
 "glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
 "\n"
-"Slāpekļa fiksācijas plastids: Ražo [thrive:compound type=\"ammonia\""
-"][/thrive:compound] no [thrive:compound type=\"atp\"][/thrive:compound] un "
+"Slāpekļa fiksācijas plastids: Ražo [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] no [thrive:compound type=\"atp\"][/thrive:compound] un "
 "atmosfēriskā Slāpekļā un Skābekļa\n"
 "\n"
 "Vakuola: Glabā 8 sakrātos savienojumus\n"
 "\n"
-"Toksīnu Vakuolas: Ražo toksīnus (called [thrive:compound type=\"oxytoxy\""
-"][/thrive:compound])"
+"Toksīnu Vakuolas: Ražo toksīnus (called [thrive:compound type=\"oxytoxy\"]"
+"[/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Katru paaudzi, jums ir 100 mutācijas punkti (MP), ko drīkstiet patērēt, un "
 "katru izmaiņa (vai mutācija) maksās konkrētu skaitu tā MP. Pievienojot vai "
-"noņemot organoīdus maksās MP. Tomēr noņemot organoīdus, kuri tika pievienoti "
-"šajā mutāciajs sesijā, atmaksās MP par to organoīdu. Jūs varat pārvietot vai "
-"pavisam noņemt organoīdu ar labo klikšķi uz tās un izvēloties konkrēto "
-"darbību no uznirstošās izvēlnes. Jūs varat rotēt jūsu organoīdus, kāmēr jūs "
-"tās liekat, ar [thrive:input]e_rotate_left[/thrive:input] un "
-"[thrive:input]e_rotate_right[/thrive:input]."
+"noņemot organoīdus maksās MP. Tomēr noņemot organoīdus, kuri tika "
+"pievienoti šajā mutāciajs sesijā, atmaksās MP par to organoīdu. Jūs varat "
+"pārvietot vai pavisam noņemt organoīdu ar labo klikšķi uz tās un "
+"izvēloties konkrēto darbību no uznirstošās izvēlnes. Jūs varat rotēt jūsu "
+"organoīdus, kāmēr jūs tās liekat, ar [thrive:input]e_rotate_left[/thrive:"
+"input] un [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -207,8 +207,8 @@ msgstr ""
 "Katru reizi, kad jūs pavairojaties, jūs ieejat Mikrobu Redaktorā, kur jūs "
 "varat veikt izmaiņas jūsu sugai (Pievenojot, pārvietojot vai noņemot "
 "organoīdus), lai palielinātu jūsu sugas panākumus. Katrs apmeklējums "
-"redaktorā mikroba posmā pārstāv "
-"[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonus "
+"redaktorā mikroba posmā pārstāv [thrive:"
+"constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonus "
 "evolucijas gadus."
 
 #: ../simulation_parameters/common/help_texts.json:119
@@ -245,7 +245,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Jautrs fakts, metabolosoma ir to, ko sauc par daudzskaldņa organoīdu."
+msgstr ""
+"Jautrs fakts, metabolosoma ir to, ko sauc par daudzskaldņa organoīdu."
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
@@ -260,8 +261,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Rekur padoms, baktērijas var izskatīties stirpākas nekā tās ir, tās var būt "
-"mazas, bet dažas var ieurbties iekš jūs un nogalināt jūs tā!"
+"Rekur padoms, baktērijas var izskatīties stirpākas nekā tās ir, tās var "
+"būt mazas, bet dažas var ieurbties iekš jūs un nogalināt jūs tā!"
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
@@ -303,8 +304,8 @@ msgstr "Rekur padoms, jūs varat absorbēt gabalus, dzelža vai citus."
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Rekur padoms, sagatavojaties pirms pievienojat kodolu. Tās lietas ir dārgas! "
-"Gan uzturēšanā, gan nopirkšānā."
+"Rekur padoms, sagatavojaties pirms pievienojat kodolu. Tās lietas ir "
+"dārgas! Gan uzturēšanā, gan nopirkšānā."
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
@@ -952,6 +953,11 @@ msgstr ""
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
+#, fuzzy
+msgid "CHUNK_FOOD_SOURCE"
+msgstr "{0} Patēriņš"
+
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} Patēriņš"
@@ -963,10 +969,6 @@ msgstr ""
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
-
-#: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "Jūras sniega patēriņš"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1399,7 +1401,7 @@ msgstr ""
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3979
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3981
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
@@ -2162,16 +2164,16 @@ msgstr ""
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:42
+#: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.tscn:59
+#: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2306
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -3093,7 +3095,7 @@ msgstr ""
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3973
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
@@ -3184,19 +3186,19 @@ msgstr "N/A MP"
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2275
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2279
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2286
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2292
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3619,8 +3621,8 @@ msgstr ""
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
-"Noņemiet datus saistībā ar šo lietu. Noderīgi, ja jūs ievadījāt nepareizo ID "
-"vai arī vēlaties augšuplādēt jaunu versiju citai lietai."
+"Noņemiet datus saistībā ar šo lietu. Noderīgi, ja jūs ievadījāt nepareizo "
+"ID vai arī vēlaties augšuplādēt jaunu versiju citai lietai."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -4124,13 +4126,18 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Ja jums joprojām ir grūtības ar spēles mehāniku, pārskatiet palīdzības "
-"izvēlni. Jūs varat to atvērt ar jautājuma zīmes pogu lejējā kreisajā stūrī.\n"
+"izvēlni. Jūs varat to atvērt ar jautājuma zīmes pogu lejējā kreisajā "
+"stūrī.\n"
 "\n"
-"Viens papildus padoms: Jūs varat attālināt jūsu skatu ar ritināšanas riteni."
+"Viens papildus padoms: Jūs varat attālināt jūsu skatu ar ritināšanas "
+"riteni."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr ""
+
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "Jūras sniega patēriņš"
 
 #~ msgid "Cancel"
 #~ msgstr "Atcelt"
