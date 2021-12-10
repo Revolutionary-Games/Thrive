@@ -24,7 +24,8 @@ Code style rules
   descriptive. Avoid abbreviations. Do not shorten variable names just
   to save key strokes, it will be read far more often than it will be
   written. Single character variable names can be used in for
-  loops. They should be avoided everywhere else.
+  loops. They should be avoided everywhere else. LINQ is an exception
+  to this rule (see below for more info)
 
 - Some common short names are accepted (and even preferred): i, k, a,
   b used in loops (x, y, z used in loops that deal with coordinates or
@@ -120,6 +121,22 @@ Code style rules
 - Start comments with a capital letter, unless it is a commented out
   code block or a keyword.
 
+- Comments may end in a period. However it is only really recommended
+  for comments that are multiple sentences long. For other comments
+  it's suggested to not end them with a period.
+
+- If there is any debate what a method / parameter means in pull
+  request comments, it *must* be documented. The discussion is proof
+  that it is not clear enough without a comment. Or a more descriptive
+  name may also help in this situation.
+
+- If you add a comment describing what an `if` checked (what the
+  result is), put that comment inside the `if`. Comments describing
+  what the `if` is checking should be put on a line before the if. For
+  example: "Make sure the player is alive" should be placed before the
+  `if` but a comment like "Player is alive" should be inside the
+  braces of the `if` statement.
+
 - The `returns` section of an XML can be omitted if it adds nothing
   valuable. For example a method like `public List<Organelle>
   GetOrganelles()` having documentation that it "returns a list of
@@ -140,6 +157,11 @@ Code style rules
 - There should not be a line change in method declarations before the
   name of the method. Prefer adding a line break after the opening
   `(`
+
+- For method parameters, don't use the "chop" style for dividing them
+  on multiple lines, use the wrap style instead (ie. fill as many
+  parameters on each line as fits within the width limit, instead of
+  just one per line).
 
 - Switch statements should use braces when there is more than one line
   of code followed by a break/return or a variable is defined. Switch
@@ -215,16 +237,29 @@ Code style rules
   chains. Use complex LINQ sparingly. If LINQ would need many nested
   statements in lambdas, normal code should be used instead
 
-- Prefer to use short form names in LINQ statements instead of one
-  letter names, or at least use a sensible letter and don't always use
-  x, instead use i for item, c for cells etc.
+- Prefer to use single letter variable names in LINQ statements, when
+  they are clear enough. Don't always use x or another generic
+  variable for these. Instead use the first letter that a more
+  descriptive name would have. For example use "i" for "item", "c" for
+  "cells" etc.
 
 - Don't add a `Dispose` method to classes that don't need it.
+
+- Base method calls should be at the start of the method, unless
+  something really has to happen before them. This is to make it
+  easier see that the base method is called and not forgotten. Often
+  it is better to call the base method even though it doesn't do
+  anything to guard against future bugs (if a new sub class is added /
+  the base class is changed).
 
 - Prefer using declarations (C# 8 feature) over using statement
   blocks. If you need to reduce the scope of the using variables,
   start a new block with curly braces and use the using declaration
   inside it.
+
+- Don't use async (C# feature). Instead use the `TaskExecutor` to run
+  background tasks. Godot APIs don't use async either and none of the
+  existing code does.
 
 - Continuous Integration (CI) will check if the formatting scripts and
   tools find some problems in your code. You should fix these if your
@@ -290,6 +325,11 @@ Godot usage
   to be used multiple times, it is preferred to read out the value
   from it to a local variable first.
 
+- IEntity derived classes must call the OnDestroyed callback when they
+  are freed or queue freed otherwise things will break. If they don't
+  `EntityReference` won't function correctly and we'll have disposed
+  objects problems again.
+
 - The order of Godot overridden methods in a class should be in the
   following order: (class constructor), _Ready, _ExitTree, _Process,
   _Input, _UnhandledInput, (other callbacks)
@@ -303,7 +343,19 @@ Godot usage
   `QueueFreeChildren` extension methods.
 
 - DO NOT DISPOSE Godot Node derived objects, call QueueFree or Free
-  instead.
+  instead. Also don't override Dispose in Node derived types, instead
+  use the tree enter and exit callbacks to handle resources that need
+  releasing when removed (unless it is a game entity for which there's
+  a special mechanism, `IEntity` destroyed callbacks)
+
+- Don't use a constructor to setup Godot resources, usually Node
+  derived types should mostly do Godot related, constructor-like
+  operations entirely in _Ready. Many resources are not ready yet when
+  a class is constructed or static variables are being initialized. If
+  this is not followed script variables may not show up correctly in
+  the Godot editor as that relies on creating an instance of the
+  class, and that can fail for example because SimulationParameters
+  are not initialized in the Godot editor.
 
 - When using `GD.PrintErr` don't use string concatenation, use the
   multi argument form instead, for example: `GD.PrintErr("My value is:
@@ -401,7 +453,7 @@ Git
 - If you are working on a GitHub issue, your feature branch's name
   should begin with the issue number, followed by an underscore,
   followed by a short, descriptive name in
-  lower_case_with_underscores. The name should be short, but
+  `lower_case_with_underscores`. The name should be short, but
   descriptive enough that you know what the feature branch is about
   without looking up the GitHub ticket. The second best is to have a
   descriptive name for a branch that uses underscores to separate
@@ -418,10 +470,11 @@ Git
   master, do a merge. Or if there is a merge conflict preventing your
   pull request from being merged. Quite often the master branch needs
   to be merged in before merging a pull request, this can be done
-  directly on Github if there aren't any conflicts. If you want you
+  directly on Github if there aren't any conflicts. If you want, you
   can alternatively rebase the feature branch onto master, but this is
   not required normally. In a case where a direct merge (not squash)
-  is wanted to master then a rebase needs to be performed.
+  is wanted to master then a rebase needs to be performed to clean up
+  the commits in the feature branch.
 
 - When a feature branch is done, open a pull request on GitHub so that
   others can review it. Chances are that during this review, there
