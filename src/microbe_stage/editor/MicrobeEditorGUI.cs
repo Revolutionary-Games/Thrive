@@ -1072,6 +1072,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                     Texture = !string.IsNullOrEmpty(entry.IconPath) ?
                         GD.Load<Texture>(entry.IconPath) : null,
                     Expand = true,
+                    StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                 };
 
                 var highlight = new PanelContainer
