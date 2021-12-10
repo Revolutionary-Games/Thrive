@@ -25,4 +25,5 @@ Note: before starting this checklist the PR should be marked as non-draft.
 
 Before merging all CI jobs should finish on this PR without errors, if
 there are automatically detected style issues they should be fixed by
-the PR author.
+the PR author. Merging must follow our
+[styleguide](https://github.com/Revolutionary-Games/Thrive/blob/master/doc/style_guide.md#git).

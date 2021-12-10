@@ -329,6 +329,31 @@ public partial class Microbe
         return EngulfSize >= target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
+    public Vector3 GetOffsetRelativeToMaster()
+    {
+        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
+            Colony.Master.Rotation.y);
+    }
+
+    /// <summary>
+    ///  Public because it needs to be called by external organelles only
+    ///  Not meant for other uses
+    /// </summary>
+    public void SendOrganellePositionsToMembrane()
+    {
+        var organellePositions = new List<Vector2>();
+
+        foreach (var entry in organelles.Organelles)
+        {
+            var cartesian = Hex.AxialToCartesian(entry.Position);
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+        }
+
+        Membrane.OrganellePositions = organellePositions;
+        Membrane.Dirty = true;
+        membraneOrganellePositionsAreDirty = false;
+    }
+
     /// <summary>
     ///   Instantly kills this microbe and queues this entity to be destroyed
     /// </summary>
@@ -625,12 +650,6 @@ public partial class Microbe
         throw new InvalidOperationException();
     }
 
-    private Vector3 GetOffsetRelativeToMaster()
-    {
-        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
-            Colony.Master.Rotation.y);
-    }
-
     private void OnIGotAddedToColony()
     {
         State = MicrobeState.Normal;
@@ -915,21 +934,6 @@ public partial class Microbe
         }
     }
 
-    private void SendOrganellePositionsToMembrane()
-    {
-        var organellePositions = new List<Vector2>();
-
-        foreach (var entry in organelles.Organelles)
-        {
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
-        }
-
-        Membrane.OrganellePositions = organellePositions;
-        Membrane.Dirty = true;
-        membraneOrganellePositionsAreDirty = false;
-    }
-
     private void ChangeNodeParent(Microbe parent)
     {
         // We unset Colony temporarily as otherwise our exit tree callback would remove us from the colony immediately
@@ -1088,7 +1092,7 @@ public partial class Microbe
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
-        Invoke.Instance.Perform(BeginBind);
+        Invoke.Instance.Queue(BeginBind);
     }
 
     private void BeginBind()

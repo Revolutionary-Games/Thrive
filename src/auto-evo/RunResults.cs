@@ -142,6 +142,38 @@
             }
         }
 
+        public void AddTrackedEnergyForSpecies(MicrobeSpecies species, Patch patch, FoodSource niche,
+            float speciesFitness, float speciesEnergy, float totalFitness)
+        {
+            if (niche == null)
+                throw new ArgumentException("niche is missing", nameof(niche));
+
+            MakeSureResultExistsForSpecies(species);
+
+            var dataReceiver = results[species].GetEnergyResults(patch);
+
+            var nicheDescription = niche.GetDescription();
+            dataReceiver.PerNicheEnergy[nicheDescription] = new SpeciesPatchEnergyResults.NicheInfo
+            {
+                CurrentSpeciesFitness = speciesFitness,
+                CurrentSpeciesEnergy = speciesEnergy,
+                TotalFitness = totalFitness,
+                TotalAvailableEnergy = niche.TotalEnergyAvailable(),
+            };
+        }
+
+        public void AddTrackedEnergyConsumptionForSpecies(MicrobeSpecies species, Patch patch,
+            long unadjustedPopulation, float totalEnergy, float individualCost)
+        {
+            MakeSureResultExistsForSpecies(species);
+
+            var dataReceiver = results[species].GetEnergyResults(patch);
+
+            dataReceiver.UnadjustedPopulation = unadjustedPopulation;
+            dataReceiver.TotalEnergyGathered = totalEnergy;
+            dataReceiver.IndividualCost = individualCost;
+        }
+
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
             foreach (var entry in results)
@@ -504,6 +536,11 @@
             }
 
             return migrationsToPatch;
+        }
+
+        public Dictionary<Patch, SpeciesPatchEnergyResults> GetPatchEnergyResults(Species species)
+        {
+            return results[species].EnergyResults;
         }
 
         /// <summary>
@@ -883,9 +920,51 @@
             /// </summary>
             public Species SplitFrom;
 
+            /// <summary>
+            ///   If <see cref="SimulationConfiguration.CollectEnergyInformation"/> is set this collects energy
+            ///   source and consumption info for this species per-patch where this was simulated
+            /// </summary>
+            public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
+
             public SpeciesResult(Species species)
             {
                 Species = species ?? throw new ArgumentException("species is null");
+            }
+
+            public SpeciesPatchEnergyResults GetEnergyResults(Patch patch)
+            {
+                if (patch == null)
+                    throw new ArgumentException("can't get energy result for null patch", nameof(patch));
+
+                if (EnergyResults.TryGetValue(patch, out var result))
+                {
+                    return result;
+                }
+
+                result = new SpeciesPatchEnergyResults();
+
+                EnergyResults.Add(patch, result);
+                return result;
+            }
+        }
+
+        /// <summary>
+        ///   Energy source and consumption information for a species in a patch
+        /// </summary>
+        public class SpeciesPatchEnergyResults
+        {
+            public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();
+
+            public long UnadjustedPopulation;
+            public float TotalEnergyGathered;
+            public float IndividualCost;
+
+            public class NicheInfo
+            {
+                public float CurrentSpeciesFitness;
+                public float CurrentSpeciesEnergy;
+                public float TotalFitness;
+                public float TotalAvailableEnergy;
             }
         }
     }
