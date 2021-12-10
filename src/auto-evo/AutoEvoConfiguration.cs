@@ -55,9 +55,17 @@ public class AutoEvoConfiguration : IRegistryType
     [JsonProperty]
     public int MaximumSpeciesInPatch { get; private set; }
 
+    /// <summary>
+    ///   If true newly created species can't be forced to go extinct in the same auto-evo cycle
+    /// </summary>
     [JsonProperty]
     public bool ProtectNewCellsFromSpeciesCap { get; private set; }
 
+    /// <summary>
+    ///   TODO: this is meant to protect migrating species from forced extinction, however this is currently only
+    ///   assumes that migrations don't happen and works with population numbers as if they weren't there, which
+    ///   doesn't really guarantee that this does anything useful
+    /// </summary>
     [JsonProperty]
     public bool ProtectMigrationsFromSpeciesCap { get; private set; }
 

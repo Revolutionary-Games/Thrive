@@ -35,37 +35,32 @@
             // this may exclude migrated or newly created species.
             // Excluded species are only protected for one generation. The player is a target as well,
             // although they will be rescued before extinction can apply to them.
-            // TODO: check why resolveSplits was given the value of "!configuration.AllowNoMutation" that doesn't
-            // make any sense - hhyyrylainen (it's now changed to also be the new species protection flag)
             var targetSpeciesPopulationsByPatch = results.GetPopulationsByPatch(
-                !configuration.ProtectMigrationsFromSpeciesCap, !configuration.ProtectNewCellsFromSpeciesCap,
-                !configuration.ProtectNewCellsFromSpeciesCap);
+                !configuration.ProtectMigrationsFromSpeciesCap, true);
+
+            var newSpecies = results.GetNewSpecies();
 
             foreach (var patch in patches)
             {
-                var targetSpecies = targetSpeciesPopulationsByPatch[patch];
-
-                // This does not take player into account as the player species can never go extinct this way.
-                // But we still want the player to count in terms of which species has a low population and is a
-                // candidate for forced extinction
-                var protectedSpeciesCount = 0;
+                IEnumerable<KeyValuePair<Species, long>> targetEnumerator = targetSpeciesPopulationsByPatch[patch];
 
                 if (configuration.ProtectNewCellsFromSpeciesCap)
-                    protectedSpeciesCount += results.GetNewSpeciesResults(patch).Count;
-                if (configuration.ProtectMigrationsFromSpeciesCap)
-                    protectedSpeciesCount += results.GetMigrationsTo(patch).Count;
+                {
+                    targetEnumerator = targetEnumerator.Where(s => !newSpecies.Contains(s.Key));
+                }
+
+                var targetSpecies = targetEnumerator.ToList();
 
                 // Only bother if we're above the limit
-                if (targetSpecies.Count + protectedSpeciesCount <= configuration.MaximumSpeciesInPatch)
+                if (targetSpecies.Count <= configuration.MaximumSpeciesInPatch)
                     continue;
 
                 GD.Print("Running extinction step in patch ", patch.Name, ". ",
-                    "Total count:", targetSpecies.Count + protectedSpeciesCount);
+                    "Total count:", targetSpecies.Count);
 
                 var orderedTargetSpecies = targetSpecies.OrderBy(s => s.Value).Select(s => s.Key);
 
-                var speciesToRemoveCount = targetSpecies.Count - Math.Max(
-                    configuration.MaximumSpeciesInPatch - protectedSpeciesCount, 0);
+                var speciesToRemoveCount = targetSpecies.Count - Math.Max(configuration.MaximumSpeciesInPatch, 0);
 
                 // Remove worst-faring species in targets (which again exclude *temporarily* protected ones).
                 foreach (var speciesToRemove in orderedTargetSpecies.Take(speciesToRemoveCount))
