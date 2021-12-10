@@ -36,13 +36,15 @@ public class ChunkFoodSource : FoodSource
 
         var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch);
 
-        var predatorSpeed = microbeSpecies.BaseSpeed + energyBalance.FinalBalance;
+        // Don't penalize species that can't move at full speed all the time as much here
+        var chunkEaterSpeed = Math.Max(microbeSpecies.BaseSpeed + energyBalance.FinalBalance,
+            microbeSpecies.BaseSpeed / 3);
 
         // We ponder the score for each compound by its amount, leading to pondering in proportion of total quantity,
         // with a constant factor that will be eliminated when making ratios of scores for this niche.
         var score = energyCompounds.Sum(c => EnergyGenerationScore(microbeSpecies, c.Key) * c.Value);
 
-        score *= predatorSpeed * species.Behaviour.Activity;
+        score *= chunkEaterSpeed * species.Behaviour.Activity;
 
         // If the species can't engulf, then they are dependent on only eating the runoff compounds
         if (microbeSpecies.MembraneType.CellWall ||
@@ -51,7 +53,8 @@ public class ChunkFoodSource : FoodSource
             score *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        score /= energyBalance.FinalBalanceStationary;
+        // Chunk (originally from marine snow) food source penalizes big creatures that try to rely on it
+        score /= energyBalance.TotalConsumptionStationary;
 
         return score;
     }
