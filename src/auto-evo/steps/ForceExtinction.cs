@@ -11,7 +11,7 @@
     /// <remarks>
     ///   <para>
     ///     This was a hotfix to the 0.5.6.1 release.
-    ///     TODO: Inquire more refined solution, such as random extinction with bias for smaller populations.
+    ///     TODO: Come up with a more refined solution, such as random extinction with bias for smaller populations.
     ///   </para>
     /// </remarks>
     public class ForceExtinction : IRunStep
@@ -31,12 +31,14 @@
 
         public bool RunStep(RunResults results)
         {
-            // We gather populations that may be targeted in the patch,
-            // Depending on the parameters, this may exclude migrated or newly created species.
-            // Excluded species are only protected for one generation, so the player is a target as well,
-            // although they will be rescued if failing.
+            // We gather populations that may be targeted in the patch, depending on the parameters,
+            // this may exclude migrated or newly created species.
+            // Excluded species are only protected for one generation. The player is a target as well,
+            // although they will be rescued before extinction can apply to them.
+            // TODO: check why resolveSplits was given the value of "!configuration.AllowNoMutation" that doesn't
+            // make any sense - hhyyrylainen (it's now changed to also be the new species protection flag)
             var targetSpeciesPopulationsByPatch = results.GetPopulationsByPatch(
-                !configuration.ProtectMigrationsFromSpeciesCap, !configuration.AllowNoMutation,
+                !configuration.ProtectMigrationsFromSpeciesCap, !configuration.ProtectNewCellsFromSpeciesCap,
                 !configuration.ProtectNewCellsFromSpeciesCap);
 
             foreach (var patch in patches)
@@ -44,6 +46,8 @@
                 var targetSpecies = targetSpeciesPopulationsByPatch[patch];
 
                 // This does not take player into account as the player species can never go extinct this way.
+                // But we still want the player to count in terms of which species has a low population and is a
+                // candidate for forced extinction
                 var protectedSpeciesCount = 0;
 
                 if (configuration.ProtectNewCellsFromSpeciesCap)

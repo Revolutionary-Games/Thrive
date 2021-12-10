@@ -123,21 +123,23 @@
         {
             AddPopulationResultForSpecies(species, patch, 0);
 
+            var speciesResult = results[species];
+
             // We copy migration list to be able to modify it
-            foreach (var migration in results[species].SpreadToPatches.ToList())
+            foreach (var migration in speciesResult.SpreadToPatches.ToList())
             {
-                if (results[species].SplitOff != null && results[species].SplitOffPatches?.Contains(patch) == true)
+                if (speciesResult.SplitOff != null && speciesResult.SplitOffPatches?.Contains(patch) == true)
                     continue;
 
                 if (migration.To == patch)
                 {
-                    results[species].SpreadToPatches.Remove(migration);
+                    speciesResult.SpreadToPatches.Remove(migration);
 
                     // We may still penalize the origin patch, the migration would just have died off on its way.
                     // TODO: It would be nice to leave some trace of this happening, so that it can be tracked
                     // why the population in this patch was reduced.
                     if (!refundMigrations)
-                        results[species].NewPopulationInPatches[migration.From] -= migration.Population;
+                        speciesResult.NewPopulationInPatches[migration.From] -= migration.Population;
                 }
             }
         }
@@ -317,7 +319,10 @@
         {
             long result = 0;
 
-            foreach (var patchPopulationsEntry in GetCladePopulationsByPatch(species, resolveMigrations, resolveSplits))
+            // We don't care about the population of split species from species here as we want only the population for
+            // species
+            foreach (var patchPopulationsEntry in GetCladePopulationsByPatch(species, resolveMigrations, resolveSplits,
+                         false))
             {
                 result += patchPopulationsEntry.Value[species];
             }
@@ -380,14 +385,15 @@
                 foreach (var patchEntry in populations)
                 {
                     if (!speciesInPatches.TryGetValue(patchEntry.Key, out var populationsInPatch))
+                    {
                         populationsInPatch = new Dictionary<Species, long>();
+                        speciesInPatches[patchEntry.Key] = populationsInPatch;
+                    }
 
                     foreach (var speciesEntry in patchEntry.Value)
                     {
                         populationsInPatch.Add(speciesEntry.Key, speciesEntry.Value);
                     }
-
-                    speciesInPatches[patchEntry.Key] = populationsInPatch;
                 }
             }
 
@@ -405,7 +411,15 @@
         /// <param name="species">The species of the clade to calculate population for</param>
         /// <param name="resolveMigrations">If true migrations effects on population are taken into account</param>
         /// <param name="resolveSplits">If true species splits are taken into account in population numbers</param>
-        /// <param name="includeNewSpecies">If true new species are included as entries</param>
+        /// <param name="includeNewSpecies">
+        ///   If true new species, that are split from <see cref="species"/>, are included as entries
+        /// </param>
+        /// <exception cref="ArgumentException">If the given species has no results</exception>
+        /// <exception cref="InvalidOperationException">If there is invalid results data encountered</exception>
+        /// <returns>
+        ///   A dictionary of patch and the species population results in that patch that are relevant given
+        ///   the current settings
+        /// </returns>
         public Dictionary<Patch, Dictionary<Species, long>> GetCladePopulationsByPatch(Species species,
             bool resolveMigrations = false, bool resolveSplits = false, bool includeNewSpecies = true)
         {
@@ -417,18 +431,20 @@
             // Get natural variations
             foreach (var patchPopulationEntry in speciesResult.NewPopulationInPatches)
             {
-                if (!speciesInPatches.TryGetValue(patchPopulationEntry.Key, out var populations))
-                    populations = new Dictionary<Species, long>();
+                // This check is first so that empty patches
+                if (patchPopulationEntry.Value <= 0)
+                    continue;
 
-                if (patchPopulationEntry.Value > 0)
+                if (!speciesInPatches.TryGetValue(patchPopulationEntry.Key, out var populations))
                 {
-                    if (includeNewSpecies || speciesResult.NewlyCreated == null)
-                    {
-                        populations.Add(species, patchPopulationEntry.Value);
-                    }
+                    populations = new Dictionary<Species, long>();
+                    speciesInPatches[patchPopulationEntry.Key] = populations;
                 }
 
-                speciesInPatches[patchPopulationEntry.Key] = populations;
+                if (includeNewSpecies || speciesResult.NewlyCreated == null)
+                {
+                    populations.Add(species, patchPopulationEntry.Value);
+                }
             }
 
             if (resolveSplits)
@@ -438,9 +454,14 @@
                 {
                     foreach (var patch in speciesResult.SplitOffPatches)
                     {
-                        speciesInPatches[patch].Remove(species);
-                        speciesInPatches[patch].Add(speciesResult.SplitOff,
-                            speciesResult.NewPopulationInPatches[patch]);
+                        if (!speciesInPatches.TryGetValue(patch, out var populations))
+                        {
+                            populations = new Dictionary<Species, long>();
+                            speciesInPatches[patch] = populations;
+                        }
+
+                        populations.Remove(species);
+                        populations.Add(speciesResult.SplitOff, speciesResult.NewPopulationInPatches[patch]);
                     }
                 }
             }
@@ -450,9 +471,8 @@
                 // Apply migrations
                 foreach (var migration in speciesResult.SpreadToPatches)
                 {
-                    // Only consider valid migrations
                     if (migration.From == null || migration.To == null)
-                        throw new ArgumentException("Found invalid migration in auto-evo results: null patch!");
+                        throw new InvalidOperationException("Found invalid migration in auto-evo results: null patch!");
 
                     // Although zero population migrations are not invalid *per se*, we shouldn't have such migrations.
                     if (migration.Population <= 0)
@@ -463,18 +483,23 @@
 
                     // Create entries if necessary
                     if (!speciesInPatches.TryGetValue(migration.From, out var populationsFrom))
+                    {
                         populationsFrom = new Dictionary<Species, long>();
+                        speciesInPatches[migration.From] = populationsFrom;
+                    }
 
                     if (!speciesInPatches.TryGetValue(migration.To, out var populationsTo))
+                    {
                         populationsTo = new Dictionary<Species, long>();
+                        speciesInPatches[migration.To] = populationsTo;
+                    }
 
                     // Only consider possible migrations
                     if (populationsFrom.TryGetValue(species, out var originPopulation))
                     {
-                        // Exclude migrations moving more population than initially
                         if (originPopulation < migration.Population)
                         {
-                            throw new ArgumentException("Found impossible migration! Initial pop: " +
+                            throw new InvalidOperationException("Found impossible migration! Initial pop: " +
                                 originPopulation + ", migrated: " + migration.Population);
                         }
 
@@ -488,17 +513,13 @@
                             populationsFrom[species] = originPopulation - migration.Population;
                         }
 
-                        // ...and we add the new population to the patch.
+                        // ...and we add the new population to the moved to patch.
                         if (!populationsTo.TryGetValue(species, out var destinationPopulation))
                             destinationPopulation = 0;
 
                         destinationPopulation += migration.Population;
-
                         populationsTo[species] = destinationPopulation;
                     }
-
-                    speciesInPatches[migration.From] = populationsFrom;
-                    speciesInPatches[migration.To] = populationsTo;
                 }
             }
 
