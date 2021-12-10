@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 09:40+0700\n"
+"POT-Creation-Date: 2021-12-10 11:59+0200\n"
 "PO-Revision-Date: 2021-12-09 19:36+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -1417,8 +1417,7 @@ msgstr "От: {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4001
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
 msgstr "Затваряне"
 
@@ -1484,22 +1483,22 @@ msgstr "Галерия"
 msgid "LICENSES"
 msgstr "Лицензи"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "Предупреждение за „GLES2“"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "В момента „Thrive“ се изпълнява с „GLES2“. Това не е препоръчително и може "
 "да доведе до проблеми. Моля, обновете Вашите графични драйвери или "
 "използвайте графичните карти на „AMD“ или „Nvidia“."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
 msgstr "Грешка по време на зареждането на модификацията"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 "Възникна грешка по време на зареждането на една или повече модификации. За "
@@ -2206,7 +2205,7 @@ msgid "RAW"
 msgstr "НЦ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни за показване"
 
@@ -3196,8 +3195,12 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноза"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
-msgid "OPEN_DETAILS"
-msgstr "Подробности"
+#, fuzzy
+msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
+msgstr ""
+"Премахването на локалните данни може да се използва, ако "
+"идентификационният № е грешен или искате да качите нова версия на различна "
+"модификация."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "TOTAL_POPULATION_COLON"
@@ -3411,21 +3414,21 @@ msgstr ""
 "Наименованието трябва да отговаря на бинарната номенклатура (родово "
 "название и видов епитет)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на „{1}“"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Некоригираната популация на Вашите създания ({2}) се определя от общата "
 "усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща "
@@ -4292,7 +4295,7 @@ msgstr "Неизвестна грешка на „Steam“"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4402,7 +4405,7 @@ msgstr ""
 "Вашите създания трябва да поддържат размера на популацията си във всяко "
 "едно местообитание."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
 "Трябва да се съсредоточите върху един или два източника на енергия, така "
@@ -4500,6 +4503,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr "Преглед"
+
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "Подробности"
 
 #~ msgid "Cancel"
 #~ msgstr "Отказ"

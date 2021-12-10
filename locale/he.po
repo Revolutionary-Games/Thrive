@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 09:40+0700\n"
+"POT-Creation-Date: 2021-12-10 11:59+0200\n"
 "PO-Revision-Date: 2021-11-24 16:56+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/"
@@ -1393,8 +1393,7 @@ msgstr "ציור מאת {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4001
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
 msgstr "סגור"
 
@@ -1460,22 +1459,22 @@ msgstr "גלרית אומנות"
 msgid "LICENSES"
 msgstr "רישיונות"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "אזהרת GLES2"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "אתה מריץ את Thrive על GLES2. אופציה זו עדין לא נבדקה ועלולה לגרום לבעיות. "
 "אנא נסה לעדכן את מנהל התקן ו / או להשתמש במקום בכרטיס גרפיקה של AMD או "
 "Nvidia על מנת להפעלת את Thrive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -2178,7 +2177,7 @@ msgid "RAW"
 msgstr "\"טרי\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
 msgstr "אין מידע להציג"
 
@@ -3135,8 +3134,8 @@ msgstr "חיזוי של המפתח האוטומטי"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
 #, fuzzy
-msgid "OPEN_DETAILS"
-msgstr "פתח תקיית קבצי לוג"
+msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
+msgstr "המשך את המשחק"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "TOTAL_POPULATION_COLON"
@@ -3339,19 +3338,19 @@ msgstr "לא זמין"
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "שם המין חייב להתאים למערכת השמות הבינומית (סוג וכינוי)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4249,7 +4248,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4356,7 +4355,7 @@ msgstr ""
 "אבל כדאי לך לשמור על הכמות האכלוסיה שלך גבוהה אפילו שאתה לא מעורב בו באופן "
 "ישיר."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 #, fuzzy
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
@@ -4453,6 +4452,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr ""
+
+#, fuzzy
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "פתח תקיית קבצי לוג"
 
 #~ msgid "Cancel"
 #~ msgstr "ביטול"

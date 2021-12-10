@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 09:40+0700\n"
-"PO-Revision-Date: 2021-12-10 11:55+0200\n"
+"POT-Creation-Date: 2021-12-10 11:59+0200\n"
+"PO-Revision-Date: 2021-12-10 11:59+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -1410,8 +1410,7 @@ msgstr "Art by {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4001
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
 msgstr "Close"
 
@@ -1477,22 +1476,22 @@ msgstr "Art Gallery"
 msgid "LICENSES"
 msgstr "Licenses"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2 Mode Warning"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "You are running Thrive with GLES2. This is severely untested and is likely "
 "to cause issues. Try to update your video drivers and/or force AMD or "
 "Nvidia graphics to be used to run Thrive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod Loading Errors"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 "Errors occurred when loading one or more mods. Logs may contain additional "
@@ -2199,7 +2198,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
@@ -3190,7 +3189,7 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo Prediction"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
-msgid "OPEN_DETAILS"
+msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "View detailed information behind the prediction"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
@@ -3405,21 +3404,21 @@ msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Species name must conform to binomial naming system (Genus and Epithet)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Total energy gathered is {0} with individual cost of {1} resulting in "
 "unadjusted population of {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: "
@@ -4275,7 +4274,7 @@ msgstr "Unknown Steam error happened"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4388,7 +4387,7 @@ msgstr ""
 "You can view more detailed information behind the prediction by pressing "
 "the question mark button in the panel."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
 "You should focus on one or two energy sources so that you don't need to "
@@ -4483,6 +4482,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr "View Now"
+
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "View detailed information behind the prediction"
 
 #~ msgid "INFO_FOR_MOD"
 #~ msgstr "Full Info For Mod"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 09:40+0700\n"
+"POT-Creation-Date: 2021-12-10 11:59+0200\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -1405,8 +1405,7 @@ msgstr "Arte por {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4001
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
 msgstr "Fechar"
 
@@ -1472,22 +1471,22 @@ msgstr "Galeria de Arte"
 msgid "LICENSES"
 msgstr "Licenças"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "Aviso do Modo GLES2"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Você está usando Thrive usando GLES2, que não é testado e pode causar "
 "problemas. Tente atualizar seus drivers de vídeo e/ou forçar o uso do AMD "
 "ou Nvidia."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -2207,7 +2206,7 @@ msgid "RAW"
 msgstr "Bruto"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nenhum Dado a Exibir"
 
@@ -3205,8 +3204,8 @@ msgstr "Previsão da Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
 #, fuzzy
-msgid "OPEN_DETAILS"
-msgstr "Abrir pasta de logs"
+msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
+msgstr "Retomar o jogo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "TOTAL_POPULATION_COLON"
@@ -3412,19 +3411,19 @@ msgstr ""
 "O nome da espécie deve se adequar a nomenclatura binomial (Gênero e "
 "Epípeto)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4335,7 +4334,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4445,7 +4444,7 @@ msgstr ""
 "A simulação não leva em consideração seu desempenho individual. Então, em "
 "sua região atual, você terá um maior desempenho quando entrar no editor."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 #, fuzzy
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
@@ -4546,6 +4545,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr ""
+
+#, fuzzy
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "Abrir pasta de logs"
 
 #~ msgid "Cancel"
 #~ msgstr "Cancelar"

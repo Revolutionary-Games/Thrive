@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 09:40+0700\n"
+"POT-Creation-Date: 2021-12-10 11:59+0200\n"
 "PO-Revision-Date: 2021-11-10 19:36+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
@@ -1365,8 +1365,7 @@ msgstr "由{0}创作"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4001
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
 msgstr "关闭"
 
@@ -1432,21 +1431,21 @@ msgstr "艺术画廊"
 msgid "LICENSES"
 msgstr "许可"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "GLES2模式警告"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式运行Thrive。这种情况没有被测试过并且很可能导致种种问题。你应"
 "该考虑更新下你的显卡驱动，或者强制使用你的AMD/Nvidia显卡来运行Thrive。"
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
 msgstr "Mod加载错误"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr "在加载一个或多个mod时发生了错误。日志可能包含其它信息。"
 
@@ -2149,7 +2148,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
 msgstr "没有数据可显示"
 
@@ -3070,8 +3069,10 @@ msgstr "Auto-Evo的预测"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
 #, fuzzy
-msgid "OPEN_DETAILS"
-msgstr "打开文件夹"
+msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
+msgstr ""
+"删除关于这个项目的本地数据。在你输错了ID，或者想给不同的项目上传一个新的版"
+"本时很有用。"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "TOTAL_POPULATION_COLON"
@@ -3274,19 +3275,19 @@ msgstr "N/A"
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "物种名称必须符合双名法命名系统（属和表名）!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4118,7 +4119,7 @@ msgstr "发生了未知的Steam错误"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4215,7 +4216,7 @@ msgstr ""
 "\n"
 "但即使你不直接参与你也应该努力保持你的种群数量。"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
 "你应该专注于一种或两种能量来源，这样你就不需要拥有所有资源才能产生足够的ATP"
@@ -4303,6 +4304,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr "现在就去看看"
+
+#, fuzzy
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "打开文件夹"
 
 #~ msgid "Cancel"
 #~ msgstr "取消"

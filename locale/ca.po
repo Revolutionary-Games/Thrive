@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 09:40+0700\n"
+"POT-Creation-Date: 2021-12-10 11:59+0200\n"
 "PO-Revision-Date: 2021-11-25 19:57+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -1433,8 +1433,7 @@ msgstr "Art per {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4001
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
 msgstr "Tancar"
 
@@ -1500,11 +1499,11 @@ msgstr "Galeria d'art"
 msgid "LICENSES"
 msgstr "Llicències"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "Mode d'Alerta GLES2"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Esteu executant el programa Thrive amb GLES2. Aquesta tecnologia encara no "
@@ -1512,11 +1511,11 @@ msgstr ""
 "Intenteu actualitzar els vostres drivers de vídeo i/o forçar l'ús de "
 "gràfics AMD o Nvidia per executar Thrive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errors en Carregar el Mod"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 "Hi han hagut errors en carregar un o més mods. Els logs poden tenir més "
@@ -2229,7 +2228,7 @@ msgid "RAW"
 msgstr "\"Raw\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
 msgstr "No hi ha dades a mostrar"
 
@@ -3246,8 +3245,10 @@ msgstr "Predicció d'Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
 #, fuzzy
-msgid "OPEN_DETAILS"
-msgstr "Obrir Carpeta"
+msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
+msgstr ""
+"Eliminar dades locals referents a aquest item. És útil si has introduït "
+"l'ID equivocat o vols carregar una nova versió a un item diferent."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "TOTAL_POPULATION_COLON"
@@ -3456,19 +3457,19 @@ msgstr ""
 "El nom de l'espècie s'ha d'adequar a la nomenclatura binomial (Gènere i "
 "Epítet)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4357,7 +4358,7 @@ msgstr "Hi ha hagut un error d'Steam desconegut"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4482,7 +4483,7 @@ msgstr ""
 "Però hauries d'intentar mantenir la teva població alta, fins i tot quan no "
 "hi estàs directament involucrat."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
 "T'hauries de concentrar en una o dues fonts d'energia, de manera que no et "
@@ -4600,6 +4601,10 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr "Veure Ara"
+
+#, fuzzy
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "Obrir Carpeta"
 
 #~ msgid "Cancel"
 #~ msgstr "Cancel·lar"

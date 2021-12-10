@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 09:40+0700\n"
+"POT-Creation-Date: 2021-12-10 11:59+0200\n"
 "PO-Revision-Date: 2021-12-09 14:14+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
@@ -1414,8 +1414,7 @@ msgstr "Di {0}"
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4001
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
 msgstr "Chiudi"
 
@@ -1481,22 +1480,22 @@ msgstr "Galleria"
 msgid "LICENSES"
 msgstr "Licenze"
 
-#: ../src/general/MainMenu.tscn:496
+#: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
 msgstr "Avvertimento Modalità GLES2"
 
-#: ../src/general/MainMenu.tscn:498
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Stai eseguendo Thrive con GLES2. Ciò non è collaudato a dovere, ed è "
 "probabile che causi problemi. Prova ad aggiornare i tuoi driver video e/o "
 "a forzare la grafica AMD o Nvidia a eseguire Thrive."
 
-#: ../src/general/MainMenu.tscn:502
+#: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
 msgstr "Errori di caricamento mod"
 
-#: ../src/general/MainMenu.tscn:503
+#: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 "Si sono verificati degli errori nel caricamento di una o più mod. I report "
@@ -2207,7 +2206,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2315
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
 msgstr "Nessun dato da mostrare"
 
@@ -3212,8 +3211,9 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Previsione dell'Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
-msgid "OPEN_DETAILS"
-msgstr "Dettagli"
+#, fuzzy
+msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
+msgstr "Riprendi il gioco"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "TOTAL_POPULATION_COLON"
@@ -3420,19 +3420,19 @@ msgstr ""
 "Il nome della specie deve essere conforme al metodo di Linneo (Genere ed "
 "Epiteto)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2283
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energia in {0} per {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2287
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2294
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
 msgstr "Fonti di energia:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2300
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -4309,7 +4309,7 @@ msgstr "Errore sconosciuto di Steam"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4418,7 +4418,7 @@ msgstr ""
 "Tuttavia, dovresti provare a mantenere alta la tua popolazione, anche "
 "quando non ne sei direttamente responsabile."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 #, fuzzy
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
@@ -4518,6 +4518,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr "Vedi ora"
+
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "Dettagli"
 
 #~ msgid "Cancel"
 #~ msgstr "Annulla"
