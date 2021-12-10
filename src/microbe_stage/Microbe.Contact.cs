@@ -782,7 +782,7 @@ public partial class Microbe
             if (!engulfAudio.Playing)
                 engulfAudio.Play();
 
-            // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear energy
+            // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
 
             if (engulfAudio.Volume < 0.6f)
             {

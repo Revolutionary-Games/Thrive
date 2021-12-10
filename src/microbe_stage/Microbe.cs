@@ -184,10 +184,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
-        engulfAudio = new HybridAudioPlayer
+        engulfAudio = new HybridAudioPlayer(!IsPlayerMicrobe)
         {
             Stream = GD.Load<AudioStream>("res://assets/sounds/soundeffects/engulfment.ogg"),
-            Positional = !IsPlayerMicrobe,
             Bus = "SFX",
         };
 

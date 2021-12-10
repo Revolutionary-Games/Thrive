@@ -2,7 +2,7 @@
 
 /// <summary>
 ///   Provides extra level of abstraction to allow simultaneous switching between 3D positional and non positional
-///   audio players in a single Node-derived class.
+///   audio players in a single Node-derived class. Though setting this can only be done in instantiation.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -11,37 +11,28 @@
 /// </remarks>
 public class HybridAudioPlayer : Node
 {
+    public readonly bool Positional;
+
     private AudioStreamPlayer3D player3D;
     private AudioStreamPlayer playerNonPositional;
 
+    private AudioStream stream;
     private float volume;
+    private string bus;
 
-    public HybridAudioPlayer()
+    public HybridAudioPlayer(bool positional)
     {
-        player3D = new AudioStreamPlayer3D();
-        playerNonPositional = new AudioStreamPlayer();
-
-        AddChild(player3D);
-        AddChild(playerNonPositional);
-
+        Positional = positional;
         Volume = 1.0f;
     }
 
-    public bool Positional { get; set; }
-
     public AudioStream Stream
     {
-        get => Positional ? player3D.Stream : playerNonPositional.Stream;
+        get => stream;
         set
         {
-            if (Positional)
-            {
-                player3D.Stream = value;
-            }
-            else
-            {
-                playerNonPositional.Stream = value;
-            }
+            stream = value;
+            ApplyStream();
         }
     }
 
@@ -56,32 +47,34 @@ public class HybridAudioPlayer : Node
         set
         {
             volume = Mathf.Clamp(value, 0, 1);
-
-            if (Positional)
-            {
-                player3D.UnitDb = GD.Linear2Db(volume);
-            }
-            else
-            {
-                playerNonPositional.VolumeDb = GD.Linear2Db(volume);
-            }
+            ApplyVolume();
         }
     }
 
     public string Bus
     {
-        get => Positional ? player3D.Bus : playerNonPositional.Bus;
+        get => bus;
         set
         {
-            if (Positional)
-            {
-                player3D.Bus = value;
-            }
-            else
-            {
-                playerNonPositional.Bus = value;
-            }
+            bus = value;
+            ApplyBus();
         }
+    }
+
+    public override void _Ready()
+    {
+        if (Positional)
+        {
+            player3D = new AudioStreamPlayer3D();
+            AddChild(player3D);
+        }
+        else
+        {
+            playerNonPositional = new AudioStreamPlayer();
+            AddChild(playerNonPositional);
+        }
+
+        ApplyAudioPlayerSettings();
     }
 
     public void Play(float fromPosition = 0)
@@ -105,6 +98,49 @@ public class HybridAudioPlayer : Node
         else
         {
             playerNonPositional.Stop();
+        }
+    }
+
+    private void ApplyAudioPlayerSettings()
+    {
+        ApplyStream();
+        ApplyVolume();
+        ApplyBus();
+    }
+
+    private void ApplyStream()
+    {
+        if (Positional && player3D != null)
+        {
+            player3D.Stream = stream;
+        }
+        else if (!Positional && playerNonPositional != null)
+        {
+            playerNonPositional.Stream = stream;
+        }
+    }
+
+    private void ApplyVolume()
+    {
+        if (Positional && player3D != null)
+        {
+            player3D.UnitDb = GD.Linear2Db(volume);
+        }
+        else if (!Positional && playerNonPositional != null)
+        {
+            playerNonPositional.VolumeDb = GD.Linear2Db(volume);
+        }
+    }
+
+    private void ApplyBus()
+    {
+        if (Positional && player3D != null)
+        {
+            player3D.Bus = bus;
+        }
+        else if (!Positional && playerNonPositional != null)
+        {
+            playerNonPositional.Bus = bus;
         }
     }
 }
