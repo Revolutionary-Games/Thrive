@@ -963,6 +963,10 @@ msgstr "population in patches:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "went extinct from the planet"
 
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
+msgid "CHUNK_FOOD_SOURCE"
+msgstr "{0} consumption"
+
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
@@ -974,10 +978,6 @@ msgstr "Uniformly spread environmental food source of {0}"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
-
-#: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "Marine snow consumption"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -4485,6 +4485,9 @@ msgstr "View Now"
 
 #~ msgid "OPEN_DETAILS"
 #~ msgstr "View detailed information behind the prediction"
+
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "Marine snow consumption"
 
 #~ msgid "INFO_FOR_MOD"
 #~ msgstr "Full Info For Mod"
