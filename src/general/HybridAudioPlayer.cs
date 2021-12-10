@@ -11,8 +11,6 @@
 /// </remarks>
 public class HybridAudioPlayer : Node
 {
-    public readonly bool Positional;
-
     private AudioStreamPlayer3D player3D;
     private AudioStreamPlayer playerNonPositional;
 
@@ -25,6 +23,8 @@ public class HybridAudioPlayer : Node
         Positional = positional;
         Volume = 1.0f;
     }
+
+    public bool Positional { get; }
 
     public AudioStream Stream
     {

@@ -195,7 +195,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // You may notice that there are two separate ways that an audio is played in this class:
         // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",
         // "PlayNonPositionalSoundEffect". The former is approach best used to play looping sounds with more control
-        // to the audio player while the latter is convenient for dynamic and various short one-time sound effects
+        // to the audio player while the latter is more convenient for dynamic and various short one-time sound effects
         // in expense of lesser audio player control.
 
         if (IsPlayerMicrobe)
