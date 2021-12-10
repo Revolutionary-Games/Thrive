@@ -504,14 +504,21 @@ Git
   some cases where someone does a small fix to get things ready for a
   merge.
 
-- An exception to the above rule are the automatic PRs from weblate,
-  those must be merged normally, otherwise weblate won't detect that
+- An exception to the above rule are the automatic PRs from
+  [Weblate](https://translate.revolutionarygamesstudio.com/), those
+  must be merged normally, otherwise weblate won't detect that
   correctly and fixing that requires a lot of manual merging. So merge
-  weblate PRs as separate commits, not squashed.
+  weblate PRs as separate commits, not squashed. If there is a merge
+  conflict with a Weblate PR or Weblate can't rebase on latest master
+  due to a conflict, a manual merge is needed. For this checkout
+  latest master locally, then fetch the Weblate remote to get the
+  latest code, and finally just merge `weblate/master` to `master` and
+  push the result to `origin/master`.
 
 - You should not leave the co-authored-by line in a squashed commit if
-  all you did was merge master into the branch to make the merge show
-  up as green on Github.
+  all that person did was merge master into the branch to make the
+  merge show up as green on Github or if it is a really tiny
+  suggestion like a simple typo fix.
 
 - For maintainers: When manually merging (which is something you
   should avoid) GitHub requires a merge commit to recognize the
@@ -523,4 +530,7 @@ Git
 
 - All team members are encouraged to review pull requests. However,
   you shouldn't go and merge PRs if you haven't discussed it with the
-  programming team lead yet / it isn't approved by them yet.
+  programming team lead yet / it isn't approved by them yet. Another
+  person with access can perform PR merges if the programming team
+  lead is not available, but in this case another team member should
+  also review the code beforehand.
