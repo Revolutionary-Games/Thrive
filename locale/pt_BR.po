@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 12:25+0200\n"
+"POT-Creation-Date: 2021-12-10 16:44+0200\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
@@ -4085,31 +4085,35 @@ msgstr "Salvamento rápido"
 msgid "SAVE_INVALID"
 msgstr "Inválido"
 
-#: ../src/saving/SaveList.cs:187
+#: ../src/saving/SaveList.cs:202
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Apagar o jogo salvo é irreversível, deseja apagar {0} permanentemente?"
 
-#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:53
+msgid "NO_SAVEGAMES_FOUND"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Carregando..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Apagar o Jogo Salvo?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Carregar jogo incompatível?"
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:80
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo salvo é de uma versão mais nova de Thrive e é provavelmente "
 "incompatível.\n"
 "Deseja carregar o jogo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:77
+#: ../src/saving/SaveList.tscn:88
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Este jogo salvo é de uma versão mais antiga e pode ser incompatível com a "
@@ -4120,11 +4124,11 @@ msgstr ""
 "priorizados.\n"
 "Deseja tentar carregar o jogo salvo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:84
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE"
 msgstr "Carregar salvamento inválido?"
 
-#: ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:96
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "A informação do jogo salvo não pôde ser carregada do arquivo.\n"
@@ -4132,11 +4136,11 @@ msgstr ""
 "entendido por essa versão de Thrive.\n"
 "Deseja carregar o jogo salvo mesmo assim?"
 
-#: ../src/saving/SaveList.tscn:92
+#: ../src/saving/SaveList.tscn:103
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "O jogo salvo selecionado é incompatível"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:105
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "O jogo salvo a ser carregado não é compatível com esta versão de Thrive.\n"
@@ -4145,11 +4149,11 @@ msgstr ""
 "salvamentos não é prioridade, já que não há um atualizador para todas as "
 "versões."
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:114
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "O jogo salvo selecionado pode ser atualizado"
 
-#: ../src/saving/SaveList.tscn:104
+#: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "O jogo salvo selecionado é de uma versão antiga de Thrive, mas pode ser "
@@ -4159,11 +4163,11 @@ msgstr ""
 "Se pular a atualização, o jogo tentará executar o arquivo normalmente.\n"
 "Tentar atualizar esse arquivo salvo?"
 
-#: ../src/saving/SaveList.tscn:111
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Falha ao atualizar o arquivo salvo"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:123
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "A atualização do arquivo salvo falhou devido ao seguinte erro:\n"
@@ -4256,12 +4260,12 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Apagar salvamentos antigos?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
-msgid "TRY_MAKING_A_SAVE"
-msgstr "Tente salvar um jogo!"
-
-#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "NO_SAVE_DIRECTORY"
 msgstr "O diretório de salvamentos não foi encontrado"
+
+#: ../src/saving/SaveManagerGUI.tscn:202
+msgid "TRY_MAKING_A_SAVE"
+msgstr "Tente salvar um jogo!"
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
