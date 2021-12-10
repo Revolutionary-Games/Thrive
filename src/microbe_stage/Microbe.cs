@@ -737,6 +737,17 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         private float volume;
 
+        public AudioPlayer()
+        {
+            player3D = new AudioStreamPlayer3D();
+            playerNonPositional = new AudioStreamPlayer();
+
+            AddChild(player3D);
+            AddChild(playerNonPositional);
+
+            Volume = 1.0f;
+        }
+
         public bool Positional { get; set; }
 
         public AudioStream Stream
@@ -765,7 +776,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             get => volume;
             set
             {
-                volume = Mathf.Clamp(value, 0 , 1);
+                volume = Mathf.Clamp(value, 0, 1);
 
                 if (Positional)
                 {
@@ -792,17 +803,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                     playerNonPositional.Bus = value;
                 }
             }
-        }
-
-        public AudioPlayer()
-        {
-            player3D = new AudioStreamPlayer3D();
-            playerNonPositional = new AudioStreamPlayer();
-
-            AddChild(player3D);
-            AddChild(playerNonPositional);
-
-            Volume = 1.0f;
         }
 
         public void Play(float fromPosition = 0)
