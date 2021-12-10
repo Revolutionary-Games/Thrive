@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 16:44+0200\n"
+"POT-Creation-Date: 2021-12-10 17:06+0200\n"
 "PO-Revision-Date: 2021-12-09 20:51+0000\n"
 "Last-Translator: Gr0vey <monkoftime1188@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 <= "
-"19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 0 || n % 100 >= 11 && n % 100 "
+"<= 19) ? 0 : ((n % 10 == 1 && n % 100 != 11) ? 1 : 2);\n"
 "X-Generator: Weblate 4.8.1\n"
 "Generated-By: Babel 2.9.0\n"
 
@@ -25,8 +25,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir toksīnu "
-"vakuola. G, lai pārslēgtu absorbēšanas režīmu."
+"W,A,S,D un pele, lai pārvietotos. E, lai šautu OxyToxy NT, ja tev ir "
+"toksīnu vakuola. G, lai pārslēgtu absorbēšanas režīmu."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -39,27 +39,27 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"Lai atbloķētu redaktoru un vairoties, jums jāsavāc amonjaks (oranžs mākonis) "
-"un fosfāts (purpurs mākonis)."
+"Lai atbloķētu redaktoru un vairoties, jums jāsavāc amonjaks (oranžs "
+"mākonis) un fosfāts (purpurs mākonis)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
-"Jūs varat arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, kas "
-"ir mazāki par jūs, nospiežot [thrive:input][g_toggle_engulf[/thrive:input]. "
-"Tas maksās papildu [thrive:compound type=\"atp\"][/thrive:compound], kā arī "
-"jūs palēninās. Neaizmirsti nospiest [thrive:input]g_toggle_engulf[/thrive:"
-"input] otrreiz, lai pārtrauktu absorbēšanu."
+"Jūs varat arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, "
+"kas ir mazāki par jūs, nospiežot [thrive:input][g_toggle_engulf[/thrive:"
+"input]. Tas maksās papildu [thrive:compound type=\"atp\"][/thrive:"
+"compound], kā arī jūs palēninās. Neaizmirsti nospiest [thrive:"
+"input]g_toggle_engulf[/thrive:input] otrreiz, lai pārtrauktu absorbēšanu."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulācija izmanto [thrive:compound type=\"atp\"][/thrive:compound]. Tas "
-"nozīmē, ka, jo lielāka ir tava šūna, jo vairāk [thrive:compound type=\"atp\"]"
-"[/thrive:compound] ražojošu organoīdu tev ir nepieciešams, lai nezaudētu "
-"ATP, kad nekusties."
+"Osmoregulācija izmanto [thrive:compound type=\"atp\"][/thrive:compound]. "
+"Tas nozīmē, ka, jo lielāka ir tava šūna, jo vairāk [thrive:compound type="
+"\"atp\"][/thrive:compound] ražojošu organoīdu tev ir nepieciešams, lai "
+"nezaudētu ATP, kad nekusties."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -92,8 +92,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. Organoīdiem "
-"ir nepieciešams amonjaks un fosfāts, lai sadalītos."
+"Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. "
+"Organoīdiem ir nepieciešams amonjaks un fosfāts, lai sadalītos."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
@@ -103,29 +103,29 @@ msgstr "Pagaidām, ja tava populācija samazināsies līdz nullei, tu izmirsi."
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
-"Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik tiek "
-"uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt spēlēt, kā "
-"vēlies."
+"Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik "
+"tiek uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt "
+"spēlēt, kā vēlies."
 
 #: ../simulation_parameters/common/help_texts.json:50
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Esiet uzmanīgi, jo jūsu konkurenti evolucionē vienlaikus jums. Katru reizi, "
-"kad jūs esiet rediģētājā, tie arī evolucionē."
+"Esiet uzmanīgi, jo jūsu konkurenti evolucionē vienlaikus jums. Katru "
+"reizi, kad jūs esiet rediģētājā, tie arī evolucionē."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Savienojot citas šūnas, jūs varat veidot koloniju, kurā šūnas dalās ar "
 "savienojumiem, ko absorbē un ražo ar vienu otru. Lai varētu savieno "
-"savienoties ar citu šūnu, jums ir nepieciešams saistvielas organoīds un tad "
-"virzieties pretī tai pēc savienošanas režīma ieslēgšanas. Jūs varat "
+"savienoties ar citu šūnu, jums ir nepieciešams saistvielas organoīds un "
+"tad virzieties pretī tai pēc savienošanas režīma ieslēgšanas. Jūs varat "
 "savienoties tikai ar savas sugas pārstāvjiem. Kāmēram esiet kolonijā, jūs "
 "nevariet sadalīt savu šūnu un ieiet redaktorā(pagaidām). Lai ieietu "
 "redaktorā, vispirms ir jāpamet kolonija tad, kad jums ir pietiekami daudz "
-"savienojumi savākti un tad ieejiet redaktorā. Lielās šūnu kolonijas ir ceļš "
-"uz daudžšūnību (tas nav vēl spēlē)."
+"savienojumi savākti un tad ieejiet redaktorā. Lielās šūnu kolonijas ir "
+"ceļš uz daudžšūnību (tas nav vēl spēlē)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -163,7 +163,8 @@ msgstr ""
 "Membrānas piesaistītie organoīdi\n"
 "\n"
 "Kodols: Aizņem 11 heksades un atļauj membrānai piesaistītām organoīdu "
-"evolūcijai, kā arī dubultu šūnas lielumu (to var evolucionēt tikai 1 reizi)\n"
+"evolūcijai, kā arī dubultu šūnas lielumu (to var evolucionēt tikai 1 "
+"reizi)\n"
 "\n"
 "Saistviela: Atļauj savienoties ar citām šūnām\n"
 "\n"
@@ -183,20 +184,20 @@ msgstr ""
 "\n"
 "Vakuola: Glabā 8 sakrātos savienojumus\n"
 "\n"
-"Toksīnu Vakuolas: Ražo toksīnus (called [thrive:compound type=\"oxytoxy\"][/"
-"thrive:compound])"
+"Toksīnu Vakuolas: Ražo toksīnus (called [thrive:compound type=\"oxytoxy\"]"
+"[/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
 "Katru paaudzi, jums ir 100 mutācijas punkti (MP), ko drīkstiet patērēt, un "
 "katru izmaiņa (vai mutācija) maksās konkrētu skaitu tā MP. Pievienojot vai "
-"noņemot organoīdus maksās MP. Tomēr noņemot organoīdus, kuri tika pievienoti "
-"šajā mutāciajs sesijā, atmaksās MP par to organoīdu. Jūs varat pārvietot vai "
-"pavisam noņemt organoīdu ar labo klikšķi uz tās un izvēloties konkrēto "
-"darbību no uznirstošās izvēlnes. Jūs varat rotēt jūsu organoīdus, kāmēr jūs "
-"tās liekat, ar [thrive:input]e_rotate_left[/thrive:input] un [thrive:"
-"input]e_rotate_right[/thrive:input]."
+"noņemot organoīdus maksās MP. Tomēr noņemot organoīdus, kuri tika "
+"pievienoti šajā mutāciajs sesijā, atmaksās MP par to organoīdu. Jūs varat "
+"pārvietot vai pavisam noņemt organoīdu ar labo klikšķi uz tās un "
+"izvēloties konkrēto darbību no uznirstošās izvēlnes. Jūs varat rotēt jūsu "
+"organoīdus, kāmēr jūs tās liekat, ar [thrive:input]e_rotate_left[/thrive:"
+"input] un [thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
@@ -222,8 +223,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja esi "
-"pietiekami ātrs."
+"Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja "
+"esi pietiekami ātrs."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
@@ -242,7 +243,8 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "Jautrs fakts, metabolosoma ir to, ko sauc par daudzskaldņa organoīdu."
+msgstr ""
+"Jautrs fakts, metabolosoma ir to, ko sauc par daudzskaldņa organoīdu."
 
 #: ../simulation_parameters/common/help_texts.json:141
 msgid "EASTEREGG_MESSAGE_6"
@@ -251,13 +253,14 @@ msgstr "Padoms: dažreiz labākā rīcība ir vienkārši bēgt no citām šūn�
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"Padoms: tu vari absorbēt šūnu, ja tā ir aptuveni puse no tavas šūnas lieluma."
+"Padoms: tu vari absorbēt šūnu, ja tā ir aptuveni puse no tavas šūnas "
+"lieluma."
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Rekur padoms, baktērijas var izskatīties stirpākas nekā tās ir, tās var būt "
-"mazas, bet dažas var ieurbties iekš jūs un nogalināt jūs tā!"
+"Rekur padoms, baktērijas var izskatīties stirpākas nekā tās ir, tās var "
+"būt mazas, bet dažas var ieurbties iekš jūs un nogalināt jūs tā!"
 
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
@@ -286,7 +289,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā vairāk ATP"
+"Padoms: jo vairāk tev ir vicu, jo ātrāk tu esi, bet tas arī maksā vairāk "
+"ATP"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
@@ -295,8 +299,8 @@ msgstr "Rekur padoms, jūs varat absorbēt gabalus, dzelža vai citus."
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
-"Rekur padoms, sagatavojaties pirms pievienojat kodolu. Tās lietas ir dārgas! "
-"Gan uzturēšanā, gan nopirkšānā."
+"Rekur padoms, sagatavojaties pirms pievienojat kodolu. Tās lietas ir "
+"dārgas! Gan uzturēšanā, gan nopirkšānā."
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
@@ -2607,7 +2611,7 @@ msgstr ""
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:832
+#: ../src/microbe_stage/Microbe.Contact.cs:848
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2967,8 +2971,8 @@ msgstr "ATP ražošana"
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
-"Noņemiet datus saistībā ar šo lietu. Noderīgi, ja jūs ievadījāt nepareizo ID "
-"vai arī vēlaties augšuplādēt jaunu versiju citai lietai."
+"Noņemiet datus saistībā ar šo lietu. Noderīgi, ja jūs ievadījāt nepareizo "
+"ID vai arī vēlaties augšuplādēt jaunu versiju citai lietai."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 #, fuzzy
@@ -3608,8 +3612,8 @@ msgstr ""
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
-"Noņemiet datus saistībā ar šo lietu. Noderīgi, ja jūs ievadījāt nepareizo ID "
-"vai arī vēlaties augšuplādēt jaunu versiju citai lietai."
+"Noņemiet datus saistībā ar šo lietu. Noderīgi, ja jūs ievadījāt nepareizo "
+"ID vai arī vēlaties augšuplādēt jaunu versiju citai lietai."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -3796,7 +3800,7 @@ msgstr "Ātrā saglabāšana"
 msgid "SAVE_INVALID"
 msgstr ""
 
-#: ../src/saving/SaveList.cs:202 ../src/saving/SaveList.cs:187
+#: ../src/saving/SaveList.cs:202
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Šī faila dzēšanu nevar atcelt. Vai tiešām vēlies neatgriezeniski dzēst {0}?"
@@ -3806,41 +3810,38 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
-#: ../src/saving/SaveList.tscn:50
 msgid "LOADING_DOT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:279
-#: ../src/saving/SaveList.tscn:61
 msgid "DELETE_THIS_SAVE"
 msgstr "Izdzēst šo saglabāšanas failu?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:80 ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:80
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:88 ../src/saving/SaveList.tscn:77
+#: ../src/saving/SaveList.tscn:88
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:95 ../src/saving/SaveList.tscn:84
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:96 ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:96
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:103 ../src/saving/SaveList.tscn:92
+#: ../src/saving/SaveList.tscn:103
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:105 ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:105
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Izvelētais saglabāšanas fails nav saderīgs ar šo Thrive versiju.\n"
@@ -3848,20 +3849,20 @@ msgstr ""
 "augsta prioritāte, tādēļ nav iebūvēta saglabāšanas failu pārveidotājs, lai "
 "jauninātu vecos saglabāšanas failus."
 
-#: ../src/saving/SaveList.tscn:114 ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:114
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:115 ../src/saving/SaveList.tscn:104
+#: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:122 ../src/saving/SaveList.tscn:111
+#: ../src/saving/SaveList.tscn:122
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Saglabāšana neizdevās"
 
-#: ../src/saving/SaveList.tscn:123 ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:123
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 
@@ -3943,12 +3944,12 @@ msgstr "Dzēst atlasītos saglabāšanas failus?"
 msgid "DELETE_OLD_SAVES"
 msgstr "Izdzēst vecos saglabāšanas failus?"
 
-#: ../src/saving/SaveManagerGUI.tscn:200 ../src/saving/SaveManagerGUI.tscn:202
+#: ../src/saving/SaveManagerGUI.tscn:200
 #, fuzzy
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Atvērt saglabāšanas failu direktoriju"
 
-#: ../src/saving/SaveManagerGUI.tscn:202 ../src/saving/SaveManagerGUI.tscn:200
+#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
@@ -4119,17 +4120,18 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Ja jums joprojām ir grūtības ar spēles mehāniku, pārskatiet palīdzības "
-"izvēlni. Jūs varat to atvērt ar jautājuma zīmes pogu lejējā kreisajā stūrī.\n"
+"izvēlni. Jūs varat to atvērt ar jautājuma zīmes pogu lejējā kreisajā "
+"stūrī.\n"
 "\n"
-"Viens papildus padoms: Jūs varat attālināt jūsu skatu ar ritināšanas riteni."
+"Viens papildus padoms: Jūs varat attālināt jūsu skatu ar ritināšanas "
+"riteni."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr ""
 
-#: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "Jūras sniega patēriņš"
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "Jūras sniega patēriņš"
 
 #, fuzzy
 #~ msgid "OPEN_DETAILS"
