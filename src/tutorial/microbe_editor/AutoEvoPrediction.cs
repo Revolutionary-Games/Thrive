@@ -1,5 +1,6 @@
 ﻿namespace Tutorial
 {
+    using System;
     using Godot;
     using Newtonsoft.Json;
 
@@ -23,6 +24,28 @@
 
             gui.AutoEvoPredictionHighlight.TargetControl = ShownCurrently ? EditorAutoEvoPredictionPanel : null;
             gui.AutoEvoPredictionHighlight.Visible = ShownCurrently;
+        }
+
+        public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
+            object sender)
+        {
+            if (base.CheckEvent(overallState, eventType, args, sender))
+                return true;
+
+            switch (eventType)
+            {
+                case TutorialEventType.MicrobeEditorAutoEvoPredictionOpened:
+                {
+                    if (ShownCurrently)
+                    {
+                        Hide();
+                    }
+
+                    break;
+                }
+            }
+
+            return false;
         }
     }
 }
