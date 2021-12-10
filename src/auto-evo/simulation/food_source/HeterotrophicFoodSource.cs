@@ -1,4 +1,5 @@
-﻿using AutoEvo;
+﻿using System;
+using AutoEvo;
 
 public class HeterotrophicFoodSource : FoodSource
 {
@@ -66,7 +67,7 @@ public class HeterotrophicFoodSource : FoodSource
         }
 
         // Pili are much more useful if the microbe can close to melee
-        pilusScore *= predatorSpeed;
+        pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
         // predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > microbeSpeciesHexSize)
@@ -76,6 +77,11 @@ public class HeterotrophicFoodSource : FoodSource
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
         return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+    }
+
+    public override IFormattable GetDescription()
+    {
+        return new LocalizedString("PREDATION_FOOD_SOURCE", prey.FormattedName);
     }
 
     public override float TotalEnergyAvailable()

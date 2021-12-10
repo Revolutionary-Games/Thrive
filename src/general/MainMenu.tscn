@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -70,6 +71,7 @@ CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
+ModLoadFailuresPath = NodePath("ModFailureDialog")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 
@@ -491,6 +493,11 @@ popup_exclusive = false
 WindowTitle = "GLES2_MODE_WARNING"
 HideCancelButton = true
 DialogText = "GLES2_MODE_WARNING_TEXT"
+
+[node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
+rect_min_size = Vector2( 400, 350 )
+WindowTitle = "MOD_LOAD_ERRORS"
+ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
