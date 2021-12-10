@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 12:25+0200\n"
-"PO-Revision-Date: 2021-12-09 19:36+0000\n"
+"POT-Creation-Date: 2021-12-10 17:06+0200\n"
+"PO-Revision-Date: 2021-12-10 15:05+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -971,7 +971,6 @@ msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изчезнаха от планетата"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
-#, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0}"
 
@@ -2841,7 +2840,7 @@ msgstr "успешно плячкосване"
 msgid "SUCCESSFUL_KILL"
 msgstr "успешно убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:832
+#: ../src/microbe_stage/Microbe.Contact.cs:848
 msgid "ESCAPE_ENGULFING"
 msgstr "бягство от поглъщане"
 
@@ -3188,7 +3187,8 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Това е очакваната популация на Вашите създания според автоматичната "
 "еволюция.\n"
-"Тя симулира тяхната популацията на база резултатите от Вашето представяне."
+"Тя симулира тяхната популация, но не включва резултатите от Вашето "
+"индивидуално представяне."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1956
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3943
@@ -3196,12 +3196,8 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноза"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
-#, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr ""
-"Премахването на локалните данни може да се използва, ако "
-"идентификационният № е грешен или искате да качите нова версия на различна "
-"модификация."
+msgstr "Отваряне на подробна информация за прогнозата"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "TOTAL_POPULATION_COLON"
@@ -4052,31 +4048,35 @@ msgstr "Бърз запис"
 msgid "SAVE_INVALID"
 msgstr "Невалиден запис"
 
-#: ../src/saving/SaveList.cs:187
+#: ../src/saving/SaveList.cs:202
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Изтриването на записа не може да бъде отменено, сигурни ли сте, че искате "
 "да изтриете „{0}“?"
 
-#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:53
+msgid "NO_SAVEGAMES_FOUND"
+msgstr "Няма създадени записи"
+
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Зареждане..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Изтриване на този запис?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Зареждане на несъвместим запис?"
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:80
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Този запис е от по-нова версия на „Thrive“ и е несъвместим.\n"
 "Искате ли да го заредите въпреки това?"
 
-#: ../src/saving/SaveList.tscn:77
+#: ../src/saving/SaveList.tscn:88
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Този запис е от стара версия на „Thrive“ и е несъвместим.\n"
@@ -4084,22 +4084,22 @@ msgstr ""
 "Ако искате, може да докладвате за потенциалните проблеми.\n"
 "Искате ли да го заредите въпреки това?"
 
-#: ../src/saving/SaveList.tscn:84
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE"
 msgstr "Зареждане на невалиден запис?"
 
-#: ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:96
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Запазената информация не може да бъде заредена.\n"
 "Записът най-вероятно е повреден или е от по-нова версия на „Thrive“.\n"
 "Искате ли да го заредите въпреки това?"
 
-#: ../src/saving/SaveList.tscn:92
+#: ../src/saving/SaveList.tscn:103
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Избраният запис е несъвместим"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:105
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Избраният запис е несъвместим с тази версия на „Thrive“.\n"
@@ -4107,11 +4107,11 @@ msgstr ""
 "Понеже играта е в начален етап на разработка и съвместимостта не е "
 "приоритет, някои записи не могат да бъдат надградени."
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:114
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "Избраният запис може да бъде надграден"
 
-#: ../src/saving/SaveList.tscn:104
+#: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Този запис е от стара версия на „Thrive“, но може да бъде надграден.\n"
@@ -4119,11 +4119,11 @@ msgstr ""
 "Ако пропуснете надграждането, зареждането ще продължи.\n"
 "Искате ли да продължите?"
 
-#: ../src/saving/SaveList.tscn:111
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Надграждането на записа е неуспешно"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:123
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Надграждането на записа е неуспешно поради следната грешка:\n"
@@ -4216,12 +4216,12 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Изтриване на старите записи?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
-msgid "TRY_MAKING_A_SAVE"
-msgstr "Трябва да направите поне един запис!"
-
-#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Папката с записи не съществува"
+
+#: ../src/saving/SaveManagerGUI.tscn:202
+msgid "TRY_MAKING_A_SAVE"
+msgstr "Трябва да направите поне един запис!"
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
@@ -4396,15 +4396,15 @@ msgstr "Разбрах"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
-"Това е прогнозата за бъдещата популация на Вашите създания.\n"
+"Това е прогнозата за бъдещата популация на Вашите създания. Тези стойности "
+"са изчислени на база симулацията от автоматичната еволюция.\n"
 "\n"
-"Тези стойности са изчислени на база симулацията от автоматичната "
-"еволюция.\n"
-"\n"
-"Те не включват резултатите от Вашето представяне.\n"
+"Те не включват резултатите от Вашето индивидуално представяне.\n"
 "\n"
 "Вашите създания трябва да поддържат размера на популацията си във всяко "
-"едно местообитание."
+"едно местообитание.\n"
+"\n"
+"За подробна информация, натиснете бутона с въпросителния знак долу вдясно."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
