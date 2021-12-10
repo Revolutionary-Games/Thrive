@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Provides extra level of abstraction to allow simultaneous switching between 3D positional and non positional
