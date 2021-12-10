@@ -444,6 +444,11 @@ Git
   joined the team) fork the Thrive repository and work in your fork
   and once done open a pull request.
 
+- Once you get invited to the main repository, you should make your
+  feature branches exclusively in that (and not use a fork). This is
+  so that it is easier for other team members to checkout your code
+  and help with it by committing to your branch.
+
 - If you haven't made many pull requests in the past, it is highly
   recommended to keep anything not directly needed in your PR away
   from it to make reviewing easier. Adding refactoring (other than
