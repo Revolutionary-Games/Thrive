@@ -165,7 +165,9 @@
                 new CompoundFoodSource(patch, Glucose),
                 new CompoundFoodSource(patch, HydrogenSulfide),
                 new CompoundFoodSource(patch, Iron),
-                new MarineSnowFoodSource(patch),
+                new ChunkFoodSource(patch, "marineSnow"),
+                new ChunkFoodSource(patch, "ironSmallChunk"),
+                new ChunkFoodSource(patch, "ironBigChunk"),
             };
 
             foreach (var currentSpecies in species)

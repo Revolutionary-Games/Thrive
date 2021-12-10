@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-10 11:59+0200\n"
+"POT-Creation-Date: 2021-12-10 12:25+0200\n"
 "PO-Revision-Date: 2021-12-09 19:36+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -970,6 +970,11 @@ msgstr "текуща популация в зоните:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изчезнаха от планетата"
 
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
+#, fuzzy
+msgid "CHUNK_FOOD_SOURCE"
+msgstr "{0}"
+
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}"
@@ -981,10 +986,6 @@ msgstr "{0}"
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "„{0}“"
-
-#: ../src/auto-evo/simulation/food_source/MarineSnowFoodSource.cs:50
-msgid "MARINE_SNOW_FOOD_SOURCE"
-msgstr "Морски сняг"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -4503,6 +4504,9 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
 msgstr "Преглед"
+
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "Морски сняг"
 
 #~ msgid "OPEN_DETAILS"
 #~ msgstr "Подробности"
