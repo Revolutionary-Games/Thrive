@@ -348,14 +348,15 @@ Godot usage
   releasing when removed (unless it is a game entity for which there's
   a special mechanism, `IEntity` destroyed callbacks)
 
-- Don't use a constructor to setup Godot resources, usually Node
-  derived types should mostly do Godot related, constructor-like
+- Avoid using a constructor to setup Godot resources, usually Node
+  derived types should mostly do Godot Node related, constructor-like
   operations entirely in _Ready. Many resources are not ready yet when
   a class is constructed or static variables are being initialized. If
   this is not followed script variables may not show up correctly in
   the Godot editor as that relies on creating an instance of the
   class, and that can fail for example because SimulationParameters
-  are not initialized in the Godot editor.
+  are not initialized in the Godot editor. This needs especial care
+  when a class type is directly attached to a Godot scene.
 
 - When using `GD.PrintErr` don't use string concatenation, use the
   multi argument form instead, for example: `GD.PrintErr("My value is:
