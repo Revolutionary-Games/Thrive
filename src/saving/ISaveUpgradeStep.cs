@@ -54,6 +54,7 @@
                 { "0.5.5.0", new UpgradeStep055To056() },
                 { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
                 { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
+                { "0.5.6.0", new UpgradeStep056To0561() },
             };
         }
     }
@@ -156,6 +157,19 @@
 
             ((JObject)property.Value).Add("Behaviour",
                 new JObject(aggression, opportunism, fear, activity, focus));
+        }
+    }
+
+    internal class UpgradeStep056To0561 : BaseRecursiveJSONWalkerStep
+    {
+        protected override string VersionAfter => "0.5.6.1";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            if (property.Name.Contains("GameWorld"))
+            {
+                ((JObject)property.Value).Add("worldTimeline", new JObject());
+            }
         }
     }
 
