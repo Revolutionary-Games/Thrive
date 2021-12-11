@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
-"PO-Revision-Date: 2021-12-11 12:21+0000\n"
-"Last-Translator: Adam Duży <scootaloo@onet.pl>\n"
+"PO-Revision-Date: 2021-12-11 19:19+0000\n"
+"Last-Translator: Pikamochzo <tmaciek12q@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -64,7 +64,7 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
 "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co "
 "oznacza że im większa twoja komórka, tym więcej Mitochondriów, Metabolosomów "
-"lub Rusticyjaniny (lub cytozolu, który przeprowadza Glikozę) będziesz "
+"lub Rusticyjaniny (lub cytozolu, który przeprowadza Glikolizę) będziesz "
 "potrzebować by uniknąć tracenia [thrive:compound type=\"atp\""
 "][/thrive:compound] stojąc w miejscu."
 
@@ -143,26 +143,26 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
 "Struktury Prokariotyczne\n"
 "\n"
-"Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z "
-"[thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Metabolosomy: Wydzielają [thrive:compound type=\"atp\"][/thrive:compound] "
+"podczas utleniania [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
 "Białka chemosyntezujące: Produkują o połowę mniej [thrive:compound type="
 "\"glucose\"][/thrive:compound] z [thrive:compound type=\"hydrogensulfide\""
-"][/thrive:compound] niż chemoplast, ale cytoplazma wokół nich przeprowadza "
-"glikozę. Zajmują 1 Heks\n"
+"][/thrive:compound] niż chemoplast, ale cytozol wokół nich przeprowadza "
+"glikolizę. Zajmują 1 Heks\n"
 "\n"
 "Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"][/thrive:compound]"
-" ile normalny chloroplast, ale cytoplazma wokół nich przeprowadza glikozę. "
+" ile normalny chloroplast, ale cytozol wokół nich przeprowadza glikolizę. "
 "Zajmują 1 Heks\n"
 "\n"
 "Rustycyjanina: Utlenia [thrive:compound type=\"iron\"][/thrive:compound] "
 "wydzielając [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenaza: Wiąże beztlenowo azot atmosferyczny i [thrive:compound type="
-"\"atp\"][/thrive:compound] w [thrive:compound type=\"ammonia\""
-"][/thrive:compound].\n"
+"Nitrogenaza: Wiąże beztlenowo azot atmosferyczny w [thrive:compound type="
+"\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\""
+"][/thrive:compound]\n"
 "\n"
-"Cytozol: Posiada miejsce magazynowe i przeprowadza glikozę (Produkuje małe "
+"Cytozol: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe "
 "ilości [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
@@ -178,7 +178,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Organella Otoczone Membranami\n"
+"Organella Otoczone Błonami\n"
 "\n"
 "Jądro komórkowe: Zajmuje 11 heksów i pozwala na ewolucję organelli "
 "otoczonych membranami, podwaja również rozmiar twojej komórki. Komórka może "
@@ -757,7 +757,7 @@ msgstr "Żelazo (Fe²⁺)"
 #: ../simulation_parameters/microbe_stage/compounds.json:101
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3299
 msgid "OXYGEN"
-msgstr "Tlen"
+msgstr "Tlen (O₂)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3353
@@ -767,7 +767,7 @@ msgstr "Dwutlenek Węgla"
 #: ../simulation_parameters/microbe_stage/compounds.json:129
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3326
 msgid "NITROGEN"
-msgstr "Azot"
+msgstr "Azot (N₂)"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
@@ -2179,7 +2179,8 @@ msgstr ""
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Przełącz tryb raw.\n"
-"W trybie raw wartości R,G,B mogą przekroczyć 1.0.\n"
+"W trybie raw wartości R, G, B\n"
+"mogą przekroczyć 1.0.\n"
 "Nie można włączyć w trybie HSV."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
@@ -2217,9 +2218,11 @@ msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Dodaj nowe powiązanie klawisza"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
-#, fuzzy
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr ""
+"Kolor: {0}\n"
+"Lewy Przycisk Myszy: Użyj tego ustawienia\n"
+"Prawy Przycisk Myszy: Usuń to ustawienie"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
@@ -2227,12 +2230,12 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr ""
+msgstr "RAW"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Brak danych do pokazania"
 
 #: ../src/gui_common/charts/line/LineChart.cs:949
 #: ../src/gui_common/charts/line/LineChart.cs:978
@@ -2256,7 +2259,7 @@ msgstr "Skopiuj Błąd Do Schowka"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:34
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "Tekst licencji GPL:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
@@ -2363,7 +2366,7 @@ msgstr ""
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
 "Redukuje beztlenowo [thrive:compound]glukoza[/thrive:compound] wytwarzając "
-"[thrive:compound]atp[/thrive:compound]"
+"[thrive:compound]atp[/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:268
 msgid "CYTOPLASM_DESCRIPTION"
@@ -2426,9 +2429,9 @@ msgstr "Koszt Osmoregulacji"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:365
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
-"Zmienia [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
-"[thrive:compound type=\"oxygen\"][/thrive:compound]"
+"Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:366
 msgid "METABOLOSOMES_DESCRIPTION"
@@ -2438,7 +2441,7 @@ msgstr ""
 "zwanym Oddychaniem Tlenowym. Jednak żeby funkcjonować potrzebują tlenu, więc "
 "niższe stężenia tlenu w środowisku spowalniają ich produkcję ATP. Przez to, "
 "że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn "
-"przeprowadza glikozę."
+"przeprowadza glikolizę."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:461
 msgid "THYLAKOID"
@@ -2447,10 +2450,10 @@ msgstr "Tylakoid"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:462
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
-"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:"
-"compound]"
+"Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
+"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] i intensywnością [thrive:compound type=\"sunlight\""
+"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:463
 msgid "THYLAKOIDS_DESCRIPTION"
@@ -2460,16 +2463,16 @@ msgstr ""
 "gazowego CO₂ w procesie zwanym Fotosyntezą. Te pigmenty nadają im również "
 "wyróżniający się kolor. Szybkość produkcji skaluje się ze stężeniem CO₂, "
 "oraz natężeniem światła. Ponieważ tylakoidy zawieszone są bezpośrednio w "
-"cytozolu, otaczający płyn przeprowadza glikozę."
+"cytozolu, otaczający płyn przeprowadza glikolizę."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:559
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
-"Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
-"w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się "
-"ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
+"Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
 "Zmienia też [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:"
-"compound type=\"atp\"][/thrive:compound]"
+"compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:560
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
@@ -2478,15 +2481,15 @@ msgstr ""
 "przekształcać H₂S, H₂O i gazowy CO₂ w glukozę w procesie nazywającym się "
 "chemosyntezą siarkową. Tempo produkcji glukozy skaluje się z koncentracją "
 "dwutlenku węgla. Jako że białka chemosynteczne są zawieszone bezpośrednio w "
-"cytozolu, otaczający płyn przeprowadza glikozę."
+"cytozolu, otaczający płyn przeprowadza glikolizę."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:656
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
-"Przekształca [thrive:compound type=\"iron\"][/thrive:compound] w [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem "
-"[thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:"
-"compound type=\"oxygen\"][/thrive:compound]"
+"Utlenia [thrive:compound type=\"iron\"][/thrive:compound] wydzielając "
+"[thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound] i "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:657
 msgid "RUSTICYANIN_DESCRIPTION"
@@ -2498,9 +2501,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:753
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:"
-"compound type=\"ammonia\"][/thrive:compound]. Tempo skaluje się ze "
-"stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound]"
+"Przekształca N₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] "
+"zużywajac [thrive:compound type=\"atp\"][/thrive:compound] . Tempo skaluje "
+"się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:754
 msgid "NITROGENASE_DESCRIPTION"
@@ -2529,8 +2532,7 @@ msgstr ""
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
 "Używa [thrive:compound type=\"atp\"][/thrive:compound] do zwiększenia "
-"prędkości\n"
-"poruszania się komórki"
+"prędkości poruszania się komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:949
 msgid "FLAGELLUM_DESCRIPTION"
@@ -2600,9 +2602,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1341
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
-"Przekształca [thrive:compound type=\"glucose\"][/thrive:compound] w "
+"Utlenia [thrive:compound type=\"glucose\"][/thrive:compound] wydzielając "
 "[thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze "
-"stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]"
+"stężeniem [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1342
 msgid "MITOCHONDRION_DESCRIPTION"
@@ -2618,10 +2620,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1425
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
-"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound] i intensywnością [thrive:compound type=\"sunlight\"][/thrive:"
-"compound]"
+"Syntezuje [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo "
+"skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] i natężeniem [thrive:compound type=\"sunlight\""
+"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1426
 msgid "CHLOROPLAST_DESCRIPTION"
@@ -2667,9 +2669,9 @@ msgstr "Brak procesów"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
-"Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] "
-"w [thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się "
-"ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
+"Przekształca [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] w "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Tempo skaluje się ze "
+"stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1625
 msgid "CHEMOPLAST_DESCRIPTION"
@@ -2833,11 +2835,10 @@ msgstr ""
 "tak szybkie jak prawdziwe rdzenie procesora."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
-#, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
-"Masz niezapisane zmiany które zostaną odrzucone.\n"
-"Czy chcesz kontynuować?"
+"Włącza/wyłącza ostrzeżenia o niezapisanym postępie, gdy gracz próbuje wyjść "
+"z gry."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3116
@@ -2878,7 +2879,7 @@ msgstr "Związki"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
-msgstr "Godmode"
+msgstr "GodMode"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
 msgid "NO_AI"
@@ -3217,22 +3218,17 @@ msgid "ATP_BALANCE"
 msgstr "Balans ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1952
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"Fabryka energetyczna komórki. Mitochondrium (mnoga: mitochondria) to "
-"stuktura z podwójną membraną wypełniona proteinami i enzymami. Jest "
-"prokariotem ,który został przyswojony do użytku przez eukariotycznego "
-"hosta. Potrafi przekształcać glukozę w ATP znacznie efektywniej niż "
-"cytoplazma w procesie zwanym Oddychaniem Komórkowym. Jednak wymaga tlenu "
-"do funkcjonowania, i niższe poziomy tlenu w otoczeniu spowalniają tempo "
-"produkcji ATP."
+"Ten panel pokazuje prawdopodobne dane populacji z auto-ewolucji dla "
+"edytowanego gatunku.\n"
+"Auto-ewolucja przeprowadza symulację populacji, czyli drugą rzecz wpływającą "
+"(poza twoim wkładem własnym) na liczebność gatunku."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1956
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3943
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION"
-msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
+msgstr "Przewidywania Auto-Ewolucji"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
 #, fuzzy
@@ -3240,9 +3236,8 @@ msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Wznów"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
-#, fuzzy
 msgid "TOTAL_POPULATION_COLON"
-msgstr "{0} populacja zmieniła się o {1} z powodu: {2}"
+msgstr "Całkowita populacja:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2058
 #, fuzzy
@@ -3357,9 +3352,14 @@ msgid "PATCH_MAP"
 msgstr "Mapa Obszarów"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3992
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "{0} populacja zmieniła się o {1} z powodu: {2}"
+msgstr ""
+"Ten panel pokazuje liczby na których bazuje przewidywanie auto-ewolucji. "
+"Całkowita energia, którą gątunek jest w stanie przyswoić, i koszt utrzymania "
+"każdego osobnika determinują ostateczną populację. Auto-ewolucja "
+"wykorzystuje uproszczony model rzeczywistości w celu obliczenia jak dobrze "
+"dany gatunek sobie poradzi. Na każde źródło pożywienia dana jest informacja "
+"ile energii gatunek z niego czerpie."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
@@ -3434,9 +3434,8 @@ msgstr "Zapisywanie się nie udało"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1877
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1889
-#, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
-msgstr "POPULACJA:"
+msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1883
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1895
@@ -3560,9 +3559,8 @@ msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
 #: ../src/modding/ModManager.cs:544
-#, fuzzy
 msgid "NO_SELECTED_MOD"
-msgstr "Wybrane:"
+msgstr "Nie wybrano Modów"
 
 #: ../src/modding/ModManager.cs:869
 msgid "THIS_IS_WORKSHOP_MOD"
@@ -3712,14 +3710,8 @@ msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
-#, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr ""
-"Nitrogenaza to białko mogące użyć gazowego azotu i energii komórkowej w "
-"formie ATP do produkcji amoniaku, kluczowego składnika dla wzrostu "
-"komórki. Ten proces nazywany jest Beztlenowym Wiązaniem Azotu. Ponieważ "
-"nitrogenaza jest zawieszona bezpośrednio w cytoplazmie, otaczający płyn "
-"dokonuje fermentacji."
+msgstr "Długi opis Moda:"
 
 #: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
@@ -3763,9 +3755,10 @@ msgid "MOD_CREATION_FAILED"
 msgstr "Auto-ewolucja nie może się uruchomić"
 
 #: ../src/modding/ModManager.tscn:989
-#, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Wczytać nieważny zapis?"
+msgstr ""
+"Doszło do błędów podczas ładowania jednego lub kilku Modów. Rejestry mogą "
+"zawierać dodatkowe informacje."
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
@@ -3781,19 +3774,16 @@ msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:298
-#, fuzzy
 msgid "MISSING_TITLE"
-msgstr "PRZETRWAŁEŚ!"
+msgstr "Brak tytułu"
 
 #: ../src/modding/ModUploader.cs:304
-#, fuzzy
 msgid "MISSING_DESCRIPTION"
-msgstr "Opis:"
+msgstr "Brak opisu"
 
 #: ../src/modding/ModUploader.cs:312
-#, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
-msgstr "Opis:"
+msgstr "Opis jest za długi"
 
 #: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
 #, fuzzy
@@ -3894,19 +3884,8 @@ msgid "WORKSHOP_ITEM_TITLE"
 msgstr "\"{0}\" - {1}"
 
 #: ../src/modding/ModUploader.tscn:186
-#, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
-"Chloroplast jest strukturą z podwójną membraną zawierającą fotosensytywne "
-"pigmenty ułożone razem w membranowych workach. Jest prokariotem, który "
-"został przyswojony do użytku przez eukariotycznego hosta.Chloroplast to "
-"struktura z podwójną membraną zawierająca fotosensytywne pigmenty ułożone "
-"razem w membranowych kieszeniach. Jest prokariotem, który został "
-"przyswojony do użytku przez eukariotycznego hosta. Pigmenty w "
-"chloroplaście mogą używać energii światła do produkcji glukozy z wody i "
-"gazowego dwutlenku węgla w procesie zwanym Fotosyntezą. Te pigmenty dają "
-"mu też wyróżniający się kolor. Tempo produkci glukozy skaluje się ze "
-"stężeniem dwutlenku węgla i intensywnością światła."
+msgstr "Opis Przedmiotu:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -3957,13 +3936,8 @@ msgid "UPLOAD_SUCCEEDED"
 msgstr "Powodzenie zapisu"
 
 #: ../src/modding/NewModGUI.cs:169
-#, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr ""
-"Chemoplast to struktura z podwójną membraną zawierająca protieny mogące "
-"przekształcić siarkowoór,wodę i gazowy dwutlenek węgla w glukozę w "
-"procesie zwanym Chemosyntezą Siarkowodoru. Tempo produkcji glukozy skaluje "
-"się ze stężeniem dwutlenku węgla."
+msgstr "Mój Wspaniały Mod"
 
 #: ../src/modding/NewModGUI.cs:226
 msgid "INVALID_URL_FORMAT"
@@ -4004,9 +3978,8 @@ msgid "OUR_WIKI"
 msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:450
-#, fuzzy
 msgid "CREATE"
-msgstr "Stworzone:"
+msgstr "Stwórz"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -4070,9 +4043,8 @@ msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Wybrana nazwa pliku ({0}) już istnieje. Nadpisać?"
 
 #: ../src/saving/NewSaveMenu.cs:167
-#, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Wczytać nieważny zapis?"
+msgstr "Nazwy zapisów nie mogą zawierać znaków specjalnych (<>:\"/\\|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
@@ -4095,9 +4067,8 @@ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Nadpisać istniejący zapis?"
 
 #: ../src/saving/SaveHelper.cs:412
-#, fuzzy
 msgid "SAVING_NOT_POSSIBLE"
-msgstr "Zapis nie zadziałał! Pojawił się błąd"
+msgstr "Zapis niemożliwy z powodu:"
 
 #: ../src/saving/SaveHelper.cs:413
 #, fuzzy
@@ -4555,13 +4526,13 @@ msgstr ""
 "potrzebujesz."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Aby się rozmnożyć musisz rozdwoić wszystkie swoje organelle poprzez "
-"zebranie wystarczająco dużo amoniaku i fosforanów.\n"
-"Patrz na wskaźnik w prawym dolnym rogu żeby sprawdzić ile jeszcze "
-"potrzebujesz."
+"Zdobyłeś wystarczająco dużo zasobów żeby twoja komórka mogła się podzielić.\n"
+"\n"
+"Jesteś teraz gotowy do edycji twojego gatunku.\n"
+"\n"
+"Aby otworzyć edytor naciśnij migajacy przycisk w prawym dolnym rogu."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "MICROBE_STAGE_UNBIND_TEXT"
@@ -4573,15 +4544,13 @@ msgstr ""
 "klawisz 'odwiąż wszystkie'."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
-"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
-"input]g_move_right[/thrive:input] oraz mysz aby się poruszać. [thrive:"
-"input]g_fire_toxin[/thrive:input] aby strzelać[thrive:compound type="
-"\"oxytoxy\"][/thrive:compound] jeśli posiadasz toksyczną wakuolę . [thrive:"
-"input]g_toggle_engulf[/thrive:input] aby przełączać tryb połykania ."
+"Jeżeli nadal nie rozumiesz mechanik gry, wypróbuj menu pomocy. Możesz je "
+"otworzyć klikając na znak zapytania w lewym dolnym rogu.\n"
+"\n"
+"Jeszcze jedna wskazówka: możesz zwiększyć pole widzenia za pomocą kółka "
+"myszy."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
