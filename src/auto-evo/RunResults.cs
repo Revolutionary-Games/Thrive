@@ -589,7 +589,7 @@
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_FROM",
-                        playerReadable ? speciesResult.SplitFrom.FormattedName : 
+                        playerReadable ? speciesResult.SplitFrom.FormattedName :
                             speciesResult.SplitFrom.FormattedIdentifier));
 
                     builder.Append('\n');
@@ -623,7 +623,7 @@
 
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_OFF_TO",
-                        playerReadable ? speciesResult.SplitOff.FormattedName : 
+                        playerReadable ? speciesResult.SplitOff.FormattedName :
                             speciesResult.SplitOff.FormattedIdentifier));
                     builder.Append('\n');
 
@@ -803,7 +803,7 @@
 
             // Print highlight species results
             foreach (Species species in relevantHighlightSpecies.OrderBy(s => s.FormattedName))
-            { 
+            {
                 AddSpeciesResultString(results[species]);
             }
 
@@ -813,7 +813,7 @@
                 if (!relevantHighlightSpecies.Contains(entry.Key))
                     AddSpeciesResultString(entry.Value);
             }
-            
+
             return builder;
         }
 
