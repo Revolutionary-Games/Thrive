@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Linq;
     using Godot;
 
     /// <summary>
@@ -58,6 +59,9 @@
 
         public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, long populationAmount)
         {
+            if (populationAmount <= 0)
+                throw new ArgumentException("Invalid population migration amount");
+
             AddMigrationResultForSpecies(species, new SpeciesMigration(fromPatch, toPatch, populationAmount));
         }
 
@@ -89,7 +93,7 @@
                 result.SplitOffPatches.Contains(s.From) || result.SplitOffPatches.Contains(s.To));
         }
 
-        public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPatches,
+        public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
             NewSpeciesType addType, Species parentSpecies)
         {
             MakeSureResultExistsForSpecies(species);
@@ -97,9 +101,9 @@
             results[species].NewlyCreated = addType;
             results[species].SplitFrom = parentSpecies;
 
-            foreach (var initialPatch in initialPatches)
+            foreach (var patchPopulation in initialPopulationInPatches)
             {
-                results[species].NewPopulationInPatches[initialPatch.Key] = Math.Max(initialPatch.Value, 0);
+                results[species].NewPopulationInPatches[patchPopulation.Key] = Math.Max(patchPopulation.Value, 0);
             }
         }
 
@@ -116,6 +120,31 @@
 
             results[splitSpecies].NewlyCreated = NewSpeciesType.SplitDueToMutation;
             results[splitSpecies].SplitFrom = species;
+        }
+
+        public void KillSpeciesInPatch(Species species, Patch patch, bool refundMigrations = false)
+        {
+            AddPopulationResultForSpecies(species, patch, 0);
+
+            var speciesResult = results[species];
+
+            // We copy migration list to be able to modify it
+            foreach (var migration in speciesResult.SpreadToPatches.ToList())
+            {
+                if (speciesResult.SplitOff != null && speciesResult.SplitOffPatches?.Contains(patch) == true)
+                    continue;
+
+                if (migration.To == patch)
+                {
+                    speciesResult.SpreadToPatches.Remove(migration);
+
+                    // We may still penalize the origin patch, the migration would just have died off on its way.
+                    // TODO: It would be nice to leave some trace of this happening, so that it can be tracked
+                    // why the population in this patch was reduced.
+                    if (!refundMigrations)
+                        speciesResult.NewPopulationInPatches[migration.From] -= migration.Population;
+                }
+            }
         }
 
         public void AddTrackedEnergyForSpecies(MicrobeSpecies species, Patch patch, FoodSource niche,
@@ -286,81 +315,12 @@
         /// <returns>The global population</returns>
         /// <remarks>
         ///   <para>
-        ///     Throws an exception if no population is found
+        ///     Throws an exception if no population result is found for the species
         ///   </para>
         /// </remarks>
         public long GetGlobalPopulation(Species species, bool resolveMigrations = false, bool resolveSplits = false)
         {
-            long result = 0;
-
-            foreach (var entry in results[species].NewPopulationInPatches)
-            {
-                if (!resolveMigrations)
-                {
-                    result += Math.Max(entry.Value, 0);
-                    continue;
-                }
-
-                var adjustedPopulation = entry.Value;
-
-                foreach (var migration in results[species].SpreadToPatches)
-                {
-                    if (migration.From == entry.Key)
-                    {
-                        adjustedPopulation -= migration.Population;
-                    }
-                    else if (migration.To == entry.Key)
-                    {
-                        adjustedPopulation += migration.Population;
-                    }
-                }
-
-                if (resolveSplits && results[species].SplitOffPatches?.Contains(entry.Key) == true)
-                {
-                    adjustedPopulation = 0;
-                }
-
-                result += Math.Max(adjustedPopulation, 0);
-            }
-
-            // Find patches that were migrated to but don't include population results
-            if (resolveMigrations)
-            {
-                foreach (var migration in results[species].SpreadToPatches)
-                {
-                    bool found = false;
-
-                    foreach (var populationResult in results[species].NewPopulationInPatches)
-                    {
-                        if (migration.To == populationResult.Key)
-                        {
-                            found = true;
-                            break;
-                        }
-                    }
-
-                    if (!found)
-                    {
-                        result += Math.Max(migration.Population, 0);
-                    }
-                }
-            }
-
-            // Patches that were this split off in
-            if (resolveSplits && results[species].SplitFrom != null)
-            {
-                var splitFromData = results[results[species].SplitFrom];
-
-                if (splitFromData.SplitOffPatches != null && splitFromData.SplitOff == species)
-                {
-                    foreach (var patch in splitFromData.SplitOffPatches)
-                    {
-                        result += Math.Max(splitFromData.NewPopulationInPatches[patch], 0);
-                    }
-                }
-            }
-
-            return result;
+            return GetSpeciesPopulationsByPatch(species, resolveMigrations, resolveSplits).Sum(e => e.Value);
         }
 
         /// <summary>
@@ -398,6 +358,146 @@
 
                 yield return newPopulationInPatch;
             }
+        }
+
+        /// <summary>
+        ///   Computes the final population of all species, by patch.
+        /// </summary>
+        /// <param name="resolveMigrations">If true migrations effects on population are taken into account</param>
+        /// <param name="resolveSplits">If true species splits are taken into account in population numbers</param>
+        /// <returns>The global population</returns>
+        public Dictionary<Patch, Dictionary<Species, long>> GetPopulationsByPatch(bool resolveMigrations = false,
+            bool resolveSplits = false)
+        {
+            var speciesInPatches = new Dictionary<Patch, Dictionary<Species, long>>();
+            foreach (var species in results.Keys)
+            {
+                var populations = GetSpeciesPopulationsByPatch(species, resolveMigrations, resolveSplits);
+                foreach (var patchEntry in populations)
+                {
+                    if (!speciesInPatches.TryGetValue(patchEntry.Key, out var populationsInPatch))
+                    {
+                        populationsInPatch = new Dictionary<Species, long>();
+                        speciesInPatches[patchEntry.Key] = populationsInPatch;
+                    }
+
+                    populationsInPatch.Add(species, patchEntry.Value);
+                }
+            }
+
+            return speciesInPatches;
+        }
+
+        /// <summary>
+        ///   Computes the final population of a species, by patch.
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Species are only returned if their population is above 0 (before migrations *from*
+        ///     the patch are applied).
+        ///   </para>
+        /// </remarks>
+        /// <param name="species">The species to calculate population for</param>
+        /// <param name="resolveMigrations">If true migrations effects on population are taken into account</param>
+        /// <param name="resolveSplits">If true species splits are taken into account in population numbers</param>
+        /// <exception cref="ArgumentException">If the given species has no results</exception>
+        /// <exception cref="InvalidOperationException">If there is invalid results data encountered</exception>
+        /// <returns>A dictionary of patch and the populations in that patch for species</returns>
+        public Dictionary<Patch, long> GetSpeciesPopulationsByPatch(Species species,
+            bool resolveMigrations = false, bool resolveSplits = false)
+        {
+            var populationResults = new Dictionary<Patch, long>();
+
+            if (!results.TryGetValue(species, out var speciesResult))
+                throw new ArgumentException("Species " + species.FormattedName + "not found in results.");
+
+            // Get natural variations
+            foreach (var patchPopulationEntry in speciesResult.NewPopulationInPatches)
+            {
+                // This check is first so that empty patches are not returned as per the remarks
+                if (patchPopulationEntry.Value <= 0)
+                    continue;
+
+                if (resolveSplits && results[species].SplitOffPatches?.Contains(patchPopulationEntry.Key) == true)
+                    continue;
+
+                populationResults[patchPopulationEntry.Key] = patchPopulationEntry.Value;
+            }
+
+            if (resolveMigrations)
+            {
+                // Apply migrations
+                foreach (var migration in speciesResult.SpreadToPatches)
+                {
+                    if (migration.From == null || migration.To == null)
+                        throw new InvalidOperationException("Found invalid migration in auto-evo results: null patch!");
+
+                    // Zero population migrations are not valid, though the migration add method should have verified
+                    // this already
+                    if (migration.Population <= 0)
+                    {
+                        throw new ArgumentException(
+                            "Found invalid migration in auto-evo results: negative or null population!");
+                    }
+
+                    // Only consider possible migrations
+                    if (populationResults.TryGetValue(migration.From, out var populationsFrom))
+                    {
+                        populationResults.TryGetValue(migration.To, out var populationsTo);
+
+                        // In the case the population is lower than migration, we assume as much population moves
+                        // as possible. This is possible to happen because this code can be called after the population
+                        // numbers have been calculated meaning that migrations that use *previous* step population
+                        // don't look valid here
+                        var migrationAmount = Math.Max(Math.Min(migration.Population, populationsFrom), 0);
+
+                        // We remove the migrating population, and species that reach zero population...
+                        if (populationsFrom - migrationAmount == 0)
+                        {
+                            populationResults.Remove(migration.From);
+                        }
+                        else
+                        {
+                            populationResults[migration.From] = populationsFrom - migrationAmount;
+                        }
+
+                        // ...and we add the new population to the moved to patch.
+                        populationResults[migration.To] = populationsTo + migrationAmount;
+                    }
+                }
+            }
+
+            return populationResults;
+        }
+
+        public List<Species> GetNewSpecies()
+        {
+            var newSpecies = new List<Species>();
+
+            foreach (var resultEntry in results)
+            {
+                if (resultEntry.Value.NewlyCreated != null)
+                    newSpecies.Add(resultEntry.Key);
+            }
+
+            return newSpecies;
+        }
+
+        public Dictionary<Species, SpeciesMigration> GetMigrationsTo(Patch patch)
+        {
+            var migrationsToPatch = new Dictionary<Species, SpeciesMigration>();
+
+            foreach (var resultEntry in results)
+            {
+                foreach (var migration in resultEntry.Value.SpreadToPatches)
+                {
+                    // Theoretically, nothing prevents migration from several patches, so no continue.
+                    if (migration.To == patch)
+                        migrationsToPatch.Add(resultEntry.Key, migration);
+                }
+            }
+
+            return migrationsToPatch;
         }
 
         public Dictionary<Patch, SpeciesPatchEnergyResults> GetPatchEnergyResults(Species species)
@@ -740,6 +840,15 @@
         {
             public Species Species;
 
+            /// <summary>
+            ///   Dictionary of the new species population for relevant patches,
+            ///   limited to natural increase/decrease and emergence.
+            /// </summary>
+            /// <remarks>
+            ///   <para>
+            ///     Does not consider migrations nor split-offs.
+            ///   </para>
+            /// </remarks>
             public Dictionary<Patch, long> NewPopulationInPatches = new Dictionary<Patch, long>();
 
             /// <summary>
