@@ -373,6 +373,8 @@ public class AutoEvoRun
         steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
+
+        steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
     }
 
     /// <summary>
