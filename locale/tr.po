@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
-"PO-Revision-Date: 2021-11-12 08:17+0000\n"
+"PO-Revision-Date: 2021-12-11 08:35+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -1591,9 +1591,8 @@ msgid "MAX_FPS"
 msgstr "Maksimum FPS:"
 
 #: ../src/general/OptionsMenu.tscn:316
-#, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
-msgstr "Maksimum FPS:"
+msgstr "Sınırsız"
 
 #: ../src/general/OptionsMenu.tscn:332 ../src/general/OptionsMenu.tscn:325
 msgid "COLOURBLIND_CORRECTION"
@@ -1895,15 +1894,15 @@ msgstr "Çıkışı Onayla"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} Milyar"
+msgstr "{0} Mr"
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
-msgstr "{0} Milyon"
+msgstr "{0} Mn"
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
-msgstr "{0} Bin"
+msgstr "{0} B"
 
 #: ../src/gui_common/ChemicalEquation.cs:139
 #: ../src/gui_common/ChemicalEquation.cs:179
@@ -4003,7 +4002,7 @@ msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
 
 #: ../src/saving/NewSaveMenu.cs:167
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Kayıt adı özel karakterler içermemeli (<>:\"/\\|?*)"
+msgstr "Kayıt adı özel karakterler içeremez (<>:\"/\\|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
