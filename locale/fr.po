@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
-"PO-Revision-Date: 2021-12-11 15:10+0000\n"
+"PO-Revision-Date: 2021-12-11 15:14+0000\n"
 "Last-Translator: Maxonovien <maxime.caute@free.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
@@ -2252,9 +2252,9 @@ msgstr "Valeur du canal de transparence de la couleur"
 #: ../src/gui_common/TweakedColourPicker.cs:492
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
-"Couleur: {0}\n"
-"Clic gauche : Utiliser cette couleur\n"
-"Clic droit : Supprimer cette couleur"
+"Couleur : {0}\n"
+"Clic gauche : Utiliser cette couleur par défaut\n"
+"Clic droit : Supprimer des couleurs par défaut"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
@@ -2375,34 +2375,34 @@ msgstr "Santé"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:224
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
-"Les microbes aggressifs pourchasserons leurs proies sur des longues "
+"Les microbes agressifs pourchasseront leurs proies sur de plus longues "
 "distances\n"
-"et sont plus enclins à combattre un attaquant.\n"
+"et sont plus enclins à affronter un assaillant.\n"
 "Les microbes pacifiques ne poursuivront pas les autres cellules si elles se "
 "tiennent à distance\n"
-"et utiliserons moins de toxines contre les prédateurs"
+"et utiliseront moins de toxines contre les prédateurs."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:231
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
-"Les microbes opportunistes se battront pour des parcelles\n"
-"et essaieront d'éliminer les proies qu'elles ne peuvent pas absorber avec "
-"leurs toxines.\n"
-"Les microbes prudents éviteront de risquer leur vie pour accéder à certaines "
-"parcelles"
+"Les microbes opportunistes se battront pour les débris flottants\n"
+"et essaieront d'éliminer avec leurs toxines les proies qu'ils ne peuvent pas "
+"absorber.\n"
+"Les microbes prudents éviteront de risquer leur vie pour accéder à ces "
+"débris."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:238
 msgid "FEAR_EXPLANATION"
 msgstr ""
-"Les microbes peureux fuiront aussi loin qu'ils le peuvent\n"
-"et eviteront la plupart des prédateurs.\n"
-"Les microbes braves ne sont pas intimidés par les prédateurs\n"
-"et sont plus enclins a riposter."
+"Les microbes craintifs fuiront aussi loin qu'ils le peuvent\n"
+"et éviteront la plupart des prédateurs.\n"
+"Les microbes audacieux ne seront pas intimidés par les prédateurs\n"
+"et seront plus enclins à riposter."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes motiles déambuleront en l'absence de cible.\n"
 "Les microbes sessiles seront immobile en l'attente d'un changement dans leur "
 "environnement."
 
@@ -3252,7 +3252,7 @@ msgstr "Sessile"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1537
 msgid "ACTIVE"
-msgstr "Actif"
+msgstr "Motile"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1571
 #, fuzzy
