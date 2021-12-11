@@ -42,7 +42,11 @@
 
             foreach (var patch in patches)
             {
-                IEnumerable<KeyValuePair<Species, long>> targetEnumerator = targetSpeciesPopulationsByPatch[patch];
+                // If no species exist in a patch, we need to skip handling the current patch
+                if (!targetSpeciesPopulationsByPatch.TryGetValue(patch, out var tmpTarget))
+                    continue;
+
+                IEnumerable<KeyValuePair<Species, long>> targetEnumerator = tmpTarget;
 
                 if (configuration.ProtectNewCellsFromSpeciesCap)
                 {
