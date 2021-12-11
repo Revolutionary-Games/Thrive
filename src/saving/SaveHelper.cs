@@ -248,7 +248,7 @@ public static class SaveHelper
             {
                 file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
                 ++count;
-                totalSize += file.GetLen();
+                totalSize += (ulong)file.GetLen();
             }
         }
 
