@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
 "PO-Revision-Date: 2021-12-11 12:14+0000\n"
-"Last-Translator: Naboost Skasay <erwanrel@free.fr>\n"
+"Last-Translator: Maxonovien <maxime.caute@free.fr>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -1775,7 +1775,7 @@ msgstr "Ouvrir le dossier des Logs"
 
 #: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
-msgstr ""
+msgstr "Mode de débogage de JSON :"
 
 #: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_AUTO"
@@ -2363,6 +2363,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Les microbes actifs déambuleront en l'absence de cible.\n"
+"Les microbes sessiles seront immobile en l'attente d'un changement dans leur "
+"environnement."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:252
 msgid "FOCUS_EXPLANATION"
@@ -3573,11 +3576,11 @@ msgstr "Sélectionné :"
 
 #: ../src/modding/ModManager.cs:869
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
+msgstr "Cette modification a été téléchargée depuis l'atelier Steam"
 
 #: ../src/modding/ModManager.cs:870
 msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
+msgstr "Cette modification est installée localement"
 
 #: ../src/modding/ModManager.cs:926
 #, fuzzy
