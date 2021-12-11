@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
 "PO-Revision-Date: 2021-12-11 12:21+0000\n"
-"Last-Translator: Pikamochzo <tmaciek12q@gmail.com>\n"
+"Last-Translator: Adam Duży <scootaloo@onet.pl>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -2176,9 +2176,11 @@ msgstr ""
 "Nie można wyłączyć w trybie raw."
 
 #: ../src/gui_common/TweakedColourPicker.cs:328
-#, fuzzy
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr ""
+"Przełącz tryb raw.\n"
+"W trybie raw wartości R,G,B mogą przekroczyć 1.0.\n"
+"Nie można włączyć w trybie HSV."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
 msgid "COLOUR_PICKER_H_TOOLTIP"
