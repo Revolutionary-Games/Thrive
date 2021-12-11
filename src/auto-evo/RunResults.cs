@@ -797,12 +797,12 @@
                     builder.Append('\n');
             }
 
-            highlightSpecies = highlightSpecies ?? new HashSet<Species>();
-            // Remove invalid species from the highlights list to remove the need to check them every time
-            highlightSpecies.RemoveWhere(s => s == null || !results.ContainsKey(s));
+            // Prepare highlight species to remove the need to check those things in every loop iteration
+            var relevantHighlightSpecies = new HashSet<Species>(highlightSpecies) ?? new HashSet<Species>();
+            relevantHighlightSpecies.RemoveWhere(s => s == null || !results.ContainsKey(s));
 
             // Print highlight species results
-            foreach (Species species in highlightSpecies.OrderBy(s => s.FormattedName))
+            foreach (Species species in relevantHighlightSpecies.OrderBy(s => s.FormattedName))
             { 
                 AddSpeciesResultString(results[species]);
             }
@@ -810,7 +810,7 @@
             // Print all other species results
             foreach (KeyValuePair<Species, SpeciesResult> entry in results.OrderBy(s => s.Key.FormattedName))
             {
-                if (!highlightSpecies.Contains(entry.Key))
+                if (!relevantHighlightSpecies.Contains(entry.Key))
                     AddSpeciesResultString(entry.Value);
             }
             
