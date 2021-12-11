@@ -811,7 +811,6 @@
                     AddSpeciesResultString(entry.Value);
             }
             
-
             return builder;
         }
 
