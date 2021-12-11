@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
-"PO-Revision-Date: 2021-12-11 08:35+0000\n"
+"PO-Revision-Date: 2021-12-11 19:19+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -975,7 +975,7 @@ msgstr "{0} tüketim"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "{0} tüketim"
+msgstr "{0} tüketimi"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:35
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -983,7 +983,7 @@ msgstr "{0} çevresel besin kaynağını eşit oranda dağıt"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
-msgstr "{0} besin kaynağının yenmesi"
+msgstr "{0} türünün yenmesi"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1093,7 +1093,7 @@ msgstr "Favoriler"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr "Ekran Görüntüsü"
+msgstr "Print Screen"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
@@ -3427,13 +3427,13 @@ msgstr "Tür adı, ikili adlandırma sistemine uymalı (Cins ve Epitet) !"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr "{1} için {0} arazisinde enerji"
+msgstr "{1} için {0} arazisinde bulunan enerji"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
-"{2} düzenlenmemiş popülasyonla sonuçlanan, birey başına {1} maliyet ile "
-"toplanan toplam enerji {0}"
+"Birey başına {1} maliyet ile kazanılan toplam enerji {0} ve dengelenmemiş {2}"
+" popülasyonla sonuçlanıyor"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
@@ -3442,8 +3442,8 @@ msgstr "Enerji Kaynakları:"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
-"{0} enerji: {1} (uyum başarısı: {2}) mevcut toplam enerji: {3} (toplam uyum "
-"başarısı: {4})"
+"{0} ile açığa çıkan enerji: {1} (uyum başarısı: {2}) mevcut toplam enerji: "
+"{3} (toplam uyum başarısı: {4})"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
@@ -3683,7 +3683,7 @@ msgstr "Simge Dosyası:"
 
 #: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
-msgstr "Mod Bilgisi URL'si:"
+msgstr "Mod Bilgi URL'si:"
 
 #: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
@@ -3711,7 +3711,7 @@ msgstr "Mod Derlemesi:"
 
 #: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr "Mod Derlemesi Ana Sınıfı:"
+msgstr "Mod Derleme Ana Sınıfı:"
 
 #: ../src/modding/ModManager.tscn:979
 msgid "MOD_CREATION_FAILED"
