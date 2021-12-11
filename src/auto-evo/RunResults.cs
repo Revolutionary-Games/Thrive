@@ -581,14 +581,16 @@
 
             void AddSpeciesResultString(SpeciesResult speciesResult)
             {
-                builder.Append(playerReadable ? speciesResult.Species.FormattedName : speciesResult.Species.FormattedIdentifier);
+                builder.Append(
+                    playerReadable ? speciesResult.Species.FormattedName : speciesResult.Species.FormattedIdentifier);
                 builder.Append(":\n");
 
                 if (speciesResult.SplitFrom != null)
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_FROM",
-                        playerReadable ? speciesResult.SplitFrom.FormattedName : speciesResult.SplitFrom.FormattedIdentifier));
+                        playerReadable ? speciesResult.SplitFrom.FormattedName : 
+                            speciesResult.SplitFrom.FormattedIdentifier));
 
                     builder.Append('\n');
                 }
@@ -621,7 +623,8 @@
 
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_OFF_TO",
-                        playerReadable ? speciesResult.SplitOff.FormattedName : speciesResult.SplitOff.FormattedIdentifier));
+                        playerReadable ? speciesResult.SplitOff.FormattedName : 
+                            speciesResult.SplitOff.FormattedIdentifier));
                     builder.Append('\n');
 
                     foreach (var patch in speciesResult.SplitOffPatches)
@@ -727,8 +730,8 @@
                     }
                     else
                     {
-                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(speciesResult.Species) >
-                            0)
+                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID)
+                            .GetSpeciesPopulation(speciesResult.Species) > 0)
                         {
                             include = true;
                         }
