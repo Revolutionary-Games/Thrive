@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
-"PO-Revision-Date: 2021-12-09 19:36+0000\n"
+"PO-Revision-Date: 2021-12-11 19:19+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/cs/>\n"
@@ -3406,7 +3406,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
+msgstr "Energie v {0} pro {1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
@@ -3414,11 +3414,13 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "Zdroje energie:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
+"{0} energie: {1} (fitness: {2}) celková dostupná energie: {3} (celková "
+"zdatnost: {4})"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
@@ -3515,11 +3517,11 @@ msgstr "Vybráno:"
 
 #: ../src/modding/ModManager.cs:869
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
+msgstr "Tento mod si můžete stáhnout ze služby Steam Workshop"
 
 #: ../src/modding/ModManager.cs:870
 msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
+msgstr "Jedná se o lokálně nainstalovaný mod"
 
 #: ../src/modding/ModManager.cs:926
 #, fuzzy
@@ -3720,7 +3722,7 @@ msgstr "Načíst neplatné uložení?"
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
-msgstr ""
+msgstr "Požadovaný restart"
 
 #: ../src/modding/ModManager.tscn:996
 #, fuzzy
@@ -3862,7 +3864,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
-msgstr ""
+msgstr "Viditelné"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
@@ -3874,7 +3876,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr ""
+msgstr "Procházet"
 
 #: ../src/modding/ModUploader.tscn:284
 #, fuzzy
@@ -3883,7 +3885,7 @@ msgstr "Pokračovat"
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "Odstranit místní data"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 #, fuzzy
@@ -3945,11 +3947,11 @@ msgstr "Vytvořit nového mikroba"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr ""
+msgstr "Modding instrukce jsou dostupné na"
 
 #: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
-msgstr ""
+msgstr "naše Wiki"
 
 #: ../src/modding/NewModGUI.tscn:450
 #, fuzzy
@@ -4263,10 +4265,12 @@ msgstr ""
 #: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
+"Váš účet služby Steam je momentálně omezený v nahrávání obsahu. Prosím "
+"kontaktujte Steam support."
 
 #: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
-msgstr ""
+msgstr "Váš účet služby Steam má zakázáno nahrávat obsah"
 
 #: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
@@ -4274,11 +4278,11 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr ""
+msgstr "Nepřihlášený do služby Steam"
 
 #: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
-msgstr ""
+msgstr "Steam je momentálně nedostupný, prosím zkuste znovu"
 
 #: ../src/steam/SteamClient.cs:482
 #, fuzzy
@@ -4291,7 +4295,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
-msgstr ""
+msgstr "Soubor nebyl nalezen"
 
 #: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
