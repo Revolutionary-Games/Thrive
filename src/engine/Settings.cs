@@ -67,6 +67,11 @@ public class Settings
         new SettingValue<Viewport.MSAA>(Viewport.MSAA.Msaa2x);
 
     /// <summary>
+    ///   Sets the maximum framerate of the game window
+    /// </summary>
+    public SettingValue<int> MaxFramesPerSecond { get; set; } = new SettingValue<int>(360);
+
+    /// <summary>
     ///   Optionally applies a colour filter to the screen to aid colourblind individuals
     ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
     /// </summary>
@@ -262,6 +267,9 @@ public class Settings
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new SettingValue<InputDataList>(GetDefaultControls());
+
+    // Settings that are edited from elsewhere than the main options menu
+    public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
 
     // Computed properties from other settings
 
@@ -535,6 +543,9 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
+
+        // Values less than 0 are undefined behaviour
+        Engine.TargetFps = MaxFramesPerSecond >= 0 ? MaxFramesPerSecond : 0;
         ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 

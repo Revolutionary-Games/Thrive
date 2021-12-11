@@ -190,9 +190,11 @@ public partial class Microbe
 
         var position = Translation + (direction * ejectionDistance);
 
-        SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
+        var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetStageAsParent(),
             SpawnHelpers.LoadAgentScene(), this);
+
+        ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
         if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
         {
@@ -559,8 +561,8 @@ public partial class Microbe
 
             // We are in G1 phase of the cell cycle, duplicate all organelles.
 
-            // Except the nucleus
-            if (organelle.Definition.InternalName == "nucleus")
+            // Except the unique organelles
+            if (organelle.Definition.Unique)
                 continue;
 
             // If Give it some compounds to make it larger.

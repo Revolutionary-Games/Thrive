@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
@@ -259,7 +258,7 @@ public class AutoEvoRun
     ///   Makes a summary of external effects
     /// </summary>
     /// <returns>The summary of external effects.</returns>
-    public string MakeSummaryOfExternalEffects()
+    public LocalizedStringBuilder MakeSummaryOfExternalEffects()
     {
         var combinedExternalEffects = new Dictionary<(Species Species, string Event, Patch Patch), long>();
 
@@ -280,29 +279,27 @@ public class AutoEvoRun
             }
         }
 
-        var builder = new StringBuilder(300);
+        var builder = new LocalizedStringBuilder(300);
 
         foreach (var entry in combinedExternalEffects)
         {
             if (entry.Key.Patch == null)
             {
-                builder.Append(string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"),
+                builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED_EVERYWHERE",
                     entry.Key.Species.FormattedName, entry.Value, entry.Key.Event));
             }
             else
             {
                 var patchName = TranslationServer.Translate(entry.Key.Patch.Name);
 
-                builder.Append(string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED"),
+                builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
                     entry.Key.Species.FormattedName, entry.Value, patchName, entry.Key.Event));
             }
 
             builder.Append('\n');
         }
 
-        return builder.ToString();
+        return builder;
     }
 
     /// <summary>
@@ -338,13 +335,13 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    steps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
+                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
-                    steps.Enqueue(new FindBestMigration(map, speciesEntry.Key, random,
+                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, map, speciesEntry.Key, random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
                 }
@@ -372,7 +369,7 @@ public class AutoEvoRun
             if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
                 random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
             {
-                steps.Enqueue(new IncreaseBiodiversity(map, entry.Value, random, autoEvoConfiguration));
+                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, map, entry.Value, random));
             }
         }
 
@@ -381,7 +378,7 @@ public class AutoEvoRun
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(map) { CanRunConcurrently = false });
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, map) { CanRunConcurrently = false });
 
         // Due to species splitting migrations may end up being invalid
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
@@ -389,6 +386,8 @@ public class AutoEvoRun
         steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
+
+        steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
     }
 
     /// <summary>

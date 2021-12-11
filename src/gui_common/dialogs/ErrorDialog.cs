@@ -4,7 +4,8 @@ using Godot;
 /// <summary>
 ///   A dialog popup dedicated for showing error and Exception messages.
 /// </summary>
-[Tool]
+/// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+/// [Tool]
 public class ErrorDialog : CustomDialog
 {
     private string errorMessage;
@@ -116,8 +117,8 @@ public class ErrorDialog : CustomDialog
 
     private void OnCopyToClipboardPressed()
     {
-        OS.Clipboard = WindowTitle + " - " +
-            extraDescriptionLabel.Text + " exception: " +
+        OS.Clipboard = TranslationServer.Translate(WindowTitle) + " - " +
+            TranslationServer.Translate(extraDescriptionLabel.Text) + " exception: " +
             exceptionLabel.Text;
     }
 

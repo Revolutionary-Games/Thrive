@@ -2217,6 +2217,7 @@ visible = false
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/Engulfment" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
+[connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="PauseMenu" to="MicrobeHUD" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeHUD" method="OpenMenu"]

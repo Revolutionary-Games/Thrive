@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/models/organelles/Nucleus.mesh" type="ArrayMesh" id=1]
 [ext_resource path="res://shaders/Organelle.shader" type="Shader" id=2]
-[ext_resource path="res://src/microbe_stage/NucleusMesh.cs" type="Script" id=3]
+[ext_resource path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" type="Script" id=3]
 [ext_resource path="res://assets/models/organelles/Golgi.mesh" type="ArrayMesh" id=4]
 [ext_resource path="res://assets/textures/ER.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/GolgiApparatus.png" type="Texture" id=6]
@@ -14,6 +14,8 @@
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/dissolveValue = 0.0
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
 shader_param/outlineWidth = 0.05
 shader_param/growColor = Color( 0.431373, 0.431373, 0.431373, 1 )
 shader_param/tint = Color( 1, 1, 1, 1 )
@@ -21,8 +23,11 @@ shader_param/texture = ExtResource( 8 )
 shader_param/dissolveTexture = ExtResource( 9 )
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/dissolveValue = 0.0
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
 shader_param/outlineWidth = 0.05
 shader_param/growColor = Color( 0.294118, 0.294118, 0.294118, 1 )
 shader_param/tint = Color( 1, 1, 1, 1 )
@@ -33,6 +38,8 @@ shader_param/dissolveTexture = ExtResource( 9 )
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/dissolveValue = 0.0
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
 shader_param/outlineWidth = 0.05
 shader_param/growColor = Color( 0.294118, 0.329412, 0.337255, 1 )
 shader_param/tint = Color( 1, 1, 1, 1 )

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -444,23 +446,25 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
-    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 1200;
+    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
+    public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.35f;
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int MAX_SPAWNS_PER_FRAME = 2;
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 300;
+    public const int MAX_SPAWNS_PER_FRAME = 1;
+    public const int MAX_DESPAWNS_PER_FRAME = 1;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
@@ -562,6 +566,7 @@ public static class Constants
     public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
+    public const string WORKSHOP_DATA_FILE = "user://workshop_data.json";
 
     public const string SAVE_FOLDER = "user://saves";
 
@@ -602,6 +607,7 @@ public static class Constants
     /// </summary>
     public const int MAX_JSON_ERROR_LENGTH_FOR_CONSOLE = 20000;
 
+    public const string FILE_NAME_DISALLOWED_CHARACTERS = "<>:\"/\\|?*\0";
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
@@ -654,7 +660,9 @@ public static class Constants
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>
-    public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
+    public const string SPECIES_NAME_REGEX = "^(?<genus>[a-zA-Z0-9]+) (?<epithet>[a-zA-Z0-9]+)$";
+
+    public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
 
     /// <summary>
     ///   Minimum hex distance before the same render priority.
@@ -670,6 +678,27 @@ public static class Constants
     ///   </para>
     /// </remarks>
     public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
+
+    /// <summary>
+    ///   Locations mods are searched in. The last location is considered to be the user openable and editable folder
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     These must be preprocessed with GlobalizePath as otherwise relative paths will break when the first mod
+    ///     .pck file is loaded.
+    ///     TODO: might be nice to move to some other place as this got pretty long and complicated due to pck loading
+    ///     messing with the current working directory.
+    ///   </para>
+    /// </remarks>
+    public static readonly IReadOnlyList<string> ModLocations = new[]
+    {
+        OS.HasFeature("standalone") ?
+            Path.Combine(
+                Path.GetDirectoryName(OS.GetExecutablePath()) ??
+                throw new InvalidOperationException("no current executable path"), "mods") :
+            ProjectSettings.GlobalizePath("res://mods"),
+        "user://mods",
+    };
 
     // Following is a hacky way to ensure some conditions apply on the constants defined here.
     // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
@@ -699,6 +728,8 @@ public static class Constants
     ///   Game version
     /// </summary>
     public static string Version => GameVersion;
+
+    public static string UserFolderAsNativePath => OS.GetUserDataDir().Replace('\\', '/');
 
     private static string FetchVersion()
     {

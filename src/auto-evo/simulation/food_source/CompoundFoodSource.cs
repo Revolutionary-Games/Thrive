@@ -1,16 +1,19 @@
-﻿public class CompoundFoodSource : FoodSource
+﻿using System;
+using AutoEvo;
+
+public class CompoundFoodSource : FoodSource
 {
-    private BiomeConditions biomeConditions;
-    private Compound compound;
-    private float totalCompound;
+    private readonly Patch patch;
+    private readonly Compound compound;
+    private readonly float totalCompound;
 
     public CompoundFoodSource(Patch patch, Compound compound)
     {
-        biomeConditions = patch.Biome;
+        this.patch = patch;
         this.compound = compound;
-        if (patch.Biome.Compounds.ContainsKey(compound))
+        if (patch.Biome.Compounds.TryGetValue(compound, out var compoundData))
         {
-            totalCompound = patch.Biome.Compounds[compound].Density * patch.Biome.Compounds[compound].Amount;
+            totalCompound = compoundData.Density * compoundData.Amount;
         }
         else
         {
@@ -18,17 +21,22 @@
         }
     }
 
-    public override float FitnessScore(Species species)
+    public override float FitnessScore(Species species, SimulationCache simulationCache)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
         var compoundUseScore = EnergyGenerationScore(microbeSpecies, compound);
 
-        var energyCost = ProcessSystem.ComputeEnergyBalance(
-            microbeSpecies.Organelles.Organelles,
-            biomeConditions, microbeSpecies.MembraneType).FinalBalanceStationary;
+        var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).TotalConsumptionStationary;
 
         return compoundUseScore / energyCost;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // TODO: somehow allow the compound name to translate properly. Maybe we need to use bbcode to refer to the
+        // compounds?
+        return new LocalizedString("COMPOUND_FOOD_SOURCE", compound.Name);
     }
 
     public override float TotalEnergyAvailable()

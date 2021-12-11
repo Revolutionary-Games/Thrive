@@ -87,4 +87,9 @@ public enum TutorialEventType
     ///   The player unbound any cell
     /// </summary>
     MicrobePlayerUnbound,
+
+    /// <summary>
+    ///   Player opened the auto-evo prediction details
+    /// </summary>
+    MicrobeEditorAutoEvoPredictionOpened,
 }

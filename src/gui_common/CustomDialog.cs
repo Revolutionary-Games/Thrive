@@ -38,9 +38,12 @@ using Godot;
 ///     This uses Tool attribute to make this class be run in the Godot editor for live feedback as this class
 ///     handles UI visuals extensively through code. Not necessary but very helpful when editing scenes involving
 ///     any custom dialogs.
+///     NOTE: should always be commented in master branch to avoid Godot breaking exported properties. Uncomment this
+///     only locally if needed.
 ///   </para>
 /// </remarks>
-[Tool]
+/// TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2751
+/// [Tool]
 public class CustomDialog : Popup, ICustomPopup
 {
     private string windowTitle;
@@ -66,6 +69,7 @@ public class CustomDialog : Popup, ICustomPopup
     private int titleHeight;
     private int scaleBorderSize;
     private int customMargin;
+    private bool showCloseButton = true;
 
     [Flags]
     private enum DragType
@@ -114,7 +118,7 @@ public class CustomDialog : Popup, ICustomPopup
     ///   If true, the user can move the window around the viewport by dragging the titlebar.
     /// </summary>
     [Export]
-    public bool Moveable { get; set; } = true;
+    public bool Movable { get; set; } = true;
 
     /// <summary>
     ///   If true, the window's position is clamped inside the screen so it doesn't go out of bounds.
@@ -124,6 +128,20 @@ public class CustomDialog : Popup, ICustomPopup
 
     [Export]
     public bool ExclusiveAllowCloseOnEscape { get; set; } = true;
+
+    [Export]
+    public bool ShowCloseButton
+    {
+        get => showCloseButton;
+        set
+        {
+            if (showCloseButton == value)
+                return;
+
+            showCloseButton = value;
+            SetupCloseButton();
+        }
+    }
 
     public override void _EnterTree()
     {
@@ -227,7 +245,7 @@ public class CustomDialog : Popup, ICustomPopup
         // Handle title bar dragging
         if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == (int)ButtonList.Left)
         {
-            if (mouseButton.Pressed && Moveable)
+            if (mouseButton.Pressed && Movable)
             {
                 // Begin a possible dragging operation
                 dragType = DragHitTest(new Vector2(mouseButton.Position.x, mouseButton.Position.y));
@@ -476,6 +494,17 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void SetupCloseButton()
     {
+        if (!ShowCloseButton)
+        {
+            if (closeButton != null)
+            {
+                RemoveChild(closeButton);
+                closeButton = null;
+            }
+
+            return;
+        }
+
         if (closeButton != null)
             return;
 
