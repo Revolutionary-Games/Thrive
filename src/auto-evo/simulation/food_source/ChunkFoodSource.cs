@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
+using Godot;
 
 public class ChunkFoodSource : FoodSource
 {
@@ -35,8 +36,7 @@ public class ChunkFoodSource : FoodSource
             // by adding a volume-to-surface radius exponent ratio (e.g. 2/3 for a sphere).
             // This logic doesn't match with the rest of auto-evo (which doesn't account for accessibility).
             // TODO: extend this approach or find another nerf.
-            var ventedEnergy = (float)Math.Pow(energyCompounds.Sum(c => c.Value),
-                Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
+            var ventedEnergy = Mathf.Pow(energyCompounds.Sum(c => c.Value), Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
             totalEnergy = ventedEnergy * chunk.Density * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
         }
     }
