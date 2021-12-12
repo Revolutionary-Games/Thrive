@@ -54,7 +54,8 @@
                 { "0.5.5.0", new UpgradeStep055To056() },
                 { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
                 { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
-                { "0.5.6.0", new UpgradeStep056To0561() },
+                { "0.5.6.0", new UpgradeJustVersionNumber("0.5.6.1") },
+                { "0.5.6.1", new UpgradeStep0561To057() },
             };
         }
     }
@@ -160,9 +161,9 @@
         }
     }
 
-    internal class UpgradeStep056To0561 : BaseRecursiveJSONWalkerStep
+    internal class UpgradeStep0561To057 : BaseRecursiveJSONWalkerStep
     {
-        protected override string VersionAfter => "0.5.6.1";
+        protected override string VersionAfter => "0.5.7.0-alpha";
 
         protected override void CheckAndUpdateProperty(JProperty property)
         {

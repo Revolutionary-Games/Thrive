@@ -602,13 +602,13 @@
                         case NewSpeciesType.FillNiche:
                             builder.Append(new LocalizedString("RUN_RESULT_NICHE_FILL"));
                             world.LogWorldEvent(new LocalizedString("TIMELINE_NICHE_FILL",
-                                entry.SplitFrom.FormattedName, entry.Species.FormattedName),
+                                    entry.SplitFrom.FormattedName, entry.Species.FormattedName),
                                 entry.SplitFrom.PlayerSpecies, "res://assets/textures/gui/bevel/newSpecies.png");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
                             builder.Append(new LocalizedString("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
                             world.LogWorldEvent(new LocalizedString("TIMELINE_SELECTION_PRESSURE_SPLIT",
-                                entry.SplitFrom.FormattedName, entry.Species.FormattedName),
+                                    entry.SplitFrom.FormattedName, entry.Species.FormattedName),
                                 entry.SplitFrom.PlayerSpecies, "res://assets/textures/gui/bevel/newSpecies.png");
                             break;
                         default:
@@ -690,14 +690,14 @@
                     if (numberOfPatches < 2)
                     {
                         world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                            entry.Species.FormattedName, TranslationServer.Translate(
-                                entry.SpreadToPatches[0].To.Name)), entry.Species.PlayerSpecies,
-                                "res://assets/textures/gui/bevel/newSpecies.png");
+                                entry.Species.FormattedName, TranslationServer.Translate(
+                                    entry.SpreadToPatches[0].To.Name)), entry.Species.PlayerSpecies,
+                            "res://assets/textures/gui/bevel/newSpecies.png");
                     }
                     else
                     {
                         world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE",
-                            entry.Species.FormattedName), entry.Species.PlayerSpecies,
+                                entry.Species.FormattedName), entry.Species.PlayerSpecies,
                             "res://assets/textures/gui/bevel/newSpecies.png");
                     }
                 }
@@ -817,7 +817,7 @@
                     builder.Append('\n');
 
                     world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT",
-                        entry.Species.FormattedName), entry.Species.PlayerSpecies,
+                            entry.Species.FormattedName), entry.Species.PlayerSpecies,
                         "res://assets/textures/gui/bevel/extinction.png");
                 }
                 else
@@ -828,13 +828,13 @@
                         if (globalPopulation > previousTotalPopulations)
                         {
                             world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                entry.Species.FormattedName, ((double)globalPopulation).FormatNumber()),
+                                    entry.Species.FormattedName, ((double)globalPopulation).FormatNumber()),
                                 entry.Species.PlayerSpecies, "res://assets/textures/gui/bevel/popUp.png");
                         }
                         else
                         {
                             world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                entry.Species.FormattedName, ((double)globalPopulation).FormatNumber()),
+                                    entry.Species.FormattedName, ((double)globalPopulation).FormatNumber()),
                                 entry.Species.PlayerSpecies, "res://assets/textures/gui/bevel/popDown.png");
                         }
                     }

@@ -70,7 +70,7 @@ public class GlucoseReductionEffect : IWorldEffect
         {
             var initialGlucose = Math.Round(initialDensity * totalAmount + totalChunkAmount, 3);
             var finalGlucose = Math.Round(finalDensity * totalAmount + totalChunkAmount, 3);
-            var percentage = Math.Round(((initialGlucose - finalGlucose) / initialGlucose) * 100, 1);
+            var percentage = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
             if (percentage >= 20)
             {
@@ -80,8 +80,8 @@ public class GlucoseReductionEffect : IWorldEffect
             else
             {
                 targetWorld.LogWorldEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                    glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
-                        "PERCENTAGE_VALUE"), percentage)), false,
+                        glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
+                            "PERCENTAGE_VALUE"), percentage)), false,
                     "res://assets/textures/gui/bevel/glucoseDown.png");
             }
         }
