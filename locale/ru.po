@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
-"PO-Revision-Date: 2021-12-12 19:08+0000\n"
-"Last-Translator: Vladimir Didenko <didenkovladimir12@gmail.com>\n"
+"PO-Revision-Date: 2021-12-12 19:41+0000\n"
+"Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -936,7 +936,6 @@ msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "Отделившихся от {0}"
 
 #: ../src/auto-evo/RunResults.cs:502
-#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "возникли, чтобы заполнить нишу"
 
@@ -947,8 +946,7 @@ msgstr "распространяется в биомы:"
 
 #: ../src/auto-evo/RunResults.cs:522
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr ""
-"популяция в некоторых биомах отделилась, чтобы сформировать новый вид {0}:"
+msgstr "популяция на некоторых участках разделилась, образовав новые виды {0}:"
 
 #: ../src/auto-evo/RunResults.cs:538
 msgid "RUN_RESULT_HAS_A_MUTATION"
@@ -975,14 +973,12 @@ msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "вымерли с планеты"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:64
-#, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "Облака из Компонентов"
+msgstr "{0} потребления"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "Облака из Компонентов"
+msgstr "{0} потребления"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:35
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -1501,9 +1497,8 @@ msgstr ""
 "или Nvidia видеокарты для запуска Thrive."
 
 #: ../src/general/MainMenu.tscn:499
-#, fuzzy
 msgid "MOD_LOAD_ERRORS"
-msgstr "Загрузчик модов"
+msgstr "Ошибки загрузки Модов"
 
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
@@ -2421,13 +2416,12 @@ msgstr ""
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Метаболосомы - это кластеры белков, завернутые в белковые оболочки. Они "
-"способны преобразовывать глюкозу в АТФ с гораздо большей скоростью, чем "
-"это может быть сделано в цитоплазме, в процессе называемом Аэробным "
-"Дыханием. Однако для его функционирования требуется кислород, а более "
-"низкий уровень кислорода в окружающей среде замедлит скорость производства "
-"АТФ. Поскольку метаболосомы находятся во взвешенном состоянии "
-"непосредственно в цитоплазме, окружающая жидкость выполняет некоторую "
-"часть гликолиза."
+"способны преобразовывать глюкозу в АТФ с гораздо большей скоростью, чем это "
+"может быть сделано в цитоплазме, в процессе называемом Аэробным Дыханием. "
+"Однако для его функционирования требуется кислород, а более низкий уровень "
+"кислорода в окружающей среде замедлит скорость производства АТФ. Поскольку "
+"метаболосомы находятся во взвешенном состоянии непосредственно в цитоплазме, "
+"окружающая жидкость выполняет некоторую часть гликолиза."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:461
 msgid "THYLAKOID"
@@ -3197,17 +3191,12 @@ msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1952
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
-"Электростанция клетки. Митохондрия (множественное число: митохондрии) "
-"представляет собой двумембранную органеллу, заполненную белками и "
-"ферментами. Это прокариота, которая была ассимилирована для использования "
-"ее эукариотическим хозяином. Она способна превращать глюкозу в АТФ с "
-"гораздо более высокой эффективностью, чем это может быть сделано в "
-"цитоплазме, в процессе, называемом Аэробным Дыханием. Однако для её "
-"функционирования требуется кислород, и более низкие уровни содержания "
-"кислорода в атмосфере замедлят скорость её выработки АТФ."
+"Эта панель показывает ожидаемую численность авто-эво для редактируемых видов."
+"\n"
+"Авто-эво запускает моделирование популяции, которое является другой частью ("
+"помимо вашей собственной производительности), влияющей на вашу популяцию."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1956
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3943
@@ -3215,23 +3204,20 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Предсказание Авто-Эволюции"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1964
-#, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr "Продолжить игру"
+msgstr "Просмотр подробной информации, лежащей в основе прогноза"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Общая Популяция:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2058
-#, fuzzy
 msgid "BEST_PATCH_COLON"
-msgstr "Виды:"
+msgstr "Лучший Путь:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2083
-#, fuzzy
 msgid "WORST_PATCH_COLON"
-msgstr "Виды:"
+msgstr "Худший Путь:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2229
 msgid "SPECIES_NAME_DOT_DOT_DOT"
@@ -3408,9 +3394,8 @@ msgid "WITH_POPULATION"
 msgstr "{0} из популяции: {1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1871
-#, fuzzy
 msgid "FAILED"
-msgstr "Сохранение не удалось"
+msgstr "Неудачно"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1877
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1889
@@ -3483,9 +3468,8 @@ msgstr ""
 "мире."
 
 #: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
-#, fuzzy
 msgid "CANT_LOAD_MOD_INFO"
-msgstr "Полная информация о моде"
+msgstr "Не удается загрузить информацию о моде {0}"
 
 #: ../src/modding/ModLoader.cs:235
 #, fuzzy
@@ -3518,9 +3502,8 @@ msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
 #: ../src/modding/ModLoader.cs:394
-#, fuzzy
 msgid "PCK_LOAD_FAILED"
-msgstr "Загрузка завершена"
+msgstr "Не удалось загрузить файл pck ({0})"
 
 #: ../src/modding/ModManager.cs:292
 msgid "INVALID_ICON_PATH"
@@ -3540,18 +3523,16 @@ msgid "NO_SELECTED_MOD"
 msgstr "Выбрано:"
 
 #: ../src/modding/ModManager.cs:869
-#, fuzzy
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr "Ввести существующий Workshop ID"
+msgstr "Этот мод загружен из Мастерской Steam"
 
 #: ../src/modding/ModManager.cs:870
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
 #: ../src/modding/ModManager.cs:926
-#, fuzzy
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Ошибка Сохранения"
+msgstr "Ошибка при создании папки для мода"
 
 #: ../src/modding/ModManager.cs:935
 msgid "ERROR_CREATING_INFO_FILE"
@@ -3740,9 +3721,10 @@ msgid "RESTART_REQUIRED"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:996
-#, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr "Загрузить недействительное сохранение?"
+msgstr ""
+"Для правильной загрузки или выгрузки одного или нескольких модов требуется "
+"перезапуск игры"
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4014,9 +3996,8 @@ msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Выбранное имя файла ({0}) уже существует. Перезаписать?"
 
 #: ../src/saving/NewSaveMenu.cs:167
-#, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Загрузить недействительное сохранение?"
+msgstr "Имя сохранения может не содержать специальных символов (<>:\"/\\|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
