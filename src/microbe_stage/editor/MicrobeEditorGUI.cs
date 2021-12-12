@@ -1086,7 +1086,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                     RectMinSize = new Vector2(25, 25),
                     SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
                     Texture = !string.IsNullOrEmpty(entry.IconPath) ?
-                        GD.Load<Texture>(entry.IconPath) : null,
+                        GD.Load<Texture>(entry.IconPath) :
+                        null,
                     Expand = true,
                     StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                 };
