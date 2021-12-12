@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class ExtinctionBox : Control
+public class ExtinctionBox : ControlWithInput
 {
     [Export]
     public NodePath ExtinctionMenuPath;
@@ -15,6 +15,17 @@ public class ExtinctionBox : Control
     {
         extinctionMenu = GetNode<Control>(ExtinctionMenuPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
+    }
+
+    [RunOnKeyDown("ui_cancel", Priority = Constants.SUBMENU_CANCEL_PRIORITY)]
+    public bool LoadMenuEscapePressed()
+    {
+        if (!loadMenu.Visible)
+            return false;
+
+        loadMenu.Hide();
+        extinctionMenu.Show();
+        return true;
     }
 
     private void OpenLoadGamePressed()
