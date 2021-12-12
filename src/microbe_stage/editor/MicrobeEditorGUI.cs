@@ -669,20 +669,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         menu = GetNode<PauseMenu>(MenuPath);
 
-        atp = SimulationParameters.Instance.GetCompound("atp");
-        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-        glucose = SimulationParameters.Instance.GetCompound("glucose");
-        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-        iron = SimulationParameters.Instance.GetCompound("iron");
-        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-
-        protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
-        nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
-
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
