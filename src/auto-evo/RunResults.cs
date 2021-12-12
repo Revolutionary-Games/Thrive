@@ -523,10 +523,9 @@
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
         /// <param name="playerReadable">if true ids are removed from the output</param>
         /// <param name="effects">if not null these effects are applied to the population numbers</param>
-        /// <param name="highlightSpecies">Results for the species in this HashSet are printed first</param>
         /// <returns>The generated summary text</returns>
         public LocalizedStringBuilder MakeSummary(PatchMap previousPopulations = null,
-            bool playerReadable = false, List<ExternalEffect> effects = null, HashSet<Species> highlightSpecies = null)
+            bool playerReadable = false, List<ExternalEffect> effects = null)
         {
             const bool resolveMigrations = true;
             const bool resolveSplits = true;
@@ -797,22 +796,9 @@
                     builder.Append('\n');
             }
 
-            highlightSpecies ??= new HashSet<Species>();
-            if (highlightSpecies.Contains(null))
-                throw new ArgumentNullException("Highlight species entry must not be null");
-
-            // Print highlight species results
-            foreach (Species species in highlightSpecies.OrderBy(s => s.FormattedName))
+            foreach (var entry in results.OrderByDescending(s => s.Key.PlayerSpecies).ThenBy(s => s.Key.FormattedName))
             {
-                if (results.ContainsKey(species))
-                    AddSpeciesResultString(results[species]);
-            }
-
-            // Print all other species results
-            foreach (KeyValuePair<Species, SpeciesResult> entry in results.OrderBy(s => s.Key.FormattedName))
-            {
-                if (!highlightSpecies.Contains(entry.Key))
-                    AddSpeciesResultString(entry.Value);
+                AddSpeciesResultString(entry.Value);
             }
 
             return builder;

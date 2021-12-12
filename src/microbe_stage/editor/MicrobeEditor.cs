@@ -2471,7 +2471,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         else
         {
             autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true,
-                run.ExternalEffects, new HashSet<Species>() { CurrentGame.GameWorld.PlayerSpecies });
+                run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
             gui.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
