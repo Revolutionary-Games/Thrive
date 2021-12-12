@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
-"PO-Revision-Date: 2021-12-12 20:19+0000\n"
+"PO-Revision-Date: 2021-12-13 10:06+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
@@ -2183,17 +2183,15 @@ msgstr "Value (brightness) значение, яркость или интенс�
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr "Значение красного канала цвета"
+msgstr "Значение канала красного цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
-#, fuzzy
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr "Добавить новое назначение клавиши"
+msgstr "Значение канала зелёного цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
-#, fuzzy
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr "Добавить новое назначение клавиши"
+msgstr "Значение канала синего цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
 msgid "COLOUR_PICKER_A_TOOLTIP"
@@ -3191,8 +3189,8 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Эта панель показывает ожидаемую численность авто-эво для редактируемых видов."
 "\n"
-"Авто-эво запускает моделирование популяции, которое является другой частью ("
-"помимо вашей собственной производительности), влияющей на вашу популяцию."
+"Авто-эво запускает моделирование популяции, что является частью (помимо "
+"вашей собственной эффективности), влияющей на вашу популяцию."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1956
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3943
@@ -3600,9 +3598,8 @@ msgid "MORE_INFO"
 msgstr "Показать больше информации"
 
 #: ../src/modding/ModManager.tscn:482
-#, fuzzy
 msgid "OPEN_MOD_URL"
-msgstr "Открыть URL-ссылку"
+msgstr "Открыть информационный URL-адрес"
 
 #: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
@@ -3733,9 +3730,8 @@ msgid "DESCRIPTION_TOO_LONG"
 msgstr "Описание слишком длинное"
 
 #: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
-#, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr "Описание слишком длинное"
+msgstr "Примечания к изменениям слишком длинные"
 
 #: ../src/modding/ModUploader.cs:326
 msgid "TAGS_IS_WHITESPACE"
@@ -4273,9 +4269,8 @@ msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
 #: ../src/steam/SteamClient.cs:496
-#, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "Сохранение не удалось! Бывает же"
+msgstr "Steam не удалось получить блокировку UGC"
 
 #: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
