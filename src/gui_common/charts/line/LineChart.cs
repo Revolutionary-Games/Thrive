@@ -368,12 +368,16 @@ public class LineChart : VBoxContainer
             }
         }
 
-        drawArea.Update();
-
-        foreach (var data in dataSets.Keys)
+        // Wait until rect sizes settle down then we update visuals
+        Invoke.Instance.Queue(() =>
         {
-            FlattenLines(data);
-        }
+            drawArea.Update();
+
+            foreach (var data in dataSets.Keys)
+            {
+                FlattenLines(data);
+            }
+        });
     }
 
     /// <summary>
@@ -550,12 +554,10 @@ public class LineChart : VBoxContainer
         if (dataSets == null || VisibleDataSets <= 0)
         {
             DrawNoDataText();
-        }
-        else
-        {
-            DrawOrdinateLines();
+            return;
         }
 
+        DrawOrdinateLines();
         ApplyCoordinatesToDataPoints();
         UpdateLineSegments();
     }

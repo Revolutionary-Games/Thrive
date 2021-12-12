@@ -415,7 +415,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
-    private Label reportTabPatchNameLabel;
+    private OptionButton reportTabPatchName;
 
     private HBoxContainer physicalConditionsIconLegends;
     private LineChart temperatureChart;
@@ -566,7 +566,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
 
-        reportTabPatchNameLabel = GetNode<Label>(ReportTabPatchNamePath);
+        reportTabPatchName = GetNode<OptionButton>(ReportTabPatchNamePath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
@@ -1108,9 +1108,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         externalEffectsLabel.Text = external;
     }
 
-    public void UpdateReportTabPatchName(string patch)
+    public void UpdateReportTabPatchList()
     {
-        reportTabPatchNameLabel.Text = patch;
+        reportTabPatchName.Clear();
+
+        foreach (var patch in editor.CurrentGame.GameWorld.Map.Patches)
+        {
+            reportTabPatchName.AddItem(TranslationServer.Translate(patch.Value.Name), patch.Key);
+        }
+
+        reportTabPatchName.Select(editor.CurrentPatch.ID);
     }
 
     public void UpdateRigiditySliderState(int mutationPoints)
@@ -1186,8 +1193,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
 
         UpdateReportTabStatistics(patch);
-
-        UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
     }
 
     /// <summary>
@@ -2098,6 +2103,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
+
+        reportTabPatchName.Select(patch.ID);
+    }
+
+    private void OnReportTabPatchListSelected(int index)
+    {
+        mapDrawer.SelectedPatch = editor.CurrentGame.GameWorld.Map.Patches[index];
     }
 
     /// <summary>
