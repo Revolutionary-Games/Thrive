@@ -502,6 +502,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private PendingAutoEvoPrediction waitingForPrediction;
 
+    private Control timelineScrollAnchor;
+
     public enum EditorTab
     {
         Report,
@@ -1041,8 +1043,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         var timeline = editor.CurrentGame.GameWorld.GetTimeline();
 
-        // TODO: autoscroll to the current time period
-
         foreach (var snapshot in timeline)
         {
             var headerContainer = new HBoxContainer();
@@ -1055,6 +1055,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 RectMinSize = new Vector2(0, 55),
                 Valign = Label.VAlign.Center,
             };
+
+            timelineScrollAnchor = headerContainer;
 
             timePeriodLabel.AddFontOverride("font", GetFont("jura_bold", "Fonts"));
 
@@ -1099,6 +1101,23 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 mainContainer.AddChild(itemContainer);
             }
         }
+    }
+
+    public void TimelineAutoScrollToCurrentTimePeriod()
+    {
+        if (timelineScrollAnchor == null)
+            return;
+
+        var scroll = timelineSubtab.GetNode<ScrollContainer>("MarginContainer/ScrollContainer");
+
+        var scrollRect = scroll.GetGlobalRect();
+        var anchorRect = timelineScrollAnchor.GetGlobalRect();
+        var offset = scrollRect.Size.y - anchorRect.Size.y;
+
+        var diff = Mathf.Max(Mathf.Min(anchorRect.Position.y, scrollRect.Position.y), anchorRect.Position.y +
+            anchorRect.Size.y - scrollRect.Size.y + offset);
+
+        scroll.ScrollVertical = (int)(diff - scrollRect.Position.y);
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
@@ -1857,6 +1876,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             case ReportSubtab.Timeline:
                 timelineSubtab.Show();
                 timelineSubtabButton.Pressed = true;
+                TimelineAutoScrollToCurrentTimePeriod();
                 break;
             default:
                 throw new Exception("Invalid report subtab");
