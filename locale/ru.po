@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
 "PO-Revision-Date: 2021-12-12 20:17+0000\n"
-"Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
+"Last-Translator: Vladimir Didenko <didenkovladimir12@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -2178,9 +2178,8 @@ msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Значение насыщенности, уровень серого в отдельных цветах"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
-#, fuzzy
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr "Добавить новое назначение клавиши"
+msgstr "Value (brightness) значение, яркость или интенсивность цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
 #, fuzzy
@@ -2198,9 +2197,8 @@ msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Добавить новое назначение клавиши"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
-#, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr "Добавить новое назначение клавиши"
+msgstr "Значение альфа канала цвета"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
@@ -3537,7 +3535,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.cs:926
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Ошибка при создании папки для мода"
+msgstr "Ошибка создания папки для мода"
 
 #: ../src/modding/ModManager.cs:935
 msgid "ERROR_CREATING_INFO_FILE"
@@ -3552,34 +3550,28 @@ msgid "REFRESH"
 msgstr "Обновить"
 
 #: ../src/modding/ModManager.tscn:152
-#, fuzzy
 msgid "OPEN_FOLDER"
-msgstr "Открыть Папку с Логами"
+msgstr "Открыть Папку"
 
 #: ../src/modding/ModManager.tscn:170
-#, fuzzy
 msgid "RIGHT_ARROW"
-msgstr "Правая кнопка мыши"
+msgstr "→"
 
 #: ../src/modding/ModManager.tscn:183
-#, fuzzy
 msgid "LEFT_ARROW"
-msgstr "Левая кнопка мыши"
+msgstr "←"
 
 #: ../src/modding/ModManager.tscn:195
-#, fuzzy
 msgid "ENABLED_MODS"
-msgstr "Включить редактор"
+msgstr "Включенные Моды"
 
 #: ../src/modding/ModManager.tscn:213
-#, fuzzy
 msgid "DISABLE_ALL"
-msgstr "Отключено"
+msgstr "Отключить Все"
 
 #: ../src/modding/ModManager.tscn:250
-#, fuzzy
 msgid "SELECTED_MOD"
-msgstr "Выбрано:"
+msgstr "Выбранный Мод:"
 
 #: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
 #: ../src/modding/NewModGUI.tscn:142
@@ -3596,9 +3588,8 @@ msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:415
-#, fuzzy
 msgid "MINIMUM_VERSION"
-msgstr "Версия:"
+msgstr "Минимальная версия:"
 
 #: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
 #: ../src/modding/NewModGUI.tscn:188
