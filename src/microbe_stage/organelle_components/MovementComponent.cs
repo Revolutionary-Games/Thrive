@@ -52,7 +52,7 @@ public class MovementComponent : ExternallyPositionedComponent
     protected override bool NeedsUpdateAnyway()
     {
         // The basis of the transform represents the rotation, as long as the rotation is not modified,
-        // the organnelle needs to be updated.
+        // the organelle needs to be updated.
         // TODO: Calculated rotations should never equal the identity,
         // it should be kept an eye on if it does. The engine for some reason doesnt update THIS basis
         // unless checked with some condition (if or return)

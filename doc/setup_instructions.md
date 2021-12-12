@@ -103,11 +103,14 @@ package.
 Next you need, dotnet sdk, for example the package might be called
 `dotnet-sdk-5.0`, this will install the `dotnet` command required
 later. With Rider it may be possible to skip the mono install and just
-install dotnet sdk. Note that some of the used tools require the 3.1
-version of the sdk, so you should install that now.
+install dotnet sdk. 
+
+On Linux you can use your package manager to install that. For example
+on Fedora this can be done with: `sudo dnf install dotnet-sdk-5.0`
 
 On Windows don't intall Mono or MonoDevelop, it will break
-things. Dotnet may be a good tool to use on Windows.
+things. Dotnet is a good tool to use on Windows. You can download an
+installer for that from: https://dotnet.microsoft.com/en-us/download
 
 For a better experience with Godot, you can install the following
 addon for MonoDevelop:
@@ -151,10 +154,10 @@ need **at least** VS Build tools 2019 due to the version of C# used by
 Thrive. During the installation process, make sure MSBuild tools is
 listed under the installation details.
 
-Go to https://dotnet.microsoft.com/download Under the .NET Core
-section, click on _Download .NET Core SDK_ and run the installer.
-Go back to the main download page and find
-_All .NET Framework Downloads_ Choose version 4.7 and select the Developer Pack.
+See the section on using MonoDevelop on how to install dotnet
+SDK. After installing that go back to the main .NET download page and
+find _All .NET Framework Downloads_ Choose version 4.7 and select the
+Developer Pack.
 
 Open Visual Studio Code and go to the Extensions tab. Get the extensions
 _C#_, _Mono Debug_, and _C# Tools for Godot_.
@@ -451,19 +454,17 @@ sudo npm install -g jsonlint
 
 ## Jetbrains tools
 
-Download from:
-https://www.jetbrains.com/resharper/download/#section=commandline
-unzip and add to PATH. Currently used version is:
-JetBrains.ReSharper.CommandLineTools.2021.2.1
+Jetbrains tools are now installed with dotnet. This happens
+automatically as long as you have installed the dotnet sdk.
 
-NOTE: there is more documentation on the install process here:
-https://www.jetbrains.com/help/resharper/InspectCode.html
+If you want, you can manually install them with:
+```sh
+dotnet tool restore
+```
 
-On Linux you need to install the dotnet runtime for them to work. On
-Fedora this can be done with: `sudo dnf install dotnet-runtime-3.1` If
-that doesn't work you may need to install a different runtime as
-well. If none of the sh scripts are executable run this in the
-unzipped jetbrains folder: `chmod +x *.sh`
+If you specify to the formatting check script to not automatically
+restore the tools, you'll need to re-run that command in the Thrive
+folder whenever our checking tools versions change.
 
 ## Localization tools
 

@@ -470,8 +470,8 @@ public class MicrobeAI
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
         if (usefulCompounds.Any(
-            compound => IsVitalCompound(compound) &&
-                microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
+                compound => IsVitalCompound(compound) &&
+                    microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
         {
             usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
         }

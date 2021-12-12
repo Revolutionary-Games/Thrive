@@ -21,7 +21,7 @@ public static class CollisionObjectHelpers
     /// <summary>
     ///  Creates a new shapeOwner for the first shape in the oldShapeOwner of the oldParent
     ///  and applies a transform to it.
-    ///  Doesn't destroy the oldDhapeOwner.
+    ///  Doesn't destroy the oldShapeOwner.
     /// </summary>
     /// <returns>Returns the new ShapeOwnerId.</returns>
     public static uint CreateNewOwnerId(this CollisionObject oldParent,
