@@ -293,7 +293,7 @@ margin_left = -185.0
 margin_top = -185.0
 margin_right = 185.0
 margin_bottom = 185.0
-rect_min_size = Vector2( 370, 370 )
+rect_min_size = Vector2( 370, 373 )
 rect_pivot_offset = Vector2( 185, 185 )
 theme = null
 script = ExtResource( 7 )
@@ -322,27 +322,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="AutoEvoPrediction/ScrollContainer/VBoxContainer"]
-margin_right = 350.0
+margin_right = 710.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 5 )
 text = "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 autowrap = true
-
-[node name="Control" type="Control" parent="AutoEvoPrediction/ScrollContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 350.0
-margin_bottom = 319.0
-size_flags_vertical = 3
-
-[node name="Button" type="Button" parent="AutoEvoPrediction/ScrollContainer/VBoxContainer"]
-margin_left = 300.0
-margin_top = 678.0
-margin_right = 410.0
-margin_bottom = 710.0
-rect_min_size = Vector2( 110, 0 )
-size_flags_horizontal = 4
-custom_fonts/font = ExtResource( 6 )
-text = "CLOSE"
 
 [node name="StaySmall" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
@@ -419,7 +403,6 @@ text = "CLOSE"
 [connection signal="pressed" from="CellEditorClosingWords/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "CellEditorClosingWords" ]]
 [connection signal="hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
 [connection signal="popup_hide" from="AutoEvoPrediction" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
-[connection signal="pressed" from="AutoEvoPrediction/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "AutoEvoPrediction" ]]
 [connection signal="hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
 [connection signal="popup_hide" from="StaySmall" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]
 [connection signal="pressed" from="StaySmall/ScrollContainer/VBoxContainer/Button" to="." method="OnSpecificCloseClicked" binds= [ "StaySmallTutorial" ]]

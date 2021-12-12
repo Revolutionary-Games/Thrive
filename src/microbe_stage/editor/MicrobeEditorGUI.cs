@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -307,6 +308,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
+    [Export]
+    public NodePath AutoEvoPredictionExplanationPopupPath;
+
+    [Export]
+    public NodePath AutoEvoPredictionExplanationLabelPath;
+
     private Compound atp;
     private Compound ammonia;
     private Compound carbondioxide;
@@ -489,6 +496,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private CompoundBalanceDisplay compoundBalance;
 
+    private CustomDialog autoEvoPredictionExplanationPopup;
+    private Label autoEvoPredictionExplanationLabel;
+
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
 
@@ -501,6 +511,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     private PendingAutoEvoPrediction waitingForPrediction;
+    private LocalizedStringBuilder predictionDetailsText;
 
     private Control timelineScrollAnchor;
 
@@ -653,6 +664,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
+        autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
+        autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
+
         menu = GetNode<PauseMenu>(MenuPath);
 
         atp = SimulationParameters.Instance.GetCompound("atp");
@@ -674,6 +688,20 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        atp = SimulationParameters.Instance.GetCompound("atp");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+        nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         SetupMicrobePartSelections();
         UpdateMicrobePartSelections();
@@ -1366,6 +1394,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (what == NotificationTranslationChanged)
         {
             UpdateAutoEvoPredictionTranslations();
+            UpdateAutoEvoPredictionDetailsText();
         }
     }
 
@@ -2097,7 +2126,15 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             worstPatchName = null;
         }
 
+        CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
+            run.PlayerSpeciesOriginal.FormattedName);
+
         UpdateAutoEvoPredictionTranslations();
+
+        if (autoEvoPredictionPanel.Visible)
+        {
+            UpdateAutoEvoPredictionDetailsText();
+        }
     }
 
     /// <remarks>
@@ -2381,6 +2418,76 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
         }
+    }
+
+    private void OpenAutoEvoPredictionDetails()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        UpdateAutoEvoPredictionDetailsText();
+
+        autoEvoPredictionExplanationPopup.PopupCenteredShrink();
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorAutoEvoPredictionOpened, EventArgs.Empty, this);
+    }
+
+    private void CloseAutoEvoPrediction()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void CreateAutoEvoPredictionDetailsText(
+        Dictionary<Patch, RunResults.SpeciesPatchEnergyResults> energyResults, string playerSpeciesName)
+    {
+        predictionDetailsText = new LocalizedStringBuilder(300);
+
+        double Round(float value)
+        {
+            if (value > 0.0005f)
+                return Math.Round(value, 3);
+
+            // Small values can get really small (and still be different from getting 0 energy due to fitness) so
+            // this is here for that reason
+            return Math.Round(value, 8);
+        }
+
+        // This loop shows all the patches the player species is in. Could perhaps just show the current one
+        foreach (var energyResult in energyResults)
+        {
+            predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
+                new LocalizedString(energyResult.Key.Name), playerSpeciesName));
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
+                Round(energyResult.Value.TotalEnergyGathered), Round(energyResult.Value.IndividualCost),
+                energyResult.Value.UnadjustedPopulation));
+
+            predictionDetailsText.Append('\n');
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
+            predictionDetailsText.Append('\n');
+
+            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy)
+            {
+                var data = nicheInfo.Value;
+                predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
+                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness),
+                    Round(data.TotalAvailableEnergy),
+                    Round(data.TotalFitness)));
+                predictionDetailsText.Append('\n');
+            }
+
+            predictionDetailsText.Append('\n');
+        }
+    }
+
+    private void UpdateAutoEvoPredictionDetailsText()
+    {
+        autoEvoPredictionExplanationLabel.Text = predictionDetailsText != null ?
+            predictionDetailsText.ToString() :
+            TranslationServer.Translate("NO_DATA_TO_SHOW");
     }
 
     /// <summary>

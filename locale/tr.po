@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-08 18:11+0700\n"
-"PO-Revision-Date: 2021-11-12 08:17+0000\n"
+"POT-Creation-Date: 2021-12-12 12:24+0700\n"
+"PO-Revision-Date: 2021-12-11 08:35+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -30,7 +30,8 @@ msgstr ""
 "kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy"
 "\"]Oksitoksi NT'yi[/thrive:compound] ateş etmek için [thrive:"
 "input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için "
-"[thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas."
+"[thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas. Fare tekeriyle "
+"yakınlaştırıp uzaklaştırabilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -459,7 +460,7 @@ msgid "ZOOM_IN"
 msgstr "Yakınlaştır"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3922
 msgid "EDITOR"
 msgstr "Editör"
 
@@ -722,25 +723,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1294
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3537
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3569
 msgid "AMMONIA"
 msgstr "Amonyak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1348
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3608
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3640
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1402
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3502
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3534
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1240
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3572
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3604
 msgid "GLUCOSE"
 msgstr "Glukoz"
 
@@ -751,28 +752,28 @@ msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1456
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3643
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3675
 msgid "IRON"
 msgstr "Demir"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3338
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3370
 msgid "OXYGEN"
 msgstr "Oksijen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3392
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3424
 msgid "CARBON_DIOXIDE"
 msgstr "Karbondioksit"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3365
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3397
 msgid "NITROGEN"
 msgstr "Azot"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3218
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3250
 msgid "SUNLIGHT"
 msgstr "Güneş ışığı"
 
@@ -920,90 +921,106 @@ msgstr "Başlıyor"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} popülasyonu {1} defa değişti çünkü: {2}"
 
-#: ../src/auto-evo/RunResults.cs:422
+#: ../src/auto-evo/RunResults.cs:559
 msgid "POPULATION"
 msgstr "popülasyon:"
 
-#: ../src/auto-evo/RunResults.cs:431
+#: ../src/auto-evo/RunResults.cs:568
 msgid "WENT_EXTINCT_IN"
 msgstr "{0} arazisinde nesli tükendi"
 
-#: ../src/auto-evo/RunResults.cs:437
+#: ../src/auto-evo/RunResults.cs:574
 msgid "PREVIOUS"
 msgstr "önceki:"
 
-#: ../src/auto-evo/RunResults.cs:453
+#: ../src/auto-evo/RunResults.cs:590
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "{0} türünden ayrıldı"
 
-#: ../src/auto-evo/RunResults.cs:466
+#: ../src/auto-evo/RunResults.cs:603
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "alanı doldurmak için ortaya çıktı"
 
-#: ../src/auto-evo/RunResults.cs:467
+#: ../src/auto-evo/RunResults.cs:604
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "alanı doldurmak için ortaya çıktı"
 
-#: ../src/auto-evo/RunResults.cs:471
+#: ../src/auto-evo/RunResults.cs:609
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "seçilim baskılarının değişmesinden dolayı ortaya çıktı"
 
-#: ../src/auto-evo/RunResults.cs:472
+#: ../src/auto-evo/RunResults.cs:610
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "seçilim baskılarının değişmesinden dolayı ortaya çıktı"
 
-#: ../src/auto-evo/RunResults.cs:490
+#: ../src/auto-evo/RunResults.cs:629
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 "bazı arazilerdeki popülasyonlar, yeni türler oluşturmak için ayrıldı {0}:"
 
-#: ../src/auto-evo/RunResults.cs:506
+#: ../src/auto-evo/RunResults.cs:645
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "mutasyona sahip"
 
-#: ../src/auto-evo/RunResults.cs:511
+#: ../src/auto-evo/RunResults.cs:650
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen kodu:"
 
-#: ../src/auto-evo/RunResults.cs:522
+#: ../src/auto-evo/RunResults.cs:661
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "yayıldığı araziler:"
 
-#: ../src/auto-evo/RunResults.cs:534
+#: ../src/auto-evo/RunResults.cs:673
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0}: {1} popülasyon {2} adlı araziden göç etti"
 
-#: ../src/auto-evo/RunResults.cs:553
+#: ../src/auto-evo/RunResults.cs:692
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:559
+#: ../src/auto-evo/RunResults.cs:699
 msgid "TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:565
+#: ../src/auto-evo/RunResults.cs:706
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "arazilerdeki popülasyon:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:816
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "gezegende nesli tükendi"
 
-#: ../src/auto-evo/RunResults.cs:678
+#: ../src/auto-evo/RunResults.cs:819
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:688
+#: ../src/auto-evo/RunResults.cs:830
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Tür Popülasyonu"
 
-#: ../src/auto-evo/RunResults.cs:694
+#: ../src/auto-evo/RunResults.cs:836
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Tür Popülasyonu"
+
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:75
+msgid "CHUNK_FOOD_SOURCE"
+msgstr "{0} tüketim"
+
+#: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
+msgid "COMPOUND_FOOD_SOURCE"
+msgstr "{0} tüketim"
+
+#: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:35
+msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
+msgstr "{0} çevresel besin kaynağını eşit oranda dağıt"
+
+#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
+msgid "PREDATION_FOOD_SOURCE"
+msgstr "{0} besin kaynağının yenmesi"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1434,9 +1451,9 @@ msgstr "Resmi yapan: {0}"
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4072
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:345
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:405
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
 msgstr "Kapat"
 
@@ -1447,9 +1464,9 @@ msgstr ""
 #: ../src/general/IWorldEffect.cs:84 ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:638
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:718
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1013
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1229
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1043
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1285
 msgid "PERCENTAGE_VALUE"
 msgstr "%{0}"
 
@@ -1499,7 +1516,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrop Editörü Serbest Modu"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
-#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1177
+#: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:136
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:147
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
@@ -1509,7 +1526,7 @@ msgstr "Geri"
 
 #: ../src/general/MainMenu.tscn:358
 msgid "MODS"
-msgstr ""
+msgstr "Modlar"
 
 #: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
@@ -1533,345 +1550,351 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
-msgstr ""
+msgstr "Mod Yükleme Hataları"
 
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
+"Bir ya da daha fazla modu yüklerken sorun oluştu. Loglar, ek bilgi "
+"içerebilir."
 
-#: ../src/general/OptionsMenu.cs:838
+#: ../src/general/OptionsMenu.cs:900
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
-#: ../src/general/OptionsMenu.cs:870
+#: ../src/general/OptionsMenu.cs:932
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza yardımcı "
 "ol!"
 
-#: ../src/general/OptionsMenu.cs:874
+#: ../src/general/OptionsMenu.cs:936
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Bu dilin çevirisi halen devam etmekte (%{0} tamamlandı)"
 
-#: ../src/general/OptionsMenu.cs:878
+#: ../src/general/OptionsMenu.cs:940
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "Bu dil %{0} tamamlandı"
 
-#: ../src/general/OptionsMenu.tscn:134
+#: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
 msgstr "Grafikler"
 
-#: ../src/general/OptionsMenu.tscn:145
+#: ../src/general/OptionsMenu.tscn:146
 msgid "SOUND"
 msgstr "Ses"
 
-#: ../src/general/OptionsMenu.tscn:156
+#: ../src/general/OptionsMenu.tscn:157
 msgid "PERFORMANCE"
 msgstr "Performans"
 
-#: ../src/general/OptionsMenu.tscn:167
+#: ../src/general/OptionsMenu.tscn:168
 msgid "INPUTS"
 msgstr "Girişler"
 
-#: ../src/general/OptionsMenu.tscn:178
+#: ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
 msgstr "Diğer"
 
-#: ../src/general/OptionsMenu.tscn:210
+#: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
 msgstr "Dikey eşitleme"
 
-#: ../src/general/OptionsMenu.tscn:217
+#: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
 msgstr "Tam ekran"
 
-#: ../src/general/OptionsMenu.tscn:239
+#: ../src/general/OptionsMenu.tscn:240
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr "Çoklu örnekleme kenar yumuşatma:"
 
-#: ../src/general/OptionsMenu.tscn:246
+#: ../src/general/OptionsMenu.tscn:247
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr "(daha üst değerler performansı düşürür)"
 
-#: ../src/general/OptionsMenu.tscn:261 ../src/general/OptionsMenu.tscn:262
+#: ../src/general/OptionsMenu.tscn:262 ../src/general/OptionsMenu.tscn:263
 msgid "DISABLED"
 msgstr "Devre Dışı"
 
-#: ../src/general/OptionsMenu.tscn:262
+#: ../src/general/OptionsMenu.tscn:263
 msgid "TWO_TIMES"
 msgstr "2x"
 
-#: ../src/general/OptionsMenu.tscn:262
+#: ../src/general/OptionsMenu.tscn:263
 msgid "FOUR_TIMES"
 msgstr "4x"
 
-#: ../src/general/OptionsMenu.tscn:262
+#: ../src/general/OptionsMenu.tscn:263
 msgid "EIGHT_TIMES"
 msgstr "8x"
 
-#: ../src/general/OptionsMenu.tscn:262
+#: ../src/general/OptionsMenu.tscn:263
 msgid "SIXTEEN_TIMES"
 msgstr "16x"
 
-#: ../src/general/OptionsMenu.tscn:276
+#: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
 msgstr "Çözünürlük:"
 
-#: ../src/general/OptionsMenu.tscn:289
+#: ../src/general/OptionsMenu.tscn:290
 msgid "AUTO"
 msgstr "Otomatik"
 
-#: ../src/general/OptionsMenu.tscn:299
+#: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
 msgstr "Maksimum FPS:"
 
-#: ../src/general/OptionsMenu.tscn:325
+#: ../src/general/OptionsMenu.tscn:316
+msgid "MAX_FPS_NO_LIMIT"
+msgstr "Sınırsız"
+
+#: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Renk düzeltme:"
 
-#: ../src/general/OptionsMenu.tscn:339 ../src/general/OptionsMenu.tscn:340
+#: ../src/general/OptionsMenu.tscn:346 ../src/general/OptionsMenu.tscn:347
 msgid "NONE"
 msgstr "Yok"
 
-#: ../src/general/OptionsMenu.tscn:340
+#: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanop (Kırmızı-Yeşil)"
 
-#: ../src/general/OptionsMenu.tscn:340
+#: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanop (Mavi-Sarı)"
 
-#: ../src/general/OptionsMenu.tscn:356
+#: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
 msgstr "Renk sapması:"
 
-#: ../src/general/OptionsMenu.tscn:382
+#: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Yetenekler çubuğunu göster"
 
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Arayüz ışık efektlerini etkinleştir"
 
-#: ../src/general/OptionsMenu.tscn:416
+#: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
 
-#: ../src/general/OptionsMenu.tscn:442 ../src/general/OptionsMenu.tscn:482
-#: ../src/general/OptionsMenu.tscn:514 ../src/general/OptionsMenu.tscn:546
-#: ../src/general/OptionsMenu.tscn:578
+#: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:489
+#: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:553
+#: ../src/general/OptionsMenu.tscn:585
 msgid "MUTE"
 msgstr "Sessiz"
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:463
 msgid "MUSIC_VOLUME"
 msgstr "Müzik seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:488
+#: ../src/general/OptionsMenu.tscn:495
 msgid "AMBIANCE_VOLUME"
 msgstr "Ortam seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:520
+#: ../src/general/OptionsMenu.tscn:527
 msgid "SFX_VOLUME"
 msgstr "Ses efekti seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:552
+#: ../src/general/OptionsMenu.tscn:559
 msgid "GUI_VOLUME"
 msgstr "Arayüz seviyesi"
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:603
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Ses çıkış aygıtı:"
 
-#: ../src/general/OptionsMenu.tscn:624
+#: ../src/general/OptionsMenu.tscn:631
 msgid "LANGUAGE"
 msgstr "Dil:"
 
-#: ../src/general/OptionsMenu.tscn:642 ../src/general/OptionsMenu.tscn:1188
+#: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
 msgid "RESET"
 msgstr "Sıfırla"
 
-#: ../src/general/OptionsMenu.tscn:660
+#: ../src/general/OptionsMenu.tscn:667
 msgid "OPEN_TRANSLATION_SITE"
 msgstr "Oyunun Çevrilmesine Yardımcı Ol"
 
-#: ../src/general/OptionsMenu.tscn:686
+#: ../src/general/OptionsMenu.tscn:693
 msgid "COMPOUND_CLOUDS"
 msgstr "Bileşik bulutları"
 
-#: ../src/general/OptionsMenu.tscn:701
+#: ../src/general/OptionsMenu.tscn:708
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Bulut simülasyonu minimum aralığı:"
 
-#: ../src/general/OptionsMenu.tscn:708 ../src/general/OptionsMenu.tscn:750
+#: ../src/general/OptionsMenu.tscn:715 ../src/general/OptionsMenu.tscn:757
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr "(üst değerler performansı arttırır)"
 
-#: ../src/general/OptionsMenu.tscn:743
+#: ../src/general/OptionsMenu.tscn:750
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Bulut çözünürlük bölücü:"
 
-#: ../src/general/OptionsMenu.tscn:784
+#: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Oyun esnasında oto-evrimi çalıştır"
 
-#: ../src/general/OptionsMenu.tscn:804
+#: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
 msgstr "Tespit edilen CPU sayısı:"
 
-#: ../src/general/OptionsMenu.tscn:821
+#: ../src/general/OptionsMenu.tscn:828
 msgid "ACTIVE_THREAD_COUNT"
 msgstr "Mevcut iş parçacıkları:"
 
-#: ../src/general/OptionsMenu.tscn:835
+#: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
 msgstr "CPU'da hiper iş parçacığını etkin varsay"
 
-#: ../src/general/OptionsMenu.tscn:843
+#: ../src/general/OptionsMenu.tscn:850
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Arkaplanda çalışan iş parçacığı sayısını elle ayarla"
 
-#: ../src/general/OptionsMenu.tscn:853
+#: ../src/general/OptionsMenu.tscn:860
 msgid "THREADS"
 msgstr "İş Parçacıkları:"
 
-#: ../src/general/OptionsMenu.tscn:954
+#: ../src/general/OptionsMenu.tscn:961
 msgid "RESET_INPUTS"
 msgstr "Girişleri sıfırla"
 
-#: ../src/general/OptionsMenu.tscn:981
+#: ../src/general/OptionsMenu.tscn:988
 msgid "PLAY_INTRO_VIDEO"
 msgstr "Tanıtım videosunu oynat"
 
-#: ../src/general/OptionsMenu.tscn:989
+#: ../src/general/OptionsMenu.tscn:996
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr "Yeni oyunda mikrop tanıtımını oynat"
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1004
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Oyun esnasında otomatik olarak kaydet"
 
-#: ../src/general/OptionsMenu.tscn:1008
+#: ../src/general/OptionsMenu.tscn:1015
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr "Saklanacak otomatik kayıt miktarı:"
 
-#: ../src/general/OptionsMenu.tscn:1036
+#: ../src/general/OptionsMenu.tscn:1043
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr "Saklanacak çabuk kayıt miktarı:"
 
-#: ../src/general/OptionsMenu.tscn:1061
+#: ../src/general/OptionsMenu.tscn:1068
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr "Oyun rehberini göster (yeni oyunlarda)"
 
-#: ../src/general/OptionsMenu.tscn:1068
+#: ../src/general/OptionsMenu.tscn:1075
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Oyun rehberini göster (şu anki oyunda)"
 
-#: ../src/general/OptionsMenu.tscn:1074
+#: ../src/general/OptionsMenu.tscn:1081
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr "Kaydedilmemiş ilerlemeler uyarısını göster"
 
-#: ../src/general/OptionsMenu.tscn:1086
+#: ../src/general/OptionsMenu.tscn:1093
 msgid "CHEAT_KEYS_ENABLED"
 msgstr "Hile tuşları aktif"
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1101
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
 
-#: ../src/general/OptionsMenu.tscn:1105
+#: ../src/general/OptionsMenu.tscn:1112
 msgid "CUSTOM_USERNAME"
 msgstr "Özel kullanıcı adı:"
 
-#: ../src/general/OptionsMenu.tscn:1131
+#: ../src/general/OptionsMenu.tscn:1138
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr "Ekran Görüntüsünün Kaydedildiği Klasörü Aç"
 
-#: ../src/general/OptionsMenu.tscn:1139
+#: ../src/general/OptionsMenu.tscn:1146
 msgid "OPEN_LOGS_FOLDER"
 msgstr "Log Klasörünü Aç"
 
-#: ../src/general/OptionsMenu.tscn:1149
+#: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
 msgstr "JSON hata ayıklama modu:"
 
-#: ../src/general/OptionsMenu.tscn:1163 ../src/general/OptionsMenu.tscn:1164
+#: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr "Otomatik olarak"
 
-#: ../src/general/OptionsMenu.tscn:1164
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr "Her zaman"
 
-#: ../src/general/OptionsMenu.tscn:1164
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr "Hiçbir zaman"
 
-#: ../src/general/OptionsMenu.tscn:1200 ../src/saving/NewSaveMenu.tscn:73
+#: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
 msgstr "Kaydet"
 
-#: ../src/general/OptionsMenu.tscn:1217
+#: ../src/general/OptionsMenu.tscn:1224
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr "Varsayılanlar"
 
-#: ../src/general/OptionsMenu.tscn:1228
+#: ../src/general/OptionsMenu.tscn:1235
+msgid "RESET_TO_DEFAULTS"
+msgstr "Varsayılanlara sıfırlansın mı?"
+
+#: ../src/general/OptionsMenu.tscn:1236
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 "BÜTÜN ayarları varsayılan değerlere sıfırlamak istediğinden emin misin?"
 
-#: ../src/general/OptionsMenu.tscn:1229
-msgid "RESET_TO_DEFAULTS"
-msgstr "Varsayılanlara sıfırlansın mı?"
+#: ../src/general/OptionsMenu.tscn:1244
+msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Girişler varsayılana sıfırlansın mı?"
 
-#: ../src/general/OptionsMenu.tscn:1237
+#: ../src/general/OptionsMenu.tscn:1245
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 "Giriş ayarlarını varsayılan değerlere sıfırlamak istediğinden emin misin?"
 
-#: ../src/general/OptionsMenu.tscn:1238
-msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr "Girişler varsayılana sıfırlansın mı?"
-
-#: ../src/general/OptionsMenu.tscn:1247
+#: ../src/general/OptionsMenu.tscn:1254
 msgid "CLOSE_OPTIONS"
 msgstr "Ayarlar kapatılsın mı?"
 
-#: ../src/general/OptionsMenu.tscn:1267
+#: ../src/general/OptionsMenu.tscn:1274
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 "Kaydedilmemiş değişiklikler var.\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/general/OptionsMenu.tscn:1290
+#: ../src/general/OptionsMenu.tscn:1297
 msgid "SAVE_AND_CONTINUE"
 msgstr "Kaydet ve devam et"
 
-#: ../src/general/OptionsMenu.tscn:1300
+#: ../src/general/OptionsMenu.tscn:1307
 msgid "DISCARD_AND_CONTINUE"
 msgstr "Yoksay ve devam et"
 
-#: ../src/general/OptionsMenu.tscn:1317
+#: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
 #: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
 msgstr "İptal"
 
-#: ../src/general/OptionsMenu.tscn:1328 ../src/general/OptionsMenu.tscn:1337
+#: ../src/general/OptionsMenu.tscn:1335 ../src/general/OptionsMenu.tscn:1343
 msgid "ERROR"
 msgstr "Hata"
 
-#: ../src/general/OptionsMenu.tscn:1339
+#: ../src/general/OptionsMenu.tscn:1345
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Hata: Yeni ayarlar konfigürasyon dosyasına kaydedilemedi."
 
-#: ../src/general/OptionsMenu.tscn:1347
-msgid "TRY_TAKING_SOME_SCREENSHOTS"
-msgstr "Bir ekran görüntüsü almayı dene!"
-
-#: ../src/general/OptionsMenu.tscn:1349
+#: ../src/general/OptionsMenu.tscn:1353
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr "Ekran görüntüsü dizini bulunamadı"
+
+#: ../src/general/OptionsMenu.tscn:1355
+msgid "TRY_TAKING_SOME_SCREENSHOTS"
+msgstr "Bir ekran görüntüsü almayı dene!"
 
 #: ../src/general/PauseMenu.cs:247
 msgid "RETURN_TO_MENU_WARNING"
@@ -1894,7 +1917,7 @@ msgid "SAVE_GAME"
 msgstr "Oyunu Kaydet"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2625
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2657
 msgid "STATISTICS"
 msgstr "İstatistikler"
 
@@ -1917,15 +1940,15 @@ msgstr "Çıkışı Onayla"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} Mlyr"
+msgstr "{0} Mr"
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
-msgstr "{0} Mlyn"
+msgstr "{0} Mn"
 
 #: ../src/general/StringUtils.cs:40
 msgid "KILO_ABBREVIATION"
-msgstr "{0} Kilo"
+msgstr "{0} B"
 
 #: ../src/gui_common/ChemicalEquation.cs:139
 #: ../src/gui_common/ChemicalEquation.cs:179
@@ -2228,15 +2251,16 @@ msgstr ""
 "Sol fare tuşu: Bu ön ayarı kullan\n"
 "Sağ fare tulu: Bu ön ayarı sil"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:42
+#: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
 msgstr "HSV"
 
-#: ../src/gui_common/TweakedColourPicker.tscn:59
+#: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2490
 msgid "NO_DATA_TO_SHOW"
 msgstr "Gösterilecek Veri Yok"
 
@@ -2856,8 +2880,8 @@ msgstr ""
 "açılır penceresini etkinleştirir / devre dışı bırakır."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3511
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3155
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:918
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3187
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:948
 msgid "TEMPERATURE"
 msgstr "Sıcaklık"
 
@@ -2878,7 +2902,7 @@ msgstr "başarılı yiyecek avı"
 msgid "SUCCESSFUL_KILL"
 msgstr "başarılı saldırı"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:832
+#: ../src/microbe_stage/Microbe.Contact.cs:848
 msgid "ESCAPE_ENGULFING"
 msgstr "yutulmaktan kurtulma"
 
@@ -2953,9 +2977,10 @@ msgid "PLAYER_REPRODUCED"
 msgstr "oyuncu çoğaldı"
 
 #: ../src/microbe_stage/MicrobeStage.cs:615
-#, fuzzy
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
-msgstr "Düşman Oluştur"
+msgstr ""
+"Düşman oluşturma hilesi kullanılamaz çünkü bu arazi herhangi bir düşman "
+"tür içermiyor"
 
 #: ../src/microbe_stage/MicrobeStage.cs:679
 msgid "PLAYER_DIED"
@@ -2994,9 +3019,9 @@ msgid "PRESSURE_SHORT"
 msgstr "Bsnç."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2823
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3462
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2855
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3494
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1057
 msgid "COMPOUNDS"
 msgstr "Bileşikler"
 
@@ -3093,7 +3118,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bileşik Dengesi"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikrop Editörü Yükleniyor"
 
@@ -3101,127 +3126,127 @@ msgstr "Mikrop Editörü Yükleniyor"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Oto-evrim bekleniyor:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_FAILED"
 msgstr "Oto-evrim çalıştırılamadı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:652
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:656
 msgid "MUTATION_POINTS"
 msgstr "Mutasyon Puanı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:787
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:791
 msgid "STRUCTURE"
 msgstr "Yapı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:809
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:813
 msgid "MEMBRANE"
 msgstr "Hücre Zarı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:831
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:835
 msgid "BEHAVIOUR"
 msgstr "Davranış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:883
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:887
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Ara..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:894
 msgid "STRUCTURAL"
 msgstr "Yapısal"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:930
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:934
 msgid "PROTEINS"
 msgstr "Proteinler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1000
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1004
 msgid "EXTERNAL"
 msgstr "Dış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1054
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1058
 msgid "ORGANELLES"
 msgstr "Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1193
 msgid "MEMBRANE_TYPES"
 msgstr "Hücre Zarı Türleri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1262
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1266
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Akışkanlık / Sertlik"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1301
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1305
 msgid "COLOUR"
 msgstr "Renk"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1370
 msgid "PEACEFUL"
 msgstr "Barışçıl"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1383
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1387
 msgid "AGGRESSIVE"
 msgstr "Saldırgan"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1417
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1421
 msgid "CAUTIOUS"
 msgstr "Temkinli"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1435
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1439
 msgid "OPPORTUNISTIC"
 msgstr "Fırsatçı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1469
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1473
 msgid "BRAVE"
 msgstr "Cesur"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1486
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1490
 msgid "FEARFUL"
 msgstr "Kaygılı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1520
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1524
 msgid "SESSILE"
 msgstr "Durağan"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1537
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1541
 msgid "ACTIVE"
 msgstr "Hareketli"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1571
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1575
 msgid "RESPONSIVE"
 msgstr "Duyarlı"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1588
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1592
 msgid "FOCUSED"
 msgstr "Odaklanmış"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1654
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1658
 msgid "ORGANISM_STATISTICS"
 msgstr "Organizma İstatistikleri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1716
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1720
 msgid "SPEED_COLON"
 msgstr "Hız:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1746
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1750
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1776
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1780
 msgid "SIZE_COLON"
 msgstr "Büyüklük:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1797
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1801
 msgid "GENERATION_COLON"
 msgstr "Kuşak:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1839
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1843
 msgid "ATP_BALANCE"
 msgstr "ATP Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1948
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1956
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Bu panel, düzenlenen türler için oto-evrimden çıkan beklenilen popülasyon "
@@ -3229,210 +3254,249 @@ msgstr ""
 "Oto-evrim, senin popülasyonunu etkileyen diğer kısımların (senin kendi "
 "performansının yanı sıra) olduğu popülasyon simülasyonunu çalıştırır."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1951
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1960
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4014
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Oto-Evrim Tahmini"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2016
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1968
+msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
+msgstr "Tahminin ardındaki detaylı bilgiyi incele"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2038
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Toplam Popülasyon:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2040
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2062
 msgid "BEST_PATCH_COLON"
 msgstr "En İyi Arazi:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2065
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2087
 msgid "WORST_PATCH_COLON"
 msgstr "En Kötü Arazi:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2205
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2233
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Tür adı..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2259
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2287
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "EYLEMİ İPTAL ET"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2301
 msgid "CONFIRM_CAPITAL"
 msgstr "ONAYLA"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2282
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2310
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negatif ATP Dengesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2283
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2311
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Mikrobun, hayatta kalmak için yeterli ATP üretmiyor!\n"
 "Devam etmek istiyor musun?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2317
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Bağlı Olmayan Organeller"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2291
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2319
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Diğerlerine bağlı olmayan, eklenmiş organeller var.\n"
 "Lütfen yerleştirdiğin bütün organelleri birbiriyle bağla veya "
 "değişikliklerini geri al."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2388
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2416
 msgid "AUTO_EVO"
 msgstr "Oto-Evrim"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2402
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2430
 msgid "FOOD_CHAIN"
 msgstr "Besin Zinciri"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2415
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2443
 msgid "TIMELINE"
 msgstr "Tarih Şeridi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2496
 msgid "AUTO_EVO_RESULTS"
 msgstr "Oto-evrim sonuçları:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2487
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2515
 msgid "EXTERNAL_EFFECTS"
 msgstr "Dış etkenler:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2634
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2666
 msgid "SPECIES_POPULATION"
 msgstr "Tür Popülasyonu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2672
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2704
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3146
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fiziksel Koşullar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2780
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3297
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2812
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3329
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1052
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosferik Gazlar"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2883
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3806
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2915
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3838
 msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2996
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3028
 msgid "SELECT_A_PATCH"
 msgstr "Detayları görmek için bir arazi seçin"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3031
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3063
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "MEVCUT KONUM"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3191
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3223
 msgid "PRESSURE"
 msgstr "Basınç"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3722
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3754
 msgid "SPECIES_PRESENT"
 msgstr "Mevcut Türler"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3779
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3811
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Bu Araziye Git"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3848
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3880
 msgid "REPORT"
 msgstr "Rapor"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3869
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3901
 msgid "PATCH_MAP"
 msgstr "Arazi Haritası"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4063
+msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
+msgstr ""
+"Bu panel, oto-evrim tahmininin çalıştığı rakamları gösterir. Bir türün "
+"yakalayabileceği toplam enerji ve bunun tür başına maliyeti son "
+"popülasyonu belirler. Oto-evrim, türlerin toplayabildiği enerjiye bağlı "
+"olarak, onların ne kadar iyi performans sergilediğini hesaplamak için "
+"gerçekliğin basitleştirilmiş bir modelini kullanır. Her besin kaynağı "
+"için, türün ondan ne kadar enerji kazandığı gösterilir. Ayrıca her "
+"kaynakta mevcut olan toplam enerji miktarı da gösterilir. Türün toplam "
+"enerjiden aldığı bölüm, uyum başarısının toplam uyum başarısından ne kadar "
+"büyük olduğuna bağlıdır. Uyum başarısı, türün bir besin kaynağından ne "
+"kadar iyi yararlanabileceğini gösteren bir ölçüdür."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
 msgstr "Sonsuz MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:724
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:754
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:731
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:761
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1082
 msgid "MEGA_YEARS"
 msgstr "Myö"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:734
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:764
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:777
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:782
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:807
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
 msgid "ATP_PRODUCTION"
 msgstr "ATP Üretimi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:783
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:813
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP ÜRETİMİ ÇOK DÜŞÜK!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:809
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "OSMOREGULATION"
 msgstr "Ozmoregülasyon"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:832
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:862
 msgid "BASE_MOVEMENT"
 msgstr "Ana Hareket"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:844
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:874
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1019
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1020
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1049
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1050
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1052
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1057
 msgid "YEARS"
 msgstr "yıl"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1054
 msgid "SPECIES_LIST"
 msgstr "Tür Listesi"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1123
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1179
 msgid "FREEBUILDING"
 msgstr "Serbest mod"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1220
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1276
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1225
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1281
 msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1264
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1320
 msgid "WITH_POPULATION"
 msgstr "{0}: {1} popülasyonla"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1986
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2044
 msgid "FAILED"
 msgstr "Başarısız"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1992
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2050
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2062
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1998
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2056
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2068
 msgid "N_A"
 msgstr "Bilinmeyen"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2266
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2332
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Tür adı, ikili adlandırma sistemine uymalı (Cins ve Epitet) !"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2458
+msgid "ENERGY_IN_PATCH_FOR"
+msgstr "{1} için {0} arazisinde enerji"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2462
+msgid "ENERGY_SUMMARY_LINE"
+msgstr ""
+"{2} düzenlenmemiş popülasyonla sonuçlanan, birey başına {1} maliyet ile "
+"toplanan toplam enerji {0}"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2469
+msgid "ENERGY_SOURCES"
+msgstr "Enerji Kaynakları:"
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2475
+msgid "FOOD_SOURCE_ENERGY_INFO"
+msgstr ""
+"{0} enerji: {1} (uyum başarısı: {2}) mevcut toplam enerji: {3} (toplam "
+"uyum başarısı: {4})"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
@@ -3476,501 +3540,458 @@ msgstr ""
 
 #: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "{0} için mod bilgisi yüklenemiyor"
 
 #: ../src/modding/ModLoader.cs:235
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
-msgstr ""
+msgstr "{0}: derleme yükleme işlemi başarısız, olağandışı durum oluştu: {1}"
 
 #: ../src/modding/ModLoader.cs:252
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
-msgstr ""
+msgstr "{0}: yüklenebilir kaynak yok"
 
 #: ../src/modding/ModLoader.cs:279
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
-msgstr ""
+msgstr "{0}: mod derlemesi kaldırma yöntem çağrısı başarısız"
 
 #: ../src/modding/ModLoader.cs:287
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
+"{0}: mod derlemesi kaldırma yöntem çağrısı başarısız, olağandışı durum "
+"oluştu: {1}"
 
 #: ../src/modding/ModLoader.cs:351
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
-msgstr ""
+msgstr "{0}: mod derlemesinde belirtilen mod sınıfı \"{1}\" bulunamadı"
 
 #: ../src/modding/ModLoader.cs:364
-#, fuzzy
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr "Steam istemci kütüphanesi başlatma başarısız"
+msgstr "{0}: mod derlemesi başlatma yöntem çağrısı başarısız"
 
 #: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
+"{0}: mod derlemesi başlatma yöntem çağrısı başarısız, olağandışı durum "
+"oluştu: {1}"
 
 #: ../src/modding/ModLoader.cs:394
-#, fuzzy
 msgid "PCK_LOAD_FAILED"
-msgstr "Yükleme bitti"
+msgstr "pck dosyasının ({0}) yüklenmesi başarısız"
 
 #: ../src/modding/ModManager.cs:292
 msgid "INVALID_ICON_PATH"
-msgstr ""
+msgstr "Geçersiz mod simgesi yolu"
 
 #: ../src/modding/ModManager.cs:306
 msgid "INVALID_URL_SCHEME"
-msgstr ""
+msgstr "Geçersiz URL şeması"
 
 #: ../src/modding/ModManager.cs:318
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Derleme belirtildiğinde, mod derleme sınıfı gereklidir"
 
 #: ../src/modding/ModManager.cs:544
-#, fuzzy
 msgid "NO_SELECTED_MOD"
-msgstr "Seçilen:"
+msgstr "Seçilen Mod Yok"
 
 #: ../src/modding/ModManager.cs:869
 msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
+msgstr "Bu mod, Steam Atölyesi'nden yüklendi"
 
 #: ../src/modding/ModManager.cs:870
 msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
+msgstr "Bu mod, yerel olarak yüklendi"
 
 #: ../src/modding/ModManager.cs:926
-#, fuzzy
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Kaydetme Hatası"
+msgstr "Mod için klasör oluştururken hata oluştu"
 
 #: ../src/modding/ModManager.cs:935
 msgid "ERROR_CREATING_INFO_FILE"
-msgstr ""
+msgstr "Mod bilgi dosyası oluştururken hata oluştu"
 
 #: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "Mevcut Modlar"
 
 #: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Yenile"
 
 #: ../src/modding/ModManager.tscn:152
-#, fuzzy
 msgid "OPEN_FOLDER"
-msgstr "Log Klasörünü Aç"
+msgstr "Klasörü Aç"
 
 #: ../src/modding/ModManager.tscn:170
-#, fuzzy
 msgid "RIGHT_ARROW"
-msgstr "Sağ fare tuşu"
+msgstr "→"
 
 #: ../src/modding/ModManager.tscn:183
-#, fuzzy
 msgid "LEFT_ARROW"
-msgstr "Sol fare tuşu"
+msgstr "←"
 
 #: ../src/modding/ModManager.tscn:195
-#, fuzzy
 msgid "ENABLED_MODS"
-msgstr "Editörü aç"
+msgstr "Aktif Modlar"
 
 #: ../src/modding/ModManager.tscn:213
-#, fuzzy
 msgid "DISABLE_ALL"
-msgstr "Devre Dışı"
+msgstr "Hepsini Devre Dışı Bırak"
 
 #: ../src/modding/ModManager.tscn:250
-#, fuzzy
 msgid "SELECTED_MOD"
-msgstr "Seçilen:"
+msgstr "Seçilen Modlar:"
 
 #: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
 #: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
-msgstr ""
+msgstr "Mod Sahibi:"
 
 #: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
 #: ../src/modding/NewModGUI.tscn:165
-#, fuzzy
 msgid "MOD_VERSION"
-msgstr "Sürüm:"
+msgstr "Mod Sürümü:"
 
 #: ../src/modding/ModManager.tscn:371
 msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
+msgstr "Önerilen Thrive:"
 
 #: ../src/modding/ModManager.tscn:415
-#, fuzzy
 msgid "MINIMUM_VERSION"
-msgstr "Sürüm:"
+msgstr "Minimum:"
 
 #: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
 #: ../src/modding/NewModGUI.tscn:188
-#, fuzzy
 msgid "MOD_DESCRIPTION"
-msgstr "Açıklama:"
+msgstr "Mod Açıklaması:"
 
 #: ../src/modding/ModManager.tscn:474
 msgid "MORE_INFO"
-msgstr ""
+msgstr "Daha Fazla Bilgi Göster"
 
 #: ../src/modding/ModManager.tscn:482
-#, fuzzy
 msgid "OPEN_MOD_URL"
-msgstr "Open URL"
+msgstr "Bilgi URL'sini Aç"
 
 #: ../src/modding/ModManager.tscn:505
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Atölye'ye Göz At"
 
 #: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-#, fuzzy
 msgid "UPLOAD"
-msgstr "Yükle"
+msgstr "Karşıya Yükle"
 
 #: ../src/modding/ModManager.tscn:519
 msgid "NEW"
-msgstr ""
+msgstr "Yeni"
 
 #: ../src/modding/ModManager.tscn:532
-#, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Geçersiz kayıt yüklensin mi?"
+msgstr ""
+"Not: Birçok modun düzgün yüklenmesi ya da kaldırılması için oyunun yeniden "
+"başlatılması gerekir. Modlar, çalıştırılabilir kodlar içerebileceği için "
+"yalnızca güvendiğin modları yüklemelisin."
 
 #: ../src/modding/ModManager.tscn:559
-#, fuzzy
 msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Seçilen kayıt uyumsuz"
+msgstr "Bütün Uyumlu Modları Etkinleştir"
 
 #: ../src/modding/ModManager.tscn:568
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "Değişiklikleri Uygula"
 
 #: ../src/modding/ModManager.tscn:579
 msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
+msgstr "Uygulanmamış değişiklikler var"
 
 #: ../src/modding/ModManager.tscn:580
-#, fuzzy
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
 msgstr ""
-"Hücre zarının en temel formu. Hasara karşı koruyuculuğu çok azdır. Ayrıca "
-"şeklinin bozulmaması için fazla enerji gerektirir. Avantajı, hücrenin "
-"hareketine izin vermesi ve besinlerin çabuk emilimini sağlaması."
+"Herhangi bir modu yüklemek ya da kaldırmak için değişiklikleri uygulaman "
+"gerekir."
 
 #: ../src/modding/ModManager.tscn:581
-#, fuzzy
 msgid "DISCARD_CHANGES"
-msgstr "Yoksay ve devam et"
+msgstr "Değişiklikleri Yoksay"
 
 #: ../src/modding/ModManager.tscn:588
 msgid "FULL_MOD_INFO"
-msgstr ""
+msgstr "Tam Mod Bilgisi"
 
 #: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
-#, fuzzy
 msgid "MOD_NAME"
-msgstr "Ad:"
+msgstr "Mod Adı:"
 
 #: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
-msgstr ""
+msgstr "İç (Klasör) Ad:"
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
-#, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr ""
-"Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan amonyağı üretmek "
-"için azot gazı ve ATP formundaki hücresel enerjiyi kullanan bir "
-"proteindir. Bu işlem Oksijensiz Azot Fiksasyonu olarak anılır. Nitrojenaz "
-"direkt sitoplazmada asılı kaldığından, etrafında bulunan akışkan glikoliz "
-"yapabilir."
+msgstr "Mod Uzun Açıklaması:"
 
 #: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
-msgstr ""
+msgstr "Simge Dosyası:"
 
 #: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
-msgstr ""
+msgstr "Mod Bilgisi URL'si:"
 
 #: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
-#, fuzzy
 msgid "MOD_LICENSE"
-msgstr "Lisanslar"
+msgstr "Mod Lisansı:"
 
 #: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
-msgstr ""
+msgstr "Önerilen Thrive Sürümü:"
 
 #: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
-msgstr ""
+msgstr "Gerekli Minimum Thrive Sürümü:"
 
 #: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
-msgstr ""
+msgstr "Desteklenen Maksimum Thrive Sürümü:"
 
 #: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
-#, fuzzy
 msgid "MOD_PCK_NAME"
-msgstr "Arazi Adı"
+msgstr "Mod .pck Dosyası:"
 
 #: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
-msgstr ""
+msgstr "Mod Derlemesi:"
 
 #: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr ""
+msgstr "Mod Derlemesi Ana Sınıfı:"
 
 #: ../src/modding/ModManager.tscn:979
-#, fuzzy
 msgid "MOD_CREATION_FAILED"
-msgstr "Steam istemci kütüphanesi başlatma başarısız"
+msgstr "Mod Oluşturma Başarısız"
 
 #: ../src/modding/ModManager.tscn:989
-#, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
-msgstr "Geçersiz kayıt yüklensin mi?"
+msgstr ""
+"Bir ya da daha fazla modu yüklerken ya da kaldırırken sorun oluştu. "
+"Loglar, ek bilgi içerebilir."
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
-msgstr ""
+msgstr "Yeniden Başlatma Gerekli"
 
 #: ../src/modding/ModManager.tscn:996
-#, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
-msgstr "Geçersiz kayıt yüklensin mi?"
+msgstr ""
+"Bir ya da daha fazla modun düzgün olarak yüklenmesi ya da kaldırılması "
+"için oyunun yeniden başlatılması gerekir"
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "Atölye içeriği bu klasörden karşıya yüklenecek: {0}"
 
 #: ../src/modding/ModUploader.cs:298
-#, fuzzy
 msgid "MISSING_TITLE"
-msgstr "BAŞARDIN!"
+msgstr "Başlık eksik"
 
 #: ../src/modding/ModUploader.cs:304
-#, fuzzy
 msgid "MISSING_DESCRIPTION"
-msgstr "Açıklama:"
+msgstr "Açıklama eksik"
 
 #: ../src/modding/ModUploader.cs:312
-#, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
-msgstr "Açıklama:"
+msgstr "Açıklama çok uzun"
 
 #: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
-#, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr "Açıklama:"
+msgstr "Değişiklik notları çok uzun"
 
 #: ../src/modding/ModUploader.cs:326
 msgid "TAGS_IS_WHITESPACE"
-msgstr ""
+msgstr "Etiketler yalnızca beyaz boşluk içerir"
 
 #: ../src/modding/ModUploader.cs:334
-#, fuzzy
 msgid "INVALID_TAG"
-msgstr "Geçersiz kayıt yüklensin mi?"
+msgstr "Geçersiz etiket \"{0}\" belirlendi"
 
 #: ../src/modding/ModUploader.cs:348
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
-msgstr ""
+msgstr "Resim önizlemesi bulunmuyor"
 
 #: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
-msgstr ""
+msgstr "Resim önizlemesi çok büyük"
 
 #: ../src/modding/ModUploader.cs:398
 msgid "ID_IS_NOT_A_NUMBER"
-msgstr ""
+msgstr "ID geçerli bir sayı değil"
 
 #: ../src/modding/ModUploader.cs:435
-#, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
-msgstr "Ara..."
+msgstr "Oluşturuluyor..."
 
 #: ../src/modding/ModUploader.cs:490
-#, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr "Yükleniyor..."
+msgstr "Karşıya Yükleniyor..."
 
 #: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
+"Öğeyi Steam Atölyesi'ne yükleme başarılı ancak gösterilmeden önce Atölye "
+"[color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"workshoplegalagreement]hizmet koşullarını[/url][/color] kabul etmen gerekir"
 
 #: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr ""
+msgstr "Öğeyi Steam Atölyesi'ne yükleme başarılı"
 
 #: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
+"Bu öğeyi göndererek Steam Atölyesi'nin [color=#3796e1][url=https://"
+"steamcommunity.com/sharedfiles/workshoplegalagreement]hizmet koşullarını[/"
+"url][/color] kabul edersin"
 
 #: ../src/modding/ModUploader.cs:616
-#, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "Kaydetme başarısız! Bir sorun oluştu"
+msgstr "Bilgi kaydetme başarısız, olağandışı durum oluştu: {0}"
 
 #: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
-#, fuzzy
 msgid "FORM_ERROR_MESSAGE"
-msgstr "Kaydetme Hatası"
+msgstr "Hata: {0}"
 
 #: ../src/modding/ModUploader.tscn:44
 msgid "MOD_UPLOADER"
-msgstr ""
+msgstr "Modu Yükleyen"
 
 #: ../src/modding/ModUploader.tscn:84
 msgid "MOD_TO_UPLOAD"
-msgstr ""
+msgstr "Yüklenecek Mod:"
 
 #: ../src/modding/ModUploader.tscn:109
-#, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "Bilinmeyen fare tuşu"
+msgstr "Bu Mod İçin Bilinmeyen Atölye ID'si"
 
 #: ../src/modding/ModUploader.tscn:121
-#, fuzzy
 msgid "CREATE_NEW"
-msgstr "Yeni Kayıt Oluştur"
+msgstr "Yeni Oluştur"
 
 #: ../src/modding/ModUploader.tscn:128
-#, fuzzy
 msgid "ENTER_EXISTING_ID"
-msgstr "Mevcut kaydın üstüne yaz:"
+msgstr "Mevcut ID'yi Gir"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr ""
+msgstr "Mevcut Atölye ID'sini Gir"
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
+msgstr "ID Numarası"
 
 #: ../src/modding/ModUploader.tscn:158
 msgid "APPLY"
-msgstr ""
+msgstr "Uygula"
 
 #: ../src/modding/ModUploader.tscn:168
-#, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "Öğe Başlığı:"
 
 #: ../src/modding/ModUploader.tscn:186
-#, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
-"Kloroplast zarsı keseler içinde birbirinin üstüne dizili, ışığa hassas "
-"pigmentler içeren çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı "
-"tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Kloroplasttaki "
-"pigmentler, Fotosentez adı verilen bir işlemde, sudan glukoz ve "
-"karbondioksit gazı üretmek için ışık enerjisini kullanırlar. Bu pigmentler "
-"ayrıca yapıya kendine özgü bir renk verir. Üretilen glukoz oranı, "
-"karbondioksit konsantrasyonu ve ışık şiddeti ile doğru orantılıdır."
+msgstr "Öğe Açıklaması:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr ""
+msgstr "Bir öğe gösterildiği zaman herkese görünür"
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
-msgstr ""
+msgstr "Görünür"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr ""
+msgstr "Öğe Etiketleri (virgülle \",\" ayrılmış):"
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr ""
+msgstr "Öğe Resim Önizlemesi:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr ""
+msgstr "Göz At"
 
 #: ../src/modding/ModUploader.tscn:284
-#, fuzzy
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr "Oyuna devam et"
+msgstr ""
+"Bu öğeye ilişkin yerel veriyi kaldır. Bu işlem eğer yanlış ID girdiysen ya "
+"da farklı bir öğenin yeni bir sürümünü karşıya yüklemek istersen "
+"yararlıdır."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "Yerel Veriyi Kaldır"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr "\"{0}\" - {1}"
+msgstr ""
+"Bu öğenin şimdiki sürümü için Steam Atölyesi'nde gösterilecek notları "
+"değiştir (isteğe bağlı)"
 
 #: ../src/modding/ModUploader.tscn:294
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "\"{0}\" - {1}"
+msgstr "Öğe Değişiklik Notları"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
-msgstr ""
+msgstr "Resim Önizlemesi Seç"
 
 #: ../src/modding/ModUploader.tscn:336
-#, fuzzy
 msgid "UPLOAD_SUCCEEDED"
-msgstr "Kaydetme başarılı"
+msgstr "Yükleme Başarılı"
 
 #: ../src/modding/NewModGUI.cs:169
-#, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
-msgstr ""
-"Kemoplast, Hidrojen Sülfür Kemosentezi adı verilen bir işlemde, hidrojen "
-"sülfür, su ve karbondioksit gazını glukoza çeviren proteinler içeren çift "
-"zarlı bir yapıdır. Üretilen glukoz oranı, karbondioksit konsantrasyonu ile "
-"doğru orantılıdır."
+msgstr "Benim Harika Modum"
 
 #: ../src/modding/NewModGUI.cs:226
 msgid "INVALID_URL_FORMAT"
-msgstr ""
+msgstr "Geçersiz URL formatı"
 
 #: ../src/modding/NewModGUI.cs:238
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "İç ad gerekli"
 
 #: ../src/modding/NewModGUI.cs:244
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
-msgstr ""
+msgstr "İç ad, büyük harfle başlamalıdır"
 
 #: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
-msgstr ""
+msgstr "Belirtilen iç ada sahip bir mod zaten var"
 
 #: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
-msgstr ""
+msgstr "Gerekli alanda eksik ya da geçersiz format : {0}"
 
 #: ../src/modding/NewModGUI.cs:280
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Oto-evrim çalıştırılamadı"
+msgstr "Ek doğrulamalar bir sorun algıladı: {0}"
 
 #: ../src/modding/NewModGUI.tscn:35
-#, fuzzy
 msgid "CREATE_NEW_MOD"
-msgstr "Yeni bir mikrop oluştur"
+msgstr "Yeni Mod Oluştur"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr ""
+msgstr "Mod yapma talimatları burada mevcut"
 
 #: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
-msgstr ""
+msgstr "Wiki'miz"
 
 #: ../src/modding/NewModGUI.tscn:450
-#, fuzzy
 msgid "CREATE"
-msgstr "Oluşturulma tarihi:"
+msgstr "Oluştur"
 
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
 #: ../src/saving/InProgressLoad.cs:147
@@ -4031,12 +4052,11 @@ msgstr "Kaydetme Hatası"
 
 #: ../src/saving/NewSaveMenu.cs:87
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr "Seçili dosya adı ({0}) zaten mevcut. Üstüne yazılsın mı?"
+msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
 
 #: ../src/saving/NewSaveMenu.cs:167
-#, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Tür adı, ikili adlandırma sistemine uymalı (Cins ve Epitet) !"
+msgstr "Kayıt adı özel karakterler içeremez (<>:\"/\\|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
@@ -4052,11 +4072,11 @@ msgstr "Ekstra Seçenekler"
 
 #: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
-msgstr "Mevcut kaydın üstüne yaz:"
+msgstr "Mevcut kaydın üzerine yaz:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Mevcut kaydın üstüne yazılsın mı?"
+msgstr "Mevcut kaydın üzerine yazılsın mı?"
 
 #: ../src/saving/SaveHelper.cs:412
 msgid "SAVING_NOT_POSSIBLE"
@@ -4090,32 +4110,36 @@ msgstr "Çabuk kayıt"
 msgid "SAVE_INVALID"
 msgstr "Geçersiz"
 
-#: ../src/saving/SaveList.cs:187
+#: ../src/saving/SaveList.cs:202
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
 "Bu kaydı silme işlemi geri alınamaz, {0} kaydını kalıcı olarak silmek "
 "istediğinden emin misin?"
 
-#: ../src/saving/SaveList.tscn:50 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:53
+msgid "NO_SAVEGAMES_FOUND"
+msgstr "Hiçbir Kayıt Bulunamadı"
+
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Yükleniyor..."
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Bu Kayıt silinsin mi?"
 
-#: ../src/saving/SaveList.tscn:68 ../src/saving/SaveList.tscn:76
+#: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
 msgid "LOAD_INCOMPATIBLE_SAVE"
 msgstr "Uyumsuz kayıt yüklensin mi?"
 
-#: ../src/saving/SaveList.tscn:69
+#: ../src/saving/SaveList.tscn:80
 msgid "NEWER_VERSION_LOADING_WARNING"
 msgstr ""
 "Bu kayıt Thrive'ın yeni bir sürümüne ait ve uyumsuz olması oldukça "
 "muhtemel.\n"
 "Yine de kaydı yüklemeyi denemek ister misin?"
 
-#: ../src/saving/SaveList.tscn:77
+#: ../src/saving/SaveList.tscn:88
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "Bu kayıt Thrive'ın eski bir sürümüne ait ve uyumsuz olabilir.\n"
@@ -4125,11 +4149,11 @@ msgstr ""
 "öncelik değil.\n"
 "Yine de kaydı yüklemeyi denemek ister misin?"
 
-#: ../src/saving/SaveList.tscn:84
+#: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE"
 msgstr "Geçersiz kayıt yüklensin mi?"
 
-#: ../src/saving/SaveList.tscn:85
+#: ../src/saving/SaveList.tscn:96
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 "Kayıt bilgisi bu dosyadan yüklenemedi.\n"
@@ -4137,11 +4161,11 @@ msgstr ""
 "bilinmeyen yeni bir formatta yazılmış.\n"
 "Yine de kaydı yüklemeyi denemek ister misin?"
 
-#: ../src/saving/SaveList.tscn:92
+#: ../src/saving/SaveList.tscn:103
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
 msgstr "Seçilen kayıt uyumsuz"
 
-#: ../src/saving/SaveList.tscn:94
+#: ../src/saving/SaveList.tscn:105
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 "Yüklemek için seçilen kaydın bu Thrive sürümüyle uyumsuz olduğu "
@@ -4151,11 +4175,11 @@ msgstr ""
 "bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt "
 "yükseltici bulunmuyor."
 
-#: ../src/saving/SaveList.tscn:103
+#: ../src/saving/SaveList.tscn:114
 msgid "SELECTED_SAVE_IS_UPGRADEABLE"
 msgstr "Seçilen kayıt yükseltilebilir"
 
-#: ../src/saving/SaveList.tscn:104
+#: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 "Seçilen kayıt Thrive'ın eski bir sürümüne ait, ancak bu kayıt "
@@ -4165,11 +4189,11 @@ msgstr ""
 "çalışılacak.\n"
 "Bu kayıt yükseltilmeye çalışılsın mı?"
 
-#: ../src/saving/SaveList.tscn:111
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Kayıt yükseltme başarısız"
 
-#: ../src/saving/SaveList.tscn:112
+#: ../src/saving/SaveList.tscn:123
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:\n"
@@ -4262,12 +4286,12 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Eski Kayıtlar silinsin mi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
-msgid "TRY_MAKING_A_SAVE"
-msgstr "Kaydetmeyi dene!"
-
-#: ../src/saving/SaveManagerGUI.tscn:202
 msgid "NO_SAVE_DIRECTORY"
 msgstr "Kayıt dizini bulunamadı"
+
+#: ../src/saving/SaveManagerGUI.tscn:202
+msgid "TRY_MAKING_A_SAVE"
+msgstr "Kaydetmeyi dene!"
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
@@ -4276,62 +4300,62 @@ msgstr "Steam istemci kütüphanesi başlatma başarısız"
 #: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
+"Steam hesabın şu anda içerik yüklemekten kısıtlandı. Lütfen Steam destek "
+"ile görüş."
 
 #: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
-msgstr ""
+msgstr "Steam hesabın içerik yüklemekten yasaklandı"
 
 #: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
-msgstr ""
+msgstr "Steam işlemi zaman aşımına uğradı, lütfen tekrar dene"
 
 #: ../src/steam/SteamClient.cs:478
-#, fuzzy
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr "{0} olarak giriş yapıldı"
+msgstr "Steam'e giriş yapılmadı"
 
 #: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
-msgstr ""
+msgstr "Steam şu anda mevcut değil, lütfen tekrar dene"
 
 #: ../src/steam/SteamClient.cs:482
-#, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
-msgstr "Kayıt geçersiz bir oyun manzarasına sahip"
+msgstr "Steam'e geçersiz parametre verildi"
 
 #: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
-msgstr ""
+msgstr "Steam bulut depolama kotası ya da dosya büyüklüğü sınırı aşıldı"
 
 #: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
-msgstr ""
+msgstr "Dosya bulunamadı"
 
 #: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
-msgstr ""
+msgstr "Steam, dosyanın zaten yüklendiğini bildirdi, lütfen yenile"
 
 #: ../src/steam/SteamClient.cs:490
-#, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr "Oyuncuyu Çoğalt"
+msgstr "Steam, yinelenen ad hatası bildirdi"
 
 #: ../src/steam/SteamClient.cs:492
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
+"Yakın zamanda yapılan hesap değiştirmeden dolayı Steam hesabın şu anda "
+"salt okunur modda"
 
 #: ../src/steam/SteamClient.cs:494
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
-msgstr ""
+msgstr "Steam hesabın, Thrive için bir lisansa sahip değil"
 
 #: ../src/steam/SteamClient.cs:496
-#, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "Steam istemci kütüphanesi başlatma başarısız"
+msgstr "Steam, UGC kilidi edinemedi"
 
 #: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
-msgstr ""
+msgstr "Bilinmeyen Steam hatası meydana geldi"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
@@ -4340,7 +4364,7 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:360
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4442,29 +4466,31 @@ msgstr "Anladım"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
-"Bu panel, senin gelecek popülasyonunun tahminini gösterir.\n"
-"\n"
-"Bu rakamlar, oto-evrimin popülasyon simülasyonundan gelir.\n"
+"Bu panel, senin gelecek popülasyonunun tahminini gösterir. Bu rakamlar, "
+"oto-evrimin popülasyon simülasyonundan gelir.\n"
 "\n"
 "Bunlar, senin bireysel performansını hesaba katmaz. Böylece mevcut "
 "arazinde, editöre girdiğin zaman daha iyi performans sergilersin.\n"
 "\n"
 "Ama doğrudan bağlı olmasan bile, kendi popülasyonunu yukarıda tutmaya "
-"çalışmalısın."
+"çalışmalısın.\n"
+"\n"
+"Paneldeki soru işaretli butona basarak tahminin ardındaki detaylı bilgiyi "
+"inceleyebilirsin."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:388
-#, fuzzy
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
-"Bu hücre editörü. Burada mutasyon puanları (MP) harcayarak türüne "
-"organeller ekleyebilir veya organelleri kaldırabilirsin.\n"
+"Bir ya da iki enerji kaynağına odaklanmalısın. Böylece hayatta kalmak "
+"için, bütün kaynaklara ihtiyaç duymadan, yeterli ATP üretebilirsin.\n"
 "\n"
-"Ayrıca hücre editörünün diğer sekmelerinde türünün başka özelliklerini "
-"değiştirebilirsin.\n"
+"Ayrıca bir organeli eklemenin yararlı olup olmadığını dikkatli bir şekilde "
+"göz önünde bulundur. Her parçayı sürdürmek ATP'ye mal olduğu ve bölünmeye "
+"daha fazla kaynak gerektiği için, genellikle, herhangi bir değişiklik "
+"yapmamak iyi bir seçimdir.\n"
 "\n"
-"Devam etmek için, soldaki panelden bir organel seç (sitoplazma iyi bir "
-"seçim). Sonra türüne seçtiğin organeli eklemek için ekranın ortasında "
-"bulunan altıgenin yanına sol tıkla."
+"Olası bir strateji, tek altıgenlik sitoplazma olarak kalmak ve fotosentez "
+"organellerini almadan önce, ilk olarak yüzey arazilerine varmak."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
@@ -4526,7 +4552,7 @@ msgstr ""
 "\n"
 "Türünü düzenlemek için şimdi hazırsın.\n"
 "\n"
-"Editöre girmek için sağ alttaki yanıp sönen editör butonuna bas."
+"Editöre girmek için sağ altta yanıp sönen editör butonuna bas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "MICROBE_STAGE_UNBIND_TEXT"
@@ -4538,24 +4564,24 @@ msgstr ""
 "bağını çöz\" tuşuna basabilirsin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:"
-"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
-"input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi "
-"kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy"
-"\"]Oksitoksi NT'yi[/thrive:compound] ateş etmek için [thrive:"
-"input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için "
-"[thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas."
+"Eğer hala oyun mekaniği ile ilgili sıkıntı yaşıyorsan, yardım menüsünü "
+"incele. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsin.\n"
+"\n"
+"Bir ipucu daha: Fare tekeri ile görüş alanını uzaklaştırabilirsin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
 msgid "VIEW_NOW"
-msgstr ""
+msgstr "Şimdi İncele"
 
 #, fuzzy
-#~ msgid "PERCENTAGE_FORMAT"
-#~ msgstr "%{0}"
+#~ msgid "MARINE_SNOW_FOOD_SOURCE"
+#~ msgstr "Deniz karı"
+
+#, fuzzy
+#~ msgid "OPEN_DETAILS"
+#~ msgstr "Log Klasörünü Aç"
 
 #~ msgid "Cancel"
 #~ msgstr "İptal"

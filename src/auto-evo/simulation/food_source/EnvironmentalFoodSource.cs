@@ -23,9 +23,16 @@ public class EnvironmentalFoodSource : FoodSource
 
         var energyCreationScore = EnergyGenerationScore(microbeSpecies, compound);
 
-        var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).FinalBalanceStationary;
+        var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).TotalConsumptionStationary;
 
         return energyCreationScore / energyCost;
+    }
+
+    public override IFormattable GetDescription()
+    {
+        // TODO: somehow allow the compound name to translate properly. Maybe we need to use bbcode to refer to the
+        // compounds?
+        return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE", compound.Name);
     }
 
     public override float TotalEnergyAvailable()
