@@ -1140,12 +1140,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         var scrollRect = scroll.GetGlobalRect();
         var anchorRect = timelineScrollAnchor.GetGlobalRect();
-        var offset = scrollRect.Size.y - anchorRect.Size.y;
 
         var diff = Mathf.Max(Mathf.Min(anchorRect.Position.y, scrollRect.Position.y), anchorRect.Position.y +
-            anchorRect.Size.y - scrollRect.Size.y + offset);
+            anchorRect.Size.y - scrollRect.Size.y + (scrollRect.Size.y - anchorRect.Size.y));
 
-        scroll.ScrollVertical = (int)(diff - scrollRect.Position.y);
+        scroll.ScrollVertical = scroll.ScrollVertical + (int)(diff - scrollRect.Position.y);
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
@@ -1905,7 +1904,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             case ReportSubtab.Timeline:
                 timelineSubtab.Show();
                 timelineSubtabButton.Pressed = true;
-                TimelineAutoScrollToCurrentTimePeriod();
+                Invoke.Instance.Queue(TimelineAutoScrollToCurrentTimePeriod);
                 break;
             default:
                 throw new Exception("Invalid report subtab");
