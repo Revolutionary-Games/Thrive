@@ -2109,7 +2109,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnReportTabPatchListSelected(int index)
     {
-        mapDrawer.SelectedPatch = editor.CurrentGame.GameWorld.Map.Patches[index];
+        var patch = editor.CurrentGame.GameWorld.Map.Patches[index];
+        UpdateReportTabStatistics(patch);
     }
 
     /// <summary>
