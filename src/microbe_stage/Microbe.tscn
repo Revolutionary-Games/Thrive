@@ -47,12 +47,6 @@ MaterialToEdit = SubResource( 1 )
 
 [node name="OrganelleParent" type="Spatial" parent="."]
 
-[node name="EngulfAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 6 )
-unit_size = 50.0
-max_distance = 100.0
-bus = "SFX"
-
 [node name="BindingAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 unit_size = 50.0

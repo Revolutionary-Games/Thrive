@@ -99,4 +99,9 @@ public class ModInfo
     ///   the entrypoint to executing code in the mod's assembly.
     /// </summary>
     public string AssemblyModClass { get; set; }
+
+    /// <summary>
+    ///   If true the mod specifies that the game needs to be restarted for the mod to properly load / unload
+    /// </summary>
+    public bool RequiresRestart { get; set; }
 }

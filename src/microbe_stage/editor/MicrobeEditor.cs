@@ -181,10 +181,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     private int organelleRot;
 
     [JsonProperty]
-    private string autoEvoSummary;
+    private LocalizedStringBuilder autoEvoSummary;
 
     [JsonProperty]
-    private string autoEvoExternal;
+    private LocalizedStringBuilder autoEvoExternal;
 
     [JsonProperty]
     private string activeActionName;
@@ -649,13 +649,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             CalculateOrganelleEffectivenessInPatch(CurrentPatch);
             UpdatePatchDependentBalanceData();
+            gui.UpdateAutoEvoResults(autoEvoSummary?.ToString(), autoEvoExternal?.ToString());
             gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
             gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
-
-            // TODO: AutoEvo run results summary
         }
     }
 
@@ -770,7 +769,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             GetMouseHex(out int q, out int r);
             if (MoveOrganelle(MovingOrganelle, MovingOrganelle.Position, new Hex(q, r), MovingOrganelle.Orientation,
-                organelleRot))
+                    organelleRot))
             {
                 // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
                 MovingOrganelle = null;
@@ -2475,7 +2474,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
-            gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
+            gui.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
         ApplyAutoEvoResults();
@@ -2490,7 +2489,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (Ready != true)
             throw new InvalidOperationException("loaded editor isn't in the ready state");
 
-        gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
+        gui.UpdateAutoEvoResults(autoEvoSummary?.ToString(), autoEvoExternal?.ToString());
 
         gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 

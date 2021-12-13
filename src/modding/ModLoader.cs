@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Godot;
@@ -17,6 +18,8 @@ public class ModLoader : Node
     private readonly List<string> loadedMods = new();
 
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
+
+    private readonly List<string> modErrors = new();
 
     private List<FullModDetails> workshopMods;
 
@@ -36,6 +39,16 @@ public class ModLoader : Node
     ///   The mod interface the game uses to trigger events that mods can react to
     /// </summary>
     public static ModInterface ModInterface => modInterface;
+
+    /// <summary>
+    ///   Set to true if a mod that requires restart is loaded or unloaded
+    /// </summary>
+    public bool RequiresRestart { get; private set; }
+
+    /// <summary>
+    ///   Errors that occurred when loading or unloading mods
+    /// </summary>
+    public IEnumerable<string> ModErrors => modErrors;
 
     /// <summary>
     ///   Finds a mod and loads its info
@@ -130,6 +143,7 @@ public class ModLoader : Node
         modInterface = new ModInterface(GetTree());
 
         LoadMods();
+        RequiresRestart = false;
     }
 
     public override void _Process(float delta)
@@ -178,6 +192,15 @@ public class ModLoader : Node
         workshopMods = null;
     }
 
+    public List<string> GetAndClearModErrors()
+    {
+        var result = ModErrors.ToList();
+
+        modErrors.Clear();
+
+        return result;
+    }
+
     private void LoadMod(string name)
     {
         var info = FindMod(name);
@@ -185,6 +208,8 @@ public class ModLoader : Node
         if (info == null)
         {
             GD.PrintErr("Can't load mod due to failed info reading: ", name);
+            modErrors.Add(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("CANT_LOAD_MOD_INFO"),
+                name));
             return;
         }
 
@@ -206,6 +231,9 @@ public class ModLoader : Node
             catch (Exception e)
             {
                 GD.PrintErr("Could not load mod assembly due to exception: ", e);
+                modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION"),
+                    name, e));
                 return;
             }
 
@@ -215,9 +243,14 @@ public class ModLoader : Node
             loadedSomething = true;
         }
 
+        CheckAndMarkIfModRequiresRestart(info);
+
         if (!loadedSomething)
         {
             GD.Print("A mod contained no loadable resources");
+            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES"),
+                name));
         }
     }
 
@@ -227,7 +260,9 @@ public class ModLoader : Node
 
         if (info == null)
         {
-            GD.PrintErr("Can't load mod due to failed info reading: ", name);
+            GD.PrintErr("Can't unload mod due to failed info reading: ", name);
+            modErrors.Add(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("CANT_LOAD_MOD_INFO"),
+                name));
             return;
         }
 
@@ -240,14 +275,31 @@ public class ModLoader : Node
                 if (!mod.Unload())
                 {
                     GD.PrintErr("Mod's (", name, ") assembly unload method call failed");
+                    modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                        TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED"),
+                        name));
                 }
             }
             catch (Exception e)
             {
                 GD.PrintErr("Mod's (", name, ") assembly unload method call failed with an exception: ", e);
+                modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"),
+                    name, e));
             }
 
             loadedModAssemblies.Remove(name);
+        }
+
+        CheckAndMarkIfModRequiresRestart(info);
+    }
+
+    private void CheckAndMarkIfModRequiresRestart(FullModDetails mod)
+    {
+        if (mod.Info.RequiresRestart)
+        {
+            GD.Print(mod.InternalName, " requires a restart");
+            RequiresRestart = true;
         }
     }
 
@@ -295,6 +347,9 @@ public class ModLoader : Node
         if (type == null)
         {
             GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
+            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND"),
+                name, className));
             return false;
         }
 
@@ -305,6 +360,9 @@ public class ModLoader : Node
             if (!mod.Initialize(modInterface, info.Info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
+                modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED"),
+                    name));
             }
 
             loadedModAssemblies.Add(name, mod);
@@ -318,6 +376,9 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") initialization failed with an exception: ", e);
+            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"),
+                name, e));
         }
 
         return true;
@@ -330,6 +391,8 @@ public class ModLoader : Node
         if (!ProjectSettings.LoadResourcePack(path))
         {
             GD.PrintErr(".pck loading failed");
+            modErrors.Add(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PCK_LOAD_FAILED"),
+                Path.GetFileName(path)));
         }
     }
 

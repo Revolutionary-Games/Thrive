@@ -62,6 +62,9 @@ public class ModUploader : Control
     public NodePath WorkshopNoticePath;
 
     [Export]
+    public NodePath ChangeNotesPath;
+
+    [Export]
     public NodePath UploadSucceededDialogPath;
 
     [Export]
@@ -86,6 +89,7 @@ public class ModUploader : Control
     private LineEdit editedTags;
     private TextureRect previewImageRect;
     private Label toBeUploadedContentLocation;
+    private TextEdit changeNotes;
 
     private CustomDialog uploadSucceededDialog;
     private CustomRichTextLabel uploadSucceededText;
@@ -127,6 +131,7 @@ public class ModUploader : Control
         editedTags = GetNode<LineEdit>(EditedTagsPath);
         previewImageRect = GetNode<TextureRect>(PreviewImageRectPath);
         toBeUploadedContentLocation = GetNode<Label>(ToBeUploadedContentLocationPath);
+        changeNotes = GetNode<TextEdit>(ChangeNotesPath);
 
         workshopNotice = GetNode<CustomRichTextLabel>(WorkshopNoticePath);
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
@@ -230,14 +235,34 @@ public class ModUploader : Control
         if (selectedMod == null)
             return;
 
-        editedTitle.Text = selectedMod.Info.Name;
-        editedDescription.Text = string.IsNullOrEmpty(selectedMod.Info.LongDescription) ?
-            selectedMod.Info.Description :
-            selectedMod.Info.LongDescription;
-        editedVisibility.Pressed = true;
-        editedTags.Text = string.Empty;
+        if (workshopData.PreviouslyUploadedItemData.TryGetValue(selectedMod.InternalName, out var previousData))
+        {
+            editedTitle.Text = previousData.Title;
+            editedDescription.Text = previousData.Description;
+            editedVisibility.Pressed = previousData.Visibility == SteamItemVisibility.Public;
+            editedTags.Text = string.Join(",", previousData.Tags);
 
-        toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
+            toBeUploadedPreviewImagePath = previousData.PreviewImagePath;
+
+            changeNotes.Text = string.Empty;
+
+            ValidateForm();
+        }
+        else
+        {
+            editedTitle.Text = selectedMod.Info.Name;
+            editedDescription.Text = string.IsNullOrEmpty(selectedMod.Info.LongDescription) ?
+                selectedMod.Info.Description :
+                selectedMod.Info.LongDescription;
+            editedVisibility.Pressed = true;
+            editedTags.Text = string.Empty;
+
+            toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
+
+            // TODO: this is not translated here as the default language to upload mods in, is English
+            // See: https://github.com/Revolutionary-Games/Thrive/issues/2828
+            changeNotes.Text = "Initial version";
+        }
 
         toBeUploadedContentLocation.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("CONTENT_UPLOADED_FROM"), ProjectSettings.GlobalizePath(selectedMod.Folder));
@@ -288,6 +313,12 @@ public class ModUploader : Control
             return false;
         }
 
+        if (changeNotes.Text.Length > 8000)
+        {
+            SetError(TranslationServer.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG"));
+            return false;
+        }
+
         if (editedTags.Text is { Length: > 0 })
         {
             if (string.IsNullOrWhiteSpace(editedTags.Text))
@@ -304,6 +335,25 @@ public class ModUploader : Control
                         tag));
                     return false;
                 }
+            }
+        }
+
+        if (!string.IsNullOrEmpty(toBeUploadedPreviewImagePath))
+        {
+            using var file = new File();
+
+            if (!file.FileExists(toBeUploadedPreviewImagePath) ||
+                file.Open(toBeUploadedPreviewImagePath, File.ModeFlags.Read) != Error.Ok)
+            {
+                SetError(TranslationServer.Translate("PREVIEW_IMAGE_DOES_NOT_EXIST"));
+                return false;
+            }
+
+            // Let's hope Steam uses megabytes and not mebibytes as the limit
+            if (file.GetLen() >= 1000000)
+            {
+                SetError(TranslationServer.Translate("PREVIEW_IMAGE_IS_TOO_LARGE"));
+                return false;
             }
         }
 
@@ -341,6 +391,40 @@ public class ModUploader : Control
         UpdateLayout();
     }
 
+    private void OnManualIdEntered()
+    {
+        if (!ulong.TryParse(manualIdEntry.Text, out ulong id))
+        {
+            SetError(TranslationServer.Translate("ID_IS_NOT_A_NUMBER"));
+            return;
+        }
+
+        GD.Print($"Workshop item id manually set for \"{selectedMod.InternalName}\", to: ", id);
+        workshopData.KnownModWorkshopIds[selectedMod.InternalName] = id;
+
+        ClearError();
+        UpdateLayout();
+        UpdateUploadButtonStatus();
+    }
+
+    private void OnForgetDataPressed()
+    {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("Can't forget a null mod");
+            return;
+        }
+
+        GD.Print("Forgetting local data about workshop mod: ", selectedMod.InternalName);
+
+        workshopData.RemoveDataForMod(selectedMod.InternalName);
+
+        if (!SaveWorkshopData())
+            return;
+
+        ModSelected(modSelect.Selected);
+    }
+
     private void CreateNewPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -348,7 +432,7 @@ public class ModUploader : Control
         GD.Print("Create new workshop item button pressed");
         SetProcessingStatus(true);
 
-        SetError(TranslationServer.Translate("CREATING_DOT_DOT_DOT"));
+        errorDisplay.Text = TranslationServer.Translate("CREATING_DOT_DOT_DOT");
 
         SteamHandler.Instance.CreateWorkshopItem(result =>
         {
@@ -362,18 +446,9 @@ public class ModUploader : Control
 
             GD.Print($"Workshop item create succeeded for \"{selectedMod.InternalName}\", saving the item ID");
             workshopData.KnownModWorkshopIds[selectedMod.InternalName] = result.ItemId;
-            try
-            {
-                workshopData.Save();
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr("Saving workshop data failed: ", e);
-                SetError(string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO"),
-                    e.Message));
+
+            if (!SaveWorkshopData())
                 return;
-            }
 
             ClearError();
             UpdateLayout();
@@ -412,15 +487,18 @@ public class ModUploader : Control
         }
 
         // TODO: proper progress bar
-        SetError(TranslationServer.Translate("UPLOADING_DOT_DOT_DOT"));
+        errorDisplay.Text = TranslationServer.Translate("UPLOADING_DOT_DOT_DOT");
 
-        // TODO: implement change notes text input
-        SteamHandler.Instance.UpdateWorkshopItem(updateData, null, result =>
+        string notes = null;
+
+        if (!string.IsNullOrWhiteSpace(changeNotes.Text))
+        {
+            notes = changeNotes.Text;
+        }
+
+        SteamHandler.Instance.UpdateWorkshopItem(updateData, notes, result =>
         {
             SetProcessingStatus(false);
-
-            // TODO: save the details in workshopData so that the uploaded info can be pre-filled when
-            // uploading an update
 
             if (!result.Success)
             {
@@ -431,6 +509,12 @@ public class ModUploader : Control
             uploadedItemId = updateData.Id;
 
             GD.Print($"Workshop item updated for \"{selectedMod.InternalName}\"");
+
+            // Save the details in workshopData so that the uploaded info can be pre-filled when uploading an update
+            workshopData.PreviouslyUploadedItemData[selectedMod.InternalName] = updateData;
+
+            if (!SaveWorkshopData())
+                return;
 
             ClearError();
             uploadDialog.Hide();
@@ -517,6 +601,24 @@ public class ModUploader : Control
     {
         // TODO: add a settings option to disable this
         SteamHandler.Instance.OpenWorkshopItemInOverlayBrowser(uploadedItemId);
+    }
+
+    private bool SaveWorkshopData()
+    {
+        try
+        {
+            workshopData.Save();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Saving workshop data failed: ", e);
+            SetError(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO"),
+                e.Message));
+            return false;
+        }
+
+        return true;
     }
 
     private void SetError(string message)

@@ -38,7 +38,7 @@ public class SpawnSystem
     ///   This limits the total number of things that can be spawned.
     /// </summary>
     [JsonProperty]
-    private int maxAliveEntities = 1000;
+    private int maxAliveEntities = Constants.DEFAULT_MAX_SPAWNED_ENTITIES;
 
     /// <summary>
     ///   This limits the number of things that can be spawned in a single spawn radius.
@@ -323,7 +323,7 @@ public class SpawnSystem
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
-                            ref spawnsLeftThisFrame, ref spawned))
+                                ref spawnsLeftThisFrame, ref spawned))
                         {
                             estimateEntityCountInSpawnRadius += spawned;
 

@@ -95,7 +95,7 @@ public class OrganelleLayout<T> : ICollection<T>
         {
             var overlapping = GetOrganelleAt(hex + position);
             if (overlapping != null && (allowCytoplasmOverlap == false ||
-                overlapping.Definition.InternalName != "cytoplasm"))
+                    overlapping.Definition.InternalName != "cytoplasm"))
                 return false;
         }
 
@@ -306,7 +306,7 @@ public class OrganelleLayout<T> : ICollection<T>
         var set = new HashSet<Hex>();
 
         foreach (var hex in Organelles.SelectMany(o =>
-            o.Definition.GetRotatedHexes(o.Orientation).Select(h => h + o.Position)))
+                     o.Definition.GetRotatedHexes(o.Orientation).Select(h => h + o.Position)))
         {
             set.Add(hex);
         }

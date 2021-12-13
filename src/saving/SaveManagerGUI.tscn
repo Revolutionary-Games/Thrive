@@ -47,8 +47,8 @@ margin_bottom = 37.0
 alignment = 1
 
 [node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 93.0
-margin_right = 151.0
+margin_left = 70.0
+margin_right = 132.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 focus_mode = 0
@@ -56,21 +56,21 @@ disabled = true
 text = "LOAD"
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 155.0
-margin_right = 159.0
+margin_left = 136.0
+margin_right = 140.0
 margin_bottom = 37.0
 
 [node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 163.0
-margin_right = 259.0
+margin_left = 144.0
+margin_right = 242.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 focus_mode = 0
 text = "REFRESH"
 
 [node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 263.0
-margin_right = 447.0
+margin_left = 246.0
+margin_right = 439.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 focus_mode = 0
@@ -78,8 +78,8 @@ disabled = true
 text = "DELETE_SELECTED"
 
 [node name="DeleteOld" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 451.0
-margin_right = 670.0
+margin_left = 443.0
+margin_right = 677.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 focus_mode = 0
@@ -87,13 +87,13 @@ disabled = true
 text = "CLEAN_UP_OLD_SAVES"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 674.0
-margin_right = 678.0
+margin_left = 681.0
+margin_right = 685.0
 margin_bottom = 37.0
 
 [node name="OpenSaveDir" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 682.0
-margin_right = 906.0
+margin_left = 689.0
+margin_right = 929.0
 margin_bottom = 37.0
 focus_mode = 0
 text = "OPEN_SAVE_DIRECTORY"
@@ -126,56 +126,56 @@ margin_bottom = 35.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 112.0
-margin_top = 6.0
-margin_right = 238.0
-margin_bottom = 28.0
+margin_top = 5.0
+margin_right = 249.0
+margin_bottom = 30.0
 text = "TOTAL_SAVES"
 
 [node name="SaveCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 242.0
-margin_top = 6.0
-margin_right = 254.0
-margin_bottom = 28.0
+margin_left = 253.0
+margin_top = 5.0
+margin_right = 266.0
+margin_bottom = 30.0
 text = "0"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 258.0
-margin_right = 261.0
+margin_left = 270.0
+margin_right = 273.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 265.0
-margin_top = 6.0
-margin_right = 443.0
-margin_bottom = 28.0
+margin_left = 277.0
+margin_top = 5.0
+margin_right = 467.0
+margin_bottom = 30.0
 text = "SAVE_SPACE_USED"
 
 [node name="SavesSpaceUsed" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 447.0
-margin_top = 6.0
-margin_right = 459.0
-margin_bottom = 28.0
+margin_left = 471.0
+margin_top = 5.0
+margin_right = 484.0
+margin_bottom = 30.0
 text = "0"
 
 [node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 463.0
-margin_right = 466.0
+margin_left = 488.0
+margin_right = 491.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 470.0
-margin_top = 6.0
-margin_right = 634.0
-margin_bottom = 28.0
+margin_left = 495.0
+margin_top = 5.0
+margin_right = 673.0
+margin_bottom = 30.0
 text = "SELECTED_COLON"
 
 [node name="SelectedCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 638.0
-margin_top = 6.0
-margin_right = 650.0
-margin_bottom = 28.0
+margin_left = 677.0
+margin_top = 5.0
+margin_right = 690.0
+margin_bottom = 30.0
 text = "0"
 
 [node name="DeleteSelectedConfirmDialog" parent="CenterContainer/VBoxContainer" instance=ExtResource( 4 )]
@@ -197,9 +197,9 @@ margin_top = 503.0
 margin_right = 1000.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 400, 0 )
-DialogText = "TRY_MAKING_A_SAVE"
-HideCancelButton = true
 WindowTitle = "NO_SAVE_DIRECTORY"
+HideCancelButton = true
+DialogText = "TRY_MAKING_A_SAVE"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSaveButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshButtonPressed"]
