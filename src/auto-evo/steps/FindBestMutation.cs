@@ -117,7 +117,7 @@
             (Patch Patch, long Difference) closestMatch = (null, 0);
 
             foreach (var patch in best.PatchScores.Select(p => p.Key).Concat(data.PatchScores.Select(p => p.Key))
-                .Distinct())
+                         .Distinct())
             {
                 if (!best.PatchScores.TryGetValue(patch, out long bestScore))
                     bestScore = 0;
