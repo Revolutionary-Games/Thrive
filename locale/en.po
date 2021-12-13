@@ -908,9 +908,8 @@ msgid "STARTING"
 msgstr "Starting"
 
 #: ../src/auto-evo/AutoEvoRun.cs:288
-#, fuzzy
 msgid "AUTO-EVO_POPULATION_CHANGED_EVERYWHERE"
-msgstr "{0} population changed by {1} because of: {2}"
+msgstr "{0} population changed by {1} everywhere because of: {2}"
 
 #: ../src/auto-evo/AutoEvoRun.cs:295
 msgid "AUTO-EVO_POPULATION_CHANGED"
@@ -2926,9 +2925,8 @@ msgstr "player died"
 
 #: ../src/microbe_stage/MicrobeStage.cs:720
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:71
-#, fuzzy
 msgid "PATCH_EXTINCTION"
-msgstr "went extinct in {0}"
+msgstr "Patch Extinction"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:506
 msgid "AT_CURSOR"
@@ -3477,12 +3475,10 @@ msgid "MOVE_TO_THIS_PATCH"
 msgstr "Move to This Patch"
 
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:80
-#, fuzzy
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
-"Just like 99% of all species that have ever existed, your species has gone "
-"extinct. Others will go on to fill in your niche and thrive, but that "
-"won’t be you. You will be forgotten, a failed experiment in evolution."
+"Your species has died out in this patch.\n"
+"But it's not over yet, you can still select a new patch to play in!"
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
