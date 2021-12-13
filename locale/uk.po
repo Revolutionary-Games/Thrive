@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
-"PO-Revision-Date: 2021-12-13 10:36+0000\n"
+"PO-Revision-Date: 2021-12-16 07:37+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Weblate 4.9.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -147,11 +147,11 @@ msgstr ""
 "Хемосинтезуючі білки: Продукують частину [thrive:compound type=\"glucose\""
 "][/thrive:compound] із [thrive:compound type=\"hydrogensulfide\""
 "][/thrive:compound] як хемопласти, але проводить гліколіз і використовує 1 "
-"Осмр\n"
+"Гекс(шестикутник)\n"
 "\n"
 "Тилакоїди: Продукують 1/3іх від кількості [thrive:compound type=\"glucose\""
 "][/thrive:compound] як нормальні хлорпласти, але роводить гліколіз і "
-"використовує 1 Осмр\n"
+"використовує 1 Гекс\n"
 "\n"
 "Рустиціан: Трансформує [thrive:compound type=\"iron\"][/thrive:compound] в\n"
 "[thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -178,8 +178,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
 "Мембранні органели\n"
 "\n"
-"Ядро: Вкористовує 10 Осмр, дозволяє еволюціонувати мембранним органелам, "
-"подвоює розміри клітини (еволюціонують одноразово)\n"
+"Ядро: Вкористовує 11 Гекс(шестикутник), дозволяє еволюціонувати мембранним "
+"органелам, подвоює розміри клітини (еволюціонують одноразово)\n"
 "\n"
 "Зв'язувальні агенти: Дозволяє зв'язуватись з іншими клітинами\n"
 "\n"
@@ -242,6 +242,10 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
+"Порада: осморегуляція коштує 1 АТФ за секунду переміщення гексу "
+"(шестикутника) твоєї клітини, та кожен порожній гекс цитоплазми виробляє 5 "
+"АТФ, що означає те,що при нестачі енергії через осморегуляцію просто додайте "
+"кілька гексів цитоплазми без органел, чи видаліть останні."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
@@ -272,6 +276,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
+"Порада: ти можеш впольовувати інші види до їх вимирання,яккщо не будете "
+"досьатньо обережні. Інші види можуть зробити це й з вами."
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
@@ -279,67 +285,94 @@ msgstr "ХИТКІ РЕЧІ!!"
 
 #: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_11"
-msgstr ""
+msgstr "Виплавка плавталу."
 
 #: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_12"
-msgstr ""
+msgstr "Хоча ці клітини блакитні."
 
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
+"Порада: Біоми це більш ніж задній фон, у різних біомах спавн біомах "
+"відрізняється відсоток генерації сполук."
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
+"Порада: чим більше у вас джугутиків, ти ви швидші, бум брум, та це вартує "
+"більше АТФ"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "Порада: ви можете поглинути брили заліза або інших."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
+"Порада: ретельно підготуйтесь перед додаванням ядра. Це дуже дорого! Як в "
+"енергетичному плані, так і в оплатному."
 
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
+"Цікавий факт: чи знали ви, що на Землі мешкає понад 8000 видів інфузорій?"
 
 #: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
+"Цікавий факт: Сурмач– це інфузорія, яка вміє розтягуватися та цим самим "
+"допомагає ловити здобич у своєрідну сурму схожу на рот, яка вкрита війками, "
+"що створють водні потоки несучи їжу всередину."
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
 msgstr ""
+"Цікавий факт: Дідініум– це інфузорія, яка полює на туфельки( перекл. вони "
+"теж інфузорій)."
 
 #: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
+"Цікавий факт: амеби полюють та захоплюють здобич 'ніжками' створених з "
+"цитоплазми, вони звуться псевдоподами, ми хочемо бачити останніх у Thrive."
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
+"Порада: Дивіться за великими клітинами та бактеріями, це не весело бути "
+"перетравленим, та вони вас з'їдять."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
+"Керіник звукової команди Thrive написав багато пісень, які ще не в грі. Ви "
+"можете послухати їх, або подивитися стріми з їх композицією на його YouTube "
+"каналі, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
+"Порада: якщо ваша клітина має 150 гексів(шестикутників), то ви можете "
+"поглинати великі залізні брили."
 
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
+"Thrive позиціонується ,як симулятор іншої планети, тому є сенс в тому що "
+"більшість, знайдених вами істот, матимуть кілька еволюційних зв'язків з "
+"іншими видами. Ці події відбувалися навколо вас, тому спробуйте знайти ці "
+"зв'язки!"
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
+"Цікавий факт: команда Thrive час від час випускають підкасти, вам варто "
+"зацінити їх!"
 
 #: ../simulation_parameters/common/help_texts.json:201
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
+msgstr "Цікавий факт: Thrive створено з відкритим кодом на движку Godot!"
 
 #: ../simulation_parameters/common/help_texts.json:204
 msgid "EASTEREGG_MESSAGE_27"
@@ -512,7 +545,7 @@ msgstr "Перемикання FPS дисплаю"
 
 #: ../simulation_parameters/common/input_options.json:184
 msgid "QUICK_SAVE"
-msgstr "Швидке здереження"
+msgstr "Швидке збереження"
 
 #: ../simulation_parameters/common/input_options.json:188
 msgid "QUICK_LOAD"
@@ -770,7 +803,7 @@ msgstr "Хижі ворсинки"
 #: ../simulation_parameters/microbe_stage/organelles.json:53
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:655
 msgid "RUSTICYANIN"
-msgstr ""
+msgstr "Заліокисні білки ( рустиціан)"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:86
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:752
@@ -779,7 +812,7 @@ msgstr "Нітрогеназа"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:119
 msgid "PROTOPLASM"
-msgstr "Протоплазиа"
+msgstr "Протоплазма"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:558
@@ -890,7 +923,7 @@ msgstr "Попередній:"
 
 #: ../src/auto-evo/RunResults.cs:589
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr ""
+msgstr "відокремились від {0}"
 
 #: ../src/auto-evo/RunResults.cs:602
 msgid "RUN_RESULT_NICHE_FILL"
@@ -910,39 +943,39 @@ msgstr "мутували"
 
 #: ../src/auto-evo/RunResults.cs:643
 msgid "RUN_RESULT_GENE_CODE"
-msgstr ""
+msgstr "генетичний код:"
 
 #: ../src/auto-evo/RunResults.cs:654
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
-msgstr ""
+msgstr "поширено в ділянці:"
 
 #: ../src/auto-evo/RunResults.cs:662
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
-msgstr ""
+msgstr "{0} пермістилося: {1} популяція з {2}"
 
 #: ../src/auto-evo/RunResults.cs:681
 msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr ""
+msgstr "популяція в ділянках:"
 
 #: ../src/auto-evo/RunResults.cs:788
 msgid "WENT_EXTINCT_FROM_PLANET"
-msgstr ""
+msgstr "вимерли на цілій планеті"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:75
 msgid "CHUNK_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} спожито, поглинуто"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "{0} поглинуто"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:35
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Рівномірно поширеног в середовищі джерала їжі {0}"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "Хижацтво в {0}"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -950,43 +983,45 @@ msgstr "Завантаження"
 
 #: ../src/engine/input/key_mapping/InputEventItem.cs:322
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr ""
+msgstr "Натисни клавішу..."
 
 #: ../src/engine/input/key_mapping/InputGroupList.cs:118
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Конфліктів з {0}\n"
+"Хочете коректувати данні з {1}?"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:126
 msgid "KEY_FORWARD"
-msgstr ""
+msgstr "вперед"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:127
 msgid "KEY_TAB"
-msgstr ""
+msgstr "Tab"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:128
 msgid "KEY_ENTER"
-msgstr ""
+msgstr "Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:129
 msgid "KEY_INSERT"
-msgstr ""
+msgstr "вставити"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:130
 msgid "KEY_DELETE"
-msgstr ""
+msgstr "видалити"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:131
 msgid "KEY_PAUSE"
-msgstr ""
+msgstr "пауза"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:132
 msgid "KEY_CLEAR"
-msgstr ""
+msgstr "очистити"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:133
 msgid "KEY_HOME"
-msgstr ""
+msgstr "Дім"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
@@ -994,99 +1029,99 @@ msgstr "Кынець"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
-msgstr ""
+msgstr "Вліво"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:136
 msgid "KEY_UP"
-msgstr ""
+msgstr "Вгору"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:137
 msgid "KEY_RIGHT"
-msgstr ""
+msgstr "Вправо"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:138
 msgid "KEY_DOWN"
-msgstr ""
+msgstr "Вниз"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:139
 msgid "KEY_MENU"
-msgstr ""
+msgstr "Меню"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:140
 msgid "KEY_HELP"
-msgstr ""
+msgstr "Допомогти"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:141
 msgid "KEY_BACK"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:142
 msgid "KEY_STOP"
-msgstr ""
+msgstr "Стоп"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
 msgid "KEY_REFRESH"
-msgstr ""
+msgstr "Оновити"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:144
 msgid "KEY_SEARCH"
-msgstr ""
+msgstr "Пошук"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:145
 msgid "KEY_STANDBY"
-msgstr ""
+msgstr "Очікування"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:146
 msgid "KEY_OPENURL"
-msgstr ""
+msgstr "Відкрити URL"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:147
 msgid "KEY_HOMEPAGE"
-msgstr ""
+msgstr "Домашня сторінка"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:148
 msgid "KEY_FAVORITES"
-msgstr ""
+msgstr "Вибране"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr ""
+msgstr "Роздрукувати зображення"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
-msgstr ""
+msgstr "Простір"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr ""
+msgstr "Слеш назад"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
-msgstr ""
+msgstr "Вийти з повноекрання"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr ""
+msgstr "Пробіл назад"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
-msgstr ""
+msgstr "Ввести Enter"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr ""
+msgstr "SysRq"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
-msgstr ""
+msgstr "Сторінку вгору"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:171
 msgid "PAGEDOWN"
-msgstr ""
+msgstr "Сторінку Вниз"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Caps Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
@@ -1098,255 +1133,255 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
-msgstr ""
+msgstr "Супер вліво"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:176
 msgid "SUPERR"
-msgstr ""
+msgstr "Супер Вправо"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:177
 msgid "HYPERL"
-msgstr ""
+msgstr "Гіпер вліво"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:178
 msgid "HYPERR"
-msgstr ""
+msgstr "Гіпер вправо"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:179
 msgid "DIRECTIONL"
-msgstr ""
+msgstr "Вліво"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:180
 msgid "DIRECTIONR"
-msgstr ""
+msgstr "Вправо"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "VOLUMEDOWN"
-msgstr ""
+msgstr "Зменшити звук"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "VOLUMEMUTE"
-msgstr ""
+msgstr "Вимкнути звук"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "VOLUMEUP"
-msgstr ""
+msgstr "Підсилити звук"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr ""
+msgstr "Підсилення басів"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr ""
+msgstr "Баси вгору"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr ""
+msgstr "Баси вниз"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
-msgstr ""
+msgstr "Збільшити частоту"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "TREBLEDOWN"
-msgstr ""
+msgstr "Зменшити частоту"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
-msgstr ""
+msgstr "Програти медіа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr ""
+msgstr "Зупинити медіа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIAPREVIOUS"
-msgstr ""
+msgstr "Попередні медіа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
-msgstr ""
+msgstr "Наступні медіа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
-msgstr ""
+msgstr "Записувати звук"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
-msgstr ""
+msgstr "Лист"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:195
 msgid "LAUNCHMEDIA"
-msgstr ""
+msgstr "Медіа"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr ""
+msgstr "Запуск 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr ""
+msgstr "Запуск 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr ""
+msgstr "Запуск 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr ""
+msgstr "Запуск 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr ""
+msgstr "Запуск 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr ""
+msgstr "Запуск 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr ""
+msgstr "Запуск 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr ""
+msgstr "Запуск 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr ""
+msgstr "Запуск 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr ""
+msgstr "Запуск 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr ""
+msgstr "Запуск А"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr ""
+msgstr "Запуск В"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr ""
+msgstr "Запуск С"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr ""
+msgstr "Запуск D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr ""
+msgstr "Запуск E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr ""
+msgstr "Запуск F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
-msgstr ""
+msgstr "Ввести*"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:213
 msgid "KPDIVIDE"
-msgstr ""
+msgstr "Ввести/"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:214
 msgid "KPSUBTRACT"
-msgstr ""
+msgstr "Ввести-"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:215
 msgid "KPPERIOD"
-msgstr ""
+msgstr "Ввести."
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:216
 msgid "KPADD"
-msgstr ""
+msgstr "Ввести"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:217
 msgid "KP0"
-msgstr ""
+msgstr "Ввести0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:218
 msgid "KP1"
-msgstr ""
+msgstr "Ввести1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:219
 msgid "KP2"
-msgstr ""
+msgstr "Ввести2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:220
 msgid "KP3"
-msgstr ""
+msgstr "Ввести3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:221
 msgid "KP4"
-msgstr ""
+msgstr "Ввести4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:222
 msgid "KP5"
-msgstr ""
+msgstr "Ввести5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:223
 msgid "KP6"
-msgstr ""
+msgstr "Ввести6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:224
 msgid "KP7"
-msgstr ""
+msgstr "Ввести7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:225
 msgid "KP8"
-msgstr ""
+msgstr "Ввести8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:226
 msgid "KP9"
-msgstr ""
+msgstr "Ввести9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:227
 msgid "UNKNOWN"
-msgstr ""
+msgstr "Невідомо"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:52
 msgid "CTRL"
-msgstr ""
+msgstr "CTRL"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:54
 msgid "ALT"
-msgstr ""
+msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "ЛКМ"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:68
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "ПКМ"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:69
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Колесик миші (середина миші)"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Колесо вгору"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Колесо вниз"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Колесо вліво"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:73
 msgid "WHEEL_RIGHT"
-msgstr ""
+msgstr "Колесо вправо"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:74
 msgid "SPECIAL_MOUSE_1"
@@ -1362,11 +1397,11 @@ msgstr ""
 
 #: ../src/general/Gallery.cs:70
 msgid "ARTWORK_TITLE"
-msgstr ""
+msgstr "\"{0}\" - {1}"
 
 #: ../src/general/Gallery.cs:74
 msgid "ART_BY"
-msgstr ""
+msgstr "Малюнок від {0}"
 
 #: ../src/general/HelpScreen.tscn:107
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
@@ -1375,48 +1410,48 @@ msgstr ""
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
 msgid "CLOSE"
-msgstr ""
+msgstr "Закрити"
 
 #: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
-msgstr ""
+msgstr "Ви увійшли як:{0}"
 
 #: ../src/general/MainMenu.tscn:178
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Нова гра"
 
 #: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:74
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:107
 msgid "LOAD_GAME"
-msgstr ""
+msgstr "Завантажити гру"
 
 #: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:96
 msgid "OPTIONS"
-msgstr ""
+msgstr "Налаштування"
 
 #: ../src/general/MainMenu.tscn:213
 msgid "TOOLS"
-msgstr ""
+msgstr "Інструменти"
 
 #: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Перегляд вихідного коду"
 
 #: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
-msgstr ""
+msgstr "Доаткове"
 
 #: ../src/general/MainMenu.tscn:246
 msgid "CREDITS"
-msgstr ""
+msgstr "Титри"
 
 #: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
-msgstr ""
+msgstr "Вихід"
 
 #: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Режим творчого мікробного редактор"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
@@ -1437,59 +1472,66 @@ msgstr "Галерея"
 
 #: ../src/general/MainMenu.tscn:384
 msgid "LICENSES"
-msgstr ""
+msgstr "Ліцензія"
 
 #: ../src/general/MainMenu.tscn:493
 msgid "GLES2_MODE_WARNING"
-msgstr ""
+msgstr "GLES2 Режим попереджень"
 
 #: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
+"Ви використовуєте з Thrive задопомогою GLES2. Це неперевірено та може "
+"викликати проблеми. Спробуйте оновити свої відеодрайвери та/або використати "
+"графіку від Nvidia або AMD для запуску Trive."
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
-msgstr ""
+msgstr "Помилка завантаження модифікації"
 
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
+"Виникла помилка коли завантажувалися кілька модифікацій. Додаткова "
+"інформація міститься у журналах."
 
 #: ../src/general/OptionsMenu.cs:900
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Пристрій виведення за замовчуванням"
 
 #: ../src/general/OptionsMenu.cs:932
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
+"Цей переклад дуже неповний ({0}% готово), буь-ласка допоможіть виправити ця "
+"ситуацію!!!"
 
 #: ../src/general/OptionsMenu.cs:936
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "Прогрес перекладу на нацямову/солов'їну ({0}% готово)"
 
 #: ../src/general/OptionsMenu.cs:940
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr ""
+msgstr "Ця мова на {0}% готова"
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Графіка"
 
 #: ../src/general/OptionsMenu.tscn:146
 msgid "SOUND"
-msgstr ""
+msgstr "Звук"
 
 #: ../src/general/OptionsMenu.tscn:157
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Продуктивність"
 
 #: ../src/general/OptionsMenu.tscn:168
 msgid "INPUTS"
-msgstr ""
+msgstr "Керування"
 
 #: ../src/general/OptionsMenu.tscn:179
 msgid "MISC"
-msgstr ""
+msgstr "Інше"
 
 #: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
@@ -1497,7 +1539,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Повноекрання"
 
 #: ../src/general/OptionsMenu.tscn:240
 msgid "MULTISAMPLE_ANTI_ALIASING"
@@ -1505,101 +1547,101 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:247
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr ""
+msgstr "(вищі значення погіршать продуктивність)"
 
 #: ../src/general/OptionsMenu.tscn:262 ../src/general/OptionsMenu.tscn:263
 msgid "DISABLED"
-msgstr ""
+msgstr "Вимкнено"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "TWO_TIMES"
-msgstr ""
+msgstr "2х"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "FOUR_TIMES"
-msgstr ""
+msgstr "4х"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "EIGHT_TIMES"
-msgstr ""
+msgstr "8х"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "SIXTEEN_TIMES"
-msgstr ""
+msgstr "16х"
 
 #: ../src/general/OptionsMenu.tscn:277
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Резолюції:"
 
 #: ../src/general/OptionsMenu.tscn:290
 msgid "AUTO"
-msgstr ""
+msgstr "Автоматично"
 
 #: ../src/general/OptionsMenu.tscn:301
 msgid "MAX_FPS"
-msgstr ""
+msgstr "МАКСимальні кількість FPS:"
 
 #: ../src/general/OptionsMenu.tscn:316
 msgid "MAX_FPS_NO_LIMIT"
-msgstr ""
+msgstr "Необмежено"
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Кольорокорекція:"
 
 #: ../src/general/OptionsMenu.tscn:346 ../src/general/OptionsMenu.tscn:347
 msgid "NONE"
-msgstr ""
+msgstr "Нічого"
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_PROTANOPE"
-msgstr ""
+msgstr "Протаноп (червоно-зелений)"
 
 #: ../src/general/OptionsMenu.tscn:347
 msgid "CORRECTION_TRITANOPE"
-msgstr ""
+msgstr "Тританоп (блакитно-жовтий)"
 
 #: ../src/general/OptionsMenu.tscn:363
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Хроматична аберація:"
 
 #: ../src/general/OptionsMenu.tscn:389
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr ""
+msgstr "Панель здібностей дисплею"
 
 #: ../src/general/OptionsMenu.tscn:397
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr ""
+msgstr "Увімкнути світлові ефекти ГІК"
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
-msgstr ""
+msgstr "Загальна гучність"
 
 #: ../src/general/OptionsMenu.tscn:449 ../src/general/OptionsMenu.tscn:489
 #: ../src/general/OptionsMenu.tscn:521 ../src/general/OptionsMenu.tscn:553
 #: ../src/general/OptionsMenu.tscn:585
 msgid "MUTE"
-msgstr ""
+msgstr "Вимкнути"
 
 #: ../src/general/OptionsMenu.tscn:463
 msgid "MUSIC_VOLUME"
-msgstr ""
+msgstr "Гучність музики"
 
 #: ../src/general/OptionsMenu.tscn:495
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Гучність оточення"
 
 #: ../src/general/OptionsMenu.tscn:527
 msgid "SFX_VOLUME"
-msgstr ""
+msgstr "Гучність SFX"
 
 #: ../src/general/OptionsMenu.tscn:559
 msgid "GUI_VOLUME"
-msgstr ""
+msgstr "Гучність ГІК"
 
 #: ../src/general/OptionsMenu.tscn:603
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Пристрій виведення аудіо:"
 
 #: ../src/general/OptionsMenu.tscn:631
 msgid "LANGUAGE"
@@ -1607,40 +1649,39 @@ msgstr "Мова:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
 msgid "RESET"
-msgstr ""
+msgstr "Скинути"
 
 #: ../src/general/OptionsMenu.tscn:667
 msgid "OPEN_TRANSLATION_SITE"
-msgstr ""
+msgstr "Допомоти з перекладом гри"
 
 #: ../src/general/OptionsMenu.tscn:693
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Хмари сполук"
 
 #: ../src/general/OptionsMenu.tscn:708
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
+msgstr "Мінімальний інтервал симуляції хмари:"
 
 #: ../src/general/OptionsMenu.tscn:715 ../src/general/OptionsMenu.tscn:757
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
+msgstr "(вищі значення покращать продуктивність)"
 
 #: ../src/general/OptionsMenu.tscn:750
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Дільник роздільної здатності хмари:"
 
 #: ../src/general/OptionsMenu.tscn:791
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
+msgstr "Запускати авто-ево під час гри"
 
 #: ../src/general/OptionsMenu.tscn:811
 msgid "DETECTED_CPU_COUNT"
-msgstr ""
+msgstr "Виявлено ядер ЦП:"
 
 #: ../src/general/OptionsMenu.tscn:828
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Зберегти й продовжити"
+msgstr "Поточні обчислення:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
@@ -1648,83 +1689,83 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:850
 msgid "USE_MANUAL_THREAD_COUNT"
-msgstr ""
+msgstr "Встановити кількість фонових потоків вручну"
 
 #: ../src/general/OptionsMenu.tscn:860
 msgid "THREADS"
-msgstr ""
+msgstr "Обрахунки:"
 
 #: ../src/general/OptionsMenu.tscn:961
 msgid "RESET_INPUTS"
-msgstr ""
+msgstr "Скинути зміни"
 
 #: ../src/general/OptionsMenu.tscn:988
 msgid "PLAY_INTRO_VIDEO"
-msgstr ""
+msgstr "Програвати інтро"
 
 #: ../src/general/OptionsMenu.tscn:996
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
+msgstr "програвати інтро з мікробом перед новою грою"
 
 #: ../src/general/OptionsMenu.tscn:1004
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Автозбереження під час гри"
 
 #: ../src/general/OptionsMenu.tscn:1015
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Кількість можливих автозбереженнь:"
 
 #: ../src/general/OptionsMenu.tscn:1043
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Кількість можливих швидких збережень:"
 
 #: ../src/general/OptionsMenu.tscn:1068
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "Програти туторіали (в новій грі)"
 
 #: ../src/general/OptionsMenu.tscn:1075
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "Програти туторіал (в поточній грі)"
 
 #: ../src/general/OptionsMenu.tscn:1081
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
-msgstr ""
+msgstr "Програвати попередження про незбережену гру"
 
 #: ../src/general/OptionsMenu.tscn:1093
 msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
+msgstr "Кнопки ввімкнення читів"
 
 #: ../src/general/OptionsMenu.tscn:1101
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
+msgstr "Використовувати звичайне ім'я користувача"
 
 #: ../src/general/OptionsMenu.tscn:1112
 msgid "CUSTOM_USERNAME"
-msgstr ""
+msgstr "Звичайне ім'я користувача:"
 
 #: ../src/general/OptionsMenu.tscn:1138
 msgid "OPEN_SCREENSHOT_FOLDER"
-msgstr ""
+msgstr "Відкрити папку скріншотів"
 
 #: ../src/general/OptionsMenu.tscn:1146
 msgid "OPEN_LOGS_FOLDER"
-msgstr ""
+msgstr "Відкрити папку журналів"
 
 #: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
-msgstr ""
+msgstr "Режим направення JSON:"
 
 #: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_AUTO"
-msgstr ""
+msgstr "Автоматично"
 
 #: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_ALWAYS"
-msgstr ""
+msgstr "Завжди"
 
 #: ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_NEVER"
-msgstr ""
+msgstr "Ніколи"
 
 #: ../src/general/OptionsMenu.tscn:1207 ../src/saving/NewSaveMenu.tscn:73
 msgid "SAVE"
@@ -1736,27 +1777,29 @@ msgstr "За замовчуванням"
 
 #: ../src/general/OptionsMenu.tscn:1235
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Скинути до замовчування?"
 
 #: ../src/general/OptionsMenu.tscn:1236
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr ""
+msgstr "Ви точно хочете скинути УСІ налаштування до замовчуваних?"
 
 #: ../src/general/OptionsMenu.tscn:1244
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr ""
+msgstr "Скинути вхідні дані до замовчуваних?"
 
 #: ../src/general/OptionsMenu.tscn:1245
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr ""
+msgstr "Ви точно хочете скинути вхідні дані до замовчуваних?"
 
 #: ../src/general/OptionsMenu.tscn:1254
 msgid "CLOSE_OPTIONS"
-msgstr ""
+msgstr "Закрити налаштування?"
 
 #: ../src/general/OptionsMenu.tscn:1274
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
+"Ви маєте незбережені дії які будуть скасовані.\n"
+"Бажаєте продовжити?"
 
 #: ../src/general/OptionsMenu.tscn:1297
 msgid "SAVE_AND_CONTINUE"
@@ -1778,11 +1821,11 @@ msgstr "Помилка"
 
 #: ../src/general/OptionsMenu.tscn:1345
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Помилка: Невдалось зберегти нові налаштування конфігурованих файлів."
 
 #: ../src/general/OptionsMenu.tscn:1353
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr ""
+msgstr "Не знайдено каталог скріншотів"
 
 #: ../src/general/OptionsMenu.tscn:1355
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
@@ -1797,6 +1840,8 @@ msgstr ""
 #: ../src/general/PauseMenu.cs:263
 msgid "QUIT_GAME_WARNING"
 msgstr ""
+"Ви хочете покинути гру?\n"
+"Весь незбережений процес буде втрачено."
 
 #: ../src/general/PauseMenu.tscn:60
 msgid "RESUME"
@@ -1826,7 +1871,7 @@ msgstr "Вихід"
 
 #: ../src/general/PauseMenu.tscn:161
 msgid "CONFIRM_EXIT"
-msgstr ""
+msgstr "Підтвердити вихід"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1860,99 +1905,101 @@ msgstr "{0}%"
 
 #: ../src/gui_common/CreditsScroll.cs:226
 msgid "LEAD_DEVELOPERS"
-msgstr ""
+msgstr "Головні розробники"
 
 #: ../src/gui_common/CreditsScroll.cs:232
 msgid "LEAD_PROGRAMMER"
-msgstr ""
+msgstr "Лідер-програміст"
 
 #: ../src/gui_common/CreditsScroll.cs:233
 msgid "LEAD_PROGRAMMERS"
-msgstr ""
+msgstr "Головні програмісти"
 
 #: ../src/gui_common/CreditsScroll.cs:238
 msgid "LEAD_THEORIST"
-msgstr ""
+msgstr "Лідер-теоретик"
 
 #: ../src/gui_common/CreditsScroll.cs:239
 msgid "LEAD_THEORISTS"
-msgstr ""
+msgstr "Головні теоретики"
 
 #: ../src/gui_common/CreditsScroll.cs:244
 msgid "LEAD_ARTIST"
-msgstr ""
+msgstr "Лідер-художник"
 
 #: ../src/gui_common/CreditsScroll.cs:245
 msgid "LEAD_ARTISTS"
-msgstr ""
+msgstr "Головні художники"
 
 #: ../src/gui_common/CreditsScroll.cs:250
 msgid "SOUND_TEAM_LEAD"
-msgstr ""
+msgstr "Лідер-звукосупроводу"
 
 #: ../src/gui_common/CreditsScroll.cs:251
 msgid "SOUND_TEAM_LEADS"
-msgstr ""
+msgstr "Головні із звукосупроводу"
 
 #: ../src/gui_common/CreditsScroll.cs:256
 msgid "LEAD_OUTREACH_PERSON"
-msgstr ""
+msgstr "Керівник з оутричу"
 
 #: ../src/gui_common/CreditsScroll.cs:257
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr ""
+msgstr "Головні оутридж-працівники"
 
 #: ../src/gui_common/CreditsScroll.cs:262
 msgid "LEAD_GAME_DESIGNER"
-msgstr ""
+msgstr "Лідер з геймдизайну"
 
 #: ../src/gui_common/CreditsScroll.cs:263
 msgid "LEAD_GAME_DESIGNERS"
-msgstr ""
+msgstr "Головні з геймдизайну"
 
 #: ../src/gui_common/CreditsScroll.cs:268
 msgid "LEAD_TESTER"
-msgstr ""
+msgstr "Найголовніший тестувальник"
 
 #: ../src/gui_common/CreditsScroll.cs:269
 msgid "LEAD_TESTERS"
-msgstr ""
+msgstr "Головні тестувальники"
 
 #: ../src/gui_common/CreditsScroll.cs:274
 msgid "LEAD_PROJECT_MANAGER"
-msgstr ""
+msgstr "Лідер з проджектменеджменту"
 
 #: ../src/gui_common/CreditsScroll.cs:275
 msgid "LEAD_PROJECT_MANAGERS"
-msgstr ""
+msgstr "Головні з проджектменеджменту"
 
 #: ../src/gui_common/CreditsScroll.cs:282
 msgid "CURRENT_DEVELOPERS"
-msgstr ""
+msgstr "Поточні розробники"
 
 #: ../src/gui_common/CreditsScroll.cs:298
 msgid "PAST_DEVELOPERS"
-msgstr ""
+msgstr "Колишні розробники"
 
 #: ../src/gui_common/CreditsScroll.cs:314
 msgid "OUTSIDE_CONTRIBUTORS"
-msgstr ""
+msgstr "Сторонні учасники"
 
 #: ../src/gui_common/CreditsScroll.cs:317
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
+"Thrive – проект з відкритим кодом.\n"
+"Ви можете зробити свій внесок, не звертаючись до команди."
 
 #: ../src/gui_common/CreditsScroll.cs:332
 msgid "PATRONS"
-msgstr ""
+msgstr "Патрони"
 
 #: ../src/gui_common/CreditsScroll.cs:338
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "Ви можете підтримати майбутню розробку на Patreon цієї гри (Thrive)."
 
 #: ../src/gui_common/CreditsScroll.cs:355
 msgid "DONATIONS"
-msgstr ""
+msgstr "Донати"
 
 #: ../src/gui_common/CreditsScroll.cs:378
 msgid "TRANSLATORS"
@@ -1960,145 +2007,155 @@ msgstr "Перекладачі"
 
 #: ../src/gui_common/CreditsScroll.cs:392
 msgid "USED_LIBRARIES_LICENSES"
-msgstr ""
+msgstr "Ліцензії та використана література"
 
 #: ../src/gui_common/CreditsScroll.cs:487
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
+"Дякуємо за гру!\n"
+"\n"
+"Якщо сподобалась гра будь-ласка роскажи друзям про нас (та про українське "
+"озвучення та переклади)."
 
 #: ../src/gui_common/CreditsScroll.cs:496
 msgid "PROGRAMMING_TEAM"
-msgstr ""
+msgstr "Команда програмістів"
 
 #: ../src/gui_common/CreditsScroll.cs:497
 msgid "THEORY_TEAM"
-msgstr ""
+msgstr "Команда теоретиків"
 
 #: ../src/gui_common/CreditsScroll.cs:498
 msgid "GRAPHICS_TEAM"
-msgstr ""
+msgstr "Графічна команда"
 
 #: ../src/gui_common/CreditsScroll.cs:499
 msgid "SOUND_TEAM"
-msgstr ""
+msgstr "Звукова команда"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "OUTREACH_TEAM"
-msgstr ""
+msgstr "Команда з оутріджу"
 
 #: ../src/gui_common/CreditsScroll.cs:501
 msgid "GAME_DESIGN_TEAM"
-msgstr ""
+msgstr "Команда геймдизайнерів"
 
 #: ../src/gui_common/CreditsScroll.cs:502
 msgid "TESTING_TEAM"
-msgstr ""
+msgstr "Команда тестувальників"
 
 #: ../src/gui_common/CreditsScroll.cs:503
 msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr ""
+msgstr "Команда з проджект менеджменту"
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
+msgstr "Допоміжні сили/програмінг"
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "VIP_PATRONS"
-msgstr ""
+msgstr "VIP підтримка"
 
 #: ../src/gui_common/CreditsScroll.cs:506
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Підтримка у розробці"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "SUPPORTER_PATRONS"
-msgstr ""
+msgstr "Ті що підтримали"
 
 #: ../src/gui_common/CreditsScroll.cs:508
 msgid "JANUARY"
-msgstr ""
+msgstr "Січень"
 
 #: ../src/gui_common/CreditsScroll.cs:509
-#, fuzzy
 msgid "FEBRUARY"
-msgstr "Лиман"
+msgstr "Лютий"
 
 #: ../src/gui_common/CreditsScroll.cs:510
 msgid "MARCH"
-msgstr ""
+msgstr "Березень"
 
 #: ../src/gui_common/CreditsScroll.cs:511
 msgid "APRIL"
-msgstr ""
+msgstr "Квітень"
 
 #: ../src/gui_common/CreditsScroll.cs:512
 msgid "MAY"
-msgstr ""
+msgstr "Травень"
 
 #: ../src/gui_common/CreditsScroll.cs:513
 msgid "JUNE"
-msgstr ""
+msgstr "Червень"
 
 #: ../src/gui_common/CreditsScroll.cs:514
 msgid "JULY"
-msgstr ""
+msgstr "Липень"
 
 #: ../src/gui_common/CreditsScroll.cs:515
 msgid "AUGUST"
-msgstr ""
+msgstr "Серпень"
 
 #: ../src/gui_common/CreditsScroll.cs:516
 msgid "SEPTEMBER"
-msgstr ""
+msgstr "Вересень"
 
 #: ../src/gui_common/CreditsScroll.cs:517
 msgid "OCTOBER"
-msgstr ""
+msgstr "Жовтень"
 
 #: ../src/gui_common/CreditsScroll.cs:518
-#, fuzzy
 msgid "NOVEMBER"
-msgstr "Рух"
+msgstr "Листопад"
 
 #: ../src/gui_common/CreditsScroll.cs:519
 msgid "DECEMBER"
-msgstr ""
+msgstr "Грудень"
 
 #: ../src/gui_common/CreditsScroll.tscn:45
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Виробництва By Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr ""
+msgstr "Розробницька підтримка від Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "Розробники"
 
 #: ../src/gui_common/QuickLoadHandler.tscn:20
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"Версія збереження,яку ви хочете завантажити не співпадає з версією гри.\n"
+"Будь-ласка завантажте його самостійно в меню."
 
 #: ../src/gui_common/QuickLoadHandler.tscn:22
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Збереження має іншу версію"
 
 #: ../src/gui_common/TweakedColourPicker.cs:325
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Виберіть колір у меню гри"
 
 #: ../src/gui_common/TweakedColourPicker.cs:326
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Додати попередній колір, як поточний"
 
 #: ../src/gui_common/TweakedColourPicker.cs:327
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
+"Перемкнути режим HSV(відтінок, насичення...).\n"
+"Не можна увімкнути в сирому режимі."
 
 #: ../src/gui_common/TweakedColourPicker.cs:328
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
+"Перемкніть сирий режим, або наваки.\n"
+"у сирому режимі ви можете зробити R, G, B\n"
+"кольорового значення виходячі за межі 1.0.\n"
+"Неможливо в режимі HSV."
 
 #: ../src/gui_common/TweakedColourPicker.cs:332
 msgid "COLOUR_PICKER_H_TOOLTIP"
@@ -2114,41 +2171,44 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:338
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+msgstr "Червоний канал кольору"
 
 #: ../src/gui_common/TweakedColourPicker.cs:339
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgstr "Зелений канал кольору"
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "Синый канал кольору"
 
 #: ../src/gui_common/TweakedColourPicker.cs:343
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "Альфа канал кольору"
 
 #: ../src/gui_common/TweakedColourPicker.cs:492
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"Колір:{0}\n"
+"ЛКП: Використати його зараз\n"
+"ПКМ: Видалити його зараз"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr ""
+msgstr "Сирий"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
 msgid "NO_DATA_TO_SHOW"
-msgstr ""
+msgstr "Немає даних для показу"
 
 #: ../src/gui_common/charts/line/LineChart.cs:949
 #: ../src/gui_common/charts/line/LineChart.cs:978
 msgid "MAX_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Не дозволено показувати більше ніж {0} данниз!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:958
 #: ../src/gui_common/charts/line/LineChart.cs:986
