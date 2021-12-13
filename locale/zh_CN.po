@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
-"PO-Revision-Date: 2021-11-10 19:36+0000\n"
+"PO-Revision-Date: 2021-12-11 19:19+0000\n"
 "Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -917,22 +917,20 @@ msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "从这个星球上灭绝了"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:75
-#, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "化合物云"
+msgstr "{0}消耗"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:39
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "化合物云"
+msgstr "{0}消耗"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:35
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "{0}的均匀分布的环境食物来源"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "捕食{0}"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1534,9 +1532,8 @@ msgid "MAX_FPS"
 msgstr "最高FPS："
 
 #: ../src/general/OptionsMenu.tscn:316
-#, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
-msgstr "最高FPS："
+msgstr "不受限"
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
@@ -3081,11 +3078,8 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo的预测"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
-#, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr ""
-"删除关于这个项目的本地数据。在你输错了ID，或者想给不同的项目上传一个新的版"
-"本时很有用。"
+msgstr "查看预测背后的详细信息"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
 msgid "TOTAL_POPULATION_COLON"
@@ -3200,9 +3194,11 @@ msgid "PATCH_MAP"
 msgstr "地区图"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4043
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "{0}种群数量变化了{1}，原因：{2}"
+msgstr ""
+"这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的人口。Auto-evo使用一个简化的现实模型，根"
+"据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比"
+"的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
@@ -3290,19 +3286,19 @@ msgstr "物种名称必须符合双名法命名系统（属和表名）!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2285
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
+msgstr "{1}在{0}的能量"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
-msgstr ""
+msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "能量来源："
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr ""
+msgstr "{0}能量：{1}（适应性：{2}）总可用能量：{3}（总适应性：{4}）"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
@@ -3846,7 +3842,7 @@ msgstr "目标文件名{0}已存在。确定要覆盖吗？"
 
 #: ../src/saving/NewSaveMenu.cs:167
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "存档名称不能包含特殊字符(<>:\"/|?*)"
+msgstr "存档名称不应包含特殊字符(<>:\"/|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
@@ -3906,7 +3902,7 @@ msgstr "删去的存档无法复原，你确定要永久性删除{0}吗？"
 
 #: ../src/saving/SaveList.tscn:53
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "未找到存档"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
@@ -4224,14 +4220,13 @@ msgstr "明白了"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
-"这个面板显示对你未来种群数量的预测。\n"
+"这个面板显示对你未来种群数量的预测。auto-evo的人口模拟提供了这些数字。\n"
 "\n"
-"auto-evo的人口模拟提供了这些数字。\n"
+"它们不会考虑你的个人表现。所以在你在当前的地区中进入编辑器时的实际表现会更好。\n"
 "\n"
-"它们不会考虑你的个人表现。所以在你在当前的地区中进入编辑器时的实际表现会更"
-"好。\n"
+"但即使你不直接参与你也应该努力保持你的种群数量。\n"
 "\n"
-"但即使你不直接参与你也应该努力保持你的种群数量。"
+"你可以通过按面板上的问号按钮查看预测背后的更多详细信息。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 msgid "EDITOR_TUTORIAL_STAY_SMALL"

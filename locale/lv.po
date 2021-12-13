@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
-"PO-Revision-Date: 2021-12-11 08:35+0000\n"
+"PO-Revision-Date: 2021-12-13 10:36+0000\n"
 "Last-Translator: Gr0vey <monkoftime1188@gmail.com>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/lv/>\n"
@@ -279,7 +279,7 @@ msgstr "ŠŪPOJOŠĀS LIETAS!"
 
 #: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Metāls, metāls."
+msgstr "Kausē kausējumu."
 
 #: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_12"
@@ -1084,7 +1084,6 @@ msgid "SPACE"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSLASH"
 msgstr "Atpakaļ"
 
@@ -1177,9 +1176,8 @@ msgid "TREBLEUP"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
-#, fuzzy
 msgid "TREBLEDOWN"
-msgstr "Rullīte uz leju"
+msgstr "Treble Down (taustiņš)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
@@ -1809,9 +1807,8 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1353
-#, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Atvērt ekrānuzņēmumu mapi"
+msgstr "Nav atrasta ekrānuzņēmuma direktorija"
 
 #: ../src/general/OptionsMenu.tscn:1355
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
@@ -1854,9 +1851,8 @@ msgid "EXIT"
 msgstr "Iziet"
 
 #: ../src/general/PauseMenu.tscn:161
-#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "APSTIPRINĀT"
+msgstr "Apstiprināt Izeju"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1981,14 +1977,12 @@ msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:355
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Opcijas"
+msgstr "Ziedojumi"
 
 #: ../src/gui_common/CreditsScroll.cs:378
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Palīdziet tulkot spēli"
+msgstr "Tulkotāji"
 
 #: ../src/gui_common/CreditsScroll.cs:392
 msgid "USED_LIBRARIES_LICENSES"
@@ -2007,14 +2001,12 @@ msgid "THEORY_TEAM"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:498
-#, fuzzy
 msgid "GRAPHICS_TEAM"
-msgstr "Grafika"
+msgstr "Grafikas Komanda"
 
 #: ../src/gui_common/CreditsScroll.cs:499
-#, fuzzy
 msgid "SOUND_TEAM"
-msgstr "Audio"
+msgstr "Skaņas Komanda"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "OUTREACH_TEAM"
@@ -2053,9 +2045,8 @@ msgid "JANUARY"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:509
-#, fuzzy
 msgid "FEBRUARY"
-msgstr "Grīva"
+msgstr "Februāris"
 
 #: ../src/gui_common/CreditsScroll.cs:510
 msgid "MARCH"
@@ -2090,9 +2081,8 @@ msgid "OCTOBER"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:518
-#, fuzzy
 msgid "NOVEMBER"
-msgstr "Kustība"
+msgstr "Novembris"
 
 #: ../src/gui_common/CreditsScroll.cs:519
 msgid "DECEMBER"
@@ -2517,9 +2507,8 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1526
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
-#, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr "Novietot organoīdu"
+msgstr "Nav procesu"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1624
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
@@ -2661,9 +2650,8 @@ msgid "REPRODUCED"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
-#, fuzzy
 msgid "INFINITE_COMPOUNDS"
-msgstr "Savienojumi"
+msgstr "Bezgalīgi daudz savienojumu"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
@@ -2680,9 +2668,8 @@ msgstr ""
 "Ātrums"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
-#, fuzzy
 msgid "PLAYER_DUPLICATE"
-msgstr "Spēlētāja šūna"
+msgstr "Dublēt Spēlētāju"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
 msgid "SPAWN_ENEMY"
@@ -2788,9 +2775,8 @@ msgid "PAUSE_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1657
-#, fuzzy
 msgid "RESUME_TOOLTIP"
-msgstr "Turpināt"
+msgstr "Atsākt spēli"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1670
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
@@ -2898,7 +2884,6 @@ msgid "MEMBRANE"
 msgstr "Membrāna"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:839
-#, fuzzy
 msgid "BEHAVIOUR"
 msgstr "Uzvedība"
 
@@ -3012,37 +2997,32 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2007
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3994
-#, fuzzy
 msgid "AUTO-EVO_PREDICTION"
-msgstr "ATP ražošana"
+msgstr "Automātiska-Evo Pareģošana"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
-#, fuzzy
 msgid "TOTAL_POPULATION_COLON"
-msgstr "POPULĀCIJA:"
+msgstr "Kopējā Populācija:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2109
-#, fuzzy
 msgid "BEST_PATCH_COLON"
-msgstr "Suga:"
+msgstr "Labākais Plankums:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2134
-#, fuzzy
 msgid "WORST_PATCH_COLON"
-msgstr "Suga:"
+msgstr "Sliktākais Plankums:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Sugas nosaukums..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2334
-#, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
-msgstr "APSTIPRINĀT"
+msgstr "ATCELT DARBĪBU"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2348
 msgid "CONFIRM_CAPITAL"
@@ -3205,9 +3185,8 @@ msgid "WITH_POPULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1871
-#, fuzzy
 msgid "FAILED"
-msgstr "Saglabāšana neizdevās"
+msgstr "Neizdevās"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1877
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1889
@@ -3216,9 +3195,8 @@ msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1883
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1895
-#, fuzzy
 msgid "N_A"
-msgstr "N/A MP"
+msgstr "N/A"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2159
 msgid "INVALID_SPECIES_NAME_POPUP"
@@ -3335,9 +3313,8 @@ msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
 #: ../src/modding/ModManager.cs:926
-#, fuzzy
 msgid "ERROR_CREATING_FOLDER"
-msgstr "Atvērt ekrānuzņēmumu mapi"
+msgstr "Kļūme veidojot mapi modifikācijai"
 
 #: ../src/modding/ModManager.cs:935
 msgid "ERROR_CREATING_INFO_FILE"
@@ -3352,19 +3329,16 @@ msgid "REFRESH"
 msgstr "Atsvaidzināt"
 
 #: ../src/modding/ModManager.tscn:152
-#, fuzzy
 msgid "OPEN_FOLDER"
-msgstr "Atvērt logu mapi"
+msgstr "Atvērt mapi"
 
 #: ../src/modding/ModManager.tscn:170
-#, fuzzy
 msgid "RIGHT_ARROW"
-msgstr "Peles labā poga"
+msgstr "→"
 
 #: ../src/modding/ModManager.tscn:183
-#, fuzzy
 msgid "LEFT_ARROW"
-msgstr "Peles kreisā poga"
+msgstr "←"
 
 #: ../src/modding/ModManager.tscn:195
 msgid "ENABLED_MODS"
@@ -3375,9 +3349,8 @@ msgid "DISABLE_ALL"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:250
-#, fuzzy
 msgid "SELECTED_MOD"
-msgstr "Atlasīts:"
+msgstr "Atlasītā Modifikācija:"
 
 #: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
 #: ../src/modding/NewModGUI.tscn:142
@@ -3386,24 +3359,21 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
 #: ../src/modding/NewModGUI.tscn:165
-#, fuzzy
 msgid "MOD_VERSION"
-msgstr "Versija:"
+msgstr "Modifikācijas Versija:"
 
 #: ../src/modding/ModManager.tscn:371
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:415
-#, fuzzy
 msgid "MINIMUM_VERSION"
-msgstr "Versija:"
+msgstr "Minimums:"
 
 #: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
 #: ../src/modding/NewModGUI.tscn:188
-#, fuzzy
 msgid "MOD_DESCRIPTION"
-msgstr "Apraksts:"
+msgstr "Modifikācijas Apraksts:"
 
 #: ../src/modding/ModManager.tscn:474
 msgid "MORE_INFO"
@@ -3448,27 +3418,24 @@ msgstr ""
 "jebkādas modifikācijas."
 
 #: ../src/modding/ModManager.tscn:581
-#, fuzzy
 msgid "DISCARD_CHANGES"
-msgstr "Atlaist un turpināt"
+msgstr "Atmest Izmaiņas"
 
 #: ../src/modding/ModManager.tscn:588
 msgid "FULL_MOD_INFO"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
-#, fuzzy
 msgid "MOD_NAME"
-msgstr "Nosaukums:"
+msgstr "Modifikācijas Nosaukums:"
 
 #: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
-#, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
-msgstr "Apraksts:"
+msgstr "Modifikācijas Garais Apraksts:"
 
 #: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
@@ -3563,14 +3530,12 @@ msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:435
-#, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
-msgstr "Meklēt..."
+msgstr "Veido..."
 
 #: ../src/modding/ModUploader.cs:490
-#, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
-msgstr "..."
+msgstr "Augšuplādē..."
 
 #: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
@@ -3605,9 +3570,8 @@ msgid "UNKNOWN_WORKSHOP_ID"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:121
-#, fuzzy
 msgid "CREATE_NEW"
-msgstr "Izveidot jaunu saglabāšanas failu"
+msgstr "Izveidot Jaunu"
 
 #: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
@@ -3630,9 +3594,8 @@ msgid "WORKSHOP_ITEM_TITLE"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:186
-#, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "Apraksts:"
+msgstr "Lietas Apraksts:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
@@ -3679,9 +3642,8 @@ msgid "SELECT_PREVIEW_IMAGE"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:336
-#, fuzzy
 msgid "UPLOAD_SUCCEEDED"
-msgstr "Saglabāšana izdevās"
+msgstr "Augšuplāde Veiksmīga"
 
 #: ../src/modding/NewModGUI.cs:169
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
@@ -3712,9 +3674,8 @@ msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:35
-#, fuzzy
 msgid "CREATE_NEW_MOD"
-msgstr "Izveidot jaunu mikrobu"
+msgstr "Izveidot Jaunu Modifikāciju"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
@@ -3818,9 +3779,8 @@ msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
 #: ../src/saving/SaveHelper.cs:413
-#, fuzzy
 msgid "PLAYER_EXTINCT"
-msgstr "Spēlētāja šūna"
+msgstr "Spēlētājs ir izmiris"
 
 #: ../src/saving/SaveHelper.cs:422
 msgid "SAVING_SUCCEEDED"
@@ -3904,9 +3864,8 @@ msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:122
-#, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Saglabāšana neizdevās"
+msgstr "Saglabāšānas faila atjaunināšana neizdevās"
 
 #: ../src/saving/SaveList.tscn:123
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
@@ -3991,9 +3950,8 @@ msgid "DELETE_OLD_SAVES"
 msgstr "Izdzēst vecos saglabāšanas failus?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
-#, fuzzy
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Atvērt saglabāšanas failu direktoriju"
+msgstr "Nav atrasta saglabāšanas faila direktorija"
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
@@ -4040,9 +3998,8 @@ msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
 #: ../src/steam/SteamClient.cs:490
-#, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr "Spēlētāja šūna"
+msgstr "Steam ziņo par dublikāta vārda kļūmi"
 
 #: ../src/steam/SteamClient.cs:492
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
