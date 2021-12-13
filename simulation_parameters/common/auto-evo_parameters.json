@@ -12,5 +12,9 @@
     "BiodiversityNearbyPatchIsFreePopulation": true,
     "NewBiodiversityIncreasingSpeciesPopulation": 100,
     "BiodiversitySplitIsMutated": true,
-    "StrictNicheCompetition": false
+    "StrictNicheCompetition": true,
+    "MaximumSpeciesInPatch": 12,
+    "ProtectNewCellsFromSpeciesCap": true,
+    "ProtectMigrationsFromSpeciesCap": false,
+    "RefundMigrationsInExtinctions": false
 }
