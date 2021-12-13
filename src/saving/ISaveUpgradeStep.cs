@@ -183,8 +183,8 @@
         protected virtual void DetectAndUpdateKeysThatAreJSON(JObject jObject)
         {
             foreach (var entry in jObject.Properties().Where(e =>
-                e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
-                e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
+                         e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
+                         e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
             {
                 UpdateJSONPropertyKey(entry);
             }

@@ -706,7 +706,7 @@ public static class Constants
 
 #pragma warning disable CA1823 // unused fields
 
-    // ReSharper disable UnreachableCode
+    // ReSharper disable UnreachableCode HeuristicUnreachableCode
     private const uint MinimumMovePopIsHigherThanMinimumViable =
         (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
             AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
@@ -716,7 +716,7 @@ public static class Constants
     private const uint MinimumRunnableProcessFractionIsAboveEpsilon =
         (MINIMUM_RUNNABLE_PROCESS_FRACTION > MathUtils.EPSILON) ? 0 : -42;
 
-    // ReSharper restore UnreachableCode
+    // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
 
     /// <summary>

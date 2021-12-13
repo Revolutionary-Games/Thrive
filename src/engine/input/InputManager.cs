@@ -56,8 +56,8 @@ public class InputManager : Node
         // Find all attributes where the associated method's class matches the instances class
         // TODO: check if there is some alternative faster approach to registering instances
         foreach (var inputAttribute in staticInstance
-            .attributes
-            .Where(p => p.Key.Method.DeclaringType?.IsInstanceOfType(instance) == true))
+                     .attributes
+                     .Where(p => p.Key.Method.DeclaringType?.IsInstanceOfType(instance) == true))
         {
             inputAttribute.Value.Add(reference);
             registered = true;

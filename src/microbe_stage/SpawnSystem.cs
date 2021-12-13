@@ -323,7 +323,7 @@ public class SpawnSystem
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
-                            ref spawnsLeftThisFrame, ref spawned))
+                                ref spawnsLeftThisFrame, ref spawned))
                         {
                             estimateEntityCountInSpawnRadius += spawned;
 
