@@ -304,16 +304,19 @@ def devbuild_package(target, target_name, target_folder, target_file)
 
   pck = File.join(target_folder, 'Thrive.pck')
 
-  # Start by extracting the big files to be dehydrated
+  # Start by extracting the big files to be dehydrated, but ignore
+  # a list of well compressing / often changing files
   if runSystemSafe(pck_tool, '--action', 'extract', pck,
-                   '-o', extract_folder, '--min-size-filter',
-                   DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s) != 0
+                   '-o', extract_folder, '-q', '--min-size-filter',
+                   DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s,
+                   '--exclude-regex-filter', DEHYDRATE_IGNORE_FILE_TYPES) != 0
     onError 'Failed to run extract. Do you have the right godotpcktool version?'
   end
 
   # And remove them from the .pck
   if runSystemSafe(pck_tool, '--action', 'repack', File.join(target_folder, 'Thrive.pck'),
-                   '--max-size-filter', (DEHYDRATE_FILE_SIZE_THRESSHOLD - 1).to_s) != 0
+                   '--max-size-filter', (DEHYDRATE_FILE_SIZE_THRESSHOLD - 1).to_s,
+                   '--include-override-filter', DEHYDRATE_IGNORE_FILE_TYPES, '-q') != 0
     onError 'Failed to run repack'
   end
 

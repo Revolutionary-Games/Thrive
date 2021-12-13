@@ -24,7 +24,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
-    private AudioStreamPlayer3D engulfAudio;
+    private HybridAudioPlayer engulfAudio;
     private AudioStreamPlayer3D bindingAudio;
     private AudioStreamPlayer3D movementAudio;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
@@ -181,11 +181,24 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
-        engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
+
+        engulfAudio = new HybridAudioPlayer(!IsPlayerMicrobe)
+        {
+            Stream = GD.Load<AudioStream>("res://assets/sounds/soundeffects/engulfment.ogg"),
+            Bus = "SFX",
+        };
+
+        AddChild(engulfAudio);
+
+        // You may notice that there are two separate ways that an audio is played in this class:
+        // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",
+        // "PlayNonPositionalSoundEffect". The former is approach best used to play looping sounds with more control
+        // to the audio player while the latter is more convenient for dynamic and various short one-time sound effects
+        // in expense of lesser audio player control.
 
         if (IsPlayerMicrobe)
         {

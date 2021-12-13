@@ -1,12 +1,15 @@
-﻿public class HeterotrophicFoodSource : FoodSource
+﻿using System;
+using AutoEvo;
+
+public class HeterotrophicFoodSource : FoodSource
 {
     private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
-    private MicrobeSpecies prey;
-    private Patch patch;
-    private float preyHexSize;
-    private float preySpeed;
-    private float totalEnergy;
+    private readonly MicrobeSpecies prey;
+    private readonly Patch patch;
+    private readonly float preyHexSize;
+    private readonly float preySpeed;
+    private readonly float totalEnergy;
 
     public HeterotrophicFoodSource(Patch patch, MicrobeSpecies prey)
     {
@@ -18,7 +21,7 @@
         totalEnergy = population * prey.Organelles.Count * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
     }
 
-    public override float FitnessScore(Species species)
+    public override float FitnessScore(Species species, SimulationCache simulationCache)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
@@ -32,9 +35,7 @@
 
         var microbeSpeciesHexSize = microbeSpecies.BaseHexSize;
         var predatorSpeed = microbeSpecies.BaseSpeed;
-        predatorSpeed += ProcessSystem
-            .ComputeEnergyBalance(microbeSpecies.Organelles.Organelles, patch.Biome,
-                microbeSpecies.MembraneType).FinalBalance;
+        predatorSpeed += simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).FinalBalance;
 
         // It's great if you can engulf this prey, but only if you can catch it
         var engulfScore = 0.0f;
@@ -66,7 +67,7 @@
         }
 
         // Pili are much more useful if the microbe can close to melee
-        pilusScore *= predatorSpeed;
+        pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
         // predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > microbeSpeciesHexSize)
@@ -76,6 +77,11 @@
 
         // Intentionally don't penalize for osmoregulation cost to encourage larger monsters
         return behaviourScore * (pilusScore + engulfScore + microbeSpeciesHexSize + oxytoxyScore);
+    }
+
+    public override IFormattable GetDescription()
+    {
+        return new LocalizedString("PREDATION_FOOD_SOURCE", prey.FormattedName);
     }
 
     public override float TotalEnergyAvailable()

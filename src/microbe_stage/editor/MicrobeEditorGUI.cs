@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -295,19 +296,25 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
-    private readonly Compound nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-    private readonly Compound oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-    private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    [Export]
+    public NodePath AutoEvoPredictionExplanationPopupPath;
 
-    private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
-    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    [Export]
+    public NodePath AutoEvoPredictionExplanationLabelPath;
+
+    private Compound atp;
+    private Compound ammonia;
+    private Compound carbondioxide;
+    private Compound glucose;
+    private Compound hydrogensulfide;
+    private Compound iron;
+    private Compound nitrogen;
+    private Compound oxygen;
+    private Compound phosphates;
+    private Compound sunlight;
+
+    private OrganelleDefinition protoplasm;
+    private OrganelleDefinition nucleus;
 
     private EnergyBalanceInfo energyBalanceInfo;
 
@@ -319,6 +326,21 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     [JsonProperty]
     private float initialCellHp;
+
+    [JsonProperty]
+    private bool? autoEvoRunSuccessful;
+
+    [JsonProperty]
+    private string bestPatchName;
+
+    [JsonProperty]
+    private long bestPatchPopulation;
+
+    [JsonProperty]
+    private string worstPatchName;
+
+    [JsonProperty]
+    private long worstPatchPopulation;
 
     private MicrobeEditor editor;
 
@@ -456,6 +478,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private CompoundBalanceDisplay compoundBalance;
 
+    private CustomDialog autoEvoPredictionExplanationPopup;
+    private Label autoEvoPredictionExplanationLabel;
+
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
 
@@ -465,6 +490,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     private PendingAutoEvoPrediction waitingForPrediction;
+    private LocalizedStringBuilder predictionDetailsText;
 
     public enum EditorTab
     {
@@ -603,6 +629,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
+        autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
+        autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
+
         menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
@@ -610,6 +639,20 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        atp = SimulationParameters.Instance.GetCompound("atp");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+        nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         SetupMicrobePartSelections();
         UpdateMicrobePartSelections();
@@ -1205,6 +1248,15 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public void OnDeletePressed()
     {
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateAutoEvoPredictionTranslations();
+            UpdateAutoEvoPredictionDetailsText();
+        }
     }
 
     internal void SetUndoButtonStatus(bool enabled)
@@ -1812,12 +1864,45 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
+    private void UpdateAutoEvoPredictionTranslations()
+    {
+        if (autoEvoRunSuccessful.HasValue && autoEvoRunSuccessful.Value == false)
+        {
+            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+        }
+
+        if (!string.IsNullOrEmpty(bestPatchName))
+        {
+            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(bestPatchName),
+                bestPatchPopulation);
+        }
+        else
+        {
+            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+
+        if (!string.IsNullOrEmpty(worstPatchName))
+        {
+            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(worstPatchName),
+                worstPatchPopulation);
+        }
+        else
+        {
+            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+    }
+
     private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
     {
         if (!run.AutoEvoRun.WasSuccessful)
         {
             GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
-            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+            autoEvoRunSuccessful = false;
+            UpdateAutoEvoPredictionTranslations();
             return;
         }
 
@@ -1839,6 +1924,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             totalPopulationIndicator.Texture = null;
         }
 
+        autoEvoRunSuccessful = true;
         totalPopulationLabel.Text = newPopulation.ToString(CultureInfo.CurrentCulture);
 
         var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
@@ -1847,26 +1933,34 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (sorted.Count > 0)
         {
             var patch = sorted[0];
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
-                patch.Value);
+            bestPatchName = patch.Key.Name;
+            bestPatchPopulation = patch.Value;
         }
         else
         {
-            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+            bestPatchName = null;
         }
 
         // And worst patch
         if (sorted.Count > 1)
         {
             var patch = sorted[sorted.Count - 1];
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
-                patch.Value);
+            worstPatchName = patch.Key.Name;
+            worstPatchPopulation = patch.Value;
         }
         else
         {
-            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+            worstPatchName = null;
+        }
+
+        CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
+            run.PlayerSpeciesOriginal.FormattedName);
+
+        UpdateAutoEvoPredictionTranslations();
+
+        if (autoEvoPredictionPanel.Visible)
+        {
+            UpdateAutoEvoPredictionDetailsText();
         }
     }
 
@@ -2151,6 +2245,76 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
         }
+    }
+
+    private void OpenAutoEvoPredictionDetails()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        UpdateAutoEvoPredictionDetailsText();
+
+        autoEvoPredictionExplanationPopup.PopupCenteredShrink();
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorAutoEvoPredictionOpened, EventArgs.Empty, this);
+    }
+
+    private void CloseAutoEvoPrediction()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void CreateAutoEvoPredictionDetailsText(
+        Dictionary<Patch, RunResults.SpeciesPatchEnergyResults> energyResults, string playerSpeciesName)
+    {
+        predictionDetailsText = new LocalizedStringBuilder(300);
+
+        double Round(float value)
+        {
+            if (value > 0.0005f)
+                return Math.Round(value, 3);
+
+            // Small values can get really small (and still be different from getting 0 energy due to fitness) so
+            // this is here for that reason
+            return Math.Round(value, 8);
+        }
+
+        // This loop shows all the patches the player species is in. Could perhaps just show the current one
+        foreach (var energyResult in energyResults)
+        {
+            predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
+                new LocalizedString(energyResult.Key.Name), playerSpeciesName));
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
+                Round(energyResult.Value.TotalEnergyGathered), Round(energyResult.Value.IndividualCost),
+                energyResult.Value.UnadjustedPopulation));
+
+            predictionDetailsText.Append('\n');
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
+            predictionDetailsText.Append('\n');
+
+            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy)
+            {
+                var data = nicheInfo.Value;
+                predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
+                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness),
+                    Round(data.TotalAvailableEnergy),
+                    Round(data.TotalFitness)));
+                predictionDetailsText.Append('\n');
+            }
+
+            predictionDetailsText.Append('\n');
+        }
+    }
+
+    private void UpdateAutoEvoPredictionDetailsText()
+    {
+        autoEvoPredictionExplanationLabel.Text = predictionDetailsText != null ?
+            predictionDetailsText.ToString() :
+            TranslationServer.Translate("NO_DATA_TO_SHOW");
     }
 
     /// <summary>

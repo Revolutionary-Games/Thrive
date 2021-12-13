@@ -17,11 +17,11 @@ public class GodotFileStream : Stream
     public override bool CanRead => true;
     public override bool CanSeek => true;
     public override bool CanWrite => true;
-    public override long Length => file.GetLen();
+    public override long Length => checked((long)file.GetLen());
 
     public override long Position
     {
-        get => file.GetPosition();
+        get => checked((long)file.GetPosition());
         set => file.Seek(value);
     }
 
@@ -47,7 +47,7 @@ public class GodotFileStream : Stream
                 file.Seek(offset);
                 break;
             case SeekOrigin.Current:
-                file.Seek(file.GetPosition() + offset);
+                file.Seek(checked((long)file.GetPosition()) + offset);
                 break;
             case SeekOrigin.End:
                 file.SeekEnd(offset);
@@ -56,7 +56,7 @@ public class GodotFileStream : Stream
                 throw new ArgumentOutOfRangeException(nameof(origin), origin, null);
         }
 
-        return file.GetPosition();
+        return checked((long)file.GetPosition());
     }
 
     public override void SetLength(long value)

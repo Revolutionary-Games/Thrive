@@ -9,17 +9,20 @@
     /// </summary>
     public class FindBestMutation : VariantTryingStep
     {
+        private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly float splitThresholdFraction;
         private readonly int splitThresholdAmount;
 
-        private readonly Mutations mutations = new Mutations();
+        private readonly Mutations mutations = new();
 
-        public FindBestMutation(PatchMap map, Species species, int mutationsToTry, bool allowNoMutation,
+        public FindBestMutation(AutoEvoConfiguration configuration, PatchMap map, Species species,
+            int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
             : base(mutationsToTry, allowNoMutation, splitThresholdAmount > 0)
         {
+            this.configuration = configuration;
             this.map = map;
             this.species = species;
             this.splitThresholdFraction = splitThresholdFraction;
@@ -41,7 +44,9 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+
+            config.SetPatchesToRunBySpeciesPresence(species);
 
             PopulationSimulation.Simulate(config);
 
@@ -53,8 +58,9 @@
             var mutated = (MicrobeSpecies)species.Clone();
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated);
 
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
+            config.SetPatchesToRunBySpeciesPresence(species);
             config.ExcludedSpecies.Add(species);
             config.ExtraSpecies.Add(mutated);
 
@@ -111,7 +117,7 @@
             (Patch Patch, long Difference) closestMatch = (null, 0);
 
             foreach (var patch in best.PatchScores.Select(p => p.Key).Concat(data.PatchScores.Select(p => p.Key))
-                .Distinct())
+                         .Distinct())
             {
                 if (!best.PatchScores.TryGetValue(patch, out long bestScore))
                     bestScore = 0;

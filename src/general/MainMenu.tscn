@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://src/gui_common/dialogs/LicensesDisplay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -70,6 +71,7 @@ CreditsContainerPath = NodePath("CreditsView")
 CreditsScrollPath = NodePath("CreditsView/CreditsScroll")
 LicensesDisplayPath = NodePath("LicensesDisplay")
 GLES2PopupPath = NodePath("GLES2Popup")
+ModLoadFailuresPath = NodePath("ModFailureDialog")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
 
@@ -158,9 +160,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
-"MenuItem",
-]]
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
 margin_right = 1280.0
 margin_bottom = 455.0
 custom_constants/separation = 10
@@ -256,9 +256,7 @@ mouse_filter = 1
 size_flags_horizontal = 4
 text = "QUIT"
 
-[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
-"MenuItem",
-]]
+[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
 visible = false
 margin_right = 1280.0
 margin_bottom = 455.0
@@ -338,9 +336,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "BACK"
 
-[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
-"MenuItem",
-]]
+[node name="Extras" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=["MenuItem"]]
 visible = false
 margin_right = 1280.0
 margin_bottom = 455.0
@@ -494,9 +490,14 @@ margin_right = 680.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 680, 0 )
 popup_exclusive = false
-DialogText = "GLES2_MODE_WARNING_TEXT"
-HideCancelButton = true
 WindowTitle = "GLES2_MODE_WARNING"
+HideCancelButton = true
+DialogText = "GLES2_MODE_WARNING_TEXT"
+
+[node name="ModFailureDialog" parent="." instance=ExtResource( 15 )]
+rect_min_size = Vector2( 400, 350 )
+WindowTitle = "MOD_LOAD_ERRORS"
+ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
