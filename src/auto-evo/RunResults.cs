@@ -578,7 +578,8 @@
                 builder.Append('\n');
             }
 
-            void AddSpeciesResultString(SpeciesResult speciesResult)
+            foreach (var speciesResult in 
+                results.Values.OrderByDescending(s => s.Species.PlayerSpecies).ThenBy(s => s.Species.FormattedName))
             {
                 builder.Append(
                     playerReadable ? speciesResult.Species.FormattedName : speciesResult.Species.FormattedIdentifier);
@@ -796,11 +797,6 @@
 
                 if (playerReadable)
                     builder.Append('\n');
-            }
-
-            foreach (var entry in results.OrderByDescending(s => s.Key.PlayerSpecies).ThenBy(s => s.Key.FormattedName))
-            {
-                AddSpeciesResultString(entry.Value);
             }
 
             return builder;
