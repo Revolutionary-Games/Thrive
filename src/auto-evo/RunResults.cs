@@ -578,29 +578,26 @@
                 builder.Append('\n');
             }
 
-            foreach (var speciesResult in 
+            foreach (var entry in
                 results.Values.OrderByDescending(s => s.Species.PlayerSpecies).ThenBy(s => s.Species.FormattedName))
             {
-                builder.Append(
-                    playerReadable ? speciesResult.Species.FormattedName : speciesResult.Species.FormattedIdentifier);
+                builder.Append(playerReadable ? entry.Species.FormattedName : entry.Species.FormattedIdentifier);
                 builder.Append(":\n");
 
-                if (speciesResult.SplitFrom != null)
+                if (entry.SplitFrom != null)
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_FROM",
-                        playerReadable ?
-                            speciesResult.SplitFrom.FormattedName :
-                            speciesResult.SplitFrom.FormattedIdentifier));
+                        playerReadable ? entry.SplitFrom.FormattedName : entry.SplitFrom.FormattedIdentifier));
 
                     builder.Append('\n');
                 }
 
-                if (speciesResult.NewlyCreated != null)
+                if (entry.NewlyCreated != null)
                 {
                     builder.Append(' ');
 
-                    switch (speciesResult.NewlyCreated.Value)
+                    switch (entry.NewlyCreated.Value)
                     {
                         case NewSpeciesType.FillNiche:
                             builder.Append(new LocalizedString("RUN_RESULT_NICHE_FILL"));
@@ -609,27 +606,25 @@
                             builder.Append(new LocalizedString("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
                             break;
                         default:
-                            GD.PrintErr("Unhandled newly created species type: ", speciesResult.NewlyCreated.Value);
-                            builder.Append(speciesResult.NewlyCreated.Value);
+                            GD.PrintErr("Unhandled newly created species type: ", entry.NewlyCreated.Value);
+                            builder.Append(entry.NewlyCreated.Value);
                             break;
                     }
 
                     builder.Append('\n');
                 }
 
-                if (speciesResult.SplitOff != null)
+                if (entry.SplitOff != null)
                 {
-                    if (speciesResult.SplitOffPatches == null)
+                    if (entry.SplitOffPatches == null)
                         throw new InvalidOperationException("List of split off patches is null");
 
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPLIT_OFF_TO",
-                        playerReadable ?
-                            speciesResult.SplitOff.FormattedName :
-                            speciesResult.SplitOff.FormattedIdentifier));
+                        playerReadable ? entry.SplitOff.FormattedName : entry.SplitOff.FormattedIdentifier));
                     builder.Append('\n');
 
-                    foreach (var patch in speciesResult.SplitOffPatches)
+                    foreach (var patch in entry.SplitOffPatches)
                     {
                         builder.Append("   ");
 
@@ -638,7 +633,7 @@
                     }
                 }
 
-                if (speciesResult.MutatedProperties != null)
+                if (entry.MutatedProperties != null)
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_HAS_A_MUTATION"));
@@ -648,19 +643,19 @@
                         builder.Append(", ");
                         builder.Append(new LocalizedString("RUN_RESULT_GENE_CODE"));
                         builder.Append(' ');
-                        builder.Append(speciesResult.MutatedProperties.StringCode);
+                        builder.Append(entry.MutatedProperties.StringCode);
                     }
 
                     builder.Append('\n');
                 }
 
-                if (speciesResult.SpreadToPatches.Count > 0)
+                if (entry.SpreadToPatches.Count > 0)
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("RUN_RESULT_SPREAD_TO_PATCHES"));
                     builder.Append('\n');
 
-                    foreach (var spreadEntry in speciesResult.SpreadToPatches)
+                    foreach (var spreadEntry in entry.SpreadToPatches)
                     {
                         if (playerReadable)
                         {
@@ -687,19 +682,19 @@
                 builder.Append(new LocalizedString("RUN_RESULT_POP_IN_PATCHES"));
                 builder.Append('\n');
 
-                foreach (var patchPopulation in speciesResult.NewPopulationInPatches)
+                foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {
                     long adjustedPopulation = patchPopulation.Value;
 
                     if (resolveMigrations)
                     {
                         adjustedPopulation +=
-                            CountSpeciesSpreadPopulation(speciesResult.Species, patchPopulation.Key);
+                            CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
                     }
 
                     if (resolveSplits)
                     {
-                        if (speciesResult.SplitOffPatches?.Contains(patchPopulation.Key) == true)
+                        if (entry.SplitOffPatches?.Contains(patchPopulation.Key) == true)
                         {
                             // All population splits off
                             adjustedPopulation = 0;
@@ -712,7 +707,7 @@
                     {
                         foreach (var effect in effects)
                         {
-                            if (effect.Species == speciesResult.Species)
+                            if (effect.Species == entry.Species)
                             {
                                 adjustedPopulation +=
                                     effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
@@ -732,28 +727,28 @@
                     }
                     else
                     {
-                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID)
-                            .GetSpeciesPopulation(speciesResult.Species) > 0)
+                        if (previousPopulations?.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
+                            0)
                         {
                             include = true;
                         }
                     }
 
                     if (include)
-                        OutputPopulationForPatch(speciesResult.Species, patchPopulation.Key, adjustedPopulation);
+                        OutputPopulationForPatch(entry.Species, patchPopulation.Key, adjustedPopulation);
                 }
 
                 // Also print new patches the species moved to (as the moves don't get
                 // included in newPopulationInPatches
                 if (resolveMigrations)
                 {
-                    foreach (var spreadEntry in speciesResult.SpreadToPatches)
+                    foreach (var spreadEntry in entry.SpreadToPatches)
                     {
                         var found = false;
 
                         var to = spreadEntry.To;
 
-                        foreach (var populationEntry in speciesResult.NewPopulationInPatches)
+                        foreach (var populationEntry in entry.NewPopulationInPatches)
                         {
                             if (populationEntry.Key == to)
                             {
@@ -764,8 +759,8 @@
 
                         if (!found)
                         {
-                            OutputPopulationForPatch(speciesResult.Species, to,
-                                CountSpeciesSpreadPopulation(speciesResult.Species, to));
+                            OutputPopulationForPatch(entry.Species, to,
+                                CountSpeciesSpreadPopulation(entry.Species, to));
                         }
                     }
                 }
@@ -773,22 +768,22 @@
                 // Print populations from splits
                 // Warning suppressed on resolveSplits to allow keeping the variable
                 // ReSharper disable once RedundantLogicalConditionalExpressionOperand
-                if (resolveSplits && speciesResult.SplitFrom != null)
+                if (resolveSplits && entry.SplitFrom != null)
                 {
-                    var splitFrom = results[speciesResult.SplitFrom];
+                    var splitFrom = results[entry.SplitFrom];
 
                     // Skip if the SplitFrom variable was used just to indicate this didn't pop out of thin air
-                    if (splitFrom.SplitOff == speciesResult.Species)
+                    if (splitFrom.SplitOff == entry.Species)
                     {
                         foreach (var patchPopulation in splitFrom.SplitOffPatches)
                         {
-                            OutputPopulationForPatch(speciesResult.Species, patchPopulation,
+                            OutputPopulationForPatch(entry.Species, patchPopulation,
                                 splitFrom.NewPopulationInPatches[patchPopulation]);
                         }
                     }
                 }
 
-                if (GetGlobalPopulation(speciesResult.Species, resolveMigrations, resolveSplits) <= 0)
+                if (GetGlobalPopulation(entry.Species, resolveMigrations, resolveSplits) <= 0)
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("WENT_EXTINCT_FROM_PLANET"));
