@@ -26,6 +26,9 @@ public class SaveList : ScrollContainer
     public NodePath LoadingItemPath;
 
     [Export]
+    public NodePath NoSavesItemPath;
+
+    [Export]
     public NodePath SavesListPath;
 
     [Export]
@@ -50,6 +53,7 @@ public class SaveList : ScrollContainer
     public NodePath UpgradeFailedDialogPath;
 
     private Control loadingItem;
+    private Control noSavesItem;
     private BoxContainer savesList;
     private CustomConfirmationDialog deleteConfirmDialog;
     private CustomConfirmationDialog loadNewerConfirmDialog;
@@ -82,6 +86,7 @@ public class SaveList : ScrollContainer
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
+        noSavesItem = GetNode<Control>(NoSavesItemPath);
         savesList = GetNode<BoxContainer>(SavesListPath);
         deleteConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmDialogPath);
         loadOlderConfirmDialog = GetNode<CustomConfirmationDialog>(LoadOlderSaveDialogPath);
@@ -99,7 +104,7 @@ public class SaveList : ScrollContainer
         bool isCurrentlyVisible = IsVisibleInTree();
 
         if (isCurrentlyVisible && ((AutoRefreshOnFirstVisible && !refreshedAtLeastOnce) ||
-            (AutoRefreshOnBecomingVisible && !wasVisible)))
+                (AutoRefreshOnBecomingVisible && !wasVisible)))
         {
             Refresh();
             wasVisible = true;
@@ -119,27 +124,37 @@ public class SaveList : ScrollContainer
         readSavesList.Dispose();
         readSavesList = null;
 
-        foreach (var save in saves)
+        if (saves.Count > 0)
         {
-            var item = (SaveListItem)listItemScene.Instance();
-            item.Selectable = SelectableItems;
-            item.Loadable = LoadableItems;
+            noSavesItem.Visible = false;
 
-            if (SelectableItems)
-                item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
+            foreach (var save in saves)
+            {
+                var item = (SaveListItem)listItemScene.Instance();
+                item.Selectable = SelectableItems;
+                item.Loadable = LoadableItems;
 
-            item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
+                if (SelectableItems)
+                    item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
 
-            item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
+                item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
-            // This can't use binds because we need an additional dynamic parameter from the list item here
-            item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded));
-            item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
-            item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
-            item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
+                item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
 
-            item.SaveName = save;
-            savesList.AddChild(item);
+                // This can't use binds because we need an additional dynamic parameter from the list item here
+                item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded));
+                item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
+                item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded),
+                    new Array { save });
+                item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
+
+                item.SaveName = save;
+                savesList.AddChild(item);
+            }
+        }
+        else
+        {
+            noSavesItem.Visible = true;
         }
 
         loadingItem.Visible = false;
