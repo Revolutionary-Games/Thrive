@@ -1,56 +1,58 @@
-﻿using System;
-using AutoEvo;
-
-public abstract class FoodSource
+﻿namespace AutoEvo
 {
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+    using System;
 
-    public abstract float TotalEnergyAvailable();
-
-    /// <summary>
-    ///   Provides a fitness metric to determine population adjustments for species in a patch.
-    /// </summary>
-    /// <param name="microbe">The species to be evaluated.</param>
-    /// <param name="simulationCache">
-    ///   Cache that should be used to reduce amount of times expensive computations are run
-    /// </param>
-    /// <returns>
-    ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
-    ///   so different implementations do not need to worry about scale.
-    /// </returns>
-    public abstract float FitnessScore(Species microbe, SimulationCache simulationCache);
-
-    /// <summary>
-    ///   A description of this niche. Needs to support translations changing and be player readable
-    /// </summary>
-    /// <returns>A formattable that has the description in it</returns>
-    public abstract IFormattable GetDescription();
-
-    protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
+    public abstract class FoodSource
     {
-        var energyCreationScore = 0.0f;
-        foreach (var organelle in species.Organelles)
-        {
-            foreach (var process in organelle.Definition.RunnableProcesses)
-            {
-                if (process.Process.Inputs.ContainsKey(compound))
-                {
-                    if (process.Process.Outputs.ContainsKey(glucose))
-                    {
-                        energyCreationScore += process.Process.Outputs[glucose]
-                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
-                    }
+        private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+        private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
-                    if (process.Process.Outputs.ContainsKey(atp))
+        public abstract float TotalEnergyAvailable();
+
+        /// <summary>
+        ///   Provides a fitness metric to determine population adjustments for species in a patch.
+        /// </summary>
+        /// <param name="microbe">The species to be evaluated.</param>
+        /// <param name="simulationCache">
+        ///   Cache that should be used to reduce amount of times expensive computations are run
+        /// </param>
+        /// <returns>
+        ///   A float to represent score. Scores are only compared against other scores from the same FoodSource,
+        ///   so different implementations do not need to worry about scale.
+        /// </returns>
+        public abstract float FitnessScore(Species microbe, SimulationCache simulationCache);
+
+        /// <summary>
+        ///   A description of this niche. Needs to support translations changing and be player readable
+        /// </summary>
+        /// <returns>A formattable that has the description in it</returns>
+        public abstract IFormattable GetDescription();
+
+        protected float EnergyGenerationScore(MicrobeSpecies species, Compound compound)
+        {
+            var energyCreationScore = 0.0f;
+            foreach (var organelle in species.Organelles)
+            {
+                foreach (var process in organelle.Definition.RunnableProcesses)
+                {
+                    if (process.Process.Inputs.ContainsKey(compound))
                     {
-                        energyCreationScore += process.Process.Outputs[atp]
-                            / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
+                        if (process.Process.Outputs.ContainsKey(glucose))
+                        {
+                            energyCreationScore += process.Process.Outputs[glucose]
+                                / process.Process.Inputs[compound] * Constants.AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER;
+                        }
+
+                        if (process.Process.Outputs.ContainsKey(atp))
+                        {
+                            energyCreationScore += process.Process.Outputs[atp]
+                                / process.Process.Inputs[compound] * Constants.AUTO_EVO_ATP_USE_SCORE_MULTIPLIER;
+                        }
                     }
                 }
             }
-        }
 
-        return energyCreationScore;
+            return energyCreationScore;
+        }
     }
 }
