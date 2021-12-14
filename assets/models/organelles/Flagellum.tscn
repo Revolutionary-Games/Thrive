@@ -10,6 +10,8 @@
 resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/dissolveValue = 0.0
+shader_param/fresnelValue = 1.0
+shader_param/fresnelActive = false
 shader_param/outlineWidth = 0.05
 shader_param/growColor = Color( 0.521569, 0.521569, 0.521569, 1 )
 shader_param/tint = Color( 1, 1, 1, 1 )
