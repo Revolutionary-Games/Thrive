@@ -4,23 +4,24 @@ using Godot;
 
 public static class MicrobeInternalCalculations
 {
-    public static Vector3 MaximumSpeedDirection(IEnumerable<OrganelleTemplate> inputOrganelles)
+    public static Vector3 MaximumSpeedDirection(IEnumerable<OrganelleTemplate> organelles)
     {
         Vector3 maximumMovementDirection = Vector3.Zero;
 
-        var organelles = inputOrganelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>())
+        var movementOrganelles = organelles.Where(o => o.Definition.HasComponentFactory<MovementComponentFactory>())
             .ToList();
 
-        foreach (var organelle in organelles)
+        foreach (var organelle in movementOrganelles)
         {
             maximumMovementDirection += GetOrganelleDirection(organelle);
         }
 
         // After calculating the sum of all organelle directions we substract the movement components which
         // are symetric and we chose the one who would benefit the max-speed the most.
-        foreach (var organelle in organelles)
+        foreach (var organelle in movementOrganelles)
         {
-            maximumMovementDirection = ChooseFromSymetricFlagella(organelles, organelle, maximumMovementDirection);
+            maximumMovementDirection = ChooseFromSymetricFlagella(movementOrganelles,
+                organelle, maximumMovementDirection);
         }
 
         if (maximumMovementDirection == Vector3.Zero)
@@ -118,15 +119,17 @@ public static class MicrobeInternalCalculations
         return movementForce * directionFactor;
     }
 
-    // Symetric flagella are a corner case for speed calculations because the sum of all
-    // directions is kinda of broken in their case, so we have to choose which one of the symmetric flagella
-    // we must discard from the direction calculation
-    // Here we only discared if the flagella we input is the "bad" one
-    private static Vector3 ChooseFromSymetricFlagella(IEnumerable<OrganelleTemplate> inputOrganelles,
+    /// <summary>
+    ///  Symetric flagella are a corner case for speed calculations because the sum of all
+    ///  directions is kinda of broken in their case, so we have to choose which one of the symmetric flagella
+    ///  we must discard from the direction calculation
+    ///  Here we only discard if the flagella we input is the "bad" one
+    /// </summary>
+    private static Vector3 ChooseFromSymetricFlagella(IEnumerable<OrganelleTemplate> organelles,
         OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {
-        var organelles = inputOrganelles.ToList();
-        foreach (var organelle in organelles)
+        var movementOrganelles = organelles;
+        foreach (var organelle in movementOrganelles)
         {
             if (organelle != testedOrganelle &&
                 organelle.Position + testedOrganelle.Position == new Hex(0, 0))
