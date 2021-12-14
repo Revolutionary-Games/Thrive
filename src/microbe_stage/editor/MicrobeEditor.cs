@@ -769,7 +769,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         {
             GetMouseHex(out int q, out int r);
             if (MoveOrganelle(MovingOrganelle, MovingOrganelle.Position, new Hex(q, r), MovingOrganelle.Orientation,
-                organelleRot))
+                    organelleRot))
             {
                 // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
                 MovingOrganelle = null;

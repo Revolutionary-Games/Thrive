@@ -444,23 +444,25 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
-    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 1200;
+    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
+    public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.35f;
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int MAX_SPAWNS_PER_FRAME = 2;
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 300;
+    public const int MAX_SPAWNS_PER_FRAME = 1;
+    public const int MAX_DESPAWNS_PER_FRAME = 1;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
@@ -702,7 +704,7 @@ public static class Constants
 
 #pragma warning disable CA1823 // unused fields
 
-    // ReSharper disable UnreachableCode
+    // ReSharper disable UnreachableCode HeuristicUnreachableCode
     private const uint MinimumMovePopIsHigherThanMinimumViable =
         (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
             AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
@@ -712,7 +714,7 @@ public static class Constants
     private const uint MinimumRunnableProcessFractionIsAboveEpsilon =
         (MINIMUM_RUNNABLE_PROCESS_FRACTION > MathUtils.EPSILON) ? 0 : -42;
 
-    // ReSharper restore UnreachableCode
+    // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
 
     /// <summary>

@@ -782,13 +782,29 @@ public partial class Microbe
             if (!engulfAudio.Playing)
                 engulfAudio.Play();
 
+            // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
+
+            if (engulfAudio.Volume < 0.6f)
+            {
+                engulfAudio.Volume += delta;
+            }
+            else if (engulfAudio.Volume >= 0.6f)
+            {
+                engulfAudio.Volume = 0.6f;
+            }
+
             // Flash the membrane blue.
             Flash(1, new Color(0.2f, 0.5f, 1.0f, 0.5f));
         }
         else
         {
-            if (engulfAudio.Playing)
-                engulfAudio.Stop();
+            if (engulfAudio.Playing && engulfAudio.Volume > 0)
+            {
+                engulfAudio.Volume -= delta;
+
+                if (engulfAudio.Volume <= 0)
+                    engulfAudio.Stop();
+            }
         }
 
         // Movement modifier
@@ -1092,7 +1108,7 @@ public partial class Microbe
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
-        Invoke.Instance.Perform(BeginBind);
+        Invoke.Instance.Queue(BeginBind);
     }
 
     private void BeginBind()
