@@ -63,7 +63,7 @@ jobs:
       - run:
           name: Just make C# project valid; don't care if asset import fails
           command: |
-            godot --export "dummy "builds/a.x86_64" || true
+            godot --export "dummy" "builds/a.x86_64" || true
       - run:
           command: dotnet restore Thrive.sln
       - run:
