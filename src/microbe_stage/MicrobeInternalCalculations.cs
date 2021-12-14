@@ -18,7 +18,7 @@ public static class MicrobeInternalCalculations
 
         // After calculating the sum of all organelle directions we substract the movement components which
         // are symetric and we choose the one who would benefit the max-speed the most.
-        foreach (var organelle in organelles)
+        foreach (var organelle in movementOrganelles)
         {
             maximumMovementDirection = ChooseFromSymetricFlagella(movementOrganelles,
                 organelle, maximumMovementDirection);
@@ -128,8 +128,7 @@ public static class MicrobeInternalCalculations
     private static Vector3 ChooseFromSymetricFlagella(IEnumerable<OrganelleTemplate> organelles,
         OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {
-        var movementOrganelles = organelles;
-        foreach (var organelle in movementOrganelles)
+        foreach (var organelle in organelles)
         {
             if (organelle != testedOrganelle &&
                 organelle.Position + testedOrganelle.Position == new Hex(0, 0))
