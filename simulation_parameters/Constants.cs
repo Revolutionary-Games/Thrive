@@ -74,7 +74,7 @@ public static class Constants
 
     public const float CELL_BASE_THRUST = 50.6f;
 
-    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.5f;
+    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
     public const int PROCESS_OBJECTS_PER_TASK = 50;
 

@@ -14,9 +14,6 @@ using Newtonsoft.Json;
 [DeserializedCallbackTarget]
 public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
 {
-    [Export]
-    public AudioStream[] MovementSounds;
-
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>

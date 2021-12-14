@@ -760,13 +760,13 @@ public partial class Microbe
             if (movementSoundCooldownTimer > 0)
                 movementSoundCooldownTimer -= delta;
 
-            // Play movement sound if one isn't already playing and if there's a noticeable change
-            // in the microbe's acceleration.
-            if (!movementAudio.Playing && deltaAcceleration > lastLinearAcceleration.LengthSquared() &&
-                movementSoundCooldownTimer <= 0)
+            // The cell starts moving from a relatively idle velocity, so play the movement sound
+            // TODO: Account for cell turning, I can't figure out a reliable way to do that using the current
+            // calculation - Kasterisk
+            if (!movementAudio.Playing && movementSoundCooldownTimer <= 0 && deltaAcceleration >
+                lastLinearAcceleration.LengthSquared() && lastLinearVelocity.LengthSquared() <= 1)
             {
                 movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
-                movementAudio.Stream = MovementSounds[random.Next(MovementSounds.Length)];
                 movementAudio.Play();
             }
         }
