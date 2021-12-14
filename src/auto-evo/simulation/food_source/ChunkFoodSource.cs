@@ -52,8 +52,8 @@
             var chunkEaterSpeed = Math.Max(microbeSpecies.BaseSpeed + energyBalance.FinalBalance,
                 microbeSpecies.BaseSpeed / 3);
 
-            // We ponder the score for each compound by its amount, leading to pondering in proportion of total quantity,
-            // with a constant factor that will be eliminated when making ratios of scores for this niche.
+            // We ponder the score for each compound by its amount, leading to pondering in proportion of total
+            // quantity, with a constant factor that will be eliminated when making ratios of scores for this niche.
             var score = energyCompounds.Sum(c => EnergyGenerationScore(microbeSpecies, c.Key) * c.Value);
 
             score *= chunkEaterSpeed * species.Behaviour.Activity;
