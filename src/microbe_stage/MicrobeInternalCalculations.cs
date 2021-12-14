@@ -17,8 +17,8 @@ public static class MicrobeInternalCalculations
         }
 
         // After calculating the sum of all organelle directions we substract the movement components which
-        // are symetric and we chose the one who would benefit the max-speed the most.
-        foreach (var organelle in movementOrganelles)
+        // are symetric and we choose the one who would benefit the max-speed the most.
+        foreach (var organelle in organelles)
         {
             maximumMovementDirection = ChooseFromSymetricFlagella(movementOrganelles,
                 organelle, maximumMovementDirection);
