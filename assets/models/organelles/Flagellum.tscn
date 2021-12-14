@@ -22,6 +22,7 @@ shader_param/dissolveTexture = ExtResource( 5 )
 material_override = SubResource( 1 )
 
 [node name="AnimationPlayer" parent="." index="1"]
-autoplay = "Flagellum"
+autoplay = "swim"
 playback_speed = 0.25
 anims/Flagellum = ExtResource( 4 )
+next/swim = "swim"
