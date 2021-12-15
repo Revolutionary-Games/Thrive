@@ -136,6 +136,9 @@ public class PauseMenu : ControlWithInput
                 case ActiveMenuType.Options:
                     optionsMenu.OpenFromInGame(GameProperties);
                     break;
+                case ActiveMenuType.Help:
+                    helpScreen.PopupCenteredShrink();
+                    break;
                 case ActiveMenuType.None:
                     // just close the current menu
                     break;

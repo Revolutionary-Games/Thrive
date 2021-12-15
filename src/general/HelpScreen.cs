@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Manages the help screen GUI
 /// </summary>
-public class HelpScreen : Control
+public class HelpScreen : CustomDialog
 {
     /// <summary>
     ///   The category which this help screen belongs to
@@ -59,6 +59,8 @@ public class HelpScreen : Control
 
     public override void _Notification(int what)
     {
+        base._Notification(what);
+
         if (what == NotificationTranslationChanged)
         {
             leftColumn.QueueFreeChildren();
