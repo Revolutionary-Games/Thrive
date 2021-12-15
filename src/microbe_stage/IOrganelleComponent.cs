@@ -8,5 +8,5 @@ public interface IOrganelleComponent
     void OnAttachToCell(PlacedOrganelle organelle);
     void OnDetachFromCell(PlacedOrganelle organelle);
     void Update(float elapsed);
-    void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset);
+    void OnShapeParentChanged(Microbe newShapeParent, Vector2 offset);
 }

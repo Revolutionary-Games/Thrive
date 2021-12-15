@@ -33,6 +33,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
+    private Spatial organelleSceneInstance;
+
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
     {
         Definition = definition;
@@ -389,6 +391,32 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     }
 
     /// <summary>
+    ///  Returns the rotated position, as it should be in the colony.
+    ///  Used for re-parenting shapes to other microbes
+    /// </summary>
+    public Vector2 RotatedPositionInsideColony(Vector2 shapePosition)
+    {
+        var rotation = Quat.Identity;
+        if (ParentMicrobe.Colony != null)
+        {
+            var parent = ParentMicrobe;
+
+            // Get the rotation of all colony ancestors up to master
+            while (parent != ParentMicrobe.Colony.Master)
+            {
+                rotation *= new Quat(parent.Transform.basis);
+                parent = parent.ColonyParent;
+            }
+        }
+
+        rotation = rotation.Normalized();
+
+        // Transform the vector with the rotation quaternion
+        shapePosition = rotation.Xform(shapePosition.ToVector3()).ToVector2();
+        return shapePosition;
+    }
+
+    /// <summary>
     ///  Re-parents the organelle shape to the "to" microbe.
     /// </summary>
     public void ReParentShapes(Microbe to, Vector2 offset)
@@ -404,24 +432,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         for (int i = 0; i < shapes.Count; i++)
         {
-            var rotation = Quat.Identity;
             Vector2 shapePosition = ShapeTruePosition(hexes[i]);
-            if (ParentMicrobe.Colony != null)
-            {
-                var parent = ParentMicrobe;
 
-                // Get the rotation of all colony ancestors up to master
-                while (parent != ParentMicrobe.Colony.Master)
-                {
-                    rotation *= new Quat(parent.Transform.basis);
-                    parent = parent.ColonyParent;
-                }
-            }
-
-            rotation = rotation.Normalized();
-
-            // Transform the vector with the rotation quaternion
-            shapePosition = rotation.Xform(shapePosition.ToVector3()).ToVector2();
+            // Rotate the position of the organelle to its true position relative to the master
+            shapePosition = RotatedPositionInsideColony(shapePosition);
 
             // Scale for bacteria physics.
             if (ParentMicrobe.Species.IsBacteria)
@@ -429,23 +443,17 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
             shapePosition += offset;
 
+            var ownerId = shapes[i];
             var transform = new Transform(Quat.Identity, shapePosition.ToVector3());
 
-            var ownerId = shapes[i];
-
-            var shape = currentShapesParent.ShapeOwnerGetShape(ownerId, 0);
-            var newOwnerId = to.CreateShapeOwner(shape);
-            to.ShapeOwnerAddShape(newOwnerId, shape);
-            to.ShapeOwnerSetTransform(newOwnerId, transform);
-
-            shapes[i] = newOwnerId;
-
+            // Create a new owner id and apply the new position to it
+            shapes[i] = currentShapesParent.CreateNewOwnerId(to, transform, ownerId);
             currentShapesParent.RemoveShapeOwner(ownerId);
         }
 
         foreach (var component in Components)
         {
-            component.OnShapeParentChanged(to, offset.ToVector3());
+            component.OnShapeParentChanged(to, offset);
         }
 
         currentShapesParent = to;
@@ -524,14 +532,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             var shape = new SphereShape();
             shape.Radius = hexSize * 2.0f;
 
-            var ownerId = to.CreateShapeOwner(shape);
-
-            // This is needed to actually add the shape
-            to.ShapeOwnerAddShape(ownerId, shape);
-
-            // TODO: merge this common logic with ReParentShapes to a helper method
-            // https://github.com/Revolutionary-Games/Thrive/issues/2504
-
             // The shape is in our parent so the final position is our
             // offset plus the hex offset
             Vector2 shapePosition = ShapeTruePosition(hex);
@@ -540,8 +540,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             if (ParentMicrobe.Species.IsBacteria)
                 shapePosition *= 0.5f;
 
+            // Create a transform for a shape position
             var transform = new Transform(Quat.Identity, shapePosition.ToVector3());
-            to.ShapeOwnerSetTransform(ownerId, transform);
+            var ownerId = to.CreateShapeOwnerWithTransform(transform, shape);
 
             shapes.Add(ownerId);
         }
@@ -565,14 +566,20 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private void UpdateColour()
     {
-        organelleMaterial?.SetShaderParam("tint", CalculateHSVForOrganelle(Colour));
+        var color = CalculateHSVForOrganelle(Colour);
+        if (organelleSceneInstance is OrganelleMeshWithChildren organelleMeshWithChildren)
+        {
+            organelleMeshWithChildren.SetTintOfChildren(color);
+        }
+
+        organelleMaterial?.SetShaderParam("tint", color);
 
         needsColourUpdate = false;
     }
 
     private void SetupOrganelleGraphics()
     {
-        var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
+        organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
 
         // Store animation player for later use
         if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))

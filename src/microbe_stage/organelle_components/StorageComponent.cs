@@ -24,7 +24,7 @@ public class StorageComponent : IOrganelleComponent
     {
     }
 
-    public void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
+    public void OnShapeParentChanged(Microbe newShapeParent, Vector2 offset)
     {
     }
 }

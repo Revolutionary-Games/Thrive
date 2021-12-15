@@ -5,6 +5,11 @@
 /// </summary>
 public abstract class ExternallyPositionedComponent : IOrganelleComponent
 {
+    /// <summary>
+    ///   The default visual position if the organelle is on the microbe's center
+    /// </summary>
+    protected static readonly Vector2 DefaultVisualPos = Vector2.Up;
+
     protected PlacedOrganelle organelle;
 
     /// <summary>
@@ -15,7 +20,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     /// <summary>
     ///   Last calculated position, Used to not have to recreate the physics all the time
     /// </summary>
-    protected Vector2 lastCalculatedPosition = new Vector2(0, 0);
+    protected Vector2 lastCalculatedPosition = Vector2.Zero;
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
@@ -38,20 +43,19 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         // membrane changes to not recheck this constantly
 
         Vector2 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organellePos;
-        Vector2 exit = middle - delta;
+        var relativeOrganellePosition = middle - organellePos;
+
+        if (relativeOrganellePosition == Vector2.Zero)
+            relativeOrganellePosition = DefaultVisualPos;
+
+        Vector2 exit = middle - relativeOrganellePosition;
+
         var membraneCoords = organelle.ParentMicrobe.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
             exit.y);
 
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())
         {
-            float angle = Mathf.Atan2(-delta.y, delta.x);
-            if (angle < 0)
-            {
-                angle = angle + (2 * Mathf.Pi);
-            }
-
-            angle = (angle * 180 / Mathf.Pi - 90) % 360;
+            float angle = GetAngle(relativeOrganellePosition);
 
             var rotation = MathUtils.CreateRotationForExternal(angle);
 
@@ -61,8 +65,24 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         }
     }
 
-    public virtual void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
+    public virtual void OnShapeParentChanged(Microbe newShapeParent, Vector2 offset)
     {
+    }
+
+    /// <summary>
+    ///  Gets the angle of rotation of an externally placed organelle
+    /// </summary>
+    /// <param name="delta"> the difference between the cell middle and the external organelle position</param>
+    protected float GetAngle(Vector2 delta)
+    {
+        float angle = Mathf.Atan2(-delta.y, delta.x);
+        if (angle < 0)
+        {
+            angle = angle + (2 * Mathf.Pi);
+        }
+
+        angle = (angle * 180 / Mathf.Pi - 90) % 360;
+        return angle;
     }
 
     protected virtual void CustomAttach()

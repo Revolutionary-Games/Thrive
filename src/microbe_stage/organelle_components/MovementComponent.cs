@@ -49,6 +49,17 @@ public class MovementComponent : ExternallyPositionedComponent
         SetSpeedFactor(0.25f);
     }
 
+    protected override bool NeedsUpdateAnyway()
+    {
+        // The basis of the transform represents the rotation, as long as the rotation is not modified,
+        // the organelle needs to be updated.
+        // TODO: Calculated rotations should never equal the identity,
+        // it should be kept an eye on if it does. The engine for some reason doesnt update THIS basis
+        // unless checked with some condition (if or return)
+        // SEE: https://github.com/Revolutionary-Games/Thrive/issues/2906
+        return organelle.OrganelleGraphics.Transform.basis == Transform.Identity.basis;
+    }
+
     protected override void OnPositionChanged(Quat rotation, float angle,
         Vector2 membraneCoords)
     {
@@ -58,12 +69,17 @@ public class MovementComponent : ExternallyPositionedComponent
     /// <summary>
     ///   Calculate the momentum of the movement organelle based on
     ///   angle towards middle of cell
+    ///   If the flagella is placed in the microbe's center, hence delta equals 0,
+    ///   consider defaultPos as the organelle's "false" position.
     /// </summary>
     private static Vector2 CalculateForce(Hex pos, float momentum)
     {
-        Vector2 organelle = Hex.AxialToCartesian(pos);
+        Vector2 organellePosition = Hex.AxialToCartesian(pos);
         Vector2 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        var delta = middle - organelle;
+        var delta = middle - organellePosition;
+        if (delta == Vector2.Zero)
+            delta = DefaultVisualPos;
+
         return delta.Normalized() * momentum;
     }
 

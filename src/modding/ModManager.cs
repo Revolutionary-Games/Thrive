@@ -68,6 +68,9 @@ public class ModManager : Control
     public NodePath FullInfoNamePath;
 
     [Export]
+    public NodePath FullInfoInternalNamePath;
+
+    [Export]
     public NodePath FullInfoAuthorPath;
 
     [Export]
@@ -78,6 +81,9 @@ public class ModManager : Control
 
     [Export]
     public NodePath FullInfoLongDescriptionPath;
+
+    [Export]
+    public NodePath FullInfoFromWorkshopPath;
 
     [Export]
     public NodePath FullInfoIconFilePath;
@@ -121,6 +127,12 @@ public class ModManager : Control
     [Export]
     public NodePath ModUploaderPath;
 
+    [Export]
+    public NodePath ModErrorDialogPath;
+
+    [Export]
+    public NodePath RestartRequiredPath;
+
     private readonly List<FullModDetails> validMods = new();
 
     private List<FullModDetails> notEnabledMods;
@@ -149,10 +161,12 @@ public class ModManager : Control
 
     private CustomDialog modFullInfoPopup;
     private Label fullInfoName;
+    private Label fullInfoInternalName;
     private Label fullInfoAuthor;
     private Label fullInfoVersion;
     private Label fullInfoDescription;
     private Label fullInfoLongDescription;
+    private Label fullInfoFromWorkshop;
     private Label fullInfoIconFile;
     private Label fullInfoInfoUrl;
     private Label fullInfoLicense;
@@ -172,7 +186,16 @@ public class ModManager : Control
 
     private ModUploader modUploader;
 
+    private ErrorDialog modErrorDialog;
+
+    private CustomDialog restartRequired;
+
     private FullModDetails selectedMod;
+
+    /// <summary>
+    ///   Used to automatically refresh this object when it becomes visible after being invisible
+    /// </summary>
+    private bool wasVisible;
 
     [Signal]
     public delegate void OnClosed();
@@ -329,11 +352,13 @@ public class ModManager : Control
 
         modFullInfoPopup = GetNode<CustomDialog>(ModFullInfoPopupPath);
         fullInfoName = GetNode<Label>(FullInfoNamePath);
+        fullInfoInternalName = GetNode<Label>(FullInfoInternalNamePath);
         fullInfoAuthor = GetNode<Label>(FullInfoAuthorPath);
         fullInfoVersion = GetNode<Label>(FullInfoVersionPath);
         fullInfoDescription = GetNode<Label>(FullInfoDescriptionPath);
         fullInfoLongDescription = GetNode<Label>(FullInfoLongDescriptionPath);
         fullInfoIconFile = GetNode<Label>(FullInfoIconFilePath);
+        fullInfoFromWorkshop = GetNode<Label>(FullInfoFromWorkshopPath);
         fullInfoInfoUrl = GetNode<Label>(FullInfoInfoUrlPath);
         fullInfoLicense = GetNode<Label>(FullInfoLicensePath);
         fullInfoRecommendedThrive = GetNode<Label>(FullInfoRecommendedThrivePath);
@@ -348,6 +373,9 @@ public class ModManager : Control
 
         newModGUI = GetNode<NewModGUI>(NewModGUIPath);
         modUploader = GetNode<ModUploader>(ModUploaderPath);
+
+        modErrorDialog = GetNode<ErrorDialog>(ModErrorDialogPath);
+        restartRequired = GetNode<CustomDialog>(RestartRequiredPath);
 
         // These are hidden in the editor to make selecting UI elements there easier
         newModGUI.Visible = true;
@@ -364,10 +392,36 @@ public class ModManager : Control
         }
     }
 
+    public override void _Process(float delta)
+    {
+        base._Process(delta);
+
+        bool isCurrentlyVisible = IsVisibleInTree();
+
+        if (isCurrentlyVisible && !wasVisible)
+        {
+            GD.Print("Mod loader has become visible");
+            OnOpened();
+        }
+
+        wasVisible = isCurrentlyVisible;
+    }
+
+    private static bool IsAllowedModPath(string path)
+    {
+        if (string.IsNullOrWhiteSpace(path))
+            return false;
+
+        if (path.Contains("//") || path.Contains("..") || path.StartsWith("/", StringComparison.Ordinal))
+            return false;
+
+        return true;
+    }
+
     /// <summary>
     ///   Refreshes things that need refreshing when this is opened
     /// </summary>
-    public void OnOpened()
+    private void OnOpened()
     {
         // TODO: OnOpened being required to be called probably means that you can't directly run the mod manager
         // scene from Godot editor, probably needs to change to the approach to be to automatically call this each
@@ -382,17 +436,6 @@ public class ModManager : Control
         enabledModsContainer.UnselectAll();
 
         UpdateOverallModButtons();
-    }
-
-    private static bool IsAllowedModPath(string path)
-    {
-        if (string.IsNullOrWhiteSpace(path))
-            return false;
-
-        if (path.Contains("//") || path.Contains("..") || path.StartsWith("/", StringComparison.Ordinal))
-            return false;
-
-        return true;
     }
 
     private void RefreshAvailableMods()
@@ -713,6 +756,9 @@ public class ModManager : Control
 
     private void UpdateOverallModButtons()
     {
+        // TODO: once mod load order controlling is added, this use of HashSet needs to be removed to allow reorder
+        // be applied. For reorder perhaps mod loader needs to first unload *all* mods so that it can then load
+        // everything in the right order
         applyChangesButton.Disabled =
             Settings.Instance.EnabledMods.Value.ToHashSet()
                 .SetEquals(enabledMods.Select(m => m.InternalName));
@@ -725,7 +771,22 @@ public class ModManager : Control
         GD.Print("Applying changes to enabled mods");
 
         Settings.Instance.EnabledMods.Value = enabledMods.Select(m => m.InternalName).ToList();
-        ModLoader.Instance.LoadMods();
+
+        var modLoader = ModLoader.Instance;
+        modLoader.LoadMods();
+
+        var errors = modLoader.GetAndClearModErrors();
+
+        if (errors.Count > 0)
+        {
+            modErrorDialog.ExceptionInfo = string.Join("\n", errors);
+            modErrorDialog.PopupCenteredShrink();
+        }
+
+        if (modLoader.RequiresRestart)
+        {
+            restartRequired.PopupCenteredShrink();
+        }
 
         GD.Print("Saving settings with new mod list");
         if (!Settings.Instance.Save())
@@ -799,10 +860,14 @@ public class ModManager : Control
         }
 
         fullInfoName.Text = info.Name;
+        fullInfoInternalName.Text = info.InternalName;
         fullInfoAuthor.Text = info.Author;
         fullInfoVersion.Text = info.Version;
         fullInfoDescription.Text = info.Description;
         fullInfoLongDescription.Text = info.LongDescription;
+        fullInfoFromWorkshop.Text = selectedMod.Workshop ?
+            TranslationServer.Translate("THIS_IS_WORKSHOP_MOD") :
+            TranslationServer.Translate("THIS_IS_LOCAL_MOD");
         fullInfoIconFile.Text = info.Icon;
         fullInfoInfoUrl.Text = info.InfoUrl == null ? string.Empty : info.InfoUrl.ToString();
         fullInfoLicense.Text = info.License;
