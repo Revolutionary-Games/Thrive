@@ -41,7 +41,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
 
-    private Vector3 collisionForce;
+    private float collisionForceSqr;
 
     private Vector3 queuedMovementForce;
 
@@ -547,11 +547,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
 
-        collisionForce = Vector3.Zero;
+        collisionForceSqr = 0.0f;
 
         for (var i = 0; i < physicsState.GetContactCount(); ++i)
         {
-            collisionForce += physicsState.GetContactImpulse(i) * physicsState.GetContactLocalNormal(i);
+            collisionForceSqr += (physicsState.GetContactImpulse(i) * physicsState.GetContactLocalNormal(i)).LengthSquared();
         }
     }
 

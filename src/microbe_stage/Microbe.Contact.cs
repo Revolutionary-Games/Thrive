@@ -1037,7 +1037,7 @@ public partial class Microbe
             }
 
             // Play bump sound if certain total collision impulse is reached (adjusted by mass)
-            if (thisMicrobe.collisionForce.LengthSquared() / (Mass * Mass) >
+            if (thisMicrobe.collisionForceSqr / (Mass * Mass) >
                 Constants.COLLISION_IMPULSE_TO_BUMP_SOUND_SQUARED)
             {
                 thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
