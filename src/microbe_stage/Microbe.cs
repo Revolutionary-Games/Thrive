@@ -551,7 +551,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         for (var i = 0; i < physicsState.GetContactCount(); ++i)
         {
-            collisionForceSqr += (physicsState.GetContactImpulse(i) * physicsState.GetContactLocalNormal(i)).LengthSquared();
+            collisionForceSqr +=
+                (physicsState.GetContactImpulse(i) * physicsState.GetContactLocalNormal(i)).LengthSquared();
         }
     }
 
