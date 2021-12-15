@@ -1,42 +1,46 @@
-﻿using System;
-using AutoEvo;
-
-public class EnvironmentalFoodSource : FoodSource
+﻿namespace AutoEvo
 {
-    private readonly Compound compound;
-    private readonly Patch patch;
-    private readonly float totalEnvironmentalEnergySource;
+    using System;
 
-    public EnvironmentalFoodSource(Patch patch, Compound compound, float foodCapacityMultiplier)
+    public class EnvironmentalFoodSource : FoodSource
     {
-        if (compound.IsCloud)
-            throw new ArgumentException("Given compound to environmental source is a cloud type");
+        private readonly Compound compound;
+        private readonly Patch patch;
+        private readonly float totalEnvironmentalEnergySource;
 
-        this.patch = patch;
-        this.compound = compound;
-        totalEnvironmentalEnergySource = patch.Biome.Compounds[this.compound].Dissolved * foodCapacityMultiplier;
-    }
+        public EnvironmentalFoodSource(Patch patch, Compound compound, float foodCapacityMultiplier)
+        {
+            if (compound.IsCloud)
+                throw new ArgumentException("Given compound to environmental source is a cloud type");
 
-    public override float FitnessScore(Species species, SimulationCache simulationCache)
-    {
-        var microbeSpecies = (MicrobeSpecies)species;
+            this.patch = patch;
+            this.compound = compound;
+            totalEnvironmentalEnergySource = patch.Biome.Compounds[this.compound].Dissolved * foodCapacityMultiplier;
+        }
 
-        var energyCreationScore = EnergyGenerationScore(microbeSpecies, compound);
+        public override float FitnessScore(Species species, SimulationCache simulationCache)
+        {
+            var microbeSpecies = (MicrobeSpecies)species;
 
-        var energyCost = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch).TotalConsumptionStationary;
+            var energyCreationScore = EnergyGenerationScore(microbeSpecies, compound);
 
-        return energyCreationScore / energyCost;
-    }
+            var energyCost = simulationCache
+                .GetEnergyBalanceForSpecies(microbeSpecies, patch)
+                .TotalConsumptionStationary;
 
-    public override IFormattable GetDescription()
-    {
-        // TODO: somehow allow the compound name to translate properly. Maybe we need to use bbcode to refer to the
-        // compounds?
-        return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE", compound.Name);
-    }
+            return energyCreationScore / energyCost;
+        }
 
-    public override float TotalEnergyAvailable()
-    {
-        return totalEnvironmentalEnergySource;
+        public override IFormattable GetDescription()
+        {
+            // TODO: somehow allow the compound name to translate properly. Maybe we need to use bbcode to refer to the
+            // compounds?
+            return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE", compound.Name);
+        }
+
+        public override float TotalEnergyAvailable()
+        {
+            return totalEnvironmentalEnergySource;
+        }
     }
 }

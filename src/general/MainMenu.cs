@@ -83,7 +83,7 @@ public class MainMenu : NodeWithInput
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
         {
-            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm", 0.65f);
+            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.ogv", 0.65f);
             TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
         }
         else
@@ -319,7 +319,7 @@ public class MainMenu : NodeWithInput
         if (Settings.Instance.PlayMicrobeIntroVideo)
         {
             TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm", 0.65f);
+            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f);
         }
         else
         {
