@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
 "PO-Revision-Date: 2021-12-15 15:22+0000\n"
-"Last-Translator: mykocalico <badtimecat@gmail.com>\n"
+"Last-Translator: Adam Duży <scootaloo@onet.pl>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -1103,18 +1103,16 @@ msgid "SPACE"
 msgstr "Spacja"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#, fuzzy
 msgid "BACKSLASH"
-msgstr "Cofnij"
+msgstr "Ukośnik wsteczny"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
 msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
-#, fuzzy
 msgid "BACKSPACE"
-msgstr "Cofnij"
+msgstr "Backspace"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
@@ -1844,9 +1842,8 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "Błąd: Nie udało się zapisać nowych ustawień w pliku konfiguracji."
 
 #: ../src/general/OptionsMenu.tscn:1353
-#, fuzzy
 msgid "NO_SCREENSHOT_DIRECTORY"
-msgstr "Otwórz Folder Zrzutów Ekranu"
+msgstr "Nie znaleziono katalogu zrzutów ekranu"
 
 #: ../src/general/OptionsMenu.tscn:1355
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
@@ -2183,9 +2180,8 @@ msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Wartość odcienia, część koloru"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
-#, fuzzy
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr "Dodaj nowe powiązanie klawisza"
+msgstr "Wartość nasycenia, ilość szarości w konkretnym kolorze"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
 #, fuzzy
@@ -2577,14 +2573,13 @@ msgstr ""
 "input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1162
-#, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Nitrogenaza to białko mogące użyć gazowego azotu i energii komórkowej w "
-"formie ATP do produkcji amoniaku, kluczowego składnika dla wzrostu "
-"komórki. Ten proces nazywany jest Beztlenowym Wiązaniem Azotu. Ponieważ "
-"nitrogenaza jest zawieszona bezpośrednio w cytoplazmie, otaczający płyn "
-"dokonuje fermentacji."
+"Pomaga połączyć się z innymi komórkami. To jest pierwszy krok do "
+"wielokomórkowości. Gdy twoja komórka jest częścią kolonii komórek, związki "
+"są dzielone pomiędzy komórkami. Nie możesz otworzyć edytora gdy jesteś "
+"częścią kolonii więc musisz się odłączyć gdy uzbierasz wystarczająco "
+"związków by podzielić swoją komórkę."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1244
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2705,15 +2700,8 @@ msgstr ""
 "wzrostu komórek. Ten proces jest znany jako Tlenowe Wiązanie Azotu."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1806
-#, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
-"Wakuola to wewnętrzna organella membranowa używana w komórce jako magazyn. "
-"Zbudowane są z kilku pęcherzyków, małych membranowych struktur szeroko "
-"używanych w komórkach do magazynowania, które są ze sobą połączone. "
-"Wypełniona jest wodą która przechowuje molokuły, enzymy, ciała stałe i "
-"inne substancje. Ich kształt jest płynny i może się różnić między "
-"komórkami."
+msgstr "Zwiększa pojemność twojej komórki."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1807
 msgid "VACUOLE_DESCRIPTION"
@@ -2824,7 +2812,7 @@ msgstr "Dodaj nowe powiązanie klawisza"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3485
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
+msgstr "Ta wartość stosuje się tylko do gier rozpoczętych po zmianie tej opcji."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3491
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
