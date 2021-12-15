@@ -259,12 +259,12 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
 
             for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius);
-                x <= xEnd;
-                x += 1)
+                 x <= xEnd;
+                 x += 1)
             {
                 for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius);
-                    y <= yEnd;
-                    y += 1)
+                     y <= yEnd;
+                     y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
@@ -338,12 +338,12 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             int yEnd = (int)Mathf.Round(cloudRelativeY + localRadius);
 
             for (int x = (int)Mathf.Round(cloudRelativeX - localRadius);
-                x <= xEnd;
-                x += 1)
+                 x <= xEnd;
+                 x += 1)
             {
                 for (int y = (int)Mathf.Round(cloudRelativeY - localRadius);
-                    y <= yEnd;
-                    y += 1)
+                     y <= yEnd;
+                     y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)

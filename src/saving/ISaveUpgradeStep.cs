@@ -54,6 +54,7 @@
                 { "0.5.5.0", new UpgradeStep055To056() },
                 { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
                 { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
+                { "0.5.6.0", new UpgradeJustVersionNumber("0.5.6.1") },
             };
         }
     }
@@ -182,8 +183,8 @@
         protected virtual void DetectAndUpdateKeysThatAreJSON(JObject jObject)
         {
             foreach (var entry in jObject.Properties().Where(e =>
-                e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
-                e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
+                         e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
+                         e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
             {
                 UpdateJSONPropertyKey(entry);
             }

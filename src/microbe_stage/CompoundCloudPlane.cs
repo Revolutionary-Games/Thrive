@@ -79,7 +79,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
         else if (newX == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
-            % Constants.CLOUD_SQUARES_PER_SIDE)
+                 % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(((position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
