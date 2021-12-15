@@ -40,7 +40,7 @@ jobs:
       writeTo: v1-{Branch}-jetbrains
       shared:
         .git/lfs: v2-lfs
-        .import: v1-import
+        .import: v2-import
         builds: v1-jetbrains-dummy-builds
       system:
         /root/.nuget: v1-nuget
