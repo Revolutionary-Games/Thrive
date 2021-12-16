@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-10 18:05+0200\n"
-"PO-Revision-Date: 2021-12-16 07:37+0000\n"
+"PO-Revision-Date: 2021-12-16 22:31+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/cs/>\n"
@@ -559,9 +559,8 @@ msgid "TOGGLE_FULLSCREEN"
 msgstr "Přepínání na celou obrazovku"
 
 #: ../simulation_parameters/common/input_options.json:204
-#, fuzzy
 msgid "TOGGLE_HUD_HIDE"
-msgstr "Přepnout rozpojování"
+msgstr "Přepínání HUD"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
 #: ../simulation_parameters/microbe_stage/bio_processes.json:102
@@ -918,9 +917,8 @@ msgid "PREVIOUS"
 msgstr "předchozí:"
 
 #: ../src/auto-evo/RunResults.cs:589
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "genový kód:"
+msgstr "oddělit se od {0}"
 
 #: ../src/auto-evo/RunResults.cs:602
 #, fuzzy
@@ -1446,7 +1444,7 @@ msgstr "Poděkování"
 
 #: ../src/general/MainMenu.tscn:257
 msgid "QUIT"
-msgstr "Odejít ze hry"
+msgstr "Ukončit"
 
 #: ../src/general/MainMenu.tscn:277
 msgid "MICROBE_FREEBUILD_EDITOR"
@@ -1753,7 +1751,7 @@ msgstr "Otevřít složku záznamů"
 
 #: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
-msgstr "JSON Debug Mode:"
+msgstr "JSON debug mod:"
 
 #: ../src/general/OptionsMenu.tscn:1170 ../src/general/OptionsMenu.tscn:1171
 msgid "JSON_DEBUG_MODE_AUTO"
