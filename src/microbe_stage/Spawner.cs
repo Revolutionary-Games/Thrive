@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public abstract class Spawner
 {
-    private float[] binomialValues;
+    private float[] binomialValuesCache;
 
     public virtual int BinomialN => 0;
     public virtual float BinomialP => 0;
@@ -24,51 +24,42 @@ public abstract class Spawner
     /// <value><c>true</c> if destroy queued; otherwise, <c>false</c>.</value>
     public bool DestroyQueued { get; set; }
 
+    /// <summary>
+    ///   The calculated binomial values. Should add up to roughly 1f. Lazily calculated.
+    /// </summary>
     private float[] BinomialValues
     {
         get
         {
-            if (binomialValues != null)
-                return binomialValues;
+            if (binomialValuesCache != null)
+                return binomialValuesCache;
 
             var nFactorial = MathUtils.Factorial(BinomialN);
 
             // nCr(BinomialN, r) * BinomialP^r * (1 - BinomialP)^(BinomialN - r)
-            binomialValues = Enumerable.Range(0, BinomialN).Select(r =>
+            binomialValuesCache = Enumerable.Range(0, BinomialN).Select(r =>
                 MathUtils.NCr(BinomialN, nFactorial, r) * Mathf.Pow(BinomialP, r) *
                 Mathf.Pow(1 - BinomialP, BinomialN - r)).ToArray();
-            return binomialValues;
+            return binomialValuesCache;
         }
-    }
-
-    public virtual int GetSpawnsInASector(float sectorDensity, Random random)
-    {
-        var nextRandom = random.NextFloat() * sectorDensity;
-        var binomialSum = 0f;
-        var i = 0;
-        do
-        {
-            binomialSum += BinomialValues[i++];
-        }
-        while (binomialSum >= nextRandom);
-
-        return i;
     }
 
     /// <summary>
     ///   Evenly distributes the spawns in a sector.
     /// </summary>
     /// <returns>Returns the relative points where stuff should spawn</returns>
-    public virtual List<Vector2> GetSpawnPoints(float sectorDensity, Random random)
+    public virtual List<Vector2> GetSpawnPoints(List<Vector2> spawnsInNeighbourSectors, float sectorDensity,
+        Random random)
     {
         var spawns = GetSpawnsInASector(sectorDensity, random);
         var results = new List<Vector2>();
         for (var i = 0; i < spawns; i++)
         {
-            var x = random.NextFloat() * Constants.SECTOR_SIZE;
-            var y = random.NextFloat() * Constants.SECTOR_SIZE;
-            var vector = new Vector2(x, y);
-            if (results.Any(v => (v - vector).LengthSquared() < MinDistanceSquared))
+            var vector = new Vector2(random.NextFloat(), random.NextFloat());
+            vector *= Constants.SECTOR_SIZE;
+
+            // Check if another spawn is too close
+            if (results.Concat(spawnsInNeighbourSectors).Any(v => (v - vector).LengthSquared() < MinDistanceSquared))
             {
                 i--;
                 continue;
@@ -87,4 +78,32 @@ public abstract class Spawner
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
     /// <returns>An enumerator that on each next call spawns one thing</returns>
     public abstract IEnumerable<SpawnedRigidBody> Spawn(Node worldNode, Vector2 location);
+
+    /// <summary>
+    ///   Used in <see cref="GetSpawnPoints"/> to determine how many spawns should occur in this sector and therefore
+    ///   the length of the list returned vector list.
+    /// </summary>
+    /// <returns>Returns the amount of spawns in a sector.</returns>
+    protected virtual int GetSpawnsInASector(float sectorDensity, Random random)
+    {
+        var nextRandom = random.NextFloat() * sectorDensity;
+        var binomialSum = 0f;
+        var i = 0;
+        do
+        {
+            binomialSum += BinomialValues[i++];
+        }
+        while (binomialSum >= nextRandom);
+
+        return i;
+    }
+
+    /// <summary>
+    ///   Clears the cache for the binomial values.
+    ///   Call this when <see cref="BinomialN"/> or <see cref="BinomialP"/> change.
+    /// </summary>
+    protected void ClearBinomialValues()
+    {
+        binomialValuesCache = null;
+    }
 }
