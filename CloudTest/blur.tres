@@ -1,0 +1,30 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+
+void vertex() {
+  POSITION = vec4(VERTEX, 1.0);
+}
+
+void fragment()
+{
+	vec2 pixelSize = 1f/ vec2(textureSize(SCREEN_TEXTURE,0));
+	vec3 albedo = vec3 (0f,0f,0f);
+
+	for(int y = -1; y <= 1; y++)
+    	for(int x = -1; x <= 1; x++)
+		{
+			float pi = 3.145 * 2f;
+			float sigma = 0.807;
+			sigma *= sigma;
+			
+			float gaussFactor = 1f/(pi * sigma) * exp (-(float(x*x+y*y))/(2f*sigma));
+			vec2 offset = vec2( float(x),float(y));
+			vec4 tex = texture(SCREEN_TEXTURE, UV + offset * pixelSize);
+			albedo += tex.rgb * gaussFactor;
+		}
+	ALPHA = 0f;
+	//ALBEDO = albedo;
+	
+}"

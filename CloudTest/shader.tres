@@ -11,6 +11,10 @@ void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
 
+
+
+
+
 float signedDistance(vec3 center, float radius, vec3 point)
 {
 	return length(center - point) - radius;
@@ -41,7 +45,6 @@ vec2 raymarch(vec3 rayDir,vec3 cameraPos)
 				dstToExit = depth;
 				break;
 			}
-            //return vec4 (hitColor,depth);
         }
         depth += dist;
     }
@@ -69,13 +72,13 @@ void fragment()
 		distToSphereExit = distToSphere;
 	vec3 rayColor = vec3(0f,0f,0f);
 	if (rayInfo.y != 0f)
-		rayColor = vec3(1f,2f,2f);
+		rayColor = vec3(1f,0.1f,0.5f);
 
 	ALBEDO = rayColor.xyz;
 	float dist = (abs(distToSphere-distToSphereExit));
-	float willDisplay = float (((int(distToSphere * 717000f) % 1000) * 101) % 40 );
+	float willDisplay = float (((int(distToSphere * 717000f) % 1000) * 101) % 80 );
 	//(world_position - worldCamera) 
-	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < distToSphere  || willDisplay > dist)
+	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < distToSphere )
 		ALPHA = 0f;
 	
 }"
