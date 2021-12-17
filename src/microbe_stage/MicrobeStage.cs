@@ -353,9 +353,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Player != null)
             return;
 
-        Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, Vector2.Zero,
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds,
-            CurrentGame);
+        Player = SpawnHelpers.InstantiateMicrobe(GameWorld.PlayerSpecies, Vector2.Zero, SpawnHelpers.LoadMicrobeScene(),
+            false, Clouds, CurrentGame);
+        rootOfDynamicallySpawned.AddChild(Player);
+
         Player.AddToGroup("player");
 
         Player.OnDeath = OnPlayerDied;
@@ -457,7 +458,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             var currentPlayerSector = Player.CurrentSector;
             if (previousPlayerSector != currentPlayerSector)
             {
-                Spawner.OnPlayerSectorChanged(previousPlayerSector, currentPlayerSector);
+                Spawner.OnPlayerSectorChanged(currentPlayerSector);
                 previousPlayerSector = currentPlayerSector;
             }
         }
@@ -630,9 +631,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         var randomSpecies = species.Random(random);
 
-        SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation.ToVector2() + Vector2.Up * 20,
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
-            CurrentGame);
+        SpawnHelpers.InstantiateMicrobe(randomSpecies, Player.Translation.ToVector2() + Vector2.Up * 20,
+            SpawnHelpers.LoadMicrobeScene(), true, Clouds, CurrentGame);
     }
 
     [DeserializedCallbackAllowed]

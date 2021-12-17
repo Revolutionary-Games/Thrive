@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Linq;
 using Godot;
+using Godot.Collections;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Spawns AI cells and other environmental things as the player moves around
@@ -12,6 +17,11 @@ public class SpawnSystem
     ///   Root node to parent all spawned things to
     /// </summary>
     private readonly Node worldRoot;
+
+    private readonly List<Spawner> spawnTypes = new();
+
+    [JsonProperty]
+    private readonly Random random = new();
 
     private readonly FastNoiseLite noise;
 
@@ -30,15 +40,16 @@ public class SpawnSystem
     ///     this object so much
     ///   </para>
     /// </remarks>
-    private QueuedSpawn queuedSpawns;
+    private ConcurrentQueue<Node> queuedSpawns = new();
 
-    private Dictionary<Sector, float> sectorDensities = new Dictionary<Sector, float>();
+    private ConcurrentDictionary<Sector, float> sectorDensities = new();
+    private List<Sector> loadedSectors = new();
 
     public SpawnSystem(Node root)
     {
         worldRoot = root;
 
-        noise = new FastNoiseLite(25565);
+        noise = new FastNoiseLite(12346234);
         noise.SetFrequency(5f);
         noise.SetDomainWarpType(FastNoiseLite.DomainWarpType.BasicGrid);
     }
@@ -51,22 +62,40 @@ public class SpawnSystem
         entity.EntityNode.AddToGroup(Constants.SPAWNED_GROUP);
     }
 
-    public void OnPlayerSectorChanged(Sector? oldSector, Sector newSector)
+    public void OnPlayerSectorChanged(Sector newSector)
     {
-        // TODO: Load and unload sectors
-        _ = oldSector;
-        _ = newSector;
+        // List of sectors that are in the load radius
+        var newLoadedSectors = GetSectorsInRadius(newSector.Pos, Constants.SECTOR_LOAD_RADIUS);
+        var sectorsToLoad = newLoadedSectors.Except(loadedSectors).ToList();
+
+        // List of sectors that are in the non-unload radius
+        var sectorsToKeep = GetSectorsInRadius(newSector.Pos, Constants.SECTOR_UNLOAD_RADIUS);
+        var sectorsToUnload = loadedSectors.Except(sectorsToKeep).ToList();
+
+        LoadSectors(sectorsToLoad);
+        UnloadSectors(sectorsToUnload);
+
+        loadedSectors = loadedSectors.Concat(sectorsToLoad).Except(sectorsToUnload).ToList();
+    }
+
+    public void AddSpawnType(Spawner spawner)
+    {
+        spawnTypes.Add(spawner);
+    }
+
+    public void RemoveSpawnType(Spawner spawner)
+    {
+        spawnTypes.Remove(spawner);
     }
 
     public float GetSectorDensity(Sector sector)
     {
-        if (sectorDensities.ContainsKey(sector))
-            return sectorDensities[sector];
-
-        var density = noise.GetNoise(sector.X, sector.Y);
-        density = (density + 1f) / 2f;
-        sectorDensities.Add(sector, density);
-        return density;
+        return sectorDensities.GetOrAdd(sector, _ =>
+        {
+            var density = noise.GetNoise(sector.X, sector.Y);
+            density = (density + 1f) / 2f;
+            return density;
+        });
     }
 
     /// <summary>
@@ -109,23 +138,12 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
-        queuedSpawns = null;
+        queuedSpawns = new ConcurrentQueue<Node>();
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
         foreach (Node entity in spawnedEntities)
         {
-            if (!entity.IsQueuedForDeletion())
-            {
-                var spawned = entity as SpawnedRigidBody;
-
-                if (spawned == null)
-                {
-                    GD.PrintErr("A node has been put in the spawned group but it isn't derived from SpawnedRigidBody");
-                    continue;
-                }
-
-                spawned.DestroyDetachAndQueueFree();
-            }
+            DespawnEntity(entity);
         }
     }
 
@@ -143,30 +161,81 @@ public class SpawnSystem
         HandleQueuedSpawns(Constants.MAX_SPAWNS_PER_FRAME);
     }
 
-    private void HandleQueuedSpawns(int spawnsLeftThisFrame)
+    private IEnumerable<Sector> GetSectorsInRadius(Int2 center, int radius)
     {
-        // Spawn from the queue
-        while (spawnsLeftThisFrame > 0)
+        for (var x = -radius; x <= radius; x++)
         {
-            if (!queuedSpawns.Spawns.MoveNext())
-            {
-                // Ended
-                queuedSpawns.Spawns.Dispose();
-                queuedSpawns = null;
-                break;
-            }
-
-            --spawnsLeftThisFrame;
+            for (var y = -radius; y <= radius; y++)
+                yield return new Sector(center.x + x, center.y + y);
         }
     }
 
-    private class QueuedSpawn
+    /// <summary>
+    ///   Determines what stuff to spawn in the new sectors and queues this stuff
+    /// </summary>
+    private void LoadSectors(List<Sector> sectors)
     {
-        public IEnumerator<SpawnedRigidBody> Spawns;
-
-        public QueuedSpawn(IEnumerator<SpawnedRigidBody> spawner)
+        foreach (var spawner in spawnTypes)
         {
-            Spawns = spawner;
+            foreach (var sector in sectors)
+            {
+                var density = GetSectorDensity(sector);
+
+                var spawnPoints = spawner.GetSpawnPoints(density, random)
+                    .Select(p => p + new Vector2(sector.X, sector.Y) * Constants.SECTOR_SIZE);
+
+                foreach (var spawnPoint in spawnPoints)
+                {
+                    var instances = spawner.Instantiate(spawnPoint);
+                    if (instances == null)
+                        continue;
+
+                    foreach (var instance in instances)
+                        queuedSpawns.Enqueue(instance);
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Despawns the stuff in these sectors
+    /// </summary>
+    private void UnloadSectors(List<Sector> sectors)
+    {
+        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
+        foreach (SpawnedRigidBody entity in spawnedEntities)
+        {
+            if (sectors.Contains(entity.CurrentSector))
+            {
+                DespawnEntity(entity);
+            }
+        }
+    }
+
+    private void DespawnEntity(Node entity)
+    {
+        if (!entity.IsQueuedForDeletion())
+        {
+            var spawned = entity as SpawnedRigidBody;
+
+            if (spawned == null)
+            {
+                GD.PrintErr("A node has been put in the spawned group but it isn't derived from SpawnedRigidBody");
+            }
+
+            spawned.DestroyDetachAndQueueFree();
+        }
+    }
+
+    private void HandleQueuedSpawns(int spawnsLeftThisFrame)
+    {
+        // Spawn from the queue
+        while (spawnsLeftThisFrame > 0 && queuedSpawns.TryDequeue(out var current))
+        {
+            current!.AddToGroup(Constants.SPAWNED_GROUP);
+            worldRoot.AddChild(current);
+
+            --spawnsLeftThisFrame;
         }
     }
 }

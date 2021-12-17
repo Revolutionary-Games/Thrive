@@ -669,6 +669,16 @@ public static class Constants
     public const float SECTOR_SIZE = 64f;
 
     /// <summary>
+    ///   The radius of sectors loaded around the player
+    /// </summary>
+    public const int SECTOR_LOAD_RADIUS = 5;
+
+    /// <summary>
+    ///   The radius of sectors around the player after which sectors are unloaded
+    /// </summary>
+    public const int SECTOR_UNLOAD_RADIUS = 7;
+
+    /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
     /// <remarks>

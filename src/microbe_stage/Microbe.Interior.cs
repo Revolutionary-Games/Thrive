@@ -190,8 +190,8 @@ public partial class Microbe
 
         var position = Translation.ToVector2() + direction * ejectionDistance;
 
-        var agent = SpawnHelpers.SpawnAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
-            position, direction, GetStageAsParent(),
+        var agent = SpawnHelpers.InstantiateAgent(props, amountEmitted, Constants.EMITTED_AGENT_LIFETIME,
+            position, direction,
             SpawnHelpers.LoadAgentScene(), this);
 
         ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
@@ -269,8 +269,8 @@ public partial class Microbe
         var separation = new Vector2(Radius, 0);
 
         // Create the one daughter cell.
-        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation.ToVector2() + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
+        var copyEntity = SpawnHelpers.InstantiateMicrobe(Species, Translation.ToVector2() + separation,
+            SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);

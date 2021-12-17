@@ -398,8 +398,8 @@ public partial class Microbe
                 var direction = new Vector2(random.Next(0.0f, 1.0f) * 2 - 1,
                     random.Next(0.0f, 1.0f) * 2 - 1);
 
-                var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
-                    Constants.EMITTED_AGENT_LIFETIME, Translation.ToVector2(), direction, GetStageAsParent(),
+                var agent = SpawnHelpers.InstantiateAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
+                    Constants.EMITTED_AGENT_LIFETIME, Translation.ToVector2(), direction,
                     agentScene, this);
 
                 ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
@@ -504,7 +504,7 @@ public partial class Microbe
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation.ToVector2() + positionAdded, GetStageAsParent(),
+            var chunk = SpawnHelpers.InstantiateChunk(chunkType, Translation.ToVector2() + positionAdded,
                 chunkScene, cloudSystem, random);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);

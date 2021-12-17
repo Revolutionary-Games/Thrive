@@ -48,18 +48,18 @@ public abstract class Spawner
     ///   Evenly distributes the spawns in a sector.
     /// </summary>
     /// <returns>Returns the relative points where stuff should spawn</returns>
-    public virtual List<Vector2> GetSpawnPoints(List<Vector2> spawnsInNeighbourSectors, float sectorDensity,
+    public virtual IEnumerable<Vector2> GetSpawnPoints(float sectorDensity,
         Random random)
     {
         var spawns = GetSpawnsInASector(sectorDensity, random);
-        var results = new List<Vector2>();
+        var results = new List<Vector2>(spawns);
         for (var i = 0; i < spawns; i++)
         {
             var vector = new Vector2(random.NextFloat(), random.NextFloat());
             vector *= Constants.SECTOR_SIZE;
 
             // Check if another spawn is too close
-            if (results.Concat(spawnsInNeighbourSectors).Any(v => (v - vector).LengthSquared() < MinDistanceSquared))
+            if (results.Any(v => (v - vector).LengthSquared() < MinDistanceSquared))
             {
                 i--;
                 continue;
@@ -72,12 +72,12 @@ public abstract class Spawner
     }
 
     /// <summary>
-    ///   Spawns the next thing. This is an enumerator to be able to control how many things to spawn per frame easily
+    ///   Instantiate the next thing. This is an enumerator to be able to control how many things to spawn per frame easily.
+    ///   Do not add those instances to the world, that's the spawn system's job.
     /// </summary>
-    /// <param name="worldNode">The parent node of spawned entities</param>
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
-    /// <returns>An enumerator that on each next call spawns one thing</returns>
-    public abstract IEnumerable<SpawnedRigidBody> Spawn(Node worldNode, Vector2 location);
+    /// <returns>An enumerator which defines the instances of the object to spawn</returns>
+    public abstract IEnumerable<SpawnedRigidBody> Instantiate(Vector2 location);
 
     /// <summary>
     ///   Used in <see cref="GetSpawnPoints"/> to determine how many spawns should occur in this sector and therefore
@@ -86,6 +86,9 @@ public abstract class Spawner
     /// <returns>Returns the amount of spawns in a sector.</returns>
     protected virtual int GetSpawnsInASector(float sectorDensity, Random random)
     {
+        if (BinomialN == 0)
+            return 0;
+
         var nextRandom = random.NextFloat() * sectorDensity;
         var binomialSum = 0f;
         var i = 0;
@@ -93,9 +96,9 @@ public abstract class Spawner
         {
             binomialSum += BinomialValues[i++];
         }
-        while (binomialSum >= nextRandom);
+        while (nextRandom >= binomialSum);
 
-        return i;
+        return i - 1;
     }
 
     /// <summary>

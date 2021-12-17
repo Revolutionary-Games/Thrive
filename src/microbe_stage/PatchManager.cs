@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -115,10 +116,12 @@ public class PatchManager : IChildPropertiesLoadCallback
         foreach (var entry in biome.Chunks)
         {
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, () =>
-                new CreatedSpawner(entry.Value.Name)
-                {
-                    Spawner = Spawners.MakeChunkSpawner(entry.Value, compoundCloudSystem),
-                });
+            {
+                var spawner = new CreatedSpawner(entry.Value.Name);
+                spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value, compoundCloudSystem);
+                spawnSystem.AddSpawnType(spawner.Spawner);
+                return spawner;
+            });
         }
     }
 
@@ -126,13 +129,15 @@ public class PatchManager : IChildPropertiesLoadCallback
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
-        foreach (var entry in biome.Compounds)
+        foreach (var entry in biome.Compounds.Where(c => c.Key.IsCloud))
         {
             HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, () =>
-                new CreatedSpawner(entry.Key.InternalName)
-                {
-                    Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount),
-                });
+            {
+                var spawner = new CreatedSpawner(entry.Key.InternalName);
+                spawner.Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount);
+                spawnSystem.AddSpawnType(spawner.Spawner);
+                return spawner;
+            });
         }
     }
 
@@ -143,8 +148,9 @@ public class PatchManager : IChildPropertiesLoadCallback
         foreach (var entry in patch.SpeciesInPatch)
         {
             var species = entry.Key;
+            var populationHere = entry.Value;
 
-            if (species.Population <= 0)
+            if (populationHere <= 0)
             {
                 GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
@@ -153,10 +159,13 @@ public class PatchManager : IChildPropertiesLoadCallback
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(microbeSpawners, name, () =>
-                new CreatedSpawner(name)
-                {
-                    Spawner = Spawners.MakeMicrobeSpawner(species, compoundCloudSystem, CurrentGame),
-                });
+            {
+                var spawner = new CreatedSpawner(name);
+                spawner.Spawner =
+                    Spawners.MakeMicrobeSpawner(species, compoundCloudSystem, CurrentGame, populationHere);
+                spawnSystem.AddSpawnType(spawner.Spawner);
+                return spawner;
+            });
         }
     }
 

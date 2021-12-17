@@ -3,14 +3,18 @@ using Godot;
 
 public readonly struct Sector : IEquatable<Sector>
 {
-    public Sector(int x, int y)
+    public Sector(Int2 pos)
     {
-        X = x;
-        Y = y;
+        Pos = pos;
     }
 
-    public int X { get; }
-    public int Y { get; }
+    public Sector(int x, int y) : this(new Int2(x, y))
+    {
+    }
+
+    public Int2 Pos { get; }
+    public int X => Pos.x;
+    public int Y => Pos.y;
 
     public static bool operator ==(Sector left, Sector right)
     {
