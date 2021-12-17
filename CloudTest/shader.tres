@@ -1,0 +1,81 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type spatial;
+uniform int MAX_STEPS = 1450; // march at most 250 times
+uniform float MAX_DIST = 700; // don't continue if depth if larger than 20
+uniform float MIN_HIT_DIST = 0.00001; // hit depth threshold
+uniform sampler3D da;
+
+void vertex() {
+  POSITION = vec4(VERTEX, 1.0);
+}
+
+float signedDistance(vec3 center, float radius, vec3 point)
+{
+	return length(center - point) - radius;
+	
+}
+float sdf(vec3 point)
+{
+	return signedDistance(vec3(10,10,1),30,point);
+}
+vec2 raymarch(vec3 rayDir,vec3 cameraPos)
+{
+    vec3 hitColor = vec3(100.0, 1.0, 1.0);
+    vec3 missColor = vec3(0.0, 0.0, 0.0);
+ 	float dstToSphere = 0f;
+	float dstToExit = 0f;
+    float depth = 0.0;
+	//Coordonate pentru 2 puncte de intersectie cu raza
+    for (int i=0; depth<MAX_DIST && i<MAX_STEPS; ++i)
+    {	
+        vec3 pos = cameraPos + rayDir * depth;
+        float dist = abs(sdf(pos));
+        if (dist < MIN_HIT_DIST) {
+			dist += 0.1f;
+			if (dstToSphere == 0f)
+				dstToSphere = depth;
+			else
+			{
+				dstToExit = depth;
+				break;
+			}
+            //return vec4 (hitColor,depth);
+        }
+        depth += dist;
+    }
+    return vec2 (dstToSphere ,dstToExit);
+}
+
+void fragment()
+{
+	float depth = texture(DEPTH_TEXTURE, SCREEN_UV).x;
+	vec3 ndc = vec3(SCREEN_UV, depth) * 2.0 - 1.0;
+	vec4 view = INV_PROJECTION_MATRIX * vec4(ndc, 1.0);
+	view.xyz /= view.w;
+	float linear_depth = -view.z;
+	
+	vec3 worldCamera = (CAMERA_MATRIX * vec4(0f,0f,0f,1f)).xyz;
+	vec4 world = CAMERA_MATRIX * view;
+    vec3 world_position = world.xyz / world.w;
+	
+	
+	vec3 rayDir = normalize(world_position - worldCamera);
+	vec2 rayInfo = raymarch(rayDir, worldCamera);
+	float distToSphere = rayInfo.x;
+	float distToSphereExit = rayInfo.y;
+	if (distToSphereExit == 0f)
+		distToSphereExit = distToSphere;
+	vec3 rayColor = vec3(0f,0f,0f);
+	if (rayInfo.y != 0f)
+		rayColor = vec3(1f,2f,2f);
+
+	ALBEDO = rayColor.xyz;
+	float dist = (abs(distToSphere-distToSphereExit));
+	float willDisplay = float (((int(distToSphere * 717000f) % 1000) * 101) % 40 );
+	//(world_position - worldCamera) 
+	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < distToSphere  || willDisplay > dist)
+		ALPHA = 0f;
+	
+}"

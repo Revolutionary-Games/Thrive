@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://CloudTest/shader.tres" type="Shader" id=1]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 1 )
+shader_param/MAX_STEPS = 1450
+shader_param/MAX_DIST = 700.0
+shader_param/MIN_HIT_DIST = 1e-05
+
+[sub_resource type="QuadMesh" id=2]
+size = Vector2( 2, 2 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0917207, 1.30938 )
+material_override = SubResource( 3 )
+extra_cull_margin = 16384.0
+mesh = SubResource( 2 )
+material/0 = null
