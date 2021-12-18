@@ -2,16 +2,22 @@
 using Godot;
 
 /// <summary>
-///   Point / marker on a chart containing a single numerical data value (x, y).
+///   Data point / marker on a chart containing two immutable numerical value (x, y).
 ///   This inherits Control to make this interactable as well as for giving it a visual marker.
 /// </summary>
 /// <remarks>
 ///   <para>
+///     Note: May cause performance overhead for chart with lots of data points.
 ///     Note: Must be freed manually, like all Godot Node types.
 ///   </para>
 /// </remarks>
-public class DataPoint : Control
+public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 {
+#pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
+    public readonly double x;
+    public readonly double y;
+#pragma warning restore SA1307 // Accessible fields should begin with upper-case letter
+
     private Texture graphMarkerCircle;
     private Texture graphMarkerCross;
     private Texture graphMarkerSkull;
@@ -19,21 +25,14 @@ public class DataPoint : Control
     private bool isMouseOver;
 
     private Vector2 coordinate;
-    private float size;
+    private float size = 7;
 
     private Tween tween;
 
-    public DataPoint()
+    public DataPoint(double x, double y)
     {
-        Size = 7;
-        IconType = MarkerIcon.Circle;
-    }
-
-    public DataPoint(float xValue, float yValue)
-    {
-        Value = new Vector2(xValue, yValue);
-        Size = 7;
-        IconType = MarkerIcon.Circle;
+        this.x = x;
+        this.y = y;
     }
 
     public enum MarkerIcon
@@ -46,12 +45,7 @@ public class DataPoint : Control
     /// <summary>
     ///   Visual shape of this point
     /// </summary>
-    public MarkerIcon IconType { get; set; }
-
-    /// <summary>
-    ///   Actual data this point represents
-    /// </summary>
-    public Vector2 Value { get; set; }
+    public MarkerIcon IconType { get; set; } = MarkerIcon.Circle;
 
     /// <summary>
     ///   The position of this point on a chart and is different from Value. This should be set in the
@@ -193,7 +187,46 @@ public class DataPoint : Control
 
     public override string ToString()
     {
-        return $"Value: {Value.ToString()} Coord: {Coordinate.ToString()}";
+        return $"Value: {x}, {y} Coord: {Coordinate}";
+    }
+
+    public object Clone()
+    {
+        var result = new DataPoint(x, y)
+        {
+            IconType = IconType,
+            Coordinate = Coordinate,
+            Size = Size,
+            MarkerFillerColour = MarkerFillerColour,
+            MarkerFillerHighlightedColour = MarkerFillerHighlightedColour,
+            MarkerColour = MarkerColour,
+            Draw = Draw,
+        };
+
+        return result;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return Equals(obj as DataPoint);
+    }
+
+    public bool Equals(DataPoint other)
+    {
+        if (ReferenceEquals(this, other))
+            return true;
+
+        return other != null &&
+               x == other.x &&
+               y == other.y;
+    }
+
+    public override int GetHashCode()
+    {
+        int hashCode = 1502939027;
+        hashCode = hashCode * -1521134295 + x.GetHashCode();
+        hashCode = hashCode * -1521134295 + y.GetHashCode();
+        return hashCode;
     }
 
     private void OnMouseEnter()

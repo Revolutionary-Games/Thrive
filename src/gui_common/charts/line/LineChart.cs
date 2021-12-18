@@ -30,8 +30,14 @@ public class LineChart : VBoxContainer
     [Export]
     public NodePath LegendsContainerPath;
 
+    [Export]
+    public NodePath ExtraLegendContainerPath;
+
+    [Export]
+    public NodePath InspectButtonPath;
+
     /// <summary>
-    ///   The name identifier for this chart. Each chart instance should have a unique name.
+    ///   The translatable name identifier for this chart. Each chart instance should have a unique name.
     /// </summary>
     [Export]
     public string ChartName;
@@ -91,6 +97,18 @@ public class LineChart : VBoxContainer
     public string TooltipYAxisFormat;
 
     /// <summary>
+    ///   Datasets to be plotted on the chart. Key is the dataset's name
+    /// </summary>
+    private readonly DataSetDictionary dataSets = new();
+
+    /// <summary>
+    ///   Lines for each of the plotted datasets
+    /// </summary>
+    private readonly Dictionary<string, DataLine> dataLines = new();
+
+    private readonly Dictionary<string, Dictionary<DataPoint, ICustomToolTip>> dataPointToolTips = new();
+
+    /// <summary>
     ///   Fallback icon for the legend display mode using icons
     /// </summary>
     private Texture defaultIconLegendTexture;
@@ -106,19 +124,15 @@ public class LineChart : VBoxContainer
     private HBoxContainer horizontalLabelsContainer;
     private Control drawArea;
     private HBoxContainer legendContainer;
+    private GridContainer extraLegendContainer;
+    private TextureButton inspectButton;
+    private CustomDialog chartPopup;
+    private LineChart chartClone;
 
     private string xAxisName;
     private string yAxisName;
 
-    /// <summary>
-    ///   Datasets to be plotted on the chart. Key is the dataset's name
-    /// </summary>
-    private DataSetDictionary dataSets = new DataSetDictionary();
-
-    /// <summary>
-    ///   Lines for each of the plotted datasets
-    /// </summary>
-    private Dictionary<string, DataLine> dataLines = new Dictionary<string, DataLine>();
+    private bool isClone;
 
     /// <summary>
     ///   Modes on how the chart legend should be displayed
@@ -165,12 +179,12 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   The lowest data point value from all the datasets.
     /// </summary>
-    public Vector2 MinValues { get; private set; }
+    public (double X, double Y) MinValues { get; private set; }
 
     /// <summary>
     ///   The highest data point value from all the datasets.
     /// </summary>
-    public Vector2 MaxValues { get; private set; }
+    public (double X, double Y) MaxValues { get; private set; }
 
     [Export]
     public string YAxisName
@@ -224,10 +238,14 @@ public class LineChart : VBoxContainer
         horizontalLabelsContainer = GetNode<HBoxContainer>(HorizontalTicksContainerPath);
         drawArea = GetNode<Control>(DrawAreaPath);
         legendContainer = GetNode<HBoxContainer>(LegendsContainerPath);
+        extraLegendContainer = GetNode<GridContainer>(ExtraLegendContainerPath);
+        inspectButton = GetNode<TextureButton>(InspectButtonPath);
+        chartPopup = GetNode<CustomDialog>("ChartPopup");
         defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
         hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
         vLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/vSeparatorUp.png");
 
+        SetupChartClone();
         UpdateAxesName();
     }
 
@@ -258,6 +276,18 @@ public class LineChart : VBoxContainer
         }
 
         dataSets.Clear();
+
+        if (chartClone != null)
+        {
+            foreach (var dataset in chartClone.dataSets)
+            {
+                dataset.Value.ClearPoints();
+            }
+
+            chartClone.dataSets.Clear();
+        }
+
+        dataPointToolTips.Clear();
     }
 
     /// <summary>
@@ -268,14 +298,22 @@ public class LineChart : VBoxContainer
     /// <param name="initialVisibleDataSets">How many datasets should be visible initially after plotting</param>
     /// <param name="legendTitle">Title for the chart legend. If null, the legend will not be created</param>
     /// <param name="defaultDataSet">The name of dataset that'll always be shown after plotting</param>
+    /// <param name="expandedXTicks">Overrides number of x scales in the expanded graph, leave this as zero to use the default</param>
+    /// <param name="expandedYTicks">Overrides number of y scales in the expanded graph, leave this as zero to use the default</param>
     public void Plot(string xAxisName, string yAxisName, int initialVisibleDataSets,
-        string legendTitle = null, string defaultDataSet = null)
+        string legendTitle = null, string defaultDataSet = null, int expandedXTicks = 0, int expandedYTicks = 0)
     {
         ClearChart();
 
         // These are before the parameter checks to apply any possible translation to the axes labels
         XAxisName = string.IsNullOrEmpty(xAxisName) ? XAxisName : xAxisName;
         YAxisName = string.IsNullOrEmpty(yAxisName) ? YAxisName : yAxisName;
+
+        if (expandedXTicks > 0 && isClone)
+            XAxisTicks = expandedXTicks;
+
+        if (expandedYTicks > 0 && isClone)
+            YAxisTicks = expandedYTicks;
 
         if (dataSets == null || dataSets.Count <= 0)
         {
@@ -300,6 +338,8 @@ public class LineChart : VBoxContainer
 
         foreach (var data in dataSets)
         {
+            chartClone?.dataSets.Add(data.Key, (LineChartData)data.Value.Clone());
+
             // Null check to suppress ReSharper's warning
             if (string.IsNullOrEmpty(data.Key))
                 throw new Exception("Dataset dictionary key is null");
@@ -319,30 +359,37 @@ public class LineChart : VBoxContainer
             dataLines[data.Key] = dataLine;
             drawArea.AddChild(dataLine);
 
+            if (!dataPointToolTips.ContainsKey(data.Key))
+                dataPointToolTips.Add(data.Key, new Dictionary<DataPoint, ICustomToolTip>());
+
             foreach (var point in data.Value.DataPoints)
             {
                 // Create tooltip for the point markers
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
                 var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
-                    $"{((double)point.Value.x).FormatNumber()} {XAxisName}" :
+                    $"{point.x.FormatNumber()} {XAxisName}" :
                     string.Format(CultureInfo.CurrentCulture,
-                        TooltipXAxisFormat, point.Value.x);
+                        TooltipXAxisFormat, point.x);
 
                 var yValueForm = string.IsNullOrEmpty(TooltipYAxisFormat) ?
-                    $"{((double)point.Value.y).FormatNumber()} {YAxisName}" :
+                    $"{point.y.FormatNumber()} {YAxisName}" :
                     string.Format(CultureInfo.CurrentCulture,
-                        TooltipYAxisFormat, point.Value.y);
+                        TooltipYAxisFormat, point.y);
 
-                toolTip.DisplayName = data.Key + point.Value;
+                toolTip.DisplayName = data.Key + point;
                 toolTip.Description = $"{data.Key}\n{xValueForm}\n{yValueForm}";
 
                 toolTip.DisplayDelay = 0;
                 toolTip.HideOnMousePress = false;
                 toolTip.TransitionType = ToolTipTransitioning.Immediate;
+                toolTip.Positioning = ToolTipPositioning.ControlBottomRightCorner;
 
                 point.RegisterToolTipForControl(toolTip);
                 ToolTipManager.Instance.AddToolTip(toolTip, "chartMarkers" + ChartName + data.Key);
+
+                var key = dataPointToolTips[data.Key];
+                key[point] = toolTip;
 
                 drawArea.AddChild(point);
             }
@@ -351,6 +398,8 @@ public class LineChart : VBoxContainer
         // Create chart legend
         if (!string.IsNullOrEmpty(legendTitle))
         {
+            legendContainer.Show();
+
             // Switch to dropdown if number of datasets exceeds the max amount of icon legends
             if (dataSets.Count > MaxIconLegend && LegendMode == LegendDisplayMode.Icon)
                 LegendMode = LegendDisplayMode.DropDown;
@@ -358,10 +407,10 @@ public class LineChart : VBoxContainer
             switch (LegendMode)
             {
                 case LegendDisplayMode.Icon:
-                    CreateIconLegend(legendTitle);
+                    CreateDatasetIconLegend(legendTitle);
                     break;
                 case LegendDisplayMode.DropDown:
-                    CreateDropDownLegend(legendTitle);
+                    CreateDatasetDropDownLegend(legendTitle);
                     break;
                 default:
                     throw new Exception("Invalid legend display mode");
@@ -374,10 +423,13 @@ public class LineChart : VBoxContainer
         {
             FlattenLines(data);
         }
+
+        chartPopup.WindowTitle = TranslationServer.Translate(ChartName);
+        chartClone?.Plot(xAxisName, yAxisName, initialVisibleDataSets, legendTitle, defaultDataSet, expandedXTicks, expandedYTicks);
     }
 
     /// <summary>
-    ///   Wipe clean all the stuff on this chart
+    ///   Wipes clean all node elements on this chart
     /// </summary>
     public void ClearChart()
     {
@@ -417,10 +469,14 @@ public class LineChart : VBoxContainer
 
         // Clear ordinates
         verticalLabelsContainer.QueueFreeChildren();
+
+        extraLegendContainer.QueueFreeChildren();
     }
 
     public DataSetVisibilityUpdateResult UpdateDataSetVisibility(string name, bool visible)
     {
+        chartClone?.UpdateDataSetVisibility(name, visible);
+
         if (!dataSets.ContainsKey(name))
             return DataSetVisibilityUpdateResult.NotFound;
 
@@ -431,7 +487,7 @@ public class LineChart : VBoxContainer
             return DataSetVisibilityUpdateResult.MaxVisibleLimitReached;
         }
 
-        if (!visible && VisibleDataSets <= MinDisplayedDataSet)
+        if (!visible && VisibleDataSets - 1 < MinDisplayedDataSet)
         {
             return DataSetVisibilityUpdateResult.MinVisibleLimitReached;
         }
@@ -461,7 +517,60 @@ public class LineChart : VBoxContainer
         return DataSetVisibilityUpdateResult.Success;
     }
 
-    private void CreateIconLegend(string title)
+    /// <summary>
+    ///   Adds additional legend in icon form at the bottom of the graph's inspection panel.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: Must be called after Plot() as this will got cleared (removed) if called beforehand.
+    ///   </para>
+    /// </remarks>
+    public void AddIconLegend(Texture icon, string name, float size = 15)
+    {
+        if (isClone)
+            return;
+
+        var parent = new HBoxContainer();
+        parent.AddConstantOverride("separation", 7);
+
+        var rect = new TextureRect
+        {
+            Texture = icon,
+            Expand = true,
+            RectMinSize = new Vector2(size, size),
+            SizeFlagsVertical = (int)Control.SizeFlags.ShrinkCenter,
+            StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered,
+        };
+
+        var label = new Label { Text = name };
+
+        label.AddFontOverride("font", GD.Load<Font>("res://src/gui_common/fonts/Lato-Regular-Small.tres"));
+
+        parent.AddChild(rect);
+        parent.AddChild(label);
+
+        extraLegendContainer.AddChild(parent);
+    }
+
+    public void OverrideDataPointToolTipDescription(string dataset, DataPoint datapoint, string description)
+    {
+        if (dataPointToolTips.ContainsKey(dataset) && dataPointToolTips[dataset].TryGetValue(
+            datapoint, out var tooltip))
+        {
+            tooltip.Description = description;
+        }
+
+        if (chartClone == null)
+            return;
+
+        if (chartClone.dataPointToolTips.ContainsKey(dataset) && chartClone.dataPointToolTips[dataset].TryGetValue(
+            datapoint, out var clonedTooltip))
+        {
+            clonedTooltip.Description = description;
+        }
+    }
+
+    private void CreateDatasetIconLegend(string title)
     {
         _ = title;
 
@@ -476,7 +585,7 @@ public class LineChart : VBoxContainer
                 fallbackIconIsUsed = true;
             }
 
-            var icon = new IconLegend(data.Key, data.Value, fallbackIconIsUsed);
+            var icon = new DatasetIconLegend(data.Key, this, data.Value, fallbackIconIsUsed);
 
             legendContainer.AddChild(icon);
 
@@ -500,7 +609,7 @@ public class LineChart : VBoxContainer
         }
     }
 
-    private void CreateDropDownLegend(string title)
+    private void CreateDatasetDropDownLegend(string title)
     {
         var dropDown = new CustomDropDown
         {
@@ -546,16 +655,17 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void RenderChart()
     {
-        // Handle empty or entirely hidden datasets
+        // Handle errors
         if (dataSets == null || VisibleDataSets <= 0)
         {
-            DrawNoDataText();
+            DrawErrorText(TranslationServer.Translate("NO_DATA_TO_SHOW"));
         }
-        else
+        else if (!IsMinMaxValid())
         {
-            DrawOrdinateLines();
+            DrawErrorText(TranslationServer.Translate("INVALID_DATA_TO_PLOT"));
         }
 
+        DrawOrdinateLines();
         ApplyCoordinatesToDataPoints();
         UpdateLineSegments();
     }
@@ -671,19 +781,18 @@ public class LineChart : VBoxContainer
     }
 
     /// <summary>
-    ///   Draws a text on the chart clarifying that there's no data to show to the user.
+    ///   Draws an error text on the center of the chart.
     /// </summary>
-    private void DrawNoDataText()
+    private void DrawErrorText(string error)
     {
         var font = GetFont("jura_small", "Label");
-        var translated = TranslationServer.Translate("NO_DATA_TO_SHOW");
 
         // Values are rounded to make the font not be blurry
         var position = new Vector2(
-            Mathf.Round((drawArea.RectSize.x - font.GetStringSize(translated).x) / 2),
+            Mathf.Round((drawArea.RectSize.x - font.GetStringSize(error).x) / 2),
             Mathf.Round(drawArea.RectSize.y / 2));
 
-        drawArea.DrawString(font, position, translated);
+        drawArea.DrawString(font, position, error);
     }
 
     /// <summary>
@@ -700,10 +809,10 @@ public class LineChart : VBoxContainer
                 continue;
 
             // First we move the point marker to the bottom of the chart
-            point.SetCoordinate(new Vector2(ConvertToXCoordinate(point.Value.x), drawArea.RectSize.y), false);
+            point.SetCoordinate(new Vector2(ConvertToXCoordinate(point.x), drawArea.RectSize.y), false);
 
             // Next start interpolating it into its assigned position
-            point.SetCoordinate(ConvertToCoordinate(point.Value));
+            point.SetCoordinate(ConvertToCoordinate(point));
         }
 
         UpdateLineSegments();
@@ -715,8 +824,8 @@ public class LineChart : VBoxContainer
     private void UpdateMinimumAndMaximumValues()
     {
         // Default to zeros
-        MaxValues = Vector2.Zero;
-        MinValues = Vector2.Zero;
+        MaxValues = (0, 0);
+        MinValues = (0, 0);
 
         // Find the max values of all the data points first to make finding min values possible
         foreach (var data in dataSets)
@@ -726,7 +835,7 @@ public class LineChart : VBoxContainer
 
             foreach (var point in data.Value.DataPoints)
             {
-                MaxValues = new Vector2(Mathf.Max(point.Value.x, MaxValues.x), Mathf.Max(point.Value.y, MaxValues.y));
+                MaxValues = (Math.Max(point.x, MaxValues.X), Math.Max(point.y, MaxValues.Y));
             }
         }
 
@@ -740,33 +849,33 @@ public class LineChart : VBoxContainer
 
             foreach (var point in data.Value.DataPoints)
             {
-                MinValues = new Vector2(Mathf.Min(point.Value.x, MinValues.x), Mathf.Min(point.Value.y, MinValues.y));
+                MinValues = (Math.Min(point.x, MinValues.X), Math.Min(point.y, MinValues.Y));
             }
         }
 
         // If min/max turns out to be equal, set one of their point to zero as the initial value
 
-        if (MinValues.x == MaxValues.x)
+        if (MinValues.X == MaxValues.X)
         {
-            if (MaxValues.x > 0)
+            if (MaxValues.X > 0)
             {
-                MinValues = new Vector2(0, MinValues.y);
+                MinValues = (0, MinValues.Y);
             }
-            else if (MaxValues.x < 0)
+            else if (MaxValues.X < 0)
             {
-                MaxValues = new Vector2(0, MaxValues.y);
+                MaxValues = (0, MaxValues.Y);
             }
         }
 
-        if (MinValues.y == MaxValues.y)
+        if (MinValues.Y == MaxValues.Y)
         {
-            if (MaxValues.y > 0)
+            if (MaxValues.Y > 0)
             {
-                MinValues = new Vector2(MinValues.x, 0);
+                MinValues = (MinValues.X, 0);
             }
-            else if (MaxValues.y < 0)
+            else if (MaxValues.Y < 0)
             {
-                MaxValues = new Vector2(MaxValues.x, 0);
+                MaxValues = (MaxValues.X, 0);
             }
         }
 
@@ -774,8 +883,8 @@ public class LineChart : VBoxContainer
         verticalLabelsContainer.QueueFreeChildren();
 
         // If no data is visible, don't create the labels as it will just have zero values
-        // and be potentially confusing to look at
-        if (VisibleDataSets <= 0)
+        // and be potentially confusing to look at, likewise if min max is invalid.
+        if (VisibleDataSets <= 0 || !IsMinMaxValid())
             return;
 
         // Populate the rows
@@ -788,7 +897,7 @@ public class LineChart : VBoxContainer
             };
 
             label.Text = Math.Round(
-                i * (MaxValues.x - MinValues.x) / (XAxisTicks - 1) + MinValues.x, 1).FormatNumber();
+                i * (MaxValues.X - MinValues.X) / (XAxisTicks - 1) + MinValues.X, 1).FormatNumber();
 
             horizontalLabelsContainer.AddChild(label);
         }
@@ -804,7 +913,7 @@ public class LineChart : VBoxContainer
             };
 
             label.Text = Math.Round(
-                i * (MaxValues.y - MinValues.y) / (YAxisTicks - 1) + MinValues.y, 1).FormatNumber();
+                i * (MaxValues.Y - MinValues.Y) / (YAxisTicks - 1) + MinValues.Y, 1).FormatNumber();
 
             verticalLabelsContainer.AddChild(label);
         }
@@ -818,15 +927,13 @@ public class LineChart : VBoxContainer
             {
                 if (IsMinMaxValid())
                 {
-                    point.SetCoordinate(ConvertToCoordinate(point.Value));
+                    point.SetCoordinate(ConvertToCoordinate(point));
                 }
                 else
                 {
-                    // Hide marker as its positioning won't be pretty at zero coordinate
-                    point.Visible = false;
-                    data.Value.Draw = false;
-
-                    point.SetCoordinate(Vector2.Zero, false);
+                    // Plotting failed, here we place the marker at the bottom left corner, we can't hide it at the
+                    // same time because that will break its position in a later coordinate update for some reason.
+                    point.SetCoordinate(new Vector2(0, drawArea.RectSize.y), false);
                 }
             }
         }
@@ -836,27 +943,27 @@ public class LineChart : VBoxContainer
     ///   Helper method for converting a single point data value into a coordinate.
     /// </summary>
     /// <returns>Position of the given value on the chart</returns>
-    private Vector2 ConvertToCoordinate(Vector2 value)
+    private Vector2 ConvertToCoordinate(DataPoint value)
     {
         return new Vector2(ConvertToXCoordinate(value.x), ConvertToYCoordinate(value.y));
     }
 
-    private float ConvertToXCoordinate(float value)
+    private float ConvertToXCoordinate(double value)
     {
         var lineRectX = drawArea.RectSize.x / XAxisTicks;
         var lineRectWidth = lineRectX * (XAxisTicks - 1);
-        var dx = MaxValues.x - MinValues.x;
+        var dx = MaxValues.X - MinValues.X;
 
-        return ((value - MinValues.x) * lineRectWidth / dx) + lineRectX / 2;
+        return (float)((value - MinValues.X) * lineRectWidth / dx) + lineRectX / 2;
     }
 
-    private float ConvertToYCoordinate(float value)
+    private float ConvertToYCoordinate(double value)
     {
         var lineRectY = drawArea.RectSize.y / YAxisTicks;
         var lineRectHeight = lineRectY * (YAxisTicks - 1);
-        var dy = MaxValues.y - MinValues.y;
+        var dy = MaxValues.Y - MinValues.Y;
 
-        return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY / 2;
+        return (float)(lineRectHeight - ((value - MinValues.Y) * lineRectHeight / dy) + lineRectY / 2);
     }
 
     /// <summary>
@@ -864,7 +971,7 @@ public class LineChart : VBoxContainer
     /// </summary>
     private bool IsMinMaxValid()
     {
-        return !(MinValues.x == MaxValues.x || MinValues.y == MaxValues.y);
+        return !(MinValues.X == MaxValues.X || MinValues.Y == MaxValues.Y);
     }
 
     private void UpdateAxesName()
@@ -881,17 +988,21 @@ public class LineChart : VBoxContainer
         if (LegendMode != LegendDisplayMode.Icon)
             return;
 
+        chartClone?.UpdateIconLegend(toggled, name);
+
         // To really make sure we aren't accessing empty child
         if (legendContainer.GetChildCount() <= 0)
             return;
 
         var icon = legendContainer.GetChildren()
-            .Cast<IconLegend>()
+            .Cast<DatasetIconLegend>()
             .ToList()
             .Find(i => i.DataName == name);
 
         if (icon == null)
             return;
+
+        icon.Pressed = toggled;
 
         var data = dataSets[name];
 
@@ -910,6 +1021,8 @@ public class LineChart : VBoxContainer
         if (LegendMode != LegendDisplayMode.DropDown)
             return;
 
+        chartClone?.UpdateDropDownLegendItem(toggled, item);
+
         // To really make sure we aren't accessing empty child
         if (legendContainer.GetChildCount() <= 0)
             return;
@@ -917,25 +1030,46 @@ public class LineChart : VBoxContainer
         // It's assumed the child is a dropdown node
         var dropDown = legendContainer.GetChildOrNull<CustomDropDown>(0);
 
-        dropDown?.Popup.SetItemChecked(dropDown.GetItemIndex(item), toggled);
+        var index = dropDown.GetItemIndex(item);
+        if (index == -1)
+            return;
+
+        dropDown?.Popup.SetItemChecked(index, toggled);
+    }
+
+    private void SetupChartClone()
+    {
+        if (chartClone != null || isClone)
+            return;
+
+        var scene = GD.Load<PackedScene>("res://src/gui_common/charts/line/LineChart.tscn");
+        chartClone = scene.Instance<LineChart>();
+
+        chartClone.isClone = true;
+        chartClone.ChartName = ChartName + "clone";
+        chartClone.XAxisTicks = XAxisTicks;
+        chartClone.XAxisName = XAxisName;
+        chartClone.YAxisTicks = YAxisTicks;
+        chartClone.YAxisName = YAxisName;
+        chartClone.LegendMode = LegendMode;
+        chartClone.MaxIconLegend = MaxIconLegend;
+        chartClone.MaxDisplayedDataSet = MaxDisplayedDataSet;
+        chartClone.MinDisplayedDataSet = MinDisplayedDataSet;
+        chartClone.TooltipXAxisFormat = TooltipXAxisFormat;
+        chartClone.TooltipYAxisFormat = TooltipYAxisFormat;
+
+        var parent = extraLegendContainer.GetParent();
+        parent.AddChild(chartClone);
+        parent.MoveChild(chartClone, 0);
+
+        chartClone.inspectButton.Hide();
     }
 
     /*
         GUI Callbacks
     */
 
-    private void OnVisibilityChanged()
-    {
-        if (!Visible)
-            return;
-
-        foreach (var data in dataSets.Keys)
-        {
-            FlattenLines(data);
-        }
-    }
-
-    private void OnIconLegendToggled(bool toggled, IconLegend icon)
+    private void OnIconLegendToggled(bool toggled, DatasetIconLegend icon)
     {
         var result = UpdateDataSetVisibility(icon.DataName, toggled);
 
@@ -988,6 +1122,16 @@ public class LineChart : VBoxContainer
             }
         }
     }
+
+    private void OnInspectButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        chartPopup.PopupCenteredShrink();
+    }
+
+    /*
+        Subclasses
+    */
 
     /// <summary>
     ///   Used as the chart's dataset line segments. Contains mouse collision boxes and
@@ -1055,17 +1199,19 @@ public class LineChart : VBoxContainer
         }
     }
 
-    private class IconLegend : TextureButton
+    private class DatasetIconLegend : TextureButton
     {
         public readonly string DataName;
         public readonly bool IsUsingFallbackIcon;
 
+        private LineChart chart;
         private LineChartData data;
         private Tween tween;
 
-        public IconLegend(string name, LineChartData data, bool isUsingFallbackIcon)
+        public DatasetIconLegend(string name, LineChart chart, LineChartData data, bool isUsingFallbackIcon)
         {
             DataName = name;
+            this.chart = chart;
             this.data = data;
             IsUsingFallbackIcon = isUsingFallbackIcon;
             Expand = true;
@@ -1095,6 +1241,8 @@ public class LineChart : VBoxContainer
 
             // Highlight icon
             Modulate = IsUsingFallbackIcon ? data.DataColour.Lightened(0.5f) : Colors.LightGray;
+
+            chart.dataLines[DataName].OnMouseEnter();
         }
 
         private void IconLegendMouseExit()
@@ -1111,6 +1259,8 @@ public class LineChart : VBoxContainer
             {
                 Modulate = Colors.DarkGray;
             }
+
+            chart.dataLines[DataName].OnMouseExit();
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Dataset to be visualized on the line chart. Contains series of data points.
 /// </summary>
-public class LineChartData
+public class LineChartData : ICloneable
 {
     private List<DataPoint> dataPoints = new List<DataPoint>();
     private Color dataColour;
@@ -69,5 +70,23 @@ public class LineChartData
             point.Free();
 
         dataPoints.Clear();
+    }
+
+    public object Clone()
+    {
+        var result = new LineChartData
+        {
+            IconTexture = IconTexture,
+            LineWidth = LineWidth,
+            DataColour = DataColour,
+            Draw = Draw,
+        };
+
+        foreach (var point in dataPoints)
+        {
+            result.AddPoint((DataPoint)point.Clone());
+        }
+
+        return result;
     }
 }

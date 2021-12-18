@@ -2671,7 +2671,7 @@ anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 297.0
 margin_bottom = 95.0
-ChartName = "Species Population"
+ChartName = "SPECIES_POPULATION"
 YAxisTicks = 6
 LegendMode = 1
 
@@ -2760,12 +2760,7 @@ anchor_bottom = 0.0
 margin_top = 26.0
 margin_right = 297.0
 margin_bottom = 121.0
-HorizontalLabelPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/xAxisLabel")
-VerticalLabelPath = NodePath("../Temperature/VBoxContainer/yAxisLabel")
-VerticalTicksContainerPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
-HorizontalTicksContainerPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
-DrawAreaPath = NodePath("../Temperature/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
-ChartName = "Temperature"
+ChartName = "TEMPERATURE"
 YAxisTicks = 6
 
 [node name="Sunlight" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="2" instance=ExtResource( 103 )]
@@ -2775,12 +2770,7 @@ anchor_bottom = 0.0
 margin_top = 20.0
 margin_right = 316.0
 margin_bottom = 54.0
-HorizontalLabelPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/xAxisLabel")
-VerticalLabelPath = NodePath("../Sunlight/VBoxContainer/yAxisLabel")
-VerticalTicksContainerPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Ordinate/Labels")
-HorizontalTicksContainerPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
-DrawAreaPath = NodePath("../Sunlight/VBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
-ChartName = "Sunlight"
+ChartName = "SUNLIGHT"
 YAxisTicks = 6
 
 [node name="AtmosphericGasses" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
@@ -2823,7 +2813,7 @@ anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 297.0
 margin_bottom = 95.0
-ChartName = "Atmospheric Gasses"
+ChartName = "ATMOSPHERIC_GASSES"
 YAxisTicks = 6
 
 [node name="Compounds" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
@@ -2866,7 +2856,7 @@ anchor_bottom = 0.0
 margin_top = 0.0
 margin_right = 297.0
 margin_bottom = 95.0
-ChartName = "Compounds"
+ChartName = "COMPOUNDS"
 YAxisTicks = 6
 
 [node name="NextTabButton" type="MarginContainer" parent="MicrobeEditorGUI/Report"]

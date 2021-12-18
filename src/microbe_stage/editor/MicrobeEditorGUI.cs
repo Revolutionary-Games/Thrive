@@ -917,12 +917,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             }
         }
 
+        var extinctPoints = new List<(string, string, bool, DataPoint)>();
+
         // Populate charts with data from patch history
         foreach (var snapshot in patch.History)
         {
-            temperatureData.AddPoint(new DataPoint
+            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod, snapshot.Biome.AverageTemperature)
             {
-                Value = new Vector2((float)snapshot.TimePeriod, snapshot.Biome.AverageTemperature),
                 MarkerColour = temperatureData.DataColour,
             });
 
@@ -933,10 +934,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 if (dataset == null)
                     continue;
 
-                var dataPoint = new DataPoint
+                var dataPoint = new DataPoint(snapshot.TimePeriod, Math.Round(GetCompoundAmount(
+                        patch, snapshot.Biome, entry.Key.InternalName), 3))
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, GetCompoundAmount(
-                        patch, snapshot.Biome, entry.Key.InternalName)),
                     MarkerColour = dataset.DataColour,
                 };
 
@@ -978,13 +978,15 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                     }
                 }
 
-                var dataPoint = new DataPoint
+                var dataPoint = new DataPoint(snapshot.TimePeriod, population)
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, population),
                     Size = iconSize,
                     IconType = iconType,
                     MarkerColour = dataset.DataColour,
                 };
+
+                if (extinctInPatch)
+                    extinctPoints.Add((entry.Key.FormattedName, snapshot.TimePeriod.FormatNumber(), extinctEverywhere, dataPoint));
 
                 dataset.AddPoint(dataPoint);
             }
@@ -996,17 +998,34 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
         compoundsChart.TooltipYAxisFormat = percentageFormat;
 
-        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5);
-        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5);
+        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, 5);
+        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, 5);
         atmosphericGassesChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"));
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null, 5);
         speciesPopulationChart.Plot(
             TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
-            editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName);
+            editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
         compoundsChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"));
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
+
+        foreach (var point in extinctPoints)
+        {
+            var extinctionType = point.Item3 ? TranslationServer.Translate("TOTAL_EXTINCTION") :
+                TranslationServer.Translate("LOCAL_EXTINCTION");
+
+            // Override datapoint tooltip to show extinction type instead of just zero.
+            // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
+            speciesPopulationChart.OverrideDataPointToolTipDescription(point.Item1, point.Item4,
+                $"{point.Item1}\n{point.Item2}\n{extinctionType}");
+        }
+
+        var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+        var skull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
+
+        speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("LOCAL_EXTINCTION"));
+        speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("TOTAL_EXTINCTION"), 25);
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
