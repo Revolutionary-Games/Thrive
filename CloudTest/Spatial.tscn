@@ -1,15 +1,37 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://CloudTest/new_shadermaterial.tres" type="Material" id=1]
+[ext_resource path="res://CloudTest/MEsh.tres" type="QuadMesh" id=1]
+[ext_resource path="res://CloudTest/blur.tres" type="Shader" id=2]
 
-[sub_resource type="QuadMesh" id=2]
-material = ExtResource( 1 )
+[sub_resource type="ProxyTexture" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/mesh = SubResource( 1 )
+
+[sub_resource type="QuadMesh" id=3]
+material = SubResource( 2 )
 size = Vector2( 2, 2 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15013, 1.0524, 1.46372 )
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.6629, 0, 42.8251 )
+visible = false
 extra_cull_margin = 16384.0
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 1024 )
+
+[node name="Camera" type="Camera" parent="Viewport"]
+transform = Transform( 0.0570239, 0, 0.998373, 0, 1, 0, -0.998373, 0, 0.0570239, 77.6763, 0, 0 )
+fov = 140.625
+
+[node name="MeshInstance" type="MeshInstance" parent="Viewport/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15013, 1.0524, 75.7529 )
+extra_cull_margin = 16384.0
+mesh = ExtResource( 1 )
+skeleton = NodePath("../../..")
 material/0 = null

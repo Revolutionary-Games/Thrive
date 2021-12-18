@@ -2,7 +2,7 @@
 
 [resource]
 code = "shader_type spatial;
-
+uniform sampler2D mesh;
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
@@ -24,7 +24,7 @@ void fragment()
 			vec4 tex = texture(SCREEN_TEXTURE, UV + offset * pixelSize);
 			albedo += tex.rgb * gaussFactor;
 		}
-	ALPHA = 0f;
+	//ALPHA = 0f;
 	//ALBEDO = albedo;
 	
 }"

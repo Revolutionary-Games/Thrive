@@ -35,7 +35,7 @@ vec2 raymarch(vec3 rayDir,vec3 cameraPos)
     for (int i=0; depth<MAX_DIST && i<MAX_STEPS; ++i)
     {	
         vec3 pos = cameraPos + rayDir * depth;
-        float dist = abs(sdf(pos));
+        float dist = (sdf(pos));
         if (dist < MIN_HIT_DIST) {
 			dist += 0.1f;
 			if (dstToSphere == 0f)
