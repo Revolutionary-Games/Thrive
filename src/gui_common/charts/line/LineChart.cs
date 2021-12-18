@@ -298,8 +298,12 @@ public class LineChart : VBoxContainer
     /// <param name="initialVisibleDataSets">How many datasets should be visible initially after plotting</param>
     /// <param name="legendTitle">Title for the chart legend. If null, the legend will not be created</param>
     /// <param name="defaultDataSet">The name of dataset that'll always be shown after plotting</param>
-    /// <param name="expandedXTicks">Overrides number of x scales in the expanded graph, leave this as zero to use the default</param>
-    /// <param name="expandedYTicks">Overrides number of y scales in the expanded graph, leave this as zero to use the default</param>
+    /// <param name="expandedXTicks">
+    ///   Overrides number of x scales in the expanded graph, leave this as zero to use the default
+    /// </param>
+    /// <param name="expandedYTicks">
+    ///   Overrides number of y scales in the expanded graph, leave this as zero to use the default
+    /// </param>
     public void Plot(string xAxisName, string yAxisName, int initialVisibleDataSets,
         string legendTitle = null, string defaultDataSet = null, int expandedXTicks = 0, int expandedYTicks = 0)
     {

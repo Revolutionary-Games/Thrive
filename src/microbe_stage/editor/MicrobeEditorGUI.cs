@@ -986,7 +986,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 };
 
                 if (extinctInPatch)
-                    extinctPoints.Add((entry.Key.FormattedName, snapshot.TimePeriod.FormatNumber(), extinctEverywhere, dataPoint));
+                {
+                    extinctPoints.Add(
+                        (entry.Key.FormattedName, snapshot.TimePeriod.FormatNumber(), extinctEverywhere, dataPoint));
+                }
 
                 dataset.AddPoint(dataPoint);
             }
