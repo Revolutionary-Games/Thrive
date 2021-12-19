@@ -1,8 +1,11 @@
-[gd_resource type="QuadMesh" load_steps=3 format=2]
+[gd_resource type="QuadMesh" load_steps=4 format=2]
 
 [ext_resource path="res://CloudTest/shader.tres" type="Shader" id=1]
 
+[sub_resource type="SpatialMaterial" id=2]
+
 [sub_resource type="ShaderMaterial" id=1]
+next_pass = SubResource( 2 )
 shader = ExtResource( 1 )
 shader_param/MAX_STEPS = 1450
 shader_param/MAX_DIST = 700.0

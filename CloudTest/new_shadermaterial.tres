@@ -1,9 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[ext_resource path="res://CloudTest/shader.tres" type="Shader" id=1]
+[ext_resource path="res://CloudTest/blur.tres" type="Shader" id=1]
 
 [resource]
 shader = ExtResource( 1 )
-shader_param/MAX_STEPS = 1450
-shader_param/MAX_DIST = 700.0
-shader_param/MIN_HIT_DIST = 1e-05

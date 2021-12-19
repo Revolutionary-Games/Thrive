@@ -22,16 +22,22 @@ extra_cull_margin = 16384.0
 mesh = SubResource( 3 )
 material/0 = null
 
-[node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 1024, 1024 )
-
-[node name="Camera" type="Camera" parent="Viewport"]
-transform = Transform( 0.0570239, 0, 0.998373, 0, 1, 0, -0.998373, 0, 0.0570239, 77.6763, 0, 0 )
-fov = 140.625
-
-[node name="MeshInstance" type="MeshInstance" parent="Viewport/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15013, 1.0524, 75.7529 )
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.0570239, 0, 0.998373, 0, 1, 0, -0.998373, 0, 0.0570239, 103.362, 1.0524, 5.46798 )
 extra_cull_margin = 16384.0
 mesh = ExtResource( 1 )
-skeleton = NodePath("../../..")
 material/0 = null
+
+[node name="Viewport" type="Viewport" parent="MeshInstance"]
+size = Vector2( 1024, 1024 )
+
+[node name="Camera" type="Camera" parent="MeshInstance/Viewport"]
+transform = Transform( 0.0570239, 0, 0.998373, 0, 1, 0, -0.998373, 0, 0.0570239, 77.6763, 0, 0 )
+visible = false
+fov = 140.625
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6262, 18.7517, -47.3302 )
+width = 11.5113
+height = 27.4316
+depth = 64.0898
