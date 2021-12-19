@@ -889,8 +889,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Initialize datasets
         var temperatureData = new LineChartData
         {
-            IconTexture = temperatureIcon,
-            DataColour = new Color(0.67f, 1, 0.24f),
+            Icon = temperatureIcon,
+            Colour = new Color(0.67f, 1, 0.24f),
         };
 
         temperatureChart.AddDataSet(TranslationServer.Translate("TEMPERATURE"), temperatureData);
@@ -901,8 +901,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 var dataset = new LineChartData
                 {
-                    IconTexture = entry.Key.LoadedIcon,
-                    DataColour = entry.Key.Colour,
+                    Icon = entry.Key.LoadedIcon,
+                    Colour = entry.Key.Colour,
                 };
 
                 GetChartForCompound(entry.Key.InternalName)?.AddDataSet(entry.Key.Name, dataset);
@@ -910,19 +910,22 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             foreach (var entry in snapshot.SpeciesInPatch)
             {
-                var dataset = new LineChartData { DataColour = entry.Key.Colour };
+                var dataset = new LineChartData { Colour = entry.Key.Colour };
                 speciesPopulationChart.AddDataSet(entry.Key.FormattedName, dataset);
             }
         }
 
-        var extinctPoints = new List<(string, string, bool, DataPoint)>();
+        var extinctSpecies = new List<KeyValuePair<string, ChartDataSet>>();
+        var extinctPoint = new List<(string Name, DataPoint ExtinctPoint, string TimePeriod, bool ExtinctEverywhere)>();
+
+        var anyExtinction = false;
 
         // Populate charts with data from patch history
         foreach (var snapshot in patch.History)
         {
             temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod, snapshot.Biome.AverageTemperature)
             {
-                MarkerColour = temperatureData.DataColour,
+                MarkerColour = temperatureData.Colour,
             });
 
             foreach (var entry in snapshot.Biome.Compounds)
@@ -935,7 +938,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 var dataPoint = new DataPoint(snapshot.TimePeriod, Math.Round(GetCompoundAmount(
                     patch, snapshot.Biome, entry.Key.InternalName), 3))
                 {
-                    MarkerColour = dataset.DataColour,
+                    MarkerColour = dataset.Colour,
                 };
 
                 dataset.AddPoint(dataPoint);
@@ -947,6 +950,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
                 var extinctInPatch = entry.Value <= 0;
                 var extinctEverywhere = false;
+
+                if (!anyExtinction)
+                    anyExtinction = extinctInPatch;
 
                 // We test if the species info was recorded before using it.
                 // This is especially for compatibility with older versions, to avoid crashed due to an invalid key.
@@ -980,13 +986,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 {
                     Size = iconSize,
                     IconType = iconType,
-                    MarkerColour = dataset.DataColour,
+                    MarkerColour = dataset.Colour,
                 };
 
                 if (extinctInPatch)
                 {
-                    extinctPoints.Add(
-                        (entry.Key.FormattedName, snapshot.TimePeriod.FormatNumber(), extinctEverywhere, dataPoint));
+                    extinctSpecies.Add(new KeyValuePair<string, ChartDataSet>(entry.Key.FormattedName, dataset));
+                    extinctPoint.Add((
+                        entry.Key.FormattedName, dataPoint, snapshot.TimePeriod.FormatNumber(), extinctEverywhere));
                 }
 
                 dataset.AddPoint(dataPoint);
@@ -999,28 +1006,40 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
         compoundsChart.TooltipYAxisFormat = percentageFormat;
 
-        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, 5);
-        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, 5);
+        speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.DropDown;
+
+        SpeciesPopDatasetsLegend speciesPopDatasetsLegend = null;
+
+        // The following operation might be expensive so we only do this if any extinction occured
+        if (anyExtinction)
+        {
+            var datasets = extinctSpecies.Distinct().ToList();
+            speciesPopDatasetsLegend = new SpeciesPopDatasetsLegend(datasets, speciesPopulationChart);
+            speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
+        }
+
+        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, null, 5);
+        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, null, 5);
         atmosphericGassesChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null, 5);
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null, null, 5);
         speciesPopulationChart.Plot(
-            TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
+            TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"), speciesPopDatasetsLegend,
             editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
         compoundsChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, 5);
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
 
-        foreach (var point in extinctPoints)
+        foreach (var point in extinctPoint)
         {
-            var extinctionType = point.Item3 ?
+            var extinctionType = point.ExtinctEverywhere ?
                 TranslationServer.Translate("TOTAL_EXTINCTION") :
                 TranslationServer.Translate("LOCAL_EXTINCTION");
 
             // Override datapoint tooltip to show extinction type instead of just zero.
             // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
-            speciesPopulationChart.OverrideDataPointToolTipDescription(point.Item1, point.Item4,
-                $"{point.Item1}\n{point.Item2}\n{extinctionType}");
+            speciesPopulationChart.OverrideDataPointToolTipDescription(point.Name, point.ExtinctPoint,
+                $"{point.Name}\n{point.TimePeriod}\n{extinctionType}");
         }
 
         var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
@@ -2445,5 +2464,41 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         public Species PlayerSpeciesNew;
 
         public bool Finished => AutoEvoRun.Finished;
+    }
+
+    private class SpeciesPopDatasetsLegend : LineChart.DataSetsDropdownLegend
+    {
+        private List<KeyValuePair<string, ChartDataSet>> extinctSpecies;
+        private Texture defaultIconLegendTexture;
+
+        public SpeciesPopDatasetsLegend(List<KeyValuePair<string, ChartDataSet>> extinctSpecies, LineChart chart) :
+            base(chart)
+        {
+            this.extinctSpecies = extinctSpecies;
+            defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
+        }
+
+        public override Control OnCreate(Dictionary<string, ChartDataSet> datasets, string title)
+        {
+            var result = (CustomDropDown)base.OnCreate(datasets, title);
+
+            foreach (var species in extinctSpecies)
+            {
+                // Use the default icon as a fallback if the data icon texture hasn't been set already
+                species.Value.Icon = species.Value.Icon ?? defaultIconLegendTexture;
+
+                // Use the DataColor as the icon's color if using the default icon
+                var colorToUse = species.Value.Icon == defaultIconLegendTexture ?
+                    species.Value.Colour :
+                    new Color(1, 1, 1);
+
+                var item = result.AddItem(species.Key, true, colorToUse, species.Value.Icon, TranslationServer.Translate("EXTINCT_SPECIES"));
+                item.Checked = species.Value.Draw;
+            }
+
+            result.CreateElements();
+
+            return result;
+        }
     }
 }

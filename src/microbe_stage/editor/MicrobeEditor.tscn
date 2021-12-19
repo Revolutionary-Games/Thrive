@@ -2762,6 +2762,7 @@ margin_right = 297.0
 margin_bottom = 121.0
 ChartName = "TEMPERATURE"
 YAxisTicks = 6
+LegendMode = 2
 
 [node name="Sunlight" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer" index="2" instance=ExtResource( 103 )]
 visible = false
@@ -2772,6 +2773,7 @@ margin_right = 316.0
 margin_bottom = 54.0
 ChartName = "SUNLIGHT"
 YAxisTicks = 6
+LegendMode = 2
 
 [node name="AtmosphericGasses" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 80 )]
 anchor_right = 0.0
