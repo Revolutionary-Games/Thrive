@@ -126,7 +126,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                 }
 
                 DrawTextureRect(graphMarkerCircle, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColour);
+                    RectSize / 2 - vectorSize / 2, vectorSize), false, MarkerColour);
 
                 break;
             }
@@ -139,7 +139,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                     color = MarkerColour.Lightened(0.5f);
 
                 DrawTextureRect(graphMarkerCross, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, color);
+                    RectSize / 2 - vectorSize / 2, vectorSize), false, color);
                 break;
             }
 
@@ -151,7 +151,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
                     colour = MarkerColour.Lightened(0.5f);
 
                 DrawTextureRect(graphMarkerSkull, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, colour);
+                    RectSize / 2 - vectorSize / 2, vectorSize), false, colour);
                 break;
             }
 
@@ -175,12 +175,12 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
         if (!useTween || tween == null)
         {
-            RectPosition = coordinate - (RectSize / 2);
+            RectPosition = coordinate - RectSize / 2;
         }
         else
         {
             tween.InterpolateProperty(
-                this, "rect_position", RectPosition, coordinate - (RectSize / 2), duration, transitionType, easeType);
+                this, "rect_position", RectPosition, coordinate - RectSize / 2, duration, transitionType, easeType);
             tween.Start();
         }
     }
@@ -217,17 +217,32 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
             return true;
 
         return other != null &&
-               x == other.x &&
-               y == other.y;
+            x == other.x &&
+            y == other.y;
     }
 
     public override int GetHashCode()
     {
-        int hashCode = 1502939027;
+        var hashCode = 1502939027;
         hashCode = hashCode * -1521134295 + x.GetHashCode();
         hashCode = hashCode * -1521134295 + y.GetHashCode();
         return hashCode;
     }
+
+    public static bool operator ==(DataPoint lhs, DataPoint rhs)
+    {
+        if (lhs is null)
+        {
+            if (rhs is null)
+                return true;
+
+            return false;
+        }
+
+        return lhs.Equals(rhs);
+    }
+
+    public static bool operator !=(DataPoint lhs, DataPoint rhs) => !(lhs == rhs);
 
     private void OnMouseEnter()
     {

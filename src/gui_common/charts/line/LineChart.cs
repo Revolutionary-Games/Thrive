@@ -429,7 +429,8 @@ public class LineChart : VBoxContainer
         }
 
         chartPopup.WindowTitle = TranslationServer.Translate(ChartName);
-        chartClone?.Plot(xAxisName, yAxisName, initialVisibleDataSets, legendTitle, defaultDataSet, expandedXTicks, expandedYTicks);
+        chartClone?.Plot(
+            xAxisName, yAxisName, initialVisibleDataSets, legendTitle, defaultDataSet, expandedXTicks, expandedYTicks);
     }
 
     /// <summary>

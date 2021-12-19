@@ -344,11 +344,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private MicrobeEditor editor;
 
-    private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements =
-        new Dictionary<OrganelleDefinition, MicrobePartSelection>();
+    private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
-    private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements =
-        new Dictionary<MembraneType, MicrobePartSelection>();
+    private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements = new();
 
     private PauseMenu menu;
 
@@ -935,7 +933,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                     continue;
 
                 var dataPoint = new DataPoint(snapshot.TimePeriod, Math.Round(GetCompoundAmount(
-                        patch, snapshot.Biome, entry.Key.InternalName), 3))
+                    patch, snapshot.Biome, entry.Key.InternalName), 3))
                 {
                     MarkerColour = dataset.DataColour,
                 };
@@ -1015,7 +1013,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         foreach (var point in extinctPoints)
         {
-            var extinctionType = point.Item3 ? TranslationServer.Translate("TOTAL_EXTINCTION") :
+            var extinctionType = point.Item3 ?
+                TranslationServer.Translate("TOTAL_EXTINCTION") :
                 TranslationServer.Translate("LOCAL_EXTINCTION");
 
             // Override datapoint tooltip to show extinction type instead of just zero.
