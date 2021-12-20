@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=8]
 [ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture" id=9]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/gui_common/fonts/Lato-Bold-Small.tres" type="DynamicFont" id=11]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 1 )
@@ -236,8 +237,8 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChartPopup/MarginContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 53.0
+margin_bottom = 42.0
 custom_constants/separation = 15
 
 [node name="GridContainer" type="GridContainer" parent="ChartPopup/MarginContainer/VBoxContainer"]
@@ -245,5 +246,14 @@ margin_right = 40.0
 custom_constants/hseparation = 15
 columns = 6
 
+[node name="Button" type="Button" parent="ChartPopup/MarginContainer/VBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 11 )
+text = "CLOSE"
+
 [connection signal="draw" from="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer" to="." method="RenderChart"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/InspectButton" to="." method="OnInspectButtonPressed"]
+[connection signal="pressed" from="ChartPopup/MarginContainer/VBoxContainer/Button" to="." method="OnCloseButtonPressed"]

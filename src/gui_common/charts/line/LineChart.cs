@@ -184,6 +184,11 @@ public class LineChart : VBoxContainer
         MinVisibleLimitReached,
 
         /// <summary>
+        ///   Dataset visibility is already at the state the user requests.
+        /// </summary>
+        UnchangedValue,
+
+        /// <summary>
         ///   The dataset visibility is successfully changed.
         /// </summary>
         Success,
@@ -529,6 +534,9 @@ public class LineChart : VBoxContainer
             return DataSetVisibilityUpdateResult.NotFound;
 
         var data = dataSets[name];
+
+        if (data.Draw == visible)
+            return DataSetVisibilityUpdateResult.UnchangedValue;
 
         if (visible && VisibleDataSets >= MaxDisplayedDataSet)
         {
@@ -892,7 +900,7 @@ public class LineChart : VBoxContainer
                 else
                 {
                     // Plotting failed, here we place the marker at the bottom left corner, we can't hide it at the
-                    // same time because that will break its position in a later coordinate update for some reason.
+                    // same time because it can't be automatically made visible again later
                     point.SetCoordinate(new Vector2(0, drawArea.RectSize.y), false);
                 }
             }
@@ -982,6 +990,12 @@ public class LineChart : VBoxContainer
         chartPopup.PopupCenteredShrink();
     }
 
+    private void OnCloseButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        chartPopup.Hide();
+    }
+
     /*
         Subclasses
     */
@@ -990,7 +1004,7 @@ public class LineChart : VBoxContainer
     {
         protected LineChart chart;
         protected DataSetDictionary datasets;
-        protected List<DatasetIconLegend> icons = new();
+        protected List<DatasetIcon> icons = new();
 
         public DatasetsIconLegend(LineChart chart)
         {
@@ -1017,7 +1031,7 @@ public class LineChart : VBoxContainer
                     fallbackIconIsUsed = true;
                 }
 
-                var icon = new DatasetIconLegend(data.Key, chart, data.Value as LineChartData, fallbackIconIsUsed);
+                var icon = new DatasetIcon(data.Key, chart, data.Value as LineChartData, fallbackIconIsUsed);
                 icons.Add(icon);
 
                 hBox.AddChild(icon);
@@ -1070,7 +1084,7 @@ public class LineChart : VBoxContainer
             return new DatasetsIconLegend(chart);
         }
 
-        private void OnIconLegendToggled(bool toggled, DatasetIconLegend icon)
+        private void OnIconLegendToggled(bool toggled, DatasetIcon icon)
         {
             var result = chart.UpdateDataSetVisibility(icon.DataName, toggled);
 
@@ -1173,7 +1187,7 @@ public class LineChart : VBoxContainer
         }
     }
 
-    public class DatasetIconLegend : TextureButton
+    public class DatasetIcon : TextureButton
     {
         public readonly string DataName;
         public readonly bool IsUsingFallbackIcon;
@@ -1182,7 +1196,7 @@ public class LineChart : VBoxContainer
         private LineChartData data;
         private Tween tween;
 
-        public DatasetIconLegend(string name, LineChart chart, LineChartData data, bool isUsingFallbackIcon)
+        public DatasetIcon(string name, LineChart chart, LineChartData data, bool isUsingFallbackIcon)
         {
             DataName = name;
             this.chart = chart;
