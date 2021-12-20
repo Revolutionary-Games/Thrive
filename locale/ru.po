@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
-"PO-Revision-Date: 2021-12-20 14:33+0000\n"
-"Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
+"PO-Revision-Date: 2021-12-21 17:46+0000\n"
+"Last-Translator: Archargelod <archargelod@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -129,17 +129,17 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если есть "
-"токсиновая вакуоль. G - режим поглощения. Связываясь с другими клетками, "
-"вы можете построить колонию клеток, в которой клетки делятся друг с другом "
+"W, A, S, D и мышь - для перемещения. Е - выпускать ОксиТоксин НТ, если есть "
+"токсиновая вакуоль. G - режим поглощения. Связываясь с другими клетками, вы "
+"можете построить колонию клеток, в которой клетки делятся друг с другом "
 "соединениями, которые они поглощают и производят. Чтобы иметь возможность "
 "связываться с другой клеткой, вам необходимо иметь органеллы связывающих "
 "агентов и перемещаться в них после перехода в режим связывания. Вы можете "
-"связываться только с клетками вашего собственного вида. Находясь в "
-"колонии, вы не можете разделить свою ячейку и войти в редактор (пока). "
-"Чтобы войти в редактор, сначала покиньте колонию, как только вы соберете "
-"достаточно соединений, а затем войдите в редактор. Большие колонии клеток "
-"- путь к многоклеточности (пока не в игре)."
+"связываться только с клетками вашего собственного вида. Находясь в колонии, "
+"вы не можете разделить свою ячейку и войти в редактор (пока). Чтобы войти в "
+"редактор, сначала покиньте колонию, как только вы соберете достаточно "
+"соединений, а затем войдите в редактор. Большие колонии клеток - путь к "
+"многоклеточности (пока не в игре)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -427,16 +427,16 @@ msgstr "Выстрелить токсином"
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
-msgstr "Включить поглощение"
+msgstr "Переключить поглощение"
 
 #: ../simulation_parameters/common/input_options.json:46
 #: ../src/microbe_stage/MicrobeStage.tscn:2122
 msgid "TOGGLE_BINDING"
-msgstr "Включить связку"
+msgstr "Переключить связку"
 
 #: ../simulation_parameters/common/input_options.json:50
 msgid "TOGGLE_UNBINDING"
-msgstr "Включить развязку"
+msgstr "Переключить развязку"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
@@ -564,7 +564,7 @@ msgstr "Быстрая загрузка"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "TAKE_SCREENSHOT"
-msgstr "Сделать изображение экрана"
+msgstr "Сделать снимок экрана"
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "SHOW_HELP"
@@ -599,7 +599,7 @@ msgstr "Фотосинтез"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "OxyToxy Синтез"
+msgstr "Синтез ОксиТоксина"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
@@ -747,7 +747,7 @@ msgstr "Глюкоза"
 #: ../simulation_parameters/microbe_stage/compounds.json:73
 #: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "OXYTOXY_NT"
-msgstr "OxyToxy НТ"
+msgstr "ОксиТоксин НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1456
@@ -986,7 +986,7 @@ msgstr "Равномерно распределенный экологическ
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "Истребление {0}"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -2132,7 +2132,7 @@ msgstr "Автор: Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr "Развитие поддержано Revolutionary Games Studio ry"
+msgstr "Разработка поддержана командой Revolutionary Games Studio ry"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
@@ -2212,7 +2212,7 @@ msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr "Raw"
+msgstr "\"Raw\""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2317
@@ -2329,7 +2329,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:231
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
-"Оппортунистичные микробы будут конкурировать с соперниками за куски\n"
+"Рисковые микробы будут конкурировать с соперниками за куски\n"
 "и будут пытаться загнать добычу токсинами, если не могут поглотить их.\n"
 "Осторожные микробы, вероятно, не будут рисковать за куски."
 
@@ -2350,7 +2350,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:252
 msgid "FOCUS_EXPLANATION"
 msgstr ""
-"Сфокусированные микробы будут искать добычу на большем растоянии\n"
+"Целенаправленные микробы будут искать добычу на большем растоянии\n"
 "и будут соперничать за куски с большим рвением.\n"
 "Бдительные микробы будут быстрее переключаться на новые цели."
 
@@ -2525,8 +2525,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:852
 msgid "OXYTOXISOME_DESC"
 msgstr ""
-"Модифицированная метаболосома, ответственная за выработку примитивной "
-"формы токсичного агента OxyToxy НТ (нейротоксин)."
+"Модифицированная метаболосома, ответственная за выработку примитивной формы "
+"токсичного агента OксиТоксин НТ (нейротоксин)."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:948
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -2727,7 +2727,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Токсиновая вакуоль - это вакуоль, которая была модифицирована для "
-"специфического производства, хранения и секреции OxyToxy токсинов. Большее "
+"специфического производства, хранения и секреции OксиТоксинов. Большее "
 "количество токсиновых вакуолей увеличит скорость высвобождения токсинов."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2000
@@ -3533,7 +3533,7 @@ msgstr "{0}: указанный класс \"{1}\" не найден в сбор
 
 #: ../src/modding/ModLoader.cs:364
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr "{0}: не удалось выполнить вызов метода инициализации сборки мода"
+msgstr "{0}: не удалось инициализировать сборку мода"
 
 #: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
@@ -3555,7 +3555,7 @@ msgstr "Неверная схема URL-адреса"
 
 #: ../src/modding/ModManager.cs:318
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr "Класс assembly необходим для мода, если указан assembly"
+msgstr "Класс сборки необходим для мода, если указана сборка"
 
 #: ../src/modding/ModManager.cs:544
 msgid "NO_SELECTED_MOD"
