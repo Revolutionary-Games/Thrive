@@ -394,6 +394,7 @@ rect_min_size = Vector2( 260, 260 )
 script = ExtResource( 7 )
 WindowTitle = "TUTORIAL"
 Resizable = true
+ShowCloseButton = false
 ShowDelay = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CheckHelpMenu"]
