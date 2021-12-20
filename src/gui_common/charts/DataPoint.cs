@@ -89,6 +89,24 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     /// </summary>
     public bool Draw { get; set; } = true;
 
+    public static bool operator ==(DataPoint lhs, DataPoint rhs)
+    {
+        if (lhs is null)
+        {
+            if (rhs is null)
+                return true;
+
+            return false;
+        }
+
+        return lhs.Equals(rhs);
+    }
+
+    public static bool operator !=(DataPoint lhs, DataPoint rhs)
+    {
+        return !(lhs == rhs);
+    }
+
     public override void _Ready()
     {
         graphMarkerCircle = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
@@ -227,24 +245,6 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         hashCode = hashCode * -1521134295 + x.GetHashCode();
         hashCode = hashCode * -1521134295 + y.GetHashCode();
         return hashCode;
-    }
-
-    public static bool operator ==(DataPoint lhs, DataPoint rhs)
-    {
-        if (lhs is null)
-        {
-            if (rhs is null)
-                return true;
-
-            return false;
-        }
-
-        return lhs.Equals(rhs);
-    }
-
-    public static bool operator !=(DataPoint lhs, DataPoint rhs)
-    {
-        return !(lhs == rhs);
     }
 
     private void OnMouseEnter()

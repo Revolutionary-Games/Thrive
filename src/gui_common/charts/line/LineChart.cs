@@ -432,6 +432,8 @@ public class LineChart : VBoxContainer
             LegendMode = LegendDisplayMode.DropDown;
         }
 
+        // ReSharper disable once UseNullPropagationWhenPossible
+        // Can't use null coalescing here due to the immediate cloning afterwards
         if (isChild && datasetsLegend != null)
             datasetsLegend = datasetsLegend.Clone() as IDataSetsLegend;
 
@@ -596,10 +598,8 @@ public class LineChart : VBoxContainer
             tooltip.Description = description;
         }
 
-        ICustomToolTip clonedTooltip = null;
-
-        if ((bool)(childChart?.dataPointToolTips.ContainsKey(dataset) &
-                (childChart?.dataPointToolTips[dataset].TryGetValue(datapoint, out clonedTooltip) == true)))
+        if (childChart != null && childChart.dataPointToolTips.ContainsKey(dataset) &&
+            childChart.dataPointToolTips[dataset].TryGetValue(datapoint, out var clonedTooltip))
         {
             clonedTooltip.Description = description;
         }
@@ -1116,7 +1116,7 @@ public class LineChart : VBoxContainer
             foreach (var data in datasets)
             {
                 // Use the default icon as a fallback if the data icon texture hasn't been set already
-                data.Value.Icon = data.Value.Icon ?? chart.defaultIconLegendTexture;
+                data.Value.Icon ??= chart.defaultIconLegendTexture;
 
                 // Use the DataColor as the icon's color if using the default icon
                 var colorToUse = data.Value.Icon == chart.defaultIconLegendTexture ?

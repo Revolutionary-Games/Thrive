@@ -13,6 +13,8 @@ public class CustomDropDown : MenuButton
     /// </summary>
     public PopupMenu Popup;
 
+    private readonly float cachedPopupVSeparation;
+
     private Tween tween;
 
     /// <summary>
@@ -20,8 +22,6 @@ public class CustomDropDown : MenuButton
     ///   set according to the PopupMenu's check icon size (with a bit smaller result)
     /// </summary>
     private Vector2 iconSize;
-
-    private readonly float cachedPopupVSeparation;
 
     private Dictionary<string, List<Item>> items;
 
@@ -92,7 +92,7 @@ public class CustomDropDown : MenuButton
     /// <param name="name">The item text</param>
     /// <param name="section">The item section where to search the item index for</param>
     /// <returns>Item's index. -1 if not found</returns>
-    public int GetItemIndex(string name, string section = "default")
+    public int GetItemIndex(string name, string section)
     {
         if (!items.ContainsKey(section))
         {

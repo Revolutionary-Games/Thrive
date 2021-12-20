@@ -2490,7 +2490,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             foreach (var species in extinctSpecies)
             {
                 // Use the default icon as a fallback if the data icon texture hasn't been set already
-                species.Value.Icon = species.Value.Icon ?? defaultIconLegendTexture;
+                species.Value.Icon ??= defaultIconLegendTexture;
 
                 // Use the DataColor as the icon's color if using the default icon
                 var colorToUse = species.Value.Icon == defaultIconLegendTexture ?
