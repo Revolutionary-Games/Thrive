@@ -25,7 +25,7 @@ public class Membrane : MeshInstance
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.22f;
-    private Color tint = new Color(1, 1, 1, 1);
+    private Color tint = new(1, 1, 1, 1);
     private float dissolveEffectValue;
 
     private Texture albedoTexture;

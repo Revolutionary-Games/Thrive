@@ -39,7 +39,7 @@ public class SpawnSystem
     ///     this object so much
     ///   </para>
     /// </remarks>
-    private ConcurrentQueue<Node> queuedSpawns = new();
+    private ConcurrentQueue<QueuedSpawn> queuedSpawns = new();
 
     private ConcurrentDictionary<Sector, float> sectorDensities = new();
     private List<Sector> loadedSectors = new();
@@ -137,7 +137,7 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
-        queuedSpawns = new ConcurrentQueue<Node>();
+        queuedSpawns = new ConcurrentQueue<QueuedSpawn>();
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
         foreach (Node entity in spawnedEntities)
@@ -185,12 +185,7 @@ public class SpawnSystem
 
                 foreach (var spawnPoint in spawnPoints)
                 {
-                    var instances = spawner.Instantiate(spawnPoint);
-                    if (instances == null)
-                        continue;
-
-                    foreach (var instance in instances)
-                        queuedSpawns.Enqueue(instance);
+                    queuedSpawns.Enqueue(new QueuedSpawn(spawner, spawnPoint));
                 }
             }
         }
@@ -231,10 +226,21 @@ public class SpawnSystem
         // Spawn from the queue
         while (spawnsLeftThisFrame > 0 && queuedSpawns.TryDequeue(out var current))
         {
-            current!.AddToGroup(Constants.SPAWNED_GROUP);
-            worldRoot.AddChild(current);
+            var instances = current.Spawner.Instantiate(current.Position);
+            if (instances == null)
+            {
+                --spawnsLeftThisFrame;
+                continue;
+            }
 
-            --spawnsLeftThisFrame;
+            foreach (var instance in instances)
+            {
+                instance!.AddToGroup(Constants.SPAWNED_GROUP);
+                worldRoot.AddChild(instance);
+                --spawnsLeftThisFrame;
+            }
         }
     }
+
+    private record QueuedSpawn(Spawner Spawner, Vector2 Position);
 }
