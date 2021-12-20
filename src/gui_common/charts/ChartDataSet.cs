@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -11,10 +11,16 @@ public class ChartDataSet : ICloneable
     private Color dataColour;
     private bool draw = true;
 
+    /// <summary>
+    ///   The icon on the chart legend
+    /// </summary>
     public IReadOnlyCollection<DataPoint> DataPoints => dataPoints;
 
     public Texture Icon { get; set; }
 
+    /// <summary>
+    ///   Used to differentiate the data set's visual by color
+    /// </summary>
     public Color Colour
     {
         get => dataColour;
@@ -30,6 +36,9 @@ public class ChartDataSet : ICloneable
         }
     }
 
+    /// <summary>
+    ///   If this is true, visuals will be drawn (e.g lines, markers)
+    /// </summary>
     public bool Draw
     {
         get => draw;
@@ -42,11 +51,17 @@ public class ChartDataSet : ICloneable
         }
     }
 
+    /// <summary>
+    ///   Adds a data point to this dataset.
+    /// </summary>
     public void AddPoint(DataPoint point)
     {
         dataPoints.Add(point);
     }
 
+    /// <summary>
+    ///   Frees and removes all data point from this dataset.
+    /// </summary>
     public void ClearPoints()
     {
         foreach (var point in dataPoints)

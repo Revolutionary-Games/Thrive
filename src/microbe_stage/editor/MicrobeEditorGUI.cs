@@ -1021,9 +1021,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, null, 5);
         temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, null, 5);
         atmosphericGassesChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null, null, 5);
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null,
+            null, 5);
         speciesPopulationChart.Plot(
-            TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"), speciesPopDatasetsLegend,
+            TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
+            speciesPopDatasetsLegend,
             editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
         compoundsChart.Plot(
             TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, null, 5);
@@ -2466,13 +2468,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         public bool Finished => AutoEvoRun.Finished;
     }
 
+    /// <summary>
+    ///   Extension of LineChart's default datasets dropdown legend to allow sectioning of extinct species.
+    /// </summary>
     private class SpeciesPopDatasetsLegend : LineChart.DataSetsDropdownLegend
     {
         private List<KeyValuePair<string, ChartDataSet>> extinctSpecies;
         private Texture defaultIconLegendTexture;
 
-        public SpeciesPopDatasetsLegend(List<KeyValuePair<string, ChartDataSet>> extinctSpecies, LineChart chart) :
-            base(chart)
+        public SpeciesPopDatasetsLegend(List<KeyValuePair<string, ChartDataSet>> extinctSpecies, LineChart chart)
+            : base(chart)
         {
             this.extinctSpecies = extinctSpecies;
             defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
@@ -2492,13 +2497,19 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                     species.Value.Colour :
                     new Color(1, 1, 1);
 
-                var item = result.AddItem(species.Key, true, colorToUse, species.Value.Icon, TranslationServer.Translate("EXTINCT_SPECIES"));
+                var item = result.AddItem(species.Key, true, colorToUse, species.Value.Icon,
+                    TranslationServer.Translate("EXTINCT_SPECIES"));
                 item.Checked = species.Value.Draw;
             }
 
             result.CreateElements();
 
             return result;
+        }
+
+        public override object Clone()
+        {
+            return new SpeciesPopDatasetsLegend(extinctSpecies, chart);
         }
     }
 }

@@ -61,7 +61,9 @@ public class CustomDropDown : MenuButton
     ///   Helper for adding an item into the items dictionary. This does not add the item into the PopupMenu,
     ///   for that see <see cref="CreateElements"/>.
     /// </summary>
-    /// <returns>The CustomDropDown's own Item class. All custom operations relating to the dropdown uses this.</returns>
+    /// <returns>
+    ///   The CustomDropDown's own Item class. All custom operations relating to the dropdown uses this.
+    /// </returns>
     public Item AddItem(string text, bool checkable, Color color, Texture icon = null,
         string section = "default")
     {
@@ -131,6 +133,9 @@ public class CustomDropDown : MenuButton
         return result;
     }
 
+    /// <summary>
+    ///   Retrieves all items from dictionary and instantiates them into <see cref="Popup"/>.
+    /// </summary>
     public void CreateElements()
     {
         Popup.Clear();
@@ -233,6 +238,12 @@ public class CustomDropDown : MenuButton
     ///   Helper data regarding the popup menu item. All custom operations relating to the dropdown uses this,
     ///   we can't utilize PopupMenu's internal item class since it's not exposed to the user.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: Fields may not always be updated, especially if the user bypass custom methods and directly
+    ///     change the internal items by using methods in <see cref="Popup"/>.
+    ///   </para>
+    /// </remarks>
     public class Item
     {
         public string Text;

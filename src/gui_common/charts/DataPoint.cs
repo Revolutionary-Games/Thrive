@@ -242,7 +242,10 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         return lhs.Equals(rhs);
     }
 
-    public static bool operator !=(DataPoint lhs, DataPoint rhs) => !(lhs == rhs);
+    public static bool operator !=(DataPoint lhs, DataPoint rhs)
+    {
+        return !(lhs == rhs);
+    }
 
     private void OnMouseEnter()
     {

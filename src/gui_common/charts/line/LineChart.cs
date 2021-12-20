@@ -127,12 +127,20 @@ public class LineChart : VBoxContainer
     private GridContainer extraLegendContainer;
     private TextureButton inspectButton;
     private CustomDialog chartPopup;
-    private LineChart chartClone;
+    private LineChart childChart;
+
+    /// <summary>
+    ///   Useful for any operations in the child chart involving the parent chart.
+    /// </summary>
+    private LineChart parentChart;
 
     private string xAxisName;
     private string yAxisName;
 
-    private bool isClone;
+    /// <summary>
+    ///   If true this means that this chart is part of another parent chart.
+    /// </summary>
+    private bool isChild;
 
     /// <summary>
     ///   Modes on how the chart legend should be displayed
@@ -252,7 +260,7 @@ public class LineChart : VBoxContainer
         hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
         vLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/vSeparatorUp.png");
 
-        SetupChartClone();
+        SetupChartChild();
         UpdateAxesName();
     }
 
@@ -284,14 +292,14 @@ public class LineChart : VBoxContainer
 
         dataSets.Clear();
 
-        if (chartClone != null)
+        if (childChart != null)
         {
-            foreach (var dataset in chartClone.dataSets)
+            foreach (var dataset in childChart.dataSets)
             {
                 dataset.Value.ClearPoints();
             }
 
-            chartClone.dataSets.Clear();
+            childChart.dataSets.Clear();
         }
 
         dataPointToolTips.Clear();
@@ -327,23 +335,23 @@ public class LineChart : VBoxContainer
         XAxisName = string.IsNullOrEmpty(xAxisName) ? XAxisName : xAxisName;
         YAxisName = string.IsNullOrEmpty(yAxisName) ? YAxisName : yAxisName;
 
-        if (expandedXTicks > 0 && isClone)
+        if (expandedXTicks > 0 && isChild)
             XAxisTicks = expandedXTicks;
 
-        if (expandedYTicks > 0 && isClone)
+        if (expandedYTicks > 0 && isChild)
             YAxisTicks = expandedYTicks;
 
         if (dataSets == null || dataSets.Count <= 0)
         {
             GD.PrintErr($"{ChartName} chart missing datasets, aborting plotting data");
-            chartClone?.ClearChart();
+            childChart?.ClearChart();
             return;
         }
 
         if (XAxisTicks <= 0 || YAxisTicks <= 0)
         {
             GD.PrintErr($"{ChartName} chart ticks has to be more than 0, aborting plotting data");
-            chartClone?.ClearChart();
+            childChart?.ClearChart();
             return;
         }
 
@@ -358,7 +366,7 @@ public class LineChart : VBoxContainer
 
         foreach (var data in dataSets)
         {
-            chartClone?.dataSets.Add(data.Key, (LineChartData)data.Value.Clone());
+            childChart?.dataSets.Add(data.Key, (LineChartData)data.Value.Clone());
 
             // Null check to suppress ReSharper's warning
             if (string.IsNullOrEmpty(data.Key))
@@ -418,13 +426,26 @@ public class LineChart : VBoxContainer
         // Create chart legend
 
         // Switch to dropdown if number of datasets exceeds the max amount of icon legends
-        if (dataSets.Count > MaxIconLegend && LegendMode == LegendDisplayMode.Icon)
+        if (dataSets.Count > MaxIconLegend && LegendMode == LegendDisplayMode.Icon && LegendMode !=
+            LegendDisplayMode.CustomOrNone)
+        {
             LegendMode = LegendDisplayMode.DropDown;
+        }
+
+        if (isChild && datasetsLegend != null)
+            datasetsLegend = datasetsLegend.Clone() as IDataSetsLegend;
+
+        // Host chart means which chart should the datasets legend element interact with.
+        // Here we want it to always be a parent chart (that have its own child chart) so that when
+        // something is changed in the child chart's legend instance, the parent chart can also be affected.
+        // Ex: Changing dataset visibility in a child chart's legend also updates the visibility in the
+        // parent chart
+        var hostChart = parentChart ?? this;
 
         DataSetsLegend = LegendMode switch
         {
-            LegendDisplayMode.Icon => new DatasetsIconLegend(this),
-            LegendDisplayMode.DropDown => new DataSetsDropdownLegend(this),
+            LegendDisplayMode.Icon => new DatasetsIconLegend(hostChart),
+            LegendDisplayMode.DropDown => new DataSetsDropdownLegend(hostChart),
             LegendDisplayMode.CustomOrNone => datasetsLegend,
             _ => throw new Exception("Invalid legend display mode"),
         };
@@ -444,10 +465,10 @@ public class LineChart : VBoxContainer
 
         chartPopup.WindowTitle = TranslationServer.Translate(ChartName);
 
-        if (chartClone != null)
+        if (!isChild)
         {
-            chartClone.LegendMode = LegendMode;
-            chartClone.Plot(xAxisName, yAxisName, initialVisibleDataSets, legendTitle, datasetsLegend,
+            childChart.LegendMode = LegendMode;
+            childChart.Plot(xAxisName, yAxisName, initialVisibleDataSets, legendTitle, datasetsLegend,
                 defaultDataSet, expandedXTicks, expandedYTicks);
         }
     }
@@ -500,7 +521,7 @@ public class LineChart : VBoxContainer
 
     public DataSetVisibilityUpdateResult UpdateDataSetVisibility(string name, bool visible)
     {
-        chartClone?.UpdateDataSetVisibility(name, visible);
+        childChart?.UpdateDataSetVisibility(name, visible);
 
         if (!dataSets.ContainsKey(name))
             return DataSetVisibilityUpdateResult.NotFound;
@@ -542,7 +563,7 @@ public class LineChart : VBoxContainer
     /// </remarks>
     public void AddIconLegend(Texture icon, string name, float size = 15)
     {
-        if (isClone)
+        if (isChild)
             return;
 
         var parent = new HBoxContainer();
@@ -569,16 +590,16 @@ public class LineChart : VBoxContainer
 
     public void OverrideDataPointToolTipDescription(string dataset, DataPoint datapoint, string description)
     {
-        if (dataPointToolTips.ContainsKey(dataset) && dataPointToolTips[dataset].
-            TryGetValue(datapoint, out var tooltip))
+        if (dataPointToolTips.ContainsKey(dataset) &&
+            dataPointToolTips[dataset].TryGetValue(datapoint, out var tooltip))
         {
             tooltip.Description = description;
         }
 
         ICustomToolTip clonedTooltip = null;
 
-        if ((bool)(chartClone?.dataPointToolTips.ContainsKey(dataset) & chartClone?.dataPointToolTips[dataset].
-            TryGetValue(datapoint, out clonedTooltip) == true))
+        if ((bool)(childChart?.dataPointToolTips.ContainsKey(dataset) &
+                (childChart?.dataPointToolTips[dataset].TryGetValue(datapoint, out clonedTooltip) == true)))
         {
             clonedTooltip.Description = description;
         }
@@ -735,6 +756,9 @@ public class LineChart : VBoxContainer
     /// </summary>
     private void FlattenLines(string datasetName)
     {
+        if (!IsMinMaxValid())
+            return;
+
         var data = dataSets[datasetName];
 
         foreach (var point in data.DataPoints)
@@ -917,32 +941,33 @@ public class LineChart : VBoxContainer
         verticalLabel.Text = yAxisName;
     }
 
-    private void SetupChartClone()
+    private void SetupChartChild()
     {
-        if (chartClone != null || isClone)
+        if (childChart != null || isChild)
             return;
 
         var scene = GD.Load<PackedScene>("res://src/gui_common/charts/line/LineChart.tscn");
-        chartClone = scene.Instance<LineChart>();
+        childChart = scene.Instance<LineChart>();
 
-        chartClone.isClone = true;
-        chartClone.ChartName = ChartName + "clone";
-        chartClone.XAxisTicks = XAxisTicks;
-        chartClone.XAxisName = XAxisName;
-        chartClone.YAxisTicks = YAxisTicks;
-        chartClone.YAxisName = YAxisName;
-        chartClone.LegendMode = LegendMode;
-        chartClone.MaxIconLegend = MaxIconLegend;
-        chartClone.MaxDisplayedDataSet = MaxDisplayedDataSet;
-        chartClone.MinDisplayedDataSet = MinDisplayedDataSet;
-        chartClone.TooltipXAxisFormat = TooltipXAxisFormat;
-        chartClone.TooltipYAxisFormat = TooltipYAxisFormat;
+        childChart.parentChart = this;
+        childChart.isChild = true;
+        childChart.ChartName = ChartName + "clone";
+        childChart.XAxisTicks = XAxisTicks;
+        childChart.XAxisName = XAxisName;
+        childChart.YAxisTicks = YAxisTicks;
+        childChart.YAxisName = YAxisName;
+        childChart.LegendMode = LegendMode;
+        childChart.MaxIconLegend = MaxIconLegend;
+        childChart.MaxDisplayedDataSet = MaxDisplayedDataSet;
+        childChart.MinDisplayedDataSet = MinDisplayedDataSet;
+        childChart.TooltipXAxisFormat = TooltipXAxisFormat;
+        childChart.TooltipYAxisFormat = TooltipYAxisFormat;
 
         var parent = extraLegendContainer.GetParent();
-        parent.AddChild(chartClone);
-        parent.MoveChild(chartClone, 0);
+        parent.AddChild(childChart);
+        parent.MoveChild(childChart, 0);
 
-        chartClone.inspectButton.Hide();
+        childChart.inspectButton.Hide();
     }
 
     /*
@@ -1038,6 +1063,11 @@ public class LineChart : VBoxContainer
             }
         }
 
+        public virtual object Clone()
+        {
+            return new DatasetsIconLegend(chart);
+        }
+
         private void OnIconLegendToggled(bool toggled, DatasetIconLegend icon)
         {
             var result = chart.UpdateDataSetVisibility(icon.DataName, toggled);
@@ -1110,6 +1140,11 @@ public class LineChart : VBoxContainer
 
             foreach (var index in indices)
                 Dropdown.Popup.SetItemChecked(index, visible);
+        }
+
+        public virtual object Clone()
+        {
+            return new DataSetsDropdownLegend(chart);
         }
 
         private void OnDropDownLegendItemSelected(int index)
