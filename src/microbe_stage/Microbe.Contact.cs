@@ -335,12 +335,13 @@ public partial class Microbe
     /// </summary>
     public void SendOrganellePositionsToMembrane()
     {
-        var organellePositions = new List<Vector2>();
+        var organellesCount = organelles.Organelles.Count;
+        var organellePositions = new Vector2[organellesCount];
 
-        foreach (var entry in organelles.Organelles)
+        for (var i = 0; i < organellesCount; i++)
         {
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.y));
+            var cartesian = Hex.AxialToCartesian(organelles.Organelles[i].Position);
+            organellePositions[i] = new Vector2(cartesian.x, cartesian.y);
         }
 
         Membrane.OrganellePositions = organellePositions;
