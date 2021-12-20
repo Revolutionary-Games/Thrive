@@ -598,6 +598,8 @@ public class LineChart : VBoxContainer
             tooltip.Description = description;
         }
 
+        // ReSharper disable once MergeSequentialChecksWhenPossible
+        // Too much of a hassle than it benefits
         if (childChart != null && childChart.dataPointToolTips.ContainsKey(dataset) &&
             childChart.dataPointToolTips[dataset].TryGetValue(datapoint, out var clonedTooltip))
         {
