@@ -743,6 +743,40 @@ public partial class Microbe
         Compounds.TakeCompound(atp, osmoregulationCost);
     }
 
+    private void HandleMovement(float delta)
+    {
+        if (MovementDirection != Vector3.Zero ||
+            queuedMovementForce != Vector3.Zero)
+        {
+            // Movement direction should not be normalized to allow different speeds
+            Vector3 totalMovement = Vector3.Zero;
+
+            if (MovementDirection != Vector3.Zero)
+            {
+                totalMovement += DoBaseMovementForce(delta);
+            }
+
+            totalMovement += queuedMovementForce;
+
+            ApplyMovementImpulse(totalMovement, delta);
+
+            var deltaAcceleration = (linearAcceleration - lastLinearAcceleration).LengthSquared();
+
+            if (movementSoundCooldownTimer > 0)
+                movementSoundCooldownTimer -= delta;
+
+            // The cell starts moving from a relatively idle velocity, so play the movement sound
+            // TODO: Account for cell turning, I can't figure out a reliable way to do that using the current
+            // calculation - Kasterisk
+            if (!movementAudio.Playing && movementSoundCooldownTimer <= 0 && deltaAcceleration >
+                lastLinearAcceleration.LengthSquared() && lastLinearVelocity.LengthSquared() <= 1)
+            {
+                movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
+                movementAudio.Play();
+            }
+        }
+    }
+
     /// <summary>
     ///   Damage the microbe if its too low on ATP.
     /// </summary>

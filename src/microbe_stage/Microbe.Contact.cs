@@ -376,8 +376,6 @@ public partial class Microbe
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
 
-        var random = new Random();
-
         // Releasing all the agents.
         // To not completely deadlock in this there is a maximum limit
         int createdAgents = 0;
