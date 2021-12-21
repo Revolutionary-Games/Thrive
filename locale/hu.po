@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
-"PO-Revision-Date: 2021-11-26 16:55+0000\n"
+"PO-Revision-Date: 2021-12-21 17:46+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Weblate 4.9.1\n"
 "Generated-By: Babel 2.9.1\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -3488,13 +3488,12 @@ msgid "FULL_MOD_INFO"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
-#, fuzzy
 msgid "MOD_NAME"
-msgstr "Név:"
+msgstr "Mod neve:"
 
 #: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
-msgstr ""
+msgstr "Mappa neve:"
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
@@ -3502,7 +3501,7 @@ msgstr "Mod hosszú leírása:"
 
 #: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
-msgstr ""
+msgstr "Ikon fájl:"
 
 #: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
@@ -3514,7 +3513,7 @@ msgstr "Mod licensze:"
 
 #: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
-msgstr ""
+msgstr "Ajánlott Thrive verzió:"
 
 #: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
@@ -3537,9 +3536,8 @@ msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
 #: ../src/modding/ModManager.tscn:979
-#, fuzzy
 msgid "MOD_CREATION_FAILED"
-msgstr "Auto-evo futtatása sikertelen"
+msgstr "Mod létrehozása sikertelen"
 
 #: ../src/modding/ModManager.tscn:989
 #, fuzzy
@@ -3551,19 +3549,17 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
-msgstr ""
+msgstr "Újraindítás szükséges"
 
 #: ../src/modding/ModManager.tscn:996
-#, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
-"Megjegyzés: sok modnál szükség van a játék újraindítására, hogy "
-"betöltsenek, vagy törlődjenek. Csak azokat a modokat töltsd be, melyekben "
-"megbízol, mivel ezek futtatható kódokat tartalmazhatnak."
+"Egy vagy több mod miatt a játék újraindítása szükséges, hogy megfelelően betö"
+"ltsenek/törlődjenek"
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "A műhely tartalom ebből a mappából lesz feltöltve: {0}"
 
 #: ../src/modding/ModUploader.cs:298
 msgid "MISSING_TITLE"
@@ -3893,7 +3889,7 @@ msgstr "Biztos véglegesen akarod törölni a következő mentést: {0}?"
 
 #: ../src/saving/SaveList.tscn:53
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "Nincs mentés"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
@@ -3917,6 +3913,12 @@ msgstr ""
 #: ../src/saving/SaveList.tscn:88
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
+"Ez a mentés a Thrive egy régebbi verziójából való, és nem biztos, hogy "
+"kompatibilis.\n"
+"Mivel a Thrive még eléggé gyermekcipőben jár, ezért nem elsődleges cél a "
+"mentések kompatibilitása.\n"
+"Jelentheted ezeket a hibákat a fejlesztőknek, de ezek nem elsődlegesek.\n"
+"Biztos be akarod tölteni a mentést?"
 
 #: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE"
@@ -3945,6 +3947,12 @@ msgstr "A kiválasztott mentés frissíthető"
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
+"A kijelölt mentés a Thrive egy régebbi verziójából való, de újabb verzióra "
+"lehet frissíteni.\n"
+"A játék egy biztonsági mentést fog létrehozni/már létrehozott a frissítés "
+"előtt.\n"
+"Ha nem frissíted a mentést, akkor a játék megpróbálja betölteni így is.\n"
+"Frissíted ezt a mentést?"
 
 #: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED"
@@ -4008,7 +4016,7 @@ msgstr "Törlés kiválasztva"
 
 #: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "Régi mentések törlése"
 
 #: ../src/saving/SaveManagerGUI.tscn:99
 msgid "OPEN_SAVE_DIRECTORY"
@@ -4052,7 +4060,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
-msgstr ""
+msgstr "Nem töltheted fel ezt a tartalmat, mert a Steam fiókod le van tiltva"
 
 #: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
@@ -4060,7 +4068,7 @@ msgstr ""
 
 #: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr ""
+msgstr "Nem vagy bejelentkezve Steam-re"
 
 #: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
