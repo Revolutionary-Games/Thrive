@@ -167,6 +167,12 @@ public class MicrobeHUD : Control
     [Export]
     public NodePath BindingModeHotkeyPath;
 
+    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
+        new System.Collections.Generic.Dictionary<Species, int>();
+
+    private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
+        new System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl>();
+
     private Compound ammonia;
     private Compound atp;
     private Compound carbondioxide;
@@ -178,12 +184,6 @@ public class MicrobeHUD : Control
     private Compound oxytoxy;
     private Compound phosphates;
     private Compound sunlight;
-
-    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
-        new System.Collections.Generic.Dictionary<Species, int>();
-
-    private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
-        new System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl>();
 
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
