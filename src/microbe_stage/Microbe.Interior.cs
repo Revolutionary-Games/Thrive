@@ -745,13 +745,13 @@ public partial class Microbe
 
     private void HandleMovement(float delta)
     {
-        if (MovementDirection != Vector3.Zero ||
-            queuedMovementForce != Vector3.Zero)
+        if (MovementDirection != Vector2.Zero ||
+            queuedMovementForce != Vector2.Zero)
         {
             // Movement direction should not be normalized to allow different speeds
-            Vector3 totalMovement = Vector3.Zero;
+            Vector2 totalMovement = Vector2.Zero;
 
-            if (MovementDirection != Vector3.Zero)
+            if (MovementDirection != Vector2.Zero)
             {
                 totalMovement += DoBaseMovementForce(delta);
             }

@@ -165,7 +165,9 @@ public class SpawnSystem
         for (var x = -radius; x <= radius; x++)
         {
             for (var y = -radius; y <= radius; y++)
+            {
                 yield return new Sector(center.x + x, center.y + y);
+            }
         }
     }
 
