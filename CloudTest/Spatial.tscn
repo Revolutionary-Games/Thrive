@@ -6,6 +6,7 @@
 [sub_resource type="ProxyTexture" id=1]
 
 [sub_resource type="ShaderMaterial" id=2]
+render_priority = 2
 shader = ExtResource( 2 )
 shader_param/mesh = SubResource( 1 )
 
@@ -15,13 +16,6 @@ size = Vector2( 2, 2 )
 
 [node name="Spatial" type="Spatial"]
 
-[node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -33.6629, 0, 42.8251 )
-visible = false
-extra_cull_margin = 16384.0
-mesh = SubResource( 3 )
-material/0 = null
-
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.0570239, 0, 0.998373, 0, 1, 0, -0.998373, 0, 0.0570239, 103.362, 1.0524, 5.46798 )
 extra_cull_margin = 16384.0
@@ -30,10 +24,12 @@ material/0 = null
 
 [node name="Viewport" type="Viewport" parent="MeshInstance"]
 size = Vector2( 1024, 1024 )
+render_target_v_flip = true
+render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="MeshInstance/Viewport"]
 transform = Transform( 0.0570239, 0, 0.998373, 0, 1, 0, -0.998373, 0, 0.0570239, 77.6763, 0, 0 )
-visible = false
+current = true
 fov = 140.625
 
 [node name="CSGBox" type="CSGBox" parent="."]
@@ -41,3 +37,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6262, 18.7517, -47.3302 )
 width = 11.5113
 height = 27.4316
 depth = 64.0898
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84594, -3.8147e-06, 40.9005 )
+visible = false
+extra_cull_margin = 16384.0
+mesh = SubResource( 3 )
+material/0 = null

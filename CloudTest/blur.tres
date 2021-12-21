@@ -9,22 +9,25 @@ void vertex() {
 
 void fragment()
 {
-	vec2 pixelSize = 1f/ vec2(textureSize(SCREEN_TEXTURE,0));
+	vec2 pixelSize = 1f/ vec2(textureSize(mesh,0));
 	vec3 albedo = vec3 (0f,0f,0f);
-
+	float alpha = 0f;
+	float pi = 3.145 * 2f;
+	float sigma = 0.807;
+	sigma *= sigma;
+	float gaussF1 = 1f/(pi * sigma);
+	float gaussF2 = 2f/sigma;
 	for(int y = -10; y <= 10; y++)
     	for(int x = -10; x <= 10; x++)
 		{
-			float pi = 3.145 * 2f;
-			float sigma = 0.807;
-			sigma *= sigma;
-			
-			float gaussFactor = 1f/(pi * sigma) * exp (-(float(x*x+y*y))/(2f*sigma));
+
+			float gaussFactor = gaussF1 * exp (-(float(x*x+y*y))/gaussF2);
 			vec2 offset = vec2( float(x),float(y));
-			vec4 tex = texture(SCREEN_TEXTURE, UV + offset * pixelSize);
+			vec4 tex = texture(mesh, UV + offset * pixelSize);
 			albedo += tex.rgb * gaussFactor;
+			alpha += tex.a * gaussFactor;
 		}
-	//ALPHA = 0f;
+	//ALPHA = alpha;
 	ALBEDO = albedo;
 	
 }"

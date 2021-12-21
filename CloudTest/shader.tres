@@ -37,7 +37,7 @@ vec2 raymarch(vec3 rayDir,vec3 cameraPos)
         if (dist < MIN_HIT_DIST) {
 			dist += 0.1f;
 			if (dstToSphere == 0f)
-				dstToSphere = depth;
+				{dstToSphere = depth;break}
 			else
 			{
 				dstToExit = depth;
@@ -77,7 +77,8 @@ void fragment()
 	float willDisplay = float (((int(distToSphere * 717000f) % 1000) * 101) % 80 );
 	if(linear_depth < distToSphere)
 		ALBEDO = vec3(1f,1f,1f);
-//	if (rayColor.xyz == vec3 (0f,0f,0f) )//|| linear_depth < distToSphere )
+//	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < distToSphere )
 //		ALPHA = 0f;
-//
+
+
 }"
