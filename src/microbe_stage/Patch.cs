@@ -124,9 +124,9 @@ public class Patch
 
         while (queue.Count > 0 && !maxReached)
         {
-            var e = queue.Dequeue();
+            var vertex = queue.Dequeue();
 
-            foreach (var patch in e.Adjacent)
+            foreach (var patch in vertex.Adjacent)
             {
                 if (!visited.Contains(patch))
                 {
