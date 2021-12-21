@@ -72,9 +72,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         set
         {
             size = value;
-
-            // Increased by 10 for a more bigger cursor detection area
-            RectSize = new Vector2(value + 10, value + 10);
+            UpdateRectSize();
         }
     }
 
@@ -119,6 +117,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         Connect("mouse_entered", this, nameof(OnMouseEnter));
         Connect("mouse_exited", this, nameof(OnMouseExit));
 
+        UpdateRectSize();
         Update();
     }
 
@@ -245,6 +244,12 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         hashCode = hashCode * -1521134295 + x.GetHashCode();
         hashCode = hashCode * -1521134295 + y.GetHashCode();
         return hashCode;
+    }
+
+    private void UpdateRectSize()
+    {
+        // Increased by 10 for a more bigger cursor detection area
+        RectSize = new Vector2(size + 10, size + 10);
     }
 
     private void OnMouseEnter()
