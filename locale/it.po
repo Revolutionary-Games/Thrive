@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
-"PO-Revision-Date: 2021-12-19 11:09+0000\n"
+"PO-Revision-Date: 2021-12-21 17:46+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -275,8 +275,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Un suggerimento: i batteri possono essere più forti di quanto appaiono: "
-"sembrano piccoli, ma alcuni di essi possono scavare dentro di te, e "
+"Un suggerimento: i batteri possono essere più forti di quanto appaiono! "
+"Sembrano piccoli, ma alcuni di essi possono scavare dentro di te, e "
 "ucciderti così!"
 
 #: ../simulation_parameters/common/help_texts.json:150
@@ -345,8 +345,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Un suggerimento: fai attenzione alle cellule e batteri più grandi, non è "
-"divertente essere digeriti, ti mangeranno."
+"Un suggerimento: fai attenzione alle cellule e batteri più grandi! Non è "
+"divertente essere digeriti: ti mangeranno."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
@@ -961,7 +961,7 @@ msgstr "{0} muovendo: {1} esemplari dalla zona: {2}"
 
 #: ../src/auto-evo/RunResults.cs:681
 msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "Popolazione nelle zone:"
+msgstr "popolazione nelle zone:"
 
 #: ../src/auto-evo/RunResults.cs:788
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -1441,7 +1441,7 @@ msgstr "Strumenti"
 
 #: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
-msgstr "Visualizza Codice Sorgente"
+msgstr "Vedi Codice Sorgente"
 
 #: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
@@ -1498,8 +1498,8 @@ msgstr "Errori di caricamento mod"
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
-"Si sono verificati degli errori nel caricamento di una o più mod. I report "
-"potrebbero contenere informazioni maggiori."
+"Si sono verificati degli errori nel caricamento di una o più mod. I log "
+"potrebbero contenere informazioni ulteriori."
 
 #: ../src/general/OptionsMenu.cs:900
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1507,16 +1507,15 @@ msgstr "Dispositivo di output audio di default"
 
 #: ../src/general/OptionsMenu.cs:932
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr ""
-"Questa traduzione è molto incompleta (siamo al {0}%). Perfavore, aiutaci!"
+msgstr "Questa traduzione è molto incompleta ({0}% fatto). Perfavore, aiutaci!"
 
 #: ../src/general/OptionsMenu.cs:936
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr "Questa traduzione è in corso d'opera (siamo al {0}%)"
+msgstr "Questa traduzione è in corso d'opera ({0}% completato)"
 
 #: ../src/general/OptionsMenu.cs:940
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Questa traduzione è completa al {0}%"
+msgstr "Questa traduzione è completa al/all'{0}%"
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
@@ -1754,7 +1753,7 @@ msgstr "Apri Cartella degli Screenshot"
 
 #: ../src/general/OptionsMenu.tscn:1146
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Apri Cartella dei Report"
+msgstr "Apri Cartella dei Log"
 
 #: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
@@ -1883,7 +1882,7 @@ msgstr "Conferma Uscita"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} Mrd"
+msgstr "{0} Mld"
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
@@ -2317,8 +2316,8 @@ msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "I microbi aggressivi inseguono le prede per distanze maggiori\n"
 "e sono più propensi a combattere quando aggrediti.\n"
-"I microbi pacifici, invece, ignorano soggetti più lontani\n"
-"e sono meno propensi a sparare tossine ai propri predatori."
+"I microbi pacifici, invece, ignorano i soggetti lontani\n"
+"e sono meno incini a sparare tossine ai propri predatori."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:231
 msgid "OPPORTUNISM_EXPLANATION"
@@ -2335,7 +2334,7 @@ msgstr ""
 "I microbi pavidi scappano dai pericoli per lunghe distanze\n"
 "e sono generalmente più propensi alla fuga.\n"
 "I microbi coraggiosi non sono spaventati dai predatori vicini\n"
-"e sono più propensi a contrattaccare."
+"e sono più disposti a contrattaccare."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "ACTIVITY_EXPLANATION"
@@ -2349,7 +2348,7 @@ msgstr ""
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "I microbi focalizzati inseguono prede e pezzi di cibo per lunghe distanze\n"
-"e potrebbero bramare maggiormente i pezzi di cibo.\n"
+"e potrebbero desiderare questi ultimi con maggire ardimento.\n"
 "I microbi reattivi cambiano più facilmente bersaglio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:267
@@ -2814,10 +2813,10 @@ msgstr ""
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Abilita gli effetti di luce nella GUI (graphical user interface), come ad "
-"esempio il flash del pulsante di editor.\n"
+"esempio il flash del pulsante dell'editor.\n"
 "\n"
-"Nel caso dovessi incontrare un bug per cui alcune parti del pulsante di "
-"editor spariscono,\n"
+"Nel caso dovessi incontrare un bug per cui alcune parti del pulsante "
+"dell'editor spariscono,\n"
 "puoi provare a disattivare questa opzione per risolverlo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3497
@@ -2946,7 +2945,7 @@ msgstr "Presso il Cursore:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:532
 msgid "NOTHING_HERE"
-msgstr "Qui non c'è niente"
+msgstr "Qui niente"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:557
 msgid "COMPOUNDS_COLON"
@@ -3098,7 +3097,7 @@ msgstr "Struttura"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:817
 msgid "MEMBRANE"
-msgstr "Tipi di membrana"
+msgstr "Membrana"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:839
 msgid "BEHAVIOUR"
@@ -3359,8 +3358,7 @@ msgstr "PM Infiniti"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:704
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-"La quantità di glucosio è stata ridotta al {0} della quantità precedente."
+msgstr "La quantità di glucosio è stata ridotta al/all'{0} della precedente."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
 msgid "MEGA_YEARS"
@@ -3457,8 +3455,8 @@ msgstr "Fonti di energia:"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
-"{0} energia: {1} (idoneità: {2}) energia totale disponibile: {3} (idoneità "
-"totale: {4})"
+"{0} -> energia: {1} (idoneità: {2}) energia totale disponibile: {3} ("
+"idoneità totale: {4})"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
@@ -3525,9 +3523,8 @@ msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
 #: ../src/modding/ModLoader.cs:364
-#, fuzzy
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr "Inizializzazione della libreria client Steam fallita"
+msgstr ""
 
 #: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
@@ -3731,7 +3728,7 @@ msgstr "Creazione della mod fallita"
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 "Si sono verificati degli errori nel caricamento o scaricamento di una o più "
-"mod. I report potrebbero contenere informazioni maggiori."
+"mod. I log potrebbero contenere informazioni maggiori."
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
@@ -4313,9 +4310,8 @@ msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Il tuo account Steam non possiede una licenza per Thrive"
 
 #: ../src/steam/SteamClient.cs:496
-#, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "Inizializzazione della libreria client Steam fallita"
+msgstr "Steam: acquisizione dell'UGC lock fallita"
 
 #: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
