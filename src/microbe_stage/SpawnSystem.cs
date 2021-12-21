@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -39,9 +38,9 @@ public class SpawnSystem
     ///     this object so much
     ///   </para>
     /// </remarks>
-    private ConcurrentQueue<QueuedSpawn> queuedSpawns = new();
+    private Queue<QueuedSpawn> queuedSpawns = new();
 
-    private ConcurrentDictionary<Sector, float> sectorDensities = new();
+    private Dictionary<Sector, float> sectorDensities = new();
     private List<Sector> loadedSectors = new();
 
     public SpawnSystem(Node root)
@@ -89,12 +88,13 @@ public class SpawnSystem
 
     public float GetSectorDensity(Sector sector)
     {
-        return sectorDensities.GetOrAdd(sector, _ =>
-        {
-            var density = noise.GetNoise(sector.X, sector.Y);
-            density = (density + 1f) / 2f;
-            return density;
-        });
+        if (sectorDensities.ContainsKey(sector))
+            return sectorDensities[sector];
+
+        var density = noise.GetNoise(sector.X, sector.Y);
+        density = (density + 1f) / 2f;
+        sectorDensities[sector] = density;
+        return density;
     }
 
     /// <summary>
@@ -137,7 +137,7 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
-        queuedSpawns = new ConcurrentQueue<QueuedSpawn>();
+        queuedSpawns = new Queue<QueuedSpawn>();
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
         foreach (Node entity in spawnedEntities)
@@ -224,8 +224,9 @@ public class SpawnSystem
     private void HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
         // Spawn from the queue
-        while (spawnsLeftThisFrame > 0 && queuedSpawns.TryDequeue(out var current))
+        while (spawnsLeftThisFrame > 0 && queuedSpawns.Count > 0)
         {
+            var current = queuedSpawns.Dequeue();
             var instances = current.Spawner.Instantiate(current.Position);
             if (instances == null)
             {

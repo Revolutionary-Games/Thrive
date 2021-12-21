@@ -87,7 +87,7 @@ public abstract class Spawner
     /// <returns>Returns the amount of spawns in a sector.</returns>
     protected virtual int GetSpawnsInASector(float sectorDensity, Random random)
     {
-        if (BinomialN == 0)
+        if (BinomialP == 0)
             return 0;
 
         var nextRandom = random.NextFloat() * sectorDensity;

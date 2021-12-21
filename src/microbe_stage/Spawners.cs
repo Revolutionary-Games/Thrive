@@ -316,8 +316,8 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
-    public override int BinomialN => (int)(2 * Math.Log10(population) + 1);
-    public override float BinomialP => 0.2f;
+    public override int BinomialN => (int)Math.Log10(population);
+    public override float BinomialP => 0.1f;
 
     public override IEnumerable<SpawnedRigidBody> Instantiate(Vector2 location)
     {
@@ -387,6 +387,10 @@ public class ChunkSpawner : Spawner
         this.cloudSystem = cloudSystem;
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
+
+    public override int BinomialN => 5;
+    public override float BinomialP => chunkType.Density * 1000;
+    public override float MinDistanceSquared => chunkType.Radius;
 
     public override IEnumerable<SpawnedRigidBody> Instantiate(Vector2 location)
     {
