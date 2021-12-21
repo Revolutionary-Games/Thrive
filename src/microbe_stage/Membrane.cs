@@ -20,6 +20,8 @@ public class Membrane : MeshInstance
 
     // private ArrayMesh generatedMesh;
 
+    private readonly Vector2 invalidVector = new(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE);
+
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
     private float sizeWigglyNessDampeningFactor = 0.22f;
@@ -260,8 +262,6 @@ public class Membrane : MeshInstance
 
         return closestSoFar;
     }
-
-    private readonly Vector2 invalidVector = new(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE);
 
     /// <summary>
     ///   Return the position of the closest organelle to the target

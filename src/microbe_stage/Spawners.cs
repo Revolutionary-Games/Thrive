@@ -74,8 +74,8 @@ public static class SpawnHelpers
         if (random.Next(0, 5) < 2)
         {
             // Clump
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
+            for (int i = 0;
+                i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE, Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
                 // Dont spawn them on top of each other because it
                 // causes them to bounce around and lag
@@ -92,8 +92,8 @@ public static class SpawnHelpers
             // (I combined the lineX and lineZ here because they have the same values)
             var line = random.Next(-5, 6) + random.Next(-5, 6);
 
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
+            for (int i = 0;
+                i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE, Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
             {
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
@@ -123,8 +123,8 @@ public static class SpawnHelpers
                 MicrobeScene = microbeScene,
             };
 
-            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
+            for (int i = 0;
+                i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE, Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
                 if (random.Next(0, 5) < 2 && !colony.Horizontal)
                 {
@@ -257,8 +257,8 @@ public static class SpawnHelpers
 
     private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector2 location)
     {
-        for (int c = 0; c < colony.Random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-            Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+        for (int c = 0;
+            c < colony.Random.Next(Constants.MIN_BACTERIAL_LINE_SIZE, Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
         {
             // Dont spawn them on top of each other because
             // It causes them to bounce around and lag
@@ -331,8 +331,8 @@ public class MicrobeSpawner : Spawner
 
         if (first.Species.IsBacteria)
         {
-            foreach (var colonyMember in SpawnHelpers.InstantiateBacteriaColony(species, location, microbeScene,
-                cloudSystem, currentGame, random))
+            foreach (var colonyMember in
+                SpawnHelpers.InstantiateBacteriaColony(species, location, microbeScene, cloudSystem, currentGame, random))
             {
                 yield return colonyMember;
 

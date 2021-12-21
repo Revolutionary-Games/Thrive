@@ -72,7 +72,8 @@ public abstract class Spawner
     }
 
     /// <summary>
-    ///   Instantiate the next thing. This is an enumerator to be able to control how many things to spawn per frame easily.
+    ///   Instantiate the next thing.
+    ///   This is an enumerator to be able to control how many things to spawn per frame easily.
     ///   Do not add those instances to the world, that's the spawn system's job.
     /// </summary>
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
