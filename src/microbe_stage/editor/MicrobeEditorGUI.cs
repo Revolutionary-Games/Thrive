@@ -636,6 +636,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
+        reportTabPatchName.GetPopup().HideOnCheckableItemSelection = false;
+
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
@@ -1112,9 +1114,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         reportTabPatchName.Clear();
 
-        foreach (var patch in editor.CurrentGame.GameWorld.Map.Patches)
+        foreach (var patch in editor.CurrentPatch.GetClosestConnectedPatches())
         {
-            reportTabPatchName.AddItem(TranslationServer.Translate(patch.Value.Name), patch.Key);
+            reportTabPatchName.AddItem(TranslationServer.Translate(patch.Name), patch.ID);
         }
 
         reportTabPatchName.Select(editor.CurrentPatch.ID);
@@ -2104,7 +2106,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
 
-        reportTabPatchName.Select(patch.ID);
+        reportTabPatchName.Select(reportTabPatchName.GetItemIndex(patch.ID));
     }
 
     private void OnReportTabPatchListSelected(int index)

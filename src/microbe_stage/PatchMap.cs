@@ -46,7 +46,10 @@ public class PatchMap
     public void AddPatch(Patch patch)
     {
         if (Patches.ContainsKey(patch.ID))
-            throw new ArgumentException("patch cannot be added to this map");
+        {
+            throw new ArgumentException(
+                "patch cannot be added to this map: already exist patch with ID " + patch.ID);
+        }
 
         Patches[patch.ID] = patch;
     }

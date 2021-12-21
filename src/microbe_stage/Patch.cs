@@ -108,6 +108,44 @@ public class Patch
     }
 
     /// <summary>
+    ///   Checks closest neighbours using breadth-first search (BFS) with the given maximum visits.
+    /// </summary>
+    /// <param name="visits">The maximum number of patches to visit/add</param>
+    /// <returns>A <see cref="HashSet{T}"/> of closest Patches connected to this node by some means</returns>
+    public HashSet<Patch> GetClosestConnectedPatches(int visits = 20)
+    {
+        var queue = new Queue<Patch>();
+        var visited = new HashSet<Patch>();
+
+        queue.Enqueue(this);
+        visited.Add(this);
+
+        var maxReached = false;
+
+        while (queue.Count > 0 && !maxReached)
+        {
+            var e = queue.Dequeue();
+
+            foreach (var patch in e.Adjacent)
+            {
+                if (!visited.Contains(patch))
+                {
+                    queue.Enqueue(patch);
+                    visited.Add(patch);
+
+                    if (--visits <= 0)
+                    {
+                        maxReached = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return visited;
+    }
+
+    /// <summary>
     ///   Looks for a species with the specified name in this patch
     /// </summary>
     public Species FindSpeciesByID(uint id)
