@@ -2,12 +2,12 @@
 
 namespace System.Runtime.CompilerServices
 {
-    // ReSharper disable once RedundantNameQualifier
+#pragma warning disable SA1135
     using ComponentModel;
 
-    [EditorBrowsable(EditorBrowsableState.Never)]
+#pragma warning restore SA1135
 
-    // ReSharper disable once UnusedType.Global
+    [EditorBrowsable(EditorBrowsableState.Never)]
 #pragma warning disable SA1649
     internal class IsExternalInit
     {
