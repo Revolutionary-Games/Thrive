@@ -299,7 +299,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Updates the cloud in parallel.
     /// </summary>
-    public void QueueUpdateCloud(float delta, List<Task> queue)
+    public IEnumerable<Task> QueueUpdateCloud(float delta)
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
@@ -316,7 +316,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     delta, pos));
-                queue.Add(task);
+                yield return task;
             }
         }
     }
@@ -324,7 +324,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Updates the cloud in parallel.
     /// </summary>
-    public void QueueUpdateTextureImage(List<Task> queue)
+    public IEnumerable<Task> QueueUpdateTextureImage()
     {
         image.Lock();
 
@@ -338,7 +338,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                     y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE,
                     Size / Constants.CLOUD_SQUARES_PER_SIDE));
-                queue.Add(task);
+                yield return task;
             }
         }
     }

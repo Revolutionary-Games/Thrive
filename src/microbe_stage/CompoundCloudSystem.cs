@@ -31,6 +31,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     [JsonProperty]
     private float elapsed;
 
+    private UpdateCloudContentsHandler cloudContentsHandler;
+
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
@@ -130,6 +132,8 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             clouds[i].Init(fluidSystem, cloud1, cloud2, cloud3, cloud4);
             clouds[i].Translation = new Vector3(0, 0, 0);
         }
+
+        cloudContentsHandler = new UpdateCloudContentsHandler(clouds, neededCloudsAtOnePosition);
     }
 
     /// <summary>
@@ -436,41 +440,95 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
 
     private void UpdateCloudContents(float delta)
     {
-        // Do moving compounds on the edges of the clouds serially
-        foreach (var cloud in clouds)
+        cloudContentsHandler.Process(delta);
+    }
+
+    private class UpdateCloudContentsHandler
+    {
+        private readonly List<CompoundCloudPlane> clouds;
+        private readonly int neededCloudsAtOnePosition;
+        private float deltaSum;
+
+        private List<Task> tasks;
+        private int currentStep;
+
+        public UpdateCloudContentsHandler(List<CompoundCloudPlane> clouds, int neededCloudsAtOnePosition)
         {
-            cloud.UpdateEdgesBeforeCenter(delta);
+            this.clouds = clouds;
+            this.neededCloudsAtOnePosition = neededCloudsAtOnePosition;
         }
 
-        var executor = TaskExecutor.Instance;
-        var tasks = new List<Task>(9 * neededCloudsAtOnePosition);
-
-        foreach (var cloud in clouds)
+        public void Process(float delta)
         {
-            cloud.QueueUpdateCloud(delta, tasks);
+            deltaSum += delta;
+            if (!AllTasksDone())
+                return;
+
+            switch (currentStep)
+            {
+                case 0:
+                    // Do moving compounds on the edges of the clouds serially
+                    foreach (var cloud in clouds)
+                    {
+                        cloud.UpdateEdgesBeforeCenter(deltaSum);
+                    }
+
+                    tasks = new List<Task>(9 * neededCloudsAtOnePosition);
+
+                    foreach (var cloud in clouds)
+                    {
+                        foreach (var task in cloud.QueueUpdateCloud(deltaSum))
+                        {
+                            task.Start();
+                            tasks.Add(task);
+                        }
+                    }
+
+                    break;
+                case 1:
+                    foreach (var cloud in clouds)
+                    {
+                        cloud.UpdateEdgesAfterCenter(deltaSum);
+                    }
+
+                    foreach (var cloud in clouds)
+                    {
+                        foreach (var task in cloud.QueueUpdateTextureImage())
+                        {
+                            task.Start();
+                            tasks.Add(task);
+                        }
+                    }
+
+                    break;
+                case 2:
+                    foreach (var cloud in clouds)
+                    {
+                        cloud.UpdateTexture();
+                    }
+
+                    break;
+            }
+
+            deltaSum = 0;
+
+            currentStep++;
+            if (currentStep >= 3)
+                currentStep = 0;
         }
 
-        // Start and wait for tasks to finish
-        executor.RunTasks(tasks);
-        tasks.Clear();
-
-        // Do moving compounds on the edges of the clouds serially
-        foreach (var cloud in clouds)
+        private bool AllTasksDone()
         {
-            cloud.UpdateEdgesAfterCenter(delta);
-        }
+            if (tasks == null)
+                return true;
 
-        // Update the cloud textures in parallel
-        foreach (var cloud in clouds)
-        {
-            cloud.QueueUpdateTextureImage(tasks);
-        }
+            foreach (var task in tasks)
+            {
+                if (!task.IsCompleted)
+                    return false;
+            }
 
-        executor.RunTasks(tasks);
-
-        foreach (var cloud in clouds)
-        {
-            cloud.UpdateTexture();
+            return true;
         }
     }
 }
