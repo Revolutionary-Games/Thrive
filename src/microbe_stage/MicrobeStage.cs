@@ -631,8 +631,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         var randomSpecies = species.Random(random);
 
-        SpawnHelpers.InstantiateMicrobe(randomSpecies, Player.Translation.ToVector2() + Vector2.Up * 20,
+        var instance = SpawnHelpers.InstantiateMicrobe(randomSpecies, Player.Translation.ToVector2() + Vector2.Up * 20,
             SpawnHelpers.LoadMicrobeScene(), true, Clouds, CurrentGame);
+        world.AddChild(instance);
+        SpawnSystem.AddEntityToTrack(instance);
     }
 
     [DeserializedCallbackAllowed]

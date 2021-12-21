@@ -194,6 +194,8 @@ public partial class Microbe
             position, direction,
             SpawnHelpers.LoadAgentScene(), this);
 
+        GetStageAsParent().AddChild(agent);
+
         ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
         if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
@@ -328,6 +330,8 @@ public partial class Microbe
                 }
             }
         }
+
+        GetParent().AddChild(copyEntity);
 
         // Play the split sound
         PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");
