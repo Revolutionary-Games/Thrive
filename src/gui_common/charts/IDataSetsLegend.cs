@@ -10,7 +10,7 @@ public interface IDataSetsLegend : ICloneable
     /// <param name="datasets">The datasets of a particular chart</param>
     /// <param name="title">The legend title</param>
     /// <returns>The legend's UI element</returns>
-    Control OnCreate(Dictionary<string, ChartDataSet> datasets, string title);
+    Control CreateLegend(Dictionary<string, ChartDataSet> datasets, string title);
 
     /// <summary>
     ///   Should be called whenever a dataset in a chart is shown/hidden.

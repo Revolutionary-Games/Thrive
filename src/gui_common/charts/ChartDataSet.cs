@@ -72,18 +72,8 @@ public class ChartDataSet : ICloneable
 
     public virtual object Clone()
     {
-        var result = new ChartDataSet
-        {
-            Icon = Icon,
-            Colour = Colour,
-            Draw = Draw,
-        };
-
-        foreach (var point in dataPoints)
-        {
-            result.AddPoint((DataPoint)point.Clone());
-        }
-
+        var result = new ChartDataSet();
+        ClonePropertiesTo(result);
         return result;
     }
 

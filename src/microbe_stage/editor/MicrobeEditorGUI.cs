@@ -916,7 +916,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
 
         var extinctSpecies = new List<KeyValuePair<string, ChartDataSet>>();
-        var extinctPoint = new List<(string Name, DataPoint ExtinctPoint, string TimePeriod, bool ExtinctEverywhere)>();
+        var extinctPoints = new List<(string Name, DataPoint ExtinctPoint, string TimePeriod, bool ExtinctEverywhere)>();
 
         var anyExtinction = false;
 
@@ -951,8 +951,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 var extinctInPatch = entry.Value <= 0;
                 var extinctEverywhere = false;
 
-                if (!anyExtinction)
-                    anyExtinction = extinctInPatch;
+                if (extinctInPatch)
+                    anyExtinction = true;
 
                 // We test if the species info was recorded before using it.
                 // This is especially for compatibility with older versions, to avoid crashed due to an invalid key.
@@ -992,7 +992,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 if (extinctInPatch)
                 {
                     extinctSpecies.Add(new KeyValuePair<string, ChartDataSet>(entry.Key.FormattedName, dataset));
-                    extinctPoint.Add((
+                    extinctPoints.Add((
                         entry.Key.FormattedName, dataPoint, snapshot.TimePeriod.FormatNumber(), extinctEverywhere));
                 }
 
@@ -1008,13 +1008,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.DropDown;
 
-        SpeciesPopDatasetsLegend speciesPopDatasetsLegend = null;
+        SpeciesPopulationDatasetsLegend speciesPopDatasetsLegend = null;
 
         // The following operation might be expensive so we only do this if any extinction occured
         if (anyExtinction)
         {
             var datasets = extinctSpecies.Distinct().ToList();
-            speciesPopDatasetsLegend = new SpeciesPopDatasetsLegend(datasets, speciesPopulationChart);
+            speciesPopDatasetsLegend = new SpeciesPopulationDatasetsLegend(datasets, speciesPopulationChart);
             speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
         }
 
@@ -1032,7 +1032,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         OnPhysicalConditionsChartLegendPressed("temperature");
 
-        foreach (var point in extinctPoint)
+        foreach (var point in extinctPoints)
         {
             var extinctionType = point.ExtinctEverywhere ?
                 TranslationServer.Translate("TOTAL_EXTINCTION") :
@@ -2466,50 +2466,5 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         public Species PlayerSpeciesNew;
 
         public bool Finished => AutoEvoRun.Finished;
-    }
-
-    /// <summary>
-    ///   Extension of LineChart's default datasets dropdown legend to allow sectioning of extinct species.
-    /// </summary>
-    private class SpeciesPopDatasetsLegend : LineChart.DataSetsDropdownLegend
-    {
-        private List<KeyValuePair<string, ChartDataSet>> extinctSpecies;
-        private Texture defaultIconLegendTexture;
-
-        public SpeciesPopDatasetsLegend(List<KeyValuePair<string, ChartDataSet>> extinctSpecies, LineChart chart)
-            : base(chart)
-        {
-            this.extinctSpecies = extinctSpecies;
-            defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
-        }
-
-        public override Control OnCreate(Dictionary<string, ChartDataSet> datasets, string title)
-        {
-            var result = (CustomDropDown)base.OnCreate(datasets, title);
-
-            foreach (var species in extinctSpecies)
-            {
-                // Use the default icon as a fallback if the data icon texture hasn't been set already
-                species.Value.Icon ??= defaultIconLegendTexture;
-
-                // Use the DataColor as the icon's color if using the default icon
-                var colorToUse = species.Value.Icon == defaultIconLegendTexture ?
-                    species.Value.Colour :
-                    new Color(1, 1, 1);
-
-                var item = result.AddItem(species.Key, true, colorToUse, species.Value.Icon,
-                    TranslationServer.Translate("EXTINCT_SPECIES"));
-                item.Checked = species.Value.Draw;
-            }
-
-            result.CreateElements();
-
-            return result;
-        }
-
-        public override object Clone()
-        {
-            return new SpeciesPopDatasetsLegend(extinctSpecies, chart);
-        }
     }
 }

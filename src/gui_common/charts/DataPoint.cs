@@ -13,10 +13,8 @@ using Godot;
 /// </remarks>
 public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 {
-#pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
-    public readonly double x;
-    public readonly double y;
-#pragma warning restore SA1307 // Accessible fields should begin with upper-case letter
+    public readonly double X;
+    public readonly double Y;
 
     private Texture graphMarkerCircle;
     private Texture graphMarkerCross;
@@ -31,8 +29,8 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
     public DataPoint(double x, double y)
     {
-        this.x = x;
-        this.y = y;
+        X = x;
+        Y = y;
     }
 
     public enum MarkerIcon
@@ -204,12 +202,12 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
     public override string ToString()
     {
-        return $"Value: {x}, {y} Coord: {Coordinate}";
+        return $"Value: {X}, {Y} Coord: {Coordinate}";
     }
 
     public object Clone()
     {
-        var result = new DataPoint(x, y)
+        var result = new DataPoint(X, Y)
         {
             IconType = IconType,
             Coordinate = Coordinate,
@@ -234,15 +232,15 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
             return true;
 
         return other != null &&
-            x == other.x &&
-            y == other.y;
+            X == other.X &&
+            Y == other.Y;
     }
 
     public override int GetHashCode()
     {
         var hashCode = 1502939027;
-        hashCode = hashCode * -1521134295 + x.GetHashCode();
-        hashCode = hashCode * -1521134295 + y.GetHashCode();
+        hashCode = hashCode * -1521134295 + X.GetHashCode();
+        hashCode = hashCode * -1521134295 + Y.GetHashCode();
         return hashCode;
     }
 

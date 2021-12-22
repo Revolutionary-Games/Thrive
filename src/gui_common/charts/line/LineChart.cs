@@ -401,14 +401,14 @@ public class LineChart : VBoxContainer
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
                 var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
-                    $"{point.x.FormatNumber()} {XAxisName}" :
+                    $"{point.X.FormatNumber()} {XAxisName}" :
                     string.Format(CultureInfo.CurrentCulture,
-                        TooltipXAxisFormat, point.x);
+                        TooltipXAxisFormat, point.X);
 
                 var yValueForm = string.IsNullOrEmpty(TooltipYAxisFormat) ?
-                    $"{point.y.FormatNumber()} {YAxisName}" :
+                    $"{point.Y.FormatNumber()} {YAxisName}" :
                     string.Format(CultureInfo.CurrentCulture,
-                        TooltipYAxisFormat, point.y);
+                        TooltipYAxisFormat, point.Y);
 
                 toolTip.DisplayName = data.Key + point;
                 toolTip.Description = $"{data.Key}\n{xValueForm}\n{yValueForm}";
@@ -459,7 +459,7 @@ public class LineChart : VBoxContainer
 
         if (DataSetsLegend != null)
         {
-            legendContainer.AddChild(DataSetsLegend.OnCreate(dataSets, legendTitle));
+            legendContainer.AddChild(DataSetsLegend.CreateLegend(dataSets, legendTitle));
             legendContainer.Show();
         }
 
@@ -777,7 +777,7 @@ public class LineChart : VBoxContainer
                 continue;
 
             // First we move the point marker to the bottom of the chart
-            point.SetCoordinate(new Vector2(ConvertToXCoordinate(point.x), drawArea.RectSize.y), false);
+            point.SetCoordinate(new Vector2(ConvertToXCoordinate(point.X), drawArea.RectSize.y), false);
 
             // Next start interpolating it into its assigned position
             point.SetCoordinate(ConvertToCoordinate(point));
@@ -803,7 +803,7 @@ public class LineChart : VBoxContainer
 
             foreach (var point in data.Value.DataPoints)
             {
-                MaxValues = (Math.Max(point.x, MaxValues.X), Math.Max(point.y, MaxValues.Y));
+                MaxValues = (Math.Max(point.X, MaxValues.X), Math.Max(point.Y, MaxValues.Y));
             }
         }
 
@@ -817,7 +817,7 @@ public class LineChart : VBoxContainer
 
             foreach (var point in data.Value.DataPoints)
             {
-                MinValues = (Math.Min(point.x, MinValues.X), Math.Min(point.y, MinValues.Y));
+                MinValues = (Math.Min(point.X, MinValues.X), Math.Min(point.Y, MinValues.Y));
             }
         }
 
@@ -913,7 +913,7 @@ public class LineChart : VBoxContainer
     /// <returns>Position of the given value on the chart</returns>
     private Vector2 ConvertToCoordinate(DataPoint value)
     {
-        return new Vector2(ConvertToXCoordinate(value.x), ConvertToYCoordinate(value.y));
+        return new Vector2(ConvertToXCoordinate(value.X), ConvertToYCoordinate(value.Y));
     }
 
     private float ConvertToXCoordinate(double value)
@@ -1011,7 +1011,7 @@ public class LineChart : VBoxContainer
             this.chart = chart;
         }
 
-        public virtual Control OnCreate(DataSetDictionary datasets, string title)
+        public virtual Control CreateLegend(DataSetDictionary datasets, string title)
         {
             _ = title;
 
@@ -1117,7 +1117,7 @@ public class LineChart : VBoxContainer
 
         public CustomDropDown Dropdown { get; protected set; }
 
-        public virtual Control OnCreate(DataSetDictionary datasets, string title)
+        public virtual Control CreateLegend(DataSetDictionary datasets, string title)
         {
             Dropdown = new CustomDropDown
             {
@@ -1130,18 +1130,7 @@ public class LineChart : VBoxContainer
             Dropdown.Popup.HideOnItemSelection = false;
 
             foreach (var data in datasets)
-            {
-                // Use the default icon as a fallback if the data icon texture hasn't been set already
-                data.Value.Icon ??= chart.defaultIconLegendTexture;
-
-                // Use the DataColor as the icon's color if using the default icon
-                var colorToUse = data.Value.Icon == chart.defaultIconLegendTexture ?
-                    data.Value.Colour :
-                    new Color(1, 1, 1);
-
-                var item = Dropdown.AddItem(data.Key, !chart.dataLines[data.Key].Default, colorToUse, data.Value.Icon);
-                item.Checked = data.Value.Draw;
-            }
+                AddSpeciesToList(data);
 
             Dropdown.CreateElements();
 
@@ -1161,6 +1150,21 @@ public class LineChart : VBoxContainer
         public virtual object Clone()
         {
             return new DataSetsDropdownLegend(chart);
+        }
+
+        protected void AddSpeciesToList(KeyValuePair<string, ChartDataSet> data, string section = "default")
+        {
+            // Use the default icon as a fallback if the data icon texture hasn't been set already
+            data.Value.Icon ??= chart.defaultIconLegendTexture;
+
+            // Use the DataColor as the icon's color if using the default icon
+            var colorToUse = data.Value.Icon == chart.defaultIconLegendTexture ?
+                data.Value.Colour :
+                new Color(1, 1, 1);
+
+            var item = Dropdown.AddItem(
+                data.Key, !chart.dataLines[data.Key].Default, colorToUse, data.Value.Icon, section);
+            item.Checked = data.Value.Draw;
         }
 
         private void OnDropDownLegendItemSelected(int index)
