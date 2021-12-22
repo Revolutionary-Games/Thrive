@@ -579,7 +579,9 @@
                 builder.Append('\n');
             }
 
-            foreach (var entry in results.Values)
+            foreach (var entry in
+                     results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
+                         .ThenBy(s => s.Species.FormattedName))
             {
                 builder.Append(playerReadable ? entry.Species.FormattedName : entry.Species.FormattedIdentifier);
                 builder.Append(":\n");
@@ -694,10 +696,18 @@
                                     entry.SpreadToPatches[0].To.Name)), entry.Species.PlayerSpecies,
                             "res://assets/textures/gui/bevel/newSpecies.png");
                     }
+                    else if (numberOfPatches < 3)
+                    {
+                        world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO_TWO",
+                                entry.Species.FormattedName, TranslationServer.Translate(
+                                    entry.SpreadToPatches[0].To.Name), TranslationServer.Translate(
+                                    entry.SpreadToPatches[1].To.Name)), entry.Species.PlayerSpecies,
+                            "res://assets/textures/gui/bevel/newSpecies.png");
+                    }
                     else
                     {
                         world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE",
-                                entry.Species.FormattedName), entry.Species.PlayerSpecies,
+                                entry.Species.FormattedName, numberOfPatches), entry.Species.PlayerSpecies,
                             "res://assets/textures/gui/bevel/newSpecies.png");
                     }
                 }

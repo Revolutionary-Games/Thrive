@@ -104,7 +104,7 @@ public class SaveList : ScrollContainer
         bool isCurrentlyVisible = IsVisibleInTree();
 
         if (isCurrentlyVisible && ((AutoRefreshOnFirstVisible && !refreshedAtLeastOnce) ||
-            (AutoRefreshOnBecomingVisible && !wasVisible)))
+                (AutoRefreshOnBecomingVisible && !wasVisible)))
         {
             Refresh();
             wasVisible = true;

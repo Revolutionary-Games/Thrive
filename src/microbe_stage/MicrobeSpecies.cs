@@ -88,7 +88,7 @@ public class MicrobeSpecies : Species
             SetInitialCompoundsForIron();
         }
         else if (Organelles.Any(o => o.Definition == chemo ||
-            o.Definition == chemoProtein))
+                     o.Definition == chemoProtein))
         {
             SetInitialCompoundsForChemo();
         }

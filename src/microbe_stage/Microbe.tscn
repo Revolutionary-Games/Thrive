@@ -58,10 +58,10 @@ max_distance = 100.0
 bus = "SFX"
 
 [node name="EngulfDetector" type="Area" parent="."]
-input_ray_pickable = false
-monitorable = false
 collision_layer = 0
 collision_mask = 2
+input_ray_pickable = false
+monitorable = false
 
 [node name="EngulfShape" type="CollisionShape" parent="EngulfDetector"]
 shape = SubResource( 2 )

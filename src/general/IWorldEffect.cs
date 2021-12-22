@@ -74,8 +74,8 @@ public class GlucoseReductionEffect : IWorldEffect
 
             if (percentage >= 20)
             {
-                targetWorld.LogWorldEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DRASTICALLY_DROPPED",
-                    glucose.Name), false, "res://assets/textures/gui/bevel/glucoseDown.png");
+                targetWorld.LogWorldEvent(new LocalizedString("GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"),
+                    false, "res://assets/textures/gui/bevel/glucoseDown.png");
             }
             else
             {

@@ -476,7 +476,7 @@ public abstract class BaseThriveConverter : JsonConverter
             var newData = ReadMember(name, field.FieldType, item, instance, reader, serializer);
 
             if (!OnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                out var data))
+                    out var data))
             {
                 field.SetValue(instance, newData);
             }
@@ -496,7 +496,7 @@ public abstract class BaseThriveConverter : JsonConverter
             }
 
             if (!OnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
-                out var data))
+                    out var data))
             {
                 var set = property.GetSetMethodOnDeclaringType();
 

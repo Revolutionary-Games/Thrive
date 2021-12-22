@@ -2,7 +2,7 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v15
+    image: thrive/godot-ci:v16
     cache:
       loadFrom:
         - v3-{Branch}-build
@@ -10,14 +10,17 @@ jobs:
       writeTo: v2-{Branch}-build
       shared:
         .git/lfs: v2-lfs
-        .import: v3-import
+        .import: v4-import
         builds: v1-builds
+      system:
+        /root/.nuget: v1-nuget
     steps:
       # This is here to reimport assets, but this build would fail due to missing nuget packages
       # if C# was compiled here
       - run:
           name: Export to make project valid
-          command: godot --export "Linux/X11" "builds/a.x86_64"
+          command: |
+            godot --export "dummy" "builds/a.x86_64" || true
       - run:
            command: dotnet restore Thrive.sln
       - run:
@@ -30,7 +33,7 @@ jobs:
           name: Upload devbuilds
           command: ./upload_devbuilds.rb
   jetbrains:
-    image: thrive/godot-ci:v15
+    image: thrive/godot-ci:v16
     cache:
       loadFrom:
         - v1-{Branch}-jetbrains
@@ -38,13 +41,14 @@ jobs:
       writeTo: v1-{Branch}-jetbrains
       shared:
         .git/lfs: v2-lfs
-        .import: v1-import
+        .import: v4-import
         builds: v1-jetbrains-dummy-builds
+      system:
+        /root/.nuget: v1-nuget
     artifacts:
       paths:
         - files_to_check.txt
         - inspect_results.xml
-        - duplicate_results.xml
         - cleanup_diff.patch
     steps:
       - run:
@@ -59,9 +63,11 @@ jobs:
       - run:
           name: Just make C# project valid; don't care if asset import fails
           command: |
-            godot --export "Linux/X11" "builds/a.x86_64" || true
+            godot --export "dummy" "builds/a.x86_64" || true
       - run:
           command: dotnet restore Thrive.sln
+      - run:
+           command: dotnet tool restore
       # Makes sure that there aren't any changes at this point to not make the CI trip up on them
       - run:
           name: Make sure no changes to git tracked files at this point
@@ -69,8 +75,9 @@ jobs:
       # Inspect code (this only takes like 40 seconds for all files)
       - run:
           command: ./check_formatting.rb -c inspectcode
-      - run:
-          command: ./check_formatting.rb -c duplicatecode
+      # dupfinder is deprecated, see: https://github.com/Revolutionary-Games/Thrive/issues/2953
+      # - run:
+      #     command: ./check_formatting.rb -c duplicatecode
       # Cleanup, this takes a *long* time when checking a lot of files
       - run:
           command: ./check_formatting.rb -c cleanupcode
@@ -88,7 +95,7 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_script:
-    image: thrive/lint:v10
+    image: thrive/lint:v11
     cache:
       loadFrom:
         - v1-{Branch}-format
