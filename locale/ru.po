@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-20 12:43+0700\n"
-"PO-Revision-Date: 2021-12-13 10:36+0000\n"
-"Last-Translator: Vladislav Kuznetsov <vlad.pnz98@gmail.com>\n"
+"POT-Creation-Date: 2021-12-22 11:34+0700\n"
+"PO-Revision-Date: 2021-12-21 17:46+0000\n"
+"Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Weblate 4.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -129,17 +129,17 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
-"W, A, S, D и мышь - для перемещения. Е - выпускать OxyToxy NT, если есть "
-"токсиновая вакуоль. G - режим поглощения. Связываясь с другими клетками, "
-"вы можете построить колонию клеток, в которой клетки делятся друг с другом "
-"соединениями, которые они поглощают и производят. Чтобы иметь возможность "
-"связываться с другой клеткой, вам необходимо иметь органеллы связывающих "
-"агентов и перемещаться в них после перехода в режим связывания. Вы можете "
-"связываться только с клетками вашего собственного вида. Находясь в "
-"колонии, вы не можете разделить свою ячейку и войти в редактор (пока). "
-"Чтобы войти в редактор, сначала покиньте колонию, как только вы соберете "
-"достаточно соединений, а затем войдите в редактор. Большие колонии клеток "
-"- путь к многоклеточности (пока не в игре)."
+"W, A, S, D и мышь - для перемещения. Е - выпускать ОксиТоксин НТ, если "
+"есть токсиновая вакуоль. G - режим поглощения. Связываясь с другими "
+"клетками, вы можете построить колонию клеток, в которой клетки делятся "
+"друг с другом соединениями, которые они поглощают и производят. Чтобы "
+"иметь возможность связываться с другой клеткой, вам необходимо иметь "
+"органеллы связывающих агентов и перемещаться в них после перехода в режим "
+"связывания. Вы можете связываться только с клетками вашего собственного "
+"вида. Находясь в колонии, вы не можете разделить свою ячейку и войти в "
+"редактор (пока). Чтобы войти в редактор, сначала покиньте колонию, как "
+"только вы соберете достаточно соединений, а затем войдите в редактор. "
+"Большие колонии клеток - путь к многоклеточности (пока не в игре)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -427,16 +427,16 @@ msgstr "Выстрелить токсином"
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
-msgstr "Включить поглощение"
+msgstr "Переключить поглощение"
 
 #: ../simulation_parameters/common/input_options.json:46
 #: ../src/microbe_stage/MicrobeStage.tscn:2122
 msgid "TOGGLE_BINDING"
-msgstr "Включить связку"
+msgstr "Переключить связку"
 
 #: ../simulation_parameters/common/input_options.json:50
 msgid "TOGGLE_UNBINDING"
-msgstr "Включить развязку"
+msgstr "Переключить развязку"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
@@ -564,7 +564,7 @@ msgstr "Быстрая загрузка"
 
 #: ../simulation_parameters/common/input_options.json:192
 msgid "TAKE_SCREENSHOT"
-msgstr "Сделать изображение экрана"
+msgstr "Сделать снимок экрана"
 
 #: ../simulation_parameters/common/input_options.json:196
 msgid "SHOW_HELP"
@@ -599,7 +599,7 @@ msgstr "Фотосинтез"
 #: ../simulation_parameters/microbe_stage/bio_processes.json:41
 #: ../simulation_parameters/microbe_stage/bio_processes.json:51
 msgid "OXYTOXY_SYNTHESIS"
-msgstr "OxyToxy Синтез"
+msgstr "Синтез ОксиТоксина"
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:61
 #: ../simulation_parameters/microbe_stage/bio_processes.json:71
@@ -747,7 +747,7 @@ msgstr "Глюкоза"
 #: ../simulation_parameters/microbe_stage/compounds.json:73
 #: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "OXYTOXY_NT"
-msgstr "OxyToxy НТ"
+msgstr "ОксиТоксин НТ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1456
@@ -984,11 +984,11 @@ msgstr "{0} потребления"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Равномерно распределенный экологический источник {0}"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "Истребление {0}"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1417,11 +1417,12 @@ msgid "ART_BY"
 msgstr "Картина от {0}"
 
 #: ../src/general/HelpScreen.tscn:107
+#: ../src/gui_common/charts/line/LineChart.tscn:255
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4044
 #: ../src/modding/ModManager.tscn:972
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:389
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Закрыть"
 
@@ -1505,6 +1506,8 @@ msgstr "Ошибки загрузки Модов"
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
+"Возникли ошибки при загрузке одного или нескольких модов. Журналы могут "
+"содержать дополнительную информацию."
 
 #: ../src/general/OptionsMenu.cs:900
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1913,7 +1916,7 @@ msgstr "@"
 #: ../src/microbe_stage/MicrobeHUD.cs:638
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1186
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1188
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2064,7 +2067,7 @@ msgstr "Команда Управления Проектом"
 
 #: ../src/gui_common/CreditsScroll.cs:504
 msgid "PULL_REQUESTS_PROGRAMMING"
-msgstr ""
+msgstr "Pull Requests / Программирование"
 
 #: ../src/gui_common/CreditsScroll.cs:505
 msgid "VIP_PATRONS"
@@ -2072,7 +2075,7 @@ msgstr "VIP-Спонсоры"
 
 #: ../src/gui_common/CreditsScroll.cs:506
 msgid "DEV_BUILD_PATRONS"
-msgstr ""
+msgstr "Devbuild-Спонсоры"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "SUPPORTER_PATRONS"
@@ -2132,7 +2135,7 @@ msgstr "Автор: Revolutionary Games Studio"
 
 #: ../src/gui_common/CreditsScroll.tscn:52
 msgid "DEVELOPMENT_SUPPORTED_BY"
-msgstr "Развитие поддержано Revolutionary Games Studio ry"
+msgstr "Разработка поддержана командой Revolutionary Games Studio ry"
 
 #: ../src/gui_common/CreditsScroll.tscn:60
 msgid "DEVELOPERS"
@@ -2208,33 +2211,33 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.tscn:47
 msgid "HSV"
-msgstr ""
+msgstr "HSV"
 
 #: ../src/gui_common/TweakedColourPicker.tscn:69
 msgid "RAW"
-msgstr ""
+msgstr "\"Raw\""
 
-#: ../src/gui_common/charts/line/LineChart.cs:616
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2357
+#: ../src/gui_common/charts/line/LineChart.cs:626
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2359
 msgid "NO_DATA_TO_SHOW"
 msgstr "Нет данных для отображения"
 
-#: ../src/gui_common/charts/line/LineChart.cs:620
+#: ../src/gui_common/charts/line/LineChart.cs:630
 #, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Неверный путь к значку мода"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1081
-#: ../src/gui_common/charts/line/LineChart.cs:1163
+#: ../src/gui_common/charts/line/LineChart.cs:1097
+#: ../src/gui_common/charts/line/LineChart.cs:1183
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Не разрешается показывать более {0} наборов данных!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1087
-#: ../src/gui_common/charts/line/LineChart.cs:1168
+#: ../src/gui_common/charts/line/LineChart.cs:1103
+#: ../src/gui_common/charts/line/LineChart.cs:1188
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Невозможно показать меньше, чем {0} наборов данных!"
 
-#: ../src/gui_common/charts/line/LineChart.tscn:218
+#: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
 msgstr ""
 
@@ -2250,7 +2253,7 @@ msgstr "Копировать Ошибку в Буфер Обмена"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:34
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "Текст лицензии GPL:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
@@ -2338,6 +2341,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
+"Рисковые микробы будут конкурировать с соперниками за куски\n"
+"и будут пытаться загнать добычу токсинами, если не могут поглотить их.\n"
+"Осторожные микробы, вероятно, не будут рисковать за куски."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:240
 msgid "FEAR_EXPLANATION"
@@ -2350,10 +2356,17 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:248
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Энергичные микробы будут в движении, пока поблизости ничего не "
+"происходит.\n"
+"Инертные микробы будут стоять и ждать, пока не изменится окружающая их "
+"среда."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:256
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Целенаправленные микробы будут искать добычу на большем растоянии\n"
+"и будут соперничать за куски с большим рвением.\n"
+"Бдительные микробы будут быстрее переключаться на новые цели."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:272
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -2528,7 +2541,7 @@ msgstr ""
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "Модифицированная метаболосома, ответственная за выработку примитивной "
-"формы токсичного агента OxyToxy НТ (нейротоксин)."
+"формы токсичного агента OксиТоксин НТ (нейротоксин)."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:953
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -2729,7 +2742,7 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Токсиновая вакуоль - это вакуоль, которая была модифицирована для "
-"специфического производства, хранения и секреции OxyToxy токсинов. Большее "
+"специфического производства, хранения и секреции OксиТоксинов. Большее "
 "количество токсиновых вакуолей увеличит скорость высвобождения токсинов."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2005
@@ -2832,6 +2845,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
+"Невозможно автоматически определить, включена ли гиперпоточность или нет.\n"
+"Это влияет на количество потоков по умолчанию, так как потоки с "
+"гиперпоточностью не так быстры, как реальные ядра процессора."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
@@ -2851,19 +2867,19 @@ msgstr "Температура"
 msgid "N_A_MP"
 msgstr "Н/Д МP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:519
+#: ../src/microbe_stage/Microbe.Contact.cs:517
 msgid "DEATH"
 msgstr "смерть"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:624
+#: ../src/microbe_stage/Microbe.Contact.cs:622
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "успешное ограбление"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:631
+#: ../src/microbe_stage/Microbe.Contact.cs:629
 msgid "SUCCESSFUL_KILL"
 msgstr "успешное убийство"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:848
+#: ../src/microbe_stage/Microbe.Contact.cs:846
 msgid "ESCAPE_ENGULFING"
 msgstr "избежали поглощение"
 
@@ -2983,7 +2999,7 @@ msgstr "Давл."
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2827
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2861
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3466
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1029
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1031
 msgid "COMPOUNDS"
 msgstr "Соединения"
 
@@ -3142,11 +3158,11 @@ msgstr "Подвижность / Жёсткость"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1296
 msgid "FLUID"
-msgstr ""
+msgstr "Жидкость"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1309
 msgid "RIGID"
-msgstr ""
+msgstr "Жесткий"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1342
 msgid "COLOUR"
@@ -3186,11 +3202,11 @@ msgstr "Активный"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1620
 msgid "RESPONSIVE"
-msgstr ""
+msgstr "Отзывчивый"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1637
 msgid "FOCUSED"
-msgstr ""
+msgstr "Целенаправленный"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1705
 msgid "ORGANISM_STATISTICS"
@@ -3381,8 +3397,8 @@ msgstr "Миллион Лет"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1021
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1026
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1029
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1031
 msgid "YEARS"
 msgstr "лет"
 
@@ -3411,78 +3427,77 @@ msgstr "Базовое Передвижение"
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1026
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
 msgid "SPECIES_LIST"
 msgstr "Список Видов"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1036
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1049
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1038
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
 #, fuzzy
-msgid "TOTAL_EXTINCTION"
-msgstr "вымерли в {0}"
+msgid "EXTINCT_FROM_THE_PLANET"
+msgstr "вымерли с планеты"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1037
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1048
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1039
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1050
 #, fuzzy
-msgid "LOCAL_EXTINCTION"
-msgstr "Игрок вымер"
+msgid "EXTINCT_FROM_PATCH"
+msgstr "вымерли с планеты"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1080
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1082
 msgid "FREEBUILDING"
 msgstr "Свободное Строительство"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1177
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1179
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1182
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1184
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м ниже уровня моря"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1221
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1223
 msgid "WITH_POPULATION"
 msgstr "{0} из популяции: {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1911
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1913
 msgid "FAILED"
 msgstr "Неудачно"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1917
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1929
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1919
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1931
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1923
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1935
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1925
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1937
 msgid "N_A"
 msgstr "Нет данных"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2199
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2201
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Название вида должно соответствовать биномиальной системе наименования "
 "(Род и Эпитет)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2325
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2327
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
+msgstr "Энергия в {0} для {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2329
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2331
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
+"Общая собранная энергия равна {0} с индивидуальными затратами {1}, что "
+"приводит к нескорректированному населению {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2336
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2338
 msgid "ENERGY_SOURCES"
 msgstr "Источники Энергии:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2342
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2344
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2498
-#, fuzzy
-msgid "EXTINCT_SPECIES"
-msgstr "ВЫМИРАНИЕ"
+"{0} энергия: {1} (пригодность: {2}) общая доступная энергия: {3} (общая "
+"пригодность: {4})"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
@@ -3501,6 +3516,11 @@ msgstr "Передвижение"
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
 msgstr "Модифицировать"
+
+#: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
+#, fuzzy
+msgid "EXTINCT_SPECIES"
+msgstr "ВЫМИРАНИЕ"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:86
 msgid "EXTINCTION_CAPITAL"
@@ -3538,11 +3558,13 @@ msgstr "{0}: не имеет загружаемых ресурсов"
 
 #: ../src/modding/ModLoader.cs:279
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
-msgstr ""
+msgstr "{0}: не удалось выполнить вызов метода выгрузки сборки мода"
 
 #: ../src/modding/ModLoader.cs:287
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
+"{0}: не удалось выполнить вызов метода выгрузки сборки мода с исключением: "
+"{1}"
 
 #: ../src/modding/ModLoader.cs:351
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
@@ -3550,11 +3572,13 @@ msgstr "{0}: указанный класс \"{1}\" не найден в сбор
 
 #: ../src/modding/ModLoader.cs:364
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr ""
+msgstr "{0}: не удалось инициализировать сборку мода"
 
 #: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
+"{0}: не удалось выполнить вызов метода инициализации сборки мода с "
+"исключением: {1}"
 
 #: ../src/modding/ModLoader.cs:394
 msgid "PCK_LOAD_FAILED"
@@ -3566,11 +3590,11 @@ msgstr "Неверный путь к значку мода"
 
 #: ../src/modding/ModManager.cs:306
 msgid "INVALID_URL_SCHEME"
-msgstr ""
+msgstr "Неверная схема URL-адреса"
 
 #: ../src/modding/ModManager.cs:318
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Класс сборки необходим для мода, если указана сборка"
 
 #: ../src/modding/ModManager.cs:544
 msgid "NO_SELECTED_MOD"
@@ -3582,7 +3606,7 @@ msgstr "Этот мод загружен из Мастерской Steam"
 
 #: ../src/modding/ModManager.cs:870
 msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
+msgstr "Это локально установленный мод"
 
 #: ../src/modding/ModManager.cs:926
 msgid "ERROR_CREATING_FOLDER"
@@ -3706,7 +3730,7 @@ msgstr "Имя мода:"
 
 #: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
-msgstr ""
+msgstr "Внутреннее имя (Папки):"
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
@@ -3718,7 +3742,7 @@ msgstr "Иконка файла:"
 
 #: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
-msgstr ""
+msgstr "URL-адрес информации о моде:"
 
 #: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
@@ -3746,7 +3770,7 @@ msgstr "Сборка мода:"
 
 #: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr ""
+msgstr "Основной класс Сборки Мода:"
 
 #: ../src/modding/ModManager.tscn:979
 msgid "MOD_CREATION_FAILED"
@@ -3760,7 +3784,7 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
-msgstr ""
+msgstr "Требуется перезапуск"
 
 #: ../src/modding/ModManager.tscn:996
 msgid "MOD_LOAD_UNLOAD_RESTART"
@@ -3770,7 +3794,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "Материалы Мастерской будут загружены из папки: {0}"
 
 #: ../src/modding/ModUploader.cs:298
 msgid "MISSING_TITLE"
@@ -3798,11 +3822,11 @@ msgstr "Указан неверный тег \"{0}\""
 
 #: ../src/modding/ModUploader.cs:348
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
-msgstr ""
+msgstr "Изображение предварительного просмотра не существует"
 
 #: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
-msgstr ""
+msgstr "Файл предварительного просмотра изображения слишком велик"
 
 #: ../src/modding/ModUploader.cs:398
 msgid "ID_IS_NOT_A_NUMBER"
@@ -3819,6 +3843,10 @@ msgstr "Загрузка..."
 #: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
+"Загрузка элемента в Мастерскую Steam прошла успешно, но вам необходимо "
+"принять [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"workshoplegalagreement]условия обслуживания[/url][/color] Мастерской "
+"прежде чем он станет видимым"
 
 #: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
@@ -3881,15 +3909,15 @@ msgstr "Описание предмета:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr ""
+msgstr "Как только элемент станет видимым, он будет виден всем"
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
-msgstr ""
+msgstr "Видимый"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr ""
+msgstr "Теги элементов (через запятую \",\"):"
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
@@ -3897,7 +3925,7 @@ msgstr "Превью предмета:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr ""
+msgstr "Просматривать"
 
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
@@ -3907,7 +3935,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "Удаление Локальных Данных"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
@@ -3945,11 +3973,11 @@ msgstr "Внутреннее имя должно начинаться с заг�
 
 #: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
-msgstr ""
+msgstr "Уже есть мод с указанным внутренним именем"
 
 #: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
-msgstr ""
+msgstr "Отсутствует или неверный формат обязательного поля: {0}"
 
 #: ../src/modding/NewModGUI.cs:280
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -3961,7 +3989,7 @@ msgstr "Создать новый мод"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
-msgstr ""
+msgstr "Инструкции по моддингу доступны на"
 
 #: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
@@ -4096,7 +4124,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:53
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "Не Найдено Сохранений"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
@@ -4269,31 +4297,33 @@ msgstr "Папка сохранений не найдена"
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
-msgstr ""
+msgstr "Попробуйте сделать сохранение!"
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
-msgstr ""
+msgstr "Не удалось выполнить инициализацию клиентской библиотеки Steam"
 
 #: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
+"В настоящее время в вашей учетной записи Steam запрещено загружать "
+"контент. Пожалуйста, свяжитесь со службой поддержки Steam."
 
 #: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
-msgstr ""
+msgstr "Вашей учетной записи Steam запрещено загружать контент"
 
 #: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
-msgstr ""
+msgstr "Время ожидания работы Steam истекло, пожалуйста, повторите попытку"
 
 #: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
-msgstr ""
+msgstr "Вход в Steam не выполнен"
 
 #: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
-msgstr ""
+msgstr "Steam в настоящее время недоступен, пожалуйста, повторите попытку"
 
 #: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_INVALID_PARAMETER"
@@ -4302,14 +4332,15 @@ msgstr "Неверный параметр, переданный в Steam"
 #: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
+"Превышена квота облачного хранилища Steam или ограничение на размер файла"
 
 #: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
-msgstr ""
+msgstr "Файл не найден"
 
 #: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
-msgstr ""
+msgstr "Steam сообщил, что файл уже загружен, пожалуйста, обновите"
 
 #: ../src/steam/SteamClient.cs:490
 msgid "STEAM_ERROR_DUPLICATE_NAME"
@@ -4318,10 +4349,12 @@ msgstr "Steam сообщил об ошибке с дубликатом имен�
 #: ../src/steam/SteamClient.cs:492
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
+"Ваша учетная запись Steam в настоящее время находится в режиме только для "
+"чтения из-за недавней смены учетной записи"
 
 #: ../src/steam/SteamClient.cs:494
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
-msgstr ""
+msgstr "Ваша учетная запись Steam не имеет лицензии на Thrive"
 
 #: ../src/steam/SteamClient.cs:496
 msgid "STEAM_ERROR_LOCKING_FAILED"
@@ -4329,16 +4362,16 @@ msgstr "Steam не удалось получить блокировку UGC"
 
 #: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
-msgstr ""
+msgstr "Произошла неизвестная ошибка Steam"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:44
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:82
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:121
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:156
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:199
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:237
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:300
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:344
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:238
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:301
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:346
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:49
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:135
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:217
@@ -4404,7 +4437,7 @@ msgstr ""
 "\n"
 "Нажми кнопку отмены для продолжения."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:221
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "При выборе, какие органеллы добавлять, обратите внимание на подсказки о "
@@ -4419,7 +4452,7 @@ msgstr ""
 "\n"
 "Нажмите кнопку возвращения (рядом с кнопкой отмены), чтобы продолжить."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:265
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
 "Это основы редактирования вашей клетки. Вы можете проверить другие вкладки "
@@ -4433,11 +4466,11 @@ msgstr ""
 "\n"
 "Удачи!"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:282
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
 msgid "GOT_IT"
 msgstr "Всё понятно"
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
 "Эта панель показывает прогноз вашей будущей численности популяции. Эти "
@@ -4452,7 +4485,7 @@ msgstr ""
 "Вы можете просмотреть более подробную информацию о прогнозе, нажав кнопку "
 "со знаком вопроса на панели."
 
-#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
+#: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
 "Вы должны сосредоточиться на одном или двух источниках энергии, чтобы вам "
@@ -4480,8 +4513,8 @@ msgstr ""
 "универсальный общий предок (ЛУКА) этой планеты.\n"
 "\n"
 "Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые "
-"соединения, которые вы сможете найти, и эволюционировать каждое поколение, "
-"чтобы конкурировать с другими видами микробов."
+"соединения, которые вы сможете найти, и эволюционировать на протяжении "
+"поколений, чтобы конкурировать с другими видами микробов."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
@@ -4541,7 +4574,7 @@ msgstr ""
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную "
 "клетку или нажать клавишу \"Отвязать всех\"."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Если вы все еще испытываете трудности с игровой механикой, проверьте меню "
@@ -4551,9 +4584,17 @@ msgstr ""
 "Еще один совет: вы можете уменьшить масштаб изображения с помощью колеса "
 "прокрутки."
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:430
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
-msgstr ""
+msgstr "Посмотреть Сейчас"
+
+#, fuzzy
+#~ msgid "TOTAL_EXTINCTION"
+#~ msgstr "вымерли в {0}"
+
+#, fuzzy
+#~ msgid "LOCAL_EXTINCTION"
+#~ msgstr "Игрок вымер"
 
 #, fuzzy
 #~ msgid "MARINE_SNOW_FOOD_SOURCE"

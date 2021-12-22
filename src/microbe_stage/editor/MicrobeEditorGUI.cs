@@ -1035,8 +1035,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         foreach (var point in extinctPoints)
         {
             var extinctionType = point.ExtinctEverywhere ?
-                TranslationServer.Translate("TOTAL_EXTINCTION") :
-                TranslationServer.Translate("LOCAL_EXTINCTION");
+                TranslationServer.Translate("EXTINCT_FROM_THE_PLANET") :
+                TranslationServer.Translate("EXTINCT_FROM_PATCH");
 
             // Override datapoint tooltip to show extinction type instead of just zero.
             // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
@@ -1047,8 +1047,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
         var skull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
-        speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("LOCAL_EXTINCTION"));
-        speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("TOTAL_EXTINCTION"), 25);
+        speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("EXTINCT_FROM_PATCH"));
+        speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
