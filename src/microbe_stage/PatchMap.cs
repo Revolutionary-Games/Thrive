@@ -201,7 +201,10 @@ public class PatchMap
         }
     }
 
-    public long GetSpeciesPopulation(Species species)
+    /// <summary>
+    ///   Gets the species population in all patches.
+    /// </summary>
+    public long GetSpeciesGlobalPopulation(Species species)
     {
         long sum = 0;
 

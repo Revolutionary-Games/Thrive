@@ -48,6 +48,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath TimelineSubtabPath;
 
     [Export]
+    public NodePath TimelineEventsContainerPath;
+
+    [Export]
     public NodePath StructureTabPath;
 
     [Export]
@@ -379,6 +382,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private PanelContainer autoEvoSubtab;
     private PanelContainer timelineSubtab;
+    private VBoxContainer timelineEventsContainer;
 
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
@@ -548,6 +552,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         timelineSubtab = GetNode<PanelContainer>(TimelineSubtabPath);
         timelineSubtabButton = GetNode<Button>(TimelineSubtabButtonPath);
+        timelineEventsContainer = GetNode<VBoxContainer>(TimelineEventsContainerPath);
 
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         structureTabButton = GetNode<Button>(StructureTabButtonPath);
@@ -1047,15 +1052,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateTimeline()
     {
-        var mainContainer = timelineSubtab.GetNode<Control>(
-            "MarginContainer/ScrollContainer/MarginContainer/VBoxContainer");
-
         var customRtlScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
         var timelineHighlight = GD.Load<StyleBoxTexture>("res://src/microbe_stage/editor/TimelineHighlight.tres");
 
-        mainContainer.FreeChildren();
+        timelineEventsContainer.FreeChildren();
 
-        var timeline = editor.CurrentGame.GameWorld.GetTimeline();
+        var timeline = editor.CurrentGame.GameWorld.Timeline;
 
         foreach (var snapshot in timeline)
         {
@@ -1076,7 +1078,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             headerContainer.AddChild(spacer);
             headerContainer.AddChild(timePeriodLabel);
-            mainContainer.AddChild(headerContainer);
+            timelineEventsContainer.AddChild(headerContainer);
 
             foreach (var entry in snapshot.Value)
             {
@@ -1113,7 +1115,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 itemContainer.AddChild(iconRect);
                 itemContainer.AddChild(highlight);
                 highlight.AddChild(eventLabel);
-                mainContainer.AddChild(itemContainer);
+                timelineEventsContainer.AddChild(itemContainer);
             }
         }
     }
@@ -1131,7 +1133,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         var diff = Mathf.Max(Mathf.Min(anchorRect.Position.y, scrollRect.Position.y), anchorRect.Position.y +
             anchorRect.Size.y - scrollRect.Size.y + (scrollRect.Size.y - anchorRect.Size.y));
 
-        scroll.ScrollVertical = scroll.ScrollVertical + (int)(diff - scrollRect.Position.y);
+        scroll.ScrollVertical += (int)(diff - scrollRect.Position.y);
     }
 
     public void UpdateMutationPointsBar(bool tween = true)

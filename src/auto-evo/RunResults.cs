@@ -518,7 +518,7 @@
         }
 
         /// <summary>
-        ///   Makes summary text
+        ///   Makes summary text and logs auto-evo events to the world's timeline
         /// </summary>
         /// <param name="world">The current global game data</param>
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
@@ -808,7 +808,7 @@
                 }
 
                 var globalPopulation = GetGlobalPopulation(entry.Species, resolveMigrations, resolveSplits);
-                var previousTotalPopulations = previousPopulations.GetSpeciesPopulation(entry.Species);
+                var previousTotalPopulations = previousPopulations.GetSpeciesGlobalPopulation(entry.Species);
 
                 if (globalPopulation <= 0)
                 {
@@ -816,6 +816,7 @@
                     builder.Append(new LocalizedString("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append('\n');
 
+                    // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
                     world.LogWorldEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT",
                             entry.Species.FormattedName), entry.Species.PlayerSpecies,
                         "res://assets/textures/gui/bevel/extinction.png");

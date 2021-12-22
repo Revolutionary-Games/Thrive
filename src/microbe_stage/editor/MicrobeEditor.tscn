@@ -426,6 +426,7 @@ AppearanceTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer
 BehaviourTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Behaviour")
 AutoEvoSubtabPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel")
 TimelineSubtabPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel")
+TimelineEventsContainerPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer")
 StructureTabPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure")
 AppearanceTabPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane")
 BehaviourTabPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
@@ -1171,7 +1172,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer"]
-margin_right = 319.0
+margin_right = 326.0
 margin_bottom = 919.0
 mouse_filter = 1
 size_flags_horizontal = 3
@@ -1181,7 +1182,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer"]
-margin_right = 309.0
+margin_right = 316.0
 margin_bottom = 919.0
 custom_constants/separation = 15
 
@@ -2583,10 +2584,6 @@ custom_constants/margin_bottom = 20
 margin_right = 809.0
 margin_bottom = 451.0
 custom_constants/separation = 2
-
-[node name="Label" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 40.0
-margin_bottom = 25.0
 
 [node name="TopFade" type="TextureRect" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 modulate = Color( 1, 1, 1, 0.392157 )

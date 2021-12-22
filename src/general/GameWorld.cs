@@ -30,8 +30,8 @@ public class GameWorld
     private Dictionary<double, List<WorldEventDescription>> worldTimeline = new();
 
     /// <summary>
-    ///   Another placement for worldTimeline keys to allow removing old dictionary keys
-    ///   through Queue functionalities
+    ///   Another place for worldTimeline keys to allow removing old dictionary keys
+    ///   through Queue's functionality
     /// </summary>
     private Queue<double> worldTimelineKeys = new();
 
@@ -131,6 +131,11 @@ public class GameWorld
             effects.AddRange(value);
         }
     }
+
+    /// <summary>
+    ///   All logged events in this game world.
+    /// </summary>
+    public IReadOnlyDictionary<double, List<WorldEventDescription>> Timeline => worldTimeline;
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
@@ -343,11 +348,6 @@ public class GameWorld
         });
 
         worldTimelineKeys.Enqueue(TotalPassedTime);
-    }
-
-    public IReadOnlyDictionary<double, List<WorldEventDescription>> GetTimeline()
-    {
-        return worldTimeline;
     }
 
     private void CreateRunIfMissing()
