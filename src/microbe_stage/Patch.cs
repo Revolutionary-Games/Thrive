@@ -128,10 +128,9 @@ public class Patch
 
             foreach (var patch in vertex.Adjacent)
             {
-                if (!visited.Contains(patch))
+                if (visited.Add(patch))
                 {
                     queue.Enqueue(patch);
-                    visited.Add(patch);
 
                     if (--visits <= 0)
                     {
