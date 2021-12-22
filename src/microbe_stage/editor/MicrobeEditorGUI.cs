@@ -916,14 +916,15 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
 
         var extinctSpecies = new List<KeyValuePair<string, ChartDataSet>>();
-        var extinctPoints = new List<(string Name, DataPoint ExtinctPoint, string TimePeriod,
-            bool ExtinctEverywhere)>();
+        var extinctPoints =
+            new List<(string Name, DataPoint ExtinctPoint, double TimePeriod, bool ExtinctEverywhere)>();
 
-        var anyExtinction = false;
-
-        // Populate charts with data from patch history
-        foreach (var snapshot in patch.History)
+        // Populate charts with data from patch history. We use reverse loop here because the original collection is
+        // reversed (iterating from 500 myr to 100 myr) so it messes up any ordering dependent code
+         for (int i = patch.History.Count - 1; i >= 0; i--)
         {
+            var snapshot = patch.History.ElementAt(i);
+
             temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod, snapshot.Biome.AverageTemperature)
             {
                 MarkerColour = temperatureData.Colour,
@@ -951,9 +952,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
                 var extinctInPatch = entry.Value <= 0;
                 var extinctEverywhere = false;
-
-                if (extinctInPatch)
-                    anyExtinction = true;
 
                 // We test if the species info was recorded before using it.
                 // This is especially for compatibility with older versions, to avoid crashed due to an invalid key.
@@ -993,8 +991,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 if (extinctInPatch)
                 {
                     extinctSpecies.Add(new KeyValuePair<string, ChartDataSet>(entry.Key.FormattedName, dataset));
-                    extinctPoints.Add((
-                        entry.Key.FormattedName, dataPoint, snapshot.TimePeriod.FormatNumber(), extinctEverywhere));
+                    extinctPoints.Add((entry.Key.FormattedName, dataPoint, snapshot.TimePeriod, extinctEverywhere));
+                }
+                else if (!extinctInPatch && extinctSpecies.Any(
+                    e => e.Key == entry.Key.FormattedName && e.Value == dataset))
+                {
+                    // No longer extinct in later time period so remove it from the list
+                    extinctSpecies.RemoveAll(e => e.Key == entry.Key.FormattedName && e.Value == dataset);
                 }
 
                 dataset.AddPoint(dataPoint);
@@ -1012,7 +1015,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         SpeciesPopulationDatasetsLegend speciesPopDatasetsLegend = null;
 
         // The following operation might be expensive so we only do this if any extinction occured
-        if (anyExtinction)
+        if (extinctSpecies.Any())
         {
             var datasets = extinctSpecies.Distinct().ToList();
             speciesPopDatasetsLegend = new SpeciesPopulationDatasetsLegend(datasets, speciesPopulationChart);
@@ -1042,7 +1045,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             // Override datapoint tooltip to show extinction type instead of just zero.
             // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
             speciesPopulationChart.OverrideDataPointToolTipDescription(point.Name, point.ExtinctPoint,
-                $"{point.Name}\n{point.TimePeriod}\n{extinctionType}");
+                $"{point.Name}\n{point.TimePeriod.FormatNumber()}\n{extinctionType}");
         }
 
         var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");

@@ -973,7 +973,7 @@ public class LineChart : VBoxContainer
         childChart.TooltipXAxisFormat = TooltipXAxisFormat;
         childChart.TooltipYAxisFormat = TooltipYAxisFormat;
 
-        var parent = extraLegendContainer.GetParent();
+        var parent = extraLegendContainer.GetParent().GetParent();
         parent.AddChild(childChart);
         parent.MoveChild(childChart, 0);
 

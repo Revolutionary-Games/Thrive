@@ -46,7 +46,7 @@ VerticalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer
 HorizontalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
 DrawAreaPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer")
 LegendsContainerPath = NodePath("MarginContainer/LegendContainer")
-ExtraLegendContainerPath = NodePath("ChartPopup/MarginContainer/VBoxContainer/GridContainer")
+ExtraLegendContainerPath = NodePath("ChartPopup/MarginContainer/VBoxContainer/HBoxContainer/GridContainer")
 InspectButtonPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/InspectButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -237,23 +237,29 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChartPopup/MarginContainer"]
-margin_right = 53.0
-margin_bottom = 42.0
+margin_right = 57.0
+margin_bottom = 40.0
 custom_constants/separation = 15
 
-[node name="GridContainer" type="GridContainer" parent="ChartPopup/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ChartPopup/MarginContainer/VBoxContainer"]
 margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="ChartPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 40.0
+size_flags_horizontal = 3
 custom_constants/hseparation = 15
 columns = 6
 
-[node name="Button" type="Button" parent="ChartPopup/MarginContainer/VBoxContainer"]
-margin_right = 10.0
+[node name="Button" type="Button" parent="ChartPopup/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 53.0
 margin_bottom = 35.0
-size_flags_horizontal = 4
+size_flags_horizontal = 8
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 11 )
 text = "CLOSE"
 
 [connection signal="draw" from="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/ChartContainer/Drawer" to="." method="RenderChart"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/InspectButton" to="." method="OnInspectButtonPressed"]
-[connection signal="pressed" from="ChartPopup/MarginContainer/VBoxContainer/Button" to="." method="OnCloseButtonPressed"]
+[connection signal="pressed" from="ChartPopup/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="OnCloseButtonPressed"]
