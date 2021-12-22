@@ -167,11 +167,10 @@ public class MicrobeHUD : Control
     [Export]
     public NodePath BindingModeHotkeyPath;
 
-    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
-        new System.Collections.Generic.Dictionary<Species, int>();
+    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
 
     private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
-        new System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl>();
+        new();
 
     private Compound ammonia;
     private Compound atp;
