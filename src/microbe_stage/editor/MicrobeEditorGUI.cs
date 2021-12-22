@@ -916,7 +916,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
 
         var extinctSpecies = new List<KeyValuePair<string, ChartDataSet>>();
-        var extinctPoints = new List<(string Name, DataPoint ExtinctPoint, string TimePeriod, bool ExtinctEverywhere)>();
+        var extinctPoints = new List<(string Name, DataPoint ExtinctPoint, string TimePeriod,
+            bool ExtinctEverywhere)>();
 
         var anyExtinction = false;
 
