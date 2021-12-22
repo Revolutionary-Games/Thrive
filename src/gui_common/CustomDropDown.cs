@@ -114,7 +114,7 @@ public class CustomDropDown : MenuButton
     /// </summary>
     /// <param name="name">The item text</param>
     /// <returns>
-    ///   List of item's index as this takes into account all exact name occurences in all sections.
+    ///   List of item's index as this takes into account all exact name occurrences in all sections.
     ///   Empty list if not found.
     /// </returns>
     public List<int> GetItemIndex(string name)
