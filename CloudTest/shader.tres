@@ -11,10 +11,6 @@ void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
 
-
-
-
-
 float signedDistance(vec3 center, float radius, vec3 point)
 {
 	return length(center - point) - radius;
@@ -22,7 +18,16 @@ float signedDistance(vec3 center, float radius, vec3 point)
 }
 float sdf(vec3 point)
 {
-	return signedDistance(vec3(10,10,1),30,point);
+	vec3 circles[3]= vec3[3] (vec3(1,1,0),vec3(13,13,-10),vec3(-10,-10,11));
+	float m = signedDistance(circles[2],30,point);
+	float d;
+	for (int i = 0;i<3;i++)
+		{
+			d = signedDistance(circles[i],30,point);
+			if(d < m)
+			m = d;
+		}
+	return m;
 }
 vec2 raymarch(vec3 rayDir,vec3 cameraPos)
 {
@@ -37,7 +42,7 @@ vec2 raymarch(vec3 rayDir,vec3 cameraPos)
         if (dist < MIN_HIT_DIST) {
 			dist += 0.1f;
 			if (dstToSphere == 0f)
-				{dstToSphere = depth;break}
+				{dstToSphere = depth;break;}
 			else
 			{
 				dstToExit = depth;
@@ -79,6 +84,6 @@ void fragment()
 		ALBEDO = vec3(1f,1f,1f);
 //	if (rayColor.xyz == vec3 (0f,0f,0f) || linear_depth < distToSphere )
 //		ALPHA = 0f;
-
+	NORMAL = vec3(0f,0f,0f);
 
 }"

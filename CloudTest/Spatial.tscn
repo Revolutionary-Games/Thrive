@@ -1,36 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://CloudTest/MEsh.tres" type="QuadMesh" id=1]
 [ext_resource path="res://CloudTest/blur.tres" type="Shader" id=2]
+[ext_resource path="res://CloudTest/MyScene.cs" type="Script" id=3]
 
-[sub_resource type="ProxyTexture" id=1]
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("Viewport")
 
 [sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
 render_priority = 2
 shader = ExtResource( 2 )
-shader_param/mesh = SubResource( 1 )
+shader_param/mesh = SubResource( 4 )
 
 [sub_resource type="QuadMesh" id=3]
 material = SubResource( 2 )
 size = Vector2( 2, 2 )
 
 [node name="Spatial" type="Spatial"]
-
-[node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.0570239, 0, 0.998373, 0, 1, 0, -0.998373, 0, 0.0570239, 103.362, 1.0524, 5.46798 )
-extra_cull_margin = 16384.0
-mesh = ExtResource( 1 )
-material/0 = null
-
-[node name="Viewport" type="Viewport" parent="MeshInstance"]
-size = Vector2( 1024, 1024 )
-render_target_v_flip = true
-render_target_update_mode = 3
-
-[node name="Camera" type="Camera" parent="MeshInstance/Viewport"]
-transform = Transform( 0.0570239, 0, 0.998373, 0, 1, 0, -0.998373, 0, 0.0570239, 77.6763, 0, 0 )
-current = true
-fov = 140.625
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0552292, 0.516627, 0.0271912 )
+script = ExtResource( 3 )
 
 [node name="CSGBox" type="CSGBox" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6262, 18.7517, -47.3302 )
@@ -39,8 +28,28 @@ height = 27.4316
 depth = 64.0898
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84594, -3.8147e-06, 40.9005 )
-visible = false
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84591, -3.8147e-06, 40.9005 )
 extra_cull_margin = 16384.0
 mesh = SubResource( 3 )
 material/0 = null
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 1024 )
+own_world = true
+handle_input_locally = false
+hdr = false
+render_target_v_flip = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 73.6819, 1.0524, 28.0918 )
+extra_cull_margin = 16384.0
+mesh = ExtResource( 1 )
+skeleton = NodePath("../..")
+material/0 = null
+
+[node name="Camera" type="Camera" parent="Viewport"]
+transform = Transform( -0.293839, 0.0882203, 0.951775, 0, 0.995732, -0.0922946, -0.955855, -0.0271198, -0.292585, 61.4565, 0.3894, -20.2201 )
+current = true
+fov = 69.8
+near = 0.03
+far = 313.2

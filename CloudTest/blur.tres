@@ -2,32 +2,72 @@
 
 [resource]
 code = "shader_type spatial;
+
 uniform sampler2D mesh;
+
 void vertex() {
   POSITION = vec4(VERTEX, 1.0);
 }
 
 void fragment()
 {
-	vec2 pixelSize = 1f/ vec2(textureSize(mesh,0));
-	vec3 albedo = vec3 (0f,0f,0f);
-	float alpha = 0f;
-	float pi = 3.145 * 2f;
-	float sigma = 0.807;
-	sigma *= sigma;
-	float gaussF1 = 1f/(pi * sigma);
-	float gaussF2 = 2f/sigma;
-	for(int y = -10; y <= 10; y++)
-    	for(int x = -10; x <= 10; x++)
-		{
-
-			float gaussFactor = gaussF1 * exp (-(float(x*x+y*y))/gaussF2);
-			vec2 offset = vec2( float(x),float(y));
-			vec4 tex = texture(mesh, UV + offset * pixelSize);
-			albedo += tex.rgb * gaussFactor;
-			alpha += tex.a * gaussFactor;
+//	vec2 pixelSize = 1f/ vec2(textureSize(mesh,0));
+//	vec3 albedo = vec3 (0f,0f,0f);
+//	float alpha = 0f;
+//	float pi = 3.145 * 2f;
+//	float sigma = 0.840;
+//	sigma *= sigma;
+//	float gaussF1 = 1f/(pi * sigma);
+//	float gaussF2 = 2f/sigma;
+//	int stepS = 10;
+	
+//	for(int y = -stepS; y <= stepS; y++)
+//    	for(int x = -stepS; x <= stepS; x++)
+//		{
+//
+//			//float gaussFactor = gaussF1 * exp (-(float(x*x+y*y))/gaussF2);
+//			vec2 offset = vec2( float(x),float(y));
+//			vec4 tex = texture(mesh, UV + offset * pixelSize);
+//			albedo += tex.rgb; //* gaussFactor;
+//			alpha += tex.a; //* gaussFactor;
+//		}
+	
+	
+	float Pi = 6.28318530718; // Pi*2
+    
+    // GAUSSIAN BLUR SETTINGS {{{
+    float Directions = 29.0; // BLUR DIRECTIONS (Default 16.0 - More is better but slower)
+    float Quality = 18.0; // BLUR QUALITY (Default 4.0 - More is better but slower)
+    float Size = 200.0; // BLUR SIZE (Radius)
+    // GAUSSIAN BLUR SETTINGS }}}
+   
+    vec2 Radius = Size/vec2(textureSize(mesh,0));
+    
+    // Normalized pixel coordinates (from 0 to 1)
+    vec2 uv = UV;//FRAGCOORD.xy/ vec2(textureSize(mesh,0));
+    // Pixel colour
+    vec4 Color = texture(mesh, uv);
+    
+    // Blur calculations
+    for( float d=0.0; d<Pi; d+=Pi/Directions)
+    {
+		for(float i=1.0/Quality; i<=1.0; i+=1.0/Quality)
+        {
+			Color += texture( mesh, uv+vec2(cos(d),sin(d))*Radius*i);		
+        }
+    }
+    
+    // Output to screen
+    Color /= Quality * Directions - 15.0;
+    //fragColor =  Color;
+	
+	
+	float len = length(Color.rgb);
+	ALPHA = 2f*len*len;
+	if(length(Color.rgb) > 0.5){
+		//Color.rgb= vec3(0f,0f,0f);
+		//ALPHA *= 1.1;
 		}
-	//ALPHA = alpha;
-	ALBEDO = albedo;
+	ALBEDO = Color.rgb;
 	
 }"
