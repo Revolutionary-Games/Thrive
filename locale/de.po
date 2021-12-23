@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
-"PO-Revision-Date: 2021-11-12 08:17+0000\n"
+"PO-Revision-Date: 2021-12-19 11:09+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Weblate 4.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -1765,7 +1765,7 @@ msgstr "Cheat-Tasten aktiviert"
 
 #: ../src/general/OptionsMenu.tscn:1101
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr "Eigenen Nuternamen verwenden"
+msgstr "Eigenen Nutzernamen verwenden"
 
 #: ../src/general/OptionsMenu.tscn:1112
 msgid "CUSTOM_USERNAME"
@@ -2563,15 +2563,14 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:949
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
-"Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein "
-"peitschenartiges Bündel von Proteinfasern, das sich von der Zellmembran "
-"aus erstreckt und mit Hilfe von [thrive:compound type=\"atp\"][/thrive:"
-"compound] die Zelle wellenförmig in eine Richtung treiben kann. Die "
+"Die Geißel (Plural: Geißen, auch genannt Flagellen) ist ein peitschenartiges "
+"Bündel von Proteinfasern, das sich von der Zellmembran aus erstreckt und mit "
+"Hilfe von ATP die Zelle wellenförmig in eine Richtung treiben kann. Die "
 "Position des Flagellums bestimmt die Richtung, in der es den Schub für die "
-"Zellbewegung liefert. Die Schubrichtung ist entgegengesetzt zu der "
-"Richtung, in die das Flagellum zeigt. Ein Flagellum, das sich auf der "
-"linken Seite einer Zelle befindet, gibt beispielsweise Schub, wenn es sich "
-"nach rechts bewegt."
+"Zellbewegung liefert. Die Schubrichtung ist entgegengesetzt zu der Richtung, "
+"in die das Flagellum zeigt. Ein Flagellum, das sich auf der linken Seite "
+"einer Zelle befindet, gibt beispielsweise Schub, wenn es sich nach rechts "
+"bewegt."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:966
 msgid "SPEED"
@@ -3180,11 +3179,11 @@ msgstr "Flüssigkeit / Steifigkeit"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1296
 msgid "FLUID"
-msgstr ""
+msgstr "flüssig"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1309
 msgid "RIGID"
-msgstr ""
+msgstr "steif"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1342
 msgid "COLOUR"
@@ -3489,11 +3488,14 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
-msgstr ""
+msgstr "Energiequellen:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
+#, fuzzy
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
+"{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte "
+"Fitness:{4})"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
@@ -4054,7 +4056,7 @@ msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
 
 #: ../src/saving/NewSaveMenu.cs:167
 msgid "INVALID_SAVE_NAME_POPUP"
-msgstr "Name des Speicherstand darf keine Sonderzeichen enthalten"
+msgstr "Name des Speicherstand darf keine Sonderzeichen enthalten(<>:\"/\\|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
@@ -4116,7 +4118,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:53
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "keine Speicherstände gefunden"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
@@ -4480,15 +4482,17 @@ msgstr "Verstanden"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
-"Dieses Feld zeigt eine Vorhersage Ihrer zukünftigen Bevölkerung.\n"
-"\n"
-"Diese Zahlen stammen aus der Bevölkerungssimulation von Auto-Evo.\n"
+"Dieses Feld zeigt eine Vorhersage Ihrer zukünftigen Bevölkerung. Diese "
+"Zahlen stammen aus der Bevölkerungssimulation von Auto-Evo.\n"
 "\n"
 "Hier wird ihre persönliche Leisting nicht betrachtet. In deinem aktuellen "
 "Gebiet wirst du also besser abschneiden, wenn du den Editor betrittst.\n"
 "\n"
 "Du solltest aber versuchen, deine Population hoch zu halten, auch wenn du "
-"nicht direkt beteiligt bist."
+"nicht direkt beteiligt bist.\n"
+"\n"
+"Du kannst dir detailiertere Informationen zur Vorhersage ansehen, indem du "
+"auf das Fragezeichen im Panel klickst."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
 msgid "EDITOR_TUTORIAL_STAY_SMALL"

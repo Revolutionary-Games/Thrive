@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-12 15:38+0700\n"
-"PO-Revision-Date: 2021-12-09 14:14+0000\n"
+"PO-Revision-Date: 2021-12-21 17:46+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1\n"
+"X-Generator: Weblate 4.9.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -275,8 +275,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
 msgstr ""
-"Un suggerimento: i batteri possono essere più forti di quanto appaiono: "
-"sembrano piccoli, ma alcuni di essi possono scavare dentro di te, e "
+"Un suggerimento: i batteri possono essere più forti di quanto appaiono! "
+"Sembrano piccoli, ma alcuni di essi possono scavare dentro di te, e "
 "ucciderti così!"
 
 #: ../simulation_parameters/common/help_texts.json:150
@@ -345,8 +345,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Un suggerimento: fai attenzione alle cellule e batteri più grandi, non è "
-"divertente essere digeriti, ti mangeranno."
+"Un suggerimento: fai attenzione alle cellule e batteri più grandi! Non è "
+"divertente essere digeriti: ti mangeranno."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
@@ -961,7 +961,7 @@ msgstr "{0} muovendo: {1} esemplari dalla zona: {2}"
 
 #: ../src/auto-evo/RunResults.cs:681
 msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "Popolazione nelle zone:"
+msgstr "popolazione nelle zone:"
 
 #: ../src/auto-evo/RunResults.cs:788
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -977,7 +977,7 @@ msgstr "Consumo di {0}"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:35
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Fonte ambientale di {0} sparsa uniformemente"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:84
 msgid "PREDATION_FOOD_SOURCE"
@@ -1441,7 +1441,7 @@ msgstr "Strumenti"
 
 #: ../src/general/MainMenu.tscn:224
 msgid "VIEW_SOURCE_CODE"
-msgstr "Visualizza Codice Sorgente"
+msgstr "Vedi Codice Sorgente"
 
 #: ../src/general/MainMenu.tscn:235
 msgid "EXTRAS"
@@ -1498,8 +1498,8 @@ msgstr "Errori di caricamento mod"
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
-"Si sono verificati degli errori nel caricamento di una o più mod. I report "
-"potrebbero contenere informazioni maggiori."
+"Si sono verificati degli errori nel caricamento di una o più mod. I log "
+"potrebbero contenere informazioni ulteriori."
 
 #: ../src/general/OptionsMenu.cs:900
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
@@ -1507,16 +1507,15 @@ msgstr "Dispositivo di output audio di default"
 
 #: ../src/general/OptionsMenu.cs:932
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr ""
-"Questa traduzione è molto incompleta (siamo al {0}%). Perfavore, aiutaci!"
+msgstr "Questa traduzione è molto incompleta ({0}% fatto). Perfavore, aiutaci!"
 
 #: ../src/general/OptionsMenu.cs:936
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr "Questa traduzione è in corso d'opera (siamo al {0}%)"
+msgstr "Questa traduzione è in corso d'opera ({0}% completato)"
 
 #: ../src/general/OptionsMenu.cs:940
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Questa traduzione è completa al {0}%"
+msgstr "Questa traduzione è completa al/all'{0}%"
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
@@ -1754,7 +1753,7 @@ msgstr "Apri Cartella degli Screenshot"
 
 #: ../src/general/OptionsMenu.tscn:1146
 msgid "OPEN_LOGS_FOLDER"
-msgstr "Apri Cartella dei Report"
+msgstr "Apri Cartella dei Log"
 
 #: ../src/general/OptionsMenu.tscn:1156
 msgid "JSON_DEBUG_MODE"
@@ -1883,7 +1882,7 @@ msgstr "Conferma Uscita"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
-msgstr "{0} Mrd"
+msgstr "{0} Mld"
 
 #: ../src/general/StringUtils.cs:31
 msgid "MILLION_ABBREVIATION"
@@ -2317,8 +2316,8 @@ msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "I microbi aggressivi inseguono le prede per distanze maggiori\n"
 "e sono più propensi a combattere quando aggrediti.\n"
-"I microbi pacifici, invece, ignorano soggetti più lontani\n"
-"e sono meno propensi a sparare tossine ai propri predatori."
+"I microbi pacifici, invece, ignorano i soggetti lontani\n"
+"e sono meno incini a sparare tossine ai propri predatori."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:231
 msgid "OPPORTUNISM_EXPLANATION"
@@ -2335,7 +2334,7 @@ msgstr ""
 "I microbi pavidi scappano dai pericoli per lunghe distanze\n"
 "e sono generalmente più propensi alla fuga.\n"
 "I microbi coraggiosi non sono spaventati dai predatori vicini\n"
-"e sono più propensi a contrattaccare."
+"e sono più disposti a contrattaccare."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:245
 msgid "ACTIVITY_EXPLANATION"
@@ -2349,7 +2348,7 @@ msgstr ""
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 "I microbi focalizzati inseguono prede e pezzi di cibo per lunghe distanze\n"
-"e potrebbero bramare maggiormente i pezzi di cibo.\n"
+"e potrebbero desiderare questi ultimi con maggire ardimento.\n"
 "I microbi reattivi cambiano più facilmente bersaglio."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:267
@@ -2814,10 +2813,10 @@ msgstr ""
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Abilita gli effetti di luce nella GUI (graphical user interface), come ad "
-"esempio il flash del pulsante di editor.\n"
+"esempio il flash del pulsante dell'editor.\n"
 "\n"
-"Nel caso dovessi incontrare un bug per cui alcune parti del pulsante di "
-"editor spariscono,\n"
+"Nel caso dovessi incontrare un bug per cui alcune parti del pulsante "
+"dell'editor spariscono,\n"
 "puoi provare a disattivare questa opzione per risolverlo."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3497
@@ -2916,15 +2915,15 @@ msgstr "un po'"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:784
 msgid "CATEGORY_SOME"
-msgstr "quantità media"
+msgstr "non tanto/a"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:786
 msgid "CATEGORY_LITTLE"
-msgstr "quantità piccola"
+msgstr "poco/a"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:788
 msgid "CATEGORY_VERY_LITTLE"
-msgstr "quantità infima"
+msgstr "pochissimo/a"
 
 #: ../src/microbe_stage/MicrobeStage.cs:529
 msgid "PLAYER_REPRODUCED"
@@ -2946,7 +2945,7 @@ msgstr "Presso il Cursore:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:532
 msgid "NOTHING_HERE"
-msgstr "Qui non c'è niente"
+msgstr "Qui niente"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:557
 msgid "COMPOUNDS_COLON"
@@ -3098,7 +3097,7 @@ msgstr "Struttura"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:817
 msgid "MEMBRANE"
-msgstr "Tipi di membrana"
+msgstr "Membrana"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:839
 msgid "BEHAVIOUR"
@@ -3134,11 +3133,11 @@ msgstr "Fluidità / Rigidità"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1296
 msgid "FLUID"
-msgstr ""
+msgstr "Fluida"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1309
 msgid "RIGID"
-msgstr ""
+msgstr "Rigida"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1342
 msgid "COLOUR"
@@ -3223,9 +3222,8 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Previsione dell'Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
-#, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr "Riprendi il gioco"
+msgstr "Visualizza informazioni dettagliate riguardo la previsione"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
 msgid "TOTAL_POPULATION_COLON"
@@ -3341,9 +3339,18 @@ msgid "PATCH_MAP"
 msgstr "Mappa delle Zone"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4043
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "La popolazione di {0} è cambiata di {1} per il seguente motivo: {2}"
+msgstr ""
+"Questo pannello mostra i numeri sui quali l'auto-evo fa la sua previsione. "
+"La popolazione è determinata dall'energia totale che una specie è in grado "
+"di catturare, e il costo energetico per esemplare. Questo è un modello "
+"semplificato della realtà, che calcola le prestazioni di ciascuna specie in "
+"base all'energia che è in grado di raccogliere. Per ogni fonte di cibo è "
+"mostrata la quantità di cibo derivata. In più, è mostrata l'energia totale "
+"disponibile da quella fonte. La frazione che la specie guadagna rispetto "
+"all'energia totale dipende dal valore di idoneità rispetto all'idoneità "
+"totale. L'idoneità è una misura di quanto bene la specie sa utilizzare "
+"quella fonte di cibo."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
@@ -3351,8 +3358,7 @@ msgstr "PM Infiniti"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:704
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-"La quantità di glucosio è stata ridotta al {0} della quantità precedente."
+msgstr "La quantità di glucosio è stata ridotta al/all'{0} della precedente."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
 msgid "MEGA_YEARS"
@@ -3439,6 +3445,8 @@ msgstr "Energia in {0} per {1}"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
+"L'energia totale accumulata è {0}, con un costo individuale di {1}, "
+"risultante in una popolazione (non calibrata) di {2}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2296
 msgid "ENERGY_SOURCES"
@@ -3447,6 +3455,8 @@ msgstr "Fonti di energia:"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2302
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
+"{0} -> energia: {1} (idoneità: {2}) energia totale disponibile: {3} ("
+"idoneità totale: {4})"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
@@ -3474,8 +3484,8 @@ msgstr "ESTINZIONE"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Proprio come il 99% delle specie mai esistite, la tua si è estinta. Altri "
-"andranno a occupare nicchie e prosperare, ma non tu. Sarai dimenticato, un "
-"esperimento fallito dell'evoluzione."
+"andranno a occupare nicchie e prosperare, ma non tu. Sarai dimenticato. Sei "
+"un esperimento fallito dell'evoluzione."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
@@ -3494,7 +3504,7 @@ msgstr "Impossibile caricare le info per {0}"
 
 #: ../src/modding/ModLoader.cs:235
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
-msgstr ""
+msgstr "{0}: caricamento dell'assembly fallito con un'eccezione: {1}"
 
 #: ../src/modding/ModLoader.cs:252
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
@@ -3513,9 +3523,8 @@ msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
 #: ../src/modding/ModLoader.cs:364
-#, fuzzy
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
-msgstr "Inizializzazione della libreria client Steam fallita"
+msgstr ""
 
 #: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
@@ -3669,7 +3678,7 @@ msgstr "Nome:"
 
 #: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
-msgstr ""
+msgstr "Nome interno (della cartella):"
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
@@ -3705,39 +3714,35 @@ msgstr "File .pck:"
 
 #: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
-msgstr ""
+msgstr "Assembly:"
 
 #: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
-msgstr ""
+msgstr "Classe principale dell'assembly:"
 
 #: ../src/modding/ModManager.tscn:979
 msgid "MOD_CREATION_FAILED"
 msgstr "Creazione della mod fallita"
 
 #: ../src/modding/ModManager.tscn:989
-#, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
-"Nota bene: diverse mod richiedono il riavvio del gioco per essere attivate "
-"o disattivate correttamente. Carica solo mod di cui ti fidi: potrebbero "
-"contenere codice eseguibile."
+"Si sono verificati degli errori nel caricamento o scaricamento di una o più "
+"mod. I log potrebbero contenere informazioni maggiori."
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
 msgstr "È richiesto il riavvio"
 
 #: ../src/modding/ModManager.tscn:996
-#, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
-"Nota bene: diverse mod richiedono il riavvio del gioco per essere attivate "
-"o disattivate correttamente. Carica solo mod di cui ti fidi: potrebbero "
-"contenere codice eseguibile."
+"Una o più mod richiedono il riavvio del gioco per essere attivate o "
+"disattivate correttamente"
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "I contenuti del Workshop saranno caricati da questa cartella: {0}"
 
 #: ../src/modding/ModUploader.cs:298
 msgid "MISSING_TITLE"
@@ -3752,18 +3757,16 @@ msgid "DESCRIPTION_TOO_LONG"
 msgstr "La descrizione è troppo lunga"
 
 #: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
-#, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr "La descrizione è troppo lunga"
+msgstr "Le note sull'aggiornamento sono troppo lughe"
 
 #: ../src/modding/ModUploader.cs:326
 msgid "TAGS_IS_WHITESPACE"
-msgstr ""
+msgstr "I tag contengono solo spazi bianchi"
 
 #: ../src/modding/ModUploader.cs:334
-#, fuzzy
 msgid "INVALID_TAG"
-msgstr "Vuoi caricare il salvataggio non valido?"
+msgstr "La tag specificata \"{0}\" non è valida"
 
 #: ../src/modding/ModUploader.cs:348
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
@@ -3788,14 +3791,20 @@ msgstr "Caricamento..."
 #: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
+"L'elemento è stato caricato correttamente sullo Steam Workshop, ma prima che "
+"sia visibile devi accettare i [color=#3796e1][url=https://steamcommunity.com/"
+"sharedfiles/workshoplegalagreement]termini di servizio[/url][/color]"
 
 #: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr ""
+msgstr "Elemento caricato correttamente sullo Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
+"Inviando questo elemento, tu accetti i "
+"[color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"workshoplegalagreement]termini di servizio[/url][/color] dello Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:616
 msgid "SAVING_DATA_FAILED_DUE_TO"
@@ -3814,14 +3823,12 @@ msgid "MOD_TO_UPLOAD"
 msgstr "Mod da Caricare:"
 
 #: ../src/modding/ModUploader.tscn:109
-#, fuzzy
 msgid "UNKNOWN_WORKSHOP_ID"
-msgstr "Tasto sconosciuto del mouse"
+msgstr "Workshop ID sconosciuto per questa mod"
 
 #: ../src/modding/ModUploader.tscn:121
-#, fuzzy
 msgid "CREATE_NEW"
-msgstr "Crea Nuovo Salvataggio"
+msgstr "Crea Nuovo Elemento"
 
 #: ../src/modding/ModUploader.tscn:128
 msgid "ENTER_EXISTING_ID"
@@ -3829,7 +3836,7 @@ msgstr "Inserisci ID esistente"
 
 #: ../src/modding/ModUploader.tscn:138
 msgid "ENTER_EXISTING_WORKSHOP_ID"
-msgstr ""
+msgstr "Inserisci un Workshop ID esistente"
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
@@ -3840,27 +3847,16 @@ msgid "APPLY"
 msgstr "Applica"
 
 #: ../src/modding/ModUploader.tscn:168
-#, fuzzy
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr "Titolo Elemento:"
 
 #: ../src/modding/ModUploader.tscn:186
-#, fuzzy
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr ""
-"Il cloroplasto è una struttura a doppia membrana, contenente pigmenti "
-"fotosensibili impilati assieme in sacche membranose. Si tratta di un "
-"procariote che è stato assimilato, e vive all'interno di un eucariote. I "
-"pigmenti al suo interno sono in grado di sfruttare l'energia luminosa per "
-"produrre glucosio, a partire dall'acqua e dal diossido di carbonio "
-"gassoso. Tale processo è chiamato Fotosintesi; inoltre, tali pigmenti "
-"danno al cloroplasto un colore distintivo. Il tasso di produzione del "
-"glucosio aumenta con la concentrazione di diossido di carbonio e con "
-"l'intensità luminosa."
+msgstr "Descrizione Elemento:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr ""
+msgstr "Una volta reso visibile, un elemento sarà visualizzabile da chiunque"
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
@@ -3868,38 +3864,40 @@ msgstr "Visibile"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr ""
+msgstr "Tag Elemento (separati da una virgola \",\"):"
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr ""
+msgstr "Immagine di anteprima dell'elemento:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
-msgstr ""
+msgstr "Naviga"
 
 #: ../src/modding/ModUploader.tscn:284
-#, fuzzy
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
-msgstr "Riprendi il gioco"
+msgstr ""
+"Rimuovi i dati locali relativi a questo elemento. Ciò è utile se hai "
+"inserito l'ID sbagliato, oppure se vuoi caricare una nuova versione su di un "
+"elemento diverso."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr ""
+msgstr "Rimuovi dati locali"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr "\"{0}\" - {1}"
+msgstr ""
+"(Opzionale) Cambia le note visualizzabili sullo Steam Workshop per questa "
+"versione dell'elemento"
 
 #: ../src/modding/ModUploader.tscn:294
-#, fuzzy
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "\"{0}\" - {1}"
+msgstr "Note sull'aggiornamento dell'elemento"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
-msgstr ""
+msgstr "Seleziona immagine di anteprima"
 
 #: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
@@ -3915,24 +3913,23 @@ msgstr "Formato URL non valido"
 
 #: ../src/modding/NewModGUI.cs:238
 msgid "INTERNAL_NAME_REQUIRED"
-msgstr ""
+msgstr "Il nome interno è richiesto"
 
 #: ../src/modding/NewModGUI.cs:244
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
-msgstr ""
+msgstr "Il nome interno dovrebbe iniziare con una lettera maiscola"
 
 #: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
-msgstr ""
+msgstr "Esiste già una mod con questo nome interno"
 
 #: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
-msgstr ""
+msgstr "Formato mancante o non valido in un campo richiesto: {0}"
 
 #: ../src/modding/NewModGUI.cs:280
-#, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "L'Auto-evo non ha funzionato"
+msgstr "Ulteriori controlli hanno rilevato un problema: {0}"
 
 #: ../src/modding/NewModGUI.tscn:35
 msgid "CREATE_NEW_MOD"
@@ -4013,11 +4010,9 @@ msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Il file selezionato ({0}) esiste già. Vuoi sostituirlo?"
 
 #: ../src/saving/NewSaveMenu.cs:167
-#, fuzzy
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
-"Il nome della specie deve essere conforme al metodo di Linneo (Genere ed "
-"Epiteto)!"
+"Il nome del salvataggio non può contenere caratteri speciali (<>:\"/\\|?*)"
 
 #: ../src/saving/NewSaveMenu.tscn:31
 msgid "CREATE_NEW_SAVE"
@@ -4079,7 +4074,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:53
 msgid "NO_SAVEGAMES_FOUND"
-msgstr ""
+msgstr "Nessun salvataggio trovato"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
@@ -4199,8 +4194,8 @@ msgstr "Carica"
 #: ../src/saving/SaveListItem.tscn:278
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
-"Eliminare questo salvataggio è irreversibile. Sei sicuro di volerlo "
-"eliminare definitivamente?"
+"Eliminare questo salvataggio è irreversibile. Non potrai recuperarlo. Sei "
+"sicuro di volerlo fare?"
 
 #: ../src/saving/SaveManagerGUI.cs:212
 msgid "DELETE_SELECTED_SAVE_WARNING"
@@ -4263,14 +4258,16 @@ msgstr "Inizializzazione della libreria client Steam fallita"
 #: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
+"Al momento il tuo account Steam è limitato dal caricare contenuti. Contatta "
+"il loro servizio clienti."
 
 #: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_BANNED"
-msgstr ""
+msgstr "Il tuo account Steam è bannato dal caricare contenuti"
 
 #: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_TIMEOUT"
-msgstr ""
+msgstr "È stato superato il limite di tempo per l'operazione Steam, ritenta"
 
 #: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
@@ -4278,7 +4275,7 @@ msgstr "Non hai effettuato l'accesso a Steam"
 
 #: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_UNAVAILABLE"
-msgstr ""
+msgstr "Steam è momentaneamente non disponibile, riprova"
 
 #: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_INVALID_PARAMETER"
@@ -4287,6 +4284,8 @@ msgstr "È stato passato un parametro non valido a Steam"
 #: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
+"Steam: è stato superato il limite di archiviazione in cloud oppure la "
+"dimensione massima per i file"
 
 #: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
@@ -4294,25 +4293,25 @@ msgstr "File non trovato"
 
 #: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
-msgstr ""
+msgstr "Secondo Steam il file è già stato caricato, aggiorna la pagina"
 
 #: ../src/steam/SteamClient.cs:490
-#, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
-msgstr "Duplica Giocatore"
+msgstr "Steam ha riportato un errore: nome duplicato"
 
 #: ../src/steam/SteamClient.cs:492
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
+"Il tuo account Steam è temporaneamente in modalità di sola lettura per via "
+"di una modifica recente"
 
 #: ../src/steam/SteamClient.cs:494
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Il tuo account Steam non possiede una licenza per Thrive"
 
 #: ../src/steam/SteamClient.cs:496
-#, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
-msgstr "Inizializzazione della libreria client Steam fallita"
+msgstr "Steam: acquisizione dell'UGC lock fallita"
 
 #: ../src/steam/SteamClient.cs:498
 msgid "STEAM_ERROR_UNKNOWN"
@@ -4424,35 +4423,39 @@ msgstr "Ho capito"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
-"Questo pannello mostra una previsione sulla tua popolazione futura.\n"
+"Questo pannello mostra una previsione sulla tua popolazione futura. Questi "
+"numeri arrivano dalla simulazione di popolazione dell'auto-evo.\n"
 "\n"
-"Questi numeri arrivano dalla simulazione di popolazione dell'auto-evo.\n"
+"Non prendono in considerazione la tua prestazione individuale. Dunque, nella "
+"tua zona corrente miglioreranno quando entrerai nell'editor.\n"
 "\n"
-"Non prendono in considerazione la tua prestazione individuale. Dunque, "
-"nella tua zona corrente miglioreranno quando entrerai nell'editor.\n"
+"Tuttavia, dovresti provare a mantenere alta la tua popolazione, anche quando "
+"non ne sei direttamente responsabile.\n"
 "\n"
-"Tuttavia, dovresti provare a mantenere alta la tua popolazione, anche "
-"quando non ne sei direttamente responsabile."
+"Puoi vedere informazioni più dettagliate premendo il punto di domanda "
+"all'interno del pannello."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
-#, fuzzy
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
-"Questo è l'editor delle cellule, dove puoi aggiungere o rimuovere organuli "
-"dalla tua specie spendendo punti mutazione (MP).\n"
+"Dovresti concentrarti su una o due fonti di energia; così, non avrai bisogno "
+"di raccogliere troppe risorse diverse per produrre abbastanza ATP e "
+"sopravvivere.\n"
 "\n"
-"Ci sono anche altre proprietà, che puoi cambiare negli appositi pannelli.\n"
+"Inoltre, prima di aggiungere un organulo, considera attentamente se serve "
+"veramente. Spesso non apporre modifiche è una buona scelta: ciascuna parte "
+"richiede ATP e comporta un costo maggiore al momento della tua divisione "
+"cellulare.\n"
 "\n"
-"Per continuare, scegli un organulo dal pannello a sinistra (il citoplasma "
-"è una buona scelta). Poi, fai clic sinistro vicino all'esagono al centro "
-"dello schermo per aggiungere quell'organulo alla tua specie."
+"Una strategia possibile: potresti rimanere un singolo esagono di citoplasma "
+"finché non raggiungi le zone di superficie, poi investire in organuli "
+"fotosintetici."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
 "Su di un distante pianeta alieno, eoni di attività vulcanica e impatti "
-"meteoritici hanno portato allo sviluppo di un nuovo fenomeno "
-"nell'universo.\n"
+"meteoritici hanno portato allo sviluppo di un nuovo fenomeno nell'universo.\n"
 "\n"
 "La vita.\n"
 "\n"
@@ -4460,8 +4463,8 @@ msgstr ""
 "comune universale (UACU) su questo pianeta.\n"
 "\n"
 "Per sopravvivere in questo mondo ostile, avrai bisogno di competere con le "
-"altre specie di microbi, raccogliere ogni composto che troverai ed "
-"evolvere ad ogni generazione."
+"altre specie di microbi, raccogliere ogni composto che troverai... ed "
+"evolvere."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
