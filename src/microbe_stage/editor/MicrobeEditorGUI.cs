@@ -921,7 +921,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Populate charts with data from patch history. We use reverse loop here because the original collection is
         // reversed (iterating from 500 myr to 100 myr) so it messes up any ordering dependent code
-         for (int i = patch.History.Count - 1; i >= 0; i--)
+        for (int i = patch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = patch.History.ElementAt(i);
 
@@ -993,8 +993,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                     extinctSpecies.Add(new KeyValuePair<string, ChartDataSet>(entry.Key.FormattedName, dataset));
                     extinctPoints.Add((entry.Key.FormattedName, dataPoint, snapshot.TimePeriod, extinctEverywhere));
                 }
-                else if (!extinctInPatch && extinctSpecies.Any(
-                    e => e.Key == entry.Key.FormattedName && e.Value == dataset))
+
+                if (!extinctInPatch && extinctSpecies.Any(e =>
+                        e.Key == entry.Key.FormattedName && e.Value == dataset))
                 {
                     // No longer extinct in later time period so remove it from the list
                     extinctSpecies.RemoveAll(e => e.Key == entry.Key.FormattedName && e.Value == dataset);
