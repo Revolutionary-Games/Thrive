@@ -578,7 +578,9 @@
                 builder.Append('\n');
             }
 
-            foreach (var entry in results.Values)
+            foreach (var entry in
+                     results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
+                         .ThenBy(s => s.Species.FormattedName))
             {
                 builder.Append(playerReadable ? entry.Species.FormattedName : entry.Species.FormattedIdentifier);
                 builder.Append(":\n");
