@@ -26,7 +26,8 @@ public class ChartDataSet : ICloneable
         get => dataColour;
         set
         {
-            dataColour = value;
+            // No translucent color, that'll probably cause unexpected behavior
+            dataColour = new Color(value, 1);
 
             foreach (var point in DataPoints)
             {

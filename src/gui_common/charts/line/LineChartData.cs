@@ -3,7 +3,7 @@
 /// </summary>
 public class LineChartData : ChartDataSet
 {
-    public float LineWidth { get; set; } = 1.13f;
+    public float LineWidth { get; set; } = 2.13f;
 
     public override object Clone()
     {

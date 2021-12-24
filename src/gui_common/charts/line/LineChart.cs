@@ -388,7 +388,7 @@ public class LineChart : VBoxContainer
             }
 
             // Initialize line
-            var dataLine = new DataLine(data.Value as LineChartData, data.Key == defaultDataSet);
+            var dataLine = new DataLine(data.Value as LineChartData, data.Key == defaultDataSet, isChild ? 2 : 1);
             dataLines[data.Key] = dataLine;
             drawArea.AddChild(dataLine);
 
@@ -397,6 +397,9 @@ public class LineChart : VBoxContainer
 
             foreach (var point in data.Value.DataPoints)
             {
+                // Enlarge marker if this is an expanded chart
+                point.Size *= isChild ? 1.5f : 1;
+
                 // Create tooltip for the point markers
                 var toolTip = ToolTipHelper.CreateDefaultToolTip();
 
@@ -1274,19 +1277,23 @@ public class LineChart : VBoxContainer
 
         private Color dataColour;
 
-        public DataLine(LineChartData data, bool isDefault)
+        public DataLine(LineChartData data, bool isDefault, float widthMultiplier = 1)
         {
             this.data = data;
             Default = isDefault;
 
-            Width = data.LineWidth;
+            Width = data.LineWidth * widthMultiplier;
             DefaultColor = data.Colour;
             dataColour = data.Colour;
+            Texture = GD.Load<Texture>("res://assets/textures/gui/bevel/line.png");
+            TextureMode = LineTextureMode.Stretch;
 
             tween = new Tween();
             AddChild(tween);
 
-            // Antialiasing is turned off as it's a bit unreliable currently
+            // Antialiasing is turned off as it's a bit unreliable currently.
+            // In the meantime we use a workaround by assigning a texture with transparent 1-pixel border
+            // on top and bottom to emulate some antialiasing.
         }
 
         public void InterpolatePointPosition(int i, Vector2 initialPos, Vector2 targetPos)
