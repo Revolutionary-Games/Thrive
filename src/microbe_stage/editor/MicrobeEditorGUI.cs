@@ -183,6 +183,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath ReportTabPatchNamePath;
 
     [Export]
+    public NodePath ReportTabPatchSelectorPath;
+
+    [Export]
     public NodePath PatchPlayerHerePath;
 
     [Export]
@@ -415,7 +418,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
-    private OptionButton reportTabPatchName;
+    private Label reportTabPatchName;
+    private OptionButton reportTabPatchSelector;
 
     private HBoxContainer physicalConditionsIconLegends;
     private LineChart temperatureChart;
@@ -566,7 +570,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
 
-        reportTabPatchName = GetNode<OptionButton>(ReportTabPatchNamePath);
+        reportTabPatchName = GetNode<Label>(ReportTabPatchNamePath);
+        reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
@@ -636,7 +641,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
-        reportTabPatchName.GetPopup().HideOnCheckableItemSelection = false;
+        reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
@@ -1110,16 +1115,23 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         externalEffectsLabel.Text = external;
     }
 
-    public void UpdateReportTabPatchList()
+    public void UpdateReportTabPatchName(Patch patch)
     {
-        reportTabPatchName.Clear();
+        reportTabPatchName.Text = TranslationServer.Translate(patch.Name);
+    }
+
+    public void UpdateReportTabPatchSelector()
+    {
+        reportTabPatchName.Text = TranslationServer.Translate(editor.CurrentPatch.Name);
+
+        reportTabPatchSelector.Clear();
 
         foreach (var patch in editor.CurrentPatch.GetClosestConnectedPatches())
         {
-            reportTabPatchName.AddItem(TranslationServer.Translate(patch.Name), patch.ID);
+            reportTabPatchSelector.AddItem(TranslationServer.Translate(patch.Name), patch.ID);
         }
 
-        reportTabPatchName.Select(editor.CurrentPatch.ID);
+        reportTabPatchSelector.Select(editor.CurrentPatch.ID);
     }
 
     public void UpdateRigiditySliderState(int mutationPoints)
@@ -1195,6 +1207,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
 
         UpdateReportTabStatistics(patch);
+
+        UpdateReportTabPatchName(patch);
     }
 
     /// <summary>
@@ -2106,13 +2120,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
 
-        reportTabPatchName.Select(reportTabPatchName.GetItemIndex(patch.ID));
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patch.ID));
     }
 
     private void OnReportTabPatchListSelected(int index)
     {
         var patch = editor.CurrentGame.GameWorld.Map.Patches[index];
         UpdateReportTabStatistics(patch);
+        UpdateReportTabPatchName(patch);
     }
 
     /// <summary>

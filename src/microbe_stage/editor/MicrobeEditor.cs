@@ -655,7 +655,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
-            gui.UpdateReportTabPatchList();
+            gui.UpdateReportTabPatchSelector();
         }
     }
 
@@ -1403,7 +1403,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
 
-        gui.UpdateReportTabPatchList();
+        gui.UpdateReportTabPatchSelector();
 
         gui.UpdateRigiditySliderState(MutationPoints);
 
