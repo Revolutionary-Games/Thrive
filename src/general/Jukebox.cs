@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public class Jukebox : Node
 {
-    private const float FADE_TIME = 0.75f;
+    private const float FADE_TIME = 1.0f;
     private const float FADE_LOW_VOLUME = 0.0f;
     private const float NORMAL_VOLUME = 1.0f;
 

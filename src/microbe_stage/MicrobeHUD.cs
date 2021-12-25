@@ -167,23 +167,22 @@ public class MicrobeHUD : Control
     [Export]
     public NodePath BindingModeHotkeyPath;
 
-    private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
-    private readonly Compound nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-    private readonly Compound oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-    private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-    private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-
-    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts =
-        new System.Collections.Generic.Dictionary<Species, int>();
+    private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
 
     private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
-        new System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl>();
+        new();
+
+    private Compound ammonia;
+    private Compound atp;
+    private Compound carbondioxide;
+    private Compound glucose;
+    private Compound hydrogensulfide;
+    private Compound iron;
+    private Compound nitrogen;
+    private Compound oxygen;
+    private Compound oxytoxy;
+    private Compound phosphates;
+    private Compound sunlight;
 
     private AnimationPlayer animationPlayer;
     private MarginContainer mouseHoverPanel;
@@ -359,6 +358,18 @@ public class MicrobeHUD : Control
             hoveredCompoundControls.Add(compound, hoveredCompoundControl);
             hoveredCompoundsContainer.AddChild(hoveredCompoundControl);
         }
+
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        atp = SimulationParameters.Instance.GetCompound("atp");
+        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     public void OnEnterStageTransition(bool longerDuration)
