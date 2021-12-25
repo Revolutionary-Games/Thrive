@@ -477,7 +477,6 @@ SpeedIndicatorPath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VB
 HpIndicatorPath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HP/Indicator")
 SizeIndicatorPath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size/Indicator")
 TotalPopulationIndicatorPath = NodePath("CellEditor/RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total/Indicator")
->>>>>>> master
 RigiditySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 AggressionSliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Aggression/AggressionSlider")
 OpportunismSliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour/ScrollContainer/MarginContainer/VBoxContainer/Opportunism/OpportunismSlider")
@@ -493,7 +492,6 @@ PatchDetailsPanelPath = NodePath("PatchMap/MarginContainer/HSplitContainer/Patch
 CompoundBalancePath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
 AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
->>>>>>> master
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
 visible = false
