@@ -306,15 +306,7 @@ public class SaveListItem : PanelContainer
     private void UpdateName()
     {
         if (saveNameLabel != null)
-        {
-            var tempText = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
-            if (tempText.Length > 40)
-            {
-                tempText = tempText.Substring(0, 37) + "...";
-            }
-
-            saveNameLabel.Text = tempText;
-        }
+            saveNameLabel.Text = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
     }
 
     private void LoadSavePressed()
