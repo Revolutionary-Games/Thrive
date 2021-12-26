@@ -276,8 +276,8 @@ margin_left = 1354.0
 margin_right = 1854.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 500, 0 )
-WindowTitle = "DELETE_THIS_SAVE"
 DialogText = "DELETE_SAVE_CONFIRMATION"
+WindowTitle = "DELETE_THIS_SAVE"
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
