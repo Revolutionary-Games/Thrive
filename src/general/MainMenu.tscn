@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/modding/ModManager.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/dialogs/ErrorDialog.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/gui_common/GalleryViewer.tscn" type="PackedScene" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -74,6 +75,7 @@ GLES2PopupPath = NodePath("GLES2Popup")
 ModLoadFailuresPath = NodePath("ModFailureDialog")
 StoreLoggedInDisplayPath = NodePath("StoreUser")
 ModManagerPath = NodePath("ModManager")
+GalleryViewerPath = NodePath("GalleryViewer")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -368,7 +370,6 @@ rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
-disabled = true
 text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
@@ -422,6 +423,8 @@ visible = false
 [node name="LicensesDisplay" parent="." instance=ExtResource( 12 )]
 margin_top = 28.0
 margin_bottom = 628.0
+
+[node name="GalleryViewer" parent="." instance=ExtResource( 16 )]
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false
@@ -510,11 +513,13 @@ ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/FreebuildEditor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Mods" to="." method="ModsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/ArtGallery" to="." method="ArtGalleryPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Licenses" to="." method="LicensesPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
 [connection signal="popup_hide" from="LicensesDisplay" to="." method="OnReturnFromLicenses"]
+[connection signal="popup_hide" from="GalleryViewer" to="." method="OnReturnFromArtGallery"]
 [connection signal="OnFinishedSignal" from="CreditsView/CreditsScroll" to="." method="OnReturnFromCredits"]
 [connection signal="pressed" from="CreditsView/Back" to="." method="OnReturnFromCredits"]
 [connection signal="OnClosed" from="ModManager" to="." method="OnReturnFromMods"]

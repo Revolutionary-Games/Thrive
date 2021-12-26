@@ -4,27 +4,35 @@ using System.IO;
 using Godot;
 
 /// <summary>
-///   Collection of stage-specific concept arts and artworks
+///   A gallery of Thrive's assets, stage-specific concept arts, artworks and the likes
 /// </summary>
 public class Gallery : IRegistryType
 {
-    public List<Artwork> Artworks;
+    /// <summary>
+    ///   Collection of assets within a category.
+    /// </summary>
+    public Dictionary<string, List<Asset>> Assets;
 
     public string InternalName { get; set; }
 
     public void Check(string name)
     {
-        foreach (var entry in Artworks)
+        if (Assets == null || Assets.Count <= 0)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Missing gallery assets");
+
+        foreach (var entry in Assets)
         {
-            entry.Check();
+            foreach (var art in entry.Value)
+                art.Check();
         }
     }
 
     public void Resolve()
     {
-        foreach (var entry in Artworks)
+        foreach (var entry in Assets)
         {
-            entry.Resolve();
+            foreach (var art in entry.Value)
+                art.Resolve();
         }
     }
 
@@ -33,10 +41,13 @@ public class Gallery : IRegistryType
     }
 
     /// <summary>
-    ///   A piece of concept art or any artworks for Thrive.
+    ///   A piece of artwork or any game asset to be included in gallery.
     /// </summary>
-    public class Artwork
+    public class Asset
     {
+        /// <summary>
+        ///   Path to a .tres file or any resource files.
+        /// </summary>
         public string ResourcePath { get; set; }
 
         /// <summary>
@@ -89,7 +100,7 @@ public class Gallery : IRegistryType
             if (string.IsNullOrEmpty(ResourcePath))
             {
                 throw new InvalidRegistryDataException(
-                    "artwork", GetType().Name, "ResourcePath missing for art texture");
+                    "artwork", GetType().Name, "ResourcePath missing");
             }
         }
 

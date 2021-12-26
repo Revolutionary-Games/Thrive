@@ -143,6 +143,9 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
+    [Export]
+    public bool Decorate { get; set; } = true;
+
     public override void _EnterTree()
     {
         // To make popup rect readjustment react to window resizing
@@ -151,13 +154,13 @@ public class CustomDialog : Popup, ICustomPopup
 
         customPanel = GetStylebox("custom_panel", "WindowDialog");
         titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
-        titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
+        titleBarHeight = Decorate ? GetConstant("custom_titlebar_height", "WindowDialog") : 0;
         titleFont = GetFont("custom_title_font", "WindowDialog");
         titleHeight = GetConstant("custom_title_height", "WindowDialog");
         titleColor = GetColor("custom_title_color", "WindowDialog");
         closeButtonHighlight = GetStylebox("custom_close_highlight", "WindowDialog");
         scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
-        customMargin = GetConstant("custom_margin", "Dialogs");
+        customMargin = Decorate ? GetConstant("custom_margin", "Dialogs") : 0;
 
         SetupCloseButton();
         UpdateChildRects();
@@ -217,6 +220,9 @@ public class CustomDialog : Popup, ICustomPopup
 
     public override void _Draw()
     {
+        if (!Decorate)
+            return;
+
         // Draw background panels
         DrawStyleBox(customPanel, new Rect2(
             new Vector2(0, -titleBarHeight), new Vector2(RectSize.x, RectSize.y + titleBarHeight)));
@@ -551,10 +557,11 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void SetToFullRect()
     {
-        var viewportSize = GetViewport().GetVisibleRect().Size;
+        var viewportSize = GetViewport()?.GetVisibleRect().Size;
 
         RectPosition = new Vector2(0, titleBarHeight);
-        RectSize = new Vector2(viewportSize.x, viewportSize.y - titleBarHeight);
+        RectSize = new Vector2(
+            viewportSize.GetValueOrDefault().x, viewportSize.GetValueOrDefault().y - titleBarHeight);
     }
 
     private void OnCloseButtonMouseEnter()
