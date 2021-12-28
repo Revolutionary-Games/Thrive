@@ -45,12 +45,6 @@ MaterialToEdit = SubResource( 1 )
 
 [node name="OrganelleParent" type="Spatial" parent="."]
 
-[node name="EngulfAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 6 )
-unit_size = 50.0
-max_distance = 100.0
-bus = "SFX"
-
 [node name="BindingAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 unit_size = 50.0
@@ -64,10 +58,10 @@ max_distance = 100.0
 bus = "SFX"
 
 [node name="EngulfDetector" type="Area" parent="."]
-input_ray_pickable = false
-monitorable = false
 collision_layer = 0
 collision_mask = 2
+input_ray_pickable = false
+monitorable = false
 
 [node name="EngulfShape" type="CollisionShape" parent="EngulfDetector"]
 shape = SubResource( 2 )

@@ -99,7 +99,7 @@ public class GUICommon : NodeWithInput
         var customPopup = popup as ICustomPopup;
 
         if (!IsAnyExclusivePopupActive || (customPopup != null &&
-            !customPopup.ExclusiveAllowCloseOnEscape))
+                !customPopup.ExclusiveAllowCloseOnEscape))
         {
             return false;
         }

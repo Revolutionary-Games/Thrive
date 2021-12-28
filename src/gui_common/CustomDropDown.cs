@@ -13,6 +13,8 @@ public class CustomDropDown : MenuButton
     /// </summary>
     public PopupMenu Popup;
 
+    private readonly float cachedPopupVSeparation;
+
     private Tween tween;
 
     /// <summary>
@@ -21,14 +23,12 @@ public class CustomDropDown : MenuButton
     /// </summary>
     private Vector2 iconSize;
 
-    private float cachedPopupVSeparation;
-
-    private List<Item> items;
+    private Dictionary<string, List<Item>> items;
 
     public CustomDropDown()
     {
         Popup = GetPopup();
-        items = new List<Item>();
+        items = new Dictionary<string, List<Item>>();
         tween = new Tween();
 
         AddChild(tween);
@@ -51,50 +51,122 @@ public class CustomDropDown : MenuButton
         ReadjustRectSizes();
     }
 
-    /// <summary>
-    ///   Helper for adding item into PopupMenu and also an icon to be custom drawn in this class
-    /// </summary>
-    public void AddItem(string text, int id, bool checkable, Color color, Texture icon = null)
+    public void AddItemSection(string name)
     {
+        if (!items.ContainsKey(name))
+            items.Add(name, new List<Item>());
+    }
+
+    /// <summary>
+    ///   Helper for adding an item into the items dictionary. This does not add the item into the PopupMenu,
+    ///   for that see <see cref="CreateElements"/>.
+    /// </summary>
+    /// <returns>
+    ///   The CustomDropDown's own Item class. All custom operations relating to the dropdown uses this.
+    /// </returns>
+    public Item AddItem(string text, bool checkable, Color color, Texture icon = null,
+        string section = "default")
+    {
+        if (!items.ContainsKey(section))
+        {
+            AddItemSection(section);
+            items[section].Add(new Item { Text = section, Separator = true });
+        }
+
         var item = new Item
         {
             Text = text,
             Icon = icon,
             Color = color,
-            Id = id,
             Checkable = checkable,
         };
 
-        items.Add(item);
+        items[section].Add(item);
 
-        if (item.Checkable)
+        return item;
+    }
+
+    /// <summary>
+    ///   Returns the index of an item containing the given name/text in a section.
+    /// </summary>
+    /// <param name="name">The item text</param>
+    /// <param name="section">The item section where to search the item index for</param>
+    /// <returns>Item's index. -1 if not found</returns>
+    public int GetItemIndex(string name, string section)
+    {
+        if (!items.ContainsKey(section))
         {
-            Popup.AddCheckItem(item.Text, item.Id);
+            GD.PrintErr("No section found with name ", section);
+            return -1;
         }
-        else
+
+        foreach (var item in items[section])
         {
-            Popup.AddItem(item.Text, id);
+            if (item.Text == name)
+                return Popup.GetItemIndex(item.Id) + 1;
+        }
+
+        return -1;
+    }
+
+    /// <summary>
+    ///   Returns the index of an item containing the given name/text in all section.
+    /// </summary>
+    /// <param name="name">The item text</param>
+    /// <returns>
+    ///   List of item's index as this takes into account all exact name occurrences in all sections.
+    ///   Empty list if not found.
+    /// </returns>
+    public List<int> GetItemIndex(string name)
+    {
+        var result = new List<int>();
+
+        foreach (var section in items)
+        {
+            foreach (var item in section.Value)
+            {
+                if (item.Text == name)
+                    result.Add(Popup.GetItemIndex(item.Id) + 1);
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Retrieves all items from dictionary and instantiates them into <see cref="Popup"/>.
+    /// </summary>
+    public void CreateElements()
+    {
+        Popup.Clear();
+
+        var id = 0;
+
+        foreach (var section in items)
+        {
+            foreach (var item in section.Value)
+            {
+                if (item.Text == "default" && item.Separator)
+                    continue;
+
+                item.Id = id++;
+
+                if (item.Checkable)
+                {
+                    Popup.AddCheckItem(item.Text, id);
+                    Popup.SetItemChecked(Popup.GetItemIndex(id), item.Checked);
+                }
+                else
+                {
+                    Popup.AddItem(item.Text, id);
+                    Popup.SetItemAsSeparator(Popup.GetItemIndex(id), item.Separator);
+                }
+            }
         }
 
         // Redraw the menu button and popup
         Popup.Update();
         Update();
-    }
-
-    /// <summary>
-    ///   Returns the index of the item containing the given name/text.
-    /// </summary>
-    /// <param name="name">The item text</param>
-    /// <returns>Item's index. -1 if not found</returns>
-    public int GetItemIndex(string name)
-    {
-        foreach (var item in items)
-        {
-            if (item.Text == name)
-                return Popup.GetItemIndex(item.Id);
-        }
-
-        return -1;
     }
 
     private void RedrawPopup()
@@ -129,17 +201,26 @@ public class CustomDropDown : MenuButton
         // Offset from the top
         var height = Popup.GetStylebox("panel").ContentMarginTop + (font.GetHeight() / 2) - (iconSize.y / 2);
 
-        foreach (var item in items)
+        foreach (var section in items)
         {
-            // Skip if item has no icon
-            if (item.Icon == null)
-                continue;
+            foreach (var item in section.Value)
+            {
+                if (item.Separator && item.Text != "default")
+                {
+                    height += font.GetHeight() + Popup.GetConstant("vseparation");
+                    continue;
+                }
 
-            var position = new Vector2(Popup.RectSize.x - iconSize.x - 6, height);
+                // Skip if item has no icon
+                if (item.Icon == null)
+                    continue;
 
-            Popup.DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
+                var position = new Vector2(Popup.RectSize.x - iconSize.x - 6, height);
 
-            height += font.GetHeight() + Popup.GetConstant("vseparation");
+                Popup.DrawTextureRect(item.Icon, new Rect2(position, iconSize), false, item.Color);
+
+                height += font.GetHeight() + Popup.GetConstant("vseparation");
+            }
         }
     }
 
@@ -154,14 +235,23 @@ public class CustomDropDown : MenuButton
     }
 
     /// <summary>
-    ///   Helper data regarding the popup menu item
+    ///   Helper data regarding the popup menu item. All custom operations relating to the dropdown uses this,
+    ///   we can't utilize PopupMenu's internal item class since it's not exposed to the user.
     /// </summary>
-    private class Item
+    /// <remarks>
+    ///   <para>
+    ///     NOTE: Fields may not always be updated, especially if the user bypass custom methods and directly
+    ///     change the internal items by using methods in <see cref="Popup"/>.
+    ///   </para>
+    /// </remarks>
+    public class Item
     {
         public string Text;
         public Texture Icon;
         public Color Color;
         public bool Checkable;
+        public bool Checked;
         public int Id;
+        public bool Separator;
     }
 }

@@ -24,12 +24,13 @@
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\ChunkFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
-    <Compile Include="src\auto-evo\simulation\food_source\MarineSnowFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
+    <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
@@ -38,6 +39,7 @@
     <Compile Include="src\engine\LocalizedString.cs" />
     <Compile Include="src\engine\LocalizedStringBuilder.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
+    <Compile Include="src\engine\CollisionObjectHelpers.cs" />
     <Compile Include="src\engine\EntityReference.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\FileDropHandler.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
+    <Compile Include="src\general\HybridAudioPlayer.cs" />
     <Compile Include="src\general\IEntity.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
     <Compile Include="src\general\PathUtils.cs" />
@@ -91,6 +94,8 @@
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
     <Compile Include="src\general\ShuffleBag.cs" />
+    <Compile Include="src\gui_common\charts\ChartDataSet.cs" />
+    <Compile Include="src\gui_common\charts\IDataSetsLegend.cs" />
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\DataPoint.cs" />
@@ -140,6 +145,7 @@
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
+    <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />

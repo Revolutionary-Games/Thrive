@@ -33,8 +33,8 @@ public class ThriveTypeConverter : TypeConverter
             var type = value.GetType();
 
             if (type.CustomAttributes.Any(attr =>
-                attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
-                attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
+                    attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
+                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
             {
                 type = type.BaseType;
             }
