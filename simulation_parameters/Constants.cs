@@ -458,12 +458,12 @@ public static class Constants
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
-    public const float DISSOLVED_PRODUCTION_FACTOR = 1;
+    public const float DISSOLVED_PRODUCTION_FACTOR = 200;
     public const float DISSOLVED_MIN = 0.0f;
 
     // Concentration of dissolved gases "added" to all patches during time skips
     public const float PATCH_CONSTANT_OXYGEN_INPUT = 0.0f;
-    public const float PATCH_CONSTANT_CARBON_DIOXYDE_INPUT = 0.01f;
+    public const float PATCH_CONSTANT_CARBON_DIOXYDE_INPUT = 0.05f;
     public const float PATCH_CONSTANT_NITROGEN_INPUT = 0.01f;
 
     public const int MAX_SPAWNS_PER_FRAME = 2;
