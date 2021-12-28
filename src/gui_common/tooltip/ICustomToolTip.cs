@@ -16,10 +16,10 @@ public enum ToolTipPositioning
     FollowMousePosition,
 
     /// <summary>
-    ///   Tooltip is positioned relative to the bottom right edge of a Control rect. Useful for tooltips
+    ///   Tooltip is positioned relative to the bottom right corner of a Control rect. Useful for tooltips
     ///   pertaining to items in a grid-based layout.
     /// </summary>
-    ControlBottomRightEdge,
+    ControlBottomRightCorner,
 }
 
 /// <summary>
