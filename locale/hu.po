@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-22 11:34+0700\n"
-"PO-Revision-Date: 2021-12-21 17:46+0000\n"
+"PO-Revision-Date: 2021-12-30 18:28+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/hu/>\n"
@@ -94,7 +94,7 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "A hidrogén-szulfidot glükózzá tudod alakítani kemoplasztiszok és "
-"kemoszintetizáló proteinek segítségével. A vasat rusticyanin segítségével "
+"kemoszintetizáló fehérjék segítségével. A vasat rusticyanin segítségével "
 "pedig ATP-vé tudod alakítani."
 
 #: ../simulation_parameters/common/help_texts.json:38
@@ -306,8 +306,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész "
-"(VuTuTuTu), viszont ez sok ATP-t is használ"
+"Itt egy kis tanács. Minél több ostorod van, annál gyorsabban mész (VuTuTuTu)"
+", viszont ez több ATP-t is használ"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
@@ -339,6 +339,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:183
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
+"Érdekesség: Az amőbák műlábakkal vadásznak prédáikra, amiket pseudopodia-nak "
+"neveznek. Ezt mindenképpen szeretnénk, hogy a Thrive-ban benne legyen."
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
@@ -821,7 +823,7 @@ msgstr "Protoplazma"
 #: ../simulation_parameters/microbe_stage/organelles.json:149
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:563
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr "Kemoszintetizáló proteinek"
+msgstr "Kemoszintetizáló fehérjék"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:855
@@ -929,7 +931,7 @@ msgstr "előző:"
 
 #: ../src/auto-evo/RunResults.cs:591
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr ""
+msgstr "{0}-ról/-ről vált le"
 
 #: ../src/auto-evo/RunResults.cs:604
 msgid "RUN_RESULT_NICHE_FILL"
@@ -2225,7 +2227,7 @@ msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
-msgstr ""
+msgstr "Ellenőriz"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
@@ -2349,8 +2351,11 @@ msgstr ""
 "változásaira, mielőtt cselekednek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:256
+#, fuzzy
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"A fókuszált sejtek nagyobb távolságokat tesznek meg táplálék reményében.\n"
+"A reszponzív sejtek hamar új célpontokat keresnek."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:272
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
@@ -2421,43 +2426,82 @@ msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:"
 "compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:"
-"compound type=\"oxygen\"][/thrive:compound] mennyiségétől."
+"compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:371
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
+"A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt "
+"a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés "
+"segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a "
+"működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására "
+"az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában "
+"helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi "
+"glikolízist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:466
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Thilakoid"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:467
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
+"[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. A folyamat "
+"gyorsasága a [thrive:compound type=\"carbondioxide\"] koncentrációjától és a "
+"[thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától függ."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:468
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
+"A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a "
+"pigmentek képesek a fény energiáját felhasználni glükóz előállítására "
+"vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E "
+"pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz "
+"előállításának intenzitása a fény intenzitásától, és a szén-dioxid "
+"koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, "
+"ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:564
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-ot alakít át "
+"[thrive:compound type=\"glucose\"][/thrive:compound]-zá. A folyamat "
+"sebessége a [thrive:compound type=\"carbondioxide\"][/thrive:compound] "
+"koncentrációjától függ. Továbbá még a [thrive:compound type=\"glucose\""
+"][/thrive:compound]-t alakítja át [thrive:compound type=\"atp\""
+"][/thrive:compound]-vé."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:565
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
+"A kemoszintetizáló fehérjék kicsi fehérjecsoportosulások a citoplazmában, "
+"melyek képesek glükózt előállítani hidrogén-szulfidból, vízből, és szén-"
+"dioxidból. Ezt a folyamatot hívjuk hidrogén-szulfid kemoszintézisnek. A "
+"glükóz előállításának intenzitása a szén-dioxid koncentrációjától függ. "
+"Mivel a kemoszintetizáló fehérjék a citoplazmában helyezkednek el, ezért a "
+"körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:661
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
+"[thrive:compound type=\"iron\"][/thrive:compound]-at alakít át [thrive:"
+"compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:"
+"compound type=\"carbondioxide\"][/thrive:compound] és az [thrive:compound "
+"type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:662
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
+"A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes "
+"oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-"
+"légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:758
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+"[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az "
+"[thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:759
 msgid "NITROGENASE_DESCRIPTION"
@@ -4044,7 +4088,7 @@ msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:78
 msgid "DELETE_SELECTED"
-msgstr "Törlés kiválasztva"
+msgstr "Mentés/-ek törlése"
 
 #: ../src/saving/SaveManagerGUI.tscn:87
 msgid "CLEAN_UP_OLD_SAVES"
@@ -4315,17 +4359,12 @@ msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:"
-"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
-"input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a "
-"forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a "
-"[thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha "
-"rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:"
-"input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy "
-"kikapcsolni."
+"Hogyha netán bajlódsz a játék mechanikáival, akkor nézd meg a segítség "
+"menüt. A bal alsó sarokban található kérdőjel ikonnal tudod megnyitni.\n"
+"\n"
+"Még egy tanács: a görgő segítségével távolodhatsz a kamerával a sejtedtől."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
