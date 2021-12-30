@@ -21,6 +21,7 @@ FileUtils.mkdir_p 'builds'
 ALL_TARGETS = ['Linux/X11', 'Windows Desktop', 'Windows Desktop (32-bit)', 'Mac OSX'].freeze
 DEVBUILD_TARGETS = ['Linux/X11', 'Windows Desktop'].freeze
 BASE_BUILDS_FOLDER = File.realpath 'builds'
+EXPECTED_DATA_FOLDER = 'data_Thrive'
 
 README_FILE = 'builds/README.txt'
 REVISION_FILE = 'builds/revision.txt'
@@ -488,6 +489,15 @@ def perform_export(target)
     # Failed
     error 'Exporting failed.'
     puts 'Retrying...' if attempt < attempts
+  end
+
+  if target !~ /mac/i
+    data_folder = File.join target_folder, EXPECTED_DATA_FOLDER
+
+    unless File.exist? data_folder
+      onError "Expected data folder (#{data_folder}) was not created on export. "\
+              'Are export templates installed?'
+    end
   end
 
   if success
