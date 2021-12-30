@@ -479,7 +479,8 @@ def perform_export(target)
   success = false
 
   (1..attempts).each do |attempt|
-    if runOpen3(godot, '--export', godot_template_name(target), target_file).success?
+    if runOpen3(godot, '--no-window', '--export', godot_template_name(target),
+                target_file).success?
       success = true
       break
     end
