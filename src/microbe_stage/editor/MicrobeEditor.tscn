@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=2]
+[gd_scene load_steps=129 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -333,20 +333,6 @@ content_margin_right = 5.0
 content_margin_top = 5.0
 content_margin_bottom = 5.0
 bg_color = Color( 0, 0.490196, 0.258824, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id=40]
-content_margin_left = 10.0
-content_margin_right = 10.0
-bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -1366,10 +1352,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 4.0
-margin_top = 29.0
-margin_right = 320.0
-margin_bottom = 619.0
+margin_left = 8.0
+margin_top = 33.0
+margin_right = 324.0
+margin_bottom = 623.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -2434,30 +2420,18 @@ custom_constants/separation = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 846.0
-margin_bottom = 37.0
+margin_bottom = 35.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 380.0
-margin_bottom = 37.0
+margin_bottom = 35.0
 size_flags_horizontal = 3
-
-[node name="PatchName" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_right = 344.0
-margin_bottom = 37.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 56 )
-custom_styles/normal = SubResource( 40 )
-text = "PATCH_NAME"
-autowrap = true
-__meta__ = {
-"_editor_description_": "PLACEHOLDER"
-}
+custom_constants/separation = 10
 
 [node name="PatchSelector" type="OptionButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 348.0
-margin_top = 2.0
-margin_right = 380.0
-margin_bottom = 34.0
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 0, 32 )
 size_flags_vertical = 4
 custom_constants/hseparation = 0
@@ -2467,11 +2441,23 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="PatchName" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 42.0
+margin_right = 380.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 56 )
+text = "PATCH_NAME"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
 [node name="TimeIndicator" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 384.0
-margin_top = 6.0
+margin_top = 4.0
 margin_right = 534.0
-margin_bottom = 37.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 150, 0 )
 mouse_filter = 1
 size_flags_vertical = 8
@@ -2484,9 +2470,9 @@ __meta__ = {
 
 [node name="AutoEvoButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 538.0
-margin_top = 7.0
+margin_top = 5.0
 margin_right = 638.0
-margin_bottom = 37.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 15 )
@@ -2498,9 +2484,9 @@ text = "AUTO_EVO"
 
 [node name="FoodChainButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 642.0
-margin_top = 7.0
+margin_top = 5.0
 margin_right = 742.0
-margin_bottom = 37.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 15 )
@@ -2512,9 +2498,9 @@ text = "FOOD_CHAIN"
 
 [node name="TimelineButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 746.0
-margin_top = 7.0
+margin_top = 5.0
 margin_right = 846.0
-margin_bottom = 37.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 100, 30 )
 size_flags_vertical = 8
 custom_fonts/font = ExtResource( 15 )
@@ -2525,7 +2511,7 @@ group = SubResource( 28 )
 text = "TIMELINE"
 
 [node name="EvoResultsPanel" type="PanelContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 42.0
+margin_top = 40.0
 margin_right = 846.0
 margin_bottom = 533.0
 size_flags_horizontal = 3
@@ -2536,7 +2522,7 @@ custom_styles/panel = SubResource( 29 )
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 845.0
-margin_bottom = 490.0
+margin_bottom = 492.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -2546,7 +2532,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 834.0
-margin_bottom = 479.0
+margin_bottom = 481.0
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer"]
@@ -2618,9 +2604,9 @@ flip_v = true
 [node name="BottomFade" type="TextureRect" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel"]
 modulate = Color( 1, 1, 1, 0.392157 )
 margin_left = 1.0
-margin_top = 460.0
+margin_top = 462.0
 margin_right = 845.0
-margin_bottom = 490.0
+margin_bottom = 492.0
 rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
 size_flags_vertical = 8
