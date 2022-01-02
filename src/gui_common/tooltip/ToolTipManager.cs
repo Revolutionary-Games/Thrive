@@ -126,7 +126,7 @@ public class ToolTipManager : CanvasLayer
                     position = GetViewport().GetMousePosition();
                     offset = Constants.TOOLTIP_OFFSET;
                     break;
-                case ToolTipPositioning.ControlBottomRightEdge:
+                case ToolTipPositioning.ControlBottomRightCorner:
                 {
                     var control = ToolTipHelper.GetControlAssociatedWithToolTip(MainToolTip);
                     position = new Vector2(
