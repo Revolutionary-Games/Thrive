@@ -1050,23 +1050,23 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         OnPhysicalConditionsChartLegendPressed("temperature");
     }
 
-    public void UpdateTimeline()
+    public void UpdateTimeline(Patch patch)
     {
         var customRtlScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
         var timelineHighlight = GD.Load<StyleBoxTexture>("res://src/microbe_stage/editor/TimelineHighlight.tres");
 
         timelineEventsContainer.FreeChildren();
 
-        var timeline = editor.CurrentGame.GameWorld.Timeline;
-
-        foreach (var snapshot in timeline)
+        for (int i = patch.History.Count - 1; i >= 0; i--)
         {
+            var snapshot = patch.History[i];
+
             var headerContainer = new HBoxContainer();
             var spacer = new Control { RectMinSize = new Vector2(26, 0) };
 
             var timePeriodLabel = new Label
             {
-                Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", snapshot.Key) + " "
+                Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", snapshot.TimePeriod) + " "
                     + TranslationServer.Translate("MEGA_YEARS"),
                 RectMinSize = new Vector2(0, 55),
                 Valign = Label.VAlign.Center,
@@ -1080,7 +1080,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             headerContainer.AddChild(timePeriodLabel);
             timelineEventsContainer.AddChild(headerContainer);
 
-            foreach (var entry in snapshot.Value)
+            foreach (var entry in snapshot.Events)
             {
                 var itemContainer = new HBoxContainer();
                 var iconRect = new TextureRect
@@ -1105,7 +1105,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
                 var eventLabel = customRtlScene.Instance<CustomRichTextLabel>();
                 eventLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-                eventLabel.ExtendedBbcode = entry.EventDescription.ToString();
+                eventLabel.ExtendedBbcode = entry.Description.ToString();
                 eventLabel.FitContentHeight = true;
 
                 eventLabel.AddFontOverride("normal_font", GetFont("jura_almost_smaller", "Fonts"));
@@ -1313,6 +1313,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
 
         UpdateReportTabStatistics(patch);
+        UpdateTimeline(patch);
 
         UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
     }

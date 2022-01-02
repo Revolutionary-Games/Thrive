@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
@@ -52,7 +53,7 @@ public class Patch
     ///   List of all the recorded snapshot of this patch. Useful for statistics.
     /// </summary>
     [JsonIgnore]
-    public IReadOnlyCollection<PatchSnapshot> History => history;
+    public IReadOnlyList<PatchSnapshot> History => history;
 
     [JsonIgnore]
     public double TimePeriod
@@ -69,6 +70,11 @@ public class Patch
 
     [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
+
+    /// <summary>
+    ///   All logged events occured in this patch.
+    /// </summary>
+    public IReadOnlyList<PatchSnapshot.EventDescription> Events => currentSnapshot.Events;
 
     /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
@@ -183,9 +189,9 @@ public class Patch
     }
 
     /// <summary>
-    ///   Stores the current state of patch conditions into the patch history.
+    ///   Stores the current state of the patch into the patch history.
     /// </summary>
-    public void RecordConditions()
+    public void RecordSnapshot()
     {
         if (history.Count >= Constants.PATCH_HISTORY_RANGE)
             history.RemoveFromBack();
@@ -195,8 +201,27 @@ public class Patch
             currentSnapshot.RecordedSpeciesInfo[species] = species.RecordSpeciesInfo();
         }
 
-        var conditions = (PatchSnapshot)currentSnapshot.Clone();
-        history.AddToFront(conditions);
+        var snapshot = (PatchSnapshot)currentSnapshot.Clone();
+        history.AddToFront(snapshot);
+    }
+
+    public void LogEvent(LocalizedString description, bool highlight = false, string iconPath = null)
+    {
+        // Event already logged in timeline
+        if (currentSnapshot.Events.Any(entry => entry.Description.ToString() == description.ToString()))
+            return;
+
+        currentSnapshot.Events.Add(new PatchSnapshot.EventDescription
+        {
+            Description = description,
+            IconPath = iconPath,
+            Highlighted = highlight,
+        });
+    }
+
+    public void ClearLoggedEvents()
+    {
+        currentSnapshot.Events.Clear();
     }
 
     public override string ToString()
@@ -217,6 +242,8 @@ public class PatchSnapshot : ICloneable
 
     public BiomeConditions Biome;
 
+    public List<EventDescription> Events = new();
+
     public object Clone()
     {
         // We only do a shallow copy of RecordedSpeciesInfo here as SpeciesInfo objects are never modified.
@@ -226,8 +253,20 @@ public class PatchSnapshot : ICloneable
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
             Biome = (BiomeConditions)Biome.Clone(),
+            Events = new List<EventDescription>(Events),
         };
 
         return result;
+    }
+
+    /// <summary>
+    ///   A text-based description of what has happened in a patch to be added to the timeline. Decorated with an icon
+    ///   if there's any.
+    /// </summary>
+    public class EventDescription
+    {
+        public LocalizedString Description { get; set; }
+        public string IconPath { get; set; }
+        public bool Highlighted { get; set; }
     }
 }

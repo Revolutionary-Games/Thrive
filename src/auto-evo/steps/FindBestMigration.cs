@@ -10,14 +10,16 @@
     {
         private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
+        private readonly Patch patch;
         private readonly Species species;
         private readonly Random random;
 
-        public FindBestMigration(AutoEvoConfiguration configuration, PatchMap map, Species species,
+        public FindBestMigration(AutoEvoConfiguration configuration, PatchMap map, Species species, Patch patch,
             Random random, int migrationsToTry, bool allowNoMigration) : base(migrationsToTry, allowNoMigration)
         {
             this.configuration = configuration;
             this.map = map;
+            this.patch = patch;
             this.species = species;
             this.random = new Random(random.Next());
         }
@@ -31,7 +33,7 @@
             if (variant.Migration == null)
                 return;
 
-            results.AddMigrationResultForSpecies(species, variant.Migration);
+            results.AddMigrationResultForSpecies(species, variant.Migration, patch);
         }
 
         protected override IAttemptResult TryCurrentVariant()

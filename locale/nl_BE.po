@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-22 15:57+0700\n"
+"POT-Creation-Date: 2022-01-02 16:20+0700\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -923,92 +923,102 @@ msgstr "Startend"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
-#: ../src/auto-evo/RunResults.cs:559
+#: ../src/auto-evo/RunResults.cs:560
 msgid "POPULATION"
 msgstr "bevolking:"
 
-#: ../src/auto-evo/RunResults.cs:568
+#: ../src/auto-evo/RunResults.cs:569
 msgid "WENT_EXTINCT_IN"
 msgstr "stierf uit in {0}"
 
-#: ../src/auto-evo/RunResults.cs:574
+#: ../src/auto-evo/RunResults.cs:575
 msgid "PREVIOUS"
 msgstr "vorige:"
 
-#: ../src/auto-evo/RunResults.cs:592
+#: ../src/auto-evo/RunResults.cs:593
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "splits van {0}"
 
-#: ../src/auto-evo/RunResults.cs:605
+#: ../src/auto-evo/RunResults.cs:606
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "Ontstaan om een niche te vullen"
 
-#: ../src/auto-evo/RunResults.cs:606
+#: ../src/auto-evo/RunResults.cs:607
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "Ontstaan om een niche te vullen"
 
-#: ../src/auto-evo/RunResults.cs:611
+#: ../src/auto-evo/RunResults.cs:612
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "ontstaan door verschillende selectiedruk"
 
-#: ../src/auto-evo/RunResults.cs:612
+#: ../src/auto-evo/RunResults.cs:613
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "ontstaan door verschillende selectiedruk"
 
-#: ../src/auto-evo/RunResults.cs:631
+#: ../src/auto-evo/RunResults.cs:632
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 "Populatie in sommige gebieden afgesplitst om nieuwe soorten te vormen {0}:"
 
-#: ../src/auto-evo/RunResults.cs:647
+#: ../src/auto-evo/RunResults.cs:648
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "heeft een mutatie"
 
-#: ../src/auto-evo/RunResults.cs:652
+#: ../src/auto-evo/RunResults.cs:653
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen code:"
 
-#: ../src/auto-evo/RunResults.cs:663
+#: ../src/auto-evo/RunResults.cs:664
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "verspreid naar gebieden:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:676
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} door het versturen van: {1} bevolking van gebied: {2}"
 
-#: ../src/auto-evo/RunResults.cs:694
+#: ../src/auto-evo/RunResults.cs:692
+#, fuzzy
+msgid "TIMELINE_SPECIES_MIGRATED_FROM"
+msgstr "Soortenpopulatie"
+
+#: ../src/auto-evo/RunResults.cs:699
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:701
+#: ../src/auto-evo/RunResults.cs:706
 #, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_TO_TWO"
 msgstr "Soortenpopulatie"
 
-#: ../src/auto-evo/RunResults.cs:709
+#: ../src/auto-evo/RunResults.cs:714
 msgid "TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:716
+#: ../src/auto-evo/RunResults.cs:721
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "bevolking in gebieden:"
 
-#: ../src/auto-evo/RunResults.cs:826
+#: ../src/auto-evo/RunResults.cs:831
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "stierf uit op de planeet"
 
-#: ../src/auto-evo/RunResults.cs:830
+#: ../src/auto-evo/RunResults.cs:835
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:841
+#: ../src/auto-evo/RunResults.cs:848
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Soortenpopulatie"
 
-#: ../src/auto-evo/RunResults.cs:847
+#: ../src/auto-evo/RunResults.cs:854
+#, fuzzy
+msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
+msgstr "Soortenpopulatie"
+
+#: ../src/auto-evo/RunResults.cs:860
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Soortenpopulatie"
@@ -1466,11 +1476,11 @@ msgstr "Kunst door {0}"
 msgid "CLOSE"
 msgstr "Sluit"
 
-#: ../src/general/IWorldEffect.cs:77
+#: ../src/general/IWorldEffect.cs:67
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/IWorldEffect.cs:84 ../src/gui_common/CompoundAmount.cs:168
+#: ../src/general/IWorldEffect.cs:74 ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:638
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
@@ -1479,7 +1489,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
-#: ../src/general/IWorldEffect.cs:82
+#: ../src/general/IWorldEffect.cs:72
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
@@ -2269,7 +2279,7 @@ msgid "RAW"
 msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2478
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2479
 msgid "NO_DATA_TO_SHOW"
 msgstr "Geen data om te tonen"
 
@@ -3137,7 +3147,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balansen van de chemische verbindingen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe editor laden"
 
@@ -3145,11 +3155,11 @@ msgstr "Microbe editor laden"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Wachten voor auto-evo:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo mislukt"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "loopstatus:"
 
@@ -3483,39 +3493,39 @@ msgstr "{0}-{1}m onder zeeniveau"
 msgid "WITH_POPULATION"
 msgstr "{0} met populatie: {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2032
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2033
 msgid "FAILED"
 msgstr "Mislukt"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2038
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2050
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2039
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2051
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2044
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2056
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2045
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2057
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2320
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2321
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Soortnaam moet voldoen aan het binominale naamgevingssysteem (Genus en "
 "Epithet)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2446
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2447
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2450
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2451
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2457
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2458
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2463
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2464
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 

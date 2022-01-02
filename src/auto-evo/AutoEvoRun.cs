@@ -322,13 +322,14 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, map, speciesEntry.Key,
+                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, map, speciesEntry.Key, entry.Value,
                         autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
-                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, map, speciesEntry.Key, random,
+                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, map, speciesEntry.Key, entry.Value,
+                        random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
                 }

@@ -655,7 +655,6 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
-            gui.UpdateTimeline();
         }
     }
 
@@ -2471,8 +2470,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
         else
         {
-            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld, CurrentGame.GameWorld.Map, true,
-                run.ExternalEffects);
+            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
             gui.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
@@ -2481,7 +2479,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         ApplyAutoEvoResults();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
-        gui.UpdateTimeline();
+        gui.UpdateTimeline(CurrentPatch);
 
         FadeIn();
     }
@@ -2499,8 +2497,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
-
-        gui.UpdateTimeline();
+        gui.UpdateTimeline(CurrentPatch);
 
         FadeIn();
     }
@@ -2520,7 +2517,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // for reference in patch history (e.g. displaying it as zero on the species population chart)
         foreach (var entry in CurrentGame.GameWorld.Map.Patches)
         {
-            entry.Value.RecordConditions();
+            entry.Value.RecordSnapshot();
+            entry.Value.ClearLoggedEvents();
         }
 
         var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);

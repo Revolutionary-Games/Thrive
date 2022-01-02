@@ -38,12 +38,6 @@ public class GlucoseReductionEffect : IWorldEffect
     {
         var glucose = SimulationParameters.Instance.GetCompound("glucose");
 
-        var totalAmount = 0.0f;
-        var totalChunkAmount = 0.0f;
-
-        var initialDensity = 0.0f;
-        var finalDensity = 0.0f;
-
         foreach (var key in targetWorld.Map.Patches.Keys)
         {
             var patch = targetWorld.Map.Patches[key];
@@ -51,37 +45,26 @@ public class GlucoseReductionEffect : IWorldEffect
             if (!patch.Biome.Compounds.TryGetValue(glucose, out EnvironmentalCompoundProperties glucoseValue))
                 return;
 
-            totalAmount += glucoseValue.Amount;
-            initialDensity += glucoseValue.Density;
-            totalChunkAmount += patch.GetTotalChunkCompoundAmount(glucose);
-
             // If there are microbes to be eating up the primordial soup, reduce the milk
             if (patch.SpeciesInPatch.Count > 0)
             {
+                var initialDensity = glucoseValue.Density;
+
                 glucoseValue.Density = Math.Max(glucoseValue.Density * Constants.GLUCOSE_REDUCTION_RATE,
                     Constants.GLUCOSE_MIN);
                 patch.Biome.Compounds[glucose] = glucoseValue;
-            }
 
-            finalDensity += patch.Biome.Compounds[glucose].Density;
-        }
+                var initialGlucose = Math.Round(initialDensity * glucoseValue.Amount +
+                    patch.GetTotalChunkCompoundAmount(glucose), 3);
+                var finalGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
+                    patch.GetTotalChunkCompoundAmount(glucose), 3);
 
-        if (finalDensity > 0)
-        {
-            var initialGlucose = Math.Round(initialDensity * totalAmount + totalChunkAmount, 3);
-            var finalGlucose = Math.Round(finalDensity * totalAmount + totalChunkAmount, 3);
-            var percentage = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
+                var reductionPercentage = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
-            if (percentage >= 20)
-            {
-                targetWorld.LogWorldEvent(new LocalizedString("GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"),
-                    false, "res://assets/textures/gui/bevel/glucoseDown.png");
-            }
-            else
-            {
-                targetWorld.LogWorldEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
+                // TODO: global glucose reduction
+                patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
                         glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "PERCENTAGE_VALUE"), percentage)), false,
+                            "PERCENTAGE_VALUE"), reductionPercentage)), false,
                     "res://assets/textures/gui/bevel/glucoseDown.png");
             }
         }

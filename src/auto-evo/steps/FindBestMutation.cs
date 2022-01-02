@@ -12,19 +12,21 @@
         private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
         private readonly Species species;
+        private readonly Patch patch;
         private readonly float splitThresholdFraction;
         private readonly int splitThresholdAmount;
 
         private readonly Mutations mutations = new();
 
         public FindBestMutation(AutoEvoConfiguration configuration, PatchMap map, Species species,
-            int mutationsToTry, bool allowNoMutation,
+            Patch patch, int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
             : base(mutationsToTry, allowNoMutation, splitThresholdAmount > 0)
         {
             this.configuration = configuration;
             this.map = map;
             this.species = species;
+            this.patch = patch;
             this.splitThresholdFraction = splitThresholdFraction;
             this.splitThresholdAmount = splitThresholdAmount;
         }
@@ -34,7 +36,7 @@
         protected override void OnBestResultFound(RunResults results, IAttemptResult bestVariant)
         {
             var best = (AttemptResult)bestVariant;
-            results.AddMutationResultForSpecies(species, best.Mutation);
+            results.AddMutationResultForSpecies(species, best.Mutation, patch);
 
             if (splitThresholdAmount > 0)
             {
@@ -171,12 +173,12 @@
             {
                 // Original species wants to split off
                 // So flip this around to make the mutated copy split off
-                results.AddMutationResultForSpecies(species, null);
-                results.AddSplitResultForSpecies(species, best.Mutation, bestBetter);
+                results.AddMutationResultForSpecies(species, null, patch);
+                results.AddSplitResultForSpecies(species, best.Mutation, bestBetter, patch);
             }
             else
             {
-                results.AddSplitResultForSpecies(species, data.Mutation, secondBetter);
+                results.AddSplitResultForSpecies(species, data.Mutation, secondBetter, patch);
             }
         }
 

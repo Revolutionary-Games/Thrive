@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-22 15:57+0700\n"
+"POT-Creation-Date: 2022-01-02 16:20+0700\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -864,95 +864,105 @@ msgstr "시작"
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
-#: ../src/auto-evo/RunResults.cs:559
+#: ../src/auto-evo/RunResults.cs:560
 msgid "POPULATION"
 msgstr "개체수:"
 
-#: ../src/auto-evo/RunResults.cs:568
+#: ../src/auto-evo/RunResults.cs:569
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:574
+#: ../src/auto-evo/RunResults.cs:575
 msgid "PREVIOUS"
 msgstr "이전:"
 
-#: ../src/auto-evo/RunResults.cs:592
+#: ../src/auto-evo/RunResults.cs:593
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "유전자 코드:"
 
-#: ../src/auto-evo/RunResults.cs:605
+#: ../src/auto-evo/RunResults.cs:606
 #, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "유전자 코드:"
 
-#: ../src/auto-evo/RunResults.cs:606
+#: ../src/auto-evo/RunResults.cs:607
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "유전자 코드:"
 
-#: ../src/auto-evo/RunResults.cs:611
+#: ../src/auto-evo/RunResults.cs:612
 #, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "퍼뜨리기:"
 
-#: ../src/auto-evo/RunResults.cs:612
+#: ../src/auto-evo/RunResults.cs:613
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "퍼뜨리기:"
 
-#: ../src/auto-evo/RunResults.cs:631
+#: ../src/auto-evo/RunResults.cs:632
 #, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "퍼뜨리기:"
 
-#: ../src/auto-evo/RunResults.cs:647
+#: ../src/auto-evo/RunResults.cs:648
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "변이 소유"
 
-#: ../src/auto-evo/RunResults.cs:652
+#: ../src/auto-evo/RunResults.cs:653
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "유전자 코드:"
 
-#: ../src/auto-evo/RunResults.cs:663
+#: ../src/auto-evo/RunResults.cs:664
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "퍼뜨리기:"
 
-#: ../src/auto-evo/RunResults.cs:675
+#: ../src/auto-evo/RunResults.cs:676
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} 으로의: {1} 개체 전송: {2} 로부터"
 
-#: ../src/auto-evo/RunResults.cs:694
+#: ../src/auto-evo/RunResults.cs:692
+#, fuzzy
+msgid "TIMELINE_SPECIES_MIGRATED_FROM"
+msgstr "종:"
+
+#: ../src/auto-evo/RunResults.cs:699
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:701
+#: ../src/auto-evo/RunResults.cs:706
 #, fuzzy
 msgid "TIMELINE_SPECIES_MIGRATED_TO_TWO"
 msgstr "종:"
 
-#: ../src/auto-evo/RunResults.cs:709
+#: ../src/auto-evo/RunResults.cs:714
 msgid "TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:716
+#: ../src/auto-evo/RunResults.cs:721
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "주변 개체 수:"
 
-#: ../src/auto-evo/RunResults.cs:826
+#: ../src/auto-evo/RunResults.cs:831
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:830
+#: ../src/auto-evo/RunResults.cs:835
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:841
+#: ../src/auto-evo/RunResults.cs:848
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "종:"
 
-#: ../src/auto-evo/RunResults.cs:847
+#: ../src/auto-evo/RunResults.cs:854
+#, fuzzy
+msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
+msgstr "종:"
+
+#: ../src/auto-evo/RunResults.cs:860
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "종:"
@@ -1429,11 +1439,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr "닫기"
 
-#: ../src/general/IWorldEffect.cs:77
+#: ../src/general/IWorldEffect.cs:67
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/IWorldEffect.cs:84 ../src/gui_common/CompoundAmount.cs:168
+#: ../src/general/IWorldEffect.cs:74 ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:638
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:739
@@ -1442,7 +1452,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/general/IWorldEffect.cs:82
+#: ../src/general/IWorldEffect.cs:72
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
@@ -2236,7 +2246,7 @@ msgid "RAW"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:679
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2478
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2479
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -3087,7 +3097,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "성분 비율"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
@@ -3095,11 +3105,11 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "자동 진화 대기중:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "실행 상태:"
 
@@ -3440,40 +3450,40 @@ msgstr "해수면으로부터 {0}-{1}m"
 msgid "WITH_POPULATION"
 msgstr "{0} 의 개체수: {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2032
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2033
 #, fuzzy
 msgid "FAILED"
 msgstr "저장 실패"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2038
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2050
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2039
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2051
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "개체수:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2044
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2056
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2045
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2057
 #, fuzzy
 msgid "N_A"
 msgstr "N/A 변이 점수"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2320
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2321
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2446
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2447
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2450
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2451
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2457
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2458
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2463
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2464
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 

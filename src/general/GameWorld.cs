@@ -26,15 +26,6 @@ public class GameWorld
     [JsonProperty]
     private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
 
-    [JsonProperty]
-    private Dictionary<double, List<WorldEventDescription>> worldTimeline = new();
-
-    /// <summary>
-    ///   Another place for worldTimeline keys to allow removing old dictionary keys
-    ///   through Queue's functionality
-    /// </summary>
-    private Queue<double> worldTimelineKeys = new();
-
     /// <summary>
     ///   This world's auto-evo run
     /// </summary>
@@ -131,11 +122,6 @@ public class GameWorld
             effects.AddRange(value);
         }
     }
-
-    /// <summary>
-    ///   All logged events in this game world.
-    /// </summary>
-    public IReadOnlyDictionary<double, List<WorldEventDescription>> Timeline => worldTimeline;
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
@@ -324,48 +310,11 @@ public class GameWorld
         return worldSpecies[id];
     }
 
-    public void LogWorldEvent(LocalizedString description, bool highlight = false, string iconPath = null)
-    {
-        // Enforce limit
-        if (worldTimeline.Count >= Constants.TIMELINE_HISTORY_RANGE)
-        {
-            var oldestKey = worldTimelineKeys.Dequeue();
-            worldTimeline.Remove(oldestKey);
-        }
-
-        if (!worldTimeline.ContainsKey(TotalPassedTime))
-            worldTimeline.Add(TotalPassedTime, new List<WorldEventDescription>());
-
-        // Event already logged in timeline
-        if (worldTimeline[TotalPassedTime].Any(entry => entry.EventDescription.ToString() == description.ToString()))
-            return;
-
-        worldTimeline[TotalPassedTime].Add(new WorldEventDescription
-        {
-            EventDescription = description,
-            IconPath = iconPath,
-            Highlighted = highlight,
-        });
-
-        worldTimelineKeys.Enqueue(TotalPassedTime);
-    }
-
     private void CreateRunIfMissing()
     {
         if (autoEvo != null)
             return;
 
         autoEvo = AutoEvo.AutoEvo.CreateRun(this);
-    }
-
-    /// <summary>
-    ///   A description of what has happened in the game world to be added to the timeline. Decorated with an icon
-    ///   if there's any.
-    /// </summary>
-    public class WorldEventDescription
-    {
-        public LocalizedString EventDescription { get; set; }
-        public string IconPath { get; set; }
-        public bool Highlighted { get; set; }
     }
 }
