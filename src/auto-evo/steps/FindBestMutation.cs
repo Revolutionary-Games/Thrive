@@ -118,27 +118,27 @@
             // Used to track in which patch the best and second best where the closest
             (Patch Patch, long Difference) closestMatch = (null, 0);
 
-            foreach (var patch in best.PatchScores.Select(p => p.Key).Concat(data.PatchScores.Select(p => p.Key))
+            foreach (var selected in best.PatchScores.Select(p => p.Key).Concat(data.PatchScores.Select(p => p.Key))
                          .Distinct())
             {
-                if (!best.PatchScores.TryGetValue(patch, out long bestScore))
+                if (!best.PatchScores.TryGetValue(selected, out long bestScore))
                     bestScore = 0;
 
-                if (!data.PatchScores.TryGetValue(patch, out long secondScore))
+                if (!data.PatchScores.TryGetValue(selected, out long secondScore))
                     secondScore = 0;
 
                 if (closestMatch.Patch == null || closestMatch.Difference < secondScore - bestScore)
                 {
-                    closestMatch = (patch, secondScore - bestScore);
+                    closestMatch = (selected, secondScore - bestScore);
                 }
 
                 if (secondScore >= bestScore)
                 {
-                    secondBetter.Add(patch);
+                    secondBetter.Add(selected);
                 }
                 else
                 {
-                    bestBetter.Add(patch);
+                    bestBetter.Add(selected);
                 }
             }
 

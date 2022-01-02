@@ -100,9 +100,9 @@
 
                 if (entry.Count > 0)
                 {
-                    Patch patch = entry[0].Value;
+                    Patch selectedPatch = entry[0].Value;
 
-                    var population = patch.GetSpeciesPopulation(species);
+                    var population = selectedPatch.GetSpeciesPopulation(species);
                     if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
                         continue;
 
@@ -110,7 +110,7 @@
                     // TODO: could prefer patches this species is not already
                     // in or about to go extinct, or really anything other
                     // than random selection
-                    var target = patch.Adjacent.ToList().Random(random);
+                    var target = selectedPatch.Adjacent.ToList().Random(random);
 
                     if (target == null)
                         continue;
@@ -123,7 +123,7 @@
                     if (moveAmount > 0)
                     {
                         // Move is a success
-                        return new SpeciesMigration(patch, target, moveAmount);
+                        return new SpeciesMigration(selectedPatch, target, moveAmount);
                     }
                 }
             }

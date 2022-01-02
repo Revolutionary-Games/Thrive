@@ -57,13 +57,14 @@
             results[species].NewPopulationInPatches[patch] = Math.Max(newPopulation, 0);
         }
 
-        public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, long populationAmount,
-            Patch originPatch)
+        public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch,
+            long populationAmount, Patch originPatch)
         {
             if (populationAmount <= 0)
                 throw new ArgumentException("Invalid population migration amount");
 
-            AddMigrationResultForSpecies(species, new SpeciesMigration(fromPatch, toPatch, populationAmount), originPatch);
+            AddMigrationResultForSpecies(
+                species, new SpeciesMigration(fromPatch, toPatch, populationAmount), originPatch);
         }
 
         public void AddMigrationResultForSpecies(Species species, SpeciesMigration migration, Patch originPatch)
@@ -859,8 +860,8 @@
                     else if (!newPatchPopulation.ContainsKey(entry.OriginPatch))
                     {
                         entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL",
-                            entry.Species.FormattedName), entry.Species.PlayerSpecies,
-                        "res://assets/textures/gui/bevel/extinctionLocal.png");
+                                entry.Species.FormattedName), entry.Species.PlayerSpecies,
+                            "res://assets/textures/gui/bevel/extinctionLocal.png");
                     }
                 }
 
