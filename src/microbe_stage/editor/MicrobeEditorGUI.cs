@@ -1122,7 +1122,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateReportTabPatchSelector()
     {
-        reportTabPatchName.Text = TranslationServer.Translate(editor.CurrentPatch.Name);
+        UpdateReportTabPatchName(editor.CurrentPatch);
 
         reportTabPatchSelector.Clear();
 
