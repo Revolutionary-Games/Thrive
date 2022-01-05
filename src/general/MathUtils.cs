@@ -103,14 +103,4 @@ public static class MathUtils
     {
         return nFactorial / (Factorial(r) * Factorial(n - r));
     }
-
-    public static Vector3 ToVector3(this Vector2 vector, float y = 0)
-    {
-        return new Vector3(vector.x, y, vector.y);
-    }
-
-    public static Vector2 ToVector2(this Vector3 vector)
-    {
-        return new Vector2(vector.x, vector.z);
-    }
 }

@@ -206,9 +206,9 @@ public class OrganelleDefinition : IRegistryType
         return rotatedHexesCache[rotation];
     }
 
-    public Vector2 CalculateCenterOffset()
+    public Vector3 CalculateCenterOffset()
     {
-        var offset = new Vector2(0, 0);
+        var offset = new Vector3(0, 0, 0);
 
         foreach (var hex in Hexes)
         {
@@ -219,7 +219,7 @@ public class OrganelleDefinition : IRegistryType
         return offset;
     }
 
-    public Vector2 CalculateModelOffset()
+    public Vector3 CalculateModelOffset()
     {
         var temp = CalculateCenterOffset();
         temp /= HexCount;

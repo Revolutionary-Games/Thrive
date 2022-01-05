@@ -5,14 +5,14 @@
 /// </summary>
 public class GuidanceLine : ImmediateGeometry
 {
-    private Vector2 lineStart;
+    private Vector3 lineStart;
 
-    private Vector2 lineEnd;
+    private Vector3 lineEnd;
 
     private bool dirty = true;
 
     [Export]
-    public Vector2 LineStart
+    public Vector3 LineStart
     {
         get => lineStart;
         set
@@ -26,7 +26,7 @@ public class GuidanceLine : ImmediateGeometry
     }
 
     [Export]
-    public Vector2 LineEnd
+    public Vector3 LineEnd
     {
         get => lineEnd;
         set
@@ -48,8 +48,8 @@ public class GuidanceLine : ImmediateGeometry
         Clear();
         Begin(Mesh.PrimitiveType.Lines);
 
-        AddVertex(LineStart.ToVector3());
-        AddVertex(LineEnd.ToVector3());
+        AddVertex(LineStart);
+        AddVertex(LineEnd);
 
         End();
     }

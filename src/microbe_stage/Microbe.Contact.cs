@@ -329,30 +329,29 @@ public partial class Microbe
         return EngulfSize >= target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
+    public Vector3 GetOffsetRelativeToMaster()
+    {
+        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
+            Colony.Master.Rotation.y);
+    }
+
     /// <summary>
     ///  Public because it needs to be called by external organelles only
     ///  Not meant for other uses
     /// </summary>
     public void SendOrganellePositionsToMembrane()
     {
-        var organellesCount = organelles.Organelles.Count;
-        var organellePositions = new Vector2[organellesCount];
+        var organellePositions = new List<Vector2>();
 
-        for (var i = 0; i < organellesCount; i++)
+        foreach (var entry in organelles.Organelles)
         {
-            var cartesian = Hex.AxialToCartesian(organelles.Organelles[i].Position);
-            organellePositions[i] = new Vector2(cartesian.x, cartesian.y);
+            var cartesian = Hex.AxialToCartesian(entry.Position);
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
         }
 
         Membrane.OrganellePositions = organellePositions;
         Membrane.Dirty = true;
         membraneOrganellePositionsAreDirty = false;
-    }
-
-    public Vector2 GetOffsetRelativeToMaster()
-    {
-        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).ToVector2()
-            .Rotated(Colony.Master.Rotation.y);
     }
 
     /// <summary>
@@ -372,7 +371,7 @@ public partial class Microbe
 
         // Reset some stuff
         State = MicrobeState.Normal;
-        MovementDirection = new Vector2(0, 0);
+        MovementDirection = new Vector3(0, 0, 0);
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
 
@@ -394,11 +393,11 @@ public partial class Microbe
 
             while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
             {
-                var direction = new Vector2(random.Next(0.0f, 1.0f) * 2 - 1,
-                    random.Next(0.0f, 1.0f) * 2 - 1);
+                var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
+                    0, random.Next(0.0f, 1.0f) * 2 - 1);
 
                 var agent = SpawnHelpers.InstantiateAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
-                    Constants.EMITTED_AGENT_LIFETIME, Translation.ToVector2(), direction,
+                    Constants.EMITTED_AGENT_LIFETIME, Translation, direction,
                     agentScene, this);
 
                 ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
@@ -446,7 +445,8 @@ public partial class Microbe
             // Amount of compound in one chunk
             float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
 
-            var positionAdded = new Vector2(random.Next(-2.0f, 2.0f), random.Next(-2.0f, 2.0f));
+            var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
+                random.Next(-2.0f, 2.0f));
 
             var chunkType = new ChunkConfiguration
             {
@@ -503,7 +503,7 @@ public partial class Microbe
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            var chunk = SpawnHelpers.InstantiateChunk(chunkType, Translation.ToVector2() + positionAdded,
+            var chunk = SpawnHelpers.InstantiateChunk(chunkType, Translation + positionAdded,
                 chunkScene, cloudSystem, random);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
@@ -585,7 +585,7 @@ public partial class Microbe
             RemoveCollisionExceptionWith(microbe);
     }
 
-    internal void ReParentShapes(Microbe to, Vector2 offset)
+    internal void ReParentShapes(Microbe to, Vector3 offset)
     {
         // TODO: if microbeRotation is the rotation of *this* instance we should use the variable here directly
         // An object doesn't need to be told its own member variable in a method...
@@ -657,8 +657,8 @@ public partial class Microbe
 
         var newTransform = GetNewRelativeTransform();
 
-        Rotation = new Vector3(0, newTransform.Rotation, 0);
-        Translation = newTransform.Translation.ToVector3();
+        Rotation = newTransform.Rotation;
+        Translation = newTransform.Translation;
 
         ChangeNodeParent(ColonyParent);
     }
@@ -1121,7 +1121,7 @@ public partial class Microbe
         touchedMicrobes.Remove(other);
         other.touchedMicrobes.Remove(this);
 
-        other.MovementDirection = Vector2.Zero;
+        other.MovementDirection = Vector3.Zero;
 
         // Create a colony if there isn't one yet
         if (Colony == null)

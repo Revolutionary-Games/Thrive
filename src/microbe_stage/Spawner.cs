@@ -48,14 +48,14 @@ public abstract class Spawner
     ///   Evenly distributes the spawns in a sector.
     /// </summary>
     /// <returns>Returns the relative points where stuff should spawn</returns>
-    public virtual IEnumerable<Vector2> GetSpawnPoints(float sectorDensity,
+    public virtual IEnumerable<Vector3> GetSpawnPoints(float sectorDensity,
         Random random)
     {
         var spawns = GetSpawnsInASector(sectorDensity, random);
-        var results = new List<Vector2>(spawns);
+        var results = new List<Vector3>(spawns);
         for (var i = 0; i < spawns; i++)
         {
-            var vector = new Vector2(random.NextFloat(), random.NextFloat());
+            var vector = new Vector3(random.NextFloat(), 0, random.NextFloat());
             vector *= Constants.SECTOR_SIZE;
 
             // Check if another spawn is too close
@@ -78,7 +78,7 @@ public abstract class Spawner
     /// </summary>
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
     /// <returns>An enumerator which defines the instances of the object to spawn</returns>
-    public abstract IEnumerable<SpawnedRigidBody> Instantiate(Vector2 location);
+    public abstract IEnumerable<SpawnedRigidBody> Instantiate(Vector3 location);
 
     /// <summary>
     ///   Used in <see cref="GetSpawnPoints"/> to determine how many spawns should occur in this sector and therefore

@@ -10,7 +10,7 @@ public static class MicrobeInternalCalculations
 
         float organelleMovementForce = 0;
 
-        Vector2 forwardsDirection = new Vector2(0, -1);
+        Vector3 forwardsDirection = new Vector3(0, 0, -1);
 
         foreach (var organelle in organelles)
         {
@@ -18,7 +18,7 @@ public static class MicrobeInternalCalculations
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                Vector2 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
+                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
                     - Hex.AxialToCartesian(organelle.Position)).Normalized();
 
                 float directionFactor = organelleDirection.Dot(forwardsDirection);

@@ -11,7 +11,7 @@ public class MovementComponent : ExternallyPositionedComponent
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private bool movingTail;
-    private Vector2 force;
+    private Vector3 force;
 
     private AnimationPlayer animation;
 
@@ -31,7 +31,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
         var movement = CalculateMovementForce(microbe, elapsed);
 
-        if (movement != new Vector2(0, 0))
+        if (movement != new Vector3(0, 0, 0))
             microbe.AddMovementForce(movement);
     }
 
@@ -61,9 +61,9 @@ public class MovementComponent : ExternallyPositionedComponent
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle,
-        Vector2 membraneCoords)
+        Vector3 membraneCoords)
     {
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords.ToVector3());
+        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
     }
 
     /// <summary>
@@ -72,14 +72,13 @@ public class MovementComponent : ExternallyPositionedComponent
     ///   If the flagella is placed in the microbe's center, hence delta equals 0,
     ///   consider defaultPos as the organelle's "false" position.
     /// </summary>
-    private static Vector2 CalculateForce(Hex pos, float momentum)
+    private static Vector3 CalculateForce(Hex pos, float momentum)
     {
-        Vector2 organellePosition = Hex.AxialToCartesian(pos);
-        Vector2 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        Vector3 organellePosition = Hex.AxialToCartesian(pos);
+        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         var delta = middle - organellePosition;
-        if (delta == Vector2.Zero)
+        if (delta == Vector3.Zero)
             delta = DefaultVisualPos;
-
         return delta.Normalized() * momentum;
     }
 
@@ -97,10 +96,10 @@ public class MovementComponent : ExternallyPositionedComponent
     ///   applying. So we don't have to do that. But we need to take
     ///   the right amount of atp.
     /// </summary>
-    private Vector2 CalculateMovementForce(Microbe microbe, float elapsed)
+    private Vector3 CalculateMovementForce(Microbe microbe, float elapsed)
     {
         // The movementDirection is the player or AI input
-        Vector2 direction = microbe.MovementDirection;
+        Vector3 direction = microbe.MovementDirection;
 
         var forceMagnitude = force.Dot(direction);
         if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
@@ -113,7 +112,7 @@ public class MovementComponent : ExternallyPositionedComponent
                 SetSpeedFactor(0.25f);
             }
 
-            return new Vector2(0, 0);
+            return new Vector3(0, 0, 0);
         }
 
         var animationSpeed = 2.3f;
@@ -137,7 +136,7 @@ public class MovementComponent : ExternallyPositionedComponent
             forceMagnitude / 100.0f;
 
         // Rotate the 'thrust' based on our orientation
-        direction = microbe.Transform.basis.Xform(direction.ToVector3()).ToVector2();
+        direction = microbe.Transform.basis.Xform(direction);
 
         SetSpeedFactor(animationSpeed);
 

@@ -276,7 +276,7 @@ public class FloatingChunk : SpawnedRigidBody, ISaveLoadedTracked
                             var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
                                 Constants.CHUNK_ENGULF_COMPOUND_DIVISOR) * Constants.CHUNK_ENGULF_COMPOUND_DIVISOR;
 
-                            VentCompound(Translation.ToVector2(), entry.Key, entry.Value - added);
+                            VentCompound(Translation, entry.Key, entry.Value - added);
                         }
                     }
 
@@ -316,7 +316,7 @@ public class FloatingChunk : SpawnedRigidBody, ISaveLoadedTracked
     /// </summary>
     private void VentCompounds(float delta)
     {
-        var pos = Translation.ToVector2();
+        var pos = Translation;
 
         var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
 
@@ -346,7 +346,7 @@ public class FloatingChunk : SpawnedRigidBody, ISaveLoadedTracked
         }
     }
 
-    private void VentCompound(Vector2 pos, Compound compound, float amount)
+    private void VentCompound(Vector3 pos, Compound compound, float amount)
     {
         compoundClouds.AddCloud(
             compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);

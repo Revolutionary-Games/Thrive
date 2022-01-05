@@ -26,13 +26,13 @@ public readonly struct Sector : IEquatable<Sector>
         return !(left == right);
     }
 
-    public static Sector FromPosition(Vector2 position)
+    public static Sector FromPosition(Vector3 position)
     {
         var (x, y) = GetSectorCoords(position);
         return new Sector(x, y);
     }
 
-    public bool IsInSector(Vector2 position)
+    public bool IsInSector(Vector3 position)
     {
         var (x, y) = GetSectorCoords(position);
         return x == X && y == Y;
@@ -61,10 +61,10 @@ public readonly struct Sector : IEquatable<Sector>
         return $"{X};{Y}";
     }
 
-    private static (int X, int Y) GetSectorCoords(Vector2 position)
+    private static (int X, int Y) GetSectorCoords(Vector3 position)
     {
         var x = (int)(position.x / Constants.SECTOR_SIZE);
-        var y = (int)(position.y / Constants.SECTOR_SIZE);
+        var y = (int)(position.z / Constants.SECTOR_SIZE);
         return (x, y);
     }
 }

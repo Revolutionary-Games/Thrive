@@ -78,25 +78,6 @@ public static class Constants
 
     public const int PROCESS_OBJECTS_PER_TASK = 50;
 
-    public const float STARTING_SPAWN_DENSITY = 70000.0f;
-    public const float MAX_SPAWN_DENSITY = 20000.0f;
-    public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
-
-    /// <summary>
-    ///   Radius of the zone where the player is considered immobile as he remains inside.
-    ///   Used to not overgenerate when the player doesn't move.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     The value is squared for faster computation.
-    ///   </para>
-    ///   <para>
-    ///     The non-squared radius should roughly be (1-MIN_SPAWN_RADIUS_RATIO)*max(spawn_radius), as defined above,
-    ///     to make spawn zone match when moving.
-    ///   </para>
-    /// </remarks>
-    public const int PLAYER_IMMOBILITY_ZONE_RADIUS_SQUARED = 100;
-
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
@@ -459,9 +440,7 @@ public static class Constants
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 300;
     public const int MAX_SPAWNS_PER_FRAME = 1;
-    public const int MAX_DESPAWNS_PER_FRAME = 1;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 

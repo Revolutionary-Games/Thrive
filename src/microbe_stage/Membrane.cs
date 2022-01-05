@@ -20,14 +20,12 @@ public class Membrane : MeshInstance
 
     // private ArrayMesh generatedMesh;
 
-    private readonly Vector2 invalidVector = new(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE);
-
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.22f;
-    private Color tint = new(1, 1, 1, 1);
+    private Color tint = new Color(1, 1, 1, 1);
     private float dissolveEffectValue;
 
     private Texture albedoTexture;
@@ -76,7 +74,7 @@ public class Membrane : MeshInstance
     /// <summary>
     ///   Organelle positions of the microbe, needs to be set for the membrane to appear
     /// </summary>
-    public Vector2[] OrganellePositions { get; set; }
+    public List<Vector2> OrganellePositions { get; set; }
 
     /// <summary>
     ///   How healthy the cell is, mixes in a damaged texture. Range 0.0f - 1.0f
@@ -236,7 +234,7 @@ public class Membrane : MeshInstance
     ///     everywhere this is used.
     ///   </para>
     /// </remarks>
-    public Vector2 GetVectorTowardsNearestPointOfMembrane(float x, float y)
+    public Vector3 GetVectorTowardsNearestPointOfMembrane(float x, float y)
     {
         // Calculate now if dirty to make flagella positioning only have to be done once
         // NOTE: that flagella position should only be read once all organelles that are
@@ -260,7 +258,7 @@ public class Membrane : MeshInstance
             }
         }
 
-        return closestSoFar;
+        return new Vector3(closestSoFar.x, 0, closestSoFar.y);
     }
 
     /// <summary>
@@ -271,11 +269,10 @@ public class Membrane : MeshInstance
     {
         // The distance we want the membrane to be from the organelles squared.
         float closestSoFar = 4;
-        Vector2 closest = invalidVector;
+        Vector2 closest = new Vector2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE);
 
-        for (var i = 0; i < OrganellePositions.Length; i++)
+        foreach (var pos in OrganellePositions)
         {
-            var pos = OrganellePositions[i];
             float lenToObject = (target - pos).LengthSquared();
 
             if (lenToObject < 4 && lenToObject < closestSoFar)
@@ -407,7 +404,7 @@ public class Membrane : MeshInstance
     private void InitializeMesh()
     {
         // For preview scenes, add just one organelle
-        OrganellePositions ??= new[] { Vector2.Zero };
+        OrganellePositions ??= new List<Vector2> { new Vector2(0, 0) };
 
         foreach (var pos in OrganellePositions)
         {
@@ -577,15 +574,14 @@ public class Membrane : MeshInstance
     {
         // Stores the temporary positions of the membrane.
         var newPositions = new List<Vector2>(vertices2D);
-        var end = newPositions.Count;
 
         // Loops through all the points in the membrane and relocates them as
         // necessary.
-        for (var i = 0; i < end; i++)
+        for (int i = 0, end = newPositions.Count; i < end; i++)
         {
-            var vertices2DItem = vertices2D[i];
-            var closestOrganelle = FindClosestOrganelles(vertices2DItem);
-            if (closestOrganelle == invalidVector)
+            var closestOrganelle = FindClosestOrganelles(vertices2D[i]);
+            if (closestOrganelle ==
+                new Vector2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE))
             {
                 newPositions[i] =
                     (vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /
@@ -593,40 +589,40 @@ public class Membrane : MeshInstance
             }
             else
             {
-                var movementDirection = movementFunc(vertices2DItem, closestOrganelle);
+                var movementDirection = movementFunc(vertices2D[i], closestOrganelle);
 
-                newPositions[i] -= movementDirection;
+                newPositions[i] = new Vector2(newPositions[i].x - movementDirection.x,
+                    newPositions[i].y - movementDirection.y);
             }
         }
 
         // Allows for the addition and deletion of points in the membrane.
-        for (var i = 0; i < end - 1; i++)
+        for (int i = 0; i < newPositions.Count - 1; i++)
         {
-            var other = newPositions[(i + 1) % end];
-
             // Check to see if the gap between two points in the membrane is too
             // big.
-            if ((newPositions[i] - other)
+            if ((newPositions[i] - newPositions[(i + 1) % newPositions.Count])
                 .Length() > (float)cellDimensions / membraneResolution)
             {
                 // Add an element after the ith term that is the average of the
                 // i and i+1 term.
-                var tempPoint = (other + newPositions[i]) / 2;
+                var tempPoint =
+                    (newPositions[(i + 1) % newPositions.Count] +
+                        newPositions[i]) /
+                    2;
 
                 newPositions.Insert(i + 1, tempPoint);
-                end++;
                 i++;
             }
 
             // Check to see if the gap between two points in the membrane is too
             // small.
-            if ((newPositions[(i + 1) % end] -
-                    newPositions[(i + end - 1) % end])
+            if ((newPositions[(i + 1) % newPositions.Count] -
+                    newPositions[(i + newPositions.Count - 1) % newPositions.Count])
                 .Length() < (float)cellDimensions / membraneResolution)
             {
                 // Delete the ith term.
                 newPositions.RemoveAt(i);
-                end--;
             }
         }
 

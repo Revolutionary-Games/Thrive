@@ -162,7 +162,7 @@ public class TutorialState : ITutorialInput
     ///   Position in the world to guide the player to
     /// </summary>
     /// <returns>The target position or null</returns>
-    public Vector2? GetPlayerGuidancePosition()
+    public Vector3? GetPlayerGuidancePosition()
     {
         foreach (var tutorial in Tutorials)
         {

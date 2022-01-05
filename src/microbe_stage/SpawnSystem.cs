@@ -183,7 +183,7 @@ public class SpawnSystem
                 var density = GetSectorDensity(sector);
 
                 var spawnPoints = spawner.GetSpawnPoints(density, random)
-                    .Select(p => p + new Vector2(sector.X, sector.Y) * Constants.SECTOR_SIZE);
+                    .Select(p => p + new Vector3(sector.X, 0, sector.Y) * Constants.SECTOR_SIZE);
 
                 foreach (var spawnPoint in spawnPoints)
                 {
@@ -245,5 +245,5 @@ public class SpawnSystem
         }
     }
 
-    private record QueuedSpawn(Spawner Spawner, Vector2 Position);
+    private record QueuedSpawn(Spawner Spawner, Vector3 Position);
 }

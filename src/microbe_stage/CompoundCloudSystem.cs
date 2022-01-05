@@ -136,7 +136,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     ///   Places specified amount of compound at position
     /// </summary>
     /// <returns>True when placing succeeded, false if out of range</returns>
-    public bool AddCloud(Compound compound, float density, Vector2 worldPosition)
+    public bool AddCloud(Compound compound, float density, Vector3 worldPosition)
     {
         // Find the target cloud //
         foreach (var cloud in clouds)
@@ -163,7 +163,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <param name="compound">The compound type to take</param>
     /// <param name="worldPosition">World position to take from</param>
     /// <param name="fraction">The fraction of compound to take. Should be &lt;= 1</param>
-    public float TakeCompound(Compound compound, Vector2 worldPosition, float fraction)
+    public float TakeCompound(Compound compound, Vector3 worldPosition, float fraction)
     {
         foreach (var cloud in clouds)
         {
@@ -182,7 +182,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         return 0;
     }
 
-    public float AmountAvailable(Compound compound, Vector2 worldPosition, float fraction)
+    public float AmountAvailable(Compound compound, Vector3 worldPosition, float fraction)
     {
         foreach (var cloud in clouds)
         {
@@ -204,7 +204,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <summary>
     ///   Returns the total amount of all compounds at position
     /// </summary>
-    public void GetAllAvailableAt(Vector2 worldPosition, Dictionary<Compound, float> result)
+    public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result)
     {
         foreach (var cloud in clouds)
         {
@@ -223,7 +223,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     ///     TODO: finding a way to add threading here probably helps quite a bit
     ///   </para>
     /// </remarks>
-    public void AbsorbCompounds(Vector2 position, float radius, CompoundBag storage,
+    public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
         Dictionary<Compound, float> totals, float delta, float rate)
     {
         // It might be fine to remove this check but this was in the old code
@@ -298,7 +298,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// <param name="searchRadius">How wide to search around the point</param>
     /// <param name="minConcentration">Limits search to only find concentrations higher than this</param>
     /// <returns>The nearest found point for the compound or null</returns>
-    public Vector2? FindCompoundNearPoint(Vector2 position, Compound compound, float searchRadius = 200,
+    public Vector3? FindCompoundNearPoint(Vector3 position, Compound compound, float searchRadius = 200,
         float minConcentration = 120)
     {
         if (searchRadius < 1)
@@ -313,7 +313,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
 
         float nearestDistanceSquared = float.MaxValue;
 
-        Vector2? closestPoint = null;
+        Vector3? closestPoint = null;
 
         foreach (var cloud in clouds)
         {

@@ -51,13 +51,13 @@ public class PlayerMicrobeInput : NodeWithInput
         {
             if (stage.Player.State == Microbe.MicrobeState.Unbinding)
             {
-                stage.Player.MovementDirection = Vector2.Zero;
+                stage.Player.MovementDirection = Vector3.Zero;
                 return;
             }
 
-            var movement = new Vector2(leftRightMovement, forwardMovement);
+            var movement = new Vector3(leftRightMovement, 0, forwardMovement);
 
-            stage.Player.MovementDirection = autoMove ? new Vector2(0, -1) : movement.Normalized();
+            stage.Player.MovementDirection = autoMove ? new Vector3(0, 0, -1) : movement.Normalized();
 
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }

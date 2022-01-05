@@ -10,7 +10,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
     private Microbe currentShapesParent;
 
-    public override void OnShapeParentChanged(Microbe newShapeParent, Vector2 offset)
+    public override void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
         // Check if the pilus exists
         if (NeedsUpdateAnyway())
@@ -26,13 +26,14 @@ public class PilusComponent : ExternallyPositionedComponent
 
             // Then the position
             position += offset;
-            Vector2 membranePointDirection = (position - offset).Normalized();
+            Vector3 middle = offset;
+            Vector3 membranePointDirection = (position - middle).Normalized();
             position += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
 
             // Pilus rotation
-            var angle = GetAngle(offset - position);
+            var angle = GetAngle(middle - position);
             var rotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
-            var transform = new Transform(rotation, position.ToVector3());
+            var transform = new Transform(rotation, position);
 
             // New ownerId
             var ownerId = currentShapesParent.CreateNewOwnerId(newShapeParent, transform, addedChildShapes[0]);
@@ -62,12 +63,12 @@ public class PilusComponent : ExternallyPositionedComponent
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle,
-        Vector2 membraneCoords)
+        Vector3 membraneCoords)
     {
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords.ToVector3());
+        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
 
-        Vector2 middle = Hex.AxialToCartesian(new Hex(0, 0));
-        Vector2 membranePointDirection = (membraneCoords - middle).Normalized();
+        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        Vector3 membranePointDirection = (membraneCoords - middle).Normalized();
 
         membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
 
@@ -86,7 +87,7 @@ public class PilusComponent : ExternallyPositionedComponent
             membraneCoords += parentMicrobe.GetOffsetRelativeToMaster();
         }
 
-        var transform = new Transform(physicsRotation, membraneCoords.ToVector3());
+        var transform = new Transform(physicsRotation, membraneCoords);
         if (NeedsUpdateAnyway())
             CreateShape(parentMicrobe);
 
@@ -114,7 +115,6 @@ public class PilusComponent : ExternallyPositionedComponent
         var ownerId = parent.CreateShapeOwner(shape);
         parent.ShapeOwnerAddShape(ownerId, shape);
         parent.AddPilus(ownerId);
-
         addedChildShapes.Add(ownerId);
     }
 

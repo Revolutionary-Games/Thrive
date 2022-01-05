@@ -14,7 +14,7 @@ public abstract class SpawnedRigidBody : RigidBody, IEntity
     {
         get
         {
-            var position = Translation.ToVector2();
+            var position = Translation;
             if (currentSector?.IsInSector(position) != true)
                 currentSector = Sector.FromPosition(position);
 

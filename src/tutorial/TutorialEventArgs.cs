@@ -40,12 +40,12 @@ public class RotationEventArgs : TutorialEventArgs
 
 public class CompoundPositionEventArgs : TutorialEventArgs
 {
-    public CompoundPositionEventArgs(Vector2? glucosePosition)
+    public CompoundPositionEventArgs(Vector3? glucosePosition)
     {
         GlucosePosition = glucosePosition;
     }
 
-    public Vector2? GlucosePosition { get; }
+    public Vector3? GlucosePosition { get; }
 }
 
 public class CompoundBagEventArgs : TutorialEventArgs

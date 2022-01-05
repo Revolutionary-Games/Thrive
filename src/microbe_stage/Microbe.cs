@@ -17,12 +17,12 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
-    public Vector2 LookAtPoint = new Vector2(0, -1);
+    public Vector3 LookAtPoint = new Vector3(0, 0, -1);
 
     /// <summary>
     ///   The direction the microbe wants to move. Doesn't need to be normalized
     /// </summary>
-    public Vector2 MovementDirection = new Vector2(0, 0);
+    public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
     private HybridAudioPlayer engulfAudio;
     private AudioStreamPlayer3D bindingAudio;
@@ -41,7 +41,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
 
-    private Vector2 queuedMovementForce;
+    private Vector3 queuedMovementForce;
 
     private Vector3 lastLinearVelocity;
     private Vector3 lastLinearAcceleration;
@@ -253,7 +253,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
             // Also re-add to the collision exception and change the mode to static as it should be
             if (Colony != null && this != Colony.Master)
             {
-                ReParentShapes(this, Vector2.Zero);
+                ReParentShapes(this, Vector3.Zero);
                 ReParentShapes(Colony.Master, GetOffsetRelativeToMaster());
                 Colony.Master.AddCollisionExceptionWith(this);
                 AddCollisionExceptionWith(Colony.Master);
@@ -319,7 +319,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     /// <summary>
     ///   Called from movement organelles to add movement force
     /// </summary>
-    public void AddMovementForce(Vector2 force)
+    public void AddMovementForce(Vector3 force)
     {
         queuedMovementForce += force;
     }
@@ -417,7 +417,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
 
         // Movement factor is reset here. HandleEngulfing will set the right value
         MovementFactor = 1.0f;
-        queuedMovementForce = new Vector2(0, 0);
+        queuedMovementForce = new Vector3(0, 0, 0);
 
         // Reduce agent emission cooldown
         AgentEmissionCooldown -= delta;
@@ -556,13 +556,13 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     ///   </para>
     /// </remarks>
     /// <returns>Returns relative translation and rotation</returns>
-    private (Vector2 Translation, float Rotation) GetNewRelativeTransform()
+    private (Vector3 Translation, Vector3 Rotation) GetNewRelativeTransform()
     {
         // Gets the global rotation of the parent
-        var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler().y;
+        var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
 
         // A vector from the parent to me
-        var vectorFromParent = GlobalTransform.origin.ToVector2() - ColonyParent.GlobalTransform.origin.ToVector2();
+        var vectorFromParent = GlobalTransform.origin - ColonyParent.GlobalTransform.origin;
 
         // A vector from me to the parent
         var vectorToParent = -vectorFromParent;
@@ -571,28 +571,28 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
         // This vector represents the vectorToParent as if I had no rotation.
         // This works by rotating vectorToParent by the negative value (therefore Down) of my current rotation
         // This is important, because GetVectorTowardsNearestPointOfMembrane only works with non-rotated microbes
-        var vectorToParentWithoutRotation = vectorToParent.Rotated(-Rotation.y);
+        var vectorToParentWithoutRotation = vectorToParent.Rotated(Vector3.Down, Rotation.y);
 
         // This vector represents the vectorFromParent as if the parent had no rotation.
-        var vectorFromParentWithoutRotation = vectorFromParent.Rotated(-globalParentRotation);
+        var vectorFromParentWithoutRotation = vectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
 
         // Calculates the vector from the center of the parent's membrane towards me with canceled out rotation.
         // This gets added to the vector calculated one call before.
         var correctedVectorFromParent = ColonyParent.Membrane
             .GetVectorTowardsNearestPointOfMembrane(vectorFromParentWithoutRotation.x,
-                vectorFromParentWithoutRotation.y).Rotated(globalParentRotation);
+                vectorFromParentWithoutRotation.z).Rotated(Vector3.Up, globalParentRotation.y);
 
         // Calculates the vector from my center to my membrane towards the parent.
         // This vector gets rotated back to cancel out the rotation applied two calls above.
         // -= to negate the vector, so that the two membrane vectors amplify
         correctedVectorFromParent -= Membrane
-            .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x, vectorToParentWithoutRotation.y)
-            .Rotated(Rotation.y);
+            .GetVectorTowardsNearestPointOfMembrane(vectorToParentWithoutRotation.x, vectorToParentWithoutRotation.z)
+            .Rotated(Vector3.Up, Rotation.y);
 
         // Rotated because the rotational scope is different.
-        var newTranslation = correctedVectorFromParent.Rotated(globalParentRotation);
+        var newTranslation = correctedVectorFromParent.Rotated(Vector3.Down, globalParentRotation.y);
 
-        return (newTranslation, Rotation.y - globalParentRotation);
+        return (newTranslation, Rotation - globalParentRotation);
     }
 
     private void SetScaleFromSpecies()
@@ -616,7 +616,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
         return Colony.Master.GetParent();
     }
 
-    private Vector2 DoBaseMovementForce(float delta)
+    private Vector3 DoBaseMovementForce(float delta)
     {
         var cost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
 
@@ -634,18 +634,18 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
         if (IsPlayerMicrobe)
             force *= CheatManager.Speed;
 
-        return Transform.basis.Xform((MovementDirection * force).ToVector3()).ToVector2() * MovementFactor *
+        return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -
                 (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
     }
 
-    private void ApplyMovementImpulse(Vector2 movement, float delta)
+    private void ApplyMovementImpulse(Vector3 movement, float delta)
     {
-        if (movement.x == 0.0f && movement.y == 0.0f)
+        if (movement.x == 0.0f && movement.z == 0.0f)
             return;
 
         // Scale movement by delta time (not by framerate). We aren't Fallout 4
-        ApplyCentralImpulse((movement * delta).ToVector3());
+        ApplyCentralImpulse(movement * delta);
     }
 
     /// <summary>
@@ -653,7 +653,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     /// </summary>
     private Transform GetNewPhysicsRotation(Transform transform)
     {
-        var target = transform.LookingAt(LookAtPoint.ToVector3(), Vector3.Up);
+        var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
 
         // Need to manually normalize everything, otherwise the slerp fails
         Quat slerped = transform.basis.Quat().Normalized().Slerp(

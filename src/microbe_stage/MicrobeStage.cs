@@ -40,7 +40,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     private MicrobeTutorialGUI tutorialGUI;
     private GuidanceLine guidanceLine;
-    private Vector2? guidancePosition;
+    private Vector3? guidancePosition;
     private PauseMenu pauseMenu;
     private bool transitionFinished;
 
@@ -353,8 +353,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Player != null)
             return;
 
-        Player = SpawnHelpers.InstantiateMicrobe(GameWorld.PlayerSpecies, Vector2.Zero, SpawnHelpers.LoadMicrobeScene(),
-            false, Clouds, CurrentGame);
+        Player = SpawnHelpers.InstantiateMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
+            SpawnHelpers.LoadMicrobeScene(), false, Clouds, CurrentGame);
         rootOfDynamicallySpawned.AddChild(Player);
 
         Player.AddToGroup("player");
@@ -436,8 +436,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.Translation
-                            .ToVector2(), glucose)),
+                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.Translation, glucose)),
                         this);
                 }
 
@@ -447,7 +446,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.Translation.ToVector2();
+                guidanceLine.LineStart = Player.Translation;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
@@ -631,7 +630,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         var randomSpecies = species.Random(random);
 
-        var instance = SpawnHelpers.InstantiateMicrobe(randomSpecies, Player.Translation.ToVector2() + Vector2.Up * 20,
+        var instance = SpawnHelpers.InstantiateMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
             SpawnHelpers.LoadMicrobeScene(), true, Clouds, CurrentGame);
         world.AddChild(instance);
         SpawnSystem.AddEntityToTrack(instance);
