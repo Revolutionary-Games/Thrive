@@ -17,7 +17,7 @@ public partial class Microbe
     [JsonProperty]
     public readonly CompoundBag Compounds = new CompoundBag(0.0f);
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+    private Compound atp;
 
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;

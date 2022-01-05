@@ -105,6 +105,8 @@
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
     <Compile Include="src\general\ShuffleBag.cs" />
+    <Compile Include="src\gui_common\charts\ChartDataSet.cs" />
+    <Compile Include="src\gui_common\charts\IDataSetsLegend.cs" />
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\DataPoint.cs" />
@@ -154,6 +156,7 @@
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
+    <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
