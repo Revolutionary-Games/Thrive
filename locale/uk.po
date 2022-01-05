@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-22 11:34+0700\n"
+"POT-Creation-Date: 2022-01-05 02:13+0100\n"
 "PO-Revision-Date: 2021-12-19 11:09+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/"
@@ -410,17 +410,17 @@ msgid "ABILITIES"
 msgstr "Здібності"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2111
+#: ../src/microbe_stage/MicrobeStage.tscn:2100
 msgid "FIRE_TOXIN"
 msgstr "Вивести токсин"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2088
 msgid "TOGGLE_ENGULF"
 msgstr "Перемкнути поглинання"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2122
+#: ../src/microbe_stage/MicrobeStage.tscn:2111
 msgid "TOGGLE_BINDING"
 msgstr "Перемкнути з'єднування"
 
@@ -711,36 +711,36 @@ msgid "ATP"
 msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1294
+#: ../src/microbe_stage/MicrobeStage.tscn:1290
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3541
 msgid "AMMONIA"
 msgstr "Аміак"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
+#: ../src/microbe_stage/MicrobeStage.tscn:1342
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3612
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1402
+#: ../src/microbe_stage/MicrobeStage.tscn:1394
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3506
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1240
+#: ../src/microbe_stage/MicrobeStage.tscn:1238
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3576
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1588
+#: ../src/microbe_stage/MicrobeStage.tscn:1576
 msgid "OXYTOXY_NT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1456
+#: ../src/microbe_stage/MicrobeStage.tscn:1446
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3647
 msgid "IRON"
 msgstr "Залізо"
@@ -1406,7 +1406,7 @@ msgid "ART_BY"
 msgstr "Малюнок від {0}"
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/charts/line/LineChart.tscn:255
+#: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4044
@@ -1899,10 +1899,10 @@ msgstr "у"
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:638
+#: ../src/microbe_stage/MicrobeHUD.cs:649
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1188
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1008
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1193
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2203,23 +2203,23 @@ msgstr "HSV"
 msgid "RAW"
 msgstr "Сирий"
 
-#: ../src/gui_common/charts/line/LineChart.cs:626
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2359
+#: ../src/gui_common/charts/line/LineChart.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2364
 msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
-#: ../src/gui_common/charts/line/LineChart.cs:630
+#: ../src/gui_common/charts/line/LineChart.cs:633
 #, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Немає даних для показу"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1097
-#: ../src/gui_common/charts/line/LineChart.cs:1183
+#: ../src/gui_common/charts/line/LineChart.cs:1100
+#: ../src/gui_common/charts/line/LineChart.cs:1186
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Не дозволено показувати більше ніж {0} данниз!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1103
-#: ../src/gui_common/charts/line/LineChart.cs:1188
+#: ../src/gui_common/charts/line/LineChart.cs:1106
+#: ../src/gui_common/charts/line/LineChart.cs:1191
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
@@ -2635,95 +2635,99 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:517
+#: ../src/microbe_stage/Microbe.Contact.cs:516
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:622
+#: ../src/microbe_stage/Microbe.Contact.cs:621
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:629
+#: ../src/microbe_stage/Microbe.Contact.cs:628
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:846
+#: ../src/microbe_stage/Microbe.Contact.cs:845
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:712
+#: ../src/microbe_stage/Microbe.Interior.cs:717
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
 msgid "PLAYER_SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
 msgid "PLAYER_DUPLICATE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:683
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:103
+msgid "GENERATE_SPAWN_MAP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:694
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:716
+#: ../src/microbe_stage/MicrobeHUD.cs:727
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:733
+#: ../src/microbe_stage/MicrobeHUD.cs:744
 msgid "SPECIES_N_TIMES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:778
+#: ../src/microbe_stage/MicrobeHUD.cs:789
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:780
+#: ../src/microbe_stage/MicrobeHUD.cs:791
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:782
+#: ../src/microbe_stage/MicrobeHUD.cs:793
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:784
+#: ../src/microbe_stage/MicrobeHUD.cs:795
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:786
+#: ../src/microbe_stage/MicrobeHUD.cs:797
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:788
+#: ../src/microbe_stage/MicrobeHUD.cs:799
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:529
+#: ../src/microbe_stage/MicrobeStage.cs:541
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:615
+#: ../src/microbe_stage/MicrobeStage.cs:627
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:679
+#: ../src/microbe_stage/MicrobeStage.cs:692
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -2763,44 +2767,44 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2827
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2861
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3466
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1031
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1036
 msgid "COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1526
+#: ../src/microbe_stage/MicrobeStage.tscn:1516
 msgid "AGENTS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1626
+#: ../src/microbe_stage/MicrobeStage.tscn:1614
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1644
+#: ../src/microbe_stage/MicrobeStage.tscn:1632
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1657
+#: ../src/microbe_stage/MicrobeStage.tscn:1645
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Продовжити"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1670
+#: ../src/microbe_stage/MicrobeStage.tscn:1658
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1685
+#: ../src/microbe_stage/MicrobeStage.tscn:1673
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1710
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1734
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeStage.tscn:1773
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
@@ -3084,7 +3088,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2784
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2818
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3301
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1029
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
@@ -3138,11 +3142,11 @@ msgid "MEGA_YEARS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1021
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1026
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1031
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1029
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1032
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1036
 msgid "YEARS"
 msgstr ""
 
@@ -3171,69 +3175,69 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1032
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1038
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1043
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1056
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "вимерли на цілій планеті"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1039
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1050
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1044
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1055
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "вимерли на цілій планеті"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1082
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1087
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1179
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1184
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1184
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1189
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1223
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1228
 msgid "WITH_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1913
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1918
 msgid "FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1919
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1931
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1924
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1936
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1925
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1937
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1930
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1942
 msgid "N_A"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2201
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2206
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2327
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2332
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2331
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2336
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2338
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2343
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2344
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2349
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3840,7 +3844,7 @@ msgstr ""
 msgid "LOADING_DOT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:280
 msgid "DELETE_THIS_SAVE"
 msgstr ""
 
@@ -3888,41 +3892,41 @@ msgstr ""
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:130
+#: ../src/saving/SaveListItem.tscn:131
 msgid "CREATED_AT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:137 ../src/saving/SaveListItem.tscn:156
-#: ../src/saving/SaveListItem.tscn:175 ../src/saving/SaveListItem.tscn:198
-#: ../src/saving/SaveListItem.tscn:227 ../src/saving/SaveListItem.tscn:246
+#: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
+#: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
+#: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
 msgid "DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:149
+#: ../src/saving/SaveListItem.tscn:150
 msgid "TYPE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:168
+#: ../src/saving/SaveListItem.tscn:169
 msgid "DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:191
+#: ../src/saving/SaveListItem.tscn:192
 msgid "VERSION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:220
+#: ../src/saving/SaveListItem.tscn:221
 msgid "BY"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:239
+#: ../src/saving/SaveListItem.tscn:240
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:271 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:278
+#: ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
