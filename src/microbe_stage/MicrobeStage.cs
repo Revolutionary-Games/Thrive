@@ -356,7 +356,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         Player = SpawnHelpers.InstantiateMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
             SpawnHelpers.LoadMicrobeScene(), false, Clouds, CurrentGame);
         rootOfDynamicallySpawned.AddChild(Player);
-
         Player.AddToGroup("player");
 
         Player.OnDeath = OnPlayerDied;

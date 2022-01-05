@@ -435,8 +435,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         if (worldPosition.x + radius < Translation.x - Constants.CLOUD_WIDTH ||
             worldPosition.x - radius >= Translation.x + Constants.CLOUD_WIDTH ||
-            worldPosition.y + radius < Translation.z - Constants.CLOUD_HEIGHT ||
-            worldPosition.y - radius >= Translation.z + Constants.CLOUD_HEIGHT)
+            worldPosition.z + radius < Translation.z - Constants.CLOUD_HEIGHT ||
+            worldPosition.z - radius >= Translation.z + Constants.CLOUD_HEIGHT)
             return false;
 
         return true;
