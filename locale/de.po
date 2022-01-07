@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-22 11:34+0700\n"
-"PO-Revision-Date: 2021-12-19 11:09+0000\n"
-"Last-Translator: Jan <jan_fue@icloud.com>\n"
+"PO-Revision-Date: 2022-01-05 08:20+0000\n"
+"Last-Translator: das-makama <makama96@gmx.de>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -304,7 +304,9 @@ msgstr "VERRÜCKTES ZEUG!!"
 
 #: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Schmelze die Schmelze."
+msgstr ""
+"Nein Patrick, hydrothermische Schlote eignen sich nicht zum schmelzen von "
+"Eisen!"
 
 #: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_12"
@@ -320,8 +322,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
-"Kleiner Tipp, je mehr Flagellen du hast, umso schneller bewegst du dich. "
-"Brumm brumm! Jedoch kostet es mehr ATP"
+"Auf Zack! Je mehr Flagellen du hast, desto schneller wirst du. Es kostet "
+"dich allerdings mehr ATP"
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
@@ -705,7 +707,7 @@ msgstr "Mesopelagische"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
-msgstr "Küstennah"
+msgstr "Küste"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
@@ -987,22 +989,20 @@ msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "wurde ausgelöscht"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
-#, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "Verbindungswolken"
+msgstr "{0}-Verbrauch"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "Verbindungswolken"
+msgstr "{0}-Verbrauch"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
-msgstr ""
+msgstr "Gleichmäßig verteilte ökologische Nahrungsquelle von {0}"
 
 #: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:85
 msgid "PREDATION_FOOD_SOURCE"
-msgstr ""
+msgstr "Beute von {0}"
 
 #: ../src/engine/LoadingScreen.cs:68 ../src/engine/LoadingScreen.tscn:137
 msgid "LOADING"
@@ -1492,7 +1492,7 @@ msgstr "Zurück"
 
 #: ../src/general/MainMenu.tscn:358
 msgid "MODS"
-msgstr "Mods"
+msgstr "Modifikationen"
 
 #: ../src/general/MainMenu.tscn:372
 msgid "ART_GALLERY"
@@ -1611,9 +1611,8 @@ msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
 #: ../src/general/OptionsMenu.tscn:316
-#, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
-msgstr "Maximale FPS:"
+msgstr "Maximale FPS"
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
@@ -2243,9 +2242,8 @@ msgid "NO_DATA_TO_SHOW"
 msgstr "Keine Daten zu zeigen"
 
 #: ../src/gui_common/charts/line/LineChart.cs:630
-#, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "Ungültiger Pfad des Mod-Icon"
+msgstr "Ungültige Daten zum Darstellen"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1097
 #: ../src/gui_common/charts/line/LineChart.cs:1183
@@ -2259,7 +2257,7 @@ msgstr "Nicht erlaubt, weniger als {0} Datensatz(e) anzuzeigen!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
-msgstr ""
+msgstr "Untersuchen"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
@@ -2529,9 +2527,9 @@ msgstr ""
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 "Rusticyanin ist ein Protein, das in der Lage ist, gasförmiges Kohlendioxid "
-"und Sauerstoff zu nutzen, um Eisen von einem chemischen Zustand in einen "
-"anderen zu oxidieren. Dieser Prozess, der Eisenatmung genannt wird, setzt "
-"Energie frei, die die Zelle dann sammeln kann."
+"und Sauerstoff zu nutzen, um Eisen zu oxidieren. Dieser Prozess, der "
+"Eisenatmung genannt wird, setzt Energie frei, die die Zelle dann sammeln "
+"kann."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:758
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
@@ -3280,12 +3278,8 @@ msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo-Vorhersage"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
-#, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
-msgstr ""
-"Lokale Daten zu diesem Item entfernen. Dies ist hilfreich, wenn du die "
-"falsche ID angegeben hast oder eine Version als neues Item hochladen "
-"willst."
+msgstr "Detaillierte Informationen zur Prognose anzeigen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
 msgid "TOTAL_POPULATION_COLON"
@@ -3403,9 +3397,19 @@ msgid "PATCH_MAP"
 msgstr "Gebietskarte"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4035
-#, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "{0} Population verändert um {1}, weil: {2}"
+msgstr ""
+"Diese Tafel zeigt die Werte an, mit denen die Auto-Evo-Vorhersage arbeitet. "
+"Die Gesamtenergie, die eine Spezies aufnehmen kann, und die Kosten pro "
+"Einzeltier der Spezies bestimmen die endgültige Population. Auto-Evo "
+"verwendet ein vereinfachtes Modell der Realität, um zu berechnen, wie gut "
+"die Spezies auf der Basis der von ihnen erbeuteten Energie abschneiden. Für "
+"jede Nahrungsquelle wird angezeigt, wie viel Energie die Art aus ihr "
+"gewinnt. Zusätzlich wird die Gesamtenergie, die aus dieser Quelle zur "
+"Verfügung steht, angezeigt. Der Anteil, den die Art an der Gesamtenergie "
+"gewinnt, basiert darauf, wie groß die Fitness im Vergleich zur Gesamtfitness "
+"ist. Die Fitness ist ein Maß dafür, wie gut die Spezies diese Nahrungsquelle "
+"verwerten kann."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
@@ -3459,15 +3463,13 @@ msgstr "Spezienliste"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1038
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
-#, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr "wurde ausgelöscht"
+msgstr "ist vom Planeten ausgestorben"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1039
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1050
-#, fuzzy
 msgid "EXTINCT_FROM_PATCH"
-msgstr "wurde ausgelöscht"
+msgstr "ist im Gebiet ausgestorben"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1082
 msgid "FREEBUILDING"
@@ -3507,18 +3509,19 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2327
 msgid "ENERGY_IN_PATCH_FOR"
-msgstr ""
+msgstr "Energie in {0} für {1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2331
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
+"Die gesammelte Gesamtenergie beträgt {0} mit individuellen Kosten von {1}, "
+"was zu einer unbereinigten Bevölkerung von {2} führt"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2338
 msgid "ENERGY_SOURCES"
 msgstr "Energiequellen:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2344
-#, fuzzy
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0}Energie:{1}(Fitness:{2})insgesamt verfügbare Energie:{3} (gesamte "
@@ -3543,9 +3546,8 @@ msgid "MODIFY"
 msgstr "Verändern"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
-#, fuzzy
 msgid "EXTINCT_SPECIES"
-msgstr "AUSSTERBEN"
+msgstr "Ausgestorbene Spezies"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:86
 msgid "EXTINCTION_CAPITAL"
@@ -4515,17 +4517,17 @@ msgstr "Verstanden"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
-"Dieses Feld zeigt eine Vorhersage Ihrer zukünftigen Bevölkerung. Diese "
+"Dieses Feld zeigt eine Vorhersage deiner zukünftigen Bevölkerung. Diese "
 "Zahlen stammen aus der Bevölkerungssimulation von Auto-Evo.\n"
 "\n"
-"Hier wird ihre persönliche Leisting nicht betrachtet. In deinem aktuellen "
+"Diese berücksichtigen nicht deine aktuelle Leistung. In deinem aktuellen "
 "Gebiet wirst du also besser abschneiden, wenn du den Editor betrittst.\n"
 "\n"
 "Du solltest aber versuchen, deine Population hoch zu halten, auch wenn du "
 "nicht direkt beteiligt bist.\n"
 "\n"
-"Du kannst dir detailiertere Informationen zur Vorhersage ansehen, indem du "
-"auf das Fragezeichen im Panel klickst."
+"Du kannst dir detailliertere Informationen zur Vorhersage ansehen, indem du "
+"auf das Fragezeichen in dem Panel klickst. Klicken zum fortfahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
@@ -4545,18 +4547,18 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"Auf einem weit entfernten fremden Planeten haben Äonen vulkanischer "
-"Aktivität und Meteoriteneinschläge zur Entwicklung eines neuen Phänomens "
-"im Universum geführt.\n"
+"Auf einen uns weit entfernten Planeten, haben Jahrtausende von vulkanischer "
+"Aktivität und dem einschlagen etlicher Meteoriten zu einem ganz besonderen "
+"Phänomen im Universum geführt.\n"
 "\n"
 "Leben.\n"
 "\n"
-"Einfache Mikroben leben in den tiefen Regionen des Ozeans. Du bist der "
-"Urvorfahr auf diesem Planeten.\n"
+"In den tiefen Meeresregionen sind simple Mikroorganismen beheimatet. Du bist "
+"der letzte Urvorfahr aller kommenden Organismen auf diesem Planeten.\n"
 "\n"
-"Um in dieser lebensfeindlichen Welt zu überleben, musst du alle "
-"Verbindungen die du finden kannst sammeln und jede Generation "
-"weiterentwickeln, um gegen die anderen Mikrobenarten anzutreten."
+"Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche "
+"Verbindungen sammeln, die du finden kannst, und dich über Generationen "
+"hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu bestehen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
