@@ -318,14 +318,6 @@ public class GameWorld
         return worldSpecies[id];
     }
 
-    private void CreateRunIfMissing()
-    {
-        if (autoEvo != null)
-            return;
-
-        autoEvo = AutoEvo.AutoEvo.CreateRun(this);
-    }
-
     /// <summary>
     ///   Stores a description of a global event into the game world record.
     /// </summary>
@@ -336,7 +328,7 @@ public class GameWorld
     {
         if (eventsLog.Count > Constants.GLOBAL_EVENT_LOG_CAP)
         {
-            var oldestKey = Double.MaxValue;
+            var oldestKey = double.MaxValue;
 
             foreach (var entry in eventsLog)
                 oldestKey = Math.Min(entry.Key, oldestKey);
@@ -359,5 +351,13 @@ public class GameWorld
             IconPath = iconPath,
             Highlighted = highlight,
         });
+    }
+
+    private void CreateRunIfMissing()
+    {
+        if (autoEvo != null)
+            return;
+
+        autoEvo = AutoEvo.AutoEvo.CreateRun(this);
     }
 }

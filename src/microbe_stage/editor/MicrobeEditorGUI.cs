@@ -514,8 +514,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private PendingAutoEvoPrediction waitingForPrediction;
     private LocalizedStringBuilder predictionDetailsText;
 
-    private Control timelineScrollAnchor;
-
     public enum EditorTab
     {
         Report,
@@ -1097,9 +1095,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
-    public void UpdateTimeline(Patch patch = null)
+    public void UpdateTimeline()
     {
-        timelineSubtab.SelectedPatch = patch ?? mapDrawer.SelectedPatch ?? editor.CurrentPatch;
         timelineSubtab.UpdateTimeline();
     }
 
@@ -1281,7 +1278,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         UpdateReportTabStatistics(patch);
 
-        UpdateTimeline(patch);
+        UpdateTimeline();
 
         UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
     }

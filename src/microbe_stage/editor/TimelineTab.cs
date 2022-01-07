@@ -53,8 +53,6 @@ public class TimelineTab : PanelContainer
         }
     }
 
-    public Patch SelectedPatch { get; set; }
-
     public void Init(MicrobeEditor editor, PatchMapDrawer drawer)
     {
         this.editor = editor;
@@ -83,9 +81,11 @@ public class TimelineTab : PanelContainer
             eventsContainer.AddChild(section);
         }
 
-        for (int i = SelectedPatch.History.Count - 1; i >= 0; i--)
+        var patch = patchMapDrawer.SelectedPatch ?? editor.CurrentPatch;
+
+        for (int i = patch.History.Count - 1; i >= 0; i--)
         {
-            var snapshot = SelectedPatch.History[i];
+            var snapshot = patch.History[i];
             var section = new TimelineSection((snapshot.TimePeriod, snapshot.EventsLog));
 
             cachedLocalTimelineElements.Add(section);
@@ -100,17 +100,17 @@ public class TimelineTab : PanelContainer
     public void TimelineAutoScrollToCurrentTimePeriod()
     {
         var scrollRect = scrollContainer.GetGlobalRect();
-        var anchorRect = new Rect2();
+        var anchorRect = new Rect2(Vector2.Zero, Vector2.Zero);
 
         if (eventFilter == Filters.Global)
         {
             var last = cachedGlobalTimelineElements.LastOrDefault();
-            anchorRect = last != null ? last.HeaderGlobalRect : new Rect2();
+            anchorRect = last != null ? last.HeaderGlobalRect : new Rect2(Vector2.Zero, Vector2.Zero);
         }
         else if (eventFilter == Filters.Local)
         {
             var last = cachedLocalTimelineElements.LastOrDefault();
-            anchorRect = last != null ? last.HeaderGlobalRect : new Rect2();
+            anchorRect = last != null ? last.HeaderGlobalRect : new Rect2(Vector2.Zero, Vector2.Zero);
         }
 
         var diff = Mathf.Max(Mathf.Min(anchorRect.Position.y, scrollRect.Position.y), anchorRect.Position.y +
@@ -168,12 +168,12 @@ public class TimelineTab : PanelContainer
 
         private (double TimePeriod, List<GameEventDescription> Events) data;
 
-        public Rect2 HeaderGlobalRect => headerContainer.GetGlobalRect();
-
         public TimelineSection((double TimePeriod, List<GameEventDescription> Events) data)
         {
             this.data = data;
         }
+
+        public Rect2 HeaderGlobalRect => headerContainer.GetGlobalRect();
 
         public override void _Ready()
         {

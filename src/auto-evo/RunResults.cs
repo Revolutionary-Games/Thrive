@@ -614,7 +614,7 @@
                         case NewSpeciesType.SplitDueToMutation:
                             builder.Append(new LocalizedString("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
                             var splitLog = new LocalizedString("TIMELINE_SELECTION_PRESSURE_SPLIT",
-                                entry.Species.FormattedName,  entry.SplitFrom.FormattedName);
+                                entry.Species.FormattedName, entry.SplitFrom.FormattedName);
                             entry.OriginPatch.LogEvent(splitLog, entry.SplitFrom.PlayerSpecies, "newSpecies.png");
                             world.LogEvent(splitLog, entry.SplitFrom.PlayerSpecies, "newSpecies.png");
                             break;
@@ -701,8 +701,8 @@
                     if (numberOfPatches < 2)
                     {
                         entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                                entry.Species.FormattedName, TranslationServer.Translate(
-                                    entry.SpreadToPatches[0].To.Name)), entry.Species.PlayerSpecies, "newSpecies.png");
+                            entry.Species.FormattedName, TranslationServer.Translate(
+                                entry.SpreadToPatches[0].To.Name)), entry.Species.PlayerSpecies, "newSpecies.png");
                         world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
                                 entry.Species.FormattedName,
                                 TranslationServer.Translate(entry.SpreadToPatches[0].To.Name),
@@ -712,9 +712,9 @@
                     else if (numberOfPatches < 3)
                     {
                         entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO_TWO",
-                                entry.Species.FormattedName, TranslationServer.Translate(
-                                    entry.SpreadToPatches[0].To.Name), TranslationServer.Translate(
-                                    entry.SpreadToPatches[1].To.Name)), entry.Species.PlayerSpecies, "newSpecies.png");
+                            entry.Species.FormattedName, TranslationServer.Translate(
+                                entry.SpreadToPatches[0].To.Name), TranslationServer.Translate(
+                                entry.SpreadToPatches[1].To.Name)), entry.Species.PlayerSpecies, "newSpecies.png");
                     }
                     else
                     {

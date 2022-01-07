@@ -2481,7 +2481,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         ApplyAutoEvoResults();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
-        gui.UpdateTimeline(CurrentPatch);
+        gui.UpdateTimeline();
 
         FadeIn();
     }
@@ -2499,7 +2499,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
-        gui.UpdateTimeline(CurrentPatch);
+        gui.UpdateTimeline();
 
         FadeIn();
     }
