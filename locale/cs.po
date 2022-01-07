@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-07 23:14+0700\n"
-"PO-Revision-Date: 2021-12-30 18:28+0000\n"
+"POT-Creation-Date: 2022-01-08 00:03+0700\n"
+"PO-Revision-Date: 2022-01-05 08:20+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/cs/>\n"
@@ -443,7 +443,7 @@ msgid "ZOOM_IN"
 msgstr "Přiblížit"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4008
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4009
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -706,25 +706,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1290
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3655
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3656
 msgid "AMMONIA"
 msgstr "Amoniak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1342
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3726
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3727
 msgid "PHOSPHATE"
 msgstr "Fosfát"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1394
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3620
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3621
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sirovodík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1238
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3690
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
 msgid "GLUCOSE"
 msgstr "Glukóza"
 
@@ -735,29 +735,29 @@ msgstr "OxyToxyn NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1446
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3761
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3762
 msgid "IRON"
 msgstr "Železo"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3456
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3457
 msgid "OXYGEN"
 msgstr "Kyslík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3510
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3511
 msgid "CARBON_DIOXIDE"
 msgstr "Oxid uhličitý"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3483
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3484
 msgid "NITROGEN"
 msgstr "Dusík"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3521
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2888
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3336
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2889
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3337
 msgid "SUNLIGHT"
 msgstr "Sluneční svit"
 
@@ -988,21 +988,21 @@ msgstr "populace v místě:"
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "vyhynul na této planetě"
 
-#: ../src/auto-evo/RunResults.cs:848 ../src/auto-evo/RunResults.cs:850
+#: ../src/auto-evo/RunResults.cs:849 ../src/auto-evo/RunResults.cs:851
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862 ../src/auto-evo/RunResults.cs:884
+#: ../src/auto-evo/RunResults.cs:863 ../src/auto-evo/RunResults.cs:885
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Populace druhů"
 
-#: ../src/auto-evo/RunResults.cs:868 ../src/auto-evo/RunResults.cs:890
+#: ../src/auto-evo/RunResults.cs:869 ../src/auto-evo/RunResults.cs:891
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Populace druhů"
 
-#: ../src/auto-evo/RunResults.cs:875
+#: ../src/auto-evo/RunResults.cs:876
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
@@ -1452,7 +1452,7 @@ msgstr "Ilustraci vytvořil(a) {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4159
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
@@ -1462,9 +1462,9 @@ msgstr "Zavřít"
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:649
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:737
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1049
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1240
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:735
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1047
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1237
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1915,7 +1915,7 @@ msgid "SAVE_GAME"
 msgstr "Uložit hru"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2751
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2752
 msgid "STATISTICS"
 msgstr "Statistiky"
 
@@ -2254,7 +2254,7 @@ msgid "RAW"
 msgstr "RAW"
 
 #: ../src/gui_common/charts/line/LineChart.cs:629
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2447
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2444
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žádná data k zobrazení"
 
@@ -2867,9 +2867,9 @@ msgstr ""
 "když se hráč pokusí ukončit hru."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2877
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3273
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:937
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2878
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3274
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:935
 msgid "TEMPERATURE"
 msgstr "Teplota"
 
@@ -3007,10 +3007,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Tlak"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2941
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3580
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1077
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2942
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3581
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1075
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
 
@@ -3179,71 +3179,71 @@ msgstr "Tuhé"
 msgid "COLOUR"
 msgstr "Barva"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1415
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1416
 msgid "PEACEFUL"
 msgstr "Mírumilovnost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1432
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1433
 msgid "AGGRESSIVE"
 msgstr "Agresivnost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1468
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1469
 msgid "CAUTIOUS"
 msgstr "Obezřetnost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1486
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1487
 msgid "OPPORTUNISTIC"
 msgstr "Oportunismus"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1522
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1523
 msgid "BRAVE"
 msgstr "Odvážnost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1539
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1540
 msgid "FEARFUL"
 msgstr "Bojácnost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1575
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1576
 msgid "SESSILE"
 msgstr "Přisedlost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1592
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1593
 msgid "ACTIVE"
 msgstr "Aktivnost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1629
 msgid "RESPONSIVE"
 msgstr "Reagující"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1645
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1646
 msgid "FOCUSED"
 msgstr "Soustředěnost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1713
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1714
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika organizmu"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1776
 msgid "SPEED_COLON"
 msgstr "Rychlost:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1806
 msgid "HP_COLON"
 msgstr "HP:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1835
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1836
 msgid "SIZE_COLON"
 msgstr "Velikost:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1856
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1857
 msgid "GENERATION_COLON"
 msgstr "Generace:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1898
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1899
 msgid "ATP_BALANCE"
 msgstr "ATP Balanc"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2012
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Tento panel ukazuje očekávané počty populací z auto-evo pro editované "
@@ -3251,84 +3251,84 @@ msgstr ""
 "Auto-evo provádí simulaci populace, což je další část (kromě vašeho "
 "vlastního výkonu), která ovlivňuje vaši populaci."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4100
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2016
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4101
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo předpověď"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2023
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2024
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Zobrazit podrobné informace o předpovědi"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2094
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Celková populace:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2118
 msgid "BEST_PATCH_COLON"
 msgstr "Nejlepší oblast:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2143
 msgid "WORST_PATCH_COLON"
 msgstr "Nejhorší oblast:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2289
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Jméno druhu..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2342
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2343
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ZRUŠIT AKCI"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2357
 msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDIT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2365
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2366
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Záporný balanc ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2366
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2367
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Tvůj mikrob NEPRODUKUJE dostatek ATP, aby přežil!\n"
 "Chceš pokračovat?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2372
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2373
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Odpojené organely"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2374
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2375
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Jsou zde umístěny organely, které nejsou spojeny se zbytkem.\n"
 "Propoj všechny umístěné organely navzájem nebo zruš změny."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2471
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2472
 msgid "AUTO_EVO"
 msgstr "Automatická evoluce"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2485
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2486
 msgid "FOOD_CHAIN"
 msgstr "Potravní řetězec"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2498
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2499
 msgid "TIMELINE"
 msgstr "Časová osa"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2551
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2552
 msgid "AUTO_EVO_RESULTS"
 msgstr "Výsledek automatické evoluce:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2570
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2571
 msgid "EXTERNAL_EFFECTS"
 msgstr "Vedlejší účinky:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2663
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2669
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2670
 #, fuzzy
 msgid "GLOBAL_INITIAL"
 msgstr ""
@@ -3344,67 +3344,66 @@ msgstr ""
 "možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly "
 "ostatním druhům mikrobů."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2676
-#, fuzzy
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2677
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr "vznikl, aby zaplnil mezeru"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2683
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2684
 #, fuzzy
 msgid "LOCAL_INITIAL"
 msgstr "Hráč vyhynul"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2760
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2788
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2761
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2789
 msgid "SPECIES_POPULATION"
 msgstr "Populace druhů"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2798
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3232
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2799
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3233
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Fyzické podmínky"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2898
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2932
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3415
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1070
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2899
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2933
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3416
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1068
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosférické plyny"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3001
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3924
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3925
 msgid "NEXT_CAPITAL"
 msgstr "DALŠÍ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3115
 msgid "SELECT_A_PATCH"
 msgstr "Vyber si cestu aby jsi viděl detaily zde"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3150
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "AKTUÁLNÍ POZICE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3309
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3310
 msgid "PRESSURE"
 msgstr "Tlak"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3840
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3841
 msgid "SPECIES_PRESENT"
 msgstr "Přítomné druhy"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3897
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3898
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Přesunout na toto místo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3966
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3967
 msgid "REPORT"
 msgstr "Zpráva"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3987
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3988
 msgid "PATCH_MAP"
 msgstr "Mapa lokací"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4149
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4150
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 "Na tomto panelu jsou zobrazena čísla, na jejichž základě funguje predikce "
@@ -3422,120 +3421,120 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr "Nekonečné MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:743
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:741
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:750
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
 #: ../src/microbe_stage/editor/TimelineTab.cs:192
 msgid "MEGA_YEARS"
 msgstr "Myry"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:753
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:796
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:801
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:794
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:799
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:802
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:800
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:828
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:845
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:843
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:851
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:863
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:861
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1067
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1065
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1066
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1068
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1070
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1073
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1077
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1071
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1075
 msgid "YEARS"
 msgstr "roky"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1073
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1071
 msgid "SPECIES_LIST"
 msgstr "Přítomné druhy"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1084
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1097
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1082
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1095
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "vyhynul na této planetě"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1085
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1096
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1083
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1094
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "vyhynul na této planetě"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1134
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1131
 msgid "FREEBUILDING"
 msgstr "Volné stavění"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1231
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1228
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1236
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1233
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m pod mořskou hladinou"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1275
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1272
 msgid "WITH_POPULATION"
 msgstr "{0} s populací: {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2001
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1998
 #, fuzzy
 msgid "FAILED"
 msgstr "Chyba ukládání"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2007
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2019
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2004
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2016
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2013
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2025
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2010
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2022
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2286
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Název druhu musí odpovídat binomickému systému pojmenování (rod a "
 "epiteton)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2415
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2412
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie v {0} pro {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2419
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2416
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Celková získaná energie je {0} s individuálními náklady {1}, což vede k "
 "nekorigované populaci {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2426
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2423
 msgid "ENERGY_SOURCES"
 msgstr "Zdroje energie:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2432
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2429
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0} energie: {1} (fitness: {2}) celková dostupná energie: {3} (celková "
@@ -3560,9 +3559,8 @@ msgid "MODIFY"
 msgstr "Upravit"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
-#, fuzzy
 msgid "EXTINCT_SPECIES"
-msgstr "VYHYNUTÍ"
+msgstr "Vyhynulé druhy"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:243
 msgid "NO_EVENTS_RECORDED"
@@ -4122,19 +4120,19 @@ msgstr "Nahradit existující uloženou pozici:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Nahradit existující uloženou pozici?"
 
-#: ../src/saving/SaveHelper.cs:412
+#: ../src/saving/SaveHelper.cs:421
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Uložení není momentálně k dispozici z důvodu:"
 
-#: ../src/saving/SaveHelper.cs:413
+#: ../src/saving/SaveHelper.cs:422
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
-#: ../src/saving/SaveHelper.cs:422
+#: ../src/saving/SaveHelper.cs:431
 msgid "SAVING_SUCCEEDED"
 msgstr "Ukládání provedeno"
 
-#: ../src/saving/SaveHelper.cs:432
+#: ../src/saving/SaveHelper.cs:441
 msgid "SAVING_FAILED"
 msgstr "Uložení se nezdařilo! Nastala výjimka"
 
@@ -4517,7 +4515,7 @@ msgstr ""
 "přímo neúčastníte.\n"
 "\n"
 "Podrobnější informace za předpovědí si můžete zobrazit stisknutím tlačítka "
-"s otazníkem na panelu."
+"s otazníkem na panelu. Chcete-li pokračovat, stiskněte jej."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
@@ -4616,18 +4614,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
 msgstr "Zobrazit"
-
-#, fuzzy
-#~ msgid "GLOBAL_TIMELINE_SPECIES_EXTINCT"
-#~ msgstr "Populace druhů"
-
-#, fuzzy
-#~ msgid "GLOBAL_TIMELINE_SPECIES_POPULATION_INCREASE"
-#~ msgstr "Populace druhů"
-
-#, fuzzy
-#~ msgid "GLOBAL_TIMELINE_SPECIES_POPULATION_DECREASE"
-#~ msgstr "Populace druhů"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"
