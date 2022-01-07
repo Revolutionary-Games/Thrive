@@ -845,7 +845,8 @@
                     builder.Append('\n');
 
                     // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
-                    entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT", entry.Species.FormattedName),
+                    entry.OriginPatch.LogEvent(new LocalizedString(
+                        "TIMELINE_SPECIES_EXTINCT", entry.Species.FormattedName),
                         entry.Species.PlayerSpecies, "extinction.png");
                     world.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT", entry.Species.FormattedName),
                         entry.Species.PlayerSpecies, "extinction.png");
