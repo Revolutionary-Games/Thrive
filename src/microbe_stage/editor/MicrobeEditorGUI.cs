@@ -2172,7 +2172,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnReportTabPatchListSelected(int index)
     {
-        var patch = editor.CurrentGame.GameWorld.Map.Patches[index];
+        var patch = editor.CurrentGame.GameWorld.Map.GetPatch(reportTabPatchSelector.GetItemId(index));
         UpdateReportTabStatistics(patch);
         UpdateReportTabPatchName(patch);
     }
