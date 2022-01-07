@@ -171,7 +171,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Organelas acopladas a membrana\n"
+"Organelas acopladas à membrana\n"
 "\n"
 "Núcleo: Ocupa 11 espaços e permite a evolução de organelas com membranas. "
 "Também dobra o tamanho de sua célula (Só pode ser evoluído uma vez)\n"
@@ -277,7 +277,7 @@ msgstr "COISAS ONDULADAS!!"
 
 #: ../simulation_parameters/common/help_texts.json:156
 msgid "EASTEREGG_MESSAGE_11"
-msgstr "Pela milésima vez, o jogo não vai ter civilizações subaquáticas!"
+msgstr "Pela milésima vez, o jogo não vai ter civilizações subaquáticas."
 
 #: ../simulation_parameters/common/help_texts.json:159
 msgid "EASTEREGG_MESSAGE_12"
@@ -1123,7 +1123,7 @@ msgstr "Espaço"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Barra Invertida/Backslash"
+msgstr "Barra Invertida"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
@@ -1568,7 +1568,7 @@ msgstr "Diversos"
 
 #: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
-msgstr "Sincronização vertical"
+msgstr "VSync"
 
 #: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
@@ -4123,7 +4123,7 @@ msgstr "Excluir Dados Locais"
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr ""
 "Mude as notas para mostrar na Oficina Steam para esta versão deste item "
-"(opcional)."
+"(opcional)"
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
@@ -4660,12 +4660,17 @@ msgstr "Entendi"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:328
 msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
 msgstr ""
-"Esse painel mostra uma previsão da sua população futura.\n"
-"\n"
-"Esses números são da simulação populacional da auto-evo.\n"
+"Esse painel mostra uma previsão da sua população futura. Esses números são "
+"da simulação populacional da auto-evo.\n"
 "\n"
 "A simulação não leva em consideração seu desempenho individual. Então, em "
-"sua região atual, você terá um maior desempenho quando entrar no editor."
+"sua região atual, você terá um maior desempenho quando entrar no editor.\n"
+"\n"
+"Mas você deveria tentar manter a população alta, mesmo sem envolvimento "
+"direto.\n"
+"\n"
+"Você pode ver informação mais detalhada sobre a previsão clicando no ponto "
+"de interrogação no painel. Clique nele para continuar."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:372
@@ -4690,10 +4695,10 @@ msgstr ""
 "A vida.\n"
 "\n"
 "Micróbios simples moram nas regiões mais profundas do oceano. Você é o "
-"último ancestral comum (LUCA) no planeta.\n"
+"Último Ancestral Comum Universal (LUCA) no planeta.\n"
 "\n"
 "Para sobreviver neste mundo hostil, você precisará coletar compostos e "
-"evoluir para competir contra outras espécies de micróbios."
+"evoluir por gerações para competir contra outras espécies de micróbios."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
