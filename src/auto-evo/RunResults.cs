@@ -874,8 +874,7 @@
                     else if (!newPatchPopulation.ContainsKey(entry.OriginPatch))
                     {
                         entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL",
-                                entry.Species.FormattedName), entry.Species.PlayerSpecies,
-                            "res://assets/textures/gui/bevel/extinctionLocal.png");
+                            entry.Species.FormattedName), entry.Species.PlayerSpecies, "extinctionLocal.png");
                     }
 
                     if (globalPopulation != previousGlobalPopulation)
