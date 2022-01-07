@@ -379,8 +379,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Button behaviourTabButton;
 
     private PanelContainer autoEvoSubtab;
-    private PanelContainer timelineSubtab;
-    private VBoxContainer timelineEventsContainer;
+    private TimelineTab timelineSubtab;
 
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
@@ -548,9 +547,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         autoEvoSubtab = GetNode<PanelContainer>(AutoEvoSubtabPath);
         autoEvoSubtabButton = GetNode<Button>(AutoEvoSubtabButtonPath);
 
-        timelineSubtab = GetNode<PanelContainer>(TimelineSubtabPath);
+        timelineSubtab = GetNode<TimelineTab>(TimelineSubtabPath);
         timelineSubtabButton = GetNode<Button>(TimelineSubtabButtonPath);
-        timelineEventsContainer = GetNode<VBoxContainer>(TimelineEventsContainerPath);
 
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         structureTabButton = GetNode<Button>(StructureTabButtonPath);
@@ -717,6 +715,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         ApplyEditorTab();
         ApplyReportSubtab();
         ApplySelectionMenuTab();
+
+        timelineSubtab.Init(editor, mapDrawer);
     }
 
     public void SetMap(PatchMap map)
@@ -1097,90 +1097,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
-    public void UpdateTimeline(Patch patch)
+    public void UpdateTimeline(Patch patch = null)
     {
-        var customRtlScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
-        var timelineHighlight = GD.Load<StyleBoxTexture>("res://src/microbe_stage/editor/TimelineHighlight.tres");
-
-        timelineEventsContainer.FreeChildren();
-
-        for (int i = patch.History.Count - 1; i >= 0; i--)
-        {
-            var snapshot = patch.History[i];
-
-            var headerContainer = new HBoxContainer();
-            var spacer = new Control { RectMinSize = new Vector2(26, 0) };
-
-            var timePeriodLabel = new Label
-            {
-                Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", snapshot.TimePeriod) + " "
-                    + TranslationServer.Translate("MEGA_YEARS"),
-                RectMinSize = new Vector2(0, 55),
-                Valign = Label.VAlign.Center,
-            };
-
-            timelineScrollAnchor = headerContainer;
-
-            timePeriodLabel.AddFontOverride("font", GetFont("jura_bold", "Fonts"));
-
-            headerContainer.AddChild(spacer);
-            headerContainer.AddChild(timePeriodLabel);
-            timelineEventsContainer.AddChild(headerContainer);
-
-            foreach (var entry in snapshot.Events)
-            {
-                var itemContainer = new HBoxContainer();
-                var iconRect = new TextureRect
-                {
-                    RectMinSize = new Vector2(25, 25),
-                    SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
-                    Texture = !string.IsNullOrEmpty(entry.IconPath) ?
-                        GD.Load<Texture>(entry.IconPath) :
-                        null,
-                    Expand = true,
-                    StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-                };
-
-                var highlight = new PanelContainer
-                {
-                    SelfModulate = entry.Highlighted ? Colors.White : Colors.Transparent,
-                    SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
-                };
-
-                highlight.AddStyleboxOverride("panel", timelineHighlight);
-                itemContainer.AddConstantOverride("separation", 5);
-
-                var eventLabel = customRtlScene.Instance<CustomRichTextLabel>();
-                eventLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
-                eventLabel.ExtendedBbcode = entry.Description.ToString();
-                eventLabel.FitContentHeight = true;
-
-                eventLabel.AddFontOverride("normal_font", GetFont("jura_almost_smaller", "Fonts"));
-                eventLabel.AddFontOverride("bold_font", GetFont("jura_demibold_almost_smaller", "Fonts"));
-                eventLabel.AddConstantOverride("line_separation", 0);
-
-                itemContainer.AddChild(iconRect);
-                itemContainer.AddChild(highlight);
-                highlight.AddChild(eventLabel);
-                timelineEventsContainer.AddChild(itemContainer);
-            }
-        }
-    }
-
-    public void TimelineAutoScrollToCurrentTimePeriod()
-    {
-        if (timelineScrollAnchor == null)
-            return;
-
-        var scroll = timelineSubtab.GetNode<ScrollContainer>("MarginContainer/ScrollContainer");
-
-        var scrollRect = scroll.GetGlobalRect();
-        var anchorRect = timelineScrollAnchor.GetGlobalRect();
-
-        var diff = Mathf.Max(Mathf.Min(anchorRect.Position.y, scrollRect.Position.y), anchorRect.Position.y +
-            anchorRect.Size.y - scrollRect.Size.y + (scrollRect.Size.y - anchorRect.Size.y));
-
-        scroll.ScrollVertical += (int)(diff - scrollRect.Position.y);
+        timelineSubtab.SelectedPatch = patch ?? mapDrawer.SelectedPatch ?? editor.CurrentPatch;
+        timelineSubtab.UpdateTimeline();
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
@@ -1360,6 +1280,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
 
         UpdateReportTabStatistics(patch);
+
         UpdateTimeline(patch);
 
         UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
@@ -1941,7 +1862,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             case ReportSubtab.Timeline:
                 timelineSubtab.Show();
                 timelineSubtabButton.Pressed = true;
-                Invoke.Instance.Queue(TimelineAutoScrollToCurrentTimePeriod);
+                Invoke.Instance.Queue(timelineSubtab.TimelineAutoScrollToCurrentTimePeriod);
                 break;
             default:
                 throw new Exception("Invalid report subtab");

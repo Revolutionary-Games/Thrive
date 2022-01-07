@@ -72,9 +72,9 @@ public class Patch
     public BiomeConditions Biome => currentSnapshot.Biome;
 
     /// <summary>
-    ///   All logged events occured in this patch.
+    ///   All logged events occured specific to this patch.
     /// </summary>
-    public IReadOnlyList<PatchSnapshot.EventDescription> Events => currentSnapshot.Events;
+    public IReadOnlyList<GameEventDescription> EventsLog => currentSnapshot.EventsLog;
 
     /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
@@ -205,13 +205,19 @@ public class Patch
         history.AddToFront(snapshot);
     }
 
+    /// <summary>
+    ///   Logs description of an event into the patch's history.
+    /// </summary>
+    /// <param name="description">The event's description</param>
+    /// <param name="highlight">If true, the event will be highlighted in a timeline UI</param>
+    /// <param name="iconPath">Resource path to the icon of the event</param>
     public void LogEvent(LocalizedString description, bool highlight = false, string iconPath = null)
     {
         // Event already logged in timeline
-        if (currentSnapshot.Events.Any(entry => entry.Description.ToString() == description.ToString()))
+        if (currentSnapshot.EventsLog.Any(entry => entry.Description.ToString() == description.ToString()))
             return;
 
-        currentSnapshot.Events.Add(new PatchSnapshot.EventDescription
+        currentSnapshot.EventsLog.Add(new GameEventDescription
         {
             Description = description,
             IconPath = iconPath,
@@ -221,7 +227,7 @@ public class Patch
 
     public void ClearLoggedEvents()
     {
-        currentSnapshot.Events.Clear();
+        currentSnapshot.EventsLog.Clear();
     }
 
     public override string ToString()
@@ -242,7 +248,7 @@ public class PatchSnapshot : ICloneable
 
     public BiomeConditions Biome;
 
-    public List<EventDescription> Events = new();
+    public List<GameEventDescription> EventsLog = new();
 
     public object Clone()
     {
@@ -253,20 +259,9 @@ public class PatchSnapshot : ICloneable
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
             Biome = (BiomeConditions)Biome.Clone(),
-            Events = new List<EventDescription>(Events),
+            EventsLog = new List<GameEventDescription>(EventsLog),
         };
 
         return result;
-    }
-
-    /// <summary>
-    ///   A text-based description of what has happened in a patch to be added to the timeline. Decorated with an icon
-    ///   if there's any.
-    /// </summary>
-    public class EventDescription
-    {
-        public LocalizedString Description { get; set; }
-        public string IconPath { get; set; }
-        public bool Highlighted { get; set; }
     }
 }

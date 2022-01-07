@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-02 17:22+0700\n"
+"POT-Creation-Date: 2022-01-07 23:14+0700\n"
 "PO-Revision-Date: 2021-12-30 18:28+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
@@ -456,7 +456,7 @@ msgid "ZOOM_IN"
 msgstr "Приближаване"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4008
 msgid "EDITOR"
 msgstr "Редактор"
 
@@ -719,25 +719,25 @@ msgstr "АТФ"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1290
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3609
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3655
 msgid "AMMONIA"
 msgstr "Амоняк"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1342
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3726
 msgid "PHOSPHATE"
 msgstr "Фосфат"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1394
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3574
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3620
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1238
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3644
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3690
 msgid "GLUCOSE"
 msgstr "Глюкоза"
 
@@ -748,29 +748,29 @@ msgstr "Окситоксин"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1446
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3715
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3761
 msgid "IRON"
 msgstr "Желязо"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3410
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3456
 msgid "OXYGEN"
 msgstr "Кислород"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3464
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3510
 msgid "CARBON_DIOXIDE"
 msgstr "Въглероден диоксид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3437
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3483
 msgid "NITROGEN"
 msgstr "Азот"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3521
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2842
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3290
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2888
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3336
 msgid "SUNLIGHT"
 msgstr "Слънчева светлина"
 
@@ -919,99 +919,103 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
 
-#: ../src/auto-evo/RunResults.cs:560
+#: ../src/auto-evo/RunResults.cs:562
 msgid "POPULATION"
 msgstr "популация:"
 
-#: ../src/auto-evo/RunResults.cs:569
+#: ../src/auto-evo/RunResults.cs:571
 msgid "WENT_EXTINCT_IN"
 msgstr "изчезнаха от {0}"
 
-#: ../src/auto-evo/RunResults.cs:575
+#: ../src/auto-evo/RunResults.cs:577
 msgid "PREVIOUS"
 msgstr "предишна:"
 
-#: ../src/auto-evo/RunResults.cs:593
+#: ../src/auto-evo/RunResults.cs:595
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "отделиха се от популацията на „{0}“"
 
-#: ../src/auto-evo/RunResults.cs:606
+#: ../src/auto-evo/RunResults.cs:608
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "появиха се за да запълнят ниша"
 
-#: ../src/auto-evo/RunResults.cs:607
+#: ../src/auto-evo/RunResults.cs:610
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "появиха се за да запълнят ниша"
 
-#: ../src/auto-evo/RunResults.cs:612
+#: ../src/auto-evo/RunResults.cs:615
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "появиха се поради селекционен натиск"
 
-#: ../src/auto-evo/RunResults.cs:613
+#: ../src/auto-evo/RunResults.cs:616
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "появиха се поради селекционен натиск"
 
-#: ../src/auto-evo/RunResults.cs:632
+#: ../src/auto-evo/RunResults.cs:636
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "от популацията в следните зони се отделиха „{0}“:"
 
-#: ../src/auto-evo/RunResults.cs:648
+#: ../src/auto-evo/RunResults.cs:652
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "претърпяха мутация"
 
-#: ../src/auto-evo/RunResults.cs:653
+#: ../src/auto-evo/RunResults.cs:657
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генен код:"
 
-#: ../src/auto-evo/RunResults.cs:664
+#: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:676
+#: ../src/auto-evo/RunResults.cs:680
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "към {0} се преселиха {1} индивида от популацията в {2}"
 
-#: ../src/auto-evo/RunResults.cs:692
+#: ../src/auto-evo/RunResults.cs:696
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:699
+#: ../src/auto-evo/RunResults.cs:703
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:706
-msgid "TIMELINE_SPECIES_MIGRATED_TO_TWO"
+msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:714
+msgid "TIMELINE_SPECIES_MIGRATED_TO_TWO"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:721 ../src/auto-evo/RunResults.cs:724
 msgid "TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:721
+#: ../src/auto-evo/RunResults.cs:731
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "текуща популация в зоните:"
 
-#: ../src/auto-evo/RunResults.cs:831
+#: ../src/auto-evo/RunResults.cs:844
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "изчезнаха от планетата"
 
-#: ../src/auto-evo/RunResults.cs:835
+#: ../src/auto-evo/RunResults.cs:848 ../src/auto-evo/RunResults.cs:850
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:848
+#: ../src/auto-evo/RunResults.cs:862 ../src/auto-evo/RunResults.cs:884
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "Популация на създанията"
 
-#: ../src/auto-evo/RunResults.cs:854
+#: ../src/auto-evo/RunResults.cs:868 ../src/auto-evo/RunResults.cs:890
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "Популация на създанията"
 
-#: ../src/auto-evo/RunResults.cs:861
+#: ../src/auto-evo/RunResults.cs:875
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
@@ -1461,23 +1465,28 @@ msgstr "От: {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4112
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4158
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Затваряне"
 
-#: ../src/general/IWorldEffect.cs:67 ../src/gui_common/CompoundAmount.cs:168
+#: ../src/general/IWorldEffect.cs:76 ../src/general/IWorldEffect.cs:96
+#: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:649
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:737
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1049
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1320
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1240
 msgid "PERCENTAGE_VALUE"
 msgstr "{0} %"
 
-#: ../src/general/IWorldEffect.cs:65
+#: ../src/general/IWorldEffect.cs:74 ../src/general/IWorldEffect.cs:94
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
+msgstr ""
+
+#: ../src/general/IWorldEffect.cs:89
+msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
 #: ../src/general/MainMenu.cs:231
@@ -1920,7 +1929,7 @@ msgid "SAVE_GAME"
 msgstr "Запазване"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2705
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2751
 msgid "STATISTICS"
 msgstr "Статистика"
 
@@ -2259,7 +2268,7 @@ msgid "RAW"
 msgstr "НЦ"
 
 #: ../src/gui_common/charts/line/LineChart.cs:629
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2526
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2447
 msgid "NO_DATA_TO_SHOW"
 msgstr "Няма данни"
 
@@ -2880,8 +2889,8 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr "Превключване на предупреждението при излизане от играта."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2831
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3227
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2877
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3273
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:937
 msgid "TEMPERATURE"
 msgstr "Температура"
@@ -3018,9 +3027,9 @@ msgid "PRESSURE_SHORT"
 msgstr "Наляг."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2895
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2929
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3534
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2941
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2975
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3580
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1077
 msgid "COMPOUNDS"
 msgstr "Химични съединения"
@@ -3118,7 +3127,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Баланс на химичните съединения"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Зареждане на микробния редактор"
 
@@ -3126,135 +3135,135 @@ msgstr "Зареждане на микробния редактор"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Изчакване на автоматичната еволюция:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_FAILED"
 msgstr "Автоматичната еволюция не успя да стартира"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "състояние:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:669
 msgid "MUTATION_POINTS"
 msgstr "Мутационни точки"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:800
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:804
 msgid "STRUCTURE"
 msgstr "Структура"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:822
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:826
 msgid "MEMBRANE"
 msgstr "Мембрана"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:844
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:848
 msgid "BEHAVIOUR"
 msgstr "Поведение"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:896
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:900
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Търсене..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:903
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:907
 msgid "STRUCTURAL"
 msgstr "Строеж"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:943
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:947
 msgid "PROTEINS"
 msgstr "Протеини"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1013
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1017
 msgid "EXTERNAL"
 msgstr "Външна"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1067
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1071
 msgid "ORGANELLES"
 msgstr "Органели"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1202
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1206
 msgid "MEMBRANE_TYPES"
 msgstr "Видове"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1281
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1285
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Свойства"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1301
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1305
 msgid "FLUID"
 msgstr "Мека"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1314
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1318
 msgid "RIGID"
 msgstr "Твърда"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1347
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1351
 msgid "COLOUR"
 msgstr "Цвят"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1412
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1415
 msgid "PEACEFUL"
 msgstr "Пасивно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1429
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1432
 msgid "AGGRESSIVE"
 msgstr "Агресивно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1465
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1468
 msgid "CAUTIOUS"
 msgstr "Предпазливо"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1483
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1486
 msgid "OPPORTUNISTIC"
 msgstr "Самонадеяно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1522
 msgid "BRAVE"
 msgstr "Безразсъдно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1536
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1539
 msgid "FEARFUL"
 msgstr "Плашливо"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1572
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1575
 msgid "SESSILE"
 msgstr "Мудно"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1589
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1592
 msgid "ACTIVE"
 msgstr "Енергично"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1625
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "RESPONSIVE"
 msgstr "Бдително"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1642
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1645
 msgid "FOCUSED"
 msgstr "Вглъбено"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1710
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1713
 msgid "ORGANISM_STATISTICS"
 msgstr "Характеристика"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1772
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
 msgid "SPEED_COLON"
 msgstr "Скорост:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "HP_COLON"
 msgstr "ТЗ:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1832
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1835
 msgid "SIZE_COLON"
 msgstr "Размер:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1853
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1856
 msgid "GENERATION_COLON"
 msgstr "Поколение:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1898
 msgid "ATP_BALANCE"
 msgstr "Баланс на АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2008
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2011
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Това е очакваната популация на Вашите създания според автоматичната "
@@ -3262,130 +3271,159 @@ msgstr ""
 "Тя симулира тяхната популация, но не включва резултатите от Вашето "
 "индивидуално представяне."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2012
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4054
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4100
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Прогноза"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2020
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2023
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Отваряне на подробна информация за прогнозата"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2090
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Обща популация:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2114
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2117
 msgid "BEST_PATCH_COLON"
 msgstr "Подходяща зона:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2139
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 msgid "WORST_PATCH_COLON"
 msgstr "Неподходяща зона:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2285
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Наименование..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2339
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2342
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ОТКАЗ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2353
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
 msgid "CONFIRM_CAPITAL"
 msgstr "ГОТОВО"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2362
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2365
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Отрицателен баланс на АТФ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2363
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2366
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Вашият микроб не произвежда достатъчно АТФ за да оцелее!\n"
 "Искате ли да продължите?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2369
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2372
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Несвързани органели"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2371
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2374
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Има органели, които не са свързани с останалите.\n"
 "Моля, свържете ги или отменете Вашите промени."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2471
 msgid "AUTO_EVO"
 msgstr "Автоматична еволюция"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2482
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2485
 msgid "FOOD_CHAIN"
 msgstr "Хранителна верига"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2495
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2498
 msgid "TIMELINE"
 msgstr "Хронология"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2548
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2551
 msgid "AUTO_EVO_RESULTS"
 msgstr "Резултати от автоматичната еволюция:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2567
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2570
 msgid "EXTERNAL_EFFECTS"
 msgstr "Странични ефекти:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2714
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2742
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2663
+msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2669
+#, fuzzy
+msgid "GLOBAL_INITIAL"
+msgstr ""
+"На далечна извънземна планета, след дълъг период на вулканична активност и "
+"метеоритни удари, се заражда нов феномен.\n"
+"\n"
+"Живот.\n"
+"\n"
+"Обикновени микроби обитават дълбините на океана. Вие сте последният "
+"универсален общ предшественик (ПУОП) на тази планета.\n"
+"\n"
+"За да оцелеете в този враждебен свят, трябва да се приспособите и да "
+"еволюирате Вашите създания."
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2676
+#, fuzzy
+msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
+msgstr "появиха се за да запълнят ниша"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2683
+#, fuzzy
+msgid "LOCAL_INITIAL"
+msgstr "измиране на създанията"
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2760
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2788
 msgid "SPECIES_POPULATION"
 msgstr "Популация на създанията"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2752
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3186
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2798
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3232
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Физически условия"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2852
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2886
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3369
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2898
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2932
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3415
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1070
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Атмосферни газове"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2955
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3878
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3001
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3924
 msgid "NEXT_CAPITAL"
 msgstr "НАПРЕД"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3068
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3114
 msgid "SELECT_A_PATCH"
 msgstr "Изберете зона"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3103
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3149
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "ТЕКУЩО МЕСТООБИТАНИЕ"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3263
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3309
 msgid "PRESSURE"
 msgstr "Налягане"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3840
 msgid "SPECIES_PRESENT"
 msgstr "Настоящи създания"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3851
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3897
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Преселване"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3920
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3966
 msgid "REPORT"
 msgstr "Отчет"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3941
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3987
 msgid "PATCH_MAP"
 msgstr "Карта"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4103
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4149
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 "Това са стойностите, които използва прогнозата на автоматичната еволюция. "
@@ -3408,7 +3446,7 @@ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Глюкозата се понижи на {0} от предишното си състояние."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:750
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1117
+#: ../src/microbe_stage/editor/TimelineTab.cs:192
 msgid "MEGA_YEARS"
 msgstr "млн. г."
 
@@ -3463,57 +3501,57 @@ msgstr "Изчезна от планетата"
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Изчезна от зоната"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1214
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1134
 msgid "FREEBUILDING"
 msgstr "Неограничени"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1311
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1231
 msgid "BIOME_LABEL"
 msgstr "Биом: „{0}“"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1316
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1236
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1355
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1275
 msgid "WITH_POPULATION"
 msgstr "{0}: {1} индивида"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2080
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2001
 msgid "FAILED"
 msgstr "Неуспешна"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2086
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2098
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2007
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2019
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2092
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2104
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2013
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2025
 msgid "N_A"
 msgstr "Няма"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2368
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2289
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Наименованието трябва да отговаря на бинарната номенклатура (родово "
 "название и видов епитет)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2494
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2415
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Енергийни стойности в {0} на „{1}“"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2498
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2419
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Некоригираната популация на Вашите създания ({2}) се определя от общата "
 "усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2505
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2426
 msgid "ENERGY_SOURCES"
 msgstr "Източници на енергия:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2511
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2432
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0}: усвоена енергийна стойност {1} със стойност на усвояване {2} и обща "
@@ -3540,6 +3578,10 @@ msgstr "Променяне"
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
 msgstr "Изчезнали създания"
+
+#: ../src/microbe_stage/editor/TimelineTab.cs:243
+msgid "NO_EVENTS_RECORDED"
+msgstr ""
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:86
 msgid "EXTINCTION_CAPITAL"
@@ -4598,12 +4640,20 @@ msgid "VIEW_NOW"
 msgstr "Преглед"
 
 #, fuzzy
-#~ msgid "TOTAL_EXTINCTION"
-#~ msgstr "изчезнаха от {0}"
+#~ msgid "GLOBAL_TIMELINE_SPECIES_EXTINCT"
+#~ msgstr "Популация на създанията"
 
 #, fuzzy
-#~ msgid "LOCAL_EXTINCTION"
-#~ msgstr "измиране на създанията"
+#~ msgid "GLOBAL_TIMELINE_SPECIES_POPULATION_INCREASE"
+#~ msgstr "Популация на създанията"
+
+#, fuzzy
+#~ msgid "GLOBAL_TIMELINE_SPECIES_POPULATION_DECREASE"
+#~ msgstr "Популация на създанията"
+
+#, fuzzy
+#~ msgid "TOTAL_EXTINCTION"
+#~ msgstr "изчезнаха от {0}"
 
 #~ msgid "MARINE_SNOW_FOOD_SOURCE"
 #~ msgstr "Морски сняг"

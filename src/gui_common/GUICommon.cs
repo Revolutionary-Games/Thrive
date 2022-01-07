@@ -90,6 +90,23 @@ public class GUICommon : NodeWithInput
     }
 
     /// <summary>
+    ///   Loads a Texture from predefined GUI asset texture folder path.
+    /// </summary>
+    public static Texture LoadGuiAsset(string file)
+    {
+        var assumedPath = PathUtils.Join(Constants.ASSETS_GUI_BEVEL_FOLDER, file);
+
+        if (ResourceLoader.Exists(assumedPath, "Texture"))
+            return GD.Load<Texture>(assumedPath);
+
+        // Fail-safe if file itself is the absolute path
+        if (ResourceLoader.Exists(file, "Texture"))
+            return GD.Load<Texture>(file);
+
+        return null;
+    }
+
+    /// <summary>
     ///   Closes any currently active exclusive modal popups.
     /// </summary>
     [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]

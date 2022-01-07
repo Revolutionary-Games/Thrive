@@ -38,12 +38,22 @@ public class GlucoseReductionEffect : IWorldEffect
     {
         var glucose = SimulationParameters.Instance.GetCompound("glucose");
 
+        var totalAmount = 0.0f;
+        var totalChunkAmount = 0.0f;
+
+        var initialTotalDensity = 0.0f;
+        var finalTotalDensity = 0.0f;
+
         foreach (var key in targetWorld.Map.Patches.Keys)
         {
             var patch = targetWorld.Map.Patches[key];
 
             if (!patch.Biome.Compounds.TryGetValue(glucose, out EnvironmentalCompoundProperties glucoseValue))
                 return;
+
+            totalAmount += glucoseValue.Amount;
+            initialTotalDensity += glucoseValue.Density;
+            totalChunkAmount += patch.GetTotalChunkCompoundAmount(glucose);
 
             // If there are microbes to be eating up the primordial soup, reduce the milk
             if (patch.SpeciesInPatch.Count > 0)
@@ -59,14 +69,32 @@ public class GlucoseReductionEffect : IWorldEffect
                 var finalGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
                     patch.GetTotalChunkCompoundAmount(glucose), 3);
 
-                var reductionPercentage = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
+                var localReduction = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
-                // TODO: global glucose reduction
                 patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
                         glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "PERCENTAGE_VALUE"), reductionPercentage)), false,
-                    "res://assets/textures/gui/bevel/glucoseDown.png");
+                            "PERCENTAGE_VALUE"), localReduction)), false,
+                    "glucoseDown.png");
             }
+
+            finalTotalDensity += patch.Biome.Compounds[glucose].Density;
+        }
+
+        var initialTotalGlucose = Math.Round(initialTotalDensity * totalAmount + totalChunkAmount, 3);
+        var finalTotalGlucose = Math.Round(finalTotalDensity * totalAmount + totalChunkAmount, 3);
+        var globalReduction = Math.Round((initialTotalGlucose - finalTotalGlucose) / initialTotalGlucose * 100, 1);
+
+        if (globalReduction >= 50)
+        {
+            targetWorld.LogEvent(new LocalizedString("GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"),
+                false, "glucoseDown.png");
+        }
+        else
+        {
+            targetWorld.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
+                    glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
+                        "PERCENTAGE_VALUE"), globalReduction)), false,
+                "glucoseDown.png");
         }
     }
 }

@@ -655,6 +655,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
+            gui.UpdateTimeline();
         }
     }
 
@@ -2470,7 +2471,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
         else
         {
-            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
+            autoEvoSummary = run.Results.MakeSummary(
+                CurrentGame.GameWorld, CurrentGame.GameWorld.Map, true, run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
             gui.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());

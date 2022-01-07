@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=2]
+[gd_scene load_steps=132 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/scrollPanelVerticalFade.png" type="Texture" id=21]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=23]
+[ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=24]
+[ext_resource path="res://src/microbe_stage/editor/TimelineTab.cs" type="Script" id=25]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=27]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=28]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=29]
@@ -358,6 +360,8 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="ButtonGroup" id=40]
 
 [sub_resource type="ButtonGroup" id=31]
 
@@ -2605,6 +2609,10 @@ margin_bottom = 533.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 29 )
+script = ExtResource( 25 )
+EventsContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer")
+ScrollContainerPath = NodePath("MarginContainer/ScrollContainer")
+FilterButtonsMarginContainerPath = NodePath("MarginContainer/MarginContainer")
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 margin_left = 1.0
@@ -2634,7 +2642,46 @@ custom_constants/margin_bottom = 20
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
 margin_right = 809.0
 margin_bottom = 451.0
-custom_constants/separation = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer"]
+margin_left = 631.0
+margin_top = 10.0
+margin_right = 834.0
+margin_bottom = 35.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer"]
+margin_right = 203.0
+margin_bottom = 25.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="GlobalFilter" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
+margin_right = 104.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+hint_tooltip = "TIMELINE_GLOBAL_FILTER_TOOLTIP"
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 24 )
+toggle_mode = true
+action_mode = 0
+group = SubResource( 40 )
+text = "GLOBAL_INITIAL"
+
+[node name="LocalFilter" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer"]
+margin_left = 108.0
+margin_right = 203.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+hint_tooltip = "TIMELINE_LOCAL_FILTER_TOOLTIP"
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 24 )
+toggle_mode = true
+pressed = true
+action_mode = 0
+group = SubResource( 40 )
+text = "LOCAL_INITIAL"
 
 [node name="TopFade" type="TextureRect" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 modulate = Color( 1, 1, 1, 0.392157 )
@@ -4155,6 +4202,8 @@ HelpCategory = "MicrobeEditor"
 [connection signal="Confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton" to="MicrobeEditorGUI" method="SetReportSubtab" binds= [ "AutoEvo" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton" to="MicrobeEditorGUI" method="SetReportSubtab" binds= [ "Timeline" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/GlobalFilter" to="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [ 0 ]]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/LocalFilter" to="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [ 1 ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", true ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", false ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendPressed" binds= [ "temperature" ]]

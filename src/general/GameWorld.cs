@@ -26,6 +26,9 @@ public class GameWorld
     [JsonProperty]
     private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
 
+    [JsonProperty]
+    private Dictionary<double, List<GameEventDescription>> eventsLog = new();
+
     /// <summary>
     ///   This world's auto-evo run
     /// </summary>
@@ -122,6 +125,11 @@ public class GameWorld
             effects.AddRange(value);
         }
     }
+
+    /// <summary>
+    ///   Returns log of game events pertaining to the whole world.
+    /// </summary>
+    public IReadOnlyDictionary<double, List<GameEventDescription>> EventsLog => eventsLog;
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
@@ -316,5 +324,40 @@ public class GameWorld
             return;
 
         autoEvo = AutoEvo.AutoEvo.CreateRun(this);
+    }
+
+    /// <summary>
+    ///   Stores a description of a global event into the game world record.
+    /// </summary>
+    /// <param name="description">The event's description</param>
+    /// <param name="highlight">If true, the event will be highlighted in a timeline UI</param>
+    /// <param name="iconPath">Resource path to the icon of the event</param>
+    public void LogEvent(LocalizedString description, bool highlight = false, string iconPath = null)
+    {
+        if (eventsLog.Count > Constants.GLOBAL_EVENT_LOG_CAP)
+        {
+            var oldestKey = Double.MaxValue;
+
+            foreach (var entry in eventsLog)
+                oldestKey = Math.Min(entry.Key, oldestKey);
+
+            eventsLog.Remove(oldestKey);
+        }
+
+        if (!eventsLog.ContainsKey(TotalPassedTime))
+            eventsLog.Add(TotalPassedTime, new List<GameEventDescription>());
+
+        // Event already logged in timeline
+        if (eventsLog[TotalPassedTime].Any(entry => entry.Description.ToString() == description.ToString()))
+        {
+            return;
+        }
+
+        eventsLog[TotalPassedTime].Add(new GameEventDescription
+        {
+            Description = description,
+            IconPath = iconPath,
+            Highlighted = highlight,
+        });
     }
 }

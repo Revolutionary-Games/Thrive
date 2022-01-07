@@ -169,7 +169,7 @@
         {
             if (property.Name.Contains("GameWorld"))
             {
-                ((JObject)property.Value).Add("worldTimeline", new JObject());
+                ((JObject)property.Value).Add("eventsLog", new JObject());
             }
         }
     }

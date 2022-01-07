@@ -519,7 +519,10 @@ public static class Constants
     /// </summary>
     public const int PATCH_HISTORY_RANGE = 10;
 
-    public const int TIMELINE_HISTORY_RANGE = 20;
+    /// <summary>
+    ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
+    /// </summary>
+    public const int GLOBAL_EVENT_LOG_CAP = 20;
 
     /// <summary>
     ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
@@ -588,6 +591,8 @@ public static class Constants
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
+
+    public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 
     /// <summary>
     ///   Internal Godot name for the default audio output device
