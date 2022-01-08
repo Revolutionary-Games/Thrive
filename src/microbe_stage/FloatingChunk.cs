@@ -57,6 +57,12 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public Node EntityNode => this;
 
     /// <summary>
+    ///   A specific name/type for this chunk. Currently used for distinguishing damage types to microbes.
+    ///   Default is "chunk".
+    /// </summary>
+    public string Identifier { get; set; } = "chunk";
+
+    /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
     /// </summary>
     public float Size { get; set; } = -1.0f;
@@ -125,6 +131,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         Size = chunkType.Size;
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
+        Identifier = string.IsNullOrEmpty(chunkType.Identifier) ? "chunk" : chunkType.Identifier;
 
         Mass = chunkType.Mass;
 
@@ -249,14 +256,13 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             // Damage
             if (Damages > 0)
             {
-                // TODO: Not the cleanest way to play the damage sound
                 if (DeleteOnTouch)
                 {
-                    microbe.Damage(Damages, "toxin");
+                    microbe.Damage(Damages, Identifier);
                 }
                 else
                 {
-                    microbe.Damage(Damages * delta, "chunk");
+                    microbe.Damage(Damages * delta, Identifier);
                 }
             }
 

@@ -15,6 +15,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public List<ChunkScene> Meshes;
 
+    /// <summary>
+    ///   A specific name/type for this chunk
+    /// </summary>
+    public string Identifier;
+
     public float Density;
     public bool Dissolves;
     public float Radius;
