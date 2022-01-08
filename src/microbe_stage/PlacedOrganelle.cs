@@ -480,7 +480,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Physics
         ParentMicrobe.Mass += Definition.Mass;
 
-        // Add the mass of the organelles to the master
+        // Add the mass of the organelles to the colony master
         if (ParentMicrobe.Colony != null && ParentMicrobe != ParentMicrobe.Colony.Master)
             ParentMicrobe.Colony.Master.Mass += Definition.Mass;
 
