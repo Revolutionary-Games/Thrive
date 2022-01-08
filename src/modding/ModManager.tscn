@@ -67,19 +67,20 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
-margin_top = -45.0
+margin_top = -44.0
 margin_right = -16.0
-margin_bottom = -6.0
+margin_bottom = -10.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Quit" type="Button" parent="HBoxContainer"]
-margin_right = 150.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 150, 40 )
+margin_right = 120.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 120, 0 )
 mouse_filter = 1
 size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -95,139 +96,139 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 215.0
-margin_top = 34.0
+margin_top = 36.0
 margin_right = 1065.0
-margin_bottom = 639.0
+margin_bottom = 637.0
 rect_min_size = Vector2( 850, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="UpperPart" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_right = 850.0
-margin_bottom = 265.0
+margin_bottom = 264.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="Left" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-margin_right = 348.0
-margin_bottom = 265.0
+margin_right = 350.0
+margin_bottom = 264.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
-margin_right = 348.0
-margin_bottom = 25.0
+margin_right = 350.0
+margin_bottom = 24.0
 text = "AVAILABLE_MODS"
 align = 1
 
 [node name="AvailableMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
-margin_top = 29.0
-margin_right = 348.0
-margin_bottom = 229.0
+margin_top = 28.0
+margin_right = 350.0
+margin_bottom = 228.0
 rect_min_size = Vector2( 300, 200 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 fixed_icon_size = Vector2( 32, 32 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Left"]
-margin_top = 233.0
-margin_right = 348.0
-margin_bottom = 265.0
+margin_top = 232.0
+margin_right = 350.0
+margin_bottom = 264.0
 size_flags_horizontal = 3
 
 [node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
-margin_right = 172.0
+margin_right = 173.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 11 )
 text = "REFRESH"
 
 [node name="Browse" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Left/HBoxContainer"]
-margin_left = 176.0
-margin_right = 348.0
+margin_left = 177.0
+margin_right = 350.0
 margin_bottom = 32.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 11 )
 text = "OPEN_FOLDER"
 
 [node name="Center" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-margin_left = 352.0
-margin_right = 498.0
-margin_bottom = 265.0
+margin_left = 354.0
+margin_right = 495.0
+margin_bottom = 264.0
 size_flags_vertical = 3
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart/Center"]
 margin_top = 91.0
-margin_right = 146.0
-margin_bottom = 174.0
+margin_right = 141.0
+margin_bottom = 172.0
 
 [node name="Right" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
-margin_right = 146.0
-margin_bottom = 35.0
+margin_right = 141.0
+margin_bottom = 34.0
 disabled = true
 text = "RIGHT_ARROW"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
-margin_top = 39.0
-margin_right = 146.0
-margin_bottom = 44.0
+margin_top = 38.0
+margin_right = 141.0
+margin_bottom = 43.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Left" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Center/VBoxContainer"]
-margin_top = 48.0
-margin_right = 146.0
-margin_bottom = 83.0
+margin_top = 47.0
+margin_right = 141.0
+margin_bottom = 81.0
 disabled = true
 text = "LEFT_ARROW"
 
 [node name="Right" type="VBoxContainer" parent="CenterContainer/VBoxContainer/UpperPart"]
-margin_left = 502.0
+margin_left = 499.0
 margin_right = 850.0
-margin_bottom = 265.0
+margin_bottom = 264.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
-margin_right = 348.0
-margin_bottom = 25.0
+margin_right = 351.0
+margin_bottom = 24.0
 text = "ENABLED_MODS"
 align = 1
 
 [node name="ActiveMods" type="ItemList" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
-margin_top = 29.0
-margin_right = 348.0
-margin_bottom = 229.0
+margin_top = 28.0
+margin_right = 351.0
+margin_bottom = 228.0
 rect_min_size = Vector2( 300, 200 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 fixed_icon_size = Vector2( 32, 32 )
 
 [node name="DisableAll" type="Button" parent="CenterContainer/VBoxContainer/UpperPart/Right"]
-margin_top = 233.0
-margin_right = 348.0
-margin_bottom = 265.0
+margin_top = 232.0
+margin_right = 351.0
+margin_bottom = 264.0
 custom_fonts/font = ExtResource( 11 )
 disabled = true
 text = "DISABLE_ALL"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_top = 269.0
+margin_top = 268.0
 margin_right = 850.0
-margin_bottom = 274.0
+margin_bottom = 273.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 278.0
+margin_top = 277.0
 margin_right = 850.0
-margin_bottom = 485.0
+margin_bottom = 481.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 849.0
-margin_bottom = 206.0
+margin_bottom = 203.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -237,36 +238,36 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 838.0
-margin_bottom = 195.0
+margin_bottom = 192.0
 
 [node name="NameLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_right = 828.0
 margin_bottom = 32.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
-margin_top = 3.0
-margin_right = 154.0
+margin_top = 4.0
+margin_right = 145.0
 margin_bottom = 28.0
 text = "SELECTED_MOD"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
-margin_left = 158.0
-margin_right = 161.0
+margin_left = 149.0
+margin_right = 152.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Icon" type="TextureRect" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
-margin_left = 165.0
-margin_right = 197.0
+margin_left = 156.0
+margin_right = 188.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 expand = true
 stretch_mode = 7
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/NameLine"]
-margin_left = 201.0
-margin_top = 3.0
-margin_right = 328.0
+margin_left = 192.0
+margin_top = 4.0
+margin_right = 314.0
 margin_bottom = 28.0
 text = "My cool mod"
 __meta__ = {
@@ -276,63 +277,63 @@ __meta__ = {
 [node name="AuthorLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
 margin_top = 36.0
 margin_right = 828.0
-margin_bottom = 61.0
+margin_bottom = 60.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
-margin_right = 134.0
-margin_bottom = 25.0
+margin_right = 129.0
+margin_bottom = 24.0
 text = "MOD_AUTHOR"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
-margin_left = 138.0
-margin_right = 711.0
-margin_bottom = 25.0
+margin_left = 133.0
+margin_right = 716.0
+margin_bottom = 24.0
 size_flags_horizontal = 3
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/AuthorLine"]
-margin_left = 715.0
+margin_left = 720.0
 margin_right = 828.0
-margin_bottom = 25.0
+margin_bottom = 24.0
 text = "Some dude"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="VersionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-margin_top = 65.0
+margin_top = 64.0
 margin_right = 828.0
-margin_bottom = 92.0
+margin_bottom = 91.0
 
 [node name="ModVersion" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
-margin_right = 175.0
+margin_right = 169.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
 margin_top = 1.0
-margin_right = 138.0
-margin_bottom = 26.0
+margin_right = 133.0
+margin_bottom = 25.0
 text = "MOD_VERSION"
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
-margin_left = 142.0
-margin_right = 145.0
+margin_left = 137.0
+margin_right = 140.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 3, 0 )
 size_flags_horizontal = 3
 
 [node name="ModVersion" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine/ModVersion"]
-margin_left = 149.0
+margin_left = 144.0
 margin_top = 1.0
-margin_right = 175.0
-margin_bottom = 26.0
+margin_right = 169.0
+margin_bottom = 25.0
 text = "1.0"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Control" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/VersionLine"]
-margin_left = 179.0
+margin_left = 173.0
 margin_right = 326.0
 margin_bottom = 27.0
 size_flags_horizontal = 3
@@ -431,26 +432,26 @@ __meta__ = {
 }
 
 [node name="DescriptionLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-margin_top = 96.0
+margin_top = 95.0
 margin_right = 828.0
-margin_bottom = 149.0
+margin_bottom = 146.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
-margin_top = 14.0
-margin_right = 182.0
-margin_bottom = 39.0
+margin_top = 13.0
+margin_right = 174.0
+margin_bottom = 37.0
 text = "MOD_DESCRIPTION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine"]
-margin_left = 186.0
+margin_left = 178.0
 margin_right = 828.0
-margin_bottom = 53.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/DescriptionLine/HBoxContainer"]
-margin_right = 642.0
-margin_bottom = 53.0
+margin_right = 650.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 text = "Mod description goes here that can get a bit long sometimes so this needs a bit of space here to allow it to fit here"
 align = 2
@@ -461,9 +462,9 @@ __meta__ = {
 }
 
 [node name="ButtonsLine" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected"]
-margin_top = 153.0
+margin_top = 150.0
 margin_right = 828.0
-margin_bottom = 185.0
+margin_bottom = 182.0
 
 [node name="MoreInfo" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/CurrentlySelected/ButtonsLine"]
 margin_right = 109.0
@@ -482,15 +483,15 @@ disabled = true
 text = "OPEN_MOD_URL"
 
 [node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_top = 489.0
+margin_top = 485.0
 margin_right = 850.0
-margin_bottom = 494.0
+margin_bottom = 490.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 498.0
+margin_top = 494.0
 margin_right = 850.0
-margin_bottom = 530.0
+margin_bottom = 526.0
 size_flags_horizontal = 3
 alignment = 2
 __meta__ = {
@@ -519,33 +520,33 @@ custom_fonts/font = ExtResource( 11 )
 text = "NEW"
 
 [node name="Spacer3" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_top = 534.0
+margin_top = 530.0
 margin_right = 850.0
-margin_bottom = 539.0
+margin_bottom = 535.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_top = 543.0
+margin_top = 539.0
 margin_right = 850.0
-margin_bottom = 560.0
+margin_bottom = 556.0
 custom_fonts/font = ExtResource( 5 )
 text = "MOD_LOAD_UNLOAD_CAVEATS"
 align = 1
 autowrap = true
 
 [node name="Spacer4" type="Control" parent="CenterContainer/VBoxContainer"]
-margin_top = 564.0
+margin_top = 560.0
 margin_right = 850.0
-margin_bottom = 569.0
+margin_bottom = 565.0
 rect_min_size = Vector2( 0, 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 573.0
+margin_top = 569.0
 margin_right = 850.0
-margin_bottom = 605.0
+margin_bottom = 601.0
 alignment = 1
 
 [node name="LoadAll" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]

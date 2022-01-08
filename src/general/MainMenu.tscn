@@ -169,10 +169,10 @@ __meta__ = {
 }
 
 [node name="NewGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 515.0
-margin_right = 765.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 520.0
+margin_right = 760.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 240, 38 )
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "NEW_GAME"
@@ -181,76 +181,76 @@ __meta__ = {
 }
 
 [node name="LoadGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 515.0
-margin_top = 50.0
-margin_right = 765.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 520.0
+margin_top = 48.0
+margin_right = 760.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 240, 38 )
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 515.0
-margin_top = 100.0
-margin_right = 765.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 520.0
+margin_top = 96.0
+margin_right = 760.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 515.0
-margin_top = 150.0
-margin_right = 765.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 520.0
+margin_top = 144.0
+margin_right = 760.0
+margin_bottom = 182.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "TOOLS"
 
 [node name="ViewSourceCode" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 515.0
-margin_top = 200.0
-margin_right = 765.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 520.0
+margin_top = 192.0
+margin_right = 760.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "VIEW_SOURCE_CODE"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 515.0
-margin_top = 250.0
-margin_right = 765.0
-margin_bottom = 290.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 520.0
+margin_top = 240.0
+margin_right = 760.0
+margin_bottom = 278.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 515.0
-margin_top = 300.0
-margin_right = 765.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 520.0
+margin_top = 288.0
+margin_right = 760.0
+margin_bottom = 326.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
 text = "CREDITS"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 515.0
-margin_top = 350.0
-margin_right = 765.0
-margin_bottom = 390.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 520.0
+margin_top = 336.0
+margin_right = 760.0
+margin_bottom = 374.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -268,8 +268,8 @@ __meta__ = {
 [node name="FreebuildEditor" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
 margin_left = 502.0
 margin_right = 777.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
+margin_bottom = 38.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -277,11 +277,11 @@ size_flags_vertical = 0
 text = "MICROBE_FREEBUILD_EDITOR"
 
 [node name="unknown" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 515.0
-margin_top = 50.0
-margin_right = 765.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_top = 48.0
+margin_right = 757.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -293,11 +293,11 @@ __meta__ = {
 }
 
 [node name="unknown2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 515.0
-margin_top = 100.0
-margin_right = 765.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_top = 96.0
+margin_right = 757.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -309,11 +309,11 @@ __meta__ = {
 }
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 515.0
-margin_top = 150.0
-margin_right = 765.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_top = 144.0
+margin_right = 757.0
+margin_bottom = 182.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -325,11 +325,11 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
-margin_left = 515.0
-margin_top = 200.0
-margin_right = 765.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_top = 192.0
+margin_right = 757.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -346,11 +346,10 @@ __meta__ = {
 }
 
 [node name="Mods" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 515.0
-margin_top = 100.0
-margin_right = 765.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_right = 757.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -361,10 +360,11 @@ __meta__ = {
 }
 
 [node name="ArtGallery" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 502.0
-margin_right = 777.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_top = 48.0
+margin_right = 757.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 240, 38 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -372,11 +372,11 @@ disabled = true
 text = "ART_GALLERY"
 
 [node name="Licenses" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 515.0
-margin_top = 50.0
-margin_right = 765.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_top = 96.0
+margin_right = 757.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -387,11 +387,11 @@ __meta__ = {
 }
 
 [node name="unknown3" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 515.0
-margin_top = 150.0
-margin_right = 765.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_top = 144.0
+margin_right = 757.0
+margin_bottom = 182.0
+rect_min_size = Vector2( 240, 38 )
 focus_mode = 0
 mouse_filter = 1
 size_flags_horizontal = 4
@@ -403,11 +403,11 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Extras"]
-margin_left = 515.0
-margin_top = 200.0
-margin_right = 765.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
+margin_left = 522.0
+margin_top = 192.0
+margin_right = 757.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 240, 38 )
 mouse_filter = 1
 size_flags_horizontal = 4
 size_flags_vertical = 0
