@@ -15,11 +15,6 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public List<ChunkScene> Meshes;
 
-    /// <summary>
-    ///   A specific name/type for this chunk
-    /// </summary>
-    public string Identifier;
-
     public float Density;
     public bool Dissolves;
     public float Radius;
@@ -38,6 +33,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public float Damages;
 
     public bool DeleteOnTouch;
+
+    /// <summary>
+    ///   The name of kind of damage type this chunk inflicts.
+    /// </summary>
+    public string DamageType;
 
     public Dictionary<Compound, ChunkCompound> Compounds;
 

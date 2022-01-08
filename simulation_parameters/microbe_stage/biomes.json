@@ -23,7 +23,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -37,7 +36,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -167,7 +167,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -181,7 +180,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -395,7 +395,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -409,7 +408,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -543,7 +543,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -557,7 +556,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -767,7 +767,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -781,7 +780,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -995,7 +995,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -1009,7 +1008,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -1223,7 +1223,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -1237,7 +1236,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -1367,7 +1367,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -1381,7 +1380,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -1515,7 +1515,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -1529,7 +1528,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -1568,7 +1568,6 @@
                 },
                 "iceShard": {
                     "name": "ICESHARD",
-                    "identifier": "ice",
                     "meshes": [
                         {
                             "scenePath": "res://assets/models/Iceshard1.tscn",
@@ -1583,7 +1582,8 @@
                     "size": 1000,
                     "damages": 10,
                     "deleteOnTouch": false,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "ice"
                 },
                 "ironBigChunk": {
                     "name": "BIG_IRON_CHUNK",
@@ -1682,7 +1682,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -1696,7 +1695,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",
@@ -1830,7 +1830,6 @@
             "chunks": {
                 "floatingToxin": {
                     "name": "FLOATING_HAZARD",
-                    "identifier": "toxin",
                     "meshes": [
                         {
                             "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
@@ -1844,7 +1843,8 @@
                     "size": 10000,
                     "damages": 10,
                     "deleteOnTouch": true,
-                    "compounds": {}
+                    "compounds": {},
+                    "damageType": "toxin"
                 },
                 "ironSmallChunk": {
                     "name": "SMALL_IRON_CHUNK",

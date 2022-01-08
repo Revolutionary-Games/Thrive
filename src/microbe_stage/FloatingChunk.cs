@@ -57,12 +57,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public Node EntityNode => this;
 
     /// <summary>
-    ///   A specific name/type for this chunk. Currently used for distinguishing damage types to microbes.
-    ///   Default is "chunk".
-    /// </summary>
-    public string Identifier { get; set; } = "chunk";
-
-    /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
     /// </summary>
     public float Size { get; set; } = -1.0f;
@@ -107,6 +101,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     public float ChunkScale { get; set; }
 
+    /// <summary>
+    ///   The name of kind of damage type this chunk inflicts. Default is "chunk".
+    /// </summary>
+    public string DamageType { get; set; } = "chunk";
+
     public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
@@ -131,7 +130,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         Size = chunkType.Size;
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
-        Identifier = string.IsNullOrEmpty(chunkType.Identifier) ? "chunk" : chunkType.Identifier;
+        DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType;
 
         Mass = chunkType.Mass;
 
@@ -258,11 +257,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             {
                 if (DeleteOnTouch)
                 {
-                    microbe.Damage(Damages, Identifier);
+                    microbe.Damage(Damages, DamageType);
                 }
                 else
                 {
-                    microbe.Damage(Damages * delta, Identifier);
+                    microbe.Damage(Damages * delta, DamageType);
                 }
             }
 
