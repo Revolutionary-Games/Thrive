@@ -2613,6 +2613,8 @@ script = ExtResource( 25 )
 EventsContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer")
 ScrollContainerPath = NodePath("MarginContainer/ScrollContainer")
 FilterButtonsMarginContainerPath = NodePath("MarginContainer/MarginContainer")
+LocalFilterButtonPath = NodePath("MarginContainer/MarginContainer/HBoxContainer/LocalFilter")
+GlobalFilterButtonPath = NodePath("MarginContainer/MarginContainer/HBoxContainer/GlobalFilter")
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 margin_left = 1.0

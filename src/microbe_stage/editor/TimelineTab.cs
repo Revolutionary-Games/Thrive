@@ -15,12 +15,20 @@ public class TimelineTab : PanelContainer
     [Export]
     public NodePath FilterButtonsMarginContainerPath;
 
+    [Export]
+    public NodePath LocalFilterButtonPath;
+
+    [Export]
+    public NodePath GlobalFilterButtonPath;
+
     private MicrobeEditor editor;
     private PatchMapDrawer patchMapDrawer;
 
     private VBoxContainer eventsContainer;
     private ScrollContainer scrollContainer;
     private MarginContainer filterButtonsMarginContainer;
+    private Button localFilterButton;
+    private Button globalFilterButton;
 
     private Filters eventFilter = Filters.Local;
 
@@ -64,6 +72,8 @@ public class TimelineTab : PanelContainer
         eventsContainer = GetNode<VBoxContainer>(EventsContainerPath);
         scrollContainer = GetNode<ScrollContainer>(ScrollContainerPath);
         filterButtonsMarginContainer = GetNode<MarginContainer>(FilterButtonsMarginContainerPath);
+        localFilterButton = GetNode<Button>(LocalFilterButtonPath);
+        globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
 
     public void UpdateTimeline()
@@ -124,10 +134,12 @@ public class TimelineTab : PanelContainer
             case Filters.Global:
                 cachedGlobalTimelineElements?.ForEach(e => e.Show());
                 cachedLocalTimelineElements?.ForEach(e => e.Hide());
+                globalFilterButton.Pressed = true;
                 break;
             case Filters.Local:
                 cachedGlobalTimelineElements?.ForEach(e => e.Hide());
                 cachedLocalTimelineElements?.ForEach(e => e.Show());
+                localFilterButton.Pressed = true;
                 break;
             default:
                 throw new Exception("Not a valid event filter");
@@ -138,15 +150,12 @@ public class TimelineTab : PanelContainer
 
     private void OnFilterSelected(int index)
     {
-        switch (index)
-        {
-            case 0:
-                EventFilter = Filters.Global;
-                break;
-            case 1:
-                EventFilter = Filters.Local;
-                break;
-        }
+        if (!Enum.IsDefined(typeof(Filters), index) || (Filters)index == EventFilter)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EventFilter = (Filters)index;
     }
 
     private class TimelineSection : VBoxContainer
