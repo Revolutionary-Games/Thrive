@@ -70,6 +70,24 @@ public static class NodeHelpers
     }
 
     /// <summary>
+    ///   Call RemoveChild on all Node children
+    /// </summary>
+    /// <param name="node">Node to remove children of</param>
+    public static void RemoveChildren(this Node node)
+    {
+        while (true)
+        {
+            int count = node.GetChildCount();
+
+            if (count < 1)
+                break;
+
+            var child = node.GetChild(count - 1);
+            node.RemoveChild(child);
+        }
+    }
+
+    /// <summary>
     ///   Call Free on all Node children
     /// </summary>
     /// <param name="node">Node to delete children of</param>

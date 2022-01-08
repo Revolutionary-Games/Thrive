@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Base interface for all mods to implement
@@ -22,7 +23,7 @@ public interface IMod
     ///   True on success. If returns false a popup is shown telling the player that an error occurred.
     ///   On failure extra info should be printed to logs (GD.PrintErr) for the user to see what the problem is.
     /// </returns>
-    bool Initialize(IModInterface modInterface, ModInfo currentModInfo);
+    bool Initialize(IModInterface modInterface, FullModDetails currentModInfo);
 
     /// <summary>
     ///   Called when the mod should be unloaded. Note that code assemblies can't really be unloaded well so the mod
@@ -38,4 +39,14 @@ public interface IMod
     /// </summary>
     /// <param name="currentScene">The current root scene (should be the MainMenu)</param>
     void CanAttachNodes(Node currentScene);
+
+    /// <summary>
+    ///   Called when the player has updated the configuration for the mod
+    /// </summary>
+    /// <param name="newConfiguration">The new set of configuration the player has set</param>
+    /// <remarks>
+    ///   This idealy should have a default implemention as not all mods will have a ConfigMenu.
+    ///   But the current target framework does not support it yet and so will just error at me.
+    /// </remarks>
+    void UpdatedConfiguration(Dictionary<string, object> newConfiguration);
 }

@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using Godot;
+using Newtonsoft.Json;
 using File = System.IO.File;
 using Path = System.IO.Path;
 
@@ -19,7 +20,7 @@ public class ModLoader : Node
 
     private readonly Dictionary<string, IMod> loadedModAssemblies = new();
 
-    private readonly List<string> modErrors = new();
+    private readonly List<(FullModDetails, string)> modErrors = new();
 
     private List<FullModDetails> workshopMods;
 
@@ -31,6 +32,22 @@ public class ModLoader : Node
 
         // The reason why mods aren't loaded here already is that this object can't be attached to the scene here yet
         // so we delay mod loading until this has been attached to the main scene tree
+    }
+
+    /// <summary>
+    ///   The number that corresponds to the number returned by the isValidModList function
+    /// </summary>
+    public enum CheckErrorStatus
+    {
+        InvalidLoadOrderAfter = -6,
+        InvalidLoadOrderBefore = -5,
+        IncompatibleMod = -4,
+        InvalidDependencyOrder = -3,
+        DependencyNotFound = -2,
+        IncompatibleVersion = -1,
+        Unknown = 0,
+        Valid = 1,
+        EmptyList = 2,
     }
 
     public static ModLoader Instance => instance;
@@ -48,7 +65,12 @@ public class ModLoader : Node
     /// <summary>
     ///   Errors that occurred when loading or unloading mods
     /// </summary>
-    public IEnumerable<string> ModErrors => modErrors;
+    public Dictionary<string, IMod> LoadedModAssemblies => loadedModAssemblies;
+
+    /// <summary>
+    ///   Errors that occurred when loading or unloading mods
+    /// </summary>
+    public IEnumerable<(FullModDetails Mod, string ErrorMessage)> ModErrors => modErrors;
 
     /// <summary>
     ///   Finds a mod and loads its info
@@ -133,6 +155,173 @@ public class ModLoader : Node
         return result;
     }
 
+    /// <summary>
+    ///   This loads the Mod Settings/Config from a file
+    /// </summary>
+    /// <returns> The SavedConfig on success, null if the file can't be read.</returns>
+    public static Dictionary<string, object> LoadModConfigs(string modName)
+    {
+        try
+        {
+            var fileText = File.ReadAllText(ProjectSettings.GlobalizePath(Constants.MOD_CONFIGURATION_FILE));
+            var savedConfig = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(fileText);
+            if (savedConfig?.ContainsKey(modName) ?? false)
+            {
+                return savedConfig[modName];
+            }
+
+            return null;
+        }
+        catch
+        {
+            GD.PrintErr("Couldn't open mod configuration file for reading.");
+            return null;
+        }
+    }
+
+    /// <summary>
+    ///   This checks if all of the mod in the list is compatible with each other
+    /// </summary>
+    /// <returns>
+    ///  The 1st index returns the error type (Look at CheckErrorStatus enum for more explanation)
+    ///  Tht 2nd index returns the mod that is causing the error
+    ///  The 3rd index returns the other mod that is causing the error, if there is one
+    /// </returns>
+    public static (int ErrorType, int ModIndex, int OtherModIndex) IsValidModList(List<FullModDetails> modsToCheck)
+    {
+        (int ErrorType, int ModIndex, int OtherModIndex) isValidList = ((int)CheckErrorStatus.Unknown, -1, -1);
+        Dictionary<string, FullModDetails> tempModDictionary;
+
+        // Make sure the list is not empty
+        if (modsToCheck.Count < 1)
+        {
+            return ((int)CheckErrorStatus.EmptyList, -1, -1);
+        }
+
+        // Store the mod in a dictionary for faster look-up when actually checking
+        tempModDictionary = ModArrayToModDictioanry(modsToCheck.ToArray());
+
+        for (int index = 0; index < modsToCheck.Count; ++index)
+        {
+            FullModDetails currentMod = modsToCheck[index];
+            int[] validMod = IsModValid(currentMod, tempModDictionary);
+            isValidList = (validMod[0], index, validMod[1]);
+
+            // TODO: allow for multiple mod errors to show up
+            if (isValidList.ErrorType <= 0)
+            {
+                break;
+            }
+        }
+
+        // If there were no errors then the list is valid
+        if (isValidList.ErrorType == (int)CheckErrorStatus.Unknown)
+        {
+            isValidList = ((int)CheckErrorStatus.Valid, -1, -1);
+        }
+
+        return isValidList;
+    }
+
+    /// <summary>
+    ///   This checks if the mod is valid in dictionary of mods
+    ///   If you want to check if a mod is valid in a list use of the above functions
+    /// </summary>
+    /// <returns>
+    ///  The 1st index returns the error type (Look at CheckErrorStatus enum for more explanation)
+    ///  The 2nd index returns the mod that is causing the error, if there is one
+    /// </returns>
+    public static int[] IsModValid(FullModDetails currentMod, Dictionary<string, FullModDetails> modDictionary)
+    {
+        var currentModInfo = currentMod.Info;
+
+        if (currentMod.IsCompatibleVersion < -1)
+        {
+            return new[]
+            {
+                (int)CheckErrorStatus.IncompatibleVersion, -1,
+            };
+        }
+
+        if (currentModInfo.Dependencies != null)
+        {
+            var dependencyIndex = 0;
+            foreach (string dependencyName in currentModInfo.Dependencies)
+            {
+                if (modDictionary.ContainsKey(dependencyName))
+                {
+                    // See if the dependency is loaded before this mod
+                    if (currentMod.LoadPosition < modDictionary[dependencyName].LoadPosition)
+                    {
+                        return new[]
+                        {
+                            (int)CheckErrorStatus.InvalidDependencyOrder, modDictionary[dependencyName].LoadPosition,
+                        };
+                    }
+                }
+                else
+                {
+                    return new[]
+                    {
+                        (int)CheckErrorStatus.DependencyNotFound, dependencyIndex,
+                    };
+                }
+
+                ++dependencyIndex;
+            }
+        }
+
+        if (currentModInfo.IncompatibleMods != null)
+        {
+            foreach (string incompatibleName in currentModInfo.IncompatibleMods)
+            {
+                if (modDictionary.ContainsKey(incompatibleName))
+                {
+                    return new[]
+                    {
+                        (int)CheckErrorStatus.IncompatibleMod, modDictionary[incompatibleName].LoadPosition,
+                    };
+                }
+            }
+        }
+
+        if (currentModInfo.LoadBefore != null)
+        {
+            foreach (string loadBeforeName in currentModInfo.LoadBefore)
+            {
+                if (modDictionary.ContainsKey(loadBeforeName))
+                {
+                    if (currentMod.LoadPosition > modDictionary[loadBeforeName].LoadPosition)
+                    {
+                        return new[]
+                        {
+                            (int)CheckErrorStatus.InvalidLoadOrderBefore, modDictionary[loadBeforeName].LoadPosition,
+                        };
+                    }
+                }
+            }
+        }
+
+        if (currentModInfo.LoadAfter != null)
+        {
+            foreach (string loadAfterName in currentModInfo.LoadAfter)
+            {
+                if (modDictionary.ContainsKey(loadAfterName))
+                {
+                    if (currentMod.LoadPosition < modDictionary[loadAfterName].LoadPosition)
+                    {
+                        return new[]
+                        {
+                            (int)CheckErrorStatus.InvalidLoadOrderAfter, modDictionary[loadAfterName].LoadPosition,
+                        };
+                    }
+                }
+            }
+        }
+
+        return new[] { (int)CheckErrorStatus.Valid, -1 };
+    }
+
     public override void _Ready()
     {
         base._Ready();
@@ -192,13 +381,33 @@ public class ModLoader : Node
         workshopMods = null;
     }
 
-    public List<string> GetAndClearModErrors()
+    public List<(FullModDetails Mod, string ErrorMessage)> GetAndClearModErrors()
     {
         var result = ModErrors.ToList();
 
         modErrors.Clear();
 
         return result;
+    }
+
+    public List<(FullModDetails Mod, string ErrorMessage)> GetModErrors()
+    {
+        var result = ModErrors.ToList();
+
+        return result;
+    }
+
+    private static Dictionary<string, FullModDetails> ModArrayToModDictioanry(FullModDetails[] modArray)
+    {
+        Dictionary<string, FullModDetails> returnValue = new Dictionary<string, FullModDetails>();
+        for (int index = 0; index < modArray.Length; ++index)
+        {
+            var currentMod = modArray[index];
+            currentMod.LoadPosition = index;
+            returnValue.Add(currentMod.InternalName, currentMod);
+        }
+
+        return returnValue;
     }
 
     private void LoadMod(string name)
@@ -208,8 +417,12 @@ public class ModLoader : Node
         if (info == null)
         {
             GD.PrintErr("Can't load mod due to failed info reading: ", name);
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("CANT_LOAD_MOD_INFO"),
-                name));
+
+            var tempMod = new FullModDetails(name);
+
+            modErrors.Add((tempMod, string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("CANT_LOAD_MOD_INFO"),
+                name)));
             return;
         }
 
@@ -219,6 +432,19 @@ public class ModLoader : Node
         {
             LoadPckFile(Path.Combine(info.Folder, info.Info.PckToLoad));
             loadedSomething = true;
+        }
+
+        // Loads the config file if it exists
+        if (info.Info.ConfigToLoad != null && FileHelpers.Exists(Path.Combine(info.Folder, info.Info.ConfigToLoad)))
+        {
+            var currentConfigList = ModManager.GetModConfigList(info);
+            info.ConfigurationInfoList = currentConfigList;
+
+            var currentConfig = LoadModConfigs(info.InternalName);
+            if (currentConfig != null)
+            {
+                info.CurrentConfiguration = currentConfig;
+            }
         }
 
         if (!string.IsNullOrEmpty(info.Info.ModAssembly))
@@ -231,9 +457,9 @@ public class ModLoader : Node
             catch (Exception e)
             {
                 GD.PrintErr("Could not load mod assembly due to exception: ", e);
-                modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                     TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION"),
-                    name, e));
+                    name, e)));
                 return;
             }
 
@@ -248,9 +474,9 @@ public class ModLoader : Node
         if (!loadedSomething)
         {
             GD.Print("A mod contained no loadable resources");
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES"),
-                name));
+                name)));
         }
     }
 
@@ -261,8 +487,11 @@ public class ModLoader : Node
         if (info == null)
         {
             GD.PrintErr("Can't unload mod due to failed info reading: ", name);
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("CANT_LOAD_MOD_INFO"),
-                name));
+            var tempMod = new FullModDetails(name);
+
+            modErrors.Add((tempMod, string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("CANT_LOAD_MOD_INFO"),
+                name)));
             return;
         }
 
@@ -275,17 +504,17 @@ public class ModLoader : Node
                 if (!mod.Unload())
                 {
                     GD.PrintErr("Mod's (", name, ") assembly unload method call failed");
-                    modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                    modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                         TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED"),
-                        name));
+                        name)));
                 }
             }
             catch (Exception e)
             {
                 GD.PrintErr("Mod's (", name, ") assembly unload method call failed with an exception: ", e);
-                modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                     TranslationServer.Translate("MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"),
-                    name, e));
+                    name, e)));
             }
 
             loadedModAssemblies.Remove(name);
@@ -343,13 +572,12 @@ public class ModLoader : Node
         var className = info.Info.AssemblyModClass;
 
         var type = assembly.GetTypes().FirstOrDefault(t => t.Name == className);
-
         if (type == null)
         {
             GD.Print("No class with name \"", className, "\" found, can't finish loading mod assembly");
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("MOD_ASSEMBLY_CLASS_NOT_FOUND"),
-                name, className));
+                name, className)));
             return false;
         }
 
@@ -357,12 +585,12 @@ public class ModLoader : Node
         {
             var mod = (IMod)Activator.CreateInstance(type);
 
-            if (!mod.Initialize(modInterface, info.Info))
+            if (!mod.Initialize(modInterface, info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
-                modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                     TranslationServer.Translate("MOD_ASSEMBLY_INIT_CALL_FAILED"),
-                    name));
+                    name)));
             }
 
             loadedModAssemblies.Add(name, mod);
@@ -376,9 +604,9 @@ public class ModLoader : Node
         catch (Exception e)
         {
             GD.PrintErr("Mod's (", name, ") initialization failed with an exception: ", e);
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture,
+            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"),
-                name, e));
+                name, e)));
         }
 
         return true;
@@ -391,8 +619,10 @@ public class ModLoader : Node
         if (!ProjectSettings.LoadResourcePack(path))
         {
             GD.PrintErr(".pck loading failed");
-            modErrors.Add(string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate("PCK_LOAD_FAILED"),
-                Path.GetFileName(path)));
+            var tempMod = new FullModDetails(Path.GetFileName(path));
+            modErrors.Add((tempMod, string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("PCK_LOAD_FAILED"),
+                Path.GetFileName(path))));
         }
     }
 

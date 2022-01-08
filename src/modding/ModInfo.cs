@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -48,6 +49,11 @@ public class ModInfo
     public string Icon { get; set; }
 
     /// <summary>
+    ///   Preview Images for the mod. Should be outside the mod's pck file to show in the mod loader GUI
+    /// </summary>
+    public List<string> PreviewImages { get; set; }
+
+    /// <summary>
     ///   Optional URL to specify a site where info regarding this mod can be found. For example Github link to the
     ///   mod's source code.
     /// </summary>
@@ -81,12 +87,40 @@ public class ModInfo
     /// </summary>
     public string MaximumThriveVersion { get; set; }
 
+    /// <summary>
+    ///   Mods that is required for this one to load. These have to be loaded before this mod.
+    /// </summary>
+    public List<string> Dependencies { get; set; }
+
+    /// <summary>
+    ///   Mods that can not be loaded with this one.
+    /// </summary>
+    [JsonProperty("Incompatible Mods")]
+    public List<string> IncompatibleMods { get; set; }
+
+    /// <summary>
+    ///   Mods that has to be loaded before this one. Different from dependencies as it won't error if not included.
+    /// </summary>
+    [JsonProperty("Load Before")]
+    public List<string> LoadBefore { get; set; }
+
+    /// <summary>
+    ///   Mods that has to be loaded after this one. Different from dependencies as it won't error if not included.
+    /// </summary>
+    [JsonProperty("Load After")]
+    public List<string> LoadAfter { get; set; }
+
     // Start of technical properties
 
     /// <summary>
     ///   Specifies the relative path (from mod root folder) to a .pck file to load when enabling the mod
     /// </summary>
     public string PckToLoad { get; set; }
+
+    /// <summary>
+    ///   Specifies the relative path (from mod root folder) to a config file to load after enabling the mod
+    /// </summary>
+    public string ConfigToLoad { get; set; }
 
     /// <summary>
     ///   If set needs to point to a C# compiled DLL file that. Needs to be outside any .pck files

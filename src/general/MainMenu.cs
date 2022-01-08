@@ -263,11 +263,17 @@ public class MainMenu : NodeWithInput
 
     private void CheckModFailures()
     {
-        var errors = ModLoader.Instance.GetAndClearModErrors();
+        var errors = ModLoader.Instance.GetModErrors();
 
         if (errors.Count > 0)
         {
-            modLoadFailures.ExceptionInfo = string.Join("\n", errors);
+            var text = string.Empty;
+            foreach ((FullModDetails, string ErrorMessage) currentError in errors)
+            {
+                text += currentError.ErrorMessage + "\n";
+            }
+
+            modLoadFailures.ExceptionInfo = text;
             modLoadFailures.PopupCenteredShrink();
         }
     }

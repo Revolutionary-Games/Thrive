@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 ///   An extended version of <see cref="ModInfo"/> that contains non-mod author controlled data
@@ -12,6 +13,25 @@ public class FullModDetails : IEquatable<FullModDetails>
 
     public string InternalName { get; }
     public string Folder { get; set; }
+
+    /// <summary>
+    ///   Is the mod compatible with the current version of thrive?
+    /// </summary>
+
+    // 1 = Compatible, 0 = Unknown, -1 = Might Not Be Compatible, -2 = Not Compatible
+    public int IsCompatibleVersion { get; set; }
+
+    /// <summary>
+    ///   The index of the mod is loaded in
+    /// </summary>
+    public int LoadPosition { get; set; }
+
+    /// <summary>
+    ///   List of all the configuration options there are
+    /// </summary>
+    public ModConfigItemInfo[] ConfigurationInfoList { get; set; }
+
+    public Dictionary<string, object> CurrentConfiguration { get; set; }
 
     public ModInfo Info { get; set; }
 
