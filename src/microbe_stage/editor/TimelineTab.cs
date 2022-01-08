@@ -13,9 +13,6 @@ public class TimelineTab : PanelContainer
     public NodePath ScrollContainerPath;
 
     [Export]
-    public NodePath FilterButtonsMarginContainerPath;
-
-    [Export]
     public NodePath LocalFilterButtonPath;
 
     [Export]
@@ -26,7 +23,6 @@ public class TimelineTab : PanelContainer
 
     private VBoxContainer eventsContainer;
     private ScrollContainer scrollContainer;
-    private MarginContainer filterButtonsMarginContainer;
     private Button localFilterButton;
     private Button globalFilterButton;
 
@@ -71,7 +67,6 @@ public class TimelineTab : PanelContainer
     {
         eventsContainer = GetNode<VBoxContainer>(EventsContainerPath);
         scrollContainer = GetNode<ScrollContainer>(ScrollContainerPath);
-        filterButtonsMarginContainer = GetNode<MarginContainer>(FilterButtonsMarginContainerPath);
         localFilterButton = GetNode<Button>(LocalFilterButtonPath);
         globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
