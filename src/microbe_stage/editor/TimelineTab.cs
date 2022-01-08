@@ -93,8 +93,6 @@ public class TimelineTab : PanelContainer
         }
 
         ApplyEventsFilter();
-
-        Invoke.Instance.Queue(UpdateFilterButtonsMargin);
     }
 
     public void TimelineAutoScrollToCurrentTimePeriod()
@@ -117,8 +115,6 @@ public class TimelineTab : PanelContainer
             anchorRect.Size.y - scrollRect.Size.y + (scrollRect.Size.y - anchorRect.Size.y));
 
         scrollContainer.ScrollVertical += (int)(diff - scrollRect.Position.y);
-
-        UpdateFilterButtonsMargin();
     }
 
     private void ApplyEventsFilter()
@@ -138,12 +134,6 @@ public class TimelineTab : PanelContainer
         }
 
         Invoke.Instance.Queue(TimelineAutoScrollToCurrentTimePeriod);
-    }
-
-    private void UpdateFilterButtonsMargin()
-    {
-        filterButtonsMarginContainer.AddConstantOverride(
-            "margin_right", scrollContainer.GetVScrollbar().Visible ? 15 : 0);
     }
 
     private void OnFilterSelected(int index)

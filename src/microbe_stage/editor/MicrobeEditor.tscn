@@ -2603,7 +2603,7 @@ expand = true
 
 [node name="TimelinePanel" type="PanelContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 40.0
+margin_top = 289.0
 margin_right = 846.0
 margin_bottom = 533.0
 size_flags_horizontal = 3
@@ -2618,7 +2618,7 @@ FilterButtonsMarginContainerPath = NodePath("MarginContainer/MarginContainer")
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 845.0
-margin_bottom = 492.0
+margin_bottom = 243.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 15
@@ -2628,12 +2628,12 @@ custom_constants/margin_bottom = 10
 margin_left = 15.0
 margin_top = 10.0
 margin_right = 834.0
-margin_bottom = 481.0
+margin_bottom = 232.0
 follow_focus = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer"]
 margin_right = 819.0
-margin_bottom = 471.0
+margin_bottom = 222.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 10
@@ -2641,19 +2641,22 @@ custom_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer"]
 margin_right = 809.0
-margin_bottom = 451.0
+margin_bottom = 202.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer"]
-margin_left = 631.0
+margin_left = 616.0
 margin_top = 10.0
 margin_right = 834.0
-margin_bottom = 35.0
+margin_bottom = 50.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer"]
+margin_top = 10.0
 margin_right = 203.0
-margin_bottom = 25.0
+margin_bottom = 35.0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
@@ -2699,9 +2702,9 @@ flip_v = true
 [node name="BottomFade" type="TextureRect" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel"]
 modulate = Color( 1, 1, 1, 0.392157 )
 margin_left = 1.0
-margin_top = 462.0
+margin_top = 213.0
 margin_right = 845.0
-margin_bottom = 492.0
+margin_bottom = 243.0
 rect_min_size = Vector2( 0, 30 )
 mouse_filter = 2
 size_flags_vertical = 8
