@@ -83,6 +83,9 @@ public class SaveList : ScrollContainer
     [Signal]
     public delegate void OnItemsChanged();
 
+    [Signal]
+    public delegate void OnConfirmed(SaveListItem item);
+
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
@@ -136,6 +139,8 @@ public class SaveList : ScrollContainer
 
                 if (SelectableItems)
                     item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
+
+                item.Connect(nameof(SaveListItem.OnDoubleClicked), this, nameof(OnItemDoubleClicked));
 
                 item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
@@ -332,6 +337,11 @@ public class SaveList : ScrollContainer
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, true);
         TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+    }
+
+    private void OnItemDoubleClicked(SaveListItem item)
+    {
+        EmitSignal(nameof(OnConfirmed), item);
     }
 
     private void LoadSave()

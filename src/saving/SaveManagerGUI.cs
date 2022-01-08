@@ -258,4 +258,9 @@ public class SaveManagerGUI : Control
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnBackPressed));
     }
+
+    private void OnSaveListConfirmed(SaveListItem item)
+    {
+        item.LoadThisSave();
+    }
 }

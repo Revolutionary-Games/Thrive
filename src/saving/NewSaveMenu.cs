@@ -167,4 +167,13 @@ public class NewSaveMenu : Control
             ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
         }
     }
+
+    private void OnSaveListConfirmed(SaveListItem item)
+    {
+        saveNameBox.Text = item.SaveName;
+        overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
+            item.SaveName);
+        overwriteConfirm.PopupCenteredShrink();
+    }
 }

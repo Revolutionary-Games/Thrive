@@ -78,6 +78,9 @@ public class SaveListItem : PanelContainer
     public delegate void OnSelectedChanged();
 
     [Signal]
+    public delegate void OnDoubleClicked(SaveListItem item);
+
+    [Signal]
     public delegate void OnDeleted();
 
     [Signal]
@@ -219,12 +222,17 @@ public class SaveListItem : PanelContainer
 
     public override void _GuiInput(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouse)
+        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: (int)ButtonList.Left } mouse)
         {
-            if (mouse.Pressed && mouse.ButtonIndex == (int)ButtonList.Left)
+            AcceptEvent();
+
+            if (mouse.Doubleclick)
+            {
+                EmitSignal(nameof(OnDoubleClicked), this);
+            }
+            else
             {
                 OnSelect();
-                AcceptEvent();
             }
         }
     }
