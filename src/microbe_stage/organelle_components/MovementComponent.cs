@@ -101,7 +101,7 @@ public class MovementComponent : ExternallyPositionedComponent
         // The movementDirection is the player or AI input
         Vector3 direction = microbe.MovementDirection;
 
-        // Real force the flaggela applied to the colony (considering rotation)
+        // Real force the flagella applied to the colony (considering rotation)
         var realForce = organelle.RotatedPositionInsideColony(force);
         var forceMagnitude = realForce.Dot(direction);
 
