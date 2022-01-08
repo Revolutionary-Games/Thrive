@@ -77,7 +77,7 @@ public static class SpawnHelpers
         {
             // Clump
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
+                     Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
                 // Dont spawn them on top of each other because it
                 // causes them to bounce around and lag
@@ -95,7 +95,7 @@ public static class SpawnHelpers
             var line = random.Next(-5, 6) + random.Next(-5, 6);
 
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
+                     Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
             {
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
@@ -127,7 +127,7 @@ public static class SpawnHelpers
             };
 
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
+                     Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
                 if (random.Next(0, 5) < 2 && !colony.Horizontal)
                 {
@@ -265,7 +265,7 @@ public static class SpawnHelpers
     private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location)
     {
         for (int c = 0; c < colony.Random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-            Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+                 Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
         {
             // Dont spawn them on top of each other because
             // It causes them to bounce around and lag
@@ -330,12 +330,16 @@ public class MicrobeSpawner : Spawner
 
         yield return first;
 
+        ModLoader.ModInterface.TriggerOnMicrobeSpawned(first);
+
         if (first.Species.IsBacteria)
         {
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                cloudSystem, currentGame, random))
+                         cloudSystem, currentGame, random))
             {
                 yield return colonyMember;
+
+                ModLoader.ModInterface.TriggerOnMicrobeSpawned(colonyMember);
             }
         }
     }
@@ -389,5 +393,7 @@ public class ChunkSpawner : Spawner
             cloudSystem, random);
 
         yield return chunk;
+
+        ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, true);
     }
 }

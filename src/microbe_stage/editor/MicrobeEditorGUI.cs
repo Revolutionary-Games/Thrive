@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -295,19 +296,25 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath CompoundBalancePath;
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
-    private readonly Compound nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-    private readonly Compound oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-    private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    [Export]
+    public NodePath AutoEvoPredictionExplanationPopupPath;
 
-    private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
-    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    [Export]
+    public NodePath AutoEvoPredictionExplanationLabelPath;
+
+    private Compound atp;
+    private Compound ammonia;
+    private Compound carbondioxide;
+    private Compound glucose;
+    private Compound hydrogensulfide;
+    private Compound iron;
+    private Compound nitrogen;
+    private Compound oxygen;
+    private Compound phosphates;
+    private Compound sunlight;
+
+    private OrganelleDefinition protoplasm;
+    private OrganelleDefinition nucleus;
 
     private EnergyBalanceInfo energyBalanceInfo;
 
@@ -320,13 +327,26 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [JsonProperty]
     private float initialCellHp;
 
+    [JsonProperty]
+    private bool? autoEvoRunSuccessful;
+
+    [JsonProperty]
+    private string bestPatchName;
+
+    [JsonProperty]
+    private long bestPatchPopulation;
+
+    [JsonProperty]
+    private string worstPatchName;
+
+    [JsonProperty]
+    private long worstPatchPopulation;
+
     private MicrobeEditor editor;
 
-    private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements =
-        new Dictionary<OrganelleDefinition, MicrobePartSelection>();
+    private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
-    private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements =
-        new Dictionary<MembraneType, MicrobePartSelection>();
+    private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements = new();
 
     private PauseMenu menu;
 
@@ -456,6 +476,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private CompoundBalanceDisplay compoundBalance;
 
+    private CustomDialog autoEvoPredictionExplanationPopup;
+    private Label autoEvoPredictionExplanationLabel;
+
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
 
@@ -465,6 +488,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     private PendingAutoEvoPrediction waitingForPrediction;
+    private LocalizedStringBuilder predictionDetailsText;
 
     public enum EditorTab
     {
@@ -603,6 +627,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
+        autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
+        autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
+
         menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
@@ -610,6 +637,20 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        atp = SimulationParameters.Instance.GetCompound("atp");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+        nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         SetupMicrobePartSelections();
         UpdateMicrobePartSelections();
@@ -635,8 +676,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Set the right tabs if they aren't the defaults
         ApplyEditorTab();
         ApplySelectionMenuTab();
-
-        UpdateMutationPointsBar();
     }
 
     public void SetMap(PatchMap map)
@@ -850,8 +889,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Initialize datasets
         var temperatureData = new LineChartData
         {
-            IconTexture = temperatureIcon,
-            DataColour = new Color(0.67f, 1, 0.24f),
+            Icon = temperatureIcon,
+            Colour = new Color(0.67f, 1, 0.24f),
         };
 
         temperatureChart.AddDataSet(TranslationServer.Translate("TEMPERATURE"), temperatureData);
@@ -862,8 +901,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 var dataset = new LineChartData
                 {
-                    IconTexture = entry.Key.LoadedIcon,
-                    DataColour = entry.Key.Colour,
+                    Icon = entry.Key.LoadedIcon,
+                    Colour = entry.Key.Colour,
                 };
 
                 GetChartForCompound(entry.Key.InternalName)?.AddDataSet(entry.Key.Name, dataset);
@@ -871,18 +910,24 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             foreach (var entry in snapshot.SpeciesInPatch)
             {
-                var dataset = new LineChartData { DataColour = entry.Key.Colour };
+                var dataset = new LineChartData { Colour = entry.Key.Colour };
                 speciesPopulationChart.AddDataSet(entry.Key.FormattedName, dataset);
             }
         }
 
-        // Populate charts with data from patch history
-        foreach (var snapshot in patch.History)
+        var extinctSpecies = new List<KeyValuePair<string, ChartDataSet>>();
+        var extinctPoints =
+            new List<(string Name, DataPoint ExtinctPoint, double TimePeriod, bool ExtinctEverywhere)>();
+
+        // Populate charts with data from patch history. We use reverse loop here because the original collection is
+        // reversed (iterating from 500 myr to 100 myr) so it messes up any ordering dependent code
+        for (int i = patch.History.Count - 1; i >= 0; i--)
         {
-            temperatureData.AddPoint(new DataPoint
+            var snapshot = patch.History.ElementAt(i);
+
+            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod, snapshot.Biome.AverageTemperature)
             {
-                Value = new Vector2((float)snapshot.TimePeriod, snapshot.Biome.AverageTemperature),
-                MarkerColour = temperatureData.DataColour,
+                MarkerColour = temperatureData.Colour,
             });
 
             foreach (var entry in snapshot.Biome.Compounds)
@@ -892,11 +937,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 if (dataset == null)
                     continue;
 
-                var dataPoint = new DataPoint
+                var dataPoint = new DataPoint(snapshot.TimePeriod, Math.Round(GetCompoundAmount(
+                    patch, snapshot.Biome, entry.Key.InternalName), 3))
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, GetCompoundAmount(
-                        patch, snapshot.Biome, entry.Key.InternalName)),
-                    MarkerColour = dataset.DataColour,
+                    MarkerColour = dataset.Colour,
                 };
 
                 dataset.AddPoint(dataPoint);
@@ -937,13 +981,25 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                     }
                 }
 
-                var dataPoint = new DataPoint
+                var dataPoint = new DataPoint(snapshot.TimePeriod, population)
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, population),
                     Size = iconSize,
                     IconType = iconType,
-                    MarkerColour = dataset.DataColour,
+                    MarkerColour = dataset.Colour,
                 };
+
+                if (extinctInPatch)
+                {
+                    extinctSpecies.Add(new KeyValuePair<string, ChartDataSet>(entry.Key.FormattedName, dataset));
+                    extinctPoints.Add((entry.Key.FormattedName, dataPoint, snapshot.TimePeriod, extinctEverywhere));
+                }
+
+                if (!extinctInPatch && extinctSpecies.Any(e =>
+                        e.Key == entry.Key.FormattedName && e.Value == dataset))
+                {
+                    // No longer extinct in later time period so remove it from the list
+                    extinctSpecies.RemoveAll(e => e.Key == entry.Key.FormattedName && e.Value == dataset);
+                }
 
                 dataset.AddPoint(dataPoint);
             }
@@ -955,30 +1011,72 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
         compoundsChart.TooltipYAxisFormat = percentageFormat;
 
-        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5);
-        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5);
+        speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.DropDown;
+
+        SpeciesPopulationDatasetsLegend speciesPopDatasetsLegend = null;
+
+        // The following operation might be expensive so we only do this if any extinction occured
+        if (extinctSpecies.Any())
+        {
+            var datasets = extinctSpecies.Distinct().ToList();
+            speciesPopDatasetsLegend = new SpeciesPopulationDatasetsLegend(datasets, speciesPopulationChart);
+            speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
+        }
+
+        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, null, 5);
+        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, null, 5);
         atmosphericGassesChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"));
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null,
+            null, 5);
         speciesPopulationChart.Plot(
             TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
-            editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName);
+            speciesPopDatasetsLegend,
+            editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
         compoundsChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"));
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
+
+        foreach (var point in extinctPoints)
+        {
+            var extinctionType = point.ExtinctEverywhere ?
+                TranslationServer.Translate("EXTINCT_FROM_THE_PLANET") :
+                TranslationServer.Translate("EXTINCT_FROM_PATCH");
+
+            // Override datapoint tooltip to show extinction type instead of just zero.
+            // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
+            speciesPopulationChart.OverrideDataPointToolTipDescription(point.Name, point.ExtinctPoint,
+                $"{point.Name}\n{point.TimePeriod.FormatNumber()}\n{extinctionType}");
+        }
+
+        var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+        var skull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
+
+        speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("EXTINCT_FROM_PATCH"));
+        speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
-    public void UpdateMutationPointsBar()
+    public void UpdateMutationPointsBar(bool tween = true)
     {
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
             editor.MutationPoints - editor.CalculateCurrentOrganelleCost();
 
-        GUICommon.Instance.TweenBarValue(
-            mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
-        GUICommon.Instance.TweenBarValue(
-            mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        if (tween)
+        {
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsBar, possibleMutationPoints, Constants.BASE_MUTATION_POINTS, 0.5f);
+            GUICommon.Instance.TweenBarValue(
+                mutationPointsSubtractBar, editor.MutationPoints, Constants.BASE_MUTATION_POINTS, 0.7f);
+        }
+        else
+        {
+            mutationPointsBar.Value = possibleMutationPoints;
+            mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+            mutationPointsSubtractBar.Value = editor.MutationPoints;
+            mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+        }
 
         if (editor.FreeBuilding)
         {
@@ -1199,6 +1297,15 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateAutoEvoPredictionTranslations();
+            UpdateAutoEvoPredictionDetailsText();
+        }
+    }
+
     internal void SetUndoButtonStatus(bool enabled)
     {
         undoButton.Disabled = !enabled;
@@ -1233,7 +1340,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (selectedEditorTab != EditorTab.CellEditor)
             return;
 
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
     internal void OnInsufficientMp(bool playSound = true)
@@ -1255,7 +1362,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void PlayInvalidActionSound()
     {
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound);
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
     /// <summary>
@@ -1804,12 +1911,45 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
+    private void UpdateAutoEvoPredictionTranslations()
+    {
+        if (autoEvoRunSuccessful.HasValue && autoEvoRunSuccessful.Value == false)
+        {
+            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+        }
+
+        if (!string.IsNullOrEmpty(bestPatchName))
+        {
+            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(bestPatchName),
+                bestPatchPopulation);
+        }
+        else
+        {
+            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+
+        if (!string.IsNullOrEmpty(worstPatchName))
+        {
+            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"),
+                TranslationServer.Translate(worstPatchName),
+                worstPatchPopulation);
+        }
+        else
+        {
+            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+        }
+    }
+
     private void OnAutoEvoPredictionComplete(PendingAutoEvoPrediction run)
     {
         if (!run.AutoEvoRun.WasSuccessful)
         {
             GD.PrintErr("Failed to run auto-evo prediction for showing in the editor");
-            totalPopulationLabel.Text = TranslationServer.Translate("FAILED");
+            autoEvoRunSuccessful = false;
+            UpdateAutoEvoPredictionTranslations();
             return;
         }
 
@@ -1831,6 +1971,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             totalPopulationIndicator.Texture = null;
         }
 
+        autoEvoRunSuccessful = true;
         totalPopulationLabel.Text = newPopulation.ToString(CultureInfo.CurrentCulture);
 
         var sorted = results.GetPopulationInPatches(run.PlayerSpeciesNew).OrderByDescending(p => p.Value).ToList();
@@ -1839,26 +1980,34 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (sorted.Count > 0)
         {
             var patch = sorted[0];
-            bestPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
-                patch.Value);
+            bestPatchName = patch.Key.Name;
+            bestPatchPopulation = patch.Value;
         }
         else
         {
-            bestPatchLabel.Text = TranslationServer.Translate("N_A");
+            bestPatchName = null;
         }
 
         // And worst patch
         if (sorted.Count > 1)
         {
             var patch = sorted[sorted.Count - 1];
-            worstPatchLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("POPULATION_IN_PATCH_SHORT"), TranslationServer.Translate(patch.Key.Name),
-                patch.Value);
+            worstPatchName = patch.Key.Name;
+            worstPatchPopulation = patch.Value;
         }
         else
         {
-            worstPatchLabel.Text = TranslationServer.Translate("N_A");
+            worstPatchName = null;
+        }
+
+        CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
+            run.PlayerSpeciesOriginal.FormattedName);
+
+        UpdateAutoEvoPredictionTranslations();
+
+        if (autoEvoPredictionPanel.Visible)
+        {
+            UpdateAutoEvoPredictionDetailsText();
         }
     }
 
@@ -2055,6 +2204,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         {
             // TODO: Make the popup appear at the top of the line edit instead of at the last mouse position
             ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SPECIES_NAME_POPUP"), 2.5f);
+
+            speciesNameEdit.GetNode<AnimationPlayer>("AnimationPlayer").Play("invalidSpeciesNameFlash");
         }
     }
 
@@ -2105,7 +2256,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var temperatureButton = physicalConditionsIconLegends.GetNode<TextureButton>("temperature");
         var sunlightButton = physicalConditionsIconLegends.GetNode<TextureButton>("sunlight");
-        var tween = physicalConditionsIconLegends.GetNode<Tween>("Tween");
 
         if (name == "temperature")
         {
@@ -2113,9 +2263,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.DarkGray;
             sunlightChart.Hide();
             temperatureChart.Show();
-
-            tween.InterpolateProperty(temperatureButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
         else if (name == "sunlight")
         {
@@ -2123,9 +2270,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             sunlightButton.Modulate = Colors.White;
             sunlightChart.Show();
             temperatureChart.Hide();
-
-            tween.InterpolateProperty(sunlightButton, "rect_scale", new Vector2(0.8f, 0.8f), Vector2.One, 0.1f);
-            tween.Start();
         }
     }
 
@@ -2148,6 +2292,76 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             button.Modulate = button.Pressed ? Colors.White : Colors.DarkGray;
         }
+    }
+
+    private void OpenAutoEvoPredictionDetails()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        UpdateAutoEvoPredictionDetailsText();
+
+        autoEvoPredictionExplanationPopup.PopupCenteredShrink();
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorAutoEvoPredictionOpened, EventArgs.Empty, this);
+    }
+
+    private void CloseAutoEvoPrediction()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void CreateAutoEvoPredictionDetailsText(
+        Dictionary<Patch, RunResults.SpeciesPatchEnergyResults> energyResults, string playerSpeciesName)
+    {
+        predictionDetailsText = new LocalizedStringBuilder(300);
+
+        double Round(float value)
+        {
+            if (value > 0.0005f)
+                return Math.Round(value, 3);
+
+            // Small values can get really small (and still be different from getting 0 energy due to fitness) so
+            // this is here for that reason
+            return Math.Round(value, 8);
+        }
+
+        // This loop shows all the patches the player species is in. Could perhaps just show the current one
+        foreach (var energyResult in energyResults)
+        {
+            predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
+                new LocalizedString(energyResult.Key.Name), playerSpeciesName));
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
+                Round(energyResult.Value.TotalEnergyGathered), Round(energyResult.Value.IndividualCost),
+                energyResult.Value.UnadjustedPopulation));
+
+            predictionDetailsText.Append('\n');
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
+            predictionDetailsText.Append('\n');
+
+            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy)
+            {
+                var data = nicheInfo.Value;
+                predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
+                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness),
+                    Round(data.TotalAvailableEnergy),
+                    Round(data.TotalFitness)));
+                predictionDetailsText.Append('\n');
+            }
+
+            predictionDetailsText.Append('\n');
+        }
+    }
+
+    private void UpdateAutoEvoPredictionDetailsText()
+    {
+        autoEvoPredictionExplanationLabel.Text = predictionDetailsText != null ?
+            predictionDetailsText.ToString() :
+            TranslationServer.Translate("NO_DATA_TO_SHOW");
     }
 
     /// <summary>

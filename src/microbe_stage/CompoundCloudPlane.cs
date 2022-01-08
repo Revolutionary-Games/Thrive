@@ -79,7 +79,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
         else if (newX == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
-            % Constants.CLOUD_SQUARES_PER_SIDE)
+                 % Constants.CLOUD_SQUARES_PER_SIDE)
         {
             PartialClearDensity(((position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
                     % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
@@ -612,6 +612,14 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
                     CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);
+
+                    // NOTE: we add modulo to avoid overflow due to large time steps
+                    // This makes this function a duplicate of PartialAdvectEdges
+                    // TODO: check for refactorization (and in general of the whole file) --Maxonovien
+                    q0 = q0.PositiveModulo(Size);
+                    q1 = q1.PositiveModulo(Size);
+                    r0 = r0.PositiveModulo(Size);
+                    r1 = r1.PositiveModulo(Size);
 
                     Density[q0, r0] += OldDensity[x, y] * s0 * t0;
                     Density[q0, r1] += OldDensity[x, y] * s0 * t1;

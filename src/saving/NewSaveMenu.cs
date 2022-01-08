@@ -17,8 +17,12 @@ public class NewSaveMenu : Control
     [Export]
     public NodePath OverwriteConfirmPath;
 
+    [Export]
+    public NodePath SaveButtonPath;
+
     private SaveList saveList;
     private LineEdit saveNameBox;
+    private Button saveButton;
     private CustomConfirmationDialog overwriteConfirm;
 
     private bool usingSelectedSaveName;
@@ -33,12 +37,34 @@ public class NewSaveMenu : Control
     {
         saveList = GetNode<SaveList>(SaveListPath);
         saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
+        saveButton = GetNode<Button>(SaveButtonPath);
         overwriteConfirm = GetNode<CustomConfirmationDialog>(OverwriteConfirmPath);
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationVisibilityChanged && Visible)
+        {
+            saveNameBox.GrabFocus();
+        }
     }
 
     public void RefreshExisting()
     {
         saveList.Refresh();
+    }
+
+    public void SetSaveName(string name, bool selectText = false)
+    {
+        saveNameBox.Text = name;
+
+        if (selectText)
+            saveNameBox.SelectAll();
+    }
+
+    private static bool IsSaveNameValid(string name)
+    {
+        return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains);
     }
 
     private void ClosePressed()
@@ -116,10 +142,29 @@ public class NewSaveMenu : Control
         usingSelectedSaveName = true;
     }
 
+    private void OnSaveNameTextChanged(string newName)
+    {
+        if (IsSaveNameValid(newName))
+        {
+            saveNameBox.Set("custom_colors/font_color", new Color(1, 1, 1));
+            saveButton.Disabled = false;
+        }
+        else
+        {
+            saveNameBox.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
+            saveButton.Disabled = true;
+        }
+    }
+
     private void OnSaveNameTextEntered(string newName)
     {
-        _ = newName;
-
-        SaveButtonPressed();
+        if (IsSaveNameValid(newName))
+        {
+            SaveButtonPressed();
+        }
+        else
+        {
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
+        }
     }
 }

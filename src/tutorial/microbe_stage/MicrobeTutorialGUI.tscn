@@ -31,6 +31,7 @@ StayingAlivePath = NodePath("StayingAliveTutorial")
 ReproductionTutorialPath = NodePath("ReproductionTutorial")
 EditorButtonTutorialPath = NodePath("EditorButtonTutorial")
 UnbindTutorialPath = NodePath("UnbindTutorial")
+CheckTheHelpMenuPath = NodePath("CheckHelpMenu")
 
 [node name="MicrobeWelcome" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.5
@@ -45,26 +46,26 @@ rect_min_size = Vector2( 450, 450 )
 rect_pivot_offset = Vector2( 225, 225 )
 popup_exclusive = true
 script = ExtResource( 7 )
-ShowDelay = 0.0
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
 ExclusiveAllowCloseOnEscape = false
+ShowDelay = 0.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeWelcome"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 435.0
+margin_bottom = 435.0
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome/ScrollContainer"]
-margin_right = 420.0
-margin_bottom = 420.0
+margin_right = 870.0
+margin_bottom = 870.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -131,7 +132,6 @@ margin_right = -231.0
 margin_bottom = -190.0
 rect_min_size = Vector2( 260, 260 )
 script = ExtResource( 7 )
-Resizable = true
 WindowTitle = "TUTORIAL"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
@@ -139,8 +139,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 245.0
+margin_bottom = 245.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -214,23 +214,23 @@ margin_right = -13.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
 script = ExtResource( 7 )
-ShowDelay = 0.5
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
+ShowDelay = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="GlucoseTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 245.0
+margin_bottom = 245.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="GlucoseTutorial/ScrollContainer"]
-margin_right = 230.0
-margin_bottom = 230.0
+margin_right = 490.0
+margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
@@ -248,23 +248,23 @@ margin_right = -13.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
 script = ExtResource( 7 )
-ShowDelay = 0.5
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
+ShowDelay = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="StayingAliveTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 245.0
+margin_bottom = 245.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="StayingAliveTutorial/ScrollContainer"]
-margin_right = 230.0
-margin_bottom = 230.0
+margin_right = 490.0
+margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
@@ -283,17 +283,17 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
 rect_pivot_offset = Vector2( 130, 130 )
 script = ExtResource( 7 )
-ShowDelay = 0.5
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
+ShowDelay = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ReproductionTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 245.0
+margin_bottom = 245.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -301,8 +301,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="ReproductionTutorial/ScrollContainer"]
-margin_right = 230.0
-margin_bottom = 230.0
+margin_right = 490.0
+margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
@@ -322,17 +322,17 @@ rect_min_size = Vector2( 260, 260 )
 rect_pivot_offset = Vector2( 133, 130 )
 size_flags_horizontal = 3
 script = ExtResource( 7 )
-ShowDelay = 0.5
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
+ShowDelay = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="EditorButtonTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 251.0
+margin_bottom = 245.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 __meta__ = {
@@ -358,28 +358,77 @@ margin_right = -13.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 260, 260 )
 script = ExtResource( 7 )
-ShowDelay = 0.5
-Resizable = true
 WindowTitle = "TUTORIAL"
+Resizable = true
+ShowDelay = 0.5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UnbindTutorial"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
 margin_top = 15.0
-margin_right = -15.0
-margin_bottom = -15.0
+margin_right = 245.0
+margin_bottom = 245.0
 rect_min_size = Vector2( 230, 230 )
 scroll_horizontal_enabled = false
 
 [node name="Label" type="Label" parent="UnbindTutorial/ScrollContainer"]
-margin_right = 230.0
-margin_bottom = 230.0
+margin_right = 490.0
+margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
 text = "MICROBE_STAGE_UNBIND_TEXT"
 autowrap = true
+
+[node name="CheckHelpMenu" parent="." instance=ExtResource( 4 )]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -273.0
+margin_top = -210.0
+margin_right = -13.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 260, 260 )
+script = ExtResource( 7 )
+WindowTitle = "TUTORIAL"
+Resizable = true
+ShowCloseButton = false
+ShowDelay = 0.5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CheckHelpMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 245.0
+margin_bottom = 245.0
+rect_min_size = Vector2( 230, 230 )
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CheckHelpMenu/ScrollContainer"]
+margin_right = 490.0
+margin_bottom = 490.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
+margin_right = 490.0
+margin_bottom = 490.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 5 )
+text = "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+autowrap = true
+
+[node name="Control" type="Control" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
+margin_right = 10.0
+margin_bottom = 35.0
+text = "VIEW_NOW"
 
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
@@ -396,3 +445,6 @@ autowrap = true
 [connection signal="popup_hide" from="EditorButtonTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeEditorPress" ]]
 [connection signal="hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
 [connection signal="popup_hide" from="UnbindTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeUnbind" ]]
+[connection signal="hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
+[connection signal="popup_hide" from="CheckHelpMenu" to="." method="OnSpecificCloseClicked" binds= [ "CheckTheHelpMenu" ]]
+[connection signal="pressed" from="CheckHelpMenu/ScrollContainer/VBoxContainer/Button" to="." method="CheckHelpMenuPressed"]

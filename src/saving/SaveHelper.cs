@@ -203,6 +203,10 @@ public static class SaveHelper
                 if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
                     continue;
 
+                // Skip folders
+                if (!directory.FileExists(filename))
+                    continue;
+
                 result.Add(filename);
             }
 
@@ -236,17 +240,22 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int Count, long DiskSpace) CountSaves(string nameStartsWith = null)
+    public static (int Count, ulong DiskSpace) CountSaves(string nameStartsWith = null)
     {
         int count = 0;
-        long totalSize = 0;
+        ulong totalSize = 0;
 
         using var file = new File();
         foreach (var save in CreateListOfSaves())
         {
             if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
             {
-                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                if (file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
+                {
+                    GD.PrintErr("Can't read size of save file: ", save);
+                    continue;
+                }
+
                 ++count;
                 totalSize += file.GetLen();
             }

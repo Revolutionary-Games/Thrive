@@ -299,6 +299,8 @@ public partial class Microbe
 
         Hitpoints -= amount;
 
+        ModLoader.ModInterface.TriggerOnDamageReceived(this, amount, IsPlayerMicrobe);
+
         // Flash the microbe red
         Flash(1.0f, new Color(1, 0, 0, 0.5f), 1);
 
@@ -327,6 +329,31 @@ public partial class Microbe
         return EngulfSize >= target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
+    public Vector3 GetOffsetRelativeToMaster()
+    {
+        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
+            Colony.Master.Rotation.y);
+    }
+
+    /// <summary>
+    ///  Public because it needs to be called by external organelles only
+    ///  Not meant for other uses
+    /// </summary>
+    public void SendOrganellePositionsToMembrane()
+    {
+        var organellePositions = new List<Vector2>();
+
+        foreach (var entry in organelles.Organelles)
+        {
+            var cartesian = Hex.AxialToCartesian(entry.Position);
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+        }
+
+        Membrane.OrganellePositions = organellePositions;
+        Membrane.Dirty = true;
+        membraneOrganellePositionsAreDirty = false;
+    }
+
     /// <summary>
     ///   Instantly kills this microbe and queues this entity to be destroyed
     /// </summary>
@@ -338,6 +365,8 @@ public partial class Microbe
         Dead = true;
 
         OnDeath?.Invoke(this);
+        ModLoader.ModInterface.TriggerOnMicrobeDied(this, IsPlayerMicrobe);
+
         OnDestroyed();
 
         // Reset some stuff
@@ -345,8 +374,6 @@ public partial class Microbe
         MovementDirection = new Vector3(0, 0, 0);
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
-
-        var random = new Random();
 
         // Releasing all the agents.
         // To not completely deadlock in this there is a maximum limit
@@ -369,10 +396,12 @@ public partial class Microbe
                 var direction = new Vector3(random.Next(0.0f, 1.0f) * 2 - 1,
                     0, random.Next(0.0f, 1.0f) * 2 - 1);
 
-                SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
+                var agent = SpawnHelpers.SpawnAgent(props, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT,
                     Constants.EMITTED_AGENT_LIFETIME,
                     Translation, direction, GetStageAsParent(),
                     agentScene, this);
+
+                ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
 
                 amount -= Constants.MAXIMUM_AGENT_EMISSION_AMOUNT;
                 ++createdAgents;
@@ -475,8 +504,10 @@ public partial class Microbe
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
+            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
                 chunkScene, cloudSystem, random);
+
+            ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
 
         // Subtract population
@@ -492,7 +523,16 @@ public partial class Microbe
             OnReproductionStatus?.Invoke(this, false);
         }
 
-        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        if (IsPlayerMicrobe)
+        {
+            // Playing from a positional audio player won't have any effect since the listener is
+            // directly on it.
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg", 0.5f);
+        }
+        else
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
+        }
 
         // Disable collisions
         CollisionLayer = 0;
@@ -606,12 +646,6 @@ public partial class Microbe
         // possibly bogus ownerID values that sometimes seem to come from Godot
         // https://github.com/Revolutionary-Games/Thrive/issues/2504
         throw new InvalidOperationException();
-    }
-
-    private Vector3 GetOffsetRelativeToMaster()
-    {
-        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
-            Colony.Master.Rotation.y);
     }
 
     private void OnIGotAddedToColony()
@@ -746,13 +780,29 @@ public partial class Microbe
             if (!engulfAudio.Playing)
                 engulfAudio.Play();
 
+            // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
+
+            if (engulfAudio.Volume < 0.6f)
+            {
+                engulfAudio.Volume += delta;
+            }
+            else if (engulfAudio.Volume >= 0.6f)
+            {
+                engulfAudio.Volume = 0.6f;
+            }
+
             // Flash the membrane blue.
             Flash(1, new Color(0.2f, 0.5f, 1.0f, 0.5f));
         }
         else
         {
-            if (engulfAudio.Playing)
-                engulfAudio.Stop();
+            if (engulfAudio.Playing && engulfAudio.Volume > 0)
+            {
+                engulfAudio.Volume -= delta;
+
+                if (engulfAudio.Volume <= 0)
+                    engulfAudio.Stop();
+            }
         }
 
         // Movement modifier
@@ -896,21 +946,6 @@ public partial class Microbe
         {
             this.DestroyDetachAndQueueFree();
         }
-    }
-
-    private void SendOrganellePositionsToMembrane()
-    {
-        var organellePositions = new List<Vector2>();
-
-        foreach (var entry in organelles.Organelles)
-        {
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
-        }
-
-        Membrane.OrganellePositions = organellePositions;
-        Membrane.Dirty = true;
-        membraneOrganellePositionsAreDirty = false;
     }
 
     private void ChangeNodeParent(Microbe parent)
@@ -1071,7 +1106,7 @@ public partial class Microbe
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
-        Invoke.Instance.Perform(BeginBind);
+        Invoke.Instance.Queue(BeginBind);
     }
 
     private void BeginBind()

@@ -41,6 +41,13 @@ public class Settings
 
     public static CultureInfo DefaultCulture => DefaultCultureValue;
 
+    /// <summary>
+    ///   If environment is steam returns SteamHandler.DisplayName, else Environment.UserName
+    /// </summary>
+    public static string EnvironmentUserName => SteamHandler.Instance.IsLoaded ?
+        SteamHandler.Instance.DisplayName :
+        Environment.UserName;
+
     // Graphics Properties
 
     /// <summary>
@@ -58,6 +65,11 @@ public class Settings
     /// </summary>
     public SettingValue<Viewport.MSAA> MSAAResolution { get; set; } =
         new SettingValue<Viewport.MSAA>(Viewport.MSAA.Msaa2x);
+
+    /// <summary>
+    ///   Sets the maximum framerate of the game window
+    /// </summary>
+    public SettingValue<int> MaxFramesPerSecond { get; set; } = new SettingValue<int>(360);
 
     /// <summary>
     ///   Optionally applies a colour filter to the screen to aid colourblind individuals
@@ -256,6 +268,9 @@ public class Settings
     public SettingValue<InputDataList> CurrentControls { get; set; } =
         new SettingValue<InputDataList>(GetDefaultControls());
 
+    // Settings that are edited from elsewhere than the main options menu
+    public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
+
     // Computed properties from other settings
 
     [JsonIgnore]
@@ -263,7 +278,7 @@ public class Settings
         CustomUsernameEnabled &&
         CustomUsername.Value != null ?
             CustomUsername.Value :
-            Environment.UserName;
+            EnvironmentUserName;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
@@ -528,6 +543,9 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
+
+        // Values less than 0 are undefined behaviour
+        Engine.TargetFps = MaxFramesPerSecond >= 0 ? MaxFramesPerSecond : 0;
         ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 

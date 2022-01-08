@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using Godot;
 using Saving;
-using Environment = System.Environment;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -51,6 +50,9 @@ public class OptionsMenu : ControlWithInput
 
     [Export]
     public NodePath MSAAResolutionPath;
+
+    [Export]
+    public NodePath MaxFramesPerSecondPath;
 
     [Export]
     public NodePath ColourblindSettingPath;
@@ -226,6 +228,7 @@ public class OptionsMenu : ControlWithInput
     private CustomCheckBox vsync;
     private CustomCheckBox fullScreen;
     private OptionButton msaaResolution;
+    private OptionButton maxFramesPerSecond;
     private OptionButton colourblindSetting;
     private CustomCheckBox chromaticAberrationToggle;
     private Slider chromaticAberrationSlider;
@@ -347,6 +350,7 @@ public class OptionsMenu : ControlWithInput
         vsync = GetNode<CustomCheckBox>(VSyncPath);
         fullScreen = GetNode<CustomCheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
+        maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
@@ -488,6 +492,7 @@ public class OptionsMenu : ControlWithInput
         vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
@@ -539,7 +544,7 @@ public class OptionsMenu : ControlWithInput
         customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
         customUsername.Text = settings.CustomUsername.Value != null ?
             settings.CustomUsername :
-            Environment.UserName;
+            Settings.EnvironmentUserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
         jsonDebugMode.Selected = JSONDebugModeToIndex(settings.JSONDebugMode);
         unsavedProgressWarningEnabled.Pressed = settings.ShowUnsavedProgressWarning;
@@ -767,6 +772,62 @@ public class OptionsMenu : ControlWithInput
             default:
                 GD.PrintErr("invalid MSAA resolution index");
                 return Viewport.MSAA.Disabled;
+        }
+    }
+
+    private int MaxFPSValueToIndex(int value)
+    {
+        switch (value)
+        {
+            case 30:
+                return 0;
+            case 60:
+                return 1;
+            case 90:
+                return 2;
+            case 120:
+                return 3;
+            case 144:
+                return 4;
+            case 240:
+                return 5;
+            case 360:
+                return 6;
+            case 1000:
+                return 7;
+            case 0:
+                return 8;
+            default:
+                GD.PrintErr("invalid max frames per second value");
+                return 6;
+        }
+    }
+
+    private int MaxFPSIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return 30;
+            case 1:
+                return 60;
+            case 2:
+                return 90;
+            case 3:
+                return 120;
+            case 4:
+                return 144;
+            case 5:
+                return 240;
+            case 6:
+                return 360;
+            case 7:
+                return 1000;
+            case 8:
+                return 0;
+            default:
+                GD.PrintErr("invalid max frames per second index");
+                return 360;
         }
     }
 
@@ -1061,6 +1122,14 @@ public class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnMaxFramesPerSecondSelected(int index)
+    {
+        Settings.Instance.MaxFramesPerSecond.Value = MaxFPSIndexToValue(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnColourblindSettingSelected(int index)
     {
         Settings.Instance.ColourblindSetting.Value = index;
@@ -1324,7 +1393,7 @@ public class OptionsMenu : ControlWithInput
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER)) == Error.FileNotFound)
+        if (!FolderHelpers.OpenFolder(Constants.SCREENSHOT_FOLDER))
             screenshotDirectoryWarningBox.PopupCenteredShrink();
     }
 
@@ -1338,7 +1407,7 @@ public class OptionsMenu : ControlWithInput
 
     private void OnCustomUsernameTextChanged(string text)
     {
-        if (text.Equals(Environment.UserName, StringComparison.CurrentCulture))
+        if (text.Equals(Settings.EnvironmentUserName, StringComparison.CurrentCulture))
         {
             Settings.Instance.CustomUsername.Value = null;
         }
@@ -1399,6 +1468,6 @@ public class OptionsMenu : ControlWithInput
     private void OnLogButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.LOGS_FOLDER));
+        FolderHelpers.OpenFolder(Constants.LOGS_FOLDER);
     }
 }

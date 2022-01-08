@@ -40,8 +40,8 @@ public class MicrobeAISystem
             {
                 var random = new Random();
                 for (int a = start;
-                    a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < nodes.Count;
-                    ++a)
+                     a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < nodes.Count;
+                     ++a)
                 {
                     RunAIFor(nodes[a] as IMicrobeAI, delta, random, data);
                 }

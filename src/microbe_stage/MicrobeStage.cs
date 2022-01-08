@@ -21,7 +21,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [Export]
     public NodePath HUDRootPath;
 
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private Compound glucose;
 
     private Node world;
     private Node rootOfDynamicallySpawned;
@@ -214,6 +214,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         ResolveNodeReferences();
 
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+
         tutorialGUI.Visible = true;
         HUD.Init(this);
         HoverInfo.Init(Camera, Clouds);
@@ -301,6 +303,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         patchManager.CurrentGame = CurrentGame;
 
+        pauseMenu.SetNewSaveNameFromSpeciesName();
+
         StartMusic();
 
         if (IsLoadedFromSave)
@@ -375,6 +379,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
+
+        ModLoader.ModInterface.TriggerOnPlayerMicrobeSpawned(Player);
     }
 
     public override void _PhysicsProcess(float delta)
@@ -587,6 +593,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         // Auto save is wanted once possible
         wantsToSave = true;
+
+        pauseMenu.SetNewSaveNameFromSpeciesName();
     }
 
     public void OnFinishTransitioning()
@@ -606,6 +614,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // No enemy species to spawn in this patch
         if (species.Count == 0)
         {
+            ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("SPAWN_ENEMY_CHEAT_FAIL"), 2.0f);
             GD.PrintErr("Can't use spawn enemy cheat because this patch does not contain any enemy species");
             return;
         }

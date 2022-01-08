@@ -24,10 +24,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
-    private AudioStreamPlayer3D engulfAudio;
+    private HybridAudioPlayer engulfAudio;
     private AudioStreamPlayer3D bindingAudio;
     private AudioStreamPlayer3D movementAudio;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
+    private List<AudioStreamPlayer> nonPositionalAudioPlayers = new List<AudioStreamPlayer>();
 
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
@@ -41,6 +42,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private int cachedHexCount;
 
     private Vector3 queuedMovementForce;
+
+    private Vector3 lastLinearVelocity;
+    private Vector3 lastLinearAcceleration;
+    private Vector3 linearAcceleration;
+
+    private float movementSoundCooldownTimer;
+
+    private Random random = new Random();
 
     [JsonProperty]
     private MicrobeAI ai;
@@ -176,13 +185,28 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (onReadyCalled)
             return;
 
+        atp = SimulationParameters.Instance.GetCompound("atp");
+
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
-        engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
+
+        engulfAudio = new HybridAudioPlayer(!IsPlayerMicrobe)
+        {
+            Stream = GD.Load<AudioStream>("res://assets/sounds/soundeffects/engulfment.ogg"),
+            Bus = "SFX",
+        };
+
+        AddChild(engulfAudio);
+
+        // You may notice that there are two separate ways that an audio is played in this class:
+        // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",
+        // "PlayNonPositionalSoundEffect". The former is approach best used to play looping sounds with more control
+        // to the audio player while the latter is more convenient for dynamic and various short one-time sound effects
+        // in expense of lesser audio player control.
 
         if (IsPlayerMicrobe)
         {
@@ -302,7 +326,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce += force;
     }
 
-    public void PlaySoundEffect(string effect)
+    public void PlaySoundEffect(string effect, float volume = 1.0f)
     {
         // TODO: make these sound objects only be loaded once
         var sound = GD.Load<AudioStream>(effect);
@@ -317,12 +341,38 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 return;
 
             player = new AudioStreamPlayer3D();
-            player.UnitDb = 50.0f;
+            player.UnitDb = GD.Linear2Db(volume);
             player.MaxDistance = 100.0f;
             player.Bus = "SFX";
 
             AddChild(player);
             otherAudioPlayers.Add(player);
+        }
+
+        player.Stream = sound;
+        player.Play();
+    }
+
+    public void PlayNonPositionalSoundEffect(string effect, float volume = 1.0f)
+    {
+        // TODO: make these sound objects only be loaded once
+        var sound = GD.Load<AudioStream>(effect);
+
+        // Find a player not in use or create a new one if none are available.
+        var player = nonPositionalAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
+
+        if (player == null)
+        {
+            // If we hit the player limit just return and ignore the sound.
+            if (nonPositionalAudioPlayers.Count >= Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY)
+                return;
+
+            player = new AudioStreamPlayer();
+            player.VolumeDb = GD.Linear2Db(volume);
+            player.Bus = "SFX";
+
+            AddChild(player);
+            nonPositionalAudioPlayers.Add(player);
         }
 
         player.Stream = sound;
@@ -405,30 +455,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             organelle.Update(delta);
         }
 
-        // Movement
-        if (ColonyParent == null)
-        {
-            if (MovementDirection != new Vector3(0, 0, 0) ||
-                queuedMovementForce != new Vector3(0, 0, 0))
-            {
-                // Movement direction should not be normalized to allow different speeds
-                Vector3 totalMovement = new Vector3(0, 0, 0);
-
-                if (MovementDirection != new Vector3(0, 0, 0))
-                {
-                    totalMovement += DoBaseMovementForce(delta);
-                }
-
-                totalMovement += queuedMovementForce;
-
-                ApplyMovementImpulse(totalMovement, delta);
-
-                // Play movement sound if one isn't already playing.
-                if (!movementAudio.Playing)
-                    movementAudio.Play();
-            }
-        }
-
         // Rotation is applied in the physics force callback as that's
         // the place where the body rotation can be directly set
         // without problems
@@ -460,6 +486,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 OnReproductionStatus(this, true);
             }
         }
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
+
+        // Movement
+        if (ColonyParent == null && !IsForPreviewOnly)
+            HandleMovement(delta);
+
+        lastLinearVelocity = LinearVelocity;
+        lastLinearAcceleration = linearAcceleration;
     }
 
     public override void _EnterTree()
