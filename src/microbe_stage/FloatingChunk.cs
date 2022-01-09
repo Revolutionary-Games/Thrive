@@ -168,6 +168,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         config.Damages = Damages;
         config.DeleteOnTouch = DeleteOnTouch;
         config.Mass = Mass;
+        config.DamageType = DamageType;
 
         config.Radius = Radius;
         config.ChunkScale = ChunkScale;
