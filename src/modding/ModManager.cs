@@ -663,7 +663,8 @@ public class ModManager : Control
             return null;
         }
 
-        var savedConfig = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(file.GetAsText());
+        var savedConfig =
+            JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, object>>>(file.GetAsText());
         file.Close();
 
         return savedConfig;
@@ -778,7 +779,7 @@ public class ModManager : Control
 
         modErrorsContainer.Clear();
 
-        var modErrors = ModLoader.Instance.GetAndClearModErrors();
+        var modErrors = ModLoader.Instance.GetModErrors();
         var index = 0;
         foreach (var currentError in modErrors)
         {
@@ -1266,12 +1267,9 @@ public class ModManager : Control
 
     private void UpdateOverallModButtons()
     {
-        // TODO: once mod load order controlling is added, this use of HashSet needs to be removed to allow reorder
-        // be applied. For reorder perhaps mod loader needs to first unload *all* mods so that it can then load
-        // everything in the right order
         applyChangesButton.Disabled =
-            Settings.Instance.EnabledMods.Value.ToHashSet()
-                .SetEquals(enabledMods.Select(m => m.InternalName));
+            Settings.Instance.EnabledMods.Value.ToList()
+                .SequenceEqual(enabledMods.Select(m => m.InternalName));
 
         var isEnabledModsEmpty = enabledMods.Count < 1;
         resetButton.Disabled = isEnabledModsEmpty;
@@ -1308,7 +1306,7 @@ public class ModManager : Control
         var modLoader = ModLoader.Instance;
         modLoader.LoadMods();
 
-        var errors = modLoader.GetAndClearModErrors();
+        var errors = modLoader.GetModErrors();
 
         if (errors.Count > 0)
         {
@@ -1337,6 +1335,7 @@ public class ModManager : Control
         }
 
         RefreshConfigList();
+        RefreshModErrors();
         applyChangesButton.Disabled = true;
     }
 
@@ -1759,6 +1758,8 @@ public class ModManager : Control
 
         moveModUpButton.Disabled = currentIndex == 0;
         moveModDownButton.Disabled = currentIndex >= chosenList.GetItemCount() - amount;
+
+        UpdateOverallModButtons();
     }
 
     /// <summary>
@@ -2020,16 +2021,16 @@ public class ModManager : Control
     private void VerifyConfigFileExist(FullModDetails checkedModInfo)
     {
         // Checks if it null or empty
-        if (checkedModInfo.ConfigurationInfoList == null || checkedModInfo.ConfigurationInfoList.Length < 1)
+        if (checkedModInfo?.ConfigurationInfoList == null || checkedModInfo.ConfigurationInfoList.Length < 1)
         {
-            if (checkedModInfo.Info.ConfigToLoad != null &&
+            if (checkedModInfo?.Info.ConfigToLoad != null &&
                 FileHelpers.Exists(Path.Combine(checkedModInfo.Folder, checkedModInfo.Info.ConfigToLoad)))
             {
                 checkedModInfo.ConfigurationInfoList = GetModConfigList(checkedModInfo);
             }
             else
             {
-                GD.Print("Mod Missing Config File: " + checkedModInfo.InternalName);
+                GD.Print("Mod Missing Config File: " + checkedModInfo?.InternalName);
                 checkedModInfo.ConfigurationInfoList = Array.Empty<ModConfigItemInfo>();
             }
 
@@ -2076,9 +2077,10 @@ public class ModManager : Control
 
         if (ModLoader.Instance.LoadedModAssemblies != null)
         {
-            if (ModLoader.Instance.LoadedModAssemblies.ContainsKey(selectedMod?.InternalName))
+            if (ModLoader.Instance.LoadedModAssemblies.ContainsKey(selectedMod?.InternalName ?? string.Empty))
             {
-                ModLoader.Instance.LoadedModAssemblies[selectedMod.InternalName]?.UpdatedConfiguration(selectedMod.CurrentConfiguration);
+                ModLoader.Instance.LoadedModAssemblies[selectedMod?.InternalName ?? string.Empty]
+                    ?.UpdatedConfiguration(selectedMod?.CurrentConfiguration);
             }
         }
 

@@ -354,19 +354,20 @@ public class ModLoader : Node
 
     public void LoadMods()
     {
-        var newMods = Settings.Instance.EnabledMods.Value.ToHashSet();
+        var newMods = Settings.Instance.EnabledMods.Value?.ToHashSet();
 
-        foreach (var unload in loadedMods.Where(m => !newMods.Contains(m)).ToList())
+        foreach (var unload in loadedMods.ToList())
         {
             GD.Print("Unloading mod: ", unload);
+
             UnLoadMod(unload);
             loadedMods.Remove(unload);
         }
 
-        if (newMods.Count < 1)
+        if (newMods == null || newMods.Count < 1)
             return;
 
-        foreach (var load in newMods.Except(loadedMods).ToList())
+        foreach (var load in newMods.ToList())
         {
             GD.Print("Loading mod: ", load);
             LoadMod(load);
@@ -428,7 +429,8 @@ public class ModLoader : Node
 
         bool loadedSomething = false;
 
-        if (!string.IsNullOrEmpty(info.Info.PckToLoad))
+        if (!string.IsNullOrEmpty(info.Info.PckToLoad) &&
+            FileHelpers.ExistsCaseSensitive(Path.Combine(info.Folder, info.Info.PckToLoad)))
         {
             LoadPckFile(Path.Combine(info.Folder, info.Info.PckToLoad));
             loadedSomething = true;

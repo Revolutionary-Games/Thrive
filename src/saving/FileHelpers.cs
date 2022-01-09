@@ -1,6 +1,8 @@
-﻿using System.IO;
+using System;
+using System.IO;
 using Godot;
 using Directory = Godot.Directory;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Helpers regarding file operations
@@ -42,5 +44,22 @@ public static class FileHelpers
     {
         using var directory = new Directory();
         return directory.FileExists(path);
+    }
+
+    /// <summary>
+    ///   Returns true if file exists and the file name matches case
+    /// </summary>
+    /// <param name="path">Path to check</param>
+    /// <returns>True if exists, false otherwise</returns>
+    public static bool ExistsCaseSensitive(string path)
+    {
+        var globlizedPath = ProjectSettings.GlobalizePath(path);
+        string directoryPath = Path.GetDirectoryName(globlizedPath);
+        if (!string.IsNullOrEmpty(directoryPath))
+        {
+            return Array.Exists(System.IO.Directory.GetFiles(directoryPath), s => s == Path.GetFullPath(globlizedPath));
+        }
+
+        return false;
     }
 }
