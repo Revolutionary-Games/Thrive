@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.IO;
 using Godot;
@@ -56,6 +56,15 @@ public class NewModGUI : Control
     public NodePath AssemblyModClassPath;
 
     [Export]
+    public NodePath IconFileDialogPath;
+
+    [Export]
+    public NodePath PckFileDialogPath;
+
+    [Export]
+    public NodePath AssemblyFileDialogPath;
+
+    [Export]
     public NodePath ErrorDisplayPath;
 
     private CustomDialog dialog;
@@ -75,6 +84,9 @@ public class NewModGUI : Control
     private LineEdit pckName;
     private LineEdit modAssembly;
     private LineEdit assemblyModClass;
+    private FileDialog iconFileDialog;
+    private FileDialog pckFileDialog;
+    private FileDialog assemblyFileDialog;
 
     private Label errorDisplay;
 
@@ -108,8 +120,15 @@ public class NewModGUI : Control
         pckName = GetNode<LineEdit>(PckNamePath);
         modAssembly = GetNode<LineEdit>(ModAssemblyPath);
         assemblyModClass = GetNode<LineEdit>(AssemblyModClassPath);
+        iconFileDialog = GetNode<FileDialog>(IconFileDialogPath);
+        pckFileDialog = GetNode<FileDialog>(PckFileDialogPath);
+        assemblyFileDialog = GetNode<FileDialog>(AssemblyFileDialogPath);
 
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
+
+        iconFileDialog.AddFilter("*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images");
+        pckFileDialog.AddFilter("*.pck ; Pck Files");
+        assemblyFileDialog.AddFilter("*.dll ; Assembly Files");
     }
 
     public void Open()
@@ -298,5 +317,35 @@ public class NewModGUI : Control
     private void ClearError()
     {
         errorDisplay.Text = string.Empty;
+    }
+
+    private void ChooseIconButtonPressed()
+    {
+        iconFileDialog.PopupCentered();
+    }
+
+    private void IconFileDialogFileSelected(string path)
+    {
+        iconFile.Text = iconFileDialog.CurrentFile;
+    }
+
+    private void ChoosePckButtonPressed()
+    {
+        pckFileDialog.PopupCentered();
+    }
+
+    private void PckFileDialogFileSelected(string path)
+    {
+        pckName.Text = pckFileDialog.CurrentFile;
+    }
+
+    private void ChooseAssemblyButtonPressed()
+    {
+        assemblyFileDialog.PopupCentered();
+    }
+
+    private void AssemblyFileDialogFileSelected(string path)
+    {
+        modAssembly.Text = assemblyFileDialog.CurrentFile;
     }
 }

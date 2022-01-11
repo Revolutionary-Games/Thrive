@@ -754,6 +754,11 @@ public class ModManager : Control
         foreach (var mod in notEnabledMods)
         {
             availableModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
+            GD.Print(mod.InternalName, ":", mod.Info.Description);
+            if (!string.IsNullOrEmpty(mod.Info.Description))
+            {
+                availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, mod.Info.Description ?? mod.InternalName);
+            }
         }
 
         // If we found new mod folders that happen to be enabled already, add the mods to that list
@@ -814,6 +819,10 @@ public class ModManager : Control
                 }
 
                 configModContainer.AddItem(currentMod.InternalName, LoadModIcon(currentMod));
+                if (!string.IsNullOrEmpty(currentMod.Info.Description))
+                {
+                    configModContainer.SetItemTooltip(configModContainer.GetItemCount() - 1, currentMod.Info.Description ?? currentMod.InternalName);
+                }
             }
         }
     }
@@ -874,6 +883,10 @@ public class ModManager : Control
         foreach (var mod in enabledMods)
         {
             enabledModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
+            if (!string.IsNullOrEmpty(mod.Info.Description))
+            {
+                enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1, mod.Info.Description ?? mod.InternalName);
+            }
         }
     }
 
@@ -1172,6 +1185,10 @@ public class ModManager : Control
         }
 
         enabledModsContainer.AddItem(selectedMod.InternalName, icon);
+        if (!string.IsNullOrEmpty(selectedMod.Info.Description))
+        {
+            enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1, selectedMod.Info.Description ?? selectedMod.InternalName);
+        }
 
         notEnabledMods.Remove(selectedMod);
         enabledMods.Add(selectedMod);
@@ -1198,6 +1215,10 @@ public class ModManager : Control
         }
 
         availableModsContainer.AddItem(selectedMod.InternalName, icon);
+        if (!string.IsNullOrEmpty(selectedMod.Info.Description))
+        {
+            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, selectedMod.Info.Description ?? selectedMod.InternalName);
+        }
 
         enabledMods.Remove(selectedMod);
         notEnabledMods.Add(selectedMod);
@@ -1218,9 +1239,12 @@ public class ModManager : Control
         {
             var icon = enabledModsContainer.GetItemIcon(0);
             var text = enabledModsContainer.GetItemText(0);
+            var toolTip = enabledModsContainer.GetItemTooltip(0);
+
             enabledModsContainer.RemoveItem(0);
 
             availableModsContainer.AddItem(text, icon);
+            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, toolTip);
         }
 
         notEnabledMods.AddRange(enabledMods);
@@ -1242,9 +1266,11 @@ public class ModManager : Control
         {
             var icon = availableModsContainer.GetItemIcon(0);
             var text = availableModsContainer.GetItemText(0);
+            var toolTip = availableModsContainer.GetItemTooltip(0);
             availableModsContainer.RemoveItem(0);
 
             enabledModsContainer.AddItem(text, icon);
+            enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1, toolTip);
         }
 
         enabledMods.AddRange(notEnabledMods);
@@ -2031,7 +2057,10 @@ public class ModManager : Control
             else
             {
                 GD.Print("Mod Missing Config File: " + checkedModInfo?.InternalName);
-                checkedModInfo.ConfigurationInfoList = Array.Empty<ModConfigItemInfo>();
+                if (checkedModInfo != null)
+                {
+                    checkedModInfo.ConfigurationInfoList = Array.Empty<ModConfigItemInfo>();
+                }
             }
 
             var currentConfigList = checkedModInfo.ConfigurationInfoList;
