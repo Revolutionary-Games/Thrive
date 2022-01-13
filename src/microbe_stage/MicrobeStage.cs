@@ -21,7 +21,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     [Export]
     public NodePath HUDRootPath;
 
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private Compound glucose;
 
     private Node world;
     private Node rootOfDynamicallySpawned;
@@ -213,6 +213,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     public override void _Ready()
     {
         ResolveNodeReferences();
+
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
 
         tutorialGUI.Visible = true;
         HUD.Init(this);

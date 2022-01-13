@@ -7,16 +7,21 @@
     /// </summary>
     public class CalculatePopulation : IRunStep
     {
+        private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
         private readonly List<Species> extraSpecies;
         private readonly List<Species> excludedSpecies;
+        private readonly bool collectEnergyInfo;
 
-        public CalculatePopulation(PatchMap map, List<Species> extraSpecies = null,
-            List<Species> excludedSpecies = null)
+        public CalculatePopulation(AutoEvoConfiguration configuration, PatchMap map,
+            List<Species> extraSpecies = null, List<Species> excludedSpecies = null,
+            bool collectEnergyInfo = false)
         {
+            this.configuration = configuration;
             this.map = map;
             this.extraSpecies = extraSpecies;
             this.excludedSpecies = excludedSpecies;
+            this.collectEnergyInfo = collectEnergyInfo;
         }
 
         public int TotalSteps => 1;
@@ -26,7 +31,11 @@
         public bool RunStep(RunResults results)
         {
             // ReSharper disable RedundantArgumentDefaultValue
-            var config = new SimulationConfiguration(map, 1) { Results = results };
+            var config = new SimulationConfiguration(configuration, map, 1)
+            {
+                Results = results,
+                CollectEnergyInformation = collectEnergyInfo,
+            };
 
             // ReSharper restore RedundantArgumentDefaultValue
 

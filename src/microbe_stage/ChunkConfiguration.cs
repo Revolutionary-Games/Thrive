@@ -34,6 +34,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
 
     public bool DeleteOnTouch;
 
+    /// <summary>
+    ///   The name of kind of damage type this chunk inflicts.
+    /// </summary>
+    public string DamageType;
+
     public Dictionary<Compound, ChunkCompound> Compounds;
 
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)

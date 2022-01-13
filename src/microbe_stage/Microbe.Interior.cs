@@ -17,7 +17,7 @@ public partial class Microbe
     [JsonProperty]
     public readonly CompoundBag Compounds = new CompoundBag(0.0f);
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+    private Compound atp;
 
     [JsonProperty]
     private CompoundCloudSystem cloudSystem;
@@ -561,8 +561,8 @@ public partial class Microbe
 
             // We are in G1 phase of the cell cycle, duplicate all organelles.
 
-            // Except the nucleus
-            if (organelle.Definition.InternalName == "nucleus")
+            // Except the unique organelles
+            if (organelle.Definition.Unique)
                 continue;
 
             // If Give it some compounds to make it larger.
@@ -736,6 +736,56 @@ public partial class Microbe
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
         Compounds.TakeCompound(atp, osmoregulationCost);
+    }
+
+    private void HandleMovement(float delta)
+    {
+        if (MovementDirection != Vector3.Zero || queuedMovementForce != Vector3.Zero)
+        {
+            // Movement direction should not be normalized to allow different speeds
+            Vector3 totalMovement = Vector3.Zero;
+
+            if (MovementDirection != Vector3.Zero)
+            {
+                totalMovement += DoBaseMovementForce(delta);
+            }
+
+            totalMovement += queuedMovementForce;
+
+            ApplyMovementImpulse(totalMovement, delta);
+
+            var deltaAcceleration = (linearAcceleration - lastLinearAcceleration).LengthSquared();
+
+            if (movementSoundCooldownTimer > 0)
+                movementSoundCooldownTimer -= delta;
+
+            // The cell starts moving from a relatively idle velocity, so play the begin movement sound
+            // TODO: Account for cell turning, I can't figure out a reliable way to do that using the current
+            // calculation - Kasterisk
+            if (movementSoundCooldownTimer <= 0 && deltaAcceleration > lastLinearAcceleration.LengthSquared() &&
+                lastLinearVelocity.LengthSquared() <= 1)
+            {
+                movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
+                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-movement-1.ogg");
+            }
+
+            if (!movementAudio.Playing)
+                movementAudio.Play();
+
+            // Max volume is 0.4
+            if (movementAudio.Volume < 0.4f)
+                movementAudio.Volume += delta;
+        }
+        else
+        {
+            if (movementAudio.Playing)
+            {
+                movementAudio.Volume -= delta;
+
+                if (movementAudio.Volume <= 0)
+                    movementAudio.Stop();
+            }
+        }
     }
 
     /// <summary>
