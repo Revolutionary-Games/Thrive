@@ -23,6 +23,7 @@ VersionPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContain
 DescriptionPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/Description")
 LongDescriptionPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/LongDescription")
 IconFilePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/IconContainer/IconFile")
+PreviewImagesFilePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PreviewImagesContainer/ImageFile")
 InfoUrlPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/InfoURL")
 LicensePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/License")
 RecommendedThrivePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/RecommendedThrive")
@@ -31,9 +32,16 @@ MaximumThrivePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxC
 PckNamePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PckContainer/PckName")
 ModAssemblyPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssemblyContainer/ModAssembly")
 AssemblyModClassPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/AssemblyModClass")
+DependenciesPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModDependencies2")
+LoadBeforePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadBefore")
+LoadAfterPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadAfter")
+IncompatibleModsPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModIncompatibleMods")
+ModConfigPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer/ModConfigName")
+EnableConfigCheckboxPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer/EnableConfigCheckbox")
 IconFileDialogPath = NodePath("IconFileDialog")
 PckFileDialogPath = NodePath("PckFileDialog")
 AssemblyFileDialogPath = NodePath("AssemblyFileDialog")
+PreviewFileDialogPath = NodePath("PreviewFileDialog")
 ErrorDisplayPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Error")
 
 [node name="CustomDialog" parent="." instance=ExtResource( 1 )]
@@ -50,19 +58,21 @@ margin_right = 565.0
 margin_bottom = 465.0
 rect_min_size = Vector2( 550, 450 )
 size_flags_horizontal = 3
+scroll_vertical = 1231
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="CustomDialog/ScrollContainer"]
+margin_top = -1231.0
 margin_right = 544.0
-margin_bottom = 1246.0
+margin_bottom = 450.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer"]
 margin_right = 534.0
-margin_bottom = 1246.0
+margin_bottom = 1681.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -92,7 +102,7 @@ size_flags_horizontal = 3
 [node name="Form" type="VBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 38.0
 margin_right = 534.0
-margin_bottom = 1181.0
+margin_bottom = 1616.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -268,23 +278,62 @@ size_flags_stretch_ratio = 0.07
 icon = ExtResource( 4 )
 expand_icon = true
 
-[node name="Spacer6" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer15" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 579.0
 margin_right = 534.0
 margin_bottom = 584.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label8" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label16" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 588.0
 margin_right = 534.0
 margin_bottom = 610.0
 custom_fonts/font = ExtResource( 3 )
+text = "MOD_PREVIEW_IMAGE_FILE"
+
+[node name="PreviewImagesContainer" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 614.0
+margin_right = 534.0
+margin_bottom = 649.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ImageFile" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PreviewImagesContainer"]
+margin_right = 495.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+text = "mod_image.png, mod_image_2.png"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="ChooseImagesButton" type="Button" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PreviewImagesContainer"]
+margin_left = 499.0
+margin_right = 534.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.07
+icon = ExtResource( 4 )
+expand_icon = true
+
+[node name="Spacer6" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 653.0
+margin_right = 534.0
+margin_bottom = 658.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label8" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 662.0
+margin_right = 534.0
+margin_bottom = 684.0
+custom_fonts/font = ExtResource( 3 )
 text = "MOD_INFO_URL"
 
 [node name="InfoURL" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 614.0
+margin_top = 688.0
 margin_right = 534.0
-margin_bottom = 645.0
+margin_bottom = 719.0
 text = "some URL"
 max_length = 200
 __meta__ = {
@@ -292,22 +341,22 @@ __meta__ = {
 }
 
 [node name="Spacer7" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 649.0
+margin_top = 723.0
 margin_right = 534.0
-margin_bottom = 654.0
+margin_bottom = 728.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label9" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 658.0
+margin_top = 732.0
 margin_right = 534.0
-margin_bottom = 680.0
+margin_bottom = 754.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOD_LICENSE"
 
 [node name="License" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 684.0
+margin_top = 758.0
 margin_right = 534.0
-margin_bottom = 715.0
+margin_bottom = 789.0
 text = "MIT"
 max_length = 50
 __meta__ = {
@@ -315,22 +364,22 @@ __meta__ = {
 }
 
 [node name="Spacer8" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 719.0
+margin_top = 793.0
 margin_right = 534.0
-margin_bottom = 724.0
+margin_bottom = 798.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label10" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 728.0
+margin_top = 802.0
 margin_right = 534.0
-margin_bottom = 750.0
+margin_bottom = 824.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOD_RECOMMENDED_THRIVE"
 
 [node name="RecommendedThrive" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 754.0
+margin_top = 828.0
 margin_right = 534.0
-margin_bottom = 785.0
+margin_bottom = 859.0
 text = "0.5.6"
 max_length = 40
 __meta__ = {
@@ -338,22 +387,22 @@ __meta__ = {
 }
 
 [node name="Spacer9" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 789.0
+margin_top = 863.0
 margin_right = 534.0
-margin_bottom = 794.0
+margin_bottom = 868.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label11" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 798.0
+margin_top = 872.0
 margin_right = 534.0
-margin_bottom = 820.0
+margin_bottom = 894.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOD_MINIMUM_THRIVE"
 
 [node name="MinimumThrive" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 824.0
+margin_top = 898.0
 margin_right = 534.0
-margin_bottom = 855.0
+margin_bottom = 929.0
 text = "0.5.6-alpha"
 max_length = 40
 __meta__ = {
@@ -361,22 +410,22 @@ __meta__ = {
 }
 
 [node name="Spacer10" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 859.0
+margin_top = 933.0
 margin_right = 534.0
-margin_bottom = 864.0
+margin_bottom = 938.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label12" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 868.0
+margin_top = 942.0
 margin_right = 534.0
-margin_bottom = 890.0
+margin_bottom = 964.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOD_MAXIMUM_THRIVE"
 
 [node name="MaximumThrive" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 894.0
+margin_top = 968.0
 margin_right = 534.0
-margin_bottom = 925.0
+margin_bottom = 999.0
 text = "0.5.6"
 max_length = 40
 __meta__ = {
@@ -384,22 +433,22 @@ __meta__ = {
 }
 
 [node name="Spacer11" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 929.0
+margin_top = 1003.0
 margin_right = 534.0
-margin_bottom = 934.0
+margin_bottom = 1008.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label13" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 938.0
+margin_top = 1012.0
 margin_right = 534.0
-margin_bottom = 960.0
+margin_bottom = 1034.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOD_PCK_NAME"
 
 [node name="PckContainer" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 964.0
+margin_top = 1038.0
 margin_right = 534.0
-margin_bottom = 999.0
+margin_bottom = 1073.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -424,22 +473,22 @@ icon = ExtResource( 4 )
 expand_icon = true
 
 [node name="Spacer12" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1003.0
+margin_top = 1077.0
 margin_right = 534.0
-margin_bottom = 1008.0
+margin_bottom = 1082.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label14" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1012.0
+margin_top = 1086.0
 margin_right = 534.0
-margin_bottom = 1034.0
+margin_bottom = 1108.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOD_ASSEMBLY"
 
 [node name="ModAssemblyContainer" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1038.0
+margin_top = 1112.0
 margin_right = 534.0
-margin_bottom = 1073.0
+margin_bottom = 1147.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -464,39 +513,182 @@ icon = ExtResource( 4 )
 expand_icon = true
 
 [node name="Spacer13" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1077.0
+margin_top = 1151.0
 margin_right = 534.0
-margin_bottom = 1082.0
+margin_bottom = 1156.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label15" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1086.0
+margin_top = 1160.0
 margin_right = 534.0
-margin_bottom = 1108.0
+margin_bottom = 1182.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOD_ASSEMBLY_CLASS"
 
 [node name="AssemblyModClass" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1112.0
+margin_top = 1186.0
 margin_right = 534.0
-margin_bottom = 1143.0
+margin_bottom = 1217.0
 text = "ModClass"
 max_length = 200
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Error" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 1185.0
+[node name="Spacer16" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1221.0
 margin_right = 534.0
-margin_bottom = 1210.0
+margin_bottom = 1226.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label17" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1230.0
+margin_right = 534.0
+margin_bottom = 1252.0
+custom_fonts/font = ExtResource( 3 )
+text = "MOD_DEPENDENCIES"
+
+[node name="ModDependencies2" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1256.0
+margin_right = 534.0
+margin_bottom = 1287.0
+size_flags_horizontal = 3
+text = "ModName"
+max_length = 200
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer17" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1291.0
+margin_right = 534.0
+margin_bottom = 1296.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label20" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1300.0
+margin_right = 534.0
+margin_bottom = 1322.0
+custom_fonts/font = ExtResource( 3 )
+text = "MOD_LOAD_BEFORE"
+
+[node name="ModLoadBefore" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1326.0
+margin_right = 534.0
+margin_bottom = 1357.0
+size_flags_horizontal = 3
+text = "ModName"
+max_length = 200
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer18" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1361.0
+margin_right = 534.0
+margin_bottom = 1366.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label21" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1370.0
+margin_right = 534.0
+margin_bottom = 1392.0
+custom_fonts/font = ExtResource( 3 )
+text = "MOD_LOAD_AFTER"
+
+[node name="ModLoadAfter" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1396.0
+margin_right = 534.0
+margin_bottom = 1427.0
+size_flags_horizontal = 3
+text = "ModName"
+max_length = 200
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer19" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1431.0
+margin_right = 534.0
+margin_bottom = 1436.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label19" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1440.0
+margin_right = 534.0
+margin_bottom = 1462.0
+custom_fonts/font = ExtResource( 3 )
+text = "MOD_INCOMPATIBLE_MODS"
+
+[node name="ModIncompatibleMods" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1466.0
+margin_right = 534.0
+margin_bottom = 1497.0
+size_flags_horizontal = 3
+text = "ModName"
+max_length = 200
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer20" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1501.0
+margin_right = 534.0
+margin_bottom = 1506.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label22" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1510.0
+margin_right = 534.0
+margin_bottom = 1532.0
+custom_fonts/font = ExtResource( 3 )
+text = "MOD_CONFIG_FILE"
+
+[node name="ModConfigContainer" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1536.0
+margin_right = 534.0
+margin_bottom = 1578.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnableConfigCheckbox" type="CheckButton" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer"]
+margin_right = 202.0
+margin_bottom = 42.0
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+text = "ENABLE_CONFIG"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ModConfigName" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer"]
+margin_left = 206.0
+margin_right = 534.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+text = "mod_config.json"
+max_length = 200
+editable = false
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Error" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 1620.0
+margin_right = 534.0
+margin_bottom = 1645.0
 autowrap = true
 max_lines_visible = 5
 
 [node name="BottomButtons" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 1214.0
+margin_top = 1649.0
 margin_right = 534.0
-margin_bottom = 1246.0
+margin_bottom = 1681.0
 size_flags_horizontal = 3
 alignment = 1
 
@@ -520,12 +712,36 @@ anchor_bottom = 1.0
 margin_top = 20.0
 margin_right = -146.0
 margin_bottom = -183.0
+custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
+custom_colors/files_disabled = Color( 0, 0, 0, 1 )
+custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
 window_title = ""
 dialog_hide_on_ok = true
 mode = 0
 access = 2
-current_dir = "/PC Documents/Documents/GitHub/FinalThriveModFork"
-current_path = "/PC Documents/Documents/GitHub/FinalThriveModFork/"
+filters = PoolStringArray( "*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images" )
+current_dir = "/"
+current_path = "/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PreviewFileDialog" type="FileDialog" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 20.0
+margin_right = -146.0
+margin_bottom = -183.0
+custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
+custom_colors/files_disabled = Color( 0, 0, 0, 1 )
+custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
+window_title = "Open File(s)"
+dialog_hide_on_ok = true
+mode = 1
+access = 2
+filters = PoolStringArray( "*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images" )
+current_dir = "/"
+current_path = "/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -536,12 +752,16 @@ anchor_bottom = 1.0
 margin_top = 20.0
 margin_right = -146.0
 margin_bottom = -183.0
+custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
+custom_colors/files_disabled = Color( 0, 0, 0, 1 )
+custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
 window_title = "Open a File"
 dialog_hide_on_ok = true
 mode = 0
 access = 2
-current_dir = "/PC Documents/Documents/GitHub/FinalThriveModFork"
-current_path = "/PC Documents/Documents/GitHub/FinalThriveModFork/"
+filters = PoolStringArray( "*.pck ; Pck Files" )
+current_dir = "/"
+current_path = "/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -552,12 +772,16 @@ anchor_bottom = 1.0
 margin_top = 20.0
 margin_right = -146.0
 margin_bottom = -183.0
+custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
+custom_colors/files_disabled = Color( 0, 0, 0, 1 )
+custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
 window_title = "Open a File"
 dialog_hide_on_ok = true
 mode = 0
 access = 2
-current_dir = "/PC Documents/Documents/GitHub/FinalThriveModFork"
-current_path = "/PC Documents/Documents/GitHub/FinalThriveModFork/"
+filters = PoolStringArray( "*.dll ; Assembly Files" )
+current_dir = "/"
+current_path = "/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -565,10 +789,13 @@ __meta__ = {
 [connection signal="popup_hide" from="CustomDialog" to="." method="Closed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/HelpLine/LinkButton" to="." method="WikiLinkPressed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/IconContainer/ChooseIconButton" to="." method="ChooseIconButtonPressed"]
+[connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PreviewImagesContainer/ChooseImagesButton" to="." method="ChooseImagesButtonPressed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PckContainer/ChoosePckButton" to="." method="ChoosePckButtonPressed"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssemblyContainer/ChooseAssemblyButton" to="." method="ChooseAssemblyButtonPressed"]
+[connection signal="toggled" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModConfigContainer/EnableConfigCheckbox" to="." method="EnableConfigCheckboxToggled"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Create" to="." method="Create"]
 [connection signal="pressed" from="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/BottomButtons/Cancel" to="." method="Cancel"]
 [connection signal="file_selected" from="IconFileDialog" to="." method="IconFileDialogFileSelected"]
+[connection signal="files_selected" from="PreviewFileDialog" to="." method="PreviewFileDialogFilesSelected"]
 [connection signal="file_selected" from="PckFileDialog" to="." method="PckFileDialogFileSelected"]
 [connection signal="file_selected" from="AssemblyFileDialog" to="." method="AssemblyFileDialogFileSelected"]

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Path = System.IO.Path;
@@ -32,6 +34,9 @@ public class NewModGUI : Control
     public NodePath IconFilePath;
 
     [Export]
+    public NodePath PreviewImagesFilePath;
+
+    [Export]
     public NodePath InfoUrlPath;
 
     [Export]
@@ -56,6 +61,24 @@ public class NewModGUI : Control
     public NodePath AssemblyModClassPath;
 
     [Export]
+    public NodePath DependenciesPath;
+
+    [Export]
+    public NodePath LoadBeforePath;
+
+    [Export]
+    public NodePath LoadAfterPath;
+
+    [Export]
+    public NodePath IncompatibleModsPath;
+
+    [Export]
+    public NodePath ModConfigPath;
+
+    [Export]
+    public NodePath EnableConfigCheckboxPath;
+
+    [Export]
     public NodePath IconFileDialogPath;
 
     [Export]
@@ -63,6 +86,9 @@ public class NewModGUI : Control
 
     [Export]
     public NodePath AssemblyFileDialogPath;
+
+    [Export]
+    public NodePath PreviewFileDialogPath;
 
     [Export]
     public NodePath ErrorDisplayPath;
@@ -76,6 +102,7 @@ public class NewModGUI : Control
     private LineEdit description;
     private TextEdit longDescription;
     private LineEdit iconFile;
+    private LineEdit previewImagesFile;
     private LineEdit infoUrl;
     private LineEdit license;
     private LineEdit recommendedThrive;
@@ -84,9 +111,18 @@ public class NewModGUI : Control
     private LineEdit pckName;
     private LineEdit modAssembly;
     private LineEdit assemblyModClass;
+    private LineEdit dependencies;
+    private LineEdit loadBefore;
+    private LineEdit loadAfter;
+    private LineEdit incompatibleMods;
+    private LineEdit modConfig;
+
+    private CheckButton enableConfigCheckbox;
+
     private FileDialog iconFileDialog;
     private FileDialog pckFileDialog;
     private FileDialog assemblyFileDialog;
+    private FileDialog previewFileDialog;
 
     private Label errorDisplay;
 
@@ -112,6 +148,7 @@ public class NewModGUI : Control
         description = GetNode<LineEdit>(DescriptionPath);
         longDescription = GetNode<TextEdit>(LongDescriptionPath);
         iconFile = GetNode<LineEdit>(IconFilePath);
+        previewImagesFile = GetNode<LineEdit>(PreviewImagesFilePath);
         infoUrl = GetNode<LineEdit>(InfoUrlPath);
         license = GetNode<LineEdit>(LicensePath);
         recommendedThrive = GetNode<LineEdit>(RecommendedThrivePath);
@@ -120,15 +157,24 @@ public class NewModGUI : Control
         pckName = GetNode<LineEdit>(PckNamePath);
         modAssembly = GetNode<LineEdit>(ModAssemblyPath);
         assemblyModClass = GetNode<LineEdit>(AssemblyModClassPath);
+        dependencies = GetNode<LineEdit>(DependenciesPath);
+        loadBefore = GetNode<LineEdit>(LoadBeforePath);
+        loadAfter = GetNode<LineEdit>(LoadAfterPath);
+        incompatibleMods = GetNode<LineEdit>(IncompatibleModsPath);
+        modConfig = GetNode<LineEdit>(ModConfigPath);
+
+        enableConfigCheckbox = GetNode<CheckButton>(EnableConfigCheckboxPath);
+
         iconFileDialog = GetNode<FileDialog>(IconFileDialogPath);
+        iconFileDialog.CurrentDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures);
         pckFileDialog = GetNode<FileDialog>(PckFileDialogPath);
+        pckFileDialog.CurrentDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
         assemblyFileDialog = GetNode<FileDialog>(AssemblyFileDialogPath);
+        assemblyFileDialog.CurrentDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+        previewFileDialog = GetNode<FileDialog>(PreviewFileDialogPath);
+        previewFileDialog.CurrentDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures);
 
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
-
-        iconFileDialog.AddFilter("*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images");
-        pckFileDialog.AddFilter("*.pck ; Pck Files");
-        assemblyFileDialog.AddFilter("*.dll ; Assembly Files");
     }
 
     public void Open()
@@ -203,6 +249,7 @@ public class NewModGUI : Control
         description.Text = editedInfo.Description;
         longDescription.Text = editedInfo.LongDescription;
         iconFile.Text = editedInfo.Icon;
+        previewImagesFile.Text = editedInfo.PreviewImages == null ? string.Empty : string.Join(", ", editedInfo.PreviewImages);
         infoUrl.Text = editedInfo.InfoUrl == null ? string.Empty : editedInfo.InfoUrl.ToString();
         license.Text = editedInfo.License;
         recommendedThrive.Text = editedInfo.RecommendedThriveVersion;
@@ -211,6 +258,14 @@ public class NewModGUI : Control
         pckName.Text = editedInfo.PckToLoad;
         modAssembly.Text = editedInfo.ModAssembly;
         assemblyModClass.Text = editedInfo.AssemblyModClass;
+        dependencies.Text = editedInfo.Dependencies == null ? string.Empty : string.Join(", ", editedInfo.Dependencies);
+        loadBefore.Text = editedInfo.LoadBefore == null ? string.Empty : string.Join(", ", editedInfo.LoadBefore);
+        loadAfter.Text = editedInfo.LoadAfter == null ? string.Empty : string.Join(", ", editedInfo.LoadAfter);
+        incompatibleMods.Text = editedInfo.IncompatibleMods == null ? string.Empty : string.Join(", ", editedInfo.IncompatibleMods);
+
+        enableConfigCheckbox.SetPressedNoSignal(!string.IsNullOrWhiteSpace(editedInfo.ConfigToLoad));
+        modConfig.Editable = enableConfigCheckbox.Pressed;
+        modConfig.Text = string.IsNullOrWhiteSpace(editedInfo.ConfigToLoad) ? string.Empty : editedInfo.ConfigToLoad;
     }
 
     private bool ReadControlsToEditedInfo()
@@ -229,6 +284,35 @@ public class NewModGUI : Control
         editedInfo.PckToLoad = pckName.Text;
         editedInfo.ModAssembly = modAssembly.Text;
         editedInfo.AssemblyModClass = assemblyModClass.Text;
+
+        var previewImagesList = new List<string>();
+        Array.ForEach(previewImagesFile.Text.Split(","), s => previewImagesList.Add(s.Trim()));
+        editedInfo.PreviewImages = previewImagesList;
+
+        var dependenciesList = new List<string>();
+        Array.ForEach(dependencies.Text.Split(","), s => dependenciesList.Add(s.Trim()));
+        editedInfo.Dependencies = dependenciesList;
+
+        var loadBeforeList = new List<string>();
+        Array.ForEach(loadBefore.Text.Split(","), s => loadBeforeList.Add(s.Trim()));
+        editedInfo.LoadBefore = loadBeforeList;
+
+        var loadAfterList = new List<string>();
+        Array.ForEach(loadAfter.Text.Split(","), s => loadAfterList.Add(s.Trim()));
+        editedInfo.LoadAfter = loadAfterList;
+
+        var incompatibleModsList = new List<string>();
+        Array.ForEach(incompatibleMods.Text.Split(","), s => incompatibleModsList.Add(s.Trim()));
+        editedInfo.IncompatibleMods = incompatibleModsList;
+
+        if (enableConfigCheckbox.Pressed && !string.IsNullOrWhiteSpace(modConfig.Text))
+        {
+            editedInfo.ConfigToLoad = modConfig.Text;
+            if (!modConfig.Text.EndsWith(".json"))
+            {
+                editedInfo.ConfigToLoad += ".json";
+            }
+        }
 
         if (string.IsNullOrWhiteSpace(infoUrl.Text))
         {
@@ -347,5 +431,22 @@ public class NewModGUI : Control
     private void AssemblyFileDialogFileSelected(string path)
     {
         modAssembly.Text = assemblyFileDialog.CurrentFile;
+    }
+
+    private void ChooseImagesButtonPressed()
+    {
+        previewFileDialog.PopupCentered();
+    }
+
+    private void PreviewFileDialogFilesSelected(string[] paths)
+    {
+        List<string> allFileNames = new List<string>();
+        Array.ForEach(paths, currentPath => allFileNames.Add(Path.GetFileName(currentPath)));
+        previewImagesFile.Text = string.Join(", ", allFileNames);
+    }
+
+    private void EnableConfigCheckboxToggled(bool enabled)
+    {
+        modConfig.Editable = enabled;
     }
 }

@@ -63,7 +63,7 @@ public class ModLoader : Node
     public bool RequiresRestart { get; private set; }
 
     /// <summary>
-    ///   Errors that occurred when loading or unloading mods
+    ///   Mod assembnlies for all of the loaded mods used to communicate with the mod
     /// </summary>
     public Dictionary<string, IMod> LoadedModAssemblies => loadedModAssemblies;
 

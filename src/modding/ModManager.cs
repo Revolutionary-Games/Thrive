@@ -754,7 +754,6 @@ public class ModManager : Control
         foreach (var mod in notEnabledMods)
         {
             availableModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
-            GD.Print(mod.InternalName, ":", mod.Info.Description);
             if (!string.IsNullOrEmpty(mod.Info.Description))
             {
                 availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, mod.Info.Description ?? mod.InternalName);
@@ -2033,6 +2032,21 @@ public class ModManager : Control
 
         file.StoreString(modInfoText);
         file.Close();
+
+        if (!string.IsNullOrWhiteSpace(parsedData.Info.ConfigToLoad))
+        {
+            GD.Print("Creating Config File");
+            if (file.Open(Path.Combine(parsedData.Folder, parsedData.Info.ConfigToLoad), File.ModeFlags.Write) == Error.Ok)
+            {
+                file.StoreString("[\n]");
+            }
+            else
+            {
+                GD.PrintErr("Can't create mod config file: ", file.GetError());
+            }
+
+            file.Close();
+        }
 
         GD.Print("Mod folder created, trying to open: ", parsedData.Folder);
         FolderHelpers.OpenFolder(parsedData.Folder);
