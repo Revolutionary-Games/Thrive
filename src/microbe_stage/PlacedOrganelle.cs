@@ -408,6 +408,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
                 parent = parent.ColonyParent;
             }
         }
+        else
+        {
+            return shapePosition;
+        }
 
         rotation = rotation.Normalized();
 

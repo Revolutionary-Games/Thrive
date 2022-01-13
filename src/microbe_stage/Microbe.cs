@@ -428,6 +428,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         // Colony members have their movement update before organelle update,
         // so that the movement organelles see the direction
+        // The colony master should be updated first, if not, theres an engine bug.
         if (Colony != null && Colony.Master != this)
             MovementDirection = Colony.Master.MovementDirection;
 
