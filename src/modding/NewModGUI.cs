@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Path = System.IO.Path;
@@ -410,7 +409,10 @@ public class NewModGUI : Control
 
     private void IconFileDialogFileSelected(string path)
     {
-        iconFile.Text = iconFileDialog.CurrentFile;
+        if (Path.GetFileName(path) == iconFileDialog.CurrentFile)
+        {
+            iconFile.Text = iconFileDialog.CurrentFile;
+        }
     }
 
     private void ChoosePckButtonPressed()
@@ -420,7 +422,10 @@ public class NewModGUI : Control
 
     private void PckFileDialogFileSelected(string path)
     {
-        pckName.Text = pckFileDialog.CurrentFile;
+        if (Path.GetFileName(path) == pckFileDialog.CurrentFile)
+        {
+            pckName.Text = pckFileDialog.CurrentFile;
+        }
     }
 
     private void ChooseAssemblyButtonPressed()
@@ -430,7 +435,10 @@ public class NewModGUI : Control
 
     private void AssemblyFileDialogFileSelected(string path)
     {
-        modAssembly.Text = assemblyFileDialog.CurrentFile;
+        if (Path.GetFileName(path) == assemblyFileDialog.CurrentFile)
+        {
+            modAssembly.Text = assemblyFileDialog.CurrentFile;
+        }
     }
 
     private void ChooseImagesButtonPressed()

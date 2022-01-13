@@ -2068,16 +2068,8 @@ public class ModManager : Control
             {
                 checkedModInfo.ConfigurationInfoList = GetModConfigList(checkedModInfo);
             }
-            else
-            {
-                GD.Print("Mod Missing Config File: " + checkedModInfo?.InternalName);
-                if (checkedModInfo != null)
-                {
-                    checkedModInfo.ConfigurationInfoList = Array.Empty<ModConfigItemInfo>();
-                }
-            }
 
-            var currentConfigList = checkedModInfo.ConfigurationInfoList;
+            ModConfigItemInfo[] currentConfigList = checkedModInfo?.ConfigurationInfoList ?? Array.Empty<ModConfigItemInfo>();
             Dictionary<string, object> tempDictionary = new Dictionary<string, object>();
             for (int index = 0; index < currentConfigList.Length; ++index)
             {
@@ -2087,7 +2079,10 @@ public class ModManager : Control
                 }
             }
 
-            checkedModInfo.CurrentConfiguration = tempDictionary;
+            if (checkedModInfo != null)
+            {
+                checkedModInfo.CurrentConfiguration = tempDictionary;
+            }
         }
     }
 
