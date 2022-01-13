@@ -14,18 +14,26 @@ public class HybridAudioPlayer : Node
     private AudioStreamPlayer3D player3D;
     private AudioStreamPlayer playerNonPositional;
 
+    private bool positional;
     private AudioStream stream;
-    private float volume;
+    private float volume = 1.0f;
     private string bus;
 
-    public HybridAudioPlayer(bool positional)
+    [Export]
+    public bool Positional
     {
-        Positional = positional;
-        Volume = 1.0f;
+        get => positional;
+        set
+        {
+            if (value == positional)
+                return;
+
+            positional = value;
+            ApplyPositionalType();
+        }
     }
 
-    public bool Positional { get; }
-
+    [Export]
     public AudioStream Stream
     {
         get => stream;
@@ -41,6 +49,7 @@ public class HybridAudioPlayer : Node
     /// <summary>
     ///   Volume in linear scale.
     /// </summary>
+    [Export(PropertyHint.Range, "0,1")]
     public float Volume
     {
         get => volume;
@@ -51,6 +60,7 @@ public class HybridAudioPlayer : Node
         }
     }
 
+    [Export]
     public string Bus
     {
         get => bus;
@@ -63,18 +73,10 @@ public class HybridAudioPlayer : Node
 
     public override void _Ready()
     {
-        if (Positional)
-        {
-            player3D = new AudioStreamPlayer3D();
-            AddChild(player3D);
-        }
-        else
-        {
-            playerNonPositional = new AudioStreamPlayer();
-            AddChild(playerNonPositional);
-        }
-
-        ApplyAudioPlayerSettings();
+        ApplyPositionalType();
+        ApplyStream();
+        ApplyVolume();
+        ApplyBus();
     }
 
     public void Play(float fromPosition = 0)
@@ -101,11 +103,30 @@ public class HybridAudioPlayer : Node
         }
     }
 
-    private void ApplyAudioPlayerSettings()
+    private void ApplyPositionalType()
     {
-        ApplyStream();
-        ApplyVolume();
-        ApplyBus();
+        if (Positional)
+        {
+            if (playerNonPositional != null)
+            {
+                playerNonPositional.DetachAndQueueFree();
+                playerNonPositional = null;
+            }
+
+            player3D = new AudioStreamPlayer3D();
+            AddChild(player3D);
+        }
+        else
+        {
+            if (player3D != null)
+            {
+                player3D.DetachAndQueueFree();
+                player3D = null;
+            }
+
+            playerNonPositional = new AudioStreamPlayer();
+            AddChild(playerNonPositional);
+        }
     }
 
     private void ApplyStream()
