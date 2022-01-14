@@ -501,6 +501,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         {
             Colony?.Master?.AddMovementForce(queuedMovementForce);
         }
+
         lastLinearVelocity = LinearVelocity;
         lastLinearAcceleration = linearAcceleration;
     }
