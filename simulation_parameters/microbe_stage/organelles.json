@@ -618,5 +618,28 @@
         "name": "NUCLEUS",
         "iconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
         "unique": true
+    },
+    "chemoreceptor": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "chemoreceptor": {}
+        },
+        "prokaryoteChance": 0.2,
+        "chanceToCreate": 0.2,
+        "mass": 0.2,
+        "displayScene": "res://assets/models/organelles/Chemoreceptor.tscn",
+        "name": "CHEMORECEPTOR",
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png"
     }
 }

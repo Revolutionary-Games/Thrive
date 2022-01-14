@@ -392,9 +392,9 @@ public class OrganelleDefinition : IRegistryType
         public BindingAgentComponentFactory BindingAgent;
         public MovementComponentFactory Movement;
         public PilusComponentFactory Pilus;
+        public ChemoreceptorComponentFactory Chemoreceptor;
 
-        private readonly List<IOrganelleComponentFactory> allFactories =
-            new List<IOrganelleComponentFactory>();
+        private readonly List<IOrganelleComponentFactory> allFactories = new();
 
         [JsonIgnore]
         private int count = -1;
@@ -417,42 +417,49 @@ public class OrganelleDefinition : IRegistryType
             {
                 Nucleus.Check(name);
                 allFactories.Add(Nucleus);
-                count++;
+                ++count;
             }
 
             if (Storage != null)
             {
                 Storage.Check(name);
                 allFactories.Add(Storage);
-                count++;
+                ++count;
             }
 
             if (AgentVacuole != null)
             {
                 AgentVacuole.Check(name);
                 allFactories.Add(AgentVacuole);
-                count++;
+                ++count;
             }
 
             if (BindingAgent != null)
             {
                 BindingAgent.Check(name);
                 allFactories.Add(BindingAgent);
-                count++;
+                ++count;
             }
 
             if (Movement != null)
             {
                 Movement.Check(name);
                 allFactories.Add(Movement);
-                count++;
+                ++count;
             }
 
             if (Pilus != null)
             {
                 Pilus.Check(name);
                 allFactories.Add(Pilus);
-                count++;
+                ++count;
+            }
+
+            if (Chemoreceptor != null)
+            {
+                Chemoreceptor.Check(name);
+                allFactories.Add(Chemoreceptor);
+                ++count;
             }
         }
     }
