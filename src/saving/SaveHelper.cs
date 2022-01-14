@@ -203,6 +203,10 @@ public static class SaveHelper
                 if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
                     continue;
 
+                // Skip folders
+                if (!directory.FileExists(filename))
+                    continue;
+
                 result.Add(filename);
             }
 
@@ -246,7 +250,12 @@ public static class SaveHelper
         {
             if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
             {
-                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                if (file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
+                {
+                    GD.PrintErr("Can't read size of save file: ", save);
+                    continue;
+                }
+
                 ++count;
                 totalSize += file.GetLen();
             }

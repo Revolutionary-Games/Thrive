@@ -296,6 +296,13 @@ public partial class Microbe
 
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
+        else if (source == "ice")
+        {
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-ice-damage.ogg", 0.5f);
+
+            // Divide damage by physical resistance
+            amount /= Species.MembraneType.PhysicalResistance;
+        }
 
         Hitpoints -= amount;
 
@@ -374,8 +381,6 @@ public partial class Microbe
         MovementDirection = new Vector3(0, 0, 0);
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
-
-        var random = new Random();
 
         // Releasing all the agents.
         // To not completely deadlock in this there is a maximum limit
