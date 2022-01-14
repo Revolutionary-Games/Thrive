@@ -16,14 +16,15 @@ public static class MicrobeInternalCalculations
             maximumMovementDirection += GetOrganelleDirection(organelle);
         }
 
-        // After calculating the sum of all organelle directions we substract the movement components which
-        // are symetric and we choose the one who would benefit the max-speed the most.
+        // After calculating the sum of all organelle directions we subtract the movement components which
+        // are symmetric and we choose the one who would benefit the max-speed the most.
         foreach (var organelle in movementOrganelles)
         {
-            maximumMovementDirection = ChooseFromSymetricFlagella(movementOrganelles,
+            maximumMovementDirection = ChooseFromSymmetricFlagella(movementOrganelles,
                 organelle, maximumMovementDirection);
         }
 
+        // If the flagella are positioned symmetrically we assume the forward position as default
         if (maximumMovementDirection == Vector3.Zero)
             return Vector3.Forward;
 
@@ -51,12 +52,12 @@ public static class MicrobeInternalCalculations
         // Force factor for each direction
         float forwardDirectionFactor;
         float backwardDirectionFactor;
-        float rightwardDirectionFactor;
-        float leftwardDirectionFactor;
+        float rightDirectionFactor;
+        float leftDirectionFactor;
 
-        organelles = organelles.ToList();
+        var organellesList = organelles.ToList();
 
-        foreach (var organelle in organelles)
+        foreach (var organelle in organellesList)
         {
             microbeMass += organelle.Definition.Mass;
 
@@ -64,12 +65,12 @@ public static class MicrobeInternalCalculations
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
 
-                // We decompose the vector of the organelle orientation in 2 vectors, forward and rightward
-                // To get the backward and rightward is easy because they are the opossite of those former 2
+                // We decompose the vector of the organelle orientation in 2 vectors, forward and right
+                // To get the backward and left is easy because they are the opposite of those former 2
                 forwardDirectionFactor = organelleDirection.Dot(Vector3.Forward);
                 backwardDirectionFactor = -forwardDirectionFactor;
-                rightwardDirectionFactor = organelleDirection.Dot(Vector3.Right);
-                leftwardDirectionFactor = -rightwardDirectionFactor;
+                rightDirectionFactor = organelleDirection.Dot(Vector3.Right);
+                leftDirectionFactor = -rightDirectionFactor;
 
                 float movementConstant = Constants.FLAGELLA_BASE_FORCE
                     * organelle.Definition.Components.Movement.Momentum / 100.0f;
@@ -77,31 +78,27 @@ public static class MicrobeInternalCalculations
                 // We get the movement force for every direction as well
                 forwardsDirectionMovementForce += MovementForce(movementConstant, forwardDirectionFactor);
                 backwardsDirectionMovementForce += MovementForce(movementConstant, backwardDirectionFactor);
-                rightwardDirectionMovementForce += MovementForce(movementConstant, rightwardDirectionFactor);
-                leftwardDirectionMovementForce += MovementForce(movementConstant, leftwardDirectionFactor);
+                rightwardDirectionMovementForce += MovementForce(movementConstant, rightDirectionFactor);
+                leftwardDirectionMovementForce += MovementForce(movementConstant, leftDirectionFactor);
             }
         }
 
-        var maximumMovementDirection = MaximumSpeedDirection(organelles);
+        var maximumMovementDirection = MaximumSpeedDirection(organellesList);
 
-        // After getting the maximum-force direction we normalize it
+        // Maximum-force direction is not normalized so we need to normalize it here
         maximumMovementDirection = maximumMovementDirection.Normalized();
-
-        // If the flagella are positioned symetrically we assume the forward position as default
-        if (maximumMovementDirection == Vector3.Zero)
-            maximumMovementDirection = Vector3.Forward;
 
         // Calculate the maximum total force-factors in the maximum-force direction
         forwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Forward);
         backwardDirectionFactor = -forwardDirectionFactor;
-        rightwardDirectionFactor = maximumMovementDirection.Dot(Vector3.Right);
-        leftwardDirectionFactor = -rightwardDirectionFactor;
+        rightDirectionFactor = maximumMovementDirection.Dot(Vector3.Right);
+        leftDirectionFactor = -rightDirectionFactor;
 
         // Add each movement force to the total movement force in the maximum-force direction.
         organelleMovementForce += MovementForce(forwardsDirectionMovementForce, forwardDirectionFactor);
         organelleMovementForce += MovementForce(backwardsDirectionMovementForce, backwardDirectionFactor);
-        organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightwardDirectionFactor);
-        organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftwardDirectionFactor);
+        organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
+        organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
         float baseMovementForce = Constants.CELL_BASE_THRUST *
             (membraneType.MovementFactor - membraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
@@ -120,12 +117,12 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///  Symetric flagella are a corner case for speed calculations because the sum of all
-    ///  directions is kinda of broken in their case, so we have to choose which one of the symmetric flagella
+    ///  Symmetric flagella are a corner case for speed calculations because the sum of all
+    ///  directions is kind of broken in their case, so we have to choose which one of the symmetric flagella
     ///  we must discard from the direction calculation
     ///  Here we only discard if the flagella we input is the "bad" one
     /// </summary>
-    private static Vector3 ChooseFromSymetricFlagella(IEnumerable<OrganelleTemplate> organelles,
+    private static Vector3 ChooseFromSymmetricFlagella(IEnumerable<OrganelleTemplate> organelles,
         OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {
         foreach (var organelle in organelles)
