@@ -496,10 +496,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         // Movement
         if (ColonyParent == null && !IsForPreviewOnly)
+        {
             HandleMovement(delta);
+        }
         else
         {
-            Colony?.Master?.AddMovementForce(queuedMovementForce);
+            Colony?.Master.AddMovementForce(queuedMovementForce);
         }
 
         lastLinearVelocity = LinearVelocity;
@@ -635,7 +637,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (Colony != null && Colony.Master == this)
         {
             // Multiplies the movement factor as if the colony has the normal microbe speed
-            // Then it substracts movement speed from 100% up to 75%(soft cap),
+            // Then it subtracts movement speed from 100% up to 75%(soft cap),
             // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
             // when specialized cells become a reality the cap could be lowered to encourage cell specialization
             MovementFactor *= Colony.ColonyMembers.Count;
