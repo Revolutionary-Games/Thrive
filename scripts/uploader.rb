@@ -171,7 +171,6 @@ class DevBuildUploader
                                     SHA3::Digest::SHA256.file(archive_file).hexdigest })
 
     # Determine related objects to upload
-    # MAX_SERVER_BATCH_SIZE
     dehydrated_objects.each_slice(MAX_SERVER_BATCH_SIZE) do |group|
       data = with_retry do
         HTTParty.post(URI.join(@base_url, '/api/v1/devbuild/offer_objects'),
@@ -229,24 +228,22 @@ class DevBuildUploader
   def with_retry(needed_response_code: 200)
     time_to_wait = 20
     (1..@retries).each do |i|
-      begin
-        response = yield
+      response = yield
 
-        if response.code == 503
-          puts "Error 503: waiting #{time_to_wait} seconds..."
-          sleep(time_to_wait)
-          time_to_wait *= 2
-        elsif response.code != needed_response_code
-          puts "Response: #{response}"
-          raise "unexpected response code: #{response.code}"
-        end
-
-        return response
-      rescue StandardError => e
-        puts "HTTP request failed: #{e}, " +
-             (i < @retries ? "retry attempt #{i}" : 'ran out of retries')
-        sleep 1
+      if response.code == 503
+        puts "Error 503: waiting #{time_to_wait} seconds..."
+        sleep(time_to_wait)
+        time_to_wait *= 2
+      elsif response.code != needed_response_code
+        puts "Response: #{response}"
+        raise "unexpected response code: #{response.code}"
       end
+
+      return response
+    rescue StandardError => e
+      puts "HTTP request failed: #{e}, " +
+           (i < @retries ? "retry attempt #{i}" : 'ran out of retries')
+      sleep 1
     end
 
     raise 'HTTP request ran out of retries'
