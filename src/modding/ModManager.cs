@@ -141,6 +141,9 @@ public class ModManager : Control
     public NodePath FullInfoIconFilePath;
 
     [Export]
+    public NodePath FullInfoPreviewImagesFilePath;
+
+    [Export]
     public NodePath FullInfoInfoUrlPath;
 
     [Export]
@@ -163,6 +166,21 @@ public class ModManager : Control
 
     [Export]
     public NodePath FullInfoAssemblyModClassPath;
+
+    [Export]
+    public NodePath FullInfoDependenciesPath;
+
+    [Export]
+    public NodePath FullInfoLoadBeforePath;
+
+    [Export]
+    public NodePath FullInfoLoadAfterPath;
+
+    [Export]
+    public NodePath FullInfoIncompatibleModsPath;
+
+    [Export]
+    public NodePath FullInfoModConfigPath;
 
     [Export]
     public NodePath OpenWorkshopButtonPath;
@@ -287,6 +305,7 @@ public class ModManager : Control
     private Label fullInfoLongDescription;
     private Label fullInfoFromWorkshop;
     private Label fullInfoIconFile;
+    private Label fullInfoPreviewImagesFile;
     private Label fullInfoInfoUrl;
     private Label fullInfoLicense;
     private Label fullInfoRecommendedThrive;
@@ -295,6 +314,11 @@ public class ModManager : Control
     private Label fullInfoPckName;
     private Label fullInfoModAssembly;
     private Label fullInfoAssemblyModClass;
+    private Label fullInfoDependencies;
+    private Label fullInfoLoadBefore;
+    private Label fullInfoLoadAfter;
+    private Label fullInfoIncompatibleMods;
+    private Label fullInfoModConfig;
 
     private Button openWorkshopButton;
     private Button modUploaderButton;
@@ -534,6 +558,7 @@ public class ModManager : Control
         fullInfoDescription = GetNode<Label>(FullInfoDescriptionPath);
         fullInfoLongDescription = GetNode<Label>(FullInfoLongDescriptionPath);
         fullInfoIconFile = GetNode<Label>(FullInfoIconFilePath);
+        fullInfoPreviewImagesFile = GetNode<Label>(FullInfoPreviewImagesFilePath);
         fullInfoFromWorkshop = GetNode<Label>(FullInfoFromWorkshopPath);
         fullInfoInfoUrl = GetNode<Label>(FullInfoInfoUrlPath);
         fullInfoLicense = GetNode<Label>(FullInfoLicensePath);
@@ -543,6 +568,11 @@ public class ModManager : Control
         fullInfoPckName = GetNode<Label>(FullInfoPckNamePath);
         fullInfoModAssembly = GetNode<Label>(FullInfoModAssemblyPath);
         fullInfoAssemblyModClass = GetNode<Label>(FullInfoAssemblyModClassPath);
+        fullInfoDependencies = GetNode<Label>(FullInfoDependenciesPath);
+        fullInfoLoadBefore = GetNode<Label>(FullInfoLoadBeforePath);
+        fullInfoLoadAfter = GetNode<Label>(FullInfoLoadAfterPath);
+        fullInfoIncompatibleMods = GetNode<Label>(FullInfoIncompatibleModsPath);
+        fullInfoModConfig = GetNode<Label>(FullInfoModConfigPath);
 
         modLoaderContainer = GetNode<TabContainer>(ModLoaderContainerPath);
         configContainer = GetNode<BoxContainer>(ConfigContainerPath);
@@ -756,7 +786,8 @@ public class ModManager : Control
             availableModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
             if (!string.IsNullOrEmpty(mod.Info.Description))
             {
-                availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, mod.Info.Description ?? mod.InternalName);
+                availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1,
+                    mod.Info.Description ?? mod.InternalName);
             }
         }
 
@@ -820,7 +851,8 @@ public class ModManager : Control
                 configModContainer.AddItem(currentMod.InternalName, LoadModIcon(currentMod));
                 if (!string.IsNullOrEmpty(currentMod.Info.Description))
                 {
-                    configModContainer.SetItemTooltip(configModContainer.GetItemCount() - 1, currentMod.Info.Description ?? currentMod.InternalName);
+                    configModContainer.SetItemTooltip(configModContainer.GetItemCount() - 1,
+                        currentMod.Info.Description ?? currentMod.InternalName);
                 }
             }
         }
@@ -884,7 +916,8 @@ public class ModManager : Control
             enabledModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
             if (!string.IsNullOrEmpty(mod.Info.Description))
             {
-                enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1, mod.Info.Description ?? mod.InternalName);
+                enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1,
+                    mod.Info.Description ?? mod.InternalName);
             }
         }
     }
@@ -1186,7 +1219,8 @@ public class ModManager : Control
         enabledModsContainer.AddItem(selectedMod.InternalName, icon);
         if (!string.IsNullOrEmpty(selectedMod.Info.Description))
         {
-            enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1, selectedMod.Info.Description ?? selectedMod.InternalName);
+            enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1,
+                selectedMod.Info.Description ?? selectedMod.InternalName);
         }
 
         notEnabledMods.Remove(selectedMod);
@@ -1216,7 +1250,8 @@ public class ModManager : Control
         availableModsContainer.AddItem(selectedMod.InternalName, icon);
         if (!string.IsNullOrEmpty(selectedMod.Info.Description))
         {
-            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, selectedMod.Info.Description ?? selectedMod.InternalName);
+            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1,
+                selectedMod.Info.Description ?? selectedMod.InternalName);
         }
 
         enabledMods.Remove(selectedMod);
@@ -1497,7 +1532,7 @@ public class ModManager : Control
 
     private void OnDependencyPressed()
     {
-        otherModInfoDialog.WindowTitle = "Dependencies";
+        otherModInfoDialog.WindowTitle = TranslationServer.Translate("MOD_DEPENDENCIES");
         var infoText = string.Empty;
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -1511,7 +1546,7 @@ public class ModManager : Control
         }
         else
         {
-            infoText += "This mod have no Dependencies";
+            infoText += "This mod have no Dependencies.";
         }
 
         otherModInfoDialog.DialogText = infoText;
@@ -1856,6 +1891,9 @@ public class ModManager : Control
             TranslationServer.Translate("THIS_IS_WORKSHOP_MOD") :
             TranslationServer.Translate("THIS_IS_LOCAL_MOD");
         fullInfoIconFile.Text = info.Icon;
+        string fullInfoPreviewImagesText = string.Empty;
+        info.PreviewImages?.ForEach(s => fullInfoPreviewImagesText += "* " + s + "\n");
+        fullInfoPreviewImagesFile.Text = fullInfoPreviewImagesText;
         fullInfoInfoUrl.Text = info.InfoUrl == null ? string.Empty : info.InfoUrl.ToString();
         fullInfoLicense.Text = info.License;
         fullInfoRecommendedThrive.Text = info.RecommendedThriveVersion;
@@ -1864,6 +1902,19 @@ public class ModManager : Control
         fullInfoPckName.Text = info.PckToLoad;
         fullInfoModAssembly.Text = info.ModAssembly;
         fullInfoAssemblyModClass.Text = info.AssemblyModClass;
+        fullInfoModConfig.Text = info.ConfigToLoad;
+        string fullInfoDependenciesText = string.Empty;
+        info.Dependencies?.ForEach(s => fullInfoDependenciesText += "* " + s + "\n");
+        fullInfoDependencies.Text = fullInfoDependenciesText;
+        string fullInfoLoadBeforeText = string.Empty;
+        info.LoadBefore?.ForEach(s => fullInfoLoadBeforeText += "* " + s + "\n");
+        fullInfoLoadBefore.Text = fullInfoLoadBeforeText;
+        string fullInfoLoadAfterText = string.Empty;
+        info.LoadAfter?.ForEach(s => fullInfoLoadAfterText += "* " + s + "\n");
+        fullInfoLoadAfter.Text = fullInfoLoadAfterText;
+        string fullInfoIncompatibleModsText = string.Empty;
+        info.IncompatibleMods?.ForEach(s => fullInfoIncompatibleModsText += "* " + s + "\n");
+        fullInfoIncompatibleMods.Text = fullInfoIncompatibleModsText;
 
         modFullInfoPopup.PopupCenteredShrink();
     }
@@ -2036,7 +2087,8 @@ public class ModManager : Control
         if (!string.IsNullOrWhiteSpace(parsedData.Info.ConfigToLoad))
         {
             GD.Print("Creating Config File");
-            if (file.Open(Path.Combine(parsedData.Folder, parsedData.Info.ConfigToLoad), File.ModeFlags.Write) == Error.Ok)
+            if (file.Open(Path.Combine(parsedData.Folder, parsedData.Info.ConfigToLoad), File.ModeFlags.Write) ==
+                Error.Ok)
             {
                 file.StoreString("[\n]");
             }
@@ -2069,7 +2121,8 @@ public class ModManager : Control
                 checkedModInfo.ConfigurationInfoList = GetModConfigList(checkedModInfo);
             }
 
-            ModConfigItemInfo[] currentConfigList = checkedModInfo?.ConfigurationInfoList ?? Array.Empty<ModConfigItemInfo>();
+            ModConfigItemInfo[] currentConfigList =
+                checkedModInfo?.ConfigurationInfoList ?? Array.Empty<ModConfigItemInfo>();
             Dictionary<string, object> tempDictionary = new Dictionary<string, object>();
             for (int index = 0; index < currentConfigList.Length; ++index)
             {

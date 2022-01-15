@@ -32,7 +32,7 @@ MaximumThrivePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxC
 PckNamePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/PckContainer/PckName")
 ModAssemblyPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssemblyContainer/ModAssembly")
 AssemblyModClassPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/AssemblyModClass")
-DependenciesPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModDependencies2")
+DependenciesPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModDependencies")
 LoadBeforePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadBefore")
 LoadAfterPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadAfter")
 IncompatibleModsPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModIncompatibleMods")
@@ -58,15 +58,13 @@ margin_right = 565.0
 margin_bottom = 465.0
 rect_min_size = Vector2( 550, 450 )
 size_flags_horizontal = 3
-scroll_vertical = 1231
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="CustomDialog/ScrollContainer"]
-margin_top = -1231.0
 margin_right = 544.0
-margin_bottom = 450.0
+margin_bottom = 1681.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
@@ -548,7 +546,7 @@ margin_bottom = 1252.0
 custom_fonts/font = ExtResource( 3 )
 text = "MOD_DEPENDENCIES"
 
-[node name="ModDependencies2" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="ModDependencies" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1256.0
 margin_right = 534.0
 margin_bottom = 1287.0
@@ -715,7 +713,7 @@ margin_bottom = -183.0
 custom_colors/folder_icon_modulate = Color( 1, 1, 1, 1 )
 custom_colors/files_disabled = Color( 0, 0, 0, 1 )
 custom_colors/file_icon_modulate = Color( 1, 1, 1, 1 )
-window_title = ""
+window_title = "Open a File"
 dialog_hide_on_ok = true
 mode = 0
 access = 2

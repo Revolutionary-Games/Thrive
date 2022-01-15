@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using Godot;
 using Newtonsoft.Json;
+using Environment = System.Environment;
 using Path = System.IO.Path;
 
 public class NewModGUI : Control
@@ -165,13 +166,13 @@ public class NewModGUI : Control
         enableConfigCheckbox = GetNode<CheckButton>(EnableConfigCheckboxPath);
 
         iconFileDialog = GetNode<FileDialog>(IconFileDialogPath);
-        iconFileDialog.CurrentDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures);
+        iconFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
         pckFileDialog = GetNode<FileDialog>(PckFileDialogPath);
-        pckFileDialog.CurrentDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+        pckFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         assemblyFileDialog = GetNode<FileDialog>(AssemblyFileDialogPath);
-        assemblyFileDialog.CurrentDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+        assemblyFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         previewFileDialog = GetNode<FileDialog>(PreviewFileDialogPath);
-        previewFileDialog.CurrentDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures);
+        previewFileDialog.CurrentDir = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
     }
@@ -248,7 +249,8 @@ public class NewModGUI : Control
         description.Text = editedInfo.Description;
         longDescription.Text = editedInfo.LongDescription;
         iconFile.Text = editedInfo.Icon;
-        previewImagesFile.Text = editedInfo.PreviewImages == null ? string.Empty : string.Join(", ", editedInfo.PreviewImages);
+        previewImagesFile.Text =
+            editedInfo.PreviewImages == null ? string.Empty : string.Join(", ", editedInfo.PreviewImages);
         infoUrl.Text = editedInfo.InfoUrl == null ? string.Empty : editedInfo.InfoUrl.ToString();
         license.Text = editedInfo.License;
         recommendedThrive.Text = editedInfo.RecommendedThriveVersion;
@@ -260,7 +262,9 @@ public class NewModGUI : Control
         dependencies.Text = editedInfo.Dependencies == null ? string.Empty : string.Join(", ", editedInfo.Dependencies);
         loadBefore.Text = editedInfo.LoadBefore == null ? string.Empty : string.Join(", ", editedInfo.LoadBefore);
         loadAfter.Text = editedInfo.LoadAfter == null ? string.Empty : string.Join(", ", editedInfo.LoadAfter);
-        incompatibleMods.Text = editedInfo.IncompatibleMods == null ? string.Empty : string.Join(", ", editedInfo.IncompatibleMods);
+        incompatibleMods.Text = editedInfo.IncompatibleMods == null ?
+            string.Empty :
+            string.Join(", ", editedInfo.IncompatibleMods);
 
         enableConfigCheckbox.SetPressedNoSignal(!string.IsNullOrWhiteSpace(editedInfo.ConfigToLoad));
         modConfig.Editable = enableConfigCheckbox.Pressed;

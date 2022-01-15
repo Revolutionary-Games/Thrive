@@ -95,6 +95,7 @@ FullInfoDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VB
 FullInfoLongDescriptionPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/LongDescription")
 FullInfoFromWorkshopPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/FullInfoIsWorkshop")
 FullInfoIconFilePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/IconFile")
+FullInfoPreviewImagesFilePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/PreviewImageFile")
 FullInfoInfoUrlPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/InfoURL")
 FullInfoLicensePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/License")
 FullInfoRecommendedThrivePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/RecommendedThrive")
@@ -103,6 +104,11 @@ FullInfoMaximumThrivePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/
 FullInfoPckNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/PckName")
 FullInfoModAssemblyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModAssembly")
 FullInfoAssemblyModClassPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/AssemblyModClass")
+FullInfoDependenciesPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModDependencies")
+FullInfoLoadBeforePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModLoadBefore")
+FullInfoLoadAfterPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModLoadAfter")
+FullInfoIncompatibleModsPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModIncompatibleMods")
+FullInfoModConfigPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModConfigFile")
 OpenWorkshopButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/WorkshopBrowse")
 ModUploaderButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/Upload")
 NewModGUIPath = NodePath("NewModGUI")
@@ -1016,6 +1022,7 @@ margin_bottom = 171.0
 DialogText = null
 
 [node name="ModFullInfo" parent="." instance=ExtResource( 4 )]
+visible = true
 margin_top = 28.0
 margin_right = 580.0
 margin_bottom = 447.0
@@ -1038,8 +1045,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer"]
-margin_right = 550.0
-margin_bottom = 1030.0
+margin_right = 544.0
+margin_bottom = 1432.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1058,7 +1065,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 58.0
 margin_right = 544.0
 margin_bottom = 63.0
@@ -1084,7 +1091,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer14" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer14" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 125.0
 margin_right = 544.0
 margin_bottom = 130.0
@@ -1106,7 +1113,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer2" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer2" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 192.0
 margin_right = 544.0
 margin_bottom = 197.0
@@ -1128,7 +1135,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer3" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer3" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 259.0
 margin_right = 544.0
 margin_bottom = 264.0
@@ -1150,7 +1157,7 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer4" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer4" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 326.0
 margin_right = 544.0
 margin_bottom = 331.0
@@ -1172,215 +1179,347 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer5" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer5" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 393.0
 margin_right = 544.0
 margin_bottom = 398.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="FullInfoIsWorkshop" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 364.0
+margin_top = 402.0
 margin_right = 544.0
-margin_bottom = 389.0
+margin_bottom = 427.0
 text = "Is from workshop..."
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer15" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 393.0
+[node name="Spacer15" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 431.0
 margin_right = 544.0
-margin_bottom = 398.0
+margin_bottom = 436.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label7" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 402.0
+margin_top = 440.0
 margin_right = 544.0
-margin_bottom = 427.0
+margin_bottom = 465.0
 text = "MOD_ICON_FILE"
 
 [node name="IconFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 431.0
+margin_top = 469.0
 margin_right = 544.0
-margin_bottom = 456.0
+margin_bottom = 494.0
 text = "mod_icon.png"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer6" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 460.0
+[node name="Spacer21" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 498.0
 margin_right = 544.0
-margin_bottom = 465.0
+margin_bottom = 503.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label18" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 507.0
+margin_right = 544.0
+margin_bottom = 532.0
+text = "MOD_PREVIEW_IMAGE_FILE"
+
+[node name="PreviewImageFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 536.0
+margin_right = 544.0
+margin_bottom = 561.0
+text = "mod_image.png, mod_image_2.png"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer6" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 565.0
+margin_right = 544.0
+margin_bottom = 570.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label8" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 469.0
+margin_top = 574.0
 margin_right = 544.0
-margin_bottom = 494.0
+margin_bottom = 599.0
 text = "MOD_INFO_URL"
 
 [node name="InfoURL" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 498.0
+margin_top = 603.0
 margin_right = 544.0
-margin_bottom = 523.0
+margin_bottom = 628.0
 text = "some URL"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer7" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 527.0
+[node name="Spacer7" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 632.0
 margin_right = 544.0
-margin_bottom = 532.0
+margin_bottom = 637.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label9" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 536.0
+margin_top = 641.0
 margin_right = 544.0
-margin_bottom = 561.0
+margin_bottom = 666.0
 text = "MOD_LICENSE"
 
 [node name="License" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 565.0
+margin_top = 670.0
 margin_right = 544.0
-margin_bottom = 590.0
+margin_bottom = 695.0
 text = "MIT"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer8" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 594.0
+[node name="Spacer8" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 699.0
 margin_right = 544.0
-margin_bottom = 599.0
+margin_bottom = 704.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label10" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 603.0
+margin_top = 708.0
 margin_right = 544.0
-margin_bottom = 628.0
+margin_bottom = 733.0
 text = "MOD_RECOMMENDED_THRIVE"
 
 [node name="RecommendedThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 632.0
+margin_top = 737.0
 margin_right = 544.0
-margin_bottom = 657.0
+margin_bottom = 762.0
 text = "0.5.6"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer9" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 661.0
+[node name="Spacer9" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 766.0
 margin_right = 544.0
-margin_bottom = 666.0
+margin_bottom = 771.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label11" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 670.0
+margin_top = 775.0
 margin_right = 544.0
-margin_bottom = 695.0
+margin_bottom = 800.0
 text = "MOD_MINIMUM_THRIVE"
 
 [node name="MinimumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 699.0
+margin_top = 804.0
 margin_right = 544.0
-margin_bottom = 724.0
+margin_bottom = 829.0
 text = "0.5.6-alpha"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer10" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 728.0
+[node name="Spacer10" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 833.0
 margin_right = 544.0
-margin_bottom = 733.0
+margin_bottom = 838.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label12" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 737.0
+margin_top = 842.0
 margin_right = 544.0
-margin_bottom = 762.0
+margin_bottom = 867.0
 text = "MOD_MAXIMUM_THRIVE"
 
 [node name="MaximumThrive" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 766.0
+margin_top = 871.0
 margin_right = 544.0
-margin_bottom = 791.0
+margin_bottom = 896.0
 text = "0.5.6"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer11" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 795.0
+[node name="Spacer11" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 900.0
 margin_right = 544.0
-margin_bottom = 800.0
+margin_bottom = 905.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label13" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 804.0
+margin_top = 909.0
 margin_right = 544.0
-margin_bottom = 829.0
+margin_bottom = 934.0
 text = "MOD_PCK_NAME"
 
 [node name="PckName" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 833.0
+margin_top = 938.0
 margin_right = 544.0
-margin_bottom = 858.0
+margin_bottom = 963.0
 text = "ModName.pck"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer12" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 862.0
+[node name="Spacer12" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 967.0
 margin_right = 544.0
-margin_bottom = 867.0
+margin_bottom = 972.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label14" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 871.0
+margin_top = 976.0
 margin_right = 544.0
-margin_bottom = 896.0
+margin_bottom = 1001.0
 text = "MOD_ASSEMBLY"
 
 [node name="ModAssembly" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 900.0
+margin_top = 1005.0
 margin_right = 544.0
-margin_bottom = 925.0
+margin_bottom = 1030.0
 text = "Mod.dll"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer13" type="Control" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 929.0
+[node name="Spacer13" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1034.0
 margin_right = 544.0
-margin_bottom = 934.0
+margin_bottom = 1039.0
 rect_min_size = Vector2( 0, 5 )
 
 [node name="Label15" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 938.0
+margin_top = 1043.0
 margin_right = 544.0
-margin_bottom = 963.0
+margin_bottom = 1068.0
 text = "MOD_ASSEMBLY_CLASS"
 
 [node name="AssemblyModClass" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
-margin_top = 967.0
+margin_top = 1072.0
 margin_right = 544.0
-margin_bottom = 992.0
+margin_bottom = 1097.0
 text = "ModClass"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer16" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1101.0
+margin_right = 544.0
+margin_bottom = 1106.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label17" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1110.0
+margin_right = 544.0
+margin_bottom = 1135.0
+text = "MOD_DEPENDENCIES"
+
+[node name="ModDependencies" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1139.0
+margin_right = 544.0
+margin_bottom = 1164.0
+text = "ModName"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer17" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1168.0
+margin_right = 544.0
+margin_bottom = 1173.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label19" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1177.0
+margin_right = 544.0
+margin_bottom = 1202.0
+text = "MOD_LOAD_BEFORE"
+
+[node name="ModLoadBefore" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1206.0
+margin_right = 544.0
+margin_bottom = 1231.0
+text = "ModName"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer18" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1235.0
+margin_right = 544.0
+margin_bottom = 1240.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label20" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1244.0
+margin_right = 544.0
+margin_bottom = 1269.0
+text = "MOD_LOAD_AFTER"
+
+[node name="ModLoadAfter" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1273.0
+margin_right = 544.0
+margin_bottom = 1298.0
+text = "ModName"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer19" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1302.0
+margin_right = 544.0
+margin_bottom = 1307.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label21" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1311.0
+margin_right = 544.0
+margin_bottom = 1336.0
+text = "MOD_INCOMPATIBLE_MODS"
+
+[node name="ModIncompatibleMods" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1340.0
+margin_right = 544.0
+margin_bottom = 1365.0
+text = "ModName"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer20" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1369.0
+margin_right = 544.0
+margin_bottom = 1374.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label22" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1378.0
+margin_right = 544.0
+margin_bottom = 1403.0
+text = "MOD_CONFIG_FILE"
+
+[node name="ModConfigFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1407.0
+margin_right = 544.0
+margin_bottom = 1432.0
+text = "ModName"
 autowrap = true
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
