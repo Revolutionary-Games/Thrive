@@ -140,7 +140,8 @@ public class SaveList : ScrollContainer
                 if (SelectableItems)
                     item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
 
-                item.Connect(nameof(SaveListItem.OnDoubleClicked), this, nameof(OnItemDoubleClicked));
+                item.Connect(nameof(SaveListItem.OnDoubleClicked), this, nameof(OnItemDoubleClicked),
+                    new Array { item });
 
                 item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 

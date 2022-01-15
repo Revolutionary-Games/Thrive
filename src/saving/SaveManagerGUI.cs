@@ -259,7 +259,7 @@ public class SaveManagerGUI : Control
         EmitSignal(nameof(OnBackPressed));
     }
 
-    private void OnSaveListConfirmed(SaveListItem item)
+    private void OnSaveListItemConfirmed(SaveListItem item)
     {
         item.LoadThisSave();
     }

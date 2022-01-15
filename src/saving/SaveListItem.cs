@@ -228,7 +228,7 @@ public class SaveListItem : PanelContainer
 
             if (mouse.Doubleclick)
             {
-                EmitSignal(nameof(OnDoubleClicked), this);
+                EmitSignal(nameof(OnDoubleClicked));
             }
             else
             {
