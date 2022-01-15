@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-22 11:34+0700\n"
-"PO-Revision-Date: 2021-12-30 18:28+0000\n"
+"PO-Revision-Date: 2022-01-13 07:11+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -362,8 +362,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"Un suggerimento: se la tua cellula è grande 150 esagoni, puoi inghiottire "
-"quei pezzi di ferro grandi."
+"Un suggerimento: se la tua cellula supera i 150 esagoni, allora sarai in "
+"grado di fagocitare anche i pezzi di ferro più grandi."
 
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
@@ -784,7 +784,7 @@ msgstr "Azoto"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3230
 msgid "SUNLIGHT"
-msgstr "Luce solare"
+msgstr "Luce Solare"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2031
@@ -1538,7 +1538,7 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
-msgstr "Errori di caricamento mod"
+msgstr "Errori di Caricamento Mod"
 
 #: ../src/general/MainMenu.tscn:500
 msgid "MOD_LOAD_ERRORS_OCCURRED"
@@ -1556,7 +1556,7 @@ msgstr "Questa traduzione è molto incompleta ({0}% fatto). Perfavore, aiutaci!"
 
 #: ../src/general/OptionsMenu.cs:936
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr "Questa traduzione è in corso d'opera ({0}% completato)"
+msgstr "Questa traduzione è ancora in corso ({0}% completato)"
 
 #: ../src/general/OptionsMenu.cs:940
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
@@ -1702,7 +1702,7 @@ msgstr "Ripristina"
 
 #: ../src/general/OptionsMenu.tscn:667
 msgid "OPEN_TRANSLATION_SITE"
-msgstr "Aiuta a tradurre il gioco"
+msgstr "Aiutaci a tradurre il gioco"
 
 #: ../src/general/OptionsMenu.tscn:693
 msgid "COMPOUND_CLOUDS"
@@ -1872,7 +1872,7 @@ msgstr "Errore"
 #: ../src/general/OptionsMenu.tscn:1345
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
-"Errore: è stato impossibile salvare le nuove impostazioni su file di "
+"Errore: è stato impossibile salvare nuove impostazioni su file di "
 "configurazione."
 
 #: ../src/general/OptionsMenu.tscn:1353
@@ -2264,9 +2264,8 @@ msgid "NO_DATA_TO_SHOW"
 msgstr "Nessun dato da mostrare"
 
 #: ../src/gui_common/charts/line/LineChart.cs:630
-#, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "Percorso icona non valido"
+msgstr "Dati da mostrare non validi"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1097
 #: ../src/gui_common/charts/line/LineChart.cs:1183
@@ -2398,8 +2397,8 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:231
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
-"I microbi opportunisti competono coi rivali per i pezzi di cibo\n"
-"e, se non riescono a fagocitare la preda, cercano di colpirla con le "
+"I microbi opportunisti competono coi rivali per il cibo\n"
+"e, se non riescono a fagocitare la preda, cercano di ucciderla con le "
 "tossine.\n"
 "I microbi cauti potrebbero evitare di avvicinarsi ai pezzi di cibo in caso "
 "che ciò costituisca un pericolo."
@@ -2565,9 +2564,9 @@ msgstr "Tilacoide"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
-"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] e con l'intensità di [thrive:compound type=\"sunlight\"][/"
-"thrive:compound]."
+"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] e con l'intensità di [thrive:compound type=\"sunlight\""
+"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:468
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:463
@@ -2660,7 +2659,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:948
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Utilizza l'[thrive:compound type=\"atp\"][/thrive:compound] per aumentare la "
+"Consuma [thrive:compound type=\"atp\"][/thrive:compound] per aumentare la "
 "velocità di movimento della cellula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:954
@@ -2668,7 +2667,7 @@ msgstr ""
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "Il flagello è un fascio di proteine simile a una frusta che si estende a "
-"partire dalla membrana cellulare. Può usare ATP per ondulare, fornendo così "
+"partire dalla membrana cellulare. Consuma ATP per ondulare, fornendo così "
 "movimento alla cellula. La direzione di tale movimento è opposta alla "
 "direzione in cui il flagello punta: per esempio, un flagello posizionato sul "
 "lato sinistro della cellula fornisce spinta nel movimento verso destra."
@@ -2859,7 +2858,7 @@ msgstr ""
 "Il vacuolo è un organulo membranoso interno, utilizzato per lo stoccaggio di "
 "sostanze. È composto di diverse vesciche, cioè strutture membranose più "
 "piccole, usate comunemente nelle cellule per lo stoccaggio, che si sono fuse "
-"insieme. Il vacuolo è colmo acqua, usata per contenere molecole, enzimi, "
+"insieme. Il vacuolo è colmo d'acqua, usata per contenere molecole, enzimi, "
 "solidi e altre sostanze. La sua forma è fluida e può variare da cellula a "
 "cellula."
 
@@ -2870,7 +2869,7 @@ msgstr ""
 "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la "
 "concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi "
-"rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]."
+"rilasciare tali tossine premendo [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1909
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1904
@@ -2906,7 +2905,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2922
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3192
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr "Velocità di assorbimento risorse"
+msgstr "Velocità di Assorbimento Risorse"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2200
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2195
@@ -3015,7 +3014,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
-"Abilita/disabilita la finestra di avvertimento per i progressi non salvati "
+"Abilita/disabilita la finestra di avvertimento sui progressi non salvati "
 "quando il giocatore tenta di chiudere il gioco."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
@@ -3051,7 +3050,7 @@ msgstr "uccisione riuscita"
 #: ../src/microbe_stage/Microbe.Contact.cs:846
 #: ../src/microbe_stage/Microbe.Contact.cs:848
 msgid "ESCAPE_ENGULFING"
-msgstr "Fuga dalla fagocitosi"
+msgstr "fuga dalla fagocitosi"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:712
 msgid "REPRODUCED"
@@ -3923,7 +3922,7 @@ msgstr "Ci sono modifiche non applicate"
 
 #: ../src/modding/ModManager.tscn:580
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "Davi applicare le tue modifiche per attivare o disattivare mod."
+msgstr "Devi applicare le tue modifiche per attivare o disattivare mod."
 
 #: ../src/modding/ModManager.tscn:581
 msgid "DISCARD_CHANGES"
@@ -4052,20 +4051,20 @@ msgstr "Caricamento..."
 #: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
-"L'elemento è stato caricato correttamente sullo Steam Workshop, ma prima che "
+"L'oggetto è stato caricato correttamente sullo Steam Workshop, ma prima che "
 "sia visibile devi accettare i [color=#3796e1][url=https://steamcommunity.com/"
 "sharedfiles/workshoplegalagreement]termini di servizio[/url][/color]"
 
 #: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr "Elemento caricato correttamente sullo Steam Workshop"
+msgstr "Oggetto caricato correttamente sullo Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
-"Inviando questo elemento, tu accetti i [color=#3796e1][url=https://"
-"steamcommunity.com/sharedfiles/workshoplegalagreement]termini di servizio[/"
-"url][/color] dello Steam Workshop"
+"Inviando questo oggetto, tu accetti i "
+"[color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"workshoplegalagreement]termini di servizio[/url][/color] dello Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:616
 msgid "SAVING_DATA_FAILED_DUE_TO"
@@ -4109,15 +4108,15 @@ msgstr "Applica"
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "Titolo Elemento:"
+msgstr "Titolo Oggetto:"
 
 #: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "Descrizione Elemento:"
+msgstr "Descrizione Oggetto:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr "Una volta reso visibile, un elemento sarà visualizzabile da chiunque"
+msgstr "Una volta reso visibile, ogni oggetto sarà visualizzabile da chiunque"
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
@@ -4125,11 +4124,11 @@ msgstr "Visibile"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr "Tag Elemento (separati da una virgola \",\"):"
+msgstr "Tag Oggetto (separati da una virgola \",\"):"
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr "Immagine di anteprima dell'elemento:"
+msgstr "Immagine di Anteprima dell'Oggetto:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
@@ -4138,9 +4137,9 @@ msgstr "Naviga"
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
-"Rimuovi i dati locali relativi a questo elemento. Ciò è utile se hai "
-"inserito l'ID sbagliato, oppure se vuoi caricare una nuova versione su di un "
-"elemento diverso."
+"Rimuovi i dati locali relativi a questo oggetto. Ciò è utile se hai inserito "
+"l'ID sbagliato, oppure se vuoi caricare una nuova versione su di un oggetto "
+"diverso."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -4150,11 +4149,11 @@ msgstr "Rimuovi dati locali"
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr ""
 "(Opzionale) Cambia le note visualizzabili sullo Steam Workshop per questa "
-"versione dell'elemento"
+"versione dell'oggetto"
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "Note sull'aggiornamento dell'elemento"
+msgstr "Note sull'Aggiornamento dell'Oggetto"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
@@ -4247,7 +4246,7 @@ msgstr "Caricamento completato"
 
 #: ../src/saving/InProgressLoad.cs:195
 msgid "ERROR_LOADING"
-msgstr "Errore di Caricamento"
+msgstr "Errore nel Caricamento"
 
 #: ../src/saving/InProgressLoad.cs:227
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
@@ -4263,7 +4262,7 @@ msgstr "Salvataggio fallito"
 
 #: ../src/saving/InProgressSave.cs:222
 msgid "ERROR_SAVING"
-msgstr "Errore di Salvataggio"
+msgstr "Errore nel Salvataggio"
 
 #: ../src/saving/NewSaveMenu.cs:87
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
@@ -4284,7 +4283,7 @@ msgstr "Nome:"
 
 #: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
-msgstr "Opzioni extra"
+msgstr "Opzioni Extra"
 
 #: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
@@ -4342,11 +4341,11 @@ msgstr "Caricamento..."
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
-msgstr "Vuoi cancellare questo Salvataggio?"
+msgstr "Cancellare questo Salvataggio?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
 msgid "LOAD_INCOMPATIBLE_SAVE"
-msgstr "Vuoi caricare il salvataggio incompatibile?"
+msgstr "Caricare il salvataggio incompatibile?"
 
 #: ../src/saving/SaveList.tscn:80
 msgid "NEWER_VERSION_LOADING_WARNING"
@@ -4368,7 +4367,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:95
 msgid "LOAD_INVALID_SAVE"
-msgstr "Vuoi caricare il salvataggio non valido?"
+msgstr "Caricare il salvataggio non valido?"
 
 #: ../src/saving/SaveList.tscn:96
 msgid "LOAD_INVALID_SAVE_WARNING"
@@ -4413,7 +4412,8 @@ msgstr "Aggiornamento del salvataggio fallito"
 #: ../src/saving/SaveList.tscn:123
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
-"Aggiornamento del salvataggio specificato a causa del seguente errore:\n"
+"Aggiornamento del salvataggio specificato non riuscito a causa del seguente "
+"errore:\n"
 "{0}"
 
 #: ../src/saving/SaveListItem.tscn:130
@@ -4496,15 +4496,15 @@ msgstr "Selezionati:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
 msgid "DELETE_SELECTED_SAVES"
-msgstr "Vuoi eliminare i salvataggi selezionati?"
+msgstr "Eliminare i salvataggi selezionati?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
 msgid "DELETE_OLD_SAVES"
-msgstr "Vuoi eliminare i vecchi salvataggi?"
+msgstr "Eliminare i vecchi salvataggi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Cartella dei Salvataggi non trovata"
+msgstr "Cartella dei salvataggi non trovata"
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
@@ -4614,7 +4614,7 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 msgstr ""
 "Questa è la mappa delle zone.\n"
-"Qui sono mostrate le varie zone dove possono vivere i microbi.\n"
+"Qui sono mostrati i vari luoghi dove possono vivere i microbi.\n"
 "La tua zona attuale è evidenziata.\n"
 "Puoi cliccare su una zona per vederne i dettagli a destra.\n"
 "\n"
@@ -4640,12 +4640,12 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Anche rimuovere organuli costa PM, visto che si tratta di una mutazione, a "
-"meno che tu li abbia posizionati in questa sessione.\n"
+"meno che tu li abbia posizionati in questa sessione di modifica.\n"
 "\n"
 "Puoi fare click destro su di un organulo qualsiasi per aprire il menù a "
 "tendina, e selezionare l'opzione per rimuoverlo.\n"
 "\n"
-"Se commetti un errore, puoi annullare qualsiasi modifica.\n"
+"In caso di errore, puoi annullare qualsiasi modifica.\n"
 "\n"
 "Clicca il pulsante \"Annulla l'ultima azione\" per continuare."
 
@@ -4670,14 +4670,14 @@ msgstr ""
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:265
 msgid "EDITOR_TUTORIAL_ENDING_TEXT"
 msgstr ""
-"Questi sono i concetti base per la modifica della tua specie. Puoi anche "
+"Questi sono i concetti base per la modifica della tua specie. Puoi "
 "controllare gli altri pannelli per opzioni ulteriori.\n"
 "\n"
 "Puoi rinominare la tua specie. Per farlo, clicca sul nome attuale e modifica "
 "il testo.\n"
 "\n"
-"All'inizio, è opportuno mantenere la tua cellula piccola, e muoverti verso "
-"le zone di superficie.\n"
+"All'inizio, ti sarà opportuno mantenere la tua cellula piccola, e muoverti "
+"verso le zone di superficie.\n"
 "\n"
 "Buona fortuna!"
 
@@ -4727,8 +4727,8 @@ msgstr ""
 "\n"
 "La vita.\n"
 "\n"
-"Semplici microbi risiedono nelle profondità marine. Sei l'ultimo antenato "
-"comune universale (UACU) su questo pianeta.\n"
+"Semplici microbi risiedono nelle profondità marine. Sei l'Ultimo Antenato "
+"Comune Universale (UACU) su questo pianeta.\n"
 "\n"
 "Per sopravvivere in questo mondo ostile, avrai bisogno di competere con le "
 "altre specie di microbi, raccogliere ogni composto che troverai... ed "
@@ -4762,7 +4762,7 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-"Tieni d'occhio la tua barra della salute vicino alla barra dell'ATP (in "
+"Tieni d'occhio la barra della tua salute vicino alla barra dell'ATP (in "
 "basso a destra).\n"
 "Se si svuota, la tua cellula muore.\n"
 "Recuperi salute se hai ATP disponibile.\n"
@@ -4791,7 +4791,7 @@ msgstr ""
 "separartene.\n"
 "\n"
 "Per abbandonare interamente la colonia, clicca sulla tua stessa cellula, "
-"oppure premi il tasto per slegare tutti."
+"oppure premi il tasto per slegare tutti (U di default)."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:421

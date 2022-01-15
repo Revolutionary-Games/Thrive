@@ -478,7 +478,8 @@ MapDrawerPath = NodePath("PatchMap/MarginContainer/HSplitContainer/MapPanel/Marg
 PatchNothingSelectedPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/NothingSelected")
 PatchDetailsPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer")
 PatchNamePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
-ReportTabPatchNamePath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/PatchName")
+ReportTabPatchNamePath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchName")
+ReportTabPatchSelectorPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
 PatchPlayerHerePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
 PatchBiomePath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Biome")
 PatchDepthPath = NodePath("PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
@@ -1351,10 +1352,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 0.0
-margin_top = 25.0
-margin_right = 316.0
-margin_bottom = 615.0
+margin_left = 8.0
+margin_top = 33.0
+margin_right = 324.0
+margin_bottom = 623.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -2175,7 +2176,7 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/BottomLeft"]
 margin_left = 195.0
 margin_top = 5.0
-margin_right = 637.0
+margin_right = 641.0
 margin_bottom = 50.0
 custom_constants/separation = 5
 
@@ -2421,10 +2422,29 @@ custom_constants/separation = 5
 margin_right = 846.0
 margin_bottom = 35.0
 
-[node name="PatchName" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 380.0
 margin_bottom = 35.0
-rect_min_size = Vector2( 170, 0 )
+size_flags_horizontal = 3
+custom_constants/separation = 10
+
+[node name="PatchSelector" type="OptionButton" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 32.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_vertical = 4
+custom_constants/hseparation = 0
+text = "PATCH_NAME"
+clip_text = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="PatchName" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 42.0
+margin_right = 380.0
+margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 56 )
 text = "PATCH_NAME"
@@ -4085,6 +4105,7 @@ HelpCategory = "MicrobeEditor"
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/CancelButton" to="MicrobeEditorGUI" method="OnCancelActionClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomRight/HBoxContainer/ConfirmButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
 [connection signal="Confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
+[connection signal="item_selected" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector" to="MicrobeEditorGUI" method="OnReportTabPatchListSelected"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", true ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendMoused" binds= [ "temperature", false ]]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/Clip/GridContainer/MarginContainer/Legend/temperature" to="MicrobeEditorGUI" method="OnPhysicalConditionsChartLegendPressed" binds= [ "temperature" ]]
