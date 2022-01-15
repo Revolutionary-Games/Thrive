@@ -26,7 +26,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private HybridAudioPlayer engulfAudio;
     private AudioStreamPlayer3D bindingAudio;
-    private AudioStreamPlayer3D movementAudio;
+    private HybridAudioPlayer movementAudio;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new List<AudioStreamPlayer>();
 
@@ -189,18 +189,13 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
+        engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
-        movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
+        movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
-        engulfAudio = new HybridAudioPlayer(!IsPlayerMicrobe)
-        {
-            Stream = GD.Load<AudioStream>("res://assets/sounds/soundeffects/engulfment.ogg"),
-            Bus = "SFX",
-        };
-
-        AddChild(engulfAudio);
+        engulfAudio.Positional = movementAudio.Positional = !IsPlayerMicrobe;
 
         // You may notice that there are two separate ways that an audio is played in this class:
         // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",

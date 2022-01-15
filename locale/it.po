@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-12-22 11:34+0700\n"
-"PO-Revision-Date: 2022-01-07 16:38+0000\n"
+"PO-Revision-Date: 2022-01-13 07:11+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -362,7 +362,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"Un suggerimento: se la tua cellula è grande 150 esagoni, allora sarai in "
+"Un suggerimento: se la tua cellula supera i 150 esagoni, allora sarai in "
 "grado di fagocitare anche i pezzi di ferro più grandi."
 
 #: ../simulation_parameters/common/help_texts.json:195
@@ -784,7 +784,7 @@ msgstr "Azoto"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3230
 msgid "SUNLIGHT"
-msgstr "Luce solare"
+msgstr "Luce Solare"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2031
@@ -2564,9 +2564,9 @@ msgstr "Tilacoide"
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. Il tasso "
-"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/"
-"thrive:compound] e con l'intensità di [thrive:compound type=\"sunlight\"][/"
-"thrive:compound]."
+"aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\""
+"][/thrive:compound] e con l'intensità di [thrive:compound type=\"sunlight\""
+"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:468
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:463
@@ -4051,20 +4051,20 @@ msgstr "Caricamento..."
 #: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
-"L'elemento è stato caricato correttamente sullo Steam Workshop, ma prima che "
+"L'oggetto è stato caricato correttamente sullo Steam Workshop, ma prima che "
 "sia visibile devi accettare i [color=#3796e1][url=https://steamcommunity.com/"
 "sharedfiles/workshoplegalagreement]termini di servizio[/url][/color]"
 
 #: ../src/modding/ModUploader.cs:531
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
-msgstr "Elemento caricato correttamente sullo Steam Workshop"
+msgstr "Oggetto caricato correttamente sullo Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:591
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
-"Inviando questo elemento, tu accetti i [color=#3796e1][url=https://"
-"steamcommunity.com/sharedfiles/workshoplegalagreement]termini di servizio[/"
-"url][/color] dello Steam Workshop"
+"Inviando questo oggetto, tu accetti i "
+"[color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"workshoplegalagreement]termini di servizio[/url][/color] dello Steam Workshop"
 
 #: ../src/modding/ModUploader.cs:616
 msgid "SAVING_DATA_FAILED_DUE_TO"
@@ -4108,15 +4108,15 @@ msgstr "Applica"
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
-msgstr "Titolo Elemento:"
+msgstr "Titolo Oggetto:"
 
 #: ../src/modding/ModUploader.tscn:186
 msgid "WORKSHOP_ITEM_DESCRIPTION"
-msgstr "Descrizione Elemento:"
+msgstr "Descrizione Oggetto:"
 
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
-msgstr "Una volta reso visibile, un elemento sarà visualizzabile da chiunque"
+msgstr "Una volta reso visibile, ogni oggetto sarà visualizzabile da chiunque"
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
@@ -4124,11 +4124,11 @@ msgstr "Visibile"
 
 #: ../src/modding/ModUploader.tscn:215
 msgid "WORKSHOP_ITEM_TAGS"
-msgstr "Tag Elemento (separati da una virgola \",\"):"
+msgstr "Tag Oggetto (separati da una virgola \",\"):"
 
 #: ../src/modding/ModUploader.tscn:233
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr "Immagine di anteprima dell'elemento:"
+msgstr "Immagine di Anteprima dell'Oggetto:"
 
 #: ../src/modding/ModUploader.tscn:259
 msgid "BROWSE"
@@ -4137,9 +4137,9 @@ msgstr "Naviga"
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
-"Rimuovi i dati locali relativi a questo elemento. Ciò è utile se hai "
-"inserito l'ID sbagliato, oppure se vuoi caricare una nuova versione su di un "
-"elemento diverso."
+"Rimuovi i dati locali relativi a questo oggetto. Ciò è utile se hai inserito "
+"l'ID sbagliato, oppure se vuoi caricare una nuova versione su di un oggetto "
+"diverso."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -4149,11 +4149,11 @@ msgstr "Rimuovi dati locali"
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
 msgstr ""
 "(Opzionale) Cambia le note visualizzabili sullo Steam Workshop per questa "
-"versione dell'elemento"
+"versione dell'oggetto"
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "Note sull'aggiornamento dell'elemento"
+msgstr "Note sull'Aggiornamento dell'Oggetto"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"

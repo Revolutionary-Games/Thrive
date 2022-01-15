@@ -466,12 +466,16 @@ public class LineChart : VBoxContainer
             legendContainer.Show();
         }
 
-        drawArea.Update();
-
-        foreach (var data in dataSets.Keys)
+        // Wait until rect sizes settle down then we update visuals
+        Invoke.Instance.Queue(() =>
         {
-            FlattenLines(data);
-        }
+            drawArea.Update();
+
+            foreach (var data in dataSets.Keys)
+            {
+                FlattenLines(data);
+            }
+        });
 
         chartPopup.WindowTitle = TranslationServer.Translate(ChartName);
 

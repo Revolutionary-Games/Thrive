@@ -740,8 +740,7 @@ public partial class Microbe
 
     private void HandleMovement(float delta)
     {
-        if (MovementDirection != Vector3.Zero ||
-            queuedMovementForce != Vector3.Zero)
+        if (MovementDirection != Vector3.Zero || queuedMovementForce != Vector3.Zero)
         {
             // Movement direction should not be normalized to allow different speeds
             Vector3 totalMovement = Vector3.Zero;
@@ -760,14 +759,31 @@ public partial class Microbe
             if (movementSoundCooldownTimer > 0)
                 movementSoundCooldownTimer -= delta;
 
-            // The cell starts moving from a relatively idle velocity, so play the movement sound
+            // The cell starts moving from a relatively idle velocity, so play the begin movement sound
             // TODO: Account for cell turning, I can't figure out a reliable way to do that using the current
             // calculation - Kasterisk
-            if (!movementAudio.Playing && movementSoundCooldownTimer <= 0 && deltaAcceleration >
-                lastLinearAcceleration.LengthSquared() && lastLinearVelocity.LengthSquared() <= 1)
+            if (movementSoundCooldownTimer <= 0 && deltaAcceleration > lastLinearAcceleration.LengthSquared() &&
+                lastLinearVelocity.LengthSquared() <= 1)
             {
                 movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
+                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-movement-1.ogg");
+            }
+
+            if (!movementAudio.Playing)
                 movementAudio.Play();
+
+            // Max volume is 0.4
+            if (movementAudio.Volume < 0.4f)
+                movementAudio.Volume += delta;
+        }
+        else
+        {
+            if (movementAudio.Playing)
+            {
+                movementAudio.Volume -= delta;
+
+                if (movementAudio.Volume <= 0)
+                    movementAudio.Stop();
             }
         }
     }
