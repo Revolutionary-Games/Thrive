@@ -78,7 +78,7 @@ public class SaveListItem : PanelContainer
     public delegate void OnSelectedChanged();
 
     [Signal]
-    public delegate void OnDoubleClicked(SaveListItem item);
+    public delegate void OnDoubleClicked();
 
     [Signal]
     public delegate void OnDeleted();
