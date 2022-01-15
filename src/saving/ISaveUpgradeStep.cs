@@ -55,6 +55,7 @@
                 { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
                 { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
                 { "0.5.6.0", new UpgradeJustVersionNumber("0.5.6.1") },
+                { "0.5.6.1", new UpgradeStep056To057() },
             };
         }
     }
@@ -108,53 +109,6 @@
             {
                 UpgradeBehaviouralValues(property, children);
             }
-
-            // Add volume for named patches (properties)
-            if (childrenNames.Contains("Depth") && !childrenNames.Contains("Volume"))
-            {
-                UpgradePatchesVolume((JObject)property.Value, children);
-            }
-
-            // Most patches are defined through references to non-named tokens of array "Adjacent"
-            if (property.Name == "Adjacent")
-            {
-                foreach (var adjacent in property.Value)
-                {
-                    var adjacentChildren = adjacent.Children<JProperty>();
-                    var adjacentChildrenNames = adjacentChildren.Select(p => p.Name).ToList();
-
-                    if (adjacentChildrenNames.Contains("Depth") && !adjacentChildrenNames.Contains("Volume"))
-                    {
-                        UpgradePatchesVolume((JObject)adjacent, adjacentChildren);
-                    }
-                }
-            }
-
-            // Add gas production effect in effects array
-            if (property.Name == "effects")
-            {
-                var gasProductionEffectName = "GasProductionEffect, Thrive";
-                if (!PropertyHasNamedEffect(property, gasProductionEffectName))
-                {
-                    UpgradeGasProductionEffect(property, gasProductionEffectName);
-                }
-            }
-        }
-
-        private bool PropertyHasNamedEffect(JProperty property, string name)
-        {
-            if (property.Value is JArray tokenArray)
-            {
-                foreach (var effect in tokenArray)
-                {
-                    var effectProperties = effect.Children<JProperty>();
-
-                    if (effectProperties.Select(p => p.Value.ToString()).Contains(name))
-                        return true;
-                }
-            }
-
-            return false;
         }
 
         /// <summary>
@@ -204,6 +158,64 @@
 
             ((JObject)property.Value).Add("Behaviour",
                 new JObject(aggression, opportunism, fear, activity, focus));
+        }
+    }
+
+    internal class UpgradeStep056To057 : BaseRecursiveJSONWalkerStep
+    {
+        protected override string VersionAfter => "0.5.7.0-alpha";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            var children = property.Value.Children<JProperty>();
+            var childrenNames = children.Select(c => c.Name).ToList();
+
+            // Add volume for named patches (properties)
+            if (childrenNames.Contains("Depth") && !childrenNames.Contains("Volume"))
+            {
+                UpgradePatchesVolume((JObject)property.Value, children);
+            }
+
+            // Most patches are defined through references to non-named tokens of array "Adjacent"
+            if (property.Name == "Adjacent")
+            {
+                foreach (var adjacent in property.Value)
+                {
+                    var adjacentChildren = adjacent.Children<JProperty>();
+                    var adjacentChildrenNames = adjacentChildren.Select(p => p.Name).ToList();
+
+                    if (adjacentChildrenNames.Contains("Depth") && !adjacentChildrenNames.Contains("Volume"))
+                    {
+                        UpgradePatchesVolume((JObject)adjacent, adjacentChildren);
+                    }
+                }
+            }
+
+            // Add gas production effect in effects array
+            if (property.Name == "effects")
+            {
+                var gasProductionEffectName = "GasProductionEffect, Thrive";
+                if (!PropertyHasNamedEffect(property, gasProductionEffectName))
+                {
+                    UpgradeGasProductionEffect(property, gasProductionEffectName);
+                }
+            }
+        }
+
+        private bool PropertyHasNamedEffect(JProperty property, string name)
+        {
+            if (property.Value is JArray tokenArray)
+            {
+                foreach (var effect in tokenArray)
+                {
+                    var effectProperties = effect.Children<JProperty>();
+
+                    if (effectProperties.Select(p => p.Value.ToString()).Contains(name))
+                        return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
