@@ -1348,9 +1348,9 @@ public class ModManager : Control
         }
         else
         {
-            var warningText = "The mods you want to load might cause errors.\n\n" +
-                CheckResultToString(checkResult, enabledMods);
-            warningText += "\n\n Are you sure you want to load these mods?";
+            var warningText = TranslationServer.Translate("MOD_LOAD_ERROR_WARNING") + "\n\n" +
+                CheckResultToString(checkResult, enabledMods) + "\n\n";
+            warningText += TranslationServer.Translate("ARE_YOU_SURE_TO_LOAD_MOD");
 
             loadWarningDialog.DialogText = warningText;
             loadWarningDialog.PopupCenteredShrink();
@@ -1546,7 +1546,7 @@ public class ModManager : Control
         }
         else
         {
-            infoText += "This mod have no Dependencies.";
+            infoText += TranslationServer.Translate("NO_MOD_DEPENDENCIES");
         }
 
         otherModInfoDialog.DialogText = infoText;
@@ -1555,7 +1555,7 @@ public class ModManager : Control
 
     private void OnIncompatiblePressed()
     {
-        otherModInfoDialog.WindowTitle = "Incompatible With";
+        otherModInfoDialog.WindowTitle = TranslationServer.Translate("INCOMPATIBLE_WITH");
         var infoText = string.Empty;
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -1569,7 +1569,7 @@ public class ModManager : Control
         }
         else
         {
-            infoText += "This mod is not incompatible with any other mod.";
+            infoText += TranslationServer.Translate("NO_MOD_INCOMPATIBLE");
         }
 
         otherModInfoDialog.DialogText = infoText;
@@ -1578,7 +1578,7 @@ public class ModManager : Control
 
     private void OnLoadOrderPressed()
     {
-        otherModInfoDialog.WindowTitle = "Load Order";
+        otherModInfoDialog.WindowTitle = TranslationServer.Translate("LOAD_ORDER");
         var infoText = string.Empty;
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -1588,7 +1588,7 @@ public class ModManager : Control
         {
             if (currentModLoadAfter != null)
             {
-                infoText += "This mod needs to be loaded after the following mods:\n";
+                infoText += TranslationServer.Translate("MOD_LOAD_AFTER") + "\n";
                 foreach (string currentLoadAfterMod in currentModLoadAfter)
                 {
                     infoText += "* " + currentLoadAfterMod + "\n";
@@ -1603,7 +1603,7 @@ public class ModManager : Control
 
             if (currentModLoadBefore != null)
             {
-                infoText += "This mod needs to be loaded before the following mods:\n";
+                infoText += TranslationServer.Translate("MOD_LOAD_BEFORE") + "\n";
                 foreach (string currentLoadBeforeMod in currentModLoadBefore)
                 {
                     infoText += "* " + currentLoadBeforeMod + "\n";
@@ -1612,7 +1612,7 @@ public class ModManager : Control
         }
         else
         {
-            infoText += "This mod have no specified load order.";
+            infoText += TranslationServer.Translate("MOD_NO_LOAD_ORDER");
         }
 
         otherModInfoDialog.DialogText = infoText;
@@ -1940,12 +1940,12 @@ public class ModManager : Control
 
         if (checkResult.ErrorType < 0)
         {
-            resultText = "The mod list contains an errors: \n\n" + CheckResultToString(checkResult, enabledMods);
-            resultText += "\n\n Once you fix that error try checking again to find more errors.";
+            resultText = TranslationServer.Translate("MOD_LIST_CONTAIN_ERRORS") + CheckResultToString(checkResult, enabledMods);
+            resultText += TranslationServer.Translate("MOD_CHECK_AGAIN_WARNING");
         }
         else if (checkResult.ErrorType > 0)
         {
-            resultText = "The mod list has no errors and is valid.";
+            resultText = TranslationServer.Translate("MOD_LIST_VALID");
         }
 
         modCheckResultDialog.DialogText = resultText;
@@ -1968,7 +1968,7 @@ public class ModManager : Control
         }
         else
         {
-            offendingMod.Name = "Unknown Mod";
+            offendingMod.Name = TranslationServer.Translate("UNKNOWN_MOD");
         }
 
         // The reason why the mod is causing an error
@@ -1979,16 +1979,16 @@ public class ModManager : Control
         }
         else
         {
-            otherMod.Name = "Unknown Mod";
+            otherMod.Name = TranslationServer.Translate("UNKNOWN_MOD");
         }
 
         switch (checkResult.ErrorType)
         {
             default:
-                result = "The mod list has no errors and is valid.";
+                result = TranslationServer.Translate("MOD_LIST_VALID");
                 break;
             case (int)ModLoader.CheckErrorStatus.IncompatibleVersion:
-                result += "The '" + offendingMod.Name + "' mod is incompatible with this version of Thrive.";
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_VERSION"), offendingMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.DependencyNotFound:
                 string otherModName;
@@ -1998,32 +1998,27 @@ public class ModManager : Control
                 }
                 else
                 {
-                    otherModName = "ERROR: MOD NOT FOUND";
+                    otherModName = TranslationServer.Translate("UNKNOWN_MOD");
                 }
 
-                result += "The '" + offendingMod.Name + "' mod is dependent on the '" + otherModName + "' mod.\n";
-                result += "Add that mod to the mod loader before this one to fix this error.";
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES"), offendingMod.Name, otherModName);
+                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidDependencyOrder:
-                result += "The '" + offendingMod.Name + "' mod is dependent on the '" + otherMod.Name + "' mod.\n";
-                result += "Load the '" + offendingMod.Name + "' mod after the '" + otherMod.Name +
-                    "' mod to fix this error.";
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER"), offendingMod.Name, otherMod.Name);
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER_FIX"), offendingMod.Name, otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.IncompatibleMod:
-                result += "The '" + offendingMod.Name + "' mod is incompatible with the '" + otherMod.Name + "' mod.\n";
-                result += "Remove the '" + otherMod.Name + "' mod or remove this one to fix this error.";
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD"), offendingMod.Name, otherMod.Name);
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX"), otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
-                result += "The '" + offendingMod.Name + "' mod needs to be loaded before the '" + otherMod.Name +
-                    "' mod.\n";
-                result += "Load the '" + offendingMod.Name + "' mod before the '" + otherMod.Name +
-                    "' to fix this error.";
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE"), offendingMod.Name, otherMod.Name);
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE_FIX"), offendingMod.Name, otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
-                result += "The '" + offendingMod.Name + "' mod needs to be loaded after the '" + otherMod.Name +
-                    "' mod.\n";
-                result += "Load the '" + offendingMod.Name + "' mod after the '" + otherMod.Name +
-                    "' to fix this error.";
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER"), offendingMod.Name, otherMod.Name);
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER_FIX"), offendingMod.Name, otherMod.Name);
                 break;
         }
 
