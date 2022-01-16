@@ -26,7 +26,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private HybridAudioPlayer engulfAudio;
     private AudioStreamPlayer3D bindingAudio;
-    private AudioStreamPlayer3D movementAudio;
+    private HybridAudioPlayer movementAudio;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new List<AudioStreamPlayer>();
 
@@ -44,6 +44,14 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private float collisionForce;
 
     private Vector3 queuedMovementForce;
+
+    private Vector3 lastLinearVelocity;
+    private Vector3 lastLinearAcceleration;
+    private Vector3 linearAcceleration;
+
+    private float movementSoundCooldownTimer;
+
+    private Random random = new Random();
 
     [JsonProperty]
     private MicrobeAI ai;
@@ -179,20 +187,17 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (onReadyCalled)
             return;
 
+        atp = SimulationParameters.Instance.GetCompound("atp");
+
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
+        engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
-        movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
+        movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
-        engulfAudio = new HybridAudioPlayer(!IsPlayerMicrobe)
-        {
-            Stream = GD.Load<AudioStream>("res://assets/sounds/soundeffects/engulfment.ogg"),
-            Bus = "SFX",
-        };
-
-        AddChild(engulfAudio);
+        engulfAudio.Positional = movementAudio.Positional = !IsPlayerMicrobe;
 
         // You may notice that there are two separate ways that an audio is played in this class:
         // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",
@@ -447,30 +452,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             organelle.Update(delta);
         }
 
-        // Movement
-        if (ColonyParent == null)
-        {
-            if (MovementDirection != new Vector3(0, 0, 0) ||
-                queuedMovementForce != new Vector3(0, 0, 0))
-            {
-                // Movement direction should not be normalized to allow different speeds
-                Vector3 totalMovement = new Vector3(0, 0, 0);
-
-                if (MovementDirection != new Vector3(0, 0, 0))
-                {
-                    totalMovement += DoBaseMovementForce(delta);
-                }
-
-                totalMovement += queuedMovementForce;
-
-                ApplyMovementImpulse(totalMovement, delta);
-
-                // Play movement sound if one isn't already playing.
-                if (!movementAudio.Playing)
-                    movementAudio.Play();
-            }
-        }
-
         // Rotation is applied in the physics force callback as that's
         // the place where the body rotation can be directly set
         // without problems
@@ -502,6 +483,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
                 OnReproductionStatus(this, true);
             }
         }
+    }
+
+    public override void _PhysicsProcess(float delta)
+    {
+        linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
+
+        // Movement
+        if (ColonyParent == null && !IsForPreviewOnly)
+            HandleMovement(delta);
+
+        lastLinearVelocity = LinearVelocity;
+        lastLinearAcceleration = linearAcceleration;
     }
 
     public override void _EnterTree()
