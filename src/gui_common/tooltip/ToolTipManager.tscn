@@ -577,6 +577,11 @@ margin_bottom = 220.0
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer" index="0"]
 margin_bottom = 208.0
 
+[node name="Title" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Header" index="1"]
+margin_right = 349.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 260, 0 )
+
 [node name="ModifierList" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 138.0
 
