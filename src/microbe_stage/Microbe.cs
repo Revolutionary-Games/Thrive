@@ -41,7 +41,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
 
-    private float collisionForceSqr;
+    private float collisionForce;
 
     private Vector3 queuedMovementForce;
 
@@ -547,12 +547,16 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
 
-        collisionForceSqr = 0.0f;
+        // Reset total sum from previous collisions
+        collisionForce = 0.0f;
 
+        // Sum impulses from all contact points
         for (var i = 0; i < physicsState.GetContactCount(); ++i)
         {
-            collisionForceSqr +=
-                (physicsState.GetContactImpulse(i) * physicsState.GetContactLocalNormal(i)).LengthSquared();
+            // TODO: Godot cuurrently does not provide a convenient way to access a collision impulse, this
+            // for example is luckily available only in Bullet which makes things a bit easier. Would need
+            // proper handling for this in the future.
+            collisionForce += physicsState.GetContactImpulse(i);
         }
     }
 
