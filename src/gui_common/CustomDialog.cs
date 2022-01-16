@@ -243,7 +243,7 @@ public class CustomDialog : Popup, ICustomPopup
     public override void _GuiInput(InputEvent @event)
     {
         // Handle title bar dragging
-        if (@event is InputEventMouseButton mouseButton && mouseButton.ButtonIndex == (int)ButtonList.Left)
+        if (@event is InputEventMouseButton { ButtonIndex: (int)ButtonList.Left } mouseButton)
         {
             if (mouseButton.Pressed && Movable)
             {
@@ -436,18 +436,19 @@ public class CustomDialog : Popup, ICustomPopup
         else
         {
             // Handle border dragging
+            var screenSize = (GetViewport()?.GetVisibleRect().Size).GetValueOrDefault();
 
             if (dragType.HasFlag(DragType.ResizeTop))
             {
                 var bottom = RectPosition.y + RectSize.y;
                 var maxY = bottom - minSize.y;
 
-                newPosition.y = Mathf.Min(globalMousePos.y - dragOffset.y, maxY);
+                newPosition.y = Mathf.Min(Mathf.Max(globalMousePos.y - dragOffset.y, titleBarHeight), maxY);
                 newSize.y = bottom - newPosition.y;
             }
             else if (dragType.HasFlag(DragType.ResizeBottom))
             {
-                newSize.y = globalMousePos.y - newPosition.y + dragOffsetFar.y;
+                newSize.y = Mathf.Min(globalMousePos.y - newPosition.y + dragOffsetFar.y, screenSize.y - newPosition.y);
             }
 
             if (dragType.HasFlag(DragType.ResizeLeft))
@@ -455,12 +456,12 @@ public class CustomDialog : Popup, ICustomPopup
                 var right = RectPosition.x + RectSize.x;
                 var maxX = right - minSize.x;
 
-                newPosition.x = Mathf.Min(globalMousePos.x - dragOffset.x, maxX);
+                newPosition.x = Mathf.Min(Mathf.Max(globalMousePos.x - dragOffset.x, 0), maxX);
                 newSize.x = right - newPosition.x;
             }
             else if (dragType.HasFlag(DragType.ResizeRight))
             {
-                newSize.x = globalMousePos.x - newPosition.x + dragOffsetFar.x;
+                newSize.x = Mathf.Min(globalMousePos.x - newPosition.x + dragOffsetFar.x, screenSize.x - newPosition.x);
             }
         }
 
