@@ -436,7 +436,7 @@ public class CustomDialog : Popup, ICustomPopup
         else
         {
             // Handle border dragging
-            var screenSize = (GetViewport()?.GetVisibleRect().Size).GetValueOrDefault();
+            var screenSize = GetViewport().GetVisibleRect().Size;
 
             if (dragType.HasFlag(DragType.ResizeTop))
             {
