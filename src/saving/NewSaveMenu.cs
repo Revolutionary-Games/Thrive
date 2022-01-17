@@ -56,6 +56,7 @@ public class NewSaveMenu : Control
 
     public void SetSaveName(string name, bool selectText = false)
     {
+        
         saveNameBox.Text = name;
 
         if (selectText)
@@ -64,7 +65,7 @@ public class NewSaveMenu : Control
 
     private static bool IsSaveNameValid(string name)
     {
-        return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains);
+        return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains) &&  name.Length <= 244;
     }
 
     private void ShowOverwriteConfirm(string name)
