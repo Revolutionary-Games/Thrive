@@ -167,6 +167,7 @@ WindowTitle = "CONFIRM_EXIT"
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Exit" to="." method="ExitPressed"]
+[connection signal="OnConfirmed" from="CenterContainer/LoadMenu/SaveList" to="." method="OnLoadSaveConfirmed"]
 [connection signal="pressed" from="CenterContainer/LoadMenu/Back" to="." method="CloseLoadPressed"]
 [connection signal="OnClosed" from="CenterContainer/NewSaveMenu" to="." method="CloseSavePressed"]
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
