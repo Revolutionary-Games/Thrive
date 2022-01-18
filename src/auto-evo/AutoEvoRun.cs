@@ -311,6 +311,10 @@ public class AutoEvoRun
             var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
             foreach (var speciesEntry in speciesInPatchCopy)
             {
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (speciesEntry.Key == null)
+                    throw new Exception("Species key in a patch is null");
+
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
 
