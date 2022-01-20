@@ -640,6 +640,7 @@
         "mass": 0.2,
         "displayScene": "res://assets/models/organelles/Chemoreceptor.tscn",
         "name": "CHEMORECEPTOR",
-        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png"
+        "iconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
+        "upgradeGUI": "res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn"
     }
 }

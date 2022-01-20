@@ -55,6 +55,16 @@ public class GuidanceLine : ImmediateGeometry
         }
     }
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        // This material is needed for SetColor to work at all
+        var material = new SpatialMaterial();
+        material.VertexColorUseAsAlbedo = true;
+        MaterialOverride = material;
+    }
+
     public override void _Process(float delta)
     {
         if (!dirty)
@@ -67,6 +77,10 @@ public class GuidanceLine : ImmediateGeometry
         SetColor(colour);
         AddVertex(LineStart);
         AddVertex(LineEnd);
+
+        // TODO: if we want to have line thickness, we need to generate a quad here with the wanted *width* around the
+        // points (we need to figure out the right rotation for the line at both ends for where to place those points
+        // that are slightly off from the positions)
 
         End();
     }

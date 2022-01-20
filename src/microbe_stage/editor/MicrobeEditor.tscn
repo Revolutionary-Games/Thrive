@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=2]
+[gd_scene load_steps=130 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/scrollPanelVerticalFade.png" type="Texture" id=21]
 [ext_resource path="res://src/gui_common/CustomDialog.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-AlmostSmaller.tres" type="DynamicFont" id=23]
+[ext_resource path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" type="PackedScene" id=24]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=27]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=28]
 [ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=29]
@@ -520,6 +521,7 @@ SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/
 CompoundBalancePath = NodePath("CellEditor/RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
 AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
+OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
 visible = false
@@ -1357,10 +1359,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 12.0
-margin_top = 37.0
-margin_right = 328.0
-margin_bottom = 627.0
+margin_left = 40.0
+margin_top = 65.0
+margin_right = 356.0
+margin_bottom = 655.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -4000,6 +4002,11 @@ anchor_bottom = 0.183333
 margin_right = 0.0
 margin_bottom = 0.0
 
+[node name="OrganelleUpgradeGUI" parent="MicrobeEditorGUI" instance=ExtResource( 24 )]
+visible = false
+margin_top = -1.41425
+margin_bottom = -1.41425
+
 [node name="MicrobeEditorCheatMenu" parent="MicrobeEditorGUI" instance=ExtResource( 39 )]
 visible = false
 margin_left = 10.0
@@ -4134,6 +4141,7 @@ HelpCategory = "MicrobeEditor"
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/HelpButton" to="MicrobeEditorGUI" method="HelpButtonPressed"]
 [connection signal="DeletePressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="MicrobeEditorGUI" method="OnDeletePressed"]
+[connection signal="ModifyPressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="MicrobeEditorGUI" method="OnModifyPressed"]
 [connection signal="MovePressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="MicrobeEditorGUI" method="OnMovePressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PredictionExplanation/VBoxContainer/Close" to="MicrobeEditorGUI" method="CloseAutoEvoPrediction"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]

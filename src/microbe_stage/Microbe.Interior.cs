@@ -130,6 +130,7 @@ public partial class Microbe
                 Definition = entry.Definition,
                 Position = entry.Position,
                 Orientation = entry.Orientation,
+                Upgrades = entry.Upgrades,
             };
 
             organelles.Add(placed);
@@ -652,8 +653,11 @@ public partial class Microbe
         var q = organelle.Position.Q;
         var r = organelle.Position.R;
 
-        var newOrganelle = new PlacedOrganelle();
-        newOrganelle.Definition = organelle.Definition;
+        var newOrganelle = new PlacedOrganelle
+        {
+            Definition = organelle.Definition,
+            Upgrades = organelle.Upgrades,
+        };
 
         // Spiral search for space for the organelle
         int radius = 1;

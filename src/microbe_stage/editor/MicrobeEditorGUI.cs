@@ -305,6 +305,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath AutoEvoPredictionExplanationLabelPath;
 
+    [Export]
+    public NodePath OrganelleUpgradeGUIPath;
+
     private Compound atp;
     private Compound ammonia;
     private Compound carbondioxide;
@@ -474,6 +477,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private CustomConfirmationDialog islandPopup;
 
     private OrganellePopupMenu organelleMenu;
+    private OrganelleUpgradeGUI organelleUpgradeGUI;
 
     private TextureButton menuButton;
     private TextureButton helpButton;
@@ -629,6 +633,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
+        organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
+
+        // Hidden in the editor to make selecting other things easier
+        organelleUpgradeGUI.Visible = true;
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
@@ -1303,6 +1311,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Move enabled only when microbe has more than one organelle
         organelleMenu.EnableMoveOption = editor.MicrobeSize > 1;
+
+        // Modify / upgrade possible when defined on the organelle definition
+        organelleMenu.EnableModifyOption = !string.IsNullOrEmpty(selectedOrganelle.Definition.UpgradeGUI);
     }
 
     public void OnMovePressed()
@@ -1316,6 +1327,19 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public void OnDeletePressed()
     {
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
+    }
+
+    public void OnModifyPressed()
+    {
+        var upgradeGUI = organelleMenu.SelectedOrganelle?.Definition.UpgradeGUI;
+
+        if (string.IsNullOrEmpty(upgradeGUI))
+        {
+            GD.PrintErr("Attempted to modify an organelle with no upgrade GUI known");
+            return;
+        }
+
+        organelleUpgradeGUI.OpenForOrganelle(organelleMenu.SelectedOrganelle, upgradeGUI, editor);
     }
 
     public override void _Notification(int what)

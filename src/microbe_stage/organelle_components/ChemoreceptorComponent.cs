@@ -26,12 +26,19 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     {
         isActive = organelle.ParentMicrobe.IsPlayerMicrobe;
 
-        // TODO: get reference to organelle upgrade data here to find what we should look for
+        if (!isActive)
+            return;
 
-        targetCompound = SimulationParameters.Instance.GetCompound("glucose");
-        searchRange = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
-        searchAmount = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
-        lineColour = new Color(0, 1, 0);
+        var configuration = organelle.Upgrades?.CustomUpgradeData;
+
+        // Use default values if not configured
+        if (configuration == null)
+        {
+            SetDefaultConfiguration();
+            return;
+        }
+
+        SetConfiguration((ChemoreceptorUpgrades)configuration);
     }
 
     protected override bool NeedsUpdateAnyway()
@@ -43,6 +50,22 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     protected override void OnPositionChanged(Quat rotation, float angle, Vector3 membraneCoords)
     {
         organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+    }
+
+    private void SetConfiguration(ChemoreceptorUpgrades configuration)
+    {
+        targetCompound = configuration.TargetCompound;
+        searchRange = configuration.SearchRange;
+        searchAmount = configuration.SearchAmount;
+        lineColour = configuration.LineColour;
+    }
+
+    private void SetDefaultConfiguration()
+    {
+        targetCompound = SimulationParameters.Instance.GetCompound(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
+        searchRange = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
+        searchAmount = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
+        lineColour = Colors.White;
     }
 }
 
@@ -56,4 +79,13 @@ public class ChemoreceptorComponentFactory : IOrganelleComponentFactory
     public void Check(string name)
     {
     }
+}
+
+[JSONDynamicTypeAllowed]
+public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
+{
+    public Compound TargetCompound { get; set; }
+    public float SearchRange { get; set; }
+    public float SearchAmount { get; set; }
+    public Color LineColour { get; set; }
 }

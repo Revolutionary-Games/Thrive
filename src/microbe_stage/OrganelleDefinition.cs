@@ -37,6 +37,9 @@ public class OrganelleDefinition : IRegistryType
 
     processes:  A table with all the processes this organelle does,
     and the capacity of the process
+
+    upgradeGUI:  path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not
+    modifiable
     */
 
     /// <summary>
@@ -148,9 +151,14 @@ public class OrganelleDefinition : IRegistryType
     public bool Unique;
 
     /// <summary>
+    ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable
+    /// </summary>
+    public string UpgradeGUI;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
-    private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();
+    private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
 
 #pragma warning disable 169 // Used through reflection
     private string untranslatedName;
