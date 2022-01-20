@@ -1040,6 +1040,12 @@ public partial class Microbe
                 thisMicrobe.CheckStartEngulfingOnCandidates();
                 thisMicrobe.CheckBinding();
             }
+
+            // Play bump sound if certain total collision impulse is reached (adjusted by mass)
+            if (thisMicrobe.collisionForce / Mass > Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
+            {
+                thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
+            }
         }
     }
 
