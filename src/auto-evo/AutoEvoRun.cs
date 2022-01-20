@@ -225,7 +225,16 @@ public class AutoEvoRun
             {
                 try
                 {
-                    long currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
+                    // It's possible for external effects to be added for extinct species (either completely extinct
+                    // or extinct in the current patch)
+                    if (!results.SpeciesHasResults(entry.Species))
+                    {
+                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
+                            " had an external effect, ignoring the effect");
+                        continue;
+                    }
+
+                    long currentPop = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
 
                     results.AddPopulationResultForSpecies(
                         entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
