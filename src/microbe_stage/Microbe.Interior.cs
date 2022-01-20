@@ -56,6 +56,8 @@ public partial class Microbe
     /// </remarks>
     private bool allOrganellesDivided;
 
+    private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
     /// <summary>
     ///   True only when this cell has been killed to let know things
     ///   being engulfed by us that we are dead.
@@ -93,6 +95,13 @@ public partial class Microbe
     /// </summary>
     [JsonProperty]
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
+
+    /// <summary>
+    ///   Called periodically to report the chemoreception settings of the microbe
+    /// </summary>
+    [JsonProperty]
+    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>
+        OnCompoundChemoreceptionInfo { get; set; }
 
     /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
@@ -907,5 +916,20 @@ public partial class Microbe
             membraneCoords.x * s + membraneCoords.z * c);
 
         return Translation + (ejectionDirection * ejectionDistance);
+    }
+
+    private void HandleChemoreceptorLines(float delta)
+    {
+        timeUntilChemoreceptionUpdate -= delta;
+
+        if (timeUntilChemoreceptionUpdate > 0 || Dead)
+            return;
+
+        timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
+        OnCompoundChemoreceptionInfo?.Invoke(this, activeCompoundDetections);
+
+        // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
+        activeCompoundDetections.Clear();
     }
 }

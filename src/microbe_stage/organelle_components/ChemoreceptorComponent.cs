@@ -5,8 +5,10 @@
 /// </summary>
 public class ChemoreceptorComponent : ExternallyPositionedComponent
 {
-    // Commented out for now as this doesn't do anything useful yet
-    /*
+    private Compound targetCompound;
+    private float searchRange;
+    private float searchAmount;
+    private Color lineColour;
     private bool isActive;
 
     public override void Update(float elapsed)
@@ -16,6 +18,8 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
         // For now only player's chemoreceptor does anything during gameplay
         if (!isActive)
             return;
+
+        organelle.ParentMicrobe.ReportActiveChemereception(targetCompound, searchRange, searchAmount, lineColour);
     }
 
     protected override void CustomAttach()
@@ -23,8 +27,12 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
         isActive = organelle.ParentMicrobe.IsPlayerMicrobe;
 
         // TODO: get reference to organelle upgrade data here to find what we should look for
+
+        targetCompound = SimulationParameters.Instance.GetCompound("glucose");
+        searchRange = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
+        searchAmount = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
+        lineColour = new Color(0, 1, 0);
     }
-    */
 
     protected override bool NeedsUpdateAnyway()
     {

@@ -9,6 +9,8 @@ public class GuidanceLine : ImmediateGeometry
 
     private Vector3 lineEnd;
 
+    private Color colour = Colors.White;
+
     private bool dirty = true;
 
     [Export]
@@ -39,6 +41,20 @@ public class GuidanceLine : ImmediateGeometry
         }
     }
 
+    [Export]
+    public Color Colour
+    {
+        get => colour;
+        set
+        {
+            if (colour == value)
+                return;
+
+            dirty = true;
+            colour = value;
+        }
+    }
+
     public override void _Process(float delta)
     {
         if (!dirty)
@@ -48,6 +64,7 @@ public class GuidanceLine : ImmediateGeometry
         Clear();
         Begin(Mesh.PrimitiveType.Lines);
 
+        SetColor(colour);
         AddVertex(LineStart);
         AddVertex(LineEnd);
 

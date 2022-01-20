@@ -46,6 +46,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     private Control hudRoot;
 
+    private List<GuidanceLine> chemoreceptionLines = new();
+
     // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
     // if null)
     private Random random = new Random();
@@ -365,6 +367,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
 
+        Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
+
         Camera.ObjectToFollow = Player;
 
         if (spawnedPlayer)
@@ -434,7 +438,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.Translation, glucose)),
+                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
+                            glucose)),
                         this);
                 }
 
@@ -444,7 +449,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.Translation;
+                guidanceLine.LineStart = Player.GlobalTransform.origin;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
@@ -472,6 +477,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 }
             }
         }
+
+        UpdateLinePlayerPosition();
 
         // Start auto-evo if stage entry finished, don't need to auto save,
         // settings have auto-evo be started during gameplay and auto-evo is not already started
@@ -637,6 +644,11 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player = null;
         Camera.ObjectToFollow = null;
+
+        foreach (var chemoreceptionLine in chemoreceptionLines)
+        {
+            chemoreceptionLine.Visible = false;
+        }
     }
 
     [DeserializedCallbackAllowed]
@@ -719,5 +731,78 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private void SaveGame(string name)
     {
         SaveHelper.Save(name, this);
+    }
+
+    /// <summary>
+    ///   Updates the chemoreception lines for stuff the player wants to detect
+    /// </summary>
+    [DeserializedCallbackAllowed]
+    private void HandlePlayerChemoreceptionDetection(Microbe microbe,
+        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections)
+    {
+        int currentLineIndex = 0;
+        var position = microbe.GlobalTransform.origin;
+
+        // Update all lines (or create more if we don't have enough) to point to compounds (if found) they look for
+        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        {
+            var line = GetOrCreateGuidanceLine(currentLineIndex++);
+
+            // TODO: should we use threading to parallelize these compound location finds
+            var target = Clouds.FindCompoundNearPoint(position, compound, range, minAmount);
+
+            if (target == null)
+            {
+                line.Visible = false;
+            }
+            else
+            {
+                line.Colour = colour;
+                line.LineStart = position;
+                line.LineEnd = target.Value;
+                line.Visible = true;
+            }
+        }
+
+        // Remove excess lines
+        while (currentLineIndex < chemoreceptionLines.Count)
+        {
+            var line = chemoreceptionLines[chemoreceptionLines.Count - 1];
+            chemoreceptionLines.RemoveAt(chemoreceptionLines.Count - 1);
+
+            RemoveChild(line);
+            line.QueueFree();
+        }
+    }
+
+    private void UpdateLinePlayerPosition()
+    {
+        if (Player == null || Player?.Dead == true)
+        {
+            foreach (var chemoreceptionLine in chemoreceptionLines)
+                chemoreceptionLine.Visible = false;
+
+            return;
+        }
+
+        var position = Player.GlobalTransform.origin;
+
+        foreach (var chemoreceptionLine in chemoreceptionLines)
+        {
+            if (chemoreceptionLine.Visible)
+                chemoreceptionLine.LineStart = position;
+        }
+    }
+
+    private GuidanceLine GetOrCreateGuidanceLine(int index)
+    {
+        if (index >= chemoreceptionLines.Count)
+        {
+            var line = new GuidanceLine();
+            AddChild(line);
+            chemoreceptionLines.Add(line);
+        }
+
+        return chemoreceptionLines[index];
     }
 }
