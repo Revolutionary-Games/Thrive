@@ -858,11 +858,27 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         compoundBalance.UpdateBalances(balances);
     }
 
+    /// <summary>
+    ///   Cancels the previous auto-evo prediction run if there is one
+    /// </summary>
+    public void CancelPreviousAutoEvoPrediction()
+    {
+        if (waitingForPrediction == null)
+            return;
+
+        GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
+        waitingForPrediction.AutoEvoRun.Abort();
+        waitingForPrediction = null;
+    }
+
     public void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, MicrobeSpecies playerSpeciesOriginal,
         MicrobeSpecies playerSpeciesNew)
     {
-        // Cancel previous one if there is one
-        waitingForPrediction?.AutoEvoRun.Abort();
+        if (waitingForPrediction != null)
+        {
+            GD.PrintErr(
+                $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
+        }
 
         totalPopulationIndicator.Show();
         totalPopulationIndicator.Texture = questionIcon;
