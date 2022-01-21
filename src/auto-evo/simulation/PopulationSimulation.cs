@@ -116,6 +116,13 @@
                 }
             }
 
+            foreach (var entry in species)
+            {
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (entry == null)
+                    throw new Exception("Species in a simulation run is null");
+            }
+
             return species;
         }
 
