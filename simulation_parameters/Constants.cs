@@ -134,6 +134,8 @@ public static class Constants
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
 
+    public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
+
     /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>
@@ -471,7 +473,8 @@ public static class Constants
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 300;
+    // TODO: bump this back up once we resolve the performance bottleneck
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 90;
     public const int MAX_SPAWNS_PER_FRAME = 1;
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 

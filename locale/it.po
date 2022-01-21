@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-20 17:42+0200\n"
-"PO-Revision-Date: 2022-01-13 07:11+0000\n"
+"PO-Revision-Date: 2022-01-21 14:35+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -344,8 +344,8 @@ msgstr "Una curiosità: il didinio è un ciliato che fa preda di parameci."
 msgid "EASTEREGG_MESSAGE_20"
 msgstr ""
 "Una curiosità: l'ameba caccia e cattura la preda con 'gambe' fatte di "
-"citoplasma chiamate pseudopodi. Desidereremmo averli anche in Thrive! "
-"Prima o poi..."
+"citoplasma chiamate pseudopodi. Vorremmo averli anche in Thrive! Prima o "
+"poi..."
 
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
@@ -1963,11 +1963,11 @@ msgstr "Capi Fonici"
 
 #: ../src/gui_common/CreditsScroll.cs:256
 msgid "LEAD_OUTREACH_PERSON"
-msgstr "Capo della Pubblicità"
+msgstr "Capo Pubblicitario"
 
 #: ../src/gui_common/CreditsScroll.cs:257
 msgid "LEAD_OUTREACH_PEOPLE"
-msgstr "Capi della Pubblicità"
+msgstr "Capi Pubblicitari"
 
 #: ../src/gui_common/CreditsScroll.cs:262
 msgid "LEAD_GAME_DESIGNER"
@@ -2057,7 +2057,7 @@ msgstr "Squadra Fonici"
 
 #: ../src/gui_common/CreditsScroll.cs:500
 msgid "OUTREACH_TEAM"
-msgstr "Squadra Pubblicità"
+msgstr "Squadra Pubblicitaria"
 
 #: ../src/gui_common/CreditsScroll.cs:501
 msgid "GAME_DESIGN_TEAM"
@@ -2311,8 +2311,8 @@ msgstr "Rigidità della membrana"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:124
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Una membrana più rigida è più resistente al danno, ma renderà difficile il "
-"movimento alla cellula."
+"Più la membrana è rigida, più protegge la cellula dai danni; tuttavia, ne "
+"complica anche il movimento."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:150
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
@@ -2337,10 +2337,10 @@ msgstr "Salute"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:224
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
-"I microbi aggressivi inseguono le prede per distanze maggiori\n"
+"I microbi aggressivi inseguono le prede per grandi distanze\n"
 "e sono più propensi a combattere quando aggrediti.\n"
 "I microbi pacifici, invece, ignorano i soggetti lontani\n"
-"e sono meno incini a sparare tossine ai propri predatori."
+"e sono meno inclini a sparare tossine ai propri predatori."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "OPPORTUNISM_EXPLANATION"
@@ -2550,7 +2550,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:953
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
-"Consuma [thrive:compound type=\"atp\"][/thrive:compound] per aumentare la "
+"Consuma [thrive:compound type=\"atp\"][/thrive:compound]. Aumenta la "
 "velocità di movimento della cellula."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:954
@@ -2602,9 +2602,9 @@ msgstr "Da implementare."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Premi [thrive:input]g_toggle_binding[/thrive:input] per attivare la "
-"modalità di legatura. In essa, puoi attaccarti ad altre cellule della tua "
-"specie e formare così una colonia. Per abbandonare la colonia premi "
+"Premi [thrive:input]g_toggle_binding[/thrive:input] per attivare la modalità "
+"di legatura. In essa, puoi attaccarti ad altre cellule della tua specie per "
+"formare una colonia. Per abbandonare la colonia premi "
 "[thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
@@ -2935,7 +2935,7 @@ msgstr "Genera Nemico"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:694
 msgid "STUFF_AT"
-msgstr "Roba alle coordinate {0:F1}, {1:F1}:"
+msgstr "Roba a {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:727
 msgid "PLAYER_CELL"
@@ -3619,7 +3619,7 @@ msgstr ""
 
 #: ../src/modding/ModLoader.cs:394
 msgid "PCK_LOAD_FAILED"
-msgstr "Caricamento del file pck ({0}) fallito"
+msgstr "Caricamento del file pck ({0}) non riuscito"
 
 #: ../src/modding/ModManager.cs:292
 msgid "INVALID_ICON_PATH"
@@ -3896,7 +3896,8 @@ msgstr ""
 
 #: ../src/modding/ModUploader.cs:616
 msgid "SAVING_DATA_FAILED_DUE_TO"
-msgstr "Salvataggio delle informazioni fallito a causa di un'eccezione: {0}"
+msgstr ""
+"Salvataggio delle informazioni non riuscito a causa di un'eccezione: {0}"
 
 #: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
 msgid "FORM_ERROR_MESSAGE"
@@ -3945,7 +3946,7 @@ msgstr "Descrizione Oggetto:"
 #: ../src/modding/ModUploader.tscn:208
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
-"Una volta reso visibile, ogni oggetto sarà visualizzabile da chiunque"
+"Una volta reso visibile, ciascun oggetto sarà visualizzabile da chiunque"
 
 #: ../src/modding/ModUploader.tscn:209
 msgid "VISIBLE"
@@ -3972,7 +3973,7 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
-msgstr "Rimuovi dati locali"
+msgstr "Rimuovi Dati Locali"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
@@ -3986,11 +3987,11 @@ msgstr "Note sull'Aggiornamento dell'Oggetto"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
-msgstr "Seleziona immagine di anteprima"
+msgstr "Seleziona Immagine di Anteprima"
 
 #: ../src/modding/ModUploader.tscn:336
 msgid "UPLOAD_SUCCEEDED"
-msgstr "Caricamento riuscito"
+msgstr "Caricamento Riuscito"
 
 #: ../src/modding/NewModGUI.cs:169
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
@@ -4010,7 +4011,7 @@ msgstr "Il nome interno dovrebbe iniziare con una lettera maiscola"
 
 #: ../src/modding/NewModGUI.cs:250
 msgid "INTERNAL_NAME_IN_USE"
-msgstr "Esiste già una mod con questo nome interno"
+msgstr "È già presente una mod con questo nome interno"
 
 #: ../src/modding/NewModGUI.cs:269
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
@@ -4022,7 +4023,7 @@ msgstr "Ulteriori controlli hanno rilevato un problema: {0}"
 
 #: ../src/modding/NewModGUI.tscn:35
 msgid "CREATE_NEW_MOD"
-msgstr "Crea una nuova Mod"
+msgstr "Crea una Nuova Mod"
 
 #: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
@@ -4088,7 +4089,7 @@ msgstr "Salvataggio..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
-msgstr "Salvataggio fallito"
+msgstr "Salvataggio non riuscito"
 
 #: ../src/saving/InProgressSave.cs:222
 msgid "ERROR_SAVING"
@@ -4137,7 +4138,7 @@ msgstr "Salvataggio riuscito"
 
 #: ../src/saving/SaveHelper.cs:441
 msgid "SAVING_FAILED"
-msgstr "Salvataggio fallito! Si è verificata un'eccezione"
+msgstr "Salvataggio non riuscito! Si è verificata un'eccezione"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
@@ -4158,12 +4159,12 @@ msgstr "Non valido"
 #: ../src/saving/SaveList.cs:202
 msgid "SAVE_DELETE_WARNING"
 msgstr ""
-"Cancellare questo salvataggio è un'azione irreversibile, sei sicuro di "
-"voler cancellare definitivamente {0}?"
+"Cancellare questo salvataggio è un'azione irreversibile. Sei sicuro di voler "
+"eliminare definitivamente {0}?"
 
 #: ../src/saving/SaveList.tscn:53
 msgid "NO_SAVEGAMES_FOUND"
-msgstr "Nessun salvataggio trovato"
+msgstr "Nessun Salvataggio Trovato"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
@@ -4238,7 +4239,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED"
-msgstr "Aggiornamento del salvataggio fallito"
+msgstr "Aggiornamento del salvataggio non riuscito"
 
 #: ../src/saving/SaveList.tscn:123
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
@@ -4335,7 +4336,7 @@ msgstr "Eliminare i vecchi salvataggi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "NO_SAVE_DIRECTORY"
-msgstr "Cartella dei salvataggi non trovata"
+msgstr "Nessuna cartella dei salvataggi trovata"
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
@@ -4629,7 +4630,7 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
-msgstr "Vedi ora"
+msgstr "Vedi Ora"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

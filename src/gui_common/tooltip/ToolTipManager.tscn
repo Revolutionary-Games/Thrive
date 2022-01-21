@@ -365,7 +365,8 @@ margin_bottom = 189.0
 
 [node name="metabolosome" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
-margin_bottom = 173.0
+margin_right = 500.0
+margin_bottom = 2.0
 DisplayName = "METABOLOSOMES"
 ProcessesDescription = "METABOLOSOMES_PROCESSES_DESCRIPTION"
 Description = "METABOLOSOMES_DESCRIPTION"
@@ -376,6 +377,11 @@ margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer" index="0"]
 margin_bottom = 208.0
+
+[node name="Title" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/Header" index="1"]
+margin_right = 299.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 210, 0 )
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 134.0
@@ -570,6 +576,11 @@ margin_bottom = 220.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer" index="0"]
 margin_bottom = 208.0
+
+[node name="Title" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Header" index="1"]
+margin_right = 349.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 260, 0 )
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 138.0

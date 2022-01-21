@@ -1317,6 +1317,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
         }
 
+        // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object
+        // which may cause occasional background task errors
+        gui.CancelPreviousAutoEvoPrediction();
+
         cachedAutoEvoPredictionSpecies ??= (MicrobeSpecies)editedSpecies.Clone();
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);

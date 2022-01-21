@@ -561,6 +561,14 @@ public class MicrobeHUD : Control
     {
         GD.Print("Move to editor pressed");
 
+        // TODO: find out when this can happen (this happened when a really laggy save was loaded and the editor button
+        // was pressed before the stage fade in fully completed)
+        if (stage.Player == null)
+        {
+            GD.PrintErr("Trying to press editor button while having no player object");
+            return;
+        }
+
         // To prevent being clicked twice
         editorButton.Disabled = true;
 
