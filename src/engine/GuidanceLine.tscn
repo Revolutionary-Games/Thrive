@@ -3,7 +3,5 @@
 [ext_resource path="res://src/engine/GuidanceLine.cs" type="Script" id=1]
 
 [node name="GuidanceLine" type="ImmediateGeometry"]
-pause_mode = 2
-process_priority = 800
 cast_shadow = 0
 script = ExtResource( 1 )

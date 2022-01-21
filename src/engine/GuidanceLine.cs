@@ -59,6 +59,10 @@ public class GuidanceLine : ImmediateGeometry
     {
         base._Ready();
 
+        // Make the line update after any possible code that might update our parameters
+        ProcessPriority = 800;
+        PauseMode = PauseModeEnum.Process;
+
         // This material is needed for SetColor to work at all
         var material = new SpatialMaterial();
         material.VertexColorUseAsAlbedo = true;

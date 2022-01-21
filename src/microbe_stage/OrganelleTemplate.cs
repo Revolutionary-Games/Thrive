@@ -62,7 +62,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     {
         return new OrganelleTemplate(Definition, Position, Orientation, NumberOfTimesMoved)
         {
-            Upgrades = Upgrades,
+            Upgrades = (OrganelleUpgrades)Upgrades?.Clone(),
         };
     }
 }

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 ///   Upgrades for a placed or template organelle
 /// </summary>
-public class OrganelleUpgrades
+public class OrganelleUpgrades : ICloneable
 {
     /// <summary>
     ///   A list of "feature" names that have been unlocked for this organelle. Depends on the organelle components
@@ -15,4 +16,13 @@ public class OrganelleUpgrades
     ///   Organelle type specific upgrade data. Null if not configured
     /// </summary>
     public IComponentSpecificUpgrades CustomUpgradeData { get; set; }
+
+    public object Clone()
+    {
+        return new OrganelleUpgrades
+        {
+            UnlockedFeatures = new List<string>(UnlockedFeatures),
+            CustomUpgradeData = (IComponentSpecificUpgrades)CustomUpgradeData?.Clone(),
+        };
+    }
 }

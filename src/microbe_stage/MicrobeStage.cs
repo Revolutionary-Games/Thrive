@@ -644,11 +644,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player = null;
         Camera.ObjectToFollow = null;
-
-        foreach (var chemoreceptionLine in chemoreceptionLines)
-        {
-            chemoreceptionLine.Visible = false;
-        }
     }
 
     [DeserializedCallbackAllowed]
@@ -740,6 +735,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private void HandlePlayerChemoreceptionDetection(Microbe microbe,
         IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections)
     {
+        if (microbe != Player)
+            GD.PrintErr("Chemoreception data reported for non-player cell");
+
         int currentLineIndex = 0;
         var position = microbe.GlobalTransform.origin;
 
@@ -748,7 +746,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         {
             var line = GetOrCreateGuidanceLine(currentLineIndex++);
 
-            // TODO: should we use threading to parallelize these compound location finds
+            // TODO: should we use threading to parallelize these compound location finds?
             var target = Clouds.FindCompoundNearPoint(position, compound, range, minAmount);
 
             if (target == null)
@@ -798,6 +796,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         if (index >= chemoreceptionLines.Count)
         {
+            // The lines are created here and added as children of the stage because if they were in the microbe
+            // then rotation and it moving cause implementation difficulties
             var line = new GuidanceLine();
             AddChild(line);
             chemoreceptionLines.Add(line);

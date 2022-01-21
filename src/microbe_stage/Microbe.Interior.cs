@@ -142,6 +142,10 @@ public partial class Microbe
         // Unbind if a colony's master cell removed its binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
             Colony.RemoveFromColony(this);
+
+        // Make chemoreception update happen immediately in case the settings changed so that new information is
+        // used earlier
+        timeUntilChemoreceptionUpdate = 0;
     }
 
     /// <summary>

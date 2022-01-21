@@ -88,4 +88,15 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
     public float SearchRange { get; set; }
     public float SearchAmount { get; set; }
     public Color LineColour { get; set; }
+
+    public object Clone()
+    {
+        return new ChemoreceptorUpgrades
+        {
+            TargetCompound = TargetCompound,
+            SearchRange = SearchRange,
+            SearchAmount = SearchAmount,
+            LineColour = LineColour,
+        };
+    }
 }
