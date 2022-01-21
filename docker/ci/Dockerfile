@@ -1,4 +1,4 @@
-FROM fedora:34
+FROM fedora:35
 
 RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config git git-lfs \
     p7zip tar unzip xz gcc make wget dotnet-sdk-5.0 && dnf clean all
