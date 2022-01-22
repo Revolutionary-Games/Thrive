@@ -410,12 +410,12 @@ public class CustomDialog : Popup, ICustomPopup
                 case DragType.ResizeRight:
                     cursor = CursorShape.Hsize;
                     break;
-                case (int)DragType.ResizeTop + DragType.ResizeLeft:
-                case (int)DragType.ResizeBottom + DragType.ResizeRight:
+                case DragType.ResizeTop | DragType.ResizeLeft:
+                case DragType.ResizeBottom | DragType.ResizeRight:
                     cursor = CursorShape.Fdiagsize;
                     break;
-                case (int)DragType.ResizeTop + DragType.ResizeRight:
-                case (int)DragType.ResizeBottom + DragType.ResizeLeft:
+                case DragType.ResizeTop | DragType.ResizeRight:
+                case DragType.ResizeBottom | DragType.ResizeLeft:
                     cursor = CursorShape.Bdiagsize;
                     break;
             }
