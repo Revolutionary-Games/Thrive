@@ -226,6 +226,12 @@ public class TweakedColourPicker : ColorPicker
         PresetsVisible = presetsVisible;
         OnColourChanged(Color);
 
+        // Disable value bar scroll
+        sliderROrH.Scrollable = false;
+        sliderGOrS.Scrollable = false;
+        sliderBOrV.Scrollable = false;
+        sliderA.Scrollable = false;
+
         // Load presets.
         if (PresetsStorage.TryGetValue(PresetGroup, out groupStorage))
         {
