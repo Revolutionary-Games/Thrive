@@ -33,6 +33,7 @@ PckNamePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContain
 ModAssemblyPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModAssemblyContainer/ModAssembly")
 AssemblyModClassPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/AssemblyModClass")
 DependenciesPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModDependencies")
+RequiredModsPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModRequiredMods")
 LoadBeforePath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadBefore")
 LoadAfterPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModLoadAfter")
 IncompatibleModsPath = NodePath("CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form/ModIncompatibleMods")
@@ -64,13 +65,13 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="CustomDialog/ScrollContainer"]
 margin_right = 544.0
-margin_bottom = 1681.0
+margin_bottom = 1751.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer"]
 margin_right = 534.0
-margin_bottom = 1681.0
+margin_bottom = 1751.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -100,7 +101,7 @@ size_flags_horizontal = 3
 [node name="Form" type="VBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 38.0
 margin_right = 534.0
-margin_bottom = 1616.0
+margin_bottom = 1686.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -563,14 +564,14 @@ margin_right = 534.0
 margin_bottom = 1296.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label20" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label18" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1300.0
 margin_right = 534.0
 margin_bottom = 1322.0
 custom_fonts/font = ExtResource( 3 )
-text = "MOD_LOAD_BEFORE"
+text = "MOD_REQUIRED_MODS"
 
-[node name="ModLoadBefore" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="ModRequiredMods" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1326.0
 margin_right = 534.0
 margin_bottom = 1357.0
@@ -581,20 +582,20 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer18" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer21" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1361.0
 margin_right = 534.0
 margin_bottom = 1366.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label21" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label20" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1370.0
 margin_right = 534.0
 margin_bottom = 1392.0
 custom_fonts/font = ExtResource( 3 )
-text = "MOD_LOAD_AFTER"
+text = "MOD_LOAD_BEFORE"
 
-[node name="ModLoadAfter" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="ModLoadBefore" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1396.0
 margin_right = 534.0
 margin_bottom = 1427.0
@@ -605,20 +606,20 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer19" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer18" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1431.0
 margin_right = 534.0
 margin_bottom = 1436.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label19" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label21" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1440.0
 margin_right = 534.0
 margin_bottom = 1462.0
 custom_fonts/font = ExtResource( 3 )
-text = "MOD_INCOMPATIBLE_MODS"
+text = "MOD_LOAD_AFTER"
 
-[node name="ModIncompatibleMods" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="ModLoadAfter" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1466.0
 margin_right = 534.0
 margin_bottom = 1497.0
@@ -629,23 +630,47 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer20" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Spacer19" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1501.0
 margin_right = 534.0
 margin_bottom = 1506.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label22" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+[node name="Label19" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
 margin_top = 1510.0
 margin_right = 534.0
 margin_bottom = 1532.0
 custom_fonts/font = ExtResource( 3 )
+text = "MOD_INCOMPATIBLE_MODS"
+
+[node name="ModIncompatibleMods" type="LineEdit" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1536.0
+margin_right = 534.0
+margin_bottom = 1567.0
+size_flags_horizontal = 3
+text = "ModName"
+max_length = 200
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer20" type="Control" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1571.0
+margin_right = 534.0
+margin_bottom = 1576.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label22" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
+margin_top = 1580.0
+margin_right = 534.0
+margin_bottom = 1602.0
+custom_fonts/font = ExtResource( 3 )
 text = "MOD_CONFIG_FILE"
 
 [node name="ModConfigContainer" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer/Form"]
-margin_top = 1536.0
+margin_top = 1606.0
 margin_right = 534.0
-margin_bottom = 1578.0
+margin_bottom = 1648.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -677,16 +702,16 @@ __meta__ = {
 }
 
 [node name="Error" type="Label" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 1620.0
+margin_top = 1690.0
 margin_right = 534.0
-margin_bottom = 1645.0
+margin_bottom = 1715.0
 autowrap = true
 max_lines_visible = 5
 
 [node name="BottomButtons" type="HBoxContainer" parent="CustomDialog/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 1649.0
+margin_top = 1719.0
 margin_right = 534.0
-margin_bottom = 1681.0
+margin_bottom = 1751.0
 size_flags_horizontal = 3
 alignment = 1
 

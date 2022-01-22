@@ -80,7 +80,8 @@ GalleryRightButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSpli
 MoveModUpButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveUpButton")
 MoveModDownButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar/OrderButtonContainer/MoveDownButton")
 ResetButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/Reset")
-DependencyButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/DependencyButton")
+DependencyButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer/DependencyButton")
+RequiredModsButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer/RequiredModsButton")
 IncompatibleButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/IncompatibleButton")
 LoadOrderButtonPath = NodePath("MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/LoadOrderButton")
 CheckButtonPath = NodePath("MainMarginContainer/VBoxContainer/ButtonContainer/Check")
@@ -105,6 +106,7 @@ FullInfoPckNamePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxCo
 FullInfoModAssemblyPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModAssembly")
 FullInfoAssemblyModClassPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/AssemblyModClass")
 FullInfoDependenciesPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModDependencies")
+FullInfoRequiredModsPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModRequiredMods")
 FullInfoLoadBeforePath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModLoadBefore")
 FullInfoLoadAfterPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModLoadAfter")
 FullInfoIncompatibleModsPath = NodePath("ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer/ModIncompatibleMods")
@@ -146,16 +148,16 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMarginContainer"]
 margin_left = 37.0
 margin_top = 20.0
-margin_right = 1298.0
+margin_right = 1478.0
 margin_bottom = 683.0
 
 [node name="InfoBoxSplit" type="VSplitContainer" parent="MainMarginContainer/VBoxContainer"]
-margin_right = 1261.0
+margin_right = 1441.0
 margin_bottom = 624.0
 size_flags_vertical = 3
 
 [node name="ModContainer" type="TabContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit"]
-margin_right = 1261.0
+margin_right = 1441.0
 margin_bottom = 306.0
 size_flags_vertical = 3
 custom_colors/font_color_bg = Color( 1, 1, 1, 1 )
@@ -180,21 +182,21 @@ custom_constants/margin_bottom = 5
 [node name="LoaderContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader"]
 margin_left = 15.0
 margin_top = 5.0
-margin_right = 1244.0
+margin_right = 1424.0
 margin_bottom = 264.0
 
 [node name="ItemListContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer"]
-margin_right = 1229.0
+margin_right = 1409.0
 margin_bottom = 200.0
 size_flags_vertical = 3
 
 [node name="UnloadedContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer"]
-margin_right = 537.0
+margin_right = 627.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 
 [node name="UnloadedModsLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/UnloadedContainer"]
-margin_right = 537.0
+margin_right = 627.0
 margin_bottom = 25.0
 text = "AVAILABLE_MODS"
 __meta__ = {
@@ -203,7 +205,7 @@ __meta__ = {
 
 [node name="UnloadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/UnloadedContainer"]
 margin_top = 29.0
-margin_right = 537.0
+margin_right = 627.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -214,8 +216,8 @@ custom_styles/bg = SubResource( 1 )
 fixed_icon_size = Vector2( 32, 32 )
 
 [node name="CenterBar" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer"]
-margin_left = 541.0
-margin_right = 687.0
+margin_left = 631.0
+margin_right = 777.0
 margin_bottom = 200.0
 custom_constants/separation = 15
 alignment = 1
@@ -227,7 +229,7 @@ margin_bottom = 60.0
 text = "LEFT_ARROW"
 expand_icon = true
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="OrderButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/CenterBar"]
@@ -254,17 +256,17 @@ margin_right = 146.0
 margin_bottom = 175.0
 text = "RIGHT_ARROW"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="LoadedContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer"]
-margin_left = 691.0
-margin_right = 1229.0
+margin_left = 781.0
+margin_right = 1409.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 
 [node name="LoadedModsLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/LoadedContainer"]
-margin_right = 538.0
+margin_right = 628.0
 margin_bottom = 25.0
 text = "ENABLED_MODS"
 __meta__ = {
@@ -273,7 +275,7 @@ __meta__ = {
 
 [node name="LoadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/LoadedContainer"]
 margin_top = 29.0
-margin_right = 538.0
+margin_right = 628.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -288,7 +290,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer"]
 margin_top = 204.0
-margin_right = 1229.0
+margin_right = 1409.0
 margin_bottom = 259.0
 mouse_filter = 1
 custom_constants/margin_top = 10
@@ -296,40 +298,41 @@ custom_constants/margin_bottom = 10
 
 [node name="ButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer"]
 margin_top = 10.0
-margin_right = 1229.0
+margin_right = 1409.0
 margin_bottom = 45.0
+custom_constants/separation = 10
 alignment = 1
 
 [node name="EnableAll" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer"]
-margin_left = 404.0
-margin_right = 534.0
+margin_left = 488.0
+margin_right = 618.0
 margin_bottom = 35.0
 text = "ENABLE_ALL"
 
 [node name="OpenFolder" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer"]
-margin_left = 538.0
-margin_right = 684.0
+margin_left = 628.0
+margin_right = 774.0
 margin_bottom = 35.0
 text = "OPEN_FOLDER"
 
 [node name="DisableAll" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/ButtonContainer"]
-margin_left = 688.0
-margin_right = 824.0
+margin_left = 784.0
+margin_right = 920.0
 margin_bottom = 35.0
 text = "DISABLE_ALL"
 
 [node name="CheckBoxContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer"]
 margin_top = 10.0
-margin_right = 1229.0
+margin_right = 1409.0
 margin_bottom = 45.0
 mouse_filter = 2
 custom_constants/separation = 8
 alignment = 2
 
 [node name="Label" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/CheckBoxContainer"]
-margin_left = 1014.0
+margin_left = 1194.0
 margin_top = 5.0
-margin_right = 1205.0
+margin_right = 1385.0
 margin_bottom = 30.0
 grow_horizontal = 2
 mouse_filter = 1
@@ -337,8 +340,8 @@ text = "ONESHOT_LOADING"
 align = 2
 
 [node name="OneshotLoadingCheckBox" type="CheckBox" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/MarginContainer/CheckBoxContainer"]
-margin_left = 1213.0
-margin_right = 1229.0
+margin_left = 1393.0
+margin_right = 1409.0
 margin_bottom = 35.0
 flat = true
 
@@ -358,11 +361,11 @@ custom_constants/margin_bottom = 5
 [node name="HSplitContainer" type="HSplitContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1254.0
+margin_right = 1434.0
 margin_bottom = 264.0
 
 [node name="ErrorModItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer"]
-margin_right = 618.0
+margin_right = 708.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
@@ -375,8 +378,8 @@ __meta__ = {
 }
 
 [node name="ErrorInfoPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer"]
-margin_left = 630.0
-margin_right = 1249.0
+margin_left = 720.0
+margin_right = 1429.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
 
@@ -432,7 +435,7 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1254.0
+margin_right = 1434.0
 margin_bottom = 264.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -517,14 +520,14 @@ __meta__ = {
 
 [node name="ModInfoPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit"]
 margin_top = 318.0
-margin_right = 1261.0
+margin_right = 1441.0
 margin_bottom = 624.0
 size_flags_vertical = 3
 
 [node name="InfoBox" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 1260.0
+margin_right = 1440.0
 margin_bottom = 305.0
 custom_constants/margin_right = 12
 custom_constants/margin_top = 12
@@ -534,12 +537,12 @@ custom_constants/margin_bottom = 12
 [node name="ModInfoContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox"]
 margin_left = 12.0
 margin_top = 12.0
-margin_right = 1247.0
+margin_right = 1427.0
 margin_bottom = 292.0
 custom_constants/separation = 10
 
 [node name="MainModInfoContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
-margin_right = 1235.0
+margin_right = 1415.0
 margin_bottom = 191.0
 
 [node name="PreviewGallery" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
@@ -819,7 +822,7 @@ __meta__ = {
 
 [node name="InfoButtons" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer"]
 margin_left = 995.0
-margin_right = 1235.0
+margin_right = 1415.0
 margin_bottom = 191.0
 
 [node name="VersionSeperator" type="VSeparator" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons"]
@@ -832,21 +835,35 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons"]
 margin_left = 29.0
-margin_right = 240.0
+margin_right = 420.0
 margin_bottom = 191.0
 alignment = 1
 
-[node name="DependencyButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
-margin_right = 211.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
+margin_right = 391.0
 margin_bottom = 35.0
-text = "DEPENDENCIES"
+alignment = 1
+
+[node name="DependencyButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer"]
+margin_right = 214.0
+margin_bottom = 35.0
+text = "MOD_DEPENDENCIES"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="RequiredModsButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer"]
+margin_left = 218.0
+margin_right = 391.0
+margin_bottom = 35.0
+text = "REQUIRED_MODS"
 __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
 [node name="IncompatibleButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
 margin_top = 39.0
-margin_right = 211.0
+margin_right = 391.0
 margin_bottom = 74.0
 text = "INCOMPATIBLE_WITH"
 __meta__ = {
@@ -855,7 +872,7 @@ __meta__ = {
 
 [node name="LoadOrderButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
 margin_top = 78.0
-margin_right = 211.0
+margin_right = 391.0
 margin_bottom = 113.0
 text = "LOAD_ORDER"
 __meta__ = {
@@ -864,7 +881,7 @@ __meta__ = {
 
 [node name="ModUrl" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
 margin_top = 117.0
-margin_right = 211.0
+margin_right = 391.0
 margin_bottom = 152.0
 text = "OPEN_MOD_URL"
 __meta__ = {
@@ -873,7 +890,7 @@ __meta__ = {
 
 [node name="MoreInfo" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
 margin_top = 156.0
-margin_right = 211.0
+margin_right = 391.0
 margin_bottom = 191.0
 text = "MORE_INFO"
 __meta__ = {
@@ -882,7 +899,7 @@ __meta__ = {
 
 [node name="DescriptionSeperator" type="HSeparator" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
 margin_top = 201.0
-margin_right = 1235.0
+margin_right = 1415.0
 margin_bottom = 206.0
 custom_constants/separation = 5
 custom_styles/separator = SubResource( 3 )
@@ -892,7 +909,7 @@ __meta__ = {
 
 [node name="ModInfoDescription" type="RichTextLabel" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
 margin_top = 216.0
-margin_right = 1235.0
+margin_right = 1415.0
 margin_bottom = 280.0
 focus_mode = 2
 size_flags_horizontal = 3
@@ -927,14 +944,14 @@ __meta__ = {
 
 [node name="ButtonContainer" type="HBoxContainer" parent="MainMarginContainer/VBoxContainer"]
 margin_top = 628.0
-margin_right = 1261.0
+margin_right = 1441.0
 margin_bottom = 663.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="Reset" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 168.0
-margin_right = 240.0
+margin_left = 258.0
+margin_right = 330.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "RESET"
@@ -943,73 +960,73 @@ __meta__ = {
 }
 
 [node name="Check" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 260.0
-margin_right = 337.0
+margin_left = 350.0
+margin_right = 427.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 hint_tooltip = "Checks if the mods being loaded will not cause errors."
 text = "CHECK"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="Refresh" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 357.0
-margin_right = 455.0
+margin_left = 447.0
+margin_right = 545.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "REFRESH"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="ApplyChanges" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 475.0
-margin_right = 651.0
+margin_left = 565.0
+margin_right = 741.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 hint_tooltip = "MOD_LOAD_UNLOAD_CAVEATS"
 text = "APPLY_CHANGES"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="VSeparator" type="VSeparator" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 671.0
-margin_right = 675.0
+margin_left = 761.0
+margin_right = 765.0
 margin_bottom = 35.0
 
 [node name="WorkshopBrowse" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 695.0
-margin_right = 908.0
+margin_left = 785.0
+margin_right = 998.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "BROWSE_WORKSHOP"
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="Upload" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 928.0
-margin_right = 1017.0
+margin_left = 1018.0
+margin_right = 1107.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "UPLOAD"
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="New" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 1037.0
-margin_right = 1092.0
+margin_left = 1127.0
+margin_right = 1182.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "NEW"
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="NewModGUI" parent="." instance=ExtResource( 6 )]
@@ -1045,7 +1062,7 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ModFullInfo/VBoxContainer/ScrollContainer"]
 margin_right = 550.0
-margin_bottom = 1432.0
+margin_bottom = 1499.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -1442,13 +1459,13 @@ margin_right = 544.0
 margin_bottom = 1173.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label19" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label23" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1177.0
 margin_right = 544.0
 margin_bottom = 1202.0
-text = "MOD_LOAD_BEFORE"
+text = "MOD_REQUIRED_MODS"
 
-[node name="ModLoadBefore" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ModRequiredMods" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1206.0
 margin_right = 544.0
 margin_bottom = 1231.0
@@ -1458,19 +1475,19 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer18" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer22" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1235.0
 margin_right = 544.0
 margin_bottom = 1240.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label20" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label19" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1244.0
 margin_right = 544.0
 margin_bottom = 1269.0
-text = "MOD_LOAD_AFTER"
+text = "MOD_LOAD_BEFORE"
 
-[node name="ModLoadAfter" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ModLoadBefore" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1273.0
 margin_right = 544.0
 margin_bottom = 1298.0
@@ -1480,19 +1497,19 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer19" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer18" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1302.0
 margin_right = 544.0
 margin_bottom = 1307.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label21" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label20" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1311.0
 margin_right = 544.0
 margin_bottom = 1336.0
-text = "MOD_INCOMPATIBLE_MODS"
+text = "MOD_LOAD_AFTER"
 
-[node name="ModIncompatibleMods" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ModLoadAfter" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1340.0
 margin_right = 544.0
 margin_bottom = 1365.0
@@ -1502,22 +1519,44 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
-[node name="Spacer20" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Spacer19" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1369.0
 margin_right = 544.0
 margin_bottom = 1374.0
 rect_min_size = Vector2( 0, 5 )
 
-[node name="Label22" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label21" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1378.0
 margin_right = 544.0
 margin_bottom = 1403.0
-text = "MOD_CONFIG_FILE"
+text = "MOD_INCOMPATIBLE_MODS"
 
-[node name="ModConfigFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="ModIncompatibleMods" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 1407.0
 margin_right = 544.0
 margin_bottom = 1432.0
+text = "ModName"
+autowrap = true
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Spacer20" type="HSeparator" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1436.0
+margin_right = 544.0
+margin_bottom = 1441.0
+rect_min_size = Vector2( 0, 5 )
+
+[node name="Label22" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1445.0
+margin_right = 544.0
+margin_bottom = 1470.0
+text = "MOD_CONFIG_FILE"
+
+[node name="ModConfigFile" type="Label" parent="ModFullInfo/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1474.0
+margin_right = 544.0
+margin_bottom = 1499.0
 text = "ModName"
 autowrap = true
 __meta__ = {
@@ -1611,7 +1650,8 @@ __meta__ = {
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer/ResetConfigButton" to="." method="OnResetConfigButtonPressed"]
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/PreviewGallery/GalleryControllerContainer/GalleryLeftArrow" to="." method="GalleryLeftArrowPressed"]
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/PreviewGallery/GalleryControllerContainer/GalleryRightArrow" to="." method="GalleryRightArrowPressed"]
-[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/DependencyButton" to="." method="OnDependencyPressed"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer/DependencyButton" to="." method="OnDependencyPressed"]
+[connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer/RequiredModsButton" to="." method="OnRequiredModsPressed"]
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/IncompatibleButton" to="." method="OnIncompatiblePressed"]
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/LoadOrderButton" to="." method="OnLoadOrderPressed"]
 [connection signal="pressed" from="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/ModUrl" to="." method="OpenInfoUrlPressed"]

@@ -93,6 +93,13 @@ public class ModInfo
     public List<string> Dependencies { get; set; }
 
     /// <summary>
+    ///   Mods that is required for this one to load.
+    ///   Like Dependencies except the load order does not matter.
+    /// </summary>
+    [JsonProperty("Required Mods")]
+    public List<string> RequiredMods { get; set; }
+
+    /// <summary>
     ///   Mods that can not be loaded with this one.
     /// </summary>
     [JsonProperty("Incompatible Mods")]

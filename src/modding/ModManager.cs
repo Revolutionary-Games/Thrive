@@ -99,6 +99,9 @@ public class ModManager : Control
     public NodePath DependencyButtonPath;
 
     [Export]
+    public NodePath RequiredModsButtonPath;
+
+    [Export]
     public NodePath IncompatibleButtonPath;
 
     [Export]
@@ -169,6 +172,9 @@ public class ModManager : Control
 
     [Export]
     public NodePath FullInfoDependenciesPath;
+
+    [Export]
+    public NodePath FullInfoRequiredModsPath;
 
     [Export]
     public NodePath FullInfoLoadBeforePath;
@@ -266,6 +272,7 @@ public class ModManager : Control
     private Button resetButton;
     private Button moveModUpButton;
     private Button dependencyButton;
+    private Button requiredModsButton;
     private Button incompatibleButton;
     private Button loadOrderButton;
     private Button checkButton;
@@ -315,6 +322,7 @@ public class ModManager : Control
     private Label fullInfoModAssembly;
     private Label fullInfoAssemblyModClass;
     private Label fullInfoDependencies;
+    private Label fullInfoRequiredMods;
     private Label fullInfoLoadBefore;
     private Label fullInfoLoadAfter;
     private Label fullInfoIncompatibleMods;
@@ -519,6 +527,7 @@ public class ModManager : Control
         moveModDownButton = GetNode<Button>(MoveModDownButtonPath);
         resetButton = GetNode<Button>(ResetButtonPath);
         dependencyButton = GetNode<Button>(DependencyButtonPath);
+        requiredModsButton = GetNode<Button>(RequiredModsButtonPath);
         incompatibleButton = GetNode<Button>(IncompatibleButtonPath);
         loadOrderButton = GetNode<Button>(LoadOrderButtonPath);
         checkButton = GetNode<Button>(CheckButtonPath);
@@ -569,6 +578,7 @@ public class ModManager : Control
         fullInfoModAssembly = GetNode<Label>(FullInfoModAssemblyPath);
         fullInfoAssemblyModClass = GetNode<Label>(FullInfoAssemblyModClassPath);
         fullInfoDependencies = GetNode<Label>(FullInfoDependenciesPath);
+        fullInfoRequiredMods = GetNode<Label>(FullInfoRequiredModsPath);
         fullInfoLoadBefore = GetNode<Label>(FullInfoLoadBeforePath);
         fullInfoLoadAfter = GetNode<Label>(FullInfoLoadAfterPath);
         fullInfoIncompatibleMods = GetNode<Label>(FullInfoIncompatibleModsPath);
@@ -995,6 +1005,9 @@ public class ModManager : Control
             openModInfoButton.Disabled = false;
 
             dependencyButton.Visible = selectedMod.Info.Dependencies != null && selectedMod.Info.Dependencies.Count > 0;
+            requiredModsButton.Visible =
+                selectedMod.Info.RequiredMods != null && selectedMod.Info.RequiredMods.Count > 0;
+
             incompatibleButton.Visible =
                 selectedMod.Info.IncompatibleMods != null && selectedMod.Info.IncompatibleMods.Count > 0;
             loadOrderButton.Visible = selectedMod.Info.LoadBefore != null || selectedMod.Info.LoadAfter != null;
@@ -1541,12 +1554,41 @@ public class ModManager : Control
         {
             foreach (string currentDependency in currentModDependencies)
             {
-                infoText += "* " + currentDependency + "\n";
+                if (!string.IsNullOrWhiteSpace(currentDependency))
+                {
+                    infoText += "* " + currentDependency + "\n";
+                }
             }
         }
         else
         {
             infoText += TranslationServer.Translate("NO_MOD_DEPENDENCIES");
+        }
+
+        otherModInfoDialog.DialogText = infoText;
+        otherModInfoDialog.PopupCenteredShrink();
+    }
+
+    private void OnRequiredModsPressed()
+    {
+        otherModInfoDialog.WindowTitle = TranslationServer.Translate("MOD_REQUIRED_MODS");
+        var infoText = string.Empty;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        var currentModRequiredMods = selectedMod.Info.RequiredMods;
+        if (currentModRequiredMods != null)
+        {
+            foreach (string currentRequiredMod in currentModRequiredMods)
+            {
+                if (!string.IsNullOrWhiteSpace(currentRequiredMod))
+                {
+                    infoText += "* " + currentRequiredMod + "\n";
+                }
+            }
+        }
+        else
+        {
+            infoText += TranslationServer.Translate("NO_REQUIRED_MODS");
         }
 
         otherModInfoDialog.DialogText = infoText;
@@ -1564,7 +1606,10 @@ public class ModManager : Control
         {
             foreach (string currentIncompatibleMod in currentModIncompatibleMods)
             {
-                infoText += "* " + currentIncompatibleMod + "\n";
+                if (!string.IsNullOrWhiteSpace(currentIncompatibleMod))
+                {
+                    infoText += "* " + currentIncompatibleMod + "\n";
+                }
             }
         }
         else
@@ -1591,7 +1636,10 @@ public class ModManager : Control
                 infoText += TranslationServer.Translate("MOD_LOAD_AFTER") + "\n";
                 foreach (string currentLoadAfterMod in currentModLoadAfter)
                 {
-                    infoText += "* " + currentLoadAfterMod + "\n";
+                    if (!string.IsNullOrWhiteSpace(currentLoadAfterMod))
+                    {
+                        infoText += "* " + currentLoadAfterMod + "\n";
+                    }
                 }
             }
 
@@ -1606,7 +1654,10 @@ public class ModManager : Control
                 infoText += TranslationServer.Translate("MOD_LOAD_BEFORE") + "\n";
                 foreach (string currentLoadBeforeMod in currentModLoadBefore)
                 {
-                    infoText += "* " + currentLoadBeforeMod + "\n";
+                    if (!string.IsNullOrWhiteSpace(currentLoadBeforeMod))
+                    {
+                        infoText += "* " + currentLoadBeforeMod + "\n";
+                    }
                 }
             }
         }
@@ -1906,6 +1957,9 @@ public class ModManager : Control
         string fullInfoDependenciesText = string.Empty;
         info.Dependencies?.ForEach(s => fullInfoDependenciesText += "* " + s + "\n");
         fullInfoDependencies.Text = fullInfoDependenciesText;
+        string fullInfoRequiredModsText = string.Empty;
+        info.RequiredMods?.ForEach(s => fullInfoRequiredModsText += "* " + s + "\n");
+        fullInfoRequiredMods.Text = fullInfoRequiredModsText;
         string fullInfoLoadBeforeText = string.Empty;
         info.LoadBefore?.ForEach(s => fullInfoLoadBeforeText += "* " + s + "\n");
         fullInfoLoadBefore.Text = fullInfoLoadBeforeText;
@@ -2006,6 +2060,20 @@ public class ModManager : Control
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES"), offendingMod.Name,
                     otherModName);
                 result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
+                break;
+            case (int)ModLoader.CheckErrorStatus.RequiredModsNotFound:
+                if (checkResult.OtherModIndex <= offendingMod.RequiredMods.Count)
+                {
+                    otherModName = offendingMod.RequiredMods[checkResult.OtherModIndex];
+                }
+                else
+                {
+                    otherModName = TranslationServer.Translate("UNKNOWN_MOD");
+                }
+
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS"), offendingMod.Name,
+                    otherModName);
+                result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX");
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidDependencyOrder:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER"), offendingMod.Name,

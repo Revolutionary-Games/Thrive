@@ -39,6 +39,7 @@ public class ModLoader : Node
     /// </summary>
     public enum CheckErrorStatus
     {
+        RequiredModsNotFound = -7,
         InvalidLoadOrderAfter = -6,
         InvalidLoadOrderBefore = -5,
         IncompatibleMod = -4,
@@ -248,26 +249,50 @@ public class ModLoader : Node
             var dependencyIndex = 0;
             foreach (string dependencyName in currentModInfo.Dependencies)
             {
-                if (modDictionary.ContainsKey(dependencyName))
+                if (!string.IsNullOrWhiteSpace(dependencyName))
                 {
-                    // See if the dependency is loaded before this mod
-                    if (currentMod.LoadPosition < modDictionary[dependencyName].LoadPosition)
+                    if (modDictionary.ContainsKey(dependencyName))
+                    {
+                        // See if the dependency is loaded before this mod
+                        if (currentMod.LoadPosition < modDictionary[dependencyName].LoadPosition)
+                        {
+                            return new[]
+                            {
+                                (int)CheckErrorStatus.InvalidDependencyOrder,
+                                modDictionary[dependencyName].LoadPosition,
+                            };
+                        }
+                    }
+                    else
                     {
                         return new[]
                         {
-                            (int)CheckErrorStatus.InvalidDependencyOrder, modDictionary[dependencyName].LoadPosition,
+                            (int)CheckErrorStatus.DependencyNotFound, dependencyIndex,
                         };
                     }
                 }
-                else
-                {
-                    return new[]
-                    {
-                        (int)CheckErrorStatus.DependencyNotFound, dependencyIndex,
-                    };
-                }
 
                 ++dependencyIndex;
+            }
+        }
+
+        if (currentModInfo.RequiredMods != null)
+        {
+            var requiredModsIndex = 0;
+            foreach (string requiredModsName in currentModInfo.RequiredMods)
+            {
+                if (!string.IsNullOrWhiteSpace(requiredModsName))
+                {
+                    if (!modDictionary.ContainsKey(requiredModsName))
+                    {
+                        return new[]
+                        {
+                            (int)CheckErrorStatus.RequiredModsNotFound, requiredModsIndex,
+                        };
+                    }
+                }
+
+                ++requiredModsIndex;
             }
         }
 
@@ -275,12 +300,15 @@ public class ModLoader : Node
         {
             foreach (string incompatibleName in currentModInfo.IncompatibleMods)
             {
-                if (modDictionary.ContainsKey(incompatibleName))
+                if (!string.IsNullOrWhiteSpace(incompatibleName))
                 {
-                    return new[]
+                    if (modDictionary.ContainsKey(incompatibleName))
                     {
-                        (int)CheckErrorStatus.IncompatibleMod, modDictionary[incompatibleName].LoadPosition,
-                    };
+                        return new[]
+                        {
+                            (int)CheckErrorStatus.IncompatibleMod, modDictionary[incompatibleName].LoadPosition,
+                        };
+                    }
                 }
             }
         }
@@ -289,14 +317,18 @@ public class ModLoader : Node
         {
             foreach (string loadBeforeName in currentModInfo.LoadBefore)
             {
-                if (modDictionary.ContainsKey(loadBeforeName))
+                if (!string.IsNullOrWhiteSpace(loadBeforeName))
                 {
-                    if (currentMod.LoadPosition > modDictionary[loadBeforeName].LoadPosition)
+                    if (modDictionary.ContainsKey(loadBeforeName))
                     {
-                        return new[]
+                        if (currentMod.LoadPosition > modDictionary[loadBeforeName].LoadPosition)
                         {
-                            (int)CheckErrorStatus.InvalidLoadOrderBefore, modDictionary[loadBeforeName].LoadPosition,
-                        };
+                            return new[]
+                            {
+                                (int)CheckErrorStatus.InvalidLoadOrderBefore,
+                                modDictionary[loadBeforeName].LoadPosition,
+                            };
+                        }
                     }
                 }
             }
@@ -306,14 +338,18 @@ public class ModLoader : Node
         {
             foreach (string loadAfterName in currentModInfo.LoadAfter)
             {
-                if (modDictionary.ContainsKey(loadAfterName))
+                if (!string.IsNullOrWhiteSpace(loadAfterName))
                 {
-                    if (currentMod.LoadPosition < modDictionary[loadAfterName].LoadPosition)
+                    if (modDictionary.ContainsKey(loadAfterName))
                     {
-                        return new[]
+                        if (currentMod.LoadPosition < modDictionary[loadAfterName].LoadPosition)
                         {
-                            (int)CheckErrorStatus.InvalidLoadOrderAfter, modDictionary[loadAfterName].LoadPosition,
-                        };
+                            return new[]
+                            {
+                                (int)CheckErrorStatus.InvalidLoadOrderAfter,
+                                modDictionary[loadAfterName].LoadPosition,
+                            };
+                        }
                     }
                 }
             }
