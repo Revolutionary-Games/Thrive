@@ -226,7 +226,9 @@ public class TweakedColourPicker : ColorPicker
         PresetsVisible = presetsVisible;
         OnColourChanged(Color);
 
-        // Disable value bar scroll
+        // Disable value bar scroll with the mouse, as the colour pickers are often in scrollable containers and
+        // this would otherwise be problematic. Perhaps in the future we should have this be configurable with an
+        // export property?
         sliderROrH.Scrollable = false;
         sliderGOrS.Scrollable = false;
         sliderBOrV.Scrollable = false;
