@@ -146,8 +146,7 @@ public class CustomDialog : Popup, ICustomPopup
     public override void _EnterTree()
     {
         // To make popup rect readjustment react to window resizing
-        if (!GetTree().Root.IsConnected("size_changed", this, nameof(OnViewportResized)))
-            GetTree().Root.Connect("size_changed", this, nameof(OnViewportResized));
+        GetTree().Root.Connect("size_changed", this, nameof(OnViewportResized));
 
         customPanel = GetStylebox("custom_panel", "WindowDialog");
         titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
@@ -161,6 +160,15 @@ public class CustomDialog : Popup, ICustomPopup
 
         SetupCloseButton();
         UpdateChildRects();
+
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        GetTree().Root.Disconnect("size_changed", this, nameof(OnViewportResized));
+
+        base._ExitTree();
     }
 
     public override void _Notification(int what)
@@ -417,6 +425,11 @@ public class CustomDialog : Popup, ICustomPopup
             MouseDefaultCursorShape = cursor;
     }
 
+    private Vector2 GetScreenSize()
+    {
+        return GetViewport().GetVisibleRect().Size;
+    }
+
     /// <summary>
     ///   Updates the window position and size while in a dragging operation.
     /// </summary>
@@ -436,14 +449,14 @@ public class CustomDialog : Popup, ICustomPopup
         else
         {
             // Handle border dragging
-            var screenSize = GetViewport().GetVisibleRect().Size;
+            var screenSize = GetScreenSize();
 
             if (dragType.HasFlag(DragType.ResizeTop))
             {
                 var bottom = RectPosition.y + RectSize.y;
                 var maxY = bottom - minSize.y;
 
-                newPosition.y = Mathf.Min(Mathf.Max(globalMousePos.y - dragOffset.y, titleBarHeight), maxY);
+                newPosition.y = Mathf.Clamp(globalMousePos.y - dragOffset.y, titleBarHeight, maxY);
                 newSize.y = bottom - newPosition.y;
             }
             else if (dragType.HasFlag(DragType.ResizeBottom))
@@ -456,7 +469,7 @@ public class CustomDialog : Popup, ICustomPopup
                 var right = RectPosition.x + RectSize.x;
                 var maxX = right - minSize.x;
 
-                newPosition.x = Mathf.Min(Mathf.Max(globalMousePos.x - dragOffset.x, 0), maxX);
+                newPosition.x = Mathf.Clamp(globalMousePos.x - dragOffset.x, 0, maxX);
                 newSize.x = right - newPosition.x;
             }
             else if (dragType.HasFlag(DragType.ResizeRight))
@@ -477,19 +490,18 @@ public class CustomDialog : Popup, ICustomPopup
     /// </summary>
     private void FixRect()
     {
-        var screenSize = GetViewport()?.GetVisibleRect().Size;
-        var screenSizeValue = screenSize.GetValueOrDefault();
+        var screenSize = GetScreenSize();
 
         // Clamp position to ensure window stays inside the screen
         RectPosition = new Vector2(
-            Mathf.Clamp(RectPosition.x, 0, screenSizeValue.x - RectSize.x),
-            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSizeValue.y - RectSize.y));
+            Mathf.Clamp(RectPosition.x, 0, screenSize.x - RectSize.x),
+            Mathf.Clamp(RectPosition.y, titleBarHeight, screenSize.y - RectSize.y));
 
         if (Resizable)
         {
             // Size can't be bigger than the viewport
             RectSize = new Vector2(
-                Mathf.Min(RectSize.x, screenSizeValue.x), Mathf.Min(RectSize.y, screenSizeValue.y - titleBarHeight));
+                Mathf.Min(RectSize.x, screenSize.x), Mathf.Min(RectSize.y, screenSize.y - titleBarHeight));
         }
     }
 
@@ -552,7 +564,7 @@ public class CustomDialog : Popup, ICustomPopup
 
     private void SetToFullRect()
     {
-        var viewportSize = GetViewport().GetVisibleRect().Size;
+        var viewportSize = GetScreenSize();
 
         RectPosition = new Vector2(0, titleBarHeight);
         RectSize = new Vector2(viewportSize.x, viewportSize.y - titleBarHeight);
