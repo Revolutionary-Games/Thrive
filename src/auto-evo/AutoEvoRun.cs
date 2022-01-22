@@ -225,7 +225,16 @@ public class AutoEvoRun
             {
                 try
                 {
-                    long currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
+                    // It's possible for external effects to be added for extinct species (either completely extinct
+                    // or extinct in the current patch)
+                    if (!results.SpeciesHasResults(entry.Species))
+                    {
+                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
+                            " had an external effect, ignoring the effect");
+                        continue;
+                    }
+
+                    long currentPop = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
 
                     results.AddPopulationResultForSpecies(
                         entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
@@ -311,6 +320,10 @@ public class AutoEvoRun
             var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
             foreach (var speciesEntry in speciesInPatchCopy)
             {
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (speciesEntry.Key == null)
+                    throw new Exception("Species key in a patch is null");
+
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
 

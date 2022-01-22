@@ -1,4 +1,4 @@
-FROM fedora:34
+FROM fedora:35
 
 
 RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config make gcc git git-lfs nodejs zlib-devel python3 python3-pip gettext && dnf clean all
