@@ -56,6 +56,7 @@ public class SteamClient : ISteamClient
         if (IsOwned == true)
             GD.Print("Game is owned by current Steam user");
 
+        // TODO: remove this cast once GodotSteam is updated
         AppId = (uint)Steam.GetAppID();
 
         GD.Print("Our app id is: ", AppId);
