@@ -405,6 +405,7 @@ public class SteamClient : ISteamClient
         foreach (var item in Steam.GetSubscribedItems())
         {
             // TODO: GodotSteam bug that it doesn't return the proper type here
+            // Actually seems to be a Godot engine bug: https://github.com/godotengine/godot/issues/57141
             // yield return (ulong)item;
 
             var raw = BitConverter.GetBytes((int)item);
