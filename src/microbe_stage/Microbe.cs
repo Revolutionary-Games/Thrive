@@ -51,7 +51,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private float movementSoundCooldownTimer;
 
-    private Random random = new Random();
+    private Random random = new();
+
+    private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
 
     [JsonProperty]
     private MicrobeAI ai;
@@ -323,6 +325,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce += force;
     }
 
+    public void ReportActiveChemereception(Compound compound, float range, float minAmount, Color colour)
+    {
+        activeCompoundDetections.Add((compound, range, minAmount, colour));
+    }
+
     public void PlaySoundEffect(string effect, float volume = 1.0f)
     {
         // TODO: make these sound objects only be loaded once
@@ -455,6 +462,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Rotation is applied in the physics force callback as that's
         // the place where the body rotation can be directly set
         // without problems
+
+        HandleChemoreceptorLines(delta);
 
         HandleCompoundVenting(delta);
 

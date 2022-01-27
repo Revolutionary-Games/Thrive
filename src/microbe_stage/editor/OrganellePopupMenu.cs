@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -17,20 +16,28 @@ public class OrganellePopupMenu : PopupPanel
     [Export]
     public NodePath MoveButtonPath;
 
+    [Export]
+    public NodePath ModifyButtonPath;
+
     private Label selectedOrganelleNameLabel;
     private Button deleteButton;
     private Button moveButton;
+    private Button modifyButton;
 
     private bool showPopup;
     private OrganelleTemplate selectedOrganelle;
     private bool enableDelete = true;
     private bool enableMove = true;
+    private bool enableModify;
 
     [Signal]
     public delegate void DeletePressed();
 
     [Signal]
     public delegate void MovePressed();
+
+    [Signal]
+    public delegate void ModifyPressed();
 
     public bool ShowPopup
     {
@@ -90,15 +97,27 @@ public class OrganellePopupMenu : PopupPanel
         }
     }
 
+    public bool EnableModifyOption
+    {
+        get => enableModify;
+        set
+        {
+            enableModify = value;
+            UpdateModifyButton();
+        }
+    }
+
     public override void _Ready()
     {
         selectedOrganelleNameLabel = GetNode<Label>(SelectedOrganelleNameLabelPath);
         deleteButton = GetNode<Button>(DeleteButtonPath);
         moveButton = GetNode<Button>(MoveButtonPath);
+        modifyButton = GetNode<Button>(ModifyButtonPath);
 
         UpdateOrganelleNameLabel();
         UpdateDeleteButton();
         UpdateMoveButton();
+        UpdateModifyButton();
     }
 
     public override void _EnterTree()
@@ -165,7 +184,11 @@ public class OrganellePopupMenu : PopupPanel
 
     private void OnModifyPressed()
     {
-        throw new NotImplementedException();
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(nameof(ModifyPressed));
+
+        Hide();
     }
 
     private void UpdateButtonContentsColour(string optionName, bool pressed)
@@ -227,5 +250,13 @@ public class OrganellePopupMenu : PopupPanel
             isFreeToMove ? "-0" : "-" + Constants.ORGANELLE_MOVE_COST.ToString(CultureInfo.CurrentCulture));
 
         moveButton.Disabled = !EnableMoveOption;
+    }
+
+    private void UpdateModifyButton()
+    {
+        if (modifyButton == null)
+            return;
+
+        modifyButton.Disabled = !enableModify;
     }
 }

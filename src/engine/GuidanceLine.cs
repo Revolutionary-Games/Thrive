@@ -9,6 +9,8 @@ public class GuidanceLine : ImmediateGeometry
 
     private Vector3 lineEnd;
 
+    private Color colour = Colors.White;
+
     private bool dirty = true;
 
     [Export]
@@ -39,6 +41,34 @@ public class GuidanceLine : ImmediateGeometry
         }
     }
 
+    [Export]
+    public Color Colour
+    {
+        get => colour;
+        set
+        {
+            if (colour == value)
+                return;
+
+            dirty = true;
+            colour = value;
+        }
+    }
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+        // Make the line update after any possible code that might update our parameters
+        ProcessPriority = 800;
+        PauseMode = PauseModeEnum.Process;
+
+        // This material is needed for SetColor to work at all
+        var material = new SpatialMaterial();
+        material.VertexColorUseAsAlbedo = true;
+        MaterialOverride = material;
+    }
+
     public override void _Process(float delta)
     {
         if (!dirty)
@@ -48,8 +78,13 @@ public class GuidanceLine : ImmediateGeometry
         Clear();
         Begin(Mesh.PrimitiveType.Lines);
 
+        SetColor(colour);
         AddVertex(LineStart);
         AddVertex(LineEnd);
+
+        // TODO: if we want to have line thickness, we need to generate a quad here with the wanted *width* around the
+        // points (we need to figure out the right rotation for the line at both ends for where to place those points
+        // that are slightly off from the positions)
 
         End();
     }
