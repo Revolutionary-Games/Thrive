@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-22 11:34+0700\n"
+"POT-Creation-Date: 2022-01-20 17:42+0200\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio."
@@ -377,17 +377,17 @@ msgid "ABILITIES"
 msgstr "Sposobnosti"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2111
+#: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "FIRE_TOXIN"
 msgstr "Vatreni toksin"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2087
 msgid "TOGGLE_ENGULF"
 msgstr "Prebacite gutanje"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2122
+#: ../src/microbe_stage/MicrobeStage.tscn:2110
 #, fuzzy
 msgid "TOGGLE_BINDING"
 msgstr "Prebacite gutanje"
@@ -418,7 +418,7 @@ msgid "ZOOM_IN"
 msgstr "Zumirati"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3894
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3921
 msgid "EDITOR"
 msgstr "Urednik"
 
@@ -587,96 +587,96 @@ msgid "EPIPELAGIC"
 msgstr "Epipelagik"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:25
-#: ../simulation_parameters/microbe_stage/biomes.json:168
-#: ../simulation_parameters/microbe_stage/biomes.json:395
-#: ../simulation_parameters/microbe_stage/biomes.json:542
-#: ../simulation_parameters/microbe_stage/biomes.json:765
-#: ../simulation_parameters/microbe_stage/biomes.json:992
-#: ../simulation_parameters/microbe_stage/biomes.json:1219
-#: ../simulation_parameters/microbe_stage/biomes.json:1362
-#: ../simulation_parameters/microbe_stage/biomes.json:1509
-#: ../simulation_parameters/microbe_stage/biomes.json:1674
-#: ../simulation_parameters/microbe_stage/biomes.json:1821
+#: ../simulation_parameters/microbe_stage/biomes.json:169
+#: ../simulation_parameters/microbe_stage/biomes.json:397
+#: ../simulation_parameters/microbe_stage/biomes.json:545
+#: ../simulation_parameters/microbe_stage/biomes.json:769
+#: ../simulation_parameters/microbe_stage/biomes.json:997
+#: ../simulation_parameters/microbe_stage/biomes.json:1225
+#: ../simulation_parameters/microbe_stage/biomes.json:1369
+#: ../simulation_parameters/microbe_stage/biomes.json:1517
+#: ../simulation_parameters/microbe_stage/biomes.json:1684
+#: ../simulation_parameters/microbe_stage/biomes.json:1832
 msgid "FLOATING_HAZARD"
 msgstr "Plutajuća opasnost"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:42
-#: ../simulation_parameters/microbe_stage/biomes.json:185
-#: ../simulation_parameters/microbe_stage/biomes.json:412
-#: ../simulation_parameters/microbe_stage/biomes.json:559
-#: ../simulation_parameters/microbe_stage/biomes.json:782
-#: ../simulation_parameters/microbe_stage/biomes.json:1009
-#: ../simulation_parameters/microbe_stage/biomes.json:1236
-#: ../simulation_parameters/microbe_stage/biomes.json:1379
-#: ../simulation_parameters/microbe_stage/biomes.json:1526
-#: ../simulation_parameters/microbe_stage/biomes.json:1691
-#: ../simulation_parameters/microbe_stage/biomes.json:1838
+#: ../simulation_parameters/microbe_stage/biomes.json:43
+#: ../simulation_parameters/microbe_stage/biomes.json:187
+#: ../simulation_parameters/microbe_stage/biomes.json:415
+#: ../simulation_parameters/microbe_stage/biomes.json:563
+#: ../simulation_parameters/microbe_stage/biomes.json:787
+#: ../simulation_parameters/microbe_stage/biomes.json:1015
+#: ../simulation_parameters/microbe_stage/biomes.json:1243
+#: ../simulation_parameters/microbe_stage/biomes.json:1387
+#: ../simulation_parameters/microbe_stage/biomes.json:1535
+#: ../simulation_parameters/microbe_stage/biomes.json:1702
+#: ../simulation_parameters/microbe_stage/biomes.json:1850
 msgid "SMALL_IRON_CHUNK"
 msgstr "Mali gvozdeni komad"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:77
-#: ../simulation_parameters/microbe_stage/biomes.json:300
-#: ../simulation_parameters/microbe_stage/biomes.json:447
-#: ../simulation_parameters/microbe_stage/biomes.json:594
-#: ../simulation_parameters/microbe_stage/biomes.json:817
-#: ../simulation_parameters/microbe_stage/biomes.json:1044
-#: ../simulation_parameters/microbe_stage/biomes.json:1271
-#: ../simulation_parameters/microbe_stage/biomes.json:1414
-#: ../simulation_parameters/microbe_stage/biomes.json:1579
-#: ../simulation_parameters/microbe_stage/biomes.json:1726
-#: ../simulation_parameters/microbe_stage/biomes.json:1873
+#: ../simulation_parameters/microbe_stage/biomes.json:78
+#: ../simulation_parameters/microbe_stage/biomes.json:302
+#: ../simulation_parameters/microbe_stage/biomes.json:450
+#: ../simulation_parameters/microbe_stage/biomes.json:598
+#: ../simulation_parameters/microbe_stage/biomes.json:822
+#: ../simulation_parameters/microbe_stage/biomes.json:1050
+#: ../simulation_parameters/microbe_stage/biomes.json:1278
+#: ../simulation_parameters/microbe_stage/biomes.json:1422
+#: ../simulation_parameters/microbe_stage/biomes.json:1589
+#: ../simulation_parameters/microbe_stage/biomes.json:1737
+#: ../simulation_parameters/microbe_stage/biomes.json:1885
 msgid "BIG_IRON_CHUNK"
 msgstr "Veliki komad gvožđa"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:146
+#: ../simulation_parameters/microbe_stage/biomes.json:147
 msgid "VOLCANIC_VENT"
 msgstr "Vulkanski otvor"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:220
-#: ../simulation_parameters/microbe_stage/biomes.json:617
-#: ../simulation_parameters/microbe_stage/biomes.json:840
-#: ../simulation_parameters/microbe_stage/biomes.json:1067
-#: ../simulation_parameters/microbe_stage/biomes.json:1896
+#: ../simulation_parameters/microbe_stage/biomes.json:222
+#: ../simulation_parameters/microbe_stage/biomes.json:621
+#: ../simulation_parameters/microbe_stage/biomes.json:845
+#: ../simulation_parameters/microbe_stage/biomes.json:1073
+#: ../simulation_parameters/microbe_stage/biomes.json:1908
 msgid "MARINE_SNOW"
 msgstr "Morski sneg"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:369
+#: ../simulation_parameters/microbe_stage/biomes.json:371
 msgid "TIDEPOOL"
 msgstr "Plima i oseka"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:516
+#: ../simulation_parameters/microbe_stage/biomes.json:519
 msgid "BATHYPELAGIC"
 msgstr "Bathipelagik"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:743
+#: ../simulation_parameters/microbe_stage/biomes.json:747
 msgid "ABYSSOPELAGIC"
 msgstr "Abisopelagik"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:966
+#: ../simulation_parameters/microbe_stage/biomes.json:971
 msgid "MESOPELAGIC"
 msgstr "Mesopelagik"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1193
+#: ../simulation_parameters/microbe_stage/biomes.json:1199
 msgid "COASTAL"
 msgstr "Priobalni"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1340
+#: ../simulation_parameters/microbe_stage/biomes.json:1347
 msgid "UNDERWATERCAVE"
 msgstr "Podvodna Pećina"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1483
+#: ../simulation_parameters/microbe_stage/biomes.json:1491
 msgid "ICESHELF"
 msgstr "Ledena Polica"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1561
+#: ../simulation_parameters/microbe_stage/biomes.json:1570
 msgid "ICESHARD"
 msgstr "Krhotina Leda"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1648
+#: ../simulation_parameters/microbe_stage/biomes.json:1658
 msgid "ESTUARY"
 msgstr "Ušće"
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1795
+#: ../simulation_parameters/microbe_stage/biomes.json:1806
 msgid "SEA_FLOOR"
 msgstr "Morsko Dno"
 
@@ -685,89 +685,89 @@ msgid "ATP"
 msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/MicrobeStage.tscn:1294
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3541
+#: ../src/microbe_stage/MicrobeStage.tscn:1290
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3568
 msgid "AMMONIA"
 msgstr "Amonijak"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
-#: ../src/microbe_stage/MicrobeStage.tscn:1348
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3612
+#: ../src/microbe_stage/MicrobeStage.tscn:1342
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3639
 msgid "PHOSPHATE"
 msgstr "Fosfat"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
-#: ../src/microbe_stage/MicrobeStage.tscn:1402
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3506
+#: ../src/microbe_stage/MicrobeStage.tscn:1394
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3533
 msgid "HYDROGEN_SULFIDE"
 msgstr "Vodonik Sulfid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
-#: ../src/microbe_stage/MicrobeStage.tscn:1240
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3576
+#: ../src/microbe_stage/MicrobeStage.tscn:1238
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3603
 msgid "GLUCOSE"
 msgstr "Glukoza"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
-#: ../src/microbe_stage/MicrobeStage.tscn:1588
+#: ../src/microbe_stage/MicrobeStage.tscn:1576
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
-#: ../src/microbe_stage/MicrobeStage.tscn:1456
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3647
+#: ../src/microbe_stage/MicrobeStage.tscn:1446
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3674
 msgid "IRON"
 msgstr "Gvožđe"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3342
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3369
 msgid "OXYGEN"
 msgstr "Kiseonik"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3396
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
 msgid "CARBON_DIOXIDE"
 msgstr "Ugljen Dioksid"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3369
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3396
 msgid "NITROGEN"
 msgstr "Azot"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3521
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2774
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3581
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2801
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3249
 msgid "SUNLIGHT"
 msgstr "Sunčeva Svetlost"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2031
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2091
 msgid "NORMAL"
 msgstr "Normalno"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:20
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2199
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2259
 msgid "DOUBLE"
 msgstr "Dupli"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:37
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2363
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
 msgid "CELLULOSE"
 msgstr "Celuloza"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:54
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2598
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2658
 msgid "CHITIN"
 msgstr "Hitin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:71
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalcijum Karbonat"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:88
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3101
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3161
 msgid "SILICA"
 msgstr "Silicijum-Dioksid"
 
@@ -810,12 +810,12 @@ msgid "METABOLOSOMES"
 msgstr "Metabolosomi"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:287
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1712
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1772
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Plastid za Fiksiranje Azota"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:324
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1688
 msgid "CHEMOPLAST"
 msgstr "Hemoplast"
 
@@ -825,24 +825,24 @@ msgid "FLAGELLUM"
 msgstr "Bič"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:383
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1810
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
 msgid "VACUOLE"
 msgstr "Vacuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:418
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1345
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1405
 msgid "MITOCHONDRION"
 msgstr "Mitohondrija"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:452
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1907
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1967
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Otrovna\n"
 "Vacuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 #, fuzzy
 msgid "BINDING_AGENT"
 msgstr ""
@@ -850,7 +850,7 @@ msgstr ""
 "Da li želite da uklonite unos iz {1}?"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1489
 msgid "CHLOROPLAST"
 msgstr "Hloroplast"
 
@@ -860,9 +860,15 @@ msgid "CYTOPLASM"
 msgstr "Citoplazma"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:618
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1248
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1308
 msgid "NUCLEUS"
 msgstr "Ćelijsko Jezgro"
+
+#: ../simulation_parameters/microbe_stage/organelles.json:642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1148
+#, fuzzy
+msgid "CHEMORECEPTOR"
+msgstr "Hemoplast"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
@@ -1406,10 +1412,10 @@ msgid "ART_BY"
 msgstr ""
 
 #: ../src/general/HelpScreen.tscn:107
-#: ../src/gui_common/charts/line/LineChart.tscn:255
+#: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4044
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4076
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
@@ -1866,7 +1872,7 @@ msgid "SAVE_GAME"
 msgstr "Sačuvaj Igru"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2637
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
 msgid "STATISTICS"
 msgstr "Statistika"
 
@@ -1911,10 +1917,10 @@ msgstr ""
 
 #: ../src/gui_common/CompoundAmount.cs:168
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:638
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1188
+#: ../src/microbe_stage/MicrobeHUD.cs:649
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1023
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1222
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -2215,22 +2221,22 @@ msgstr ""
 msgid "RAW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:626
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2359
+#: ../src/gui_common/charts/line/LineChart.cs:633
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2418
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:630
+#: ../src/gui_common/charts/line/LineChart.cs:637
 msgid "INVALID_DATA_TO_PLOT"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:1097
-#: ../src/gui_common/charts/line/LineChart.cs:1183
+#: ../src/gui_common/charts/line/LineChart.cs:1104
+#: ../src/gui_common/charts/line/LineChart.cs:1190
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:1103
-#: ../src/gui_common/charts/line/LineChart.cs:1188
+#: ../src/gui_common/charts/line/LineChart.cs:1110
+#: ../src/gui_common/charts/line/LineChart.cs:1195
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
@@ -2307,22 +2313,22 @@ msgstr ""
 "ćeliju."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:150
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2058
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2390
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2625
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2858
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2118
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2286
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2685
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2918
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3188
 msgid "MOBILITY"
 msgstr "Mobilnost"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:185
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2161
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2326
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2493
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2728
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2961
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3231
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2221
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2386
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2553
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2788
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3021
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3291
 msgid "HEALTH"
 msgstr "Zdravlje"
 
@@ -2375,15 +2381,15 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:776
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:874
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1009
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1178
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1267
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1359
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1443
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1542
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1642
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1731
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1829
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1327
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1419
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1503
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1602
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1702
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1791
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1889
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1986
 msgid "STORAGE"
 msgstr "Skladište"
 
@@ -2396,21 +2402,22 @@ msgstr "Skladište"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:912
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1047
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1106
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1216
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1305
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1397
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1481
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1580
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1867
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1964
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2093
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2260
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2425
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2660
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3163
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1168
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1276
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1365
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1457
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1541
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1640
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1740
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1829
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1927
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2024
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2153
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2320
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2485
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2720
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2953
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3223
 msgid "OSMOREGULATION_COST"
 msgstr "Cena osmoregulacije"
 
@@ -2561,17 +2568,37 @@ msgstr "Brzina"
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr "Izbodite druge ćelije sa ovo."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1148
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1149
+#, fuzzy
+msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
+msgstr ""
+"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
+"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
+"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa "
+"njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-"
+"dioksida."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
+#, fuzzy
+msgid "CHEMORECEPTOR_DESCRIPTION"
+msgstr ""
+"Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
+"sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u "
+"glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa "
+"njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-"
+"dioksida."
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1208
 msgid "CILIA"
 msgstr "Cilija"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1149
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1619
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2006
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1209
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1679
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2066
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Da se implementira."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
 #, fuzzy
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2581,7 +2608,7 @@ msgstr ""
 "azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna "
 "tečnost vrši fermentaciju."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
 #, fuzzy
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
@@ -2591,7 +2618,7 @@ msgstr ""
 "azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna "
 "tečnost vrši fermentaciju."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1249
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1309
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 "Omogućava evoluciju složenijih,\n"
@@ -2599,7 +2626,7 @@ msgstr ""
 "ATP-a za održavanje. Ovo je nepovratno\n"
 "evolucija."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1250
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 "Definitivna karakteristika eukariotskih ćelija. Jezgro takođe uključuje "
@@ -2612,7 +2639,7 @@ msgstr ""
 "Međutim, ovo dolazi po cenu da ćelija bude mnogo veća i da joj treba puno "
 "energije za održavanje."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1346
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1406
 #, fuzzy
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2624,7 +2651,7 @@ msgstr ""
 "potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u "
 "okolini usporiće brzinu njegove proizvodnje ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1347
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1407
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membranska "
@@ -2635,7 +2662,7 @@ msgstr ""
 "potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u "
 "okolini usporiće brzinu njegove proizvodnje ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1430
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1490
 #, fuzzy
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2648,7 +2675,7 @@ msgstr ""
 "Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-"
 "dioksida i intenzitetom svetlosti."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1431
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1491
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "Hloroplast je dvostruka membranska struktura koja sadrži fotosenzibilne "
@@ -2660,11 +2687,11 @@ msgstr ""
 "Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-"
 "dioksida i intenzitetom svetlosti."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1513
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
 msgid "THERMOPLAST"
 msgstr "Termoplast"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1514
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1574
 #, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2676,7 +2703,7 @@ msgstr ""
 "naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa "
 "koncentracijom ugljen-dioksida i temperaturom."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1515
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1575
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne "
@@ -2687,13 +2714,13 @@ msgstr ""
 "naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa "
 "koncentracijom ugljen-dioksida i temperaturom."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1531
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 #, fuzzy
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "Postavite organelu"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1629
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
 #, fuzzy
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2703,7 +2730,7 @@ msgstr ""
 "njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-"
 "dioksida."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1630
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1690
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su "
@@ -2712,7 +2739,7 @@ msgstr ""
 "njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-"
 "dioksida."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1713
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1773
 #, fuzzy
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2721,7 +2748,7 @@ msgstr ""
 "ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva "
 "aerobna fiksacija azota."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1714
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1774
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot "
@@ -2729,7 +2756,7 @@ msgstr ""
 "ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva "
 "aerobna fiksacija azota."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1811
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1871
 #, fuzzy
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2740,7 +2767,7 @@ msgstr ""
 "materije i druge supstance. Njihov oblik je tečan i može se razlikovati "
 "između ćelija."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1812
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1872
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 "Vakuola je unutrašnja membranska organela koja se koristi za skladištenje "
@@ -2750,7 +2777,7 @@ msgstr ""
 "materije i druge supstance. Njihov oblik je tečan i može se razlikovati "
 "između ćelija."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1968
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2758,74 +2785,74 @@ msgstr ""
 "skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola "
 "povećaće brzinu oslobađanja toksina."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:1909
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1969
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, "
 "skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola "
 "povećaće brzinu oslobađanja toksina."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2005
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2065
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminiscentna Vakuola"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2032
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2092
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Najosnovniji oblik membrane, ima malu zaštitu od oštećenja. Takođe mu je "
 "potrebno više energije da se ne bi deformisao. Prednost je u tome što "
 "omogućava ćeliji da se brzo kreće i apsorbuje hranljive materije."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2293
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2459
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2694
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2927
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3197
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2187
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2353
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2519
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2754
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2987
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3257
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Brzina Apsorpcije Brzine"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2200
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2260
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Membrana sa dva sloja, ima bolju zaštitu od oštećenja i uzima manje "
 "energije da se ne deformiše. Međutim, to usporava ćeliju i smanjuje brzinu "
 "kojom može da apsorbuje resurse."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2364
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2424
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, "
 "a posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao "
 "oblik, ali ne može brzo da apsorbuje resurse i sporiji je."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2995
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3265
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2587
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3055
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3325
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Fizički Otpor"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2561
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2796
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3063
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2621
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2856
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3123
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3393
 msgid "CANNOT_ENGULF"
 msgstr "Ne može da guta"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2599
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2659
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ova membrana ima zid, što znači da ima bolju zaštitu od ukupnih oštećenja, "
 "posebno od oštećenja toksinima. Takođe zadržava manje energije da bi "
 "zadržao oblik, ali je sporiji i ne može brzo da apsorbuje resurse."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2762
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3029
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3299
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3089
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3359
 msgid "TOXIN_RESISTANCE"
 msgstr "Otpornost na toksine"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:2834
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2894
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ova membrana ima jaku ljusku napravljenu od kalcijum-karbonata. Može se "
@@ -2833,7 +2860,7 @@ msgstr ""
 "Mane ovako teške ljuske su u tome što je ćelija mnogo sporija i potrebno "
 "joj je neko vreme da apsorbuje resurse."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3162
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 "Ova membrana ima jak zid od silicijum dioksida. Može se dobro odupreti "
@@ -2841,15 +2868,15 @@ msgstr ""
 "energije za održavanje forme. Međutim, usporava ćeliju velikim faktorom i "
 "ćelija apsorbuje resurse smanjenom brzinom."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3544
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3490
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3550
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3556
 #, fuzzy
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
@@ -2861,21 +2888,21 @@ msgstr ""
 "potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u "
 "okolini usporiće brzinu njegove proizvodnje ATP."
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3562
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
 #, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 "Imate nesačuvane promene koje će biti odbačene.\n"
 "Da li želite da nastavite?"
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2763
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3159
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:896
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2790
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3186
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:911
 msgid "TEMPERATURE"
 msgstr "Temperatura"
 
@@ -2884,23 +2911,23 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "- МП"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:517
+#: ../src/microbe_stage/Microbe.Contact.cs:524
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:622
+#: ../src/microbe_stage/Microbe.Contact.cs:629
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "uspešno okupljanje"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:629
+#: ../src/microbe_stage/Microbe.Contact.cs:636
 msgid "SUCCESSFUL_KILL"
 msgstr "uspešno ubistvo"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:846
+#: ../src/microbe_stage/Microbe.Contact.cs:853
 msgid "ESCAPE_ENGULFING"
 msgstr "pobegne od gutanja"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:712
+#: ../src/microbe_stage/Microbe.Interior.cs:725
 #, fuzzy
 msgid "REPRODUCED"
 msgstr "Proizvodi"
@@ -2932,52 +2959,52 @@ msgstr "igrač je umro"
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:683
+#: ../src/microbe_stage/MicrobeHUD.cs:694
 msgid "STUFF_AT"
 msgstr "Stvari u {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:716
+#: ../src/microbe_stage/MicrobeHUD.cs:727
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:733
+#: ../src/microbe_stage/MicrobeHUD.cs:744
 #, fuzzy
 msgid "SPECIES_N_TIMES"
 msgstr "Vrste:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:778
+#: ../src/microbe_stage/MicrobeHUD.cs:789
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:780
+#: ../src/microbe_stage/MicrobeHUD.cs:791
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:782
+#: ../src/microbe_stage/MicrobeHUD.cs:793
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:784
+#: ../src/microbe_stage/MicrobeHUD.cs:795
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:786
+#: ../src/microbe_stage/MicrobeHUD.cs:797
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:788
+#: ../src/microbe_stage/MicrobeHUD.cs:799
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:529
+#: ../src/microbe_stage/MicrobeStage.cs:538
 msgid "PLAYER_REPRODUCED"
 msgstr "Igrač se reprodukovao"
 
-#: ../src/microbe_stage/MicrobeStage.cs:615
+#: ../src/microbe_stage/MicrobeStage.cs:624
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:679
+#: ../src/microbe_stage/MicrobeStage.cs:693
 msgid "PLAYER_DIED"
 msgstr "igrač je umro"
 
@@ -3014,52 +3041,52 @@ msgid "PRESSURE_SHORT"
 msgstr "Priti."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2827
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2861
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3466
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1031
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2854
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2888
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3493
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
 msgid "COMPOUNDS"
 msgstr "Jedinjenje"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1526
+#: ../src/microbe_stage/MicrobeStage.tscn:1516
 msgid "AGENTS"
 msgstr "Agensi"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1626
+#: ../src/microbe_stage/MicrobeStage.tscn:1614
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1644
+#: ../src/microbe_stage/MicrobeStage.tscn:1632
 msgid "PAUSE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1657
+#: ../src/microbe_stage/MicrobeStage.tscn:1645
 #, fuzzy
 msgid "RESUME_TOOLTIP"
 msgstr "Nastaviti"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1670
+#: ../src/microbe_stage/MicrobeStage.tscn:1658
 #, fuzzy
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1685
+#: ../src/microbe_stage/MicrobeStage.tscn:1673
 #, fuzzy
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1710
 #, fuzzy
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1734
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
 #, fuzzy
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1785
+#: ../src/microbe_stage/MicrobeStage.tscn:1773
 msgid "POPULATION_CAPITAL"
 msgstr "POPULACIJA:"
 
@@ -3120,7 +3147,7 @@ msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -3128,135 +3155,135 @@ msgstr "Učitavanje Uređivača Mikroba"
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čeka se automatska-evolucija:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_FAILED"
 msgstr "Automatska-evolucija nije uspela"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "status pokretanja:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:660
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:663
 msgid "MUTATION_POINTS"
 msgstr "Mutacije Poeni"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:795
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:798
 msgid "STRUCTURE"
 msgstr "Struktura"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:817
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:820
 msgid "MEMBRANE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:839
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:842
 msgid "BEHAVIOUR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:891
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:894
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Traži..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:898
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:901
 msgid "STRUCTURAL"
 msgstr "Strukturni"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:938
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:941
 msgid "PROTEINS"
 msgstr "Proteini"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1008
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1011
 msgid "EXTERNAL"
 msgstr "Spoljni"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1062
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1070
 msgid "ORGANELLES"
 msgstr "Organele"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1197
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1205
 msgid "MEMBRANE_TYPES"
 msgstr "Vrste Membrana"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1276
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1284
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Tečnost / Rigidnost"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1296
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1304
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1309
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1317
 msgid "RIGID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1342
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1350
 msgid "COLOUR"
 msgstr "Boja"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1415
 msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1424
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1432
 msgid "AGGRESSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1460
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1468
 msgid "CAUTIOUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1478
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1486
 msgid "OPPORTUNISTIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1514
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1522
 msgid "BRAVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1531
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1539
 msgid "FEARFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1567
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1575
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1584
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1592
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1620
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
 msgid "RESPONSIVE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1637
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1645
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1705
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1713
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistika Organizma"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1767
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
 msgid "SPEED_COLON"
 msgstr "Brzina:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1797
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "HP_COLON"
 msgstr "Zdrav.:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1827
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1835
 msgid "SIZE_COLON"
 msgstr "Veličina:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1848
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1856
 msgid "GENERATION_COLON"
 msgstr "Generacija:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1898
 msgid "ATP_BALANCE"
 msgstr "ATP Ravnoteža"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2003
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2011
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
@@ -3268,137 +3295,137 @@ msgstr ""
 "potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u "
 "okolini usporiće brzinu njegove proizvodnje ATP."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2007
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3986
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4018
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2023
 #, fuzzy
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Nastaviti"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
 #, fuzzy
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2109
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2117
 #, fuzzy
 msgid "BEST_PATCH_COLON"
 msgstr "Vrste:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2134
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
 #, fuzzy
 msgid "WORST_PATCH_COLON"
 msgstr "Vrste:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Ime vrste..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2334
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2342
 #, fuzzy
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "POTVRDI"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2348
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
 msgid "CONFIRM_CAPITAL"
 msgstr "POTVRDI"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2357
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2365
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negativan ATP Bilans"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2358
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2366
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Vaš mikrob ne proizvodi dovoljno ATP-a da bi preživeo!\n"
 "Da li želite da nastavite?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2364
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2372
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Isključene Organele"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2366
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2374
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Postoje postavljene organele, koje nisu povezane sa ostalim.\n"
 "Povežite sve postavljene organele jedni sa drugima ili poništite promene."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2463
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2490
 msgid "AUTO_EVO"
 msgstr "Automatska-Evolucija"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2477
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2504
 msgid "FOOD_CHAIN"
 msgstr "Lanac Ishrane"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2491
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2518
 msgid "TIMELINE"
 msgstr "Vremenska linija"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2544
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2571
 msgid "AUTO_EVO_RESULTS"
 msgstr "Rezultati automatske-evolucije:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2563
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2590
 msgid "EXTERNAL_EFFECTS"
 msgstr "Spoljni efekti:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2646
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2674
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2673
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
 msgid "SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2684
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3118
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2711
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3145
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2784
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2818
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3301
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2811
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2845
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3328
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1044
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2887
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3810
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2914
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3837
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3000
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3027
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3035
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3062
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3195
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
 #, fuzzy
 msgid "PRESSURE"
 msgstr "Priti."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3726
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3753
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3783
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3810
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3852
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3879
 msgid "REPORT"
 msgstr "Izveštaj"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3873
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3900
 msgid "PATCH_MAP"
 msgstr "Karta Zone"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4035
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4067
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
@@ -3407,136 +3434,159 @@ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:702
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:717
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:709
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:724
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1021
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1031
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:728
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1041
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1042
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1044
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1047
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:755
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:760
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:770
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:761
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:776
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:787
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:802
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:804
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:810
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:837
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1047
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1038
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1058
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1071
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1039
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1050
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1059
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1070
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1082
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1102
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1179
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1213
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1184
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1218
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1223
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1257
 msgid "WITH_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1913
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1963
 msgid "FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1919
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1931
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1969
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1981
 #, fuzzy
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULACIJA:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1925
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1937
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1975
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1987
 #, fuzzy
 msgid "N_A"
 msgstr "- МП"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2201
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2260
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2327
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2386
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2331
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2390
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2338
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2397
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2344
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2403
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:230
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:249
 msgid "MP_COST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
 msgid "DELETE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
 #, fuzzy
 msgid "MOVE"
 msgstr "Pokret"
 
-#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
 msgid "MODIFY"
 msgstr ""
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
 msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
+#, fuzzy
+msgid "COMPOUND_TO_FIND"
+msgstr "Oblak jedinjenja"
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
+msgid "SEARCH_RADIUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
+msgid "MINIMUM_AMOUNT_TO_FIND"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
+#, fuzzy
+msgid "LINE_COLOUR"
+msgstr "Boja"
+
+#: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
+#, fuzzy
+msgid "MODIFY_ORGANELLE"
+msgstr "Maknite organelu"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:86
 msgid "EXTINCTION_CAPITAL"
@@ -4149,20 +4199,20 @@ msgstr ""
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:412
+#: ../src/saving/SaveHelper.cs:421
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:413
+#: ../src/saving/SaveHelper.cs:422
 #, fuzzy
 msgid "PLAYER_EXTINCT"
 msgstr "igrač je umro"
 
-#: ../src/saving/SaveHelper.cs:422
+#: ../src/saving/SaveHelper.cs:431
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:432
+#: ../src/saving/SaveHelper.cs:441
 msgid "SAVING_FAILED"
 msgstr ""
 
@@ -4190,11 +4240,11 @@ msgstr ""
 msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr ""
 
@@ -4263,41 +4313,41 @@ msgstr ""
 "materije i druge supstance. Njihov oblik je tečan i može se razlikovati "
 "između ćelija."
 
-#: ../src/saving/SaveListItem.tscn:130
+#: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:137 ../src/saving/SaveListItem.tscn:156
-#: ../src/saving/SaveListItem.tscn:175 ../src/saving/SaveListItem.tscn:198
-#: ../src/saving/SaveListItem.tscn:227 ../src/saving/SaveListItem.tscn:246
+#: ../src/saving/SaveListItem.tscn:139 ../src/saving/SaveListItem.tscn:158
+#: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
+#: ../src/saving/SaveListItem.tscn:229 ../src/saving/SaveListItem.tscn:248
 msgid "DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:149
+#: ../src/saving/SaveListItem.tscn:151
 msgid "TYPE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:168
+#: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:191
+#: ../src/saving/SaveListItem.tscn:193
 msgid "VERSION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:220
+#: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:239
+#: ../src/saving/SaveListItem.tscn:241
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:271 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:278
+#: ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
