@@ -37,6 +37,9 @@ public class OrganelleDefinition : IRegistryType
 
     processes:  A table with all the processes this organelle does,
     and the capacity of the process
+
+    upgradeGUI:  path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not
+    modifiable
     */
 
     /// <summary>
@@ -148,9 +151,14 @@ public class OrganelleDefinition : IRegistryType
     public bool Unique;
 
     /// <summary>
+    ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable
+    /// </summary>
+    public string UpgradeGUI;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
-    private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();
+    private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
 
 #pragma warning disable 169 // Used through reflection
     private string untranslatedName;
@@ -392,9 +400,9 @@ public class OrganelleDefinition : IRegistryType
         public BindingAgentComponentFactory BindingAgent;
         public MovementComponentFactory Movement;
         public PilusComponentFactory Pilus;
+        public ChemoreceptorComponentFactory Chemoreceptor;
 
-        private readonly List<IOrganelleComponentFactory> allFactories =
-            new List<IOrganelleComponentFactory>();
+        private readonly List<IOrganelleComponentFactory> allFactories = new();
 
         [JsonIgnore]
         private int count = -1;
@@ -417,42 +425,49 @@ public class OrganelleDefinition : IRegistryType
             {
                 Nucleus.Check(name);
                 allFactories.Add(Nucleus);
-                count++;
+                ++count;
             }
 
             if (Storage != null)
             {
                 Storage.Check(name);
                 allFactories.Add(Storage);
-                count++;
+                ++count;
             }
 
             if (AgentVacuole != null)
             {
                 AgentVacuole.Check(name);
                 allFactories.Add(AgentVacuole);
-                count++;
+                ++count;
             }
 
             if (BindingAgent != null)
             {
                 BindingAgent.Check(name);
                 allFactories.Add(BindingAgent);
-                count++;
+                ++count;
             }
 
             if (Movement != null)
             {
                 Movement.Check(name);
                 allFactories.Add(Movement);
-                count++;
+                ++count;
             }
 
             if (Pilus != null)
             {
                 Pilus.Check(name);
                 allFactories.Add(Pilus);
-                count++;
+                ++count;
+            }
+
+            if (Chemoreceptor != null)
+            {
+                Chemoreceptor.Check(name);
+                allFactories.Add(Chemoreceptor);
+                ++count;
             }
         }
     }
