@@ -555,7 +555,7 @@ source venv/bin/activate
 
 On Windows:
 ```sh
-\venv\Scripts\activate.bat
+venv\Scripts\activate.bat
 ```
 
 Then install the required packages and run the localization scripts
