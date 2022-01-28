@@ -101,6 +101,11 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 
     public float ChunkScale { get; set; }
 
+    /// <summary>
+    ///   The name of kind of damage type this chunk inflicts. Default is "chunk".
+    /// </summary>
+    public string DamageType { get; set; } = "chunk";
+
     public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
@@ -125,6 +130,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         Size = chunkType.Size;
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
+        DamageType = string.IsNullOrEmpty(chunkType.DamageType) ? "chunk" : chunkType.DamageType;
 
         Mass = chunkType.Mass;
 
@@ -162,6 +168,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
         config.Damages = Damages;
         config.DeleteOnTouch = DeleteOnTouch;
         config.Mass = Mass;
+        config.DamageType = DamageType;
 
         config.Radius = Radius;
         config.ChunkScale = ChunkScale;
@@ -249,14 +256,13 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             // Damage
             if (Damages > 0)
             {
-                // TODO: Not the cleanest way to play the damage sound
                 if (DeleteOnTouch)
                 {
-                    microbe.Damage(Damages, "toxin");
+                    microbe.Damage(Damages, DamageType);
                 }
                 else
                 {
-                    microbe.Damage(Damages * delta, "chunk");
+                    microbe.Damage(Damages * delta, DamageType);
                 }
             }
 

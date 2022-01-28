@@ -296,6 +296,13 @@ public partial class Microbe
 
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
+        else if (source == "ice")
+        {
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-ice-damage.ogg", 0.5f);
+
+            // Divide damage by physical resistance
+            amount /= Species.MembraneType.PhysicalResistance;
+        }
 
         Hitpoints -= amount;
 
@@ -1032,6 +1039,12 @@ public partial class Microbe
             {
                 thisMicrobe.CheckStartEngulfingOnCandidates();
                 thisMicrobe.CheckBinding();
+            }
+
+            // Play bump sound if certain total collision impulse is reached (adjusted by mass)
+            if (thisMicrobe.collisionForce / Mass > Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
+            {
+                thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
             }
         }
     }

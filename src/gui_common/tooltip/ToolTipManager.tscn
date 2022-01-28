@@ -365,7 +365,8 @@ margin_bottom = 189.0
 
 [node name="metabolosome" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
-margin_bottom = 173.0
+margin_right = 500.0
+margin_bottom = 2.0
 DisplayName = "METABOLOSOMES"
 ProcessesDescription = "METABOLOSOMES_PROCESSES_DESCRIPTION"
 Description = "METABOLOSOMES_DESCRIPTION"
@@ -376,6 +377,11 @@ margin_bottom = 216.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer" index="0"]
 margin_bottom = 208.0
+
+[node name="Title" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer/Header" index="1"]
+margin_right = 299.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 210, 0 )
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/metabolosome/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 134.0
@@ -570,6 +576,11 @@ margin_bottom = 220.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer" index="0"]
 margin_bottom = 208.0
+
+[node name="Title" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Header" index="1"]
+margin_right = 349.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 260, 0 )
 
 [node name="ModifierList" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer" index="3"]
 margin_bottom = 138.0
@@ -1140,6 +1151,66 @@ margin_bottom = 177.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="5"]
 visible = false
+margin_top = 192.0
+margin_bottom = 209.0
+
+[node name="chemoreceptor" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
+visible = false
+DisplayName = "CHEMORECEPTOR"
+ProcessesDescription = "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
+Description = "CHEMORECEPTOR_DESCRIPTION"
+MutationPointCost = 45
+
+[node name="MarginContainer" parent="GroupHolder/organelleSelection/chemoreceptor" index="0"]
+margin_bottom = 240.0
+
+[node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer" index="0"]
+margin_bottom = 224.0
+
+[node name="ModifierList" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="3"]
+margin_bottom = 158.0
+
+[node name="osmoregulationCost" type="HBoxContainer" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList" index="0"]
+margin_top = 48.0
+margin_right = 318.0
+margin_bottom = 68.0
+mouse_filter = 2
+script = ExtResource( 21 )
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+1"
+ModifierValueColor = Color( 1, 0.301961, 0.301961, 1 )
+
+[node name="Value" type="Label" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_top = 1.0
+margin_right = 16.0
+margin_bottom = 18.0
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+custom_fonts/font = ExtResource( 26 )
+text = "+1"
+
+[node name="Name" type="Label" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 20.0
+margin_right = 167.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 27 )
+text = "Osmoregulation Cost"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
+
+[node name="Icon" type="TextureRect" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer/ModifierList/osmoregulationCost"]
+margin_left = 171.0
+margin_right = 191.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+expand = true
+
+[node name="HSeparator" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="4"]
+margin_top = 173.0
+margin_bottom = 177.0
+
+[node name="Description" parent="GroupHolder/organelleSelection/chemoreceptor/MarginContainer/VBoxContainer" index="5"]
 margin_top = 192.0
 margin_bottom = 209.0
 
@@ -3531,6 +3602,7 @@ DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 [editable path="GroupHolder/organelleSelection/oxytoxyProteins"]
 [editable path="GroupHolder/organelleSelection/flagellum"]
 [editable path="GroupHolder/organelleSelection/pilus"]
+[editable path="GroupHolder/organelleSelection/chemoreceptor"]
 [editable path="GroupHolder/organelleSelection/cilia"]
 [editable path="GroupHolder/organelleSelection/bindingAgent"]
 [editable path="GroupHolder/organelleSelection/nucleus"]

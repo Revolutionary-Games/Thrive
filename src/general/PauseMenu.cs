@@ -363,4 +363,9 @@ public class PauseMenu : ControlWithInput
     {
         SceneManager.Instance.ReturnToMenu();
     }
+
+    private void OnLoadSaveConfirmed(SaveListItem item)
+    {
+        item.LoadThisSave();
+    }
 }

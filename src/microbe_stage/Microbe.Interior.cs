@@ -56,6 +56,8 @@ public partial class Microbe
     /// </remarks>
     private bool allOrganellesDivided;
 
+    private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
     /// <summary>
     ///   True only when this cell has been killed to let know things
     ///   being engulfed by us that we are dead.
@@ -95,6 +97,13 @@ public partial class Microbe
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
     /// <summary>
+    ///   Called periodically to report the chemoreception settings of the microbe
+    /// </summary>
+    [JsonProperty]
+    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>
+        OnCompoundChemoreceptionInfo { get; set; }
+
+    /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
     /// </summary>
     public void ResetOrganelleLayout()
@@ -121,6 +130,7 @@ public partial class Microbe
                 Definition = entry.Definition,
                 Position = entry.Position,
                 Orientation = entry.Orientation,
+                Upgrades = entry.Upgrades,
             };
 
             organelles.Add(placed);
@@ -132,6 +142,10 @@ public partial class Microbe
         // Unbind if a colony's master cell removed its binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
             Colony.RemoveFromColony(this);
+
+        // Make chemoreception update happen immediately in case the settings changed so that new information is
+        // used earlier
+        timeUntilChemoreceptionUpdate = 0;
     }
 
     /// <summary>
@@ -643,8 +657,11 @@ public partial class Microbe
         var q = organelle.Position.Q;
         var r = organelle.Position.R;
 
-        var newOrganelle = new PlacedOrganelle();
-        newOrganelle.Definition = organelle.Definition;
+        var newOrganelle = new PlacedOrganelle
+        {
+            Definition = organelle.Definition,
+            Upgrades = organelle.Upgrades,
+        };
 
         // Spiral search for space for the organelle
         int radius = 1;
@@ -740,8 +757,7 @@ public partial class Microbe
 
     private void HandleMovement(float delta)
     {
-        if (MovementDirection != Vector3.Zero ||
-            queuedMovementForce != Vector3.Zero)
+        if (MovementDirection != Vector3.Zero || queuedMovementForce != Vector3.Zero)
         {
             // Movement direction should not be normalized to allow different speeds
             Vector3 totalMovement = Vector3.Zero;
@@ -760,14 +776,31 @@ public partial class Microbe
             if (movementSoundCooldownTimer > 0)
                 movementSoundCooldownTimer -= delta;
 
-            // The cell starts moving from a relatively idle velocity, so play the movement sound
+            // The cell starts moving from a relatively idle velocity, so play the begin movement sound
             // TODO: Account for cell turning, I can't figure out a reliable way to do that using the current
             // calculation - Kasterisk
-            if (!movementAudio.Playing && movementSoundCooldownTimer <= 0 && deltaAcceleration >
-                lastLinearAcceleration.LengthSquared() && lastLinearVelocity.LengthSquared() <= 1)
+            if (movementSoundCooldownTimer <= 0 && deltaAcceleration > lastLinearAcceleration.LengthSquared() &&
+                lastLinearVelocity.LengthSquared() <= 1)
             {
                 movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
+                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-movement-1.ogg");
+            }
+
+            if (!movementAudio.Playing)
                 movementAudio.Play();
+
+            // Max volume is 0.4
+            if (movementAudio.Volume < 0.4f)
+                movementAudio.Volume += delta;
+        }
+        else
+        {
+            if (movementAudio.Playing)
+            {
+                movementAudio.Volume -= delta;
+
+                if (movementAudio.Volume <= 0)
+                    movementAudio.Stop();
             }
         }
     }
@@ -891,5 +924,20 @@ public partial class Microbe
             membraneCoords.x * s + membraneCoords.z * c);
 
         return Translation + (ejectionDirection * ejectionDistance);
+    }
+
+    private void HandleChemoreceptorLines(float delta)
+    {
+        timeUntilChemoreceptionUpdate -= delta;
+
+        if (timeUntilChemoreceptionUpdate > 0 || Dead)
+            return;
+
+        timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
+        OnCompoundChemoreceptionInfo?.Invoke(this, activeCompoundDetections);
+
+        // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
+        activeCompoundDetections.Clear();
     }
 }

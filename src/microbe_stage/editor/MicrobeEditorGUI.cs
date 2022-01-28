@@ -198,6 +198,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath ReportTabPatchNamePath;
 
     [Export]
+    public NodePath ReportTabPatchSelectorPath;
+
+    [Export]
     public NodePath PatchPlayerHerePath;
 
     [Export]
@@ -317,6 +320,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [Export]
     public NodePath AutoEvoPredictionExplanationLabelPath;
 
+    [Export]
+    public NodePath OrganelleUpgradeGUIPath;
+
     private Compound atp;
     private Compound ammonia;
     private Compound carbondioxide;
@@ -434,7 +440,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
-    private Label reportTabPatchNameLabel;
+    private Label reportTabPatchName;
+    private OptionButton reportTabPatchSelector;
 
     private HBoxContainer physicalConditionsIconLegends;
     private LineChart temperatureChart;
@@ -491,6 +498,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private CustomConfirmationDialog islandPopup;
 
     private OrganellePopupMenu organelleMenu;
+    private OrganelleUpgradeGUI organelleUpgradeGUI;
 
     private TextureButton menuButton;
     private TextureButton helpButton;
@@ -600,7 +608,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
 
-        reportTabPatchNameLabel = GetNode<Label>(ReportTabPatchNamePath);
+        reportTabPatchName = GetNode<Label>(ReportTabPatchNamePath);
+        reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
@@ -660,6 +669,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
+        organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
+
+        // Hidden in the editor to make selecting other things easier
+        organelleUpgradeGUI.Visible = true;
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
 
@@ -669,6 +682,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
+
+        reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
@@ -890,11 +905,27 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         compoundBalance.UpdateBalances(balances);
     }
 
+    /// <summary>
+    ///   Cancels the previous auto-evo prediction run if there is one
+    /// </summary>
+    public void CancelPreviousAutoEvoPrediction()
+    {
+        if (waitingForPrediction == null)
+            return;
+
+        GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
+        waitingForPrediction.AutoEvoRun.Abort();
+        waitingForPrediction = null;
+    }
+
     public void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, MicrobeSpecies playerSpeciesOriginal,
         MicrobeSpecies playerSpeciesNew)
     {
-        // Cancel previous one if there is one
-        waitingForPrediction?.AutoEvoRun.Abort();
+        if (waitingForPrediction != null)
+        {
+            GD.PrintErr(
+                $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
+        }
 
         totalPopulationIndicator.Show();
         totalPopulationIndicator.Texture = questionIcon;
@@ -1095,9 +1126,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
-    public void UpdateTimeline()
+    public void UpdateTimeline(Patch patch = null)
     {
-        timelineSubtab.UpdateTimeline();
+        timelineSubtab.UpdateTimeline(patch);
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
@@ -1199,9 +1230,23 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         externalEffectsLabel.Text = external;
     }
 
-    public void UpdateReportTabPatchName(string patch)
+    public void UpdateReportTabPatchName(Patch patch)
     {
-        reportTabPatchNameLabel.Text = patch;
+        reportTabPatchName.Text = TranslationServer.Translate(patch.Name);
+    }
+
+    public void UpdateReportTabPatchSelector()
+    {
+        UpdateReportTabPatchName(editor.CurrentPatch);
+
+        reportTabPatchSelector.Clear();
+
+        foreach (var patch in editor.CurrentPatch.GetClosestConnectedPatches())
+        {
+            reportTabPatchSelector.AddItem(TranslationServer.Translate(patch.Name), patch.ID);
+        }
+
+        reportTabPatchSelector.Select(editor.CurrentPatch.ID);
     }
 
     public void UpdateRigiditySliderState(int mutationPoints)
@@ -1280,7 +1325,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         UpdateTimeline();
 
-        UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
+        UpdateReportTabPatchName(patch);
     }
 
     /// <summary>
@@ -1328,6 +1373,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Move enabled only when microbe has more than one organelle
         organelleMenu.EnableMoveOption = editor.MicrobeSize > 1;
+
+        // Modify / upgrade possible when defined on the organelle definition
+        organelleMenu.EnableModifyOption = !string.IsNullOrEmpty(selectedOrganelle.Definition.UpgradeGUI);
     }
 
     public void OnMovePressed()
@@ -1341,6 +1389,19 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public void OnDeletePressed()
     {
         editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
+    }
+
+    public void OnModifyPressed()
+    {
+        var upgradeGUI = organelleMenu.SelectedOrganelle?.Definition.UpgradeGUI;
+
+        if (string.IsNullOrEmpty(upgradeGUI))
+        {
+            GD.PrintErr("Attempted to modify an organelle with no upgrade GUI known");
+            return;
+        }
+
+        organelleUpgradeGUI.OpenForOrganelle(organelleMenu.SelectedOrganelle, upgradeGUI, editor);
     }
 
     public override void _Notification(int what)
@@ -2225,6 +2286,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
+
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patch.ID));
+    }
+
+    private void OnReportTabPatchListSelected(int index)
+    {
+        var patch = editor.CurrentGame.GameWorld.Map.GetPatch(reportTabPatchSelector.GetItemId(index));
+        UpdateReportTabStatistics(patch);
+        UpdateTimeline(patch);
+        UpdateReportTabPatchName(patch);
     }
 
     /// <summary>

@@ -24,6 +24,7 @@ public class FluidSystem
 
     private readonly Node worldRoot;
 
+    // TODO: this should be probably saved in the future to make currents consistent after loading a save
     private float millisecondsPassed;
 
     public FluidSystem(Node worldRoot)
@@ -59,8 +60,7 @@ public class FluidSystem
 
             if (body == null)
             {
-                GD.PrintErr("A node has been put in the fluid effect group " +
-                    "but it isn't a rigidbody");
+                GD.PrintErr("A node has been put in the fluid effect group but it isn't a RigidBody");
                 continue;
             }
 

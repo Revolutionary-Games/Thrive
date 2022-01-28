@@ -656,6 +656,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
             gui.UpdateTimeline();
+            gui.UpdateReportTabPatchSelector();
         }
     }
 
@@ -1317,6 +1318,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             return;
         }
 
+        // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object
+        // which may cause occasional background task errors
+        gui.CancelPreviousAutoEvoPrediction();
+
         cachedAutoEvoPredictionSpecies ??= (MicrobeSpecies)editedSpecies.Clone();
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
@@ -1403,7 +1408,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
 
-        gui.UpdateReportTabPatchName(TranslationServer.Translate(CurrentPatch.Name));
+        gui.UpdateReportTabPatchSelector();
 
         gui.UpdateRigiditySliderState(MutationPoints);
 

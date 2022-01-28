@@ -71,7 +71,7 @@ public class TimelineTab : PanelContainer
         globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
 
-    public void UpdateTimeline()
+    public void UpdateTimeline(Patch patch = null)
     {
         eventsContainer.FreeChildren();
 
@@ -86,11 +86,11 @@ public class TimelineTab : PanelContainer
             eventsContainer.AddChild(section);
         }
 
-        var patch = patchMapDrawer.SelectedPatch ?? editor.CurrentPatch;
+        var targetPatch = patch ?? patchMapDrawer.SelectedPatch ?? editor.CurrentPatch;
 
-        for (int i = patch.History.Count - 1; i >= 0; i--)
+        for (int i = targetPatch.History.Count - 1; i >= 0; i--)
         {
-            var snapshot = patch.History[i];
+            var snapshot = targetPatch.History[i];
             var section = new TimelineSection((snapshot.TimePeriod, snapshot.EventsLog));
 
             cachedLocalTimelineElements.Add(section);
