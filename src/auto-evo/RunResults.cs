@@ -834,8 +834,8 @@
             {
                 foreach (var species in patch.SpeciesInPatch.Keys)
                 {
-                    var hasPopulationBeforeMigration = GetSpeciesPopulationsByPatch(species, true, true).
-                        TryGetValue(patch, out var finalPatchPopulation);
+                    var hasPopulationBeforeMigration = GetSpeciesPopulationsByPatch(species, true, true)
+                        .TryGetValue(patch, out var finalPatchPopulation);
 
                     var globalPopulation = GetGlobalPopulation(species, true, true);
                     var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
