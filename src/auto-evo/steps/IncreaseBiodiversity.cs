@@ -151,7 +151,7 @@
                 {
                     new KeyValuePair<Patch, long>(patch, configuration.NewBiodiversityIncreasingSpeciesPopulation),
                 },
-                RunResults.NewSpeciesType.FillNiche, fromSpecies, patch);
+                RunResults.NewSpeciesType.FillNiche, fromSpecies);
 
             createdASpecies = true;
         }

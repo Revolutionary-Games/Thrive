@@ -43,33 +43,31 @@
             SplitDueToMutation,
         }
 
-        public void AddMutationResultForSpecies(Species species, Species mutated, Patch originPatch)
+        public void AddMutationResultForSpecies(Species species, Species mutated)
         {
-            MakeSureResultExistsForSpecies(species, originPatch);
+            MakeSureResultExistsForSpecies(species);
 
             results[species].MutatedProperties = mutated;
         }
 
         public void AddPopulationResultForSpecies(Species species, Patch patch, long newPopulation)
         {
-            MakeSureResultExistsForSpecies(species, patch);
+            MakeSureResultExistsForSpecies(species);
 
             results[species].NewPopulationInPatches[patch] = Math.Max(newPopulation, 0);
         }
 
-        public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch,
-            long populationAmount, Patch originPatch)
+        public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, long populationAmount)
         {
             if (populationAmount <= 0)
                 throw new ArgumentException("Invalid population migration amount");
 
-            AddMigrationResultForSpecies(
-                species, new SpeciesMigration(fromPatch, toPatch, populationAmount), originPatch);
+            AddMigrationResultForSpecies(species, new SpeciesMigration(fromPatch, toPatch, populationAmount));
         }
 
-        public void AddMigrationResultForSpecies(Species species, SpeciesMigration migration, Patch originPatch)
+        public void AddMigrationResultForSpecies(Species species, SpeciesMigration migration)
         {
-            MakeSureResultExistsForSpecies(species, originPatch);
+            MakeSureResultExistsForSpecies(species);
 
             results[species].SpreadToPatches.Add(migration);
         }
@@ -96,9 +94,9 @@
         }
 
         public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
-            NewSpeciesType addType, Species parentSpecies, Patch originPatch)
+            NewSpeciesType addType, Species parentSpecies)
         {
-            MakeSureResultExistsForSpecies(species, originPatch);
+            MakeSureResultExistsForSpecies(species);
 
             results[species].NewlyCreated = addType;
             results[species].SplitFrom = parentSpecies;
@@ -109,14 +107,13 @@
             }
         }
 
-        public void AddSplitResultForSpecies(Species species, Species splitSpecies, List<Patch> patchesToConvert,
-            Patch originPatch)
+        public void AddSplitResultForSpecies(Species species, Species splitSpecies, List<Patch> patchesToConvert)
         {
             if (patchesToConvert == null || patchesToConvert.Count < 1)
                 throw new ArgumentException("split patches is missing", nameof(patchesToConvert));
 
-            MakeSureResultExistsForSpecies(species, originPatch);
-            MakeSureResultExistsForSpecies(splitSpecies, originPatch);
+            MakeSureResultExistsForSpecies(species);
+            MakeSureResultExistsForSpecies(splitSpecies);
 
             results[species].SplitOff = splitSpecies;
             results[species].SplitOffPatches = patchesToConvert;
@@ -156,7 +153,7 @@
             if (niche == null)
                 throw new ArgumentException("niche is missing", nameof(niche));
 
-            MakeSureResultExistsForSpecies(species, patch);
+            MakeSureResultExistsForSpecies(species);
 
             var dataReceiver = results[species].GetEnergyResults(patch);
 
@@ -173,13 +170,26 @@
         public void AddTrackedEnergyConsumptionForSpecies(MicrobeSpecies species, Patch patch,
             long unadjustedPopulation, float totalEnergy, float individualCost)
         {
-            MakeSureResultExistsForSpecies(species, patch);
+            MakeSureResultExistsForSpecies(species);
 
             var dataReceiver = results[species].GetEnergyResults(patch);
 
             dataReceiver.UnadjustedPopulation = unadjustedPopulation;
             dataReceiver.TotalEnergyGathered = totalEnergy;
             dataReceiver.IndividualCost = individualCost;
+        }
+
+        /// <summary>
+        ///   Checks if species has results. Species doesn't have results if it was extinct or was not part of the run
+        /// </summary>
+        /// <param name="species">The species to check</param>
+        /// <returns>True if the species has results</returns>
+        public bool SpeciesHasResults(Species species)
+        {
+            lock (results)
+            {
+                return results.ContainsKey(species);
+            }
         }
 
         public void ApplyResults(GameWorld world, bool skipMutations)
@@ -486,6 +496,11 @@
             return newSpecies;
         }
 
+        public NewSpeciesType? GetNewSpeciesResult(Species species)
+        {
+            return results[species].NewlyCreated;
+        }
+
         public Dictionary<Species, SpeciesMigration> GetMigrationsTo(Patch patch)
         {
             var migrationsToPatch = new Dictionary<Species, SpeciesMigration>();
@@ -508,27 +523,36 @@
             return results[species].EnergyResults;
         }
 
+        public Species GetMutationResults(Species species)
+        {
+            return results[species].MutatedProperties;
+        }
+
+        public (Species SplitOff, Species SplitFrom, List<Patch> SplitOffPatches) GetSplitResults(Species species)
+        {
+            return (results[species].SplitOff, results[species].SplitFrom, results[species].SplitOffPatches);
+        }
+
         /// <summary>
         ///   Prints to log a summary of the results
         /// </summary>
-        public void PrintSummary(GameWorld world, PatchMap previousPopulations = null)
+        public void PrintSummary(PatchMap previousPopulations = null)
         {
             GD.Print("Start of auto-evo results summary (entries: ", results.Count, ")");
 
-            GD.Print(MakeSummary(world, previousPopulations));
+            GD.Print(MakeSummary(previousPopulations));
 
             GD.Print("End of results summary");
         }
 
         /// <summary>
-        ///   Makes summary text and logs auto-evo events to a history record
+        ///   Makes summary text
         /// </summary>
-        /// <param name="world">Used to log events globally</param>
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
         /// <param name="playerReadable">if true ids are removed from the output</param>
         /// <param name="effects">if not null these effects are applied to the population numbers</param>
         /// <returns>The generated summary text</returns>
-        public LocalizedStringBuilder MakeSummary(GameWorld world, PatchMap previousPopulations = null,
+        public LocalizedStringBuilder MakeSummary(PatchMap previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect> effects = null)
         {
             const bool resolveMigrations = true;
@@ -606,17 +630,9 @@
                     {
                         case NewSpeciesType.FillNiche:
                             builder.Append(new LocalizedString("RUN_RESULT_NICHE_FILL"));
-                            var nicheFillLog = new LocalizedString(
-                                "TIMELINE_NICHE_FILL", entry.Species.FormattedName, entry.SplitFrom.FormattedName);
-                            entry.OriginPatch.LogEvent(nicheFillLog, entry.SplitFrom.PlayerSpecies, "newSpecies.png");
-                            world.LogEvent(nicheFillLog, entry.SplitFrom.PlayerSpecies, "newSpecies.png");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
                             builder.Append(new LocalizedString("RUN_RESULT_SELECTION_PRESSURE_SPLIT"));
-                            var splitLog = new LocalizedString("TIMELINE_SELECTION_PRESSURE_SPLIT",
-                                entry.Species.FormattedName, entry.SplitFrom.FormattedName);
-                            entry.OriginPatch.LogEvent(splitLog, entry.SplitFrom.PlayerSpecies, "newSpecies.png");
-                            world.LogEvent(splitLog, entry.SplitFrom.PlayerSpecies, "newSpecies.png");
                             break;
                         default:
                             GD.PrintErr("Unhandled newly created species type: ", entry.NewlyCreated.Value);
@@ -668,12 +684,8 @@
                     builder.Append(new LocalizedString("RUN_RESULT_SPREAD_TO_PATCHES"));
                     builder.Append('\n');
 
-                    var numberOfPatches = 0;
-
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
-                        ++numberOfPatches;
-
                         if (playerReadable)
                         {
                             builder.Append("  ");
@@ -692,38 +704,6 @@
                         }
 
                         builder.Append('\n');
-
-                        spreadEntry.To.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM",
-                                entry.Species.FormattedName, TranslationServer.Translate(spreadEntry.From.Name)),
-                            entry.Species.PlayerSpecies, "newSpecies.png");
-                    }
-
-                    if (numberOfPatches < 2)
-                    {
-                        entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                            entry.Species.FormattedName, TranslationServer.Translate(
-                                entry.SpreadToPatches[0].To.Name)), entry.Species.PlayerSpecies, "newSpecies.png");
-                        world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
-                                entry.Species.FormattedName,
-                                TranslationServer.Translate(entry.SpreadToPatches[0].To.Name),
-                                TranslationServer.Translate(entry.SpreadToPatches[0].From.Name)),
-                            entry.Species.PlayerSpecies, "newSpecies.png");
-                    }
-                    else if (numberOfPatches < 3)
-                    {
-                        entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO_TWO",
-                            entry.Species.FormattedName, TranslationServer.Translate(
-                                entry.SpreadToPatches[0].To.Name), TranslationServer.Translate(
-                                entry.SpreadToPatches[1].To.Name)), entry.Species.PlayerSpecies, "newSpecies.png");
-                    }
-                    else
-                    {
-                        entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE",
-                                entry.Species.FormattedName, numberOfPatches), entry.Species.PlayerSpecies,
-                            "newSpecies.png");
-                        world.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE",
-                                entry.Species.FormattedName, numberOfPatches), entry.Species.PlayerSpecies,
-                            "newSpecies.png");
                     }
                 }
 
@@ -832,66 +812,11 @@
                     }
                 }
 
-                var globalPopulation = GetGlobalPopulation(entry.Species, resolveMigrations, resolveSplits);
-                var previousGlobalPopulation = previousPopulations.GetSpeciesGlobalPopulation(entry.Species);
-
-                var newPatchPopulation = GetSpeciesPopulationsByPatch(entry.Species, resolveMigrations, resolveSplits);
-                var previousPatchPopulation = entry.OriginPatch.GetSpeciesPopulation(entry.Species);
-
-                if (globalPopulation <= 0)
+                if (GetGlobalPopulation(entry.Species, resolveMigrations, resolveSplits) <= 0)
                 {
                     builder.Append(' ');
                     builder.Append(new LocalizedString("WENT_EXTINCT_FROM_PLANET"));
                     builder.Append('\n');
-
-                    // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
-                    entry.OriginPatch.LogEvent(new LocalizedString(
-                            "TIMELINE_SPECIES_EXTINCT", entry.Species.FormattedName),
-                        entry.Species.PlayerSpecies, "extinction.png");
-                    world.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT", entry.Species.FormattedName),
-                        entry.Species.PlayerSpecies, "extinction.png");
-                }
-                else
-                {
-                    if (newPatchPopulation.ContainsKey(entry.OriginPatch) && newPatchPopulation[entry.OriginPatch] !=
-                        previousPatchPopulation)
-                    {
-                        var newPopulation = newPatchPopulation[entry.OriginPatch];
-
-                        if (newPopulation > previousPatchPopulation)
-                        {
-                            entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                    entry.Species.FormattedName, ((double)newPopulation).FormatNumber()),
-                                entry.Species.PlayerSpecies, "popUp.png");
-                        }
-                        else
-                        {
-                            entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                    entry.Species.FormattedName, ((double)newPopulation).FormatNumber()),
-                                entry.Species.PlayerSpecies, "popDown.png");
-                        }
-                    }
-                    else if (!newPatchPopulation.ContainsKey(entry.OriginPatch))
-                    {
-                        entry.OriginPatch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL",
-                            entry.Species.FormattedName), entry.Species.PlayerSpecies, "extinctionLocal.png");
-                    }
-
-                    if (globalPopulation != previousGlobalPopulation)
-                    {
-                        if (globalPopulation > previousGlobalPopulation)
-                        {
-                            world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                    entry.Species.FormattedName, ((double)globalPopulation).FormatNumber()),
-                                entry.Species.PlayerSpecies, "popUp.png");
-                        }
-                        else
-                        {
-                            world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                    entry.Species.FormattedName, ((double)globalPopulation).FormatNumber()),
-                                entry.Species.PlayerSpecies, "popDown.png");
-                        }
-                    }
                 }
 
                 if (playerReadable)
@@ -901,7 +826,149 @@
             return builder;
         }
 
-        private void MakeSureResultExistsForSpecies(Species species, Patch originPatch)
+        public void LogResultsToTimeline(GameWorld world, List<ExternalEffect> effects = null)
+        {
+            var newSpecies = GetNewSpecies();
+
+            foreach (var patch in world.Map.Patches.Values)
+            {
+                foreach (var species in patch.SpeciesInPatch.Keys)
+                {
+                    var hasPopulationBeforeMigration = GetSpeciesPopulationsByPatch(species, true, true).
+                        TryGetValue(patch, out var finalPatchPopulation);
+
+                    var globalPopulation = GetGlobalPopulation(species, true, true);
+                    var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
+
+                    var previousPatchPopulation = patch.GetSpeciesPopulation(species);
+
+                    // Adjust final patch population by external effects
+                    if (effects != null)
+                    {
+                        foreach (var effect in effects)
+                        {
+                            if (effect.Species == species)
+                            {
+                                finalPatchPopulation += effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
+                                    - effect.Species.Population;
+                            }
+                        }
+                    }
+
+                    if (globalPopulation <= 0)
+                    {
+                        // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
+                        LogEventGloballyAndLocally(world, patch, new LocalizedString(
+                                "TIMELINE_SPECIES_EXTINCT", species.FormattedName),
+                            species.PlayerSpecies, "extinction.png");
+                    }
+                    else
+                    {
+                        if (hasPopulationBeforeMigration)
+                        {
+                            if (finalPatchPopulation > previousPatchPopulation)
+                            {
+                                patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
+                                        species.FormattedName, ((double)finalPatchPopulation).FormatNumber()),
+                                    species.PlayerSpecies, "popUp.png");
+                            }
+                            else
+                            {
+                                patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
+                                        species.FormattedName, ((double)finalPatchPopulation).FormatNumber()),
+                                    species.PlayerSpecies, "popDown.png");
+                            }
+                        }
+                        else
+                        {
+                            patch.LogEvent(new LocalizedString(
+                                    "TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
+                                species.PlayerSpecies, "extinctionLocal.png");
+                        }
+
+                        if (globalPopulation > previousGlobalPopulation)
+                        {
+                            world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
+                                    species.FormattedName, ((double)globalPopulation).FormatNumber()),
+                                species.PlayerSpecies, "popUp.png");
+                        }
+                        else
+                        {
+                            world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
+                                    species.FormattedName, ((double)globalPopulation).FormatNumber()),
+                                species.PlayerSpecies, "popDown.png");
+                        }
+                    }
+                }
+
+                foreach (var migration in GetMigrationsTo(patch))
+                {
+                    // Log to destination patch
+                    patch.LogEvent(new LocalizedString(
+                            "TIMELINE_SPECIES_MIGRATED_FROM",
+                            migration.Key.FormattedName,
+                            TranslationServer.Translate(migration.Value.From.Name)),
+                        migration.Key.PlayerSpecies, "newSpecies.png");
+
+                    // Log to game world
+                    world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
+                            migration.Key.FormattedName,
+                            TranslationServer.Translate(migration.Value.To.Name),
+                            TranslationServer.Translate(migration.Value.From.Name)),
+                        migration.Key.PlayerSpecies, "newSpecies.png");
+
+                    // Log to origin patch
+                    migration.Value.From.LogEvent(new LocalizedString(
+                            "TIMELINE_SPECIES_MIGRATED_TO",
+                            migration.Key.FormattedName,
+                            TranslationServer.Translate(migration.Value.To.Name)),
+                        migration.Key.PlayerSpecies, "newSpecies.png");
+                }
+
+                foreach (var newSpeciesEntry in newSpecies)
+                {
+                    GetSpeciesPopulationsByPatch(newSpeciesEntry, true, true).TryGetValue(patch, out var population);
+
+                    if (population > 0)
+                    {
+                        var splitResults = GetSplitResults(newSpeciesEntry);
+
+                        switch (GetNewSpeciesResult(newSpeciesEntry).Value)
+                        {
+                            case RunResults.NewSpeciesType.FillNiche:
+                                LogEventGloballyAndLocally(world, patch, new LocalizedString(
+                                        "TIMELINE_NICHE_FILL",
+                                        newSpeciesEntry.FormattedName,
+                                        splitResults.SplitFrom.FormattedName),
+                                    false, "newSpecies.png");
+                                break;
+                            case RunResults.NewSpeciesType.SplitDueToMutation:
+                                LogEventGloballyAndLocally(world, patch, new LocalizedString(
+                                        "TIMELINE_SELECTION_PRESSURE_SPLIT",
+                                        newSpeciesEntry.FormattedName,
+                                        splitResults.SplitFrom.FormattedName),
+                                    false, "newSpecies.png");
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///   Logs an event description into game world and a patch. Use this if the event description in question
+        ///   is an exact same.
+        /// </summary>
+        private void LogEventGloballyAndLocally(GameWorld world, Patch patch, LocalizedString description,
+            bool highlight = false, string iconPath = null)
+        {
+            patch.LogEvent(description, highlight, iconPath);
+            world.LogEvent(description, highlight, iconPath);
+        }
+
+        private void MakeSureResultExistsForSpecies(Species species)
         {
             if (species == null)
                 throw new ArgumentException("species to add result to is null", nameof(species));
@@ -911,7 +978,7 @@
                 if (results.ContainsKey(species))
                     return;
 
-                results[species] = new SpeciesResult(species, originPatch);
+                results[species] = new SpeciesResult(species);
             }
         }
 
@@ -944,11 +1011,6 @@
         public class SpeciesResult
         {
             public Species Species;
-
-            /// <summary>
-            ///   The patch where this run result occured.
-            /// </summary>
-            public Patch OriginPatch;
 
             /// <summary>
             ///   Dictionary of the new species population for relevant patches,
@@ -998,10 +1060,9 @@
             /// </summary>
             public Dictionary<Patch, SpeciesPatchEnergyResults> EnergyResults = new();
 
-            public SpeciesResult(Species species, Patch originPatch)
+            public SpeciesResult(Species species)
             {
                 Species = species ?? throw new ArgumentException("species is null");
-                OriginPatch = originPatch;
             }
 
             public SpeciesPatchEnergyResults GetEnergyResults(Patch patch)

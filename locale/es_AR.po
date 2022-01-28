@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-08 00:03+0700\n"
+"POT-Creation-Date: 2022-01-28 14:10+0700\n"
 "PO-Revision-Date: 2020-11-17 07:36+0000\n"
 "Last-Translator: Levi Monjeau <iamaoenguin@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate."
@@ -456,7 +456,7 @@ msgid "ZOOM_IN"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4009
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4014
 msgid "EDITOR"
 msgstr ""
 
@@ -719,25 +719,25 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1290
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3656
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3661
 msgid "AMMONIA"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1342
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3727
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3732
 msgid "PHOSPHATE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1394
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3621
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3626
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1238
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3696
 msgid "GLUCOSE"
 msgstr ""
 
@@ -748,29 +748,29 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1446
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3762
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3767
 msgid "IRON"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3457
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3462
 msgid "OXYGEN"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3511
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3516
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3484
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3489
 msgid "NITROGEN"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3521
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2889
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3337
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2894
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3342
 msgid "SUNLIGHT"
 msgstr ""
 
@@ -912,104 +912,96 @@ msgstr ""
 msgid "STARTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:284
+#: ../src/auto-evo/AutoEvoRun.cs:293
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:562
+#: ../src/auto-evo/RunResults.cs:586
 msgid "POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:571
+#: ../src/auto-evo/RunResults.cs:595
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:577
+#: ../src/auto-evo/RunResults.cs:601
 msgid "PREVIOUS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:595
+#: ../src/auto-evo/RunResults.cs:619
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:608
+#: ../src/auto-evo/RunResults.cs:632
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:610
-msgid "TIMELINE_NICHE_FILL"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:615
+#: ../src/auto-evo/RunResults.cs:635
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:616
-msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:636
+#: ../src/auto-evo/RunResults.cs:652
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:652
+#: ../src/auto-evo/RunResults.cs:668
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:657
+#: ../src/auto-evo/RunResults.cs:673
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:668
+#: ../src/auto-evo/RunResults.cs:684
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:692
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:696
-msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:703
-msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:706
-msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:714
-msgid "TIMELINE_SPECIES_MIGRATED_TO_TWO"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:721 ../src/auto-evo/RunResults.cs:724
-msgid "TIMELINE_SPECIES_MIGRATED_TO_MULTIPLE"
-msgstr ""
-
-#: ../src/auto-evo/RunResults.cs:731
+#: ../src/auto-evo/RunResults.cs:711
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:844
+#: ../src/auto-evo/RunResults.cs:818
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:849 ../src/auto-evo/RunResults.cs:851
+#: ../src/auto-evo/RunResults.cs:862
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:863 ../src/auto-evo/RunResults.cs:885
+#: ../src/auto-evo/RunResults.cs:871 ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:869 ../src/auto-evo/RunResults.cs:891
+#: ../src/auto-evo/RunResults.cs:877 ../src/auto-evo/RunResults.cs:897
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:876
+#: ../src/auto-evo/RunResults.cs:885
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:908
+msgid "TIMELINE_SPECIES_MIGRATED_FROM"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:914
+msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:922
+msgid "TIMELINE_SPECIES_MIGRATED_TO"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:940
+msgid "TIMELINE_NICHE_FILL"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:947
+msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
@@ -1456,7 +1448,7 @@ msgstr ""
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4164
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
@@ -1907,7 +1899,7 @@ msgid "SAVE_GAME"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2752
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2757
 msgid "STATISTICS"
 msgstr ""
 
@@ -2649,8 +2641,8 @@ msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2878
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2883
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3279
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:935
 msgid "TEMPERATURE"
 msgstr ""
@@ -2785,9 +2777,9 @@ msgid "PRESSURE_SHORT"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2942
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2976
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3581
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2947
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2981
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3586
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1075
 msgid "COMPOUNDS"
 msgstr ""
@@ -3026,7 +3018,7 @@ msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2016
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4101
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4106
 msgid "AUTO-EVO_PREDICTION"
 msgstr ""
 
@@ -3094,73 +3086,73 @@ msgstr ""
 msgid "EXTERNAL_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2669
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2670
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2675
 msgid "GLOBAL_INITIAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2677
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2682
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2684
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2689
 msgid "LOCAL_INITIAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2761
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2789
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2766
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2794
 msgid "SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2799
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3233
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2804
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3238
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2899
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2933
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3416
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2904
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2938
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3421
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1068
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3002
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3925
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3930
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3115
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3120
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3150
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3155
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3310
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3315
 msgid "PRESSURE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3846
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3898
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3903
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3967
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3972
 msgid "REPORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3988
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3993
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4150
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4155
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
@@ -3173,7 +3165,7 @@ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
-#: ../src/microbe_stage/editor/TimelineTab.cs:192
+#: ../src/microbe_stage/editor/TimelineTab.cs:186
 msgid "MEGA_YEARS"
 msgstr ""
 
@@ -3300,7 +3292,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TimelineTab.cs:243
+#: ../src/microbe_stage/editor/TimelineTab.cs:237
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
@@ -3876,11 +3868,11 @@ msgstr ""
 msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:104
+#: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
 msgid "LOADING_DOT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:280
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_THIS_SAVE"
 msgstr ""
 
@@ -3928,41 +3920,41 @@ msgstr ""
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:131
+#: ../src/saving/SaveListItem.tscn:132
 msgid "CREATED_AT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:138 ../src/saving/SaveListItem.tscn:157
-#: ../src/saving/SaveListItem.tscn:176 ../src/saving/SaveListItem.tscn:199
-#: ../src/saving/SaveListItem.tscn:228 ../src/saving/SaveListItem.tscn:247
+#: ../src/saving/SaveListItem.tscn:139 ../src/saving/SaveListItem.tscn:158
+#: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
+#: ../src/saving/SaveListItem.tscn:229 ../src/saving/SaveListItem.tscn:248
 msgid "DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:150
+#: ../src/saving/SaveListItem.tscn:151
 msgid "TYPE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:169
+#: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:192
+#: ../src/saving/SaveListItem.tscn:193
 msgid "VERSION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:221
+#: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:240
+#: ../src/saving/SaveListItem.tscn:241
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:272 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
 msgid "LOAD"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:279
+#: ../src/saving/SaveListItem.tscn:282
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 

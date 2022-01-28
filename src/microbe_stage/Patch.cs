@@ -217,12 +217,7 @@ public class Patch
         if (currentSnapshot.EventsLog.Any(entry => entry.Description.ToString() == description.ToString()))
             return;
 
-        currentSnapshot.EventsLog.Add(new GameEventDescription
-        {
-            Description = description,
-            IconPath = iconPath,
-            Highlighted = highlight,
-        });
+        currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
     }
 
     public void ClearLoggedEvents()

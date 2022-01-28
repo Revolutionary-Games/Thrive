@@ -225,7 +225,16 @@ public class AutoEvoRun
             {
                 try
                 {
-                    long currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
+                    // It's possible for external effects to be added for extinct species (either completely extinct
+                    // or extinct in the current patch)
+                    if (!results.SpeciesHasResults(entry.Species))
+                    {
+                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
+                            " had an external effect, ignoring the effect");
+                        continue;
+                    }
+
+                    long currentPop = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
 
                     results.AddPopulationResultForSpecies(
                         entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
@@ -311,6 +320,10 @@ public class AutoEvoRun
             var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
             foreach (var speciesEntry in speciesInPatchCopy)
             {
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (speciesEntry.Key == null)
+                    throw new Exception("Species key in a patch is null");
+
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
 
@@ -322,14 +335,13 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, map, speciesEntry.Key, entry.Value,
+                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
-                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, map, speciesEntry.Key, entry.Value,
-                        random,
+                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, map, speciesEntry.Key, random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
                 }

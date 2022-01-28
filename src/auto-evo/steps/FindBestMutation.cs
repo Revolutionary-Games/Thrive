@@ -12,21 +12,19 @@
         private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
         private readonly Species species;
-        private readonly Patch patch;
         private readonly float splitThresholdFraction;
         private readonly int splitThresholdAmount;
 
         private readonly Mutations mutations = new();
 
         public FindBestMutation(AutoEvoConfiguration configuration, PatchMap map, Species species,
-            Patch patch, int mutationsToTry, bool allowNoMutation,
+            int mutationsToTry, bool allowNoMutation,
             float splitThresholdFraction, int splitThresholdAmount)
             : base(mutationsToTry, allowNoMutation, splitThresholdAmount > 0)
         {
             this.configuration = configuration;
             this.map = map;
             this.species = species;
-            this.patch = patch;
             this.splitThresholdFraction = splitThresholdFraction;
             this.splitThresholdAmount = splitThresholdAmount;
         }
@@ -36,7 +34,7 @@
         protected override void OnBestResultFound(RunResults results, IAttemptResult bestVariant)
         {
             var best = (AttemptResult)bestVariant;
-            results.AddMutationResultForSpecies(species, best.Mutation, patch);
+            results.AddMutationResultForSpecies(species, best.Mutation);
 
             if (splitThresholdAmount > 0)
             {
@@ -118,27 +116,27 @@
             // Used to track in which patch the best and second best where the closest
             (Patch Patch, long Difference) closestMatch = (null, 0);
 
-            foreach (var selected in best.PatchScores.Select(p => p.Key).Concat(data.PatchScores.Select(p => p.Key))
+            foreach (var patch in best.PatchScores.Select(p => p.Key).Concat(data.PatchScores.Select(p => p.Key))
                          .Distinct())
             {
-                if (!best.PatchScores.TryGetValue(selected, out long bestScore))
+                if (!best.PatchScores.TryGetValue(patch, out long bestScore))
                     bestScore = 0;
 
-                if (!data.PatchScores.TryGetValue(selected, out long secondScore))
+                if (!data.PatchScores.TryGetValue(patch, out long secondScore))
                     secondScore = 0;
 
                 if (closestMatch.Patch == null || closestMatch.Difference < secondScore - bestScore)
                 {
-                    closestMatch = (selected, secondScore - bestScore);
+                    closestMatch = (patch, secondScore - bestScore);
                 }
 
                 if (secondScore >= bestScore)
                 {
-                    secondBetter.Add(selected);
+                    secondBetter.Add(patch);
                 }
                 else
                 {
-                    bestBetter.Add(selected);
+                    bestBetter.Add(patch);
                 }
             }
 
@@ -173,12 +171,12 @@
             {
                 // Original species wants to split off
                 // So flip this around to make the mutated copy split off
-                results.AddMutationResultForSpecies(species, null, patch);
-                results.AddSplitResultForSpecies(species, best.Mutation, bestBetter, patch);
+                results.AddMutationResultForSpecies(species, null);
+                results.AddSplitResultForSpecies(species, best.Mutation, bestBetter);
             }
             else
             {
-                results.AddSplitResultForSpecies(species, data.Mutation, secondBetter, patch);
+                results.AddSplitResultForSpecies(species, data.Mutation, secondBetter);
             }
         }
 

@@ -345,12 +345,7 @@ public class GameWorld
             return;
         }
 
-        eventsLog[TotalPassedTime].Add(new GameEventDescription
-        {
-            Description = description,
-            IconPath = iconPath,
-            Highlighted = highlight,
-        });
+        eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight));
     }
 
     private void CreateRunIfMissing()

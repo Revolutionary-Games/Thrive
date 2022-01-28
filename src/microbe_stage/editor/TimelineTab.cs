@@ -201,7 +201,7 @@ public class TimelineTab : PanelContainer
                 {
                     RectMinSize = new Vector2(25, 25),
                     SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
-                    Texture = GUICommon.LoadGuiAsset(entry.IconPath),
+                    Texture = GUICommon.LoadGuiTexture(entry.IconPath),
                     Expand = true,
                     StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                 };

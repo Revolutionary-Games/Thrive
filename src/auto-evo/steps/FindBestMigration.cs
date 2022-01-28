@@ -10,16 +10,14 @@
     {
         private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
-        private readonly Patch patch;
         private readonly Species species;
         private readonly Random random;
 
-        public FindBestMigration(AutoEvoConfiguration configuration, PatchMap map, Species species, Patch patch,
+        public FindBestMigration(AutoEvoConfiguration configuration, PatchMap map, Species species,
             Random random, int migrationsToTry, bool allowNoMigration) : base(migrationsToTry, allowNoMigration)
         {
             this.configuration = configuration;
             this.map = map;
-            this.patch = patch;
             this.species = species;
             this.random = new Random(random.Next());
         }
@@ -33,7 +31,7 @@
             if (variant.Migration == null)
                 return;
 
-            results.AddMigrationResultForSpecies(species, variant.Migration, patch);
+            results.AddMigrationResultForSpecies(species, variant.Migration);
         }
 
         protected override IAttemptResult TryCurrentVariant()
@@ -100,9 +98,9 @@
 
                 if (entry.Count > 0)
                 {
-                    Patch selectedPatch = entry[0].Value;
+                    Patch patch = entry[0].Value;
 
-                    var population = selectedPatch.GetSpeciesPopulation(species);
+                    var population = patch.GetSpeciesPopulation(species);
                     if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
                         continue;
 
@@ -110,7 +108,7 @@
                     // TODO: could prefer patches this species is not already
                     // in or about to go extinct, or really anything other
                     // than random selection
-                    var target = selectedPatch.Adjacent.ToList().Random(random);
+                    var target = patch.Adjacent.ToList().Random(random);
 
                     if (target == null)
                         continue;
@@ -123,7 +121,7 @@
                     if (moveAmount > 0)
                     {
                         // Move is a success
-                        return new SpeciesMigration(selectedPatch, target, moveAmount);
+                        return new SpeciesMigration(patch, target, moveAmount);
                     }
                 }
             }

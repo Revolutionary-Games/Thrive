@@ -92,7 +92,7 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   Loads a Texture from predefined GUI asset texture folder path.
     /// </summary>
-    public static Texture LoadGuiAsset(string file)
+    public static Texture LoadGuiTexture(string file)
     {
         var assumedPath = PathUtils.Join(Constants.ASSETS_GUI_BEVEL_FOLDER, file);
 
