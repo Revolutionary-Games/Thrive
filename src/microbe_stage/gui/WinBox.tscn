@@ -1,10 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/gui_common/fonts/Thrive-Regular-Humongous.tres" type="DynamicFont" id=2]
-
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0, 0, 0, 0.196078 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "FadeIn"
@@ -22,16 +19,16 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="WinBox" type="PanelContainer"]
+[node name="WinBox" type="Popup"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_top = 0.277778
 anchor_right = 1.0
 anchor_bottom = 0.694444
 margin_bottom = 3.05176e-05
 mouse_filter = 2
-custom_styles/panel = SubResource( 1 )
+popup_exclusive = true
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -49,18 +46,18 @@ mouse_filter = 2
 alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 102.0
+margin_top = 100.0
 margin_right = 980.0
-margin_bottom = 168.0
+margin_bottom = 166.0
 custom_fonts/font = ExtResource( 2 )
 text = "WIN_BOX_TITLE"
 align = 1
 valign = 1
 
 [node name="Message" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 172.0
+margin_top = 170.0
 margin_right = 980.0
-margin_bottom = 196.0
+margin_bottom = 199.0
 custom_fonts/font = ExtResource( 1 )
 text = "WIN_TEXT"
 align = 1
