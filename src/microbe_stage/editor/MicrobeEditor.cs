@@ -601,6 +601,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
 
             // Add the edited species to that patch to allow the species to gain population there
+            // TODO: Log player species' migration
             CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(editedSpecies, 0);
         }
 
@@ -655,6 +656,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             gui.UpdatePatchDetails(CurrentPatch);
             gui.UpdateMicrobePartSelections();
             gui.UpdateMutationPointsBar();
+            gui.UpdateTimeline();
             gui.UpdateReportTabPatchSelector();
         }
     }
@@ -2475,9 +2477,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
         else
         {
-            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true,
-                run.ExternalEffects);
+            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
+
+            run.Results.LogResultsToTimeline(CurrentGame.GameWorld, run.ExternalEffects);
 
             gui.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
@@ -2485,6 +2488,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         ApplyAutoEvoResults();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
+        gui.UpdateTimeline();
 
         FadeIn();
     }
@@ -2502,6 +2506,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         CurrentGame.GameWorld.ResetAutoEvoRun();
 
         gui.UpdateReportTabStatistics(CurrentPatch);
+        gui.UpdateTimeline();
 
         FadeIn();
     }
@@ -2521,7 +2526,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // for reference in patch history (e.g. displaying it as zero on the species population chart)
         foreach (var entry in CurrentGame.GameWorld.Map.Patches)
         {
-            entry.Value.RecordConditions();
+            entry.Value.RecordSnapshot(true);
         }
 
         var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
