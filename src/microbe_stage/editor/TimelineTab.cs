@@ -21,7 +21,7 @@ public class TimelineTab : PanelContainer
     private readonly PackedScene customRichTextLabelScene = GD.Load<PackedScene>(
         "res://src/gui_common/CustomRichTextLabel.tscn");
 
-    private readonly StyleBoxTexture eventHighlightStylebox = GD.Load<StyleBoxTexture>(
+    private readonly StyleBoxTexture eventHighlightStyleBox = GD.Load<StyleBoxTexture>(
         "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
 
     private VBoxContainer eventsContainer;
@@ -78,7 +78,7 @@ public class TimelineTab : PanelContainer
         foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
         {
             var section = new TimelineSection(
-                customRichTextLabelScene, eventHighlightStylebox, (entry.Key, entry.Value));
+                customRichTextLabelScene, eventHighlightStyleBox, (entry.Key, entry.Value));
 
             cachedGlobalTimelineElements.Add(section);
             eventsContainer.AddChild(section);
@@ -90,7 +90,7 @@ public class TimelineTab : PanelContainer
         {
             var snapshot = targetPatch.History[i];
             var section = new TimelineSection(
-                customRichTextLabelScene, eventHighlightStylebox, (snapshot.TimePeriod, snapshot.EventsLog));
+                customRichTextLabelScene, eventHighlightStyleBox, (snapshot.TimePeriod, snapshot.EventsLog));
 
             cachedLocalTimelineElements.Add(section);
             eventsContainer.AddChild(section);
@@ -155,17 +155,17 @@ public class TimelineTab : PanelContainer
     private class TimelineSection : VBoxContainer
     {
         private readonly PackedScene customRichTextLabelScene;
-        private readonly StyleBoxTexture eventHighlightStylebox;
+        private readonly StyleBoxTexture eventHighlightStyleBox;
 
         private readonly (double TimePeriod, List<GameEventDescription> Events) data;
 
         private Control headerContainer;
 
-        public TimelineSection(PackedScene customRichTextLabelScene, StyleBoxTexture eventHighlightStylebox,
+        public TimelineSection(PackedScene customRichTextLabelScene, StyleBoxTexture eventHighlightStyleBox,
             (double TimePeriod, List<GameEventDescription> Events) data)
         {
             this.customRichTextLabelScene = customRichTextLabelScene;
-            this.eventHighlightStylebox = eventHighlightStylebox;
+            this.eventHighlightStyleBox = eventHighlightStyleBox;
             this.data = data;
         }
 
@@ -210,7 +210,7 @@ public class TimelineTab : PanelContainer
                     SizeFlagsHorizontal = (int)SizeFlags.ExpandFill,
                 };
 
-                highlight.AddStyleboxOverride("panel", eventHighlightStylebox);
+                highlight.AddStyleboxOverride("panel", eventHighlightStyleBox);
                 itemContainer.AddConstantOverride("separation", 5);
 
                 var eventLabel = customRichTextLabelScene.Instance<CustomRichTextLabel>();
