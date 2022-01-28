@@ -16,8 +16,7 @@ using Saving;
 /// </summary>
 public class ThriveJsonConverter : IDisposable
 {
-    private static readonly ThriveJsonConverter InstanceValue =
-        new ThriveJsonConverter(new SaveContext(SimulationParameters.Instance));
+    private static readonly ThriveJsonConverter InstanceValue = new(new SaveContext(SimulationParameters.Instance));
 
     // ReSharper disable once NotAccessedField.Local
     /// <summary>
@@ -28,7 +27,7 @@ public class ThriveJsonConverter : IDisposable
     private readonly JsonConverter[] thriveConverters;
     private readonly List<JsonConverter> thriveConvertersDynamicDeserialize;
 
-    private ThreadLocal<JsonSerializerSettings> currentJsonSettings = new ThreadLocal<JsonSerializerSettings>();
+    private readonly ThreadLocal<JsonSerializerSettings> currentJsonSettings = new();
     private bool disposed;
 
     // private IReferenceResolver referenceResolver = new Default;
@@ -81,13 +80,13 @@ public class ThriveJsonConverter : IDisposable
     ///     get written out if this is set to a base class of the object to serialize.
     ///   </para>
     /// </param>
-    public string SerializeObject(object o, Type type = null)
+    public string SerializeObject(object o, Type? type = null)
     {
         return PerformWithSettings(
             settings => JsonConvert.SerializeObject(o, type, Constants.SAVE_FORMATTING, settings));
     }
 
-    public T DeserializeObject<T>(string json)
+    public T? DeserializeObject<T>(string json)
     {
         return PerformWithSettings(settings => JsonConvert.DeserializeObject<T>(json, settings));
     }
@@ -98,7 +97,7 @@ public class ThriveJsonConverter : IDisposable
     /// <param name="json">JSON text to parse</param>
     /// <returns>The created object</returns>
     /// <exception cref="JsonException">If invalid json or the dynamic type is not allowed</exception>
-    public object DeserializeObjectDynamic(string json)
+    public object? DeserializeObjectDynamic(string json)
     {
         return PerformWithSettings(settings =>
         {
@@ -158,7 +157,7 @@ public class ThriveJsonConverter : IDisposable
         };
     }
 
-    private ITraceWriter GetTraceWriter(JSONDebug.DebugMode debugMode, bool errorHasOccurred)
+    private ITraceWriter? GetTraceWriter(JSONDebug.DebugMode debugMode, bool errorHasOccurred)
     {
         if (debugMode == JSONDebug.DebugMode.AlwaysDisabled)
             return null;
@@ -208,7 +207,8 @@ public class ThriveJsonConverter : IDisposable
                 GD.Print("JSON error happened, retrying with debug printing (mode is automatic), first exception: ",
                     e);
 
-                currentJsonSettings.Value = null;
+                // Seems like the json library doesn't have nullability annotations
+                currentJsonSettings.Value = null!;
                 PerformWithSettings(func);
 
                 // If we get here, we didn't get another exception...
@@ -227,7 +227,7 @@ public class ThriveJsonConverter : IDisposable
         {
             if (!recursive)
             {
-                currentJsonSettings.Value = null;
+                currentJsonSettings.Value = null!;
 
                 if (settings.TraceWriter != null)
                 {
@@ -251,7 +251,7 @@ public class ThriveJsonConverter : IDisposable
 /// </summary>
 public abstract class BaseThriveConverter : JsonConverter
 {
-    public readonly ISaveContext Context;
+    protected readonly ISaveContext? Context;
 
     // ref handling approach from: https://stackoverflow.com/a/53716866/4371508
     private const string REF_PROPERTY = "$ref";
@@ -261,9 +261,9 @@ public abstract class BaseThriveConverter : JsonConverter
     // and https://stackoverflow.com/a/29826959/4371508
     private const string TYPE_PROPERTY = "$type";
 
-    private static readonly List<string> DefaultOnlyChildCopyIgnore = new List<string>();
+    private static readonly List<string> DefaultOnlyChildCopyIgnore = new();
 
-    protected BaseThriveConverter(ISaveContext context)
+    protected BaseThriveConverter(ISaveContext? context)
     {
         Context = context;
     }
@@ -385,7 +385,7 @@ public abstract class BaseThriveConverter : JsonConverter
         return typeof(Node).IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
         JsonSerializer serializer)
     {
         var customRead = ReadCustomJson(reader, objectType, existingValue, serializer);
@@ -454,7 +454,7 @@ public abstract class BaseThriveConverter : JsonConverter
         }
 
         bool OnlyChildAssign(IEnumerable<Attribute> customAttributes,
-            out AssignOnlyChildItemsOnDeserializeAttribute data)
+            out AssignOnlyChildItemsOnDeserializeAttribute? data)
         {
             data = customAttributes.FirstOrDefault() as AssignOnlyChildItemsOnDeserializeAttribute;
 
@@ -482,7 +482,7 @@ public abstract class BaseThriveConverter : JsonConverter
             }
             else
             {
-                ApplyOnlyChildProperties(newData, field.GetValue(instance), serializer, data);
+                ApplyOnlyChildProperties(newData, field.GetValue(instance), serializer, data!);
             }
         }
 
@@ -515,7 +515,7 @@ public abstract class BaseThriveConverter : JsonConverter
             else
             {
                 ApplyOnlyChildProperties(ReadMember(name, property.PropertyType, item, instance, reader,
-                    serializer), property.GetValue(instance), serializer, data);
+                    serializer), property.GetValue(instance), serializer, data!);
             }
         }
 
@@ -529,7 +529,7 @@ public abstract class BaseThriveConverter : JsonConverter
         return instance;
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         if (value == null)
         {
@@ -631,8 +631,8 @@ public abstract class BaseThriveConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    protected virtual (object Read, bool Performed) ReadCustomJson(JsonReader reader, Type objectType,
-        object existingValue, JsonSerializer serializer)
+    protected virtual (object? Read, bool Performed) ReadCustomJson(JsonReader reader, Type objectType,
+        object? existingValue, JsonSerializer serializer)
     {
         return (null, false);
     }
@@ -665,7 +665,8 @@ public abstract class BaseThriveConverter : JsonConverter
     {
     }
 
-    protected virtual object ReadMember(string name, Type memberType, JObject item, object instance, JsonReader reader,
+    protected virtual object? ReadMember(string name, Type memberType, JObject item, object? instance,
+        JsonReader reader,
         JsonSerializer serializer)
     {
         var value = item[name];
@@ -677,7 +678,7 @@ public abstract class BaseThriveConverter : JsonConverter
     }
 
     protected virtual void ReadCustomExtraFields(JObject item, object instance, JsonReader reader, Type objectType,
-        object existingValue, JsonSerializer serializer)
+        object? existingValue, JsonSerializer serializer)
     {
     }
 
@@ -724,7 +725,7 @@ public abstract class BaseThriveConverter : JsonConverter
         JObject item, out HashSet<string> alreadyConsumedItems)
     {
         // Find a constructor we can call
-        ConstructorInfo constructor = null;
+        ConstructorInfo? constructor = null;
 
         // Consider private constructors but ignore those that do not have the [JsonConstructor] attribute.
         var privateJsonConstructors = objectType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Where(
@@ -770,7 +771,7 @@ public abstract class BaseThriveConverter : JsonConverter
         }
 
         // Load constructor params
-        object[] constructorArgs = constructor.GetParameters()
+        object?[] constructorArgs = constructor.GetParameters()
             .Select(p => ReadMember(DetermineKey(item, p.Name),
                 p.ParameterType, item, null, reader, serializer)).ToArray();
 
@@ -839,7 +840,7 @@ public abstract class BaseThriveConverter : JsonConverter
     /// <param name="target">The object to apply properties to</param>
     /// <param name="serializer">Serializer to use for reference handling</param>
     /// <param name="data">Options for the child assign</param>
-    private void ApplyOnlyChildProperties(object newData, object target, JsonSerializer serializer,
+    private void ApplyOnlyChildProperties(object? newData, object target, JsonSerializer serializer,
         AssignOnlyChildItemsOnDeserializeAttribute data)
     {
         if (target == null)

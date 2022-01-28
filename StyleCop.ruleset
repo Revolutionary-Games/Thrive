@@ -17,7 +17,7 @@
     <Rule Id="CA1061" Action="Warning" />
     <Rule Id="CA1062" Action="None" /> <!-- literally would need everything to be checked against null -->
     <Rule Id="CA1063" Action="Warning" />
-    <Rule Id="CA1065" Action="Warning" />
+    <Rule Id="CA1065" Action="None" /> <!-- we want to throw when accessing autoloads that haven't been loaded yet -->
     <Rule Id="CA1301" Action="Warning" />
     <Rule Id="CA1303" Action="None" /> <!-- resource table usage.
       probably should use once we implement localization -->
