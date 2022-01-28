@@ -849,8 +849,8 @@
                         {
                             if (effect.Species == species)
                             {
-                                finalPatchPopulation += effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
-                                    - effect.Species.Population;
+                                finalPatchPopulation += effect.Constant + (long)(effect.Species.Population *
+                                    effect.Coefficient) - effect.Species.Population;
                             }
                         }
                     }
