@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 14:21+0700\n"
+"POT-Creation-Date: 2022-01-28 16:08+0700\n"
 "PO-Revision-Date: 2022-01-21 14:35+0000\n"
 "Last-Translator: Sergio Albornoz <salbornozmateos@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -460,7 +460,7 @@ msgid "ZOOM_IN"
 msgstr "Hacer zoom"
 
 #: ../simulation_parameters/common/input_options.json:83
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4041
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4040
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -729,25 +729,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1290
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3688
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3687
 msgid "AMMONIA"
 msgstr "Amoníaco"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1342
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3759
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3758
 msgid "PHOSPHATE"
 msgstr "Fosfato"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1394
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3653
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3652
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfuro de Hidrógeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1238
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3723
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3722
 msgid "GLUCOSE"
 msgstr "Glucosa"
 
@@ -758,29 +758,29 @@ msgstr "OxiToxi NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1446
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3793
 msgid "IRON"
 msgstr "Hierro"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3489
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3488
 msgid "OXYGEN"
 msgstr "Oxígeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3543
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3542
 msgid "CARBON_DIOXIDE"
 msgstr "Dióxido de Carbono"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3516
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3515
 msgid "NITROGEN"
 msgstr "Nitrógeno"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3592
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2921
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3369
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2920
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3368
 msgid "SUNLIGHT"
 msgstr "Luz Solar"
 
@@ -1005,24 +1005,24 @@ msgstr "Población de las Especies"
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:908
+#: ../src/auto-evo/RunResults.cs:907
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:914
+#: ../src/auto-evo/RunResults.cs:912
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:922
+#: ../src/auto-evo/RunResults.cs:919
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:940
+#: ../src/auto-evo/RunResults.cs:937
 #, fuzzy
 msgid "TIMELINE_NICHE_FILL"
 msgstr "surgió para llenar un nicho"
 
-#: ../src/auto-evo/RunResults.cs:947
+#: ../src/auto-evo/RunResults.cs:943
 #, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "Surgieron debido a diferentes presiones de selección"
@@ -1475,7 +1475,7 @@ msgstr "Arte por {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4196
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
@@ -1947,7 +1947,7 @@ msgid "SAVE_GAME"
 msgstr "Guardar Partida"
 
 #: ../src/general/PauseMenu.tscn:82
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2784
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "Estadísticas"
 
@@ -2296,7 +2296,7 @@ msgid "RAW"
 msgstr "Crudo"
 
 #: ../src/gui_common/charts/line/LineChart.cs:633
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2514
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2515
 msgid "NO_DATA_TO_SHOW"
 msgstr "Sin Datos que Mostrar"
 
@@ -2956,8 +2956,8 @@ msgstr ""
 "si intentas salir del juego."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3587
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2910
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2909
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3305
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:966
 msgid "TEMPERATURE"
 msgstr "Temperatura"
@@ -3096,9 +3096,9 @@ msgid "PRESSURE_SHORT"
 msgstr "Pres."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2974
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3008
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3613
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2973
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3612
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1106
 msgid "COMPOUNDS"
 msgstr "Compuestos"
@@ -3351,7 +3351,7 @@ msgstr ""
 "funcionar, y niveles más bajos de oxígeno empeoran su eficiencia."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2024
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4138
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4137
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION"
 msgstr "{0:F1}% hecho. {1:n0}/{2:n0} pasos."
@@ -3428,13 +3428,13 @@ msgstr "Resultados de auto-evolución:"
 msgid "EXTERNAL_EFFECTS"
 msgstr "Efectos externos:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2696
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2702
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
 #, fuzzy
-msgid "GLOBAL_INITIAL"
+msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 "En un planeta distante, eones de actividad volcánica e impactos meteóricos "
 "han llevado al desarrollo de un nuevo fenómeno en el universo.\n"
@@ -3447,67 +3447,67 @@ msgstr ""
 "Para sobrevivir en este mundo hostil, necesitarás conseguir compuestos y "
 "evolucionar cada generación para competir contra los otros microbios."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2709
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2708
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2716
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
 #, fuzzy
-msgid "LOCAL_INITIAL"
+msgid "LOCAL_INITIAL_LETTER"
 msgstr "El jugador murió"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2793
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2821
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2820
 #, fuzzy
 msgid "SPECIES_POPULATION"
 msgstr "Población de las Especies"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2831
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3265
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2830
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3264
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Condiciones Físicas"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2931
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2965
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3448
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2930
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2964
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1099
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gases Atmosféricos"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3034
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3957
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3033
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3956
 msgid "NEXT_CAPITAL"
 msgstr "SIGUIENTE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3147
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3146
 msgid "SELECT_A_PATCH"
 msgstr "Selecciona un bioma para mostrar los detalles aquí"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3182
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3181
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSICIÓN ACTUAL"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3342
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3341
 msgid "PRESSURE"
 msgstr "Presión"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3873
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3872
 msgid "SPECIES_PRESENT"
 msgstr "Especies Presentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3930
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3929
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Moverse a esta región"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3999
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3998
 msgid "REPORT"
 msgstr "Reporte"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4020
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4019
 msgid "PATCH_MAP"
 msgstr "Mapa de Regiones"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4187
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4186
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "{0} población cambió por {1} a causa de: {2}"
@@ -3613,23 +3613,23 @@ msgstr "{0} ({1})"
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2356
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2357
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2482
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2483
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2486
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2487
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2493
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2494
 msgid "ENERGY_SOURCES"
 msgstr "Fuentes de energia:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2499
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2500
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -3973,7 +3973,7 @@ msgstr "Descripción:"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Descripción:"
 
-#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:208
+#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:209
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Descripción:"
@@ -4491,62 +4491,62 @@ msgstr ""
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:472
+#: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:484
 #, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "La partida tiene una escena de game state inválida"
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:488
+#: ../src/steam/SteamClient.cs:490
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:490
+#: ../src/steam/SteamClient.cs:492
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "El jugador murió"
 
-#: ../src/steam/SteamClient.cs:492
+#: ../src/steam/SteamClient.cs:494
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:494
+#: ../src/steam/SteamClient.cs:496
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:496
+#: ../src/steam/SteamClient.cs:498
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Guardado fallido! Una excepción ocurrió"
 
-#: ../src/steam/SteamClient.cs:498
+#: ../src/steam/SteamClient.cs:500
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 

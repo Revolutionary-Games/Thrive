@@ -103,7 +103,7 @@ public class GUICommon : NodeWithInput
         if (ResourceLoader.Exists(file, "Texture"))
             return GD.Load<Texture>(file);
 
-        return null;
+        return GD.Load(file) as Texture;
     }
 
     /// <summary>

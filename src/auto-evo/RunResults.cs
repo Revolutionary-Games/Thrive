@@ -496,11 +496,6 @@
             return newSpecies;
         }
 
-        public NewSpeciesType? GetNewSpeciesResult(Species species)
-        {
-            return results[species].NewlyCreated;
-        }
-
         public Dictionary<Species, SpeciesMigration> GetMigrationsTo(Patch patch)
         {
             var migrationsToPatch = new Dictionary<Species, SpeciesMigration>();
@@ -521,16 +516,6 @@
         public Dictionary<Patch, SpeciesPatchEnergyResults> GetPatchEnergyResults(Species species)
         {
             return results[species].EnergyResults;
-        }
-
-        public Species GetMutationResults(Species species)
-        {
-            return results[species].MutatedProperties;
-        }
-
-        public (Species SplitOff, Species SplitFrom, List<Patch> SplitOffPatches) GetSplitResults(Species species)
-        {
-            return (results[species].SplitOff, results[species].SplitFrom, results[species].SplitOffPatches);
         }
 
         /// <summary>
@@ -834,23 +819,30 @@
             {
                 foreach (var species in patch.SpeciesInPatch.Keys)
                 {
-                    var hasPopulationBeforeMigration = GetSpeciesPopulationsByPatch(species, true, true).
-                        TryGetValue(patch, out var finalPatchPopulation);
-
                     var globalPopulation = GetGlobalPopulation(species, true, true);
                     var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
 
+                    var finalPatchPopulation = GetPopulationInPatch(species, patch);
                     var previousPatchPopulation = patch.GetSpeciesPopulation(species);
 
-                    // Adjust final patch population by external effects
-                    if (effects != null)
+                    finalPatchPopulation += CountSpeciesSpreadPopulation(species, patch);
+
+                    if (results[species].SplitOffPatches?.Contains(patch) == true)
+                    {
+                        // All population splits off
+                        finalPatchPopulation = 0;
+                    }
+
+                    // Apply external effects
+                    if (effects != null && world.Map.CurrentPatch.ID == patch.ID)
                     {
                         foreach (var effect in effects)
                         {
                             if (effect.Species == species)
                             {
-                                finalPatchPopulation += effect.Constant + (long)(effect.Species.Population *
-                                    effect.Coefficient) - effect.Species.Population;
+                                finalPatchPopulation +=
+                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
+                                    - effect.Species.Population;
                             }
                         }
                     }
@@ -861,41 +853,44 @@
                         LogEventGloballyAndLocally(world, patch, new LocalizedString(
                                 "TIMELINE_SPECIES_EXTINCT", species.FormattedName),
                             species.PlayerSpecies, "extinction.png");
+
+                        continue;
                     }
-                    else
+
+                    if (finalPatchPopulation > 0 && finalPatchPopulation != previousPatchPopulation)
                     {
-                        if (hasPopulationBeforeMigration)
+                        if (finalPatchPopulation > previousPatchPopulation)
                         {
-                            if (finalPatchPopulation > previousPatchPopulation)
-                            {
-                                patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                        species.FormattedName, ((double)finalPatchPopulation).FormatNumber()),
-                                    species.PlayerSpecies, "popUp.png");
-                            }
-                            else
-                            {
-                                patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                        species.FormattedName, ((double)finalPatchPopulation).FormatNumber()),
-                                    species.PlayerSpecies, "popDown.png");
-                            }
+                            patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
+                                    species.FormattedName, finalPatchPopulation),
+                                species.PlayerSpecies, "popUp.png");
                         }
                         else
                         {
-                            patch.LogEvent(new LocalizedString(
-                                    "TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
-                                species.PlayerSpecies, "extinctionLocal.png");
+                            patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
+                                    species.FormattedName, finalPatchPopulation),
+                                species.PlayerSpecies, "popDown.png");
                         }
+                    }
+                    else
+                    {
+                        patch.LogEvent(new LocalizedString(
+                                "TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
+                            species.PlayerSpecies, "extinctionLocal.png");
+                    }
 
+                    if (globalPopulation != previousGlobalPopulation)
+                    {
                         if (globalPopulation > previousGlobalPopulation)
                         {
                             world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                    species.FormattedName, ((double)globalPopulation).FormatNumber()),
+                                    species.FormattedName, globalPopulation),
                                 species.PlayerSpecies, "popUp.png");
                         }
                         else
                         {
                             world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                    species.FormattedName, ((double)globalPopulation).FormatNumber()),
+                                    species.FormattedName, globalPopulation),
                                 species.PlayerSpecies, "popDown.png");
                         }
                     }
@@ -905,19 +900,18 @@
                 {
                     // Log to destination patch
                     patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedName,
-                            TranslationServer.Translate(migration.Value.From.Name)),
+                            new LocalizedString(migration.Value.From.Name)),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to game world
                     world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName,
-                            TranslationServer.Translate(migration.Value.To.Name),
-                            TranslationServer.Translate(migration.Value.From.Name)),
+                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name),
+                            new LocalizedString(migration.Value.From.Name)),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to origin patch
                     migration.Value.From.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName, TranslationServer.Translate(migration.Value.To.Name)),
+                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name)),
                         migration.Key.PlayerSpecies, "newSpecies.png");
                 }
 
@@ -925,27 +919,25 @@
                 {
                     GetSpeciesPopulationsByPatch(newSpeciesEntry, true, true).TryGetValue(patch, out var population);
 
-                    var newSpeciesResult = GetNewSpeciesResult(newSpeciesEntry);
+                    var speciesResult = results[newSpeciesEntry];
 
-                    if (population > 0 && newSpeciesResult != null)
+                    if (population > 0 && speciesResult.NewlyCreated != null)
                     {
-                        var splitResults = GetSplitResults(newSpeciesEntry);
-
-                        switch (newSpeciesResult.Value)
+                        switch (speciesResult.NewlyCreated.Value)
                         {
                             case NewSpeciesType.FillNiche:
                                 LogEventGloballyAndLocally(world, patch, new LocalizedString("TIMELINE_NICHE_FILL",
-                                        newSpeciesEntry.FormattedName, splitResults.SplitFrom.FormattedName),
+                                        newSpeciesEntry.FormattedName, speciesResult.SplitFrom.FormattedName),
                                     false, "newSpecies.png");
                                 break;
                             case NewSpeciesType.SplitDueToMutation:
                                 LogEventGloballyAndLocally(world, patch, new LocalizedString(
                                         "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedName,
-                                        splitResults.SplitFrom.FormattedName),
+                                        speciesResult.SplitFrom.FormattedName),
                                     false, "newSpecies.png");
                                 break;
                             default:
-                                GD.PrintErr("Unhandled newly created species type: ", newSpeciesResult.Value);
+                                GD.PrintErr("Unhandled newly created species type: ", speciesResult.NewlyCreated.Value);
                                 break;
                         }
                     }
@@ -955,7 +947,7 @@
 
         /// <summary>
         ///   Logs an event description into game world and a patch. Use this if the event description in question
-        ///   is an exact same.
+        ///   is exactly the same.
         /// </summary>
         private void LogEventGloballyAndLocally(GameWorld world, Patch patch, LocalizedString description,
             bool highlight = false, string iconPath = null)

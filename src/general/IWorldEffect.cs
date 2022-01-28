@@ -58,22 +58,20 @@ public class GlucoseReductionEffect : IWorldEffect
             // If there are microbes to be eating up the primordial soup, reduce the milk
             if (patch.SpeciesInPatch.Count > 0)
             {
-                var initialDensity = glucoseValue.Density;
+                var initialGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
+                    patch.GetTotalChunkCompoundAmount(glucose), 3);
 
                 glucoseValue.Density = Math.Max(glucoseValue.Density * Constants.GLUCOSE_REDUCTION_RATE,
                     Constants.GLUCOSE_MIN);
                 patch.Biome.Compounds[glucose] = glucoseValue;
 
-                var initialGlucose = Math.Round(initialDensity * glucoseValue.Amount +
-                    patch.GetTotalChunkCompoundAmount(glucose), 3);
                 var finalGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
                     patch.GetTotalChunkCompoundAmount(glucose), 3);
 
                 var localReduction = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
                 patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                        glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
-                            "PERCENTAGE_VALUE"), localReduction)), false,
+                        glucose.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false,
                     "glucoseDown.png");
             }
 
@@ -92,8 +90,7 @@ public class GlucoseReductionEffect : IWorldEffect
         else
         {
             targetWorld.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                    glucose.Name, string.Format(CultureInfo.CurrentCulture, TranslationServer.Translate(
-                        "PERCENTAGE_VALUE"), globalReduction)), false,
+                    glucose.Name, new LocalizedString("PERCENTAGE_VALUE", globalReduction)), false,
                 "glucoseDown.png");
         }
     }

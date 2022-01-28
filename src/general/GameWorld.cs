@@ -319,20 +319,16 @@ public class GameWorld
     }
 
     /// <summary>
-    ///   Stores a description of a global event into the game world record.
+    ///   Stores a description of a global event into the game world records.
     /// </summary>
     /// <param name="description">The event's description</param>
-    /// <param name="highlight">If true, the event will be highlighted in a timeline UI</param>
+    /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
     /// <param name="iconPath">Resource path to the icon of the event</param>
     public void LogEvent(LocalizedString description, bool highlight = false, string iconPath = null)
     {
         if (eventsLog.Count > Constants.GLOBAL_EVENT_LOG_CAP)
         {
-            var oldestKey = double.MaxValue;
-
-            foreach (var entry in eventsLog)
-                oldestKey = Math.Min(entry.Key, oldestKey);
-
+            var oldestKey = eventsLog.Keys.Min();
             eventsLog.Remove(oldestKey);
         }
 
@@ -340,7 +336,7 @@ public class GameWorld
             eventsLog.Add(TotalPassedTime, new List<GameEventDescription>());
 
         // Event already logged in timeline
-        if (eventsLog[TotalPassedTime].Any(entry => entry.Description.ToString() == description.ToString()))
+        if (eventsLog[TotalPassedTime].Any(entry => entry.Description.Equals(description)))
         {
             return;
         }

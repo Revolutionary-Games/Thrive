@@ -18,8 +18,11 @@ public class TimelineTab : PanelContainer
     [Export]
     public NodePath GlobalFilterButtonPath;
 
-    private MicrobeEditor editor;
-    private PatchMapDrawer patchMapDrawer;
+    private readonly PackedScene customRichTextLabelScene = GD.Load<PackedScene>(
+        "res://src/gui_common/CustomRichTextLabel.tscn");
+
+    private readonly StyleBoxTexture eventHighlightStylebox = GD.Load<StyleBoxTexture>(
+        "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
 
     private VBoxContainer eventsContainer;
     private ScrollContainer scrollContainer;
@@ -57,12 +60,6 @@ public class TimelineTab : PanelContainer
         }
     }
 
-    public void Init(MicrobeEditor editor, PatchMapDrawer drawer)
-    {
-        this.editor = editor;
-        patchMapDrawer = drawer;
-    }
-
     public override void _Ready()
     {
         eventsContainer = GetNode<VBoxContainer>(EventsContainerPath);
@@ -71,7 +68,7 @@ public class TimelineTab : PanelContainer
         globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
 
-    public void UpdateTimeline(Patch patch = null)
+    public void UpdateTimeline(MicrobeEditor editor, PatchMapDrawer drawer, Patch patch = null)
     {
         eventsContainer.FreeChildren();
 
@@ -80,18 +77,20 @@ public class TimelineTab : PanelContainer
 
         foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
         {
-            var section = new TimelineSection((entry.Key, entry.Value));
+            var section = new TimelineSection(
+                customRichTextLabelScene, eventHighlightStylebox, (entry.Key, entry.Value));
 
             cachedGlobalTimelineElements.Add(section);
             eventsContainer.AddChild(section);
         }
 
-        var targetPatch = patch ?? patchMapDrawer.SelectedPatch ?? editor.CurrentPatch;
+        var targetPatch = patch ?? drawer.SelectedPatch ?? editor.CurrentPatch;
 
         for (int i = targetPatch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = targetPatch.History[i];
-            var section = new TimelineSection((snapshot.TimePeriod, snapshot.EventsLog));
+            var section = new TimelineSection(
+                customRichTextLabelScene, eventHighlightStylebox, (snapshot.TimePeriod, snapshot.EventsLog));
 
             cachedLocalTimelineElements.Add(section);
             eventsContainer.AddChild(section);
@@ -155,15 +154,18 @@ public class TimelineTab : PanelContainer
 
     private class TimelineSection : VBoxContainer
     {
+        private readonly PackedScene customRichTextLabelScene;
+        private readonly StyleBoxTexture eventHighlightStylebox;
+
+        private readonly (double TimePeriod, List<GameEventDescription> Events) data;
+
         private Control headerContainer;
 
-        private PackedScene customRtlScene;
-        private StyleBoxTexture eventHighlightStylebox;
-
-        private (double TimePeriod, List<GameEventDescription> Events) data;
-
-        public TimelineSection((double TimePeriod, List<GameEventDescription> Events) data)
+        public TimelineSection(PackedScene customRichTextLabelScene, StyleBoxTexture eventHighlightStylebox,
+            (double TimePeriod, List<GameEventDescription> Events) data)
         {
+            this.customRichTextLabelScene = customRichTextLabelScene;
+            this.eventHighlightStylebox = eventHighlightStylebox;
             this.data = data;
         }
 
@@ -171,10 +173,6 @@ public class TimelineTab : PanelContainer
 
         public override void _Ready()
         {
-            customRtlScene = GD.Load<PackedScene>("res://src/gui_common/CustomRichTextLabel.tscn");
-            eventHighlightStylebox = GD.Load<StyleBoxTexture>(
-                "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
-
             AddConstantOverride("separation", 2);
 
             headerContainer = new HBoxContainer();
@@ -215,7 +213,7 @@ public class TimelineTab : PanelContainer
                 highlight.AddStyleboxOverride("panel", eventHighlightStylebox);
                 itemContainer.AddConstantOverride("separation", 5);
 
-                var eventLabel = customRtlScene.Instance<CustomRichTextLabel>();
+                var eventLabel = customRichTextLabelScene.Instance<CustomRichTextLabel>();
                 eventLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
                 eventLabel.ExtendedBbcode = entry.Description.ToString();
                 eventLabel.FitContentHeight = true;

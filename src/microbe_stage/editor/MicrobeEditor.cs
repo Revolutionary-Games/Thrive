@@ -601,6 +601,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
 
             // Add the edited species to that patch to allow the species to gain population there
+            // TODO: Log player species' migration
             CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(editedSpecies, 0);
         }
 
@@ -2525,8 +2526,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         // for reference in patch history (e.g. displaying it as zero on the species population chart)
         foreach (var entry in CurrentGame.GameWorld.Map.Patches)
         {
-            entry.Value.RecordSnapshot();
-            entry.Value.ClearLoggedEvents();
+            entry.Value.RecordSnapshot(true);
         }
 
         var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);

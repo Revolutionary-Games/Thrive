@@ -21,7 +21,7 @@ public class GameEventDescription
     public string IconPath { get; private set; }
 
     /// <summary>
-    ///   If true, this event will be highlighted in a timeline UI
+    ///   If true, this event will be highlighted in the timeline UI
     /// </summary>
     public bool Highlighted { get; private set; }
 }

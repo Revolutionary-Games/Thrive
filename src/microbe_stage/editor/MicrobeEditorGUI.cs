@@ -728,8 +728,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         ApplyEditorTab();
         ApplyReportSubtab();
         ApplySelectionMenuTab();
-
-        timelineSubtab.Init(editor, mapDrawer);
     }
 
     public void SetMap(PatchMap map)
@@ -1128,7 +1126,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateTimeline(Patch patch = null)
     {
-        timelineSubtab.UpdateTimeline(patch);
+        timelineSubtab.UpdateTimeline(editor, mapDrawer, patch);
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
