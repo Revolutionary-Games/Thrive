@@ -27,6 +27,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public NodePath CellEditorButtonPath;
 
     [Export]
+    public NodePath AutoEvoSubtabButtonPath;
+
+    [Export]
+    public NodePath TimelineSubtabButtonPath;
+
+    [Export]
     public NodePath StructureTabButtonPath;
 
     [Export]
@@ -34,6 +40,15 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     [Export]
     public NodePath BehaviourTabButtonPath;
+
+    [Export]
+    public NodePath AutoEvoSubtabPath;
+
+    [Export]
+    public NodePath TimelineSubtabPath;
+
+    [Export]
+    public NodePath TimelineEventsContainerPath;
 
     [Export]
     public NodePath StructureTabPath;
@@ -361,10 +376,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private Button patchMapButton;
     private Button cellEditorButton;
 
+    private Button autoEvoSubtabButton;
+    private Button timelineSubtabButton;
+
     // Selection menu tab selector buttons
     private Button structureTabButton;
     private Button appearanceTabButton;
     private Button behaviourTabButton;
+
+    private PanelContainer autoEvoSubtab;
+    private TimelineTab timelineSubtab;
 
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
@@ -491,6 +512,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private EditorTab selectedEditorTab = EditorTab.Report;
 
     [JsonProperty]
+    private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
+
+    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
@@ -503,6 +527,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         Report,
         PatchMap,
         CellEditor,
+    }
+
+    public enum ReportSubtab
+    {
+        AutoEvo,
+        Timeline,
     }
 
     public enum SelectionMenuTab
@@ -519,6 +549,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         reportTabButton = GetNode<Button>(ReportTabButtonPath);
         patchMapButton = GetNode<Button>(PatchMapButtonPath);
         cellEditorButton = GetNode<Button>(CellEditorButtonPath);
+
+        autoEvoSubtab = GetNode<PanelContainer>(AutoEvoSubtabPath);
+        autoEvoSubtabButton = GetNode<Button>(AutoEvoSubtabButtonPath);
+
+        timelineSubtab = GetNode<TimelineTab>(TimelineSubtabPath);
+        timelineSubtabButton = GetNode<Button>(TimelineSubtabButtonPath);
 
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         structureTabButton = GetNode<Button>(StructureTabButtonPath);
@@ -690,6 +726,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Set the right tabs if they aren't the defaults
         ApplyEditorTab();
+        ApplyReportSubtab();
         ApplySelectionMenuTab();
     }
 
@@ -724,8 +761,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             + TranslationServer.Translate("MEGA_YEARS");
 
         ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
-                CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " "
-            + TranslationServer.Translate("YEARS");
+            CultureInfo.CurrentCulture, TranslationServer.Translate("TIME_INDICATOR_TOOLTIP"),
+            editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
     public void SetInitialCellStats()
@@ -1087,6 +1124,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
+    public void UpdateTimeline(Patch patch = null)
+    {
+        timelineSubtab.UpdateTimeline(editor, mapDrawer, patch);
+    }
+
     public void UpdateMutationPointsBar(bool tween = true)
     {
         // Update mutation points
@@ -1278,6 +1320,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         UpdateConditionDifferencesBetweenPatches(patch, editor.CurrentPatch);
 
         UpdateReportTabStatistics(patch);
+
+        UpdateTimeline();
 
         UpdateReportTabPatchName(patch);
     }
@@ -1847,6 +1891,40 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
+    private void SetReportSubtab(string tab)
+    {
+        var selection = (ReportSubtab)Enum.Parse(typeof(ReportSubtab), tab);
+
+        if (selection == selectedReportSubtab)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        selectedReportSubtab = selection;
+        ApplyReportSubtab();
+    }
+
+    private void ApplyReportSubtab()
+    {
+        autoEvoSubtab.Hide();
+        timelineSubtab.Hide();
+
+        switch (selectedReportSubtab)
+        {
+            case ReportSubtab.AutoEvo:
+                autoEvoSubtab.Show();
+                autoEvoSubtabButton.Pressed = true;
+                break;
+            case ReportSubtab.Timeline:
+                timelineSubtab.Show();
+                timelineSubtabButton.Pressed = true;
+                Invoke.Instance.Queue(timelineSubtab.TimelineAutoScrollToCurrentTimePeriod);
+                break;
+            default:
+                throw new Exception("Invalid report subtab");
+        }
+    }
+
     private void SetSelectionMenuTab(string tab)
     {
         var selection = (SelectionMenuTab)Enum.Parse(typeof(SelectionMenuTab), tab);
@@ -2214,6 +2292,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var patch = editor.CurrentGame.GameWorld.Map.GetPatch(reportTabPatchSelector.GetItemId(index));
         UpdateReportTabStatistics(patch);
+        UpdateTimeline(patch);
         UpdateReportTabPatchName(patch);
     }
 
