@@ -555,7 +555,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Sum impulses from all contact points
         for (var i = 0; i < physicsState.GetContactCount(); ++i)
         {
-            // TODO: Godot cuurrently does not provide a convenient way to access a collision impulse, this
+            // TODO: Godot currently does not provide a convenient way to access a collision impulse, this
             // for example is luckily available only in Bullet which makes things a bit easier. Would need
             // proper handling for this in the future.
             collisionForce += physicsState.GetContactImpulse(i);
