@@ -26,7 +26,6 @@ public class TweakedColourPicker : ColorPicker
     /// </summary>
     private readonly List<TweakedColourPickerPreset> presets = new List<TweakedColourPickerPreset>();
 
-    private ToolButton picker;
     private HSlider sliderROrH;
     private HSlider sliderGOrS;
     private HSlider sliderBOrV;
@@ -44,6 +43,8 @@ public class TweakedColourPicker : ColorPicker
     private bool rawButtonEnabled = true;
     private bool presetsEditable = true;
     private bool presetsVisible = true;
+    private bool pickingColor;
+    private Color colorBeforePicking;
     private PickerMode mode;
 
     private PresetGroupStorage groupStorage;
@@ -208,8 +209,6 @@ public class TweakedColourPicker : ColorPicker
         GetChild<Control>(7).Hide();
 
         // Get controls
-        picker = GetChild(1).GetChild<ToolButton>(1);
-        picker.Connect("pressed", this, nameof(OnPickerClicked));
         sliderROrH = baseControl.GetChild(0).GetChild<HSlider>(1);
         sliderGOrS = baseControl.GetChild(1).GetChild<HSlider>(1);
         sliderBOrV = baseControl.GetChild(2).GetChild<HSlider>(1);
@@ -222,6 +221,15 @@ public class TweakedColourPicker : ColorPicker
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<TextureButton>("PresetButtonContainer/AddPresetButton");
+
+        // Picker button logic rewrite
+        // TODO: Revert this PR once https://github.com/godotengine/godot/issues/57343 is solved.
+        baseControl = GetChild(1);
+        var customPickerButton = new ToolButton { Icon = pickerButton.Icon };
+        baseControl.RemoveChild(pickerButton);
+        baseControl.AddChild(customPickerButton);
+        pickerButton = customPickerButton;
+        pickerButton.Connect("pressed", this, nameof(OnPickerClicked));
 
         // Update control state.
         UpdateButtonsState();
@@ -255,6 +263,40 @@ public class TweakedColourPicker : ColorPicker
         groupStorage.ErasePresetDelegate += OnGroupErasePreset;
 
         UpdateTooltips();
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (pickingColor)
+        {
+            if (@event is InputEventMouseMotion)
+            {
+                var viewportTexture = GetViewport().GetTexture().GetData();
+                var viewportRect = GetViewportRect();
+                var scale = viewportRect.End.x / viewportTexture.GetSize().x;
+                var position = GetGlobalMousePosition() / scale;
+                position.y = viewportTexture.GetHeight() - position.y;
+
+                viewportTexture.Lock();
+                Color = viewportTexture.GetPixelv(position);
+                viewportTexture.Unlock();
+            }
+            else if (@event is InputEventMouse { ButtonMask: (int)ButtonList.Left })
+            {
+                // Confirm
+                pickingColor = false;
+            }
+            else if (@event is InputEventKey { Scancode: (int)KeyList.Escape, Pressed: true })
+            {
+                // Cancel
+                pickingColor = false;
+                Color = colorBeforePicking;
+            }
+
+            AcceptEvent();
+        }
+
+        base._Input(@event);
     }
 
     public override void _ExitTree()
@@ -444,14 +486,10 @@ public class TweakedColourPicker : ColorPicker
         htmlColourEdit.Deselect();
     }
 
-    private void OnPickerClicked() { }
-
-    public override void _Process(float delta)
+    private void OnPickerClicked()
     {
-        var t = GetViewport().GetTexture().GetData();
-        t.Lock();
-        GD.Print(t.GetPixelv(GetGlobalMousePosition()));
-        base._Process(delta);
+        colorBeforePicking = Color;
+        pickingColor = true;
     }
 
     private class TweakedColourPickerPreset : ColorRect
