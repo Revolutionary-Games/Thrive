@@ -575,6 +575,7 @@ MutationPointCost = 45
 margin_bottom = 220.0
 
 [node name="VBoxContainer" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer" index="0"]
+margin_right = 378.0
 margin_bottom = 208.0
 
 [node name="Title" parent="GroupHolder/organelleSelection/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Header" index="1"]
@@ -1096,7 +1097,8 @@ margin_bottom = 209.0
 [node name="pilus" parent="GroupHolder/organelleSelection" instance=ExtResource( 5 )]
 visible = false
 DisplayName = "PREDATORY_PILUS"
-ProcessesDescription = "PREDATORY_PILUS_DESCRIPTION"
+ProcessesDescription = "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
+Description = "PREDATORY_PILUS_DESCRIPTION"
 MutationPointCost = 30
 
 [node name="MarginContainer" parent="GroupHolder/organelleSelection/pilus" index="0"]
@@ -1145,12 +1147,10 @@ mouse_filter = 2
 expand = true
 
 [node name="HSeparator" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="4"]
-visible = false
 margin_top = 173.0
 margin_bottom = 177.0
 
 [node name="Description" parent="GroupHolder/organelleSelection/pilus/MarginContainer/VBoxContainer" index="5"]
-visible = false
 margin_top = 192.0
 margin_bottom = 209.0
 
