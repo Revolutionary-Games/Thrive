@@ -26,6 +26,7 @@ public class TweakedColourPicker : ColorPicker
     /// </summary>
     private readonly List<TweakedColourPickerPreset> presets = new List<TweakedColourPickerPreset>();
 
+    private ToolButton picker;
     private HSlider sliderROrH;
     private HSlider sliderGOrS;
     private HSlider sliderBOrV;
@@ -207,6 +208,8 @@ public class TweakedColourPicker : ColorPicker
         GetChild<Control>(7).Hide();
 
         // Get controls
+        picker = GetChild(1).GetChild<ToolButton>(1);
+        picker.Connect("pressed", this, nameof(OnPickerClicked));
         sliderROrH = baseControl.GetChild(0).GetChild<HSlider>(1);
         sliderGOrS = baseControl.GetChild(1).GetChild<HSlider>(1);
         sliderBOrV = baseControl.GetChild(2).GetChild<HSlider>(1);
@@ -439,6 +442,16 @@ public class TweakedColourPicker : ColorPicker
     {
         OnHtmlColourEditEntered(htmlColourEdit.Text);
         htmlColourEdit.Deselect();
+    }
+
+    private void OnPickerClicked() { }
+
+    public override void _Process(float delta)
+    {
+        var t = GetViewport().GetTexture().GetData();
+        t.Lock();
+        GD.Print(t.GetPixelv(GetGlobalMousePosition()));
+        base._Process(delta);
     }
 
     private class TweakedColourPickerPreset : ColorRect
