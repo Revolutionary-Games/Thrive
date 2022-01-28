@@ -27,10 +27,10 @@ msgstr ""
 "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
 "thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
 "input]g_move_right[/thrive:input] and mouse to move. [thrive:"
-"input]g_fire_toxin[/thrive:input] to shoot [thrive:compound type=\"oxytoxy"
-"\"][/thrive:compound] if you have a toxin vacuole. [thrive:"
-"input]g_toggle_engulf[/thrive:input] to toggle engulf mode. You can zoom "
-"in and out with the mouse wheel."
+"input]g_fire_toxin[/thrive:input] to shoot [thrive:compound type=\"oxytoxy\"]"
+"[/thrive:compound] if you have a toxin vacuole. [thrive:"
+"input]g_toggle_engulf[/thrive:input] to toggle engulf mode. You can zoom in "
+"and out with the mouse wheel."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -43,9 +43,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
-"To unlock the editor and reproduce you need to gather [thrive:compound "
-"type=\"ammonia\"][/thrive:compound] (Orange Cloud) and [thrive:compound "
-"type=\"phosphates\"][/thrive:compound] (Purple Cloud)."
+"To unlock the editor and reproduce you need to gather [thrive:compound type="
+"\"ammonia\"][/thrive:compound] (Orange Cloud) and [thrive:compound type="
+"\"phosphates\"][/thrive:compound] (Purple Cloud)."
 
 #: ../simulation_parameters/common/help_texts.json:18
 #: ../simulation_parameters/common/help_texts.json:94
@@ -54,18 +54,17 @@ msgstr ""
 "You can also engulf cells, bacteria, iron chunks and cell chunks that are "
 "smaller than you by pressing [thrive:input]g_toggle_engulf[/thrive:input]. "
 "This will cost additional [thrive:compound type=\"atp\"][/thrive:compound] "
-"and will slow you down. Don't forget to press [thrive:"
-"input]g_toggle_engulf[/thrive:input] a second time to stop engulfing."
+"and will slow you down. Don't forget to press [thrive:input]g_toggle_engulf[/"
+"thrive:input] a second time to stop engulfing."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], "
-"which means the bigger your cell is, the more Mitochondria, Metabolosomes "
-"or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid "
-"losing [thrive:compound type=\"atp\"][/thrive:compound] when you are "
-"stationary."
+"Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], which "
+"means the bigger your cell is, the more Mitochondria, Metabolosomes or "
+"Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid losing "
+"[thrive:compound type=\"atp\"][/thrive:compound] when you are stationary."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -85,8 +84,8 @@ msgstr ""
 "Purple – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Rust Brown – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] makes [thrive:"
-"compound type=\"atp\"][/thrive:compound]."
+"[thrive:compound type=\"glucose\"][/thrive:compound] makes [thrive:compound "
+"type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
@@ -94,16 +93,16 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] can be "
 "converted into [thrive:compound type=\"glucose\"][/thrive:compound] via "
-"chemoplasts and chemosynthesizing proteins. [thrive:compound type=\"iron\"]"
-"[/thrive:compound] can be converted via rusticyanin into [thrive:compound "
-"type=\"atp\"][/thrive:compound]."
+"chemoplasts and chemosynthesizing proteins. [thrive:compound type=\"iron\"][/"
+"thrive:compound] can be converted via rusticyanin into [thrive:compound type="
+"\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:38
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"To reproduce you need to divide each of your organelles into two. "
-"Organelles need ammonia and phosphate to split in half."
+"To reproduce you need to divide each of your organelles into two. Organelles "
+"need ammonia and phosphate to split in half."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
@@ -121,21 +120,21 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:112
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
-"Be wary because your competitors are evolving alongside you. Every time "
-"you enter the editor they evolve as well."
+"Be wary because your competitors are evolving alongside you. Every time you "
+"enter the editor they evolve as well."
 
 #: ../simulation_parameters/common/help_texts.json:54
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "By binding with other cells, you can build a cell colony where the cells "
-"share the compounds they absorb and produce with each other. In order to "
-"be able to bind with another cell, you need to have the binding agents "
-"organelle and move into them after entering binding mode. You can only "
-"bind with cells of your own species. While in a colony, you can't divide "
-"your cell and enter the editor (for now). To enter the editor, first leave "
-"the colony once you have collected enough compounds, and then enter the "
-"editor. Large cell colonies are the way towards multicellularity (not in "
-"the game yet)."
+"share the compounds they absorb and produce with each other. In order to be "
+"able to bind with another cell, you need to have the binding agents "
+"organelle and move into them after entering binding mode. You can only bind "
+"with cells of your own species. While in a colony, you can't divide your "
+"cell and enter the editor (for now). To enter the editor, first leave the "
+"colony once you have collected enough compounds, and then enter the editor. "
+"Large cell colonies are the way towards multicellularity (not in the game "
+"yet)."
 
 #: ../simulation_parameters/common/help_texts.json:62
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
@@ -146,31 +145,31 @@ msgstr ""
 "from [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "\n"
 "Chemosynthisizing Proteins: Produces half of the [thrive:compound type="
-"\"glucose\"][/thrive:compound] out of [thrive:compound type="
-"\"hydrogensulfide\"][/thrive:compound] as a chemoplast, but also performs "
-"glycolysis, and takes up 1 Hex\n"
+"\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide"
+"\"][/thrive:compound] as a chemoplast, but also performs glycolysis, and "
+"takes up 1 Hex\n"
 "\n"
-"Thylakoids: Produces 1/3rd the amount of [thrive:compound type=\"glucose\"]"
-"[/thrive:compound] as a normal chloroplast, but also performs glycolysis, "
-"and takes up 1 Hex\n"
+"Thylakoids: Produces 1/3rd the amount of [thrive:compound type=\"glucose\"][/"
+"thrive:compound] as a normal chloroplast, but also performs glycolysis, and "
+"takes up 1 Hex\n"
 "\n"
-"Rusticyanin: Converts [thrive:compound type=\"iron\"][/thrive:compound] "
-"into [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"Rusticyanin: Converts [thrive:compound type=\"iron\"][/thrive:compound] into "
+"[thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Nitrogenase: Converts atmospheric nitrogen and [thrive:compound type=\"atp"
-"\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:"
-"compound] anaerobically\n"
+"Nitrogenase: Converts atmospheric nitrogen and [thrive:compound type=\"atp\"]"
+"[/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] "
+"anaerobically\n"
 "\n"
-"Cytoplasm: Has storage space and performs glycolysis (Produces small "
-"amounts of [thrive:compound type=\"atp\"][/thrive:compound])"
+"Cytoplasm: Has storage space and performs glycolysis (Produces small amounts "
+"of [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:66
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "External Organelles\n"
 "\n"
-"Flagellum: Moves your cell faster by consuming [thrive:compound type=\"atp"
-"\"][/thrive:compound]\n"
+"Flagellum: Moves your cell faster by consuming [thrive:compound type=\"atp\"]"
+"[/thrive:compound]\n"
 "\n"
 "Pilus: Can be used to stab other cells"
 
@@ -184,12 +183,12 @@ msgstr ""
 "\n"
 "Binding Agent: Allows binding with other cells\n"
 "\n"
-"Mitochondrion: Produces [thrive:compound type=\"atp\"][/thrive:compound] "
-"out of [thrive:compound type=\"glucose\"][/thrive:compound] and "
-"atmospheric O2 much more efficiently than cytoplasm\n"
+"Mitochondrion: Produces [thrive:compound type=\"atp\"][/thrive:compound] out "
+"of [thrive:compound type=\"glucose\"][/thrive:compound] and atmospheric O2 "
+"much more efficiently than cytoplasm\n"
 "\n"
-"Chloroplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] "
-"out of sunlight and atmospheric CO2\n"
+"Chloroplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] out "
+"of sunlight and atmospheric CO2\n"
 "\n"
 "Chemoplast: Makes [thrive:compound type=\"glucose\"][/thrive:compound] out "
 "of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
@@ -200,27 +199,27 @@ msgstr ""
 "\n"
 "Vacuole: Stores 8 collected compounds\n"
 "\n"
-"Toxin Vacuoles: Produces toxins (called [thrive:compound type=\"oxytoxy\"]"
-"[/thrive:compound])"
+"Toxin Vacuoles: Produces toxins (called [thrive:compound type=\"oxytoxy\"][/"
+"thrive:compound])"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
-"Each generation, you have 100 mutation points (MP) to spend, and each "
-"change (or mutation) will cost a certain amount of that MP. Adding and "
-"removing organelles costs MP. However, removing organelles that were "
-"placed in the current mutation session refunds MP for that organelle. You "
-"can move or completely remove an organelle by right-clicking on it and "
-"selecting the appropriate action from the pop-up menu. You can rotate your "
-"organelles while placing them with [thrive:input]e_rotate_left[/thrive:"
-"input] and [thrive:input]e_rotate_right[/thrive:input]."
+"Each generation, you have 100 mutation points (MP) to spend, and each change "
+"(or mutation) will cost a certain amount of that MP. Adding and removing "
+"organelles costs MP. However, removing organelles that were placed in the "
+"current mutation session refunds MP for that organelle. You can move or "
+"completely remove an organelle by right-clicking on it and selecting the "
+"appropriate action from the pop-up menu. You can rotate your organelles "
+"while placing them with [thrive:input]e_rotate_left[/thrive:input] and "
+"[thrive:input]e_rotate_right[/thrive:input]."
 
 #: ../simulation_parameters/common/help_texts.json:78
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
 "Every time you reproduce, you will enter the Microbe Editor, where you can "
-"make changes to your species (by adding, moving, or removing organelles) "
-"to increase your species' success. Each visit to the editor in the Microbe "
+"make changes to your species (by adding, moving, or removing organelles) to "
+"increase your species' success. Each visit to the editor in the Microbe "
 "Stage represents [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:"
 "constant] million years of evolution."
 
@@ -238,16 +237,16 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"Here's a tip, toxins can be used to knock other toxins away from you if "
-"you are quick enough."
+"Here's a tip, toxins can be used to knock other toxins away from you if you "
+"are quick enough."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
 "Here's a tip, Osmoregulation costs 1 ATP per second per hex your cell has, "
-"each empty hex of cytoplasm generates 5 ATP per second as well, which "
-"means if you are losing ATP due to osmoregulation just add a couple of "
-"empty hexes of cytoplasm or remove some organelles."
+"each empty hex of cytoplasm generates 5 ATP per second as well, which means "
+"if you are losing ATP due to osmoregulation just add a couple of empty hexes "
+"of cytoplasm or remove some organelles."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
@@ -266,8 +265,8 @@ msgstr "Here's a tip, sometimes it's best just to run away from other cells."
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"Here's a tip, if a cell is about half your size, that's when you can "
-"engulf them."
+"Here's a tip, if a cell is about half your size, that's when you can engulf "
+"them."
 
 #: ../simulation_parameters/common/help_texts.json:147
 msgid "EASTEREGG_MESSAGE_8"
@@ -278,8 +277,8 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:150
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
-"Here's a tip, You can hunt other species to extinction if you aren't "
-"careful enough. Other species can do it as well."
+"Here's a tip, You can hunt other species to extinction if you aren't careful "
+"enough. Other species can do it as well."
 
 #: ../simulation_parameters/common/help_texts.json:153
 msgid "EASTEREGG_MESSAGE_10"
@@ -296,8 +295,8 @@ msgstr "Those blue cells though."
 #: ../simulation_parameters/common/help_texts.json:162
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
-"Here's a tip, Biomes are more than just different backgrounds, the "
-"compounds in different biomes sometimes spawn at different rates."
+"Here's a tip, Biomes are more than just different backgrounds, the compounds "
+"in different biomes sometimes spawn at different rates."
 
 #: ../simulation_parameters/common/help_texts.json:165
 msgid "EASTEREGG_MESSAGE_14"
@@ -318,15 +317,15 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:174
 msgid "EASTEREGG_MESSAGE_17"
 msgstr ""
-"Fun Fact, Did you know that there are over 8000 species of ciliate on "
-"planet earth?"
+"Fun Fact, Did you know that there are over 8000 species of ciliate on planet "
+"earth?"
 
 #: ../simulation_parameters/common/help_texts.json:177
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
-"Fun Fact, The Stentor is a ciliate that can stretch itself and catch prey "
-"in a kind of trumpet like mouth that draws prey in by generating water "
-"currents with cilia."
+"Fun Fact, The Stentor is a ciliate that can stretch itself and catch prey in "
+"a kind of trumpet like mouth that draws prey in by generating water currents "
+"with cilia."
 
 #: ../simulation_parameters/common/help_texts.json:180
 msgid "EASTEREGG_MESSAGE_19"
@@ -341,14 +340,14 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:186
 msgid "EASTEREGG_MESSAGE_21"
 msgstr ""
-"Here's a tip, Watch out for larger cells and large bacteria, it's not fun "
-"to be digested, and they will eat you."
+"Here's a tip, Watch out for larger cells and large bacteria, it's not fun to "
+"be digested, and they will eat you."
 
 #: ../simulation_parameters/common/help_texts.json:189
 msgid "EASTEREGG_MESSAGE_22"
 msgstr ""
-"Thrive's sound team lead has made many songs that have not been added to "
-"the game yet. You can hear them, or watch streams of him composing on his "
+"Thrive's sound team lead has made many songs that have not been added to the "
+"game yet. You can hear them, or watch streams of him composing on his "
 "YouTube channel, Oliver Lugg."
 
 #: ../simulation_parameters/common/help_texts.json:192
@@ -360,10 +359,9 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:195
 msgid "EASTEREGG_MESSAGE_24"
 msgstr ""
-"Thrive is meant as a simulation of an alien planet, therefore it makes "
-"sense that most creatures you find will be related to one or two other "
-"species due to evolution happening around you, see if you can identify "
-"them!"
+"Thrive is meant as a simulation of an alien planet, therefore it makes sense "
+"that most creatures you find will be related to one or two other species due "
+"to evolution happening around you, see if you can identify them!"
 
 #: ../simulation_parameters/common/help_texts.json:198
 msgid "EASTEREGG_MESSAGE_25"
@@ -411,16 +409,19 @@ msgstr "Abilities"
 
 #: ../simulation_parameters/common/input_options.json:38
 #: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2111
 msgid "FIRE_TOXIN"
 msgstr "Fire toxin"
 
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2087
+#: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "TOGGLE_ENGULF"
 msgstr "Toggle engulf"
 
 #: ../simulation_parameters/common/input_options.json:46
 #: ../src/microbe_stage/MicrobeStage.tscn:2110
+#: ../src/microbe_stage/MicrobeStage.tscn:2122
 msgid "TOGGLE_BINDING"
 msgstr "Toggle binding"
 
@@ -450,6 +451,7 @@ msgstr "Zoom in"
 
 #: ../simulation_parameters/common/input_options.json:83
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3921
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3894
 msgid "EDITOR"
 msgstr "Editor"
 
@@ -623,6 +625,16 @@ msgstr "Epipelagic"
 #: ../simulation_parameters/microbe_stage/biomes.json:1517
 #: ../simulation_parameters/microbe_stage/biomes.json:1684
 #: ../simulation_parameters/microbe_stage/biomes.json:1832
+#: ../simulation_parameters/microbe_stage/biomes.json:168
+#: ../simulation_parameters/microbe_stage/biomes.json:395
+#: ../simulation_parameters/microbe_stage/biomes.json:542
+#: ../simulation_parameters/microbe_stage/biomes.json:765
+#: ../simulation_parameters/microbe_stage/biomes.json:992
+#: ../simulation_parameters/microbe_stage/biomes.json:1219
+#: ../simulation_parameters/microbe_stage/biomes.json:1362
+#: ../simulation_parameters/microbe_stage/biomes.json:1509
+#: ../simulation_parameters/microbe_stage/biomes.json:1674
+#: ../simulation_parameters/microbe_stage/biomes.json:1821
 msgid "FLOATING_HAZARD"
 msgstr "Floating Hazard"
 
@@ -637,6 +649,17 @@ msgstr "Floating Hazard"
 #: ../simulation_parameters/microbe_stage/biomes.json:1535
 #: ../simulation_parameters/microbe_stage/biomes.json:1702
 #: ../simulation_parameters/microbe_stage/biomes.json:1850
+#: ../simulation_parameters/microbe_stage/biomes.json:42
+#: ../simulation_parameters/microbe_stage/biomes.json:185
+#: ../simulation_parameters/microbe_stage/biomes.json:412
+#: ../simulation_parameters/microbe_stage/biomes.json:559
+#: ../simulation_parameters/microbe_stage/biomes.json:782
+#: ../simulation_parameters/microbe_stage/biomes.json:1009
+#: ../simulation_parameters/microbe_stage/biomes.json:1236
+#: ../simulation_parameters/microbe_stage/biomes.json:1379
+#: ../simulation_parameters/microbe_stage/biomes.json:1526
+#: ../simulation_parameters/microbe_stage/biomes.json:1691
+#: ../simulation_parameters/microbe_stage/biomes.json:1838
 msgid "SMALL_IRON_CHUNK"
 msgstr "Small Iron Chunk"
 
@@ -651,10 +674,22 @@ msgstr "Small Iron Chunk"
 #: ../simulation_parameters/microbe_stage/biomes.json:1589
 #: ../simulation_parameters/microbe_stage/biomes.json:1737
 #: ../simulation_parameters/microbe_stage/biomes.json:1885
+#: ../simulation_parameters/microbe_stage/biomes.json:77
+#: ../simulation_parameters/microbe_stage/biomes.json:300
+#: ../simulation_parameters/microbe_stage/biomes.json:447
+#: ../simulation_parameters/microbe_stage/biomes.json:594
+#: ../simulation_parameters/microbe_stage/biomes.json:817
+#: ../simulation_parameters/microbe_stage/biomes.json:1044
+#: ../simulation_parameters/microbe_stage/biomes.json:1271
+#: ../simulation_parameters/microbe_stage/biomes.json:1414
+#: ../simulation_parameters/microbe_stage/biomes.json:1579
+#: ../simulation_parameters/microbe_stage/biomes.json:1726
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "BIG_IRON_CHUNK"
 msgstr "Big Iron Chunk"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:147
+#: ../simulation_parameters/microbe_stage/biomes.json:146
 msgid "VOLCANIC_VENT"
 msgstr "Volcanic vent"
 
@@ -663,46 +698,61 @@ msgstr "Volcanic vent"
 #: ../simulation_parameters/microbe_stage/biomes.json:845
 #: ../simulation_parameters/microbe_stage/biomes.json:1073
 #: ../simulation_parameters/microbe_stage/biomes.json:1908
+#: ../simulation_parameters/microbe_stage/biomes.json:220
+#: ../simulation_parameters/microbe_stage/biomes.json:617
+#: ../simulation_parameters/microbe_stage/biomes.json:840
+#: ../simulation_parameters/microbe_stage/biomes.json:1067
+#: ../simulation_parameters/microbe_stage/biomes.json:1896
 msgid "MARINE_SNOW"
 msgstr "Marine snow"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:371
+#: ../simulation_parameters/microbe_stage/biomes.json:369
 msgid "TIDEPOOL"
 msgstr "Tidepool"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:519
+#: ../simulation_parameters/microbe_stage/biomes.json:516
 msgid "BATHYPELAGIC"
 msgstr "Bathypelagic"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:747
+#: ../simulation_parameters/microbe_stage/biomes.json:743
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopelagic"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:971
+#: ../simulation_parameters/microbe_stage/biomes.json:966
 msgid "MESOPELAGIC"
 msgstr "Mesopelagic"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1199
+#: ../simulation_parameters/microbe_stage/biomes.json:1193
 msgid "COASTAL"
 msgstr "Coastal"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1347
+#: ../simulation_parameters/microbe_stage/biomes.json:1340
 msgid "UNDERWATERCAVE"
 msgstr "Underwater Cave"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1491
+#: ../simulation_parameters/microbe_stage/biomes.json:1483
 msgid "ICESHELF"
 msgstr "Ice Shelf"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1570
+#: ../simulation_parameters/microbe_stage/biomes.json:1561
 msgid "ICESHARD"
 msgstr "Ice Shard"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1658
+#: ../simulation_parameters/microbe_stage/biomes.json:1648
 msgid "ESTUARY"
 msgstr "Estuary"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1806
+#: ../simulation_parameters/microbe_stage/biomes.json:1795
 msgid "SEA_FLOOR"
 msgstr "Sea Floor"
 
@@ -713,50 +763,64 @@ msgstr "ATP"
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1290
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3568
+#: ../src/microbe_stage/MicrobeStage.tscn:1294
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3541
 msgid "AMMONIA"
 msgstr "Ammonia"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1342
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3639
+#: ../src/microbe_stage/MicrobeStage.tscn:1348
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3612
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1394
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3533
+#: ../src/microbe_stage/MicrobeStage.tscn:1402
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3506
 msgid "HYDROGEN_SULFIDE"
 msgstr "Hydrogen Sulfide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1238
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3603
+#: ../src/microbe_stage/MicrobeStage.tscn:1240
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3576
 msgid "GLUCOSE"
 msgstr "Glucose"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:73
 #: ../src/microbe_stage/MicrobeStage.tscn:1576
+#: ../src/microbe_stage/MicrobeStage.tscn:1588
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1446
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3674
+#: ../src/microbe_stage/MicrobeStage.tscn:1456
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3647
 msgid "IRON"
 msgstr "Iron"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3369
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3342
 msgid "OXYGEN"
 msgstr "Oxygen"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3423
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3396
 msgid "CARBON_DIOXIDE"
 msgstr "Carbon Dioxide"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3396
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3369
 msgid "NITROGEN"
 msgstr "Nitrogen"
 
@@ -764,36 +828,45 @@ msgstr "Nitrogen"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3581
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2801
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3249
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3521
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2774
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
 msgid "SUNLIGHT"
 msgstr "Sunlight"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2031
 msgid "NORMAL"
 msgstr "Normal"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:20
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2259
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2199
 msgid "DOUBLE"
 msgstr "Double"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:37
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2423
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2363
 msgid "CELLULOSE"
 msgstr "Cellulose"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:54
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2658
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2598
 msgid "CHITIN"
 msgstr "Chitin"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:71
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2833
 msgid "CALCIUM_CARBONATE"
 msgstr "Calcium Carbonate"
 
 #: ../simulation_parameters/microbe_stage/membranes.json:88
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3101
 msgid "SILICA"
 msgstr "Silica"
 
@@ -837,11 +910,13 @@ msgstr "Metabolosomes"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:287
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1772
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1712
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr "Nitrogen-Fixing Plastid"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:324
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1688
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1628
 msgid "CHEMOPLAST"
 msgstr "Chemoplast"
 
@@ -852,16 +927,19 @@ msgstr "Flagellum"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:383
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1870
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1810
 msgid "VACUOLE"
 msgstr "Vacuole"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:418
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1405
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1345
 msgid "MITOCHONDRION"
 msgstr "Mitochondrion"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:452
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1967
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1907
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxin\n"
@@ -869,11 +947,13 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:481
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1165
 msgid "BINDING_AGENT"
 msgstr "Binding Agent"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:521
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1489
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1429
 msgid "CHLOROPLAST"
 msgstr "Chloroplast"
 
@@ -884,6 +964,7 @@ msgstr "Cytoplasm"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:618
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1308
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1248
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
@@ -1417,6 +1498,8 @@ msgstr "Art by {0}"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4076
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
+#: ../src/gui_common/charts/line/LineChart.tscn:255
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4044
 msgid "CLOSE"
 msgstr "Close"
 
@@ -1490,8 +1573,8 @@ msgstr "GLES2 Mode Warning"
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "You are running Thrive with GLES2. This is severely untested and is likely "
-"to cause issues. Try to update your video drivers and/or force AMD or "
-"Nvidia graphics to be used to run Thrive."
+"to cause issues. Try to update your video drivers and/or force AMD or Nvidia "
+"graphics to be used to run Thrive."
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
@@ -1860,6 +1943,7 @@ msgstr "Save Game"
 
 #: ../src/general/PauseMenu.tscn:82
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2664
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2637
 msgid "STATISTICS"
 msgstr "Statistics"
 
@@ -1907,6 +1991,10 @@ msgstr "@"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:711
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1023
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1222
+#: ../src/microbe_stage/MicrobeHUD.cs:638
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:696
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1003
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1188
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -2209,20 +2297,27 @@ msgstr "Raw"
 
 #: ../src/gui_common/charts/line/LineChart.cs:633
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2418
+#: ../src/gui_common/charts/line/LineChart.cs:626
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2359
 msgid "NO_DATA_TO_SHOW"
 msgstr "No Data to Show"
 
 #: ../src/gui_common/charts/line/LineChart.cs:637
+#: ../src/gui_common/charts/line/LineChart.cs:630
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Invalid Data to Plot"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1104
 #: ../src/gui_common/charts/line/LineChart.cs:1190
+#: ../src/gui_common/charts/line/LineChart.cs:1097
+#: ../src/gui_common/charts/line/LineChart.cs:1183
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Not allowed to show more than {0} datasets!"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1110
 #: ../src/gui_common/charts/line/LineChart.cs:1195
+#: ../src/gui_common/charts/line/LineChart.cs:1103
+#: ../src/gui_common/charts/line/LineChart.cs:1188
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Not allowed to show less than {0} dataset(s)!"
 
@@ -2305,6 +2400,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2685
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2918
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3188
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2058
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2390
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2625
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2858
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3128
 msgid "MOBILITY"
 msgstr "Mobility"
 
@@ -2315,6 +2416,12 @@ msgstr "Mobility"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2788
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3021
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3291
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2326
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2493
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2728
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2961
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3231
 msgid "HEALTH"
 msgstr "Health"
 
@@ -2365,11 +2472,11 @@ msgstr ""
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 "The gooey innards of a cell. The cytoplasm is the basic mixture of ions, "
-"proteins, and other substances dissolved in water that fill the interior "
-"of the cell. One of the functions it performs is glycolysis, the "
-"conversion of glucose into ATP energy. For cells that lack organelles to "
-"have more advanced metabolisms, this is what they rely on for energy. It "
-"is also used to store molecules in the cell and to grow the cell's size."
+"proteins, and other substances dissolved in water that fill the interior of "
+"the cell. One of the functions it performs is glycolysis, the conversion of "
+"glucose into ATP energy. For cells that lack organelles to have more "
+"advanced metabolisms, this is what they rely on for energy. It is also used "
+"to store molecules in the cell and to grow the cell's size."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:290
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:388
@@ -2388,6 +2495,15 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1791
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1889
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1986
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1178
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1267
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1359
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1443
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1642
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1731
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1829
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1926
 msgid "STORAGE"
 msgstr "Storage"
 
@@ -2416,6 +2532,21 @@ msgstr "Storage"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2720
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2953
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3223
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1216
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1305
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1397
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1481
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1580
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1680
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1769
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1867
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1964
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2093
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2425
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2660
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2893
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3163
 msgid "OSMOREGULATION_COST"
 msgstr "Osmoregulation Cost"
 
@@ -2423,19 +2554,19 @@ msgstr "Osmoregulation Cost"
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
-"of [thrive:compound type=\"oxygen\"][/thrive:compound]."
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:371
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 "Metabolosomes are clusters of proteins wrapped in protein shells. They are "
-"able to convert glucose into ATP at a much higher speed than can be done "
-"in the cytoplasm in a process called Aerobic Respiration. It does, "
-"however, require oxygen to function, and lower levels of oxygen in the "
-"environment will slow down the rate of its ATP production. Since the "
-"metabolosomes are suspended directly in the cytoplasm, the surrounding "
-"fluid performs some glycolysis."
+"able to convert glucose into ATP at a much higher speed than can be done in "
+"the cytoplasm in a process called Aerobic Respiration. It does, however, "
+"require oxygen to function, and lower levels of oxygen in the environment "
+"will slow down the rate of its ATP production. Since the metabolosomes are "
+"suspended directly in the cytoplasm, the surrounding fluid performs some "
+"glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:466
 msgid "THYLAKOID"
@@ -2465,26 +2596,26 @@ msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 "Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
 "[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound]. Also turns [thrive:compound type=\"glucose\"][/thrive:compound] "
-"into [thrive:compound type=\"atp\"][/thrive:compound]."
+"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]. "
+"Also turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
+"compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:565
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 "Chemosynthesizing proteins are small clusters of protein in the cytoplasm "
-"that are able to convert hydrogen sulfide, water, and gaseous carbon "
-"dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. "
-"The rate of its glucose production scales with the concentration of carbon "
-"dioxide. Since the chemosynthesizing proteins are suspended directly in "
-"the cytoplasm, the surrounding fluid performs some glycolysis."
+"that are able to convert hydrogen sulfide, water, and gaseous carbon dioxide "
+"into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate "
+"of its glucose production scales with the concentration of carbon dioxide. "
+"Since the chemosynthesizing proteins are suspended directly in the "
+"cytoplasm, the surrounding fluid performs some glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:661
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 "Turns [thrive:compound type=\"iron\"][/thrive:compound] into [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
-"of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound] and [thrive:"
 "compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:662
@@ -2497,26 +2628,26 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:758
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
-"compound type=\"ammonia\"][/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:759
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
-"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy "
-"in the form of ATP to produce ammonia, a key growth nutrient for cells. "
-"This is a process referred to as Anaerobic Nitrogen Fixation. Since the "
-"nitrogenase is suspended directly in the cytoplasm, the surrounding fluid "
-"performs some glycolysis."
+"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in "
+"the form of ATP to produce ammonia, a key growth nutrient for cells. This is "
+"a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase "
+"is suspended directly in the cytoplasm, the surrounding fluid performs some "
+"glycolysis."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:856
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can "
-"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by "
+"pressing [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:857
 msgid "OXYTOXISOME_DESC"
@@ -2534,12 +2665,12 @@ msgstr ""
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 "The flagellum (plural: flagella) is a whip-like bundle of protein fibers "
-"extending from the cell's membrane which use ATP to undulate and propel "
-"the cell in a direction. The position of the flagellum determines the "
-"direction in which it provides thrust for cell movement. The thrust "
-"direction is opposite to the direction the flagellum is pointing towards, "
-"for example a flagellum placed on the left side of a cell provides thrust "
-"when moving to the right."
+"extending from the cell's membrane which use ATP to undulate and propel the "
+"cell in a direction. The position of the flagellum determines the direction "
+"in which it provides thrust for cell movement. The thrust direction is "
+"opposite to the direction the flagellum is pointing towards, for example a "
+"flagellum placed on the left side of a cell provides thrust when moving to "
+"the right."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:971
 msgid "SPEED"
@@ -2552,73 +2683,82 @@ msgstr "Stab other cells with this."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1149
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"The chemoreceptor allows detecting compounds from farther away. Modify "
-"once placed to select the compound type and guidance line colour."
+"The chemoreceptor allows detecting compounds from farther away. Modify once "
+"placed to select the compound type and guidance line colour."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
 "All cells only \"see\" through chemoreception. That is how cells acquire "
 "information about their surroundings. Adding this organelle represents "
-"evolving more fine tuned chemoreception. As the player is given vision "
-"even in the cell stage this is represented by a line pointing outside the "
-"visible screen area showing nearby compounds that the player couldn't see "
-"yet."
+"evolving more fine tuned chemoreception. As the player is given vision even "
+"in the cell stage this is represented by a line pointing outside the visible "
+"screen area showing nearby compounds that the player couldn't see yet."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1208
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1148
 msgid "CILIA"
 msgstr "Cilia"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1209
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1679
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2066
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1149
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1619
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2006
 msgid "TO_BE_IMPLEMENTED"
 msgstr "To be Implemented."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1226
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
-"Press [thrive:input]g_toggle_binding[/thrive:input] to toggle binding "
-"mode. When in binding mode you can attach other cells of your species to "
-"your colony by moving into them. To leave a colony press [thrive:"
+"Press [thrive:input]g_toggle_binding[/thrive:input] to toggle binding mode. "
+"When in binding mode you can attach other cells of your species to your "
+"colony by moving into them. To leave a colony press [thrive:"
 "input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1227
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1167
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "Allows binding with other cells. This is the first step towards "
 "multicellularity. When your cell is part of a colony, compounds are shared "
-"between cells. You can't enter the editor while part of a colony so you "
-"need to unbind once collecting enough compounds to divide your cell."
+"between cells. You can't enter the editor while part of a colony so you need "
+"to unbind once collecting enough compounds to divide your cell."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1309
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1249
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
-"Allows for the evolution of more complex, membrane-bound organelles. Costs "
-"a lot of ATP to maintain. This is an irreversible evolution."
+"Allows for the evolution of more complex, membrane-bound organelles. Costs a "
+"lot of ATP to maintain. This is an irreversible evolution."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1310
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1250
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 "The defining feature of eukaryotic cells. The nucleus also includes the "
-"endoplasmic reticulum and the golgi body. It is an evolution of "
-"prokaryotic cells to develop a system of internal membranes, done by "
-"assimilating another prokaryote inside of themselves. This allows them to "
-"compartmentalize, or ward off, the different processes happening inside "
-"the cell and prevent them from overlapping. This allows their new membrane "
-"bound organelles to be much more complex, efficient, and specialized than "
-"if they were free-floating in the cytoplasm. However, this comes at the "
-"cost of making the cell much larger and requiring a lot of the cell's "
-"energy to maintain."
+"endoplasmic reticulum and the golgi body. It is an evolution of prokaryotic "
+"cells to develop a system of internal membranes, done by assimilating "
+"another prokaryote inside of themselves. This allows them to "
+"compartmentalize, or ward off, the different processes happening inside the "
+"cell and prevent them from overlapping. This allows their new membrane bound "
+"organelles to be much more complex, efficient, and specialized than if they "
+"were free-floating in the cytoplasm. However, this comes at the cost of "
+"making the cell much larger and requiring a lot of the cell's energy to "
+"maintain."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1406
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1346
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:"
-"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration "
-"of [thrive:compound type=\"oxygen\"][/thrive:compound]."
+"compound type=\"atp\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1407
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1347
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 "The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a "
@@ -2630,6 +2770,7 @@ msgstr ""
 "environment will slow down the rate of its ATP production."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1490
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1430
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
@@ -2638,6 +2779,7 @@ msgstr ""
 "compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1491
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1431
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 "The chloroplast is a double membrane structure containing photosensitive "
@@ -2645,15 +2787,17 @@ msgstr ""
 "been assimilated for use by its eukaryotic host. The pigments in the "
 "chloroplast are able to use the energy of light to produce glucose from "
 "water and gaseous carbon dioxide in a process called Photosynthesis. These "
-"pigments are also what give it a distinctive colour. The rate of its "
-"glucose production scales with the concentration of carbon dioxide, and "
-"intensity of light."
+"pigments are also what give it a distinctive colour. The rate of its glucose "
+"production scales with the concentration of carbon dioxide, and intensity of "
+"light."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1573
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1513
 msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1574
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1514
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales "
@@ -2661,6 +2805,7 @@ msgstr ""
 "compound] and temperature."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1515
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 "The thermoplast is a double membrane structure containing thermosensitive "
@@ -2673,46 +2818,52 @@ msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1591
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1531
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr "No processes"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1689
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1629
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 "Turns [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] into "
 "[thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound]."
+"concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1690
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1630
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 "The chemoplast is a double membrane structure containing proteins able to "
-"convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose "
-"in a process called Hydrogen Sulfide Chemosynthesis. The rate of its "
-"glucose production scales with the concentration of carbon dioxide."
+"convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in "
+"a process called Hydrogen Sulfide Chemosynthesis. The rate of its glucose "
+"production scales with the concentration of carbon dioxide."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1773
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1713
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
-"compound type=\"ammonia\"][/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound] and "
-"[thrive:compound type=\"oxygen\"][/thrive:compound]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
+"type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound "
+"type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1774
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1714
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 "The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and "
 "oxygen and cellular energy in the form of ATP to produce ammonia, a key "
-"growth nutrient for cells. This is a process referred to as Aerobic "
-"Nitrogen Fixation."
+"growth nutrient for cells. This is a process referred to as Aerobic Nitrogen "
+"Fixation."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1871
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1811
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Increases the storage space of the cell."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1872
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1812
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 "The vacuole is an internal membranous organelle used for storage in the "
@@ -2722,14 +2873,16 @@ msgstr ""
 "substances. Their shape is fluid and can vary between cells."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1968
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1908
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with "
-"concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can "
-"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
+"Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by "
+"pressing [thrive:input]g_fire_toxin[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1969
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1909
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "The toxin vacuole is a vacuole that has been modified for the specific "
@@ -2737,15 +2890,17 @@ msgstr ""
 "will increase the rate at which toxins can be released."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2065
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2005
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescent Vacuole"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2092
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2032
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"The most basic form of membrane, it has little protection against damage. "
-"It also needs more energy to not deform. The advantage is that it allows "
-"the cell to move and absorb nutrients swiftly."
+"The most basic form of membrane, it has little protection against damage. It "
+"also needs more energy to not deform. The advantage is that it allows the "
+"cell to move and absorb nutrients swiftly."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2187
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2353
@@ -2753,10 +2908,17 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2754
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2987
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3257
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2127
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2293
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2459
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2694
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2927
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3197
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr "Resource Absorption Speed"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2200
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "A membrane with two layers, it has better protection against damage and "
@@ -2764,15 +2926,19 @@ msgstr ""
 "lowers the rate at which it can absorb resources."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2424
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2364
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 "This membrane has a wall, resulting in better protection against overall "
-"damage and especially against physical damage. It also costs less energy "
-"to retain its form, but cannot absorb resources quickly and is slower."
+"damage and especially against physical damage. It also costs less energy to "
+"retain its form, but cannot absorb resources quickly and is slower."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2587
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3055
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3325
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2527
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2995
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3265
 msgid "PHYSICAL_RESISTANCE"
 msgstr "Physical Resistance"
 
@@ -2780,10 +2946,15 @@ msgstr "Physical Resistance"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2856
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3123
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3393
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2561
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2796
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3063
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3333
 msgid "CANNOT_ENGULF"
 msgstr "Cannot engulf"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2659
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2599
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 "This membrane has a wall, which means it has better protections against "
@@ -2794,35 +2965,43 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2822
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3089
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3359
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2762
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3029
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3299
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxin Resistance"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2894
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:2834
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"This membrane has a strong shell made from calcium carbonate. It can "
-"easily resist damage and requires less energy to not deform. The "
-"disadvantages of having such a heavy shell is that the cell is much slower "
-"and takes a while to absorb resources."
+"This membrane has a strong shell made from calcium carbonate. It can easily "
+"resist damage and requires less energy to not deform. The disadvantages of "
+"having such a heavy shell is that the cell is much slower and takes a while "
+"to absorb resources."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3162
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3102
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
-"This membrane has a strong wall of silica. It can resist overall damage "
-"well and is very resistant to physical damage. It also requires less "
-"energy to maintain its form. However, it slows the cell down by a large "
-"factor and the cell absorbs resources at a reduced rate."
+"This membrane has a strong wall of silica. It can resist overall damage well "
+"and is very resistant to physical damage. It also requires less energy to "
+"maintain its form. However, it slows the cell down by a large factor and the "
+"cell absorbs resources at a reduced rate."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3544
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3484
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Add a new key binding"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3550
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3490
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 "This value only applies to new games started after changing this option"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3556
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3496
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 "Enables the light flashing effects on GUIs (e.g editor button flash).\n"
@@ -2831,13 +3010,15 @@ msgstr ""
 "you can try disabling this to see if the problem is gone."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3562
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3502
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 "It cannot be automatically detected if hyperthreading is enabled or not.\n"
-"This affects the default number of threads as hyperthreading threads "
-"aren't as fast as real CPU cores."
+"This affects the default number of threads as hyperthreading threads aren't "
+"as fast as real CPU cores."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3567
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3507
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 "Enables / disables the unsaved progress warning popup for when the player "
@@ -2847,6 +3028,10 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2790
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3186
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:911
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:3516
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2763
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3159
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:896
 msgid "TEMPERATURE"
 msgstr "Temperature"
 
@@ -2856,22 +3041,27 @@ msgid "N_A_MP"
 msgstr "N/A MP"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:524
+#: ../src/microbe_stage/Microbe.Contact.cs:517
 msgid "DEATH"
 msgstr "death"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:629
+#: ../src/microbe_stage/Microbe.Contact.cs:622
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "successful scavenge"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:636
+#: ../src/microbe_stage/Microbe.Contact.cs:629
 msgid "SUCCESSFUL_KILL"
 msgstr "successful kill"
 
 #: ../src/microbe_stage/Microbe.Contact.cs:853
+#: ../src/microbe_stage/Microbe.Contact.cs:846
 msgid "ESCAPE_ENGULFING"
 msgstr "escape engulfing"
 
 #: ../src/microbe_stage/Microbe.Interior.cs:725
+#: ../src/microbe_stage/Microbe.Interior.cs:712
 msgid "REPRODUCED"
 msgstr "reproduced"
 
@@ -2902,52 +3092,64 @@ msgid "SPAWN_ENEMY"
 msgstr "Spawn Enemy"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:694
+#: ../src/microbe_stage/MicrobeHUD.cs:683
 msgid "STUFF_AT"
 msgstr "Stuff at {0:F1}, {1:F1}:"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:727
+#: ../src/microbe_stage/MicrobeHUD.cs:716
 msgid "PLAYER_CELL"
 msgstr "Player Cell"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:744
+#: ../src/microbe_stage/MicrobeHUD.cs:733
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:789
+#: ../src/microbe_stage/MicrobeHUD.cs:778
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "an abundance"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:791
+#: ../src/microbe_stage/MicrobeHUD.cs:780
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "quite a bit"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:793
+#: ../src/microbe_stage/MicrobeHUD.cs:782
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "a fair amount"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:795
+#: ../src/microbe_stage/MicrobeHUD.cs:784
 msgid "CATEGORY_SOME"
 msgstr "some"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:797
+#: ../src/microbe_stage/MicrobeHUD.cs:786
 msgid "CATEGORY_LITTLE"
 msgstr "little"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:799
+#: ../src/microbe_stage/MicrobeHUD.cs:788
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "very little"
 
 #: ../src/microbe_stage/MicrobeStage.cs:538
+#: ../src/microbe_stage/MicrobeStage.cs:529
 msgid "PLAYER_REPRODUCED"
 msgstr "player reproduced"
 
 #: ../src/microbe_stage/MicrobeStage.cs:624
+#: ../src/microbe_stage/MicrobeStage.cs:615
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 "Can't use spawn enemy cheat because this patch does not contain any enemy "
 "species"
 
 #: ../src/microbe_stage/MicrobeStage.cs:693
+#: ../src/microbe_stage/MicrobeStage.cs:679
 msgid "PLAYER_DIED"
 msgstr "player died"
 
@@ -2988,42 +3190,55 @@ msgstr "Press."
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2888
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3493
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2827
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2861
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3466
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1031
 msgid "COMPOUNDS"
 msgstr "Compounds"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1516
+#: ../src/microbe_stage/MicrobeStage.tscn:1526
 msgid "AGENTS"
 msgstr "Agents"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1614
+#: ../src/microbe_stage/MicrobeStage.tscn:1626
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause menu"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1632
+#: ../src/microbe_stage/MicrobeStage.tscn:1644
 msgid "PAUSE_TOOLTIP"
 msgstr "Pause the game"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1645
+#: ../src/microbe_stage/MicrobeStage.tscn:1657
 msgid "RESUME_TOOLTIP"
 msgstr "Resume the game"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1658
+#: ../src/microbe_stage/MicrobeStage.tscn:1670
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide environment and compounds"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1673
+#: ../src/microbe_stage/MicrobeStage.tscn:1685
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide cell processes"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1710
+#: ../src/microbe_stage/MicrobeStage.tscn:1722
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Help"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1722
+#: ../src/microbe_stage/MicrobeStage.tscn:1734
 msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr "Suicide"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1773
+#: ../src/microbe_stage/MicrobeStage.tscn:1785
 msgid "POPULATION_CAPITAL"
 msgstr "POPULATION:"
 
@@ -3085,6 +3300,7 @@ msgstr "Compound Balances"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:623
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:1440
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1439
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
 
@@ -3093,221 +3309,276 @@ msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Waiting for auto-evo:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2467
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo failed to run"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:2469
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2468
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "run status:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:663
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:660
 msgid "MUTATION_POINTS"
 msgstr "Mutation Points"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:798
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:795
 msgid "STRUCTURE"
 msgstr "Structure"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:820
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:817
 msgid "MEMBRANE"
 msgstr "Membrane"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:842
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:839
 msgid "BEHAVIOUR"
 msgstr "Behaviour"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:894
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:891
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Search..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:901
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:898
 msgid "STRUCTURAL"
 msgstr "Structural"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:941
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:938
 msgid "PROTEINS"
 msgstr "Proteins"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1008
 msgid "EXTERNAL"
 msgstr "External"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1070
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1062
 msgid "ORGANELLES"
 msgstr "Organelles"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1205
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1197
 msgid "MEMBRANE_TYPES"
 msgstr "Membrane Types"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1284
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1276
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidity / Rigidity"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1304
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1296
 msgid "FLUID"
 msgstr "Fluid"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1317
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1309
 msgid "RIGID"
 msgstr "Rigid"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1350
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1342
 msgid "COLOUR"
 msgstr "Colour"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1415
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
 msgid "PEACEFUL"
 msgstr "Peaceful"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1432
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1424
 msgid "AGGRESSIVE"
 msgstr "Aggressive"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1468
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1460
 msgid "CAUTIOUS"
 msgstr "Cautious"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1486
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1478
 msgid "OPPORTUNISTIC"
 msgstr "Opportunistic"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1522
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1514
 msgid "BRAVE"
 msgstr "Brave"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1539
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1531
 msgid "FEARFUL"
 msgstr "Fearful"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1575
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1567
 msgid "SESSILE"
 msgstr "Sessile"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1592
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1584
 msgid "ACTIVE"
 msgstr "Active"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1628
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1620
 msgid "RESPONSIVE"
 msgstr "Responsive"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1645
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1637
 msgid "FOCUSED"
 msgstr "Focused"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1713
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1705
 msgid "ORGANISM_STATISTICS"
 msgstr "Organism Statistics"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1767
 msgid "SPEED_COLON"
 msgstr "Speed:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1797
 msgid "HP_COLON"
 msgstr "HP:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1835
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1827
 msgid "SIZE_COLON"
 msgstr "Size:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1856
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1848
 msgid "GENERATION_COLON"
 msgstr "Generation:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1898
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1890
 msgid "ATP_BALANCE"
 msgstr "ATP Balance"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2011
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2003
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "This panel shows the expected population numbers from auto-evo for the "
 "edited species.\n"
-"Auto-evo runs the population simulation that is the other part (besides "
-"your own performance) that affects your population."
+"Auto-evo runs the population simulation that is the other part (besides your "
+"own performance) that affects your population."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4018
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2007
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3986
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Auto-Evo Prediction"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2023
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2015
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "View detailed information behind the prediction"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2093
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2085
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Total Population:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2109
 msgid "BEST_PATCH_COLON"
 msgstr "Best Patch:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2142
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2134
 msgid "WORST_PATCH_COLON"
 msgstr "Worst Patch:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2288
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2280
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Species name..."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2342
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2334
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "CANCEL ACTION"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2356
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2348
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFIRM"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2365
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2357
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Negative ATP Balance"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2366
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2358
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Your microbe is not producing enough ATP for it to survive!\n"
 "Do you wish to continue?"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2372
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2364
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Disconnected Organelles"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2374
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2366
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "There are placed organelles, which are not connected to the rest.\n"
 "Please connect all placed organelles with each other or undo your changes."
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2490
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2463
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2504
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2477
 msgid "FOOD_CHAIN"
 msgstr "Food Chain"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2491
 msgid "TIMELINE"
 msgstr "Timeline"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2571
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2544
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo results:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2590
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2563
 msgid "EXTERNAL_EFFECTS"
 msgstr "External effects:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2673
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2646
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2674
 msgid "SPECIES_POPULATION"
 msgstr "Species Population"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2711
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3145
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2684
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3118
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Physical Conditions"
 
@@ -3315,66 +3586,80 @@ msgstr "Physical Conditions"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2845
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3328
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1044
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2784
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2818
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3301
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmospheric Gasses"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2914
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3837
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2887
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3810
 msgid "NEXT_CAPITAL"
 msgstr "NEXT"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3027
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3000
 msgid "SELECT_A_PATCH"
 msgstr "Select a patch to show details here"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3062
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3035
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "CURRENT LOCATION"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3222
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3195
 msgid "PRESSURE"
 msgstr "Pressure"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3753
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3726
 msgid "SPECIES_PRESENT"
 msgstr "Species Present"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3810
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3783
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Move to This Patch"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3879
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3852
 msgid "REPORT"
 msgstr "Report"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3900
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3873
 msgid "PATCH_MAP"
 msgstr "Patch Map"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4067
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4035
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 "This panel shows the numbers that the auto-evo prediction works from. The "
 "total energy a species is able to capture, and the cost per individual of "
 "the species, determines the final population. Auto-evo uses a simplified "
 "model of reality to calculate how well species are performing based on the "
-"energy they are able to gather. For each food source it is shown much "
-"energy the species gains from it. Additionally the total energy that is "
-"available from that source is shown. The fraction the species gains out of "
-"the total energy is based on how large the fitness is compared to the "
-"total fitness. Fitness is a metric of how well the species can utilize "
-"that food source."
+"energy they are able to gather. For each food source it is shown much energy "
+"the species gains from it. Additionally the total energy that is available "
+"from that source is shown. The fraction the species gains out of the total "
+"energy is based on how large the fitness is compared to the total fitness. "
+"Fitness is a metric of how well the species can utilize that food source."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
 msgstr "Infinite MP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:717
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:702
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-"The amount of glucose has been reduced to {0} of the previous amount."
+msgstr "The amount of glucose has been reduced to {0} of the previous amount."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:724
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:709
 msgid "MEGA_YEARS"
 msgstr "Myr"
 
@@ -3384,98 +3669,130 @@ msgstr "Myr"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1044
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1047
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:713
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1021
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1022
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1024
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1031
 msgid "YEARS"
 msgstr "years"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:770
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:755
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:760
 msgid "ATP_PRODUCTION"
 msgstr "ATP Production"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:776
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:761
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "ATP PRODUCTION TOO LOW!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:802
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:787
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:804
 msgid "OSMOREGULATION"
 msgstr "Osmoregulation"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:825
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:810
 msgid "BASE_MOVEMENT"
 msgstr "Base Movement"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:837
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:822
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1047
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1027
 msgid "SPECIES_LIST"
 msgstr "Species List"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1058
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1071
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1038
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1051
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Extinct from the planet"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1059
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1070
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1039
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1050
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Extinct from patch"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1102
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1082
 msgid "FREEBUILDING"
 msgstr "Freebuilding"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1213
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1179
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1218
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1184
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1257
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1223
 msgid "WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1963
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1913
 msgid "FAILED"
 msgstr "Failed"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1969
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1981
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1919
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1931
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1975
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1987
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1925
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1937
 msgid "N_A"
 msgstr "N/A"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2260
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2201
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Species name must conform to binomial naming system (Genus and Epithet)!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2386
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2327
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energy in {0} for {1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2390
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2331
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Total energy gathered is {0} with individual cost of {1} resulting in "
 "unadjusted population of {2}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2397
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2338
 msgid "ENERGY_SOURCES"
 msgstr "Energy Sources:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2403
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2344
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0} energy: {1} (fitness: {2}) total available energy: {3} (total fitness: "
@@ -3484,18 +3801,23 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:230
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:249
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:207
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:226
 msgid "MP_COST"
 msgstr "{0} MP"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:228
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:227
 msgid "DELETE"
 msgstr "Delete"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:294
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:292
 msgid "MOVE"
 msgstr "Move"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
+#: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:359
 msgid "MODIFY"
 msgstr "Modify"
 
@@ -3531,8 +3853,8 @@ msgstr "EXTINCTION"
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Just like 99% of all species that have ever existed, your species has gone "
-"extinct. Others will go on to fill in your niche and thrive, but that "
-"won’t be you. You will be forgotten, a failed experiment in evolution."
+"extinct. Others will go on to fill in your niche and thrive, but that won’t "
+"be you. You will be forgotten, a failed experiment in evolution."
 
 #: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
@@ -3774,8 +4096,8 @@ msgstr "Mod Creation Failed"
 #: ../src/modding/ModManager.tscn:989
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
-"Errors occurred when loading or unloading one or more mods. Logs may "
-"contain additional information."
+"Errors occurred when loading or unloading one or more mods. Logs may contain "
+"additional information."
 
 #: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
@@ -3836,8 +4158,8 @@ msgstr "Uploading..."
 #: ../src/modding/ModUploader.cs:527
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
-"Item upload to the Steam Workshop has succeeded, but you need to accept "
-"the Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
+"Item upload to the Steam Workshop has succeeded, but you need to accept the "
+"Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/"
 "workshoplegalagreement]terms of service[/url][/color] before it is visible"
 
 #: ../src/modding/ModUploader.cs:531
@@ -3848,8 +4170,8 @@ msgstr "Item upload to the Steam Workshop has succeeded"
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "By submitting this item, you agree to Steam Workshop's [color=#3796e1]"
-"[url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms "
-"of service[/url][/color]"
+"[url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of "
+"service[/url][/color]"
 
 #: ../src/modding/ModUploader.cs:616
 msgid "SAVING_DATA_FAILED_DUE_TO"
@@ -3922,8 +4244,8 @@ msgstr "Browse"
 #: ../src/modding/ModUploader.tscn:284
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
-"Remove local data regarding this item. Useful if you entered the wrong ID "
-"or want to upload a new version to a different item."
+"Remove local data regarding this item. Useful if you entered the wrong ID or "
+"want to upload a new version to a different item."
 
 #: ../src/modding/ModUploader.tscn:286
 msgid "FORGET_MOD_DETAILS"
@@ -4076,19 +4398,19 @@ msgstr "Overwrite existing save:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Overwrite existing save?"
 
-#: ../src/saving/SaveHelper.cs:421
+#: ../src/saving/SaveHelper.cs:421 ../src/saving/SaveHelper.cs:412
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Saving is not currently possible due to:"
 
-#: ../src/saving/SaveHelper.cs:422
+#: ../src/saving/SaveHelper.cs:422 ../src/saving/SaveHelper.cs:413
 msgid "PLAYER_EXTINCT"
 msgstr "Player is extinct"
 
-#: ../src/saving/SaveHelper.cs:431
+#: ../src/saving/SaveHelper.cs:431 ../src/saving/SaveHelper.cs:422
 msgid "SAVING_SUCCEEDED"
 msgstr "Saving succeeded"
 
-#: ../src/saving/SaveHelper.cs:441
+#: ../src/saving/SaveHelper.cs:441 ../src/saving/SaveHelper.cs:432
 msgid "SAVING_FAILED"
 msgstr "Saving failed! An exception happened"
 
@@ -4119,10 +4441,12 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "No Saves Found"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
+#: ../src/saving/SaveListItem.tscn:104
 msgid "LOADING_DOT"
 msgstr "Loading..."
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
+#: ../src/saving/SaveListItem.tscn:279
 msgid "DELETE_THIS_SAVE"
 msgstr "Delete this Save?"
 
@@ -4165,8 +4489,8 @@ msgstr "Selected save is incompatible"
 #: ../src/saving/SaveList.tscn:105
 msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
-"The selected save to be loaded is known to be incompatible with this "
-"version of Thrive.\n"
+"The selected save to be loaded is known to be incompatible with this version "
+"of Thrive.\n"
 "And there is no save upgrader to upgrade this save. \n"
 "As Thrive is still early in development save compatibility is not a high "
 "priority, as such there aren't save upgraders for all versions."
@@ -4178,8 +4502,7 @@ msgstr "Selected save is upgradeable"
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
-"The selected save is from an older version of Thrive, but can be "
-"upgraded.\n"
+"The selected save is from an older version of Thrive, but can be upgraded.\n"
 "A backup file will be created before the upgrade, if not already created.\n"
 "If you skip upgrading, the save will be attempted to be loaded normally.\n"
 "Attempt to upgrade this save?"
@@ -4194,41 +4517,45 @@ msgstr ""
 "Upgrading the specified save failed due to the following error:\n"
 "{0}"
 
-#: ../src/saving/SaveListItem.tscn:132
+#: ../src/saving/SaveListItem.tscn:132 ../src/saving/SaveListItem.tscn:130
 msgid "CREATED_AT"
 msgstr "Created at:"
 
 #: ../src/saving/SaveListItem.tscn:139 ../src/saving/SaveListItem.tscn:158
 #: ../src/saving/SaveListItem.tscn:177 ../src/saving/SaveListItem.tscn:200
 #: ../src/saving/SaveListItem.tscn:229 ../src/saving/SaveListItem.tscn:248
+#: ../src/saving/SaveListItem.tscn:137 ../src/saving/SaveListItem.tscn:156
+#: ../src/saving/SaveListItem.tscn:175 ../src/saving/SaveListItem.tscn:198
+#: ../src/saving/SaveListItem.tscn:227 ../src/saving/SaveListItem.tscn:246
 msgid "DOT_DOT_DOT"
 msgstr "..."
 
-#: ../src/saving/SaveListItem.tscn:151
+#: ../src/saving/SaveListItem.tscn:151 ../src/saving/SaveListItem.tscn:149
 msgid "TYPE"
 msgstr "Type:"
 
-#: ../src/saving/SaveListItem.tscn:170
+#: ../src/saving/SaveListItem.tscn:170 ../src/saving/SaveListItem.tscn:168
 msgid "DESCRIPTION"
 msgstr "Description:"
 
-#: ../src/saving/SaveListItem.tscn:193
+#: ../src/saving/SaveListItem.tscn:193 ../src/saving/SaveListItem.tscn:191
 msgid "VERSION"
 msgstr "Version:"
 
-#: ../src/saving/SaveListItem.tscn:222
+#: ../src/saving/SaveListItem.tscn:222 ../src/saving/SaveListItem.tscn:220
 msgid "BY"
 msgstr "By:"
 
-#: ../src/saving/SaveListItem.tscn:241
+#: ../src/saving/SaveListItem.tscn:241 ../src/saving/SaveListItem.tscn:239
 msgid "CREATED_ON_PLATFORM"
 msgstr "Created on Platform:"
 
 #: ../src/saving/SaveListItem.tscn:275 ../src/saving/SaveManagerGUI.tscn:56
+#: ../src/saving/SaveListItem.tscn:271
 msgid "LOAD"
 msgstr "Load"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:282 ../src/saving/SaveListItem.tscn:278
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 "Deleting this save cannot be undone, are you sure you want to permanently "
@@ -4393,8 +4720,8 @@ msgstr ""
 "details on the right side.\n"
 "\n"
 "If you select a patch next to the one you are currently in, you can press "
-"the button on the right to move there. This allows your population to "
-"spread to new patches.\n"
+"the button on the right to move there. This allows your population to spread "
+"to new patches.\n"
 "\n"
 "Select a patch to continue."
 
@@ -4407,9 +4734,9 @@ msgstr ""
 "You can also change other properties of your species in the other tabs of "
 "the cell editor.\n"
 "\n"
-"To continue, select an organelle from the panel on the left (cytoplasm is "
-"a good choice). Then left click next to the hex shown middle of the screen "
-"to add that organelle to your species."
+"To continue, select an organelle from the panel on the left (cytoplasm is a "
+"good choice). Then left click next to the hex shown middle of the screen to "
+"add that organelle to your species."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
 msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
@@ -4417,8 +4744,8 @@ msgstr ""
 "Removing organelles also costs MP as it is a mutation to your species, "
 "unless they were placed in the current editor session. \n"
 "\n"
-"You can right click organelles to bring up the organelle menu and "
-"selecting the delete option to remove them. \n"
+"You can right click organelles to bring up the organelle menu and selecting "
+"the delete option to remove them. \n"
 "\n"
 "If you make a mistake, you can undo any change you make in the editor.\n"
 "\n"
@@ -4431,11 +4758,10 @@ msgstr ""
 "the organelles on which processes they do and what compounds they use and "
 "produce.\n"
 "\n"
-"Also pay attention to the ATP balance bar in the top right to make sure "
-"your cell can survive.\n"
+"Also pay attention to the ATP balance bar in the top right to make sure your "
+"cell can survive.\n"
 "\n"
-"You can rotate organelles with A and D (default keys) before placing "
-"them.\n"
+"You can rotate organelles with A and D (default keys) before placing them.\n"
 "\n"
 "Press the redo button (close to the undo button) to continue."
 
@@ -4448,8 +4774,7 @@ msgstr ""
 "You can rename your species by clicking on your current species name and "
 "editing the text.\n"
 "\n"
-"Initially you should keep your cell small and head for the surface "
-"patches.\n"
+"Initially you should keep your cell small and head for the surface patches.\n"
 "\n"
 "Good luck!"
 
@@ -4463,33 +4788,33 @@ msgstr ""
 "This panel shows a prediction of your future population. These numbers are "
 "from the population simulation of auto-evo.\n"
 "\n"
-"They don't take into account your individual performance. So in your "
-"current patch you are going to perform better when you enter the editor.\n"
+"They don't take into account your individual performance. So in your current "
+"patch you are going to perform better when you enter the editor.\n"
 "\n"
-"But you should try to keep your population up even when you aren't "
-"directly involved.\n"
+"But you should try to keep your population up even when you aren't directly "
+"involved.\n"
 "\n"
-"You can view more detailed information behind the prediction by pressing "
-"the question mark button in the panel. Press it to continue."
+"You can view more detailed information behind the prediction by pressing the "
+"question mark button in the panel. Press it to continue."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 msgid "EDITOR_TUTORIAL_STAY_SMALL"
 msgstr ""
-"You should focus on one or two energy sources so that you don't need to "
-"have all resources to generate enough ATP to survive.\n"
+"You should focus on one or two energy sources so that you don't need to have "
+"all resources to generate enough ATP to survive.\n"
 "\n"
 "Also carefully consider if adding an organelle is beneficial, often not "
-"making any changes is a good choice, as each part costs ATP to maintain "
-"and requires more resources to divide.\n"
+"making any changes is a good choice, as each part costs ATP to maintain and "
+"requires more resources to divide.\n"
 "\n"
-"One possible strategy is to stay a single hex of cytoplasm and just head "
-"to the surface patches first before getting photosynthesis organelles."
+"One possible strategy is to stay a single hex of cytoplasm and just head to "
+"the surface patches first before getting photosynthesis organelles."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
-"On a distant alien planet, eons of volcanic activity and meteor impacts "
-"have led to the development of a new phenomenon in the universe.\n"
+"On a distant alien planet, eons of volcanic activity and meteor impacts have "
+"led to the development of a new phenomenon in the universe.\n"
 "\n"
 "Life.\n"
 "\n"
@@ -4497,8 +4822,8 @@ msgstr ""
 "Universal Common Ancestor (LUCA) on this planet.\n"
 "\n"
 "To survive in this hostile world, you will need to collect any compounds "
-"that you can find and evolve across generations to compete against the "
-"other species of microbes."
+"that you can find and evolve across generations to compete against the other "
+"species of microbes."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:105
 msgid "SHOW_TUTORIALS"
