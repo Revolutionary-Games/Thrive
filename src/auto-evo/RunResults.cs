@@ -929,27 +929,27 @@
                 {
                     GetSpeciesPopulationsByPatch(newSpeciesEntry, true, true).TryGetValue(patch, out var population);
 
-                    if (population > 0)
+                    var newSpeciesResult = GetNewSpeciesResult(newSpeciesEntry);
+
+                    if (population > 0 && newSpeciesResult != null)
                     {
                         var splitResults = GetSplitResults(newSpeciesEntry);
 
-                        switch (GetNewSpeciesResult(newSpeciesEntry).Value)
+                        switch (newSpeciesResult.Value)
                         {
-                            case RunResults.NewSpeciesType.FillNiche:
-                                LogEventGloballyAndLocally(world, patch, new LocalizedString(
-                                        "TIMELINE_NICHE_FILL",
-                                        newSpeciesEntry.FormattedName,
-                                        splitResults.SplitFrom.FormattedName),
+                            case NewSpeciesType.FillNiche:
+                                LogEventGloballyAndLocally(world, patch, new LocalizedString("TIMELINE_NICHE_FILL",
+                                        newSpeciesEntry.FormattedName, splitResults.SplitFrom.FormattedName),
                                     false, "newSpecies.png");
                                 break;
-                            case RunResults.NewSpeciesType.SplitDueToMutation:
+                            case NewSpeciesType.SplitDueToMutation:
                                 LogEventGloballyAndLocally(world, patch, new LocalizedString(
-                                        "TIMELINE_SELECTION_PRESSURE_SPLIT",
-                                        newSpeciesEntry.FormattedName,
+                                        "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedName,
                                         splitResults.SplitFrom.FormattedName),
                                     false, "newSpecies.png");
                                 break;
                             default:
+                                GD.PrintErr("Unhandled newly created species type: ", newSpeciesResult.Value);
                                 break;
                         }
                     }
