@@ -904,9 +904,7 @@
                 foreach (var migration in GetMigrationsTo(patch))
                 {
                     // Log to destination patch
-                    patch.LogEvent(new LocalizedString(
-                            "TIMELINE_SPECIES_MIGRATED_FROM",
-                            migration.Key.FormattedName,
+                    patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedName,
                             TranslationServer.Translate(migration.Value.From.Name)),
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
@@ -918,10 +916,8 @@
                         migration.Key.PlayerSpecies, "newSpecies.png");
 
                     // Log to origin patch
-                    migration.Value.From.LogEvent(new LocalizedString(
-                            "TIMELINE_SPECIES_MIGRATED_TO",
-                            migration.Key.FormattedName,
-                            TranslationServer.Translate(migration.Value.To.Name)),
+                    migration.Value.From.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
+                            migration.Key.FormattedName, TranslationServer.Translate(migration.Value.To.Name)),
                         migration.Key.PlayerSpecies, "newSpecies.png");
                 }
 
