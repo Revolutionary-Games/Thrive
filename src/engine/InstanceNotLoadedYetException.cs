@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 /// <summary>
 ///   Thrown when trying to access a static instance that has not been loaded yet
@@ -8,8 +9,8 @@ public class InstanceNotLoadedYetException : Exception
 {
     public InstanceNotLoadedYetException() { }
 
-    protected InstanceNotLoadedYetException(System.Runtime.Serialization.SerializationInfo serializationInfo,
-        System.Runtime.Serialization.StreamingContext streamingContext) : base(serializationInfo, streamingContext)
+    protected InstanceNotLoadedYetException(SerializationInfo serializationInfo,
+        StreamingContext streamingContext) : base(serializationInfo, streamingContext)
     {
     }
 }
