@@ -222,7 +222,7 @@ public class TweakedColourPicker : ColorPicker
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<TextureButton>("PresetButtonContainer/AddPresetButton");
 
-        // Picker button logic rewrite
+        // Picker button logic rewrite #3055
         // TODO: Revert this PR once https://github.com/godotengine/godot/issues/57343 is solved.
         baseControl = GetChild(1);
         var customPickerButton = new ToolButton { Icon = pickerButton.Icon };
