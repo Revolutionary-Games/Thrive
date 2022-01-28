@@ -49,14 +49,24 @@ public class ProcessSystem
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane)
     {
-        return ComputeEnergyBalance(organelles.Select(o => o.Definition), biome, membrane);
+        var organellesList = organelles.ToList();
+
+        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
+        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection);
     }
 
     /// <summary>
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleDefinition> organelles,
-        BiomeConditions biome, MembraneType membrane)
+    /// <param name="organelles">The organelles to compute the balance with</param>
+    /// <param name="biome">The conditions the organelles are simulated in</param>
+    /// <param name="membrane">The membrane type to adjust the energy balance with</param>
+    /// <param name="onlyMovementInDirection">
+    ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
+    ///   movement organelles are assumed to be inactive in the balance calculation.
+    /// </param>
+    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
+        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection)
     {
         var result = new EnergyBalanceInfo();
 
@@ -66,11 +76,9 @@ public class ProcessSystem
 
         int hexCount = 0;
 
-        var enumerated = organelles.ToList();
-
-        foreach (var organelle in enumerated)
+        foreach (var organelle in organelles)
         {
-            foreach (var process in organelle.RunnableProcesses)
+            foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
 
@@ -80,7 +88,7 @@ public class ProcessSystem
 
                     processATPConsumption += amount;
 
-                    result.AddConsumption(organelle.InternalName, amount);
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
                 }
 
                 if (processData.WritableOutputs.ContainsKey(ATP))
@@ -89,23 +97,26 @@ public class ProcessSystem
 
                     processATPProduction += amount;
 
-                    result.AddProduction(organelle.InternalName, amount);
+                    result.AddProduction(organelle.Definition.InternalName, amount);
                 }
             }
 
             // Take special cell components that take energy into account
-            if (organelle.HasComponentFactory<MovementComponentFactory>())
+            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
                 var amount = Constants.FLAGELLA_ENERGY_COST;
 
-                movementATPConsumption += amount;
-                result.Flagella += amount;
-
-                result.AddConsumption(organelle.InternalName, amount);
+                var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
+                if (organelleDirection.Dot(onlyMovementInDirection) > 0)
+                {
+                    movementATPConsumption += amount;
+                    result.Flagella += amount;
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
+                }
             }
 
             // Store hex count
-            hexCount += organelle.HexCount;
+            hexCount += organelle.Definition.HexCount;
         }
 
         // Add movement consumption together

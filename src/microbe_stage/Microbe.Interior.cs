@@ -56,6 +56,8 @@ public partial class Microbe
     /// </remarks>
     private bool allOrganellesDivided;
 
+    private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
     /// <summary>
     ///   True only when this cell has been killed to let know things
     ///   being engulfed by us that we are dead.
@@ -95,6 +97,13 @@ public partial class Microbe
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
     /// <summary>
+    ///   Called periodically to report the chemoreception settings of the microbe
+    /// </summary>
+    [JsonProperty]
+    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>
+        OnCompoundChemoreceptionInfo { get; set; }
+
+    /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
     /// </summary>
     public void ResetOrganelleLayout()
@@ -121,6 +130,7 @@ public partial class Microbe
                 Definition = entry.Definition,
                 Position = entry.Position,
                 Orientation = entry.Orientation,
+                Upgrades = entry.Upgrades,
             };
 
             organelles.Add(placed);
@@ -132,6 +142,10 @@ public partial class Microbe
         // Unbind if a colony's master cell removed its binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
             Colony.RemoveFromColony(this);
+
+        // Make chemoreception update happen immediately in case the settings changed so that new information is
+        // used earlier
+        timeUntilChemoreceptionUpdate = 0;
     }
 
     /// <summary>
@@ -643,8 +657,11 @@ public partial class Microbe
         var q = organelle.Position.Q;
         var r = organelle.Position.R;
 
-        var newOrganelle = new PlacedOrganelle();
-        newOrganelle.Definition = organelle.Definition;
+        var newOrganelle = new PlacedOrganelle
+        {
+            Definition = organelle.Definition,
+            Upgrades = organelle.Upgrades,
+        };
 
         // Spiral search for space for the organelle
         int radius = 1;
@@ -907,5 +924,20 @@ public partial class Microbe
             membraneCoords.x * s + membraneCoords.z * c);
 
         return Translation + (ejectionDirection * ejectionDistance);
+    }
+
+    private void HandleChemoreceptorLines(float delta)
+    {
+        timeUntilChemoreceptionUpdate -= delta;
+
+        if (timeUntilChemoreceptionUpdate > 0 || Dead)
+            return;
+
+        timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
+        OnCompoundChemoreceptionInfo?.Invoke(this, activeCompoundDetections);
+
+        // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
+        activeCompoundDetections.Clear();
     }
 }

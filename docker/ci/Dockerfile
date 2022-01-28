@@ -1,4 +1,4 @@
-FROM fedora:34
+FROM fedora:35
 
 RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config git git-lfs \
     p7zip tar unzip xz gcc make wget dotnet-sdk-5.0 && dnf clean all
@@ -6,7 +6,7 @@ RUN git lfs install
 RUN gem install os colorize rubyzip json sha3 httparty parallel nokogiri
 
 # Godot install
-ENV GODOT_VERSION "3.4"
+ENV GODOT_VERSION "3.4.2"
 
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_linux_headless_64.zip \
     && wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \

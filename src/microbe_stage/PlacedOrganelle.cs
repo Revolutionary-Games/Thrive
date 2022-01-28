@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 {
     [JsonIgnore]
-    private List<uint> shapes = new List<uint>();
+    private readonly List<uint> shapes = new();
 
     private bool needsColourUpdate = true;
 
@@ -118,6 +118,12 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     /// </summary>
     [JsonIgnore]
     public List<IOrganelleComponent> Components { get; private set; }
+
+    /// <summary>
+    ///   The upgrades that this organelle has which affect how the components function
+    /// </summary>
+    [JsonProperty]
+    public OrganelleUpgrades Upgrades { get; set; }
 
     /// <summary>
     ///   Computes the total storage capacity of this organelle. Works

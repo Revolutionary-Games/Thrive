@@ -9,7 +9,7 @@
 ///     Useful in cases where the playing of an audio stream must be able to fulfill both of these conditions.
 ///   </para>
 /// </remarks>
-public class HybridAudioPlayer : Node
+public class HybridAudioPlayer : Spatial
 {
     private AudioStreamPlayer3D player3D;
     private AudioStreamPlayer playerNonPositional;

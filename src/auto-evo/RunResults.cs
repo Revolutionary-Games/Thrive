@@ -179,6 +179,19 @@
             dataReceiver.IndividualCost = individualCost;
         }
 
+        /// <summary>
+        ///   Checks if species has results. Species doesn't have results if it was extinct or was not part of the run
+        /// </summary>
+        /// <param name="species">The species to check</param>
+        /// <returns>True if the species has results</returns>
+        public bool SpeciesHasResults(Species species)
+        {
+            lock (results)
+            {
+                return results.ContainsKey(species);
+            }
+        }
+
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
             foreach (var entry in results)

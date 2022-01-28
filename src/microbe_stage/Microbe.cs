@@ -41,6 +41,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
 
+    private float collisionForce;
+
     private Vector3 queuedMovementForce;
 
     private Vector3 lastLinearVelocity;
@@ -49,7 +51,9 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private float movementSoundCooldownTimer;
 
-    private Random random = new Random();
+    private Random random = new();
+
+    private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
 
     [JsonProperty]
     private MicrobeAI ai;
@@ -321,6 +325,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         queuedMovementForce += force;
     }
 
+    public void ReportActiveChemereception(Compound compound, float range, float minAmount, Color colour)
+    {
+        activeCompoundDetections.Add((compound, range, minAmount, colour));
+    }
+
     public void PlaySoundEffect(string effect, float volume = 1.0f)
     {
         // TODO: make these sound objects only be loaded once
@@ -461,6 +470,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // the place where the body rotation can be directly set
         // without problems
 
+        HandleChemoreceptorLines(delta);
+
         HandleCompoundVenting(delta);
 
         if (Colony != null && Colony.Master == this)
@@ -550,6 +561,18 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // TODO: should movement also be applied here?
 
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
+
+        // Reset total sum from previous collisions
+        collisionForce = 0.0f;
+
+        // Sum impulses from all contact points
+        for (var i = 0; i < physicsState.GetContactCount(); ++i)
+        {
+            // TODO: Godot currently does not provide a convenient way to access a collision impulse, this
+            // for example is luckily available only in Bullet which makes things a bit easier. Would need
+            // proper handling for this in the future.
+            collisionForce += physicsState.GetContactImpulse(i);
+        }
     }
 
     /// <summary>
