@@ -163,7 +163,7 @@
 
     internal class UpgradeStep0561To057 : BaseRecursiveJSONWalkerStep
     {
-        protected override string VersionAfter => "0.5.7.0-alpha";
+        protected override string VersionAfter => "0.5.7.0-rc1";
 
         protected override void CheckAndUpdateProperty(JProperty property)
         {
