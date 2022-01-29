@@ -186,6 +186,9 @@ public class TweakedColourPicker : ColorPicker
         get => base.Color;
         set
         {
+            if (Color == value)
+                return;
+
             base.Color = value;
             EmitSignal("color_changed", value);
         }
