@@ -205,6 +205,21 @@ public class PatchMap
     }
 
     /// <summary>
+    ///   Gets the species population in all patches.
+    /// </summary>
+    public long GetSpeciesGlobalPopulation(Species species)
+    {
+        long sum = 0;
+
+        foreach (var entry in Patches.Values)
+        {
+            sum += entry.GetSpeciesPopulation(species);
+        }
+
+        return sum;
+    }
+
+    /// <summary>
     ///   Removes species from patches where their population is &lt;= 0
     /// </summary>
     /// <returns>

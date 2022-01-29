@@ -46,6 +46,15 @@ public static class StringUtils
     }
 
     /// <summary>
+    ///   Truncates large numbers with suffix added (e.g. M for million).
+    ///   Adapted from https://stackoverflow.com/a/30181106 to allow negatives and translation.
+    /// </summary>
+    public static string FormatNumber(this long number, bool withSuffix = true)
+    {
+        return ((double)number).FormatNumber();
+    }
+
+    /// <summary>
     ///   Splits string into different chunks by whitespace.
     /// </summary>
     /// <remarks>
