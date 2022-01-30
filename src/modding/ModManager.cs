@@ -510,7 +510,7 @@ public class ModManager : Control
 
     private bool IsModEnabled(FullModDetails mod)
     {
-        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName)|| enabledMods.Contains(mod);
+        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName) || enabledMods.Contains(mod);
     }
 
     private void UpdateSelectedModInfo()
