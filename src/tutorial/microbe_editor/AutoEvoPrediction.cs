@@ -14,7 +14,7 @@
         public override string ClosedByName => "AutoEvoPrediction";
 
         [JsonIgnore]
-        public Control EditorAutoEvoPredictionPanel { get; set; }
+        public Control? EditorAutoEvoPredictionPanel { get; set; }
 
         protected override int TriggersOnNthEditorSession => 2;
 

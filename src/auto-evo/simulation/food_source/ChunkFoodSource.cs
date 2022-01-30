@@ -13,8 +13,8 @@
         private readonly Patch patch;
         private readonly float totalEnergy;
         private readonly float chunkSize;
-        private readonly string chunkName;
-        private readonly Dictionary<Compound, float> energyCompounds;
+        private readonly string? chunkName;
+        private readonly Dictionary<Compound, float>? energyCompounds;
 
         public ChunkFoodSource(Patch patch, string chunkType)
         {
@@ -44,6 +44,9 @@
 
         public override float FitnessScore(Species species, SimulationCache simulationCache)
         {
+            if (energyCompounds == null)
+                throw new InvalidOperationException("Food source not valid for this patch");
+
             var microbeSpecies = (MicrobeSpecies)species;
 
             var energyBalance = simulationCache.GetEnergyBalanceForSpecies(microbeSpecies, patch);
@@ -73,7 +76,7 @@
 
         public override IFormattable GetDescription()
         {
-            return new LocalizedString("CHUNK_FOOD_SOURCE", new LocalizedString(chunkName));
+            return new LocalizedString("CHUNK_FOOD_SOURCE", new LocalizedString(chunkName ?? "error"));
         }
 
         public override float TotalEnergyAvailable()

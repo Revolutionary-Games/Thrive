@@ -146,7 +146,7 @@ public class AutoEvoRun
     /// <summary>
     ///   Run results after this is finished
     /// </summary>
-    public RunResults Results
+    public RunResults? Results
     {
         get
         {
@@ -400,8 +400,8 @@ public class AutoEvoRun
     ///   This is the species from which the previous populations are read through. If null
     ///   <see cref="playerSpecies"/> is used instead
     /// </param>
-    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map, Species playerSpecies,
-        Species previousPopulationFrom = null)
+    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map, Species? playerSpecies,
+        Species? previousPopulationFrom = null)
     {
         if (playerSpecies == null)
             return;

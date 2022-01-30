@@ -8,9 +8,9 @@ using Godot;
 /// </summary>
 public class Gallery : IRegistryType
 {
-    public List<Artwork> Artworks;
+    public List<Artwork> Artworks = null!;
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {
@@ -37,22 +37,22 @@ public class Gallery : IRegistryType
     /// </summary>
     public class Artwork
     {
-        public string ResourcePath { get; set; }
+        public string ResourcePath { get; set; } = null!;
 
         /// <summary>
         ///   The name of this artwork.
         /// </summary>
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         /// <summary>
         ///   The name of the artist behind this art.
         /// </summary>
-        public string Artist { get; set; }
+        public string? Artist { get; set; }
 
         /// <summary>
         ///   Extended description of this artwork.
         /// </summary>
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         /// <summary>
         ///   Combines artwork title, artist name and extended description into one structured string.

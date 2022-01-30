@@ -12,7 +12,7 @@
         public override string ClosedByName { get; } = "CellEditorUndo";
 
         [JsonIgnore]
-        public Control EditorUndoButtonControl { get; set; }
+        public Control? EditorUndoButtonControl { get; set; }
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {

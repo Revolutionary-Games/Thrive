@@ -470,14 +470,12 @@ public class ModUploader : Control
 
         SetProcessingStatus(true);
 
-        var updateData = new WorkshopItemData
+        var updateData = new WorkshopItemData(workshopData.KnownModWorkshopIds[selectedMod.InternalName],
+            editedTitle.Text, ProjectSettings.GlobalizePath(selectedMod.Folder),
+            ProjectSettings.GlobalizePath(toBeUploadedPreviewImagePath))
         {
-            Id = workshopData.KnownModWorkshopIds[selectedMod.InternalName],
-            Title = editedTitle.Text,
             Description = editedDescription.Text,
             Visibility = editedVisibility.Pressed ? SteamItemVisibility.Public : SteamItemVisibility.Private,
-            ContentFolder = ProjectSettings.GlobalizePath(selectedMod.Folder),
-            PreviewImagePath = ProjectSettings.GlobalizePath(toBeUploadedPreviewImagePath),
         };
 
         if (!string.IsNullOrWhiteSpace(editedTags.Text))

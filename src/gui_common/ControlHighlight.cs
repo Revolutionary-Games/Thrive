@@ -32,7 +32,7 @@ public class ControlHighlight : Control
     /// <summary>
     ///   The control that is highlighted by this object
     /// </summary>
-    public Control TargetControl { get; set; }
+    public Control? TargetControl { get; set; }
 
     public override void _Ready()
     {

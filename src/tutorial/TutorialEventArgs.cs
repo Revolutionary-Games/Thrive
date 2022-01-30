@@ -80,12 +80,12 @@ public class StringEventArgs : TutorialEventArgs
 
 public class PatchEventArgs : TutorialEventArgs
 {
-    public PatchEventArgs(Patch patch)
+    public PatchEventArgs(Patch? patch)
     {
         Patch = patch;
     }
 
-    public Patch Patch { get; }
+    public Patch? Patch { get; }
 }
 
 public class CallbackEventArgs : TutorialEventArgs

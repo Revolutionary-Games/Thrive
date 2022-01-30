@@ -6,7 +6,7 @@
 /// </summary>
 public class CursorLoader : Node
 {
-    private Resource hoverCursor;
+    private Resource? hoverCursor;
 
     public override void _Ready()
     {
