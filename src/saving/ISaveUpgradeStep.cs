@@ -33,7 +33,7 @@
 
         public static IReadOnlyDictionary<string, ISaveUpgradeStep> SupportedUpgrades => StoredSaveUpgradeSteps;
 
-        public static ISaveUpgradeStep GetUpgradeStepForVersion(string version)
+        public static ISaveUpgradeStep? GetUpgradeStepForVersion(string version)
         {
             if (!SupportedUpgrades.TryGetValue(version, out ISaveUpgradeStep step))
                 return null;
