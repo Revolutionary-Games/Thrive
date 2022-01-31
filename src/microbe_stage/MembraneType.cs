@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Defines properties of a membrane type
@@ -9,12 +10,12 @@ public class MembraneType : IRegistryType
     ///   User readable name
     /// </summary>
     [TranslateFrom("untranslatedName")]
-    public string Name;
+    public string Name = null!;
 
-    public string IconPath;
-    public string AlbedoTexture;
-    public string NormalTexture;
-    public string DamagedTexture;
+    public string IconPath = null!;
+    public string AlbedoTexture = null!;
+    public string NormalTexture = null!;
+    public string DamagedTexture = null!;
     public float MovementFactor = 1.0f;
     public float OsmoregulationFactor = 1.0f;
     public float ResourceAbsorptionFactor = 1.0f;
@@ -26,17 +27,23 @@ public class MembraneType : IRegistryType
     public float BaseWigglyness = 1.0f;
     public float MovementWigglyness = 1.0f;
 
-    public Texture LoadedAlbedoTexture;
-    public Texture LoadedNormalTexture;
-    public Texture LoadedDamagedTexture;
+    [JsonIgnore]
+    public Texture? LoadedAlbedoTexture;
 
-    public Texture LoadedIcon;
+    [JsonIgnore]
+    public Texture? LoadedNormalTexture;
+
+    [JsonIgnore]
+    public Texture? LoadedDamagedTexture;
+
+    [JsonIgnore]
+    public Texture? LoadedIcon;
 
 #pragma warning disable 169 // Used through reflection
-    private string untranslatedName;
+    private string? untranslatedName;
 #pragma warning restore 169
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {

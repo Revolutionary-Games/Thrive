@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -8,12 +9,12 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/AgentProjectile.tscn", UsesEarlyResolve = false)]
 public class AgentProjectile : RigidBody, ITimedLife
 {
-    private Particles particles;
+    private Particles particles = null!;
 
     public float TimeToLiveRemaining { get; set; }
     public float Amount { get; set; }
-    public AgentProperties Properties { get; set; }
-    public EntityReference<IEntity> Emitter { get; set; } = new EntityReference<IEntity>();
+    public AgentProperties? Properties { get; set; }
+    public EntityReference<IEntity> Emitter { get; set; } = new();
 
     [JsonProperty]
     private float? FadeTimeRemaining { get; set; }
@@ -26,6 +27,9 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public override void _Ready()
     {
+        if (Properties == null)
+            throw new InvalidOperationException($"{nameof(Properties)} is required");
+
         particles = GetNode<Particles>("Particles");
 
         var emitterNode = Emitter.Value?.EntityNode;
@@ -53,7 +57,7 @@ public class AgentProjectile : RigidBody, ITimedLife
 
         if (body is Microbe microbe)
         {
-            if (microbe.Species != Properties.Species)
+            if (microbe.Species != Properties!.Species)
             {
                 // If more stuff needs to be damaged we
                 // could make an IAgentDamageable interface.

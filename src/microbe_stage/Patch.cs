@@ -251,7 +251,7 @@ public class Patch
     /// <param name="description">The event's description</param>
     /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
     /// <param name="iconPath">Resource path to the icon of the event</param>
-    public void LogEvent(LocalizedString description, bool highlight = false, string iconPath = null)
+    public void LogEvent(LocalizedString description, bool highlight = false, string? iconPath = null)
     {
         // Event already logged in timeline
         if (currentSnapshot.EventsLog.Any(entry => entry.Description.Equals(description)))

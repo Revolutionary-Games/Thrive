@@ -195,9 +195,7 @@ public partial class Microbe
         if (Species.IsBacteria)
             ejectionDistance *= 0.5f;
 
-        var props = new AgentProperties();
-        props.Compound = agentType;
-        props.Species = Species;
+        var props = new AgentProperties(Species, agentType);
 
         // Find the direction the microbe is facing
         var direction = (LookAtPoint - Translation).Normalized();

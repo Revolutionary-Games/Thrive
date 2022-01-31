@@ -392,9 +392,7 @@ public partial class Microbe
 
             var amount = Compounds.GetCompoundAmount(oxytoxy);
 
-            var props = new AgentProperties();
-            props.Compound = oxytoxy;
-            props.Species = Species;
+            var props = new AgentProperties(Species, oxytoxy);
 
             var agentScene = SpawnHelpers.LoadAgentScene();
 
