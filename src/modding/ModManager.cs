@@ -481,7 +481,7 @@ public class ModManager : Control
         var foundStillEnabledMods = validMods.Where(IsModEnabled);
 
         foreach (var newMod in foundStillEnabledMods.Where(m => !enabledMods.Contains(m) &&
-         !notEnabledMods.Contains(m)))
+           !notEnabledMods.Contains(m)))
         {
             enabledMods.Add(newMod);
 
