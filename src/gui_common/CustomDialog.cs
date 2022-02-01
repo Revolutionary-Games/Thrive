@@ -70,6 +70,7 @@ public class CustomDialog : Popup, ICustomPopup
     private int scaleBorderSize;
     private int customMargin;
     private bool showCloseButton = true;
+    private bool decorate = true;
 
     [Flags]
     private enum DragType
@@ -143,6 +144,28 @@ public class CustomDialog : Popup, ICustomPopup
         }
     }
 
+    /// <summary>
+    ///   Sets whether the window should be visible.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note: Doesn't handle close button. That's still controlled by <see cref="ShowCloseButton"/>.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public bool Decorate
+    {
+        get => decorate;
+        set
+        {
+            if (decorate == value)
+                return;
+
+            decorate = value;
+            Update();
+        }
+    }
+
     public override void _EnterTree()
     {
         // To make popup rect readjustment react to window resizing
@@ -150,13 +173,13 @@ public class CustomDialog : Popup, ICustomPopup
 
         customPanel = GetStylebox("custom_panel", "WindowDialog");
         titleBarPanel = GetStylebox("custom_titlebar", "WindowDialog");
-        titleBarHeight = GetConstant("custom_titlebar_height", "WindowDialog");
+        titleBarHeight = decorate ? GetConstant("custom_titlebar_height", "WindowDialog") : 0;
         titleFont = GetFont("custom_title_font", "WindowDialog");
         titleHeight = GetConstant("custom_title_height", "WindowDialog");
         titleColor = GetColor("custom_title_color", "WindowDialog");
         closeButtonHighlight = GetStylebox("custom_close_highlight", "WindowDialog");
         scaleBorderSize = GetConstant("custom_scaleBorder_size", "WindowDialog");
-        customMargin = GetConstant("custom_margin", "Dialogs");
+        customMargin = decorate ? GetConstant("custom_margin", "Dialogs") : 0;
 
         SetupCloseButton();
         UpdateChildRects();
@@ -225,6 +248,9 @@ public class CustomDialog : Popup, ICustomPopup
 
     public override void _Draw()
     {
+        if (!Decorate)
+            return;
+
         // Draw background panels
         DrawStyleBox(customPanel, new Rect2(
             new Vector2(0, -titleBarHeight), new Vector2(RectSize.x, RectSize.y + titleBarHeight)));
@@ -567,7 +593,8 @@ public class CustomDialog : Popup, ICustomPopup
         var viewportSize = GetScreenSize();
 
         RectPosition = new Vector2(0, titleBarHeight);
-        RectSize = new Vector2(viewportSize.x, viewportSize.y - titleBarHeight);
+        RectSize = new Vector2(
+            viewportSize.x, viewportSize.y - titleBarHeight);
     }
 
     private void OnCloseButtonMouseEnter()
