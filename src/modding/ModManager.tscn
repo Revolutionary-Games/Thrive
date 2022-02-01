@@ -200,7 +200,7 @@ margin_right = 627.0
 margin_bottom = 25.0
 text = "AVAILABLE_MODS"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="UnloadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/UnloadedContainer"]
@@ -270,7 +270,7 @@ margin_right = 628.0
 margin_bottom = 25.0
 text = "ENABLED_MODS"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="LoadedItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModLoader/LoaderContainer/ItemListContainer/LoadedContainer"]
@@ -386,7 +386,7 @@ size_flags_horizontal = 3
 [node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorInfoPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 618.0
+margin_right = 708.0
 margin_bottom = 258.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
@@ -396,7 +396,7 @@ custom_constants/margin_bottom = 10
 [node name="ScrollContainer" type="ScrollContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorInfoPanel/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 607.0
+margin_right = 697.0
 margin_bottom = 247.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -404,7 +404,7 @@ size_flags_vertical = 3
 [node name="ErrorLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorInfoPanel/MarginContainer/ScrollContainer"]
 visible = false
 margin_top = 92.0
-margin_right = 597.0
+margin_right = 687.0
 margin_bottom = 145.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -441,12 +441,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ConfigSplitContainer" type="HSplitContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer"]
-margin_right = 1173.0
+margin_right = 1353.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
 
 [node name="ModConfigItemList" type="ItemList" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer"]
-margin_right = 580.0
+margin_right = 670.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
 custom_colors/guide_color = Color( 0.0666667, 0.941176, 0.788235, 0.498039 )
@@ -459,15 +459,15 @@ __meta__ = {
 }
 
 [node name="ConfigPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer"]
-margin_left = 592.0
-margin_right = 1173.0
+margin_left = 682.0
+margin_right = 1353.0
 margin_bottom = 259.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ConfigPanel"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 580.0
+margin_right = 670.0
 margin_bottom = 258.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
@@ -477,17 +477,17 @@ custom_constants/margin_bottom = 5
 [node name="ScrollContainer" type="ScrollContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 574.0
+margin_right = 664.0
 margin_bottom = 252.0
 scroll_horizontal_enabled = false
 
 [node name="ConfigContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigSplitContainer/ConfigPanel/MarginContainer/ScrollContainer"]
-margin_right = 569.0
+margin_right = 659.0
 size_flags_horizontal = 3
 
 [node name="ConfigButtonContainer" type="VBoxContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer"]
-margin_left = 1177.0
-margin_right = 1249.0
+margin_left = 1357.0
+margin_right = 1429.0
 margin_bottom = 259.0
 alignment = 1
 
@@ -497,7 +497,7 @@ margin_right = 72.0
 margin_bottom = 108.0
 text = "APPLY"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="ClearConfigButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer"]
@@ -506,7 +506,7 @@ margin_right = 72.0
 margin_bottom = 147.0
 text = "CLEAR"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="ResetConfigButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModConfiguration/HBoxContainer/ConfigButtonContainer"]
@@ -515,7 +515,7 @@ margin_right = 72.0
 margin_bottom = 186.0
 text = "RESET"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="ModInfoPanel" type="PanelContainer" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit"]
@@ -662,7 +662,7 @@ margin_right = 134.0
 margin_bottom = 25.0
 text = "MOD_AUTHOR"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="AuthorValueLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/AuthorContainer"]
@@ -687,7 +687,7 @@ margin_right = 190.0
 margin_bottom = 25.0
 text = "MOD_VERSION"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="VersionValueLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer"]
@@ -702,9 +702,9 @@ __meta__ = {
 
 [node name="DownloadButton" type="TextureButton" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoCenterer/InfoContainer/VersionContainer"]
 visible = false
-margin_left = 220.0
-margin_right = 255.0
-margin_bottom = 37.0
+margin_left = 214.0
+margin_right = 249.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 hint_tooltip = "Downloads the latest version of the mod."
 texture_normal = ExtResource( 12 )
@@ -770,7 +770,7 @@ text = "MINIMUM_VERSION"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="MinVersionValue" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion/ScrollContainer/VBoxContainer/MinVersionContainer"]
@@ -804,7 +804,7 @@ text = "RECOMMENDED_THRIVE_VERSION"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false,
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="RecVersionValue" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/CompatibleGameVersion/ScrollContainer/VBoxContainer/RecVersionContainer"]
@@ -849,7 +849,7 @@ margin_right = 214.0
 margin_bottom = 35.0
 text = "MOD_DEPENDENCIES"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="RequiredModsButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer/HBoxContainer"]
@@ -858,7 +858,7 @@ margin_right = 391.0
 margin_bottom = 35.0
 text = "REQUIRED_MODS"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="IncompatibleButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
@@ -867,7 +867,7 @@ margin_right = 391.0
 margin_bottom = 74.0
 text = "INCOMPATIBLE_WITH"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="LoadOrderButton" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
@@ -876,7 +876,7 @@ margin_right = 391.0
 margin_bottom = 113.0
 text = "LOAD_ORDER"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="ModUrl" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
@@ -885,7 +885,7 @@ margin_right = 391.0
 margin_bottom = 152.0
 text = "OPEN_MOD_URL"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="MoreInfo" type="Button" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/InfoButtons/VBoxContainer"]
@@ -894,7 +894,7 @@ margin_right = 391.0
 margin_bottom = 191.0
 text = "MORE_INFO"
 __meta__ = {
-"_editor_description_": "PLACEHOLDER"
+"_editor_description_": ""
 }
 
 [node name="DescriptionSeperator" type="HSeparator" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer"]
