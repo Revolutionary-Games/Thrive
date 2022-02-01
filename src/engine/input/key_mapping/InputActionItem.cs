@@ -23,22 +23,22 @@ using Godot;
 public class InputActionItem : VBoxContainer
 {
     [Export]
-    public NodePath AddInputEventPath;
+    public NodePath AddInputEventPath = null!;
 
     [Export]
-    public NodePath InputActionHeaderPath;
+    public NodePath InputActionHeaderPath = null!;
 
     [Export]
-    public NodePath InputEventsContainerPath;
+    public NodePath InputEventsContainerPath = null!;
 
-    private Label inputActionHeader;
-    private HBoxContainer inputEventsContainer;
-    private Button addInputEvent;
+    private Label inputActionHeader = null!;
+    private HBoxContainer inputEventsContainer = null!;
+    private Button addInputEvent = null!;
 
     /// <summary>
     ///   The group in which this action is defined.
     /// </summary>
-    public WeakReference<InputGroupItem> AssociatedGroup { get; set; }
+    public WeakReference<InputGroupItem>? AssociatedGroup { get; set; }
 
     /// <summary>
     ///   The godot specific action name
@@ -46,7 +46,7 @@ public class InputActionItem : VBoxContainer
     /// <example>
     ///   g_move_left, g_zoom_in
     /// </example>
-    public string InputName { get; set; }
+    public string InputName { get; set; } = string.Empty;
 
     /// <summary>
     ///   The string presented to the user
@@ -54,27 +54,34 @@ public class InputActionItem : VBoxContainer
     /// <example>
     ///   Move left, Zoom in
     /// </example>
-    public string DisplayName { get; set; }
+    public string? DisplayName { get; set; }
 
     /// <summary>
-    ///   All the associated inputs executing this action
+    ///   All the associated inputs executing this action. Must be initialized before using this class
     /// </summary>
-    public ObservableCollection<InputEventItem> Inputs { get; private set; }
+    public ObservableCollection<InputEventItem> Inputs { get; private set; } = null!;
 
-    public InputGroupItem Group
+    public InputGroupItem? Group
     {
         get
         {
+            if (AssociatedGroup == null)
+                return null;
+
             AssociatedGroup.TryGetTarget(out var associatedGroup);
             return associatedGroup;
         }
     }
 
-    public InputGroupList GroupList
+    public InputGroupList? GroupList
     {
         get
         {
             var group = Group;
+
+            if (group == null)
+                return null;
+
             group.AssociatedList.TryGetTarget(out var associatedList);
 
             return associatedList;
@@ -86,6 +93,15 @@ public class InputActionItem : VBoxContainer
     /// </summary>
     public override void _Ready()
     {
+        if (string.IsNullOrEmpty(InputName))
+            throw new InvalidOperationException($"{nameof(DisplayName)} can't be empty");
+
+        if (DisplayName == null)
+            throw new InvalidOperationException($"{nameof(DisplayName)} can't be null");
+
+        if (Inputs == null)
+            throw new InvalidOperationException($"{nameof(Inputs)} can't be null");
+
         inputActionHeader = GetNode<Label>(InputActionHeaderPath);
         inputEventsContainer = GetNode<HBoxContainer>(InputEventsContainerPath);
         addInputEvent = GetNode<Button>(AddInputEventPath);
@@ -105,7 +121,7 @@ public class InputActionItem : VBoxContainer
         Inputs.CollectionChanged += OnInputsChanged;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (ReferenceEquals(null, obj))
             return false;
@@ -119,7 +135,7 @@ public class InputActionItem : VBoxContainer
 
     public override int GetHashCode()
     {
-        return InputName != null ? InputName.GetHashCode() : 0;
+        return InputName.GetHashCode();
     }
 
     internal static InputActionItem BuildGUI(InputGroupItem associatedGroup, NamedInputAction data,
@@ -144,9 +160,9 @@ public class InputActionItem : VBoxContainer
     /// <summary>
     ///   The small + button has been pressed
     /// </summary>
-    internal void OnAddEventButtonPressed()
+    private void OnAddEventButtonPressed()
     {
-        var newInput = (InputEventItem)GroupList.InputEventItemScene.Instance();
+        var newInput = (InputEventItem)GroupList!.InputEventItemScene.Instance();
         newInput.AssociatedAction = new WeakReference<InputActionItem>(this);
         newInput.JustAdded = true;
         Inputs.Add(newInput);

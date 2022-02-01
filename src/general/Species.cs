@@ -44,9 +44,11 @@ public abstract class Species : ICloneable
 
     public int Generation = 1;
 
-    protected Species(uint id)
+    protected Species(uint id, string genus, string epithet)
     {
         ID = id;
+        Genus = genus;
+        Epithet = epithet;
     }
 
     /// <summary>
@@ -199,8 +201,7 @@ public abstract class Species : ICloneable
         foreach (var entry in Behaviour)
             species.Behaviour[entry.Key] = entry.Value;
 
-        species.Genus = Genus;
-        species.Epithet = Epithet;
+        // Genus and epithet aren't copied as they are required constructor parameters
         species.Colour = Colour;
         species.Population = Population;
         species.Generation = Generation;

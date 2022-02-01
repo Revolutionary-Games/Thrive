@@ -318,7 +318,7 @@ public class Settings
         return new InputDataList(InputMap.GetActions().OfType<string>()
             .ToDictionary(p => p,
                 p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
-                    x => new SpecifiedInputKey(x)).ToList()));
+                    x => (SpecifiedInputKey?)new SpecifiedInputKey(x)).ToList()));
     }
 
     /// <summary>

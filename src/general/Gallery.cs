@@ -14,6 +14,9 @@ public class Gallery : IRegistryType
 
     public void Check(string name)
     {
+        if (Artworks == null || Artworks.Count < 1)
+            throw new InvalidRegistryDataException(name, GetType().Name, "Missing artworks");
+
         foreach (var entry in Artworks)
         {
             entry.Check();
