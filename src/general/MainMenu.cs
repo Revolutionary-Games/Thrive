@@ -291,6 +291,20 @@ public class MainMenu : NodeWithInput
         SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
     }
 
+    private void OnFreebuildFadeInEnded()
+    {
+        OnEnteringGame();
+
+        // Instantiate a new editor scene
+        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+
+        // Start freebuild game
+        editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
+
+        // Switch to the editor scene
+        SceneManager.Instance.SwitchToScene(editor);
+    }
+
     private void NewGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -335,16 +349,8 @@ public class MainMenu : NodeWithInput
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
 
-        OnEnteringGame();
-
-        // Instantiate a new editor scene
-        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
-
-        // Start freebuild game
-        editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
-
-        // Switch to the editor scene
-        SceneManager.Instance.SwitchToScene(editor);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
+        TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 
     // TODO: this is now used by another sub menu as well so renaming this to be more generic would be good
