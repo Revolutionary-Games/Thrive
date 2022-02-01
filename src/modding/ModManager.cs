@@ -804,7 +804,8 @@ public class ModManager : Control
         // If we found new mod folders that happen to be enabled already, add the mods to that list
         var foundStillEnabledMods = validMods.Where(IsModEnabled);
 
-        foreach (var newMod in foundStillEnabledMods.Where(m => !enabledMods.Contains(m)))
+        foreach (var newMod in foundStillEnabledMods.Where(
+                     m => !enabledMods.Contains(m) && !notEnabledMods.Contains(m)))
         {
             enabledMods.Add(newMod);
 
