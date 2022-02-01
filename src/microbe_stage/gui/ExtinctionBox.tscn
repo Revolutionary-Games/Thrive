@@ -32,6 +32,10 @@ mouse_filter = 2
 theme = ExtResource( 3 )
 popup_exclusive = true
 script = ExtResource( 4 )
+FullRect = true
+Movable = false
+ShowCloseButton = false
+Decorate = false
 ExtinctionMenuPath = NodePath("ExtinctionBoxMenu")
 LoadMenuPath = NodePath("LoadMenu")
 
