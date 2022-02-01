@@ -18,12 +18,16 @@ public class NewSaveMenu : Control
     public NodePath OverwriteConfirmPath;
 
     [Export]
+    public NodePath AttemptWriteFailAcceptPath;
+
+    [Export]
     public NodePath SaveButtonPath;
 
     private SaveList saveList;
     private LineEdit saveNameBox;
     private Button saveButton;
     private CustomConfirmationDialog overwriteConfirm;
+    private CustomConfirmationDialog attemptWriteFailAccept;
 
     private bool usingSelectedSaveName;
 
@@ -39,6 +43,7 @@ public class NewSaveMenu : Control
         saveNameBox = GetNode<LineEdit>(SaveNameBoxPath);
         saveButton = GetNode<Button>(SaveButtonPath);
         overwriteConfirm = GetNode<CustomConfirmationDialog>(OverwriteConfirmPath);
+        attemptWriteFailAccept = GetNode<CustomConfirmationDialog>(AttemptWriteFailAcceptPath);
     }
 
     public override void _Notification(int what)
@@ -101,9 +106,16 @@ public class NewSaveMenu : Control
 
     private void OnConfirmSaveName()
     {
-        GUICommon.Instance.PlayButtonPressSound();
+        // Verify name writable
+        var name = GetSaveName();
+        if (FileHelpers.TryCreateWrite(name) != Error.Ok)
+        {
+            attemptWriteFailAccept.DialogText = TranslationServer.Translate("ATTEMPT_TO_WRITE_FILE_FAILED");
+            attemptWriteFailAccept.PopupCenteredShrink();
+            return;
+        }
 
-        EmitSignal(nameof(OnSaveNameChosen), GetSaveName());
+        EmitSignal(nameof(OnSaveNameChosen), name);
     }
 
     private string GetSaveName()

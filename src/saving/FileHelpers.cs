@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Godot;
 using Directory = Godot.Directory;
+using File = Godot.File;
 
 /// <summary>
 ///   Helpers regarding file operations
@@ -42,5 +43,18 @@ public static class FileHelpers
     {
         using var directory = new Directory();
         return directory.FileExists(path);
+    }
+
+    public static Error TryCreateWrite(string name)
+    {
+        using var file = new File();
+        var e = file.Open(name, File.ModeFlags.Write);
+        if (e != Error.Ok)
+            return e;
+
+        file.Close();
+        DeleteFile(name);
+
+        return Error.Ok;
     }
 }
