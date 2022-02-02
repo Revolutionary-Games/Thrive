@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 20:32+0200\n"
+"POT-Creation-Date: 2022-02-02 15:56-0600\n"
 "PO-Revision-Date: 2021-12-16 07:37+0000\n"
 "Last-Translator: mykocalico <badtimecat@gmail.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/"
@@ -1468,7 +1468,7 @@ msgstr "Autor: {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1573
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Zamknij"
@@ -1536,7 +1536,7 @@ msgstr "Kreatywny Edytor Mikroba"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:133
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Cofnij"
@@ -1727,6 +1727,7 @@ msgid "LANGUAGE"
 msgstr "Język:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "Reset"
 
@@ -1895,7 +1896,7 @@ msgstr "Odrzuć i kontynuuj"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:730
 msgid "CANCEL"
 msgstr "Anuluj"
 
@@ -3663,265 +3664,457 @@ msgstr ""
 "kontynuować grę po zamknięciu tego ekranu lub rozpocząć nową grę w nowym "
 "świecie."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:531
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Nie można wczytać informacji o modzie {0}"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:499
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: wczytywanie tworu zawiodło z powodu wyjątku: {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: nie posiada wczytywalnych zasobów"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:546
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:554
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:617
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:630
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:646
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:662
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "Wczytywanie zakończone"
 
-#: ../src/modding/ModManager.cs:292
+#: ../src/modding/ModManager.cs:470
 msgid "INVALID_ICON_PATH"
 msgstr "Niewłaściwa ścieżka do ikony modu"
 
-#: ../src/modding/ModManager.cs:306
+#: ../src/modding/ModManager.cs:484
 msgid "INVALID_URL_SCHEME"
 msgstr "Niepoprawny schemat URL"
 
-#: ../src/modding/ModManager.cs:318
+#: ../src/modding/ModManager.cs:496
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:544
-msgid "NO_SELECTED_MOD"
-msgstr "Nie wybrano Modów"
+#: ../src/modding/ModManager.cs:608
+#, fuzzy
+msgid "MOD_LOADER_TAB"
+msgstr "Błędy przy ładowaniu modów"
 
-#: ../src/modding/ModManager.cs:869
+#: ../src/modding/ModManager.cs:609
+#, fuzzy
+msgid "MOD_ERRORS_TAB"
+msgstr "Błędy przy ładowaniu modów"
+
+#: ../src/modding/ModManager.cs:610
+#, fuzzy
+msgid "MOD_CONFIGURATION_TAB"
+msgstr "Auto-ewolucja nie może się uruchomić"
+
+#: ../src/modding/ModManager.cs:952 ../src/modding/ModManager.cs:1943
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Ten mod jest pobrany z Warsztatu Steam"
 
-#: ../src/modding/ModManager.cs:870
+#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1944
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "To jest mod zainstalowany lokalnie"
 
-#: ../src/modding/ModManager.cs:926
+#: ../src/modding/ModManager.cs:1020
+msgid "NO_SELECTED_MOD"
+msgstr "Nie wybrano Modów"
+
+#: ../src/modding/ModManager.cs:1365
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr "Błędy przy ładowaniu modów"
+
+#: ../src/modding/ModManager.cs:1367
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr ""
+"Czy jesteś pewien że chcesz przywrócić WSZYSTKIE ustawienia do wartości "
+"domyślnych?"
+
+#: ../src/modding/ModManager.cs:1549 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
+msgid "MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1566
+msgid "NO_MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1575 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/NewModGUI.tscn:572
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1592
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "Nie wybrano Modów"
+
+#: ../src/modding/ModManager.cs:1601 ../src/modding/ModManager.tscn:869
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr "Załadować niekompatybilny zapis?"
+
+#: ../src/modding/ModManager.cs:1618
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "Załadować niekompatybilny zapis?"
+
+#: ../src/modding/ModManager.cs:1627 ../src/modding/ModManager.tscn:878
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "Wczytaj grę"
+
+#: ../src/modding/ModManager.cs:1637 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/NewModGUI.tscn:620
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "Błędy przy ładowaniu modów"
+
+#: ../src/modding/ModManager.cs:1655 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/NewModGUI.tscn:596
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "Błędy przy ładowaniu modów"
+
+#: ../src/modding/ModManager.cs:1667
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "Wczytać nieważny zapis?"
+
+#: ../src/modding/ModManager.cs:1998
+#, fuzzy
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr "Błędy przy ładowaniu modów"
+
+#: ../src/modding/ModManager.cs:2000
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"Masz niezapisane zmiany które zostaną odrzucone.\n"
+"Czy chcesz kontynuować?"
+
+#: ../src/modding/ModManager.cs:2004 ../src/modding/ModManager.cs:2044
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "Nieprawidłowy zapis"
+
+#: ../src/modding/ModManager.cs:2027 ../src/modding/ModManager.cs:2038
+#: ../src/modding/ModManager.cs:2058 ../src/modding/ModManager.cs:2072
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "Nieznany myszy"
+
+#: ../src/modding/ModManager.cs:2047
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"Wybrany zapis nie jest kompatybilny z tą wersją Thrive.\n"
+"I nie ma aktualizera zapisów by zaktualizował ten zapis.\n"
+"Ponieważ Thrive jest nadal we wczesnym stadium rozwoju, kompatybilność "
+"zapisów nie jest wysokim priorytetem i dlatego nie wszystkie wersje mają "
+"aktualizer zapisów."
+
+#: ../src/modding/ModManager.cs:2061
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2063
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2075
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2077
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2080
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2082
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2086
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "Załadować niekompatybilny zapis?"
+
+#: ../src/modding/ModManager.cs:2088
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr "Załadować niekompatybilny zapis?"
+
+#: ../src/modding/ModManager.cs:2091
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "Błędy przy ładowaniu modów"
+
+#: ../src/modding/ModManager.cs:2093
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2097
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "Wczytać nieważny zapis?"
+
+#: ../src/modding/ModManager.cs:2099
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2143
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Błąd zapisu"
 
-#: ../src/modding/ModManager.cs:935
+#: ../src/modding/ModManager.cs:2152
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:201
 msgid "AVAILABLE_MODS"
 msgstr "Dostępne Mody"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Odśwież"
-
-#: ../src/modding/ModManager.tscn:152
-#, fuzzy
-msgid "OPEN_FOLDER"
-msgstr "Otwórz Folder z Logami"
-
-#: ../src/modding/ModManager.tscn:170
-#, fuzzy
-msgid "RIGHT_ARROW"
-msgstr "Prawy myszy"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Lewy myszy"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "Prawy myszy"
+
+#: ../src/modding/ModManager.tscn:271
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Włącz edytor"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "Wyłącz wszystko"
+
+#: ../src/modding/ModManager.tscn:316
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "Otwórz Folder z Logami"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr "Wyłącz wszystko"
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:339
 #, fuzzy
-msgid "SELECTED_MOD"
-msgstr "Wybrane:"
+msgid "ONESHOT_LOADING"
+msgstr "Błąd wczytywania"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:507
+#, fuzzy
+msgid "CLEAR"
+msgstr "Wyczyść"
+
+#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1121
+#: ../src/modding/NewModGUI.tscn:158
 msgid "MOD_AUTHOR"
 msgstr "Autor Moda:"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1143
+#: ../src/modding/NewModGUI.tscn:181
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Wersja:"
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:770
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Wersja:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-#, fuzzy
-msgid "MOD_DESCRIPTION"
-msgstr "Opis:"
-
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
+#: ../src/modding/ModManager.tscn:804
+msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:860
+#, fuzzy
+msgid "REQUIRED_MODS"
+msgstr "Włącz edytor"
+
+#: ../src/modding/ModManager.tscn:887
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Otwórz URL"
 
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
-msgstr "Przeglądaj Warsztat Steam"
+#: ../src/modding/ModManager.tscn:896
+msgid "MORE_INFO"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:968
 #, fuzzy
-msgid "UPLOAD"
-msgstr "Wczytaj"
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "Pomoc"
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr "Nowe"
+#: ../src/modding/ModManager.tscn:969
+msgid "CHECK"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Odśwież"
+
+#: ../src/modding/ModManager.tscn:989
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Wczytać nieważny zapis?"
 
-#: ../src/modding/ModManager.tscn:559
-#, fuzzy
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Wybrany zapis jest niekompatybilny"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:990
 msgid "APPLY_CHANGES"
 msgstr "Zastosuj zmiany"
 
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "Istnieją niezastosowane zmiany"
+#: ../src/modding/ModManager.tscn:1005
+msgid "BROWSE_WORKSHOP"
+msgstr "Przeglądaj Warsztat Steam"
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr ""
-"Najbardziej podstawowa forma membrany, słabo chroni przed uszkodzeniami. "
-"Potrzebuję też więcej energii żeby się nie zdeformować. Przewagą jest to "
-"że pozwala komórce na szybkie poruszanie się i absorbcję składników "
-"odżywczych."
+msgid "UPLOAD"
+msgstr "Wczytaj"
 
-#: ../src/modding/ModManager.tscn:581
-#, fuzzy
-msgid "DISCARD_CHANGES"
-msgstr "Odrzuć i kontynuuj"
+#: ../src/modding/ModManager.tscn:1027
+msgid "NEW"
+msgstr "Nowe"
 
-#: ../src/modding/ModManager.tscn:588
-msgid "FULL_MOD_INFO"
-msgstr "Pełne Informacje o Modzie"
-
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:1073 ../src/modding/NewModGUI.tscn:135
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nazwa:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:1095 ../src/modding/NewModGUI.tscn:112
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1165 ../src/modding/NewModGUI.tscn:204
+#, fuzzy
+msgid "MOD_DESCRIPTION"
+msgstr "Opis:"
+
+#: ../src/modding/ModManager.tscn:1187 ../src/modding/NewModGUI.tscn:227
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Długi opis Moda:"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_ICON_FILE"
 msgstr "Ikona:"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:291
+#, fuzzy
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr "Podgląd jest za duży"
+
+#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:330
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:353
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:376
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Zalecana wersja \"Thrive\":"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:399
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Najstarsza wymagana wersja \"Thrive\":"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1357 ../src/modding/NewModGUI.tscn:422
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Najnowsza wspierana wersja \"Thrive\":"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1379 ../src/modding/NewModGUI.tscn:445
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1401 ../src/modding/NewModGUI.tscn:485
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:525
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:1533 ../src/modding/NewModGUI.tscn:644
 #, fuzzy
-msgid "MOD_CREATION_FAILED"
-msgstr "Auto-ewolucja nie może się uruchomić"
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "Załadować niekompatybilny zapis?"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1555 ../src/modding/NewModGUI.tscn:668
+#, fuzzy
+msgid "MOD_CONFIG_FILE"
+msgstr "Ikona:"
+
+#: ../src/modding/ModManager.tscn:1586
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 "Doszło do błędów podczas ładowania jednego lub kilku Modów. Rejestry mogą "
 "zawierać dodatkowe informacje."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1591
 msgid "RESTART_REQUIRED"
 msgstr "Wymagany Restart"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1593
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Wczytać nieważny zapis?"
+
+#: ../src/modding/ModManager.tscn:1609
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr "Błędy przy ładowaniu modów"
+
+#: ../src/modding/ModManager.tscn:1611
+#, fuzzy
+msgid "YES"
+msgstr "lata"
+
+#: ../src/modding/ModManager.tscn:1612
+#, fuzzy
+msgid "NO"
+msgstr "Cofnij"
+
+#: ../src/modding/ModManager.tscn:1620 ../src/modding/ModManager.tscn:1623
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3992,7 +4185,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Zapis nie zadziałał! Pojawił się błąd"
 
-#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:428
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Błąd zapisu"
@@ -4026,10 +4219,6 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
-
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:168
@@ -4089,49 +4278,54 @@ msgstr "Wybierz zdjęcie podglądowe"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Powodzenie zapisu"
 
-#: ../src/modding/NewModGUI.cs:169
+#: ../src/modding/NewModGUI.cs:239
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Mój Wspaniały Mod"
 
-#: ../src/modding/NewModGUI.cs:226
+#: ../src/modding/NewModGUI.cs:360
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:238
+#: ../src/modding/NewModGUI.cs:372
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:244
+#: ../src/modding/NewModGUI.cs:378
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:250
+#: ../src/modding/NewModGUI.cs:384
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:269
+#: ../src/modding/NewModGUI.cs:403
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:280
+#: ../src/modding/NewModGUI.cs:414
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Auto-ewolucja nie może się uruchomić"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:51
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "Stwórz nowego mikroba"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:85
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:92
 msgid "OUR_WIKI"
 msgstr "Nasza strona Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:686
+#, fuzzy
+msgid "ENABLE_CONFIG"
+msgstr "Włącz edytor"
+
+#: ../src/modding/NewModGUI.tscn:723
 msgid "CREATE"
 msgstr "Stwórz"
 
@@ -4717,6 +4911,32 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
 msgstr "Zobacz teraz"
+
+#, fuzzy
+#~ msgid "SELECTED_MOD"
+#~ msgstr "Wybrane:"
+
+#, fuzzy
+#~ msgid "ENABLE_ALL_COMPATIBLE"
+#~ msgstr "Wybrany zapis jest niekompatybilny"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr "Istnieją niezastosowane zmiany"
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr ""
+#~ "Najbardziej podstawowa forma membrany, słabo chroni przed "
+#~ "uszkodzeniami. Potrzebuję też więcej energii żeby się nie zdeformować. "
+#~ "Przewagą jest to że pozwala komórce na szybkie poruszanie się i "
+#~ "absorbcję składników odżywczych."
+
+#, fuzzy
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "Odrzuć i kontynuuj"
+
+#~ msgid "FULL_MOD_INFO"
+#~ msgstr "Pełne Informacje o Modzie"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

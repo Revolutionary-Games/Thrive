@@ -746,7 +746,8 @@ filters = PoolStringArray( "*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images" )
 current_dir = "/"
 current_path = "/"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="PreviewFileDialog" type="FileDialog" parent="."]
@@ -766,7 +767,8 @@ filters = PoolStringArray( "*.png, *.jpg, *.jpeg, *.bmp, *.webp ; Images" )
 current_dir = "/"
 current_path = "/"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="PckFileDialog" type="FileDialog" parent="."]
@@ -786,7 +788,8 @@ filters = PoolStringArray( "*.pck ; Pck Files" )
 current_dir = "/"
 current_path = "/"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="AssemblyFileDialog" type="FileDialog" parent="."]
@@ -806,7 +809,8 @@ filters = PoolStringArray( "*.dll ; Assembly Files" )
 current_dir = "/"
 current_path = "/"
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [connection signal="popup_hide" from="CustomDialog" to="." method="Closed"]

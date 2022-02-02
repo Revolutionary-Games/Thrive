@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -605,9 +605,9 @@ public class ModManager : Control
 
         UpdateSelectedModInfo();
 
-        modLoaderContainer.SetTabTitle(0, TranslationServer.Translate("MOD_LOADER"));
-        modLoaderContainer.SetTabTitle(1, TranslationServer.Translate("MOD_ERRORS"));
-        modLoaderContainer.SetTabTitle(2, TranslationServer.Translate("MOD_CONFIGURATION"));
+        modLoaderContainer.SetTabTitle(0, TranslationServer.Translate("MOD_LOADER_TAB"));
+        modLoaderContainer.SetTabTitle(1, TranslationServer.Translate("MOD_ERRORS_TAB"));
+        modLoaderContainer.SetTabTitle(2, TranslationServer.Translate("MOD_CONFIGURATION_TAB"));
 
         if (!SteamHandler.Instance.IsLoaded)
         {
@@ -1995,8 +1995,8 @@ public class ModManager : Control
 
         if (checkResult.ErrorType < 0)
         {
-            resultText = TranslationServer.Translate("MOD_LIST_CONTAIN_ERRORS") +
-                CheckResultToString(checkResult, enabledMods);
+            resultText = TranslationServer.Translate("MOD_LIST_CONTAIN_ERRORS") + "\n\n" +
+                CheckResultToString(checkResult, enabledMods) + "\n\n";
             resultText += TranslationServer.Translate("MOD_CHECK_AGAIN_WARNING");
         }
         else if (checkResult.ErrorType > 0)
@@ -2059,7 +2059,7 @@ public class ModManager : Control
                 }
 
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES"), offendingMod.Name,
-                    otherModName);
+                    otherModName) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
                 break;
             case (int)ModLoader.CheckErrorStatus.RequiredModsNotFound:
@@ -2073,29 +2073,29 @@ public class ModManager : Control
                 }
 
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS"), offendingMod.Name,
-                    otherModName);
+                    otherModName) + "\n";
                 result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX");
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidDependencyOrder:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER"), offendingMod.Name,
-                    otherMod.Name);
+                    otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER_FIX"),
                     offendingMod.Name, otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.IncompatibleMod:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD"), offendingMod.Name,
-                    otherMod.Name);
+                    otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX"), otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE"), offendingMod.Name,
-                    otherMod.Name);
+                    otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE_FIX"),
                     offendingMod.Name, otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER"), offendingMod.Name,
-                    otherMod.Name);
+                    otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER_FIX"),
                     offendingMod.Name, otherMod.Name);
                 break;

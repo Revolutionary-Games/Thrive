@@ -1,4 +1,4 @@
-# Translations template for PROJECT.
+﻿# Translations template for PROJECT.
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 20:32+0200\n"
-"PO-Revision-Date: 2022-01-30 14:48+0200\n"
+"POT-Creation-Date: 2022-02-02 15:56-0600\n"
+"PO-Revision-Date: 2022-02-02 15:53-0600\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -1459,7 +1459,7 @@ msgstr "Art by {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1573
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Close"
@@ -1527,7 +1527,7 @@ msgstr "Microbe Freebuild Editor"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:133
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Back"
@@ -1717,6 +1717,7 @@ msgid "LANGUAGE"
 msgstr "Language:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "Reset"
 
@@ -1880,7 +1881,7 @@ msgstr "Discard and continue"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:730
 msgid "CANCEL"
 msgstr "Cancel"
 
@@ -2569,8 +2570,8 @@ msgstr ""
 "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with "
 "concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can "
-"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
-"When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, "
+"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input].When "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, "
 "shooting is still possible but will have a reduced damage."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
@@ -2796,8 +2797,8 @@ msgstr ""
 "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with "
 "concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can "
-"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]."
-"When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, "
+"release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input].When "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, "
 "shooting is still possible but will have a reduced damage."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
@@ -3640,245 +3641,405 @@ msgstr ""
 "playing after this screen closes if you wish, or start a new game in a new "
 "world."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:531
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Can't load mod info for {0}"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:499
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: assembly loading failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: has no loadable resources"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:546
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: mod's assembly unload method call failed"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:554
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod's assembly unload method call failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:617
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: specified mod class \"{1}\" not found in mod's assembly"
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:630
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mod's assembly initialize method call failed"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:646
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 "{0}: mod's assembly initialize method call failed with an exception: {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:662
 msgid "PCK_LOAD_FAILED"
 msgstr "Loading of pck file ({0}) failed"
 
-#: ../src/modding/ModManager.cs:292
+#: ../src/modding/ModManager.cs:470
 msgid "INVALID_ICON_PATH"
 msgstr "Invalid mod icon path"
 
-#: ../src/modding/ModManager.cs:306
+#: ../src/modding/ModManager.cs:484
 msgid "INVALID_URL_SCHEME"
 msgstr "Invalid URL scheme"
 
-#: ../src/modding/ModManager.cs:318
+#: ../src/modding/ModManager.cs:496
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod assembly class is required when assembly is specified"
 
-#: ../src/modding/ModManager.cs:544
-msgid "NO_SELECTED_MOD"
-msgstr "No Selected Mod"
+#: ../src/modding/ModManager.cs:608
+msgid "MOD_LOADER_TAB"
+msgstr "Mod Loader"
 
-#: ../src/modding/ModManager.cs:869
+#: ../src/modding/ModManager.cs:609
+msgid "MOD_ERRORS_TAB"
+msgstr "Loading Errors"
+
+#: ../src/modding/ModManager.cs:610
+msgid "MOD_CONFIGURATION_TAB"
+msgstr "Mod Configuration"
+
+#: ../src/modding/ModManager.cs:952 ../src/modding/ModManager.cs:1943
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "This mod is downloaded from the Steam Workshop"
 
-#: ../src/modding/ModManager.cs:870
+#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1944
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "This is a locally installed mod"
 
-#: ../src/modding/ModManager.cs:926
+#: ../src/modding/ModManager.cs:1020
+msgid "NO_SELECTED_MOD"
+msgstr "No Selected Mod"
+
+#: ../src/modding/ModManager.cs:1365
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr "The mods you want to load might cause errors."
+
+#: ../src/modding/ModManager.cs:1367
+msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr "Are you sure you want to load these mods?"
+
+#: ../src/modding/ModManager.cs:1549 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
+msgid "MOD_DEPENDENCIES"
+msgstr "Dependencies"
+
+#: ../src/modding/ModManager.cs:1566
+msgid "NO_MOD_DEPENDENCIES"
+msgstr "This mod have no Dependencies."
+
+#: ../src/modding/ModManager.cs:1575 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/NewModGUI.tscn:572
+msgid "MOD_REQUIRED_MODS"
+msgstr "Required Mods:"
+
+#: ../src/modding/ModManager.cs:1592
+msgid "NO_REQUIRED_MODS"
+msgstr "This mod have no Required Mods."
+
+#: ../src/modding/ModManager.cs:1601 ../src/modding/ModManager.tscn:869
+msgid "INCOMPATIBLE_WITH"
+msgstr "Incompatible With"
+
+#: ../src/modding/ModManager.cs:1618
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "This mod is not incompatible with any other mod."
+
+#: ../src/modding/ModManager.cs:1627 ../src/modding/ModManager.tscn:878
+msgid "LOAD_ORDER"
+msgstr "Load Order"
+
+#: ../src/modding/ModManager.cs:1637 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/NewModGUI.tscn:620
+msgid "MOD_LOAD_AFTER"
+msgstr "This mod needs to be loaded after the following mods:"
+
+#: ../src/modding/ModManager.cs:1655 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/NewModGUI.tscn:596
+msgid "MOD_LOAD_BEFORE"
+msgstr "This mod needs to be loaded before the following mods:"
+
+#: ../src/modding/ModManager.cs:1667
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "This mod have no specified load order."
+
+#: ../src/modding/ModManager.cs:1998
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr "The mod list contains an errors:"
+
+#: ../src/modding/ModManager.cs:2000
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr "Once you fix that error try checking again to find more errors."
+
+#: ../src/modding/ModManager.cs:2004 ../src/modding/ModManager.cs:2044
+msgid "MOD_LIST_VALID"
+msgstr "The mod list has no errors and is valid."
+
+#: ../src/modding/ModManager.cs:2027 ../src/modding/ModManager.cs:2038
+#: ../src/modding/ModManager.cs:2058 ../src/modding/ModManager.cs:2072
+msgid "UNKNOWN_MOD"
+msgstr "Unknown Mod"
+
+#: ../src/modding/ModManager.cs:2047
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr "The '{0}' mod is incompatible with this version of Thrive."
+
+#: ../src/modding/ModManager.cs:2061
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr "The '{0}' mod is dependent on the '{1}' mod."
+
+#: ../src/modding/ModManager.cs:2063
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr "Add that mod to the mod loader before this one to fix this error."
+
+#: ../src/modding/ModManager.cs:2075
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr "The '{0}' mod needs the '{1}' mod to be loaded."
+
+#: ../src/modding/ModManager.cs:2077
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr "Add that mod to the mod loader to fix this error."
+
+#: ../src/modding/ModManager.cs:2080
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr "The '{0}' mod is dependent on the '{1}' mod."
+
+#: ../src/modding/ModManager.cs:2082
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr "Load the '{0}' mod after the '{1}' mod to fix this error."
+
+#: ../src/modding/ModManager.cs:2086
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "The '{0}' mod is incompatible with the '{1}' mod."
+
+#: ../src/modding/ModManager.cs:2088
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr "Remove the '{0}' mod or remove this one to fix this error."
+
+#: ../src/modding/ModManager.cs:2091
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "The '{0}' mod needs to be loaded before the '{1}' mod."
+
+#: ../src/modding/ModManager.cs:2093
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr "Load the '{0}' mod before the '{1}' to fix this error."
+
+#: ../src/modding/ModManager.cs:2097
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "The '{0}' mod needs to be loaded after the '{1}' mod."
+
+#: ../src/modding/ModManager.cs:2099
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr "Load the '{0}' mod after the '{1}' to fix this error."
+
+#: ../src/modding/ModManager.cs:2143
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Error creating folder for the mod"
 
-#: ../src/modding/ModManager.cs:935
+#: ../src/modding/ModManager.cs:2152
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Error creating mod info file"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:201
 msgid "AVAILABLE_MODS"
 msgstr "Available Mods"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Refresh"
-
-#: ../src/modding/ModManager.tscn:152
-msgid "OPEN_FOLDER"
-msgstr "Open Folder"
-
-#: ../src/modding/ModManager.tscn:170
-msgid "RIGHT_ARROW"
-msgstr "→"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
+msgid "RIGHT_ARROW"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:271
 msgid "ENABLED_MODS"
 msgstr "Enabled Mods"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+msgid "ENABLE_ALL"
+msgstr "Enable All"
+
+#: ../src/modding/ModManager.tscn:316
+msgid "OPEN_FOLDER"
+msgstr "Open Folder"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr "Disable All"
 
-#: ../src/modding/ModManager.tscn:250
-msgid "SELECTED_MOD"
-msgstr "Selected Mod:"
+#: ../src/modding/ModManager.tscn:339
+msgid "ONESHOT_LOADING"
+msgstr "One-shot Loading"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "Apply"
+
+#: ../src/modding/ModManager.tscn:507
+msgid "CLEAR"
+msgstr "Clear"
+
+#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1121
+#: ../src/modding/NewModGUI.tscn:158
 msgid "MOD_AUTHOR"
 msgstr "Mod Author:"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1143
+#: ../src/modding/NewModGUI.tscn:181
 msgid "MOD_VERSION"
 msgstr "Mod Version:"
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Recommended Thrive:"
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:770
 msgid "MINIMUM_VERSION"
 msgstr "Minimum:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-msgid "MOD_DESCRIPTION"
-msgstr "Mod Description:"
+#: ../src/modding/ModManager.tscn:804
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Recommended Thrive:"
 
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
-msgstr "Show More Info"
+#: ../src/modding/ModManager.tscn:860
+msgid "REQUIRED_MODS"
+msgstr "Required Mods"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:887
 msgid "OPEN_MOD_URL"
 msgstr "Open Info URL"
 
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
-msgstr "Browse Workshop"
+#: ../src/modding/ModManager.tscn:896
+msgid "MORE_INFO"
+msgstr "Show More Info"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-msgid "UPLOAD"
-msgstr "Upload"
+#: ../src/modding/ModManager.tscn:968
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "Checks if the mods being loaded will not cause errors."
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr "New"
+#: ../src/modding/ModManager.tscn:969
+msgid "CHECK"
+msgstr "Check"
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Refresh"
+
+#: ../src/modding/ModManager.tscn:989
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 "Note: many mods require game restart to load or unload properly. Only load "
 "mods you trust as they may contain executable code."
 
-#: ../src/modding/ModManager.tscn:559
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Enable All Compatible Mods"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:990
 msgid "APPLY_CHANGES"
 msgstr "Apply Changes"
 
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "There are unapplied changes"
+#: ../src/modding/ModManager.tscn:1005
+msgid "BROWSE_WORKSHOP"
+msgstr "Browse Workshop"
 
-#: ../src/modding/ModManager.tscn:580
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "You need to apply your changes to load or unload any mods."
+#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
+msgid "UPLOAD"
+msgstr "Upload"
 
-#: ../src/modding/ModManager.tscn:581
-msgid "DISCARD_CHANGES"
-msgstr "Discard Changes"
+#: ../src/modding/ModManager.tscn:1027
+msgid "NEW"
+msgstr "New"
 
-#: ../src/modding/ModManager.tscn:588
-msgid "FULL_MOD_INFO"
-msgstr "Full Mod Info"
-
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:1073 ../src/modding/NewModGUI.tscn:135
 msgid "MOD_NAME"
 msgstr "Mod Name:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:1095 ../src/modding/NewModGUI.tscn:112
 msgid "MOD_INTERNAL_NAME"
 msgstr "Internal (Folder) Name:"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1165 ../src/modding/NewModGUI.tscn:204
+msgid "MOD_DESCRIPTION"
+msgstr "Mod Description:"
+
+#: ../src/modding/ModManager.tscn:1187 ../src/modding/NewModGUI.tscn:227
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod Long Description:"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_ICON_FILE"
 msgstr "Icon File:"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:291
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr "Preview Image:"
+
+#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:330
 msgid "MOD_INFO_URL"
 msgstr "Mod Info URL:"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:353
 msgid "MOD_LICENSE"
 msgstr "Mod License:"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:376
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Recommended Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:399
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Minimum Required Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1357 ../src/modding/NewModGUI.tscn:422
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Maximum Supported Thrive Version:"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1379 ../src/modding/NewModGUI.tscn:445
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck File:"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1401 ../src/modding/NewModGUI.tscn:485
 msgid "MOD_ASSEMBLY"
 msgstr "Mod Assembly:"
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:525
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class:"
 
-#: ../src/modding/ModManager.tscn:979
-msgid "MOD_CREATION_FAILED"
-msgstr "Mod Creation Failed"
+#: ../src/modding/ModManager.tscn:1533 ../src/modding/NewModGUI.tscn:644
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "Incompatible Mods:"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1555 ../src/modding/NewModGUI.tscn:668
+msgid "MOD_CONFIG_FILE"
+msgstr "Config File:"
+
+#: ../src/modding/ModManager.tscn:1586
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 "Errors occurred when loading or unloading one or more mods. Logs may "
 "contain additional information."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1591
 msgid "RESTART_REQUIRED"
 msgstr "Restart Required"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1593
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "One or more mods requires a game restart to load or unload properly"
+
+#: ../src/modding/ModManager.tscn:1609
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr "Are you sure you want to load?"
+
+#: ../src/modding/ModManager.tscn:1611
+msgid "YES"
+msgstr "Yes"
+
+#: ../src/modding/ModManager.tscn:1612
+msgid "NO"
+msgstr "No"
+
+#: ../src/modding/ModManager.tscn:1620 ../src/modding/ModManager.tscn:1623
+msgid "NULL"
+msgstr "Null"
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3950,7 +4111,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Saving information failed due to exception: {0}"
 
-#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:428
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -3981,10 +4142,6 @@ msgstr "Enter Existing Workshop ID"
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "ID Number"
-
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "Apply"
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
@@ -4042,47 +4199,51 @@ msgstr "Select Preview Image"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload Succeeded"
 
-#: ../src/modding/NewModGUI.cs:169
+#: ../src/modding/NewModGUI.cs:239
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "My Awesome Mod"
 
-#: ../src/modding/NewModGUI.cs:226
+#: ../src/modding/NewModGUI.cs:360
 msgid "INVALID_URL_FORMAT"
 msgstr "Invalid URL format"
 
-#: ../src/modding/NewModGUI.cs:238
+#: ../src/modding/NewModGUI.cs:372
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Internal name is required"
 
-#: ../src/modding/NewModGUI.cs:244
+#: ../src/modding/NewModGUI.cs:378
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Internal name should begin with a capital letter"
 
-#: ../src/modding/NewModGUI.cs:250
+#: ../src/modding/NewModGUI.cs:384
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "There is already a mod with the specified internal name"
 
-#: ../src/modding/NewModGUI.cs:269
+#: ../src/modding/NewModGUI.cs:403
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Missing or invalid format of a required field: {0}"
 
-#: ../src/modding/NewModGUI.cs:280
+#: ../src/modding/NewModGUI.cs:414
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Additional validations detected an issue: {0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:51
 msgid "CREATE_NEW_MOD"
 msgstr "Create New Mod"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:85
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Modding instructions are available on"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:92
 msgid "OUR_WIKI"
 msgstr "our Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:686
+msgid "ENABLE_CONFIG"
+msgstr "Enable Config:"
+
+#: ../src/modding/NewModGUI.tscn:723
 msgid "CREATE"
 msgstr "Create"
 
@@ -4662,6 +4823,24 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
 msgstr "View Now"
+
+#~ msgid "SELECTED_MOD"
+#~ msgstr "Selected Mod:"
+
+#~ msgid "ENABLE_ALL_COMPATIBLE"
+#~ msgstr "Enable All Compatible Mods"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr "There are unapplied changes"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr "You need to apply your changes to load or unload any mods."
+
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "Discard Changes"
+
+#~ msgid "FULL_MOD_INFO"
+#~ msgstr "Full Mod Info"
 
 #~ msgid "OPEN_DETAILS"
 #~ msgstr "View detailed information behind the prediction"

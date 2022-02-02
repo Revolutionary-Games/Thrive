@@ -403,9 +403,9 @@ size_flags_vertical = 3
 
 [node name="ErrorLabel" type="Label" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModContainer/ModErrors/HSplitContainer/ErrorInfoPanel/MarginContainer/ScrollContainer"]
 visible = false
-margin_top = 92.0
+margin_top = 106.0
 margin_right = 687.0
-margin_bottom = 145.0
+margin_bottom = 131.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 text = "The mod failed to load due to the path not being able to be found"
@@ -597,7 +597,8 @@ text = "?/???"
 align = 1
 clip_text = true
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="VSeparator" type="VSeparator" parent="MainMarginContainer/VBoxContainer/InfoBoxSplit/ModInfoPanel/InfoBox/ModInfoContainer/MainModInfoContainer/PreviewGallery/GalleryControllerContainer"]
@@ -964,7 +965,7 @@ margin_left = 350.0
 margin_right = 427.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
-hint_tooltip = "Checks if the mods being loaded will not cause errors."
+hint_tooltip = "CHECK_BUTTON_TOOLTIP"
 text = "CHECK"
 __meta__ = {
 "_editor_description_": ""
@@ -1605,7 +1606,7 @@ margin_top = 365.088
 margin_right = 810.706
 margin_bottom = 462.088
 rect_min_size = Vector2( 200, 100 )
-WindowTitle = "Are you sure?"
+WindowTitle = "MOD_LOAD_ERROR_WARNING_TITLE"
 ShowCloseButton = false
 ConfirmText = "YES"
 CancelText = "NO"
@@ -1616,10 +1617,10 @@ margin_top = 365.088
 margin_right = 810.706
 margin_bottom = 462.088
 rect_min_size = Vector2( 200, 100 )
-WindowTitle = "Null"
+WindowTitle = "NULL"
 Resizable = true
 HideCancelButton = true
-DialogText = "Null"
+DialogText = "NULL"
 
 [node name="Quit" type="Button" parent="."]
 anchor_top = 1.0

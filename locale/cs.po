@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 20:32+0200\n"
+"POT-Creation-Date: 2022-02-02 15:56-0600\n"
 "PO-Revision-Date: 2022-01-05 08:20+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -1451,7 +1451,7 @@ msgstr "Ilustraci vytvořil(a) {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1573
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -1519,7 +1519,7 @@ msgstr "Editor mikrobů"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:133
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Zpět"
@@ -1709,6 +1709,7 @@ msgid "LANGUAGE"
 msgstr "Jazyk:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "Resetovat"
 
@@ -1872,7 +1873,7 @@ msgstr "Zahodit a pokračovat"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:730
 msgid "CANCEL"
 msgstr "Zrušit"
 
@@ -3618,246 +3619,447 @@ msgstr ""
 "Gratulace, vyhráli jste tuto verzi Thrive! Po zavření této zprávy můžete "
 "pokračovat ve volném hraní, nebo začít novou hru."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:531
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Nelze načíst informace o módu pro {0}"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:499
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: načítání sestavy selhalo s výjimkou: {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: nemá žádné načitatelné prostředky"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:546
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:554
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:617
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:630
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:646
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:662
 msgid "PCK_LOAD_FAILED"
 msgstr "Načítání souboru pck ({0}) se nezdařilo"
 
-#: ../src/modding/ModManager.cs:292
+#: ../src/modding/ModManager.cs:470
 msgid "INVALID_ICON_PATH"
 msgstr "Neplatná cesta ikony modu"
 
-#: ../src/modding/ModManager.cs:306
+#: ../src/modding/ModManager.cs:484
 msgid "INVALID_URL_SCHEME"
 msgstr "Neplatné schéma adresy URL"
 
-#: ../src/modding/ModManager.cs:318
+#: ../src/modding/ModManager.cs:496
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:544
-msgid "NO_SELECTED_MOD"
-msgstr "Žádný vybraný mod"
+#: ../src/modding/ModManager.cs:608
+#, fuzzy
+msgid "MOD_LOADER_TAB"
+msgstr "Nahrávač módů"
 
-#: ../src/modding/ModManager.cs:869
+#: ../src/modding/ModManager.cs:609
+#, fuzzy
+msgid "MOD_ERRORS_TAB"
+msgstr "Chyby načítání módu"
+
+#: ../src/modding/ModManager.cs:610
+#, fuzzy
+msgid "MOD_CONFIGURATION_TAB"
+msgstr "Vytvoření módu se nezdařilo"
+
+#: ../src/modding/ModManager.cs:952 ../src/modding/ModManager.cs:1943
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Tento mod si můžete stáhnout ze služby Steam Workshop"
 
-#: ../src/modding/ModManager.cs:870
+#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1944
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Jedná se o lokálně nainstalovaný mod"
 
-#: ../src/modding/ModManager.cs:926
+#: ../src/modding/ModManager.cs:1020
+msgid "NO_SELECTED_MOD"
+msgstr "Žádný vybraný mod"
+
+#: ../src/modding/ModManager.cs:1365
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr "Chyby načítání módu"
+
+#: ../src/modding/ModManager.cs:1367
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr "Opravdu chceš resetovat VŠECHNA nastavení ?"
+
+#: ../src/modding/ModManager.cs:1549 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
+msgid "MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1566
+msgid "NO_MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1575 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/NewModGUI.tscn:572
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1592
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "Žádný vybraný mod"
+
+#: ../src/modding/ModManager.cs:1601 ../src/modding/ModManager.tscn:869
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr "Načíst nekompatibilní uloženou pozici?"
+
+#: ../src/modding/ModManager.cs:1618
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "Načíst nekompatibilní uloženou pozici?"
+
+#: ../src/modding/ModManager.cs:1627 ../src/modding/ModManager.tscn:878
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "Nahrávač módů"
+
+#: ../src/modding/ModManager.cs:1637 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/NewModGUI.tscn:620
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "Nahrávač módů"
+
+#: ../src/modding/ModManager.cs:1655 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/NewModGUI.tscn:596
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "Chyby načítání módu"
+
+#: ../src/modding/ModManager.cs:1667
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr ""
+"Jeden nebo více módů vyžaduje restart pro správné načtení nebo vyložení"
+
+#: ../src/modding/ModManager.cs:1998
+#, fuzzy
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr "Chyby načítání módu"
+
+#: ../src/modding/ModManager.cs:2000
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"Máš neuložené změny, které budou zahozeny.\n"
+"Mám pokračovat?"
+
+#: ../src/modding/ModManager.cs:2004 ../src/modding/ModManager.cs:2044
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "Uložená pozice je neplatná"
+
+#: ../src/modding/ModManager.cs:2027 ../src/modding/ModManager.cs:2038
+#: ../src/modding/ModManager.cs:2058 ../src/modding/ModManager.cs:2072
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "Neznámá myš"
+
+#: ../src/modding/ModManager.cs:2047
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"Vybraná uložená pozice nemůže být načtena z důvodu nekompatibility s touto "
+"verzí Thrive.\n"
+"Bohužel pro tuto verzi neexistuje převodník.\n"
+"Jelikož je Thrive v ranné fázi vývoje, není kompatibilita uložených pozic "
+"prioritou, a proto převodníky nefungují pro všechny verze."
+
+#: ../src/modding/ModManager.cs:2061
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2063
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2075
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2077
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2080
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2082
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2086
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "Načíst nekompatibilní uloženou pozici?"
+
+#: ../src/modding/ModManager.cs:2088
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr "Načíst nekompatibilní uloženou pozici?"
+
+#: ../src/modding/ModManager.cs:2091
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "Chyby načítání módu"
+
+#: ../src/modding/ModManager.cs:2093
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2097
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr ""
+"Jeden nebo více módů vyžaduje restart pro správné načtení nebo vyložení"
+
+#: ../src/modding/ModManager.cs:2099
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2143
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Chyba při vytváření složky pro mod"
 
-#: ../src/modding/ModManager.cs:935
+#: ../src/modding/ModManager.cs:2152
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Chyba při vytváření souboru mod info"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:201
 msgid "AVAILABLE_MODS"
 msgstr "Dostupné mody"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Obnovit"
-
-#: ../src/modding/ModManager.tscn:152
-msgid "OPEN_FOLDER"
-msgstr "Otevřít složku"
-
-#: ../src/modding/ModManager.tscn:170
-msgid "RIGHT_ARROW"
-msgstr "→"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
+msgid "RIGHT_ARROW"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:271
 msgid "ENABLED_MODS"
 msgstr "Povolené mody"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "Zakázat vše"
+
+#: ../src/modding/ModManager.tscn:316
+msgid "OPEN_FOLDER"
+msgstr "Otevřít složku"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr "Zakázat vše"
 
-#: ../src/modding/ModManager.tscn:250
-msgid "SELECTED_MOD"
-msgstr "Vybraný mod:"
+#: ../src/modding/ModManager.tscn:339
+#, fuzzy
+msgid "ONESHOT_LOADING"
+msgstr "Chyba v načítání"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "Použít"
+
+#: ../src/modding/ModManager.tscn:507
+#, fuzzy
+msgid "CLEAR"
+msgstr "Clear (smazat)"
+
+#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1121
+#: ../src/modding/NewModGUI.tscn:158
 msgid "MOD_AUTHOR"
 msgstr "Autor modu:"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1143
+#: ../src/modding/NewModGUI.tscn:181
 msgid "MOD_VERSION"
 msgstr "Verze modu:"
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Doporučené Thrive:"
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:770
 msgid "MINIMUM_VERSION"
 msgstr "Minimum:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-msgid "MOD_DESCRIPTION"
-msgstr "Popis módu:"
+#: ../src/modding/ModManager.tscn:804
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Doporučené Thrive:"
 
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
-msgstr "Zobrazit více info"
+#: ../src/modding/ModManager.tscn:860
+#, fuzzy
+msgid "REQUIRED_MODS"
+msgstr "Povolené mody"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:887
 msgid "OPEN_MOD_URL"
 msgstr "Otevřít URL Info"
 
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
-msgstr "Procházet Workshop"
+#: ../src/modding/ModManager.tscn:896
+msgid "MORE_INFO"
+msgstr "Zobrazit více info"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-msgid "UPLOAD"
-msgstr "Nahrát"
+#: ../src/modding/ModManager.tscn:968
+#, fuzzy
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "Nápověda"
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr "Nový"
+#: ../src/modding/ModManager.tscn:969
+msgid "CHECK"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Obnovit"
+
+#: ../src/modding/ModManager.tscn:989
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 "Poznámka: mnoho módů vyžaduje restart pro správné načtení nebo nahrání. "
 "Načítejte pouze ty mody, kterým důvěřujete, protože mohou obsahovat "
 "spustitelný kód."
 
-#: ../src/modding/ModManager.tscn:559
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Povolit všechny kompatibilní mody"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:990
 msgid "APPLY_CHANGES"
 msgstr "Použít změny"
 
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "Existují neaplikované změny"
+#: ../src/modding/ModManager.tscn:1005
+msgid "BROWSE_WORKSHOP"
+msgstr "Procházet Workshop"
 
-#: ../src/modding/ModManager.tscn:580
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "Pro načtení nebo vyjmutí modifikací je třeba provést změny."
+#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
+msgid "UPLOAD"
+msgstr "Nahrát"
 
-#: ../src/modding/ModManager.tscn:581
-msgid "DISCARD_CHANGES"
-msgstr "Zahodit změny"
+#: ../src/modding/ModManager.tscn:1027
+msgid "NEW"
+msgstr "Nový"
 
-#: ../src/modding/ModManager.tscn:588
-msgid "FULL_MOD_INFO"
-msgstr "Úplné informace o módu"
-
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:1073 ../src/modding/NewModGUI.tscn:135
 msgid "MOD_NAME"
 msgstr "Název módu:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:1095 ../src/modding/NewModGUI.tscn:112
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1165 ../src/modding/NewModGUI.tscn:204
+msgid "MOD_DESCRIPTION"
+msgstr "Popis módu:"
+
+#: ../src/modding/ModManager.tscn:1187 ../src/modding/NewModGUI.tscn:227
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Dlouhý popis módu:"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_ICON_FILE"
 msgstr "Soubor s ikonou:"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:291
+#, fuzzy
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr "Soubor náhledu obrázku je příliš velký"
+
+#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:330
 msgid "MOD_INFO_URL"
 msgstr "Mod info URL:"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:353
 msgid "MOD_LICENSE"
 msgstr "Licence módu:"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:376
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Doporučená verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:399
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Požadované minimum verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1357 ../src/modding/NewModGUI.tscn:422
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Maximální podporovaná verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1379 ../src/modding/NewModGUI.tscn:445
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck soubor:"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1401 ../src/modding/NewModGUI.tscn:485
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:525
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:979
-msgid "MOD_CREATION_FAILED"
-msgstr "Vytvoření módu se nezdařilo"
+#: ../src/modding/ModManager.tscn:1533 ../src/modding/NewModGUI.tscn:644
+#, fuzzy
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "Načíst nekompatibilní uloženou pozici?"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1555 ../src/modding/NewModGUI.tscn:668
+#, fuzzy
+msgid "MOD_CONFIG_FILE"
+msgstr "Soubor s ikonou:"
+
+#: ../src/modding/ModManager.tscn:1586
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 "Při načítání nebo vykládání jednoho nebo více módů došlo k chybám. "
 "Protokoly mohou obsahovat další informace."
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1591
 msgid "RESTART_REQUIRED"
 msgstr "Požadovaný restart"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1593
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 "Jeden nebo více módů vyžaduje restart pro správné načtení nebo vyložení"
+
+#: ../src/modding/ModManager.tscn:1609
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr "Chyby načítání módu"
+
+#: ../src/modding/ModManager.tscn:1611
+#, fuzzy
+msgid "YES"
+msgstr "roky"
+
+#: ../src/modding/ModManager.tscn:1612
+#, fuzzy
+msgid "NO"
+msgstr "Vrátit"
+
+#: ../src/modding/ModManager.tscn:1620 ../src/modding/ModManager.tscn:1623
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3930,7 +4132,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Uložení informací se nezdařilo kvůli výjimce: {0}"
 
-#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
+#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:428
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Chyba: {0}"
 
@@ -3961,10 +4163,6 @@ msgstr "Zadejte existující Workshop ID"
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "ID číslo"
-
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "Použít"
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
@@ -4022,47 +4220,52 @@ msgstr "Vybrat náhled obrázku"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Nahrání bylo úspěšné"
 
-#: ../src/modding/NewModGUI.cs:169
+#: ../src/modding/NewModGUI.cs:239
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Můj úžasný mod"
 
-#: ../src/modding/NewModGUI.cs:226
+#: ../src/modding/NewModGUI.cs:360
 msgid "INVALID_URL_FORMAT"
 msgstr "Neplatný formát URL"
 
-#: ../src/modding/NewModGUI.cs:238
+#: ../src/modding/NewModGUI.cs:372
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Je vyžadován interní název"
 
-#: ../src/modding/NewModGUI.cs:244
+#: ../src/modding/NewModGUI.cs:378
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Interní název by měl začínat velkým písmenem"
 
-#: ../src/modding/NewModGUI.cs:250
+#: ../src/modding/NewModGUI.cs:384
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Již existuje mod se zadaným interním názvem"
 
-#: ../src/modding/NewModGUI.cs:269
+#: ../src/modding/NewModGUI.cs:403
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Chybějící nebo nesprávný formát povinného pole: {0}"
 
-#: ../src/modding/NewModGUI.cs:280
+#: ../src/modding/NewModGUI.cs:414
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Při dodatečných validacích byl zjištěn problém: {0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:51
 msgid "CREATE_NEW_MOD"
 msgstr "Vytvořit nový mod"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:85
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Modding instrukce jsou dostupné na"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:92
 msgid "OUR_WIKI"
 msgstr "naše Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:686
+#, fuzzy
+msgid "ENABLE_CONFIG"
+msgstr "Povolené mody"
+
+#: ../src/modding/NewModGUI.tscn:723
 msgid "CREATE"
 msgstr "Vytvořit"
 
@@ -4645,6 +4848,24 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
 msgstr "Zobrazit"
+
+#~ msgid "SELECTED_MOD"
+#~ msgstr "Vybraný mod:"
+
+#~ msgid "ENABLE_ALL_COMPATIBLE"
+#~ msgstr "Povolit všechny kompatibilní mody"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr "Existují neaplikované změny"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr "Pro načtení nebo vyjmutí modifikací je třeba provést změny."
+
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "Zahodit změny"
+
+#~ msgid "FULL_MOD_INFO"
+#~ msgstr "Úplné informace o módu"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"
