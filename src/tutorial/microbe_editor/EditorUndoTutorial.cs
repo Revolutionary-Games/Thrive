@@ -16,6 +16,9 @@
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {
+            if (gui.CellEditorUndoHighlight == null)
+                throw new InvalidOperationException($"{nameof(gui.CellEditorUndoHighlight)} has not been set");
+
             gui.CellEditorUndoHighlight.TargetControl = ShownCurrently ? EditorUndoButtonControl : null;
 
             gui.CellEditorUndoVisible = ShownCurrently;

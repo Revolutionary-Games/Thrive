@@ -20,6 +20,9 @@
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
         {
+            if (gui.AutoEvoPredictionHighlight == null)
+                throw new InvalidOperationException($"{nameof(gui.AutoEvoPredictionHighlight)} has not been set");
+
             gui.AutoEvoPredictionVisible = ShownCurrently;
 
             gui.AutoEvoPredictionHighlight.TargetControl = ShownCurrently ? EditorAutoEvoPredictionPanel : null;

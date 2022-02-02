@@ -7,35 +7,35 @@ using Godot;
 public class PauseMenu : ControlWithInput
 {
     [Export]
-    public string HelpCategory;
+    public string HelpCategory = null!;
 
     [Export]
-    public NodePath PrimaryMenuPath;
+    public NodePath PrimaryMenuPath = null!;
 
     [Export]
-    public NodePath HelpScreenPath;
+    public NodePath HelpScreenPath = null!;
 
     [Export]
-    public NodePath LoadMenuPath;
+    public NodePath LoadMenuPath = null!;
 
     [Export]
-    public NodePath OptionsMenuPath;
+    public NodePath OptionsMenuPath = null!;
 
     [Export]
-    public NodePath SaveMenuPath;
+    public NodePath SaveMenuPath = null!;
 
     [Export]
-    public NodePath LoadSaveListPath;
+    public NodePath LoadSaveListPath = null!;
 
     [Export]
-    public NodePath UnsavedProgressWarningPath;
+    public NodePath UnsavedProgressWarningPath = null!;
 
-    private Control primaryMenu;
-    private HelpScreen helpScreen;
-    private Control loadMenu;
-    private OptionsMenu optionsMenu;
-    private NewSaveMenu saveMenu;
-    private CustomConfirmationDialog unsavedProgressWarning;
+    private Control primaryMenu = null!;
+    private HelpScreen helpScreen = null!;
+    private Control loadMenu = null!;
+    private OptionsMenu optionsMenu = null!;
+    private NewSaveMenu saveMenu = null!;
+    private CustomConfirmationDialog unsavedProgressWarning = null!;
 
     /// <summary>
     ///   The assigned pending exit type, will be used to specify what kind of
@@ -82,7 +82,7 @@ public class PauseMenu : ControlWithInput
     /// <summary>
     ///   The GameProperties object holding settings and state for the current game session.
     /// </summary>
-    public GameProperties GameProperties { get; set; }
+    public GameProperties? GameProperties { get; set; } = null!;
 
     public bool GameLoading { get; set; }
 
@@ -134,13 +134,22 @@ public class PauseMenu : ControlWithInput
             switch (value)
             {
                 case ActiveMenuType.Options:
-                    optionsMenu.OpenFromInGame(GameProperties);
+                    optionsMenu.OpenFromInGame(GameProperties ??
+                        throw new InvalidOperationException(
+                            $"{nameof(GameProperties)} is required before opening options"));
                     break;
                 case ActiveMenuType.None:
                     // just close the current menu
                     break;
                 default:
-                    GetControlFromMenuEnum(value).Show();
+                    var control = GetControlFromMenuEnum(value);
+                    if (control == null)
+                    {
+                        throw new ArgumentOutOfRangeException(nameof(value),
+                            "Can't set active menu to one without an associated control");
+                    }
+
+                    control.Show();
                     break;
             }
         }
@@ -156,6 +165,9 @@ public class PauseMenu : ControlWithInput
 
     public override void _Ready()
     {
+        if (GameProperties == null)
+            throw new InvalidOperationException($"{nameof(GameProperties)} may not be null");
+
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
@@ -209,10 +221,16 @@ public class PauseMenu : ControlWithInput
 
     public void SetNewSaveNameFromSpeciesName()
     {
+        if (GameProperties == null)
+        {
+            GD.PrintErr("No game properties set, can't set save name from species");
+            return;
+        }
+
         SetNewSaveName(GameProperties.GameWorld.PlayerSpecies.FormattedName.Replace(' ', '_'));
     }
 
-    private Control GetControlFromMenuEnum(ActiveMenuType value)
+    private Control? GetControlFromMenuEnum(ActiveMenuType value)
     {
         return value switch
         {

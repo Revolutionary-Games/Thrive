@@ -39,7 +39,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public string DamageType;
 
-    public Dictionary<Compound, ChunkCompound> Compounds;
+    public Dictionary<Compound, ChunkCompound>? Compounds;
 
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {
@@ -79,7 +79,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             Damages == other.Damages &&
             DeleteOnTouch == other.DeleteOnTouch &&
             Meshes.Equals(other.Meshes) &&
-            Compounds.Equals(other.Compounds);
+            Equals(Compounds, other.Compounds);
     }
 
     public struct ChunkCompound : IEquatable<ChunkCompound>

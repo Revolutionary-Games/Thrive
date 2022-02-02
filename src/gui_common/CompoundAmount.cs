@@ -7,10 +7,10 @@ using Godot;
 /// </summary>
 public class CompoundAmount : HBoxContainer
 {
-    private Label amountLabel;
-    private TextureRect icon;
+    private Label? amountLabel;
+    private TextureRect? icon;
 
-    private Compound compound;
+    private Compound? compound;
 
     private int decimals = 3;
     private float amount = float.NegativeInfinity;
@@ -29,9 +29,11 @@ public class CompoundAmount : HBoxContainer
     /// </summary>
     public Compound Compound
     {
-        get => compound;
         set
         {
+            if (value == null)
+                throw new ArgumentNullException();
+
             if (compound == value)
                 return;
 
@@ -125,14 +127,16 @@ public class CompoundAmount : HBoxContainer
                 return;
 
             valueColour = value;
-            if (amountLabel != null)
-                UpdateColour();
+            UpdateColour();
         }
     }
 
     public override void _Ready()
     {
         base._Ready();
+
+        if (compound == null || icon == null)
+            throw new InvalidOperationException("Need to set compound and icon");
 
         UpdateLabel();
         UpdateIcon();
@@ -185,6 +189,9 @@ public class CompoundAmount : HBoxContainer
 
     private void UpdateColour()
     {
+        if (amountLabel == null)
+            return;
+
         Color color;
 
         switch (ValueColour)
@@ -206,12 +213,12 @@ public class CompoundAmount : HBoxContainer
     {
         icon?.DetachAndFree();
 
-        icon = GUICommon.Instance.CreateCompoundIcon(compound.InternalName);
+        icon = GUICommon.Instance.CreateCompoundIcon(compound!.InternalName);
         AddChild(icon);
     }
 
     private void UpdateTooltip()
     {
-        icon.HintTooltip = compound.Name;
+        icon!.HintTooltip = compound!.Name;
     }
 }

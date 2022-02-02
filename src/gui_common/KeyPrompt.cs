@@ -10,7 +10,7 @@ public class KeyPrompt : TextureRect
     ///   Name of the action this key prompt shows
     /// </summary>
     [Export]
-    public string ActionName;
+    public string ActionName = null!;
 
     /// <summary>
     ///   If true reacts when the user presses the key

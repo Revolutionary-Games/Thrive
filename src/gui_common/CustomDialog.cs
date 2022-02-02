@@ -46,23 +46,23 @@ using Godot;
 /// [Tool]
 public class CustomDialog : Popup, ICustomPopup
 {
-    private string windowTitle;
-    private string translatedWindowTitle;
+    private string windowTitle = string.Empty;
+    private string translatedWindowTitle = string.Empty;
 
     private bool closeHovered;
 
     private Vector2 dragOffset;
     private Vector2 dragOffsetFar;
 
-    private TextureButton closeButton;
+    private TextureButton? closeButton;
 
     private DragType dragType = DragType.None;
 
-    private StyleBox customPanel;
-    private StyleBox titleBarPanel;
-    private StyleBox closeButtonHighlight;
+    private StyleBox customPanel = null!;
+    private StyleBox titleBarPanel = null!;
+    private StyleBox closeButtonHighlight = null!;
 
-    private Font titleFont;
+    private Font? titleFont;
     private Color titleColor;
 
     private int titleBarHeight;
@@ -233,7 +233,7 @@ public class CustomDialog : Popup, ICustomPopup
             new Vector2(3, -titleBarHeight + 3), new Vector2(RectSize.x - 6, titleBarHeight - 3)));
 
         // Draw title in the title bar
-        var fontHeight = titleFont.GetHeight() - titleFont.GetDescent() * 2;
+        var fontHeight = titleFont!.GetHeight() - titleFont.GetDescent() * 2;
 
         var titlePosition = new Vector2(
             (RectSize.x - titleFont.GetStringSize(translatedWindowTitle).x) / 2, (-titleHeight + fontHeight) / 2);
@@ -244,7 +244,7 @@ public class CustomDialog : Popup, ICustomPopup
         // Draw close button highlight
         if (closeHovered)
         {
-            DrawStyleBox(closeButtonHighlight, closeButton.GetRect());
+            DrawStyleBox(closeButtonHighlight, closeButton!.GetRect());
         }
     }
 

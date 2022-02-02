@@ -8,13 +8,13 @@ using System.Collections.Generic;
 ///   It works as a real bag you draw content from, before filling it again when empty.
 /// </summary>
 /// <typeparam name="T"> Type of the elements in the bag.</typeparam>
-public class ShuffleBag<T> : IEnumerable<T>
+public class ShuffleBag<T> : IEnumerable<T?>
 {
     private readonly Random random;
 
     // We use Lists here because the shuffle algorithm rely on access by index, which does not fit LinkedLists.
-    private List<T> initialContent = new List<T>();
-    private List<T> currentContent = new List<T>();
+    private readonly List<T> initialContent = new();
+    private readonly List<T> currentContent = new();
 
     /// <summary>
     ///   This variable encodes if the bag should be automatically refilled by enumerators upon emptying the bag.
@@ -112,7 +112,7 @@ public class ShuffleBag<T> : IEnumerable<T>
     ///     and will fill it again upon reaching the end of it. It will not loop again.
     ///   </para>
     /// </remarks>
-    public IEnumerator<T> GetEnumerator()
+    public IEnumerator<T?> GetEnumerator()
     {
         return new ShuffleBagEnumerator<T>(this);
     }
@@ -132,9 +132,7 @@ public class ShuffleBag<T> : IEnumerable<T>
         {
             int j = random.Next(i, currentContent.Count);
 
-            T swappedElement = currentContent[i];
-            currentContent[i] = currentContent[j];
-            currentContent[j] = swappedElement;
+            (currentContent[i], currentContent[j]) = (currentContent[j], currentContent[i]);
         }
     }
 
@@ -176,9 +174,9 @@ public class ShuffleBag<T> : IEnumerable<T>
     ///   This enumerator will loop through the current content of the bag (unless shortcut),
     ///   and will fill it again upon reaching the end of it. It will not loop again.
     /// </summary>
-    private class ShuffleBagEnumerator<T2> : IEnumerator<T2>
+    private class ShuffleBagEnumerator<T2> : IEnumerator<T2?>
     {
-        private ShuffleBag<T2> sourceBag;
+        private readonly ShuffleBag<T2> sourceBag;
 
         /// <summary>
         ///   Instantiate the enumerator to loop through what is left in the bag.
@@ -197,9 +195,9 @@ public class ShuffleBag<T> : IEnumerable<T>
         ///   Returns the current element for the enumerator,
         ///   effectively picking the front element of the shuffle bag without dropping it.
         /// </summary>
-        public T2 Current { get; private set; }
+        public T2? Current { get; private set; }
 
-        object IEnumerator.Current => Current;
+        object? IEnumerator.Current => Current;
 
         /// <summary>
         ///   Handles the disposal of the enumerator, i.e. when closing the foreach loop that was using it.

@@ -38,7 +38,7 @@ public class CompoundListBox : HBoxContainer
     /// <param name="compounds">The compounds and amounts to show</param>
     /// <param name="markRed">Compounds that match these will be marked red.</param>
     public void UpdateCompounds(IEnumerable<KeyValuePair<Compound, float>> compounds,
-        IReadOnlyList<Compound> markRed = null)
+        IReadOnlyList<Compound>? markRed = null)
     {
         compoundAmountControls.UnMarkAll();
 

@@ -10,7 +10,7 @@ using Godot;
 /// </summary>
 public class CustomRichTextLabel : RichTextLabel
 {
-    private string extendedBbcode;
+    private string? extendedBbcode;
 
     /// <summary>
     ///   Custom BBCodes exclusive for Thrive. Acts more like an extension to the built-in tags.
@@ -44,7 +44,7 @@ public class CustomRichTextLabel : RichTextLabel
     ///   </para>
     /// </remarks>
     [Export]
-    public string ExtendedBbcode
+    public string? ExtendedBbcode
     {
         get => extendedBbcode;
         set

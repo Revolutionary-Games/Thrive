@@ -6,9 +6,9 @@
 public class QuickLoadHandler : NodeWithInput
 {
     [Export]
-    public NodePath DifferentVersionDialogPath;
+    public NodePath DifferentVersionDialogPath = null!;
 
-    private CustomConfirmationDialog differentVersionDialog;
+    private CustomConfirmationDialog differentVersionDialog = null!;
 
     public override void _Ready()
     {

@@ -20,7 +20,7 @@
         {
             this.patch = patch;
 
-            if (patch.Biome.Chunks.TryGetValue(chunkType, out ChunkConfiguration chunk))
+            if (patch.Biome.Chunks.TryGetValue(chunkType, out ChunkConfiguration chunk) && chunk.Compounds != null)
             {
                 chunkSize = chunk.Size;
                 chunkName = chunk.Name;

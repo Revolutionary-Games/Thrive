@@ -108,10 +108,10 @@ public partial class Microbe
     ///   </para>
     /// </remarks>
     [JsonProperty(Order = 1)]
-    public MicrobeColony Colony { get; set; }
+    public MicrobeColony? Colony { get; set; }
 
     [JsonProperty]
-    public Microbe ColonyParent { get; set; }
+    public Microbe? ColonyParent { get; set; }
 
     [JsonProperty]
     public List<Microbe> ColonyChildren { get; set; }

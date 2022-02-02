@@ -303,7 +303,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// </summary>
     /// <param name="bodyShape">The shape that was hit</param>
     /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
-    public Microbe GetMicrobeFromShape(int bodyShape)
+    public Microbe? GetMicrobeFromShape(int bodyShape)
     {
         if (Colony == null)
             return this;
