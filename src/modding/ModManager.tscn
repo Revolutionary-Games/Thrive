@@ -951,8 +951,8 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="Reset" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 258.0
-margin_right = 330.0
+margin_left = 232.0
+margin_right = 304.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "RESET"
@@ -961,19 +961,19 @@ __meta__ = {
 }
 
 [node name="Check" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 350.0
-margin_right = 427.0
+margin_left = 324.0
+margin_right = 454.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 hint_tooltip = "CHECK_BUTTON_TOOLTIP"
-text = "CHECK"
+text = "CHECK_MOD"
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="Refresh" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 447.0
-margin_right = 545.0
+margin_left = 474.0
+margin_right = 572.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "REFRESH"
@@ -982,8 +982,8 @@ __meta__ = {
 }
 
 [node name="ApplyChanges" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 565.0
-margin_right = 741.0
+margin_left = 592.0
+margin_right = 768.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 hint_tooltip = "MOD_LOAD_UNLOAD_CAVEATS"
@@ -993,13 +993,13 @@ __meta__ = {
 }
 
 [node name="VSeparator" type="VSeparator" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 761.0
-margin_right = 765.0
+margin_left = 788.0
+margin_right = 792.0
 margin_bottom = 35.0
 
 [node name="WorkshopBrowse" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 785.0
-margin_right = 998.0
+margin_left = 812.0
+margin_right = 1025.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "BROWSE_WORKSHOP"
@@ -1009,8 +1009,8 @@ __meta__ = {
 }
 
 [node name="Upload" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 1018.0
-margin_right = 1107.0
+margin_left = 1045.0
+margin_right = 1134.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "UPLOAD"
@@ -1020,8 +1020,8 @@ __meta__ = {
 }
 
 [node name="New" type="Button" parent="MainMarginContainer/VBoxContainer/ButtonContainer"]
-margin_left = 1127.0
-margin_right = 1182.0
+margin_left = 1154.0
+margin_right = 1209.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
 text = "NEW"
