@@ -55,6 +55,7 @@
                 { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
                 { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
                 { "0.5.6.0", new UpgradeJustVersionNumber("0.5.6.1") },
+                { "0.5.6.1", new UpgradeStep0561To057() },
             };
         }
     }
@@ -324,6 +325,19 @@
             else
             {
                 throw new ArgumentException("Property " + property.Name + " did not match an effect array!");
+            }
+        }
+    }
+
+    internal class UpgradeStep0561To057 : BaseRecursiveJSONWalkerStep
+    {
+        protected override string VersionAfter => "0.5.7.0-rc1";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            if (property.Name.Contains("GameWorld"))
+            {
+                ((JObject)property.Value).Add("eventsLog", new JObject());
             }
         }
     }

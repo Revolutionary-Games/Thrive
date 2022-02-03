@@ -236,8 +236,8 @@ public class MicrobeHUD : Control
     private Label patchLabel;
     private AnimationPlayer patchOverlayAnimator;
     private TextureButton editorButton;
-    private Node extinctionBox;
-    private Node winBox;
+    private CustomDialog extinctionBox;
+    private CustomDialog winBox;
     private Tween panelsTween;
     private Control winExtinctBoxHolder;
     private Label hintText;
@@ -561,6 +561,14 @@ public class MicrobeHUD : Control
     {
         GD.Print("Move to editor pressed");
 
+        // TODO: find out when this can happen (this happened when a really laggy save was loaded and the editor button
+        // was pressed before the stage fade in fully completed)
+        if (stage.Player == null)
+        {
+            GD.PrintErr("Trying to press editor button while having no player object");
+            return;
+        }
+
         // To prevent being clicked twice
         editorButton.Disabled = true;
 
@@ -583,8 +591,9 @@ public class MicrobeHUD : Control
 
         winExtinctBoxHolder.Show();
 
-        extinctionBox = ExtinctionBoxScene.Instance();
+        extinctionBox = ExtinctionBoxScene.Instance<CustomDialog>();
         winExtinctBoxHolder.AddChild(extinctionBox);
+        extinctionBox.Show();
     }
 
     public void ToggleWinBox()
@@ -598,8 +607,9 @@ public class MicrobeHUD : Control
 
         winExtinctBoxHolder.Show();
 
-        winBox = WinBoxScene.Instance();
+        winBox = WinBoxScene.Instance<CustomDialog>();
         winExtinctBoxHolder.AddChild(winBox);
+        winBox.Show();
 
         winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
@@ -949,7 +959,7 @@ public class MicrobeHUD : Control
 
     private void UpdatePopulation()
     {
-        populationLabel.Text = StringUtils.FormatNumber(stage.GameWorld.PlayerSpecies.Population);
+        populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.FormatNumber();
 
         // Reset box height
         populationLabel.GetParent<Control>().MarginTop = 0;

@@ -67,6 +67,15 @@ public class NewSaveMenu : Control
         return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains);
     }
 
+    private void ShowOverwriteConfirm(string name)
+    {
+        // The chosen filename ({0}) already exists. Overwrite?
+        overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
+            name);
+        overwriteConfirm.PopupCenteredShrink();
+    }
+
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -82,11 +91,7 @@ public class NewSaveMenu : Control
 
         if (FileHelpers.Exists(PathUtils.Join(Constants.SAVE_FOLDER, name)))
         {
-            // The chosen filename ({0}) already exists. Overwrite?
-            overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
-                name);
-            overwriteConfirm.PopupCenteredShrink();
+            ShowOverwriteConfirm(name);
         }
         else
         {
@@ -166,5 +171,11 @@ public class NewSaveMenu : Control
         {
             ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
         }
+    }
+
+    private void OnSaveListItemConfirmed(SaveListItem item)
+    {
+        saveNameBox.Text = item.SaveName;
+        ShowOverwriteConfirm(item.SaveName);
     }
 }

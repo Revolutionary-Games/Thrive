@@ -26,6 +26,9 @@ public class GameWorld
     [JsonProperty]
     private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
 
+    [JsonProperty]
+    private Dictionary<double, List<GameEventDescription>> eventsLog = new();
+
     /// <summary>
     ///   This world's auto-evo run
     /// </summary>
@@ -125,6 +128,11 @@ public class GameWorld
             effects.AddRange(value);
         }
     }
+
+    /// <summary>
+    ///   Returns log of game events pertaining to the whole world.
+    /// </summary>
+    public IReadOnlyDictionary<double, List<GameEventDescription>> EventsLog => eventsLog;
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
@@ -311,6 +319,32 @@ public class GameWorld
     public Species GetSpecies(uint id)
     {
         return worldSpecies[id];
+    }
+
+    /// <summary>
+    ///   Stores a description of a global event into the game world records.
+    /// </summary>
+    /// <param name="description">The event's description</param>
+    /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
+    /// <param name="iconPath">Resource path to the icon of the event</param>
+    public void LogEvent(LocalizedString description, bool highlight = false, string iconPath = null)
+    {
+        if (eventsLog.Count > Constants.GLOBAL_EVENT_LOG_CAP)
+        {
+            var oldestKey = eventsLog.Keys.Min();
+            eventsLog.Remove(oldestKey);
+        }
+
+        if (!eventsLog.ContainsKey(TotalPassedTime))
+            eventsLog.Add(TotalPassedTime, new List<GameEventDescription>());
+
+        // Event already logged in timeline
+        if (eventsLog[TotalPassedTime].Any(entry => entry.Description.Equals(description)))
+        {
+            return;
+        }
+
+        eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight));
     }
 
     private void CreateRunIfMissing()

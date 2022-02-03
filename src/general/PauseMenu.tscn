@@ -8,15 +8,17 @@
 [ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=7]
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Popup"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+FullRect = true
+Movable = false
+ExclusiveAllowCloseOnEscape = false
+ShowCloseButton = false
+Decorate = false
 HelpCategory = "MicrobeStage"
 PrimaryMenuPath = NodePath("CenterContainer/PrimaryMenu")
 HelpScreenPath = NodePath("HelpScreen")
@@ -167,6 +169,7 @@ WindowTitle = "CONFIRM_EXIT"
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Exit" to="." method="ExitPressed"]
+[connection signal="OnConfirmed" from="CenterContainer/LoadMenu/SaveList" to="." method="OnLoadSaveConfirmed"]
 [connection signal="pressed" from="CenterContainer/LoadMenu/Back" to="." method="CloseLoadPressed"]
 [connection signal="OnClosed" from="CenterContainer/NewSaveMenu" to="." method="CloseSavePressed"]
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]

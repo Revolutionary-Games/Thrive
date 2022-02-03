@@ -83,6 +83,7 @@
     <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
+    <Compile Include="src\general\GameEventDescription.cs" />
     <Compile Include="src\general\HybridAudioPlayer.cs" />
     <Compile Include="src\general\IEntity.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
@@ -146,7 +147,12 @@
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
+    <Compile Include="src\microbe_stage\editor\TimelineTab.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\ChemoreceptorUpgradeGUI.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\IOrganelleUpgrader.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\OrganelleUpgradeGUI.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
+    <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -177,7 +183,9 @@
     <Compile Include="src\general\SpeciesInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\OrganelleMeshWithChildren.cs" />
+    <Compile Include="src\microbe_stage\OrganelleUpgrades.cs" />
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\ChemoreceptorComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />

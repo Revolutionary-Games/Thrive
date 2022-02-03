@@ -179,6 +179,19 @@
             dataReceiver.IndividualCost = individualCost;
         }
 
+        /// <summary>
+        ///   Checks if species has results. Species doesn't have results if it was extinct or was not part of the run
+        /// </summary>
+        /// <param name="species">The species to check</param>
+        /// <returns>True if the species has results</returns>
+        public bool SpeciesHasResults(Species species)
+        {
+            lock (results)
+            {
+                return results.ContainsKey(species);
+            }
+        }
+
         public void ApplyResults(GameWorld world, bool skipMutations)
         {
             foreach (var entry in results)
@@ -796,6 +809,151 @@
             }
 
             return builder;
+        }
+
+        public void LogResultsToTimeline(GameWorld world, List<ExternalEffect> effects = null)
+        {
+            var newSpecies = GetNewSpecies();
+
+            foreach (var patch in world.Map.Patches.Values)
+            {
+                foreach (var species in patch.SpeciesInPatch.Keys)
+                {
+                    var globalPopulation = GetGlobalPopulation(species, true, true);
+                    var previousGlobalPopulation = world.Map.GetSpeciesGlobalPopulation(species);
+
+                    var finalPatchPopulation = GetPopulationInPatch(species, patch);
+                    var previousPatchPopulation = patch.GetSpeciesPopulation(species);
+
+                    finalPatchPopulation += CountSpeciesSpreadPopulation(species, patch);
+
+                    if (results[species].SplitOffPatches?.Contains(patch) == true)
+                    {
+                        // All population splits off
+                        finalPatchPopulation = 0;
+                    }
+
+                    // Apply external effects
+                    if (effects != null && world.Map.CurrentPatch.ID == patch.ID)
+                    {
+                        foreach (var effect in effects)
+                        {
+                            if (effect.Species == species)
+                            {
+                                finalPatchPopulation +=
+                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
+                                    - effect.Species.Population;
+                            }
+                        }
+                    }
+
+                    if (globalPopulation <= 0)
+                    {
+                        // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
+                        LogEventGloballyAndLocally(world, patch, new LocalizedString(
+                                "TIMELINE_SPECIES_EXTINCT", species.FormattedName),
+                            species.PlayerSpecies, "extinction.png");
+
+                        continue;
+                    }
+
+                    if (finalPatchPopulation > 0 && finalPatchPopulation != previousPatchPopulation)
+                    {
+                        if (finalPatchPopulation > previousPatchPopulation)
+                        {
+                            patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
+                                    species.FormattedName, finalPatchPopulation),
+                                species.PlayerSpecies, "popUp.png");
+                        }
+                        else
+                        {
+                            patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
+                                    species.FormattedName, finalPatchPopulation),
+                                species.PlayerSpecies, "popDown.png");
+                        }
+                    }
+                    else
+                    {
+                        patch.LogEvent(new LocalizedString(
+                                "TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
+                            species.PlayerSpecies, "extinctionLocal.png");
+                    }
+
+                    if (globalPopulation != previousGlobalPopulation)
+                    {
+                        if (globalPopulation > previousGlobalPopulation)
+                        {
+                            world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
+                                    species.FormattedName, globalPopulation),
+                                species.PlayerSpecies, "popUp.png");
+                        }
+                        else
+                        {
+                            world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
+                                    species.FormattedName, globalPopulation),
+                                species.PlayerSpecies, "popDown.png");
+                        }
+                    }
+                }
+
+                foreach (var migration in GetMigrationsTo(patch))
+                {
+                    // Log to destination patch
+                    patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedName,
+                            new LocalizedString(migration.Value.From.Name)),
+                        migration.Key.PlayerSpecies, "newSpecies.png");
+
+                    // Log to game world
+                    world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
+                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name),
+                            new LocalizedString(migration.Value.From.Name)),
+                        migration.Key.PlayerSpecies, "newSpecies.png");
+
+                    // Log to origin patch
+                    migration.Value.From.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
+                            migration.Key.FormattedName, new LocalizedString(migration.Value.To.Name)),
+                        migration.Key.PlayerSpecies, "newSpecies.png");
+                }
+
+                foreach (var newSpeciesEntry in newSpecies)
+                {
+                    GetSpeciesPopulationsByPatch(newSpeciesEntry, true, true).TryGetValue(patch, out var population);
+
+                    var speciesResult = results[newSpeciesEntry];
+
+                    if (population > 0 && speciesResult.NewlyCreated != null)
+                    {
+                        switch (speciesResult.NewlyCreated.Value)
+                        {
+                            case NewSpeciesType.FillNiche:
+                                LogEventGloballyAndLocally(world, patch, new LocalizedString("TIMELINE_NICHE_FILL",
+                                        newSpeciesEntry.FormattedName, speciesResult.SplitFrom.FormattedName),
+                                    false, "newSpecies.png");
+                                break;
+                            case NewSpeciesType.SplitDueToMutation:
+                                LogEventGloballyAndLocally(world, patch, new LocalizedString(
+                                        "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedName,
+                                        speciesResult.SplitFrom.FormattedName),
+                                    false, "newSpecies.png");
+                                break;
+                            default:
+                                GD.PrintErr("Unhandled newly created species type: ", speciesResult.NewlyCreated.Value);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///   Logs an event description into game world and a patch. Use this if the event description in question
+        ///   is exactly the same.
+        /// </summary>
+        private void LogEventGloballyAndLocally(GameWorld world, Patch patch, LocalizedString description,
+            bool highlight = false, string iconPath = null)
+        {
+            patch.LogEvent(description, highlight, iconPath);
+            world.LogEvent(description, highlight, iconPath);
         }
 
         private void MakeSureResultExistsForSpecies(Species species)
