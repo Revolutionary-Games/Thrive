@@ -18,7 +18,7 @@ public class InProgressSave : IDisposable
     /// <summary>
     ///   Raw save name, that is processed by saveNameTask
     /// </summary>
-    private readonly string saveName;
+    private readonly string? saveName;
 
     private readonly bool returnToPauseState;
 
@@ -45,7 +45,7 @@ public class InProgressSave : IDisposable
     private bool wasColourblindScreenFilterVisible;
 
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
-        Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string saveName)
+        Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string? saveName)
     {
         this.currentGameRoot = currentGameRoot;
         this.createSaveData = createSaveData;
