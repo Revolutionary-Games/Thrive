@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Used to display a modifier info as UI element on a selection menu tooltip
@@ -52,9 +51,9 @@ public class ModifierInfoLabel : HBoxContainer
     }
 
     [Export]
-    public Texture ModifierIcon
+    public Texture? ModifierIcon
     {
-        get => iconTexture ?? throw new InvalidOperationException("Can't get modifier icon before it is set");
+        get => iconTexture;
         set
         {
             iconTexture = value;
@@ -78,9 +77,6 @@ public class ModifierInfoLabel : HBoxContainer
 
     public override void _Ready()
     {
-        if (iconTexture == null)
-            throw new InvalidOperationException($"{nameof(ModifierIcon)} is required");
-
         nameLabel = GetNode<Label>("Name");
         valueLabel = GetNode<Label>("Value");
         icon = GetNode<TextureRect>("Icon");

@@ -165,9 +165,6 @@ public class PauseMenu : ControlWithInput
 
     public override void _Ready()
     {
-        if (GameProperties == null)
-            throw new InvalidOperationException($"{nameof(GameProperties)} may not be null");
-
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
         optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
