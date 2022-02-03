@@ -145,7 +145,7 @@ public class CustomDialog : Popup, ICustomPopup
     }
 
     /// <summary>
-    ///   Sets whether the window should be visible.
+    ///   Sets whether the window frame should be visible.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -162,6 +162,8 @@ public class CustomDialog : Popup, ICustomPopup
                 return;
 
             decorate = value;
+
+            // TODO: doesn't this need to adjust titleBarHeight value here as that's only set on tree entry?
             Update();
         }
     }
@@ -593,8 +595,7 @@ public class CustomDialog : Popup, ICustomPopup
         var viewportSize = GetScreenSize();
 
         RectPosition = new Vector2(0, titleBarHeight);
-        RectSize = new Vector2(
-            viewportSize.x, viewportSize.y - titleBarHeight);
+        RectSize = new Vector2(viewportSize.x, viewportSize.y - titleBarHeight);
     }
 
     private void OnCloseButtonMouseEnter()

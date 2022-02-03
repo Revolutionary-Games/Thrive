@@ -152,13 +152,15 @@ public class PauseMenu : CustomDialog
         helpScreen = GetNode<HelpScreen>(HelpScreenPath);
         helpScreen.Category = HelpCategory;
         InputManager.RegisterReceiver(this);
+
         base._EnterTree();
     }
 
     public override void _ExitTree()
     {
-        InputManager.UnregisterReceiver(this);
         base._ExitTree();
+
+        InputManager.UnregisterReceiver(this);
     }
 
     public override void _Ready()
