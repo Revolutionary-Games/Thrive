@@ -236,8 +236,8 @@ public class MicrobeHUD : Control
     private Label patchLabel;
     private AnimationPlayer patchOverlayAnimator;
     private TextureButton editorButton;
-    private Popup extinctionBox;
-    private Popup winBox;
+    private CustomDialog extinctionBox;
+    private CustomDialog winBox;
     private Tween panelsTween;
     private Control winExtinctBoxHolder;
     private Label hintText;
@@ -591,7 +591,7 @@ public class MicrobeHUD : Control
 
         winExtinctBoxHolder.Show();
 
-        extinctionBox = ExtinctionBoxScene.Instance<Popup>();
+        extinctionBox = ExtinctionBoxScene.Instance<CustomDialog>();
         winExtinctBoxHolder.AddChild(extinctionBox);
         extinctionBox.Show();
     }
@@ -607,7 +607,7 @@ public class MicrobeHUD : Control
 
         winExtinctBoxHolder.Show();
 
-        winBox = WinBoxScene.Instance<Popup>();
+        winBox = WinBoxScene.Instance<CustomDialog>();
         winExtinctBoxHolder.AddChild(winBox);
         winBox.Show();
 
