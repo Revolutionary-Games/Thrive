@@ -9,7 +9,7 @@ using Godot;
 public class ErrorDialog : CustomDialog
 {
     private string errorMessage = string.Empty;
-    private string exceptionInfo = "no exception set";
+    private string? exceptionInfo;
 
     /// <summary>
     ///   If true closing the dialog returns to menu. If false the dialog is just closed (and game is unpaused).
@@ -46,7 +46,7 @@ public class ErrorDialog : CustomDialog
     ///   The additional exception info that is thrown from an error.
     /// </summary>
     [Export]
-    public string ExceptionInfo
+    public string? ExceptionInfo
     {
         get => exceptionInfo;
         set

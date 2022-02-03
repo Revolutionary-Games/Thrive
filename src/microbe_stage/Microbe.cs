@@ -144,7 +144,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     ///   Process running statistics for this cell. For now only computed for the player cell
     /// </summary>
     [JsonIgnore]
-    public ProcessStatistics ProcessStatistics { get; private set; }
+    public ProcessStatistics? ProcessStatistics { get; private set; }
 
     /// <summary>
     ///   For checking if the player is in freebuild mode or not

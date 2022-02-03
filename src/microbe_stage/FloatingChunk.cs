@@ -119,8 +119,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds,
-        string modelPath)
+    public void Init(ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds, string? modelPath)
     {
         this.compoundClouds = compoundClouds;
 

@@ -34,7 +34,7 @@ public class IconProgressBar : ColorRect
         }
     }
 
-    public Texture IconTexture
+    public Texture? IconTexture
     {
         get => icon.Texture;
         set => icon.Texture = value;

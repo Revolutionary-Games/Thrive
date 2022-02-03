@@ -70,12 +70,12 @@ public class CompoundEventArgs : TutorialEventArgs
 
 public class StringEventArgs : TutorialEventArgs
 {
-    public StringEventArgs(string data)
+    public StringEventArgs(string? data)
     {
         Data = data;
     }
 
-    public string Data { get; }
+    public string? Data { get; }
 }
 
 public class PatchEventArgs : TutorialEventArgs

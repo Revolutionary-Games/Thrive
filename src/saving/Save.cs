@@ -163,7 +163,7 @@ public class Save
         return (infoResult, saveResult, imageResult);
     }
 
-    public static void WriteSaveJSONToFile(SaveInformation saveInfo, JObject saveStructure, Image screenshot,
+    public static void WriteSaveJSONToFile(SaveInformation saveInfo, JObject saveStructure, Image? screenshot,
         string saveName)
     {
         var serialized = saveStructure.ToString(Formatting.None);

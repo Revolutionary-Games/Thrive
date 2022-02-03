@@ -101,7 +101,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
     /// <param name="changeNotes">Optional change notes to set</param>
     /// <param name="callback">Callback to be called when everything has been uploaded or failed</param>
     /// <exception cref="ArgumentException">If something is wrong with the given data</exception>
-    public void UpdateWorkshopItem(WorkshopItemData item, string changeNotes, Action<WorkshopResult> callback)
+    public void UpdateWorkshopItem(WorkshopItemData item, string? changeNotes, Action<WorkshopResult> callback)
     {
         ThrowIfNotLoaded();
 

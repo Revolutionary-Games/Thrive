@@ -199,7 +199,7 @@ public class ChemicalEquation : VBoxContainer
 
         title.Text = EquationFromProcess.Name;
 
-        if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds.Count > 0)
+        if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds is { Count: > 0 })
         {
             title.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
         }

@@ -26,7 +26,8 @@ public class WorkshopData
 
         var data = file.GetAsText();
 
-        return JsonSerializer.Create().Deserialize<WorkshopData>(new JsonTextReader(new StringReader(data)));
+        return JsonSerializer.Create().Deserialize<WorkshopData>(new JsonTextReader(new StringReader(data))) ??
+            new WorkshopData();
     }
 
     public void Save()

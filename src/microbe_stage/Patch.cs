@@ -28,17 +28,17 @@ public class Patch
     ///   The current snapshot of this patch.
     /// </summary>
     [JsonProperty]
-    private readonly PatchSnapshot currentSnapshot = new PatchSnapshot();
+    private readonly PatchSnapshot currentSnapshot;
 
     [JsonProperty]
-    private Deque<PatchSnapshot> history = new Deque<PatchSnapshot>();
+    private Deque<PatchSnapshot> history = new();
 
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
-        currentSnapshot.Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
+        currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
     }
 
     [JsonProperty]
@@ -47,7 +47,7 @@ public class Patch
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
-    public Vector2 ScreenCoordinates { get; set; } = new Vector2(0, 0);
+    public Vector2 ScreenCoordinates { get; set; } = new(0, 0);
 
     /// <summary>
     ///   List of all the recorded snapshot of this patch. Useful for statistics.
@@ -153,7 +153,7 @@ public class Patch
     /// <summary>
     ///   Looks for a species with the specified name in this patch
     /// </summary>
-    public Species FindSpeciesByID(uint id)
+    public Species? FindSpeciesByID(uint id)
     {
         foreach (var entry in currentSnapshot.SpeciesInPatch)
         {
@@ -216,6 +216,9 @@ public class Patch
         {
             var chunk = Biome.Chunks[chunkKey];
 
+            if (chunk.Compounds == null)
+                continue;
+
             if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
             {
                 result += chunk.Density * chunk.Compounds[compound].Amount;
@@ -273,22 +276,26 @@ public class PatchSnapshot : ICloneable
 {
     public double TimePeriod;
 
-    public Dictionary<Species, long> SpeciesInPatch = new Dictionary<Species, long>();
+    public Dictionary<Species, long> SpeciesInPatch = new();
     public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>();
 
     public BiomeConditions Biome;
 
     public List<GameEventDescription> EventsLog = new();
 
+    public PatchSnapshot(BiomeConditions biome)
+    {
+        Biome = biome;
+    }
+
     public object Clone()
     {
         // We only do a shallow copy of RecordedSpeciesInfo here as SpeciesInfo objects are never modified.
-        var result = new PatchSnapshot
+        var result = new PatchSnapshot((BiomeConditions)Biome.Clone())
         {
             TimePeriod = TimePeriod,
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
-            Biome = (BiomeConditions)Biome.Clone(),
             EventsLog = new List<GameEventDescription>(EventsLog),
         };
 

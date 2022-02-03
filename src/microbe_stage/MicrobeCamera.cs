@@ -9,16 +9,16 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
-    public Spatial ObjectToFollow;
+    public Spatial? ObjectToFollow;
 
     /// <summary>
     ///   Background plane that is moved farther away from the camera when zooming out
     /// </summary>
     [JsonIgnore]
-    public Spatial BackgroundPlane;
+    public Spatial? BackgroundPlane;
 
     [JsonIgnore]
-    public Particles BackgroundParticles;
+    public Particles? BackgroundParticles;
 
     /// <summary>
     ///   How fast the camera zooming is
@@ -60,7 +60,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonProperty]
     public float InterpolateZoomSpeed = 0.3f;
 
-    private ShaderMaterial materialToUpdate;
+    private ShaderMaterial materialToUpdate = null!;
 
     private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
     private bool cursorDirty = true;

@@ -254,11 +254,11 @@ public class GameWorld : ISaveLoadable
             autoEvo.FullSpeed = true;
     }
 
-    public AutoEvoRun? GetAutoEvoRun()
+    public AutoEvoRun GetAutoEvoRun()
     {
         IsAutoEvoFinished();
 
-        return autoEvo;
+        return autoEvo ?? throw new Exception("Auto evo run starting did not work");
     }
 
     /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -7,16 +8,16 @@ using Godot;
 public class MicrobePartSelection : MarginContainer
 {
     [Export]
-    public ButtonGroup SelectionGroup;
+    public ButtonGroup SelectionGroup = null!;
 
-    private Label mpLabel;
-    private Button button;
-    private TextureRect iconRect;
-    private Label nameLabel;
+    private Label? mpLabel;
+    private Button? button;
+    private TextureRect? iconRect;
+    private Label? nameLabel;
 
     private int mpCost;
-    private Texture partIcon;
-    private string name;
+    private Texture? partIcon;
+    private string name = string.Empty;
     private bool locked;
     private bool selected;
 
@@ -38,7 +39,7 @@ public class MicrobePartSelection : MarginContainer
     }
 
     [Export]
-    public Texture PartIcon
+    public Texture? PartIcon
     {
         get => partIcon;
         set
@@ -93,6 +94,9 @@ public class MicrobePartSelection : MarginContainer
 
     public override void _Ready()
     {
+        if (string.IsNullOrEmpty(name))
+            throw new InvalidOperationException($"{nameof(Name)} is required for part selector");
+
         mpLabel = GetNode<Label>("VBoxContainer/MP");
         button = GetNode<Button>("VBoxContainer/Button");
         iconRect = GetNode<TextureRect>("VBoxContainer/Button/Icon");

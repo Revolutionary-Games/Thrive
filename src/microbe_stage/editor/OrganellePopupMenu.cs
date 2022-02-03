@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -8,24 +9,24 @@ using Godot;
 public class OrganellePopupMenu : PopupPanel
 {
     [Export]
-    public NodePath SelectedOrganelleNameLabelPath;
+    public NodePath SelectedOrganelleNameLabelPath = null!;
 
     [Export]
-    public NodePath DeleteButtonPath;
+    public NodePath DeleteButtonPath = null!;
 
     [Export]
-    public NodePath MoveButtonPath;
+    public NodePath MoveButtonPath = null!;
 
     [Export]
-    public NodePath ModifyButtonPath;
+    public NodePath ModifyButtonPath = null!;
 
-    private Label selectedOrganelleNameLabel;
-    private Button deleteButton;
-    private Button moveButton;
-    private Button modifyButton;
+    private Label? selectedOrganelleNameLabel;
+    private Button? deleteButton;
+    private Button? moveButton;
+    private Button? modifyButton;
 
     private bool showPopup;
-    private OrganelleTemplate selectedOrganelle;
+    private OrganelleTemplate? selectedOrganelle;
     private bool enableDelete = true;
     private bool enableMove = true;
     private bool enableModify;
@@ -69,10 +70,11 @@ public class OrganellePopupMenu : PopupPanel
     /// </summary>
     public OrganelleTemplate SelectedOrganelle
     {
-        get => selectedOrganelle;
+        get => selectedOrganelle ??
+            throw new InvalidOperationException("OrganellePopup was not opened with organelle set");
         set
         {
-            selectedOrganelle = value;
+            selectedOrganelle = value ?? throw new ArgumentNullException();
             UpdateOrganelleNameLabel();
         }
     }
@@ -216,7 +218,7 @@ public class OrganellePopupMenu : PopupPanel
         if (selectedOrganelleNameLabel == null)
             return;
 
-        selectedOrganelleNameLabel.Text = SelectedOrganelle?.Definition.Name;
+        selectedOrganelleNameLabel.Text = SelectedOrganelle.Definition.Name;
     }
 
     private void UpdateDeleteButton()
@@ -228,7 +230,7 @@ public class OrganellePopupMenu : PopupPanel
 
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("MP_COST"),
-            (SelectedOrganelle != null && SelectedOrganelle.PlacedThisSession) ?
+            SelectedOrganelle is { PlacedThisSession: true } ?
                 "+" + SelectedOrganelle.Definition.MPCost :
                 "-" + Constants.ORGANELLE_REMOVE_COST);
 
@@ -243,8 +245,7 @@ public class OrganellePopupMenu : PopupPanel
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
         // The organelle is free to move if it was added (placed) this session or already moved this session
-        bool isFreeToMove = SelectedOrganelle != null && (SelectedOrganelle.MovedThisSession ||
-            SelectedOrganelle.PlacedThisSession);
+        bool isFreeToMove = SelectedOrganelle.MovedThisSession || SelectedOrganelle.PlacedThisSession;
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("MP_COST"),
             isFreeToMove ? "-0" : "-" + Constants.ORGANELLE_MOVE_COST.ToString(CultureInfo.CurrentCulture));

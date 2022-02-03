@@ -28,13 +28,13 @@ public class MembraneType : IRegistryType
     public float MovementWigglyness = 1.0f;
 
     [JsonIgnore]
-    public Texture? LoadedAlbedoTexture;
+    public Texture LoadedAlbedoTexture = null!;
 
     [JsonIgnore]
-    public Texture? LoadedNormalTexture;
+    public Texture LoadedNormalTexture = null!;
 
     [JsonIgnore]
-    public Texture? LoadedDamagedTexture;
+    public Texture LoadedDamagedTexture = null!;
 
     [JsonIgnore]
     public Texture? LoadedIcon;

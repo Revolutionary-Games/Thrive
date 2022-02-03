@@ -16,10 +16,9 @@ public class PlayerMicrobeInput : NodeWithInput
     private bool autoMove;
 
     /// <summary>
-    ///   A reference to the stage is kept to get to the player object
-    ///   and also the cloud spawning.
+    ///   A reference to the stage is kept to get to the player object and also the cloud spawning.
     /// </summary>
-    private MicrobeStage stage;
+    private MicrobeStage stage = null!;
 
     public override void _Ready()
     {
@@ -179,6 +178,12 @@ public class PlayerMicrobeInput : NodeWithInput
 
     private void RemoveCellFromColony(Microbe target)
     {
+        if (target.Colony == null)
+        {
+            GD.PrintErr("Target microbe is not a part of colony");
+            return;
+        }
+
         target.Colony.RemoveFromColony(target);
     }
 

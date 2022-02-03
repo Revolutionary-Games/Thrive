@@ -64,11 +64,11 @@
     {
         protected override string VersionAfter => "0.5.5.0-alpha";
 
-        protected override void RecursivelyUpdateObjectProperties(JObject jObject)
+        protected override void RecursivelyUpdateObjectProperties(JObject? jObject)
         {
             base.RecursivelyUpdateObjectProperties(jObject);
 
-            foreach (var entry in jObject.Properties())
+            foreach (var entry in jObject!.Properties())
             {
                 if (entry.Name == "DespawnRadiusSqr")
                 {
@@ -181,7 +181,7 @@
             RecursivelyUpdateObjectProperties(saveData);
         }
 
-        protected virtual void RecursivelyUpdateObjectProperties(JObject jObject)
+        protected virtual void RecursivelyUpdateObjectProperties(JObject? jObject)
         {
             if (jObject == null)
                 throw new JsonException("Null JSON object passed to looping properties");
@@ -302,7 +302,7 @@
 
         private void CopySaveInfoToStructure(JObject saveData, SaveInformation saveInfo)
         {
-            var info = saveData[nameof(Save.Info)];
+            var info = saveData[nameof(Save.Info)] ?? throw new JsonException("Save is missing info field");
 
             foreach (var property in BaseThriveConverter.PropertiesOf(saveInfo))
             {

@@ -9,12 +9,14 @@ using Newtonsoft.Json;
 [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "This is a read-only type")]
 public class Background : IRegistryType
 {
+    [JsonRequired]
     public List<string> Textures = null!;
 
+    [JsonRequired]
     public string ParticleEffect = null!;
 
     [JsonIgnore]
-    public PackedScene? ParticleEffectScene;
+    public PackedScene ParticleEffectScene = null!;
 
     public string InternalName { get; set; } = null!;
 

@@ -16,7 +16,7 @@ public class MicrobeEditorAction : ReversibleAction
     ///   Action specific data
     /// </summary>
     [JsonProperty]
-    public IMicrobeEditorActionData Data;
+    public IMicrobeEditorActionData? Data;
 
     [JsonProperty]
     private readonly Action<MicrobeEditorAction> redo;
@@ -29,7 +29,7 @@ public class MicrobeEditorAction : ReversibleAction
 
     public MicrobeEditorAction(MicrobeEditor editor, int cost,
         Action<MicrobeEditorAction> redo,
-        Action<MicrobeEditorAction> undo, IMicrobeEditorActionData data = null)
+        Action<MicrobeEditorAction> undo, IMicrobeEditorActionData? data = null)
     {
         this.editor = editor;
         Cost = cost;

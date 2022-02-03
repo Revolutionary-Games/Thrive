@@ -114,7 +114,7 @@ public partial class Microbe
     public Microbe? ColonyParent { get; set; }
 
     [JsonProperty]
-    public List<Microbe> ColonyChildren { get; set; }
+    public List<Microbe>? ColonyChildren { get; set; }
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.

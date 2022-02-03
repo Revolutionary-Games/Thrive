@@ -15,17 +15,17 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     private bool needsColourUpdate = true;
 
     [JsonProperty]
-    private Color colour = new Color(1, 1, 1, 1);
+    private Color colour = Colors.White;
 
     private bool growthValueDirty = true;
     private float growthValue;
 
-    private Microbe currentShapesParent;
+    private Microbe? currentShapesParent;
 
     /// <summary>
     ///   Used to update the tint
     /// </summary>
-    private ShaderMaterial organelleMaterial;
+    private ShaderMaterial? organelleMaterial;
 
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
@@ -53,13 +53,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     public int Orientation { get; set; }
 
     [JsonProperty]
-    public Microbe ParentMicrobe { get; private set; }
+    public Microbe? ParentMicrobe { get; private set; }
 
     /// <summary>
     ///   The graphics child node of this organelle
     /// </summary>
     [JsonIgnore]
-    public Spatial OrganelleGraphics { get; private set; }
+    public Spatial? OrganelleGraphics { get; private set; }
 
     /// <summary>
     ///   Animation player this organelle has or null
@@ -123,7 +123,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     ///   The upgrades that this organelle has which affect how the components function
     /// </summary>
     [JsonProperty]
-    public OrganelleUpgrades Upgrades { get; set; }
+    public OrganelleUpgrades? Upgrades { get; set; }
 
     /// <summary>
     ///   Computes the total storage capacity of this organelle. Works
@@ -188,10 +188,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     public override void _Ready()
     {
         if (Definition == null)
-            GD.PrintErr("Definition of PlacedOrganelle is null");
+            throw new InvalidOperationException($"{nameof(Definition)} of {nameof(PlacedOrganelle)} is null");
 
         if (ParentMicrobe == null)
-            GD.PrintErr("PlacedOrganelle not added to scene through OnAddedToMicrobe");
+        {
+            throw new InvalidOperationException(
+                $"{nameof(PlacedOrganelle)} not added to scene through {nameof(OnAddedToMicrobe)}");
+        }
 
         if (IsLoadedFromSave)
             FinishAttachToMicrobe();

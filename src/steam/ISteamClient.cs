@@ -39,7 +39,7 @@ public interface ISteamClient : ISteamSignalReceiver
     bool SetWorkshopItemVisibility(ulong updateHandle, SteamItemVisibility visibility);
     bool SetWorkshopItemContentFolder(ulong updateHandle, string contentFolder);
     bool SetWorkshopItemPreview(ulong updateHandle, string previewImage);
-    void SubmitWorkshopItemUpdate(ulong updateHandle, string changeNotes, Action<WorkshopResult> callback);
+    void SubmitWorkshopItemUpdate(ulong updateHandle, string? changeNotes, Action<WorkshopResult> callback);
     SteamUploadProgress GetWorkshopItemUpdateProgress(ulong itemId);
     bool SetWorkshopItemTags(ulong updateHandle, List<string> tags);
     List<string> GetInstalledWorkshopItemFolders();

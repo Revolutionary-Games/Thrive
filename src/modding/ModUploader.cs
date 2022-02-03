@@ -8,103 +8,103 @@ using Path = System.IO.Path;
 public class ModUploader : Control
 {
     [Export]
-    public NodePath UploadDialogPath;
+    public NodePath UploadDialogPath = null!;
 
     [Export]
-    public NodePath ModSelectPath;
+    public NodePath ModSelectPath = null!;
 
     [Export]
-    public NodePath UnknownItemActionsPath;
+    public NodePath UnknownItemActionsPath = null!;
 
     [Export]
-    public NodePath CreateNewButtonPath;
+    public NodePath CreateNewButtonPath = null!;
 
     [Export]
-    public NodePath ShowManualEnterIdPath;
+    public NodePath ShowManualEnterIdPath = null!;
 
     [Export]
-    public NodePath ManualIdEntryPath;
+    public NodePath ManualIdEntryPath = null!;
 
     [Export]
-    public NodePath AcceptManualIdPath;
+    public NodePath AcceptManualIdPath = null!;
 
     [Export]
-    public NodePath ManualEnterIdSectionPath;
+    public NodePath ManualEnterIdSectionPath = null!;
 
     [Export]
-    public NodePath DetailsEditorPath;
+    public NodePath DetailsEditorPath = null!;
 
     [Export]
-    public NodePath EditedTitlePath;
+    public NodePath EditedTitlePath = null!;
 
     [Export]
-    public NodePath EditedDescriptionPath;
+    public NodePath EditedDescriptionPath = null!;
 
     [Export]
-    public NodePath EditedVisibilityPath;
+    public NodePath EditedVisibilityPath = null!;
 
     [Export]
-    public NodePath EditedTagsPath;
+    public NodePath EditedTagsPath = null!;
 
     [Export]
-    public NodePath PreviewImageRectPath;
+    public NodePath PreviewImageRectPath = null!;
 
     [Export]
-    public NodePath ToBeUploadedContentLocationPath;
+    public NodePath ToBeUploadedContentLocationPath = null!;
 
     [Export]
-    public NodePath ErrorDisplayPath;
+    public NodePath ErrorDisplayPath = null!;
 
     [Export]
-    public NodePath FileSelectDialogPath;
+    public NodePath FileSelectDialogPath = null!;
 
     [Export]
-    public NodePath WorkshopNoticePath;
+    public NodePath WorkshopNoticePath = null!;
 
     [Export]
-    public NodePath ChangeNotesPath;
+    public NodePath ChangeNotesPath = null!;
 
     [Export]
-    public NodePath UploadSucceededDialogPath;
+    public NodePath UploadSucceededDialogPath = null!;
 
     [Export]
-    public NodePath UploadSucceededTextPath;
+    public NodePath UploadSucceededTextPath = null!;
 
-    private CustomConfirmationDialog uploadDialog;
+    private CustomConfirmationDialog uploadDialog = null!;
 
-    private OptionButton modSelect;
+    private OptionButton modSelect = null!;
 
-    private Control unknownItemActions;
-    private Button createNewButton;
+    private Control unknownItemActions = null!;
+    private Button createNewButton = null!;
 
-    private Button showManualEnterId;
-    private LineEdit manualIdEntry;
-    private Button acceptManualId;
-    private Control manualEnterIdSection;
+    private Button showManualEnterId = null!;
+    private LineEdit manualIdEntry = null!;
+    private Button acceptManualId = null!;
+    private Control manualEnterIdSection = null!;
 
-    private Control detailsEditor;
-    private LineEdit editedTitle;
-    private TextEdit editedDescription;
-    private CheckBox editedVisibility;
-    private LineEdit editedTags;
-    private TextureRect previewImageRect;
-    private Label toBeUploadedContentLocation;
-    private TextEdit changeNotes;
+    private Control detailsEditor = null!;
+    private LineEdit editedTitle = null!;
+    private TextEdit editedDescription = null!;
+    private CheckBox editedVisibility = null!;
+    private LineEdit editedTags = null!;
+    private TextureRect previewImageRect = null!;
+    private Label toBeUploadedContentLocation = null!;
+    private TextEdit changeNotes = null!;
 
-    private CustomDialog uploadSucceededDialog;
-    private CustomRichTextLabel uploadSucceededText;
+    private CustomDialog uploadSucceededDialog = null!;
+    private CustomRichTextLabel uploadSucceededText = null!;
 
-    private FileDialog fileSelectDialog;
+    private FileDialog fileSelectDialog = null!;
 
-    private CustomRichTextLabel workshopNotice;
-    private Label errorDisplay;
+    private CustomRichTextLabel workshopNotice = null!;
+    private Label errorDisplay = null!;
 
-    private List<FullModDetails> mods;
+    private List<FullModDetails>? mods;
 
-    private WorkshopData workshopData;
+    private WorkshopData? workshopData;
 
-    private FullModDetails selectedMod;
-    private string toBeUploadedPreviewImagePath;
+    private FullModDetails? selectedMod;
+    private string? toBeUploadedPreviewImagePath;
 
     private bool manualEnterWorkshopId;
     private bool processing;
@@ -173,7 +173,7 @@ public class ModUploader : Control
     {
         modSelect.Clear();
 
-        foreach (var mod in mods)
+        foreach (var mod in mods!)
         {
             // When clicking the OptionButton the opened list doesn't scale down the icon sizes so we can't use icons
             // TODO: report the above bug to Godot and get this fixed
@@ -192,7 +192,7 @@ public class ModUploader : Control
         if (selectedMod == null)
             return false;
 
-        return workshopData.KnownModWorkshopIds.TryGetValue(selectedMod.InternalName, out _);
+        return workshopData!.KnownModWorkshopIds.TryGetValue(selectedMod.InternalName, out _);
     }
 
     private void UpdateLayout()
@@ -235,7 +235,7 @@ public class ModUploader : Control
         if (selectedMod == null)
             return;
 
-        if (workshopData.PreviouslyUploadedItemData.TryGetValue(selectedMod.InternalName, out var previousData))
+        if (workshopData!.PreviouslyUploadedItemData.TryGetValue(selectedMod.InternalName, out var previousData))
         {
             editedTitle.Text = previousData.Title;
             editedDescription.Text = previousData.Description;
@@ -257,7 +257,14 @@ public class ModUploader : Control
             editedVisibility.Pressed = true;
             editedTags.Text = string.Empty;
 
-            toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
+            if (selectedMod.Info.Icon == null)
+            {
+                toBeUploadedPreviewImagePath = null;
+            }
+            else
+            {
+                toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
+            }
 
             // TODO: this is not translated here as the default language to upload mods in, is English
             // See: https://github.com/Revolutionary-Games/Thrive/issues/2828
@@ -362,6 +369,12 @@ public class ModUploader : Control
 
     private void ModSelected(int index)
     {
+        if (mods == null)
+        {
+            GD.PrintErr("Mod selected but we haven't been initialized");
+            return;
+        }
+
         if (showManualEnterId.Pressed)
             showManualEnterId.Pressed = false;
 
@@ -393,6 +406,12 @@ public class ModUploader : Control
 
     private void OnManualIdEntered()
     {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("Attempted to set ID for selected mod, but there is no selected mod");
+            return;
+        }
+
         if (!ulong.TryParse(manualIdEntry.Text, out ulong id))
         {
             SetError(TranslationServer.Translate("ID_IS_NOT_A_NUMBER"));
@@ -400,7 +419,7 @@ public class ModUploader : Control
         }
 
         GD.Print($"Workshop item id manually set for \"{selectedMod.InternalName}\", to: ", id);
-        workshopData.KnownModWorkshopIds[selectedMod.InternalName] = id;
+        workshopData!.KnownModWorkshopIds[selectedMod.InternalName] = id;
 
         ClearError();
         UpdateLayout();
@@ -417,7 +436,7 @@ public class ModUploader : Control
 
         GD.Print("Forgetting local data about workshop mod: ", selectedMod.InternalName);
 
-        workshopData.RemoveDataForMod(selectedMod.InternalName);
+        workshopData!.RemoveDataForMod(selectedMod.InternalName);
 
         if (!SaveWorkshopData())
             return;
@@ -427,6 +446,12 @@ public class ModUploader : Control
 
     private void CreateNewPressed()
     {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("Can't create a mod without any being selected");
+            return;
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
 
         GD.Print("Create new workshop item button pressed");
@@ -445,7 +470,7 @@ public class ModUploader : Control
             }
 
             GD.Print($"Workshop item create succeeded for \"{selectedMod.InternalName}\", saving the item ID");
-            workshopData.KnownModWorkshopIds[selectedMod.InternalName] = result.ItemId;
+            workshopData!.KnownModWorkshopIds[selectedMod.InternalName] = result.ItemId;
 
             if (!SaveWorkshopData())
                 return;
@@ -470,7 +495,7 @@ public class ModUploader : Control
 
         SetProcessingStatus(true);
 
-        var updateData = new WorkshopItemData(workshopData.KnownModWorkshopIds[selectedMod.InternalName],
+        var updateData = new WorkshopItemData(workshopData!.KnownModWorkshopIds[selectedMod!.InternalName],
             editedTitle.Text, ProjectSettings.GlobalizePath(selectedMod.Folder),
             ProjectSettings.GlobalizePath(toBeUploadedPreviewImagePath))
         {
@@ -487,7 +512,7 @@ public class ModUploader : Control
         // TODO: proper progress bar
         errorDisplay.Text = TranslationServer.Translate("UPLOADING_DOT_DOT_DOT");
 
-        string notes = null;
+        string? notes = null;
 
         if (!string.IsNullOrWhiteSpace(changeNotes.Text))
         {
@@ -549,7 +574,7 @@ public class ModUploader : Control
         fileSelectDialog.PopupCenteredClamped(new Vector2(700, 400));
     }
 
-    private void OnFileSelected(string selected)
+    private void OnFileSelected(string? selected)
     {
         if (selected == null)
         {
@@ -605,7 +630,7 @@ public class ModUploader : Control
     {
         try
         {
-            workshopData.Save();
+            workshopData!.Save();
         }
         catch (Exception e)
         {
@@ -619,7 +644,7 @@ public class ModUploader : Control
         return true;
     }
 
-    private void SetError(string message)
+    private void SetError(string? message)
     {
         if (message == null)
         {

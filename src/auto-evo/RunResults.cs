@@ -520,6 +520,9 @@
         public LocalizedStringBuilder MakeSummary(PatchMap? previousPopulations = null,
             bool playerReadable = false, List<ExternalEffect>? effects = null)
         {
+            if (previousPopulations != null && previousPopulations.CurrentPatch == null)
+                throw new ArgumentException("When previous populations is set, it must have current patch set");
+
             const bool resolveMigrations = true;
             const bool resolveSplits = true;
 
@@ -697,7 +700,7 @@
 
                     // Apply external effects
                     if (effects != null && previousPopulations != null &&
-                        previousPopulations.CurrentPatch.ID == patchPopulation.Key.ID)
+                        previousPopulations.CurrentPatch!.ID == patchPopulation.Key.ID)
                     {
                         foreach (var effect in effects)
                         {
@@ -796,6 +799,9 @@
 
         public void LogResultsToTimeline(GameWorld world, List<ExternalEffect>? effects = null)
         {
+            if (world.Map.CurrentPatch == null)
+                throw new ArgumentException("world must have current patch set");
+
             var newSpecies = GetNewSpecies();
 
             foreach (var patch in world.Map.Patches.Values)

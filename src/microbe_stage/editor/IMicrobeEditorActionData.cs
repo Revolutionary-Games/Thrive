@@ -12,7 +12,7 @@ public interface IMicrobeEditorActionData
 [JSONAlwaysDynamicType]
 public class PlacementActionData : IMicrobeEditorActionData
 {
-    public List<OrganelleTemplate> ReplacedCytoplasm;
+    public List<OrganelleTemplate>? ReplacedCytoplasm;
     public OrganelleTemplate Organelle;
 
     public PlacementActionData(OrganelleTemplate organelle)

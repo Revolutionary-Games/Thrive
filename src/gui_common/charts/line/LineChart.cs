@@ -331,7 +331,7 @@ public class LineChart : VBoxContainer
     ///   Overrides number of y scales in the expanded graph, leave this ro zero to use the default
     /// </param>
     public void Plot(string xAxisName, string yAxisName, int initialVisibleDataSets,
-        string legendTitle, IDataSetsLegend? datasetsLegend = null, string? defaultDataSet = null,
+        string? legendTitle, IDataSetsLegend? datasetsLegend = null, string? defaultDataSet = null,
         int expandedXTicks = 0, int expandedYTicks = 0)
     {
         ClearChart();
@@ -1021,7 +1021,7 @@ public class LineChart : VBoxContainer
             this.chart = chart;
         }
 
-        public virtual Control CreateLegend(DataSetDictionary datasets, string title)
+        public virtual Control CreateLegend(DataSetDictionary datasets, string? title)
         {
             _ = title;
 
@@ -1130,7 +1130,7 @@ public class LineChart : VBoxContainer
 
         public CustomDropDown? Dropdown { get; protected set; }
 
-        public virtual Control CreateLegend(DataSetDictionary datasets, string title)
+        public virtual Control CreateLegend(DataSetDictionary datasets, string? title)
         {
             Dropdown = new CustomDropDown
             {
