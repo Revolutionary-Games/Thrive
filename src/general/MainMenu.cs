@@ -352,7 +352,7 @@ public class MainMenu : NodeWithInput
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.15f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 
