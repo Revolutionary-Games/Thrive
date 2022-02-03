@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Handles logic in the pause menu
 /// </summary>
-public class PauseMenu : ControlWithInput
+public class PauseMenu : CustomDialog
 {
     [Export]
     public string HelpCategory;
@@ -151,7 +151,16 @@ public class PauseMenu : ControlWithInput
         // This needs to be done early here to make sure the help screen loads the right text
         helpScreen = GetNode<HelpScreen>(HelpScreenPath);
         helpScreen.Category = HelpCategory;
+        InputManager.RegisterReceiver(this);
+
         base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        InputManager.UnregisterReceiver(this);
     }
 
     public override void _Ready()
