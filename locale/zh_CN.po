@@ -155,7 +155,9 @@ msgstr ""
 "鞭毛：通过消耗[thrive:compound type=\"atp\"][/thrive:compound]加快你细胞的移"
 "动速度\n"
 "\n"
-"菌毛：可以用来捅其它细胞"
+"菌毛：可以用来捅其它细胞\n"
+"\n"
+"化学感受器：允许从更远的地方探测化合物"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -181,7 +183,8 @@ msgstr ""
 "\n"
 "液泡：储存15单位收集的化合物\n"
 "\n"
-"毒素液泡：生产毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）"
+"毒素液泡：生产毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）并"
+"释放它，根据可用的氧化毒素量造成伤害"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -2490,7 +2493,8 @@ msgstr ""
 "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound "
 "type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"]"
 "[/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:"
-"input]来释放毒素。"
+"input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量"
+"不足时仍能释放，但是伤害会降低。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2518,7 +2522,12 @@ msgstr "用这个来捅其它细胞。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "用来捅其它细胞。"
+msgstr ""
+"纤毛存在于许多微生物的表面，类似于细毛。一个微生物的表面可能有几十到几百个纤"
+"毛，其有多种用途，包括捕食。致病性微生物利用纤毛来提高毒性，或者附着并结合在"
+"宿主组织上，或者穿过外膜侵入细胞质。纤毛有很多相似的变种，但在进化上没有关"
+"系，是趋同进化的结果。一个生物体可能有能力表达几种类型的纤毛，那些存在于表面"
+"的纤毛通常会不断的改变和替换。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
@@ -2667,7 +2676,8 @@ msgstr ""
 "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound "
 "type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"]"
 "[/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以"
-"释放毒素。"
+"释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也"
+"能释放，但伤害会降低。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
