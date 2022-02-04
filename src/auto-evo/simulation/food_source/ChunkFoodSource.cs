@@ -76,7 +76,10 @@
 
         public override IFormattable GetDescription()
         {
-            return new LocalizedString("CHUNK_FOOD_SOURCE", new LocalizedString(chunkName ?? "error"));
+            return new LocalizedString("CHUNK_FOOD_SOURCE",
+                string.IsNullOrEmpty(chunkName) ?
+                    new LocalizedString("NOT_FOUND_CHUNK") :
+                    new LocalizedString(chunkName!));
         }
 
         public override float TotalEnergyAvailable()
