@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-28 20:32+0200\n"
-"PO-Revision-Date: 2022-01-05 08:20+0000\n"
+"PO-Revision-Date: 2022-02-03 10:36+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/cs/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -171,7 +171,9 @@ msgstr ""
 "Bičík: Umožní rychlejší pohyb buňky spotřebováváním [thrive:compound type="
 "\"atp\"][/thrive:compound]\n"
 "\n"
-"Pilus: Může být použit k bodnutí ostatních buněk"
+"Pilus: Může být použit k bodnutí ostatních buněk\n"
+"\n"
+"Chemoreceptor: Umožňuje detekci sloučenin z větší vzdálenosti"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -183,8 +185,8 @@ msgstr ""
 "\n"
 "Pojivové médium: Umožňuje spojení s dalšími buňkami\n"
 "\n"
-"Mitochondrie: Produkují ATP z glukózy a atmosférického kyslíku (O2). "
-"Mnohem efektivněji než cytoplazma\n"
+"Mitochondrie: Produkují ATP z glukózy a atmosférického kyslíku (O2). Mnohem "
+"efektivněji než cytoplazma\n"
 "\n"
 "Chloroplast: Vytváří glukózu ze slunečního záření a atmosférického oxidu "
 "uhličitého (CO2)\n"
@@ -196,8 +198,9 @@ msgstr ""
 "\n"
 "Vakuola: Uchovává 8 nashromážděných sloučenin\n"
 "\n"
-"Vakuola s toxiny: Produkuje toxiny (nazývané [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound])"
+"Vakuola s toxiny: Produkuje toxiny (nazývané [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound]) a umožňuje jejich uvolnění, které způsobuje poškození "
+"v závislosti na množství dostupných oxytoxinů"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -883,9 +886,8 @@ msgstr "Jádro"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Chemoplasty"
+msgstr "Chemoreceptor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
@@ -966,43 +968,41 @@ msgstr "vyhynul na této planetě"
 
 #: ../src/auto-evo/RunResults.cs:854
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[u]{0}[/u] vyhynul!"
 
 #: ../src/auto-evo/RunResults.cs:864 ../src/auto-evo/RunResults.cs:886
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Populace druhů"
+msgstr "[u]{0}[/u] populace se zvýšila na {1}"
 
 #: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "Populace druhů"
+msgstr "[u]{0}[/u] populace se snížila na {1}"
 
 #: ../src/auto-evo/RunResults.cs:878
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[u]{0}[/u] zmizel z této oblasti"
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
+msgstr "Část [u]{0}[/u] populace migrovala do této oblasti z {1}"
 
 #: ../src/auto-evo/RunResults.cs:907
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Část [u]{0}[/u] populace migrovala do {1} z {2}"
 
 #: ../src/auto-evo/RunResults.cs:913
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Část [u]{0}[/u] populace migrovala do {1}"
 
 #: ../src/auto-evo/RunResults.cs:929
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "vznikl, aby zaplnil mezeru"
+msgstr "[u]{0}[/u] se oddělil od [u]{1}[/u] jako nový druh, aby zaplnil mezeru"
 
 #: ../src/auto-evo/RunResults.cs:935
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "vznikly v důsledku rozdílných selekčních tlaků"
+msgstr ""
+"[u]{0}[/u] se oddělil od [u]{1}[/u] jako nový druh v důsledku rozdílných "
+"selekčních tlaků"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
 msgid "CHUNK_FOOD_SOURCE"
@@ -1468,11 +1468,11 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0} koncentrace se snížily o {1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "Koncentrace glukózy drasticky klesla!"
 
 #: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
@@ -2558,9 +2558,11 @@ msgstr ""
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná "
-"koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny "
-"mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]."
+"compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být "
+"uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je "
+"množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba "
+"je stále možná, ale bude mít snížené poškození."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2588,30 +2590,36 @@ msgid "SPEED"
 msgstr "Rychlost"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Tímto bodneš ostatní buňky."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Tímto bodneš ostatní buňky."
+msgstr ""
+"Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikroorganismů "
+"a připomínají jemné chloupky. Na povrchu mikroorganismu se mohou nacházet "
+"desítky až stovky pilusů, které slouží k několika účelům, včetně predátorské "
+"role. Patogenní mikroorganismy využívají pili k virulenci buď k přichycení a "
+"vazbě na tkáně hostitele, nebo k proniknutí přes vnější membránu a získání "
+"přístupu do cytoplazmy. Existuje mnoho podobných pili, které však nejsou "
+"evolučně příbuzné a vznikly konvergentní evolucí. Jeden organismus může mít "
+"schopnost exprimovat několik typů pili a ty, které jsou přítomny na povrchu, "
+"se neustále mění a nahrazují."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
-#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"Přeměňuje [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] na "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná "
-"koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+"Chemoreceptor umožňuje detekovat sloučeniny z větší vzdálenosti. Po umístění "
+"upravte výběr typu sloučeniny a barvu naváděcí čáry."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
-#, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
-"Chemoplast je dvojitá membránová struktura obsahující proteiny schopné "
-"přeměňovat sirovodík, vodu a plynný oxid uhličitý na glukózu v procesu "
-"zvaném chemosyntéza sirovodíku. Rychlost jeho produkce glukózy se mění s "
-"koncentrací oxidu uhličitého."
+"Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto způsobem "
+"buňky získávají informace o svém okolí. Přidání této organely představuje "
+"vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je to "
+"znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující "
+"blízké sloučeniny, které hráč ještě nemohl vidět."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
@@ -2769,9 +2777,11 @@ msgstr ""
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná "
-"koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny "
-"můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]."
+"compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci "
+"[thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit "
+"stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále "
+"možná, ale bude mít snížené poškození."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3347,19 +3357,19 @@ msgstr "Vedlejší účinky:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Zobrazit globální události"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
 msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
+msgstr "G"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2708
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Zobrazit lokální události"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
 msgid "LOCAL_INITIAL_LETTER"
-msgstr ""
+msgstr "L"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2820
@@ -3421,9 +3431,9 @@ msgstr ""
 "základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je "
 "zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková "
 "energie, která je z daného zdroje k dispozici. Podíl, který druh získá z "
-"celkové energie, je založen na tom, jak velké je jeho fitness v porovnání "
-"s celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný "
-"zdroj potravy využít."
+"celkové energie, je založen na tom, jak velké je jeho fitness v porovnání s "
+"celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný zdroj "
+"potravy využít."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
@@ -3440,7 +3450,7 @@ msgstr "Myry"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:764
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+msgstr "Uplynutý čas: {0:#,#} let"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:807
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
@@ -3481,15 +3491,13 @@ msgstr "Přítomné druhy"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1111
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
-#, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr "vyhynul na této planetě"
+msgstr "Vyhynul na této planetě"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1112
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1123
-#, fuzzy
 msgid "EXTINCT_FROM_PATCH"
-msgstr "vyhynul na této planetě"
+msgstr "Vyhynul v této oblasti"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1160
 msgid "FREEBUILDING"
@@ -3572,30 +3580,27 @@ msgstr "Vyhynulé druhy"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:235
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Žádné zaznamenané události"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "Mračna sloučenin"
+msgstr "Sloučenina k nalezení:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "Vyhledávací rádius:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "Minimální množství k detekci:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
-#, fuzzy
 msgid "LINE_COLOUR"
-msgstr "Barva"
+msgstr "Barva čáry:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "Přemístit organelu"
+msgstr "Modifikovat organelu"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
 msgid "EXTINCTION_CAPITAL"
@@ -3798,7 +3803,7 @@ msgstr "Název módu:"
 
 #: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
-msgstr ""
+msgstr "Interní název (složky):"
 
 #: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
