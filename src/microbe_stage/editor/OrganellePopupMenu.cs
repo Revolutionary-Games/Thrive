@@ -116,9 +116,14 @@ public class OrganellePopupMenu : PopupPanel
         moveButton = GetNode<Button>(MoveButtonPath);
         modifyButton = GetNode<Button>(ModifyButtonPath);
 
-        UpdateOrganelleNameLabel();
-        UpdateDeleteButton();
-        UpdateMoveButton();
+        // Skip things that use the organelle to work on if we aren't open (no selected organelle set)
+        if (selectedOrganelle != null)
+        {
+            UpdateOrganelleNameLabel();
+            UpdateDeleteButton();
+            UpdateMoveButton();
+        }
+
         UpdateModifyButton();
     }
 

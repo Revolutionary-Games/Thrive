@@ -94,7 +94,7 @@ public class InputActionItem : VBoxContainer
     public override void _Ready()
     {
         if (string.IsNullOrEmpty(InputName))
-            throw new InvalidOperationException($"{nameof(DisplayName)} can't be empty");
+            throw new InvalidOperationException($"{nameof(InputName)} can't be empty");
 
         if (DisplayName == null)
             throw new InvalidOperationException($"{nameof(DisplayName)} can't be null");

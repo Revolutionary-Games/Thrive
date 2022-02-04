@@ -135,8 +135,8 @@ public class CompoundAmount : HBoxContainer
     {
         base._Ready();
 
-        if (compound == null || icon == null)
-            throw new InvalidOperationException("Need to set compound and icon");
+        if (compound == null)
+            throw new InvalidOperationException($"Need to set {nameof(Compound)}");
 
         UpdateLabel();
         UpdateIcon();
@@ -151,8 +151,7 @@ public class CompoundAmount : HBoxContainer
     {
         if (what == NotificationTranslationChanged)
         {
-            if (icon != null)
-                UpdateTooltip();
+            UpdateTooltip();
 
             UpdateLabel();
         }
@@ -219,6 +218,7 @@ public class CompoundAmount : HBoxContainer
 
     private void UpdateTooltip()
     {
-        icon!.HintTooltip = compound!.Name;
+        if (icon != null)
+            icon.HintTooltip = compound!.Name;
     }
 }

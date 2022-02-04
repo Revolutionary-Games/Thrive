@@ -79,10 +79,10 @@ public class Membrane : MeshInstance
     public List<Vector2>? OrganellePositions { get; set; }
 
     /// <summary>
-    ///   The type of the membrane. Note that changing this doesn't by itself cause the membrane to be regenerated.
+    ///   The type of the membrane.
     /// </summary>
     /// <exception cref="InvalidOperationException">When trying to read before this is initialized</exception>
-    /// <exception cref="ArgumentNullException">Can't be set to null</exception>
+    /// <exception cref="ArgumentNullException">If value is attempted to be set to null</exception>
     public MembraneType Type
     {
         get => type ?? throw new InvalidOperationException("Membrane type has not been set yet");
@@ -91,7 +91,11 @@ public class Membrane : MeshInstance
             if (value == null)
                 throw new ArgumentNullException();
 
-            type = Type;
+            if (type == value)
+                return;
+
+            type = value;
+            dirty = true;
         }
     }
 
