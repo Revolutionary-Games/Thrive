@@ -13,7 +13,7 @@ public static class SaveHelper
     ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
     ///   (unless there exists a version converter)
     /// </summary>
-    private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
+    private static readonly List<string> KnownSaveIncompatibilityPoints = new()
     {
         "0.5.3.0",
         "0.5.3.1",

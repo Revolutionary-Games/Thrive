@@ -51,7 +51,8 @@ public class SystemVector4ArrayConverter : JsonConverter
         serializer.Serialize(writer, Convert.ToBase64String(stream.GetBuffer()));
     }
 
-    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
+        JsonSerializer serializer)
     {
         if (reader.TokenType == JsonToken.Null)
             return null;

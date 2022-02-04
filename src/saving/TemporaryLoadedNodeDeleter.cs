@@ -6,8 +6,8 @@ public class TemporaryLoadedNodeDeleter : Node
 {
     private static TemporaryLoadedNodeDeleter? instance;
 
-    private readonly List<Node> nodesToDelete = new List<Node>();
-    private readonly HashSet<string> deletionHolds = new HashSet<string>();
+    private readonly List<Node> nodesToDelete = new();
+    private readonly HashSet<string> deletionHolds = new();
 
     private TemporaryLoadedNodeDeleter()
     {

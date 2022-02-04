@@ -150,7 +150,8 @@ public class Settings
     /// </summary>
     public SettingValue<bool> VolumeGUIMuted { get; set; } = new(false);
 
-    public SettingValue<string?> SelectedAudioOutputDevice { get; set; } = new(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
+    public SettingValue<string?> SelectedAudioOutputDevice { get; set; } =
+        new(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
 
     public SettingValue<string?> SelectedLanguage { get; set; } = new(null);
 
@@ -318,7 +319,7 @@ public class Settings
         return new InputDataList(InputMap.GetActions().OfType<string>()
             .ToDictionary(p => p,
                 p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
-                    x => (SpecifiedInputKey?)new SpecifiedInputKey(x)).ToList()));
+                    x => new SpecifiedInputKey(x)).ToList())!);
     }
 
     /// <summary>

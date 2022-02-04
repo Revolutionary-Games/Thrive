@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -167,10 +168,14 @@ public class MicrobeHUD : Control
     [Export]
     public NodePath BindingModeHotkeyPath = null!;
 
+    // Formatter and code checks disagree here
+    // ReSharper disable RedundantNameQualifier
     private readonly System.Collections.Generic.Dictionary<Species, int> hoveredSpeciesCounts = new();
 
     private readonly System.Collections.Generic.Dictionary<Compound, HoveredCompoundControl> hoveredCompoundControls =
         new();
+
+    // ReSharper restore RedundantNameQualifier
 
     private Compound ammonia = null!;
     private Compound atp = null!;
@@ -847,8 +852,8 @@ public class MicrobeHUD : Control
     {
         // Get player reproduction progress
         player.CalculateReproductionProgress(
-            out System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds,
-            out System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds);
+            out Dictionary<Compound, float> gatheredCompounds,
+            out Dictionary<Compound, float> totalNeededCompounds);
 
         float fractionOfAmmonia = 0;
         float fractionOfPhosphates = 0;

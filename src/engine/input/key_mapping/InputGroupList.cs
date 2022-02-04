@@ -77,10 +77,13 @@ public class InputGroupList : VBoxContainer
     /// <returns>The collisions if any of item against already set controls</returns>
     public InputEventItem? Conflicts(InputEventItem item)
     {
-        if (item.AssociatedAction?.TryGetTarget(out var inputActionItem) != true || inputActionItem == null)
+        if (item.AssociatedAction?.TryGetTarget(out var inputActionItem) != true)
             return default;
 
-        if (inputActionItem.AssociatedGroup?.TryGetTarget(out var inputGroupItem) != true || inputGroupItem == null)
+        if (inputActionItem?.AssociatedGroup?.TryGetTarget(out var inputGroupItem) != true)
+            return default;
+
+        if (inputGroupItem == null)
             return default;
 
         // Get all environments the item is associated with.
