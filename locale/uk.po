@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-28 20:32+0200\n"
-"PO-Revision-Date: 2021-12-19 11:09+0000\n"
+"PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/uk/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.9.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -169,10 +169,12 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Органели руху\n"
 "\n"
-"Джугутики: живлячися прискорюють вашу клітину [thrive:compound type=\"atp"
-"\"][/thrive:compound]\n"
+"Джугутики: живлячися прискорюють вашу клітину [thrive:compound type=\"atp\""
+"][/thrive:compound]\n"
 "\n"
-"Ворсинки: Можна використати, щоб заколювати інші клітини"
+"Ворсинки: Можна використати, щоб заколювати інші клітини насмерть\n"
+"\n"
+"Хеморецептор: Дає змогу знаходити сполуки, що на відстані"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -188,20 +190,21 @@ msgstr ""
 "[thrive:compound type=\"glucose\"][/thrive:compound] та атмосферного O2, "
 "ефективніші ніж цитоплазма\n"
 "\n"
-"Хлоропласт: Виробляє [thrive:compound type=\"glucose\"][/thrive:compound] "
-"з сонячного світла та атмосферного CO2\n"
+"Хлоропласт: Виробляє [thrive:compound type=\"glucose\"][/thrive:compound] з "
+"сонячного світла та атмосферного CO2\n"
 "\n"
 "Хемопласт: Виробляє [thrive:compound type=\"glucose\"][/thrive:compound] з "
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Азофіксуючі пластиди: Утворюють [thrive:compound type=\"ammonia\"][/thrive:"
-"compound] з [thrive:compound type=\"atp\"][/thrive:compound] та "
+"Азотофіксуючі пластиди: Утворюють [thrive:compound type=\"ammonia\""
+"][/thrive:compound] з [thrive:compound type=\"atp\"][/thrive:compound] та "
 "атмосферних азоту та кисню\n"
 "\n"
 "Вакуоля: зберігає 8 зібраних сполук\n"
 "\n"
-"Токсинова вакуоля: Продукує токсини (потребує [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound])"
+"Токсинова вакуоля: Продукує токсини (показані як [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound]) і дозволяють виводити їх, завдаючи шкоди "
+"відповідно до кількості окситоксину"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -265,7 +268,7 @@ msgstr "Порада: іноді краще втекти від інших кл�
 #: ../simulation_parameters/common/help_texts.json:144
 msgid "EASTEREGG_MESSAGE_7"
 msgstr ""
-"Порада: якщо інша клітина за розмірами становить половину вашого то її "
+"Порада: якщо інша клітина за розмірами становить лише половину вашого то її "
 "можна поглинути."
 
 #: ../simulation_parameters/common/help_texts.json:147
@@ -737,7 +740,7 @@ msgstr "Глюкоза"
 #: ../simulation_parameters/microbe_stage/compounds.json:73
 #: ../src/microbe_stage/MicrobeStage.tscn:1576
 msgid "OXYTOXY_NT"
-msgstr ""
+msgstr "Окситоциновий нуклеотид"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1446
@@ -824,7 +827,7 @@ msgstr "Хемосинтезуючі білки"
 #: ../simulation_parameters/microbe_stage/organelles.json:186
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:867
 msgid "OXYTOXISOME"
-msgstr "Окситоксисщма"
+msgstr "Окситоксисома"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:219
 msgid "THYLAKOIDS"
@@ -889,9 +892,8 @@ msgstr "Ядро"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Хемопласт"
+msgstr "Хеморецептор"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
@@ -911,7 +913,7 @@ msgstr "{0:F1}% зроблено. {1:n0}/{2:n0} виконується."
 
 #: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "STARTING"
-msgstr "Починайте"
+msgstr "Почати"
 
 #: ../src/auto-evo/AutoEvoRun.cs:293
 msgid "AUTO-EVO_POPULATION_CHANGED"
@@ -935,7 +937,7 @@ msgstr "відокремились від {0}"
 
 #: ../src/auto-evo/RunResults.cs:617
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "виникла для заповнення нішу"
+msgstr "виникла для заповнення ніши"
 
 #: ../src/auto-evo/RunResults.cs:620
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
@@ -971,41 +973,42 @@ msgstr "вимерли на цілій планеті"
 
 #: ../src/auto-evo/RunResults.cs:854
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[u]{0}[/u] повимерали!"
 
 #: ../src/auto-evo/RunResults.cs:864 ../src/auto-evo/RunResults.cs:886
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr ""
+msgstr "[u]{0}[/u] населення збільшилось до {1}"
 
 #: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr ""
+msgstr "[u]{0}[/u] населення зменшилося до {1}"
 
 #: ../src/auto-evo/RunResults.cs:878
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[u]{0}[/u] зникли з ділянки"
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
+msgstr "Частина популяції [u]{0}[/u] мігрувала на цю ділянку з {1}"
 
 #: ../src/auto-evo/RunResults.cs:907
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Частина популуляції [u]{0}[/u] мігрувала до {1} з {2}"
 
 #: ../src/auto-evo/RunResults.cs:913
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Частина популяції [u]{0}[/u] мігрувала до {1}"
 
 #: ../src/auto-evo/RunResults.cs:929
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "виникла для заповнення нішу"
+msgstr ""
+"[u]{0}[/u] відокремилося від [u]{1}[/u] як новий вид, щоб заповнити нішу"
 
 #: ../src/auto-evo/RunResults.cs:935
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "з'явився через тиск відбору"
+msgstr ""
+"[u]{0}[/u] відокремились від [u]{1}[/u] як новий вид через різні утиски "
+"відбору"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
 msgid "CHUNK_FOOD_SOURCE"
@@ -1071,7 +1074,7 @@ msgstr "Дім"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:134
 msgid "KEY_END"
-msgstr "Кынець"
+msgstr "Кінець"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:135
 msgid "KEY_LEFT"
@@ -1171,11 +1174,11 @@ msgstr "Caps Lock"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr ""
+msgstr "Перемикання числового регістрату(Num Lock)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr ""
+msgstr "Пересування екрану (Scroll Lock)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
@@ -1439,7 +1442,7 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:76
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Невідома миша"
 
 #: ../src/general/Gallery.cs:70
 msgid "ARTWORK_TITLE"
@@ -1471,11 +1474,11 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0} концентрація зменшилась на {1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "Концентрація глюкози раптово впала!"
 
 #: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
@@ -1572,7 +1575,7 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.cs:936
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr "Прогрес перекладу на нацямову/солов'їну ({0}% готово)"
+msgstr "Прогрес перекладу на цю мову зараз солов'їну ({0}% готово)"
 
 #: ../src/general/OptionsMenu.cs:940
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
@@ -1600,7 +1603,7 @@ msgstr "Інше"
 
 #: ../src/general/OptionsMenu.tscn:211
 msgid "VSYNC"
-msgstr ""
+msgstr "Вертикальна синхронізація(VSync)"
 
 #: ../src/general/OptionsMenu.tscn:218
 msgid "FULLSCREEN"
@@ -1608,7 +1611,7 @@ msgstr "Повноекрання"
 
 #: ../src/general/OptionsMenu.tscn:240
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
+msgstr "Згладжування кількох зразків:"
 
 #: ../src/general/OptionsMenu.tscn:247
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
@@ -1750,7 +1753,7 @@ msgstr "Поточні обчислення:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Вважається ЦП ввімкнув гіперчитання"
 
 #: ../src/general/OptionsMenu.tscn:850
 msgid "USE_MANUAL_THREAD_COUNT"
@@ -2193,7 +2196,7 @@ msgstr "Збереження має іншу версію"
 
 #: ../src/gui_common/TweakedColourPicker.cs:333
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr "Виберіть колір у меню гри"
+msgstr "Виберіть колір у ігровому вікні"
 
 #: ../src/gui_common/TweakedColourPicker.cs:334
 msgid "COLOUR_PICKER_ADD_PRESET"
@@ -2215,15 +2218,15 @@ msgstr ""
 
 #: ../src/gui_common/TweakedColourPicker.cs:340
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "Значення відтінку, частки кольору"
 
 #: ../src/gui_common/TweakedColourPicker.cs:341
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "Значення насиченості, частки сірого в певному кольорі"
 
 #: ../src/gui_common/TweakedColourPicker.cs:342
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgstr "Оцінка (яскравість) значення, яскравість або інтенсивність кольору"
 
 #: ../src/gui_common/TweakedColourPicker.cs:346
 msgid "COLOUR_PICKER_R_TOOLTIP"
@@ -2262,9 +2265,8 @@ msgid "NO_DATA_TO_SHOW"
 msgstr "Немає даних для показу"
 
 #: ../src/gui_common/charts/line/LineChart.cs:637
-#, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
-msgstr "Немає даних для показу"
+msgstr "Недійсні данні для ділянки"
 
 #: ../src/gui_common/charts/line/LineChart.cs:1104
 #: ../src/gui_common/charts/line/LineChart.cs:1190
@@ -2274,11 +2276,11 @@ msgstr "Не дозволено показувати більше ніж {0} д�
 #: ../src/gui_common/charts/line/LineChart.cs:1110
 #: ../src/gui_common/charts/line/LineChart.cs:1195
 msgid "MIN_VISIBLE_DATASET_WARNING"
-msgstr ""
+msgstr "Не дозволено показувати менше {0} наборів данних!"
 
 #: ../src/gui_common/charts/line/LineChart.tscn:219
 msgid "INSPECT"
-msgstr ""
+msgstr "Оглянути"
 
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:65
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:118
@@ -2288,11 +2290,11 @@ msgstr "Добре"
 
 #: ../src/gui_common/dialogs/ErrorDialog.tscn:109
 msgid "COPY_ERROR_TO_CLIPBOARD"
-msgstr ""
+msgstr "Скопіювати помилку з до буферу обміну"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.cs:34
 msgid "GPL_LICENSE_HEADING"
-msgstr ""
+msgstr "Відслідкований Текст ліцензії GPL:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
 msgid "THRIVE_LICENSES"
@@ -2300,7 +2302,7 @@ msgstr "Ліцензії Thrive"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
-msgstr ""
+msgstr "Тут представлені ліцензії, які охоплюють частини Thrive"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:47
 msgid "OPEN_THE_MENU"
@@ -2308,7 +2310,7 @@ msgstr "Відкрити меню"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:53
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "В"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:67
 msgid "WILL_YOU_THRIVE"
@@ -2316,19 +2318,19 @@ msgstr "Ти процвітатимеш?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:84
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Завершити редагування та повернутися до оточення"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:90
 msgid "CHANGE_THE_SYMMETRY"
-msgstr ""
+msgstr "Змінити симетрію"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:96
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Скасувати попередню дію"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:102
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Повернути попередню дію"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:108
 msgid "CREATE_A_NEW_MICROBE"
@@ -2336,15 +2338,17 @@ msgstr "Створити нового мікроба"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:113
 msgid "RANDOMIZE_SPECIES_NAME"
-msgstr ""
+msgstr "Випадкова назва виду"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:123
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Жорсткість мембрани"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:124
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Чим жорсткіша мембранна,тим вона стійкіша до пошкоджень, але це ускладнить "
+"пересування."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:150
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2129
@@ -2369,30 +2373,53 @@ msgstr "Здоров'я"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:224
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Агресивні мікроби переслідуватимуть зддобич на відстані\n"
+"та скоріше битимуться з нападниками.\n"
+"Мирні ж не нападуть на відстані\n"
+"і рідше використовують токсини проти хижаків."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:232
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
+"Упереджені мікроби будуть влаштовувати змагання за брили,\n"
+"та полювати за допомогою токсинів, якщо не вдасться поглинути здобич.\n"
+"Обережні мікроби старатимуться не наражатись на небезпеку через брили."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:240
 msgid "FEAR_EXPLANATION"
 msgstr ""
+"Боязкі мікроби будуть триматися на відстані\n"
+"та взагалі частіше тікатимуть від хижаків.\n"
+"Хоробрі мікроби не бояться близьких хижаків,\n"
+"та ймовірно атакуватимуть у відповідь."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:248
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Рухливі мікроби будуть більше плавати та безлаодно тинятися.\n"
+"Пасивні будуть залишатися нерухомими до змін в оточені, й лиш тоді діють."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:256
 msgid "FOCUS_EXPLANATION"
 msgstr ""
+"Зосереджені мікроби будуть шукати брили на більшій відстані\n"
+"та можуть бути вимогливішими щодо брил.\n"
+"Розсіяні мікроби швидче відволікатимуться на нові цілі."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:272
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
+"перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:"
+"compound type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:273
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
+"Густий вміст клітини. Це– базова суміш з йонів, білків та інших розчинених у "
+"воді речовин, які заповнюють порожнину клітини. Одна з функцій– це гліколіз, "
+"перетворення глюкози на енергетичну АТФ. Для клітин без органели, це засіб "
+"для стабільного метаболізму, отримання енергії. Також вона потрібна для "
+"збереження молекул в клітині та збільшення розміру останньої."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:290
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:394
@@ -2412,7 +2439,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1900
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1997
 msgid "STORAGE"
-msgstr ""
+msgstr "Збереження"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:328
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:432
@@ -2440,186 +2467,335 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2964
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3234
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Вартість осморегуляції"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:371
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
+"Перетворення [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Кількість залежить відд [thrive:"
+"compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:372
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
+"Метаболосоми–скупчення білків в білковій оболонці. Вони набагато швидче "
+"перетворюють глюкозу в АТФ ніж в цитоплазмі під час процесу, що зветься "
+"анаеробним диханням. Та для цього треба кисень, а нищий рівень кисню "
+"сповільнює синтез АТФ. Оскільки метаболосоми розміщені в цитоплазмі, "
+"навколишня рідина здійснює гліколіз."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:472
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Тилакоїд"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:473
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
+"Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість "
+"залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та "
+"інтенсивністю [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
+"Тилакоїди–це кластери з білків та фотосинтезуючих пігментів. Пігменти "
+"використовують світлову енергію, щоб продукувати глюкозу з води та "
+"газуватого вуглекислого газу в процесі, що називається фотосинтез. Ці "
+"пігменти також надають характерний колір. Їхня кількість виробленної глюкози "
+"залежить від концентрації вуглекислого газу та інтенсивності світла. "
+"Оскільки тилакоїди зафіксовані безпосередньо в цитоплазмі навколишня рідина "
+"одразу здійснює певний гліколіз."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:570
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
+"перетворює [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] на "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від "
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound]. Також перетворює "
+"[thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound "
+"type=\"atp\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:571
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
+"Хемосинтезуючі білки– маленькі кластери білків у цитоплазмі які перетворюють "
+"сірководень, воду та вуглекислий газ на глюкозу під час процесу, що зветься "
+"Сірководневим Хемосинтезом. Їхня кількість виробленої глюкози залежить від "
+"концентрації вуглекислого газу. Оскільки хемосинтезуючі білки розміщені "
+"одразу в цитоплазмі, навколищня рідина одразу здійснює певний гліколіз."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:673
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
+"Перетворює [thrive:compound type=\"iron\"][/thrive:compound] на [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Кількість залежить від [thrive:"
+"compound type=\"carbondioxide\"][/thrive:compound] і [thrive:compound type="
+"\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:674
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
+"Залізоокисні білки–це білки , що використовують газоподібний карбон диоксид( "
+"вуглекислий газ) та кисень для окиснення заліза з одного хімічного стану в "
+"інший. Цей процес зветься Залізним диханням, вивільняється енергія, яку "
+"клітина потім забирає."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:770
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
+"Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:"
+"compound type=\"nitrogen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:771
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
+"Нітрогеназа– це білок, що використовує газоподібний азот та клітинну "
+"енергію, у вигляді АТФ, щоб перетворити АТФ на виробленний амоніак, головна "
+"поживна речовина для росту клітин. Цей процес зветься анаеробна "
+"азотофіксація. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча "
+"рідина одразу здійснює гліколіз."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:868
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
+"Перетворює [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:"
+"compound type=\"oxygen\"][/thrive:compound]. Можна вивести токсини при "
+"натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли кількість [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] невелика, то постріл можливий, "
+"але шкода буде незначною."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
 msgstr ""
+"Модифікована метабелосома відповідає за продукування примітивної форми "
+"токсичного агента окситоцинового нуклеотиду."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
+"Використання [thrive:compound type=\"atp\"][/thrive:compound] пришвидчує рух "
+"клітини."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:966
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
+"Джгутик ( множина: джгутики )– батогоподібний мішечок з пучків білкових "
+"волокон, що тягнеться від мембрани, вони використовують АТФ для "
+"хвилеподібних рухів й пересування клітини в певному напрямі. Положення "
+"джгутика визначає напрям в якому буде запеспечена тяга. Її напрям "
+"протилежний, такому у джгутика, наприклад якщо джгутик зліва, він "
+"забеспечить тягу вправо."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:983
 msgid "SPEED"
-msgstr ""
+msgstr "Швидкість"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Проштрихніть нею інші клітини."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
+"Ворсинки(однина: ворсинка) знаходяться на поверхні багатьох мікроорганізмів "
+"і нагадують тонкі волоски. Від десятків до сотень ворсинок можуть бути на "
+"поверхні мікроорганізму й виконують кілька функцій, включаючи роль в "
+"хижацтві. Патогенні мікроорганізми використовують їх для ураження чи для "
+"прикріплення й зв'язування з тканинами господаря; або для проникнення крізь "
+"зовнішню мембрану, щоби отримати доступ до цитоплазми. Багато існує схожих "
+"ворсинок, але еволюційно ті не пов'язані, а є результатом конвергентної "
+"еволюції. Одному організму можуть бути притаманні різні ворсинки, а ті, які "
+"присутні на поверхні завжди змінюються й міняються."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
+"Хеморецептор дозволяє відстежувати сполуки на відстані. Модифікуйте один "
+"раз, аби вибрати тип сполуки та колір та колір вказівної лінії."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
+"Усі клітини «бачають» лиш через хеморецепцію. Так вони отримують інформацію "
+"про своє оточення. Додавання цієї органели означає еволяцію точніше "
+"розвиненої хеморецепції. Оскільки гравець має зір на клітинній стадії, вона "
+"представляє собою вказівну лінію, яка йде за межі екрану та веде до ближні "
+"сполуки невидимі для гравця."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
-msgstr ""
+msgstr "Війки"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1220
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1690
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2077
 msgid "TO_BE_IMPLEMENTED"
-msgstr ""
+msgstr "Буде реалізованим."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1237
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
+"Натисніть [thrive:input]g_toggle_binding[/thrive:input] для переходу до "
+"зв'язувального режиму. У ньому ви можете з'єднуватись з іншими клітинами "
+"вашого ж виду прермістивши їх до своєї колонії. Щоб покинути її натисніть "
+"[thrive:input]g_unbind_all[/thrive:input]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
+"Дозволяє з'єднуватися з іншими клітинами.Це перший крок до "
+"багатоклітинності. Коли ваша клітина– частина колонії, сполуки "
+"розподіляються між клітинами. Ти не можеш зайти в редактор, поки є частиною "
+"колонії, тому вам необхідно від'єднатися, зібравши необхідну кількість "
+"сполук, перед від'єднання."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1320
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
+"Дозволяє еволюцію складніших, двохмембранних органел. Його підтримка вимагає "
+"значних витрат АТФ. Ця еволюція– необоротна."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1321
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
+"Визначальна риса еукаріотичної клітини. До ядерного складу також, входять "
+"ендоплазматична сітка та комплекс Ґольджі. Ця еволюція прокаріотичної "
+"клітини до розвитку системи внутрішніх мембран, здійснена приєднанням іншого "
+"прокаріота всеридину себе. Це дозволило їм розділяти і згруповувати різні "
+"процеси, що відбувалися всередині клітини та запобігти змішування останніх. "
+"Це дозволило їхнім мембранним органелам бути сладнішими, ефективнішими та "
+"спеціалізованими, аніж якби вони вільно плавали в цитоплазмі. Але це "
+"відбувається ціною того, що клітина значно більшає й потребує багато "
+"клітинної енергії для підтримки ядра."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1417
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
+"Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:"
+"compound type=\"atp\"][/thrive:compound]. Кількість залежить від [thrive:"
+"compound type=\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1418
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
+"Енергостанція клітини. Мітохондрія ( множина: мітохондрії)– це двохмембранні "
+"структури заповненні білками та ферментами. Це прокаріот поглинутий ддля "
+"використання прокаріотичним господарем. Він здатен перетворювати глюкозу в "
+"АТФ з сильно вищою ефективністю, аніж це робить цитоплазма, в процесі "
+"названому анаеробним диханням. Однак для функціонування мітохондрії потрібен "
+"кисень, а нижчий рівень кисню сповільнить продукування АТФ."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1501
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
+"Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість "
+"залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] and "
+"intensity of [thrive:compound type=\"sunlight\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1502
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
+"Хлоропласти– це двохмембранна структура,що містить фотосинтезуючі пігменти "
+"складені разом в мембраних мішечках. Це прокаріот поглинутий для "
+"використання його в еукаріотичному хазяїні. Пігменти в хлоропластах "
+"використовують енергію світла для продукування глюкози із води та "
+"газоподібного вуглекислого газу в процесі, що називається фотосинтез. Ці "
+"пігменти також надають відповідний колір. Кількість продукованої глюкози "
+"залежить від концентрації вуглекислого газу та інтенсивності світла."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1584
 msgid "THERMOPLAST"
-msgstr ""
+msgstr "Термопласт"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1585
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
+"Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість "
+"залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та "
+"температури."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1586
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr ""
+msgstr "Термопласти– це двохмембранні структури"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1602
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:173
 msgid "NO_ORGANELLE_PROCESSES"
-msgstr ""
+msgstr "Процеси не відбуваються"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1700
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
+"Перетворює [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] на "
+"[thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від "
+"f [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1701
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
+"Хемопласт– це двохмембранна структура, що містить білки здатні перетворювати "
+"сірководень, воду та газоподібний вуглекислий газ на глюкозу в процесі, що "
+"зветься сірководневий хемосинтез. Кількість глюкози залежить від "
+"концентрації вуглекислого газу."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1784
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
+"Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:"
+"compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:"
+"compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type="
+"\"oxygen\"][/thrive:compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1785
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
+"Азотофіксуючі пластиди–це білки, що використовують азот, та кисень, та "
+"клітинну енергію у вигляд АТФ для продукування амоніаку, поживну речовину та "
+"ключа росту клітини. Цей процес названий, як Аеробна Азотофіксація."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1882
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Збільшує простір для зберігання у клітинні."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1883
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
+"Вакуоля– це внутрішня мембранна органела, яку клітина використовує для "
+"зберігання. Вони складаються з кількох пухирців, менших мембранних структур, "
+"як ізлилися разом, що широко використовуються в клітинах для зберігання. "
+"Вони заповнені водою, яку використовують для зберігання молекул, ферментів "
+"та інших речовин. їх форма рідка й варіується серед клітин."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
+"Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:"
+"compound type=\"oxygen\"][/thrive:compound]. Можете вивести токсини при "
+"натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound] недостатньо, то вистріл все ще можливий, "
+"але шкода буде малою."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
+"Токсинова вакуоля– це вакуоля модифікована для специфічного продукування– "
+"зберігання та секреції окситоцинових токсинів. Більша кількість токсинових "
+"вакуоль збільшить швидкість виведення."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2076
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Біолюмісцентна вакуоля"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2103
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Найпростіша форма мембрани погано захищає від пошкоджень. Також потребує "
+"більше енергії, аби не деформуватись. Перевага в тому, що дозволяє клітині "
+"швидче рухатись та поглинати поживні речовини."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2198
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2364
@@ -2628,11 +2804,14 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2998
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3268
 msgid "RESOURCE_ABSORBTION_SPEED"
-msgstr ""
+msgstr "Швикість поглинання ресурсів"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2271
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Двохшарова мембрана– це кращий захист від пошкоджень та потребує менше "
+"енергії, щоб не деформуватись. Проте вона уповільнює клітину та поглинання "
+"ресурсів."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2435
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"

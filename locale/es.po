@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-28 20:32+0200\n"
-"PO-Revision-Date: 2022-01-21 14:35+0000\n"
-"Last-Translator: Sergio Albornoz <salbornozmateos@gmail.com>\n"
+"PO-Revision-Date: 2022-02-04 17:52+0000\n"
+"Last-Translator: César <cesariglesiasparente@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Usa [thrive:input]g_move_forward[/thrive:input], [thrive:"
-"input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:"
-"input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu "
-"célula. [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de "
-"toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar/"
-"desactivar el modo engullir. Puedes acercar y alejar la cámara con la "
-"rueda del ratón."
+"Usa [thrive:input]g_move_forward[/thrive:input], "
+"[thrive:input]g_move_left[/thrive:input], "
+"[thrive:input]g_move_backwards[/thrive:input], "
+"[thrive:input]g_move_right[/thrive:input] y el ratón para mover tu célula. "
+"[thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de toxinas. "
+"[thrive:input]g_toggle_engulf[/thrive:input] para activar o desactivar el "
+"modo engullir. Puedes acercar y alejar la cámara con la rueda del ratón."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
-"Tu célula utiliza [thrive:compound type=\"atp\"][/thrive:compound] como su "
-"fuente de energía. Si se acaba, morirás."
+"Tu célula usa [thrive:compound type=\"atp\"][/thrive:compound] como fuente "
+"de energía. Si se agota, morirá."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
 "Para desbloquear el editor y reproducir tu célula, necesitas conseguir "
-"[thrive:compound type=\"ammonia\"][/thrive:compound] (nube Naranja) y "
+"[thrive:compound type=\"ammonia\"][/thrive:compound] (nube naranja) y "
 "[thrive:compound type=\"phosphates\"][/thrive:compound] (nube púrpura)."
 
 #: ../simulation_parameters/common/help_texts.json:18
@@ -53,42 +53,42 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "También puedes engullir células, bacterias, pedazos de hierro y pedazos de "
-"células que sean más pequeños que tu célula al presionar [thrive:"
-"input]g_toggle_engulf[/thrive:input]. Esto aumentara tu costo de [thrive:"
-"compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. "
-"No te olvides de presionar nuevamente [thrive:input]g_toggle_engulf[/"
-"thrive:input] para dejar de engullir."
+"células de menor tamaño que tu célula al presionar "
+"[thrive:input]g_toggle_engulf[/thrive:input]. Esto aumentará el coste de "
+"[thrive:compound type=\"atp\"][/thrive:compound] y también ralentizará tu "
+"célula. No olvides presionar nuevamente "
+"[thrive:input]g_toggle_engulf[/thrive:input] para dejar de engullir."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"La Osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:"
-"compound], lo que significa que cuan más grande es la célula, más "
-"Mitocondrias, Metabolosomas, Rusticianinas u orgánulos que puedan realizar "
-"glicólisis necesitarás, para evitar perder[thrive:compound type=\"atp\"][/"
-"thrive:compound] cuando esté estática."
+"La Osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:compound], "
+"lo que significa que cuanto más grande es la célula, más mitocondrias, "
+"metabolosomas, rusticianinas (u orgánulos que puedan realizar glicólisis) "
+"necesitarás para evitar perder [thrive:compound type=\"atp\""
+"][/thrive:compound] cuando esté inmóvil."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
-"Hay varios orgánulos en el editor para que evoluciones, lo que te permite "
-"una amplia diversidad de estilos de juego."
+"Hay varios orgánulos en el editor para que evoluciones, permitiéndote una "
+"amplia diversidad de estilos de juego."
 
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
 "Las nubes de compuestos son:\n"
 "\n"
-"Blanco – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Amarillo – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Blanca – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Amarilla – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "Naranja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "Púrpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Rojo Oscuro – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"Marrón – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para "
-"generar [thrive:compound type=\"atp\"][/thrive:compound]."
+"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para generar "
+"[thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
@@ -104,13 +104,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:109
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
-"Para que la célula se reproduzca, necesita dividir cada uno de sus "
-"orgánulos en dos. Para eso, se necesita amoniaco y fosfato."
+"Para que tu célula pueda reproducirse, necesita dividir cada uno de sus "
+"orgánulos en dos. Para ello, se necesita amoniaco y fosfato."
 
 #: ../simulation_parameters/common/help_texts.json:42
 #: ../simulation_parameters/common/help_texts.json:103
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Por ahora, si la población de tu especie cae al 0, se extingue."
+msgstr "De momento, si tu población cae a cero, te extinguirás."
 
 #: ../simulation_parameters/common/help_texts.json:46
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
@@ -184,8 +184,8 @@ msgstr ""
 "Orgánulos con membrana\n"
 "\n"
 "Núcleo: Ocupa 11 espacios y permite la evolución de orgánulos unidos a la "
-"membrana, duplicando el tamaño de tu célula (solo puede ser evolucionado "
-"una vez).\n"
+"membrana, duplicando el tamaño de tu célula (solo puede ser evolucionado una "
+"vez).\n"
 "\n"
 "Agente Ligante: Permite ligarte con otras células\n"
 "\n"
@@ -193,21 +193,21 @@ msgstr ""
 "consume [thrive:compound type=\"glucose\"][/thrive:compound y O2 "
 "atmosférico. Son mucho más eficientes que el citoplasma\n"
 "\n"
-"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:"
-"compound] utilizando la luz solar y CO2 atmosférico.\n"
+"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] "
+"utilizando la luz solar y CO2 atmosférico.\n"
 "\n"
-"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:"
-"compound] consumiendo[thrive:compound type=\"hydrogensulfide\"][/thrive:"
-"compound]\n"
+"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] "
+"consumiendo[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:"
-"compound] consumiendo [thrive:compound type=\"atp\"][/thrive:compound], "
-"así como N2 y O2 atmosférico\n"
+"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:compound] "
+"consumiendo [thrive:compound type=\"atp\"][/thrive:compound], así como N2 y "
+"O2 atmosférico\n"
 "\n"
 "Vacuola: Almacena 8 unidades adicionales de compuestos recolectados.\n"
 "\n"
-"Vacuola de Toxinas: Produce toxinas (llamadas [thrive:compound type="
-"\"oxytoxy\"][/thrive:compound])"
+"Vacuola de Toxinas: Produce toxinas (llamadas [thrive:compound type=\"oxytoxy"
+"\"][/thrive:compound]) permitiendote liberarlas produciendo un daño "
+"proporcional a las toxinas restantes"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -237,31 +237,31 @@ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 #: ../simulation_parameters/common/help_texts.json:126
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
-"Dato curioso: el Didinium y el Paramecio son un ejemplo de una relación "
-"depredador-presa que fue estudiado durante décadas. Ahora, eres el "
-"Didinium o el Paramecio? Depredador, o presa?"
+"Dato curioso: el didinium y el paramecio son un ejemplo de una relación "
+"depredador-presa que fue estudiado durante décadas. Ahora, ¿eres el didinium "
+"o el paramecio? ¿Depredador o presa?"
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
-"Un consejo: Las toxinas pueden ser usadas para desviar otras toxinas antes "
-"de que te alcancen."
+"Un consejo: las toxinas pueden usarse para alejar otras toxinas si eres lo "
+"suficientemente rápido."
 
 #: ../simulation_parameters/common/help_texts.json:132
 msgid "EASTEREGG_MESSAGE_3"
 msgstr ""
-"Aquí hay un consejo, la osmorregulación cuesta 1 ATP por segundo por "
-"hexágono que su célula tiene, cada espacio vacío del citoplasma genera 5 "
-"ATP por segundo también. Lo que significa que si usted está perdiendo ATP "
-"debido a la osmorregulación, simplemente agregue un par de hexágonos de "
-"citoplasma o quite algunos orgánulos."
+"Un consejo: la osmorregulación cuesta 1 ATP por segundo por cada hexágono "
+"que tenga tu célula, cada hexágono vacío de citoplasma genera 5 ATP por "
+"segundo también, lo que significa que si estás perdiendo ATP debido a la "
+"osmoregulación solo tienes que añadir un par de hexágonos vacíos de "
+"citoplasma o eliminar algunos orgánulos."
 
 #: ../simulation_parameters/common/help_texts.json:135
 msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
-"Dato curioso: En la vida real, las células procariotas tienen algo llamado "
-"biocompartimientos, que actúan como orgánulos, y son llamados orgánulos "
-"poliédricos."
+"Un dato curioso: En la vida real, los procariotas tienen algo llamado "
+"biocompartimentos que actúan como orgánulos, y que de hecho se llaman "
+"orgánulos poliédricos."
 
 #: ../simulation_parameters/common/help_texts.json:138
 msgid "EASTEREGG_MESSAGE_5"
@@ -421,25 +421,25 @@ msgstr "Habilidades"
 #: ../simulation_parameters/common/input_options.json:38
 #: ../src/microbe_stage/MicrobeStage.tscn:2099
 msgid "FIRE_TOXIN"
-msgstr "Disparar toxinas"
+msgstr "Lanzar toxinas"
 
 #: ../simulation_parameters/common/input_options.json:42
 #: ../src/microbe_stage/MicrobeStage.tscn:2087
 msgid "TOGGLE_ENGULF"
-msgstr "Activar engullir"
+msgstr "Alternar engullir"
 
 #: ../simulation_parameters/common/input_options.json:46
 #: ../src/microbe_stage/MicrobeStage.tscn:2110
 msgid "TOGGLE_BINDING"
-msgstr "Activar union"
+msgstr "Alternar unión"
 
 #: ../simulation_parameters/common/input_options.json:50
 msgid "TOGGLE_UNBINDING"
-msgstr "Activar separación"
+msgstr "Alternar separación"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr "Desunir todas las células"
+msgstr "Desunir todas"
 
 #: ../simulation_parameters/common/input_options.json:58
 msgid "PERFORM_UNBINDING"
@@ -2589,9 +2589,11 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. La tasa de conversión es "
-"proporcional a la concentración de [thrive:compound type=\"oxygen\"][/"
-"thrive:compound]. Puede liberar toxinas presionando [thrive:"
-"input]g_fire_toxin[/thrive:input]."
+"proporcional a la concentración de [thrive:compound type=\"oxygen\""
+"][/thrive:compound]. Puede liberar toxinas presionando "
+"[thrive:input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira "
+"siendo posible pero con un daño reducido."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2808,9 +2810,11 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. La tasa de conversión escala "
-"con la concentración de [thrive:compound type=\"oxygen\"][/thrive:"
-"compound]. Puedes liberar toxinas presionando la tecla [thrive:"
-"input]g_fire_toxin[/thrive:input]."
+"con la concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]. "
+"Puedes liberar toxinas presionando la tecla "
+"[thrive:input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira "
+"siendo posible pero con un daño reducido."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -4390,7 +4394,7 @@ msgstr "Abrir Directorio de Guardado"
 
 #: ../src/saving/SaveManagerGUI.tscn:132
 msgid "TOTAL_SAVES"
-msgstr "Partidas totales:"
+msgstr "Partidas guardadas:"
 
 #: ../src/saving/SaveManagerGUI.tscn:152
 msgid "SAVE_SPACE_USED"
@@ -4402,15 +4406,15 @@ msgstr "Selección:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
 msgid "DELETE_SELECTED_SAVES"
-msgstr "¿Eliminar la(s) partida(s) seleccionada(s)?"
+msgstr "¿Eliminar todas las partidas guardadas?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
 msgid "DELETE_OLD_SAVES"
-msgstr "¿Eliminar archivo(s) de guardado antiguo(s)?"
+msgstr "¿Eliminar las partidas guardadas antiguas?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "NO_SAVE_DIRECTORY"
-msgstr "No se ha encontrado Directorio de Guardado"
+msgstr "No se ha encontrado ningún directorio de guardado"
 
 #: ../src/saving/SaveManagerGUI.tscn:202
 msgid "TRY_MAKING_A_SAVE"
@@ -4418,7 +4422,7 @@ msgstr "¡Intenta guardar una partida!"
 
 #: ../src/steam/SteamClient.cs:47
 msgid "STEAM_CLIENT_INIT_FAILED"
-msgstr "Error en la inicialización de la librería del cliente Steam"
+msgstr "Error en la inicialización de la biblioteca de cliente de Steam"
 
 #: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
@@ -4673,38 +4677,38 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
 msgid "MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
-"Para que tu célula se reproduzca, necesita duplicar sus orgánulos. Para "
-"hacer esto necesitas amoníaco y fosfato.\n"
-"Mira el indicador en la parte inferior derecha para ver cuánto necesitas."
+"Para que tu célula se reproduzca necesita duplicar todos sus orgánulos "
+"reuniendo la suficiente cantidad de amoníaco y fosfatos.\n"
+"Observa el indicador en la parte inferior derecha para ver cuánto más "
+"necesitas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
-"Haz recolectado suficientes recursos para que tu célula pueda dividirse.\n"
+"Has reunido suficientes recursos para que tu célula se divida.\n"
 "\n"
-"Ya estás listo para editar tu especie.\n"
+"Ahora estás listo para editar tu especie.\n"
 "\n"
-"Para entrar en el editor presiona el botón de edición que parpadea en la "
-"esquina inferior derecha."
+"Para entrar en el editor pulsa el botón parpadeante del editor en la parte "
+"inferior derecha."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 msgid "MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Haz entrado al modo de desunión. En este modo, puedes hacer clic en los "
-"miembros de tu colonia para separarlos.\n"
+"Has entrado en el modo de desvinculación. En este modo puedes hacer clic "
+"sobre los miembros de la colonia para desvincularlos.\n"
 "\n"
-"Para dejar una colonia por completo, puedes hacer clic en tu propia célula "
-"o presionar en el botón \"Desvincular todo\"."
+"Para abandonar la colonia por completo, puedes hacer clic en tu propia "
+"célula o pulsar el comando asignado a desvincular todo."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
-"Si te cuesta seguir las mecánicas del juego, revisa el menú de ayuda. "
-"Puedes abrirlo haciendo clic en el botón del signo de interrogación en la "
-"esquina inferior izaquierda.\n"
+"Si sigues teniendo problemas con las mecánicas del juego, consulta el menú "
+"de ayuda. Puedes abrirlo con el botón del signo de interrogación en la parte "
+"inferior izquierda.\n"
 "\n"
-"Un consejo más: con la rueda del ratón puedes modificar la amplitud del "
-"campo de visión."
+"Un consejo más: puedes alejar la vista con la rueda del ratón."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
