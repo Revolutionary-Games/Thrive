@@ -432,6 +432,23 @@ Other files
   reduce the amount of changes PRs contain, but also means that the
   reference line numbers are sometimes slightly out of date.
 
+Gameplay changes
+----------------
+
+When doing changes that impact existing gameplay or add new gameplay
+additional considerations regarding playability and understandability
+need to be taken into account.
+
+- When changing an existing mechanic that has tutorials, tooltips, help 
+  menu entries or other explanations, you must also update those texts
+  so that how we explain the game to the player doesn't get out of sync.
+  This is because if a gameplay changing PR is accepted it may take multiple
+  months for anyone to bother to update the help text meanwhile players don't
+  know about the new mechanics.
+
+- For new gameplay features it is recommended but not mandatory to write
+  new help text or tutorials to explain them.
+
 Git
 ---
 
