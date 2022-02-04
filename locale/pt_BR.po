@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-28 20:32+0200\n"
-"PO-Revision-Date: 2022-01-18 11:12+0000\n"
+"PO-Revision-Date: 2022-01-30 12:44+0000\n"
 "Last-Translator: Capivaresco <deepohsix@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -167,7 +167,9 @@ msgstr ""
 "\n"
 "Flagelo: Aumenta a velocidade da sua célula consumindo ATP\n"
 "\n"
-"Pili: Pode ser usado para perfurar outras células"
+"Pilus: Pode ser usado para perfurar outras células\n"
+"\n"
+"Quimiorreceptor: Detecta compostos mais distantes"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -883,9 +885,8 @@ msgstr "Núcleo"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Quimioplasto"
+msgstr "Quimiorreceptor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
@@ -966,43 +967,43 @@ msgstr "foi extinto do planeta"
 
 #: ../src/auto-evo/RunResults.cs:854
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "A espécie [u]{0}[/u] foi extinta!"
 
 #: ../src/auto-evo/RunResults.cs:864 ../src/auto-evo/RunResults.cs:886
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "População da espécie"
+msgstr "A população de [u]{0}[/u] aumentou para {1}"
 
 #: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "População da espécie"
+msgstr "A população de [u]{0}[/u] diminuiu para {1}"
 
 #: ../src/auto-evo/RunResults.cs:878
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "A espécie [u]{0}[/u] desapareceu dessa região"
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
+"Parte da população de [u]{0}[/u] migrou para essa região a partir de {1}"
 
 #: ../src/auto-evo/RunResults.cs:907
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Parte da população de [u]{0}[/u] migrou de {1} para {2}"
 
 #: ../src/auto-evo/RunResults.cs:913
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Parte da população de [u]{0}[/u] migrou para {1}"
 
 #: ../src/auto-evo/RunResults.cs:929
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "surgiu para preencher um nicho"
+msgstr ""
+"Nova espécie: [u]{0}[/u] ramificou-se de [u]{1}[/u] para preencher um nicho"
 
 #: ../src/auto-evo/RunResults.cs:935
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "surgiu devido a diferentes pressões seletivas"
+msgstr ""
+"Nova espécie: [u]{0}[/u] ramificou-se de [u]{1}[/u] devido a diferentes "
+"pressões seletivas"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
 msgid "CHUNK_FOOD_SOURCE"
@@ -1468,11 +1469,11 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "As concentrações de {0} diminuíram em {1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "As concentrações de glicose caíram drasticamente!"
 
 #: ../src/general/MainMenu.cs:231
 msgid "STORE_LOGGED_IN_AS"
@@ -2442,7 +2443,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1900
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1997
 msgid "STORAGE"
-msgstr "Armazena"
+msgstr "Armazenamento"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:328
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:432
@@ -2598,32 +2599,34 @@ msgid "SPEED"
 msgstr "Velocidade"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Perfure outras células com isto."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Perfure outras células com isto."
+msgstr ""
+"Pili (singular: pilus) são estruturas similares a cabelos vistos em vários "
+"micro-organismos. Eles podem ser usados para diversos fins, como predação. "
+"Micro-organismos patógenos usam pili tanto para se fixar aos tecidos de suas "
+"vítimas, quanto para passar através da membrana celular para o citoplasma. "
+"Existem vários tipos de pili, e muitos deles não têm vínculos evolutivos, "
+"sendo resultados da convergência evolutiva. Cada organismo pode ter vários "
+"tipos de pili, e aqueles na superfície são constantemente substituídos."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
-#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta "
-"com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound]."
+"O quimiorreceptor permite a detecção de compostos distantes. Modifique-o "
+"para mudar o tipo de composto e a cor da linha usada para indicar o caminho."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
-#, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
-"O quimioplasto é uma estrutura de membrana dupla contendo proteínas "
-"capazes de converter sulfeto de hidrogênio, água, e gás carbônico em "
-"glicose em um processo chamado Quimiossíntese de Sulfeto de Hidrogênio. A "
-"proporção de sua produção de glicose aumenta com a concentração de dióxido "
-"de carbono."
+"A “visão” das células é, na verdade, a quimiorrecepção. É assim que elas "
+"obtêm informações do ambiente. Adicionar essa organela representa evoluir "
+"uma quimiorrecepção melhor. Como o jogador já consegue ver o que está ao "
+"redor da célula, a quimiorrecepção é representada por uma linha apontando "
+"para compostos fora da tela."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
@@ -3364,19 +3367,19 @@ msgstr "Efeitos externos:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Mostrar eventos globais"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
 msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
+msgstr "G"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2708
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Mostrar eventos locais"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
 msgid "LOCAL_INITIAL_LETTER"
-msgstr ""
+msgstr "L"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2820
@@ -3458,7 +3461,7 @@ msgstr "milhões de anos"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:764
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+msgstr "Tempo Passado: {0:#,#} anos"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:807
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
@@ -3587,30 +3590,27 @@ msgstr "Espécies Extintas"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:235
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Nenhum evento registrado"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "Nuvens de compostos"
+msgstr "Composto:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "Raio de Procura:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "Quantidade Mínima:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
-#, fuzzy
 msgid "LINE_COLOUR"
-msgstr "Coloração"
+msgstr "Cor da Linha"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "Mover organela"
+msgstr "Modificar Organela"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
 msgid "EXTINCTION_CAPITAL"
