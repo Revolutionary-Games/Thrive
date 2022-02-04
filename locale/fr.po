@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 10:24+0200\n"
+"POT-Creation-Date: 2022-02-04 16:25+0200\n"
 "PO-Revision-Date: 2022-01-10 18:11+0000\n"
 "Last-Translator: Andrei Tkachenko <gautierkatia2@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -1061,7 +1061,7 @@ msgstr "Chargement"
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Pressez une touche..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:117
+#: ../src/engine/input/key_mapping/InputGroupList.cs:129
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Il y a un conflit avec {0}.\n"
@@ -1490,9 +1490,9 @@ msgid "CLOSE"
 msgstr "Fermer"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/gui_common/CompoundAmount.cs:172
+#: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:624
+#: ../src/microbe_stage/MicrobeHUD.cs:629
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1322
@@ -3047,41 +3047,41 @@ msgstr "joueur en double"
 msgid "SPAWN_ENEMY"
 msgstr "Invoquer un ennemi"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:703
+#: ../src/microbe_stage/MicrobeHUD.cs:708
 msgid "STUFF_AT"
 msgstr "Matériel à {0:F1}, {1:F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:736
+#: ../src/microbe_stage/MicrobeHUD.cs:741
 msgid "PLAYER_CELL"
 msgstr "Cellule du joueur"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:753
+#: ../src/microbe_stage/MicrobeHUD.cs:758
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:798
+#: ../src/microbe_stage/MicrobeHUD.cs:803
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "en abondance"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:800
+#: ../src/microbe_stage/MicrobeHUD.cs:805
 #, fuzzy
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "en grande quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:802
+#: ../src/microbe_stage/MicrobeHUD.cs:807
 #, fuzzy
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "en bonne quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:804
+#: ../src/microbe_stage/MicrobeHUD.cs:809
 msgid "CATEGORY_SOME"
 msgstr "en moyenne quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:806
+#: ../src/microbe_stage/MicrobeHUD.cs:811
 msgid "CATEGORY_LITTLE"
 msgstr "en faible quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:808
+#: ../src/microbe_stage/MicrobeHUD.cs:813
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "en très faible quantité"
 
@@ -3660,9 +3660,9 @@ msgstr ""
 "Unités d'énergie pour la source « {0} » : {1} (valeur sélective : {2}) "
 "énergie totale disponible : {3} (valeur totale : {4})"
 
-#: ../src/microbe_stage/editor/MicrobePartSelection.cs:116
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:232
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:250
+#: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:255
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -4025,7 +4025,7 @@ msgstr "Description :"
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Description :"
 
-#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:209
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Description :"
@@ -4057,12 +4057,16 @@ msgstr "L'identifiant n'est pas un nombre valide"
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Rechercher..."
 
-#: ../src/modding/ModUploader.cs:513
+#: ../src/modding/ModUploader.cs:474
+msgid "SUCCESS_BUT_MISSING_ID"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:519
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Chargement..."
 
-#: ../src/modding/ModUploader.cs:550
+#: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 "La mise en ligne sur l'atelier Steam a fonctionné, mais vous devez "
@@ -4070,24 +4074,24 @@ msgstr ""
 "workshoplegalagreement]contrat de licence[/url][/color] avant que cela ne "
 "soit visible"
 
-#: ../src/modding/ModUploader.cs:554
+#: ../src/modding/ModUploader.cs:560
 #, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "La mise en ligne sur l'atelier Steam a été réalisée avec succès"
 
-#: ../src/modding/ModUploader.cs:614
+#: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "En proposant cet objet, vous acceptez le [color=#3796e1][url=https://"
 "steamcommunity.com/sharedfiles/workshoplegalagreement]contrat de licence[/"
 "url][/color] de l'atelier Steam"
 
-#: ../src/modding/ModUploader.cs:639
+#: ../src/modding/ModUploader.cs:645
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Sauvegarde échoué! Une exception a eu lieu"
 
-#: ../src/modding/ModUploader.cs:654 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erreur de Sauvegarde"
@@ -4564,72 +4568,72 @@ msgstr "Essayez de sauvegarder !"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "L'initialisation de la bibliothèque du client Steam a échoué"
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:462
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 "Vous ne pouvez pas partager de contenu via ce compte Steam. Veuillez "
 "contacter le support Steam."
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:464
 msgid "STEAM_ERROR_BANNED"
 msgstr "Il vous est interdit de partager du contenu avec votre compte Steam"
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:466
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr "La connexion avec Steam a expiré, veuillez réessayer"
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:468
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "Non connecté à Steam"
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:470
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 "Steam est indisponible pour le moment, veuillez réessayer ultérieurement"
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:472
 #, fuzzy
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "La sauvegarde a un état scénique de jeu invalide"
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:474
 #, fuzzy
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 "Capacité de stockage ou taille maximale de fichier du cloud Steam dépassée"
 
-#: ../src/steam/SteamClient.cs:488
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "Fichier introuvable"
 
-#: ../src/steam/SteamClient.cs:490
+#: ../src/steam/SteamClient.cs:478
 #, fuzzy
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 "Steam signale que ce fichier a déjà été mis en ligne, merci de réactualiser"
 
-#: ../src/steam/SteamClient.cs:492
+#: ../src/steam/SteamClient.cs:480
 #, fuzzy
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "joueur en double"
 
-#: ../src/steam/SteamClient.cs:494
+#: ../src/steam/SteamClient.cs:482
 #, fuzzy
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 "Votre compte Steam est présentement en mode « lecture seule » suite à un "
 "changement récent sur le compte"
 
-#: ../src/steam/SteamClient.cs:496
+#: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Votre compte Steam ne dispose pas d'une licence pour Thrive"
 
-#: ../src/steam/SteamClient.cs:498
+#: ../src/steam/SteamClient.cs:486
 #, fuzzy
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Sauvegarde échoué! Une exception a eu lieu"
 
-#: ../src/steam/SteamClient.cs:500
+#: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Une erreur Steam inconnue vient de se produire"
 
