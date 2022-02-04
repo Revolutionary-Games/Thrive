@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-03 01:00-0600\n"
+"POT-Creation-Date: 2022-02-04 16:48-0600\n"
 "PO-Revision-Date: 2022-01-09 09:13+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
@@ -1450,12 +1450,12 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr "Uusi Peli"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr "Lataa Peli"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr "Asetukset"
 
@@ -1485,8 +1485,8 @@ msgstr "Mikrobien vapaa rakentelu"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1871,43 +1871,43 @@ msgstr "Avaa Näyttökuva kansio"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Ota ruudunkaappaus"
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:256
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "Palaa Päävalikkoon"
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:272
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "GLES2-moodi Varoitus"
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr "Jatka"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr "Tallenna Peli"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "Statistiikkaa"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr "Apua"
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr "Palaa Päävalikkoon"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr "Poistu"
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "VAHVISTA"
@@ -3418,11 +3418,11 @@ msgstr "Väri"
 msgid "MODIFY_ORGANELLE"
 msgstr "Poista soluelin"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr "SUKUPUUTTO"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Kuten 99% kaikista lajeista jotka ovat joskus olleet, sinun lajisi on "
@@ -3430,11 +3430,11 @@ msgstr ""
 "kukoistavat, mutta sinä et. Sinut tullaan unohtamaan, epäonnistunut "
 "kokeilu evoluutiossa."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "OLET VOITTANUT!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit "

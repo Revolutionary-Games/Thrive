@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-03 01:00-0600\n"
+"POT-Creation-Date: 2022-02-04 16:48-0600\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -1466,12 +1466,12 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr "새 게임"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr "불러오기"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr "설정"
 
@@ -1501,8 +1501,8 @@ msgstr "미생물 자유 편집기"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1888,43 +1888,43 @@ msgstr "스크린샷 폴더 열기"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "스크린샷 촬영"
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:256
 #, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
 msgstr "메뉴로 돌아가기"
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:272
 #, fuzzy
 msgid "QUIT_GAME_WARNING"
 msgstr "GLES2 모드 경고"
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr "재개"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr "저장"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "상태"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr "도움말"
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr "메뉴로 돌아가기"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr "종료"
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 #, fuzzy
 msgid "CONFIRM_EXIT"
 msgstr "확인"
@@ -3607,22 +3607,22 @@ msgstr "색"
 msgid "MODIFY_ORGANELLE"
 msgstr "세포 기관 제거"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr "멸종"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "이전에 존재했던 다른 99%의 종처럼, 당신의 종 또한 멸종했습니다. 나머지는 당"
 "신의 자리에 들어가 번영을 누리겠지만, 당신은 아닙니다. 당신은 잊혀질 것이"
 "고, 진화의 실패한 표상이 될 것입니다."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "번영했습니다!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "현재 버전의 Thrive에서 승리하신 것을 축하드립니다! 창이 닫히면 계속 진행하"

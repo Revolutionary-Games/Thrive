@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 20:32+0200\n"
+"POT-Creation-Date: 2022-02-04 16:48-0600\n"
 "PO-Revision-Date: 2022-02-01 15:41+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -172,8 +172,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Внешние органеллы\n"
 "\n"
-"Жгутик: Двигает вашу клетку быстрее потребляя [thrive:compound type=\"atp\""
-"][/thrive:compound]\n"
+"Жгутик: Двигает вашу клетку быстрее потребляя [thrive:compound type=\"atp"
+"\"][/thrive:compound]\n"
 "\n"
 "Пили: Может использоваться для прокалывания других клеток\n"
 "\n"
@@ -189,18 +189,18 @@ msgstr ""
 "\n"
 "Связующее вещество: Позволяет связываться с другими клетками\n"
 "\n"
-"Митохондрия: Производит [thrive:compound type=\"atp\"][/thrive:compound] из "
-"[thrive:compound type=\"glucose\"][/thrive:compound] и атмосферного "
+"Митохондрия: Производит [thrive:compound type=\"atp\"][/thrive:compound] "
+"из [thrive:compound type=\"glucose\"][/thrive:compound] и атмосферного "
 "кислорода, делает это намного эффективнее цитоплазмы\n"
 "\n"
-"Хлоропласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] из "
-"солнечного света и атмосферного углекислого газа\n"
+"Хлоропласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] "
+"из солнечного света и атмосферного углекислого газа\n"
 "\n"
 "Хемопласт: Создает [thrive:compound type=\"glucose\"][/thrive:compound] из "
 "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Азотфиксирующий пластид: Создает [thrive:compound type=\"ammonia\""
-"][/thrive:compound] из [thrive:compound type=\"atp\"][/thrive:compound], "
+"Азотфиксирующий пластид: Создает [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] из [thrive:compound type=\"atp\"][/thrive:compound], "
 "атмосферного азота и кислорода\n"
 "\n"
 "Вакуоль: Вмещает до 8 соединений\n"
@@ -1498,12 +1498,12 @@ msgstr "Авторизован как: {0}"
 msgid "NEW_GAME"
 msgstr "Новая Игра"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr "Загрузить игру"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr "Настройки"
 
@@ -1533,8 +1533,8 @@ msgstr "Микробный Креативный Редактор"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1913,45 +1913,45 @@ msgstr "Папка скриншотов не найдена"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Попробуйте сделать скриншоты!"
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:256
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Вы действительно хотите вернуться в главное меню?\n"
 "Весь несохраненный прогресс будет утерян."
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:272
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Вы действительно хотите выйти из игры?\n"
 "Весь несохраненный прогресс будет утерян."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr "Продолжить"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr "Сохранить игру"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "Статистика"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr "Помощь"
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr "Вернуться в Меню"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr "Выход"
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 msgid "CONFIRM_EXIT"
 msgstr "Подтвердить выход"
 
@@ -2589,16 +2589,17 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при "
-"повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. "
-"Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. "
-"Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] "
-"невелико, стрельба все еще возможна, но урон будет уменьшен."
+"повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:"
+"compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/"
+"thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound] невелико, стрельба все еще возможна, но урон будет уменьшен."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
 msgstr ""
-"Модифицированная метаболосома, ответственная за выработку примитивной формы "
-"токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+"Модифицированная метаболосома, ответственная за выработку примитивной "
+"формы токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound]."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -2632,13 +2633,14 @@ msgstr ""
 "Пили (единственное число: пиль) встречаются на поверхности многих "
 "микроорганизмов и напоминают тонкие волоски. Десятки-сотни пили могут "
 "присутствовать на поверхности микроорганизма и служить одной из нескольких "
-"целей, включая роль в хищничестве. Патогенные микроорганизмы используют пили "
-"для вирулентности либо для прикрепления и связывания с тканями хозяина, либо "
-"для проникновения через внешнюю мембрану, чтобы получить доступ к "
-"цитоплазме. Существует множество подобных пили, но они эволюционно не "
-"связаны и возникли в результате конвергентной эволюции. Один организм может "
-"обладать способностью экспрессировать несколько типов пили, и те, которые "
-"присутствуют на поверхности, постоянно изменяются и заменяются."
+"целей, включая роль в хищничестве. Патогенные микроорганизмы используют "
+"пили для вирулентности либо для прикрепления и связывания с тканями "
+"хозяина, либо для проникновения через внешнюю мембрану, чтобы получить "
+"доступ к цитоплазме. Существует множество подобных пили, но они "
+"эволюционно не связаны и возникли в результате конвергентной эволюции. "
+"Один организм может обладать способностью экспрессировать несколько типов "
+"пили, и те, которые присутствуют на поверхности, постоянно изменяются и "
+"заменяются."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
@@ -2654,8 +2656,8 @@ msgstr ""
 "получают информацию о своем окружении. Добавление этой органеллы "
 "представляет собой развитие более тонкой хеморецепции. Поскольку игроку "
 "дается видение даже на стадии клетки, это представлено линией, указывающей "
-"за пределы видимой области экрана, показывая близлежащие соединения, которые "
-"игрок еще не мог видеть."
+"за пределы видимой области экрана, показывая близлежащие соединения, "
+"которые игрок еще не мог видеть."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
@@ -2822,10 +2824,10 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при "
-"повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. "
-"Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. "
-"Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] низкое, "
-"стрельба все еще возможна, но урон будет уменьшен."
+"повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:"
+"compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/"
+"thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound] низкое, стрельба все еще возможна, но урон будет уменьшен."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3473,16 +3475,17 @@ msgstr "Карта Биома"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4186
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
-"На этой панели показаны числа, на основе которых работает предсказание авто-"
-"эво. Общая энергия, которую способен улавливать вид, и стоимость на особь "
-"вида определяют конечную популяцию. Авто-эво использует упрощенную модель "
-"реальности, чтобы рассчитать, насколько эффективны виды, основываясь на "
-"энергии, которую они способны собирать. Для каждого источника пищи показано, "
-"сколько энергии получает от него вид. Дополнительно отображается общая "
-"энергия, доступная из этого источника. Доля, которую вид получает от общей "
-"энергии, зависит от того, насколько велика его физическая форма по сравнению "
-"с общей пригодностью. Пригодность - это показатель того, насколько хорошо "
-"вид может использовать этот источник пищи."
+"На этой панели показаны числа, на основе которых работает предсказание "
+"авто-эво. Общая энергия, которую способен улавливать вид, и стоимость на "
+"особь вида определяют конечную популяцию. Авто-эво использует упрощенную "
+"модель реальности, чтобы рассчитать, насколько эффективны виды, "
+"основываясь на энергии, которую они способны собирать. Для каждого "
+"источника пищи показано, сколько энергии получает от него вид. "
+"Дополнительно отображается общая энергия, доступная из этого источника. "
+"Доля, которую вид получает от общей энергии, зависит от того, насколько "
+"велика его физическая форма по сравнению с общей пригодностью. Пригодность "
+"- это показатель того, насколько хорошо вид может использовать этот "
+"источник пищи."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
@@ -3652,22 +3655,22 @@ msgstr "Цвет Линии:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Модифицировать Органеллу"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr "ВЫМИРАНИЕ"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Точно так же, как 99% всех видов, которые когда-либо существовали, ваш вид "
 "вымер. Другие виды заполнят вашу нишу и будут процветать, но это будете не "
 "вы. Вы будете забыты, как неудачный эксперимент в эволюции."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "ВЫ РАСЦВЕЛИ!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Поздравляем, вы выиграли эту версию Thrive! Вы можете продолжить игру "

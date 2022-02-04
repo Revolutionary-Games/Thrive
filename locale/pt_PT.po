@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-03 01:00-0600\n"
+"POT-Creation-Date: 2022-02-04 16:48-0600\n"
 "PO-Revision-Date: 2021-11-12 08:17+0000\n"
 "Last-Translator: Dr. A. S. <Dr.A.S.Tuga@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate."
@@ -1500,12 +1500,12 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr "Novo Jogo"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr "Carregar Jogo"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr "Opções"
 
@@ -1535,8 +1535,8 @@ msgstr "Editor livre para micróbios"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1913,45 +1913,45 @@ msgstr "Nenhum diretório de captura de ecrã encontrado"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Tente tirar algumas capturas de ecrã!"
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:256
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Tens a certeza de que desejas sair para o menu principal?\n"
 "Perderás todo o progresso não guardado."
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:272
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Tens a certeza de que desejas sair do jogo?\n"
 "Perderás todo o progresso não guardado."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr "Retomar"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr "Gravar Jogo"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "Estatísticas"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr "Ajuda"
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr "Voltar ao Menu"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr "Sair"
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar Saída"
 
@@ -3629,22 +3629,22 @@ msgstr "Cor"
 msgid "MODIFY_ORGANELLE"
 msgstr "Mover organelo"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr "EXTINÇÃO"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Assim como 99% de todas as espécies que já existiram, a tua espécie foi "
 "extinta. Outras irão ocupar o teu ninho e prosperar, mas não serás tu. Tu "
 "serás esquecido, uma experiência falhada na evolução."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "TU PROSPERASTE!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Parabéns, ganhaste esta versão do Thrive! Podes continuar a jogar depois "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 20:32+0200\n"
+"POT-Creation-Date: 2022-02-04 16:48-0600\n"
 "PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: César <cesariglesiasparente@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -24,14 +24,14 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Usa [thrive:input]g_move_forward[/thrive:input], "
-"[thrive:input]g_move_left[/thrive:input], "
-"[thrive:input]g_move_backwards[/thrive:input], "
-"[thrive:input]g_move_right[/thrive:input] y el ratón para mover tu célula. "
-"[thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound "
-"type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de toxinas. "
-"[thrive:input]g_toggle_engulf[/thrive:input] para activar o desactivar el "
-"modo engullir. Puedes acercar y alejar la cámara con la rueda del ratón."
+"Usa [thrive:input]g_move_forward[/thrive:input], [thrive:"
+"input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:"
+"input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu "
+"célula. [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:"
+"compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de "
+"toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar o "
+"desactivar el modo engullir. Puedes acercar y alejar la cámara con la "
+"rueda del ratón."
 
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
@@ -53,21 +53,21 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "También puedes engullir células, bacterias, pedazos de hierro y pedazos de "
-"células de menor tamaño que tu célula al presionar "
-"[thrive:input]g_toggle_engulf[/thrive:input]. Esto aumentará el coste de "
-"[thrive:compound type=\"atp\"][/thrive:compound] y también ralentizará tu "
-"célula. No olvides presionar nuevamente "
-"[thrive:input]g_toggle_engulf[/thrive:input] para dejar de engullir."
+"células de menor tamaño que tu célula al presionar [thrive:"
+"input]g_toggle_engulf[/thrive:input]. Esto aumentará el coste de [thrive:"
+"compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. "
+"No olvides presionar nuevamente [thrive:input]g_toggle_engulf[/thrive:"
+"input] para dejar de engullir."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
-"La Osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:compound], "
-"lo que significa que cuanto más grande es la célula, más mitocondrias, "
-"metabolosomas, rusticianinas (u orgánulos que puedan realizar glicólisis) "
-"necesitarás para evitar perder [thrive:compound type=\"atp\""
-"][/thrive:compound] cuando esté inmóvil."
+"La Osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:"
+"compound], lo que significa que cuanto más grande es la célula, más "
+"mitocondrias, metabolosomas, rusticianinas (u orgánulos que puedan "
+"realizar glicólisis) necesitarás para evitar perder [thrive:compound type="
+"\"atp\"][/thrive:compound] cuando esté inmóvil."
 
 #: ../simulation_parameters/common/help_texts.json:26
 #: ../simulation_parameters/common/help_texts.json:100
@@ -87,8 +87,8 @@ msgstr ""
 "Púrpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
 "Marrón – [thrive:compound type=\"iron\"][/thrive:compound]\n"
 "\n"
-"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para generar "
-"[thrive:compound type=\"atp\"][/thrive:compound]."
+"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para "
+"generar [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #: ../simulation_parameters/common/help_texts.json:34
 #: ../simulation_parameters/common/help_texts.json:106
@@ -184,8 +184,8 @@ msgstr ""
 "Orgánulos con membrana\n"
 "\n"
 "Núcleo: Ocupa 11 espacios y permite la evolución de orgánulos unidos a la "
-"membrana, duplicando el tamaño de tu célula (solo puede ser evolucionado una "
-"vez).\n"
+"membrana, duplicando el tamaño de tu célula (solo puede ser evolucionado "
+"una vez).\n"
 "\n"
 "Agente Ligante: Permite ligarte con otras células\n"
 "\n"
@@ -193,21 +193,22 @@ msgstr ""
 "consume [thrive:compound type=\"glucose\"][/thrive:compound y O2 "
 "atmosférico. Son mucho más eficientes que el citoplasma\n"
 "\n"
-"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] "
-"utilizando la luz solar y CO2 atmosférico.\n"
+"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:"
+"compound] utilizando la luz solar y CO2 atmosférico.\n"
 "\n"
-"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] "
-"consumiendo[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:"
+"compound] consumiendo[thrive:compound type=\"hydrogensulfide\"][/thrive:"
+"compound]\n"
 "\n"
-"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:compound] "
-"consumiendo [thrive:compound type=\"atp\"][/thrive:compound], así como N2 y "
-"O2 atmosférico\n"
+"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:"
+"compound] consumiendo [thrive:compound type=\"atp\"][/thrive:compound], "
+"así como N2 y O2 atmosférico\n"
 "\n"
 "Vacuola: Almacena 8 unidades adicionales de compuestos recolectados.\n"
 "\n"
-"Vacuola de Toxinas: Produce toxinas (llamadas [thrive:compound type=\"oxytoxy"
-"\"][/thrive:compound]) permitiendote liberarlas produciendo un daño "
-"proporcional a las toxinas restantes"
+"Vacuola de Toxinas: Produce toxinas (llamadas [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound]) permitiendote liberarlas produciendo un "
+"daño proporcional a las toxinas restantes"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -238,8 +239,8 @@ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 "Dato curioso: el didinium y el paramecio son un ejemplo de una relación "
-"depredador-presa que fue estudiado durante décadas. Ahora, ¿eres el didinium "
-"o el paramecio? ¿Depredador o presa?"
+"depredador-presa que fue estudiado durante décadas. Ahora, ¿eres el "
+"didinium o el paramecio? ¿Depredador o presa?"
 
 #: ../simulation_parameters/common/help_texts.json:129
 msgid "EASTEREGG_MESSAGE_2"
@@ -1497,12 +1498,12 @@ msgstr "Accedido como: {0}"
 msgid "NEW_GAME"
 msgstr "Nueva Partida"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr "Cargar Partida"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr "Ajustes"
 
@@ -1532,8 +1533,8 @@ msgstr "Editor libre de microbios"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1914,45 +1915,45 @@ msgstr "Abrir carpeta de capturas de pantalla"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Intenta tomar algunas capturas de pantalla!"
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:256
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Estas seguro que quieres volver al menú principal?\n"
 "Perderás todo el progreso que no hayas guardado."
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:272
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Seguro que quieres salir del juego?\n"
 "Perderás todo el progreso que no hayas guardado."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr "Reanudar"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr "Guardar Partida"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "Estadísticas"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr "Ayuda"
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr "Volver al Menú"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr "Salir"
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar salída"
 
@@ -2590,11 +2591,11 @@ msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. La tasa de conversión es "
-"proporcional a la concentración de [thrive:compound type=\"oxygen\""
-"][/thrive:compound]. Puede liberar toxinas presionando "
-"[thrive:input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira "
-"siendo posible pero con un daño reducido."
+"proporcional a la concentración de [thrive:compound type=\"oxygen\"][/"
+"thrive:compound]. Puede liberar toxinas presionando [thrive:"
+"input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira siendo "
+"posible pero con un daño reducido."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2811,11 +2812,11 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
 "compound type=\"oxytoxy\"][/thrive:compound]. La tasa de conversión escala "
-"con la concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]. "
-"Puedes liberar toxinas presionando la tecla "
-"[thrive:input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira "
-"siendo posible pero con un daño reducido."
+"con la concentración de [thrive:compound type=\"oxygen\"][/thrive:"
+"compound]. Puedes liberar toxinas presionando la tecla [thrive:"
+"input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira siendo "
+"posible pero con un daño reducido."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3640,22 +3641,22 @@ msgstr "Color"
 msgid "MODIFY_ORGANELLE"
 msgstr "Quitar orgánulos"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr "EXTINCIÓN"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Cómo el 99% de todas las especies que han existido, tu especie se ha "
 "extinto. Otras especies llenarán tu espacio y prosperarán, pero tu especie "
 "no será una de ellas. Será olvidada, un experimento evolutivo fallido."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "¡HAS PROSPERADO!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "¡Felicitaciones! ¡Has ganado ésta versión de Thrive! Puedes seguir jugando "
@@ -4912,8 +4913,8 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si sigues teniendo problemas con las mecánicas del juego, consulta el menú "
-"de ayuda. Puedes abrirlo con el botón del signo de interrogación en la parte "
-"inferior izquierda.\n"
+"de ayuda. Puedes abrirlo con el botón del signo de interrogación en la "
+"parte inferior izquierda.\n"
 "\n"
 "Un consejo más: puedes alejar la vista con la rueda del ratón."
 

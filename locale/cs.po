@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 20:32+0200\n"
+"POT-Creation-Date: 2022-02-04 16:48-0600\n"
 "PO-Revision-Date: 2022-02-03 10:36+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -185,8 +185,8 @@ msgstr ""
 "\n"
 "Pojivové médium: Umožňuje spojení s dalšími buňkami\n"
 "\n"
-"Mitochondrie: Produkují ATP z glukózy a atmosférického kyslíku (O2). Mnohem "
-"efektivněji než cytoplazma\n"
+"Mitochondrie: Produkují ATP z glukózy a atmosférického kyslíku (O2). "
+"Mnohem efektivněji než cytoplazma\n"
 "\n"
 "Chloroplast: Vytváří glukózu ze slunečního záření a atmosférického oxidu "
 "uhličitého (CO2)\n"
@@ -198,9 +198,9 @@ msgstr ""
 "\n"
 "Vakuola: Uchovává 8 nashromážděných sloučenin\n"
 "\n"
-"Vakuola s toxiny: Produkuje toxiny (nazývané [thrive:compound type=\"oxytoxy"
-"\"][/thrive:compound]) a umožňuje jejich uvolnění, které způsobuje poškození "
-"v závislosti na množství dostupných oxytoxinů"
+"Vakuola s toxiny: Produkuje toxiny (nazývané [thrive:compound type="
+"\"oxytoxy\"][/thrive:compound]) a umožňuje jejich uvolnění, které "
+"způsobuje poškození v závislosti na množství dostupných oxytoxinů"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -996,7 +996,8 @@ msgstr "Část [u]{0}[/u] populace migrovala do {1}"
 
 #: ../src/auto-evo/RunResults.cs:929
 msgid "TIMELINE_NICHE_FILL"
-msgstr "[u]{0}[/u] se oddělil od [u]{1}[/u] jako nový druh, aby zaplnil mezeru"
+msgstr ""
+"[u]{0}[/u] se oddělil od [u]{1}[/u] jako nový druh, aby zaplnil mezeru"
 
 #: ../src/auto-evo/RunResults.cs:935
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
@@ -1482,12 +1483,12 @@ msgstr "Přihlášen jako: {0}"
 msgid "NEW_GAME"
 msgstr "Nová hra"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr "Nahrát hru"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr "Nastavení"
 
@@ -1517,8 +1518,8 @@ msgstr "Editor mikrobů"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1893,45 +1894,45 @@ msgstr "Složka se snímky obrazovky nebyla nalezena"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Zkuste udělat snímek obrazovky!"
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:256
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Jste si jistý, že chcete odejít do hlavního menu?\n"
 "Ztratíte veškerý neuložený postup."
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:272
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Jste si jistý, že chcete ukončit hru?\n"
 "Ztratíte veškerý neuložený postup."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr "Pokračovat"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr "Uložit hru"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "Statistiky"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr "Nápověda"
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr "Návrat do menu"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr "Odejít"
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 msgid "CONFIRM_EXIT"
 msgstr "Potvrdit ukončení"
 
@@ -2559,11 +2560,11 @@ msgstr ""
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci "
-"[thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být "
-"uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je "
-"množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba "
-"je stále možná, ale bude mít snížené poškození."
+"compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná "
+"koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny "
+"mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. "
+"Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] "
+"nízké, střelba je stále možná, ale bude mít snížené poškození."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2597,29 +2598,29 @@ msgstr "Tímto bodneš ostatní buňky."
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
-"Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha mikroorganismů "
-"a připomínají jemné chloupky. Na povrchu mikroorganismu se mohou nacházet "
-"desítky až stovky pilusů, které slouží k několika účelům, včetně predátorské "
-"role. Patogenní mikroorganismy využívají pili k virulenci buď k přichycení a "
-"vazbě na tkáně hostitele, nebo k proniknutí přes vnější membránu a získání "
-"přístupu do cytoplazmy. Existuje mnoho podobných pili, které však nejsou "
-"evolučně příbuzné a vznikly konvergentní evolucí. Jeden organismus může mít "
-"schopnost exprimovat několik typů pili a ty, které jsou přítomny na povrchu, "
-"se neustále mění a nahrazují."
+"Pily (v jednotném čísle: pilus) se nacházejí na povrchu mnoha "
+"mikroorganismů a připomínají jemné chloupky. Na povrchu mikroorganismu se "
+"mohou nacházet desítky až stovky pilusů, které slouží k několika účelům, "
+"včetně predátorské role. Patogenní mikroorganismy využívají pili k "
+"virulenci buď k přichycení a vazbě na tkáně hostitele, nebo k proniknutí "
+"přes vnější membránu a získání přístupu do cytoplazmy. Existuje mnoho "
+"podobných pili, které však nejsou evolučně příbuzné a vznikly konvergentní "
+"evolucí. Jeden organismus může mít schopnost exprimovat několik typů pili "
+"a ty, které jsou přítomny na povrchu, se neustále mění a nahrazují."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"Chemoreceptor umožňuje detekovat sloučeniny z větší vzdálenosti. Po umístění "
-"upravte výběr typu sloučeniny a barvu naváděcí čáry."
+"Chemoreceptor umožňuje detekovat sloučeniny z větší vzdálenosti. Po "
+"umístění upravte výběr typu sloučeniny a barvu naváděcí čáry."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
 "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto způsobem "
 "buňky získávají informace o svém okolí. Přidání této organely představuje "
-"vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je to "
-"znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující "
+"vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je "
+"to znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující "
 "blízké sloučeniny, které hráč ještě nemohl vidět."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
@@ -2778,11 +2779,11 @@ msgstr ""
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci "
-"[thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit "
-"stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství "
-"[thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále "
-"možná, ale bude mít snížené poškození."
+"compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná "
+"koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny "
+"můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]. "
+"Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] "
+"nízké, střelba je stále možná, ale bude mít snížené poškození."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3432,9 +3433,9 @@ msgstr ""
 "základě energie, kterou jsou schopny nasbírat. U každého zdroje potravy je "
 "zobrazeno, kolik energie z něj druh získá. Kromě toho je zobrazena celková "
 "energie, která je z daného zdroje k dispozici. Podíl, který druh získá z "
-"celkové energie, je založen na tom, jak velké je jeho fitness v porovnání s "
-"celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný zdroj "
-"potravy využít."
+"celkové energie, je založen na tom, jak velké je jeho fitness v porovnání "
+"s celkovým fitness. Fitness je měřítkem toho, jak dobře dokáže druh daný "
+"zdroj potravy využít."
 
 #: ../src/microbe_stage/editor/MicrobeEditorCheatMenu.tscn:31
 msgid "INFINITE_MP"
@@ -3603,22 +3604,22 @@ msgstr "Barva čáry:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Modifikovat organelu"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr "VYHYNUTÍ"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Stejně jako 99% všech ostatních druhů co kdy existovaly, váš druh vyhynul. "
 "Ostatní budou pokračovat a prosperovat, ale vy to nebudete. Budete "
 "zapomenuti, zkrátka chybný experiment v evoluci."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "PROSPERUJEŠ!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Gratulace, vyhráli jste tuto verzi Thrive! Po zavření této zprávy můžete "

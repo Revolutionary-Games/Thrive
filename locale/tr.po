@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 20:32+0200\n"
+"POT-Creation-Date: 2022-02-04 16:48-0600\n"
 "PO-Revision-Date: 2022-01-31 17:25+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
@@ -24,13 +24,13 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:85
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
-"Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:input]"
-"g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thr"
-"ive:input]g_move_right[/thrive:input] tuşlarını ve fareyi kullan. Eğer "
-"toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy\"]OksiToksi "
-"NT'yi[/thrive:compound] ateş etmek için "
-"[thrive:input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek "
-"için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas. Fare tekeriyle "
+"Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:"
+"input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
+"input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi "
+"kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy"
+"\"]OksiToksi NT'yi[/thrive:compound] ateş etmek için [thrive:"
+"input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için "
+"[thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas. Fare tekeriyle "
 "yakınlaştırıp uzaklaştırabilirsin."
 
 #: ../simulation_parameters/common/help_texts.json:10
@@ -172,8 +172,8 @@ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Dış Organeller\n"
 "\n"
-"Kamçı: [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketerek hücreni "
-"daha hızlı hareket ettirir\n"
+"Kamçı: [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketerek "
+"hücreni daha hızlı hareket ettirir\n"
 "\n"
 "Pilus: Diğer hücreleri delmek için kullanılabilir\n"
 "\n"
@@ -191,24 +191,24 @@ msgstr ""
 "Bağlayıcı Madde: Diğer hücrelerle bağ kurmaya izin verir\n"
 "\n"
 "Mitokondri: [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] ve "
-"atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:compound] "
-"üretir. Sitoplazmadan çok daha verimli şekilde yapar.\n"
+"atmosferdeki O2 gazından [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] üretir. Sitoplazmadan çok daha verimli şekilde yapar.\n"
 "\n"
 "Kloroplast: Güneş ışığı ve atmosferdeki CO2 gazından [thrive:compound type="
 "\"glucose\"]glukoz[/thrive:compound] üretir\n"
 "\n"
-"Kemoplast: [thrive:compound type=\"hydrogensulfide\"]Hidrojen "
-"Sülfürden[/thrive:compound] [thrive:compound type=\"glucose\""
-"]glukoz[/thrive:compound] üretir\n"
+"Kemoplast: [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürden[/"
+"thrive:compound] [thrive:compound type=\"glucose\"]glukoz[/thrive:"
+"compound] üretir\n"
 "\n"
-"Azot Fiksasyon Plastidi: [thrive:compound type=\"atp\"]ATP[/thrive:compound] "
-"ile atmosferdeki Azot ve Oksijenden [thrive:compound type=\"ammonia\""
-"]amonyak[/thrive:compound] yapar\n"
+"Azot Fiksasyon Plastidi: [thrive:compound type=\"atp\"]ATP[/thrive:"
+"compound] ile atmosferdeki Azot ve Oksijenden [thrive:compound type="
+"\"ammonia\"]amonyak[/thrive:compound] yapar\n"
 "\n"
 "Koful: Toplanan 8 bileşiği depolar\n"
 "\n"
-"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy\"]"
-"OksiToksi NT[/thrive:compound] diye adlandırılır) ve mevcut oksitoksi "
+"Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy"
+"\"]OksiToksi NT[/thrive:compound] diye adlandırılır) ve mevcut oksitoksi "
 "miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir"
 
 #: ../simulation_parameters/common/help_texts.json:74
@@ -1022,8 +1022,8 @@ msgstr ""
 #: ../src/auto-evo/RunResults.cs:935
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
-"[u]{0}[/u], farklı seçilim baskılarından dolayı, yeni bir tür olarak "
-"[u]{1}[/u] türünden ayrıldı"
+"[u]{0}[/u], farklı seçilim baskılarından dolayı, yeni bir tür olarak [u]{1}"
+"[/u] türünden ayrıldı"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
 msgid "CHUNK_FOOD_SOURCE"
@@ -1503,12 +1503,12 @@ msgstr "{0} olarak giriş yapıldı"
 msgid "NEW_GAME"
 msgstr "Yeni Oyun"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr "Oyun Yükle"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr "Ayarlar"
 
@@ -1538,8 +1538,8 @@ msgstr "Mikrop Editörü Serbest Modu"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1918,45 +1918,45 @@ msgstr "Ekran görüntüsü dizini bulunamadı"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Bir ekran görüntüsü almayı dene!"
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:256
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Ana menüye dönmek istediğine emin misin?\n"
 "Kaydedilmemiş ilerlemeler kaybedilecek."
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:272
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Oyundan çıkmak istediğine emin misin?\n"
 "Kaydedilmemiş ilerlemeler kaybedilecek."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr "Devam Et"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr "Oyunu Kaydet"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "İstatistikler"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr "Yardım"
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr "Menüye Dön"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr "Çık"
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 msgid "CONFIRM_EXIT"
 msgstr "Çıkışı Onayla"
 
@@ -2592,12 +2592,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:868
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
-"\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound "
-"type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında "
-"toksin salabilir. [thrive:compound type=\"oxytoxy\""
-"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün "
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound "
+"type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:"
+"compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile "
+"doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna "
+"basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy"
+"\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün "
 "ancak toksinler daha düşük hasara neden olur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
@@ -2634,14 +2634,14 @@ msgstr "Bununla diğer hücreleri del."
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
 "Pili (tekil: pilus), birçok mikroorganizmanın yüzeyinde bulunur ve ince "
-"kıllara benzer. Onlarca veya yüzlerce pili, bir mikroorganizmanın yüzeyinde "
-"bulunabilir ve avcılıkta rol oynamak dahil çeşitli amaçlarda işe "
-"yarayabilir. Patojenik mikroorganizmalar, hastalığa neden olmak amacıyla, ya "
-"konak dokuya bağlanmak ya da sitoplazmaya erişmek maksadıyla dış hücre "
+"kıllara benzer. Onlarca veya yüzlerce pili, bir mikroorganizmanın "
+"yüzeyinde bulunabilir ve avcılıkta rol oynamak dahil çeşitli amaçlarda işe "
+"yarayabilir. Patojenik mikroorganizmalar, hastalığa neden olmak amacıyla, "
+"ya konak dokuya bağlanmak ya da sitoplazmaya erişmek maksadıyla dış hücre "
 "zarını basıp geçmek için pili kullanır. Birçok birbirine benzer pili "
 "mevcuttur ancak evrimsel olarak birbirleriyle bağlantılı değildirler ve "
-"yakınsak evrimden meydana gelmişlerdir. Tek bir organizma, farklı türde pili "
-"üretme yeteneğine sahip olabilir ve yüzeyde mevcut olanları sürekli "
+"yakınsak evrimden meydana gelmişlerdir. Tek bir organizma, farklı türde "
+"pili üretme yeteneğine sahip olabilir ve yüzeyde mevcut olanları sürekli "
 "değiştirebilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
@@ -2659,8 +2659,8 @@ msgstr ""
 "daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. "
 "Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal "
 "algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun "
-"henüz göremediği, hücrenin civarında bulunan bileşikleri gösteren bir çizgi "
-"ile temsil edilmektedir."
+"henüz göremediği, hücrenin civarında bulunan bileşikleri gösteren bir "
+"çizgi ile temsil edilmektedir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
@@ -2818,12 +2818,12 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound type="
-"\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:compound "
-"type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile doğru "
-"orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında "
-"toksin salabilir. [thrive:compound type=\"oxytoxy\""
-"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün "
+"[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] [thrive:compound "
+"type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:"
+"compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile "
+"doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna "
+"basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy"
+"\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün "
 "ancak toksinler daha düşük hasara neden olur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
@@ -3649,22 +3649,22 @@ msgstr "Çizgi Rengi:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Organelde Değişiklik Yap"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr "SOYUN TÜKENDİ"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Varolmuş bütün türlerin %99'u gibi senin türünün de nesli tükendi. "
 "Diğerleri senin alanını doldurmaya ve gelişmeye devam edecek ama bu sen "
 "olmayacaksın. Evrimde başarısız bir deney olarak kalacaksın."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "BAŞARDIN!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Tebrikler, Thrive'ın bu sürümünü kazanmayı başardın! İstersen, bu bildiri "

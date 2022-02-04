@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-28 20:32+0200\n"
+"POT-Creation-Date: 2022-02-04 16:48-0600\n"
 "PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/"
@@ -192,15 +192,15 @@ msgstr ""
 "partir de [thrive:compound type=\"glucose\"][/thrive:compound] i O2 "
 "atmosfèric de manera molt més eficient que el citoplasma\n"
 "\n"
-"Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a "
-"partir de llum solar i CO2 atmosfèric\n"
+"Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] "
+"a partir de llum solar i CO2 atmosfèric\n"
 "\n"
-"Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a "
-"partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] "
+"a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
 "\n"
-"Plastidi Fixador de Nitrogen: Produeix [thrive:compound type=\"ammonia\""
-"][/thrive:compound] a partir de [thrive:compound type=\"atp\""
-"][/thrive:compound] i Nitrogen i Oxigen atmosfèric\n"
+"Plastidi Fixador de Nitrogen: Produeix [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:"
+"compound] i Nitrogen i Oxigen atmosfèric\n"
 "\n"
 "Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
 "\n"
@@ -1029,8 +1029,8 @@ msgstr ""
 #: ../src/auto-evo/RunResults.cs:935
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
-"[u]{0}[/u] s'ha dividit de [u]{1}[/u] com a noves espècies degut a diferents "
-"pressions selectives"
+"[u]{0}[/u] s'ha dividit de [u]{1}[/u] com a noves espècies degut a "
+"diferents pressions selectives"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
 msgid "CHUNK_FOOD_SOURCE"
@@ -1510,12 +1510,12 @@ msgstr "Registrat com a: {0}"
 msgid "NEW_GAME"
 msgstr "Nova partida"
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr "Carregar una partida"
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr "Opcions"
 
@@ -1545,8 +1545,8 @@ msgstr "Editor Lliure de Microbi"
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1928,45 +1928,45 @@ msgstr "No s'ha trobat cap directori de captures de pantalla"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Intenta fer algunes captures de pantalla!"
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:256
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Estàs segur que vols sortir al menú principal?\n"
 "Perdràs tot el progrés no guardat."
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:272
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Estàs segur que vols sortir del joc?\n"
 "Perdràs tot el progrés no guardat."
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr "Reprendre"
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr "Guardar la partida"
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr "Estadístiques"
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr "Ajuda"
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr "Tornar al Menú"
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr "Sortir"
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 msgid "CONFIRM_EXIT"
 msgstr "Confirmar Sortida"
 
@@ -2604,11 +2604,12 @@ msgstr ""
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a "
-"la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pot "
-"alliberar toxines prement la tecla [thrive:input]g_fire_toxin[/thrive:input]"
-". Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] "
-"és baixo, encara és possible disparar, però el dany causat serà menor."
+"compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional "
+"a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. "
+"Pot alliberar toxines prement la tecla [thrive:input]g_fire_toxin[/thrive:"
+"input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound] és baixo, encara és possible disparar, però el dany causat serà "
+"menor."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2646,22 +2647,22 @@ msgstr "Apunyala altres cèl·lules amb aquesta part."
 msgid "PREDATORY_PILUS_DESCRIPTION"
 msgstr ""
 "Els Pili (singular: pilus) es troben a la superfície de molts micro-"
-"organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili "
-"a la superfície d'un micro-organisme, i es poden fer servir amb diferents "
-"finalitats, incloents la depredació. Els micro-organismes patogènics fan "
-"servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per "
-"penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars "
-"existeixen, però no estan evolutivament relacionats i són resultat "
-"d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir "
-"diferents tipus de Pili, i aquells que són a la superfície són canviats i "
-"substituïts constantment."
+"organismes i tenen forma de pèls. Hi poden haver desenes o centenars de "
+"pili a la superfície d'un micro-organisme, i es poden fer servir amb "
+"diferents finalitats, incloents la depredació. Els micro-organismes "
+"patogènics fan servir els pili per virulència, ja sigui per unir-se a "
+"teixits hoste, o per penetrar la membrana exterior i accedir al "
+"citoplasma. Molts Pili similars existeixen, però no estan evolutivament "
+"relacionats i són resultat d'evolució convergent. Un sol organisme ha de "
+"tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la "
+"superfície són canviats i substituïts constantment."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"El Quimioreceptor permet detectar compostos a gran distància. Modifica'l un "
-"cop l'hagis col·locat per seleccionar el compost concret que vols detectar i "
-"el color de la línia que n'indicarà la direcció."
+"El Quimioreceptor permet detectar compostos a gran distància. Modifica'l "
+"un cop l'hagis col·locat per seleccionar el compost concret que vols "
+"detectar i el color de la línia que n'indicarà la direcció."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
 msgid "CHEMORECEPTOR_DESCRIPTION"
@@ -2669,8 +2670,8 @@ msgstr ""
 "Les cèl·lules només poden \"veure\" el món exterior a través de la "
 "Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir "
 "aquest orgànul representa evolucionar una quimiorecepció més afinada. Com "
-"que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es "
-"representa amb una línia que apunta fora de l'àrea visible, mostrant la "
+"que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això "
+"es representa amb una línia que apunta fora de l'àrea visible, mostrant la "
 "posició de compostos que el jugador encara no podia veure."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
@@ -2838,12 +2839,12 @@ msgstr ""
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a "
-"la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. "
-"Allibera toxines quan es prem la tecla "
-"[thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:"
-"compound type=\"oxytoxy\"][/thrive:compound] és baixa, encara és possible "
-"disparar, però el dany causat serà menor."
+"compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional "
+"a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. "
+"Allibera toxines quan es prem la tecla [thrive:input]g_fire_toxin[/thrive:"
+"input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound] és baixa, encara és possible disparar, però el dany causat serà "
+"menor."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3492,13 +3493,13 @@ msgstr "Mapa d'Indrets del món"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4186
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
-"Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per fer "
-"la seva predicció. L'energia total que una espècie pot recol·lectar i el "
-"cost energètic per individu d'aquesta espècie, en determinen la població "
-"final. L'algorisme auto-evo fa servir un model simplificat de la realitat "
-"per a calcular el rendiment de les espècies basat en l'energia que són "
-"capaces de recol·lectar. Per cada font d'alimentació, es mostra quanta "
-"energia en guanya l'espècie. A més a més, es mostra l'energia total "
+"Aquest tauler mostra els nombres que fa servir l'algorisme auto-evo per "
+"fer la seva predicció. L'energia total que una espècie pot recol·lectar i "
+"el cost energètic per individu d'aquesta espècie, en determinen la "
+"població final. L'algorisme auto-evo fa servir un model simplificat de la "
+"realitat per a calcular el rendiment de les espècies basat en l'energia "
+"que són capaces de recol·lectar. Per cada font d'alimentació, es mostra "
+"quanta energia en guanya l'espècie. A més a més, es mostra l'energia total "
 "disponible per aquesta font. La fracció de l'energia total que guanyen les "
 "espècies es basa en la magnitud del seu 'rendiment' respecte al 'rendiment "
 "total'. El 'rendiment' és una mètrica de com de bé les espècies poden "
@@ -3672,11 +3673,11 @@ msgstr "Color de la línia:"
 msgid "MODIFY_ORGANELLE"
 msgstr "Modificar orgànul"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr "EXTINCIÓ"
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 "Com tantes i tantes altres espècies al llarg dels eons i de les edats "
@@ -3687,11 +3688,11 @@ msgstr ""
 "llunyanes. No obstant, la teva línia evolutiva s'ha tallat, ha esdevingut "
 "un experiment fallit en el llarg procés de l'evolució."
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr "HAS ACONSEGUIT PROSPERAR!"
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 "Enhorabona, has guanyat en la versió actual del joc! Si ho vols, un cop "
