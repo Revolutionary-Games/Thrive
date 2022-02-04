@@ -15,12 +15,12 @@ public class SteamClient : ISteamClient
 {
     private bool initStarted;
 
-    private Action<WorkshopResult> workshopCreateCallback;
-    private Action<WorkshopResult> workshopUpdateCallback;
+    private Action<WorkshopResult>? workshopCreateCallback;
+    private Action<WorkshopResult>? workshopUpdateCallback;
 
     public bool IsLoaded { get; private set; }
-    public string LoadError { get; private set; }
-    public string ExtraErrorInfo { get; private set; }
+    public string? LoadError { get; private set; }
+    public string? ExtraErrorInfo { get; private set; }
 
     public bool? IsOnline { get; private set; }
     public ulong? SteamId { get; private set; }
@@ -124,7 +124,7 @@ public class SteamClient : ISteamClient
         return Steam.SetItemTitle(updateHandle, title);
     }
 
-    public bool SetWorkshopItemDescription(ulong updateHandle, string description)
+    public bool SetWorkshopItemDescription(ulong updateHandle, string? description)
     {
         description ??= string.Empty;
 
@@ -166,7 +166,7 @@ public class SteamClient : ISteamClient
 
     public bool SetWorkshopItemPreview(ulong updateHandle, string previewImage)
     {
-        if (previewImage == null || !File.Exists(previewImage))
+        if (!File.Exists(previewImage))
             throw new ArgumentException("preview image doesn't exist");
 
         if (!SteamHandler.RecommendedFileEndings.Contains(Path.GetExtension(previewImage)))
@@ -177,7 +177,7 @@ public class SteamClient : ISteamClient
         return Steam.SetItemPreview(updateHandle, Path.GetFullPath(previewImage));
     }
 
-    public bool SetWorkshopItemTags(ulong updateHandle, List<string> tags)
+    public bool SetWorkshopItemTags(ulong updateHandle, List<string>? tags)
     {
         var array = new Array();
 
@@ -192,7 +192,7 @@ public class SteamClient : ISteamClient
         return Steam.SetItemTags(updateHandle, array);
     }
 
-    public void SubmitWorkshopItemUpdate(ulong updateHandle, string changeNotes, Action<WorkshopResult> callback)
+    public void SubmitWorkshopItemUpdate(ulong updateHandle, string? changeNotes, Action<WorkshopResult> callback)
     {
         if (workshopUpdateCallback != null)
             throw new InvalidOperationException("Workshop update is already in-progress");
@@ -203,11 +203,8 @@ public class SteamClient : ISteamClient
         // description max length
         if (changeNotes?.Length > Steam.PublishedDocumentChangeDescriptionMax)
         {
-            callback.Invoke(new WorkshopResult()
-            {
-                Success = false,
-                TranslatedError = TranslationServer.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG"),
-            });
+            callback.Invoke(
+                WorkshopResult.CreateFailure(TranslationServer.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG")));
             return;
         }
 
@@ -329,21 +326,16 @@ public class SteamClient : ISteamClient
             return;
         }
 
-        var convertedResult = new WorkshopResult
-        {
-            TermsOfServiceSigningRequired = acceptTermsOfService,
-            ItemId = fileId,
-        };
+        bool success = true;
+        string? error = null;
 
-        if (result == Steam.ResultOk)
+        if (result != Steam.ResultOk)
         {
-            convertedResult.Success = true;
+            success = false;
+            error = GetDescriptiveSteamError(result);
         }
-        else
-        {
-            convertedResult.Success = false;
-            convertedResult.TranslatedError = GetDescriptiveSteamError(result);
-        }
+
+        var convertedResult = new WorkshopResult(success, error, acceptTermsOfService, fileId);
 
         workshopCreateCallback.Invoke(convertedResult);
         workshopCreateCallback = null;
@@ -374,20 +366,16 @@ public class SteamClient : ISteamClient
             return;
         }
 
-        var convertedResult = new WorkshopResult
-        {
-            TermsOfServiceSigningRequired = acceptTermsOfService,
-        };
+        bool success = true;
+        string? error = null;
 
-        if (result == Steam.ResultOk)
+        if (result != Steam.ResultOk)
         {
-            convertedResult.Success = true;
+            success = false;
+            error = GetDescriptiveSteamError(result);
         }
-        else
-        {
-            convertedResult.Success = false;
-            convertedResult.TranslatedError = GetDescriptiveSteamError(result);
-        }
+
+        var convertedResult = new WorkshopResult(success, error, acceptTermsOfService, null);
 
         workshopUpdateCallback.Invoke(convertedResult);
         workshopUpdateCallback = null;
@@ -461,7 +449,7 @@ public class SteamClient : ISteamClient
         return result;
     }
 
-    private string GetDescriptiveSteamError(int result)
+    private string? GetDescriptiveSteamError(int result)
     {
         // Note: the exact problem varies a bit based on the action being performed, but for faster implementation
         // these are not separated by operation type TODO: (yet)
@@ -501,7 +489,7 @@ public class SteamClient : ISteamClient
         }
     }
 
-    private void SetError(string error, string extraDescription = null)
+    private void SetError(string error, string? extraDescription = null)
     {
         LoadError = error;
         ExtraErrorInfo = extraDescription;

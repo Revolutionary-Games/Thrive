@@ -469,8 +469,14 @@ public class ModUploader : Control
                 return;
             }
 
+            if (result.ItemId == null)
+            {
+                SetError(TranslationServer.Translate("SUCCESS_BUT_MISSING_ID"));
+                return;
+            }
+
             GD.Print($"Workshop item create succeeded for \"{selectedMod.InternalName}\", saving the item ID");
-            workshopData!.KnownModWorkshopIds[selectedMod.InternalName] = result.ItemId;
+            workshopData!.KnownModWorkshopIds[selectedMod.InternalName] = result.ItemId.Value;
 
             if (!SaveWorkshopData())
                 return;
