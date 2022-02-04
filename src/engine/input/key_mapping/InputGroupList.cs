@@ -77,14 +77,18 @@ public class InputGroupList : VBoxContainer
     /// <returns>The collisions if any of item against already set controls</returns>
     public InputEventItem? Conflicts(InputEventItem item)
     {
-        if (item.AssociatedAction?.TryGetTarget(out var inputActionItem) != true)
+        // This needs to be done this way as it seems older compiler version can't understand the code otherwise
+        // and issues warnings
+        // ReSharper disable InlineOutVariableDeclaration RedundantAssignment
+        InputActionItem? inputActionItem = null;
+        if (item.AssociatedAction?.TryGetTarget(out inputActionItem) != true || inputActionItem == null)
             return default;
 
-        if (inputActionItem?.AssociatedGroup?.TryGetTarget(out var inputGroupItem) != true)
+        InputGroupItem? inputGroupItem = null;
+        if (inputActionItem.AssociatedGroup?.TryGetTarget(out inputGroupItem) != true || inputGroupItem == null)
             return default;
 
-        if (inputGroupItem == null)
-            return default;
+        // ReSharper restore InlineOutVariableDeclaration RedundantAssignment
 
         // Get all environments the item is associated with.
         var environments = inputGroupItem.EnvironmentId;
