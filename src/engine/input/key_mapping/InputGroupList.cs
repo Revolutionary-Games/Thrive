@@ -113,8 +113,13 @@ public class InputGroupList : VBoxContainer
     public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict,
         InputEventWithModifiers newEvent)
     {
-        if (conflict.AssociatedAction?.TryGetTarget(out var inputActionItem) != true || inputActionItem == null)
+        // See the comments in Conflicts as to why this is done like this
+        // ReSharper disable InlineOutVariableDeclaration RedundantAssignment
+        InputActionItem? inputActionItem = null;
+        if (conflict.AssociatedAction?.TryGetTarget(out inputActionItem) != true || inputActionItem == null)
             return;
+
+        // ReSharper restore InlineOutVariableDeclaration RedundantAssignment
 
         latestDialogCaller = caller;
         latestDialogConflict = conflict;
@@ -122,8 +127,7 @@ public class InputGroupList : VBoxContainer
 
         conflictDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
-            inputActionItem.DisplayName,
-            inputActionItem.DisplayName);
+            inputActionItem.DisplayName, inputActionItem.DisplayName);
 
         conflictDialog.PopupCenteredShrink();
     }
