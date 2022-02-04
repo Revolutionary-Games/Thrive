@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-28 20:32+0200\n"
-"PO-Revision-Date: 2022-01-30 14:48+0200\n"
+"PO-Revision-Date: 2022-02-01 15:48+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio."
 "com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -174,7 +174,7 @@ msgstr ""
 "\n"
 "Pilus: Can be used to stab other cells\n"
 "\n"
-"Chemoreceptor: The chemoreceptor allows detecting compounds from farther away"
+"Chemoreceptor: Allows detecting compounds from farther away"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -2573,7 +2573,7 @@ msgstr ""
 msgid "OXYTOXISOME_DESC"
 msgstr ""
 "A modified metabolosome responsible for the production of a primitive form "
-"of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+"of the toxic agent OxyToxy NT."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:965
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
@@ -2797,9 +2797,8 @@ msgstr ""
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "The toxin vacuole is a vacuole that has been modified for the specific "
-"production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/"
-"thrive:compound] toxins. More toxin vacuoles will increase the rate at which "
-"toxins can be released."
+"production, storage, and secretion of oxytoxy toxins. More toxin vacuoles "
+"will increase the rate at which toxins can be released."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2076
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -3605,7 +3604,7 @@ msgstr "Minimum Amount to Detect:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
 msgid "LINE_COLOUR"
-msgstr "Line Colour"
+msgstr "Line Colour:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
