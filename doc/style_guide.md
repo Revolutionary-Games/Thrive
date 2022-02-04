@@ -46,7 +46,7 @@ Code style rules
   - `rect` (when related to class names and variables holding instances of those classes)
 
 - Variables and functions are camelCase or PascalCase depending on
-  their visibilty. Classes are PascalCase with leading upper
+  their visibility. Classes are PascalCase with leading upper
   case. StyleCop enforces these rules. Constants are all upper case
   with `SNAKE_CASE` (underscores). Enums may be PascalCase or
   `ALL_UPPER_CASE` (but PascalCase is very strongly preferred).
@@ -144,6 +144,35 @@ Code style rules
   reading the code that they couldn't see directly from the method
   signature.
 
+- For the main Thrive.csproj 
+  [nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) 
+  feature is turned on. All nullable reference warnings need to be 
+  fixed. In registry types and Node derived types we consider
+  the `_Ready` method and required JSON properties to be "constructor"
+  initialized, meaning we suppress those nullability warnings (when
+  the fields are never checked against null, see Godot usage section
+  for an example). Here's an example of the null suppression:
+  ```c#
+  [Export]
+  public NodePath ConflictDialogPath = null!;
+  
+  private CustomConfirmationDialog conflictDialog = null!;
+  
+  public override void _Ready()
+  {
+      conflictDialog = GetNode<CustomConfirmationDialog>(ConflictDialogPath);
+  }  
+  ```
+
+- Private and other methods that are called in controlled manner
+  may use nullability suppression for things that are checked
+  always higher up the callstack or in a Node `_Ready` method.
+  Other places are usually better to throw an `InvalidOperationException`
+  when they are tried to be used on a non-initialized instance.
+
+- For third party code, nullability should be disabled / enabled based
+  on whether the code uses nullable reference types or not.
+
 - Empty lines are encouraged between blocks of code to improve
   readability. Blank space is your friend, not your enemy. Separate
   out logically different parts of a method with blank lines. For
@@ -226,7 +255,7 @@ Code style rules
   short should use that style bodies.
 
 - Prefer early returns in methods to avoid unnecessary
-  intendation. Check assumptions about the parameters of a method at
+  indentation. Check assumptions about the parameters of a method at
   the start and return early with an error if the inputs are not
   valid.
 
@@ -284,7 +313,7 @@ Code style rules
 - Finally you should attempt to reach the abstract goal of clean
   code. Here are some concepts that are indicative of good code (and
   breaking these can be bad code): Liskov substitution principle,
-  single purpose princible, logically putting same kind of code in the
+  single purpose principle, logically putting same kind of code in the
   same place, avoid repetition, avoid expensive operations in a loop,
   prefer simpler code to understand. Avoid anti-patterns, for example
   God class.
@@ -297,7 +326,7 @@ Godot usage
 
 - For spacing elements use either a spacer (that has a visual
   appearance) or for invisible space use an empty Control with rect
-  minsize set to the amount of blank you want.
+  `minsize` set to the amount of blank you want.
 
 - Node names should not contain spaces, instead use PascalCase naming.
 
@@ -331,8 +360,8 @@ Godot usage
   objects problems again.
 
 - The order of Godot overridden methods in a class should be in the
-  following order: (class constructor), _Ready, _ExitTree, _Process,
-  _Input, _UnhandledInput, (other callbacks)
+  following order: (class constructor), `_Ready`, `_ExitTree`, `_Process`,
+  `_Input`, `_UnhandledInput`, (other callbacks)
 
 - If you need to access parent objects, don't make a static public
   instance variables, instead pass callbacks etc. around to allow the
@@ -342,7 +371,7 @@ Godot usage
 - To remove all children of a Node use `FreeChildren` or
   `QueueFreeChildren` extension methods.
 
-- DO NOT DISPOSE Godot Node derived objects, call QueueFree or Free
+- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or `Free`
   instead. Also don't override Dispose in Node derived types, instead
   use the tree enter and exit callbacks to handle resources that need
   releasing when removed (unless it is a game entity for which there's
@@ -350,13 +379,60 @@ Godot usage
 
 - Avoid using a constructor to setup Godot resources, usually Node
   derived types should mostly do Godot Node related, constructor-like
-  operations entirely in _Ready. Many resources are not ready yet when
+  operations entirely in `_Ready`. Many resources are not ready yet when
   a class is constructed or static variables are being initialized. If
   this is not followed script variables may not show up correctly in
   the Godot editor as that relies on creating an instance of the
   class, and that can fail for example because SimulationParameters
   are not initialized in the Godot editor. This needs especial care
   when a class type is directly attached to a Godot scene.
+
+- Regarding nullability and Node references that are null before a Node
+  enters the scene. They can be used if you want to support setting a
+  property that affects a child Node before the Node is added to the scene.
+  For example the following shows how that can be structured:
+  ```c#
+  [Export]
+  public NodePath SpinnerPath = null!;
+  
+  private TextureRect? spinner;
+  
+  private bool showSpinner;
+  
+  public bool ShowSpinner
+  {
+      get => showSpinner;
+      set
+      {
+          showSpinner = value;
+          UpdateSpinner();
+      }
+  }
+  
+  public override void _Ready()
+  {
+      spinner = GetNode<TextureRect>(SpinnerPath);
+      UpdateSpinner();
+  }
+  
+  private void UpdateSpinner()
+  {
+      if (spinner != null)
+          spinner.Visible = ShowSpinner;
+  }
+  
+  private void SomeOperationValidAfterReady()
+  {
+      // Use nullability suppression here once a method is only valid after
+      // _Ready has been called
+      spinner!.Something();
+  }
+  ```
+
+- Related to the above point, throw `SceneTreeAttachRequired` if you write
+  an operation that may not be called before `_Ready` has ran, and it's
+  a public method or can be triggered that way and someone might call it 
+  too early.
 
 - When using `GD.PrintErr` don't use string concatenation, use the
   multi argument form instead, for example: `GD.PrintErr("My value is:
@@ -394,7 +470,7 @@ Godot usage
   `src/gui_common/fonts` folder and use that. This is needed because
   all fonts must have fallback fonts defined for translations that use
   character sets that aren't in the main fonts, for example
-  Chinese. All fonts should be truetype (`.ttf`) and stored in
+  Chinese. All fonts should be TrueType (`.ttf`) and stored in
   `assets/fonts`.
 
 - All images used in the GUI should have mipmaps on in the import
