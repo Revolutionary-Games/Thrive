@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class ExtinctionBox : ControlWithInput
+public class ExtinctionBox : CustomDialog
 {
     [Export]
     public NodePath ExtinctionMenuPath;
@@ -10,6 +10,18 @@ public class ExtinctionBox : ControlWithInput
 
     private Control extinctionMenu;
     private Control loadMenu;
+
+    public override void _EnterTree()
+    {
+        InputManager.RegisterReceiver(this);
+        base._EnterTree();
+    }
+
+    public override void _ExitTree()
+    {
+        InputManager.UnregisterReceiver(this);
+        base._ExitTree();
+    }
 
     public override void _Ready()
     {

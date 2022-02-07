@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=61 format=2]
+[gd_resource type="Theme" load_steps=65 format=2]
 
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=4]
@@ -11,8 +12,11 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=12]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=13]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=15]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=16]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=20]
@@ -512,6 +516,11 @@ FileDialog/icons/folder = null
 FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
+Fonts/fonts/jura_almost_smaller = ExtResource( 1 )
+Fonts/fonts/jura_bold = ExtResource( 8 )
+Fonts/fonts/jura_demibold_almost_smaller = ExtResource( 17 )
+Fonts/fonts/jura_demibold_bigger = ExtResource( 13 )
+Fonts/fonts/jura_normal = ExtResource( 14 )
 Fonts/fonts/large = null
 Fonts/fonts/lato_bold_normal = ExtResource( 16 )
 Fonts/fonts/lato_normal = ExtResource( 15 )
@@ -853,7 +862,7 @@ WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
 WindowDialog/constants/custom_close_h_ofs = 22
 WindowDialog/constants/custom_close_v_ofs = 20
-WindowDialog/constants/custom_scaleBorder_size = 4
+WindowDialog/constants/custom_scaleBorder_size = 5
 WindowDialog/constants/custom_title_height = 26
 WindowDialog/constants/custom_titlebar_height = 28
 WindowDialog/constants/scaleborder_size = 4

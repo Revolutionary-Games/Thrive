@@ -56,6 +56,7 @@ public class SteamClient : ISteamClient
         if (IsOwned == true)
             GD.Print("Game is owned by current Steam user");
 
+        // TODO: remove this cast once GodotSteam is updated
         AppId = (uint)Steam.GetAppID();
 
         GD.Print("Our app id is: ", AppId);
@@ -404,6 +405,7 @@ public class SteamClient : ISteamClient
         foreach (var item in Steam.GetSubscribedItems())
         {
             // TODO: GodotSteam bug that it doesn't return the proper type here
+            // Actually seems to be a Godot engine bug: https://github.com/godotengine/godot/issues/57141
             // yield return (ulong)item;
 
             var raw = BitConverter.GetBytes((int)item);

@@ -206,6 +206,7 @@ DialogText = "TRY_MAKING_A_SAVE"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteSelected" to="." method="DeleteSelectedButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteOld" to="." method="DeleteOldButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/OpenSaveDir" to="." method="OpenSaveDirectoryPressed"]
+[connection signal="OnConfirmed" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSaveListItemConfirmed"]
 [connection signal="OnSelectedChanged" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BottomBox/Back" to="." method="OnBackButton"]
 [connection signal="Confirmed" from="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog" to="." method="OnConfirmDeleteSelected"]
