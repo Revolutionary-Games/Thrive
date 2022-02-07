@@ -265,8 +265,7 @@
                 var depthDifference = depth[1].Value<int>() - depth[0].Value<int>();
 
                 // Assume cubic patches for upgrade
-                container.Add("Volume",
-                    depthDifference * depthDifference * depthDifference);
+                container.Add("Volume", (long)Math.Pow(depthDifference, 3));
             }
             else
             {
