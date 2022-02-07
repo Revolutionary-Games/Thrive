@@ -55,7 +55,6 @@
                 { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
                 { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
                 { "0.5.6.0", new UpgradeJustVersionNumber("0.5.6.1") },
-                { "0.5.6.1", new UpgradeStep056To057() },
             };
         }
     }
@@ -161,7 +160,7 @@
         }
     }
 
-    internal class UpgradeStep056To057 : BaseRecursiveJSONWalkerStep
+    internal class UpgradeStep057To058 : BaseRecursiveJSONWalkerStep
     {
         protected override string VersionAfter => "0.5.7.0-alpha";
 
