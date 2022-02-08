@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -10,40 +11,39 @@ using Godot;
 public class InputGroupList : VBoxContainer
 {
     [Export]
-    public NodePath ConflictDialogPath;
+    public NodePath ConflictDialogPath = null!;
 
     [Export]
-    public NodePath ResetInputsDialog;
+    public NodePath ResetInputsDialog = null!;
 
-    private IEnumerable<InputGroupItem> activeInputGroupList;
+    private IEnumerable<InputGroupItem>? activeInputGroupList;
 
-    private InputEventItem latestDialogCaller;
-    private InputEventItem latestDialogConflict;
-    private InputEventWithModifiers latestDialogNewEvent;
+    private InputEventItem? latestDialogCaller;
+    private InputEventItem? latestDialogConflict;
+    private InputEventWithModifiers? latestDialogNewEvent;
 
-    private CustomConfirmationDialog conflictDialog;
-    private CustomConfirmationDialog resetInputsDialog;
+    private CustomConfirmationDialog conflictDialog = null!;
+    private CustomConfirmationDialog resetInputsDialog = null!;
 
     public delegate void ControlsChangedDelegate(InputDataList data);
 
     /// <summary>
     ///   Fired whenever some inputs were redefined.
     /// </summary>
-    public event ControlsChangedDelegate OnControlsChanged;
+    public event ControlsChangedDelegate? OnControlsChanged;
 
-    public PackedScene InputEventItemScene { get; private set; }
-    public PackedScene InputGroupItemScene { get; private set; }
-    public PackedScene InputActionItemScene { get; private set; }
+    public PackedScene InputEventItemScene { get; private set; } = null!;
+    public PackedScene InputGroupItemScene { get; private set; } = null!;
+    public PackedScene InputActionItemScene { get; private set; } = null!;
 
     /// <summary>
     ///   Is any Input currently waiting for input
     /// </summary>
     public bool ListeningForInput => ActiveInputGroupList
         .Any(group => group.Actions
-            .Any(action => action.Inputs
-                .Any(singularInput => singularInput.WaitingForInput)));
+            .Any(action => action.Inputs.Any(singularInput => singularInput.WaitingForInput)));
 
-    public IEnumerable<InputGroupItem> ActiveInputGroupList => activeInputGroupList;
+    public IEnumerable<InputGroupItem> ActiveInputGroupList => activeInputGroupList ?? Array.Empty<InputGroupItem>();
 
     public override void _Ready()
     {
@@ -63,10 +63,10 @@ public class InputGroupList : VBoxContainer
     /// </returns>
     public InputDataList GetCurrentlyPendingControls()
     {
-        if (!activeInputGroupList.Any())
+        if (!ActiveInputGroupList.Any())
             return Settings.GetDefaultControls();
 
-        return new InputDataList(activeInputGroupList.SelectMany(p => p.Actions)
+        return new InputDataList(ActiveInputGroupList.SelectMany(p => p.Actions)
             .ToDictionary(p => p.InputName, p => p.Inputs.Select(x => x.AssociatedEvent).ToList()));
     }
 
@@ -75,13 +75,20 @@ public class InputGroupList : VBoxContainer
     /// </summary>
     /// <param name="item">The event with the new value to set</param>
     /// <returns>The collisions if any of item against already set controls</returns>
-    public InputEventItem Conflicts(InputEventItem item)
+    public InputEventItem? Conflicts(InputEventItem item)
     {
-        if (!item.AssociatedAction.TryGetTarget(out var inputActionItem))
+        // This needs to be done this way as it seems older compiler version can't understand the code otherwise
+        // and issues warnings
+        // ReSharper disable InlineOutVariableDeclaration RedundantAssignment
+        InputActionItem? inputActionItem = null;
+        if (item.AssociatedAction?.TryGetTarget(out inputActionItem) != true || inputActionItem == null)
             return default;
 
-        if (!inputActionItem.AssociatedGroup.TryGetTarget(out var inputGroupItem))
+        InputGroupItem? inputGroupItem = null;
+        if (inputActionItem.AssociatedGroup?.TryGetTarget(out inputGroupItem) != true || inputGroupItem == null)
             return default;
+
+        // ReSharper restore InlineOutVariableDeclaration RedundantAssignment
 
         // Get all environments the item is associated with.
         var environments = inputGroupItem.EnvironmentId;
@@ -106,9 +113,13 @@ public class InputGroupList : VBoxContainer
     public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict,
         InputEventWithModifiers newEvent)
     {
-        // Conditional access to satisfy jetbrains
-        if (!conflict.AssociatedAction.TryGetTarget(out var inputActionItem))
+        // See the comments in Conflicts as to why this is done like this
+        // ReSharper disable InlineOutVariableDeclaration RedundantAssignment
+        InputActionItem? inputActionItem = null;
+        if (conflict.AssociatedAction?.TryGetTarget(out inputActionItem) != true || inputActionItem == null)
             return;
+
+        // ReSharper restore InlineOutVariableDeclaration RedundantAssignment
 
         latestDialogCaller = caller;
         latestDialogConflict = conflict;
@@ -116,8 +127,7 @@ public class InputGroupList : VBoxContainer
 
         conflictDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("KEY_BINDING_CHANGE_CONFLICT"),
-            inputActionItem.DisplayName,
-            inputActionItem.DisplayName);
+            inputActionItem.DisplayName, inputActionItem.DisplayName);
 
         conflictDialog.PopupCenteredShrink();
     }
@@ -129,6 +139,12 @@ public class InputGroupList : VBoxContainer
 
     public void OnConflictConfirmed()
     {
+        if (latestDialogConflict == null || latestDialogCaller == null || latestDialogNewEvent == null)
+        {
+            GD.PrintErr("Key binding conflict was resolved but no active dialogs exist");
+            return;
+        }
+
         latestDialogConflict.Delete();
 
         // Pass the input event again to have the key be set where it was previously skipped

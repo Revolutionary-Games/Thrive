@@ -15,21 +15,21 @@ public partial class Microbe
     ///   The stored compounds in this microbe
     /// </summary>
     [JsonProperty]
-    public readonly CompoundBag Compounds = new CompoundBag(0.0f);
+    public readonly CompoundBag Compounds = new(0.0f);
 
-    private Compound atp;
-
-    [JsonProperty]
-    private CompoundCloudSystem cloudSystem;
+    private Compound atp = null!;
 
     [JsonProperty]
-    private Compound queuedToxinToEmit;
+    private CompoundCloudSystem? cloudSystem;
+
+    [JsonProperty]
+    private Compound? queuedToxinToEmit;
 
     /// <summary>
     ///   The organelles in this microbe
     /// </summary>
     [JsonProperty]
-    private OrganelleLayout<PlacedOrganelle> organelles;
+    private OrganelleLayout<PlacedOrganelle>? organelles;
 
     [JsonProperty]
     private float lastCheckedATPDamage;
@@ -76,7 +76,7 @@ public partial class Microbe
     ///   All organelle nodes need to be added to this node to make scale work
     /// </summary>
     [JsonIgnore]
-    public Spatial OrganelleParent { get; private set; }
+    public Spatial OrganelleParent { get; private set; } = null!;
 
     [JsonIgnore]
     public CompoundBag ProcessCompoundStorage => Compounds;
@@ -94,13 +94,13 @@ public partial class Microbe
     ///   Called when the reproduction status of this microbe changes
     /// </summary>
     [JsonProperty]
-    public Action<Microbe, bool> OnReproductionStatus { get; set; }
+    public Action<Microbe, bool>? OnReproductionStatus { get; set; }
 
     /// <summary>
     ///   Called periodically to report the chemoreception settings of the microbe
     /// </summary>
     [JsonProperty]
-    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>
+    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>?
         OnCompoundChemoreceptionInfo { get; set; }
 
     /// <summary>
@@ -125,11 +125,8 @@ public partial class Microbe
 
         foreach (var entry in Species.Organelles.Organelles)
         {
-            var placed = new PlacedOrganelle
+            var placed = new PlacedOrganelle(entry.Definition, entry.Position, entry.Orientation)
             {
-                Definition = entry.Definition,
-                Position = entry.Position,
-                Orientation = entry.Orientation,
                 Upgrades = entry.Upgrades,
             };
 
@@ -156,6 +153,9 @@ public partial class Microbe
         if (!IsForPreviewOnly)
             throw new InvalidOperationException("Microbe must be a preview-only type");
 
+        if (organelles == null)
+            throw new InvalidOperationException("Microbe must be initialized");
+
         foreach (var entry in organelles.Organelles)
         {
             entry.Colour = Species.Colour;
@@ -166,7 +166,7 @@ public partial class Microbe
     /// <summary>
     ///   Tries to fire a toxin if possible
     /// </summary>
-    public void EmitToxin(Compound agentType = null)
+    public void EmitToxin(Compound? agentType = null)
     {
         if (AgentEmissionCooldown > 0)
             return;
@@ -195,9 +195,7 @@ public partial class Microbe
         if (Species.IsBacteria)
             ejectionDistance *= 0.5f;
 
-        var props = new AgentProperties();
-        props.Compound = agentType;
-        props.Species = Species;
+        var props = new AgentProperties(Species, agentType);
 
         // Find the direction the microbe is facing
         var direction = (LookAtPoint - Translation).Normalized();
@@ -284,7 +282,7 @@ public partial class Microbe
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame);
 
         // Make it despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);
@@ -411,6 +409,9 @@ public partial class Microbe
     /// fraction done.  </summary>
     public Dictionary<Compound, float> CalculateTotalCompounds()
     {
+        if (organelles == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         var result = new Dictionary<Compound, float>();
 
         foreach (var organelle in organelles)
@@ -429,6 +430,9 @@ public partial class Microbe
     /// </summary>
     public Dictionary<Compound, float> CalculateAlreadyAbsorbedCompounds()
     {
+        if (organelles == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         var result = new Dictionary<Compound, float>();
 
         foreach (var organelle in organelles)
@@ -455,7 +459,7 @@ public partial class Microbe
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
-        cloudSystem.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
+        cloudSystem!.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
@@ -567,7 +571,7 @@ public partial class Microbe
         var organellesToAdd = new List<PlacedOrganelle>();
 
         // Grow all the organelles, except the nucleus which is given compounds last
-        foreach (var organelle in organelles.Organelles)
+        foreach (var organelle in organelles!.Organelles)
         {
             // Check if already done
             if (organelle.WasSplit)
@@ -657,9 +661,10 @@ public partial class Microbe
         var q = organelle.Position.Q;
         var r = organelle.Position.R;
 
-        var newOrganelle = new PlacedOrganelle
+        // The position used here will be overridden with the right value when we manage to find a place
+        // for this organelle
+        var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(q, r), 0)
         {
-            Definition = organelle.Definition,
             Upgrades = organelle.Upgrades,
         };
 
@@ -669,8 +674,8 @@ public partial class Microbe
         {
             // Moves into the ring of radius "radius" and center the old organelle
             var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
-            q = q + radiusOffset.Q;
-            r = r + radiusOffset.R;
+            q += radiusOffset.Q;
+            r += radiusOffset.R;
 
             // Iterates in the ring
             for (int side = 1; side <= 6; ++side)
@@ -680,8 +685,8 @@ public partial class Microbe
                 // Moves "radius" times into each direction
                 for (int i = 1; i <= radius; ++i)
                 {
-                    q = q + offset.Q;
-                    r = r + offset.R;
+                    q += offset.Q;
+                    r += offset.R;
 
                     // Checks every possible rotation value.
                     for (int j = 0; j <= 5; ++j)
@@ -694,7 +699,7 @@ public partial class Microbe
                         // now fixed to actually try the different
                         // rotations.
                         newOrganelle.Orientation = j;
-                        if (organelles.CanPlace(newOrganelle))
+                        if (organelles!.CanPlace(newOrganelle))
                         {
                             organelles.Add(newOrganelle);
                             return newOrganelle;
@@ -862,7 +867,7 @@ public partial class Microbe
     /// </summary>
     private void RecomputeOrganelleCapacity()
     {
-        organellesCapacity = organelles.Sum(o => o.StorageCapacity);
+        organellesCapacity = organelles!.Sum(o => o.StorageCapacity);
         Compounds.Capacity = organellesCapacity;
     }
 
@@ -883,7 +888,7 @@ public partial class Microbe
         if (amountToEject <= 0)
             return;
 
-        cloudSystem.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition());
+        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition());
     }
 
     /// <summary>

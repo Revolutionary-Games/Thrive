@@ -13,6 +13,14 @@ public static class ListUtils
     public static T Random<T>(this List<T> items, Random random)
     {
         if (items == null || items.Count < 1)
+            throw new ArgumentException("Can't select a random item from an empty sequence");
+
+        return items[random.Next(0, items.Count)];
+    }
+
+    public static T? RandomOrDefault<T>(this List<T>? items, Random random)
+    {
+        if (items == null || items.Count < 1)
             return default;
 
         return items[random.Next(0, items.Count)];

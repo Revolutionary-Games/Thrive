@@ -159,9 +159,9 @@ public class MicrobeAI
         }
     }
 
-    private FloatingChunk GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes, Random random)
+    private FloatingChunk? GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes, Random random)
     {
-        FloatingChunk chosenChunk = null;
+        FloatingChunk? chosenChunk = null;
 
         // If the microbe cannot absorb, no need for this
         if (microbe.Membrane.Type.CellWall)
@@ -172,6 +172,9 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
+            if (chunk.ContainedCompounds == null)
+                continue;
+
             if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
                 && (chunk.Translation - microbe.Translation).LengthSquared()
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
@@ -240,7 +243,7 @@ public class MicrobeAI
     /// </summary>
     /// <returns>The nearest prey item.</returns>
     /// <param name="allMicrobes">All microbes.</param>
-    private Microbe GetNearestPreyItem(List<Microbe> allMicrobes)
+    private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes)
     {
         var focused = focusedPrey.Value;
         if (focused != null)
@@ -264,7 +267,7 @@ public class MicrobeAI
             focusedPrey.Value = null;
         }
 
-        Microbe chosenPrey = null;
+        Microbe? chosenPrey = null;
 
         foreach (var otherMicrobe in allMicrobes)
         {
@@ -293,12 +296,12 @@ public class MicrobeAI
     ///   Building the predator list and setting the scariest one to be predator
     /// </summary>
     /// <param name="allMicrobes">All microbes.</param>
-    private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
+    private Microbe? GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
         var fleeThreshold = 3.0f - (2 *
             (SpeciesFear / Constants.MAX_SPECIES_FEAR) *
             (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
-        Microbe predator = null;
+        Microbe? predator = null;
         foreach (var otherMicrobe in allMicrobes)
         {
             if (otherMicrobe == microbe)

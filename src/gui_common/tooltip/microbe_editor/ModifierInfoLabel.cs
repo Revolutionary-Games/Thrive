@@ -6,14 +6,14 @@
 /// </summary>
 public class ModifierInfoLabel : HBoxContainer
 {
-    private Label nameLabel;
-    private Label valueLabel;
-    private TextureRect icon;
+    private Label? nameLabel;
+    private Label? valueLabel;
+    private TextureRect? icon;
 
-    private string displayName;
-    private string modifierValue;
-    private Color modifierValueColor;
-    private Texture iconTexture;
+    private string displayName = string.Empty;
+    private string modifierValue = string.Empty;
+    private Color modifierValueColor = Colors.White;
+    private Texture? iconTexture;
 
     private bool showValue = true;
 
@@ -51,7 +51,7 @@ public class ModifierInfoLabel : HBoxContainer
     }
 
     [Export]
-    public Texture ModifierIcon
+    public Texture? ModifierIcon
     {
         get => iconTexture;
         set

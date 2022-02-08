@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public class SaveFileInfo
 {
-    private SaveInformation info;
+    private SaveInformation? info;
 
     public SaveFileInfo(string name)
     {

@@ -1,5 +1,7 @@
 ﻿namespace AutoEvo
 {
+    using System;
+
     /// <summary>
     ///   Base helper class for steps trying a fixed number of variant solutions and picking the best
     /// </summary>
@@ -9,8 +11,8 @@
         private bool tryCurrentVariant;
         private bool storeSecondBest;
 
-        private IAttemptResult currentBest;
-        private IAttemptResult secondBest;
+        private IAttemptResult? currentBest;
+        private IAttemptResult? secondBest;
 
         protected VariantTryingStep(int variantsToTry, bool tryCurrentVariant, bool storeSecondBest = false)
         {
@@ -54,6 +56,9 @@
             if (!tryCurrentVariant && variantsToTry <= 0)
             {
                 // Store the best result
+                if (currentBest == null)
+                    throw new Exception($"Variant step didn't try anything ({nameof(currentBest)} is null)");
+
                 OnBestResultFound(results, currentBest);
                 return true;
             }
@@ -78,7 +83,7 @@
         /// <param name="bestVariant">Best variant found.</param>
         protected abstract void OnBestResultFound(RunResults results, IAttemptResult bestVariant);
 
-        protected IAttemptResult GetSecondBest()
+        protected IAttemptResult? GetSecondBest()
         {
             return secondBest;
         }

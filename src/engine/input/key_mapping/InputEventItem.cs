@@ -13,13 +13,13 @@ using Godot;
 public class InputEventItem : Node
 {
     [Export]
-    public NodePath ButtonPath;
+    public NodePath ButtonPath = null!;
 
     [Export]
-    public NodePath XButtonPath;
+    public NodePath XButtonPath = null!;
 
-    private Button button;
-    private Button xButton;
+    private Button button = null!;
+    private Button xButton = null!;
     private bool wasPressingButton;
 
     /// <summary>
@@ -28,15 +28,14 @@ public class InputEventItem : Node
     public bool WaitingForInput { get; private set; }
 
     /// <summary>
-    ///   The currently assigned key binding for this event.
-    ///   null if this InputEventItem was just created
+    ///   The currently assigned key binding for this event. null if this InputEventItem was just created.
     /// </summary>
-    public SpecifiedInputKey AssociatedEvent { get; private set; }
+    public SpecifiedInputKey? AssociatedEvent { get; private set; }
 
     /// <summary>
     ///   The game action InputEventItem is associated with
     /// </summary>
-    internal WeakReference<InputActionItem> AssociatedAction { get; set; }
+    internal WeakReference<InputActionItem>? AssociatedAction { get; set; }
 
     /// <summary>
     ///   If this key binding was just created and has never been assigned with a value, so immediately prompt the user
@@ -44,10 +43,13 @@ public class InputEventItem : Node
     /// </summary>
     internal bool JustAdded { get; set; }
 
-    private InputActionItem Action
+    private InputActionItem? Action
     {
         get
         {
+            if (AssociatedAction == null)
+                return null;
+
             if (!AssociatedAction.TryGetTarget(out var associatedAction))
                 return null;
 
@@ -55,26 +57,26 @@ public class InputEventItem : Node
         }
     }
 
-    private InputGroupItem Group
+    private InputGroupItem? Group
     {
         get
         {
             var action = Action;
 
-            InputGroupItem associatedGroup = null;
-            action?.AssociatedGroup.TryGetTarget(out associatedGroup);
+            InputGroupItem? associatedGroup = null;
+            action?.AssociatedGroup?.TryGetTarget(out associatedGroup);
 
             return associatedGroup;
         }
     }
 
-    private InputGroupList GroupList
+    private InputGroupList? GroupList
     {
         get
         {
             var group = Group;
 
-            InputGroupList associatedList = null;
+            InputGroupList? associatedList = null;
             group?.AssociatedList.TryGetTarget(out associatedList);
 
             return associatedList;
@@ -109,8 +111,8 @@ public class InputEventItem : Node
     /// </summary>
     public void Delete()
     {
-        Action.Inputs.Remove(this);
-        GroupList.ControlsChanged();
+        Action?.Inputs.Remove(this);
+        GroupList?.ControlsChanged();
     }
 
     /// <summary>
@@ -228,11 +230,14 @@ public class InputEventItem : Node
 
     public override int GetHashCode()
     {
-        return AssociatedEvent.GetHashCode();
+        return AssociatedEvent?.GetHashCode() ?? 13;
     }
 
     internal static InputEventItem BuildGUI(InputActionItem associatedAction, SpecifiedInputKey @event)
     {
+        if (associatedAction.GroupList == null)
+            throw new ArgumentException("Action doesn't have group list", nameof(associatedAction));
+
         var result = (InputEventItem)associatedAction.GroupList.InputEventItemScene.Instance();
 
         result.AssociatedAction = new WeakReference<InputActionItem>(associatedAction);
@@ -240,7 +245,7 @@ public class InputEventItem : Node
         return result;
     }
 
-    private bool CheckNewKeyConflicts(InputEvent @event, InputGroupList groupList, SpecifiedInputKey old)
+    private bool CheckNewKeyConflicts(InputEvent @event, InputGroupList groupList, SpecifiedInputKey? old)
     {
         // Get the conflicts with the new input.
         var conflict = groupList.Conflicts(this);
@@ -254,6 +259,12 @@ public class InputEventItem : Node
         }
 
         var associatedAction = Action;
+
+        if (associatedAction?.Inputs == null)
+        {
+            GD.PrintErr("Can't check conflicts because associated action or its inputs is null");
+            return false;
+        }
 
         // Check if the input is already defined for this action
         // This code works by finding a pair
@@ -298,6 +309,12 @@ public class InputEventItem : Node
     {
         var groupList = GroupList;
 
+        if (groupList == null)
+        {
+            GD.PrintErr($"Can't handle button press in {nameof(InputEventItem)} due to missing group list");
+            return;
+        }
+
         if (groupList.IsConflictDialogOpen())
             return;
 
@@ -328,7 +345,8 @@ public class InputEventItem : Node
 
     private void UpdateButtonText()
     {
-        button.Text = AssociatedEvent.ToString();
+        button.Text = AssociatedEvent != null ? AssociatedEvent.ToString() : "error";
+
         xButton.Visible = false;
     }
 }

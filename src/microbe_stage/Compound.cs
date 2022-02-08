@@ -14,13 +14,13 @@ public class Compound : IRegistryType
     ///   Display name for the user to see
     /// </summary>
     [TranslateFrom("untranslatedName")]
-    public string Name;
+    public string Name = null!;
 
     public float Volume;
 
     public bool IsCloud;
 
-    public string IconPath;
+    public string IconPath = null!;
 
     /// <summary>
     ///   When this is true the compound is always considered to be
@@ -40,13 +40,13 @@ public class Compound : IRegistryType
     /// <summary>
     ///   Loaded icon for display in GUIs
     /// </summary>
-    public Texture LoadedIcon;
+    public Texture? LoadedIcon;
 
 #pragma warning disable 169 // Used through reflection
-    private string untranslatedName;
+    private string? untranslatedName;
 #pragma warning restore 169
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {

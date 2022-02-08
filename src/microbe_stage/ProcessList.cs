@@ -6,11 +6,11 @@ using Godot;
 /// </summary>
 public class ProcessList : VBoxContainer
 {
-    private PackedScene chemicalEquationScene;
+    private PackedScene chemicalEquationScene = null!;
 
-    private ChildObjectCache<IProcessDisplayInfo, ChemicalEquation> createdProcessControls;
+    private ChildObjectCache<IProcessDisplayInfo, ChemicalEquation> createdProcessControls = null!;
 
-    public List<IProcessDisplayInfo> ProcessesToShow { get; set; }
+    public List<IProcessDisplayInfo>? ProcessesToShow { get; set; }
 
     public bool ShowSpinners { get; set; } = true;
 

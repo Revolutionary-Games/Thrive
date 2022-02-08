@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 /// </summary>
 public class SerializationBinder : DefaultSerializationBinder
 {
-    public override Type BindToType(string assemblyName, string typeName)
+    public override Type BindToType(string? assemblyName, string typeName)
     {
         var type = base.BindToType(assemblyName, typeName);
 

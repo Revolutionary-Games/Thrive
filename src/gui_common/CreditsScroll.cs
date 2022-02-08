@@ -32,10 +32,10 @@ public class CreditsScroll : Container
     private const string TestingTeamName = "Testing Team";
     private const string ProjectManagementTeamName = "Project Management Team";
 
-    private readonly List<DynamicPart> destroyedDynamicParts = new List<DynamicPart>();
+    private readonly List<DynamicPart> dynamicParts = new();
+    private readonly List<DynamicPart> destroyedDynamicParts = new();
 
     private CreditsPhase phase = CreditsPhase.NotRunning;
-    private List<DynamicPart> dynamicParts;
 
     private bool scrolling = true;
     private float scrollOffset;
@@ -43,12 +43,12 @@ public class CreditsScroll : Container
 
     private bool steamVersion;
 
-    private GameCredits credits;
+    private GameCredits credits = null!;
 
-    private Control logo;
-    private Control revolutionaryGames;
-    private Control supportedBy;
-    private Control developersHeading;
+    private Control logo = null!;
+    private Control revolutionaryGames = null!;
+    private Control supportedBy = null!;
+    private Control developersHeading = null!;
 
     private float normalScrollSpeed;
 
@@ -74,35 +74,35 @@ public class CreditsScroll : Container
     public bool ShowGPLLicense { get; set; } = true;
 
     [Export]
-    public NodePath LogoPath { get; set; }
+    public NodePath LogoPath { get; set; } = null!;
 
     [Export]
-    public NodePath RevolutionaryGamesPath { get; set; }
+    public NodePath RevolutionaryGamesPath { get; set; } = null!;
 
     [Export]
-    public NodePath SupportedByPath { get; set; }
+    public NodePath SupportedByPath { get; set; } = null!;
 
     [Export]
-    public NodePath DevelopersHeadingPath { get; set; }
+    public NodePath DevelopersHeadingPath { get; set; } = null!;
 
     [Export]
-    public Font TeamNameFont { get; set; }
+    public Font TeamNameFont { get; set; } = null!;
 
     [Export]
-    public Font SectionNameFont { get; set; }
+    public Font SectionNameFont { get; set; } = null!;
 
     public override void _Ready()
     {
-        logo = GetNode<Control>(LogoPath);
-        revolutionaryGames = GetNode<Control>(RevolutionaryGamesPath);
-        supportedBy = GetNode<Control>(SupportedByPath);
-        developersHeading = GetNode<Control>(DevelopersHeadingPath);
-
         if (TeamNameFont == null)
             throw new InvalidOperationException($"{nameof(TeamNameFont)} not set");
 
         if (SectionNameFont == null)
             throw new InvalidOperationException($"{nameof(SectionNameFont)} not set");
+
+        logo = GetNode<Control>(LogoPath);
+        revolutionaryGames = GetNode<Control>(RevolutionaryGamesPath);
+        supportedBy = GetNode<Control>(SupportedByPath);
+        developersHeading = GetNode<Control>(DevelopersHeadingPath);
 
         credits = SimulationParameters.Instance.GetCredits();
 
@@ -208,15 +208,12 @@ public class CreditsScroll : Container
 
         UpdateStaticItemPositions();
 
-        if (dynamicParts != null)
+        foreach (var part in dynamicParts)
         {
-            foreach (var part in dynamicParts)
-            {
-                part.DetachAndQueueFree();
-            }
+            part.DetachAndQueueFree();
         }
 
-        dynamicParts = new List<DynamicPart>();
+        dynamicParts.Clear();
     }
 
     private void LoadCurrentDevelopers()
@@ -525,7 +522,7 @@ public class CreditsScroll : Container
         }
     }
 
-    private DynamicPart CreateDynamicPart(int offset, IEnumerable<string> texts, int columns, Font overrideFont = null)
+    private DynamicPart CreateDynamicPart(int offset, IEnumerable<string> texts, int columns, Font? overrideFont = null)
     {
         if (columns <= 1)
         {
@@ -580,7 +577,7 @@ public class CreditsScroll : Container
         return dynamicPart;
     }
 
-    private DynamicPart CreateDynamicPart(int offset, string text, Font overrideFont = null)
+    private DynamicPart CreateDynamicPart(int offset, string text, Font? overrideFont = null)
     {
         var label = new DynamicPart(offset, new Label
         {
@@ -743,14 +740,14 @@ public class CreditsScroll : Container
 
         public bool HasBeenVisible { get; set; }
 
-        public Action OnBecomeVisible { get; set; }
+        public Action? OnBecomeVisible { get; set; }
 
         public float Height => Control.RectSize.y;
         public float Top => Control.RectPosition.y;
 
         // In the end nothing ended up using the set here, but it should work so it is kept here with a suppression
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
-        public Action OnEnded { get; set; }
+        public Action? OnEnded { get; set; }
 
         public void DetachAndQueueFree()
         {

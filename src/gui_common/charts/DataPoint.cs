@@ -16,16 +16,16 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     public readonly double X;
     public readonly double Y;
 
-    private Texture graphMarkerCircle;
-    private Texture graphMarkerCross;
-    private Texture graphMarkerSkull;
+    private Texture graphMarkerCircle = null!;
+    private Texture graphMarkerCross = null!;
+    private Texture graphMarkerSkull = null!;
 
     private bool isMouseOver;
 
     private Vector2 coordinate;
     private float size = 7;
 
-    private Tween tween;
+    private Tween tween = new();
 
     public DataPoint(double x, double y)
     {
@@ -85,7 +85,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
     /// </summary>
     public bool Draw { get; set; } = true;
 
-    public static bool operator ==(DataPoint lhs, DataPoint rhs)
+    public static bool operator ==(DataPoint? lhs, DataPoint? rhs)
     {
         if (lhs is null)
         {
@@ -98,7 +98,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         return lhs.Equals(rhs);
     }
 
-    public static bool operator !=(DataPoint lhs, DataPoint rhs)
+    public static bool operator !=(DataPoint? lhs, DataPoint? rhs)
     {
         return !(lhs == rhs);
     }
@@ -109,7 +109,6 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         graphMarkerCross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
         graphMarkerSkull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
-        tween = new Tween();
         AddChild(tween);
 
         Connect("mouse_entered", this, nameof(OnMouseEnter));
@@ -188,7 +187,7 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 
         coordinate = target;
 
-        if (!useTween || tween == null)
+        if (!useTween)
         {
             RectPosition = coordinate - RectSize / 2;
         }
@@ -221,12 +220,12 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         return result;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         return Equals(obj as DataPoint);
     }
 
-    public bool Equals(DataPoint other)
+    public bool Equals(DataPoint? other)
     {
         if (ReferenceEquals(this, other))
             return true;

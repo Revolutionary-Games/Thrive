@@ -7,20 +7,38 @@ using Newtonsoft.Json;
 public class NamedInputGroup : IRegistryType
 {
 #pragma warning disable 169 // Used through reflection
-    private string untranslatedGroupName;
+    private string? untranslatedGroupName;
 #pragma warning restore 169
 
     [TranslateFrom("untranslatedGroupName")]
-    public string GroupName { get; set; }
+    public string GroupName { get; set; } = null!;
 
-    public IReadOnlyList<string> EnvironmentId { get; set; }
-    public IReadOnlyList<NamedInputAction> Actions { get; set; }
+    public IReadOnlyList<string> EnvironmentId { get; set; } = null!;
+    public IReadOnlyList<NamedInputAction> Actions { get; set; } = null!;
 
     [JsonIgnore]
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = string.Empty;
 
     public void Check(string name)
     {
+        if (string.IsNullOrEmpty(GroupName))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "NamedInputGroup has no group name");
+        }
+
+        if (EnvironmentId == null || EnvironmentId.Count < 1)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "NamedInputGroup has no environment ids");
+        }
+
+        if (Actions == null || Actions.Count < 1)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "NamedInputGroup has no actions");
+        }
+
         InternalName = GroupName;
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);

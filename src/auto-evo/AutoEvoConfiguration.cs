@@ -78,7 +78,7 @@ public class AutoEvoConfiguration : IRegistryType
     /// <summary>
     ///   Unused
     /// </summary>
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {

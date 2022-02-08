@@ -8,8 +8,8 @@ using System.Collections.Generic;
 public class BiomeConditions : ICloneable, ISaveLoadable
 {
     public float AverageTemperature;
-    public Dictionary<Compound, EnvironmentalCompoundProperties> Compounds;
-    public Dictionary<string, ChunkConfiguration> Chunks;
+    public Dictionary<Compound, EnvironmentalCompoundProperties> Compounds = null!;
+    public Dictionary<string, ChunkConfiguration> Chunks = null!;
 
     public void Check(string name)
     {
@@ -55,7 +55,7 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         return result;
     }
 
-    public void FinishLoading(ISaveContext context)
+    public void FinishLoading(ISaveContext? context)
     {
         LoadChunkScenes();
     }
