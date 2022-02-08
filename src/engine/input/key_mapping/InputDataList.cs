@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public class InputDataList : ICloneable
 {
-    public InputDataList(Dictionary<string, List<SpecifiedInputKey>> data)
+    public InputDataList(Dictionary<string, List<SpecifiedInputKey?>> data)
     {
         Data = data;
     }
@@ -15,24 +15,24 @@ public class InputDataList : ICloneable
     /// <summary>
     ///   Triggered when (possibly) changed inputs are applied to the Godot input map
     /// </summary>
-    public static event EventHandler InputsRemapped;
+    public static event EventHandler? InputsRemapped;
 
     /// <summary>
     ///   The key map, key is the godot action name and the list contains the keys that are used to trigger that action
     /// </summary>
-    public Dictionary<string, List<SpecifiedInputKey>> Data { get; }
+    public Dictionary<string, List<SpecifiedInputKey?>> Data { get; }
 
-    public List<SpecifiedInputKey> this[string index] => Data[index];
+    public List<SpecifiedInputKey?> this[string index] => Data[index];
 
     public object Clone()
     {
-        var result = new Dictionary<string, List<SpecifiedInputKey>>();
+        var result = new Dictionary<string, List<SpecifiedInputKey?>>();
         foreach (var keyValuePair in Data)
         {
-            result[keyValuePair.Key] = new List<SpecifiedInputKey>();
+            result[keyValuePair.Key] = new List<SpecifiedInputKey?>();
             foreach (var inputEventWithModifiers in keyValuePair.Value)
             {
-                result[keyValuePair.Key].Add((SpecifiedInputKey)inputEventWithModifiers.Clone());
+                result[keyValuePair.Key].Add((SpecifiedInputKey?)inputEventWithModifiers?.Clone());
             }
         }
 

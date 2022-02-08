@@ -7,7 +7,7 @@
 /// [Tool]
 public class TutorialDialog : CustomDialog
 {
-    private Tween tween;
+    private Tween tween = new();
 
     /// <summary>
     ///   Tweakable delay to make tutorial sequences flow more naturally.
@@ -17,7 +17,6 @@ public class TutorialDialog : CustomDialog
 
     public override void _Ready()
     {
-        tween = new Tween();
         AddChild(tween);
     }
 

@@ -4,17 +4,17 @@ using Godot;
 
 public class TemporaryLoadedNodeDeleter : Node
 {
-    private static TemporaryLoadedNodeDeleter instance;
+    private static TemporaryLoadedNodeDeleter? instance;
 
-    private readonly List<Node> nodesToDelete = new List<Node>();
-    private readonly HashSet<string> deletionHolds = new HashSet<string>();
+    private readonly List<Node> nodesToDelete = new();
+    private readonly HashSet<string> deletionHolds = new();
 
     private TemporaryLoadedNodeDeleter()
     {
         instance = this;
     }
 
-    public static TemporaryLoadedNodeDeleter Instance => instance;
+    public static TemporaryLoadedNodeDeleter Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   If true skips deleting things, used to apply saves in steps
@@ -48,7 +48,7 @@ public class TemporaryLoadedNodeDeleter : Node
         nodesToDelete.Add(node);
     }
 
-    public Node Release(Node node)
+    public Node? Release(Node node)
     {
         if (nodesToDelete.Remove(node))
             return node;

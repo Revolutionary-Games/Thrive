@@ -1,14 +1,15 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Adds radar capability to a cell
 /// </summary>
 public class ChemoreceptorComponent : ExternallyPositionedComponent
 {
-    private Compound targetCompound;
+    private Compound? targetCompound;
     private float searchRange;
     private float searchAmount;
-    private Color lineColour;
+    private Color lineColour = Colors.White;
     private bool isActive;
 
     public override void Update(float elapsed)
@@ -19,12 +20,15 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
         if (!isActive)
             return;
 
-        organelle.ParentMicrobe.ReportActiveChemereception(targetCompound, searchRange, searchAmount, lineColour);
+        organelle!.ParentMicrobe!.ReportActiveChemereception(targetCompound!, searchRange, searchAmount, lineColour);
     }
 
     protected override void CustomAttach()
     {
-        isActive = organelle.ParentMicrobe.IsPlayerMicrobe;
+        if (organelle?.OrganelleGraphics == null)
+            throw new InvalidOperationException("Chemoreceptor needs parent organelle to have graphics");
+
+        isActive = organelle!.ParentMicrobe!.IsPlayerMicrobe;
 
         if (!isActive)
             return;
@@ -44,12 +48,12 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     protected override bool NeedsUpdateAnyway()
     {
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/2906
-        return organelle.OrganelleGraphics.Transform.basis == Transform.Identity.basis;
+        return organelle!.OrganelleGraphics!.Transform.basis == Transform.Identity.basis;
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle, Vector3 membraneCoords)
     {
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+        organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
     }
 
     private void SetConfiguration(ChemoreceptorUpgrades configuration)
@@ -84,6 +88,14 @@ public class ChemoreceptorComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
 {
+    public ChemoreceptorUpgrades(Compound targetCompound, float searchRange, float searchAmount, Color lineColour)
+    {
+        TargetCompound = targetCompound;
+        SearchRange = searchRange;
+        SearchAmount = searchAmount;
+        LineColour = lineColour;
+    }
+
     public Compound TargetCompound { get; set; }
     public float SearchRange { get; set; }
     public float SearchAmount { get; set; }
@@ -91,12 +103,6 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
 
     public object Clone()
     {
-        return new ChemoreceptorUpgrades
-        {
-            TargetCompound = TargetCompound,
-            SearchRange = SearchRange,
-            SearchAmount = SearchAmount,
-            LineColour = LineColour,
-        };
+        return new ChemoreceptorUpgrades(TargetCompound, SearchRange, SearchAmount, LineColour);
     }
 }

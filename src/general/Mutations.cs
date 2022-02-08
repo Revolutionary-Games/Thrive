@@ -49,6 +49,9 @@ public class Mutations
         var simulation = SimulationParameters.Instance;
         var nameGenerator = simulation.NameGenerator;
 
+        // Keeps track of how "evolved" from the starting species, this species is
+        mutated.Generation = parent.Generation + 1;
+
         mutated.IsBacteria = parent.IsBacteria;
 
         // Mutate the epithet
@@ -122,7 +125,7 @@ public class Mutations
     public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, int steps = 5)
     {
         // Temporarily create species with just cytoplasm to start mutating from
-        var temp = new MicrobeSpecies(int.MaxValue);
+        var temp = new MicrobeSpecies(int.MaxValue, string.Empty, string.Empty);
 
         GameWorld.SetInitialSpeciesProperties(temp);
 

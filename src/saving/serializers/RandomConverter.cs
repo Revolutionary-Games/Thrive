@@ -5,14 +5,17 @@ using Newtonsoft.Json.Linq;
 
 public class RandomConverter : JsonConverter
 {
+    // ReSharper disable StringLiteralTypo
     private readonly FieldInfo seedArrayInfo = typeof(Random).GetField("_seedArray", BindingFlags.NonPublic |
-        BindingFlags.Instance);
+        BindingFlags.Instance) ?? throw new Exception("Random is missing expected field _seedArray");
 
     private readonly FieldInfo iNextInfo = typeof(Random).GetField("_inext", BindingFlags.NonPublic |
-        BindingFlags.Instance);
+        BindingFlags.Instance) ?? throw new Exception("Random is missing expected field _inext");
 
     private readonly FieldInfo iNextPInfo = typeof(Random).GetField("_inextp", BindingFlags.NonPublic |
-        BindingFlags.Instance);
+        BindingFlags.Instance) ?? throw new Exception("Random is missing expected field _inextp");
+
+    // ReSharper restore StringLiteralTypo
 
     public RandomConverter()
     {
@@ -20,8 +23,14 @@ public class RandomConverter : JsonConverter
             throw new NullReferenceException("RandomConverter could not find a specified field in Random");
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
+        if (value == null)
+        {
+            writer.WriteNull();
+            return;
+        }
+
         var converted = (Random)value;
 
         var seedArray = (int[])seedArrayInfo.GetValue(converted);
@@ -45,7 +54,8 @@ public class RandomConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
+        JsonSerializer serializer)
     {
         if (reader.TokenType != JsonToken.StartObject)
             return null;
@@ -60,12 +70,12 @@ public class RandomConverter : JsonConverter
 
         try
         {
-            // ReSharper disable AssignNullToNotNullAttribute PossibleNullReferenceException StringLiteralTypo
-            var iNext = item["inext"].Value<int>();
-            var iNextP = item["inextp"].Value<int>();
-            var seedArray = item["seedArray"].ToObject<int[]>();
+            // ReSharper disable StringLiteralTypo
+            var iNext = item["inext"]!.Value<int>();
+            var iNextP = item["inextp"]!.Value<int>();
+            var seedArray = item["seedArray"]!.ToObject<int[]>();
 
-            // ReSharper restore AssignNullToNotNullAttribute PossibleNullReferenceException StringLiteralTypo
+            // ReSharper restore StringLiteralTypo
 
             seedArrayInfo.SetValue(random, seedArray);
             iNextInfo.SetValue(random, iNext);

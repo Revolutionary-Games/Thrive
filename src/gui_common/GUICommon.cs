@@ -8,7 +8,7 @@ using Object = Godot.Object;
 /// </summary>
 public class GUICommon : NodeWithInput
 {
-    private static GUICommon instance;
+    private static GUICommon? instance;
 
     private AudioStream buttonPressSound;
 
@@ -34,7 +34,7 @@ public class GUICommon : NodeWithInput
             "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
-    public static GUICommon Instance => instance;
+    public static GUICommon Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   General purpose Tween node for use in various places.
@@ -92,7 +92,7 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   Loads a Texture from predefined GUI asset texture folder path.
     /// </summary>
-    public static Texture LoadGuiTexture(string file)
+    public static Texture? LoadGuiTexture(string file)
     {
         var assumedPath = PathUtils.Join(Constants.ASSETS_GUI_BEVEL_FOLDER, file);
 
@@ -115,13 +115,12 @@ public class GUICommon : NodeWithInput
         var popup = GetCurrentlyActiveExclusivePopup();
         var customPopup = popup as ICustomPopup;
 
-        if (!IsAnyExclusivePopupActive || (customPopup != null &&
-                !customPopup.ExclusiveAllowCloseOnEscape))
+        if (!IsAnyExclusivePopupActive || customPopup is { ExclusiveAllowCloseOnEscape: false })
         {
             return false;
         }
 
-        popup.Hide();
+        popup!.Hide();
 
         return true;
     }
@@ -129,7 +128,7 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
     /// </summary>
-    public Popup GetCurrentlyActiveExclusivePopup()
+    public Popup? GetCurrentlyActiveExclusivePopup()
     {
         if (GetViewport().GetModalStackTop() is Popup popup && popup.PopupExclusive)
             return popup;

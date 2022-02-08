@@ -48,9 +48,9 @@ public class MusicCategory : IRegistryType
     ///   List of track lists. When the mode is concurrent one track from each list is played at once
     /// </summary>
     /// <value>The track lists.</value>
-    public List<TrackList> TrackLists { get; set; }
+    public List<TrackList> TrackLists { get; set; } = null!;
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {
@@ -108,7 +108,7 @@ public class TrackList
     /// </summary>
     public bool Repeat { get; set; } = true;
 
-    public List<Track> Tracks { get; set; }
+    public List<Track> Tracks { get; set; } = null!;
 
     [JsonIgnore]
     public int LastPlayedIndex { get; set; } = -1;
@@ -132,7 +132,7 @@ public class TrackList
         /// </summary>
         public float Volume { get; set; } = 1.0f;
 
-        public string ResourcePath { get; set; }
+        public string ResourcePath { get; set; } = null!;
 
         [JsonIgnore]
         public bool WasPlaying { get; set; } = false;

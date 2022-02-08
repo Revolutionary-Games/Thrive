@@ -7,16 +7,16 @@ using Godot;
 public class TimelineTab : PanelContainer
 {
     [Export]
-    public NodePath EventsContainerPath;
+    public NodePath EventsContainerPath = null!;
 
     [Export]
-    public NodePath ScrollContainerPath;
+    public NodePath ScrollContainerPath = null!;
 
     [Export]
-    public NodePath LocalFilterButtonPath;
+    public NodePath LocalFilterButtonPath = null!;
 
     [Export]
-    public NodePath GlobalFilterButtonPath;
+    public NodePath GlobalFilterButtonPath = null!;
 
     private readonly PackedScene customRichTextLabelScene = GD.Load<PackedScene>(
         "res://src/gui_common/CustomRichTextLabel.tscn");
@@ -24,15 +24,15 @@ public class TimelineTab : PanelContainer
     private readonly StyleBoxTexture eventHighlightStyleBox = GD.Load<StyleBoxTexture>(
         "res://src/microbe_stage/editor/TimelineEventHighlight.tres");
 
-    private VBoxContainer eventsContainer;
-    private ScrollContainer scrollContainer;
-    private Button localFilterButton;
-    private Button globalFilterButton;
+    private VBoxContainer eventsContainer = null!;
+    private ScrollContainer scrollContainer = null!;
+    private Button localFilterButton = null!;
+    private Button globalFilterButton = null!;
 
     private Filters eventFilter = Filters.Local;
 
-    private List<TimelineSection> cachedLocalTimelineElements;
-    private List<TimelineSection> cachedGlobalTimelineElements;
+    private List<TimelineSection>? cachedLocalTimelineElements;
+    private List<TimelineSection>? cachedGlobalTimelineElements;
 
     public enum Filters
     {
@@ -68,8 +68,11 @@ public class TimelineTab : PanelContainer
         globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
 
-    public void UpdateTimeline(MicrobeEditor editor, PatchMapDrawer drawer, Patch patch = null)
+    public void UpdateTimeline(MicrobeEditor editor, PatchMapDrawer drawer, Patch? patch = null)
     {
+        if (editor.CurrentGame == null)
+            throw new ArgumentException($"Editor must be initialized ({nameof(MicrobeEditor.CurrentGame)} is null");
+
         eventsContainer.FreeChildren();
 
         cachedGlobalTimelineElements = new List<TimelineSection>();
@@ -106,12 +109,12 @@ public class TimelineTab : PanelContainer
 
         if (eventFilter == Filters.Global)
         {
-            var last = cachedGlobalTimelineElements.LastOrDefault();
+            var last = cachedGlobalTimelineElements?.LastOrDefault();
             anchorRect = last != null ? last.HeaderGlobalRect : new Rect2(Vector2.Zero, Vector2.Zero);
         }
         else if (eventFilter == Filters.Local)
         {
-            var last = cachedLocalTimelineElements.LastOrDefault();
+            var last = cachedLocalTimelineElements?.LastOrDefault();
             anchorRect = last != null ? last.HeaderGlobalRect : new Rect2(Vector2.Zero, Vector2.Zero);
         }
 
@@ -159,7 +162,7 @@ public class TimelineTab : PanelContainer
 
         private readonly (double TimePeriod, List<GameEventDescription> Events) data;
 
-        private Control headerContainer;
+        private Control? headerContainer;
 
         public TimelineSection(PackedScene customRichTextLabelScene, StyleBoxTexture eventHighlightStyleBox,
             (double TimePeriod, List<GameEventDescription> Events) data)
@@ -169,7 +172,7 @@ public class TimelineTab : PanelContainer
             this.data = data;
         }
 
-        public Rect2 HeaderGlobalRect => headerContainer.GetGlobalRect();
+        public Rect2 HeaderGlobalRect => headerContainer?.GetGlobalRect() ?? throw new SceneTreeAttachRequired();
 
         public override void _Ready()
         {
@@ -195,14 +198,19 @@ public class TimelineTab : PanelContainer
             foreach (var entry in data.Events)
             {
                 var itemContainer = new HBoxContainer();
-                var iconRect = new TextureRect
+
+                TextureRect? iconRect = null;
+                if (!string.IsNullOrEmpty(entry.IconPath))
                 {
-                    RectMinSize = new Vector2(25, 25),
-                    SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
-                    Texture = GUICommon.LoadGuiTexture(entry.IconPath),
-                    Expand = true,
-                    StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-                };
+                    iconRect = new TextureRect
+                    {
+                        RectMinSize = new Vector2(25, 25),
+                        SizeFlagsVertical = (int)SizeFlags.ShrinkCenter,
+                        Texture = GUICommon.LoadGuiTexture(entry.IconPath!),
+                        Expand = true,
+                        StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
+                    };
+                }
 
                 var highlight = new PanelContainer
                 {
@@ -222,7 +230,8 @@ public class TimelineTab : PanelContainer
                 eventLabel.AddFontOverride("bold_font", GetFont("jura_demibold_almost_smaller", "Fonts"));
                 eventLabel.AddConstantOverride("line_separation", 0);
 
-                itemContainer.AddChild(iconRect);
+                if (iconRect != null)
+                    itemContainer.AddChild(iconRect);
                 itemContainer.AddChild(highlight);
                 highlight.AddChild(eventLabel);
                 AddChild(itemContainer);

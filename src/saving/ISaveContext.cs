@@ -5,5 +5,5 @@ public interface ISaveContext
 {
     SimulationParameters Simulation { get; }
 
-    GameWorld World { get; }
+    GameWorld? World { get; }
 }

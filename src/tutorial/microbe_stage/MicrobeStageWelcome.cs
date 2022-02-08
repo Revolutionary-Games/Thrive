@@ -7,7 +7,7 @@
     /// </summary>
     public class MicrobeStageWelcome : TutorialPhase
     {
-        private Action patchNamePopup;
+        private Action? patchNamePopup;
 
         public MicrobeStageWelcome()
         {
@@ -28,7 +28,7 @@
             {
                 case TutorialEventType.EnteredMicrobeStage:
                 {
-                    patchNamePopup = ((CallbackEventArgs)args)?.Data;
+                    patchNamePopup = ((CallbackEventArgs)args).Data;
 
                     if (!HasBeenShown && CanTrigger)
                     {

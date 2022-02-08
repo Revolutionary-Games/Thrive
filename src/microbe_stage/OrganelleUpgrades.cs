@@ -15,14 +15,14 @@ public class OrganelleUpgrades : ICloneable
     /// <summary>
     ///   Organelle type specific upgrade data. Null if not configured
     /// </summary>
-    public IComponentSpecificUpgrades CustomUpgradeData { get; set; }
+    public IComponentSpecificUpgrades? CustomUpgradeData { get; set; }
 
     public object Clone()
     {
         return new OrganelleUpgrades
         {
             UnlockedFeatures = new List<string>(UnlockedFeatures),
-            CustomUpgradeData = (IComponentSpecificUpgrades)CustomUpgradeData?.Clone(),
+            CustomUpgradeData = (IComponentSpecificUpgrades?)CustomUpgradeData?.Clone(),
         };
     }
 }
