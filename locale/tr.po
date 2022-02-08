@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 16:25+0200\n"
-"PO-Revision-Date: 2022-01-03 00:11+0000\n"
+"POT-Creation-Date: 2022-02-08 18:56+0200\n"
+"PO-Revision-Date: 2022-01-31 17:25+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/tr/>\n"
@@ -28,7 +28,7 @@ msgstr ""
 "input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:"
 "input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi "
 "kullan. Eğer toksin kofuluna sahipsen, [thrive:compound type=\"oxytoxy"
-"\"]Oksitoksi NT'yi[/thrive:compound] ateş etmek için [thrive:"
+"\"]OksiToksi NT'yi[/thrive:compound] ateş etmek için [thrive:"
 "input]g_fire_toxin[/thrive:input] tuşuna bas. Yutma moduna geçmek için "
 "[thrive:input]g_toggle_engulf[/thrive:input] tuşuna bas. Fare tekeriyle "
 "yakınlaştırıp uzaklaştırabilirsin."
@@ -175,7 +175,9 @@ msgstr ""
 "Kamçı: [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketerek "
 "hücreni daha hızlı hareket ettirir\n"
 "\n"
-"Pilus: Diğer hücreleri delmek için kullanılabilir"
+"Pilus: Diğer hücreleri delmek için kullanılabilir\n"
+"\n"
+"Kemoreseptör: Bileşikleri daha uzaktan algılamayı sağlar"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -206,7 +208,8 @@ msgstr ""
 "Koful: Toplanan 8 bileşiği depolar\n"
 "\n"
 "Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy"
-"\"]OksiToksi NT[/thrive:compound] diye adlandırılır)"
+"\"]OksiToksi NT[/thrive:compound] diye adlandırılır) ve mevcut oksitoksi "
+"miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -900,9 +903,8 @@ msgstr "Çekirdek"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Kemoplast"
+msgstr "Kemoreseptör"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
@@ -983,43 +985,45 @@ msgstr "gezegende nesli tükendi"
 
 #: ../src/auto-evo/RunResults.cs:843
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[u]{0}[/u] türünün nesli tükendi!"
 
 #: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Tür Popülasyonu"
+msgstr "[u]{0}[/u] popülasyonu {1} sayısına çıktı"
 
 #: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "Tür Popülasyonu"
+msgstr "[u]{0}[/u] popülasyonu {1} sayısına düştü"
 
 #: ../src/auto-evo/RunResults.cs:867
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[u]{0}[/u], araziden yok oldu"
 
 #: ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
+"[u]{0}[/u] popülasyonunun bir kısmı, {1} arazisinden bu araziye göç etti"
 
 #: ../src/auto-evo/RunResults.cs:896
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
+"[u]{0}[/u] popülasyonunun bir kısmı, {2} arazisinden {1} arazisine göç etti"
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "[u]{0}[/u] popülasyonunun bir kısmı, {1} arazisine göç etti"
 
 #: ../src/auto-evo/RunResults.cs:921
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "alanı doldurmak için ortaya çıktı"
+msgstr ""
+"[u]{0}[/u], alanı doldurmak için, yeni bir tür olarak [u]{1}[/u] türünden "
+"ayrıldı"
 
 #: ../src/auto-evo/RunResults.cs:927
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "seçilim baskılarının değişmesinden dolayı ortaya çıktı"
+msgstr ""
+"[u]{0}[/u], farklı seçilim baskılarından dolayı, yeni bir tür olarak [u]{1}"
+"[/u] türünden ayrıldı"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 #, fuzzy
@@ -1490,11 +1494,11 @@ msgstr "%{0}"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0} konsantrasyonu {1} azaldı"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "Glukoz konsantrasyonu sert bir şekilde düştü!"
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
@@ -2596,7 +2600,9 @@ msgstr ""
 "type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:"
 "compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile "
 "doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna "
-"basıldığında toksin salabilir."
+"basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy"
+"\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün "
+"ancak toksinler daha düşük hasara neden olur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2625,31 +2631,40 @@ msgid "SPEED"
 msgstr "Hız"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Bununla diğer hücreleri del."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Bununla diğer hücreleri del."
+msgstr ""
+"Pili (tekil: pilus), birçok mikroorganizmanın yüzeyinde bulunur ve ince "
+"kıllara benzer. Onlarca veya yüzlerce pili, bir mikroorganizmanın "
+"yüzeyinde bulunabilir ve avcılıkta rol oynamak dahil çeşitli amaçlarda işe "
+"yarayabilir. Patojenik mikroorganizmalar, hastalığa neden olmak amacıyla, "
+"ya konak dokuya bağlanmak ya da sitoplazmaya erişmek maksadıyla dış hücre "
+"zarını basıp geçmek için pili kullanır. Birçok birbirine benzer pili "
+"mevcuttur ancak evrimsel olarak birbirleriyle bağlantılı değildirler ve "
+"yakınsak evrimden meydana gelmişlerdir. Tek bir organizma, farklı türde "
+"pili üretme yeteneğine sahip olabilir ve yüzeyde mevcut olanları sürekli "
+"değiştirebilir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
-#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfürü[/thrive:"
-"compound] [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] "
-"dönüştürür. [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:"
-"compound] konsantrasyonu ile doğru orantılıdır."
+"Kemoreseptör, bileşikleri daha uzaktan algılamayı sağlar. Bu organeli "
+"yerleştirdikten sonra, bileşik türünü ve bu bileşiğe işaret eden çizginin "
+"rengini seçmek için değişiklik yap."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
-#, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
-"Kemoplast, Hidrojen Sülfür Kemosentezi adı verilen bir işlemde, hidrojen "
-"sülfür, su ve karbondioksit gazını glukoza çeviren proteinler içeren çift "
-"zarlı bir yapıdır. Üretilen glukoz oranı, karbondioksit konsantrasyonu ile "
-"doğru orantılıdır."
+"Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler "
+"bu şekilde çevrelerindekilerle ilgili bilgi toplar. Bu organeli eklemek, "
+"daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. "
+"Oyuncuya görme yeteneği ta hücre evresinde verildiği için; kimyasal "
+"algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun "
+"henüz göremediği, hücrenin civarında bulunan bileşikleri gösteren bir "
+"çizgi ile temsil edilmektedir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
@@ -2811,7 +2826,9 @@ msgstr ""
 "type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. [thrive:"
 "compound type=\"oxygen\"]Oksijen[/thrive:compound] konsantrasyonu ile "
 "doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna "
-"basıldığında toksin salabilir."
+"basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy"
+"\"]OksiToksi[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün "
+"ancak toksinler daha düşük hasara neden olur."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3394,19 +3411,19 @@ msgstr "Dış etkenler:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Genel olayları göster"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
 msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
+msgstr "G"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2708
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Yerel olayları göster"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
 msgid "LOCAL_INITIAL_LETTER"
-msgstr ""
+msgstr "Y"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2820
@@ -3487,7 +3504,7 @@ msgstr "Myö"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+msgstr "Geçen Zaman: {0:#,#} yıl"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
@@ -3529,12 +3546,12 @@ msgstr "Tür Listesi"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1135
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1148
 msgid "EXTINCT_FROM_THE_PLANET"
-msgstr "Gezegende soyu tükendi"
+msgstr "Gezegende nesli tükendi"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1136
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1147
 msgid "EXTINCT_FROM_PATCH"
-msgstr "Arazide soyu tükendi"
+msgstr "Arazide nesli tükendi"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1190
 msgid "FREEBUILDING"
@@ -3606,38 +3623,35 @@ msgstr "Taşı"
 
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:362
 msgid "MODIFY"
-msgstr "Değiştir"
+msgstr "Değişiklik Yap"
 
 #: ../src/microbe_stage/editor/SpeciesPopulationDatasetsLegend.cs:22
 msgid "EXTINCT_SPECIES"
-msgstr "Soyu Tükenen Tür"
+msgstr "Nesli Tükenen Tür"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Hiçbir olay görülmedi"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "Bileşik bulutları"
+msgstr "Aranacak Bileşik:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "Arama Yarıçapı:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "Tespit Edilecek Minimum Miktar:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
-#, fuzzy
 msgid "LINE_COLOUR"
-msgstr "Renk"
+msgstr "Çizgi Rengi:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "Organeli taşı"
+msgstr "Organelde Değişiklik Yap"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
@@ -4195,7 +4209,7 @@ msgstr "Ad:"
 
 #: ../src/saving/NewSaveMenu.tscn:66
 msgid "EXTRA_OPTIONS"
-msgstr "Ekstra Seçenekler"
+msgstr "Ek Seçenekler"
 
 #: ../src/saving/NewSaveMenu.tscn:84
 msgid "OVERWRITE_EXISTING_SAVE"
@@ -4215,7 +4229,7 @@ msgstr "Kaydetmek şu an mümkün değil çünkü:"
 
 #: ../src/saving/SaveHelper.cs:437
 msgid "PLAYER_EXTINCT"
-msgstr "Oyuncunun soyu tükendi"
+msgstr "Oyuncunun nesli tükendi"
 
 #: ../src/saving/SaveHelper.cs:446
 msgid "SAVING_SUCCEEDED"

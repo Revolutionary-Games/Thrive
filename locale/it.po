@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 16:25+0200\n"
-"PO-Revision-Date: 2022-01-28 07:43+0000\n"
+"POT-Creation-Date: 2022-02-08 18:56+0200\n"
+"PO-Revision-Date: 2022-02-03 10:36+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -171,14 +171,16 @@ msgstr ""
 "Flagello: muove la tua cellula più velocemente consumando [thrive:compound "
 "type=\"atp\"][/thrive:compound]\n"
 "\n"
-"Pilo: può essere usato per trafiggere altre cellule"
+"Pilo: può essere usato per trafiggere altre cellule\n"
+"\n"
+"Chemiorecettore: permette di tracciare i composti da distanze maggiori"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
-"Organuli membranosi\n"
+"Organuli Membranosi\n"
 "\n"
-"Nucleo: Occupa 11 esagoni; permette l'evoluzione degli organuli "
+"Nucleo: Occupa 11 esagoni; permette l'evoluzione degli altri organuli "
 "membranosi. Inoltre, raddoppia le dimensioni della tua cellula (può essere "
 "evoluto solo una volta)\n"
 "\n"
@@ -201,7 +203,8 @@ msgstr ""
 "Vacuolo: Conserva 8 composti raccolti\n"
 "\n"
 "Vacuolo Tossina: Produce tossine (ovvero [thrive:compound type=\"oxytoxy\"]"
-"[/thrive:compound])"
+"[/thrive:compound]) e ti permette di rilasciarle. Il danno aumenta con la "
+"quantità disponibile"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -928,7 +931,7 @@ msgstr "La popolazione di {0} è cambiata di {1} per il seguente motivo: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION"
-msgstr "popolazione:"
+msgstr "→ popolazione:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
@@ -981,43 +984,44 @@ msgstr "si è estinto dal pianeta"
 
 #: ../src/auto-evo/RunResults.cs:843
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "La specie [u]{0}[/u] si è estinta!"
 
 #: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Popolazione della Specie"
+msgstr "La popolazione di [u]{0}[/u] è salita a {1}"
 
 #: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "Popolazione della Specie"
+msgstr "La popolazione di [u]{0}[/u] è scesa a {1}"
 
 #: ../src/auto-evo/RunResults.cs:867
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "La specie [u]{0}[/u] è scomparsa da questa zona"
 
 #: ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
+"Parte della popolazione di [u]{0}[/u] è migrata in questa zona da {1}"
 
 #: ../src/auto-evo/RunResults.cs:896
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Parte della popolazione di [u]{0}[/u] è migrata da {1} a {2}"
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Parte della popolazione di [u]{0}[/u] è migrata verso {1}"
 
 #: ../src/auto-evo/RunResults.cs:921
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "è emerso per occupare una nicchia"
+msgstr ""
+"Nuova specie: [u]{0}[/u] si è diramata da [u]{1}[/u] per occupare una "
+"nicchia"
 
 #: ../src/auto-evo/RunResults.cs:927
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "è emerso a causa di pressioni selettive diverse"
+msgstr ""
+"Nuova specie: [u]{0}[/u] si è diramata da [u]{1}[/u] a causa di pressioni "
+"selettive diverse"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 #, fuzzy
@@ -1148,7 +1152,7 @@ msgstr "Tasto Preferiti"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:149
 msgid "KEY_PRINT"
-msgstr "Stamp"
+msgstr "Stamp (Print Screen)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:164
 msgid "SPACE"
@@ -1156,7 +1160,7 @@ msgstr "Barra spaziatrice"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
 msgid "BACKSLASH"
-msgstr "Tasto backslash"
+msgstr "Barra rovesciata (Backslash): \\"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:166
 msgid "ESCAPE"
@@ -1164,7 +1168,7 @@ msgstr "Esc"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:167
 msgid "BACKSPACE"
-msgstr "Indietro (\"backspace\")"
+msgstr "Cancella (Backspace)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:168
 msgid "KPENTER"
@@ -1172,7 +1176,7 @@ msgstr "Invio (tastierino numerico)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:169
 msgid "SYSREQ"
-msgstr "R Sist"
+msgstr "R Sist (SysRq)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:170
 msgid "PAGEUP"
@@ -1184,15 +1188,15 @@ msgstr "Pagina Giù"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:172
 msgid "CAPSLOCK"
-msgstr "Bloc Maiusc"
+msgstr "Bloc Maiusc (Caps Lock)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:173
 msgid "NUMLOCK"
-msgstr "Bloc Num"
+msgstr "Bloc Num (Num Lock)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:174
 msgid "SCROLLLOCK"
-msgstr "Bloc Scroll"
+msgstr "Bloc Scroll (Scroll Lock)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:175
 msgid "SUPERL"
@@ -1220,55 +1224,55 @@ msgstr "Destra"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:181
 msgid "VOLUMEDOWN"
-msgstr "Tasto Abbassa Volume"
+msgstr "Abbassa Volume (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:182
 msgid "VOLUMEMUTE"
-msgstr "Tasto Volume Muto"
+msgstr "Volume Muto (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:183
 msgid "VOLUMEUP"
-msgstr "Tasto Alza Volume"
+msgstr "Alza Volume (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:184
 msgid "BASSBOOST"
-msgstr "Tasto Bassboost"
+msgstr "Bassboost (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:185
 msgid "BASSUP"
-msgstr "Aumenta Bassi (tasto audio)"
+msgstr "Bass Up (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:186
 msgid "BASSDOWN"
-msgstr "Diminuisci Bassi (tasto audio)"
+msgstr "Bass Down (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:187
 msgid "TREBLEUP"
-msgstr "Aumenta Alti (tasto audio)"
+msgstr "Treble Up (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:188
 msgid "TREBLEDOWN"
-msgstr "Diminusci Alti (tasto audio)"
+msgstr "Treble Down (tasto audio)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:189
 msgid "MEDIAPLAY"
-msgstr "Riproduci (tasto multimediale)"
+msgstr "⏵Riproduci (tasto multimediale)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:190
 msgid "MEDIASTOP"
-msgstr "Ferma (tasto multimediale)"
+msgstr "⏸Ferma (tasto multimediale)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:191
 msgid "MEDIAPREVIOUS"
-msgstr "Precedente (tasto multimediale)"
+msgstr "⏮ Precedente (tasto multimediale)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:192
 msgid "MEDIANEXT"
-msgstr "Successivo (tasto multimediale)"
+msgstr "⏭ Successivo (tasto multimediale)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:193
 msgid "MEDIARECORD"
-msgstr "Registra (tasto multimediale)"
+msgstr "⏺ Registra (tasto multimediale)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:194
 msgid "LAUNCHMAIL"
@@ -1280,67 +1284,67 @@ msgstr "Avvia (tasto multimediale)"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:196
 msgid "LAUNCH0"
-msgstr "Tasto Launch 0"
+msgstr "Launch 0"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:197
 msgid "LAUNCH1"
-msgstr "Tasto Launch 1"
+msgstr "Launch 1"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:198
 msgid "LAUNCH2"
-msgstr "Tasto Launch 2"
+msgstr "Launch 2"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:199
 msgid "LAUNCH3"
-msgstr "Tasto Launch 3"
+msgstr "Launch 3"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:200
 msgid "LAUNCH4"
-msgstr "Tasto Launch 4"
+msgstr "Launch 4"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:201
 msgid "LAUNCH5"
-msgstr "Tasto Launch 5"
+msgstr "Launch 5"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:202
 msgid "LAUNCH6"
-msgstr "Tasto Launch 6"
+msgstr "Launch 6"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:203
 msgid "LAUNCH7"
-msgstr "Tasto Launch 7"
+msgstr "Launch 7"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:204
 msgid "LAUNCH8"
-msgstr "Tasto Launch 8"
+msgstr "Launch 8"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:205
 msgid "LAUNCH9"
-msgstr "Tasto Launch 9"
+msgstr "Launch 9"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:206
 msgid "LAUNCHA"
-msgstr "Tasto Launch A"
+msgstr "Launch A"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:207
 msgid "LAUNCHB"
-msgstr "Tasto Launch B"
+msgstr "Launch B"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:208
 msgid "LAUNCHC"
-msgstr "Tasto Launch C"
+msgstr "Launch C"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:209
 msgid "LAUNCHD"
-msgstr "Tasto Launch D"
+msgstr "Launch D"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:210
 msgid "LAUNCHE"
-msgstr "Tasto Launch E"
+msgstr "Launch E"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:211
 msgid "LAUNCHF"
-msgstr "Tasto Launch F"
+msgstr "Launch F"
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:212
 msgid "KPMULTIPLY"
@@ -1416,7 +1420,7 @@ msgstr "Alt"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:56
 msgid "SHIFT"
-msgstr "Shift"
+msgstr "Maiusc (Shift)"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:67
 msgid "LEFT_MOUSE"
@@ -1432,11 +1436,11 @@ msgstr "Clic centrale"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:70
 msgid "WHEEL_UP"
-msgstr "Rotellina su"
+msgstr "Scorri su (rotellina)"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:71
 msgid "WHEEL_DOWN"
-msgstr "Rotellina giù"
+msgstr "Scorri giù (rotellina)"
 
 #: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:72
 msgid "WHEEL_LEFT"
@@ -1488,11 +1492,11 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "La concentrazione di {0} è diminuita di {1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "La concentrazione di glucosio è diminuita drasticamente!"
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
@@ -2504,10 +2508,10 @@ msgstr ""
 "I metabolosomi sono ammassi di proteine avvolti in involucri proteici. "
 "Sono in grado di convertire il glucosio in ATP molto più velocemente "
 "rispetto al citoplasma. Tale processo è chiamato Respirazione Aerobica. "
-"Tuttavia, richiedono ossigeno per funzionare: livelli più bassi "
-"rallenteranno il loro tasso di produzione di ATP. Siccome i metabolosomi "
-"sono sospesi direttamente nel citoplasma, il fluido circostante fa una "
-"piccola quantità di glicolisi."
+"Tuttavia, richiedono ossigeno per funzionare: livelli più bassi rallentano "
+"il loro tasso di produzione di ATP. Siccome i metabolosomi sono sospesi "
+"direttamente nel citoplasma, il fuido circostante produce piccole quantità "
+"di ATP tramite glicolisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:472
 msgid "THYLAKOID"
@@ -2524,14 +2528,14 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:474
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
-"I tilacoidi sono ammassi di proteine e pigmenti fotosensibili. Tali "
-"pigmenti sono in grado di sfruttare l'energia luminosa per produrre "
-"glucosio, a partire dall'acqua e dal diossido di carbonio gassoso, in un "
-"processo chiamato Fotosintesi; inoltre, danno ai tilacoidi il loro colore "
-"distintivo. Il tasso di produzione di glucosio aumenta con la "
-"concentrazione di diossido di carbonio, e con l'intensità luminosa. "
-"Siccome i tilacoidi sono sospesi direttamente nel citoplasma, il fuido "
-"circostante fa una piccola quantità di glicolisi."
+"I tilacoidi sono ammassi di proteine e pigmenti fotosensibili, i quali "
+"danno loro il colore distintivo. Essi sono in grado di sfruttare l'energia "
+"luminosa per produrre glucosio, a partire dall'acqua e dal diossido di "
+"carbonio gassoso. Tale processo viene chiamato Fotosintesi. Il tasso di "
+"produzione di glucosio aumenta con la concentrazione di diossido di "
+"carbonio, e con l'intensità luminosa. Siccome i tilacoidi sono sospesi "
+"direttamente nel citoplasma, il fuido circostante produce piccole quantità "
+"di ATP tramite glicolisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:570
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
@@ -2550,8 +2554,8 @@ msgstr ""
 "e il diossido di carbonio gassoso in glucosio. Tale processo è chiamato "
 "Chemiosintesi dell'Idrogeno Solforato. Il tasso di produzione aumenta con "
 "la concentrazione di diossido di carbonio. Siccome le proteine "
-"chemiosintetizzanti sono sospese direttamente nel citoplasma, il fluido "
-"circostante fa una piccola quantità di glicolisi."
+"chemiosintetizzanti sono sospese direttamente nel citoplasma, il fuido "
+"circostante produce piccole quantità di ATP tramite glicolisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:673
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
@@ -2564,9 +2568,9 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:674
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
-"La rusticianina è una proteina capace di usare il diossido di carbonio "
+"La rusticianina è una proteina, capace di usare il diossido di carbonio "
 "gassoso e l'ossigeno per ossidare il ferro da uno stato chimico all'altro. "
-"Questo processo, chiamato Respirazione Ferrica, rilascia energia che la "
+"Questo processo, chiamato Respirazione Ferrica, rilascia energia, che la "
 "cellula può immagazzinare."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:770
@@ -2583,7 +2587,8 @@ msgstr ""
 "l'energia della cellula (in forma di ATP) in ammoniaca, un nutriente "
 "essenziale per la crescita delle cellule. Questo processo si chiama "
 "Azotofissazione Anaerobica. Siccome la nitrogenasi è sospesa direttamente "
-"nel citoplasma, il fluido circostante fa una piccola quantità di glicolisi."
+"nel citoplasma, il fuido circostante produce piccole quantità di ATP "
+"tramite glicolisi."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:868
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
@@ -2592,7 +2597,7 @@ msgstr ""
 "compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la "
 "concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. "
 "Puoi rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:"
-"input]."
+"input]. Il danno aumenta con la quantità disponibile."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2620,13 +2625,21 @@ msgid "SPEED"
 msgstr "Velocità"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Usalo per trafiggere altre cellule."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Usalo per trafiggere altre cellule."
+msgstr ""
+"I pili sono strutture comuni a molti tipi di microrganismi. Assomigliano a "
+"sottilissimi capelli, e possono essere presenti a decine o anche centinaia "
+"di migliaia. Possono essere usati a vari scopi, inclusa la predazione; "
+"alternativamente, sono usati dai microrganismi patogeni per attaccarsi ai "
+"tessuti delle vittime, o anche per trapassare la membrana cellulare e "
+"raggiungere così il citoplasma. Esistono diversi, simili tipi di pili, ma "
+"molti di essi non hanno legami evoluzionistici: sono invece il risultato "
+"di convergenze evolutive. Ciascun organismo può avere diversi tipi di "
+"pili, e quelli presenti sulla superficie sono costantemente sostituiti."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
@@ -2667,10 +2680,10 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
-"Permette di legarsi ad altre cellule. È il primo passo verso la "
-"multicellularità. All'interno di una colonia, le cellule si scambiano i "
-"composti liberamente, ma non puoi attivare l'editor; per farlo, devi prima "
-"lasciarla."
+"Permette di legarsi ad altre cellule: è il primo passo verso la "
+"multicellularità. All'interno di una colonia, le tue cellule si scambiano "
+"i composti liberamente; tuttavia, non puoi attivare l'editor: per farlo, "
+"devi prima lasciarla."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1320
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2812,14 +2825,14 @@ msgstr ""
 "compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la "
 "concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. "
 "Puoi rilasciare tali tossine premendo [thrive:input]g_fire_toxin[/thrive:"
-"input]."
+"input]. Il danno aumenta con la quantità disponibile."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 "Il vacuolo tossina è un vacuolo che è stato modificato per la produzione, "
-"l'immagazzinamento e la secrezione di OssiTossi. Avere più vacuoli tossina "
-"aumenta la rapidità di secrezione delle tossine."
+"l'immagazzinamento e la secrezione di Ossitossi. Più vacuoli tossina hai, "
+"più rapidamente sarai in grado di rilasciare le tossine."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2076
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -2828,9 +2841,9 @@ msgstr "Vacuolo Bioluminescente"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2103
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
-"La forma più basilare di membrana, offre poca protezione ai danni. "
-"Inoltre, ha bisogno di più energia per evitare di deformarsi. Il vantaggio "
-"è che permette alla cellula di muoversi e di assorbire i nutrienti più "
+"La forma più basilare di membrana. Offre poca protezione ai danni e ha "
+"bisogno di più energia per evitare di deformarsi. Il vantaggio è che "
+"permette alla cellula di muoversi e di assorbire i nutrienti più "
 "velocemente."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2198
@@ -2845,7 +2858,7 @@ msgstr "Velocità di Assorbimento Risorse"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:2271
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
-"Una membrana a due strati, offre una migliore protezione ai danni e "
+"Una membrana a due strati. Offre una migliore protezione ai danni e "
 "richiede meno energia per non deformarsi. Tuttavia, rallenta un po' la "
 "cellula e la sua capacità di assorbire i nutrienti."
 
@@ -3353,7 +3366,7 @@ msgstr "CONFERMA"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2374
 msgid "NEGATIVE_ATP_BALANCE"
-msgstr "Bilancio ATP Negativo"
+msgstr "Bilancio di ATP negativo"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2375
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
@@ -3363,12 +3376,12 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2381
 msgid "DISCONNECTED_ORGANELLES"
-msgstr "Organuli non Connessi"
+msgstr "Organuli non connessi"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2383
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
-"Vi sono organuli non connessi al resto della cellula.\n"
+"Ci sono organuli non connessi al resto della cellula.\n"
 "Connetti tutti gli organuli alla cellula o annulla i cambiamenti "
 "effettuati."
 
@@ -3394,19 +3407,19 @@ msgstr "Effetti esterni:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Mostra eventi globali"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
 msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
+msgstr "G"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2708
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Mostra eventi locali"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
 msgid "LOCAL_INITIAL_LETTER"
-msgstr ""
+msgstr "L"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2820
@@ -3478,7 +3491,7 @@ msgstr "PM Infiniti"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "La quantità di glucosio è stata ridotta al/all'{0} della precedente."
+msgstr "Quantità di glucosio in calo. Attuale: {0} della precedente."
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:767
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
@@ -3487,7 +3500,7 @@ msgstr "Ma"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+msgstr "Tempo trascorso: {0:#,#} anni"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
@@ -3569,8 +3582,8 @@ msgstr "N/A"
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2401
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
-"Il nome della specie deve essere conforme al metodo di Linneo (Genere ed "
-"Epiteto)!"
+"Il nome della specie deve essere conforme alla nomenclatura binomiale "
+"(Genere ed Epiteto)!"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2527
 msgid "ENERGY_IN_PATCH_FOR"
@@ -3616,7 +3629,7 @@ msgstr "Specie Estinte"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Nessun evento registrato"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
 msgid "COMPOUND_TO_FIND"
@@ -3628,11 +3641,11 @@ msgstr "Raggio di Ricerca:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr "Quantità Minima per Ricerca:"
+msgstr "Quantità Minima da Cercare:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
 msgid "LINE_COLOUR"
-msgstr "Colore Linea"
+msgstr "Colore Linea:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
 msgid "MODIFY_ORGANELLE"
@@ -4512,7 +4525,7 @@ msgstr "Tutorial"
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:66
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Benvenuto all'Editor Microbico.\n"
+"Benvenuto nell'Editor Microbico.\n"
 "Qui puoi vedere cosa è successo dall'inizio del gioco o dall'ultima volta "
 "che eri qui, e poi modificare la tua specie.\n"
 "\n"

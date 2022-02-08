@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 16:25+0200\n"
-"PO-Revision-Date: 2022-01-05 08:20+0000\n"
-"Last-Translator: das-makama <makama96@gmx.de>\n"
+"POT-Creation-Date: 2022-02-08 18:56+0200\n"
+"PO-Revision-Date: 2022-02-04 17:52+0000\n"
+"Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -81,7 +81,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:30
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
-"Die verschiedenen Molekül-Wolken sind:\n"
+"Die verschiedenen Substanzen-Wolken sind:\n"
 "\n"
 "Weiß – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
 "Gelb – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
@@ -132,14 +132,14 @@ msgstr ""
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
 "Durch die Bindung mit anderen Zellen können Sie eine Zellkolonie bilden, "
-"in der die Zellen die Verbindungen, die sie aufnehmen und produzieren, "
+"in der die Zellen die Substanzen, die sie aufnehmen und produzieren, "
 "miteinander teilen. Um sich mit einer anderen Zelle binden zu können, "
 "müssen Sie die Bindemittel-Organelle besitzen und sich nach dem Eintritt "
 "in den Bindungsmodus diese berühren. Sie können nur mit Zellen Ihrer "
 "eigenen Spezies binden. Während Sie sich in einer Kolonie befinden, können "
 "Sie Ihre Zelle nicht teilen und den Editor betreten (vorerst). Um den "
 "Editor zu betreten, müssen Sie die Kolonie erst verlassen, wenn Sie genug "
-"Verbindungen gesammelt haben, und dann den Editor betreten. Große "
+"Substanzen gesammelt haben, und dann den Editor betreten. Große "
 "Zellkolonien sind der Weg zur Multizellularität (noch nicht im Spiel)."
 
 #: ../simulation_parameters/common/help_texts.json:62
@@ -177,7 +177,10 @@ msgstr ""
 "Geißel: erhöht deine Mobilität, verbraucht [thrive:compound type=\"atp\"][/"
 "thrive:compound]\n"
 "\n"
-"Pilus: kann im Nahkampf andere Zellen stechen"
+"Pilus: kann im Nahkampf andere Zellen stechen\n"
+"\n"
+"Chemorezeptor: Ermöglicht die Erkennung von Substanzen aus größerer "
+"Entfernung"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -204,10 +207,11 @@ msgstr ""
 "thrive:compound] aus [thrive:compound type=\"atp\"][/thrive:compound], "
 "atmosphärischem Stickstoff und Sauerstoff her\n"
 "\n"
-"Vakuole: Lagert 8 gesammelte Verbindungen\n"
+"Vakuole: Lagert 8 gesammelte Substanzen\n"
 "\n"
 "Toxin-Vakuolen: Produziert Toxine (genannt [thrive:compound type=\"oxytoxy"
-"\"][/thrive:compound])"
+"\"][/thrive:compound]) und erlaubt dir, es freizusetzen und dabei Schaden "
+"zu verursachen, der von der verfügbaren Menge an Oxytoxid abhängt"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -316,7 +320,7 @@ msgstr "Diese blauen Zellen jedoch..."
 msgid "EASTEREGG_MESSAGE_13"
 msgstr ""
 "Kleiner Tipp, Biome sind mehr als nur unterschiedliche Hintergründe. Die "
-"Verbindungen in verschiedenen Biomen erscheinen manchmal mit "
+"Substanzen in verschiedenen Biomen erscheinen manchmal mit "
 "unterschiedlichem Tempo."
 
 #: ../simulation_parameters/common/help_texts.json:165
@@ -912,9 +916,8 @@ msgstr "Nukleus"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "Chemoplast"
+msgstr "Chemorezeptor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
@@ -996,43 +999,45 @@ msgstr "wurde ausgelöscht"
 
 #: ../src/auto-evo/RunResults.cs:843
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[u]{0}[/u] ist ausgestorben!"
 
 #: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Spezienpopulation"
+msgstr "Die Bevölkerung von [u]{0}[/u] hat sich auf {1} gesteigert"
 
 #: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "Spezienpopulation"
+msgstr "Die Bevölkerung von [u]{0}[/u] hat sich auf {1} verringert"
 
 #: ../src/auto-evo/RunResults.cs:867
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[u]{0}[/u] ist aus diesem Gebiet verschwunden"
 
 #: ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
+"Ein Teil der [u]{0}[/u]-Bevölkerung ist von {1} in dieses Gebiet "
+"eingewandert"
 
 #: ../src/auto-evo/RunResults.cs:896
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Ein Teil der [u]{0}[/u]-Bevölkerung ist von {1} in {2} migriert"
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "Ein Teil der [u]{0}[/u]-Bevölkerung ist nach {1} migriert"
 
 #: ../src/auto-evo/RunResults.cs:921
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "tauchte auf, um eine Nische zu füllen"
+msgstr ""
+"[u]{0}[/u] spaltet sich von [u]{1}[/u] als neue Art ab, um eine Nische zu "
+"füllen"
 
 #: ../src/auto-evo/RunResults.cs:927
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "durch unterschiedlichen Selektionsdruck aufgetaucht"
+msgstr ""
+"[u]{0}[/u] spaltet sich von [u]{1}[/u] als neue Art ab aufgrund dem "
+"unterschiedlichen Selektionsdrucks"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 #, fuzzy
@@ -1503,11 +1508,11 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0}konzentrationen sind um {1} gesunken"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "Die Glukosekonzentration ist drastisch gesunken!"
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
@@ -2616,7 +2621,9 @@ msgstr ""
 "compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der "
 "Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. "
 "Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] "
-"Giftstoffe freisetzen."
+"Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound]konzentration niedrig ist, ist das Schießen immer noch möglich, "
+"aber der Schaden ist geringer."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2647,32 +2654,39 @@ msgid "SPEED"
 msgstr "Geschwindigkeit"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Steche damit andere Zellen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "Steche damit andere Zellen."
+msgstr ""
+"Pili (Singular: Pilus) befinden sich auf der Oberfläche vieler "
+"Mikroorganismen und ähneln feinen Haaren. Auf der Oberfläche eines "
+"Mikroorganismus können Hunderte von Pili vorhanden sein, die mehreren "
+"Zwecken dienen können, wie zum Beispiel der Jagt. Pathogene "
+"Mikroorganismen nutzen Pili für ihre Virulenz um sich an Wirtsgewebe "
+"anzuheften und zu binden oder um die äußere Membran zu überwinden und "
+"Zugang zum Zytoplasma zu erhalten. Es gibt viele ähnliche Pili-Varianten, "
+"die jedoch evolutionär nicht miteinander verwandt sind und aus einer "
+"konvergenten Evolution hervorgegangen sind. Ein einziger Organismus kann "
+"mehrere Arten von Pili ausbilden und diese ständig verändern und ersetzen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
-#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"Verwandelt [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] in "
-"[thrive:compound type=\"glucose\"][/thrive:compound]. Die Rate hängt von "
-"der Konzentration von [thrive:compound type=\"carbondioxide\"][/thrive:"
-"compound] ab."
+"Der Chemorezeptor ermöglicht die Erkennung von Substanzen aus größerer "
+"Entfernung. Nach der Platzierung können Sie die Art der Substanz und die "
+"Farbe der Führungslinie auswählen."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
-#, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
-"Der Chemoplast ist eine doppelte Membranstruktur, die Proteine enthält, "
-"die in der Lage sind, Schwefelwasserstoff, Wasser und gasförmiges "
-"Kohlendioxid in einem Prozess namens Schwefelwasserstoff-Chemosynthese in "
-"Glukose umzuwandeln. Die Rate seiner Glukoseproduktion skaliert mit der "
-"Konzentration von Wasser und Kohlendioxid."
+"Alle Zellen \"sehen\" nur durch Chemorezeption. Auf diese Weise erhalten "
+"die Zellen Informationen über ihre Umgebung. Das Hinzufügen dieser "
+"Organelle bedeutet, dass die Chemorezeption weiter verfeinert wird. Da der "
+"Spieler schon im Zellstadium sehen kann, wird dies durch eine Linie "
+"dargestellt, die über den sichtbaren Bildschirmbereich hinausgeht und nahe "
+"gelegene Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
@@ -2697,9 +2711,9 @@ msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 "Ermöglicht die Verbindung mit anderen Zellen. Dies ist der erste Schritt "
 "zur Multizellularität. Wenn deine Zelle Teil einer Kolonie ist, werden die "
-"Verbindungen zwischen den Zellen geteilt. Du kannst den Editor nicht "
+"Substanzen zwischen den Zellen geteilt. Du kannst den Editor nicht "
 "betreten, solange du Teil einer Kolonie bist, also musst du die Kolonie "
-"verlassen, sobald du genug Verbindungen gesammelt hast, um deine Zelle zu "
+"verlassen, sobald du genug Substanzen gesammelt hast, um deine Zelle zu "
 "spalten."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1320
@@ -2846,7 +2860,9 @@ msgstr ""
 "compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der "
 "Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. "
 "Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] "
-"Giftstoffe freisetzen."
+"Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound]-Menge niedrig ist, ist das Schießen immer noch möglich, aber der "
+"Schaden ist geringer."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3006,7 +3022,7 @@ msgstr "Reproduziert"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
 msgid "INFINITE_COMPOUNDS"
-msgstr "Unendlich Verbindungen"
+msgstr "Unendlich Substanzen"
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
 msgid "GODMODE"
@@ -3090,7 +3106,7 @@ msgstr "Nichts hier"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:557
 msgid "COMPOUNDS_COLON"
-msgstr "Verbindungen:"
+msgstr "Substanzen:"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:597
 msgid "SPECIES_COLON"
@@ -3118,7 +3134,7 @@ msgstr "Druck"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3612
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
 msgid "COMPOUNDS"
-msgstr "Verbindungen"
+msgstr "Substanzen"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1516
 msgid "AGENTS"
@@ -3138,7 +3154,7 @@ msgstr "Spiel fortsetzen"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1658
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr "Umgebung und Verbindungen ein-/ausblenden"
+msgstr "Umgebung und Substanzen ein-/ausblenden"
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1673
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
@@ -3433,19 +3449,19 @@ msgstr "Externe Effekte:"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Globale Ereignisse anzeigen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
 msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
+msgstr "G"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2708
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "Lokale Ereignisse anzeigen"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
 msgid "LOCAL_INITIAL_LETTER"
-msgstr ""
+msgstr "L"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2820
@@ -3527,7 +3543,7 @@ msgstr "Mya"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+msgstr "Zeit vergangen: {0:#,#} Jahre"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
@@ -3656,30 +3672,27 @@ msgstr "Ausgestorbene Spezies"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "Keine Ereignisse aufgezeichnet"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "Verbindungswolken"
+msgstr "Substanzensuche:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "Suchradius:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "Mindestmenge zur Erkennung:"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
-#, fuzzy
 msgid "LINE_COLOUR"
-msgstr "Farbe"
+msgstr "Linienfarbe:"
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "Organelle bewegen"
+msgstr "Organelle modifizieren"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
@@ -4620,7 +4633,7 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Achte bei der Auswahl der hinzuzufügenden Organellen auf die Tooltipps der "
-"Organellen, welche Prozesse sie ausführen und welche Verbindungen sie "
+"Organellen, welche Prozesse sie ausführen und welche Substanzen sie "
 "verwenden und herstellen.\n"
 "\n"
 "Achte auch auf den ATP-Balance-Balken oben rechts, um sicherzustellen, "
@@ -4693,7 +4706,7 @@ msgstr ""
 "bist der letzte Urvorfahr aller kommenden Organismen auf diesem Planeten.\n"
 "\n"
 "Um in dieser lebensfeindlichen Welt zu überleben, musst du jegliche "
-"Verbindungen sammeln, die du finden kannst, und dich über Generationen "
+"Substanzen sammeln, die du finden kannst, und dich über Generationen "
 "hinweg weiterentwickeln, um gegen die anderen Arten von Mikroben zu "
 "bestehen."
 

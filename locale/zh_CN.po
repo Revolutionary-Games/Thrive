@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 16:25+0200\n"
-"PO-Revision-Date: 2022-01-05 08:20+0000\n"
-"Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
+"POT-Creation-Date: 2022-02-08 18:56+0200\n"
+"PO-Revision-Date: 2022-01-30 12:44+0000\n"
+"Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Simplified) <https://translate."
 "revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -156,7 +156,9 @@ msgstr ""
 "鞭毛：通过消耗[thrive:compound type=\"atp\"][/thrive:compound]加快你细胞的"
 "移动速度\n"
 "\n"
-"菌毛：可以用来捅其它细胞"
+"菌毛：可以用来捅其它细胞\n"
+"\n"
+"化学感受器：允许从更远的地方探测化合物"
 
 #: ../simulation_parameters/common/help_texts.json:70
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
@@ -184,6 +186,7 @@ msgstr ""
 "液泡：储存15单位收集的化合物\n"
 "\n"
 "毒素液泡：生产毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）"
+"并释放它，根据可用的氧化毒素量造成伤害"
 
 #: ../simulation_parameters/common/help_texts.json:74
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
@@ -843,9 +846,8 @@ msgstr "细胞核"
 
 #: ../simulation_parameters/microbe_stage/organelles.json:642
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1159
-#, fuzzy
 msgid "CHEMORECEPTOR"
-msgstr "化学质体"
+msgstr "化学感受器"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
 msgid "ABORTED"
@@ -925,43 +927,39 @@ msgstr "从这个星球上灭绝了"
 
 #: ../src/auto-evo/RunResults.cs:843
 msgid "TIMELINE_SPECIES_EXTINCT"
-msgstr ""
+msgstr "[u]{0}[/u] 已经灭绝了！"
 
 #: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "该物种的种群数量"
+msgstr "[u]{0}[/u]的种群数量已增加到{1}"
 
 #: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
-#, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
-msgstr "该物种的种群数量"
+msgstr "[u]{0}[/u]的种群数量已降低到{1}"
 
 #: ../src/auto-evo/RunResults.cs:867
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
-msgstr ""
+msgstr "[u]{0}[/u]已从本地区中消失"
 
 #: ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
+msgstr "一部分[u]{0}[/u]种群已经从{1}移民到了这个地区"
 
 #: ../src/auto-evo/RunResults.cs:896
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "一部分[u]{0}[/u]种群已经从{2}移民到了{1}"
 
 #: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "一部分[u]{0}[/u]种群已经移民到了{1}"
 
 #: ../src/auto-evo/RunResults.cs:921
-#, fuzzy
 msgid "TIMELINE_NICHE_FILL"
-msgstr "为了填补生态位"
+msgstr "[u]{0}[/u]从[u]{1}[/u]中分裂出来，成为了一个新的物种以填补一个生态位"
 
 #: ../src/auto-evo/RunResults.cs:927
-#, fuzzy
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
-msgstr "由于不同的演化压力而出现的"
+msgstr "[u]{0}[/u]从[u]{1}[/u]中分裂出来，成为了一个新的物种，原因是演化压力"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
 #, fuzzy
@@ -1432,11 +1430,11 @@ msgstr "{0}%"
 
 #: ../src/general/IWorldEffect.cs:71 ../src/general/IWorldEffect.cs:90
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0}的浓度已减少了{1}"
 
 #: ../src/general/IWorldEffect.cs:85
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
-msgstr ""
+msgstr "葡萄糖的浓度大幅度降低了！"
 
 #: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
@@ -2502,7 +2500,8 @@ msgstr ""
 "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound "
 "type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen"
 "\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/"
-"thrive:input]来释放毒素。"
+"thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound]数量不足时仍能释放，但是伤害会降低。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:869
 msgid "OXYTOXISOME_DESC"
@@ -2525,28 +2524,30 @@ msgid "SPEED"
 msgstr "速度"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
-msgstr "用来捅其它细胞。"
+msgstr "用这个来捅其它细胞。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1101
 msgid "PREDATORY_PILUS_DESCRIPTION"
-msgstr "用来捅其它细胞。"
+msgstr ""
+"纤毛存在于许多微生物的表面，类似于细毛。一个微生物的表面可能有几十到几百个"
+"纤毛，其有多种用途，包括捕食。致病性微生物利用纤毛来提高毒性，或者附着并结"
+"合在宿主组织上，或者穿过外膜侵入细胞质。纤毛有很多相似的变种，但在进化上没"
+"有关系，是趋同进化的结果。一个生物体可能有能力表达几种类型的纤毛，那些存在"
+"于表面的纤毛通常会不断的改变和替换。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1160
-#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
-"将[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]转换成"
-"[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:"
-"compound type=\"carbondioxide\"][/thrive:compound]浓度成正比。"
+"化学感受器可以从更远的地方探测到化合物。放置后可以修改，以选择化合物类型和"
+"引导线颜色。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
-#, fuzzy
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
-"化学质体是一种双层膜结构，其中包含的蛋白质可以通过硫化氢化学合成将硫化氢，"
-"水和二氧化碳转换成葡萄糖。葡萄糖的产出速率跟二氧化碳的浓度成正比。"
+"化学感知是细胞的视觉。是细胞获得有关其周围环境信息的方式。添加这个细胞器代"
+"表着进化出更精细的化学感知。由于玩家即使在细胞阶段也被赋予了视觉，这表现为"
+"一条指向屏幕可见区域之外的线，显示玩家还看不到的附近的化合物。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1219
 msgid "CILIA"
@@ -2672,9 +2673,9 @@ msgstr "增加细胞的存储空间。"
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1883
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
-"液泡是一种用于存储的内膜细胞器。它由好几个通常用于储存的，被固定在一起的囊"
-"泡组成。它装满了水，用于容纳分子，酶，固体和其他物质。它的形状是流性的，所"
-"以不同细胞间形状可以不同。"
+"液泡是一个内部膜质细胞器，用于在细胞内储存。它们由几个囊泡组成，囊泡是在细"
+"胞中广泛用于储存的较小的膜结构，它们融合在一起。它充满了水，用来容纳分子、"
+"酶、固体和其他物质。它们的形状是不固定的，在不同的细胞之间可以有所不同。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1979
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
@@ -2682,7 +2683,8 @@ msgstr ""
 "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound "
 "type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen"
 "\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:"
-"input]以释放毒素。"
+"input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储"
+"量不足时也能释放，但伤害会降低。"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1980
 msgid "TOXIN_VACUOLE_DESCRIPTION"
@@ -3240,19 +3242,19 @@ msgstr "外部影响："
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2695
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "显示全球事件"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2701
 msgid "GLOBAL_INITIAL_LETTER"
-msgstr ""
+msgstr "G"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2708
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
-msgstr ""
+msgstr "显示本地事件"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2715
 msgid "LOCAL_INITIAL_LETTER"
-msgstr ""
+msgstr "L"
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2820
@@ -3328,7 +3330,7 @@ msgstr "*10⁶年"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
 msgid "TIME_INDICATOR_TOOLTIP"
-msgstr ""
+msgstr "时间经过了{0:#,#}年"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
@@ -3451,30 +3453,27 @@ msgstr "灭绝物种"
 
 #: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
-msgstr ""
+msgstr "无事件记录"
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:24
-#, fuzzy
 msgid "COMPOUND_TO_FIND"
-msgstr "化合物云"
+msgstr "寻找的化合物："
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:41
 msgid "SEARCH_RADIUS"
-msgstr ""
+msgstr "搜索半径："
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:63
 msgid "MINIMUM_AMOUNT_TO_FIND"
-msgstr ""
+msgstr "检测的最小数量："
 
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:85
-#, fuzzy
 msgid "LINE_COLOUR"
-msgstr "颜色"
+msgstr "线条颜色："
 
 #: ../src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn:21
-#, fuzzy
 msgid "MODIFY_ORGANELLE"
-msgstr "移动细胞器"
+msgstr "修改细胞器"
 
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
@@ -3751,7 +3750,7 @@ msgstr "描叙过长"
 
 #: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr "更新日历太长了"
+msgstr "更改说明太长了"
 
 #: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
@@ -3883,11 +3882,11 @@ msgstr "删除本地数据"
 
 #: ../src/modding/ModUploader.tscn:292 ../src/modding/ModUploader.tscn:301
 msgid "WORKSHOP_ITEM_CHANGE_NOTES_TOOLTIP"
-msgstr "这个项目的这个版本在在Steam创意工坊显示的更新日历（可选）"
+msgstr "这个项目的这个版本在在Steam创意工坊显示的更新说明（可选）"
 
 #: ../src/modding/ModUploader.tscn:294
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
-msgstr "项目更新日历"
+msgstr "项目更新说明"
 
 #: ../src/modding/ModUploader.tscn:325
 msgid "SELECT_PREVIEW_IMAGE"
@@ -4154,7 +4153,7 @@ msgstr "类型："
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
-msgstr "介绍："
+msgstr "描述："
 
 #: ../src/saving/SaveListItem.tscn:193
 msgid "VERSION"
