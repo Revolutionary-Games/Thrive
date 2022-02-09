@@ -291,7 +291,8 @@ public class TweakedColourPicker : ColorPicker
                 // Confirm
                 pickingColor = false;
             }
-            else if (@event is InputEventKey { Scancode: (int)KeyList.Escape, Pressed: true })
+            else if (@event is InputEventKey { Scancode: (int)KeyList.Escape, Pressed: true }
+                     or InputEventMouse { ButtonMask: (int)ButtonList.Right })
             {
                 // Cancel
                 pickingColor = false;
