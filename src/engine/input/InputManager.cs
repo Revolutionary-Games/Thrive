@@ -15,7 +15,7 @@ using Godot;
 public class InputManager : Node
 {
     private static readonly List<WeakReference> DestroyedListeners = new List<WeakReference>();
-    private static InputManager staticInstance;
+    private static InputManager? staticInstance;
 
     /// <summary>
     ///   A list of all loaded attributes
@@ -49,6 +49,9 @@ public class InputManager : Node
     /// <param name="instance">The instance to add</param>
     public static void RegisterReceiver(object instance)
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         bool registered = false;
 
         var reference = new WeakReference(instance);
@@ -57,7 +60,7 @@ public class InputManager : Node
         // TODO: check if there is some alternative faster approach to registering instances
         foreach (var inputAttribute in staticInstance
                      .attributes
-                     .Where(p => p.Key.Method.DeclaringType?.IsInstanceOfType(instance) == true))
+                     .Where(p => p.Key.Method?.DeclaringType?.IsInstanceOfType(instance) == true))
         {
             inputAttribute.Value.Add(reference);
             registered = true;
@@ -75,6 +78,9 @@ public class InputManager : Node
     /// <param name="instance">The instance to remove</param>
     public static void UnregisterReceiver(object instance)
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         int removed = 0;
 
         foreach (var attribute in staticInstance.attributes)
@@ -94,6 +100,9 @@ public class InputManager : Node
     /// </summary>
     public static void OnFocusLost()
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         foreach (var attribute in staticInstance.attributes)
             attribute.Key.FocusLost();
     }
@@ -105,6 +114,9 @@ public class InputManager : Node
     /// <param name="inputEvent">The event the user fired</param>
     public static void ForwardInput(InputEvent inputEvent)
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         staticInstance._UnhandledInput(inputEvent);
     }
 
@@ -114,6 +126,9 @@ public class InputManager : Node
     /// <param name="delta">The time since the last _Process call</param>
     public override void _Process(float delta)
     {
+        if (staticInstance == null)
+            throw new InstanceNotLoadedYetException();
+
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
         if (delta <= 0)
             return;
@@ -169,7 +184,7 @@ public class InputManager : Node
         if (method == null)
             return true;
 
-        var instances = staticInstance.attributes[attribute];
+        var instances = staticInstance!.attributes[attribute];
         var result = false;
 
         if (method.IsStatic)
@@ -300,7 +315,7 @@ public class InputManager : Node
     /// </summary>
     private void ClearExpiredReferences()
     {
-        foreach (var attributesValue in staticInstance.attributes.Values)
+        foreach (var attributesValue in staticInstance!.attributes.Values)
             attributesValue.RemoveAll(p => !p.IsAlive);
     }
 
@@ -328,7 +343,7 @@ public class InputManager : Node
 
                     // Get the RunOnAxisGroupAttribute, if there is one
                     var runOnAxisGroupAttribute =
-                        (RunOnAxisGroupAttribute)inputAttributes.FirstOrDefault(p => p is RunOnAxisGroupAttribute);
+                        (RunOnAxisGroupAttribute?)inputAttributes.FirstOrDefault(p => p is RunOnAxisGroupAttribute);
 
                     foreach (var attribute in inputAttributes)
                     {

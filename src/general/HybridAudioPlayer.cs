@@ -11,13 +11,13 @@
 /// </remarks>
 public class HybridAudioPlayer : Spatial
 {
-    private AudioStreamPlayer3D player3D;
-    private AudioStreamPlayer playerNonPositional;
+    private AudioStreamPlayer3D? player3D;
+    private AudioStreamPlayer? playerNonPositional;
 
     private bool positional;
-    private AudioStream stream;
+    private AudioStream? stream;
     private float volume = 1.0f;
-    private string bus;
+    private string bus = "SFX";
 
     [Export]
     public bool Positional
@@ -34,7 +34,7 @@ public class HybridAudioPlayer : Spatial
     }
 
     [Export]
-    public AudioStream Stream
+    public AudioStream? Stream
     {
         get => stream;
         set
@@ -44,7 +44,7 @@ public class HybridAudioPlayer : Spatial
         }
     }
 
-    public bool Playing => Positional ? player3D.Playing : playerNonPositional.Playing;
+    public bool Playing => Positional ? player3D!.Playing : playerNonPositional!.Playing;
 
     /// <summary>
     ///   Volume in linear scale.
@@ -83,11 +83,11 @@ public class HybridAudioPlayer : Spatial
     {
         if (Positional)
         {
-            player3D.Play(fromPosition);
+            player3D!.Play(fromPosition);
         }
         else
         {
-            playerNonPositional.Play(fromPosition);
+            playerNonPositional!.Play(fromPosition);
         }
     }
 
@@ -95,11 +95,11 @@ public class HybridAudioPlayer : Spatial
     {
         if (Positional)
         {
-            player3D.Stop();
+            player3D!.Stop();
         }
         else
         {
-            playerNonPositional.Stop();
+            playerNonPositional!.Stop();
         }
     }
 

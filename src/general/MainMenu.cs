@@ -17,61 +17,61 @@ public class MainMenu : NodeWithInput
     public uint CurrentMenuIndex;
 
     [Export]
-    public NodePath ThriveLogoPath;
+    public NodePath ThriveLogoPath = null!;
 
     [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
     [Export]
-    public List<Texture> MenuBackgrounds;
+    public List<Texture> MenuBackgrounds = null!;
 
     [Export]
-    public NodePath NewGameButtonPath;
+    public NodePath NewGameButtonPath = null!;
 
     [Export]
-    public NodePath FreebuildButtonPath;
+    public NodePath FreebuildButtonPath = null!;
 
     [Export]
-    public NodePath CreditsContainerPath;
+    public NodePath CreditsContainerPath = null!;
 
     [Export]
-    public NodePath CreditsScrollPath;
+    public NodePath CreditsScrollPath = null!;
 
     [Export]
-    public NodePath LicensesDisplayPath;
+    public NodePath LicensesDisplayPath = null!;
 
     [Export]
-    public NodePath GLES2PopupPath;
+    public NodePath GLES2PopupPath = null!;
 
     [Export]
-    public NodePath ModLoadFailuresPath;
+    public NodePath ModLoadFailuresPath = null!;
 
     [Export]
-    public NodePath StoreLoggedInDisplayPath;
+    public NodePath StoreLoggedInDisplayPath = null!;
 
     [Export]
-    public NodePath ModManagerPath;
+    public NodePath ModManagerPath = null!;
 
-    public Array MenuArray;
-    public TextureRect Background;
+    public Array? MenuArray;
+    public TextureRect Background = null!;
 
     public bool IsReturningToMenu;
 
-    private TextureRect thriveLogo;
-    private OptionsMenu options;
-    private AnimationPlayer guiAnimations;
-    private SaveManagerGUI saves;
-    private ModManager modManager;
+    private TextureRect thriveLogo = null!;
+    private OptionsMenu options = null!;
+    private AnimationPlayer guiAnimations = null!;
+    private SaveManagerGUI saves = null!;
+    private ModManager modManager = null!;
 
-    private Control creditsContainer;
-    private CreditsScroll credits;
-    private LicensesDisplay licensesDisplay;
+    private Control creditsContainer = null!;
+    private CreditsScroll credits = null!;
+    private LicensesDisplay licensesDisplay = null!;
 
-    private Button newGameButton;
-    private Button freebuildButton;
+    private Button newGameButton = null!;
+    private Button freebuildButton = null!;
 
-    private Label storeLoggedInDisplay;
+    private Label storeLoggedInDisplay = null!;
 
-    private CustomConfirmationDialog gles2Popup;
-    private ErrorDialog modLoadFailures;
+    private CustomConfirmationDialog gles2Popup = null!;
+    private ErrorDialog modLoadFailures = null!;
 
     public override void _Ready()
     {
@@ -109,6 +109,9 @@ public class MainMenu : NodeWithInput
     /// <param name="slide">If false then the menu slide animation will not be played</param>
     public void SetCurrentMenu(uint index, bool slide = true)
     {
+        if (MenuArray == null)
+            throw new InvalidOperationException("Main menu has not been initialized");
+
         // Allow disabling all the menus for going to the options menu
         if (index > MenuArray.Count - 1 && index != uint.MaxValue)
         {
@@ -250,7 +253,7 @@ public class MainMenu : NodeWithInput
     private void SwitchMenu()
     {
         // Hide other menus and only show the one of the current index
-        foreach (Control menu in MenuArray)
+        foreach (Control menu in MenuArray!)
         {
             menu.Hide();
 
@@ -349,7 +352,7 @@ public class MainMenu : NodeWithInput
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.15f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 

@@ -4,29 +4,42 @@ using Newtonsoft.Json;
 
 public class NameGenerator : IRegistryType
 {
-    public List<string> PrefixCofix;
-    public List<string> PrefixesV;
-    public List<string> PrefixesC;
-    public List<string> CofixesV;
-    public List<string> CofixesC;
-    public List<string> SuffixesV;
-    public List<string> SuffixesC;
+    [JsonRequired]
+    public List<string> PrefixCofix = null!;
+
+    [JsonRequired]
+    public List<string> PrefixesV = null!;
+
+    [JsonRequired]
+    public List<string> PrefixesC = null!;
+
+    [JsonRequired]
+    public List<string> CofixesV = null!;
+
+    [JsonRequired]
+    public List<string> CofixesC = null!;
+
+    [JsonRequired]
+    public List<string> SuffixesV = null!;
+
+    [JsonRequired]
+    public List<string> SuffixesC = null!;
 
     /// <summary>
     ///   List of all suffixes
     /// </summary>
     [JsonIgnore]
-    public List<string> Suffixes;
+    public List<string> Suffixes = null!;
 
     /// <summary>
     ///   Unused
     /// </summary>
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     /// <summary>
     ///   Generates a single name section
     /// </summary>
-    public string GenerateNameSection(Random random = null)
+    public string GenerateNameSection(Random? random = null)
     {
         random ??= new Random();
 

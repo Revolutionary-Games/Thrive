@@ -3,6 +3,12 @@
 /// </summary>
 public class AgentProperties
 {
+    public AgentProperties(Species species, Compound compound)
+    {
+        Species = species;
+        Compound = compound;
+    }
+
     public Species Species { get; set; }
     public string AgentType { get; set; } = "oxytoxy";
     public Compound Compound { get; set; }

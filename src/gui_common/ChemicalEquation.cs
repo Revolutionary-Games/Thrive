@@ -8,20 +8,20 @@ using Godot;
 public class ChemicalEquation : VBoxContainer
 {
     [Export]
-    public NodePath TitlePath;
+    public NodePath TitlePath = null!;
 
     [Export]
-    public NodePath SpinnerPath;
+    public NodePath SpinnerPath = null!;
 
     [Export]
-    public NodePath FirstLineContainerPath;
+    public NodePath FirstLineContainerPath = null!;
 
-    private Label title;
-    private TextureRect spinner;
-    private HBoxContainer firstLineContainer;
-    private IProcessDisplayInfo equationFromProcess;
+    private Label? title;
+    private TextureRect? spinner;
+    private HBoxContainer firstLineContainer = null!;
+    private IProcessDisplayInfo? equationFromProcess;
     private bool showSpinner;
-    private Texture equationArrowTexture;
+    private Texture equationArrowTexture = null!;
     private Color defaultTitleColour = Colors.White;
 
     /// <summary>
@@ -37,14 +37,14 @@ public class ChemicalEquation : VBoxContainer
     private bool hasNoInputs;
 
     // Dynamically generated controls
-    private CompoundListBox leftSide;
-    private TextureRect equationArrow;
-    private CompoundListBox rightSide;
-    private Label perSecondLabel;
-    private Label environmentSeparator;
-    private CompoundListBox environmentSection;
+    private CompoundListBox? leftSide;
+    private TextureRect? equationArrow;
+    private CompoundListBox? rightSide;
+    private Label? perSecondLabel;
+    private Label? environmentSeparator;
+    private CompoundListBox? environmentSection;
 
-    public IProcessDisplayInfo EquationFromProcess
+    public IProcessDisplayInfo? EquationFromProcess
     {
         get => equationFromProcess;
         set
@@ -56,9 +56,7 @@ public class ChemicalEquation : VBoxContainer
                 return;
 
             equationFromProcess = value;
-
-            if (title != null)
-                UpdateEquation();
+            UpdateEquation();
         }
     }
 
@@ -68,8 +66,7 @@ public class ChemicalEquation : VBoxContainer
         set
         {
             showSpinner = value;
-            if (spinner != null)
-                UpdateHeader();
+            UpdateHeader();
         }
     }
 
@@ -124,7 +121,12 @@ public class ChemicalEquation : VBoxContainer
         if (ShowSpinner && EquationFromProcess != null)
         {
             currentSpinnerRotation += delta * EquationFromProcess.CurrentSpeed * SpinnerBaseSpeed;
-            spinner.RectRotation = currentSpinnerRotation;
+
+            // TODO: should we at some point subtract like 100000*360 from the spinner rotation to avoid float range
+            // exceeding?
+
+            // Now uses the same math as LoadingScreen as a spinner glitch was fixed there
+            spinner!.RectRotation = (int)currentSpinnerRotation % 360;
         }
 
         if (AutoRefreshProcess)
@@ -145,6 +147,9 @@ public class ChemicalEquation : VBoxContainer
 
     private void UpdateEquation()
     {
+        if (title == null)
+            return;
+
         if (EquationFromProcess == null)
         {
             Visible = false;
@@ -186,10 +191,15 @@ public class ChemicalEquation : VBoxContainer
 
     private void UpdateHeader()
     {
-        spinner.Visible = ShowSpinner;
+        if (spinner != null)
+            spinner.Visible = ShowSpinner;
+
+        if (title == null || EquationFromProcess == null)
+            return;
+
         title.Text = EquationFromProcess.Name;
 
-        if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds.Count > 0)
+        if (MarkRedOnLimitingCompounds && EquationFromProcess.LimitingCompounds is { Count: > 0 })
         {
             title.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
         }
@@ -226,7 +236,7 @@ public class ChemicalEquation : VBoxContainer
 
             leftSide.Visible = true;
 
-            leftSide.UpdateCompounds(normalInputs, EquationFromProcess.LimitingCompounds);
+            leftSide.UpdateCompounds(normalInputs, EquationFromProcess!.LimitingCompounds);
 
             // And the arrow
             if (equationArrow == null)
@@ -252,7 +262,7 @@ public class ChemicalEquation : VBoxContainer
 
         rightSide.PrefixPositiveWithPlus = hasNoInputs;
 
-        rightSide.UpdateCompounds(EquationFromProcess.Outputs, EquationFromProcess.LimitingCompounds);
+        rightSide.UpdateCompounds(EquationFromProcess!.Outputs, EquationFromProcess.LimitingCompounds);
     }
 
     private void UpdateEnvironmentPart(List<KeyValuePair<Compound, float>> environmentalInputs)
@@ -281,7 +291,7 @@ public class ChemicalEquation : VBoxContainer
 
             environmentSection.Visible = true;
 
-            environmentSection.UpdateCompounds(environmentalInputs, EquationFromProcess.LimitingCompounds);
+            environmentSection.UpdateCompounds(environmentalInputs, EquationFromProcess!.LimitingCompounds);
         }
         else
         {

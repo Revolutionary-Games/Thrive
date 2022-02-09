@@ -110,7 +110,7 @@
             }
         }
 
-        private MicrobeSpecies TryBiodiversitySplit(Species splitFrom, bool inCurrentPatch)
+        private MicrobeSpecies? TryBiodiversitySplit(Species splitFrom, bool inCurrentPatch)
         {
             var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 

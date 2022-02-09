@@ -5,14 +5,14 @@ using Godot;
 // [Tool]
 public class LicensesDisplay : CustomDialog
 {
-    private List<(string Heading, string File)> licensesToShow;
+    [Export]
+    public NodePath TextsContainerPath = null!;
+
+    private List<(string Heading, string File)> licensesToShow = null!;
 
     private bool licensesLoaded;
 
-    private Container textsContainer;
-
-    [Export]
-    public NodePath TextsContainerPath { get; set; }
+    private Container textsContainer = null!;
 
     public override void _Ready()
     {

@@ -7,7 +7,7 @@ using Saving;
 /// </summary>
 public static class SaveUpgrader
 {
-    public static bool CanUpgradeSaveToVersion(SaveInformation saveInfo, string targetVersion = null)
+    public static bool CanUpgradeSaveToVersion(SaveInformation saveInfo, string? targetVersion = null)
     {
         targetVersion ??= Constants.Version;
 
@@ -26,7 +26,7 @@ public static class SaveUpgrader
         return nextStep != null;
     }
 
-    public static void PerformSaveUpgrade(string saveToUpgrade, bool backup = true, string targetVersion = null)
+    public static void PerformSaveUpgrade(string saveToUpgrade, bool backup = true, string? targetVersion = null)
     {
         var saveInfo = Save.LoadJustInfoFromSave(saveToUpgrade);
 
@@ -34,7 +34,7 @@ public static class SaveUpgrader
     }
 
     public static void PerformSaveUpgrade(SaveInformation saveInfo, string inputSave, bool backup = true,
-        string targetVersion = null)
+        string? targetVersion = null)
     {
         targetVersion ??= Constants.Version;
 
@@ -115,7 +115,7 @@ public static class SaveUpgrader
             Constants.SAVE_BACKUP_SUFFIX.Length) + Constants.SAVE_EXTENSION_WITH_DOT;
     }
 
-    private static ISaveUpgradeStep FindPathToVersion(SaveInformation saveInfo, string fromVersion, string toVersion)
+    private static ISaveUpgradeStep? FindPathToVersion(SaveInformation saveInfo, string fromVersion, string toVersion)
     {
         var step = SaveUpgradeSteps.GetUpgradeStepForVersion(fromVersion);
 

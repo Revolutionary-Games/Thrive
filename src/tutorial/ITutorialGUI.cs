@@ -13,7 +13,7 @@ public interface ITutorialGUI
     /// <summary>
     ///   Which object receives events from this tutorial
     /// </summary>
-    ITutorialInput EventReceiver { get; set; }
+    ITutorialInput? EventReceiver { get; set; }
 
     /// <summary>
     ///   Used to ignore reporting closing back to whoever is setting the visible properties

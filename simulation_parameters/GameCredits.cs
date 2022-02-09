@@ -3,21 +3,21 @@ using Newtonsoft.Json;
 
 public class GameCredits : IRegistryType
 {
-    public GameDevelopers Developers { get; set; }
+    public GameDevelopers Developers { get; set; } = null!;
 
     /// <summary>
     ///   These are the donations from the wiki. The structure is "year&lt;month, list of donations&gt;"
     /// </summary>
-    public Dictionary<string, Dictionary<string, List<string>>> Donations { get; set; }
+    public Dictionary<string, Dictionary<string, List<string>>> Donations { get; set; } = null!;
 
-    public List<string> Translators { get; set; }
+    public List<string> Translators { get; set; } = null!;
 
-    public PatronsList Patrons { get; set; }
+    public PatronsList Patrons { get; set; } = null!;
 
     /// <summary>
     ///   Unused
     /// </summary>
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {
@@ -62,6 +62,24 @@ public class GameCredits : IRegistryType
             throw new InvalidRegistryDataException(nameof(GameCredits), GetType().Name,
                 "Patrons are missing");
         }
+
+        if (Patrons.VIPPatrons == null)
+        {
+            throw new InvalidRegistryDataException(nameof(GameCredits), GetType().Name,
+                "Patrons (VIP) are missing");
+        }
+
+        if (Patrons.DevBuildPatrons == null)
+        {
+            throw new InvalidRegistryDataException(nameof(GameCredits), GetType().Name,
+                "Patrons (devbuild) are missing");
+        }
+
+        if (Patrons.SupporterPatrons == null)
+        {
+            throw new InvalidRegistryDataException(nameof(GameCredits), GetType().Name,
+                "Patrons (supporter) are missing");
+        }
     }
 
     public void ApplyTranslations()
@@ -71,19 +89,19 @@ public class GameCredits : IRegistryType
     public class GameDevelopers
     {
         // These are maps of the team and list of their members
-        public Dictionary<string, List<DeveloperPerson>> Current { get; set; }
-        public Dictionary<string, List<DeveloperPerson>> Past { get; set; }
+        public Dictionary<string, List<DeveloperPerson>> Current { get; set; } = null!;
+        public Dictionary<string, List<DeveloperPerson>> Past { get; set; } = null!;
 
         /// <summary>
         ///   These are outside contributors (non-team members)
         /// </summary>
-        public Dictionary<string, List<DeveloperPerson>> Outside { get; set; }
+        public Dictionary<string, List<DeveloperPerson>> Outside { get; set; } = null!;
     }
 
     public class DeveloperPerson
     {
         [JsonProperty(PropertyName = "person")]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         public bool Lead { get; set; }
 
@@ -96,12 +114,12 @@ public class GameCredits : IRegistryType
     public class PatronsList
     {
         [JsonProperty]
-        public List<string> VIPPatrons { get; set; }
+        public List<string> VIPPatrons { get; set; } = null!;
 
         [JsonProperty]
-        public List<string> DevBuildPatrons { get; set; }
+        public List<string> DevBuildPatrons { get; set; } = null!;
 
         [JsonProperty]
-        public List<string> SupporterPatrons { get; set; }
+        public List<string> SupporterPatrons { get; set; } = null!;
     }
 }
