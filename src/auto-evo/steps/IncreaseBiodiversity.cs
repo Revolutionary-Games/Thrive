@@ -15,7 +15,7 @@
         private readonly AutoEvoConfiguration configuration;
         private readonly Random random;
 
-        private readonly Mutations mutations = new Mutations();
+        private readonly Mutations mutations = new();
 
         private bool tryCurrentPatch = true;
         private bool createdASpecies;

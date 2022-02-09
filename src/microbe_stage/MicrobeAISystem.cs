@@ -6,7 +6,7 @@ using Godot;
 
 public class MicrobeAISystem
 {
-    private readonly List<Task> tasks = new List<Task>();
+    private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
 

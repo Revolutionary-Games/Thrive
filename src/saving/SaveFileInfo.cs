@@ -32,11 +32,8 @@ public class SaveFileInfo
 
     public SaveInformation Info
     {
-        get
-        {
-            // Load from file if missing
-            return info ??= Save.LoadJustInfoFromSave(Name);
-        }
+        // Load from file if missing
+        get => info ??= Save.LoadJustInfoFromSave(Name);
         set => info = value;
     }
 

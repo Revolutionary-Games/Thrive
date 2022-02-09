@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 public class TimedWorldOperations
 {
     [JsonProperty]
-    private List<IWorldEffect> effects = new List<IWorldEffect>();
+    private List<IWorldEffect> effects = new();
 
     /// <summary>
     /// Called when time passes

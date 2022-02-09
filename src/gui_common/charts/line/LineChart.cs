@@ -1286,7 +1286,7 @@ public class LineChart : VBoxContainer
         /// </summary>
         public readonly bool Default;
 
-        public Dictionary<DataPoint, Control> CollisionBoxes = new Dictionary<DataPoint, Control>();
+        public Dictionary<DataPoint, Control> CollisionBoxes = new();
 
         private LineChartData data;
         private Tween tween;

@@ -22,13 +22,13 @@ public class KeyPrompt : TextureRect
     ///   Colour modulation when unpressed
     /// </summary>
     [Export]
-    public Color UnpressedColour = new Color(1, 1, 1, 1);
+    public Color UnpressedColour = new(1, 1, 1, 1);
 
     /// <summary>
     ///   Colour modulation when pressed
     /// </summary>
     [Export]
-    public Color PressedColour = new Color(0.7f, 0.7f, 0.7f, 1);
+    public Color PressedColour = new(0.7f, 0.7f, 0.7f, 1);
 
     // public override void _Ready()
     // {

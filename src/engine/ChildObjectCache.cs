@@ -13,7 +13,7 @@ public class ChildObjectCache<TKey, TNode>
     private readonly Node parentObject;
     private readonly CreateNewChildNode childCreator;
 
-    private readonly Dictionary<TKey, CreatedNode> createdChildren = new Dictionary<TKey, CreatedNode>();
+    private readonly Dictionary<TKey, CreatedNode> createdChildren = new();
 
     private int nextAccessOrder;
 

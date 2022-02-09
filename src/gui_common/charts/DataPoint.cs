@@ -74,9 +74,9 @@ public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
         }
     }
 
-    public Color MarkerFillerColour { get; set; } = new Color(0.0f, 0.13f, 0.14f);
+    public Color MarkerFillerColour { get; set; } = new(0.0f, 0.13f, 0.14f);
 
-    public Color MarkerFillerHighlightedColour { get; set; } = new Color(0.07f, 1.0f, 0.84f);
+    public Color MarkerFillerHighlightedColour { get; set; } = new(0.07f, 1.0f, 0.84f);
 
     public Color MarkerColour { get; set; }
 

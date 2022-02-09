@@ -16,17 +16,16 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
     public string Name => Process.Name;
 
-    public Dictionary<Compound, float> WritableInputs { get; } = new Dictionary<Compound, float>();
-    public Dictionary<Compound, float> WritableOutputs { get; } = new Dictionary<Compound, float>();
-    public List<Compound> WritableLimitingCompounds { get; } = new List<Compound>();
+    public Dictionary<Compound, float> WritableInputs { get; } = new();
+    public Dictionary<Compound, float> WritableOutputs { get; } = new();
+    public List<Compound> WritableLimitingCompounds { get; } = new();
 
-    public Dictionary<Compound, float> WritableFullSpeedRequiredEnvironmentalInputs { get; } =
-        new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> WritableFullSpeedRequiredEnvironmentalInputs { get; } = new();
 
-    public Dictionary<Compound, float> AvailableAmounts { get; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> AvailableAmounts { get; } = new();
 
     // ReSharper disable once CollectionNeverQueried.Global
-    public Dictionary<Compound, float> AvailableRates { get; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> AvailableRates { get; } = new();
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
         WritableInputs.Where(p => !p.Key.IsEnvironmental);

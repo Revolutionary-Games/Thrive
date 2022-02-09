@@ -12,7 +12,7 @@ public static class ToolTipHelper
     /// <summary>
     ///   A helper static member to store enter/exit callback for registered tooltips to keep it from unloading.
     /// </summary>
-    private static readonly List<ToolTipCallbackData> ToolTipCallbacks = new List<ToolTipCallbackData>();
+    private static readonly List<ToolTipCallbackData> ToolTipCallbacks = new();
 
     /// <summary>
     ///   Instantiates a default tooltip scene

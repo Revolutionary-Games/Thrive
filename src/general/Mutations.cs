@@ -11,24 +11,24 @@ using Newtonsoft.Json;
 /// </summary>
 public class Mutations
 {
-    private static readonly List<string> Vowels = new List<string>
+    private static readonly List<string> Vowels = new()
     {
         "a", "e", "i", "o", "u",
     };
 
-    private static readonly List<string> PronounceablePermutation = new List<string>
+    private static readonly List<string> PronounceablePermutation = new()
     {
         "th", "sh", "ch", "wh", "Th", "Sh", "Ch", "Wh",
     };
 
-    private static readonly List<string> Consonants = new List<string>
+    private static readonly List<string> Consonants = new()
     {
         "b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
         "n", "p", "q", "s", "t", "v", "w", "x", "y", "z",
     };
 
     [JsonProperty]
-    private Random random = new Random();
+    private Random random = new();
 
     /// <summary>
     ///   Creates a mutated version of a species

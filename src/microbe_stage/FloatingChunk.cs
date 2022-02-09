@@ -109,7 +109,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
     public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
-    public AliveMarker AliveMarker { get; } = new AliveMarker();
+    public AliveMarker AliveMarker { get; } = new();
 
     /// <summary>
     ///   Grabs data from the type to initialize this
