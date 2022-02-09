@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 /// <summary>
@@ -11,6 +11,11 @@ public class FullModDetails : IEquatable<FullModDetails>
         InternalName = internalName;
         Folder = folder;
         Info = info;
+    }
+
+    public FullModDetails(string internalName)
+    {
+        InternalName = internalName;
     }
 
     public string InternalName { get; }

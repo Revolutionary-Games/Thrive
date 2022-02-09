@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -61,8 +61,41 @@ public class NewModGUI : Control
     public NodePath AssemblyModClassPath = null!;
 
     [Export]
-    public NodePath ErrorDisplayPath = null!;
+    public NodePath DependenciesPath = null!;
 
+    [Export]
+    public NodePath RequiredModsPath = null!;
+
+    [Export]
+    public NodePath LoadBeforePath = null!;
+
+    [Export]
+    public NodePath LoadAfterPath = null!;
+
+    [Export]
+    public NodePath IncompatibleModsPath = null!;
+
+    [Export]
+    public NodePath ModConfigPath = null!;
+
+    [Export]
+    public NodePath EnableConfigCheckboxPath = null!;
+
+    [Export]
+    public NodePath IconFileDialogPath = null!;
+
+    [Export]
+    public NodePath PckFileDialogPath = null!;
+
+    [Export]
+    public NodePath AssemblyFileDialogPath = null!;
+
+    [Export]
+    public NodePath PreviewFileDialogPath = null!;
+
+
+    [Export]
+    public NodePath ErrorDisplayPath = null!;
 
     private CustomDialog dialog = null!;
 
@@ -73,6 +106,7 @@ public class NewModGUI : Control
     private LineEdit description = null!;
     private TextEdit longDescription = null!;
     private LineEdit iconFile = null!;
+    private LineEdit previewImagesFile = null!;
     private LineEdit infoUrl = null!;
     private LineEdit license = null!;
     private LineEdit recommendedThrive = null!;
@@ -81,6 +115,19 @@ public class NewModGUI : Control
     private LineEdit pckName = null!;
     private LineEdit modAssembly = null!;
     private LineEdit assemblyModClass = null!;
+    private LineEdit dependencies = null!;
+    private LineEdit requiredMods = null!;
+    private LineEdit loadBefore = null!;
+    private LineEdit loadAfter = null!;
+    private LineEdit incompatibleMods = null!;
+    private LineEdit modConfig = null!;
+
+    private CheckButton enableConfigCheckbox = null!;
+
+    private FileDialog iconFileDialog = null!;
+    private FileDialog pckFileDialog = null!;
+    private FileDialog assemblyFileDialog = null!;
+    private FileDialog previewFileDialog = null!;
 
     private Label errorDisplay;
 

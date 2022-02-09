@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -216,37 +216,37 @@ public class ModManager : Control
     public NodePath SelectedModThriveVersionHSeparatorPath = null!;
 
     [Export]
-    public NodePath RestartRequiredPath = null!;
+    public NodePath ModCheckResultDialogPath = null!;
 
     [Export]
-    public NodePath LoadWarningDialogPath;
+    public NodePath LoadWarningDialogPath = null!;
 
     [Export]
-    public NodePath OtherModInfoDialogPath;
+    public NodePath OtherModInfoDialogPath = null!;
 
     [Export]
-    public NodePath ModErrorsContainerPath;
+    public NodePath ModErrorsContainerPath = null!;
 
     [Export]
-    public NodePath ErrorInfoLabelPath;
+    public NodePath ErrorInfoLabelPath = null!;
 
     [Export]
-    public NodePath OneshotLoadingCheckboxPath;
+    public NodePath OneshotLoadingCheckboxPath = null!;
 
     [Export]
-    public NodePath ConfigItemListPath;
+    public NodePath ConfigItemListPath = null!;
 
     [Export]
-    public NodePath ConfigContainerPath;
+    public NodePath ConfigContainerPath = null!;
 
     [Export]
-    public NodePath ConfigPanelContainerPath;
+    public NodePath ConfigPanelContainerPath = null!;
 
     [Export]
-    public NodePath ModLoaderContainerPath;
+    public NodePath ModLoaderContainerPath = null!;
 
     [Export]
-    public PackedScene ConfigItemScene;
+    public PackedScene ConfigItemScene = null!;
 
     private readonly List<FullModDetails> validMods = new();
 

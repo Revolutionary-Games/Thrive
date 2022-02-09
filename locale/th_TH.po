@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 16:25+0200\n"
+"POT-Creation-Date: 2022-02-08 20:38-0600\n"
 "PO-Revision-Date: 2021-06-09 12:42+0000\n"
 "Last-Translator: monkey <monkeygorun@gmail.com>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/"
@@ -1413,7 +1413,7 @@ msgstr "ศิลปะโดย {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1573
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "ปิด"
@@ -1481,7 +1481,7 @@ msgstr "สร้างจุลินทรีย์ฟรี"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "กลับ"
@@ -1499,16 +1499,16 @@ msgid "LICENSES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:493
-msgid "GLES2_MODE_WARNING"
-msgstr "คำเตือนโหมด GLES2"
-
-#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "คุณกำลังเจริญเติบโตด้วย GLES2 "
 "สิ่งนี้ยังไม่ผ่านการทดสอบอย่างรุนแรงและมีแนวโน้มที่จะทำให้เกิดปัญหา "
 "พยายามอัปเดตไดรเวอร์วิดีโอของคุณและ / หรือบังคับให้ใช้กราฟิก AMD หรือ Nvidia เพื่อเรียกใช้ "
 "Thrive"
+
+#: ../src/general/MainMenu.tscn:494
+msgid "GLES2_MODE_WARNING"
+msgstr "คำเตือนโหมด GLES2"
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
@@ -1673,6 +1673,7 @@ msgid "LANGUAGE"
 msgstr "ภาษา:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "รีเซ็ต"
 
@@ -1842,7 +1843,7 @@ msgstr "ทิ้งและดำเนินการต่อ"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:730
 msgid "CANCEL"
 msgstr "ยกเลิก"
 
@@ -3533,131 +3534,339 @@ msgstr ""
 msgid "WIN_TEXT"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:531
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:499
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:546
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:554
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:617
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:630
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:646
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:662
 msgid "PCK_LOAD_FAILED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:468
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:482
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:494
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:549
-msgid "NO_SELECTED_MOD"
+#: ../src/modding/ModManager.cs:606
+msgid "MOD_LOADER_TAB"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:607
+msgid "MOD_ERRORS_TAB"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:608
+msgid "MOD_CONFIGURATION_TAB"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1956
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:954 ../src/modding/ModManager.cs:1957
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:1021
+msgid "NO_SELECTED_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1378
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr ""
+"คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะถูกยกเลิก\n"
+"คุณต้องการดำเนินการต่อหรือไม่"
+
+#: ../src/modding/ModManager.cs:1380
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr "แน่ใจไหมว่าต้องการรีเซ็ตการตั้งค่าทั้งหมดเป็นค่าเริ่มต้น"
+
+#: ../src/modding/ModManager.cs:1562 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
+msgid "MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1579
+msgid "NO_MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1588 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/NewModGUI.tscn:572
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1605
+msgid "NO_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1614 ../src/modding/ModManager.tscn:869
+msgid "INCOMPATIBLE_WITH"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1631
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1640 ../src/modding/ModManager.tscn:878
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "โหลดเกม"
+
+#: ../src/modding/ModManager.cs:1650 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/NewModGUI.tscn:620
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "โหลดเกม"
+
+#: ../src/modding/ModManager.cs:1668 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/NewModGUI.tscn:596
+msgid "MOD_LOAD_BEFORE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1680
+msgid "MOD_NO_LOAD_ORDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2011
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2013
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกซึ่งจะถูกยกเลิก\n"
+"คุณต้องการดำเนินการต่อหรือไม่"
+
+#: ../src/modding/ModManager.cs:2017 ../src/modding/ModManager.cs:2057
+msgid "MOD_LIST_VALID"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2040 ../src/modding/ModManager.cs:2051
+#: ../src/modding/ModManager.cs:2071 ../src/modding/ModManager.cs:2085
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "เมาส์ที่ไม่รู้จัก"
+
+#: ../src/modding/ModManager.cs:2060
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2074
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2076
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2088
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2090
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2093
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2095
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2099
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2101
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2104
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2106
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2110
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2112
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2154
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:2163
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:201
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:152
-#, fuzzy
-msgid "OPEN_FOLDER"
-msgstr "เปิดโฟลเดอร์บันทึก"
-
-#: ../src/modding/ModManager.tscn:170
-#, fuzzy
-msgid "RIGHT_ARROW"
-msgstr "เมาส์ขวา"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "เมาส์ซ้าย"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "เมาส์ขวา"
+
+#: ../src/modding/ModManager.tscn:271
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "เปิดใช้งานตัวแก้ไข"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "เปิดใช้งานตัวแก้ไข"
+
+#: ../src/modding/ModManager.tscn:316
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "เปิดโฟลเดอร์บันทึก"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
-msgid "SELECTED_MOD"
+#: ../src/modding/ModManager.tscn:339
+#, fuzzy
+msgid "ONESHOT_LOADING"
+msgstr "กำลังโหลด"
+
+#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:507
+#, fuzzy
+msgid "CLEAR"
+msgstr "ล้าง"
+
+#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1121
+#: ../src/modding/NewModGUI.tscn:158
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1143
+#: ../src/modding/NewModGUI.tscn:181
 msgid "MOD_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:770
 msgid "MINIMUM_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
+#: ../src/modding/ModManager.tscn:804
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:860
+#, fuzzy
+msgid "REQUIRED_MODS"
+msgstr "เปิดใช้งานตัวแก้ไข"
+
+#: ../src/modding/ModManager.tscn:887
+#, fuzzy
+msgid "OPEN_MOD_URL"
+msgstr "เปิด URL"
+
+#: ../src/modding/ModManager.tscn:896
+msgid "MORE_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:968
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:969
+msgid "CHECK_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:989
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:990
+msgid "APPLY_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1005
+msgid "BROWSE_WORKSHOP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
+#, fuzzy
+msgid "UPLOAD"
+msgstr "โหลด"
+
+#: ../src/modding/ModManager.tscn:1027
+msgid "NEW"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1073 ../src/modding/NewModGUI.tscn:135
+msgid "MOD_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1095 ../src/modding/NewModGUI.tscn:112
+msgid "MOD_INTERNAL_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1165 ../src/modding/NewModGUI.tscn:204
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr ""
@@ -3666,71 +3875,7 @@ msgstr ""
 "เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ "
 "รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
 
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:482
-#, fuzzy
-msgid "OPEN_MOD_URL"
-msgstr "เปิด URL"
-
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-#, fuzzy
-msgid "UPLOAD"
-msgstr "โหลด"
-
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:532
-msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:559
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:568
-msgid "APPLY_CHANGES"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:580
-#, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr ""
-"แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ "
-"ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน "
-"เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ "
-"รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
-
-#: ../src/modding/ModManager.tscn:581
-#, fuzzy
-msgid "DISCARD_CHANGES"
-msgstr "ทิ้งและดำเนินการต่อ"
-
-#: ../src/modding/ModManager.tscn:588
-msgid "FULL_MOD_INFO"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
-msgid "MOD_NAME"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
-msgid "MOD_INTERNAL_NAME"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1187 ../src/modding/NewModGUI.tscn:227
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3740,56 +3885,82 @@ msgstr ""
 "เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ "
 "จึงทำปฏิกิริยาไกลโคไลซิส"
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:291
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:330
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:353
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:376
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:399
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1357 ../src/modding/NewModGUI.tscn:422
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1379 ../src/modding/NewModGUI.tscn:445
 msgid "MOD_PCK_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1401 ../src/modding/NewModGUI.tscn:485
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:525
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:979
-msgid "MOD_CREATION_FAILED"
+#: ../src/modding/ModManager.tscn:1533 ../src/modding/NewModGUI.tscn:644
+#, fuzzy
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "เปิดใช้งานตัวแก้ไข"
+
+#: ../src/modding/ModManager.tscn:1555 ../src/modding/NewModGUI.tscn:668
+msgid "MOD_CONFIG_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1586
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1591
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1593
 msgid "MOD_LOAD_UNLOAD_RESTART"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1609
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1611
+msgid "YES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1612
+#, fuzzy
+msgid "NO"
+msgstr "เลิกทำ"
+
+#: ../src/modding/ModManager.tscn:1620 ../src/modding/ModManager.tscn:1623
+msgid "NULL"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
@@ -3873,7 +4044,7 @@ msgstr ""
 "เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ "
 "รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:388
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -3905,10 +4076,6 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
-
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:168
@@ -3973,7 +4140,7 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:199
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
@@ -3982,44 +4149,49 @@ msgstr ""
 "Hydrogen Sulfide Chemosynthesis "
 "อัตราการผลิตน้ำตาลกลูโคสที่มีความเข้มข้นของคาร์บอนไดออกไซด์"
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:320
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:335
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:341
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:347
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:363
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:374
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:51
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "สร้างจุลินทรีย์ใหม่"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:85
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:92
 msgid "OUR_WIKI"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:686
+#, fuzzy
+msgid "ENABLE_CONFIG"
+msgstr "เปิดใช้งานตัวแก้ไข"
+
+#: ../src/modding/NewModGUI.tscn:723
 msgid "CREATE"
 msgstr ""
 
@@ -4465,6 +4637,18 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
 msgstr ""
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr ""
+#~ "แวคิวโอลเป็นออร์แกเนลล์เยื่อภายในที่ใช้สำหรับเก็บในเซลล์ "
+#~ "ประกอบด้วยถุงหลายอันโครงสร้างของเยื่อขนาดเล็กที่ใช้กันอย่างแพร่หลายในเซลล์เพื่อการจัดเก็บที่หลอมรวมเข้าด้วยกัน "
+#~ "เต็มไปด้วยน้ำซึ่งใช้บรรจุโมเลกุลเอนไซม์ของแข็งและสารอื่น ๆ "
+#~ "รูปร่างของพวกมันเป็นของเหลวและอาจแตกต่างกันไประหว่างเซลล์"
+
+#, fuzzy
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "ทิ้งและดำเนินการต่อ"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 16:25+0200\n"
+"POT-Creation-Date: 2022-02-08 20:38-0600\n"
 "PO-Revision-Date: 2022-01-10 18:11+0000\n"
 "Last-Translator: Andrei Tkachenko <gautierkatia2@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/"
@@ -1484,7 +1484,7 @@ msgstr "Œuvre de {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1573
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Fermer"
@@ -1552,7 +1552,7 @@ msgstr "Éditeur Libre de Microbe"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Revenir"
@@ -1571,15 +1571,15 @@ msgid "LICENSES"
 msgstr "Licences"
 
 #: ../src/general/MainMenu.tscn:493
-msgid "GLES2_MODE_WARNING"
-msgstr "Alerte Mode GLES2"
-
-#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Vous utilisez Thrive avec le GLES2. Cela demeure non testé et risque de "
 "causer des problèmes. Essayez de mettre à jour vos pilotes vidéos et/ou de "
 "forcer l'utilisation des graphiques AMD ou Nvidia pour lancer Thrive."
+
+#: ../src/general/MainMenu.tscn:494
+msgid "GLES2_MODE_WARNING"
+msgstr "Alerte Mode GLES2"
 
 #: ../src/general/MainMenu.tscn:499
 #, fuzzy
@@ -1748,6 +1748,7 @@ msgid "LANGUAGE"
 msgstr "Langue :"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "Recommencer"
 
@@ -1918,7 +1919,7 @@ msgstr "Annuler et continuer"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:730
 msgid "CANCEL"
 msgstr "Annuler"
 
@@ -3732,211 +3733,373 @@ msgstr ""
 "jouer après que cet écran se soit fermé si vous le souhaitez, ou démarrer "
 "une nouvelle partie dans un autre monde."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:531
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Impossible de charger les informations pour la modification « {0} »"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:499
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: échec de chargement de l'assemblage avec une exception:{1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:516
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "Impossible de charger des ressources de {0}"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:546
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:554
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:617
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:630
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:646
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:662
 msgid "PCK_LOAD_FAILED"
 msgstr "Échec du chargement du ficher pck ({0})"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:468
 msgid "INVALID_ICON_PATH"
 msgstr "Chemin d'accès à l'icône invalide pour cette modification"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:482
 msgid "INVALID_URL_SCHEME"
 msgstr "Schéma d'URL invalide"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:494
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:549
-msgid "NO_SELECTED_MOD"
-msgstr "Aucune modification sélectionnée"
+#: ../src/modding/ModManager.cs:606
+#, fuzzy
+msgid "MOD_LOADER_TAB"
+msgstr "Téléverseur de modifications"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:607
+#, fuzzy
+msgid "MOD_ERRORS_TAB"
+msgstr "Erreurs liées au chargement des modifications"
+
+#: ../src/modding/ModManager.cs:608
+#, fuzzy
+msgid "MOD_CONFIGURATION_TAB"
+msgstr "L'Auto-évo n'a pas pu se lancer"
+
+#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1956
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Cette modification a été téléchargée depuis l'atelier Steam"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:954 ../src/modding/ModManager.cs:1957
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Cette modification est installée localement"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:1021
+msgid "NO_SELECTED_MOD"
+msgstr "Aucune modification sélectionnée"
+
+#: ../src/modding/ModManager.cs:1378
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr "Erreurs liées au chargement des modifications"
+
+#: ../src/modding/ModManager.cs:1380
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr "Êtes-vous sûr de vouloir restaurer tous les paramètres par défaut ?"
+
+#: ../src/modding/ModManager.cs:1562 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
+msgid "MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1579
+msgid "NO_MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1588 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/NewModGUI.tscn:572
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1605
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "Aucune modification sélectionnée"
+
+#: ../src/modding/ModManager.cs:1614 ../src/modding/ModManager.tscn:869
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr "Charger une sauvegarde incompatible?"
+
+#: ../src/modding/ModManager.cs:1631
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "Charger une sauvegarde incompatible?"
+
+#: ../src/modding/ModManager.cs:1640 ../src/modding/ModManager.tscn:878
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "Téléverseur de modifications"
+
+#: ../src/modding/ModManager.cs:1650 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/NewModGUI.tscn:620
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "Téléverseur de modifications"
+
+#: ../src/modding/ModManager.cs:1668 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/NewModGUI.tscn:596
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "Erreurs liées au chargement des modifications"
+
+#: ../src/modding/ModManager.cs:1680
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "Charger la sauvegarde invalide ?"
+
+#: ../src/modding/ModManager.cs:2011
+#, fuzzy
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr "Erreurs liées au chargement des modifications"
+
+#: ../src/modding/ModManager.cs:2013
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"Des changements non sauvegardés vont être abandonnés.\n"
+"Voulez-vous continuer ?"
+
+#: ../src/modding/ModManager.cs:2017 ../src/modding/ModManager.cs:2057
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "La sauvegarde est invalide"
+
+#: ../src/modding/ModManager.cs:2040 ../src/modding/ModManager.cs:2051
+#: ../src/modding/ModManager.cs:2071 ../src/modding/ModManager.cs:2085
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "Souris inconnue"
+
+#: ../src/modding/ModManager.cs:2060
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"La sauvegarde sélectionnée est connue pour être incompatible avec cette "
+"version de Thrive.\n"
+"Comme Thrive est toujours en développement précaire la compatibilité des "
+"sauvegardes n'est pas une grande priorité, il n'existe ainsi aucun "
+"convertisseur de sauvegarde intégré pour mettre à jour d'anciennes "
+"sauvegardes."
+
+#: ../src/modding/ModManager.cs:2074
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2076
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2088
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2090
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2093
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2095
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2099
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "Charger une sauvegarde incompatible?"
+
+#: ../src/modding/ModManager.cs:2101
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr "Charger une sauvegarde incompatible?"
+
+#: ../src/modding/ModManager.cs:2104
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "Erreurs liées au chargement des modifications"
+
+#: ../src/modding/ModManager.cs:2106
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2110
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "Charger la sauvegarde invalide ?"
+
+#: ../src/modding/ModManager.cs:2112
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2154
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Erreur de création du dossier pour la modification"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:2163
 #, fuzzy
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Erreur de création du fichier d'information pour la modification"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:201
 #, fuzzy
 msgid "AVAILABLE_MODS"
 msgstr "Modifications disponibles"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Rafraîchir"
-
-#: ../src/modding/ModManager.tscn:152
-#, fuzzy
-msgid "OPEN_FOLDER"
-msgstr "Ouvrir le dossier des Logs"
-
-#: ../src/modding/ModManager.tscn:170
-#, fuzzy
-msgid "RIGHT_ARROW"
-msgstr "Clic droit"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Clic gauche"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "Clic droit"
+
+#: ../src/modding/ModManager.tscn:271
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Activer l'éditeur"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "Tout désactiver"
+
+#: ../src/modding/ModManager.tscn:316
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "Ouvrir le dossier des Logs"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr "Tout désactiver"
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:339
 #, fuzzy
-msgid "SELECTED_MOD"
-msgstr "Sélectionné :"
+msgid "ONESHOT_LOADING"
+msgstr "Erreur de Chargement"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "Appliquer"
+
+#: ../src/modding/ModManager.tscn:507
+#, fuzzy
+msgid "CLEAR"
+msgstr "Effacer"
+
+#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1121
+#: ../src/modding/NewModGUI.tscn:158
 #, fuzzy
 msgid "MOD_AUTHOR"
 msgstr "Créateur :"
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1143
+#: ../src/modding/NewModGUI.tscn:181
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Version :"
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Version de Thrive recommandée :"
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:770
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Version :"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
+#: ../src/modding/ModManager.tscn:804
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Version de Thrive recommandée :"
+
+#: ../src/modding/ModManager.tscn:860
 #, fuzzy
-msgid "MOD_DESCRIPTION"
-msgstr "Description :"
+msgid "REQUIRED_MODS"
+msgstr "Activer l'éditeur"
 
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
-msgstr "Plus d'informations"
-
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:887
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "Ouvre l'URL"
 
-#: ../src/modding/ModManager.tscn:505
+#: ../src/modding/ModManager.tscn:896
+msgid "MORE_INFO"
+msgstr "Plus d'informations"
+
+#: ../src/modding/ModManager.tscn:968
 #, fuzzy
-msgid "BROWSE_WORKSHOP"
-msgstr "Parcourir l'atelier Steam"
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "Aide"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-#, fuzzy
-msgid "UPLOAD"
-msgstr "Charger"
+#: ../src/modding/ModManager.tscn:969
+msgid "CHECK_MOD"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr "Nouveau"
+#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Rafraîchir"
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:989
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Charger la sauvegarde invalide ?"
 
-#: ../src/modding/ModManager.tscn:559
-#, fuzzy
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "La sauvegarde sélectionnée est incompatible"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:990
 msgid "APPLY_CHANGES"
 msgstr "appliquer les changements"
 
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "Certains changements n'ont pas été appliqués"
-
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:1005
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr ""
-"Étant la forme de membrane la plus simple, elle n'offre que très peu de "
-"protection et demande plus d'énergie pour ne pas se déformer. Par contre, "
-"elle permet à une cellule de se déplacer et se nourrir plus rapidement."
+msgid "BROWSE_WORKSHOP"
+msgstr "Parcourir l'atelier Steam"
 
-#: ../src/modding/ModManager.tscn:581
+#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
 #, fuzzy
-msgid "DISCARD_CHANGES"
-msgstr "Annuler et continuer"
+msgid "UPLOAD"
+msgstr "Charger"
 
-#: ../src/modding/ModManager.tscn:588
-#, fuzzy
-msgid "FULL_MOD_INFO"
-msgstr "Informations complètes"
+#: ../src/modding/ModManager.tscn:1027
+msgid "NEW"
+msgstr "Nouveau"
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:1073 ../src/modding/NewModGUI.tscn:135
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Nom :"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:1095 ../src/modding/NewModGUI.tscn:112
 #, fuzzy
 msgid "MOD_INTERNAL_NAME"
 msgstr "Nom de dossier interne :"
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1165 ../src/modding/NewModGUI.tscn:204
+#, fuzzy
+msgid "MOD_DESCRIPTION"
+msgstr "Description :"
+
+#: ../src/modding/ModManager.tscn:1187 ../src/modding/NewModGUI.tscn:227
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr ""
@@ -3946,64 +4109,96 @@ msgstr ""
 "Anaérobique d'Azote. Puisque l'azotéase est suspendu directement dans le "
 "cytoplasme, les fluides l'entourant réalisent un peu la glycolyse."
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_ICON_FILE"
 msgstr "Fichier d'icône :"
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:291
+#, fuzzy
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr "Le fichier contenant l'image de prévisualisation est trop volumineux"
+
+#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:330
 #, fuzzy
 msgid "MOD_INFO_URL"
 msgstr "Lien d'information :"
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:353
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Licences et bibliothèques utilisés"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:376
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Version de Thrive recommandée :"
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:399
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Version minimale de Thrive requise :"
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1357 ../src/modding/NewModGUI.tscn:422
 #, fuzzy
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Version maximale de Thrive supportée :"
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1379 ../src/modding/NewModGUI.tscn:445
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Nom de la Parcelle"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1401 ../src/modding/NewModGUI.tscn:485
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:525
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:1533 ../src/modding/NewModGUI.tscn:644
 #, fuzzy
-msgid "MOD_CREATION_FAILED"
-msgstr "L'Auto-évo n'a pas pu se lancer"
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "Charger une sauvegarde incompatible?"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1555 ../src/modding/NewModGUI.tscn:668
+#, fuzzy
+msgid "MOD_CONFIG_FILE"
+msgstr "Fichier d'icône :"
+
+#: ../src/modding/ModManager.tscn:1586
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Charger la sauvegarde invalide ?"
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1591
 msgid "RESTART_REQUIRED"
 msgstr "Redémarrage nécessaire"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1593
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Charger la sauvegarde invalide ?"
+
+#: ../src/modding/ModManager.tscn:1609
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr ""
+"Des erreurs sont apparues lors du chargement d'une ou de plusieurs "
+"modifications. Les registres de jeu pourraient contenir des informations "
+"supplémentaires."
+
+#: ../src/modding/ModManager.tscn:1611
+#, fuzzy
+msgid "YES"
+msgstr "années"
+
+#: ../src/modding/ModManager.tscn:1612
+#, fuzzy
+msgid "NO"
+msgstr "Annuler"
+
+#: ../src/modding/ModManager.tscn:1620 ../src/modding/ModManager.tscn:1623
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -4091,7 +4286,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Sauvegarde échoué! Une exception a eu lieu"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:388
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Erreur de Sauvegarde"
@@ -4126,10 +4321,6 @@ msgstr ""
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "Identifiant numérique"
-
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "Appliquer"
 
 #: ../src/modding/ModUploader.tscn:168
 #, fuzzy
@@ -4199,7 +4390,7 @@ msgstr "Sélectionner l'image de prévisualisation"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Sauvegarde réussi"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:199
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
@@ -4209,49 +4400,54 @@ msgstr ""
 "Sulfure d'Hydrogène. Le taux de glucose produit varie en fonction de la "
 "concentration en dioxyde de carbone."
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:320
 msgid "INVALID_URL_FORMAT"
 msgstr "Format d'URL invalide"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:335
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Un nom interne est nécessaire"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:341
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Les noms internes doivent commencer par une majuscule"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:347
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Une modification porte déjà ce nom interne"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:363
 #, fuzzy
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Le champ suivant est manquant ou a un format invalide : {0}"
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:374
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:51
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "Créer un nouveau microbe"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:85
 #, fuzzy
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 "Les instructions pour créer de nouvelles modifications sont accessibles "
 "depuis"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:92
 msgid "OUR_WIKI"
 msgstr "notre Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:686
+#, fuzzy
+msgid "ENABLE_CONFIG"
+msgstr "Activer l'éditeur"
+
+#: ../src/modding/NewModGUI.tscn:723
 #, fuzzy
 msgid "CREATE"
 msgstr "Créé à :"
@@ -4872,6 +5068,33 @@ msgstr ""
 #, fuzzy
 msgid "VIEW_NOW"
 msgstr "Voir immédiatement"
+
+#, fuzzy
+#~ msgid "SELECTED_MOD"
+#~ msgstr "Sélectionné :"
+
+#, fuzzy
+#~ msgid "ENABLE_ALL_COMPATIBLE"
+#~ msgstr "La sauvegarde sélectionnée est incompatible"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr "Certains changements n'ont pas été appliqués"
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr ""
+#~ "Étant la forme de membrane la plus simple, elle n'offre que très peu de "
+#~ "protection et demande plus d'énergie pour ne pas se déformer. Par "
+#~ "contre, elle permet à une cellule de se déplacer et se nourrir plus "
+#~ "rapidement."
+
+#, fuzzy
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "Annuler et continuer"
+
+#, fuzzy
+#~ msgid "FULL_MOD_INFO"
+#~ msgstr "Informations complètes"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

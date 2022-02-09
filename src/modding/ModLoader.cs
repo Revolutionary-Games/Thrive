@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -623,7 +623,7 @@ public class ModLoader : Node
         {
             var mod = (IMod)Activator.CreateInstance(type);
 
-            if (!mod.Initialize(modInterface!, info.Info))
+            if (!mod.Initialize(modInterface!, info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
                 modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
