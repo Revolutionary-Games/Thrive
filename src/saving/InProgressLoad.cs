@@ -16,16 +16,17 @@ using Saving;
 public class InProgressLoad
 {
     private readonly string saveName;
+
+    private readonly Stopwatch stopwatch;
+
     private State state = State.Initial;
-    private Save save;
+    private Save? save;
 
-    private ILoadableGameState loadedState;
-
-    private Stopwatch stopwatch;
+    private ILoadableGameState? loadedState;
 
     private bool success;
-    private string message;
-    private string exception;
+    private string message = "Error: message not set";
+    private string exception = string.Empty;
 
     public InProgressLoad(string saveName)
     {
@@ -126,7 +127,7 @@ public class InProgressLoad
             {
                 try
                 {
-                    loadedState = save.TargetScene;
+                    loadedState = save!.TargetScene ?? throw new Exception("Save has no target scene");
                 }
                 catch (Exception)
                 {
@@ -145,10 +146,10 @@ public class InProgressLoad
             case State.ProcessingLoadedObjects:
             {
                 LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
-                    save.GameState,
+                    save!.GameState,
                     TranslationServer.Translate("PROCESSING_LOADED_OBJECTS"));
 
-                if (loadedState.IsLoadedFromSave != true)
+                if (loadedState!.IsLoadedFromSave != true)
                     throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
 
                 try
@@ -188,7 +189,7 @@ public class InProgressLoad
                     SaveStatusOverlay.Instance.ShowMessage(message);
 
                     // TODO: does this cause problems if the game was paused when saving?
-                    loadedState.GameStateRoot.GetTree().Paused = false;
+                    loadedState!.GameStateRoot.GetTree().Paused = false;
                 }
                 else
                 {

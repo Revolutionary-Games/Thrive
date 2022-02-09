@@ -14,7 +14,7 @@ public class SpeciesPopulationDatasetsLegend : LineChart.DataSetsDropdownLegend
         this.extinctSpecies = extinctSpecies;
     }
 
-    public override Control CreateLegend(Dictionary<string, ChartDataSet> datasets, string title)
+    public override Control CreateLegend(Dictionary<string, ChartDataSet> datasets, string? title)
     {
         var result = (CustomDropDown)base.CreateLegend(datasets, title);
 

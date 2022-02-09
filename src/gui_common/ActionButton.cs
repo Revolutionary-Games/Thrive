@@ -5,14 +5,14 @@
 /// </summary>
 public class ActionButton : Button
 {
-    private Panel highlight;
-    private TextureRect iconRect;
-    private KeyPrompt keyPrompt;
+    private Panel highlight = null!;
+    private TextureRect? iconRect;
+    private KeyPrompt? keyPrompt;
 
     private bool highlighted;
 
-    private Texture actionIcon;
-    private string actionName;
+    private Texture? actionIcon;
+    private string actionName = string.Empty;
 
     public bool Highlighted
     {
@@ -28,7 +28,7 @@ public class ActionButton : Button
     ///   The icon for the action, displayed prominently at the center of the button.
     /// </summary>
     [Export]
-    public Texture ActionIcon
+    public Texture? ActionIcon
     {
         get => actionIcon;
         set

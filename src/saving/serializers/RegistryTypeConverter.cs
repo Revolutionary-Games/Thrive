@@ -11,12 +11,19 @@ public class RegistryTypeConverter : BaseThriveConverter
     {
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
+        JsonSerializer serializer)
     {
         if (reader.TokenType == JsonToken.Null)
             return null;
 
         var name = serializer.Deserialize<string>(reader);
+
+        if (name == null)
+            return null;
+
+        if (Context == null)
+            throw new InvalidOperationException("Registry type converter must have valid Context");
 
         if (objectType == typeof(OrganelleDefinition))
             return Context.Simulation.GetOrganelleType(name);
@@ -36,7 +43,7 @@ public class RegistryTypeConverter : BaseThriveConverter
         throw new Exception("a registry type is missing from RegistryTypeConverter");
     }
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         if (value == null)
         {

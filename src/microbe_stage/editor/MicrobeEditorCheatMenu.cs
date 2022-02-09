@@ -3,9 +3,9 @@
 public class MicrobeEditorCheatMenu : CheatMenu
 {
     [Export]
-    public NodePath InfiniteMpPath;
+    public NodePath InfiniteMpPath = null!;
 
-    private CustomCheckBox infiniteMp;
+    private CustomCheckBox infiniteMp = null!;
 
     public override void _Ready()
     {

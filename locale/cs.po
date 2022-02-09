@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-04 16:48-0600\n"
+"POT-Creation-Date: 2022-02-08 18:56+0200\n"
 "PO-Revision-Date: 2022-02-03 10:36+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/"
@@ -909,103 +909,108 @@ msgstr "{0:F1}% splněno. {1:n0}/{2:n0} kroků."
 msgid "STARTING"
 msgstr "Začínání"
 
-#: ../src/auto-evo/AutoEvoRun.cs:293
+#: ../src/auto-evo/AutoEvoRun.cs:294
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Populace {0} se změnila o {1} z důvodu: {2}"
 
-#: ../src/auto-evo/RunResults.cs:571
+#: ../src/auto-evo/RunResults.cs:554
 msgid "POPULATION"
 msgstr "populace:"
 
-#: ../src/auto-evo/RunResults.cs:580
+#: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "vyhynul v {0}"
 
-#: ../src/auto-evo/RunResults.cs:586
+#: ../src/auto-evo/RunResults.cs:569
 msgid "PREVIOUS"
 msgstr "předchozí:"
 
-#: ../src/auto-evo/RunResults.cs:604
+#: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "oddělit se od {0}"
 
-#: ../src/auto-evo/RunResults.cs:617
+#: ../src/auto-evo/RunResults.cs:600
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr "vznikl, aby zaplnil mezeru"
 
-#: ../src/auto-evo/RunResults.cs:620
+#: ../src/auto-evo/RunResults.cs:603
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr "vznikly v důsledku rozdílných selekčních tlaků"
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:620
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 "populace se v některých oblastech oddělila a vytvořila nové druhy {0}:"
 
-#: ../src/auto-evo/RunResults.cs:653
+#: ../src/auto-evo/RunResults.cs:636
 msgid "RUN_RESULT_HAS_A_MUTATION"
 msgstr "má mutaci"
 
-#: ../src/auto-evo/RunResults.cs:658
+#: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "genový kód:"
 
-#: ../src/auto-evo/RunResults.cs:669
+#: ../src/auto-evo/RunResults.cs:652
 msgid "RUN_RESULT_SPREAD_TO_PATCHES"
 msgstr "rozšíření do místa:"
 
-#: ../src/auto-evo/RunResults.cs:677
+#: ../src/auto-evo/RunResults.cs:660
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} poslal(o): {1} populace z místa: {2}"
 
-#: ../src/auto-evo/RunResults.cs:696
+#: ../src/auto-evo/RunResults.cs:679
 msgid "RUN_RESULT_POP_IN_PATCHES"
 msgstr "populace v místě:"
 
-#: ../src/auto-evo/RunResults.cs:803
+#: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr "vyhynul na této planetě"
 
-#: ../src/auto-evo/RunResults.cs:854
+#: ../src/auto-evo/RunResults.cs:843
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr "[u]{0}[/u] vyhynul!"
 
-#: ../src/auto-evo/RunResults.cs:864 ../src/auto-evo/RunResults.cs:886
+#: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr "[u]{0}[/u] populace se zvýšila na {1}"
 
-#: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
+#: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr "[u]{0}[/u] populace se snížila na {1}"
 
-#: ../src/auto-evo/RunResults.cs:878
+#: ../src/auto-evo/RunResults.cs:867
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[u]{0}[/u] zmizel z této oblasti"
 
-#: ../src/auto-evo/RunResults.cs:902
+#: ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr "Část [u]{0}[/u] populace migrovala do této oblasti z {1}"
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:896
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část [u]{0}[/u] populace migrovala do {1} z {2}"
 
-#: ../src/auto-evo/RunResults.cs:913
+#: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část [u]{0}[/u] populace migrovala do {1}"
 
-#: ../src/auto-evo/RunResults.cs:929
+#: ../src/auto-evo/RunResults.cs:921
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 "[u]{0}[/u] se oddělil od [u]{1}[/u] jako nový druh, aby zaplnil mezeru"
 
-#: ../src/auto-evo/RunResults.cs:935
+#: ../src/auto-evo/RunResults.cs:927
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 "[u]{0}[/u] se oddělil od [u]{1}[/u] jako nový druh v důsledku rozdílných "
 "selekčních tlaků"
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+#, fuzzy
+msgid "NOT_FOUND_CHUNK"
+msgstr "Velký kus železa"
+
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
 msgstr "{0} spotřeba"
 
@@ -1025,11 +1030,11 @@ msgstr "Predace {0}"
 msgid "LOADING"
 msgstr "Načítání"
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:322
+#: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr "Stiskněte klávesu..."
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:118
+#: ../src/engine/input/key_mapping/InputGroupList.cs:129
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 "Je tady konflikt s {0}.\n"
@@ -1439,11 +1444,11 @@ msgstr "Myš Speciál 2"
 msgid "UNKNOWN_MOUSE"
 msgstr "Neznámá myš"
 
-#: ../src/general/Gallery.cs:70
+#: ../src/general/Gallery.cs:73
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
 
-#: ../src/general/Gallery.cs:74
+#: ../src/general/Gallery.cs:77
 msgid "ART_BY"
 msgstr "Ilustraci vytvořil(a) {0}"
 
@@ -1452,18 +1457,18 @@ msgstr "Ilustraci vytvořil(a) {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
-#: ../src/modding/ModManager.tscn:1573
+#: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Zavřít"
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/gui_common/CompoundAmount.cs:168
+#: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:659
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1076
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1280
+#: ../src/microbe_stage/MicrobeHUD.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1322
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1475,7 +1480,7 @@ msgstr "{0} koncentrace se snížily o {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "Koncentrace glukózy drasticky klesla!"
 
-#: ../src/general/MainMenu.cs:231
+#: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
 
@@ -1520,7 +1525,7 @@ msgstr "Editor mikrobů"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:1633 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Zpět"
@@ -1710,7 +1715,6 @@ msgid "LANGUAGE"
 msgstr "Jazyk:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
-#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "Resetovat"
 
@@ -1874,7 +1878,7 @@ msgstr "Zahodit a pokračovat"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:730
+#: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
 msgstr "Zrušit"
 
@@ -1894,13 +1898,13 @@ msgstr "Složka se snímky obrazovky nebyla nalezena"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Zkuste udělat snímek obrazovky!"
 
-#: ../src/general/PauseMenu.cs:256
+#: ../src/general/PauseMenu.cs:271
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Jste si jistý, že chcete odejít do hlavního menu?\n"
 "Ztratíte veškerý neuložený postup."
 
-#: ../src/general/PauseMenu.cs:272
+#: ../src/general/PauseMenu.cs:287
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Jste si jistý, že chcete ukončit hru?\n"
@@ -1948,221 +1952,221 @@ msgstr "{0} M"
 msgid "KILO_ABBREVIATION"
 msgstr "{0} k"
 
-#: ../src/gui_common/ChemicalEquation.cs:139
-#: ../src/gui_common/ChemicalEquation.cs:179
+#: ../src/gui_common/ChemicalEquation.cs:141
+#: ../src/gui_common/ChemicalEquation.cs:184
 msgid "PER_SECOND_SLASH"
 msgstr "/sekund"
 
-#: ../src/gui_common/ChemicalEquation.cs:298
+#: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
-#: ../src/gui_common/CreditsScroll.cs:226
+#: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
 msgstr "Hlavní vývojář"
 
-#: ../src/gui_common/CreditsScroll.cs:232
+#: ../src/gui_common/CreditsScroll.cs:229
 msgid "LEAD_PROGRAMMER"
 msgstr "Hlavní programátor"
 
-#: ../src/gui_common/CreditsScroll.cs:233
+#: ../src/gui_common/CreditsScroll.cs:230
 msgid "LEAD_PROGRAMMERS"
 msgstr "Hlavní programátoři"
 
-#: ../src/gui_common/CreditsScroll.cs:238
+#: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORIST"
 msgstr "Hlavní teoretik"
 
-#: ../src/gui_common/CreditsScroll.cs:239
+#: ../src/gui_common/CreditsScroll.cs:236
 msgid "LEAD_THEORISTS"
 msgstr "Hlavní teoretici"
 
-#: ../src/gui_common/CreditsScroll.cs:244
+#: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_ARTIST"
 msgstr "Vedoucí umělec"
 
-#: ../src/gui_common/CreditsScroll.cs:245
+#: ../src/gui_common/CreditsScroll.cs:242
 msgid "LEAD_ARTISTS"
 msgstr "Vedoucí umělci"
 
-#: ../src/gui_common/CreditsScroll.cs:250
+#: ../src/gui_common/CreditsScroll.cs:247
 msgid "SOUND_TEAM_LEAD"
 msgstr "Vedoucí zvukař"
 
-#: ../src/gui_common/CreditsScroll.cs:251
+#: ../src/gui_common/CreditsScroll.cs:248
 msgid "SOUND_TEAM_LEADS"
 msgstr "Vedoucí zvukaři"
 
-#: ../src/gui_common/CreditsScroll.cs:256
+#: ../src/gui_common/CreditsScroll.cs:253
 msgid "LEAD_OUTREACH_PERSON"
 msgstr "Vedoucí kontaktu s komunitou"
 
-#: ../src/gui_common/CreditsScroll.cs:257
+#: ../src/gui_common/CreditsScroll.cs:254
 msgid "LEAD_OUTREACH_PEOPLE"
 msgstr "Vedoucí kontaktu s komunitou"
 
-#: ../src/gui_common/CreditsScroll.cs:262
+#: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_GAME_DESIGNER"
 msgstr "Vedoucí herní designér"
 
-#: ../src/gui_common/CreditsScroll.cs:263
+#: ../src/gui_common/CreditsScroll.cs:260
 msgid "LEAD_GAME_DESIGNERS"
 msgstr "Vedoucí herní designéři"
 
-#: ../src/gui_common/CreditsScroll.cs:268
+#: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_TESTER"
 msgstr "Vedoucí tester"
 
-#: ../src/gui_common/CreditsScroll.cs:269
+#: ../src/gui_common/CreditsScroll.cs:266
 msgid "LEAD_TESTERS"
 msgstr "Vedoucí testeři"
 
-#: ../src/gui_common/CreditsScroll.cs:274
+#: ../src/gui_common/CreditsScroll.cs:271
 msgid "LEAD_PROJECT_MANAGER"
 msgstr "Vedoucí projektový manažer"
 
-#: ../src/gui_common/CreditsScroll.cs:275
+#: ../src/gui_common/CreditsScroll.cs:272
 msgid "LEAD_PROJECT_MANAGERS"
 msgstr "Vedoucí projektoví manažeři"
 
-#: ../src/gui_common/CreditsScroll.cs:282
+#: ../src/gui_common/CreditsScroll.cs:279
 msgid "CURRENT_DEVELOPERS"
 msgstr "Současní vývojáři"
 
-#: ../src/gui_common/CreditsScroll.cs:298
+#: ../src/gui_common/CreditsScroll.cs:295
 msgid "PAST_DEVELOPERS"
 msgstr "Bývalí vývojáři"
 
-#: ../src/gui_common/CreditsScroll.cs:314
+#: ../src/gui_common/CreditsScroll.cs:311
 msgid "OUTSIDE_CONTRIBUTORS"
 msgstr "Externí přispěvatelé"
 
-#: ../src/gui_common/CreditsScroll.cs:317
+#: ../src/gui_common/CreditsScroll.cs:314
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
 "Thrive je open source projekt.\n"
 "Můžete přispět i pokud nejste součástí týmu (formou pull request)."
 
-#: ../src/gui_common/CreditsScroll.cs:332
+#: ../src/gui_common/CreditsScroll.cs:329
 msgid "PATRONS"
 msgstr "Sponzoři"
 
-#: ../src/gui_common/CreditsScroll.cs:338
+#: ../src/gui_common/CreditsScroll.cs:335
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Budoucí vývoj Thrive můžete podpořit na Patreonu."
 
-#: ../src/gui_common/CreditsScroll.cs:355
+#: ../src/gui_common/CreditsScroll.cs:352
 msgid "DONATIONS"
 msgstr "Příspěvky"
 
-#: ../src/gui_common/CreditsScroll.cs:378
+#: ../src/gui_common/CreditsScroll.cs:375
 msgid "TRANSLATORS"
 msgstr "Překladatelé"
 
-#: ../src/gui_common/CreditsScroll.cs:392
+#: ../src/gui_common/CreditsScroll.cs:389
 msgid "USED_LIBRARIES_LICENSES"
 msgstr "Licence a použité knihovny"
 
-#: ../src/gui_common/CreditsScroll.cs:487
+#: ../src/gui_common/CreditsScroll.cs:484
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 "Děkujeme, že hrajete naší hru!\n"
 "\n"
 "Pokud se vám líbí, řekněte o nás i Vašim přátelům, prosím."
 
-#: ../src/gui_common/CreditsScroll.cs:496
+#: ../src/gui_common/CreditsScroll.cs:493
 msgid "PROGRAMMING_TEAM"
 msgstr "Programátoři"
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:494
 msgid "THEORY_TEAM"
 msgstr "Teoretici"
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:495
 msgid "GRAPHICS_TEAM"
 msgstr "Grafici"
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:496
 msgid "SOUND_TEAM"
 msgstr "Zvukaři"
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:497
 msgid "OUTREACH_TEAM"
 msgstr "Kontakt s komunitou"
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:498
 msgid "GAME_DESIGN_TEAM"
 msgstr "Herní design"
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:499
 msgid "TESTING_TEAM"
 msgstr "Teststeři"
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:500
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Projektoví manažeři"
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:501
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Externí programátoři"
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:502
 msgid "VIP_PATRONS"
 msgstr "VIP Podporovatelé"
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:503
 msgid "DEV_BUILD_PATRONS"
 msgstr "Sponzoři Devbuild"
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "SUPPORTER_PATRONS"
 msgstr "Podporovatelé"
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:505
 msgid "JANUARY"
 msgstr "Leden"
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:506
 msgid "FEBRUARY"
 msgstr "Únor"
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:507
 msgid "MARCH"
 msgstr "Březen"
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:508
 msgid "APRIL"
 msgstr "Duben"
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:509
 msgid "MAY"
 msgstr "Květen"
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:510
 msgid "JUNE"
 msgstr "Červen"
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:511
 msgid "JULY"
 msgstr "Červenec"
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:512
 msgid "AUGUST"
 msgstr "Srpen"
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "SEPTEMBER"
 msgstr "Září"
 
-#: ../src/gui_common/CreditsScroll.cs:517
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "OCTOBER"
 msgstr "Říjen"
 
-#: ../src/gui_common/CreditsScroll.cs:518
+#: ../src/gui_common/CreditsScroll.cs:515
 msgid "NOVEMBER"
 msgstr "Listopad"
 
-#: ../src/gui_common/CreditsScroll.cs:519
+#: ../src/gui_common/CreditsScroll.cs:516
 msgid "DECEMBER"
 msgstr "Prosinec"
 
@@ -2188,21 +2192,21 @@ msgstr ""
 msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Uložená hra má jinou verzi"
 
-#: ../src/gui_common/TweakedColourPicker.cs:333
+#: ../src/gui_common/TweakedColourPicker.cs:344
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr "Zvolte barvu z herního okna"
 
-#: ../src/gui_common/TweakedColourPicker.cs:334
+#: ../src/gui_common/TweakedColourPicker.cs:345
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Přidat současnou barvu jako předvolbu"
 
-#: ../src/gui_common/TweakedColourPicker.cs:335
+#: ../src/gui_common/TweakedColourPicker.cs:346
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 "Přepnout režim HSV (Odstín, Saturace, Jas).\n"
 "Nemůže být zapnuto v režimu RAW."
 
-#: ../src/gui_common/TweakedColourPicker.cs:336
+#: ../src/gui_common/TweakedColourPicker.cs:347
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 "Přepnout režim RAW.\n"
@@ -2210,35 +2214,35 @@ msgstr ""
 "nastavit nad úroveň 1.0.\n"
 "Nelze spustit v režimu HSV."
 
-#: ../src/gui_common/TweakedColourPicker.cs:340
+#: ../src/gui_common/TweakedColourPicker.cs:351
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr "Odstín"
 
-#: ../src/gui_common/TweakedColourPicker.cs:341
+#: ../src/gui_common/TweakedColourPicker.cs:352
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr "Saturace (sytost)"
 
-#: ../src/gui_common/TweakedColourPicker.cs:342
+#: ../src/gui_common/TweakedColourPicker.cs:353
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Jas (intenzita barvy)"
 
-#: ../src/gui_common/TweakedColourPicker.cs:346
+#: ../src/gui_common/TweakedColourPicker.cs:357
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "Hodnota červeného kanálu barvy"
 
-#: ../src/gui_common/TweakedColourPicker.cs:347
+#: ../src/gui_common/TweakedColourPicker.cs:358
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr "Hodnota zeleného kanálu barvy"
 
-#: ../src/gui_common/TweakedColourPicker.cs:348
+#: ../src/gui_common/TweakedColourPicker.cs:359
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr "Hodnota modrého kanálu barvy"
 
-#: ../src/gui_common/TweakedColourPicker.cs:351
+#: ../src/gui_common/TweakedColourPicker.cs:362
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr "Hodnota alfa kanálu barvy"
 
-#: ../src/gui_common/TweakedColourPicker.cs:500
+#: ../src/gui_common/TweakedColourPicker.cs:511
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 "Barva: {0}\n"
@@ -2253,23 +2257,23 @@ msgstr "Barva - Saturace - Hodnota"
 msgid "RAW"
 msgstr "RAW"
 
-#: ../src/gui_common/charts/line/LineChart.cs:633
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2513
+#: ../src/gui_common/charts/line/LineChart.cs:636
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2559
 msgid "NO_DATA_TO_SHOW"
 msgstr "Žádná data k zobrazení"
 
-#: ../src/gui_common/charts/line/LineChart.cs:637
+#: ../src/gui_common/charts/line/LineChart.cs:640
 #, fuzzy
 msgid "INVALID_DATA_TO_PLOT"
 msgstr "Neplatná cesta ikony modu"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1104
-#: ../src/gui_common/charts/line/LineChart.cs:1190
+#: ../src/gui_common/charts/line/LineChart.cs:1110
+#: ../src/gui_common/charts/line/LineChart.cs:1202
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr "Není povoleno zobrazit více než {0} datových sad!"
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1195
+#: ../src/gui_common/charts/line/LineChart.cs:1116
+#: ../src/gui_common/charts/line/LineChart.cs:1207
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr "Není povoleno zobrazit méně než {0} datových sad!"
 
@@ -2902,7 +2906,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3587
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2909
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3305
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:964
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:982
 msgid "TEMPERATURE"
 msgstr "Teplota"
 
@@ -2911,23 +2915,23 @@ msgstr "Teplota"
 msgid "N_A_MP"
 msgstr "N/A MP"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:524
+#: ../src/microbe_stage/Microbe.Contact.cs:529
 msgid "DEATH"
 msgstr "smrt"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:629
+#: ../src/microbe_stage/Microbe.Contact.cs:640
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "úspěšné prohledání"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:636
+#: ../src/microbe_stage/Microbe.Contact.cs:647
 msgid "SUCCESSFUL_KILL"
 msgstr "úspěšné zabití"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:853
+#: ../src/microbe_stage/Microbe.Contact.cs:864
 msgid "ESCAPE_ENGULFING"
 msgstr "uniknout pohlcení"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:729
+#: ../src/microbe_stage/Microbe.Interior.cs:734
 msgid "REPRODUCED"
 msgstr "reprodukováno"
 
@@ -2957,53 +2961,53 @@ msgstr "Duplicitní hráč"
 msgid "SPAWN_ENEMY"
 msgstr "Spawni nepřítele"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:704
+#: ../src/microbe_stage/MicrobeHUD.cs:708
 msgid "STUFF_AT"
 msgstr "Věc v {0: F1}, {1: F1}:"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:737
+#: ../src/microbe_stage/MicrobeHUD.cs:741
 msgid "PLAYER_CELL"
 msgstr "Hráčská buňka"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:754
+#: ../src/microbe_stage/MicrobeHUD.cs:758
 msgid "SPECIES_N_TIMES"
 msgstr "{0} (x{1})"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:799
+#: ../src/microbe_stage/MicrobeHUD.cs:803
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr "hojnost"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:801
+#: ../src/microbe_stage/MicrobeHUD.cs:805
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "docela dost"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:803
+#: ../src/microbe_stage/MicrobeHUD.cs:807
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "dostatečné množství"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:805
+#: ../src/microbe_stage/MicrobeHUD.cs:809
 msgid "CATEGORY_SOME"
 msgstr "něco"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:807
+#: ../src/microbe_stage/MicrobeHUD.cs:811
 msgid "CATEGORY_LITTLE"
 msgstr "málo"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:809
+#: ../src/microbe_stage/MicrobeHUD.cs:813
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "velmi málo"
 
-#: ../src/microbe_stage/MicrobeStage.cs:538
+#: ../src/microbe_stage/MicrobeStage.cs:545
 msgid "PLAYER_REPRODUCED"
 msgstr "hráč se rozmnožil"
 
-#: ../src/microbe_stage/MicrobeStage.cs:624
+#: ../src/microbe_stage/MicrobeStage.cs:634
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 "Nemůžete použít cheat spawnout nepřítele, protože se v této oblasti se "
 "nevyskytují nepřátelské druhy"
 
-#: ../src/microbe_stage/MicrobeStage.cs:688
+#: ../src/microbe_stage/MicrobeStage.cs:698
 msgid "PLAYER_DIED"
 msgstr "hráč zemřel"
 
@@ -3043,7 +3047,7 @@ msgstr "Tlak"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2973
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3612
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1104
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
 msgid "COMPOUNDS"
 msgstr "Sloučeniny"
 
@@ -3127,7 +3131,7 @@ msgstr "Šelfový ledovec"
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr "Pangoniánské mořské dno"
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:117
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
 msgstr "Rozpojovací mód"
 
@@ -3139,20 +3143,20 @@ msgstr "Proces buňky"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Balanc sloučenin"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:624
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1446
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:626
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1465
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Načítání editoru mikrobů"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:626
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:628
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr "Čekání na automatickou evoluci:"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2474
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2518
 msgid "AUTO_EVO_FAILED"
 msgstr "Automatickou evoluci se nepodařilo spustit"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2475
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2519
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "stav:"
 
@@ -3386,7 +3390,7 @@ msgstr "Fyzické podmínky"
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2930
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2964
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1097
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Atmosférické plyny"
 
@@ -3441,126 +3445,126 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr "Nekonečné MP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:754
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:761
-#: ../src/microbe_stage/editor/TimelineTab.cs:184
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:767
+#: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "Myry"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:764
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Uplynutý čas: {0:#,#} let"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:807
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:813
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
 msgid "OSMOREGULATION"
 msgstr "Osmoregulace"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:862
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
 msgid "BASE_MOVEMENT"
 msgstr "Základní pohyb"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:874
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:894
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1094
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1095
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1097
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1104
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1118
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1119
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
 msgid "YEARS"
 msgstr "roky"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
 msgid "SPECIES_LIST"
 msgstr "Přítomné druhy"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1111
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1135
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1148
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "Vyhynul na této planetě"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1112
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1123
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1136
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1147
 msgid "EXTINCT_FROM_PATCH"
 msgstr "Vyhynul v této oblasti"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1160
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1190
 msgid "FREEBUILDING"
 msgstr "Volné stavění"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1271
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1313
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1276
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1318
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m pod mořskou hladinou"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1315
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
 msgid "WITH_POPULATION"
 msgstr "{0} s populací: {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2057
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 #, fuzzy
 msgid "FAILED"
 msgstr "Chyba ukládání"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2063
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2075
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2102
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2114
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2069
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2081
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2108
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2120
 msgid "N_A"
 msgstr "N/A"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2355
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2401
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 "Název druhu musí odpovídat binomickému systému pojmenování (rod a "
 "epiteton)!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2481
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2527
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Energie v {0} pro {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2485
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2531
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 "Celková získaná energie je {0} s individuálními náklady {1}, což vede k "
 "nekorigované populaci {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2492
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2538
 msgid "ENERGY_SOURCES"
 msgstr "Zdroje energie:"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2498
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2544
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 "{0} energie: {1} (fitness: {2}) celková dostupná energie: {3} (celková "
 "zdatnost: {4})"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:230
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:249
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:255
 msgid "MP_COST"
 msgstr "{0} MP"
 
@@ -3580,7 +3584,7 @@ msgstr "Upravit"
 msgid "EXTINCT_SPECIES"
 msgstr "Vyhynulé druhy"
 
-#: ../src/microbe_stage/editor/TimelineTab.cs:235
+#: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
 msgstr "Žádné zaznamenané události"
 
@@ -3625,497 +3629,300 @@ msgstr ""
 "Gratulace, vyhráli jste tuto verzi Thrive! Po zavření této zprávy můžete "
 "pokračovat ve volném hraní, nebo začít novou hru."
 
-#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:531
+#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Nelze načíst informace o módu pro {0}"
 
-#: ../src/modding/ModLoader.cs:499
+#: ../src/modding/ModLoader.cs:235
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: načítání sestavy selhalo s výjimkou: {1}"
 
-#: ../src/modding/ModLoader.cs:516
+#: ../src/modding/ModLoader.cs:252
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: nemá žádné načitatelné prostředky"
 
-#: ../src/modding/ModLoader.cs:546
+#: ../src/modding/ModLoader.cs:279
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:554
+#: ../src/modding/ModLoader.cs:287
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:617
+#: ../src/modding/ModLoader.cs:351
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:630
+#: ../src/modding/ModLoader.cs:364
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:646
+#: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:662
+#: ../src/modding/ModLoader.cs:394
 msgid "PCK_LOAD_FAILED"
 msgstr "Načítání souboru pck ({0}) se nezdařilo"
 
-#: ../src/modding/ModManager.cs:470
+#: ../src/modding/ModManager.cs:293
 msgid "INVALID_ICON_PATH"
 msgstr "Neplatná cesta ikony modu"
 
-#: ../src/modding/ModManager.cs:484
+#: ../src/modding/ModManager.cs:307
 msgid "INVALID_URL_SCHEME"
 msgstr "Neplatné schéma adresy URL"
 
-#: ../src/modding/ModManager.cs:496
+#: ../src/modding/ModManager.cs:319
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:608
-#, fuzzy
-msgid "MOD_LOADER_TAB"
-msgstr "Nahrávač módů"
-
-#: ../src/modding/ModManager.cs:609
-#, fuzzy
-msgid "MOD_ERRORS_TAB"
-msgstr "Chyby načítání módu"
-
-#: ../src/modding/ModManager.cs:610
-#, fuzzy
-msgid "MOD_CONFIGURATION_TAB"
-msgstr "Vytvoření módu se nezdařilo"
-
-#: ../src/modding/ModManager.cs:952 ../src/modding/ModManager.cs:1943
-msgid "THIS_IS_WORKSHOP_MOD"
-msgstr "Tento mod si můžete stáhnout ze služby Steam Workshop"
-
-#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1944
-msgid "THIS_IS_LOCAL_MOD"
-msgstr "Jedná se o lokálně nainstalovaný mod"
-
-#: ../src/modding/ModManager.cs:1020
+#: ../src/modding/ModManager.cs:549
 msgid "NO_SELECTED_MOD"
 msgstr "Žádný vybraný mod"
 
-#: ../src/modding/ModManager.cs:1365
-#, fuzzy
-msgid "MOD_LOAD_ERROR_WARNING"
-msgstr "Chyby načítání módu"
+#: ../src/modding/ModManager.cs:885
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr "Tento mod si můžete stáhnout ze služby Steam Workshop"
 
-#: ../src/modding/ModManager.cs:1367
-#, fuzzy
-msgid "ARE_YOU_SURE_TO_LOAD_MOD"
-msgstr "Opravdu chceš resetovat VŠECHNA nastavení ?"
+#: ../src/modding/ModManager.cs:886
+msgid "THIS_IS_LOCAL_MOD"
+msgstr "Jedná se o lokálně nainstalovaný mod"
 
-#: ../src/modding/ModManager.cs:1549 ../src/modding/ModManager.tscn:851
-#: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
-msgid "MOD_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1566
-msgid "NO_MOD_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1575 ../src/modding/ModManager.tscn:1467
-#: ../src/modding/NewModGUI.tscn:572
-msgid "MOD_REQUIRED_MODS"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1592
-#, fuzzy
-msgid "NO_REQUIRED_MODS"
-msgstr "Žádný vybraný mod"
-
-#: ../src/modding/ModManager.cs:1601 ../src/modding/ModManager.tscn:869
-#, fuzzy
-msgid "INCOMPATIBLE_WITH"
-msgstr "Načíst nekompatibilní uloženou pozici?"
-
-#: ../src/modding/ModManager.cs:1618
-#, fuzzy
-msgid "NO_MOD_INCOMPATIBLE"
-msgstr "Načíst nekompatibilní uloženou pozici?"
-
-#: ../src/modding/ModManager.cs:1627 ../src/modding/ModManager.tscn:878
-#, fuzzy
-msgid "LOAD_ORDER"
-msgstr "Nahrávač módů"
-
-#: ../src/modding/ModManager.cs:1637 ../src/modding/ModManager.tscn:1511
-#: ../src/modding/NewModGUI.tscn:620
-#, fuzzy
-msgid "MOD_LOAD_AFTER"
-msgstr "Nahrávač módů"
-
-#: ../src/modding/ModManager.cs:1655 ../src/modding/ModManager.tscn:1489
-#: ../src/modding/NewModGUI.tscn:596
-#, fuzzy
-msgid "MOD_LOAD_BEFORE"
-msgstr "Chyby načítání módu"
-
-#: ../src/modding/ModManager.cs:1667
-#, fuzzy
-msgid "MOD_NO_LOAD_ORDER"
-msgstr ""
-"Jeden nebo více módů vyžaduje restart pro správné načtení nebo vyložení"
-
-#: ../src/modding/ModManager.cs:1998
-#, fuzzy
-msgid "MOD_LIST_CONTAIN_ERRORS"
-msgstr "Chyby načítání módu"
-
-#: ../src/modding/ModManager.cs:2000
-#, fuzzy
-msgid "MOD_CHECK_AGAIN_WARNING"
-msgstr ""
-"Máš neuložené změny, které budou zahozeny.\n"
-"Mám pokračovat?"
-
-#: ../src/modding/ModManager.cs:2004 ../src/modding/ModManager.cs:2044
-#, fuzzy
-msgid "MOD_LIST_VALID"
-msgstr "Uložená pozice je neplatná"
-
-#: ../src/modding/ModManager.cs:2027 ../src/modding/ModManager.cs:2038
-#: ../src/modding/ModManager.cs:2058 ../src/modding/ModManager.cs:2072
-#, fuzzy
-msgid "UNKNOWN_MOD"
-msgstr "Neznámá myš"
-
-#: ../src/modding/ModManager.cs:2047
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
-msgstr ""
-"Vybraná uložená pozice nemůže být načtena z důvodu nekompatibility s touto "
-"verzí Thrive.\n"
-"Bohužel pro tuto verzi neexistuje převodník.\n"
-"Jelikož je Thrive v ranné fázi vývoje, není kompatibilita uložených pozic "
-"prioritou, a proto převodníky nefungují pro všechny verze."
-
-#: ../src/modding/ModManager.cs:2061
-msgid "MOD_ERROR_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2063
-msgid "MOD_ERROR_DEPENDENCIES_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2075
-msgid "MOD_ERROR_REQUIRED_MODS"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2077
-msgid "MOD_ERROR_REQUIRED_MODS_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2080
-msgid "MOD_ERROR_DEPENDENCIES_ORDER"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2082
-msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2086
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_MOD"
-msgstr "Načíst nekompatibilní uloženou pozici?"
-
-#: ../src/modding/ModManager.cs:2088
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
-msgstr "Načíst nekompatibilní uloženou pozici?"
-
-#: ../src/modding/ModManager.cs:2091
-#, fuzzy
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
-msgstr "Chyby načítání módu"
-
-#: ../src/modding/ModManager.cs:2093
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2097
-#, fuzzy
-msgid "MOD_ERROR_LOAD_ORDER_AFTER"
-msgstr ""
-"Jeden nebo více módů vyžaduje restart pro správné načtení nebo vyložení"
-
-#: ../src/modding/ModManager.cs:2099
-msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2143
+#: ../src/modding/ModManager.cs:940
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Chyba při vytváření složky pro mod"
 
-#: ../src/modding/ModManager.cs:2152
+#: ../src/modding/ModManager.cs:949
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Chyba při vytváření souboru mod info"
 
-#: ../src/modding/ModManager.tscn:201
+#: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
 msgstr "Dostupné mody"
 
-#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
-msgid "LEFT_ARROW"
-msgstr "←"
-
-#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
-msgid "RIGHT_ARROW"
-msgstr "→"
-
-#: ../src/modding/ModManager.tscn:271
-msgid "ENABLED_MODS"
-msgstr "Povolené mody"
-
-#: ../src/modding/ModManager.tscn:310
-#, fuzzy
-msgid "ENABLE_ALL"
-msgstr "Zakázat vše"
-
-#: ../src/modding/ModManager.tscn:316
-msgid "OPEN_FOLDER"
-msgstr "Otevřít složku"
-
-#: ../src/modding/ModManager.tscn:322
-msgid "DISABLE_ALL"
-msgstr "Zakázat vše"
-
-#: ../src/modding/ModManager.tscn:339
-#, fuzzy
-msgid "ONESHOT_LOADING"
-msgstr "Chyba v načítání"
-
-#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "Použít"
-
-#: ../src/modding/ModManager.tscn:507
-#, fuzzy
-msgid "CLEAR"
-msgstr "Clear (smazat)"
-
-#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1121
-#: ../src/modding/NewModGUI.tscn:158
-msgid "MOD_AUTHOR"
-msgstr "Autor modu:"
-
-#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1143
-#: ../src/modding/NewModGUI.tscn:181
-msgid "MOD_VERSION"
-msgstr "Verze modu:"
-
-#: ../src/modding/ModManager.tscn:770
-msgid "MINIMUM_VERSION"
-msgstr "Minimum:"
-
-#: ../src/modding/ModManager.tscn:804
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Doporučené Thrive:"
-
-#: ../src/modding/ModManager.tscn:860
-#, fuzzy
-msgid "REQUIRED_MODS"
-msgstr "Povolené mody"
-
-#: ../src/modding/ModManager.tscn:887
-msgid "OPEN_MOD_URL"
-msgstr "Otevřít URL Info"
-
-#: ../src/modding/ModManager.tscn:896
-msgid "MORE_INFO"
-msgstr "Zobrazit více info"
-
-#: ../src/modding/ModManager.tscn:968
-#, fuzzy
-msgid "CHECK_BUTTON_TOOLTIP"
-msgstr "Nápověda"
-
-#: ../src/modding/ModManager.tscn:969
-msgid "CHECK_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Obnovit"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:152
+msgid "OPEN_FOLDER"
+msgstr "Otevřít složku"
+
+#: ../src/modding/ModManager.tscn:170
+msgid "RIGHT_ARROW"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:183
+msgid "LEFT_ARROW"
+msgstr "←"
+
+#: ../src/modding/ModManager.tscn:195
+msgid "ENABLED_MODS"
+msgstr "Povolené mody"
+
+#: ../src/modding/ModManager.tscn:213
+msgid "DISABLE_ALL"
+msgstr "Zakázat vše"
+
+#: ../src/modding/ModManager.tscn:250
+msgid "SELECTED_MOD"
+msgstr "Vybraný mod:"
+
+#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
+#: ../src/modding/NewModGUI.tscn:142
+msgid "MOD_AUTHOR"
+msgstr "Autor modu:"
+
+#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
+#: ../src/modding/NewModGUI.tscn:165
+msgid "MOD_VERSION"
+msgstr "Verze modu:"
+
+#: ../src/modding/ModManager.tscn:371
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Doporučené Thrive:"
+
+#: ../src/modding/ModManager.tscn:415
+msgid "MINIMUM_VERSION"
+msgstr "Minimum:"
+
+#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
+#: ../src/modding/NewModGUI.tscn:188
+msgid "MOD_DESCRIPTION"
+msgstr "Popis módu:"
+
+#: ../src/modding/ModManager.tscn:474
+msgid "MORE_INFO"
+msgstr "Zobrazit více info"
+
+#: ../src/modding/ModManager.tscn:482
+msgid "OPEN_MOD_URL"
+msgstr "Otevřít URL Info"
+
+#: ../src/modding/ModManager.tscn:505
+msgid "BROWSE_WORKSHOP"
+msgstr "Procházet Workshop"
+
+#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+msgid "UPLOAD"
+msgstr "Nahrát"
+
+#: ../src/modding/ModManager.tscn:519
+msgid "NEW"
+msgstr "Nový"
+
+#: ../src/modding/ModManager.tscn:532
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr ""
 "Poznámka: mnoho módů vyžaduje restart pro správné načtení nebo nahrání. "
 "Načítejte pouze ty mody, kterým důvěřujete, protože mohou obsahovat "
 "spustitelný kód."
 
-#: ../src/modding/ModManager.tscn:990
+#: ../src/modding/ModManager.tscn:559
+msgid "ENABLE_ALL_COMPATIBLE"
+msgstr "Povolit všechny kompatibilní mody"
+
+#: ../src/modding/ModManager.tscn:568
 msgid "APPLY_CHANGES"
 msgstr "Použít změny"
 
-#: ../src/modding/ModManager.tscn:1005
-msgid "BROWSE_WORKSHOP"
-msgstr "Procházet Workshop"
+#: ../src/modding/ModManager.tscn:579
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr "Existují neaplikované změny"
 
-#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
-msgid "UPLOAD"
-msgstr "Nahrát"
+#: ../src/modding/ModManager.tscn:580
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr "Pro načtení nebo vyjmutí modifikací je třeba provést změny."
 
-#: ../src/modding/ModManager.tscn:1027
-msgid "NEW"
-msgstr "Nový"
+#: ../src/modding/ModManager.tscn:581
+msgid "DISCARD_CHANGES"
+msgstr "Zahodit změny"
 
-#: ../src/modding/ModManager.tscn:1073 ../src/modding/NewModGUI.tscn:135
+#: ../src/modding/ModManager.tscn:588
+msgid "FULL_MOD_INFO"
+msgstr "Úplné informace o módu"
+
+#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
 msgid "MOD_NAME"
 msgstr "Název módu:"
 
-#: ../src/modding/ModManager.tscn:1095 ../src/modding/NewModGUI.tscn:112
+#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
 msgid "MOD_INTERNAL_NAME"
 msgstr "Interní název (složky):"
 
-#: ../src/modding/ModManager.tscn:1165 ../src/modding/NewModGUI.tscn:204
-msgid "MOD_DESCRIPTION"
-msgstr "Popis módu:"
-
-#: ../src/modding/ModManager.tscn:1187 ../src/modding/NewModGUI.tscn:227
+#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Dlouhý popis módu:"
 
-#: ../src/modding/ModManager.tscn:1225 ../src/modding/NewModGUI.tscn:251
+#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "Soubor s ikonou:"
 
-#: ../src/modding/ModManager.tscn:1247 ../src/modding/NewModGUI.tscn:291
-#, fuzzy
-msgid "MOD_PREVIEW_IMAGE_FILE"
-msgstr "Soubor náhledu obrázku je příliš velký"
-
-#: ../src/modding/ModManager.tscn:1269 ../src/modding/NewModGUI.tscn:330
+#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Mod info URL:"
 
-#: ../src/modding/ModManager.tscn:1291 ../src/modding/NewModGUI.tscn:353
+#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr "Licence módu:"
 
-#: ../src/modding/ModManager.tscn:1313 ../src/modding/NewModGUI.tscn:376
+#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Doporučená verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:1335 ../src/modding/NewModGUI.tscn:399
+#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Požadované minimum verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:1357 ../src/modding/NewModGUI.tscn:422
+#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Maximální podporovaná verze Thrive:"
 
-#: ../src/modding/ModManager.tscn:1379 ../src/modding/NewModGUI.tscn:445
+#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck soubor:"
 
-#: ../src/modding/ModManager.tscn:1401 ../src/modding/NewModGUI.tscn:485
+#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1423 ../src/modding/NewModGUI.tscn:525
+#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1533 ../src/modding/NewModGUI.tscn:644
-#, fuzzy
-msgid "MOD_INCOMPATIBLE_MODS"
-msgstr "Načíst nekompatibilní uloženou pozici?"
+#: ../src/modding/ModManager.tscn:979
+msgid "MOD_CREATION_FAILED"
+msgstr "Vytvoření módu se nezdařilo"
 
-#: ../src/modding/ModManager.tscn:1555 ../src/modding/NewModGUI.tscn:668
-#, fuzzy
-msgid "MOD_CONFIG_FILE"
-msgstr "Soubor s ikonou:"
-
-#: ../src/modding/ModManager.tscn:1586
+#: ../src/modding/ModManager.tscn:989
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr ""
 "Při načítání nebo vykládání jednoho nebo více módů došlo k chybám. "
 "Protokoly mohou obsahovat další informace."
 
-#: ../src/modding/ModManager.tscn:1591
+#: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
 msgstr "Požadovaný restart"
 
-#: ../src/modding/ModManager.tscn:1593
+#: ../src/modding/ModManager.tscn:996
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 "Jeden nebo více módů vyžaduje restart pro správné načtení nebo vyložení"
 
-#: ../src/modding/ModManager.tscn:1609
-#, fuzzy
-msgid "MOD_LOAD_ERROR_WARNING_TITLE"
-msgstr "Chyby načítání módu"
-
-#: ../src/modding/ModManager.tscn:1611
-#, fuzzy
-msgid "YES"
-msgstr "roky"
-
-#: ../src/modding/ModManager.tscn:1612
-#, fuzzy
-msgid "NO"
-msgstr "Vrátit"
-
-#: ../src/modding/ModManager.tscn:1620 ../src/modding/ModManager.tscn:1623
-msgid "NULL"
-msgstr ""
-
-#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop obsah bude nahrán ze složky: {0}"
 
-#: ../src/modding/ModUploader.cs:298
+#: ../src/modding/ModUploader.cs:305
 msgid "MISSING_TITLE"
 msgstr "Chybí název"
 
-#: ../src/modding/ModUploader.cs:304
+#: ../src/modding/ModUploader.cs:311
 msgid "MISSING_DESCRIPTION"
 msgstr "Chybí popis"
 
-#: ../src/modding/ModUploader.cs:312
+#: ../src/modding/ModUploader.cs:319
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Popis je příliš dlouhý"
 
-#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:209
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Poznámky ke změnám jsou příliš dlouhé"
 
-#: ../src/modding/ModUploader.cs:326
+#: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:334
+#: ../src/modding/ModUploader.cs:341
 msgid "INVALID_TAG"
 msgstr "Zadán neplatný tag \"{0}\""
 
-#: ../src/modding/ModUploader.cs:348
+#: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr "Náhled obrázku neexistuje"
 
-#: ../src/modding/ModUploader.cs:355
+#: ../src/modding/ModUploader.cs:362
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr "Soubor náhledu obrázku je příliš velký"
 
-#: ../src/modding/ModUploader.cs:398
+#: ../src/modding/ModUploader.cs:417
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID není platné číslo"
 
-#: ../src/modding/ModUploader.cs:435
+#: ../src/modding/ModUploader.cs:460
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Vytváření..."
 
-#: ../src/modding/ModUploader.cs:490
+#: ../src/modding/ModUploader.cs:474
+msgid "SUCCESS_BUT_MISSING_ID"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Nahrávání..."
 
-#: ../src/modding/ModUploader.cs:527
+#: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 "Nahrání předmětu do služby Steam Workshop se podařilo, ale je nutné "
@@ -4123,22 +3930,22 @@ msgstr ""
 "sharedfiles/workshoplegalagreement]podmínky služby[/url][/color] předtím, "
 "než je viditelný"
 
-#: ../src/modding/ModUploader.cs:531
+#: ../src/modding/ModUploader.cs:560
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Nahrání položky do služby Steam Workshop se podařilo"
 
-#: ../src/modding/ModUploader.cs:591
+#: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 "Odesláním této položky souhlasíte s [color=#3796e1][url=https://"
 "steamcommunity.com/sharedfiles/workshoplegalagreement]podmínkami služby "
 "Steam Workshop[/url][/color]"
 
-#: ../src/modding/ModUploader.cs:616
+#: ../src/modding/ModUploader.cs:645
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Uložení informací se nezdařilo kvůli výjimce: {0}"
 
-#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:428
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Chyba: {0}"
 
@@ -4169,6 +3976,10 @@ msgstr "Zadejte existující Workshop ID"
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "ID číslo"
+
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "Použít"
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
@@ -4226,97 +4037,92 @@ msgstr "Vybrat náhled obrázku"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Nahrání bylo úspěšné"
 
-#: ../src/modding/NewModGUI.cs:239
+#: ../src/modding/NewModGUI.cs:175
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Můj úžasný mod"
 
-#: ../src/modding/NewModGUI.cs:360
+#: ../src/modding/NewModGUI.cs:232
 msgid "INVALID_URL_FORMAT"
 msgstr "Neplatný formát URL"
 
-#: ../src/modding/NewModGUI.cs:372
+#: ../src/modding/NewModGUI.cs:247
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Je vyžadován interní název"
 
-#: ../src/modding/NewModGUI.cs:378
+#: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Interní název by měl začínat velkým písmenem"
 
-#: ../src/modding/NewModGUI.cs:384
+#: ../src/modding/NewModGUI.cs:259
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Již existuje mod se zadaným interním názvem"
 
-#: ../src/modding/NewModGUI.cs:403
+#: ../src/modding/NewModGUI.cs:275
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Chybějící nebo nesprávný formát povinného pole: {0}"
 
-#: ../src/modding/NewModGUI.cs:414
+#: ../src/modding/NewModGUI.cs:286
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Při dodatečných validacích byl zjištěn problém: {0}"
 
-#: ../src/modding/NewModGUI.tscn:51
+#: ../src/modding/NewModGUI.tscn:35
 msgid "CREATE_NEW_MOD"
 msgstr "Vytvořit nový mod"
 
-#: ../src/modding/NewModGUI.tscn:85
+#: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Modding instrukce jsou dostupné na"
 
-#: ../src/modding/NewModGUI.tscn:92
+#: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
 msgstr "naše Wiki"
 
-#: ../src/modding/NewModGUI.tscn:686
-#, fuzzy
-msgid "ENABLE_CONFIG"
-msgstr "Povolené mody"
-
-#: ../src/modding/NewModGUI.tscn:723
+#: ../src/modding/NewModGUI.tscn:450
 msgid "CREATE"
 msgstr "Vytvořit"
 
-#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:99
+#: ../src/saving/InProgressLoad.cs:148
 msgid "LOADING_GAME"
 msgstr "Načítání hry"
 
-#: ../src/saving/InProgressLoad.cs:80
+#: ../src/saving/InProgressLoad.cs:81
 msgid "READING_SAVE_DATA"
 msgstr "Načítám uložená data"
 
-#: ../src/saving/InProgressLoad.cs:100
+#: ../src/saving/InProgressLoad.cs:101
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Vytváření objektů z uložené pozice"
 
-#: ../src/saving/InProgressLoad.cs:109
+#: ../src/saving/InProgressLoad.cs:110
 msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Při načítání uložených dat došlo k výjimce"
 
-#: ../src/saving/InProgressLoad.cs:135
+#: ../src/saving/InProgressLoad.cs:136
 msgid "SAVE_IS_INVALID"
 msgstr "Uložená pozice je neplatná"
 
-#: ../src/saving/InProgressLoad.cs:136
+#: ../src/saving/InProgressLoad.cs:137
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr "Uložená hra má neplatný stav herní scény"
 
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:150
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Zpracování načtených objektů"
 
-#: ../src/saving/InProgressLoad.cs:164
+#: ../src/saving/InProgressLoad.cs:165
 msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
 msgstr "Při zpracování načtených objektů došlo k výjimce"
 
-#: ../src/saving/InProgressLoad.cs:170
+#: ../src/saving/InProgressLoad.cs:171
 msgid "LOAD_FINISHED"
 msgstr "Načítání dokončeno"
 
-#: ../src/saving/InProgressLoad.cs:195
+#: ../src/saving/InProgressLoad.cs:196
 msgid "ERROR_LOADING"
 msgstr "Chyba v načítání"
 
-#: ../src/saving/InProgressLoad.cs:227
+#: ../src/saving/InProgressLoad.cs:228
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "Nepodařilo se uvolnit již načtené prostředky: {0}"
 
@@ -4360,21 +4166,21 @@ msgstr "Nahradit existující uloženou pozici:"
 msgid "OVERWRITE_EXISTING_SAVE_TITLE"
 msgstr "Nahradit existující uloženou pozici?"
 
-#: ../src/saving/SaveHelper.cs:421
+#: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
+msgid "SAVING_FAILED"
+msgstr "Uložení se nezdařilo! Nastala výjimka"
+
+#: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
 msgstr "Uložení není momentálně k dispozici z důvodu:"
 
-#: ../src/saving/SaveHelper.cs:422
+#: ../src/saving/SaveHelper.cs:437
 msgid "PLAYER_EXTINCT"
 msgstr "Hráč vyhynul"
 
-#: ../src/saving/SaveHelper.cs:431
+#: ../src/saving/SaveHelper.cs:446
 msgid "SAVING_SUCCEEDED"
 msgstr "Ukládání provedeno"
-
-#: ../src/saving/SaveHelper.cs:441
-msgid "SAVING_FAILED"
-msgstr "Uložení se nezdařilo! Nastala výjimka"
 
 #: ../src/saving/SaveInformation.cs:16
 msgid "SAVE_MANUAL"
@@ -4576,65 +4382,65 @@ msgstr "Zkus vytvořit uloženou pozici!"
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Inicializace knihovny klienta služby Steam se nezdařila"
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:462
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 "Váš účet služby Steam je momentálně omezený v nahrávání obsahu. Prosím "
 "kontaktujte Steam support."
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:464
 msgid "STEAM_ERROR_BANNED"
 msgstr "Váš účet služby Steam má zakázáno nahrávat obsah"
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:466
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr "Provoz služby Steam vypršel, zkuste to prosím znovu"
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:468
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr "Nepřihlášený do služby Steam"
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:470
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr "Steam je momentálně nedostupný, prosím zkuste znovu"
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Neplatný parametr předaný službě Steam"
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 "Překročení kvóty cloudového úložiště služby Steam nebo limitu velikosti "
 "souboru"
 
-#: ../src/steam/SteamClient.cs:488
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "Soubor nebyl nalezen"
 
-#: ../src/steam/SteamClient.cs:490
+#: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr "Služba Steam nahlásila soubor již jako nahraný, prosím obnovte"
 
-#: ../src/steam/SteamClient.cs:492
+#: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr "Služba Steam nahlásila chybu duplicitního názvu"
 
-#: ../src/steam/SteamClient.cs:494
+#: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 "Váš účet služby Steam je v současné době v režimu pouze pro čtení z důvodu "
 "nedávné změny účtu"
 
-#: ../src/steam/SteamClient.cs:496
+#: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr "Váš Steam účet nevlastní licenci pro Thrive"
 
-#: ../src/steam/SteamClient.cs:498
+#: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr "Službě Steam se nepodařilo získat UGC lock"
 
-#: ../src/steam/SteamClient.cs:500
+#: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr "Nastala neznámá chyba služby Steam"
 
@@ -4854,24 +4660,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
 msgid "VIEW_NOW"
 msgstr "Zobrazit"
-
-#~ msgid "SELECTED_MOD"
-#~ msgstr "Vybraný mod:"
-
-#~ msgid "ENABLE_ALL_COMPATIBLE"
-#~ msgstr "Povolit všechny kompatibilní mody"
-
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr "Existují neaplikované změny"
-
-#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-#~ msgstr "Pro načtení nebo vyjmutí modifikací je třeba provést změny."
-
-#~ msgid "DISCARD_CHANGES"
-#~ msgstr "Zahodit změny"
-
-#~ msgid "FULL_MOD_INFO"
-#~ msgstr "Úplné informace o módu"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

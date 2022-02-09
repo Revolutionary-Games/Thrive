@@ -7,36 +7,36 @@ using Godot;
 public class CollapsibleList : VBoxContainer
 {
     [Export]
-    public NodePath TitleLabelPath;
+    public NodePath TitleLabelPath = null!;
 
     [Export]
-    public NodePath CollapseButtonPath;
+    public NodePath CollapseButtonPath = null!;
 
     [Export]
-    public NodePath ExpandButtonPath;
+    public NodePath ExpandButtonPath = null!;
 
     [Export]
-    public NodePath ClipBoxPath;
+    public NodePath ClipBoxPath = null!;
 
     [Export]
-    public NodePath ItemContainerPath;
+    public NodePath ItemContainerPath = null!;
 
     [Export]
-    public NodePath TweenPath;
+    public NodePath TweenPath = null!;
 
-    private string title;
+    private readonly List<Control> items = new();
+
+    private string title = string.Empty;
     private int columns;
     private bool collapsed;
     private bool isCollapsing;
 
-    private Label titleLabel;
-    private GridContainer itemContainer;
-    private MarginContainer clipBox;
-    private TextureButton collapseButton;
-    private TextureButton expandButton;
-    private Tween tween;
-
-    private List<Control> items = new List<Control>();
+    private Label? titleLabel;
+    private GridContainer? itemContainer;
+    private MarginContainer clipBox = null!;
+    private TextureButton collapseButton = null!;
+    private TextureButton expandButton = null!;
+    private Tween tween = null!;
 
     private int cachedTopMarginValue;
 
@@ -93,6 +93,9 @@ public class CollapsibleList : VBoxContainer
 
     public void AddItem(Control item)
     {
+        if (itemContainer == null)
+            throw new SceneTreeAttachRequired();
+
         itemContainer.AddChild(item);
         items.Add(item);
 
@@ -115,7 +118,7 @@ public class CollapsibleList : VBoxContainer
 
     public void ClearItems()
     {
-        if (items == null || items.Count == 0)
+        if (items.Count == 0)
             return;
 
         var intermediateList = new List<Control>(items);
@@ -144,6 +147,9 @@ public class CollapsibleList : VBoxContainer
 
     private void UpdateResizing()
     {
+        if (itemContainer == null)
+            throw new SceneTreeAttachRequired();
+
         if (Collapsed)
         {
             Collapse();
@@ -160,7 +166,7 @@ public class CollapsibleList : VBoxContainer
     /// </summary>
     private void UpdateLists()
     {
-        foreach (Control item in itemContainer.GetChildren())
+        foreach (Control item in itemContainer!.GetChildren())
         {
             items.Add(item);
         }
@@ -194,7 +200,7 @@ public class CollapsibleList : VBoxContainer
         collapseButton.Show();
         expandButton.Hide();
 
-        itemContainer.Show();
+        itemContainer!.Show();
 
         tween.InterpolateProperty(clipBox, "custom_constants/margin_top", null, cachedTopMarginValue, 0.3f,
             Tween.TransitionType.Sine, Tween.EaseType.Out);
@@ -221,7 +227,7 @@ public class CollapsibleList : VBoxContainer
 
     private void OnCollapsingFinished()
     {
-        itemContainer.Hide();
+        itemContainer!.Hide();
 
         isCollapsing = false;
     }

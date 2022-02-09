@@ -10,17 +10,17 @@ public static class CheatManager
         DisableAllCheats();
     }
 
-    public static event EventHandler<EventArgs> OnHideCheatMenus;
+    public static event EventHandler<EventArgs>? OnHideCheatMenus;
 
     /// <summary>
     ///   Fired whenever the user uses the "Duplicate Player" cheat
     /// </summary>
-    public static event EventHandler<EventArgs> OnPlayerDuplicationCheatUsed;
+    public static event EventHandler<EventArgs>? OnPlayerDuplicationCheatUsed;
 
     /// <summary>
     ///   Fired whenever the user uses the "Spawn Enemy" cheat
     /// </summary>
-    public static event EventHandler<EventArgs> OnSpawnEnemyCheatUsed;
+    public static event EventHandler<EventArgs>? OnSpawnEnemyCheatUsed;
 
     /// <summary>
     ///   You automatically have 100% of all compounds

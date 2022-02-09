@@ -140,7 +140,7 @@ public static class NodeHelpers
     /// <param name="node">Node to get material from.</param>
     /// <param name="modelPath">Path to model within the scene. If null takes scene root as model.</param>
     /// <returns>ShaderMaterial of the GeometryInstance.</returns>
-    public static ShaderMaterial GetMaterial(this Node node, NodePath modelPath = null)
+    public static ShaderMaterial GetMaterial(this Node node, NodePath? modelPath = null)
     {
         GeometryInstance geometry;
 

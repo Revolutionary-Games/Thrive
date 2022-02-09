@@ -14,5 +14,5 @@ public class SaveContext : ISaveContext
 
     public SimulationParameters Simulation { get; }
 
-    public GameWorld World { get; set; }
+    public GameWorld? World { get; set; }
 }

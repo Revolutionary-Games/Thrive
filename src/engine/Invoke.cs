@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public class Invoke : Node
 {
-    private static Invoke instance;
+    private static Invoke? instance;
 
     private readonly BlockingCollection<Action> queuedInvokes = new BlockingCollection<Action>();
     private readonly BlockingCollection<Action> nextFrameInvokes = new BlockingCollection<Action>();
@@ -22,7 +22,7 @@ public class Invoke : Node
         ProcessPriority = -1000;
     }
 
-    public static Invoke Instance => instance;
+    public static Invoke Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   Queues an action to run on the next frame

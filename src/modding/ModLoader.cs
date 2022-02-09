@@ -13,8 +13,8 @@ using Path = System.IO.Path;
 /// </summary>
 public class ModLoader : Node
 {
-    private static ModLoader instance;
-    private static ModInterface modInterface;
+    private static ModLoader? instance;
+    private static ModInterface? modInterface;
 
     private readonly List<string> loadedMods = new();
 
@@ -22,7 +22,7 @@ public class ModLoader : Node
 
     private readonly List<(FullModDetails, string)> modErrors = new();
 
-    private List<FullModDetails> workshopMods;
+    private List<FullModDetails>? workshopMods;
 
     private bool firstExecute = true;
 
@@ -56,7 +56,7 @@ public class ModLoader : Node
     /// <summary>
     ///   The mod interface the game uses to trigger events that mods can react to
     /// </summary>
-    public static ModInterface ModInterface => modInterface;
+    public static ModInterface ModInterface => modInterface ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   Set to true if a mod that requires restart is loaded or unloaded
@@ -79,7 +79,7 @@ public class ModLoader : Node
     /// <param name="name">The internal (folder) name of the mod</param>
     /// <param name="failureIsError">If true, failure to find a mod is printed out</param>
     /// <returns>The mod details if the mod could be loaded</returns>
-    public static FullModDetails LoadModInfo(string name, bool failureIsError = true)
+    public static FullModDetails? LoadModInfo(string name, bool failureIsError = true)
     {
         using var currentDirectory = new Directory();
 
@@ -107,7 +107,7 @@ public class ModLoader : Node
                     return null;
                 }
 
-                return new FullModDetails(name) { Folder = modsFolder, Info = info };
+                return new FullModDetails(name, modsFolder, info);
             }
         }
 
@@ -144,8 +144,8 @@ public class ModLoader : Node
                     continue;
                 }
 
-                result.Add(new FullModDetails(info.InternalName)
-                    { Folder = location, Info = info, Workshop = true });
+                result.Add(new FullModDetails(info.InternalName, location, info)
+                    { Workshop = true });
             }
             else
             {
@@ -468,7 +468,7 @@ public class ModLoader : Node
         if (!string.IsNullOrEmpty(info.Info.PckToLoad) &&
             FileHelpers.ExistsCaseSensitive(Path.Combine(info.Folder, info.Info.PckToLoad)))
         {
-            LoadPckFile(Path.Combine(info.Folder, info.Info.PckToLoad));
+            LoadPckFile(Path.Combine(info.Folder, info.Info.PckToLoad!));
             loadedSomething = true;
         }
 
@@ -490,7 +490,7 @@ public class ModLoader : Node
             Assembly modAssembly;
             try
             {
-                modAssembly = LoadCodeAssembly(Path.Combine(info.Folder, info.Info.ModAssembly));
+                modAssembly = LoadCodeAssembly(Path.Combine(info.Folder, info.Info.ModAssembly!));
             }
             catch (Exception e)
             {
@@ -575,7 +575,7 @@ public class ModLoader : Node
     /// </summary>
     /// <param name="name">The name of the mod</param>
     /// <returns>The loaded mod info or null if not found</returns>
-    private FullModDetails FindMod(string name)
+    private FullModDetails? FindMod(string name)
     {
         var info = LoadModInfo(name);
 
@@ -600,7 +600,7 @@ public class ModLoader : Node
 
     private void RunCodeModFirstRunCallbacks(IMod mod)
     {
-        var scene = modInterface.CurrentScene;
+        var scene = modInterface!.CurrentScene;
 
         mod.CanAttachNodes(scene);
     }
@@ -623,7 +623,7 @@ public class ModLoader : Node
         {
             var mod = (IMod)Activator.CreateInstance(type);
 
-            if (!mod.Initialize(modInterface, info))
+            if (!mod.Initialize(modInterface!, info.Info))
             {
                 GD.PrintErr("Mod's (", name, ") initialize method call failed");
                 modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,

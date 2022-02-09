@@ -7,22 +7,22 @@ using Godot;
 public class ProcessPanel : CustomDialog
 {
     [Export]
-    public NodePath ProcessListPath;
+    public NodePath ProcessListPath = null!;
 
     [Export]
     public bool ShowCustomCloseButton;
 
     [Export]
-    public NodePath CloseButtonContainerPath;
+    public NodePath CloseButtonContainerPath = null!;
 
-    private ProcessList processList;
+    private ProcessList processList = null!;
 
-    private Container closeButtonContainer;
+    private Container closeButtonContainer = null!;
 
     [Signal]
     public delegate void OnClosed();
 
-    public ProcessStatistics ShownData { get; set; }
+    public ProcessStatistics? ShownData { get; set; }
 
     public override void _Ready()
     {

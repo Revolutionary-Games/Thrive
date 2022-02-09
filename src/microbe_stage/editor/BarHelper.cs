@@ -40,7 +40,7 @@ public static class BarHelper
         }
     }
 
-    public static Texture GetBarIcon(SegmentedBar.Type type, string name)
+    public static Texture? GetBarIcon(SegmentedBar.Type type, string name)
     {
         switch (type)
         {

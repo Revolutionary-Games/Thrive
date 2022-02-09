@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 public class EntityReferenceConverter : JsonConverter
 {
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         if (value == null)
         {
@@ -36,9 +36,10 @@ public class EntityReferenceConverter : JsonConverter
         serializer.Serialize(writer, internalValue, genericTypes[0]);
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object? existingValue,
+        JsonSerializer serializer)
     {
-        ConstructorInfo constructor;
+        ConstructorInfo? constructor;
         if (reader.TokenType == JsonToken.Null)
         {
             constructor = objectType.GetConstructor(BindingFlags.Public | BindingFlags.Instance, null,

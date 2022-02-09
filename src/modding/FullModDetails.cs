@@ -6,9 +6,11 @@ using System.Collections.Generic;
 /// </summary>
 public class FullModDetails : IEquatable<FullModDetails>
 {
-    public FullModDetails(string internalName)
+    public FullModDetails(string internalName, string folder, ModInfo info)
     {
         InternalName = internalName;
+        Folder = folder;
+        Info = info;
     }
 
     public string InternalName { get; }
@@ -40,7 +42,7 @@ public class FullModDetails : IEquatable<FullModDetails>
     /// </summary>
     public bool Workshop { get; set; }
 
-    public bool Equals(FullModDetails other)
+    public bool Equals(FullModDetails? other)
     {
         if (ReferenceEquals(null, other))
             return false;
@@ -50,7 +52,7 @@ public class FullModDetails : IEquatable<FullModDetails>
         return InternalName == other.InternalName;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (ReferenceEquals(null, obj))
             return false;
@@ -64,6 +66,6 @@ public class FullModDetails : IEquatable<FullModDetails>
 
     public override int GetHashCode()
     {
-        return InternalName != null ? InternalName.GetHashCode() : 0;
+        return InternalName.GetHashCode();
     }
 }

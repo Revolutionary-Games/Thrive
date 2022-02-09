@@ -9,12 +9,12 @@
     {
         private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
-        private readonly List<Species> extraSpecies;
-        private readonly List<Species> excludedSpecies;
+        private readonly List<Species>? extraSpecies;
+        private readonly List<Species>? excludedSpecies;
         private readonly bool collectEnergyInfo;
 
         public CalculatePopulation(AutoEvoConfiguration configuration, PatchMap map,
-            List<Species> extraSpecies = null, List<Species> excludedSpecies = null,
+            List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
             bool collectEnergyInfo = false)
         {
             this.configuration = configuration;

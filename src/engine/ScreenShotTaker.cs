@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public class ScreenShotTaker : NodeWithInput
 {
-    private static ScreenShotTaker instance;
+    private static ScreenShotTaker? instance;
     private bool isCurrentlyTakingScreenshot;
     private Step step;
 
@@ -24,7 +24,7 @@ public class ScreenShotTaker : NodeWithInput
         TakeAndSaveScreenshot,
     }
 
-    public static ScreenShotTaker Instance => instance;
+    public static ScreenShotTaker Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
     {

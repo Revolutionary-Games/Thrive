@@ -146,7 +146,7 @@ public class AutoEvoRun
     /// <summary>
     ///   Run results after this is finished
     /// </summary>
-    public RunResults Results
+    public RunResults? Results
     {
         get
         {
@@ -219,7 +219,8 @@ public class AutoEvoRun
         if (ExternalEffects.Count > 0)
         {
             // Effects are applied in the current patch
-            var currentPatch = Parameters.World.Map.CurrentPatch;
+            var currentPatch = Parameters.World.Map.CurrentPatch ??
+                throw new InvalidOperationException("Cannot apply external effects without current map patch");
 
             foreach (var entry in ExternalEffects)
             {
@@ -400,8 +401,9 @@ public class AutoEvoRun
     ///   This is the species from which the previous populations are read through. If null
     ///   <see cref="playerSpecies"/> is used instead
     /// </param>
-    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map, Species playerSpecies,
-        Species previousPopulationFrom = null)
+    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map,
+        Species? playerSpecies,
+        Species? previousPopulationFrom = null)
     {
         if (playerSpecies == null)
             return;

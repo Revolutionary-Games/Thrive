@@ -15,208 +15,208 @@ using Path = System.IO.Path;
 public class ModManager : Control
 {
     [Export]
-    public NodePath LeftArrowPath;
+    public NodePath LeftArrowPath = null!;
 
     [Export]
-    public NodePath RightArrowPath;
+    public NodePath RightArrowPath = null!;
 
     [Export]
-    public NodePath AvailableModsContainerPath;
+    public NodePath AvailableModsContainerPath = null!;
 
     [Export]
-    public NodePath EnabledModsContainerPath;
+    public NodePath EnabledModsContainerPath = null!;
 
     [Export]
-    public NodePath OpenModInfoButtonPath;
+    public NodePath OpenModInfoButtonPath = null!;
 
     [Export]
-    public NodePath OpenModUrlButtonPath;
+    public NodePath OpenModUrlButtonPath = null!;
 
     [Export]
-    public NodePath DisableAllModsButtonPath;
+    public NodePath DisableAllModsButtonPath = null!;
 
     [Export]
-    public NodePath EnableAllModsButtonPath;
+    public NodePath EnableAllModsButtonPath = null!;
 
     [Export]
-    public NodePath SelectedModInfoBoxPath;
+    public NodePath SelectedModInfoBoxPath = null!;
 
     [Export]
-    public NodePath SelectedModNamePath;
+    public NodePath SelectedModNamePath = null!;
 
     [Export]
-    public NodePath SelectedModIconPath;
+    public NodePath SelectedModIconPath = null!;
 
     [Export]
-    public NodePath SelectedModPreviewImagesContainerPath;
+    public NodePath SelectedModPreviewImagesContainerPath = null!;
 
     [Export]
-    public NodePath SelectedModGalleryContainerPath;
+    public NodePath SelectedModGalleryContainerPath = null!;
 
     [Export]
-    public NodePath SelectedModAuthorPath;
+    public NodePath SelectedModAuthorPath = null!;
 
     [Export]
-    public NodePath SelectedModVersionPath;
+    public NodePath SelectedModVersionPath = null!;
 
     [Export]
-    public NodePath SelectedModRecommendedThriveVersionPath;
+    public NodePath SelectedModRecommendedThriveVersionPath = null!;
 
     [Export]
-    public NodePath SelectedModMinimumThriveVersionPath;
+    public NodePath SelectedModMinimumThriveVersionPath = null!;
 
     [Export]
-    public NodePath SelectedModDescriptionPath;
+    public NodePath SelectedModDescriptionPath = null!;
 
     [Export]
-    public NodePath SelectedModFromWorkshopPath;
+    public NodePath SelectedModFromWorkshopPath = null!;
 
     [Export]
-    public NodePath ModErrorDialogPath;
+    public NodePath ModErrorDialogPath = null!;
 
     [Export]
-    public NodePath RestartRequiredPath;
+    public NodePath RestartRequiredPath = null!;
 
     [Export]
-    public NodePath ApplyChangesButtonPath;
+    public NodePath ApplyChangesButtonPath = null!;
 
     [Export]
-    public NodePath GalleryLeftButtonPath;
+    public NodePath GalleryLeftButtonPath = null!;
 
     [Export]
-    public NodePath GalleryRightButtonPath;
+    public NodePath GalleryRightButtonPath = null!;
 
     [Export]
-    public NodePath MoveModUpButtonPath;
+    public NodePath MoveModUpButtonPath = null!;
 
     [Export]
-    public NodePath MoveModDownButtonPath;
+    public NodePath MoveModDownButtonPath = null!;
 
     [Export]
-    public NodePath ResetButtonPath;
+    public NodePath ResetButtonPath = null!;
 
     [Export]
-    public NodePath DependencyButtonPath;
+    public NodePath DependencyButtonPath = null!;
 
     [Export]
-    public NodePath RequiredModsButtonPath;
+    public NodePath RequiredModsButtonPath = null!;
 
     [Export]
-    public NodePath IncompatibleButtonPath;
+    public NodePath IncompatibleButtonPath = null!;
 
     [Export]
-    public NodePath LoadOrderButtonPath;
+    public NodePath LoadOrderButtonPath = null!;
 
     [Export]
-    public NodePath CheckButtonPath;
+    public NodePath CheckButtonPath = null!;
 
     [Export]
-    public NodePath GalleryLabelPath;
+    public NodePath GalleryLabelPath = null!;
 
     [Export]
-    public NodePath UnAppliedChangesWarningPath;
+    public NodePath UnAppliedChangesWarningPath = null!;
 
     [Export]
-    public NodePath ModFullInfoPopupPath;
+    public NodePath ModFullInfoPopupPath = null!;
 
     [Export]
-    public NodePath FullInfoNamePath;
+    public NodePath FullInfoNamePath = null!;
 
     [Export]
-    public NodePath FullInfoInternalNamePath;
+    public NodePath FullInfoInternalNamePath = null!;
 
     [Export]
-    public NodePath FullInfoAuthorPath;
+    public NodePath FullInfoAuthorPath = null!;
 
     [Export]
-    public NodePath FullInfoVersionPath;
+    public NodePath FullInfoVersionPath = null!;
 
     [Export]
-    public NodePath FullInfoDescriptionPath;
+    public NodePath FullInfoDescriptionPath = null!;
 
     [Export]
-    public NodePath FullInfoLongDescriptionPath;
+    public NodePath FullInfoLongDescriptionPath = null!;
 
     [Export]
-    public NodePath FullInfoFromWorkshopPath;
+    public NodePath FullInfoFromWorkshopPath = null!;
 
     [Export]
-    public NodePath FullInfoIconFilePath;
+    public NodePath FullInfoIconFilePath = null!;
 
     [Export]
-    public NodePath FullInfoPreviewImagesFilePath;
+    public NodePath FullInfoPreviewImagesFilePath = null!;
 
     [Export]
-    public NodePath FullInfoInfoUrlPath;
+    public NodePath FullInfoInfoUrlPath = null!;
 
     [Export]
-    public NodePath FullInfoLicensePath;
+    public NodePath FullInfoLicensePath = null!;
 
     [Export]
-    public NodePath FullInfoRecommendedThrivePath;
+    public NodePath FullInfoRecommendedThrivePath = null!;
 
     [Export]
-    public NodePath FullInfoMinimumThrivePath;
+    public NodePath FullInfoMinimumThrivePath = null!;
 
     [Export]
-    public NodePath FullInfoMaximumThrivePath;
+    public NodePath FullInfoMaximumThrivePath = null!;
 
     [Export]
-    public NodePath FullInfoPckNamePath;
+    public NodePath FullInfoPckNamePath = null!;
 
     [Export]
-    public NodePath FullInfoModAssemblyPath;
+    public NodePath FullInfoModAssemblyPath = null!;
 
     [Export]
-    public NodePath FullInfoAssemblyModClassPath;
+    public NodePath FullInfoAssemblyModClassPath = null!;
 
     [Export]
-    public NodePath FullInfoDependenciesPath;
+    public NodePath FullInfoDependenciesPath = null!;
 
     [Export]
-    public NodePath FullInfoRequiredModsPath;
+    public NodePath FullInfoRequiredModsPath = null!;
 
     [Export]
-    public NodePath FullInfoLoadBeforePath;
+    public NodePath FullInfoLoadBeforePath = null!;
 
     [Export]
-    public NodePath FullInfoLoadAfterPath;
+    public NodePath FullInfoLoadAfterPath = null!;
 
     [Export]
-    public NodePath FullInfoIncompatibleModsPath;
+    public NodePath FullInfoIncompatibleModsPath = null!;
 
     [Export]
-    public NodePath FullInfoModConfigPath;
+    public NodePath FullInfoModConfigPath = null!;
 
     [Export]
-    public NodePath OpenWorkshopButtonPath;
+    public NodePath OpenWorkshopButtonPath = null!;
 
     [Export]
-    public NodePath ModUploaderButtonPath;
+    public NodePath ModUploaderButtonPath = null!;
 
     [Export]
-    public NodePath NewModGUIPath;
+    public NodePath NewModGUIPath = null!;
 
     [Export]
-    public NodePath ModCreateErrorDialogPath;
+    public NodePath ModCreateErrorDialogPath = null!;
 
     [Export]
-    public NodePath ModUploaderPath;
+    public NodePath ModUploaderPath = null!;
 
     [Export]
-    public NodePath SelectedModRecommendedThriveVersionContainerPath;
+    public NodePath SelectedModRecommendedThriveVersionContainerPath = null!;
 
     [Export]
-    public NodePath SelectedModMinimumThriveVersionContainerPath;
+    public NodePath SelectedModMinimumThriveVersionContainerPath = null!;
 
     [Export]
-    public NodePath SelectedModThriveVersionContainerPath;
+    public NodePath SelectedModThriveVersionContainerPath = null!;
 
     [Export]
-    public NodePath SelectedModThriveVersionHSeparatorPath;
+    public NodePath SelectedModThriveVersionHSeparatorPath = null!;
 
     [Export]
-    public NodePath ModCheckResultDialogPath;
+    public NodePath RestartRequiredPath = null!;
 
     [Export]
     public NodePath LoadWarningDialogPath;
@@ -250,102 +250,102 @@ public class ModManager : Control
 
     private readonly List<FullModDetails> validMods = new();
 
-    private List<FullModDetails> notEnabledMods;
-    private List<FullModDetails> enabledMods;
+    private List<FullModDetails>? notEnabledMods;
+    private List<FullModDetails>? enabledMods;
 
-    private Button leftArrow;
-    private Button rightArrow;
+    private Button leftArrow = null!;
+    private Button rightArrow = null!;
 
-    private ItemList availableModsContainer;
-    private ItemList enabledModsContainer;
-    private ItemList modErrorsContainer;
-    private ItemList configModContainer;
+    private ItemList availableModsContainer = null!;
+    private ItemList enabledModsContainer = null!;
+    private ItemList modErrorsContainer = null!;
+    private ItemList configModContainer = null!;
 
-    private Label errorInfoLabel;
+    private Label errorInfoLabel = null!;
 
-    private Button openModInfoButton;
-    private Button openModUrlButton;
-    private Button disableAllModsButton;
-    private Button enableAllModsButton;
-    private Button galleryLeftButton;
-    private Button galleryRightButton;
-    private Button resetButton;
-    private Button moveModUpButton;
-    private Button dependencyButton;
-    private Button requiredModsButton;
-    private Button incompatibleButton;
-    private Button loadOrderButton;
-    private Button checkButton;
-    private Button moveModDownButton;
-    private Button oneshotLoadingCheckbox;
+    private Button openModInfoButton = null!;
+    private Button openModUrlButton = null!;
+    private Button disableAllModsButton = null!;
+    private Button enableAllModsButton = null!;
+    private Button galleryLeftButton = null!;
+    private Button galleryRightButton = null!;
+    private Button resetButton = null!;
+    private Button moveModUpButton = null!;
+    private Button dependencyButton = null!;
+    private Button requiredModsButton = null!;
+    private Button incompatibleButton = null!;
+    private Button loadOrderButton = null!;
+    private Button checkButton = null!;
+    private Button moveModDownButton = null!;
+    private Button oneshotLoadingCheckbox = null!;
 
-    private Label galleryLabel;
-    private Label selectedModName;
-    private Label selectedFromWorkshop;
-    private TextureRect selectedModIcon;
-    private MarginContainer selectedModInfoBox;
-    private TabContainer selectedModPreviewImagesContainer;
-    private VBoxContainer selectedModGalleryContainer;
-    private VBoxContainer selectedModRecommendedThriveVersionContainer;
-    private VBoxContainer selectedModMinimumThriveVersionContainer;
-    private HBoxContainer selectedModThriveVersionContainer;
-    private Label selectedModAuthor;
-    private Label selectedModVersion;
-    private Label selectedModRecommendedThriveVersion;
-    private Label selectedModMinimumThriveVersion;
-    private RichTextLabel selectedModDescription;
-    private HSeparator selectedModThriveVersionHSeparator;
+    private Label galleryLabel = null!;
+    private Label selectedModName = null!;
+    private Label selectedFromWorkshop = null!;
+    private TextureRect selectedModIcon = null!;
+    private MarginContainer selectedModInfoBox = null!;
+    private TabContainer selectedModPreviewImagesContainer = null!;
+    private VBoxContainer selectedModGalleryContainer = null!;
+    private VBoxContainer selectedModRecommendedThriveVersionContainer = null!;
+    private VBoxContainer selectedModMinimumThriveVersionContainer = null!;
+    private HBoxContainer selectedModThriveVersionContainer = null!;
+    private Label selectedModAuthor = null!;
+    private Label selectedModVersion = null!;
+    private Label selectedModRecommendedThriveVersion = null!;
+    private Label selectedModMinimumThriveVersion = null!;
+    private RichTextLabel selectedModDescription = null!;
+    private HSeparator selectedModThriveVersionHSeparator = null!;
 
-    private Button applyChangesButton;
+    private Button applyChangesButton = null!;
 
-    private CustomDialog unAppliedChangesWarning;
-    private CustomConfirmationDialog modCheckResultDialog;
-    private CustomConfirmationDialog loadWarningDialog;
-    private CustomConfirmationDialog otherModInfoDialog;
+    private CustomDialog unAppliedChangesWarning = null!;
+    private CustomConfirmationDialog modCheckResultDialog = null!;
+    private CustomConfirmationDialog loadWarningDialog = null!;
+    private CustomConfirmationDialog otherModInfoDialog = null!;
 
-    private CustomDialog modFullInfoPopup;
-    private Label fullInfoName;
-    private Label fullInfoInternalName;
-    private Label fullInfoAuthor;
-    private Label fullInfoVersion;
-    private Label fullInfoDescription;
-    private Label fullInfoLongDescription;
-    private Label fullInfoFromWorkshop;
-    private Label fullInfoIconFile;
-    private Label fullInfoPreviewImagesFile;
-    private Label fullInfoInfoUrl;
-    private Label fullInfoLicense;
-    private Label fullInfoRecommendedThrive;
-    private Label fullInfoMinimumThrive;
-    private Label fullInfoMaximumThrive;
-    private Label fullInfoPckName;
-    private Label fullInfoModAssembly;
-    private Label fullInfoAssemblyModClass;
-    private Label fullInfoDependencies;
-    private Label fullInfoRequiredMods;
-    private Label fullInfoLoadBefore;
-    private Label fullInfoLoadAfter;
-    private Label fullInfoIncompatibleMods;
-    private Label fullInfoModConfig;
+    private CustomDialog modFullInfoPopup = null!;
+    private Label fullInfoName = null!;
+    private Label fullInfoInternalName = null!;
+    private Label fullInfoAuthor = null!;
+    private Label fullInfoVersion = null!;
+    private Label fullInfoDescription = null!;
+    private Label fullInfoLongDescription = null!;
+    private Label fullInfoFromWorkshop = null!;
+    private Label fullInfoIconFile = null!;
+    private Label fullInfoPreviewImagesFile = null!;
+    private Label fullInfoInfoUrl = null!;
+    private Label fullInfoLicense = null!;
+    private Label fullInfoRecommendedThrive = null!;
+    private Label fullInfoMinimumThrive = null!;
+    private Label fullInfoMaximumThrive = null!;
+    private Label fullInfoPckName = null!;
+    private Label fullInfoModAssembly = null!;
+    private Label fullInfoAssemblyModClass = null!;
+    private Label fullInfoDependencies = null!;
+    private Label fullInfoRequiredMods = null!;
+    private Label fullInfoLoadBefore = null!;
+    private Label fullInfoLoadAfter = null!;
+    private Label fullInfoIncompatibleMods = null!;
+    private Label fullInfoModConfig = null!;
 
-    private Button openWorkshopButton;
-    private Button modUploaderButton;
+    private Button openWorkshopButton = null!;
+    private Button modUploaderButton = null!;
 
-    private BoxContainer configContainer;
-    private MarginContainer configPanelContainer;
-    private TabContainer modLoaderContainer;
+    private BoxContainer configContainer = null!;
+    private MarginContainer configPanelContainer = null!;
+    private TabContainer modLoaderContainer = null!;
 
-    private NewModGUI newModGUI;
+    private NewModGUI newModGUI = null!;
 
-    private ErrorDialog modCreateErrorDialog;
+    private ErrorDialog modCreateErrorDialog = null!;
 
-    private ModUploader modUploader;
+    private ModUploader modUploader = null!;
 
-    private ErrorDialog modErrorDialog;
+    private ErrorDialog modErrorDialog = null!;
 
-    private CustomDialog restartRequired;
+    private CustomDialog restartRequired = null!;
 
-    private FullModDetails selectedMod;
+    private FullModDetails? selectedMod = null!;
 
     /// <summary>
     ///   Used to automatically refresh this object when it becomes visible after being invisible
@@ -360,7 +360,7 @@ public class ModManager : Control
     /// </summary>
     /// <param name="folder">Folder to load from</param>
     /// <returns>The info object if the info was valid, null otherwise</returns>
-    public static ModInfo LoadModInfo(string folder)
+    public static ModInfo? LoadModInfo(string folder)
     {
         var infoFile = Path.Combine(folder, Constants.MOD_INFO_FILE_NAME);
 
@@ -382,13 +382,13 @@ public class ModManager : Control
     /// </summary>
     /// <param name="mod">Mod to load the icon for</param>
     /// <returns>The loaded icon or null if mod doesn't have icon set</returns>
-    public static Texture LoadModIcon(FullModDetails mod)
+    public static Texture? LoadModIcon(FullModDetails mod)
     {
-        if (string.IsNullOrEmpty(mod.Info?.Icon))
+        if (string.IsNullOrEmpty(mod.Info.Icon))
             return null;
 
         var image = new Image();
-        image.Load(Path.Combine(mod.Folder, mod.Info.Icon));
+        image.Load(Path.Combine(mod.Folder, mod.Info.Icon!));
 
         var texture = new ImageTexture();
         texture.CreateFromImage(image);
@@ -406,13 +406,14 @@ public class ModManager : Control
     ///   If <see cref="throwOnError"/> is specified this is thrown if extra validation fails
     /// </exception>
     /// <exception cref="JsonException">Thrown if JSON parsing or JSON validation fails</exception>
-    public static ModInfo ParseModInfoString(string data, bool throwOnError)
+    public static ModInfo? ParseModInfoString(string data, bool throwOnError)
     {
         ModInfo info;
 
         try
         {
-            info = JsonSerializer.Create().Deserialize<ModInfo>(new JsonTextReader(new StringReader(data)));
+            info = JsonSerializer.Create().Deserialize<ModInfo>(new JsonTextReader(new StringReader(data))) ??
+                throw new JsonException("Deserialized mod info is null");
         }
         catch (JsonException e)
         {
@@ -461,9 +462,9 @@ public class ModManager : Control
     /// <exception cref="ArgumentException">On invalid info if <see cref="throwOnError"/> is true</exception>
     public static bool ValidateModInfo(ModInfo info, bool throwOnError)
     {
-        if (!string.IsNullOrEmpty(info?.Icon))
+        if (!string.IsNullOrEmpty(info.Icon))
         {
-            if (!IsAllowedModPath(info.Icon))
+            if (!IsAllowedModPath(info.Icon!))
             {
                 if (throwOnError)
                 {
@@ -475,7 +476,7 @@ public class ModManager : Control
             }
         }
 
-        if (info?.InfoUrl != null)
+        if (info.InfoUrl != null)
         {
             if (info.InfoUrl.Scheme != "http" && info.InfoUrl.Scheme != "https")
             {
@@ -489,7 +490,7 @@ public class ModManager : Control
             }
         }
 
-        if (info?.ModAssembly != null && info.AssemblyModClass == null)
+        if (info.ModAssembly != null && info.AssemblyModClass == null)
         {
             if (throwOnError)
             {
@@ -759,6 +760,9 @@ public class ModManager : Control
 
     private void RefreshAvailableMods()
     {
+        if (notEnabledMods == null || enabledMods == null)
+            throw new InvalidOperationException("The mod manager was not opened yet");
+
         if (availableModsContainer.IsAnythingSelected())
         {
             selectedMod = null;
@@ -935,7 +939,7 @@ public class ModManager : Control
 
     private bool IsModEnabled(FullModDetails mod)
     {
-        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName) || enabledMods.Contains(mod);
+        return Settings.Instance.EnabledMods.Value.Contains(mod.InternalName) || enabledMods!.Contains(mod);
     }
 
     private void UpdateSelectedModInfo()
@@ -1123,8 +1127,7 @@ public class ModManager : Control
                 isCompatibleVersion = -2;
             }
 
-            result.Add(new FullModDetails(name)
-                { Folder = modFolder, Info = info, IsCompatibleVersion = isCompatibleVersion });
+            result.Add(new FullModDetails(name, modFolder, info) { IsCompatibleVersion = isCompatibleVersion });
         }
 
         var previousLength = result.Count;
@@ -1222,7 +1225,7 @@ public class ModManager : Control
             // TODO: show a warning popup that can be permanently dismissed
         }
 
-        Texture icon = null;
+        Texture? icon = null;
 
         foreach (var index in availableModsContainer.GetSelectedItems())
         {
@@ -1237,8 +1240,8 @@ public class ModManager : Control
                 selectedMod.Info.Description ?? selectedMod.InternalName);
         }
 
-        notEnabledMods.Remove(selectedMod);
-        enabledMods.Add(selectedMod);
+        notEnabledMods!.Remove(selectedMod);
+        enabledMods!.Add(selectedMod);
 
         OnModChangedLists();
     }
@@ -1253,7 +1256,7 @@ public class ModManager : Control
             return;
         }
 
-        Texture icon = null;
+        Texture? icon = null;
 
         foreach (var index in enabledModsContainer.GetSelectedItems())
         {
@@ -1268,8 +1271,8 @@ public class ModManager : Control
                 selectedMod.Info.Description ?? selectedMod.InternalName);
         }
 
-        enabledMods.Remove(selectedMod);
-        notEnabledMods.Add(selectedMod);
+        enabledMods!.Remove(selectedMod);
+        notEnabledMods!.Add(selectedMod);
 
         OnModChangedLists();
     }
@@ -1277,6 +1280,12 @@ public class ModManager : Control
     private void DisableAllPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
+        if (notEnabledMods == null || enabledMods == null)
+        {
+            GD.PrintErr("Can't disable all as the mod manager was not opened yet");
+            return;
+        }
+
         if (enabledModsContainer.IsAnythingSelected())
         {
             selectedMod = null;
@@ -1343,18 +1352,25 @@ public class ModManager : Control
     {
         applyChangesButton.Disabled =
             Settings.Instance.EnabledMods.Value.ToList()
-                .SequenceEqual(enabledMods.Select(m => m.InternalName));
+                .SequenceEqual(enabledMods!.Select(m => m.InternalName));
 
         var isEnabledModsEmpty = enabledMods.Count < 1;
         resetButton.Disabled = isEnabledModsEmpty;
         checkButton.Disabled = isEnabledModsEmpty;
         disableAllModsButton.Disabled = isEnabledModsEmpty;
 
-        enableAllModsButton.Disabled = notEnabledMods.Count < 1;
+        disableAllModsButton.Disabled = enabledMods!.Count < 1;
+        enableAllModsButton.Disabled = notEnabledMods!.Count < 1;
     }
 
     private void ApplyChanges()
     {
+        if (notEnabledMods == null || enabledMods == null)
+        {
+            GD.PrintErr("Can't apply changes as the mod manager was not opened yet");
+            return;
+        }
+
         var checkResult = ModLoader.IsValidModList(enabledMods);
         if (checkResult.ErrorType >= 0)
         {
@@ -1532,9 +1548,9 @@ public class ModManager : Control
 
     private void OpenInfoUrlPressed()
     {
-        if (selectedMod?.Info == null)
+        if (selectedMod?.Info.InfoUrl == null)
         {
-            GD.PrintErr("No mod is selected");
+            GD.PrintErr("No mod is selected or it has no info url");
             return;
         }
 
@@ -1939,7 +1955,7 @@ public class ModManager : Control
         fullInfoVersion.Text = info.Version;
         fullInfoDescription.Text = info.Description;
         fullInfoLongDescription.Text = info.LongDescription;
-        fullInfoFromWorkshop.Text = selectedMod.Workshop ?
+        fullInfoFromWorkshop.Text = selectedMod!.Workshop ?
             TranslationServer.Translate("THIS_IS_WORKSHOP_MOD") :
             TranslationServer.Translate("THIS_IS_LOCAL_MOD");
         fullInfoIconFile.Text = info.Icon;
@@ -2116,9 +2132,7 @@ public class ModManager : Control
         try
         {
             parsedData = JsonSerializer.Create()
-                .Deserialize<FullModDetails>(new JsonTextReader(new StringReader(data)));
-
-            if (parsedData == null)
+                    .Deserialize<FullModDetails>(new JsonTextReader(new StringReader(data))) ??
                 throw new Exception("deserialized value is null");
         }
         catch (Exception e)

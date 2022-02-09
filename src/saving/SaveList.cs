@@ -23,55 +23,55 @@ public class SaveList : ScrollContainer
     public bool LoadableItems = true;
 
     [Export]
-    public NodePath LoadingItemPath;
+    public NodePath LoadingItemPath = null!;
 
     [Export]
-    public NodePath NoSavesItemPath;
+    public NodePath NoSavesItemPath = null!;
 
     [Export]
-    public NodePath SavesListPath;
+    public NodePath SavesListPath = null!;
 
     [Export]
-    public NodePath DeleteConfirmDialogPath;
+    public NodePath DeleteConfirmDialogPath = null!;
 
     [Export]
-    public NodePath LoadNewerSaveDialogPath;
+    public NodePath LoadNewerSaveDialogPath = null!;
 
     [Export]
-    public NodePath LoadOlderSaveDialogPath;
+    public NodePath LoadOlderSaveDialogPath = null!;
 
     [Export]
-    public NodePath LoadInvalidSaveDialogPath;
+    public NodePath LoadInvalidSaveDialogPath = null!;
 
     [Export]
-    public NodePath LoadIncompatibleDialogPath;
+    public NodePath LoadIncompatibleDialogPath = null!;
 
     [Export]
-    public NodePath UpgradeSaveDialogPath;
+    public NodePath UpgradeSaveDialogPath = null!;
 
     [Export]
-    public NodePath UpgradeFailedDialogPath;
+    public NodePath UpgradeFailedDialogPath = null!;
 
-    private Control loadingItem;
-    private Control noSavesItem;
-    private BoxContainer savesList;
-    private CustomConfirmationDialog deleteConfirmDialog;
-    private CustomConfirmationDialog loadNewerConfirmDialog;
-    private CustomConfirmationDialog loadOlderConfirmDialog;
-    private CustomConfirmationDialog loadInvalidConfirmDialog;
-    private CustomConfirmationDialog loadIncompatibleDialog;
-    private CustomConfirmationDialog upgradeSaveDialog;
-    private ErrorDialog upgradeFailedDialog;
+    private Control loadingItem = null!;
+    private Control noSavesItem = null!;
+    private BoxContainer savesList = null!;
+    private CustomConfirmationDialog deleteConfirmDialog = null!;
+    private CustomConfirmationDialog loadNewerConfirmDialog = null!;
+    private CustomConfirmationDialog loadOlderConfirmDialog = null!;
+    private CustomConfirmationDialog loadInvalidConfirmDialog = null!;
+    private CustomConfirmationDialog loadIncompatibleDialog = null!;
+    private CustomConfirmationDialog upgradeSaveDialog = null!;
+    private ErrorDialog upgradeFailedDialog = null!;
 
-    private PackedScene listItemScene;
+    private PackedScene listItemScene = null!;
 
     private bool refreshing;
     private bool refreshedAtLeastOnce;
 
-    private Task<List<string>> readSavesList;
+    private Task<List<string>>? readSavesList;
 
-    private string saveToBeDeleted;
-    private string saveToBeLoaded;
+    private string? saveToBeDeleted;
+    private string? saveToBeLoaded;
     private bool suppressSaveUpgradeClose;
 
     private bool wasVisible;
@@ -120,7 +120,7 @@ public class SaveList : ScrollContainer
         if (!refreshing)
             return;
 
-        if (!readSavesList.IsCompleted)
+        if (!readSavesList!.IsCompleted)
             return;
 
         var saves = readSavesList.Result;
@@ -214,6 +214,12 @@ public class SaveList : ScrollContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        if (saveToBeDeleted == null)
+        {
+            GD.PrintErr("Save to confirm delete is null");
+            return;
+        }
+
         GD.Print("Deleting save: ", saveToBeDeleted);
         SaveHelper.DeleteSave(saveToBeDeleted);
         saveToBeDeleted = null;
@@ -273,6 +279,13 @@ public class SaveList : ScrollContainer
     private void OnAcceptSaveUpgrade()
     {
         suppressSaveUpgradeClose = true;
+
+        if (saveToBeLoaded == null)
+        {
+            GD.PrintErr("Save to upgrade is null");
+            return;
+        }
+
         GD.Print("Save upgrade accepted by user on: ", saveToBeLoaded);
 
         var saveToUpgrade = saveToBeLoaded;
@@ -323,6 +336,12 @@ public class SaveList : ScrollContainer
                 }
                 else
                 {
+                    if (saveToBeLoaded == null)
+                    {
+                        GD.PrintErr("Save to load after upgrade is null");
+                        return;
+                    }
+
                     OnOldSaveLoaded(saveToBeLoaded);
                 }
             }
@@ -347,6 +366,12 @@ public class SaveList : ScrollContainer
 
     private void LoadSave()
     {
+        if (saveToBeLoaded == null)
+        {
+            GD.PrintErr("Save to load is null");
+            return;
+        }
+
         SaveHelper.LoadSave(saveToBeLoaded);
         saveToBeLoaded = null;
     }
