@@ -244,7 +244,7 @@ public class ModLoader : Node
             };
         }
 
-        if (currentModInfo?.Dependencies != null)
+        if (currentModInfo.Dependencies != null)
         {
             var dependencyIndex = 0;
             foreach (string dependencyName in currentModInfo.Dependencies)
@@ -390,7 +390,7 @@ public class ModLoader : Node
 
     public void LoadMods()
     {
-        var newMods = Settings.Instance.EnabledMods.Value?.ToHashSet();
+        var newMods = Settings.Instance.EnabledMods.Value.ToHashSet();
 
         foreach (var unload in loadedMods.ToList())
         {
@@ -465,7 +465,7 @@ public class ModLoader : Node
 
         bool loadedSomething = false;
 
-        if (!string.IsNullOrEmpty(info.Info?.PckToLoad) && info.Folder != null &&
+        if (!string.IsNullOrEmpty(info.Info.PckToLoad) && info.Folder != null &&
             info.Info?.PckToLoad != null && FileHelpers.ExistsCaseSensitive(Path.Combine(info.Folder, info.Info?.PckToLoad)))
         {
             LoadPckFile(Path.Combine(info.Folder, info.Info?.PckToLoad ?? string.Empty));
