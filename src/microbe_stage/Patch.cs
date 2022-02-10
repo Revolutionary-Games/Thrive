@@ -277,7 +277,7 @@ public class PatchSnapshot : ICloneable
     public double TimePeriod;
 
     public Dictionary<Species, long> SpeciesInPatch = new();
-    public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>();
+    public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new();
 
     public BiomeConditions Biome;
 

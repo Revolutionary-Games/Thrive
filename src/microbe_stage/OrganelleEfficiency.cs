@@ -12,6 +12,5 @@ public class OrganelleEfficiency
 
     public OrganelleDefinition Organelle { get; }
 
-    public List<ProcessSpeedInformation> Processes { get; } =
-        new List<ProcessSpeedInformation>();
+    public List<ProcessSpeedInformation> Processes { get; } = new();
 }

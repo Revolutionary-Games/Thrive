@@ -20,7 +20,7 @@ public class PatchMapDrawer : Control
     public float PatchNodeHeight = 64.0f;
 
     [Export]
-    public Color ConnectionColour = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    public Color ConnectionColour = new(1.0f, 1.0f, 1.0f, 1.0f);
 
     private readonly List<PatchMapNode> nodes = new();
 

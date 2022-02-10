@@ -10,7 +10,7 @@ public class ActionHistory<T>
     where T : ReversibleAction
 {
     [JsonProperty]
-    private List<T> actions = new List<T>();
+    private List<T> actions = new();
 
     /// <summary>
     ///   marks the last action that has been done (not undone, but

@@ -14,10 +14,9 @@ using Thread = System.Threading.Thread;
 public class TaskExecutor
 #pragma warning restore CA1001
 {
-    private static readonly TaskExecutor SingletonInstance = new TaskExecutor();
+    private static readonly TaskExecutor SingletonInstance = new();
 
-    private readonly BlockingCollection<ThreadCommand> queuedTasks =
-        new BlockingCollection<ThreadCommand>();
+    private readonly BlockingCollection<ThreadCommand> queuedTasks = new();
 
     private bool running = true;
     private int currentThreadCount;

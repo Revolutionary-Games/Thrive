@@ -95,7 +95,7 @@ public class Biome : IRegistryType
         /// <summary>
         ///   Colour of the light
         /// </summary>
-        public Color Colour = new Color(1, 1, 1, 1);
+        public Color Colour = new(1, 1, 1, 1);
 
         /// <summary>
         ///   Strength of the light

@@ -33,7 +33,7 @@ public class TransitionManager : NodeWithInput
     /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
-    public List<ITransition> TransitionSequence { get; } = new List<ITransition>();
+    public List<ITransition> TransitionSequence { get; } = new();
 
     public bool HasQueuedTransitions => TransitionSequence.Count > 0;
 

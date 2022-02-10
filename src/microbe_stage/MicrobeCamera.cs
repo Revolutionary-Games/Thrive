@@ -62,7 +62,7 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     private ShaderMaterial materialToUpdate = null!;
 
-    private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
+    private Vector3 cursorWorldPos = new(0, 0, 0);
     private bool cursorDirty = true;
 
     /// <summary>

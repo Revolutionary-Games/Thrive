@@ -426,7 +426,7 @@ public class Membrane : MeshInstance
     private void InitializeMesh()
     {
         // For preview scenes, add just one organelle
-        OrganellePositions ??= new List<Vector2> { new Vector2(0, 0) };
+        OrganellePositions ??= new List<Vector2> { new(0, 0) };
 
         foreach (var pos in OrganellePositions)
         {
