@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2022-02-10 06:38+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -771,15 +771,18 @@ msgid "CHEMORECEPTOR"
 msgstr "Kemoreseptör"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "Durduruldu."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "Bitti."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "Çalışmıyor."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -795,16 +798,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} popülasyonu {1} defa değişti çünkü: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "popülasyon:"
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "Toplam Popülasyon:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "{0} arazisinde nesli tükendi"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "önceki:"
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "Tür:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -823,7 +828,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "bazı arazilerdeki popülasyonlar, yeni türler oluşturmak için ayrıldı {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "mutasyona sahip"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -831,7 +837,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen kodu:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "yayıldığı araziler:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -839,8 +846,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0}: {1} popülasyon {2} adlı araziden göç etti"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "arazilerdeki popülasyon:"
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3182,8 +3190,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr "{0}: {1} popülasyonla"
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "Tür Popülasyonu"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3730,7 +3739,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kayıttan objeler oluşturuluyor"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3746,7 +3756,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Yüklenen objeler işleniyor"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Yüklenen objeleri işlerken bir sorun oluştu"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3762,8 +3773,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "Kaydediliyor..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "Oluşturuluyor..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3774,7 +3786,8 @@ msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3798,12 +3811,16 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Mevcut kaydın üzerine yaz:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Mevcut kaydın üzerine yazılsın mı?"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "Mevcut kaydın üzerine yaz:"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "Kaydetme başarısız! Bir sorun oluştu"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+"Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:\n"
+"{0}"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3842,15 +3859,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "Hiçbir Kayıt Bulunamadı"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
-msgstr "Yükleniyor..."
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
+msgstr "Karşıya Yükleniyor..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Bu Kayıt silinsin mi?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Uyumsuz kayıt yüklensin mi?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3868,7 +3888,8 @@ msgstr ""
 "Yine de kaydı yüklemeyi denemek ister misin?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Geçersiz kayıt yüklensin mi?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3879,7 +3900,8 @@ msgstr ""
 "Yine de kaydı yüklemeyi denemek ister misin?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Seçilen kayıt uyumsuz"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3890,7 +3912,8 @@ msgstr ""
 "Thrive hala yapım aşamasında olduğu için kayıt uyumluluğu bu aşamada büyük bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt yükseltici bulunmuyor."
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Seçilen kayıt yükseltilebilir"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3901,11 +3924,11 @@ msgstr ""
 "Eğer yükseltme işlemini atlarsan, kayıt normal bir şekilde yüklenmeye çalışılacak.\n"
 "Bu kayıt yükseltilmeye çalışılsın mı?"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Kayıt yükseltme başarısız"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:\n"
@@ -3922,16 +3945,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "Tür:"
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "HP:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Açıklama:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "Sürüm:"
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "Kuşak:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -3945,7 +3970,7 @@ msgstr "Oluşturulduğu Platform:"
 msgid "LOAD"
 msgstr "Yükle"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Bu kaydı silme işlemi geri alınamaz, kaydı kalıcı olarak silmek istediğinden emin misin?"
 
@@ -3985,11 +4010,13 @@ msgid "SELECTED_COLON"
 msgstr "Seçilen:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Seçili Kayıtlar silinsin mi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Eski Kayıtlar silinsin mi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4090,28 +4117,30 @@ msgstr ""
 "Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Bu arazi haritası.\n"
-"Burada mikropların yaşayabileceği farklı arazileri görebilirsin.\n"
-"Mevcut olduğun arazi vurgulanmış durumda.\n"
-"Farenle arazilere tıklayıp seçerek sağ tarafta detaylarını görüntüleyebilirsin.\n"
+"Mikrop Editörü'ne hoşgeldin.\n"
+"Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Eğer mevcut olduğun arazinin yanındaki bir araziyi seçersen, o araziye gitmek için sağdaki butona basabilirsin. Bu senin türüne ait popülasyonun yeni arazilere yayılmasını sağlar.\n"
+"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel değişiklikleri görebilirsin.\n"
 "\n"
-"Devam etmek için bir arazi seç."
+"Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Bu hücre editörü. Burada mutasyon puanları (MP) harcayarak türüne organeller ekleyebilir veya organelleri kaldırabilirsin.\n"
+"Mikrop Editörü'ne hoşgeldin.\n"
+"Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
 "\n"
-"Ayrıca hücre editörünün diğer sekmelerinde türünün başka özelliklerini değiştirebilirsin.\n"
+"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel değişiklikleri görebilirsin.\n"
 "\n"
-"Devam etmek için, soldaki panelden bir organel seç (sitoplazma iyi bir seçim). Sonra türüne seçtiğin organeli eklemek için ekranın ortasında bulunan altıgenin yanına sol tıkla."
+"Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Organeller mevcut mutasyon sürecinde yerleştirilmediyse, onları kaldırmak MP'ye mal olur çünkü bu, türünde mutasyona neden olur.\n"
 "\n"
@@ -4122,7 +4151,8 @@ msgstr ""
 "Devam etmek için geri al butonuna bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Hangi organelleri ekleyeceğini seçerken, organellerin ne tür işlemler yaptığını, ne tür bileşikler kullandığını ve ürettiğini gösteren araç ipuçlarına dikkat et.\n"
 "\n"
@@ -4133,7 +4163,8 @@ msgstr ""
 "Devam etmek için yinele butonuna (geri al butonuna yakın) bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Bunlar türünü düzenlerken bilmen gereken önemli noktalar. Daha fazlası için hücre editörünün diğer sekmelerini inceleyebilirsin.\n"
 "\n"
@@ -4148,7 +4179,8 @@ msgid "GOT_IT"
 msgstr "Anladım"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Bu panel, senin gelecek popülasyonunun tahminini gösterir. Bu rakamlar, oto-evrimin popülasyon simülasyonundan gelir.\n"
 "\n"
@@ -4159,7 +4191,8 @@ msgstr ""
 "Paneldeki soru işaretli butona basarak tahminin ardındaki detaylı bilgiyi inceleyebilirsin. Devam etmek için bu butona bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Bir ya da iki enerji kaynağına odaklanmalısın. Böylece hayatta kalmak için, bütün kaynaklara ihtiyaç duymadan, yeterli ATP üretebilirsin.\n"
 "\n"
@@ -4209,13 +4242,15 @@ msgstr ""
 "ATP üretmek için yeterli glukoz topladığından emin ol."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün organellerini ikiye katlaman gerekir.\n"
 "Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki göstergeye bak."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Hücrenin bölünmesi için yeterince kaynak topladın.\n"
 "\n"
@@ -4224,22 +4259,77 @@ msgstr ""
 "Editöre girmek için sağ altta yanıp sönen editör butonuna bas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Bağ çözme moduna girdin. Bu modda, bağını çözmek istediğin koloni üyelerine tıklayabilirsin.\n"
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin bağını çöz\" tuşuna basabilirsin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Eğer hala oyun mekaniği ile ilgili sıkıntı yaşıyorsan, yardım menüsünü incele. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsin.\n"
 "\n"
 "Bir ipucu daha: Fare tekeri ile görüş alanını uzaklaştırabilirsin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr "Şimdi İncele"
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "Oyun Rehberi"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "Yükleniyor..."
+
+#~ msgid "POPULATION"
+#~ msgstr "popülasyon:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "önceki:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "arazilerdeki popülasyon:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0}: {1} popülasyonla"
+
+#~ msgid "SAVING"
+#~ msgstr "Kaydediliyor..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Mevcut kaydın üzerine yazılsın mı?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "Kaydetme başarısız! Bir sorun oluştu"
+
+#~ msgid "TYPE"
+#~ msgstr "Tür:"
+
+#~ msgid "VERSION"
+#~ msgstr "Sürüm:"
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "Bu arazi haritası.\n"
+#~ "Burada mikropların yaşayabileceği farklı arazileri görebilirsin.\n"
+#~ "Mevcut olduğun arazi vurgulanmış durumda.\n"
+#~ "Farenle arazilere tıklayıp seçerek sağ tarafta detaylarını görüntüleyebilirsin.\n"
+#~ "\n"
+#~ "Eğer mevcut olduğun arazinin yanındaki bir araziyi seçersen, o araziye gitmek için sağdaki butona basabilirsin. Bu senin türüne ait popülasyonun yeni arazilere yayılmasını sağlar.\n"
+#~ "\n"
+#~ "Devam etmek için bir arazi seç."
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Bu hücre editörü. Burada mutasyon puanları (MP) harcayarak türüne organeller ekleyebilir veya organelleri kaldırabilirsin.\n"
+#~ "\n"
+#~ "Ayrıca hücre editörünün diğer sekmelerinde türünün başka özelliklerini değiştirebilirsin.\n"
+#~ "\n"
+#~ "Devam etmek için, soldaki panelden bir organel seç (sitoplazma iyi bir seçim). Sonra türüne seçtiğin organeli eklemek için ekranın ortasında bulunan altıgenin yanına sol tıkla."
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "Şimdi İncele"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

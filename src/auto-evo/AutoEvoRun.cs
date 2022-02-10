@@ -119,13 +119,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return TranslationServer.Translate("ABORTED");
+                return TranslationServer.Translate("ABORTED_DOT");
 
             if (Finished)
-                return TranslationServer.Translate("FINISHED");
+                return TranslationServer.Translate("FINISHED_DOT");
 
             if (!Running)
-                return TranslationServer.Translate("NOT_RUNNING");
+                return TranslationServer.Translate("NOT_RUNNING_DOT");
 
             int total = totalSteps;
 

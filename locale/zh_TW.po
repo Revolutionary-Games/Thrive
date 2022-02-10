@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2022-01-30 12:44+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -771,15 +771,18 @@ msgid "CHEMORECEPTOR"
 msgstr "化學感受器"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "取消。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "完成。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "沒有運行。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -795,16 +798,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "原{0}人口變動了{1}，原因：{2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "人口："
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "總人口："
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "在 {0} 中滅絕"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "先前："
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "物種："
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -823,7 +828,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "在一些地區的種群分支成了新的物種{0}："
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "發生突變"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -831,7 +837,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "基因密碼："
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "傳播到的區域："
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -839,8 +846,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "由區域{2}派出{1}個生物擴散到：{0}"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "區域中的人口："
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3183,8 +3191,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米處"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr "{0} 人口： {1}"
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "物種人口"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3731,7 +3740,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "從存檔中建立物體"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加載存檔數據時發生異常"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3747,7 +3757,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "處理載入的物體中"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "處理已載入對象時發生異常"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3763,8 +3774,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". 未能釋放已加載的資源：{0}"
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "存檔中..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "創建中……"
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3775,7 +3787,8 @@ msgid "ERROR_SAVING"
 msgstr "存檔時出錯"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目標文件名{0}已存在。確定要覆蓋嗎？"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3799,12 +3812,16 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "覆寫現有的存檔："
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "覆寫現有的存檔？"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "覆寫現有的存檔："
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "存檔失敗！發生了一個異常"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+"更新此存檔失敗，錯誤：\n"
+"{0}"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3843,15 +3860,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "未找到存檔"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
-msgstr "加載中..."
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
+msgstr "上傳中……"
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "刪除這個存檔嗎?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "載入不兼容的存檔？"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3869,7 +3889,8 @@ msgstr ""
 "你確定要強行載入這個存檔嗎？"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "載入無效的存檔？"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3880,7 +3901,8 @@ msgstr ""
 "你確定要強行載入這個存檔嗎？"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "選取的存檔不兼容"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3891,7 +3913,8 @@ msgstr ""
 "由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "選取的存檔無法更新"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3902,11 +3925,11 @@ msgstr ""
 "如果你想跳過此更新的話，遊戲會嘗試直接加載存檔。\n"
 "要更新此存檔嗎？"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "存檔更新失敗"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "更新此存檔失敗，錯誤：\n"
@@ -3923,16 +3946,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "類型："
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "生命值："
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "描述："
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "版本："
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "世代："
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -3946,7 +3971,7 @@ msgstr "創建平台："
 msgid "LOAD"
 msgstr "加載"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "刪除此存檔將無法撤消，確定要永久刪除嗎？"
 
@@ -3986,11 +4011,13 @@ msgid "SELECTED_COLON"
 msgstr "選取的："
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "刪除被選取的存檔嗎？"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "刪除舊存檔嗎？"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4091,28 +4118,30 @@ msgstr ""
 "要進入下一個編輯器選項卡，請按右下角的下一個按鈕。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"這裡是地區地圖。\n"
-"在這裡你可以看見微生物可以生存的不同地區。\n"
-"你目前的地區會被高光顯示。\n"
-"你可以點擊這些地區並從屏幕右方看見它們的詳細資料。\n"
+"歡迎來到微生物編輯器。\n"
+"在這裡，你可以回顧自遊戲開始或上一次進入編輯器以來發生的狀況。並對你的物種進行更改。\n"
 "\n"
-"如果你選擇一個緊接著你目前位置的地區，你可以通過屏幕右邊的按鈕來移動到那個地區。這將允許你的生物散播到新的地區。\n"
+"在這個選項卡中，你可以看到有哪些物種存在，在哪裡，以及它們的種群數量的報告。你還可以在頂部看到環境變化。\n"
 "\n"
-"選擇一個地區以繼續。"
+"要進入下一個編輯器選項卡，請按右下角的下一個按鈕。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"這裡是你的細胞編輯器，你可以在這通過花費變異點來添加或移除細胞器。\n"
+"歡迎來到微生物編輯器。\n"
+"在這裡，你可以回顧自遊戲開始或上一次進入編輯器以來發生的狀況。並對你的物種進行更改。\n"
 "\n"
-"你還可以在細胞編輯器裡修改你的物種的其它屬性。\n"
+"在這個選項卡中，你可以看到有哪些物種存在，在哪裡，以及它們的種群數量的報告。你還可以在頂部看到環境變化。\n"
 "\n"
-"想要繼續的話，從左側面板選中一個細胞器（細胞質是個好選擇）。然後再點擊右側面板中央附近的六角格以將此細胞器放入你的物種中。"
+"要進入下一個編輯器選項卡，請按右下角的下一個按鈕。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "移除細胞器也需要消耗變異點，除非這些細胞器是在當代內添加的。\n"
 "\n"
@@ -4123,7 +4152,8 @@ msgstr ""
 "按撤銷按鈕以繼續。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "在選擇添加哪些細胞器時，要注意細胞器的工具提示，了解它們的哪些過程以及它們使用和產生哪些化合物。\n"
 "\n"
@@ -4134,7 +4164,8 @@ msgstr ""
 "按重做鍵（靠近撤銷鍵）繼續。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "這些是編輯你的物種的基本知識。你可以查看其他單元格編輯器標籤，以獲得更多的選項。\n"
 "\n"
@@ -4149,7 +4180,8 @@ msgid "GOT_IT"
 msgstr "明白了"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "這個面板顯示了對你未來人口的預測。這些數字是來自auto-evo的人口模擬。\n"
 "\n"
@@ -4160,7 +4192,8 @@ msgstr ""
 "你可以通過按面板上的問號按鈕查看預測背後更詳細的信息。按下它可以繼續。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "你應該專注於一個或兩個能量來源，這樣你就不需要擁有所有的資源來產生足夠的ATP來生存。\n"
 "\n"
@@ -4210,13 +4243,15 @@ msgstr ""
 "請確保收集足夠的葡萄糖來產生ATP。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "為了繁殖，你需要通過收集足夠的氨和磷酸鹽來複製你所有的細胞器。\n"
 "看看右下方的指示器，看看你還需要多少。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "你已經收集了足夠的資源讓你的細胞進行分裂。\n"
 "\n"
@@ -4225,22 +4260,77 @@ msgstr ""
 "要進入編輯器，請按右下方閃爍的編輯器按鈕。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已經進入了結合解除模式。在這個模式下，你可以點擊殖民地成員來解除他們的束縛。\n"
 "\n"
 "要完全離開殖民地，你可以點擊你自己的單元格或按下解除結合的鍵。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "如果你還在糾結於遊戲機制，請查看幫助菜單。你可以用左下角的問號按鈕打開它。\n"
 "\n"
 "還有一個提示：你可以用滾輪放大你的視野。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr "現在就去看看"
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "教學"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "加載中..."
+
+#~ msgid "POPULATION"
+#~ msgstr "人口："
+
+#~ msgid "PREVIOUS"
+#~ msgstr "先前："
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "區域中的人口："
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} 人口： {1}"
+
+#~ msgid "SAVING"
+#~ msgstr "存檔中..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "覆寫現有的存檔？"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "存檔失敗！發生了一個異常"
+
+#~ msgid "TYPE"
+#~ msgstr "類型："
+
+#~ msgid "VERSION"
+#~ msgstr "版本："
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "這裡是地區地圖。\n"
+#~ "在這裡你可以看見微生物可以生存的不同地區。\n"
+#~ "你目前的地區會被高光顯示。\n"
+#~ "你可以點擊這些地區並從屏幕右方看見它們的詳細資料。\n"
+#~ "\n"
+#~ "如果你選擇一個緊接著你目前位置的地區，你可以通過屏幕右邊的按鈕來移動到那個地區。這將允許你的生物散播到新的地區。\n"
+#~ "\n"
+#~ "選擇一個地區以繼續。"
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "這裡是你的細胞編輯器，你可以在這通過花費變異點來添加或移除細胞器。\n"
+#~ "\n"
+#~ "你還可以在細胞編輯器裡修改你的物種的其它屬性。\n"
+#~ "\n"
+#~ "想要繼續的話，從左側面板選中一個細胞器（細胞質是個好選擇）。然後再點擊右側面板中央附近的六角格以將此細胞器放入你的物種中。"
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "現在就去看看"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

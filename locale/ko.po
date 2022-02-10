@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -780,15 +780,18 @@ msgid "CHEMORECEPTOR"
 msgstr "화학 기관"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "취소됨."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "완료됨."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "진행 중이 아님."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -804,16 +807,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "개체수:"
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "이전:"
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "종:"
 
 #: ../src/auto-evo/RunResults.cs:587
 #, fuzzy
@@ -836,7 +841,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "퍼뜨리기:"
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "변이 소유"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -844,7 +850,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "유전자 코드:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "퍼뜨리기:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -852,8 +859,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} 으로의: {1} 개체 전송: {2} 로부터"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "주변 개체 수:"
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "개체수:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3276,8 +3284,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr "{0} 의 개체수: {1}"
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "종:"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 #, fuzzy
@@ -3876,7 +3885,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "저장된 객체 생성 중"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "저장된 데이터를 불러오는 중 예기치 못한 일이 발생했습니다"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3892,7 +3902,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "불러온 객체 처리 중"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "불러온 객체를 처리하는 중 예기치 못한 일이 발생했습니다"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3908,8 +3919,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "저장 중..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "검색..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3920,7 +3932,8 @@ msgid "ERROR_SAVING"
 msgstr "저장 오류"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "선택한 파일명 ({0}) 은 이미 존재합니다. 덮어쓰겠습니까?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3945,12 +3958,14 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "저장 덮어쓰기:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "덮어쓰겠습니까?"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "저장 덮어쓰기:"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "저장 실패! 예외 발생"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
 #: ../src/saving/SaveHelper.cs:436
 #, fuzzy
@@ -3991,15 +4006,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
 msgstr "불러오는 중..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "이 저장을 삭제합니까?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "호환되지 않는 저장을 불러옵니까?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -4017,7 +4035,8 @@ msgstr ""
 "그래도 불러오시겠습니까?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -4028,7 +4047,8 @@ msgstr ""
 "그래도 저장을 불러오시겠습니까?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "선택된 저장은 호환되지 않습니다"
 
 #: ../src/saving/SaveList.tscn:105
@@ -4039,7 +4059,7 @@ msgstr ""
 
 #: ../src/saving/SaveList.tscn:114
 #, fuzzy
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "선택된 저장은 호환되지 않습니다"
 
 #: ../src/saving/SaveList.tscn:115
@@ -4047,12 +4067,12 @@ msgstr "선택된 저장은 호환되지 않습니다"
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "저장 실패"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 #, fuzzy
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr "액포는 세포 내부 공간 저장에 사용되는 내부 막질 소기관입니다. 그들은 여러 개의 소낭, 저장을 위해 세포에서 널리 사용되는 작은 막 구조로 구성되어 합쳐졌습니다. 이 물질은 분자, 효소, 고체 및 기타 물질을 포함하는 데 사용되는 물로 채워져 있습니다. 액포의 모양은 유동적이며 세포마다 다를 수 있습니다."
@@ -4068,16 +4088,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "유형:"
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "생명력:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "설명:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "버전:"
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "세대:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4091,7 +4113,7 @@ msgstr "생성된 매체:"
 msgid "LOAD"
 msgstr "불러오기"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
 
@@ -4131,11 +4153,13 @@ msgid "SELECTED_COLON"
 msgstr "선택됨:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "선택된 저장을 삭제합니까?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "이전 저장을 삭제합니까?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4240,28 +4264,30 @@ msgstr ""
 "다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"이것은 파편 지도 입니다.\n"
-"미생물이 생존할 수 있는 다양한 파편을 볼 수 있습니다.\n"
-"현재 파편은 강조되어 보일 것입니다.\n"
-"마우스로 파편을 클릭하면 선택된 파편의 자세한 내용이 오른쪽에 표시됩니다.\n"
+"미생물 편집기에 어서오세요.\n"
+"여기서 게임 시작 이후 또는 편집기에서 마지막으로 있었던 일을 알아볼 수 있습니다. 그 후 당신의 종에 변화를 주세요.\n"
 "\n"
-"현재 파편의 옆의 파편을 선택하면, 오른쪽 버튼을 눌러 그곳으로 이동할 수 있습니다. 이것으로 당신의 개체를 새 파편에 퍼뜨릴 수 있습니다.\n"
+"이 탭에선 어떤 종이, 어디서, 얼마나 있는지 알아볼 수 있습니다. 상단에서 환경의 변화 또한 알 수 있습니다.\n"
 "\n"
-"파편을 선택하여 진행하세요."
+"다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"이 세포 편집기에서 변이 점수(MP)를 소모하여 당신의 종에 세포 기관을 추가하거나 제거할 수 있습니다.\n"
+"미생물 편집기에 어서오세요.\n"
+"여기서 게임 시작 이후 또는 편집기에서 마지막으로 있었던 일을 알아볼 수 있습니다. 그 후 당신의 종에 변화를 주세요.\n"
 "\n"
-"세포 편집기의 다른 탭에서 당신의 종의 다른 속성 또한 변경할 수 있습니다.\n"
+"이 탭에선 어떤 종이, 어디서, 얼마나 있는지 알아볼 수 있습니다. 상단에서 환경의 변화 또한 알 수 있습니다.\n"
 "\n"
-"계속하려면, 패널의 왼쪽에 있는 세포 기관 (세포질이 좋겠죠)을 선택하세요. 그리고 화면 중앙에 표시된 세포칸 옆을 마우스 왼쪽 버튼으로 클릭해서 세포 기관을 종에 추가하세요."
+"다음 편집기 탭으로 이동하기 위해, 오른쪽 아래의 다음 버튼을 누르세요."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "세포 기관 제거 또한 종의 변이이므로 MP를 소모합니다. 마우스 오른쪽 클릭으로 세포 기관을 제거할 수 있습니다.\n"
 "편집기에선 실수로 제거하더라도, 변경을 취소할 수 있습니다.\n"
@@ -4271,7 +4297,8 @@ msgstr ""
 "되돌리기 버튼을 눌러 진행하세요."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "추가할 세포 기관을 고를 땐, 툴팁의 세포 기관이 어떤 일을 하고 어떤 화합물을 만드는지에 대한 설명에 주목하세요.\n"
 "\n"
@@ -4282,7 +4309,8 @@ msgstr ""
 "다시 실행 버튼(되돌리기 버튼 근처)을 눌러 진행하세요."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "이것은 종 편집의 기초 단계입니다. 다른 세포 편집기 탭에서 더 많은 설정을 확인할 수 있습니다.\n"
 "\n"
@@ -4298,7 +4326,7 @@ msgstr "알겠습니다"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
 #, fuzzy
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "이것은 파편 지도 입니다.\n"
 "미생물이 생존할 수 있는 다양한 파편을 볼 수 있습니다.\n"
@@ -4311,7 +4339,7 @@ msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 #, fuzzy
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "이 세포 편집기에서 변이 점수(MP)를 소모하여 당신의 종에 세포 기관을 추가하거나 제거할 수 있습니다.\n"
 "\n"
@@ -4361,14 +4389,15 @@ msgstr ""
 "ATP를 만들기 위하여 충분한 포도당을 수집하세요."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "번식하기 위해선 충분한 암모니아와 인산염을 모아 모든 세포 기관을 복제해야 합니다.\n"
 "오른쪽 아래의 창에서 얼마나 필요한지 알아보세요."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
 #, fuzzy
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 현상을 만들어 냈습니다.\n"
 "\n"
@@ -4380,7 +4409,7 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
 #, fuzzy
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "세포 주위에 보이는 키 (화면 중앙)로 세포를 움직이고 마우스로 방향을 조절하세요.\n"
 "\n"
@@ -4388,12 +4417,62 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
 #, fuzzy
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D 와 마우스로 이동합니다. 독성 액포가 있다면 E 키로 OxyToxy NT를 발사합니다. G 키로 삼키기 모드로 전환합니다."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr ""
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "튜토리얼"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "불러오는 중..."
+
+#~ msgid "POPULATION"
+#~ msgstr "개체수:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "이전:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "주변 개체 수:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} 의 개체수: {1}"
+
+#~ msgid "SAVING"
+#~ msgstr "저장 중..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "덮어쓰겠습니까?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "저장 실패! 예외 발생"
+
+#~ msgid "TYPE"
+#~ msgstr "유형:"
+
+#~ msgid "VERSION"
+#~ msgstr "버전:"
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "이것은 파편 지도 입니다.\n"
+#~ "미생물이 생존할 수 있는 다양한 파편을 볼 수 있습니다.\n"
+#~ "현재 파편은 강조되어 보일 것입니다.\n"
+#~ "마우스로 파편을 클릭하면 선택된 파편의 자세한 내용이 오른쪽에 표시됩니다.\n"
+#~ "\n"
+#~ "현재 파편의 옆의 파편을 선택하면, 오른쪽 버튼을 눌러 그곳으로 이동할 수 있습니다. 이것으로 당신의 개체를 새 파편에 퍼뜨릴 수 있습니다.\n"
+#~ "\n"
+#~ "파편을 선택하여 진행하세요."
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "이 세포 편집기에서 변이 점수(MP)를 소모하여 당신의 종에 세포 기관을 추가하거나 제거할 수 있습니다.\n"
+#~ "\n"
+#~ "세포 편집기의 다른 탭에서 당신의 종의 다른 속성 또한 변경할 수 있습니다.\n"
+#~ "\n"
+#~ "계속하려면, 패널의 왼쪽에 있는 세포 기관 (세포질이 좋겠죠)을 선택하세요. 그리고 화면 중앙에 표시된 세포칸 옆을 마우스 왼쪽 버튼으로 클릭해서 세포 기관을 종에 추가하세요."
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
-"PO-Revision-Date: 2022-02-10 13:38+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
+"PO-Revision-Date: 2022-02-10 14:55+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -771,15 +771,15 @@ msgid "CHEMORECEPTOR"
 msgstr "Chemoreceptor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+msgid "ABORTED_DOT"
 msgstr "Aborted."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+msgid "FINISHED_DOT"
 msgstr "Finished."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+msgid "NOT_RUNNING_DOT"
 msgstr "Not running."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -795,7 +795,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} population changed by {1} because of: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
+msgid "POPULATION_COLON"
 msgstr "population:"
 
 #: ../src/auto-evo/RunResults.cs:563
@@ -803,7 +803,7 @@ msgid "WENT_EXTINCT_IN"
 msgstr "went extinct in {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
+msgid "PREVIOUS_COLON"
 msgstr "previous:"
 
 #: ../src/auto-evo/RunResults.cs:587
@@ -823,7 +823,7 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "population in some patches split off to form new species {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "has a mutation"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -831,7 +831,7 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "gene code:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -839,7 +839,7 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} by sending: {1} population from patch: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
+msgid "POPULATION_IN_PATCHES"
 msgstr "population in patches:"
 
 #: ../src/auto-evo/RunResults.cs:789
@@ -3182,7 +3182,7 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m below sea level"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
+msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} with population: {1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
@@ -3730,7 +3730,7 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creating objects from save"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "An exception happened while loading the save data"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3746,7 +3746,7 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processing loaded objects"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "An exception happened while processing loaded objects"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3762,7 +3762,7 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Failed to free already loaded resources: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
+msgid "SAVING_DOT_DOT_DOT"
 msgstr "Saving..."
 
 #: ../src/saving/InProgressSave.cs:221
@@ -3774,7 +3774,7 @@ msgid "ERROR_SAVING"
 msgstr "Error Saving"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "The chosen filename ({0}) already exists. Overwrite?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3798,11 +3798,11 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Overwrite existing save:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr "Overwrite existing save?"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
+msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr "Saving failed! An exception happened"
 
 #: ../src/saving/SaveHelper.cs:436
@@ -3842,15 +3842,15 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "No Saves Found"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
+msgid "LOADING_DOT_DOT_DOT"
 msgstr "Loading..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Delete this Save?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Load incompatible save?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3868,7 +3868,7 @@ msgstr ""
 "Do you want to try loading the save anyway?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Load invalid save?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3879,7 +3879,7 @@ msgstr ""
 "Do you want to try loading the save anyway?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Selected save is incompatible"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3890,7 +3890,7 @@ msgstr ""
 "As Thrive is still early in development save compatibility is not a high priority, as such there aren't save upgraders for all versions."
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Selected save is upgradeable"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3901,11 +3901,11 @@ msgstr ""
 "If you skip upgrading, the save will be attempted to be loaded normally.\n"
 "Attempt to upgrade this save?"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Save upgrade failed"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Upgrading the specified save failed due to the following error:\n"
@@ -3922,7 +3922,7 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
+msgid "TYPE_COLON"
 msgstr "Type:"
 
 #: ../src/saving/SaveListItem.tscn:170
@@ -3930,7 +3930,7 @@ msgid "DESCRIPTION"
 msgstr "Description:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
+msgid "VERSION_COLON"
 msgstr "Version:"
 
 #: ../src/saving/SaveListItem.tscn:222
@@ -3945,7 +3945,7 @@ msgstr "Created on Platform:"
 msgid "LOAD"
 msgstr "Load"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Deleting this save cannot be undone, are you sure you want to permanently delete this?"
 
@@ -3985,11 +3985,11 @@ msgid "SELECTED_COLON"
 msgstr "Selected:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Delete selected Save(s)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Delete old Saves?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4090,7 +4090,7 @@ msgstr ""
 "To go to the next editor tab, press the next button in the bottom right."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 "This is the patch map.\n"
 "Here you can see the different patches microbes can live in.\n"
@@ -4102,7 +4102,7 @@ msgstr ""
 "Select a patch to continue."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 "This is the cell editor where you can add or remove organelles from your species by spending mutation points (MP).\n"
 "\n"
@@ -4111,7 +4111,7 @@ msgstr ""
 "To continue, select an organelle from the panel on the left (cytoplasm is a good choice). Then left click next to the hex shown middle of the screen to add that organelle to your species."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Removing organelles also costs MP as it is a mutation to your species, unless they were placed in the current editor session. \n"
 "\n"
@@ -4122,7 +4122,7 @@ msgstr ""
 "Click the undo button to continue."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "When selecting which organelles to add, pay attention to the tooltips for the organelles on which processes they do and what compounds they use and produce.\n"
 "\n"
@@ -4133,7 +4133,7 @@ msgstr ""
 "Press the redo button (close to the undo button) to continue."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Those are the basics of editing your species. You can check the other cell editor tabs for even more options.\n"
 "\n"
@@ -4148,7 +4148,7 @@ msgid "GOT_IT"
 msgstr "Got it"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "This panel shows a prediction of your future population. These numbers are from the population simulation of auto-evo.\n"
 "\n"
@@ -4159,7 +4159,7 @@ msgstr ""
 "You can view more detailed information behind the prediction by pressing the question mark button in the panel. Press it to continue."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "You should focus on one or two energy sources so that you don't need to have all resources to generate enough ATP to survive.\n"
 "\n"
@@ -4197,7 +4197,9 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Collect glucose (white clouds) by moving over them.\n"
+"\n"
 "Your cell needs glucose in order to produce energy to stay alive.\n"
+"\n"
 "Follow the line from your cell to nearby glucose."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
@@ -4209,13 +4211,13 @@ msgstr ""
 "Make sure to collect enough glucose to produce ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "In order to reproduce you need to duplicate all of your organelles by collecting enough ammonia and phosphates.\n"
 "Look at the indicator in the bottom right to see how much more you need."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "You have collected enough resources for your cell to divide.\n"
 "\n"
@@ -4224,22 +4226,55 @@ msgstr ""
 "To enter the editor press the flashing editor button in the bottom right."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "You have entered unbind mode. In this mode you can click on colony members to unbind them.\n"
 "\n"
 "To leave the colony entirely you can click on your own cell or press the unbind all key."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "If you are still struggling with game mechanics, check the help menu. You can open it with the question mark button in the bottom left.\n"
 "\n"
 "One more tip: you can zoom out your view with the scroll wheel."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
+msgid "TUTORIAL_VIEW_NOW"
 msgstr "View Now"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "Loading..."
+
+#~ msgid "POPULATION"
+#~ msgstr "population:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "previous:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "population in patches:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} with population: {1}"
+
+#~ msgid "SAVING"
+#~ msgstr "Saving..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Overwrite existing save?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "Saving failed! An exception happened"
+
+#~ msgid "TYPE"
+#~ msgstr "Type:"
+
+#~ msgid "VERSION"
+#~ msgstr "Version:"
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "View Now"
 
 #~ msgid "OPEN_DETAILS"
 #~ msgstr "View detailed information behind the prediction"

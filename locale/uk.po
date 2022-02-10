@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2022-02-10 06:38+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -772,15 +772,18 @@ msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "Перервано."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "Завершено."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "Не тікайте."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -796,16 +799,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} зміна населення {1} через зміну: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "Популяція:"
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "Загальна популяція:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "вимерли в {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "Попередній:"
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "Види:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -824,7 +829,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "популяція на цих ділянках відокремилась, утворивши нові види {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "мутували"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -832,7 +838,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "генетичний код:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "поширено в ділянці:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -840,8 +847,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} пермістилося: {1} популяція з {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "популяція в ділянках:"
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3183,8 +3191,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м. нижче рівня моря"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr "{0} з популяції: {1}"
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "Видова Популяція"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3731,7 +3740,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Створені об'єкти зі збереження"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "З'явилося заперечення, коли завантажувались дані"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3747,7 +3757,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обробка завантаження об'єктів"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "З'явилося заперечення, під час обробки завантажених об'єктів"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3763,8 +3774,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Невдача при звільнені вже завантажені ресурсів: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "Збереження..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "Створення..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3775,7 +3787,8 @@ msgid "ERROR_SAVING"
 msgstr "Помилка збереження"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Обране файлове ім'я ({0}) уже існує. Переписати?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3799,12 +3812,16 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Переписати наявне збереження:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Переписати наявне збереження?"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "Переписати наявне збереження:"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "Збереження невдалось! З'явилося заперечення"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+"Оновити вказане збереження не вдалось через помилку:\n"
+"{0}"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3843,15 +3860,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "Збереження не знайдене"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
-msgstr "Завантаження..."
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
+msgstr "Відвантажити..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Видалити це збереження?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Завантажити не сумісне збереження?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3869,7 +3889,8 @@ msgstr ""
 "Ви хочете спробувати завантажити його всеодно?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Невдалося завантажити збереження?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3880,7 +3901,8 @@ msgstr ""
 "Ви хочете спробувати завантажити його всеодно?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Вибране збереження несумісне"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3891,7 +3913,8 @@ msgstr ""
 "Оскільки Thrive все ще на початку розробки, то сумісність збереження не є пріоритетною, тому не існує засобу оновлення збережень для всіх версій."
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Вибране збереження оновлене"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3902,11 +3925,11 @@ msgstr ""
 "Якщо пропустити оновлення, то збереження буде завантажуватись в нормальному режимі.\n"
 "Спробувати оновити це збереження?"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Невдалося оновити збереження"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Оновити вказане збереження не вдалось через помилку:\n"
@@ -3923,16 +3946,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "Тип:"
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "Здоров'я:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Опис:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "Версія:"
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "Генерація:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -3946,7 +3971,7 @@ msgstr "Створено на платформі:"
 msgid "LOAD"
 msgstr "Завантажено"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Видалення збереження– необоротне, ви точно хочете видалити його назавжди?"
 
@@ -3986,11 +4011,13 @@ msgid "SELECTED_COLON"
 msgstr "Вибрано:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Видалити вибрані збереження?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Видалити старі збереження?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4091,28 +4118,30 @@ msgstr ""
 "Перейдіть в наступну вкладку редактора, натиснувши кнопку \"Далі\" справа знизу."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Це мапа ділянок.\n"
-"На ній ви можете побачити різноманітні ділянки та мікробів, що там проживають\n"
-"Вашу поточну ділянку виділено.\n"
-"Ви можете клікнути на ділянку своєю мишкою, щоб вибрати його та побачити його деталі знизу справа.\n"
+"Ласкаво просимо до мікробного редактору.\n"
+"Тут ви можете перглянути, що сталося зі старту гри або коли ви ввостанє туди заходили. І потім зробіть зміни у своєму виді.\n"
 "\n"
-"Якщо ви вибирете ближню ділянку, то можете натиснути на кнопку справа, щоб туди перейти. Це дозволяє вашій популяції на нові ділянки.\n"
+"У цій вкладці ви можете побачити звіт щодо вашого виду, де і яка у вас популяція. Ви можете побачити зміни в оточені.\n"
 "\n"
-"Виберіть ділянку, щоб продовжити."
+"Перейдіть в наступну вкладку редактора, натиснувши кнопку \"Далі\" справа знизу."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Це клітинни редактор, де ви можете додавати або видаляти органели для свого виду використовуючи очки мутації (ОМ).\n"
+"Ласкаво просимо до мікробного редактору.\n"
+"Тут ви можете перглянути, що сталося зі старту гри або коли ви ввостанє туди заходили. І потім зробіть зміни у своєму виді.\n"
 "\n"
-"Ви також можете змінювати й інші властивості свого виду, в інших панелях клітинного редактору.\n"
+"У цій вкладці ви можете побачити звіт щодо вашого виду, де і яка у вас популяція. Ви можете побачити зміни в оточені.\n"
 "\n"
-"Щоб продовжити, виберіть органелу з панелі зліва (цитоплазма– чудовий початок. Потім ЛКМ клацніть по гексу(шестикутнику) показаному на екрані та додайте органелу до вашого виду."
+"Перейдіть в наступну вкладку редактора, натиснувши кнопку \"Далі\" справа знизу."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Переміщення органел також коштує ОМ, бо це мутація вашого виду, якщо вони не були в цьому місці редактора.\n"
 "\n"
@@ -4123,7 +4152,8 @@ msgstr ""
 "Натисніть кнопку скасування, щоб продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Коли обираєте органелу для додавання, зверніть увагу на підказки для органел, які процеси вони виконують, які сполуки споживають та продукують.\n"
 "\n"
@@ -4134,7 +4164,8 @@ msgstr ""
 "Натисніть кнопку повтору продовжити(поруч з кнопкою скасувати), аби продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Це основи редагування вашого виду. Ви можете глянути інші вкладки панелі клітинного редактора, щоб мати більше налаштувань.\n"
 "\n"
@@ -4149,7 +4180,8 @@ msgid "GOT_IT"
 msgstr "Зрозуміло"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ця панель показує прогноз майбутнього вашої популяції. Ці цифри отримані з моделювання населення авто-ево.\n"
 "\n"
@@ -4160,7 +4192,8 @@ msgstr ""
 "Ви можете переглянути більш детальну інформацію про прогноз, натиснувши кнопку зі знаком питання на панелі. Натисніть її, щоб продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Ви повинні зосередитися на одному-двох джерелах енергії, щоб вам не потрібно було мати всі ресурси для вироблення достатньої кількості АТФ для виживання.\n"
 "\n"
@@ -4210,13 +4243,15 @@ msgstr ""
 "Переконайтесь, що збираєте достатню кількість глюкози для продукування АТФ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для розмноження потрібно подвоїти кожну свою органелу зібравши достатньо аміаку та фосфатів.\n"
 "Погляньте на індикатор знизу справа, аби бачити як багато вам треба."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Ви зібрали необхідну кількість ресурсів для поділу вашої клітини.\n"
 "\n"
@@ -4225,22 +4260,77 @@ msgstr ""
 "Для переходу в радактор натисніть блимаючу кнопку редактора знизу справа."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Ви перейшли до розв'язувального режиму. В цьому режимі ви можете натиснути на членів колонії для розв'язування з ними.\n"
 "\n"
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу для розв'язування."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Якщо ви, все ще, маєте складності з ігровими механіками, загляньте до меню допомоги. Ви можете відкрити його за допомогою кнопки із знаком питання знизу зліва.\n"
 "\n"
 "Ще одна підказка: Ви можете міняти масштаб за допомогою колесика миші."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr "Переглянути зараз"
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "Туторіал"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "Завантаження..."
+
+#~ msgid "POPULATION"
+#~ msgstr "Популяція:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "Попередній:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "популяція в ділянках:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} з популяції: {1}"
+
+#~ msgid "SAVING"
+#~ msgstr "Збереження..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Переписати наявне збереження?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "Збереження невдалось! З'явилося заперечення"
+
+#~ msgid "TYPE"
+#~ msgstr "Тип:"
+
+#~ msgid "VERSION"
+#~ msgstr "Версія:"
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "Це мапа ділянок.\n"
+#~ "На ній ви можете побачити різноманітні ділянки та мікробів, що там проживають\n"
+#~ "Вашу поточну ділянку виділено.\n"
+#~ "Ви можете клікнути на ділянку своєю мишкою, щоб вибрати його та побачити його деталі знизу справа.\n"
+#~ "\n"
+#~ "Якщо ви вибирете ближню ділянку, то можете натиснути на кнопку справа, щоб туди перейти. Це дозволяє вашій популяції на нові ділянки.\n"
+#~ "\n"
+#~ "Виберіть ділянку, щоб продовжити."
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Це клітинни редактор, де ви можете додавати або видаляти органели для свого виду використовуючи очки мутації (ОМ).\n"
+#~ "\n"
+#~ "Ви також можете змінювати й інші властивості свого виду, в інших панелях клітинного редактору.\n"
+#~ "\n"
+#~ "Щоб продовжити, виберіть органелу з панелі зліва (цитоплазма– чудовий початок. Потім ЛКМ клацніть по гексу(шестикутнику) показаному на екрані та додайте органелу до вашого виду."
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "Переглянути зараз"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

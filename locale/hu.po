@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2021-12-30 18:28+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -771,15 +771,18 @@ msgid "CHEMORECEPTOR"
 msgstr "Kemoreceptor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "Megszakítva."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "Befejezve."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "Nem fut."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -795,16 +798,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "populáció:"
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "Teljes populáció:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "Kihalt: {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "előző:"
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "Fajok:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -823,7 +828,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "mutációval rendelkezik"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -831,7 +837,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "gén kód:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "ezen patch-ekben terjed:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -839,8 +846,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0}, úgy, hogy {1} egyed vándorolt át ebből a patch-ből: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "populáció a patch-ekben:"
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3182,8 +3190,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m-el a tenger alatt"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr ""
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "A fajok populációi"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3747,7 +3756,7 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objektumok létrehozása a mentésből"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3763,7 +3772,7 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Betöltött objektumok feldolgozása"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3779,8 +3788,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "Mentés..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "Létrehozás..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3791,7 +3801,8 @@ msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3816,12 +3827,16 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Létező mentés felülírása:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Felülírod a már meglévő mentést?"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "Létező mentés felülírása:"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "A mentés sikertelen! Hiba történt"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+"Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
+"{0}"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3860,15 +3875,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "Nincs mentés"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
-msgstr "Betöltés..."
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
+msgstr "Feltöltés..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Törlöd ezt a mentést?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Ez a mentés nem kompatibilis. Be akarod tölteni?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3886,7 +3904,8 @@ msgstr ""
 "Biztos be akarod tölteni a mentést?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Betöltöd ezt az érvénytelen mentést?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3897,7 +3916,8 @@ msgstr ""
 "Biztos be akarod tölteni ezt a mentést?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "A kiválasztott mentés nem kompatibilis"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3905,7 +3925,8 @@ msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "A kiválasztott mentés frissíthető"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3916,11 +3937,11 @@ msgstr ""
 "Ha nem frissíted a mentést, akkor a játék megpróbálja betölteni így is.\n"
 "Frissíted ezt a mentést?"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "A mentés frissítése sikertelen"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Ezen mentés frissítése nem sikerült a következő hiba miatt:\n"
@@ -3937,16 +3958,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "Típus:"
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "HP:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Leírás:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "Verzió:"
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "Generáció:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -3960,7 +3983,7 @@ msgstr "Ezen platformon létrehozva:"
 msgid "LOAD"
 msgstr "Töltés"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
@@ -3997,11 +4020,13 @@ msgid "SELECTED_COLON"
 msgstr "Kijelölve:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Biztos törlöd a kiválasztott mentést (/-eket)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Törlöd a régi mentéseket?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4104,49 +4129,58 @@ msgstr ""
 "A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Ez itt a patch térkép.\n"
-"Itt láthatod a különböző helyeket, ahol a sejtek élhetnek.\n"
-"Ki van külön emelve az a patch, ahol perpillanat tartózkodsz.\n"
-"Az egereddel ki tudod jelölni a különböző patch-eket, hogy a jobb oldalon láthasd róluk az információt.\n"
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
 "\n"
-"Ha a jelenlegi tartózkodási helyed melletti valamelyik patch-et kiválasztod, akkor a jobb oldalon lévő gomb megnyomásával abba a patch-be vándorolsz át. Ez lehetővé teszi a fajod számára, hogy új patch-ekbe terjedjenek el.\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
 "\n"
-"Válassz ki egy patch-et a folytatáshoz."
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, vagy távolíthatsz el a sejtedről, amik mutáció pontokba (MP) kerülnek.\n"
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
 "\n"
-"A sejted többi tulajdonságát is megváltoztathatod a sejtszerkesztő többi részében.\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
 "\n"
-"A folytatáshoz válassz ki egy sejtszervecskét a bal oldali panelről (a citoplazma egy jó választás elsőnek). Ezután a képernyő közepén elhelyezkedő valamelyik hexagonra való bal kattintással helyezd el az adott sejtszervecskét."
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
+"Üdvözöllek a Sejtszerkesztőben.\n"
+"Itt megnézheted, hogy mi történt, mióta elkezdted a játékot, vagy mióta elhagytad a szerkesztőt. Ezek után pedig változtathatsz a fajodon.\n"
+"\n"
+"Ezen a lapon láthatsz egy jelentést, hogy mely fajok léteznek még rajtad kívül. Továbbá azt is megmutatja, hogy hol találhatóak, és mekkora a létszámuk. Plusz fent a változásokat is mutatja a környezetedben.\n"
+"\n"
+"A következő szerkesztő ablakba való lépéshez nyomd meg jobb lenti gombot."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
 msgid "GOT_IT"
 msgstr "Rendben"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
-msgstr ""
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
+msgstr "Auto-evo előrejelzés"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
 #, fuzzy
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, vagy távolíthatsz el a sejtedről, amik mutáció pontokba (MP) kerülnek.\n"
 "\n"
@@ -4196,13 +4230,15 @@ msgstr ""
 "Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Ahhoz, hogy szaporodni tudj, meg kell dupláznod a sejted sejtszervecskéinek mennyiségét. Ehhez elegendő mennyiségű ammóniát és foszfátot kell gyűjtened.\n"
 "A képernyő jobb alsó sarkában láthatsz egy mérőt, ami mutatja, hogy mennyire van még szükséged ebből a két anyagból."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Elegendő nyersanyagot gyűjtöttél, hogy a sejted osztódni tudjon.\n"
 "\n"
@@ -4211,19 +4247,71 @@ msgstr ""
 "A szerkesztőbe való belépéshez kattints a villogó szerkesztő gombra a képernyő jobb alsó sarkában."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+"A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
+"\n"
+"Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Hogyha netán bajlódsz a játék mechanikáival, akkor nézd meg a segítség menüt. A bal alsó sarokban található kérdőjel ikonnal tudod megnyitni.\n"
 "\n"
 "Még egy tanács: a görgő segítségével távolodhatsz a kamerával a sejtedtől."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr ""
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "Tutorial"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "Betöltés..."
+
+#~ msgid "POPULATION"
+#~ msgstr "populáció:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "előző:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "populáció a patch-ekben:"
+
+#~ msgid "SAVING"
+#~ msgstr "Mentés..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Felülírod a már meglévő mentést?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "A mentés sikertelen! Hiba történt"
+
+#~ msgid "TYPE"
+#~ msgstr "Típus:"
+
+#~ msgid "VERSION"
+#~ msgstr "Verzió:"
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "Ez itt a patch térkép.\n"
+#~ "Itt láthatod a különböző helyeket, ahol a sejtek élhetnek.\n"
+#~ "Ki van külön emelve az a patch, ahol perpillanat tartózkodsz.\n"
+#~ "Az egereddel ki tudod jelölni a különböző patch-eket, hogy a jobb oldalon láthasd róluk az információt.\n"
+#~ "\n"
+#~ "Ha a jelenlegi tartózkodási helyed melletti valamelyik patch-et kiválasztod, akkor a jobb oldalon lévő gomb megnyomásával abba a patch-be vándorolsz át. Ez lehetővé teszi a fajod számára, hogy új patch-ekbe terjedjenek el.\n"
+#~ "\n"
+#~ "Válassz ki egy patch-et a folytatáshoz."
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Ez itt a sejtszerkesztő, ahol különböző sejtszervecskéket adhatsz hozzá, vagy távolíthatsz el a sejtedről, amik mutáció pontokba (MP) kerülnek.\n"
+#~ "\n"
+#~ "A sejted többi tulajdonságát is megváltoztathatod a sejtszerkesztő többi részében.\n"
+#~ "\n"
+#~ "A folytatáshoz válassz ki egy sejtszervecskét a bal oldali panelről (a citoplazma egy jó választás elsőnek). Ezután a képernyő közepén elhelyezkedő valamelyik hexagonra való bal kattintással helyezd el az adott sejtszervecskét."
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

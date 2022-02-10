@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: Jan <jan_fue@icloud.com>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -771,15 +771,18 @@ msgid "CHEMORECEPTOR"
 msgstr "Chemorezeptor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "Abgebrochen."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "Abgeschlossen."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "Läuft nicht."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -795,16 +798,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} Population verändert um {1}, weil: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "Population:"
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "Gesamtbevölkerung:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "wurde in {0} ausgelöscht"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "zuvor:"
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "Speizes:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -823,7 +828,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "die Population in einigen Gebieten spaltete sich ab und bildete eine neue Spezies {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "hat eine Mutation"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -831,7 +837,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "Gencode:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "Ausbreitung auf Gebiete:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -839,8 +846,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} durch Senden: {1} Population aus dem Gebiet: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "Population in Gebieten:"
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3183,8 +3191,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m unter dem Meeresspiegel"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr "{0} mit Population: {1}"
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "Spezienpopulation"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3731,7 +3740,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objekte aus Speicherstand erstellen"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Beim Laden der Speicherdaten ist eine Ausnahme aufgetreten"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3747,7 +3757,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Verarbeitung geladener Objekte"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Während der Verarbeitung geladener Objekte trat eine Ausnahme auf"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3763,8 +3774,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Die bereits geladenen Ressourcen konnten nicht freigegeben werden: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "Speichert..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "Erstelle..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3775,7 +3787,8 @@ msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Der gewählte Dateiname ({0}) existiert bereits. Überschreiben?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3799,12 +3812,16 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Vorhandenen Speicherstand überschreiben:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Vorhandenen Speicherstand überschreiben?"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "Vorhandenen Speicherstand überschreiben:"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "Speichern fehlgeschlagen! Eine Ausnahme ist aufgetreten"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+"Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden Fehlers fehlgeschlagen:\n"
+"{0}"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3843,15 +3860,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "keine Speicherstände gefunden"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
-msgstr "Lade..."
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
+msgstr "Lade hoch..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Löschen dieses Speicherstandes?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Inkompatibler Speicherstand laden?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3869,7 +3889,8 @@ msgstr ""
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Ungültiger Speicherstand laden?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3880,7 +3901,8 @@ msgstr ""
 "Möchtest du trotzdem versuchen, den Spielstand zu laden?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Ausgewählter Speicherstand ist inkompatibel"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3891,7 +3913,8 @@ msgstr ""
 "Da sich Thrive noch in einem frühen Entwicklungsstadium befindet, hat die Kompatibilität von Saves keine hohe Priorität, da es nicht für alle Versionen Spielstand-Konverter zur Aktualisierung alter Saves gibt."
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Ausgewählter Speicherstand ist upgradebar"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3902,11 +3925,11 @@ msgstr ""
 "Wenn du das upgraden überspringst wird versucht die Speicherung normal zu laden.\n"
 "Upgraden versuchen?"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Speicherungsupgrade fehlgeschlagen"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Die Aktualisierung der angegebenen Sicherung ist aufgrund des folgenden Fehlers fehlgeschlagen:\n"
@@ -3923,16 +3946,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "Typ:"
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "HP:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Beschreibung:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "Version:"
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "Generation:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -3946,7 +3971,7 @@ msgstr "Erstellt auf Plattform:"
 msgid "LOAD"
 msgstr "Laden"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Das Löschen dieses Speicherstandes kann nicht rückgängig gemacht werden, bist du sicher, dass du ihn dauerhaft löschen willst?"
 
@@ -3986,11 +4011,13 @@ msgid "SELECTED_COLON"
 msgstr "Ausgewählt:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Ausgewählte(r) Spielstand/Spielstände löschen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Alte Speicherstände löschen?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4091,28 +4118,30 @@ msgstr ""
 "Um zur nächsten Registerkarte des Editors zu gelangen, drücke die Nächste-Schaltfläche unten rechts."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Dies ist die Gebietskarte.\n"
-"Hier kannst du die verschiedenen Gebiete sehen, in denen Mikroben leben können.\n"
-"Dein aktuelles Gebiet ist hervorgehoben.\n"
-"Du kannst Gebiete mit der Maus anklicken, um sie auszuwählen und ihre Details auf der rechten Seite zu sehen.\n"
+"Willkommen beim Mikrobeneditor.\n"
+"Hier kannst du nachschauen, was seit dem Start des Spiels geschehen ist oder wenn du zuletzt im Editor warst und dann Änderungen an deiner Spezies vornehmen.\n"
 "\n"
-"Wenn du ein Gebiet neben dem Gebiet, in dem du dich gerade befindest, auswählen, kannst du den Knopf rechts drücken, um dich dorthin zu bewegen. Auf diese Weise kann sich deine Spezies auf neue Gebiete ausbreiten.\n"
+"In dieser Registerkarte können Sie einen Bericht darüber sehen, welche Arten es wo gibt und was deine Populationen sind. Oben können Sie auch Umweltveränderungen sehen.\n"
 "\n"
-"Wähle ein Gebiet aus, um fortzufahren."
+"Um zur nächsten Registerkarte des Editors zu gelangen, drücke die Nächste-Schaltfläche unten rechts."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Dies ist der Zell-Editor, in dem du durch Ausgabe von Mutationspunkten (MP) Organellen an deiner Spezies hinzufügen oder entfernen kannst.\n"
+"Willkommen beim Mikrobeneditor.\n"
+"Hier kannst du nachschauen, was seit dem Start des Spiels geschehen ist oder wenn du zuletzt im Editor warst und dann Änderungen an deiner Spezies vornehmen.\n"
 "\n"
-"Du kannst auch andere Eigenschaften deiner Spezies in den anderen Registern des Zelleneditors ändern.\n"
+"In dieser Registerkarte können Sie einen Bericht darüber sehen, welche Arten es wo gibt und was deine Populationen sind. Oben können Sie auch Umweltveränderungen sehen.\n"
 "\n"
-"Um fortzufahren, wähle eine Organelle aus der Palette auf der linken Seite aus (Zytoplasma ist eine gute Wahl). Klicke dann mit der linken Maustaste neben das in der Mitte des Bildschirms angezeigte Feld, um diese Organelle zu deiner Spezies hinzuzufügen."
+"Um zur nächsten Registerkarte des Editors zu gelangen, drücke die Nächste-Schaltfläche unten rechts."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Das Entfernen von Organellen kostet ebenfalls MP, da es sich um eine Mutation deiner Spezies handelt, es sei denn, sie wurden in der aktuellen Editor-Sitzung platziert.\n"
 "\n"
@@ -4123,7 +4152,8 @@ msgstr ""
 "Klicke auf die Rückgängig-Schaltfläche, um fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Achte bei der Auswahl der hinzuzufügenden Organellen auf die Tooltipps der Organellen, welche Prozesse sie ausführen und welche Substanzen sie verwenden und herstellen.\n"
 "\n"
@@ -4134,7 +4164,8 @@ msgstr ""
 "Drücke die Wiederherstellen-Taste (in der Nähe der Rückgängig-Taste), um fortzufahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Das sind die Grundlagen der Bearbeitung deiner Art. In den anderen Registerkarten des Zelleneditors findest du noch mehr Optionen.\n"
 "\n"
@@ -4149,7 +4180,8 @@ msgid "GOT_IT"
 msgstr "Verstanden"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dieses Feld zeigt eine Vorhersage deiner zukünftigen Bevölkerung. Diese Zahlen stammen aus der Bevölkerungssimulation von Auto-Evo.\n"
 "\n"
@@ -4160,7 +4192,8 @@ msgstr ""
 "Du kannst dir detailliertere Informationen zur Vorhersage ansehen, indem du auf das Fragezeichen in dem Panel klickst. Klicken zum fortfahren."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Du solltest dich auf ein oder zwei Energiequellen fokussieren, damit du nicht alle Resourcen benötigst um genügend ATP zum überleben zu erzeugen.\n"
 "\n"
@@ -4210,13 +4243,15 @@ msgstr ""
 "Achten darauf, dass du genügend Glukose sammelst, um ATP zu produzieren."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Um sich zu vermehren, müssen Sie alle deiner Organellen duplizieren, indem Sie genügend Ammoniak und Phosphat sammeln.\n"
 "Schauen Sie auf den Indikator unten rechts, um zu sehen, wie viel mehr Sie benötigen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Du hast genügend Ressourcen gesammelt, damit sich deine Zelle teilen kann.\n"
 "\n"
@@ -4225,22 +4260,77 @@ msgstr ""
 "Um den Editor zu öffnen, drücke auf die blinkende Schaltfläche unten rechts."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Du hast den Modus \"Bindung aufheben\" aufgerufen. In diesem Modus kannst du auf die Mitglieder der Kolonie klicken, um sie zu entbinden.\n"
 "\n"
 "Um die Kolonie ganz zu verlassen, können Sie auf Ihre eigene Zelle klicken oder [thrive:input]g_unbind_all[/thrive:input] drücken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Solltest du Probleme mit den Spielmechaniken haben, kannst du jederzeit das Hilfemenü aufrufen. Dieses findest du, indem du auf das Fragezeichen in der unteren, linken Ecke klickst.\n"
 "\n"
 "Ein weiterer Tipp: Du kannst mit dem Mausraus herauszoomen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr "Anzeigen"
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "Tutorial"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "Lade..."
+
+#~ msgid "POPULATION"
+#~ msgstr "Population:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "zuvor:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "Population in Gebieten:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} mit Population: {1}"
+
+#~ msgid "SAVING"
+#~ msgstr "Speichert..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Vorhandenen Speicherstand überschreiben?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "Speichern fehlgeschlagen! Eine Ausnahme ist aufgetreten"
+
+#~ msgid "TYPE"
+#~ msgstr "Typ:"
+
+#~ msgid "VERSION"
+#~ msgstr "Version:"
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "Dies ist die Gebietskarte.\n"
+#~ "Hier kannst du die verschiedenen Gebiete sehen, in denen Mikroben leben können.\n"
+#~ "Dein aktuelles Gebiet ist hervorgehoben.\n"
+#~ "Du kannst Gebiete mit der Maus anklicken, um sie auszuwählen und ihre Details auf der rechten Seite zu sehen.\n"
+#~ "\n"
+#~ "Wenn du ein Gebiet neben dem Gebiet, in dem du dich gerade befindest, auswählen, kannst du den Knopf rechts drücken, um dich dorthin zu bewegen. Auf diese Weise kann sich deine Spezies auf neue Gebiete ausbreiten.\n"
+#~ "\n"
+#~ "Wähle ein Gebiet aus, um fortzufahren."
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Dies ist der Zell-Editor, in dem du durch Ausgabe von Mutationspunkten (MP) Organellen an deiner Spezies hinzufügen oder entfernen kannst.\n"
+#~ "\n"
+#~ "Du kannst auch andere Eigenschaften deiner Spezies in den anderen Registern des Zelleneditors ändern.\n"
+#~ "\n"
+#~ "Um fortzufahren, wähle eine Organelle aus der Palette auf der linken Seite aus (Zytoplasma ist eine gute Wahl). Klicke dann mit der linken Maustaste neben das in der Mitte des Bildschirms angezeigte Feld, um diese Organelle zu deiner Spezies hinzuzufügen."
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "Anzeigen"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

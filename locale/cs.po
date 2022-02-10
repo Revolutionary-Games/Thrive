@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2022-02-03 10:36+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -771,15 +771,18 @@ msgid "CHEMORECEPTOR"
 msgstr "Chemoreceptor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "Přerušeno."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "Dokončeno."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "Neběží."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -795,16 +798,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Populace {0} se změnila o {1} z důvodu: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "populace:"
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "Celková populace:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "vyhynul v {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "předchozí:"
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "Druh:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -823,7 +828,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "populace se v některých oblastech oddělila a vytvořila nové druhy {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "má mutaci"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -831,7 +837,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "genový kód:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "rozšíření do místa:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -839,8 +846,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} poslal(o): {1} populace z místa: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "populace v místě:"
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3184,8 +3192,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m pod mořskou hladinou"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr "{0} s populací: {1}"
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "Populace druhů"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 #, fuzzy
@@ -3733,7 +3742,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Vytváření objektů z uložené pozice"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Při načítání uložených dat došlo k výjimce"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3749,7 +3759,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Zpracování načtených objektů"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Při zpracování načtených objektů došlo k výjimce"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3765,8 +3776,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "Nepodařilo se uvolnit již načtené prostředky: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "Ukládání..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "Vytváření..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3777,7 +3789,8 @@ msgid "ERROR_SAVING"
 msgstr "Chyba při ukládání"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Vybraný název ({0}) už existuje. Chceš ho nahradit?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3801,12 +3814,16 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Nahradit existující uloženou pozici:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Nahradit existující uloženou pozici?"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "Nahradit existující uloženou pozici:"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "Uložení se nezdařilo! Nastala výjimka"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+"Převod uložené pozice na novější verzi selhal kvůli následující chybě:\n"
+"{0}"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3845,15 +3862,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "Nebyly nalezeny žádné uložené hry"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
-msgstr "Načítání..."
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
+msgstr "Nahrávání..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Smazat tuto uloženou pozici?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Načíst nekompatibilní uloženou pozici?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3871,7 +3891,8 @@ msgstr ""
 "Chceš přesto zkusit načíst uložení?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Načíst neplatné uložení?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3882,7 +3903,8 @@ msgstr ""
 "Chceš přesto zkusit načíst uložení?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Vybrané uložení je nekompatibilní"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3893,7 +3915,8 @@ msgstr ""
 "Jelikož je Thrive v ranné fázi vývoje, není kompatibilita uložených pozic prioritou, a proto převodníky nefungují pro všechny verze."
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Vybranou uloženou pozici lze převést na novou verzi"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3904,11 +3927,11 @@ msgstr ""
 "Pokud převod přeskočíte, hra se pokusí načíst uloženou pozici normálně.\n"
 "Chcete se pokusit o převod na novou verzi?"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Převod na novou verzi se nezdařil"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Převod uložené pozice na novější verzi selhal kvůli následující chybě:\n"
@@ -3925,16 +3948,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "Typ:"
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "HP:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Popis:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "Verze:"
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "Generace:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -3948,7 +3973,7 @@ msgstr "Vytvořeno na platformě:"
 msgid "LOAD"
 msgstr "Načíst"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
 
@@ -3988,11 +4013,13 @@ msgid "SELECTED_COLON"
 msgstr "Vybráno:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Smazat vybraná uložení?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Smazat stará uložení?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4093,28 +4120,30 @@ msgstr ""
 "Chceš-li přejít na další kartu editoru, klikni na tlačítko Další vpravo dole."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Toto je mapa lokalit.\n"
-"Zde vidíš různé lokality, ve kterých mohou mikroby žít.\n"
-"Tvoje aktuální lokalita je zvýrazněna.\n"
-"Klepnutím na lokality myší je můžeš vybrat a zobrazit jejich podrobnosti na pravé straně.\n"
+"Vítejte v editoru mikrobů.\n"
+"Zde můžeš zkontrolovat, co se stalo od začátku hry nebo kdy jsi byl/a naposledy v editoru. A pak provést změny na tvém druhu.\n"
 "\n"
-"Pokud vybereš lokalitu, vedle které se právě nacházíš, můžeš se tam přesunout stisknutím tlačítka vpravo. To umožňuje, aby se tvá populace rozšířila na nové lokace.\n"
+"Na této kartě vidíš zprávu o tom, jaké druhy existují, kde a jaké jsou jejich populace. Nahoře také uvidíš změny prostředí.\n"
 "\n"
-"Pokračuj výběrem lokace."
+"Chceš-li přejít na další kartu editoru, klikni na tlačítko Další vpravo dole."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Toto je editor buněk, kde můžeš přidávat nebo odebírat organely z tvého druhu utracením bodů mutace (MP).\n"
+"Vítejte v editoru mikrobů.\n"
+"Zde můžeš zkontrolovat, co se stalo od začátku hry nebo kdy jsi byl/a naposledy v editoru. A pak provést změny na tvém druhu.\n"
 "\n"
-"Další vlastnosti tvého druhu můžeš změnit na dalších kartách editoru buněk.\n"
+"Na této kartě vidíš zprávu o tom, jaké druhy existují, kde a jaké jsou jejich populace. Nahoře také uvidíš změny prostředí.\n"
 "\n"
-"Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."
+"Chceš-li přejít na další kartu editoru, klikni na tlačítko Další vpravo dole."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Odstranění organel stojí MP, ovšem to pouze v případě, že se nejedná o aktuální relaci editace.\n"
 "\n"
@@ -4125,7 +4154,8 @@ msgstr ""
 "Pokračuj kliknutím na tlačítko Zpět."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Když vybíráš, které organely přidat, věnuj pozornost tipům pro organely, na kterých procesech se podílejí a jaké sloučeniny používají a vyrábějí.\n"
 "\n"
@@ -4136,7 +4166,8 @@ msgstr ""
 "Pokračuj stisknutím tlačítka vrátit (poblíž tlačítka Zpět)."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "To jsou základní úpravy tvého druhu. Další možnosti můžeš zhlédnout na ostatních kartách editoru buněk.\n"
 "\n"
@@ -4151,7 +4182,8 @@ msgid "GOT_IT"
 msgstr "Rozumím"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Tento panel zobrazuje předpověď budoucího počtu obyvatel. Tato čísla pocházejí ze simulace populace auto-evo.\n"
 "\n"
@@ -4162,7 +4194,8 @@ msgstr ""
 "Podrobnější informace za předpovědí si můžete zobrazit stisknutím tlačítka s otazníkem na panelu. Chcete-li pokračovat, stiskněte jej."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Měli byste se soustředit na jeden nebo dva zdroje energie, abyste nemuseli mít všechny zdroje k vytvoření dostatečného množství ATP pro přežití.\n"
 "\n"
@@ -4212,13 +4245,15 @@ msgstr ""
 "Nezapomeň shromáždit dostatek glukózy k produkci ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Aby ses mohl/a rozmnožovat, musíš duplikovat všechny své organely shromážděním dostatečného množství amoniaku a fosfátů.\n"
 "Podívej se na indikátor v pravém dolním rohu a uvidíš, kolik toho ještě potřebuješ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Nasbíral(a) jsi dostatek surovin pro dělení.\n"
 "\n"
@@ -4227,22 +4262,77 @@ msgstr ""
 "Pro spuštění editoru stiskni blikající tlačítko editoru vpravo dole."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Vstoupil(a) jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy kolonie, čímž je odpojíš.\n"
 "\n"
 "K rozpuštění kolonie klikni na svou buňku nebo stiskni klávesu pro odpojení všech."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Pokud si stále nevíte rady s herními mechanismy, podívejte se do nápovědy. Otevřete ji tlačítkem s otazníkem v levém dolním rohu.\n"
 "\n"
 "Ještě jedna rada: pohled můžete zvětšit pomocí kolečka myši."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr "Zobrazit"
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "Tutoriál"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "Načítání..."
+
+#~ msgid "POPULATION"
+#~ msgstr "populace:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "předchozí:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "populace v místě:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} s populací: {1}"
+
+#~ msgid "SAVING"
+#~ msgstr "Ukládání..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Nahradit existující uloženou pozici?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "Uložení se nezdařilo! Nastala výjimka"
+
+#~ msgid "TYPE"
+#~ msgstr "Typ:"
+
+#~ msgid "VERSION"
+#~ msgstr "Verze:"
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "Toto je mapa lokalit.\n"
+#~ "Zde vidíš různé lokality, ve kterých mohou mikroby žít.\n"
+#~ "Tvoje aktuální lokalita je zvýrazněna.\n"
+#~ "Klepnutím na lokality myší je můžeš vybrat a zobrazit jejich podrobnosti na pravé straně.\n"
+#~ "\n"
+#~ "Pokud vybereš lokalitu, vedle které se právě nacházíš, můžeš se tam přesunout stisknutím tlačítka vpravo. To umožňuje, aby se tvá populace rozšířila na nové lokace.\n"
+#~ "\n"
+#~ "Pokračuj výběrem lokace."
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Toto je editor buněk, kde můžeš přidávat nebo odebírat organely z tvého druhu utracením bodů mutace (MP).\n"
+#~ "\n"
+#~ "Další vlastnosti tvého druhu můžeš změnit na dalších kartách editoru buněk.\n"
+#~ "\n"
+#~ "Pokračuj výběrem organely z panelu vlevo (cytoplazma je dobrá volba). Potom klikni levým tlačítkem vedle zobrazeného šestiúhelníku (Hexu) uprostřed obrazovky a přidej tuto organelu ke svému druhu."
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "Zobrazit"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

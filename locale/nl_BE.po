@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -768,15 +768,18 @@ msgid "CHEMORECEPTOR"
 msgstr "chemoplastische"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "Onvoltooid."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "Voltooid."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "Niet actief."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -792,16 +795,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "bevolking:"
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "Totale populatie:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "stierf uit in {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "vorige:"
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "Soorten:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -820,7 +825,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "Populatie in sommige gebieden afgesplitst om nieuwe soorten te vormen {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "heeft een mutatie"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -828,7 +834,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen code:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "verspreid naar gebieden:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -836,8 +843,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} door het versturen van: {1} bevolking van gebied: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "bevolking in gebieden:"
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3195,8 +3203,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m onder zeeniveau"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr "{0} met populatie: {1}"
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "Soortenpopulatie"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3747,7 +3756,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Objecten creëren vanuit het opgeslagen bestand"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Een uitzondering is opgetreden tijdens het laden van de opgeslagen gegevens"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3763,7 +3773,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Verwerken van geladen objecten"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Een uitzondering is opgetreden tijdens het verwerken van geladen objecten"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3779,8 +3790,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Kan reeds geladen bronnen niet vrijmaken: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "Opslaan..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "aan het maken..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3791,7 +3803,8 @@ msgid "ERROR_SAVING"
 msgstr "Fout bij het opslaan"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "De gekozen bestandsnaam ({0}) bestaat al. Wil je dit overschrijven?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3815,12 +3828,16 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Bestaande opgeslagen bestand overschrijven:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Bestaande opgeslagen bestand overschrijven?"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "Bestaande opgeslagen bestand overschrijven:"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "Opslaan mislukt! Een uitzondering is opgetreden"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+"Het upgraden van de geselecteerde save is gefaald door de volgende error:\n"
+"{0}"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3859,15 +3876,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
-msgstr "Laden..."
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
+msgstr "Uploaden..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Dit opgeslagen bestand verwijderen?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Niet-compatibel opgeslagen bestand laden?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3885,7 +3905,8 @@ msgstr ""
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Ongeldig opgeslagen bestand laden?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3896,7 +3917,8 @@ msgstr ""
 "Wil je toch proberen om het opgeslagen bestand te laden?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Geselecteerde opgeslagen bestand is niet-compatibel"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3907,7 +3929,8 @@ msgstr ""
 "Aangezien Thrive nog in een vroeg stadium van ontwikkeling is, heeft compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen upgraders voor alle versies."
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Geselecteerde opgeslagen bestand is upgrade baar"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3918,11 +3941,11 @@ msgstr ""
 "Als je upgraden skipt, wordt geprobeerd de save normaal te laden.\n"
 "Probeer deze save te upgraden?"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Het upgraden van de save is mislukt"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Het upgraden van de geselecteerde save is gefaald door de volgende error:\n"
@@ -3939,16 +3962,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "Type:"
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "HP:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Omschrijving:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "Versie:"
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "Generatie:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -3962,7 +3987,7 @@ msgstr "Gemaakt op platform:"
 msgid "LOAD"
 msgstr "Laden"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gemaakt. Weet je zeker dat je dit definitief wilt verwijderen?"
 
@@ -4002,11 +4027,13 @@ msgid "SELECTED_COLON"
 msgstr "Geselecteerd:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Verwijder geselecteerde opgeslagen bestand(en)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Verwijder oude opgeslagen bestanden?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4107,28 +4134,30 @@ msgstr ""
 "Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Dit is de kaart van de plekken.\n"
-"Hier kan je de verschillende plekken zien waar je microben kunnen leven.\n"
-"Je huidige plek is gemarkeerd.\n"
-"Je kan op de plekken klikken met je muis om ze te selecteren om zo hun details te zien aan de rechterzijde.\n"
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
 "\n"
-"Als je een plek selecteerd die aangrenst aan de plek waarin je jezelf momenteel bevindt, dan kan je op de knop aan de rechterkant klikken om daarheen te verhuizen. Dit laat toe om je populatie te verspreiden naar nieuwe plekken.\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
 "\n"
-"Selecteer een plek om verder te gaan."
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen van je soort door mutatiepunten (MP) te besteden.\n"
+"Welkom bij de Microbe Editor.\n"
+"Hier kan je zien wat er is gebeurd sinds het begin van het spel of wanneer je het laatste in de editor was. Dan kan je hier ook aanpassingen maken aan je soort.\n"
 "\n"
-"Je kan ook andere eigenschappen van je soort aanpassen in de andere tabbladen van de cel editor.\n"
+"In dit tabblad kan je een verslag zien van welke soorten er bestaan, waar en wat hun populaties zijn. Je kan ook omgevingsveranderingen zien bovenaan.\n"
 "\n"
-"Om verder te gaan selecteer je een organel van het paneel aan de linkerkant (cytoplasma is een goede keuze). Klik dan met de linkermuisknop naast de zeshoek die getoond is in het midden van het scherm om dat organel toe te voegen aan je soort."
+"Om naar het volgende tabblad te gaan druk je op de volgende knop rechts onder."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Het verwijderen van organellen kost ook MP, want het is een mutatie aan je soort, tenzij ze geplaatst zijn tijden de huidige sessie. \n"
 "\n"
@@ -4139,7 +4168,8 @@ msgstr ""
 "Klik de \"ongedaan maken\" knop om verder te gaan."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "wanneer je selecteerd welk organel je wilt toevoegen, hou dan rekening met de gegeven info van de organellen voor welke processen ze uitvoeren en welke chemische verbindingen ze gebruiken en produceren.\n"
 "\n"
@@ -4150,7 +4180,8 @@ msgstr ""
 "Druk op de \"opnieuw\" knop (dicht bij de \"ongedaan maken\" knop) om verder te gaan."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Dat zijn de basisprincipes van het bewerken van je soort. U kunt de andere tabbladen van de celeditor controleren voor nog meer opties.\n"
 "\n"
@@ -4165,7 +4196,8 @@ msgid "GOT_IT"
 msgstr "Begrepen"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Dit paneel toont een voorspelling van uw toekomstige populatie.\n"
 "\n"
@@ -4176,7 +4208,8 @@ msgstr ""
 "Maar je zou beter je populatie hoog houden ook al ben je niet direct betrokken."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "U moet zich concentreren op een of twee energiebronnen, zodat u niet alle middelen hoeft te hebben om voldoende ATP te genereren om te overleven.\n"
 "\n"
@@ -4226,13 +4259,15 @@ msgstr ""
 "Zorg ervoor dat u voldoende glucose verzamelt om ATP te produceren."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Om te reproduceren moet je al je organellen dupliceren door voldoende ammoniak en fosfaten te verzamelen.\n"
 "Kijk naar de indicator rechtsonder om te zien hoeveel je nog nodig hebt."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Je hebt genoeg middelen verzameld om je cel te laten delen.\n"
 "\n"
@@ -4241,22 +4276,77 @@ msgstr ""
 "Om de editor te openen, drukt u op de knipperende editor-knop rechtsonder."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "U bent in de ontbind-modus gekomen. In deze modus kun je op kolonieleden klikken om ze te ontbinden.\n"
 "\n"
 "Om de kolonie helemaal te verlaten kun je op je eigen cel klikken of op de unbind all-toets drukken."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Als je nog steeds worstelt met de werking van het spel. Kijk dan in het helpmenu. Je kunt het openen met de vraagtekenknop linksonder.\n"
 "\n"
 "Nog een tip: je zoomt uit met het scrollwiel."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr "Kijk nu"
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "Tutorial"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "Laden..."
+
+#~ msgid "POPULATION"
+#~ msgstr "bevolking:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "vorige:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "bevolking in gebieden:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} met populatie: {1}"
+
+#~ msgid "SAVING"
+#~ msgstr "Opslaan..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Bestaande opgeslagen bestand overschrijven?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "Opslaan mislukt! Een uitzondering is opgetreden"
+
+#~ msgid "TYPE"
+#~ msgstr "Type:"
+
+#~ msgid "VERSION"
+#~ msgstr "Versie:"
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "Dit is de kaart van de plekken.\n"
+#~ "Hier kan je de verschillende plekken zien waar je microben kunnen leven.\n"
+#~ "Je huidige plek is gemarkeerd.\n"
+#~ "Je kan op de plekken klikken met je muis om ze te selecteren om zo hun details te zien aan de rechterzijde.\n"
+#~ "\n"
+#~ "Als je een plek selecteerd die aangrenst aan de plek waarin je jezelf momenteel bevindt, dan kan je op de knop aan de rechterkant klikken om daarheen te verhuizen. Dit laat toe om je populatie te verspreiden naar nieuwe plekken.\n"
+#~ "\n"
+#~ "Selecteer een plek om verder te gaan."
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Dit is de cel editor waar je organellen kan toevoegen aan of verwijderen van je soort door mutatiepunten (MP) te besteden.\n"
+#~ "\n"
+#~ "Je kan ook andere eigenschappen van je soort aanpassen in de andere tabbladen van de cel editor.\n"
+#~ "\n"
+#~ "Om verder te gaan selecteer je een organel van het paneel aan de linkerkant (cytoplasma is een goede keuze). Klik dan met de linkermuisknop naast de zeshoek die getoond is in het midden van het scherm om dat organel toe te voegen aan je soort."
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "Kijk nu"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"

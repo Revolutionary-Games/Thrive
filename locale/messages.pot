@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:37+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -721,15 +721,15 @@ msgid "CHEMORECEPTOR"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+msgid "ABORTED_DOT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+msgid "FINISHED_DOT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+msgid "NOT_RUNNING_DOT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -745,7 +745,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
+msgid "POPULATION_COLON"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:563
@@ -753,7 +753,7 @@ msgid "WENT_EXTINCT_IN"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
+msgid "PREVIOUS_COLON"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:587
@@ -773,7 +773,7 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -781,7 +781,7 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -789,7 +789,7 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
+msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
 #: ../src/auto-evo/RunResults.cs:789
@@ -3078,7 +3078,7 @@ msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
+msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
@@ -3626,7 +3626,7 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3642,7 +3642,7 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3658,7 +3658,7 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
+msgid "SAVING_DOT_DOT_DOT"
 msgstr ""
 
 #: ../src/saving/InProgressSave.cs:221
@@ -3670,7 +3670,7 @@ msgid "ERROR_SAVING"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3694,11 +3694,11 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
+msgid "SAVING_FAILED_WITH_EXCEPTION"
 msgstr ""
 
 #: ../src/saving/SaveHelper.cs:436
@@ -3738,15 +3738,15 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
+msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:80
@@ -3758,7 +3758,7 @@ msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:96
@@ -3766,7 +3766,7 @@ msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:105
@@ -3774,18 +3774,18 @@ msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 
@@ -3800,7 +3800,7 @@ msgid "DOT_DOT_DOT"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
+msgid "TYPE_COLON"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:170
@@ -3808,7 +3808,7 @@ msgid "DESCRIPTION"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
+msgid "VERSION_COLON"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:222
@@ -3823,7 +3823,7 @@ msgstr ""
 msgid "LOAD"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
@@ -3860,11 +3860,11 @@ msgid "SELECTED_COLON"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -3959,23 +3959,23 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
@@ -3983,11 +3983,11 @@ msgid "GOT_IT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
@@ -4015,22 +4015,22 @@ msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
+msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 

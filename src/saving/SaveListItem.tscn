@@ -102,7 +102,7 @@ size_flags_vertical = 4
 margin_right = 519.0
 margin_bottom = 25.0
 custom_fonts/font = ExtResource( 8 )
-text = "LOADING_DOT"
+text = "LOADING_DOT_DOT_DOT"
 autowrap = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -145,14 +145,14 @@ margin_bottom = 42.0
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
-margin_right = 36.0
+margin_right = 95.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 10 )
-text = "TYPE"
+text = "TYPE_COLON"
 
 [node name="Type" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
-margin_left = 40.0
-margin_right = 148.0
+margin_left = 99.0
+margin_right = 207.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 10 )
 text = "DOT_DOT_DOT"
@@ -187,21 +187,21 @@ margin_bottom = 19.0
 size_flags_vertical = 3
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
-margin_right = 65.0
+margin_right = 124.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 10 )
-text = "VERSION"
+text = "VERSION_COLON"
 
 [node name="Version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
-margin_left = 69.0
-margin_right = 177.0
+margin_left = 128.0
+margin_right = 236.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 10 )
 text = "DOT_DOT_DOT"
 
 [node name="VersionWarning" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
-margin_left = 181.0
-margin_right = 202.0
+margin_left = 240.0
+margin_right = 261.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 10 )
 text = "( ! )"
@@ -279,8 +279,8 @@ margin_left = 1354.0
 margin_right = 1854.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 500, 0 )
+WindowTitle = "DELETE_THIS_SAVE_PROMPT"
 DialogText = "DELETE_SAVE_CONFIRMATION"
-WindowTitle = "DELETE_THIS_SAVE"
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]

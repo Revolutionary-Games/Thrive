@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 13:36+0200\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
 "PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -771,15 +771,18 @@ msgid "CHEMORECEPTOR"
 msgstr "Quimioreceptor"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+#, fuzzy
+msgid "ABORTED_DOT"
 msgstr "Avortat."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+#, fuzzy
+msgid "FINISHED_DOT"
 msgstr "Acabat."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+#, fuzzy
+msgid "NOT_RUNNING_DOT"
 msgstr "No està en marxa."
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -795,16 +798,18 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "Població de l'espècie {0} canviada per una quantitat {1} degut a aquest efecte: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-msgid "POPULATION"
-msgstr "població:"
+#, fuzzy
+msgid "POPULATION_COLON"
+msgstr "Població Total:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "s'ha extingit en {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-msgid "PREVIOUS"
-msgstr "anterior:"
+#, fuzzy
+msgid "PREVIOUS_COLON"
+msgstr "Espècies:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -823,7 +828,8 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "la població en algunes zones es divideix per formar noves espècies {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#, fuzzy
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr "ha patit una mutació"
 
 #: ../src/auto-evo/RunResults.cs:641
@@ -831,7 +837,8 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "codi genètic:"
 
 #: ../src/auto-evo/RunResults.cs:652
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#, fuzzy
+msgid "SPREAD_TO_PATCHES"
 msgstr "s'ha escampat a les zones:"
 
 #: ../src/auto-evo/RunResults.cs:660
@@ -839,8 +846,9 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} enviant-hi: {1} membres de l'espècie des de la zona: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-msgid "RUN_RESULT_POP_IN_PATCHES"
-msgstr "població a les zones:"
+#, fuzzy
+msgid "POPULATION_IN_PATCHES"
+msgstr "{0} ({1})"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3183,8 +3191,9 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sota el nivell del mar"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-msgid "WITH_POPULATION"
-msgstr "{0} amb població: {1}"
+#, fuzzy
+msgid "SPECIES_WITH_POPULATION"
+msgstr "Població de les Espècies"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3731,7 +3740,8 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Creant objectes a partir de l'arxiu guardat"
 
 #: ../src/saving/InProgressLoad.cs:110
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "S'ha esdevingut un problema mentre es carregaven les dades del fitxer guardat"
 
 #: ../src/saving/InProgressLoad.cs:136
@@ -3747,7 +3757,8 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Processant objectes carregats"
 
 #: ../src/saving/InProgressLoad.cs:165
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#, fuzzy
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "S'ha produït un problema mentre es processaven els objectes carregats"
 
 #: ../src/saving/InProgressLoad.cs:171
@@ -3763,8 +3774,9 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Ha fallat en alliberar recursos ja carregats: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
-msgstr "Guardant..."
+#, fuzzy
+msgid "SAVING_DOT_DOT_DOT"
+msgstr "Creant..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3775,7 +3787,8 @@ msgid "ERROR_SAVING"
 msgstr "Error amb l'acció de guardat"
 
 #: ../src/saving/NewSaveMenu.cs:74
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+#, fuzzy
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "El nom de l'arxiu ({0}) coincideix amb el d'un altre ja guardat. Voleu sobreescriure-ho?"
 
 #: ../src/saving/NewSaveMenu.cs:172
@@ -3799,12 +3812,16 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Sobreescriure l'arxiu de guardat existent:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
-msgstr "Voleu sobreescriure l'arxiu de guardat actual?"
+#, fuzzy
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
+msgstr "Sobreescriure l'arxiu de guardat existent:"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-msgid "SAVING_FAILED"
-msgstr "Acció de guardat fallida! Hi ha hagut un problema"
+#, fuzzy
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+"Actualitzar l'arxiu de guardat especificat degut al següent error:\n"
+"{0}"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3843,15 +3860,18 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "No s'han trobat arxius de guardat"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
+#, fuzzy
+msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregant..."
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+#, fuzzy
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Eliminar aquest arxiu de guardat?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+#, fuzzy
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Carregar arxiu de guardat incompatible?"
 
 #: ../src/saving/SaveList.tscn:80
@@ -3869,7 +3889,8 @@ msgstr ""
 "Voleu intentar carregar l'arxiu igualment?"
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+#, fuzzy
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Carregar arxiu de guardat no vàlid?"
 
 #: ../src/saving/SaveList.tscn:96
@@ -3880,7 +3901,8 @@ msgstr ""
 "Voleu intentar carregar l'arxiu igualment?"
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "L'arxiu de guardat seleccionat és incompatible"
 
 #: ../src/saving/SaveList.tscn:105
@@ -3891,7 +3913,8 @@ msgstr ""
 "Com que Thrive encara està en una fase primerenca de desenvolupament, la compatibilitat entre versions no és la major prioritat. Per això, encara no s'ha implementat un programa convertidor d'arxius de guardat."
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+#, fuzzy
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "L'arxiu de guardat seleccionar es pot actualitzar"
 
 #: ../src/saving/SaveList.tscn:115
@@ -3902,11 +3925,11 @@ msgstr ""
 "Si et saltes l'actualització, s'intentarà carregar l'arxiu de guardat amb normalitat.\n"
 "Intentar actualitzar aquest arxiu de guardat?"
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr "Actualització d'arxiu de guardat fallida"
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 "Actualitzar l'arxiu de guardat especificat degut al següent error:\n"
@@ -3923,16 +3946,18 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr "Tipus:"
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "Punts de salut:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Descripció:"
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
-msgstr "Versió:"
+#, fuzzy
+msgid "VERSION_COLON"
+msgstr "Generació:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -3946,7 +3971,7 @@ msgstr "Creat a la Plataforma:"
 msgid "LOAD"
 msgstr "Carregar"
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur que el voleu eliminar permanentment?"
 
@@ -3986,11 +4011,13 @@ msgid "SELECTED_COLON"
 msgstr "Seleccionat:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+#, fuzzy
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Eliminar arxiu(s) de guardat seleccionat(s)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+#, fuzzy
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Eliminar arxiu(s) de guardat antic(s)?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -4091,28 +4118,30 @@ msgstr ""
 "Per tal d'accedir a la següent pestanya de l'Editor, fes clic al botó SEGÜENT, a baix a la dreta."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Aquest és el mapa dels Indrets d'aquest món.\n"
-"Pots examinar els diferents Indrets cap a on la teva espècie pot migrar i colonitzar.\n"
-"L'Indret on es troba la teva espècie actualment està ressaltada.\n"
-"Pots clicar en els Indrets amb el ratolí per tal de seleccionar-lo i veure'n els detalls, a la banda dreta de la pestanya.\n"
+"Benvingut a l'Editor de Microbi.\n"
+"Aquí pots revisar tot el que ha passat des del començament del joc o des de la darrera vegada que vas accedir a l'Editor. Tot seguit, pots fer canvis (que representen mutacions genètiques generades per un procés d'evolució).\n"
 "\n"
-"Si selecciones un Indret limítrof amb el teu Indret actual, tens la opció de clicar el botó a la dreta per a fer-hi migrar la teva espècie.\n"
+"En aquesta pestanya pots examinar un informe que conté les espècies que hi ha actualment al món, el seu domini territorial i les seves poblacions fluctuants. També pots apreciar els canvis ambientals.\n"
 "\n"
-"Selecciona un Indret per tal de continuar."
+"Per tal d'accedir a la següent pestanya de l'Editor, fes clic al botó SEGÜENT, a baix a la dreta."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Aquest és l'Editor de Microbi, on pots afegir, treure o modificar diferents orgànuls, tot invertint-hi una quantitat corresponent de Punts de Mutació.\n"
+"Benvingut a l'Editor de Microbi.\n"
+"Aquí pots revisar tot el que ha passat des del començament del joc o des de la darrera vegada que vas accedir a l'Editor. Tot seguit, pots fer canvis (que representen mutacions genètiques generades per un procés d'evolució).\n"
 "\n"
-"També pots canviar altres propietats i elements de la teva cèl·lula, com ara la membrana, en les altres pestanyes de l'Editor.\n"
+"En aquesta pestanya pots examinar un informe que conté les espècies que hi ha actualment al món, el seu domini territorial i les seves poblacions fluctuants. També pots apreciar els canvis ambientals.\n"
 "\n"
-"Per continuar, selecciona un orgànul del tauler de l'esquerra (el Citoplasma és una bona opció). Tot seguit, fes clic esquerre al cantó de l'Hexàgon mostrat al bell mig de la pantalla (que representa l'interior de la teva cèl·lula) per tal d'afegir aquest orgànul a la teva espècie."
+"Per tal d'accedir a la següent pestanya de l'Editor, fes clic al botó SEGÜENT, a baix a la dreta."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Eliminar orgànuls també costa una certa quantitat de Punts de Mutació, a menys que els hagis col·locat en la sessió actual de l'editor.\n"
 "\n"
@@ -4123,7 +4152,8 @@ msgstr ""
 "Clica el botó de desfer per tal de prosseguir."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Quan seleccionis els orgànuls que vulguis afegir, estigues atent als indicadors de funció ('tooltips', en anglès) per als orgànuls, que t'informaran dels processos que poden dur a terme i els compostos que consumeixen.\n"
 "\n"
@@ -4134,7 +4164,8 @@ msgstr ""
 "Prem el botó de refer l'acció (a la vora del botó de desfer l'acció) per tal de prosseguir."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Aquests són els fonaments i consells bàsics per tal d'editar la teva espècie. Pots explorar les altres pestanyes de l'Editor de Microbi per descobrir totes les opcions que tens disponibles.\n"
 "\n"
@@ -4149,7 +4180,8 @@ msgid "GOT_IT"
 msgstr "Ho he entès tot"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Aquest tauler mostra una predicció de la teva futura població. Aquests nombres provenen de la simulació del sistema auto-evo.\n"
 "\n"
@@ -4160,7 +4192,8 @@ msgstr ""
 "Pots veure informació més detallada de la predicció clicant a la icona del signe d'interrogació al tauler."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "T'hauries de concentrar en una o dues fonts d'energia, de manera que no et calgui tenir tots els recursos per generar prou ATP per sobreviure.\n"
 "\n"
@@ -4212,13 +4245,15 @@ msgstr ""
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Per tal de reproduïr-te, has de dividir la teva cèl·lula en dos organismes diferents. Per fer-ho, abans has de duplicar tots els orgànuls de la teva cèl·lula recol·lectant prou Amoníac i Fosfats.\n"
 "Estigueu atents a l'indicador a la part inferior dreta per veure quina quantitat d'Amoníac i Fosfats et falta encara."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Has recol·lectat prou recursos per tal que la teva cèl·lula es divideixi.\n"
 "\n"
@@ -4227,22 +4262,77 @@ msgstr ""
 "Per entrar a l'editar, prem el botó que parpelleja a sota i a la dreta de la pantalla."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Has entrar en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
 "\n"
 "Per tal d'abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla per desunir-les a totes."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+#, fuzzy
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Si encara no acabes d'entendre les mecàniques de joc, fes una ullada al menú d'ajuda. El pots obrir amb el signe d'interrogació a baix a la dreta.\n"
 "\n"
 "Un altre consell: pots ampliar el camp de visió amb la rodeta del ratolí."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
-msgstr "Veure Ara"
+#, fuzzy
+msgid "TUTORIAL_VIEW_NOW"
+msgstr "Tutorial"
+
+#~ msgid "LOADING_DOT"
+#~ msgstr "Carregant..."
+
+#~ msgid "POPULATION"
+#~ msgstr "població:"
+
+#~ msgid "PREVIOUS"
+#~ msgstr "anterior:"
+
+#~ msgid "RUN_RESULT_POP_IN_PATCHES"
+#~ msgstr "població a les zones:"
+
+#~ msgid "WITH_POPULATION"
+#~ msgstr "{0} amb població: {1}"
+
+#~ msgid "SAVING"
+#~ msgstr "Guardant..."
+
+#~ msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+#~ msgstr "Voleu sobreescriure l'arxiu de guardat actual?"
+
+#~ msgid "SAVING_FAILED"
+#~ msgstr "Acció de guardat fallida! Hi ha hagut un problema"
+
+#~ msgid "TYPE"
+#~ msgstr "Tipus:"
+
+#~ msgid "VERSION"
+#~ msgstr "Versió:"
+
+#~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+#~ msgstr ""
+#~ "Aquest és el mapa dels Indrets d'aquest món.\n"
+#~ "Pots examinar els diferents Indrets cap a on la teva espècie pot migrar i colonitzar.\n"
+#~ "L'Indret on es troba la teva espècie actualment està ressaltada.\n"
+#~ "Pots clicar en els Indrets amb el ratolí per tal de seleccionar-lo i veure'n els detalls, a la banda dreta de la pestanya.\n"
+#~ "\n"
+#~ "Si selecciones un Indret limítrof amb el teu Indret actual, tens la opció de clicar el botó a la dreta per a fer-hi migrar la teva espècie.\n"
+#~ "\n"
+#~ "Selecciona un Indret per tal de continuar."
+
+#~ msgid "EDITOR_TUTORIAL_CELL_TEXT"
+#~ msgstr ""
+#~ "Aquest és l'Editor de Microbi, on pots afegir, treure o modificar diferents orgànuls, tot invertint-hi una quantitat corresponent de Punts de Mutació.\n"
+#~ "\n"
+#~ "També pots canviar altres propietats i elements de la teva cèl·lula, com ara la membrana, en les altres pestanyes de l'Editor.\n"
+#~ "\n"
+#~ "Per continuar, selecciona un orgànul del tauler de l'esquerra (el Citoplasma és una bona opció). Tot seguit, fes clic esquerre al cantó de l'Hexàgon mostrat al bell mig de la pantalla (que representa l'interior de la teva cèl·lula) per tal d'afegir aquest orgànul a la teva espècie."
+
+#~ msgid "VIEW_NOW"
+#~ msgstr "Veure Ara"
 
 #, fuzzy
 #~ msgid "TOTAL_EXTINCTION"
