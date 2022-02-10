@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public class PilusComponent : ExternallyPositionedComponent
 {
-    private List<uint> addedChildShapes = new List<uint>();
+    private List<uint> addedChildShapes = new();
 
     private Microbe? currentShapesParent;
 

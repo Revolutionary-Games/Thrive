@@ -31,10 +31,10 @@ public class MicrobeAI
     private float previousAngle;
 
     [JsonProperty]
-    private Vector3 targetPosition = new Vector3(0, 0, 0);
+    private Vector3 targetPosition = new(0, 0, 0);
 
     [JsonIgnore]
-    private EntityReference<Microbe> focusedPrey = new EntityReference<Microbe>();
+    private EntityReference<Microbe> focusedPrey = new();
 
     [JsonProperty]
     private float pursuitThreshold;

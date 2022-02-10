@@ -17,14 +17,14 @@ public class AutoEvoRun
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
     /// </summary>
-    private readonly RunResults results = new RunResults();
+    private readonly RunResults results = new();
 
     /// <summary>
     ///   Generated steps are stored here until they are executed
     /// </summary>
-    private readonly Queue<IRunStep> runSteps = new Queue<IRunStep>();
+    private readonly Queue<IRunStep> runSteps = new();
 
-    private readonly List<Task> concurrentStepTasks = new List<Task>();
+    private readonly List<Task> concurrentStepTasks = new();
 
     private volatile RunStage state = RunStage.GatheringInfo;
 
@@ -67,7 +67,7 @@ public class AutoEvoRun
     /// <summary>
     ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
     /// </summary>
-    public List<ExternalEffect> ExternalEffects { get; } = new List<ExternalEffect>();
+    public List<ExternalEffect> ExternalEffects { get; } = new();
 
     /// <summary>
     ///   True while running
@@ -119,13 +119,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return TranslationServer.Translate("ABORTED");
+                return TranslationServer.Translate("ABORTED_DOT");
 
             if (Finished)
-                return TranslationServer.Translate("FINISHED");
+                return TranslationServer.Translate("FINISHED_DOT");
 
             if (!Running)
-                return TranslationServer.Translate("NOT_RUNNING");
+                return TranslationServer.Translate("NOT_RUNNING_DOT");
 
             int total = totalSteps;
 

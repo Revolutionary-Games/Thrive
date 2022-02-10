@@ -689,6 +689,8 @@ public static class Constants
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
 
+    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
+
     /// <summary>
     ///   The duration for which a save is considered recently performed.
     /// </summary>
