@@ -15,7 +15,7 @@ public class PatchMap
     ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
     [JsonProperty]
-    public Dictionary<int, Patch> Patches { get; private set; } = new Dictionary<int, Patch>();
+    public Dictionary<int, Patch> Patches { get; private set; } = new();
 
     /// <summary>
     ///   Currently active patch (the one player is in)

@@ -10,9 +10,9 @@ public class Invoke : Node
 {
     private static Invoke? instance;
 
-    private readonly BlockingCollection<Action> queuedInvokes = new BlockingCollection<Action>();
-    private readonly BlockingCollection<Action> nextFrameInvokes = new BlockingCollection<Action>();
-    private readonly List<Action> tempActionList = new List<Action>();
+    private readonly BlockingCollection<Action> queuedInvokes = new();
+    private readonly BlockingCollection<Action> nextFrameInvokes = new();
+    private readonly List<Action> tempActionList = new();
 
     private Invoke()
     {

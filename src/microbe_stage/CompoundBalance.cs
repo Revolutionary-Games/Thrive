@@ -5,9 +5,9 @@
 /// </summary>
 public class CompoundBalance
 {
-    public readonly Dictionary<string, float> Consumption = new Dictionary<string, float>();
+    public readonly Dictionary<string, float> Consumption = new();
 
-    public readonly Dictionary<string, float> Production = new Dictionary<string, float>();
+    public readonly Dictionary<string, float> Production = new();
 
     /// <summary>
     ///   Total balance of this compound

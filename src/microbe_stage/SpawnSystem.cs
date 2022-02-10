@@ -25,7 +25,7 @@ public class SpawnSystem
     private ShuffleBag<Spawner> spawnTypes;
 
     [JsonProperty]
-    private Random random = new Random();
+    private Random random = new();
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag

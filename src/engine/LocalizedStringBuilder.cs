@@ -18,7 +18,7 @@ using Newtonsoft.Json;
 public class LocalizedStringBuilder : IFormattable
 {
     [JsonProperty]
-    private readonly List<IFormattable> items = new List<IFormattable>();
+    private readonly List<IFormattable> items = new();
 
     private readonly StringBuilder stringBuilder;
     private string formatString = string.Empty;
