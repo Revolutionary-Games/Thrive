@@ -424,7 +424,7 @@ public static class SaveHelper
             }
             catch (NullReferenceException e)
             {
-                inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED"),
+                inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                     e.ToString(), true);
                 return true;
             }
@@ -453,7 +453,7 @@ public static class SaveHelper
                 throw;
 #pragma warning restore 162
 
-            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED"),
+            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                 e.ToString());
             return;
         }

@@ -107,7 +107,7 @@ public class InProgressLoad
                     var extraProblem = TryFreeAlreadyLoadedData();
 
                     ReportStatus(false,
-                        TranslationServer.Translate("AN_EXCEPTION_HAPPENED_WHILE_LOADING"),
+                        TranslationServer.Translate("EXCEPTION_HAPPENED_WHILE_LOADING"),
                         e + extraProblem);
                     state = State.Finished;
 
@@ -162,7 +162,7 @@ public class InProgressLoad
                     var extraProblem = TryFreeAlreadyLoadedData();
 
                     ReportStatus(false,
-                        TranslationServer.Translate("AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"),
+                        TranslationServer.Translate("EXCEPTION_HAPPENED_PROCESSING_SAVE"),
                         e + extraProblem);
                     state = State.Finished;
                     break;
