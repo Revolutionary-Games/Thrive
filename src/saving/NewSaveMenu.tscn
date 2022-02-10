@@ -113,7 +113,7 @@ __meta__ = {
 
 [node name="OverwriteConfirm" parent="." instance=ExtResource( 3 )]
 rect_min_size = Vector2( 500, 0 )
-WindowTitle = "OVERWRITE_EXISTING_SAVE_TITLE"
+WindowTitle = "OVERWRITE_EXISTING_SAVE_PROMPT"
 
 [connection signal="text_changed" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]

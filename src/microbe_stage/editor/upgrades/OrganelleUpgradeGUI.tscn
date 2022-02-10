@@ -20,6 +20,7 @@ ScrollContainerPath = NodePath("ModifyPopup/VBoxContainer2/ScrollContainer")
 [node name="ModifyPopup" parent="." instance=ExtResource( 1 )]
 WindowTitle = "MODIFY_ORGANELLE"
 Resizable = true
+ShowCloseButton = false
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="ModifyPopup"]
 margin_right = 40.0

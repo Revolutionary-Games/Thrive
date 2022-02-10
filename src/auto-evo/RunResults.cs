@@ -551,7 +551,7 @@
                 {
                     builder.Append(patchName);
                     builder.Append(' ');
-                    builder.Append(new LocalizedString("POPULATION"));
+                    builder.Append(new LocalizedString("POPULATION_COLON"));
                     builder.Append(' ');
                     builder.Append(population);
                 }
@@ -566,7 +566,7 @@
                 if (previousPopulations != null)
                 {
                     builder.Append(' ');
-                    builder.Append(new LocalizedString("PREVIOUS"));
+                    builder.Append(new LocalizedString("PREVIOUS_COLON"));
                     builder.Append(' ');
                     builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
                 }
@@ -633,7 +633,7 @@
                 if (entry.MutatedProperties != null)
                 {
                     builder.Append(' ');
-                    builder.Append(new LocalizedString("RUN_RESULT_HAS_A_MUTATION"));
+                    builder.Append(new LocalizedString("SPECIES_HAS_A_MUTATION"));
 
                     if (!playerReadable)
                     {
@@ -649,7 +649,7 @@
                 if (entry.SpreadToPatches.Count > 0)
                 {
                     builder.Append(' ');
-                    builder.Append(new LocalizedString("RUN_RESULT_SPREAD_TO_PATCHES"));
+                    builder.Append(new LocalizedString("SPREAD_TO_PATCHES"));
                     builder.Append('\n');
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
@@ -676,7 +676,7 @@
                 }
 
                 builder.Append(' ');
-                builder.Append(new LocalizedString("RUN_RESULT_POP_IN_PATCHES"));
+                builder.Append(new LocalizedString("POPULATION_IN_PATCHES"));
                 builder.Append('\n');
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
