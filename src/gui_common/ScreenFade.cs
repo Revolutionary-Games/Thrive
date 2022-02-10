@@ -5,9 +5,9 @@
 /// </summary>
 public class ScreenFade : CanvasLayer, ITransition
 {
-    private ColorRect rect;
-    private Tween fader;
-    private Control controlNode;
+    private ColorRect rect = null!;
+    private Tween fader = null!;
+    private Control controlNode = null!;
 
     private FadeType currentFadeType;
 

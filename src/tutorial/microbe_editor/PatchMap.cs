@@ -24,7 +24,7 @@
             {
                 case TutorialEventType.MicrobeEditorTabChanged:
                 {
-                    string tab = ((StringEventArgs)args).Data;
+                    var tab = ((StringEventArgs)args).Data;
 
                     if (!HasBeenShown && CanTrigger && tab == patchMapTab)
                     {

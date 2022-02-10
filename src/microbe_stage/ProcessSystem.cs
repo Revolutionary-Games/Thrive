@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -9,10 +10,10 @@ using Godot;
 public class ProcessSystem
 {
     private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
-    private readonly List<Task> tasks = new List<Task>();
+    private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
-    private BiomeConditions biome;
+    private BiomeConditions? biome;
 
     public ProcessSystem(Node worldRoot)
     {
@@ -282,6 +283,9 @@ public class ProcessSystem
     /// </summary>
     public float GetDissolved(Compound compound)
     {
+        if (biome == null)
+            throw new InvalidOperationException("Biome needs to be set before getting dissolved compounds");
+
         return GetDissolvedInBiome(compound, biome);
     }
 
@@ -356,12 +360,11 @@ public class ProcessSystem
         return result;
     }
 
-    private void ProcessNode(IProcessable processor, float delta, float inverseDelta)
+    private void ProcessNode(IProcessable? processor, float delta, float inverseDelta)
     {
         if (processor == null)
         {
-            GD.PrintErr("A node has been put in the process group " +
-                "but it isn't derived from IProcessable");
+            GD.PrintErr("A node has been put in the process group but it isn't derived from IProcessable");
             return;
         }
 
@@ -398,7 +401,7 @@ public class ProcessSystem
     }
 
     private void RunProcess(float delta, BioProcess processData, CompoundBag bag, TweakedProcess process,
-        SingleProcessStatistics currentProcessStatistics, float inverseDelta)
+        SingleProcessStatistics? currentProcessStatistics, float inverseDelta)
     {
         // Can your cell do the process
         bool canDoProcess = true;

@@ -53,107 +53,107 @@ public class Settings
     /// <summary>
     ///   Sets whether the game window is in fullscreen mode
     /// </summary>
-    public SettingValue<bool> FullScreen { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> FullScreen { get; set; } = new(true);
 
     /// <summary>
     ///   Sets whether the game window will use vsync
     /// </summary>
-    public SettingValue<bool> VSync { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> VSync { get; set; } = new(true);
 
     /// <summary>
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
     public SettingValue<Viewport.MSAA> MSAAResolution { get; set; } =
-        new SettingValue<Viewport.MSAA>(Viewport.MSAA.Msaa2x);
+        new(Viewport.MSAA.Msaa2x);
 
     /// <summary>
     ///   Sets the maximum framerate of the game window
     /// </summary>
-    public SettingValue<int> MaxFramesPerSecond { get; set; } = new SettingValue<int>(360);
+    public SettingValue<int> MaxFramesPerSecond { get; set; } = new(360);
 
     /// <summary>
     ///   Optionally applies a colour filter to the screen to aid colourblind individuals
     ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
     /// </summary>
-    public SettingValue<int> ColourblindSetting { get; set; } = new SettingValue<int>(0);
+    public SettingValue<int> ColourblindSetting { get; set; } = new(0);
 
     /// <summary>
     ///   The amount of Chromatic Aberration to apply to the screen
     /// </summary>
-    public SettingValue<float> ChromaticAmount { get; set; } = new SettingValue<float>(15.0f);
+    public SettingValue<float> ChromaticAmount { get; set; } = new(15.0f);
 
     /// <summary>
     ///   Enable or Disable Chromatic Aberration for screen
     /// </summary>
-    public SettingValue<bool> ChromaticEnabled { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> ChromaticEnabled { get; set; } = new(true);
 
     /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
     /// </summary>
-    public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> DisplayAbilitiesHotBar { get; set; } = new(true);
 
     /// <summary>
     ///   Enable or disable lighting effects on the GUI. Mainly Used to workaround a bug where the HUD area
     ///   surrounding the editor button sometimes disappearing with the light effect turned on.
     /// </summary>
-    public SettingValue<bool> GUILightEffectsEnabled { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> GUILightEffectsEnabled { get; set; } = new(true);
 
     // Sound Properties
 
     /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
-    public SettingValue<float> VolumeMaster { get; set; } = new SettingValue<float>(0.0f);
+    public SettingValue<float> VolumeMaster { get; set; } = new(0.0f);
 
     /// <summary>
     ///   If true all sounds are muted
     /// </summary>
-    public SettingValue<bool> VolumeMasterMuted { get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> VolumeMasterMuted { get; set; } = new(false);
 
     /// <summary>
     ///   The Db value to be added to the music audio bus
     /// </summary>
-    public SettingValue<float> VolumeMusic { get; set; } = new SettingValue<float>(0.0f);
+    public SettingValue<float> VolumeMusic { get; set; } = new(0.0f);
 
     /// <summary>
     ///   If true music is muted
     /// </summary>
-    public SettingValue<bool> VolumeMusicMuted { get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> VolumeMusicMuted { get; set; } = new(false);
 
     /// <summary>
     ///   The Db value to be added to the ambiance audio bus
     /// </summary>
-    public SettingValue<float> VolumeAmbiance { get; set; } = new SettingValue<float>(0.0f);
+    public SettingValue<float> VolumeAmbiance { get; set; } = new(0.0f);
 
     /// <summary>
     ///   If true ambiance is muted
     /// </summary>
-    public SettingValue<bool> VolumeAmbianceMuted { get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> VolumeAmbianceMuted { get; set; } = new(false);
 
     /// <summary>
     ///   The Db value to be added to the sfx audio bus
     /// </summary>
-    public SettingValue<float> VolumeSFX { get; set; } = new SettingValue<float>(0.0f);
+    public SettingValue<float> VolumeSFX { get; set; } = new(0.0f);
 
     /// <summary>
     ///   If true sfx is muted
     /// </summary>
-    public SettingValue<bool> VolumeSFXMuted { get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> VolumeSFXMuted { get; set; } = new(false);
 
     /// <summary>
     ///   The Db value to be added to the gui audio bus
     /// </summary>
-    public SettingValue<float> VolumeGUI { get; set; } = new SettingValue<float>(0.0f);
+    public SettingValue<float> VolumeGUI { get; set; } = new(0.0f);
 
     /// <summary>
     ///   If true gui audio bus is muted
     /// </summary>
-    public SettingValue<bool> VolumeGUIMuted { get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> VolumeGUIMuted { get; set; } = new(false);
 
-    public SettingValue<string> SelectedAudioOutputDevice { get; set; } =
-        new SettingValue<string>(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
+    public SettingValue<string?> SelectedAudioOutputDevice { get; set; } =
+        new(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME);
 
-    public SettingValue<string> SelectedLanguage { get; set; } = new SettingValue<string>(null);
+    public SettingValue<string?> SelectedLanguage { get; set; } = new(null);
 
     // Performance Properties
 
@@ -169,94 +169,95 @@ public class Settings
     ///     0.0f, 0.020f, 0.040f, 0.1f, 0.25f
     ///   </para>
     /// </remarks>
-    public SettingValue<float> CloudUpdateInterval { get; set; } = new SettingValue<float>(0.040f);
+    public SettingValue<float> CloudUpdateInterval { get; set; } = new(0.040f);
 
     /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
     ///   cloud is and the performance is better.
     /// </summary>
-    public SettingValue<int> CloudResolution { get; set; } = new SettingValue<int>(2);
+    public SettingValue<int> CloudResolution { get; set; } = new(2);
 
     /// <summary>
     ///   If true an auto-evo run is started during gameplay,
     ///   taking up one of the background threads.
     /// </summary>
-    public SettingValue<bool> RunAutoEvoDuringGamePlay { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> RunAutoEvoDuringGamePlay { get; set; } = new(true);
 
     /// <summary>
     ///   If true it is assumed that the CPU has hyperthreading, meaning that real cores is CPU count / 2
     /// </summary>
-    public SettingValue<bool> AssumeCPUHasHyperthreading { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> AssumeCPUHasHyperthreading { get; set; } = new(true);
 
     /// <summary>
     ///   Only if this is true the ThreadCount will be followed
     /// </summary>
-    public SettingValue<bool> UseManualThreadCount { get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> UseManualThreadCount { get; set; } = new(false);
 
     /// <summary>
     ///   Manually set number of background threads to use. Needs to be at least 2 if RunAutoEvoDuringGamePlay is true
     /// </summary>
-    public SettingValue<int> ThreadCount { get; set; } = new SettingValue<int>(4);
+    public SettingValue<int> ThreadCount { get; set; } = new(4);
 
     // Misc Properties
 
     /// <summary>
-    ///   When true the main intro is played
+    ///   When true the main intro is played. Note <see cref="LaunchOptions.VideosEnabled"/> must also be true to play
+    ///   any videos as they need to be able to be skipped due to a rare Godot engine crash when playing them.
     /// </summary>
-    public SettingValue<bool> PlayIntroVideo { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> PlayIntroVideo { get; set; } = new(true);
 
     /// <summary>
     ///   When true the microbe intro is played on new game
     /// </summary>
-    public SettingValue<bool> PlayMicrobeIntroVideo { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> PlayMicrobeIntroVideo { get; set; } = new(true);
 
     /// <summary>
     ///   If false auto saving will be disabled
     /// </summary>
-    public SettingValue<bool> AutoSaveEnabled { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> AutoSaveEnabled { get; set; } = new(true);
 
     /// <summary>
     ///   Number of auto saves to keep
     /// </summary>
-    public SettingValue<int> MaxAutoSaves { get; set; } = new SettingValue<int>(5);
+    public SettingValue<int> MaxAutoSaves { get; set; } = new(5);
 
     /// <summary>
     ///   Number of quick saves to keep
     /// </summary>
-    public SettingValue<int> MaxQuickSaves { get; set; } = new SettingValue<int>(5);
+    public SettingValue<int> MaxQuickSaves { get; set; } = new(5);
 
     /// <summary>
     ///   Saves the current settings by writing them to the settings configuration file.
     ///   Show tutorial messages
     /// </summary>
-    public SettingValue<bool> TutorialsEnabled { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> TutorialsEnabled { get; set; } = new(true);
 
     /// <summary>
     ///   When true cheats are enabled
     /// </summary>
-    public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> CheatsEnabled { get; set; } = new(false);
 
     /// <summary>
     ///   If false username will be set to System username
     /// </summary>
-    public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
+    public SettingValue<bool> CustomUsernameEnabled { get; set; } = new(false);
 
     /// <summary>
     ///   Username that the user can choose
     /// </summary>
-    public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+    public SettingValue<string?> CustomUsername { get; set; } = new(null);
 
     /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
     public SettingValue<JSONDebug.DebugMode> JSONDebugMode { get; set; } =
-        new SettingValue<JSONDebug.DebugMode>(JSONDebug.DebugMode.Automatic);
+        new(JSONDebug.DebugMode.Automatic);
 
     /// <summary>
     ///   Enables/disables the unsaved progress warning popup for when the player tries to quit the game.
     /// </summary>
-    public SettingValue<bool> ShowUnsavedProgressWarning { get; set; } = new SettingValue<bool>(true);
+    public SettingValue<bool> ShowUnsavedProgressWarning { get; set; } = new(true);
 
     // Input properties
 
@@ -266,7 +267,7 @@ public class Settings
     ///   their associated <see cref="SpecifiedInputKey">SpecifiedInputKey</see>
     /// </summary>
     public SettingValue<InputDataList> CurrentControls { get; set; } =
-        new SettingValue<InputDataList>(GetDefaultControls());
+        new(GetDefaultControls());
 
     // Settings that are edited from elsewhere than the main options menu
     public SettingValue<List<string>> EnabledMods { get; set; } = new(new List<string>());
@@ -284,7 +285,7 @@ public class Settings
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
-    public static bool operator ==(Settings lhs, Settings rhs)
+    public static bool operator ==(Settings? lhs, Settings? rhs)
     {
         return Equals(lhs, rhs);
     }
@@ -319,7 +320,7 @@ public class Settings
         return new InputDataList(InputMap.GetActions().OfType<string>()
             .ToDictionary(p => p,
                 p => InputMap.GetActionList(p).OfType<InputEventWithModifiers>().Select(
-                    x => new SpecifiedInputKey(x)).ToList()));
+                    x => new SpecifiedInputKey(x)).ToList())!);
     }
 
     /// <summary>
@@ -368,7 +369,7 @@ public class Settings
     /// </summary>
     /// <param name="godotLocale">Godot locale</param>
     /// <returns>C# locale name, or null if there is not a premade mapping</returns>
-    public static string TranslateLocaleToCSharp(string godotLocale)
+    public static string? TranslateLocaleToCSharp(string godotLocale)
     {
         // ReSharper disable StringLiteralTypo
         switch (godotLocale)
@@ -390,7 +391,7 @@ public class Settings
     /// </summary>
     /// <param name="godotLocale">Godot locale</param>
     /// <returns>Native name, or null if there is not a premade mapping</returns>
-    public static string GetLanguageNativeNameOverride(string godotLocale)
+    public static string? GetLanguageNativeNameOverride(string godotLocale)
     {
         switch (godotLocale)
         {
@@ -401,7 +402,7 @@ public class Settings
         return null;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj == null)
         {
@@ -631,7 +632,7 @@ public class Settings
     /// </summary>
     public void ApplyLanguageSettings()
     {
-        string language = SelectedLanguage.Value;
+        string? language = SelectedLanguage.Value;
         CultureInfo cultureInfo;
 
         // Process locale info in case it isn't exactly right
@@ -642,7 +643,7 @@ public class Settings
         }
         else
         {
-            language = GetSupportedLocale(language);
+            language = GetSupportedLocale(language!);
             cultureInfo = GetCultureInfo(language);
         }
 
@@ -663,7 +664,7 @@ public class Settings
     {
         try
         {
-            Settings settings = LoadSettings();
+            Settings? settings = LoadSettings();
 
             if (settings == null)
             {
@@ -686,7 +687,7 @@ public class Settings
     /// <summary>
     ///   Creates and returns a settings object loaded from the configuration settings file, or defaults if that fails.
     /// </summary>
-    private static Settings LoadSettings()
+    private static Settings? LoadSettings()
     {
         using var file = new File();
         var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);

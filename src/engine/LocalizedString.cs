@@ -20,7 +20,7 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
     private readonly string translationKey;
 
     [JsonProperty]
-    private readonly object[] formatStringArgs;
+    private readonly object[]? formatStringArgs;
 
     public LocalizedString(string translationKey)
         : this(translationKey, null)
@@ -28,7 +28,7 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
     }
 
     [JsonConstructor]
-    public LocalizedString(string translationKey, params object[] formatStringArgs)
+    public LocalizedString(string translationKey, params object[]? formatStringArgs)
     {
         this.translationKey = translationKey;
         this.formatStringArgs = formatStringArgs;
@@ -39,7 +39,7 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
         return ToString(null, null);
     }
 
-    public string ToString(string format, IFormatProvider formatProvider)
+    public string ToString(string? format, IFormatProvider? formatProvider)
     {
         if (formatStringArgs == null || formatStringArgs.Length == 0)
         {
@@ -50,12 +50,12 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
             format ?? TranslationServer.Translate(translationKey), formatStringArgs);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         return Equals(obj as LocalizedString);
     }
 
-    public bool Equals(LocalizedString other)
+    public bool Equals(LocalizedString? other)
     {
         if (ReferenceEquals(this, other))
             return true;
@@ -66,6 +66,12 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
         if (translationKey != other.translationKey)
             return false;
 
+        if (formatStringArgs == null)
+            return other.formatStringArgs == null;
+
+        if (other.formatStringArgs == null)
+            return false;
+
         return formatStringArgs.SequenceEqual(other.formatStringArgs);
     }
 
@@ -73,7 +79,16 @@ public class LocalizedString : IFormattable, IEquatable<LocalizedString>
     {
         int hashCode = 2031027761;
         hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(translationKey);
-        hashCode = hashCode * -1521134295 + EqualityComparer<object[]>.Default.GetHashCode(formatStringArgs);
+
+        if (formatStringArgs != null)
+        {
+            hashCode = hashCode * -1521134295 + EqualityComparer<object[]>.Default.GetHashCode(formatStringArgs);
+        }
+        else
+        {
+            hashCode = hashCode * -1521134295 + 60961;
+        }
+
         return hashCode;
     }
 }

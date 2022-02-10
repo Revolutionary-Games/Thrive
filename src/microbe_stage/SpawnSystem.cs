@@ -25,7 +25,7 @@ public class SpawnSystem
     private ShuffleBag<Spawner> spawnTypes;
 
     [JsonProperty]
-    private Random random = new Random();
+    private Random random = new();
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag
@@ -68,7 +68,7 @@ public class SpawnSystem
     ///     this object so much
     ///   </para>
     /// </remarks>
-    private QueuedSpawn queuedSpawns;
+    private QueuedSpawn? queuedSpawns;
 
     /// <summary>
     ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
@@ -189,13 +189,11 @@ public class SpawnSystem
         int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
-        if (queuedSpawns != null)
-        {
-            spawnsLeftThisFrame = HandleQueuedSpawns(spawnsLeftThisFrame);
 
-            if (spawnsLeftThisFrame <= 0)
-                return;
-        }
+        spawnsLeftThisFrame = HandleQueuedSpawns(spawnsLeftThisFrame);
+
+        if (spawnsLeftThisFrame <= 0)
+            return;
 
         // This is now an if to make sure that the spawn system is
         // only ran once per frame to avoid spawning a bunch of stuff
@@ -215,6 +213,9 @@ public class SpawnSystem
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
+        if (queuedSpawns == null)
+            return spawnsLeftThisFrame;
+
         // If we don't have room, just abandon spawning
         if (estimateEntityCount >= maxAliveEntities)
         {
@@ -235,7 +236,9 @@ public class SpawnSystem
             }
 
             // Next was spawned
-            ProcessSpawnedEntity(queuedSpawns.Spawns.Current, queuedSpawns.SpawnType);
+            ProcessSpawnedEntity(
+                queuedSpawns.Spawns.Current ?? throw new Exception("Queued spawn enumerator returned null"),
+                queuedSpawns.SpawnType);
 
             ++estimateEntityCount;
             --spawnsLeftThisFrame;
@@ -290,7 +293,7 @@ public class SpawnSystem
             numAttempts stores how many times the SpawnSystem attempts
             to spawn the given entity.
             */
-            int numAttempts = Mathf.Clamp(spawnType.SpawnFrequency * 2, 1, maxTriesPerSpawner);
+            int numAttempts = Mathf.Clamp(spawnType!.SpawnFrequency * 2, 1, maxTriesPerSpawner);
 
             for (int i = 0; i < numAttempts; i++)
             {

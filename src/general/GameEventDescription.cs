@@ -3,7 +3,7 @@
 /// </summary>
 public class GameEventDescription
 {
-    public GameEventDescription(LocalizedString description, string iconPath, bool highlighted)
+    public GameEventDescription(LocalizedString description, string? iconPath, bool highlighted)
     {
         Description = description;
         IconPath = iconPath;
@@ -18,7 +18,7 @@ public class GameEventDescription
     /// <summary>
     ///   The resource path to the associated icon
     /// </summary>
-    public string IconPath { get; private set; }
+    public string? IconPath { get; private set; }
 
     /// <summary>
     ///   If true, this event will be highlighted in the timeline UI

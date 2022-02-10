@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 /// <summary>
 ///   Copies properties from a save loaded object copy
@@ -20,7 +21,8 @@ public static class SaveApplyHelper
     /// <param name="target">Object to set the properties on</param>
     /// <param name="source">Object to copy things from</param>
     /// <param name="ignoreMembers">Member names to skip copying</param>
-    public static void CopyJSONSavedPropertiesAndFields(object target, object source, List<string> ignoreMembers = null)
+    public static void CopyJSONSavedPropertiesAndFields(object target, object source,
+        List<string>? ignoreMembers = null)
     {
         ignoreMembers ??= new List<string>();
 
@@ -48,7 +50,8 @@ public static class SaveApplyHelper
             if (ignoreMembers.Contains(property.Name))
                 continue;
 
-            var set = property.GetSetMethodOnDeclaringType();
+            var set = property.GetSetMethodOnDeclaringType() ??
+                throw new InvalidOperationException($"Could not find property setter for {property.Name}");
 
             set.Invoke(target, new[] { property.GetValue(source) });
         }

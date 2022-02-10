@@ -9,21 +9,21 @@ using Godot;
 public class NewSaveMenu : Control
 {
     [Export]
-    public NodePath SaveListPath;
+    public NodePath SaveListPath = null!;
 
     [Export]
-    public NodePath SaveNameBoxPath;
+    public NodePath SaveNameBoxPath = null!;
 
     [Export]
-    public NodePath OverwriteConfirmPath;
+    public NodePath OverwriteConfirmPath = null!;
 
     [Export]
-    public NodePath SaveButtonPath;
+    public NodePath SaveButtonPath = null!;
 
-    private SaveList saveList;
-    private LineEdit saveNameBox;
-    private Button saveButton;
-    private CustomConfirmationDialog overwriteConfirm;
+    private SaveList saveList = null!;
+    private LineEdit saveNameBox = null!;
+    private Button saveButton = null!;
+    private CustomConfirmationDialog overwriteConfirm = null!;
 
     private bool usingSelectedSaveName;
 
@@ -71,7 +71,7 @@ public class NewSaveMenu : Control
     {
         // The chosen filename ({0}) already exists. Overwrite?
         overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
+            TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS"),
             name);
         overwriteConfirm.PopupCenteredShrink();
     }

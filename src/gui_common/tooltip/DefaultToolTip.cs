@@ -6,14 +6,14 @@
 public class DefaultToolTip : Control, ICustomToolTip
 {
     [Export]
-    public NodePath DescriptionLabelPath;
+    public NodePath DescriptionLabelPath = null!;
 
     /// <summary>
     ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
-    private Label descriptionLabel;
+    private Label? descriptionLabel;
 
-    private string description;
+    private string? description;
 
     /// <summary>
     ///   Only gets and sets the Node name since this tooltip only shows a message
@@ -25,7 +25,7 @@ public class DefaultToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public string Description
+    public string? Description
     {
         get => description;
         set

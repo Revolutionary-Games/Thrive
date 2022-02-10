@@ -13,11 +13,15 @@ using Newtonsoft.Json;
 public class MicrobeSpecies : Species
 {
     public bool IsBacteria;
-    public MembraneType MembraneType;
+
+    /// <summary>
+    ///   Needs to be set before using this class
+    /// </summary>
+    public MembraneType MembraneType = null!;
+
     public float MembraneRigidity;
 
-    public MicrobeSpecies(uint id)
-        : base(id)
+    public MicrobeSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
         Organelles = new OrganelleLayout<OrganelleTemplate>();
     }
@@ -118,7 +122,7 @@ public class MicrobeSpecies : Species
 
     public override object Clone()
     {
-        var result = new MicrobeSpecies(ID);
+        var result = new MicrobeSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
 

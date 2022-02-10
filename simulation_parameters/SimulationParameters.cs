@@ -10,35 +10,35 @@ using File = Godot.File;
 /// </summary>
 public class SimulationParameters : Node
 {
-    private static SimulationParameters instance;
+    private static SimulationParameters? instance;
 
-    private Dictionary<string, MembraneType> membranes;
-    private Dictionary<string, Background> backgrounds;
-    private Dictionary<string, Biome> biomes;
-    private Dictionary<string, BioProcess> bioProcesses;
-    private Dictionary<string, Compound> compounds;
-    private Dictionary<string, OrganelleDefinition> organelles;
-    private Dictionary<string, MusicCategory> musicCategories;
-    private Dictionary<string, HelpTexts> helpTexts;
-    private AutoEvoConfiguration autoEvoConfiguration;
-    private List<NamedInputGroup> inputGroups;
-    private Dictionary<string, Gallery> gallery;
-    private TranslationsInfo translationsInfo;
-    private GameCredits gameCredits;
+    private Dictionary<string, MembraneType> membranes = null!;
+    private Dictionary<string, Background> backgrounds = null!;
+    private Dictionary<string, Biome> biomes = null!;
+    private Dictionary<string, BioProcess> bioProcesses = null!;
+    private Dictionary<string, Compound> compounds = null!;
+    private Dictionary<string, OrganelleDefinition> organelles = null!;
+    private Dictionary<string, MusicCategory> musicCategories = null!;
+    private Dictionary<string, HelpTexts> helpTexts = null!;
+    private AutoEvoConfiguration autoEvoConfiguration = null!;
+    private List<NamedInputGroup> inputGroups = null!;
+    private Dictionary<string, Gallery> gallery = null!;
+    private TranslationsInfo translationsInfo = null!;
+    private GameCredits gameCredits = null!;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
-    private List<OrganelleDefinition> prokaryoticOrganelles;
+    private List<OrganelleDefinition> prokaryoticOrganelles = null!;
     private float prokaryoticOrganellesTotalChance;
-    private List<OrganelleDefinition> eukaryoticOrganelles;
+    private List<OrganelleDefinition> eukaryoticOrganelles = null!;
     private float eukaryoticOrganellesChance;
 
-    public static SimulationParameters Instance => instance;
+    public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public IEnumerable<NamedInputGroup> InputGroups => inputGroups;
 
     public AutoEvoConfiguration AutoEvoConfiguration => autoEvoConfiguration;
 
-    public NameGenerator NameGenerator { get; private set; }
+    public NameGenerator NameGenerator { get; private set; } = null!;
 
     /// <summary>
     ///   Loads the simulation configuration parameters from JSON files
@@ -334,7 +334,7 @@ public class SimulationParameters : Node
         return result;
     }
 
-    private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
+    private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[]? extraConverters = null)
     {
         extraConverters ??= Array.Empty<JsonConverter>();
 
@@ -347,7 +347,7 @@ public class SimulationParameters : Node
         return result;
     }
 
-    private List<T> LoadListRegistry<T>(string path, JsonConverter[] extraConverters = null)
+    private List<T> LoadListRegistry<T>(string path, JsonConverter[]? extraConverters = null)
     {
         extraConverters ??= Array.Empty<JsonConverter>();
 
@@ -360,7 +360,7 @@ public class SimulationParameters : Node
         return result;
     }
 
-    private T LoadDirectObject<T>(string path, JsonConverter[] extraConverters = null)
+    private T LoadDirectObject<T>(string path, JsonConverter[]? extraConverters = null)
         where T : class
     {
         extraConverters ??= Array.Empty<JsonConverter>();

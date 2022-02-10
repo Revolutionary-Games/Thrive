@@ -10,7 +10,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
     /// </summary>
     protected static readonly Vector3 DefaultVisualPos = Vector3.Forward;
 
-    protected PlacedOrganelle organelle;
+    protected PlacedOrganelle? organelle;
 
     /// <summary>
     ///   Needed to calculate final pos on update
@@ -49,7 +49,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
             relativeOrganellePosition = DefaultVisualPos;
 
         Vector3 exit = middle - relativeOrganellePosition;
-        var membraneCoords = organelle.ParentMicrobe.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
+        var membraneCoords = organelle!.ParentMicrobe!.Membrane.GetVectorTowardsNearestPointOfMembrane(exit.x,
             exit.z);
 
         if (!membraneCoords.Equals(lastCalculatedPosition) || NeedsUpdateAnyway())

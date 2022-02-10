@@ -114,7 +114,7 @@ public static class StringUtils
     ///   A dictionary of key and value string pairs collected from input. If input string list is null,
     ///   the return value is an empty dictionary.
     /// </returns>
-    public static Dictionary<string, string> ParseKeyValuePairs(List<string> input)
+    public static Dictionary<string, string> ParseKeyValuePairs(List<string>? input)
     {
         var result = new Dictionary<string, string>();
 

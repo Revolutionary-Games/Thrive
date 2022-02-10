@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -25,7 +26,15 @@ public class StartupActions : Node
             " latest log is 'log.txt'");
 
         // Load settings here, to make sure locales etc. are applied to the main loaded and autoloaded scenes
-        if (Settings.Instance == null)
-            GD.PrintErr("Failed to initialize settings.");
+        try
+        {
+            // We just want to do something to ensure settings instance is fine
+            // ReSharper disable once UnusedVariable
+            var hashCode = Settings.Instance.GetHashCode();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to initialize settings: ", e);
+        }
     }
 }

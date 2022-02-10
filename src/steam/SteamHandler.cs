@@ -19,18 +19,18 @@ public class SteamHandler : Node, ISteamSignalReceiver
 
     public static readonly string[] RecommendedFileEndings = { ".jpg", ".png", ".gif" };
 
-    private static SteamHandler instance;
+    private static SteamHandler? instance;
 
     private bool wePaused;
 
-    private ISteamClient steamClient;
+    private ISteamClient? steamClient;
 
     public SteamHandler()
     {
         instance = this;
     }
 
-    public static SteamHandler Instance => instance;
+    public static SteamHandler Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   All the valid tags for Thrive's Steam workshop items
@@ -52,7 +52,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
         get
         {
             ThrowIfNotLoaded();
-            return steamClient.DisplayName;
+            return steamClient!.DisplayName;
         }
     }
 
@@ -91,7 +91,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
     {
         ThrowIfNotLoaded();
 
-        steamClient.CreateWorkshopItem(callback);
+        steamClient!.CreateWorkshopItem(callback);
     }
 
     /// <summary>
@@ -101,11 +101,11 @@ public class SteamHandler : Node, ISteamSignalReceiver
     /// <param name="changeNotes">Optional change notes to set</param>
     /// <param name="callback">Callback to be called when everything has been uploaded or failed</param>
     /// <exception cref="ArgumentException">If something is wrong with the given data</exception>
-    public void UpdateWorkshopItem(WorkshopItemData item, string changeNotes, Action<WorkshopResult> callback)
+    public void UpdateWorkshopItem(WorkshopItemData item, string? changeNotes, Action<WorkshopResult> callback)
     {
         ThrowIfNotLoaded();
 
-        var handle = steamClient.StartWorkshopItemUpdate(item.Id);
+        var handle = steamClient!.StartWorkshopItemUpdate(item.Id);
 
         GD.Print("Using workshop update handle: ", handle);
 
@@ -138,7 +138,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
     {
         ThrowIfNotLoaded();
 
-        return steamClient.GetInstalledWorkshopItemFolders();
+        return steamClient!.GetInstalledWorkshopItemFolders();
     }
 
     /// <summary>
@@ -148,7 +148,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
     {
         ThrowIfNotLoaded();
 
-        steamClient.OpenWorkshopItemInOverlayBrowser(itemId);
+        steamClient!.OpenWorkshopItemInOverlayBrowser(itemId);
     }
 
     /// <summary>
@@ -297,7 +297,7 @@ public class SteamHandler : Node, ISteamSignalReceiver
 
     private void ThrowIfNotLoaded()
     {
-        if (!IsLoaded)
+        if (!IsLoaded || steamClient == null)
             throw new InvalidOperationException("Steam is not loaded");
     }
 }

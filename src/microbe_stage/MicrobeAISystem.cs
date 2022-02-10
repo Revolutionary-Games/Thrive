@@ -6,7 +6,7 @@ using Godot;
 
 public class MicrobeAISystem
 {
-    private readonly List<Task> tasks = new List<Task>();
+    private readonly List<Task> tasks = new();
 
     private readonly Node worldRoot;
 
@@ -62,12 +62,11 @@ public class MicrobeAISystem
     /// <param name="delta">Passed time</param>
     /// <param name="random">Randomness source</param>
     /// <param name="data">Common data for AI agents, should not be modified</param>
-    private void RunAIFor(IMicrobeAI ai, float delta, Random random, MicrobeAICommonData data)
+    private void RunAIFor(IMicrobeAI? ai, float delta, Random random, MicrobeAICommonData data)
     {
         if (ai == null)
         {
-            GD.PrintErr("A node has been put in the ai group " +
-                "but it isn't derived from IMicrobeAI");
+            GD.PrintErr("A node has been put in the ai group but it isn't derived from IMicrobeAI");
             return;
         }
 

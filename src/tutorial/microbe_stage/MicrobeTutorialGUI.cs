@@ -10,64 +10,64 @@ using Tutorial;
 public class MicrobeTutorialGUI : Control, ITutorialGUI
 {
     [Export]
-    public NodePath MicrobeWelcomeMessagePath;
+    public NodePath MicrobeWelcomeMessagePath = null!;
 
     [Export]
-    public NodePath MicrobeMovementKeyPromptsPath;
+    public NodePath MicrobeMovementKeyPromptsPath = null!;
 
     [Export]
-    public NodePath MicrobeMovementPopupPath;
+    public NodePath MicrobeMovementPopupPath = null!;
 
     [Export]
-    public NodePath MicrobeMovementKeyForwardPath;
+    public NodePath MicrobeMovementKeyForwardPath = null!;
 
     [Export]
-    public NodePath MicrobeMovementKeyLeftPath;
+    public NodePath MicrobeMovementKeyLeftPath = null!;
 
     [Export]
-    public NodePath MicrobeMovementKeyRightPath;
+    public NodePath MicrobeMovementKeyRightPath = null!;
 
     [Export]
-    public NodePath MicrobeMovementKeyBackwardsPath;
+    public NodePath MicrobeMovementKeyBackwardsPath = null!;
 
     [Export]
-    public NodePath GlucoseTutorialPath;
+    public NodePath GlucoseTutorialPath = null!;
 
     [Export]
-    public NodePath StayingAlivePath;
+    public NodePath StayingAlivePath = null!;
 
     [Export]
-    public NodePath ReproductionTutorialPath;
+    public NodePath ReproductionTutorialPath = null!;
 
     [Export]
-    public NodePath EditorButtonTutorialPath;
+    public NodePath EditorButtonTutorialPath = null!;
 
     [Export]
-    public NodePath UnbindTutorialPath;
+    public NodePath UnbindTutorialPath = null!;
 
     [Export]
-    public NodePath CheckTheHelpMenuPath;
+    public NodePath CheckTheHelpMenuPath = null!;
 
-    private CustomDialog microbeWelcomeMessage;
-    private Control microbeMovementKeyPrompts;
-    private Control microbeMovementKeyForward;
-    private Control microbeMovementKeyLeft;
-    private Control microbeMovementKeyRight;
-    private Control microbeMovementKeyBackwards;
-    private CustomDialog microbeMovementPopup;
-    private CustomDialog glucoseTutorial;
-    private CustomDialog stayingAlive;
-    private CustomDialog reproductionTutorial;
-    private CustomDialog editorButtonTutorial;
-    private CustomDialog unbindTutorial;
-    private CustomDialog checkTheHelpMenu;
+    private CustomDialog microbeWelcomeMessage = null!;
+    private Control microbeMovementKeyPrompts = null!;
+    private Control microbeMovementKeyForward = null!;
+    private Control microbeMovementKeyLeft = null!;
+    private Control microbeMovementKeyRight = null!;
+    private Control microbeMovementKeyBackwards = null!;
+    private CustomDialog microbeMovementPopup = null!;
+    private CustomDialog glucoseTutorial = null!;
+    private CustomDialog stayingAlive = null!;
+    private CustomDialog reproductionTutorial = null!;
+    private CustomDialog editorButtonTutorial = null!;
+    private CustomDialog unbindTutorial = null!;
+    private CustomDialog checkTheHelpMenu = null!;
 
     [Signal]
     public delegate void OnHelpMenuOpenRequested();
 
-    public ITutorialInput EventReceiver { get; set; }
+    public ITutorialInput? EventReceiver { get; set; }
 
-    public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeStage;
+    public MainGameState AssociatedGameState => MainGameState.MicrobeStage;
 
     public bool TutorialEnabledSelected { get; private set; } = true;
 

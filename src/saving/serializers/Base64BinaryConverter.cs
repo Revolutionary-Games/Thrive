@@ -21,9 +21,8 @@ public class Base64BinaryConverter : BaseThriveConverter
         return true;
     }
 
-    protected override (object Read, bool Performed) ReadCustomJson(JsonReader reader, Type objectType,
-        object existingValue,
-        JsonSerializer serializer)
+    protected override (object? Read, bool Performed) ReadCustomJson(JsonReader reader, Type objectType,
+        object? existingValue, JsonSerializer serializer)
     {
         var encoded = serializer.Deserialize<string>(reader);
 

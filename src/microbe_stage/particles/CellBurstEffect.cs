@@ -8,7 +8,7 @@ public class CellBurstEffect : Spatial, ITimedLife
     [JsonProperty]
     public float Radius;
 
-    private Particles particles;
+    private Particles particles = null!;
 
     public float TimeToLiveRemaining { get; set; }
 

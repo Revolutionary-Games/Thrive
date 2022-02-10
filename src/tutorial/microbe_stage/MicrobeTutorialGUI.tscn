@@ -306,7 +306,7 @@ margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
-text = "MICROBE_STAGE_REPRODUCE_TEXT"
+text = "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 autowrap = true
 
 [node name="EditorButtonTutorial" parent="." instance=ExtResource( 4 )]
@@ -344,7 +344,7 @@ margin_right = 230.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 230, 0 )
 custom_fonts/font = ExtResource( 5 )
-text = "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+text = "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 autowrap = true
 
 [node name="UnbindTutorial" parent="." instance=ExtResource( 4 )]
@@ -378,7 +378,7 @@ margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
-text = "MICROBE_STAGE_UNBIND_TEXT"
+text = "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 autowrap = true
 
 [node name="CheckHelpMenu" parent="." instance=ExtResource( 4 )]
@@ -419,7 +419,7 @@ margin_bottom = 490.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 5 )
-text = "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+text = "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 autowrap = true
 
 [node name="Control" type="Control" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
@@ -428,7 +428,7 @@ size_flags_vertical = 3
 [node name="Button" type="Button" parent="CheckHelpMenu/ScrollContainer/VBoxContainer"]
 margin_right = 10.0
 margin_bottom = 35.0
-text = "VIEW_NOW"
+text = "TUTORIAL_VIEW_NOW"
 
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/ScrollContainer/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
