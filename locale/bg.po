@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-08 18:56+0200\n"
-"PO-Revision-Date: 2022-02-03 10:36+0000\n"
+"PO-Revision-Date: 2022-02-10 06:38+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/"
 "projects/thrive/thrive-game/bg/>\n"
@@ -54,10 +54,11 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
 "С натискане на [thrive:input]g_toggle_engulf[/thrive:input] може да "
 "поглъщате другите клетки, клетъчните останки, бактериите и железните "
-"късове, ако те са по-малки от Вас. Това ще отнеме допълнителен [thrive:"
+"фрагменти, ако те са по-малки от Вас. Това ще отнеме допълнителен [thrive:"
 "compound type=\"atp\"]АТФ[/thrive:compound] и ще Ви забави. Когато "
-"приключите, не забравяйте да натиснете [thrive:input]g_toggle_engulf[/"
-"thrive:input] още веднъж, за да спрете режима на поглъщане."
+"приключите, не забравяйте да натиснете "
+"[thrive:input]g_toggle_engulf[/thrive:input] още веднъж, за да спрете режима "
+"на поглъщане."
 
 #: ../simulation_parameters/common/help_texts.json:22
 #: ../simulation_parameters/common/help_texts.json:97
@@ -316,7 +317,7 @@ msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Ето един съвет — може да поглъщате дори и железните късове."
+msgstr "Ето един съвет — може да поглъщате дори и железните фрагменти."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -363,7 +364,7 @@ msgstr ""
 #: ../simulation_parameters/common/help_texts.json:192
 msgid "EASTEREGG_MESSAGE_23"
 msgstr ""
-"Ето един съвет — може да поглъщате големите железни късове, ако Вашата "
+"Ето един съвет — може да поглъщате големите железни фрагменти, ако Вашата "
 "клетка е с размер от 150 шестоъгълника."
 
 #: ../simulation_parameters/common/help_texts.json:195
@@ -648,7 +649,7 @@ msgstr "Опасен обект"
 #: ../simulation_parameters/microbe_stage/biomes.json:1702
 #: ../simulation_parameters/microbe_stage/biomes.json:1850
 msgid "SMALL_IRON_CHUNK"
-msgstr "Малък железен къс"
+msgstr "Малък железен фрагмент"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:78
 #: ../simulation_parameters/microbe_stage/biomes.json:302
@@ -662,7 +663,7 @@ msgstr "Малък железен къс"
 #: ../simulation_parameters/microbe_stage/biomes.json:1737
 #: ../simulation_parameters/microbe_stage/biomes.json:1885
 msgid "BIG_IRON_CHUNK"
-msgstr "Голям железен къс"
+msgstr "Голям железен фрагмент"
 
 #: ../simulation_parameters/microbe_stage/biomes.json:147
 msgid "VOLCANIC_VENT"
@@ -1016,9 +1017,8 @@ msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "„[u]{0}[/u]“ се отделиха от „[u]{1}[/u]“ поради селекционен натиск"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "Голям железен къс"
+msgstr "Грешка: Фрагментът не е намерен"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
@@ -3939,7 +3939,7 @@ msgstr "Създаване..."
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
-msgstr ""
+msgstr "Идентификационният № липсва"
 
 #: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
