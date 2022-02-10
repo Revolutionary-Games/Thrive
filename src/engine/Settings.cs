@@ -202,7 +202,8 @@ public class Settings
     // Misc Properties
 
     /// <summary>
-    ///   When true the main intro is played
+    ///   When true the main intro is played. Note <see cref="LaunchOptions.VideosEnabled"/> must also be true to play
+    ///   any videos as they need to be able to be skipped due to a rare Godot engine crash when playing them.
     /// </summary>
     public SettingValue<bool> PlayIntroVideo { get; set; } = new(true);
 
