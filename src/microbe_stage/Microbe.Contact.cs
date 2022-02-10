@@ -519,6 +519,9 @@ public partial class Microbe
             var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
                 chunkScene, cloudSystem!, random);
 
+            // Add to the spawn system to make these chunks limit possible number of entities
+            SpawnSystem.AddEntityToTrack(chunk);
+
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
 

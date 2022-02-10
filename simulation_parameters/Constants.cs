@@ -474,7 +474,7 @@ public static class Constants
     public const float GLUCOSE_MIN = 0.0f;
 
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 90;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 110;
     public const int MAX_SPAWNS_PER_FRAME = 1;
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 
