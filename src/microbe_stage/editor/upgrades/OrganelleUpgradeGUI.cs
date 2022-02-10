@@ -3,20 +3,20 @@
 public class OrganelleUpgradeGUI : Control
 {
     [Export]
-    public NodePath PopupPath;
+    public NodePath PopupPath = null!;
 
     [Export]
-    public NodePath OrganelleSpecificContentPath;
+    public NodePath OrganelleSpecificContentPath = null!;
 
     [Export]
-    public NodePath ScrollContainerPath;
+    public NodePath ScrollContainerPath = null!;
 
-    private CustomConfirmationDialog popup;
-    private Container organelleSpecificContent;
-    private ScrollContainer scrollContainer;
+    private CustomConfirmationDialog popup = null!;
+    private Container organelleSpecificContent = null!;
+    private ScrollContainer scrollContainer = null!;
 
-    private MicrobeEditor storedEditor;
-    private IOrganelleUpgrader upgrader;
+    private MicrobeEditor? storedEditor;
+    private IOrganelleUpgrader? upgrader;
 
     public override void _Ready()
     {
@@ -50,6 +50,12 @@ public class OrganelleUpgradeGUI : Control
 
     private void OnAccept()
     {
+        if (upgrader == null || storedEditor == null)
+        {
+            GD.PrintErr("Can't apply organelle upgrades as this upgrade GUI was not opened properly");
+            return;
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
         upgrader.ApplyChanges(storedEditor);
     }

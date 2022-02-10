@@ -8,7 +8,7 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public class SegmentedBar : HBoxContainer
 {
-    public readonly List<IconProgressBar> SubBars = new List<IconProgressBar>();
+    public readonly List<IconProgressBar> SubBars = new();
 
     public Type SelectedType;
 
@@ -27,7 +27,7 @@ public class SegmentedBar : HBoxContainer
     private readonly PackedScene iconProgressBarScene =
         GD.Load<PackedScene>("res://src/gui_common/IconProgressBar.tscn");
 
-    private List<KeyValuePair<string, float>> barValues;
+    private List<KeyValuePair<string, float>> barValues = new();
 
     [Signal]
     public delegate void SubBarMouseEnter();
@@ -88,7 +88,7 @@ public class SegmentedBar : HBoxContainer
         }
     }
 
-    private IconProgressBar FindBar(string name)
+    private IconProgressBar? FindBar(string name)
     {
         foreach (var bar in SubBars)
         {

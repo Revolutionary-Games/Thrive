@@ -12,15 +12,15 @@ public class CustomConfirmationDialog : CustomDialog
 
     private bool hideCancelButton;
 
-    private string dialogText;
+    private string dialogText = string.Empty;
     private string confirmText = "OK";
     private string cancelText = "CANCEL";
 
-    private Label dialogLabel;
-    private HBoxContainer buttonsContainer;
-    private Button confirmButton;
-    private Button cancelButton;
-    private Control cancelEndSpacer;
+    private Label? dialogLabel;
+    private HBoxContainer buttonsContainer = null!;
+    private Button? confirmButton;
+    private Button? cancelButton;
+    private Control cancelEndSpacer = null!;
 
     [Signal]
     public delegate void Confirmed();
@@ -123,16 +123,25 @@ public class CustomConfirmationDialog : CustomDialog
 
     public void SetConfirmDisabled(bool disabled)
     {
+        if (confirmButton == null)
+            throw new SceneTreeAttachRequired();
+
         confirmButton.Disabled = disabled;
     }
 
     private void UpdateLabel()
     {
+        if (dialogLabel == null)
+            throw new SceneTreeAttachRequired();
+
         dialogLabel.Text = TranslationServer.Translate(dialogText);
     }
 
     private void UpdateButtons()
     {
+        if (cancelButton == null || confirmButton == null)
+            throw new SceneTreeAttachRequired();
+
         cancelButton.Visible = !hideCancelButton;
         cancelEndSpacer.Visible = !hideCancelButton;
 

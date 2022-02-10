@@ -64,7 +64,7 @@ public class CustomDropDown : MenuButton
     /// <returns>
     ///   The CustomDropDown's own Item class. All custom operations relating to the dropdown uses this.
     /// </returns>
-    public Item AddItem(string text, bool checkable, Color color, Texture icon = null,
+    public Item AddItem(string text, bool checkable, Color color, Texture? icon = null,
         string section = "default")
     {
         if (!items.ContainsKey(section))
@@ -246,8 +246,8 @@ public class CustomDropDown : MenuButton
     /// </remarks>
     public class Item
     {
-        public string Text;
-        public Texture Icon;
+        public string Text = string.Empty;
+        public Texture? Icon;
         public Color Color;
         public bool Checkable;
         public bool Checked;

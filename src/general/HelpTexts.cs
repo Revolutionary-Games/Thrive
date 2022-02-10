@@ -5,9 +5,9 @@
 /// </summary>
 public class HelpTexts : IRegistryType
 {
-    public List<HelpText> Messages;
+    public List<HelpText> Messages = null!;
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {
@@ -37,5 +37,5 @@ public class HelpText
 
     public TextColumn Column { get; set; } = TextColumn.None;
 
-    public string Message { get; set; }
+    public string Message { get; set; } = null!;
 }

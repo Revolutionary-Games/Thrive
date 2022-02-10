@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Flagellum for making cells move faster
@@ -13,7 +14,7 @@ public class MovementComponent : ExternallyPositionedComponent
     private bool movingTail;
     private Vector3 force;
 
-    private AnimationPlayer animation;
+    private AnimationPlayer? animation;
 
     public MovementComponent(float momentum, float torque)
     {
@@ -27,7 +28,7 @@ public class MovementComponent : ExternallyPositionedComponent
         base.Update(elapsed);
 
         // Movement force
-        var microbe = organelle.ParentMicrobe;
+        var microbe = organelle!.ParentMicrobe!;
 
         var movement = CalculateMovementForce(microbe, elapsed);
 
@@ -37,7 +38,10 @@ public class MovementComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
-        force = CalculateForce(organelle.Position, Momentum);
+        if (organelle?.OrganelleGraphics == null)
+            throw new InvalidOperationException("Pilus needs parent organelle to have graphics");
+
+        force = CalculateForce(organelle!.Position, Momentum);
 
         animation = organelle.OrganelleAnimation;
 
@@ -57,13 +61,13 @@ public class MovementComponent : ExternallyPositionedComponent
         // it should be kept an eye on if it does. The engine for some reason doesnt update THIS basis
         // unless checked with some condition (if or return)
         // SEE: https://github.com/Revolutionary-Games/Thrive/issues/2906
-        return organelle.OrganelleGraphics.Transform.basis == Transform.Identity.basis;
+        return organelle!.OrganelleGraphics!.Transform.basis == Transform.Identity.basis;
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle,
         Vector3 membraneCoords)
     {
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+        organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
     }
 
     /// <summary>

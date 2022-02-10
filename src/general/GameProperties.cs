@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 public class GameProperties
 {
     [JsonProperty]
-    private readonly Dictionary<string, bool> setBoolStatuses = new Dictionary<string, bool>();
+    private readonly Dictionary<string, bool> setBoolStatuses = new();
 
     [JsonProperty]
     private bool freeBuild;

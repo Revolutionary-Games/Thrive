@@ -12,7 +12,7 @@ public static class DictionaryUtils
     /// <param name="random">Randomness source</param>
     /// <typeparam name="TKey">Type of dictionary keys.</typeparam>
     /// <typeparam name="T">Type of dictionary items.</typeparam>
-    public static T Random<TKey, T>(this Dictionary<TKey, T> items, Random random)
+    public static T? Random<TKey, T>(this Dictionary<TKey, T>? items, Random random)
     {
         if (items == null || items.Count < 1)
             return default;
