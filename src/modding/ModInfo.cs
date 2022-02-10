@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -51,7 +51,7 @@ public class ModInfo
     /// <summary>
     ///   Preview Images for the mod. Should be outside the mod's pck file to show in the mod loader GUI
     /// </summary>
-    public List<string> PreviewImages { get; set; }
+    public List<string>? PreviewImages { get; set; }
 
     /// <summary>
     ///   Optional URL to specify a site where info regarding this mod can be found. For example Github link to the
@@ -74,13 +74,13 @@ public class ModInfo
     ///   This is shown as the version of Thrive this mod version is recommended to be used with
     /// </summary>
     [JsonRequired]
-    public string RecommendedThriveVersion { get; set; } = null!;
+    public string? RecommendedThriveVersion { get; set; } = null!;
 
     /// <summary>
     ///   The mod will refuse to be loaded if current game version is lower than this version
     /// </summary>
     [JsonRequired]
-    public string MinimumThriveVersion { get; set; } = null!;
+    public string? MinimumThriveVersion { get; set; } = null!;
 
     /// <summary>
     ///   The mod will refuse to be loaded if current game version is higher than this version
@@ -90,32 +90,32 @@ public class ModInfo
     /// <summary>
     ///   Mods that is required for this one to load. These have to be loaded before this mod.
     /// </summary>
-    public List<string> Dependencies { get; set; }
+    public List<string>? Dependencies { get; set; }
 
     /// <summary>
     ///   Mods that is required for this one to load.
     ///   Like Dependencies except the load order does not matter.
     /// </summary>
     [JsonProperty("Required Mods")]
-    public List<string> RequiredMods { get; set; }
+    public List<string>? RequiredMods { get; set; }
 
     /// <summary>
     ///   Mods that can not be loaded with this one.
     /// </summary>
     [JsonProperty("Incompatible Mods")]
-    public List<string> IncompatibleMods { get; set; }
+    public List<string>? IncompatibleMods { get; set; }
 
     /// <summary>
     ///   Mods that has to be loaded before this one. Different from dependencies as it won't error if not included.
     /// </summary>
     [JsonProperty("Load Before")]
-    public List<string> LoadBefore { get; set; }
+    public List<string>? LoadBefore { get; set; }
 
     /// <summary>
     ///   Mods that has to be loaded after this one. Different from dependencies as it won't error if not included.
     /// </summary>
     [JsonProperty("Load After")]
-    public List<string> LoadAfter { get; set; }
+    public List<string>? LoadAfter { get; set; }
 
     // Start of technical properties
 
@@ -127,7 +127,7 @@ public class ModInfo
     /// <summary>
     ///   Specifies the relative path (from mod root folder) to a config file to load after enabling the mod
     /// </summary>
-    public string ConfigToLoad { get; set; }
+    public string? ConfigToLoad { get; set; }
 
     /// <summary>
     ///   If set needs to point to a C# compiled DLL file that. Needs to be outside any .pck files

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Godot;
@@ -10,21 +10,21 @@ using Newtonsoft.Json.Linq;
 /// </summary>
 public class ModConfigItemInfo : HBoxContainer
 {
-    public string ID { get; set; }
+    public string? ID { get; set; }
 
     [JsonProperty("Display Name")]
-    public string DisplayName { get; set; }
+    public string? DisplayName { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
-    public string Type { get; set; }
+    public string? Type { get; set; }
 
     // Exclusively for Enums/Option type
-    public object Options { get; set; }
+    public object? Options { get; set; }
 
-    public object Value { get; set; }
+    public object? Value { get; set; }
 
-    public Control ConfigNode { get; set; }
+    public Control? ConfigNode { get; set; }
 
     [JsonProperty("Min")]
     public float MinimumValue { get; set; }
@@ -53,7 +53,7 @@ public class ModConfigItemInfo : HBoxContainer
         if (nodeChildren.Count > 1)
         {
             var childUIElement = GetChild(1);
-            switch (Type.ToLower(CultureInfo.CurrentCulture))
+            switch (Type?.ToLower(CultureInfo.CurrentCulture) ?? string.Empty)
             {
                 case "int":
                 case "integer":
@@ -117,7 +117,7 @@ public class ModConfigItemInfo : HBoxContainer
             }
         }
 
-        return Value;
+        return Value!;
     }
 
     /// <summary>
@@ -131,7 +131,7 @@ public class ModConfigItemInfo : HBoxContainer
         }
 
         var childUIElement = GetChild(1);
-        switch (Type.ToLower(CultureInfo.CurrentCulture))
+        switch (Type?.ToLower(CultureInfo.CurrentCulture) ?? string.Empty)
         {
             case "int":
             case "integer":
@@ -146,7 +146,7 @@ public class ModConfigItemInfo : HBoxContainer
                 var numberUIElement = childUIElement as Range;
                 if (numberUIElement != null)
                 {
-                    numberUIElement.Value = Convert.ToDouble(Value ?? default(double), CultureInfo.CurrentCulture);
+                    numberUIElement.Value = Convert.ToDouble(Value, CultureInfo.CurrentCulture);
                 }
 
                 break;
@@ -156,7 +156,7 @@ public class ModConfigItemInfo : HBoxContainer
                 var buttonUIElement = childUIElement as Button;
                 if (buttonUIElement != null)
                 {
-                    buttonUIElement.Pressed = Convert.ToBoolean(Value ?? default(bool), CultureInfo.CurrentCulture);
+                    buttonUIElement.Pressed = Convert.ToBoolean(Value, CultureInfo.CurrentCulture);
                 }
 
                 break;
@@ -165,7 +165,7 @@ public class ModConfigItemInfo : HBoxContainer
                 var stringUIElement = childUIElement as LineEdit;
                 if (stringUIElement != null)
                 {
-                    stringUIElement.Text = (string)Value;
+                    stringUIElement.Text = Convert.ToString(Value, CultureInfo.CurrentCulture);
                 }
 
                 break;
@@ -175,7 +175,7 @@ public class ModConfigItemInfo : HBoxContainer
                 var optionUIElement = childUIElement as OptionButton;
                 if (optionUIElement != null)
                 {
-                    optionUIElement.Selected = Convert.ToInt32(Value ?? default(int), CultureInfo.CurrentCulture);
+                    optionUIElement.Selected = Convert.ToInt32(Value, CultureInfo.CurrentCulture);
                 }
 
                 break;
@@ -186,7 +186,7 @@ public class ModConfigItemInfo : HBoxContainer
             case "alphacolour":
             case "ac":
                 var colorUIElement = childUIElement as ColorPickerButton;
-                if (colorUIElement != null)
+                if (colorUIElement != null && Value != null)
                 {
                     colorUIElement.Color = new Color((string)Value);
                 }
@@ -206,7 +206,7 @@ public class ModConfigItemInfo : HBoxContainer
             return new List<string>();
         }
 
-        return optionsJArray.ToObject<List<string>>();
+        return optionsJArray.ToObject<List<string>>()!;
     }
 
     public override int GetHashCode()

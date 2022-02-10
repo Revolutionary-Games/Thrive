@@ -16,10 +16,11 @@ public class FullModDetails : IEquatable<FullModDetails>
     public FullModDetails(string internalName)
     {
         InternalName = internalName;
+        Info = new();
     }
 
     public string InternalName { get; }
-    public string Folder { get; set; }
+    public string? Folder { get; set; }
 
     /// <summary>
     ///   Is the mod compatible with the current version of thrive?
@@ -36,9 +37,9 @@ public class FullModDetails : IEquatable<FullModDetails>
     /// <summary>
     ///   List of all the configuration options there are
     /// </summary>
-    public ModConfigItemInfo[] ConfigurationInfoList { get; set; }
+    public ModConfigItemInfo[]? ConfigurationInfoList { get; set; }
 
-    public Dictionary<string, object> CurrentConfiguration { get; set; }
+    public Dictionary<string, object>? CurrentConfiguration { get; set; }
 
     public ModInfo Info { get; set; }
 

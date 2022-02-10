@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 20:38-0600\n"
+"POT-Creation-Date: 2022-02-08 22:04-0600\n"
 "PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: César <cesariglesiasparente@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/"
@@ -1558,15 +1558,15 @@ msgid "LICENSES"
 msgstr "Licencias"
 
 #: ../src/general/MainMenu.tscn:493
+msgid "GLES2_MODE_WARNING"
+msgstr "Advertencia del modo GLES2"
+
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Estás usando Thrive en el Modo GLES2. No está probado y probablemente "
 "cause errores. Intenta actualizar tus drivers de video y/o fuerza los "
 "gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
-
-#: ../src/general/MainMenu.tscn:494
-msgid "GLES2_MODE_WARNING"
-msgstr "Advertencia del modo GLES2"
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
@@ -3708,136 +3708,136 @@ msgstr ""
 msgid "PCK_LOAD_FAILED"
 msgstr "La carga del archivo ({0}) ha fallado"
 
-#: ../src/modding/ModManager.cs:468
+#: ../src/modding/ModManager.cs:471
 msgid "INVALID_ICON_PATH"
 msgstr "Ruta de acceso al ícono del mod inválida"
 
-#: ../src/modding/ModManager.cs:482
+#: ../src/modding/ModManager.cs:485
 msgid "INVALID_URL_SCHEME"
 msgstr "Esquema URL inválido"
 
-#: ../src/modding/ModManager.cs:494
+#: ../src/modding/ModManager.cs:497
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 "Se requiere la clase del ensamblaje del mod cuando se especifica el "
 "ensamblaje"
 
-#: ../src/modding/ModManager.cs:606
+#: ../src/modding/ModManager.cs:609
 #, fuzzy
 msgid "MOD_LOADER_TAB"
 msgstr "Cargador de Mods"
 
-#: ../src/modding/ModManager.cs:607
+#: ../src/modding/ModManager.cs:610
 #, fuzzy
 msgid "MOD_ERRORS_TAB"
 msgstr "Errores de carga de mod"
 
-#: ../src/modding/ModManager.cs:608
+#: ../src/modding/ModManager.cs:611
 #, fuzzy
 msgid "MOD_CONFIGURATION_TAB"
 msgstr "Creación de Mod Fallida"
 
-#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1956
+#: ../src/modding/ModManager.cs:956 ../src/modding/ModManager.cs:1959
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Este mod fue descargado desde el Workshop de Steam"
 
-#: ../src/modding/ModManager.cs:954 ../src/modding/ModManager.cs:1957
+#: ../src/modding/ModManager.cs:957 ../src/modding/ModManager.cs:1960
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Este mod fue instalado localmente"
 
-#: ../src/modding/ModManager.cs:1021
+#: ../src/modding/ModManager.cs:1024
 msgid "NO_SELECTED_MOD"
 msgstr "Ningún Mod Seleccionado"
 
-#: ../src/modding/ModManager.cs:1378
+#: ../src/modding/ModManager.cs:1381
 #, fuzzy
 msgid "MOD_LOAD_ERROR_WARNING"
 msgstr "Errores de carga de mod"
 
-#: ../src/modding/ModManager.cs:1380
+#: ../src/modding/ModManager.cs:1383
 #, fuzzy
 msgid "ARE_YOU_SURE_TO_LOAD_MOD"
 msgstr ""
 "¿Está seguro de que desea restablecer TODOS las ajustes a los valores "
 "predeterminados?"
 
-#: ../src/modding/ModManager.cs:1562 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.cs:1565 ../src/modding/ModManager.tscn:851
 #: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
 msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1579
+#: ../src/modding/ModManager.cs:1582
 msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1588 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/ModManager.cs:1591 ../src/modding/ModManager.tscn:1467
 #: ../src/modding/NewModGUI.tscn:572
 msgid "MOD_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1605
+#: ../src/modding/ModManager.cs:1608
 #, fuzzy
 msgid "NO_REQUIRED_MODS"
 msgstr "Ningún Mod Seleccionado"
 
-#: ../src/modding/ModManager.cs:1614 ../src/modding/ModManager.tscn:869
+#: ../src/modding/ModManager.cs:1617 ../src/modding/ModManager.tscn:869
 #, fuzzy
 msgid "INCOMPATIBLE_WITH"
 msgstr "¿Deseas cargar archivo de partida incompatible?"
 
-#: ../src/modding/ModManager.cs:1631
+#: ../src/modding/ModManager.cs:1634
 #, fuzzy
 msgid "NO_MOD_INCOMPATIBLE"
 msgstr "¿Deseas cargar archivo de partida incompatible?"
 
-#: ../src/modding/ModManager.cs:1640 ../src/modding/ModManager.tscn:878
+#: ../src/modding/ModManager.cs:1643 ../src/modding/ModManager.tscn:878
 #, fuzzy
 msgid "LOAD_ORDER"
 msgstr "Cargador de Mods"
 
-#: ../src/modding/ModManager.cs:1650 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/ModManager.cs:1653 ../src/modding/ModManager.tscn:1511
 #: ../src/modding/NewModGUI.tscn:620
 #, fuzzy
 msgid "MOD_LOAD_AFTER"
 msgstr "Cargador de Mods"
 
-#: ../src/modding/ModManager.cs:1668 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/ModManager.cs:1671 ../src/modding/ModManager.tscn:1489
 #: ../src/modding/NewModGUI.tscn:596
 #, fuzzy
 msgid "MOD_LOAD_BEFORE"
 msgstr "Errores de carga de mod"
 
-#: ../src/modding/ModManager.cs:1680
+#: ../src/modding/ModManager.cs:1683
 #, fuzzy
 msgid "MOD_NO_LOAD_ORDER"
 msgstr ""
 "Uno o más mods requieren reiniciar el juego para cargarse o descargarse "
 "adecuadamente"
 
-#: ../src/modding/ModManager.cs:2011
+#: ../src/modding/ModManager.cs:2014
 #, fuzzy
 msgid "MOD_LIST_CONTAIN_ERRORS"
 msgstr "Errores de carga de mod"
 
-#: ../src/modding/ModManager.cs:2013
+#: ../src/modding/ModManager.cs:2016
 #, fuzzy
 msgid "MOD_CHECK_AGAIN_WARNING"
 msgstr ""
 "Tienes cambios sin guardar que serán descartados.\n"
 "¿Deseas continuar?"
 
-#: ../src/modding/ModManager.cs:2017 ../src/modding/ModManager.cs:2057
+#: ../src/modding/ModManager.cs:2020 ../src/modding/ModManager.cs:2060
 #, fuzzy
 msgid "MOD_LIST_VALID"
 msgstr "La partida guardada es inválida"
 
-#: ../src/modding/ModManager.cs:2040 ../src/modding/ModManager.cs:2051
-#: ../src/modding/ModManager.cs:2071 ../src/modding/ModManager.cs:2085
+#: ../src/modding/ModManager.cs:2043 ../src/modding/ModManager.cs:2054
+#: ../src/modding/ModManager.cs:2074 ../src/modding/ModManager.cs:2088
 #, fuzzy
 msgid "UNKNOWN_MOD"
 msgstr "Botón desconocido del mouse"
 
-#: ../src/modding/ModManager.cs:2060
+#: ../src/modding/ModManager.cs:2063
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
 msgstr ""
@@ -3847,65 +3847,65 @@ msgstr ""
 "Como Thrive está en desarrollo, la compatibilidad entre partidas no es una "
 "prioridad, por lo tanto no hay un convertidor para actualizar partidas."
 
-#: ../src/modding/ModManager.cs:2074
+#: ../src/modding/ModManager.cs:2077
 msgid "MOD_ERROR_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2076
+#: ../src/modding/ModManager.cs:2079
 msgid "MOD_ERROR_DEPENDENCIES_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2088
+#: ../src/modding/ModManager.cs:2091
 msgid "MOD_ERROR_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2090
+#: ../src/modding/ModManager.cs:2093
 msgid "MOD_ERROR_REQUIRED_MODS_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2093
+#: ../src/modding/ModManager.cs:2096
 msgid "MOD_ERROR_DEPENDENCIES_ORDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2095
+#: ../src/modding/ModManager.cs:2098
 msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2099
+#: ../src/modding/ModManager.cs:2102
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD"
 msgstr "¿Deseas cargar archivo de partida incompatible?"
 
-#: ../src/modding/ModManager.cs:2101
+#: ../src/modding/ModManager.cs:2104
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
 msgstr "¿Deseas cargar archivo de partida incompatible?"
 
-#: ../src/modding/ModManager.cs:2104
+#: ../src/modding/ModManager.cs:2107
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
 msgstr "Errores de carga de mod"
 
-#: ../src/modding/ModManager.cs:2106
+#: ../src/modding/ModManager.cs:2109
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2110
+#: ../src/modding/ModManager.cs:2113
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_AFTER"
 msgstr ""
 "Uno o más mods requieren reiniciar el juego para cargarse o descargarse "
 "adecuadamente"
 
-#: ../src/modding/ModManager.cs:2112
+#: ../src/modding/ModManager.cs:2115
 msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2154
+#: ../src/modding/ModManager.cs:2157
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Error al crear la carpeta para el mod"
 
-#: ../src/modding/ModManager.cs:2163
+#: ../src/modding/ModManager.cs:2166
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Error al crear el archivo de información del mod"
 
@@ -4198,7 +4198,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "¡Guardado fallido! Ha ocurrido la excepción siguiente: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:388
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:435
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -4287,31 +4287,31 @@ msgstr "Seleccionar imagen de previsualización"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Guardado con éxito"
 
-#: ../src/modding/NewModGUI.cs:199
+#: ../src/modding/NewModGUI.cs:246
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "¡Mi maravilloso!... Mod"
 
-#: ../src/modding/NewModGUI.cs:320
+#: ../src/modding/NewModGUI.cs:367
 msgid "INVALID_URL_FORMAT"
 msgstr "Formato de URL invalido"
 
-#: ../src/modding/NewModGUI.cs:335
+#: ../src/modding/NewModGUI.cs:382
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Nombre interno obligatorio"
 
-#: ../src/modding/NewModGUI.cs:341
+#: ../src/modding/NewModGUI.cs:388
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Nombre interno debe comenzar en mayúscula"
 
-#: ../src/modding/NewModGUI.cs:347
+#: ../src/modding/NewModGUI.cs:394
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Ya existe un mod con el nombre interno especificado"
 
-#: ../src/modding/NewModGUI.cs:363
+#: ../src/modding/NewModGUI.cs:410
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Formato inválido o falta formato de un campo requerido: {0}"
 
-#: ../src/modding/NewModGUI.cs:374
+#: ../src/modding/NewModGUI.cs:421
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Se ha detectado un problema en las validaciones adicionales: {0}"
 

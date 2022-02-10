@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 20:38-0600\n"
+"POT-Creation-Date: 2022-02-08 22:04-0600\n"
 "PO-Revision-Date: 2021-08-26 15:50+0000\n"
 "Last-Translator: Joah van der Maaden <voorjoah@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio."
@@ -1563,15 +1563,15 @@ msgid "LICENSES"
 msgstr "Licenties"
 
 #: ../src/general/MainMenu.tscn:493
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2 Moduswaarschuwing"
+
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Je gebruikt GLES2 om Thrive uit te voeren. Dit is ernstig ongetest en zal "
 "waarschijnlijk problemen veroorzaken. Probeer je video drivers te updaten "
 "en/of gebruik te maken van AMD of Nvidia graphics om Thrive uit te voeren."
-
-#: ../src/general/MainMenu.tscn:494
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 Moduswaarschuwing"
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
@@ -3714,134 +3714,134 @@ msgstr ""
 msgid "PCK_LOAD_FAILED"
 msgstr "Laden van pck bestand ({0}) gefaald"
 
-#: ../src/modding/ModManager.cs:468
+#: ../src/modding/ModManager.cs:471
 msgid "INVALID_ICON_PATH"
 msgstr "Ongeldige mod icoon map"
 
-#: ../src/modding/ModManager.cs:482
+#: ../src/modding/ModManager.cs:485
 msgid "INVALID_URL_SCHEME"
 msgstr "ongeldig URL schema"
 
-#: ../src/modding/ModManager.cs:494
+#: ../src/modding/ModManager.cs:497
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod assembly class is vereist wanneer assembly is gespecifieerd"
 
-#: ../src/modding/ModManager.cs:606
+#: ../src/modding/ModManager.cs:609
 #, fuzzy
 msgid "MOD_LOADER_TAB"
 msgstr "Mod Uploader"
 
-#: ../src/modding/ModManager.cs:607
+#: ../src/modding/ModManager.cs:610
 #, fuzzy
 msgid "MOD_ERRORS_TAB"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/modding/ModManager.cs:608
+#: ../src/modding/ModManager.cs:611
 #, fuzzy
 msgid "MOD_CONFIGURATION_TAB"
 msgstr "Mod creatie gefaald"
 
-#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1956
+#: ../src/modding/ModManager.cs:956 ../src/modding/ModManager.cs:1959
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Deze mod is gedownload van de Steam Workshop"
 
-#: ../src/modding/ModManager.cs:954 ../src/modding/ModManager.cs:1957
+#: ../src/modding/ModManager.cs:957 ../src/modding/ModManager.cs:1960
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Dit is een lokaal geïnstalleerde mod"
 
-#: ../src/modding/ModManager.cs:1021
+#: ../src/modding/ModManager.cs:1024
 msgid "NO_SELECTED_MOD"
 msgstr "Geen geselecteerde mod"
 
-#: ../src/modding/ModManager.cs:1378
+#: ../src/modding/ModManager.cs:1381
 #, fuzzy
 msgid "MOD_LOAD_ERROR_WARNING"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/modding/ModManager.cs:1380
+#: ../src/modding/ModManager.cs:1383
 #, fuzzy
 msgid "ARE_YOU_SURE_TO_LOAD_MOD"
 msgstr ""
 "Ben je zeker dat je ALLE instellingen wilt resetten naar de "
 "standaardwaarden?"
 
-#: ../src/modding/ModManager.cs:1562 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.cs:1565 ../src/modding/ModManager.tscn:851
 #: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
 msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1579
+#: ../src/modding/ModManager.cs:1582
 msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1588 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/ModManager.cs:1591 ../src/modding/ModManager.tscn:1467
 #: ../src/modding/NewModGUI.tscn:572
 msgid "MOD_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1605
+#: ../src/modding/ModManager.cs:1608
 #, fuzzy
 msgid "NO_REQUIRED_MODS"
 msgstr "Geen geselecteerde mod"
 
-#: ../src/modding/ModManager.cs:1614 ../src/modding/ModManager.tscn:869
+#: ../src/modding/ModManager.cs:1617 ../src/modding/ModManager.tscn:869
 #, fuzzy
 msgid "INCOMPATIBLE_WITH"
 msgstr "Niet-compatibel opgeslagen bestand laden?"
 
-#: ../src/modding/ModManager.cs:1631
+#: ../src/modding/ModManager.cs:1634
 #, fuzzy
 msgid "NO_MOD_INCOMPATIBLE"
 msgstr "Niet-compatibel opgeslagen bestand laden?"
 
-#: ../src/modding/ModManager.cs:1640 ../src/modding/ModManager.tscn:878
+#: ../src/modding/ModManager.cs:1643 ../src/modding/ModManager.tscn:878
 #, fuzzy
 msgid "LOAD_ORDER"
 msgstr "Mod Uploader"
 
-#: ../src/modding/ModManager.cs:1650 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/ModManager.cs:1653 ../src/modding/ModManager.tscn:1511
 #: ../src/modding/NewModGUI.tscn:620
 #, fuzzy
 msgid "MOD_LOAD_AFTER"
 msgstr "Mod Uploader"
 
-#: ../src/modding/ModManager.cs:1668 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/ModManager.cs:1671 ../src/modding/ModManager.tscn:1489
 #: ../src/modding/NewModGUI.tscn:596
 #, fuzzy
 msgid "MOD_LOAD_BEFORE"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/modding/ModManager.cs:1680
+#: ../src/modding/ModManager.cs:1683
 #, fuzzy
 msgid "MOD_NO_LOAD_ORDER"
 msgstr ""
 "1 of meerdere mods vereisen een game restart om fantsoenlijk te laden of "
 "ontladen"
 
-#: ../src/modding/ModManager.cs:2011
+#: ../src/modding/ModManager.cs:2014
 #, fuzzy
 msgid "MOD_LIST_CONTAIN_ERRORS"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/modding/ModManager.cs:2013
+#: ../src/modding/ModManager.cs:2016
 #, fuzzy
 msgid "MOD_CHECK_AGAIN_WARNING"
 msgstr ""
 "Je hebt niet-opgeslagen wijzigingen die worden verwijderd.\n"
 "Wens je verder te gaan?"
 
-#: ../src/modding/ModManager.cs:2017 ../src/modding/ModManager.cs:2057
+#: ../src/modding/ModManager.cs:2020 ../src/modding/ModManager.cs:2060
 #, fuzzy
 msgid "MOD_LIST_VALID"
 msgstr "Opgeslagen bestand is ongeldig"
 
-#: ../src/modding/ModManager.cs:2040 ../src/modding/ModManager.cs:2051
-#: ../src/modding/ModManager.cs:2071 ../src/modding/ModManager.cs:2085
+#: ../src/modding/ModManager.cs:2043 ../src/modding/ModManager.cs:2054
+#: ../src/modding/ModManager.cs:2074 ../src/modding/ModManager.cs:2088
 #, fuzzy
 msgid "UNKNOWN_MOD"
 msgstr "Onbekende muis"
 
-#: ../src/modding/ModManager.cs:2060
+#: ../src/modding/ModManager.cs:2063
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
 msgstr ""
@@ -3852,65 +3852,65 @@ msgstr ""
 "compatibiliteit van het opslaan geen hoge prioriteit, daarom zijn er geen "
 "upgraders voor alle versies."
 
-#: ../src/modding/ModManager.cs:2074
+#: ../src/modding/ModManager.cs:2077
 msgid "MOD_ERROR_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2076
+#: ../src/modding/ModManager.cs:2079
 msgid "MOD_ERROR_DEPENDENCIES_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2088
+#: ../src/modding/ModManager.cs:2091
 msgid "MOD_ERROR_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2090
+#: ../src/modding/ModManager.cs:2093
 msgid "MOD_ERROR_REQUIRED_MODS_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2093
+#: ../src/modding/ModManager.cs:2096
 msgid "MOD_ERROR_DEPENDENCIES_ORDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2095
+#: ../src/modding/ModManager.cs:2098
 msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2099
+#: ../src/modding/ModManager.cs:2102
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD"
 msgstr "Niet-compatibel opgeslagen bestand laden?"
 
-#: ../src/modding/ModManager.cs:2101
+#: ../src/modding/ModManager.cs:2104
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
 msgstr "Niet-compatibel opgeslagen bestand laden?"
 
-#: ../src/modding/ModManager.cs:2104
+#: ../src/modding/ModManager.cs:2107
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
 msgstr "Errors tijdens het laden van mods"
 
-#: ../src/modding/ModManager.cs:2106
+#: ../src/modding/ModManager.cs:2109
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2110
+#: ../src/modding/ModManager.cs:2113
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_AFTER"
 msgstr ""
 "1 of meerdere mods vereisen een game restart om fantsoenlijk te laden of "
 "ontladen"
 
-#: ../src/modding/ModManager.cs:2112
+#: ../src/modding/ModManager.cs:2115
 msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2154
+#: ../src/modding/ModManager.cs:2157
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Fout bij het creëren van de map voor de mod"
 
-#: ../src/modding/ModManager.cs:2163
+#: ../src/modding/ModManager.cs:2166
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Error bij het maken van het bestand voor de mod info"
 
@@ -4203,7 +4203,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Opslaan van informatie mislukt door uitzondering: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:388
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:435
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Error: {0}"
 
@@ -4292,31 +4292,31 @@ msgstr "Selecteer voorbeeldafbeelding"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Upload geslaagd"
 
-#: ../src/modding/NewModGUI.cs:199
+#: ../src/modding/NewModGUI.cs:246
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Mijn SuperSaaie Mod"
 
-#: ../src/modding/NewModGUI.cs:320
+#: ../src/modding/NewModGUI.cs:367
 msgid "INVALID_URL_FORMAT"
 msgstr "Ongeldig URL formaat"
 
-#: ../src/modding/NewModGUI.cs:335
+#: ../src/modding/NewModGUI.cs:382
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Interne naam is vereist"
 
-#: ../src/modding/NewModGUI.cs:341
+#: ../src/modding/NewModGUI.cs:388
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Interne naam moet beginnen met een hoofdletter"
 
-#: ../src/modding/NewModGUI.cs:347
+#: ../src/modding/NewModGUI.cs:394
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Er is al een mod met die gegeven interne naam"
 
-#: ../src/modding/NewModGUI.cs:363
+#: ../src/modding/NewModGUI.cs:410
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Ontbrekende of ongeldige indeling van een verplicht veld: {0}"
 
-#: ../src/modding/NewModGUI.cs:374
+#: ../src/modding/NewModGUI.cs:421
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Bijkomende controles detecteerden een probleem: {0}"
 

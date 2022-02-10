@@ -51,7 +51,7 @@ public class ModLoader : Node
         EmptyList = 2,
     }
 
-    public static ModLoader Instance => instance;
+    public static ModLoader Instance => instance!;
 
     /// <summary>
     ///   The mod interface the game uses to trigger events that mods can react to
@@ -171,12 +171,12 @@ public class ModLoader : Node
                 return savedConfig[modName];
             }
 
-            return null;
+            return null!;
         }
         catch
         {
             GD.PrintErr("Couldn't open mod configuration file for reading.");
-            return null;
+            return null!;
         }
     }
 
@@ -244,7 +244,7 @@ public class ModLoader : Node
             };
         }
 
-        if (currentModInfo.Dependencies != null)
+        if (currentModInfo?.Dependencies != null)
         {
             var dependencyIndex = 0;
             foreach (string dependencyName in currentModInfo.Dependencies)
@@ -276,7 +276,7 @@ public class ModLoader : Node
             }
         }
 
-        if (currentModInfo.RequiredMods != null)
+        if (currentModInfo?.RequiredMods != null)
         {
             var requiredModsIndex = 0;
             foreach (string requiredModsName in currentModInfo.RequiredMods)
@@ -296,7 +296,7 @@ public class ModLoader : Node
             }
         }
 
-        if (currentModInfo.IncompatibleMods != null)
+        if (currentModInfo?.IncompatibleMods != null)
         {
             foreach (string incompatibleName in currentModInfo.IncompatibleMods)
             {
@@ -313,7 +313,7 @@ public class ModLoader : Node
             }
         }
 
-        if (currentModInfo.LoadBefore != null)
+        if (currentModInfo?.LoadBefore != null)
         {
             foreach (string loadBeforeName in currentModInfo.LoadBefore)
             {
@@ -334,7 +334,7 @@ public class ModLoader : Node
             }
         }
 
-        if (currentModInfo.LoadAfter != null)
+        if (currentModInfo?.LoadAfter != null)
         {
             foreach (string loadAfterName in currentModInfo.LoadAfter)
             {
@@ -465,15 +465,15 @@ public class ModLoader : Node
 
         bool loadedSomething = false;
 
-        if (!string.IsNullOrEmpty(info.Info.PckToLoad) &&
-            FileHelpers.ExistsCaseSensitive(Path.Combine(info.Folder, info.Info.PckToLoad)))
+        if (!string.IsNullOrEmpty(info.Info?.PckToLoad) && info.Folder != null &&
+            info.Info?.PckToLoad != null && FileHelpers.ExistsCaseSensitive(Path.Combine(info.Folder, info.Info?.PckToLoad)))
         {
-            LoadPckFile(Path.Combine(info.Folder, info.Info.PckToLoad!));
+            LoadPckFile(Path.Combine(info.Folder, info.Info?.PckToLoad ?? string.Empty));
             loadedSomething = true;
         }
 
         // Loads the config file if it exists
-        if (info.Info.ConfigToLoad != null && FileHelpers.Exists(Path.Combine(info.Folder, info.Info.ConfigToLoad)))
+        if (info.Info?.ConfigToLoad != null && FileHelpers.Exists(Path.Combine(info.Folder, info.Info.ConfigToLoad)))
         {
             var currentConfigList = ModManager.GetModConfigList(info);
             info.ConfigurationInfoList = currentConfigList;
@@ -485,12 +485,12 @@ public class ModLoader : Node
             }
         }
 
-        if (!string.IsNullOrEmpty(info.Info.ModAssembly))
+        if (!string.IsNullOrEmpty(info.Info?.ModAssembly))
         {
             Assembly modAssembly;
             try
             {
-                modAssembly = LoadCodeAssembly(Path.Combine(info.Folder, info.Info.ModAssembly!));
+                modAssembly = LoadCodeAssembly(Path.Combine(info.Folder, info.Info?.ModAssembly!));
             }
             catch (Exception e)
             {
@@ -563,10 +563,13 @@ public class ModLoader : Node
 
     private void CheckAndMarkIfModRequiresRestart(FullModDetails mod)
     {
-        if (mod.Info.RequiresRestart)
+        if (mod.Info != null)
         {
-            GD.Print(mod.InternalName, " requires a restart");
-            RequiresRestart = true;
+            if (mod.Info.RequiresRestart)
+            {
+                GD.Print(mod.InternalName, " requires a restart");
+                RequiresRestart = true;
+            }
         }
     }
 
@@ -607,6 +610,11 @@ public class ModLoader : Node
 
     private bool CreateModInstance(string name, FullModDetails info, Assembly assembly)
     {
+        if (info.Info == null || info.Info?.AssemblyModClass == null)
+        {
+            return false;
+        }
+
         var className = info.Info.AssemblyModClass;
 
         var type = assembly.GetTypes().FirstOrDefault(t => t.Name == className);

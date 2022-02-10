@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 20:38-0600\n"
+"POT-Creation-Date: 2022-02-08 22:04-0600\n"
 "PO-Revision-Date: 2022-02-01 15:41+0000\n"
 "Last-Translator: AlexPlay <mrcreeper2015m@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/"
@@ -1558,15 +1558,15 @@ msgid "LICENSES"
 msgstr "Лицензии"
 
 #: ../src/general/MainMenu.tscn:493
+msgid "GLES2_MODE_WARNING"
+msgstr "Предупреждение режима GLES2"
+
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "Ты запустил Thrive через GLES2. Этот режим ещё не проверен и может вызвать "
 "проблемы. Попробуй обновить свои видеодрайвера и/или вручную используй AMD "
 "или Nvidia видеокарты для запуска Thrive."
-
-#: ../src/general/MainMenu.tscn:494
-msgid "GLES2_MODE_WARNING"
-msgstr "Предупреждение режима GLES2"
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
@@ -3722,133 +3722,133 @@ msgstr ""
 msgid "PCK_LOAD_FAILED"
 msgstr "Не удалось загрузить файл pck ({0})"
 
-#: ../src/modding/ModManager.cs:468
+#: ../src/modding/ModManager.cs:471
 msgid "INVALID_ICON_PATH"
 msgstr "Неверный путь к значку мода"
 
-#: ../src/modding/ModManager.cs:482
+#: ../src/modding/ModManager.cs:485
 msgid "INVALID_URL_SCHEME"
 msgstr "Неверная схема URL-адреса"
 
-#: ../src/modding/ModManager.cs:494
+#: ../src/modding/ModManager.cs:497
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Класс сборки необходим для мода, если указана сборка"
 
-#: ../src/modding/ModManager.cs:606
+#: ../src/modding/ModManager.cs:609
 #, fuzzy
 msgid "MOD_LOADER_TAB"
 msgstr "Загрузчик модов"
 
-#: ../src/modding/ModManager.cs:607
+#: ../src/modding/ModManager.cs:610
 #, fuzzy
 msgid "MOD_ERRORS_TAB"
 msgstr "Ошибки загрузки Модов"
 
-#: ../src/modding/ModManager.cs:608
+#: ../src/modding/ModManager.cs:611
 #, fuzzy
 msgid "MOD_CONFIGURATION_TAB"
 msgstr "Не удалось создать мод"
 
-#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1956
+#: ../src/modding/ModManager.cs:956 ../src/modding/ModManager.cs:1959
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "Этот мод загружен из Мастерской Steam"
 
-#: ../src/modding/ModManager.cs:954 ../src/modding/ModManager.cs:1957
+#: ../src/modding/ModManager.cs:957 ../src/modding/ModManager.cs:1960
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Это локально установленный мод"
 
-#: ../src/modding/ModManager.cs:1021
+#: ../src/modding/ModManager.cs:1024
 msgid "NO_SELECTED_MOD"
 msgstr "Не Выбран Мод"
 
-#: ../src/modding/ModManager.cs:1378
+#: ../src/modding/ModManager.cs:1381
 #, fuzzy
 msgid "MOD_LOAD_ERROR_WARNING"
 msgstr "Ошибки загрузки Модов"
 
-#: ../src/modding/ModManager.cs:1380
+#: ../src/modding/ModManager.cs:1383
 #, fuzzy
 msgid "ARE_YOU_SURE_TO_LOAD_MOD"
 msgstr ""
 "Вы действительно хотите сбросить ВСЕ настройки до значений по умолчанию?"
 
-#: ../src/modding/ModManager.cs:1562 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.cs:1565 ../src/modding/ModManager.tscn:851
 #: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
 msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1579
+#: ../src/modding/ModManager.cs:1582
 msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1588 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/ModManager.cs:1591 ../src/modding/ModManager.tscn:1467
 #: ../src/modding/NewModGUI.tscn:572
 msgid "MOD_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1605
+#: ../src/modding/ModManager.cs:1608
 #, fuzzy
 msgid "NO_REQUIRED_MODS"
 msgstr "Не Выбран Мод"
 
-#: ../src/modding/ModManager.cs:1614 ../src/modding/ModManager.tscn:869
+#: ../src/modding/ModManager.cs:1617 ../src/modding/ModManager.tscn:869
 #, fuzzy
 msgid "INCOMPATIBLE_WITH"
 msgstr "Загрузить несовместимое сохранение?"
 
-#: ../src/modding/ModManager.cs:1631
+#: ../src/modding/ModManager.cs:1634
 #, fuzzy
 msgid "NO_MOD_INCOMPATIBLE"
 msgstr "Загрузить несовместимое сохранение?"
 
-#: ../src/modding/ModManager.cs:1640 ../src/modding/ModManager.tscn:878
+#: ../src/modding/ModManager.cs:1643 ../src/modding/ModManager.tscn:878
 #, fuzzy
 msgid "LOAD_ORDER"
 msgstr "Загрузчик модов"
 
-#: ../src/modding/ModManager.cs:1650 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/ModManager.cs:1653 ../src/modding/ModManager.tscn:1511
 #: ../src/modding/NewModGUI.tscn:620
 #, fuzzy
 msgid "MOD_LOAD_AFTER"
 msgstr "Загрузчик модов"
 
-#: ../src/modding/ModManager.cs:1668 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/ModManager.cs:1671 ../src/modding/ModManager.tscn:1489
 #: ../src/modding/NewModGUI.tscn:596
 #, fuzzy
 msgid "MOD_LOAD_BEFORE"
 msgstr "Ошибки загрузки Модов"
 
-#: ../src/modding/ModManager.cs:1680
+#: ../src/modding/ModManager.cs:1683
 #, fuzzy
 msgid "MOD_NO_LOAD_ORDER"
 msgstr ""
 "Для правильной загрузки или выгрузки одного или нескольких модов требуется "
 "перезапуск игры"
 
-#: ../src/modding/ModManager.cs:2011
+#: ../src/modding/ModManager.cs:2014
 #, fuzzy
 msgid "MOD_LIST_CONTAIN_ERRORS"
 msgstr "Ошибки загрузки Модов"
 
-#: ../src/modding/ModManager.cs:2013
+#: ../src/modding/ModManager.cs:2016
 #, fuzzy
 msgid "MOD_CHECK_AGAIN_WARNING"
 msgstr ""
 "Вы имеете не сохранённые изменения, которые можете потерять.\n"
 "Вы хотите продолжить?"
 
-#: ../src/modding/ModManager.cs:2017 ../src/modding/ModManager.cs:2057
+#: ../src/modding/ModManager.cs:2020 ../src/modding/ModManager.cs:2060
 #, fuzzy
 msgid "MOD_LIST_VALID"
 msgstr "Сохранение сломано"
 
-#: ../src/modding/ModManager.cs:2040 ../src/modding/ModManager.cs:2051
-#: ../src/modding/ModManager.cs:2071 ../src/modding/ModManager.cs:2085
+#: ../src/modding/ModManager.cs:2043 ../src/modding/ModManager.cs:2054
+#: ../src/modding/ModManager.cs:2074 ../src/modding/ModManager.cs:2088
 #, fuzzy
 msgid "UNKNOWN_MOD"
 msgstr "Неизвестная кнопка мыши"
 
-#: ../src/modding/ModManager.cs:2060
+#: ../src/modding/ModManager.cs:2063
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
 msgstr ""
@@ -3859,65 +3859,65 @@ msgstr ""
 "совместимость с сохранениями не является приоритетной задачей, поэтому для "
 "всех версий не существует конвертера для сохранений."
 
-#: ../src/modding/ModManager.cs:2074
+#: ../src/modding/ModManager.cs:2077
 msgid "MOD_ERROR_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2076
+#: ../src/modding/ModManager.cs:2079
 msgid "MOD_ERROR_DEPENDENCIES_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2088
+#: ../src/modding/ModManager.cs:2091
 msgid "MOD_ERROR_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2090
+#: ../src/modding/ModManager.cs:2093
 msgid "MOD_ERROR_REQUIRED_MODS_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2093
+#: ../src/modding/ModManager.cs:2096
 msgid "MOD_ERROR_DEPENDENCIES_ORDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2095
+#: ../src/modding/ModManager.cs:2098
 msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2099
+#: ../src/modding/ModManager.cs:2102
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD"
 msgstr "Загрузить несовместимое сохранение?"
 
-#: ../src/modding/ModManager.cs:2101
+#: ../src/modding/ModManager.cs:2104
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
 msgstr "Загрузить несовместимое сохранение?"
 
-#: ../src/modding/ModManager.cs:2104
+#: ../src/modding/ModManager.cs:2107
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
 msgstr "Ошибки загрузки Модов"
 
-#: ../src/modding/ModManager.cs:2106
+#: ../src/modding/ModManager.cs:2109
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2110
+#: ../src/modding/ModManager.cs:2113
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_AFTER"
 msgstr ""
 "Для правильной загрузки или выгрузки одного или нескольких модов требуется "
 "перезапуск игры"
 
-#: ../src/modding/ModManager.cs:2112
+#: ../src/modding/ModManager.cs:2115
 msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2154
+#: ../src/modding/ModManager.cs:2157
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Ошибка создания папки для мода"
 
-#: ../src/modding/ModManager.cs:2163
+#: ../src/modding/ModManager.cs:2166
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Ошибка создания info файла мода"
 
@@ -4210,7 +4210,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Не удалось сохранить информацию из-за исключения: {0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:388
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:435
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Ошибка: {0}"
 
@@ -4298,31 +4298,31 @@ msgstr "Выбрать превью"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Загрузка выполнена успешно"
 
-#: ../src/modding/NewModGUI.cs:199
+#: ../src/modding/NewModGUI.cs:246
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Мой потрясающий мод"
 
-#: ../src/modding/NewModGUI.cs:320
+#: ../src/modding/NewModGUI.cs:367
 msgid "INVALID_URL_FORMAT"
 msgstr "Неверный формат URL"
 
-#: ../src/modding/NewModGUI.cs:335
+#: ../src/modding/NewModGUI.cs:382
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Требуется внутреннее имя"
 
-#: ../src/modding/NewModGUI.cs:341
+#: ../src/modding/NewModGUI.cs:388
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Внутреннее имя должно начинаться с заглавной буквы"
 
-#: ../src/modding/NewModGUI.cs:347
+#: ../src/modding/NewModGUI.cs:394
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Уже есть мод с указанным внутренним именем"
 
-#: ../src/modding/NewModGUI.cs:363
+#: ../src/modding/NewModGUI.cs:410
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Отсутствует или неверный формат обязательного поля: {0}"
 
-#: ../src/modding/NewModGUI.cs:374
+#: ../src/modding/NewModGUI.cs:421
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Дополнительные проверки обнаружили проблему: {0}"
 

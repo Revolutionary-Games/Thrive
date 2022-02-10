@@ -34,10 +34,10 @@ public class NewModGUI : Control
     public NodePath IconFilePath = null!;
 
     [Export]
-    public NodePath PreviewImagesFilePath = null;
+    public NodePath PreviewImagesFilePath = null!;
 
     [Export]
-    public NodePath InfoUrlPath = null;
+    public NodePath InfoUrlPath = null!;
 
     [Export]
     public NodePath LicensePath = null!;
@@ -93,7 +93,6 @@ public class NewModGUI : Control
     [Export]
     public NodePath PreviewFileDialogPath = null!;
 
-
     [Export]
     public NodePath ErrorDisplayPath = null!;
 
@@ -129,7 +128,7 @@ public class NewModGUI : Control
     private FileDialog assemblyFileDialog = null!;
     private FileDialog previewFileDialog = null!;
 
-    private Label errorDisplay;
+    private Label errorDisplay = null!;
 
     private ModInfo? editedInfo;
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 20:38-0600\n"
+"POT-Creation-Date: 2022-02-08 22:04-0600\n"
 "PO-Revision-Date: 2021-05-06 17:54+0000\n"
 "Last-Translator: 0nmyhead <jg020135@naver.com>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/"
@@ -1526,15 +1526,15 @@ msgid "LICENSES"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:493
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2 모드 경고"
+
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "GLES2를 사용하여 실행중입니다. 이는 실험되지 않았으며 이로 인해 문제가 발생"
 "할 수 있습니다. 비디오 카드 드라이버를 업데이트 하거나 AMD 혹은 Nvidia 그래"
 "픽을 사용하여 Thrive를 실행해주시기 바랍니다."
-
-#: ../src/general/MainMenu.tscn:494
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2 모드 경고"
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
@@ -3670,45 +3670,45 @@ msgstr ""
 msgid "PCK_LOAD_FAILED"
 msgstr "불러오기 완료"
 
-#: ../src/modding/ModManager.cs:468
+#: ../src/modding/ModManager.cs:471
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:482
+#: ../src/modding/ModManager.cs:485
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:494
+#: ../src/modding/ModManager.cs:497
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:606
+#: ../src/modding/ModManager.cs:609
 msgid "MOD_LOADER_TAB"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:607
+#: ../src/modding/ModManager.cs:610
 msgid "MOD_ERRORS_TAB"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:608
+#: ../src/modding/ModManager.cs:611
 #, fuzzy
 msgid "MOD_CONFIGURATION_TAB"
 msgstr "자동 진화 실행 실패"
 
-#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1956
+#: ../src/modding/ModManager.cs:956 ../src/modding/ModManager.cs:1959
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:954 ../src/modding/ModManager.cs:1957
+#: ../src/modding/ModManager.cs:957 ../src/modding/ModManager.cs:1960
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1021
+#: ../src/modding/ModManager.cs:1024
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
 
-#: ../src/modding/ModManager.cs:1378
+#: ../src/modding/ModManager.cs:1381
 #, fuzzy
 msgid "MOD_LOAD_ERROR_WARNING"
 msgstr ""
@@ -3716,85 +3716,85 @@ msgstr ""
 "변형되었거나 현재 버전의 Thrive에서 불러올 수 없는 형식의 저장입니다.\n"
 "그래도 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.cs:1380
+#: ../src/modding/ModManager.cs:1383
 #, fuzzy
 msgid "ARE_YOU_SURE_TO_LOAD_MOD"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
 
-#: ../src/modding/ModManager.cs:1562 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.cs:1565 ../src/modding/ModManager.tscn:851
 #: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
 msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1579
+#: ../src/modding/ModManager.cs:1582
 msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1588 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/ModManager.cs:1591 ../src/modding/ModManager.tscn:1467
 #: ../src/modding/NewModGUI.tscn:572
 msgid "MOD_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1605
+#: ../src/modding/ModManager.cs:1608
 #, fuzzy
 msgid "NO_REQUIRED_MODS"
 msgstr "선택됨:"
 
-#: ../src/modding/ModManager.cs:1614 ../src/modding/ModManager.tscn:869
+#: ../src/modding/ModManager.cs:1617 ../src/modding/ModManager.tscn:869
 #, fuzzy
 msgid "INCOMPATIBLE_WITH"
 msgstr "호환되지 않는 저장을 불러옵니까?"
 
-#: ../src/modding/ModManager.cs:1631
+#: ../src/modding/ModManager.cs:1634
 #, fuzzy
 msgid "NO_MOD_INCOMPATIBLE"
 msgstr "호환되지 않는 저장을 불러옵니까?"
 
-#: ../src/modding/ModManager.cs:1640 ../src/modding/ModManager.tscn:878
+#: ../src/modding/ModManager.cs:1643 ../src/modding/ModManager.tscn:878
 #, fuzzy
 msgid "LOAD_ORDER"
 msgstr "불러오기"
 
-#: ../src/modding/ModManager.cs:1650 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/ModManager.cs:1653 ../src/modding/ModManager.tscn:1511
 #: ../src/modding/NewModGUI.tscn:620
 #, fuzzy
 msgid "MOD_LOAD_AFTER"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.cs:1668 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/ModManager.cs:1671 ../src/modding/ModManager.tscn:1489
 #: ../src/modding/NewModGUI.tscn:596
 #, fuzzy
 msgid "MOD_LOAD_BEFORE"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.cs:1680
+#: ../src/modding/ModManager.cs:1683
 #, fuzzy
 msgid "MOD_NO_LOAD_ORDER"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.cs:2011
+#: ../src/modding/ModManager.cs:2014
 msgid "MOD_LIST_CONTAIN_ERRORS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2013
+#: ../src/modding/ModManager.cs:2016
 #, fuzzy
 msgid "MOD_CHECK_AGAIN_WARNING"
 msgstr ""
 "저장하지 않은 변경점은 적용되지 않습니다.\n"
 "계속하시겠습니까?"
 
-#: ../src/modding/ModManager.cs:2017 ../src/modding/ModManager.cs:2057
+#: ../src/modding/ModManager.cs:2020 ../src/modding/ModManager.cs:2060
 #, fuzzy
 msgid "MOD_LIST_VALID"
 msgstr "올바르지 않은 저장 입니다"
 
-#: ../src/modding/ModManager.cs:2040 ../src/modding/ModManager.cs:2051
-#: ../src/modding/ModManager.cs:2071 ../src/modding/ModManager.cs:2085
+#: ../src/modding/ModManager.cs:2043 ../src/modding/ModManager.cs:2054
+#: ../src/modding/ModManager.cs:2074 ../src/modding/ModManager.cs:2088
 #, fuzzy
 msgid "UNKNOWN_MOD"
 msgstr "마우스 미확인 키"
 
-#: ../src/modding/ModManager.cs:2060
+#: ../src/modding/ModManager.cs:2063
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
 msgstr ""
@@ -3802,63 +3802,63 @@ msgstr ""
 "Thrive의 개발은 한참 진행 중 이며 저장 간 호환은 우선적이지 않으므로, 이전 "
 "버전의 저장을 변환하는 것은 지원되지 않습니다."
 
-#: ../src/modding/ModManager.cs:2074
+#: ../src/modding/ModManager.cs:2077
 msgid "MOD_ERROR_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2076
+#: ../src/modding/ModManager.cs:2079
 msgid "MOD_ERROR_DEPENDENCIES_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2088
+#: ../src/modding/ModManager.cs:2091
 msgid "MOD_ERROR_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2090
+#: ../src/modding/ModManager.cs:2093
 msgid "MOD_ERROR_REQUIRED_MODS_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2093
+#: ../src/modding/ModManager.cs:2096
 msgid "MOD_ERROR_DEPENDENCIES_ORDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2095
+#: ../src/modding/ModManager.cs:2098
 msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2099
+#: ../src/modding/ModManager.cs:2102
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD"
 msgstr "호환되지 않는 저장을 불러옵니까?"
 
-#: ../src/modding/ModManager.cs:2101
+#: ../src/modding/ModManager.cs:2104
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
 msgstr "호환되지 않는 저장을 불러옵니까?"
 
-#: ../src/modding/ModManager.cs:2104
+#: ../src/modding/ModManager.cs:2107
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2106
+#: ../src/modding/ModManager.cs:2109
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2110
+#: ../src/modding/ModManager.cs:2113
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_AFTER"
 msgstr "유효하지 않은 저장을 불러오시겠습니까?"
 
-#: ../src/modding/ModManager.cs:2112
+#: ../src/modding/ModManager.cs:2115
 msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2154
+#: ../src/modding/ModManager.cs:2157
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "저장 오류"
 
-#: ../src/modding/ModManager.cs:2163
+#: ../src/modding/ModManager.cs:2166
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
@@ -4158,7 +4158,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "저장 실패! 예외 발생"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:388
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:435
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "저장 오류"
@@ -4257,7 +4257,7 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr "저장 성공"
 
-#: ../src/modding/NewModGUI.cs:199
+#: ../src/modding/NewModGUI.cs:246
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
@@ -4265,27 +4265,27 @@ msgstr ""
 "화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. "
 "포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
-#: ../src/modding/NewModGUI.cs:320
+#: ../src/modding/NewModGUI.cs:367
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:335
+#: ../src/modding/NewModGUI.cs:382
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:341
+#: ../src/modding/NewModGUI.cs:388
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:347
+#: ../src/modding/NewModGUI.cs:394
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:363
+#: ../src/modding/NewModGUI.cs:410
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:374
+#: ../src/modding/NewModGUI.cs:421
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "자동 진화 실행 실패"

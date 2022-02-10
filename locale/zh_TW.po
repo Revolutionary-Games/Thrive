@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 20:38-0600\n"
+"POT-Creation-Date: 2022-02-08 22:04-0600\n"
 "PO-Revision-Date: 2022-01-30 12:44+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate."
@@ -1501,14 +1501,14 @@ msgid "LICENSES"
 msgstr "許可"
 
 #: ../src/general/MainMenu.tscn:493
+msgid "GLES2_MODE_WARNING"
+msgstr "GLES2模式警告"
+
+#: ../src/general/MainMenu.tscn:495
 msgid "GLES2_MODE_WARNING_TEXT"
 msgstr ""
 "你在用GLES2模式運行Thrive。這種情況沒有被測試過並且很可能導致種種問題。你應"
 "該考慮更新下你的顯卡驅動，或者強制使用你的AMD/Nvidia顯卡來運行Thrive。"
-
-#: ../src/general/MainMenu.tscn:494
-msgid "GLES2_MODE_WARNING"
-msgstr "GLES2模式警告"
 
 #: ../src/general/MainMenu.tscn:499
 msgid "MOD_LOAD_ERRORS"
@@ -3537,130 +3537,130 @@ msgstr "{0}: mod的裝配初始化方法調用失敗，出現異常。 {1}"
 msgid "PCK_LOAD_FAILED"
 msgstr "加载pck文件（{0}）失败"
 
-#: ../src/modding/ModManager.cs:468
+#: ../src/modding/ModManager.cs:471
 msgid "INVALID_ICON_PATH"
 msgstr "無效的MOD圖標路徑"
 
-#: ../src/modding/ModManager.cs:482
+#: ../src/modding/ModManager.cs:485
 msgid "INVALID_URL_SCHEME"
 msgstr "無效的URL方案"
 
-#: ../src/modding/ModManager.cs:494
+#: ../src/modding/ModManager.cs:497
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "當指定裝配時，需要Mod裝配類"
 
-#: ../src/modding/ModManager.cs:606
+#: ../src/modding/ModManager.cs:609
 #, fuzzy
 msgid "MOD_LOADER_TAB"
 msgstr "Mod上傳工具"
 
-#: ../src/modding/ModManager.cs:607
+#: ../src/modding/ModManager.cs:610
 #, fuzzy
 msgid "MOD_ERRORS_TAB"
 msgstr "Mod加載錯誤"
 
-#: ../src/modding/ModManager.cs:608
+#: ../src/modding/ModManager.cs:611
 #, fuzzy
 msgid "MOD_CONFIGURATION_TAB"
 msgstr "Mod創建失敗"
 
-#: ../src/modding/ModManager.cs:953 ../src/modding/ModManager.cs:1956
+#: ../src/modding/ModManager.cs:956 ../src/modding/ModManager.cs:1959
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "這個MOD是在Steam工作坊下載的"
 
-#: ../src/modding/ModManager.cs:954 ../src/modding/ModManager.cs:1957
+#: ../src/modding/ModManager.cs:957 ../src/modding/ModManager.cs:1960
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "這是一個本地安裝的MOD"
 
-#: ../src/modding/ModManager.cs:1021
+#: ../src/modding/ModManager.cs:1024
 msgid "NO_SELECTED_MOD"
 msgstr "沒有被選取的MOD"
 
-#: ../src/modding/ModManager.cs:1378
+#: ../src/modding/ModManager.cs:1381
 #, fuzzy
 msgid "MOD_LOAD_ERROR_WARNING"
 msgstr "Mod加載錯誤"
 
-#: ../src/modding/ModManager.cs:1380
+#: ../src/modding/ModManager.cs:1383
 #, fuzzy
 msgid "ARE_YOU_SURE_TO_LOAD_MOD"
 msgstr "你確定要把「所有」設置都重置為默認值嗎？"
 
-#: ../src/modding/ModManager.cs:1562 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.cs:1565 ../src/modding/ModManager.tscn:851
 #: ../src/modding/ModManager.tscn:1445 ../src/modding/NewModGUI.tscn:548
 msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1579
+#: ../src/modding/ModManager.cs:1582
 msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1588 ../src/modding/ModManager.tscn:1467
+#: ../src/modding/ModManager.cs:1591 ../src/modding/ModManager.tscn:1467
 #: ../src/modding/NewModGUI.tscn:572
 msgid "MOD_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1605
+#: ../src/modding/ModManager.cs:1608
 #, fuzzy
 msgid "NO_REQUIRED_MODS"
 msgstr "沒有被選取的MOD"
 
-#: ../src/modding/ModManager.cs:1614 ../src/modding/ModManager.tscn:869
+#: ../src/modding/ModManager.cs:1617 ../src/modding/ModManager.tscn:869
 #, fuzzy
 msgid "INCOMPATIBLE_WITH"
 msgstr "載入不兼容的存檔？"
 
-#: ../src/modding/ModManager.cs:1631
+#: ../src/modding/ModManager.cs:1634
 #, fuzzy
 msgid "NO_MOD_INCOMPATIBLE"
 msgstr "載入不兼容的存檔？"
 
-#: ../src/modding/ModManager.cs:1640 ../src/modding/ModManager.tscn:878
+#: ../src/modding/ModManager.cs:1643 ../src/modding/ModManager.tscn:878
 #, fuzzy
 msgid "LOAD_ORDER"
 msgstr "Mod上傳工具"
 
-#: ../src/modding/ModManager.cs:1650 ../src/modding/ModManager.tscn:1511
+#: ../src/modding/ModManager.cs:1653 ../src/modding/ModManager.tscn:1511
 #: ../src/modding/NewModGUI.tscn:620
 #, fuzzy
 msgid "MOD_LOAD_AFTER"
 msgstr "Mod上傳工具"
 
-#: ../src/modding/ModManager.cs:1668 ../src/modding/ModManager.tscn:1489
+#: ../src/modding/ModManager.cs:1671 ../src/modding/ModManager.tscn:1489
 #: ../src/modding/NewModGUI.tscn:596
 #, fuzzy
 msgid "MOD_LOAD_BEFORE"
 msgstr "Mod加載錯誤"
 
-#: ../src/modding/ModManager.cs:1680
+#: ../src/modding/ModManager.cs:1683
 #, fuzzy
 msgid "MOD_NO_LOAD_ORDER"
 msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
 
-#: ../src/modding/ModManager.cs:2011
+#: ../src/modding/ModManager.cs:2014
 #, fuzzy
 msgid "MOD_LIST_CONTAIN_ERRORS"
 msgstr "Mod加載錯誤"
 
-#: ../src/modding/ModManager.cs:2013
+#: ../src/modding/ModManager.cs:2016
 #, fuzzy
 msgid "MOD_CHECK_AGAIN_WARNING"
 msgstr ""
 "未保存的更改將被丟棄。\n"
 "你想繼續嗎？"
 
-#: ../src/modding/ModManager.cs:2017 ../src/modding/ModManager.cs:2057
+#: ../src/modding/ModManager.cs:2020 ../src/modding/ModManager.cs:2060
 #, fuzzy
 msgid "MOD_LIST_VALID"
 msgstr "存檔無效"
 
-#: ../src/modding/ModManager.cs:2040 ../src/modding/ModManager.cs:2051
-#: ../src/modding/ModManager.cs:2071 ../src/modding/ModManager.cs:2085
+#: ../src/modding/ModManager.cs:2043 ../src/modding/ModManager.cs:2054
+#: ../src/modding/ModManager.cs:2074 ../src/modding/ModManager.cs:2088
 #, fuzzy
 msgid "UNKNOWN_MOD"
 msgstr "鼠標未知鍵"
 
-#: ../src/modding/ModManager.cs:2060
+#: ../src/modding/ModManager.cs:2063
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
 msgstr ""
@@ -3669,63 +3669,63 @@ msgstr ""
 "由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能"
 "支持所有版本的存檔。"
 
-#: ../src/modding/ModManager.cs:2074
+#: ../src/modding/ModManager.cs:2077
 msgid "MOD_ERROR_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2076
+#: ../src/modding/ModManager.cs:2079
 msgid "MOD_ERROR_DEPENDENCIES_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2088
+#: ../src/modding/ModManager.cs:2091
 msgid "MOD_ERROR_REQUIRED_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2090
+#: ../src/modding/ModManager.cs:2093
 msgid "MOD_ERROR_REQUIRED_MODS_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2093
+#: ../src/modding/ModManager.cs:2096
 msgid "MOD_ERROR_DEPENDENCIES_ORDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2095
+#: ../src/modding/ModManager.cs:2098
 msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2099
+#: ../src/modding/ModManager.cs:2102
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD"
 msgstr "載入不兼容的存檔？"
 
-#: ../src/modding/ModManager.cs:2101
+#: ../src/modding/ModManager.cs:2104
 #, fuzzy
 msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
 msgstr "載入不兼容的存檔？"
 
-#: ../src/modding/ModManager.cs:2104
+#: ../src/modding/ModManager.cs:2107
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
 msgstr "Mod加載錯誤"
 
-#: ../src/modding/ModManager.cs:2106
+#: ../src/modding/ModManager.cs:2109
 msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2110
+#: ../src/modding/ModManager.cs:2113
 #, fuzzy
 msgid "MOD_ERROR_LOAD_ORDER_AFTER"
 msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
 
-#: ../src/modding/ModManager.cs:2112
+#: ../src/modding/ModManager.cs:2115
 msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:2154
+#: ../src/modding/ModManager.cs:2157
 msgid "ERROR_CREATING_FOLDER"
 msgstr "為mod創建文件夾時出錯"
 
-#: ../src/modding/ModManager.cs:2163
+#: ../src/modding/ModManager.cs:2166
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "創建MOD信息文件出錯"
 
@@ -4010,7 +4010,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "由於異常，保存信息失敗：{0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:388
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:435
 msgid "FORM_ERROR_MESSAGE"
 msgstr "錯誤：{0}"
 
@@ -4096,31 +4096,31 @@ msgstr "選擇預覽圖像"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "上傳成功"
 
-#: ../src/modding/NewModGUI.cs:199
+#: ../src/modding/NewModGUI.cs:246
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "我極好的Mod"
 
-#: ../src/modding/NewModGUI.cs:320
+#: ../src/modding/NewModGUI.cs:367
 msgid "INVALID_URL_FORMAT"
 msgstr "無效的網址格式"
 
-#: ../src/modding/NewModGUI.cs:335
+#: ../src/modding/NewModGUI.cs:382
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "需要內部名稱"
 
-#: ../src/modding/NewModGUI.cs:341
+#: ../src/modding/NewModGUI.cs:388
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "內部名稱應以大寫字母開頭"
 
-#: ../src/modding/NewModGUI.cs:347
+#: ../src/modding/NewModGUI.cs:394
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "已經有一個內部名稱相同的mod了"
 
-#: ../src/modding/NewModGUI.cs:363
+#: ../src/modding/NewModGUI.cs:410
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "缺少或無效的必填字段的格式：{0}"
 
-#: ../src/modding/NewModGUI.cs:374
+#: ../src/modding/NewModGUI.cs:421
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "額外驗證檢測到了一個問題：{0}"
 
