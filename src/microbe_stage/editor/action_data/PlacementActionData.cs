@@ -3,7 +3,7 @@
 [JSONAlwaysDynamicType]
 public class PlacementActionData : MicrobeEditorActionData
 {
-    public List<OrganelleTemplate> ReplacedCytoplasm;
+    public List<OrganelleTemplate>? ReplacedCytoplasm;
     public OrganelleTemplate Organelle;
     public Hex Location;
     public int Orientation;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -260,8 +259,8 @@ public class OrganellePopupMenu : PopupPanel
         }
         else
         {
-            mpCost = microbeEditor.History.WhatWouldActionsCost(
-                selectedOrganelles
+            mpCost = microbeEditor!.History.WhatWouldActionsCost(
+                SelectedOrganelles
                     .Select(o => (MicrobeEditorActionData)new RemoveActionData(o, o.Position, o.Orientation)).ToList());
         }
 
@@ -285,7 +284,7 @@ public class OrganellePopupMenu : PopupPanel
         }
         else
         {
-            mpCost = microbeEditor.History.WhatWouldActionsCost(selectedOrganelles.Select(o =>
+            mpCost = microbeEditor!.History.WhatWouldActionsCost(SelectedOrganelles.Select(o =>
                     (MicrobeEditorActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
                         o.Orientation))
                 .ToList());

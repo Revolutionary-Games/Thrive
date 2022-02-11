@@ -508,7 +508,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private CustomDialog autoEvoPredictionExplanationPopup = null!;
     private Label autoEvoPredictionExplanationLabel = null!;
 
-    private IEnumerable<(Hex Hex, int Orientation)> mouseHoverHexes;
+    private IEnumerable<(Hex Hex, int Orientation)>? mouseHoverHexes;
 
     [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
@@ -547,7 +547,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public bool IsLoadedFromSave { get; set; }
 
     [JsonIgnore]
-    public IEnumerable<(Hex Hex, int Orientation)> MouseHoverHexes
+    public IEnumerable<(Hex Hex, int Orientation)>? MouseHoverHexes
     {
         get => mouseHoverHexes;
         set
@@ -1608,6 +1608,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnMovePressed()
     {
+        if (organelleMenu.SelectedOrganelle == null)
+            throw new ArgumentException("No Organelle selected when trying to move");
+
         editor!.StartOrganelleMove(organelleMenu.SelectedOrganelle.Position);
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
@@ -1616,11 +1619,17 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnDeletePressed()
     {
+        if (organelleMenu.SelectedOrganelle == null)
+            throw new ArgumentException("No Organelle selected when trying to delete");
+
         editor!.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
     }
 
     private void OnModifyPressed()
     {
+        if (organelleMenu.SelectedOrganelle == null)
+            throw new ArgumentException("No Organelle selected when trying to modify");
+
         var upgradeGUI = organelleMenu.SelectedOrganelle.Definition.UpgradeGUI;
 
         if (string.IsNullOrEmpty(upgradeGUI))

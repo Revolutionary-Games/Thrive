@@ -234,7 +234,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Where all user actions will be registered
     /// </summary>
-    public EditorActionHistory History { get; private set; } = new EditorActionHistory();
+    public EditorActionHistory History { get; private set; } = new();
 
     /// <summary>
     ///   The selected membrane rigidity
@@ -946,7 +946,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var hexes = GetHexesWithSymmetryMode(q, r);
         var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex)).ToList();
 
-        gui.ShowOrganelleMenu(organelle, organelles);
+        gui.ShowOrganelleMenu(organelle, organelles!);
     }
 
     public void StartOrganelleMove(Hex hex)
@@ -962,6 +962,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         foreach (var (symmetryHex, _) in hexes)
         {
             var organelle = editedMicrobeOrganelles.GetOrganelleAt(symmetryHex);
+            if (organelle == null)
+                continue;
+
             MovingOrganelles.Add(organelle);
             editedMicrobeOrganelles.Remove(organelle);
         }
@@ -1116,12 +1119,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Returns the cost of the organelle that is about to be placed
     /// </summary>
-    public float CalculateCurrentOrganelleCost(IEnumerable<(Hex Hex, int Orientation)> mouseHoverHexes)
+    public float CalculateCurrentOrganelleCost(IEnumerable<(Hex Hex, int Orientation)>? mouseHoverHexes)
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !ShowHover)
             return 0;
 
-        var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
+        var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(ActiveActionName!);
 
         if (mouseHoverHexes == null)
             return organelleDefinition.MPCost * GetPositionsOfSymmetryMode(Symmetry);
@@ -1947,7 +1950,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             .Where(o => o.Definition.InternalName != "cytoplasm")
             .SelectMany(o => o.Definition.Hexes.Select(hex => hex + o.Position))
             .Select(hex => editedMicrobeOrganelles.GetByHex(hex))
-            .Where(o => o?.Definition?.InternalName == "cytoplasm");
+            .Where(o => o?.Definition.InternalName == "cytoplasm")!;
     }
 
     private IEnumerable<RemoveActionData> GetReplacedCytoplasmRemoveActionData(
@@ -2505,7 +2508,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <returns>True when the action was successful</returns>
     /// <param name="action">The main action that will go into the history</param>
     /// <param name="sideActions">Actions to perform before the main action can be performed</param>
-    private bool EnqueueAction(MicrobeEditorAction action, IEnumerable<MicrobeEditorAction> sideActions = null)
+    private bool EnqueueAction(MicrobeEditorAction action, IEnumerable<MicrobeEditorAction>? sideActions = null)
     {
         var actions = (sideActions ?? new List<MicrobeEditorAction>()).Append(action).ToList();
 

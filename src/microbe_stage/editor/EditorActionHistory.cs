@@ -8,7 +8,7 @@ using System.Linq;
 /// </summary>
 public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 {
-    private List<MicrobeEditorActionData> cache;
+    private List<MicrobeEditorActionData>? cache;
 
     /// <summary>
     ///   Calculates how much MP these actions would cost if performed on top of the current history.
@@ -105,6 +105,9 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 
     public override void AddAction(MicrobeEditorAction action)
     {
+        if (cache == null)
+            throw new ArgumentException("Call Redo or Undo first");
+
         if (action.Data is NewMicrobeActionData)
             cache.Clear();
         else

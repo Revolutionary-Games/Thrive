@@ -67,7 +67,7 @@ public class OrganelleLayout<T> : ICollection<T>
     /// <summary>
     ///   Access organelle by hex
     /// </summary>
-    public T GetByHex(Hex hex)
+    public T? GetByHex(Hex hex)
     {
         return Organelles.FirstOrDefault(p => p.Position == hex);
     }
