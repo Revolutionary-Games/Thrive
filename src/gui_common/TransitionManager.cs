@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public class TransitionManager : NodeWithInput
 {
-    private static TransitionManager instance;
+    private static TransitionManager? instance;
 
     private readonly PackedScene screenFadeScene;
     private readonly PackedScene cutsceneScene;
@@ -15,7 +15,7 @@ public class TransitionManager : NodeWithInput
     /// <summary>
     ///   Transitions waiting to be executed.
     /// </summary>
-    private Queue<ITransition> queuedTransitions = new Queue<ITransition>();
+    private readonly Queue<ITransition> queuedTransitions = new();
 
     private TransitionManager()
     {
@@ -28,12 +28,12 @@ public class TransitionManager : NodeWithInput
     [Signal]
     public delegate void QueuedTransitionsFinished();
 
-    public static TransitionManager Instance => instance;
+    public static TransitionManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
-    public List<ITransition> TransitionSequence { get; } = new List<ITransition>();
+    public List<ITransition> TransitionSequence { get; } = new();
 
     public bool HasQueuedTransitions => TransitionSequence.Count > 0;
 
@@ -95,9 +95,9 @@ public class TransitionManager : NodeWithInput
     /// </summary>
     /// <param name="target">The target object to connect to</param>
     /// <param name="onFinishedMethod">The name of the method on the target object</param>
-    public void StartTransitions(Object target = null, string onFinishedMethod = null)
+    public void StartTransitions(Object? target = null, string? onFinishedMethod = null)
     {
-        if (queuedTransitions.Count == 0 || queuedTransitions == null)
+        if (queuedTransitions.Count == 0)
         {
             GD.PrintErr("No transitions found in the queue, can't execute transitions");
             return;

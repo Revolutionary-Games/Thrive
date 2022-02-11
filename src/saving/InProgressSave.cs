@@ -15,28 +15,28 @@ public class InProgressSave : IDisposable
     private readonly Func<InProgressSave, Save> createSaveData;
     private readonly Action<InProgressSave, Save> performSave;
 
+    private readonly Task<string> saveNameTask;
+
+    private readonly Stopwatch stopwatch;
+
     /// <summary>
     ///   Raw save name, that is processed by saveNameTask
     /// </summary>
-    private readonly string saveName;
+    private readonly string? saveName;
 
     private readonly bool returnToPauseState;
 
     private State state = State.Initial;
-    private Save save;
-
-    private Task<string> saveNameTask;
-
-    private Stopwatch stopwatch;
+    private Save? save;
 
     private bool success;
-    private string message;
+    private string message = "Error: message not set";
 
     /// <summary>
     ///   Failure exception or message describing the problem. Which one it is depends on
     ///   <see cref="exceptionOrMessageIsException"/>
     /// </summary>
-    private string exceptionOrFailureMessage;
+    private string exceptionOrFailureMessage = string.Empty;
 
     private bool exceptionOrMessageIsException = true;
 
@@ -45,7 +45,7 @@ public class InProgressSave : IDisposable
     private bool wasColourblindScreenFilterVisible;
 
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
-        Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string saveName)
+        Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string? saveName)
     {
         this.currentGameRoot = currentGameRoot;
         this.createSaveData = createSaveData;
@@ -127,7 +127,7 @@ public class InProgressSave : IDisposable
         return oldestSave;
     }
 
-    private static int FindExistingSavesOfType(out int totalCount, out string oldestSave, string matchRegex)
+    private static int FindExistingSavesOfType(out int totalCount, out string? oldestSave, string matchRegex)
     {
         int highestNumber = 0;
         totalCount = 0;
@@ -185,7 +185,7 @@ public class InProgressSave : IDisposable
                     ColourblindScreenFilter.Instance.Show();
                 }
 
-                SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING"),
+                SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING_DOT_DOT_DOT"),
                     Mathf.Inf);
 
                 state = State.SaveData;
@@ -195,7 +195,7 @@ public class InProgressSave : IDisposable
 
             case State.SaveData:
             {
-                save.Name = saveNameTask.Result;
+                save!.Name = saveNameTask.Result;
 
                 GD.Print("Creating a save with name: ", save.Name);
                 performSave.Invoke(this, save);
@@ -245,7 +245,7 @@ public class InProgressSave : IDisposable
             {
                 if (!string.IsNullOrWhiteSpace(saveName))
                 {
-                    if (!saveName.EndsWith(Constants.SAVE_EXTENSION_WITH_DOT, StringComparison.Ordinal))
+                    if (!saveName!.EndsWith(Constants.SAVE_EXTENSION_WITH_DOT, StringComparison.Ordinal))
                         return saveName + Constants.SAVE_EXTENSION_WITH_DOT;
 
                     return saveName;

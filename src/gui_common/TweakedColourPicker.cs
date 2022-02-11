@@ -17,27 +17,26 @@ public class TweakedColourPicker : ColorPicker
     ///     The Value is the preset storage.
     ///   </remarks>
     /// </summary>
-    private static readonly Dictionary<string, PresetGroupStorage> PresetsStorage
-        = new Dictionary<string, PresetGroupStorage>();
+    private static readonly Dictionary<string, PresetGroupStorage> PresetsStorage = new();
 
     /// <summary>
     ///   This is the local storage of its preset children
     ///   so that we don't need to call GetChildren() when deleting one.
     /// </summary>
-    private readonly List<TweakedColourPickerPreset> presets = new List<TweakedColourPickerPreset>();
+    private readonly List<TweakedColourPickerPreset> presets = new();
 
-    private HSlider sliderROrH;
-    private HSlider sliderGOrS;
-    private HSlider sliderBOrV;
-    private HSlider sliderA;
-    private ToolButton pickerButton;
-    private CustomCheckBox hsvCheckBox;
-    private CustomCheckBox rawCheckBox;
-    private Label htmlColourStart;
-    private LineEdit htmlColourEdit;
-    private HSeparator separator;
-    private GridContainer presetsContainer;
-    private TextureButton addPresetButton;
+    private HSlider sliderROrH = null!;
+    private HSlider sliderGOrS = null!;
+    private HSlider sliderBOrV = null!;
+    private HSlider sliderA = null!;
+    private ToolButton pickerButton = null!;
+    private CustomCheckBox? hsvCheckBox;
+    private CustomCheckBox rawCheckBox = null!;
+    private Label htmlColourStart = null!;
+    private LineEdit htmlColourEdit = null!;
+    private HSeparator separator = null!;
+    private GridContainer? presetsContainer;
+    private TextureButton? addPresetButton;
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;
@@ -45,7 +44,7 @@ public class TweakedColourPicker : ColorPicker
     private bool presetsVisible = true;
     private PickerMode mode;
 
-    private PresetGroupStorage groupStorage;
+    private PresetGroupStorage groupStorage = null!;
 
     private delegate void AddPresetDelegate(Color colour);
 
@@ -164,6 +163,9 @@ public class TweakedColourPicker : ColorPicker
             if (presetsContainer == null)
                 return;
 
+            if (addPresetButton == null)
+                throw new Exception("Preset button is null even though presets container is initialized already");
+
             separator.Visible = value;
             presetsContainer.Visible = value;
             addPresetButton.Visible = value;
@@ -226,6 +228,14 @@ public class TweakedColourPicker : ColorPicker
         PresetsVisible = presetsVisible;
         OnColourChanged(Color);
 
+        // Disable value bar scroll with the mouse, as the colour pickers are often in scrollable containers and
+        // this would otherwise be problematic. Perhaps in the future we should have this be configurable with an
+        // export property?
+        sliderROrH.Scrollable = false;
+        sliderGOrS.Scrollable = false;
+        sliderBOrV.Scrollable = false;
+        sliderA.Scrollable = false;
+
         // Load presets.
         if (PresetsStorage.TryGetValue(PresetGroup, out groupStorage))
         {
@@ -284,6 +294,9 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnGroupAddPreset(Color colour)
     {
+        if (presetsContainer == null)
+            throw new InvalidOperationException("This colour picker is not initialized yet");
+
         // Add preset locally
         var preset = new TweakedColourPickerPreset(this, colour);
         presets.Add(preset);
@@ -295,6 +308,9 @@ public class TweakedColourPicker : ColorPicker
 
     private void OnGroupErasePreset(Color colour)
     {
+        if (presetsContainer == null)
+            throw new InvalidOperationException("This colour picker is not initialized yet");
+
         var preset = presets.First(p => p.Color == colour);
         presets.Remove(preset);
         presetsContainer.RemoveChild(preset);
@@ -322,6 +338,9 @@ public class TweakedColourPicker : ColorPicker
 
     private void UpdateTooltips()
     {
+        if (addPresetButton == null || hsvCheckBox == null)
+            return;
+
         pickerButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_PICK_COLOUR");
         addPresetButton.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_ADD_PRESET");
         hsvCheckBox.HintTooltip = TranslationServer.Translate("COLOUR_PICKER_HSV_BUTTON_TOOLTIP");
@@ -503,9 +522,9 @@ public class TweakedColourPicker : ColorPicker
             this.colours = colours.ToList();
         }
 
-        public AddPresetDelegate AddPresetDelegate { get; set; }
+        public AddPresetDelegate? AddPresetDelegate { get; set; }
 
-        public DeletePresetDelegate ErasePresetDelegate { get; set; }
+        public DeletePresetDelegate? ErasePresetDelegate { get; set; }
 
         public void AddPreset(Color colour)
         {

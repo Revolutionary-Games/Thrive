@@ -17,14 +17,14 @@ public class AutoEvoRun
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
     /// </summary>
-    private readonly RunResults results = new RunResults();
+    private readonly RunResults results = new();
 
     /// <summary>
     ///   Generated steps are stored here until they are executed
     /// </summary>
-    private readonly Queue<IRunStep> runSteps = new Queue<IRunStep>();
+    private readonly Queue<IRunStep> runSteps = new();
 
-    private readonly List<Task> concurrentStepTasks = new List<Task>();
+    private readonly List<Task> concurrentStepTasks = new();
 
     private volatile RunStage state = RunStage.GatheringInfo;
 
@@ -67,7 +67,7 @@ public class AutoEvoRun
     /// <summary>
     ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
     /// </summary>
-    public List<ExternalEffect> ExternalEffects { get; } = new List<ExternalEffect>();
+    public List<ExternalEffect> ExternalEffects { get; } = new();
 
     /// <summary>
     ///   True while running
@@ -119,13 +119,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return TranslationServer.Translate("ABORTED");
+                return TranslationServer.Translate("ABORTED_DOT");
 
             if (Finished)
-                return TranslationServer.Translate("FINISHED");
+                return TranslationServer.Translate("FINISHED_DOT");
 
             if (!Running)
-                return TranslationServer.Translate("NOT_RUNNING");
+                return TranslationServer.Translate("NOT_RUNNING_DOT");
 
             int total = totalSteps;
 
@@ -146,7 +146,7 @@ public class AutoEvoRun
     /// <summary>
     ///   Run results after this is finished
     /// </summary>
-    public RunResults Results
+    public RunResults? Results
     {
         get
         {
@@ -219,13 +219,23 @@ public class AutoEvoRun
         if (ExternalEffects.Count > 0)
         {
             // Effects are applied in the current patch
-            var currentPatch = Parameters.World.Map.CurrentPatch;
+            var currentPatch = Parameters.World.Map.CurrentPatch ??
+                throw new InvalidOperationException("Cannot apply external effects without current map patch");
 
             foreach (var entry in ExternalEffects)
             {
                 try
                 {
-                    long currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
+                    // It's possible for external effects to be added for extinct species (either completely extinct
+                    // or extinct in the current patch)
+                    if (!results.SpeciesHasResults(entry.Species))
+                    {
+                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
+                            " had an external effect, ignoring the effect");
+                        continue;
+                    }
+
+                    long currentPop = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
 
                     results.AddPopulationResultForSpecies(
                         entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
@@ -311,6 +321,10 @@ public class AutoEvoRun
             var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
             foreach (var speciesEntry in speciesInPatchCopy)
             {
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (speciesEntry.Key == null)
+                    throw new Exception("Species key in a patch is null");
+
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
 
@@ -387,8 +401,9 @@ public class AutoEvoRun
     ///   This is the species from which the previous populations are read through. If null
     ///   <see cref="playerSpecies"/> is used instead
     /// </param>
-    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map, Species playerSpecies,
-        Species previousPopulationFrom = null)
+    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map,
+        Species? playerSpecies,
+        Species? previousPopulationFrom = null)
     {
         if (playerSpecies == null)
             return;

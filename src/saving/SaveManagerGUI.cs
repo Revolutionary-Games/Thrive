@@ -11,47 +11,47 @@ using Godot;
 public class SaveManagerGUI : Control
 {
     [Export]
-    public NodePath SaveListPath;
+    public NodePath SaveListPath = null!;
 
     [Export]
-    public NodePath SelectedItemCountPath;
+    public NodePath SelectedItemCountPath = null!;
 
     [Export]
-    public NodePath TotalSaveCountPath;
+    public NodePath TotalSaveCountPath = null!;
 
     [Export]
-    public NodePath TotalSaveSizePath;
+    public NodePath TotalSaveSizePath = null!;
 
     [Export]
-    public NodePath LoadButtonPath;
+    public NodePath LoadButtonPath = null!;
 
     [Export]
-    public NodePath DeleteSelectedButtonPath;
+    public NodePath DeleteSelectedButtonPath = null!;
 
     [Export]
-    public NodePath DeleteOldButtonPath;
+    public NodePath DeleteOldButtonPath = null!;
 
     [Export]
-    public NodePath DeleteSelectedConfirmDialogPath;
+    public NodePath DeleteSelectedConfirmDialogPath = null!;
 
     [Export]
-    public NodePath DeleteOldConfirmDialogPath;
+    public NodePath DeleteOldConfirmDialogPath = null!;
 
     [Export]
-    public NodePath SaveDirectoryWarningDialogPath;
+    public NodePath SaveDirectoryWarningDialogPath = null!;
 
-    private SaveList saveList;
-    private Label selectedItemCount;
-    private Label totalSaveCount;
-    private Label totalSaveSize;
-    private Button loadButton;
-    private Button deleteSelectedButton;
-    private Button deleteOldButton;
-    private CustomConfirmationDialog deleteSelectedConfirmDialog;
-    private CustomConfirmationDialog deleteOldConfirmDialog;
-    private CustomConfirmationDialog saveDirectoryWarningDialog;
+    private SaveList saveList = null!;
+    private Label selectedItemCount = null!;
+    private Label totalSaveCount = null!;
+    private Label totalSaveSize = null!;
+    private Button loadButton = null!;
+    private Button deleteSelectedButton = null!;
+    private Button deleteOldButton = null!;
+    private CustomConfirmationDialog deleteSelectedConfirmDialog = null!;
+    private CustomConfirmationDialog deleteOldConfirmDialog = null!;
+    private CustomConfirmationDialog saveDirectoryWarningDialog = null!;
 
-    private List<SaveListItem> selected;
+    private List<SaveListItem>? selected;
     private bool selectedDirty = true;
 
     private bool saveCountRefreshed;
@@ -60,9 +60,9 @@ public class SaveManagerGUI : Control
     private int currentAutoSaveCount;
     private int currentQuickSaveCount;
 
-    private Task<(int Count, ulong DiskSpace)> getTotalSaveCountTask;
-    private Task<(int Count, ulong DiskSpace)> getAutoSaveCountTask;
-    private Task<(int Count, ulong DiskSpace)> getQuickSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)>? getTotalSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)>? getAutoSaveCountTask;
+    private Task<(int Count, ulong DiskSpace)>? getQuickSaveCountTask;
 
     [Signal]
     public delegate void OnBackPressed();
@@ -71,7 +71,7 @@ public class SaveManagerGUI : Control
     {
         get
         {
-            if (selectedDirty)
+            if (selectedDirty || selected == null)
             {
                 selected = saveList.GetSelectedItems().ToList();
                 selectedDirty = false;
@@ -108,12 +108,12 @@ public class SaveManagerGUI : Control
         if (!refreshing)
             return;
 
-        if (!getTotalSaveCountTask.IsCompleted)
+        if (!getTotalSaveCountTask!.IsCompleted)
             return;
 
         var info = getTotalSaveCountTask.Result;
-        currentAutoSaveCount = getAutoSaveCountTask.Result.Count;
-        currentQuickSaveCount = getQuickSaveCountTask.Result.Count;
+        currentAutoSaveCount = getAutoSaveCountTask!.Result.Count;
+        currentQuickSaveCount = getQuickSaveCountTask!.Result.Count;
 
         getTotalSaveCountTask.Dispose();
         getAutoSaveCountTask.Dispose();
@@ -257,5 +257,10 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnBackPressed));
+    }
+
+    private void OnSaveListItemConfirmed(SaveListItem item)
+    {
+        item.LoadThisSave();
     }
 }

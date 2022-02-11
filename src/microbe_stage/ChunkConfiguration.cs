@@ -34,7 +34,12 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
 
     public bool DeleteOnTouch;
 
-    public Dictionary<Compound, ChunkCompound> Compounds;
+    /// <summary>
+    ///   The name of kind of damage type this chunk inflicts.
+    /// </summary>
+    public string DamageType;
+
+    public Dictionary<Compound, ChunkCompound>? Compounds;
 
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {
@@ -74,7 +79,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
             Damages == other.Damages &&
             DeleteOnTouch == other.DeleteOnTouch &&
             Meshes.Equals(other.Meshes) &&
-            Compounds.Equals(other.Compounds);
+            Equals(Compounds, other.Compounds);
     }
 
     public struct ChunkCompound : IEquatable<ChunkCompound>
@@ -117,33 +122,36 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     /// </summary>
     public class ChunkScene : ISaveLoadable
     {
-        public string ScenePath;
+        public string ScenePath = null!;
 
         /// <summary>
         ///   Path to the convex collision shape of this chunk's graphical mesh (if any).
         /// </summary>
-        public string ConvexShapePath;
+        public string? ConvexShapePath;
 
         /// <summary>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
         /// </summary>
-        public string SceneModelPath;
+        public string? SceneModelPath;
 
         [JsonIgnore]
-        public PackedScene LoadedScene;
+        public PackedScene? LoadedScene;
 
         [JsonIgnore]
-        public ConvexPolygonShape LoadedConvexShape;
+        public ConvexPolygonShape? LoadedConvexShape;
 
         public void LoadScene()
         {
+            if (string.IsNullOrEmpty(ScenePath))
+                throw new InvalidOperationException($"{nameof(ScenePath)} is required for a ChunkScene");
+
             LoadedScene = GD.Load<PackedScene>(ScenePath);
 
             if (!string.IsNullOrEmpty(ConvexShapePath))
                 LoadedConvexShape = GD.Load<ConvexPolygonShape>(ConvexShapePath);
         }
 
-        public void FinishLoading(ISaveContext context)
+        public void FinishLoading(ISaveContext? context)
         {
             LoadScene();
         }

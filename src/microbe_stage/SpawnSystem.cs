@@ -38,7 +38,7 @@ public class SpawnSystem
     ///     this object so much
     ///   </para>
     /// </remarks>
-    private Queue<QueuedSpawn> queuedSpawns = new();
+    private Queue<QueuedSpawn>? queuedSpawns = new();
 
     private Dictionary<Sector, float> sectorDensities = new();
     private List<Sector> loadedSectors = new();

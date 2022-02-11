@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=61 format=2]
+[gd_resource type="Theme" load_steps=66 format=2]
 
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-AlmostSmaller.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/grabhover.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=4]
@@ -11,8 +12,11 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Small.tres" type="DynamicFont" id=10]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Smaller.tres" type="DynamicFont" id=11]
 [ext_resource path="res://assets/textures/gui/bevel/graphMarkerCross.png" type="Texture" id=12]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Bigger.tres" type="DynamicFont" id=13]
+[ext_resource path="res://src/gui_common/fonts/Jura-Regular-Normal.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-AlmostSmaller.tres" type="DynamicFont" id=15]
 [ext_resource path="res://src/gui_common/fonts/Lato-Bold-Regular.tres" type="DynamicFont" id=16]
+[ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-AlmostSmaller.tres" type="DynamicFont" id=17]
 [ext_resource path="res://assets/textures/gui/bevel/checkAhover.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/checkBclick.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/checkBhover.png" type="Texture" id=20]
@@ -218,10 +222,10 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=25]
 content_margin_left = 10.0
@@ -232,21 +236,22 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=26]
 content_margin_left = 10.0
 content_margin_right = 10.0
+content_margin_bottom = 1.0
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 3
-corner_radius_top_right = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
 
 [sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0, 0.129412, 0.141176, 0.752941 )
@@ -347,6 +352,15 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=45]
+bg_color = Color( 0.0666667, 0.168627, 0.211765, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0784314, 0.960784, 0.803922, 1 )
+border_blend = true
 
 [sub_resource type="StyleBoxFlat" id=35]
 bg_color = Color( 0.0666667, 1, 0.835294, 1 )
@@ -511,6 +525,11 @@ FileDialog/icons/folder = null
 FileDialog/icons/parent_folder = null
 FileDialog/icons/reload = null
 FileDialog/icons/toggle_hidden = null
+Fonts/fonts/jura_almost_smaller = ExtResource( 1 )
+Fonts/fonts/jura_bold = ExtResource( 8 )
+Fonts/fonts/jura_demibold_almost_smaller = ExtResource( 17 )
+Fonts/fonts/jura_demibold_bigger = ExtResource( 13 )
+Fonts/fonts/jura_normal = ExtResource( 14 )
 Fonts/fonts/large = null
 Fonts/fonts/lato_bold_normal = ExtResource( 16 )
 Fonts/fonts/lato_normal = ExtResource( 15 )
@@ -788,7 +807,7 @@ TooltipPanel/styles/panel = SubResource( 34 )
 Tree/colors/cursor_color = Color( 0, 0, 0, 1 )
 Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
 Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
-Tree/colors/font_color = Color( 0, 0, 0, 1 )
+Tree/colors/font_color = Color( 1, 1, 1, 1 )
 Tree/colors/font_color_selected = Color( 0, 0, 0, 1 )
 Tree/colors/guide_color = Color( 0, 0, 0, 1 )
 Tree/colors/relationship_line_color = Color( 0, 0, 0, 1 )
@@ -810,7 +829,7 @@ Tree/icons/checked = null
 Tree/icons/select_arrow = null
 Tree/icons/unchecked = null
 Tree/icons/updown = null
-Tree/styles/bg = null
+Tree/styles/bg = SubResource( 45 )
 Tree/styles/bg_focus = null
 Tree/styles/button_pressed = null
 Tree/styles/cursor = null
@@ -852,7 +871,7 @@ WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
 WindowDialog/constants/custom_close_h_ofs = 22
 WindowDialog/constants/custom_close_v_ofs = 20
-WindowDialog/constants/custom_scaleBorder_size = 4
+WindowDialog/constants/custom_scaleBorder_size = 5
 WindowDialog/constants/custom_title_height = 26
 WindowDialog/constants/custom_titlebar_height = 28
 WindowDialog/constants/scaleborder_size = 4

@@ -7,25 +7,25 @@ using Godot;
 public class LoadingScreen : Control
 {
     [Export]
-    public NodePath ArtworkPath;
+    public NodePath ArtworkPath = null!;
 
     [Export]
-    public NodePath ArtDescriptionPath;
+    public NodePath ArtDescriptionPath = null!;
 
     [Export]
-    public NodePath LoadingMessagePath;
+    public NodePath LoadingMessagePath = null!;
 
     [Export]
-    public NodePath LoadingDescriptionPath;
+    public NodePath LoadingDescriptionPath = null!;
 
     [Export]
-    public NodePath TipLabelPath;
+    public NodePath TipLabelPath = null!;
 
     [Export]
-    public NodePath RandomizeTipTimerPath;
+    public NodePath RandomizeTipTimerPath = null!;
 
     [Export]
-    public NodePath SpinnerPath;
+    public NodePath SpinnerPath = null!;
 
     /// <summary>
     ///   How fast the loading indicator spins
@@ -33,25 +33,25 @@ public class LoadingScreen : Control
     [Export]
     public float SpinnerSpeed = 180.0f;
 
-    private static LoadingScreen instance;
+    private static LoadingScreen? instance;
 
-    private readonly Random random = new Random();
+    private readonly Random random = new();
 
-    private TextureRect artworkRect;
-    private Label artDescriptionLabel;
-    private Label loadingMessageLabel;
-    private Label loadingDescriptionLabel;
-    private Label tipLabel;
-    private Control spinner;
+    private TextureRect artworkRect = null!;
+    private Label? artDescriptionLabel;
+    private Label? loadingMessageLabel;
+    private Label? loadingDescriptionLabel;
+    private Label? tipLabel;
+    private Control spinner = null!;
 
     private bool wasVisible;
 
-    private Timer randomizeTipTimer;
+    private Timer randomizeTipTimer = null!;
 
-    private string loadingMessage;
-    private string tip;
+    private string? loadingMessage;
+    private string? tip;
     private string loadingDescription = string.Empty;
-    private string artDescription;
+    private string? artDescription;
 
     private float totalElapsed;
     private MainGameState currentlyLoadingGameState = MainGameState.Invalid;
@@ -61,7 +61,7 @@ public class LoadingScreen : Control
         instance = this;
     }
 
-    public static LoadingScreen Instance => instance;
+    public static LoadingScreen Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public string LoadingMessage
     {
@@ -72,11 +72,7 @@ public class LoadingScreen : Control
                 return;
 
             loadingMessage = value;
-
-            if (loadingMessageLabel != null)
-            {
-                UpdateMessage();
-            }
+            UpdateMessage();
         }
     }
 
@@ -89,15 +85,11 @@ public class LoadingScreen : Control
                 return;
 
             loadingDescription = value;
-
-            if (loadingDescriptionLabel != null)
-            {
-                UpdateDescription();
-            }
+            UpdateDescription();
         }
     }
 
-    public string ArtDescription
+    public string? ArtDescription
     {
         get => artDescription;
         set
@@ -106,15 +98,11 @@ public class LoadingScreen : Control
                 return;
 
             artDescription = value;
-
-            if (artDescriptionLabel != null)
-            {
-                UpdateArtDescription();
-            }
+            UpdateArtDescription();
         }
     }
 
-    public string Tip
+    public string? Tip
     {
         get => tip;
         set
@@ -123,11 +111,7 @@ public class LoadingScreen : Control
                 return;
 
             tip = value;
-
-            if (tipLabel != null)
-            {
-                UpdateTip();
-            }
+            UpdateTip();
         }
     }
 
@@ -240,21 +224,25 @@ public class LoadingScreen : Control
 
     private void UpdateMessage()
     {
-        loadingMessageLabel.Text = LoadingMessage;
+        if (loadingMessageLabel != null)
+            loadingMessageLabel.Text = LoadingMessage;
     }
 
     private void UpdateDescription()
     {
-        loadingDescriptionLabel.Text = LoadingDescription;
+        if (loadingDescriptionLabel != null)
+            loadingDescriptionLabel.Text = LoadingDescription;
     }
 
     private void UpdateArtDescription()
     {
-        artDescriptionLabel.Text = ArtDescription;
+        if (artDescriptionLabel != null)
+            artDescriptionLabel.Text = ArtDescription;
     }
 
     private void UpdateTip()
     {
-        tipLabel.Text = Tip;
+        if (tipLabel != null)
+            tipLabel.Text = Tip;
     }
 }

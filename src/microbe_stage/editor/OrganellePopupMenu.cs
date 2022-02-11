@@ -9,28 +9,36 @@ using Godot;
 public class OrganellePopupMenu : PopupPanel
 {
     [Export]
-    public NodePath SelectedOrganelleNameLabelPath;
+    public NodePath SelectedOrganelleNameLabelPath = null!;
 
     [Export]
-    public NodePath DeleteButtonPath;
+    public NodePath DeleteButtonPath = null!;
 
     [Export]
-    public NodePath MoveButtonPath;
+    public NodePath MoveButtonPath = null!;
 
-    private Label selectedOrganelleNameLabel;
-    private Button deleteButton;
-    private Button moveButton;
+    [Export]
+    public NodePath ModifyButtonPath = null!;
+
+    private Label? selectedOrganelleNameLabel;
+    private Button? deleteButton;
+    private Button? moveButton;
+    private Button? modifyButton;
 
     private bool showPopup;
-    private OrganelleTemplate selectedOrganelle;
+    private OrganelleTemplate? selectedOrganelle;
     private bool enableDelete = true;
     private bool enableMove = true;
+    private bool enableModify;
 
     [Signal]
     public delegate void DeletePressed();
 
     [Signal]
     public delegate void MovePressed();
+
+    [Signal]
+    public delegate void ModifyPressed();
 
     public bool ShowPopup
     {
@@ -62,10 +70,11 @@ public class OrganellePopupMenu : PopupPanel
     /// </summary>
     public OrganelleTemplate SelectedOrganelle
     {
-        get => selectedOrganelle;
+        get => selectedOrganelle ??
+            throw new InvalidOperationException("OrganellePopup was not opened with organelle set");
         set
         {
-            selectedOrganelle = value;
+            selectedOrganelle = value ?? throw new ArgumentNullException();
             UpdateOrganelleNameLabel();
         }
     }
@@ -90,15 +99,32 @@ public class OrganellePopupMenu : PopupPanel
         }
     }
 
+    public bool EnableModifyOption
+    {
+        get => enableModify;
+        set
+        {
+            enableModify = value;
+            UpdateModifyButton();
+        }
+    }
+
     public override void _Ready()
     {
         selectedOrganelleNameLabel = GetNode<Label>(SelectedOrganelleNameLabelPath);
         deleteButton = GetNode<Button>(DeleteButtonPath);
         moveButton = GetNode<Button>(MoveButtonPath);
+        modifyButton = GetNode<Button>(ModifyButtonPath);
 
-        UpdateOrganelleNameLabel();
-        UpdateDeleteButton();
-        UpdateMoveButton();
+        // Skip things that use the organelle to work on if we aren't open (no selected organelle set)
+        if (selectedOrganelle != null)
+        {
+            UpdateOrganelleNameLabel();
+            UpdateDeleteButton();
+            UpdateMoveButton();
+        }
+
+        UpdateModifyButton();
     }
 
     public override void _EnterTree()
@@ -165,7 +191,11 @@ public class OrganellePopupMenu : PopupPanel
 
     private void OnModifyPressed()
     {
-        throw new NotImplementedException();
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(nameof(ModifyPressed));
+
+        Hide();
     }
 
     private void UpdateButtonContentsColour(string optionName, bool pressed)
@@ -193,7 +223,7 @@ public class OrganellePopupMenu : PopupPanel
         if (selectedOrganelleNameLabel == null)
             return;
 
-        selectedOrganelleNameLabel.Text = SelectedOrganelle?.Definition.Name;
+        selectedOrganelleNameLabel.Text = SelectedOrganelle.Definition.Name;
     }
 
     private void UpdateDeleteButton()
@@ -205,7 +235,7 @@ public class OrganellePopupMenu : PopupPanel
 
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("MP_COST"),
-            (SelectedOrganelle != null && SelectedOrganelle.PlacedThisSession) ?
+            SelectedOrganelle is { PlacedThisSession: true } ?
                 "+" + SelectedOrganelle.Definition.MPCost :
                 "-" + Constants.ORGANELLE_REMOVE_COST);
 
@@ -220,12 +250,19 @@ public class OrganellePopupMenu : PopupPanel
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
 
         // The organelle is free to move if it was added (placed) this session or already moved this session
-        bool isFreeToMove = SelectedOrganelle != null && (SelectedOrganelle.MovedThisSession ||
-            SelectedOrganelle.PlacedThisSession);
+        bool isFreeToMove = SelectedOrganelle.MovedThisSession || SelectedOrganelle.PlacedThisSession;
         mpLabel.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("MP_COST"),
             isFreeToMove ? "-0" : "-" + Constants.ORGANELLE_MOVE_COST.ToString(CultureInfo.CurrentCulture));
 
         moveButton.Disabled = !EnableMoveOption;
+    }
+
+    private void UpdateModifyButton()
+    {
+        if (modifyButton == null)
+            return;
+
+        modifyButton.Disabled = !enableModify;
     }
 }

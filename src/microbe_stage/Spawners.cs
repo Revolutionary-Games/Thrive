@@ -112,16 +112,7 @@ public static class SpawnHelpers
             // To prevent bacteria being spawned on top of each other
             var vertical = false;
 
-            var colony = new ColonySpawnInfo
-            {
-                Horizontal = false,
-                Random = random,
-                Species = species,
-                CloudSystem = cloudSystem,
-                CurrentGame = currentGame,
-                CurSpawn = curSpawn,
-                MicrobeScene = microbeScene,
-            };
+            var colony = new ColonySpawnInfo(false, random, species, cloudSystem, currentGame, curSpawn, microbeScene);
 
             for (int i = 0;
                  i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE, Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
@@ -184,7 +175,8 @@ public static class SpawnHelpers
 
         // Settings need to be applied before adding it to the scene
         var selectedMesh = chunkType.Meshes.Random(random);
-        chunk.GraphicsScene = selectedMesh.LoadedScene;
+        chunk.GraphicsScene = selectedMesh.LoadedScene ??
+            throw new Exception("Chunk scene has not been loaded even though it should be loaded here");
         chunk.ConvexPhysicsMesh = selectedMesh.LoadedConvexShape;
 
         if (chunk.GraphicsScene == null)
@@ -289,6 +281,18 @@ public static class SpawnHelpers
         public Random Random;
         public CompoundCloudSystem CloudSystem;
         public GameProperties CurrentGame;
+
+        public ColonySpawnInfo(bool horizontal, Random random, Species species, CompoundCloudSystem cloudSystem,
+            GameProperties currentGame, Vector3 curSpawn, PackedScene microbeScene)
+        {
+            Horizontal = horizontal;
+            Random = random;
+            Species = species;
+            CloudSystem = cloudSystem;
+            CurrentGame = currentGame;
+            CurSpawn = curSpawn;
+            MicrobeScene = microbeScene;
+        }
     }
 }
 
@@ -364,7 +368,7 @@ public class CompoundCloudSpawner : Spawner
     public override float BinomialP => 0.1f;
     public override float MinDistanceSquared => 10;
 
-    public override IEnumerable<SpawnedRigidBody> Instantiate(Vector3 location)
+    public override IEnumerable<SpawnedRigidBody>? Instantiate(Vector3 location)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
 

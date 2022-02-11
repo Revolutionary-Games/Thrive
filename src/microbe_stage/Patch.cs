@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
@@ -27,17 +28,17 @@ public class Patch
     ///   The current snapshot of this patch.
     /// </summary>
     [JsonProperty]
-    private readonly PatchSnapshot currentSnapshot = new PatchSnapshot();
+    private readonly PatchSnapshot currentSnapshot;
 
     [JsonProperty]
-    private Deque<PatchSnapshot> history = new Deque<PatchSnapshot>();
+    private Deque<PatchSnapshot> history = new();
 
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
-        currentSnapshot.Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
+        currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
     }
 
     [JsonProperty]
@@ -46,13 +47,13 @@ public class Patch
     /// <summary>
     ///   Coordinates this patch is to be displayed in the GUI
     /// </summary>
-    public Vector2 ScreenCoordinates { get; set; } = new Vector2(0, 0);
+    public Vector2 ScreenCoordinates { get; set; } = new(0, 0);
 
     /// <summary>
     ///   List of all the recorded snapshot of this patch. Useful for statistics.
     /// </summary>
     [JsonIgnore]
-    public IReadOnlyCollection<PatchSnapshot> History => history;
+    public IReadOnlyList<PatchSnapshot> History => history;
 
     [JsonIgnore]
     public double TimePeriod
@@ -69,6 +70,11 @@ public class Patch
 
     [JsonIgnore]
     public BiomeConditions Biome => currentSnapshot.Biome;
+
+    /// <summary>
+    ///   Logged events that specifically occurred in this patch.
+    /// </summary>
+    public IReadOnlyList<GameEventDescription> EventsLog => currentSnapshot.EventsLog;
 
     /// <summary>
     ///   Adds all neighbors recursively to the provided <see cref="HashSet{T}"/>
@@ -108,9 +114,46 @@ public class Patch
     }
 
     /// <summary>
+    ///   Checks closest neighbours using breadth-first search (BFS) with the given maximum visits.
+    /// </summary>
+    /// <param name="visits">The maximum number of patches to visit/add</param>
+    /// <returns>A <see cref="HashSet{T}"/> of closest Patches connected to this node by some means</returns>
+    public HashSet<Patch> GetClosestConnectedPatches(int visits = 20)
+    {
+        var queue = new Queue<Patch>();
+        var visited = new HashSet<Patch>();
+
+        queue.Enqueue(this);
+        visited.Add(this);
+
+        var maxReached = false;
+
+        while (queue.Count > 0 && !maxReached)
+        {
+            var vertex = queue.Dequeue();
+
+            foreach (var patch in vertex.Adjacent)
+            {
+                if (visited.Add(patch))
+                {
+                    queue.Enqueue(patch);
+
+                    if (--visits <= 0)
+                    {
+                        maxReached = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return visited;
+    }
+
+    /// <summary>
     ///   Looks for a species with the specified name in this patch
     /// </summary>
-    public Species FindSpeciesByID(uint id)
+    public Species? FindSpeciesByID(uint id)
     {
         foreach (var entry in currentSnapshot.SpeciesInPatch)
         {
@@ -173,6 +216,9 @@ public class Patch
         {
             var chunk = Biome.Chunks[chunkKey];
 
+            if (chunk.Compounds == null)
+                continue;
+
             if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
             {
                 result += chunk.Density * chunk.Compounds[compound].Amount;
@@ -183,9 +229,9 @@ public class Patch
     }
 
     /// <summary>
-    ///   Stores the current state of patch conditions into the patch history.
+    ///   Stores the current state of the patch into the patch history.
     /// </summary>
-    public void RecordConditions()
+    public void RecordSnapshot(bool clearLoggedEvents)
     {
         if (history.Count >= Constants.PATCH_HISTORY_RANGE)
             history.RemoveFromBack();
@@ -195,8 +241,26 @@ public class Patch
             currentSnapshot.RecordedSpeciesInfo[species] = species.RecordSpeciesInfo();
         }
 
-        var conditions = (PatchSnapshot)currentSnapshot.Clone();
-        history.AddToFront(conditions);
+        var snapshot = (PatchSnapshot)currentSnapshot.Clone();
+        history.AddToFront(snapshot);
+
+        if (clearLoggedEvents)
+            currentSnapshot.EventsLog.Clear();
+    }
+
+    /// <summary>
+    ///   Logs description of an event into the patch's history.
+    /// </summary>
+    /// <param name="description">The event's description</param>
+    /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
+    /// <param name="iconPath">Resource path to the icon of the event</param>
+    public void LogEvent(LocalizedString description, bool highlight = false, string? iconPath = null)
+    {
+        // Event already logged in timeline
+        if (currentSnapshot.EventsLog.Any(entry => entry.Description.Equals(description)))
+            return;
+
+        currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
     }
 
     public override string ToString()
@@ -212,20 +276,27 @@ public class PatchSnapshot : ICloneable
 {
     public double TimePeriod;
 
-    public Dictionary<Species, long> SpeciesInPatch = new Dictionary<Species, long>();
-    public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>();
+    public Dictionary<Species, long> SpeciesInPatch = new();
+    public Dictionary<Species, SpeciesInfo> RecordedSpeciesInfo = new();
 
     public BiomeConditions Biome;
+
+    public List<GameEventDescription> EventsLog = new();
+
+    public PatchSnapshot(BiomeConditions biome)
+    {
+        Biome = biome;
+    }
 
     public object Clone()
     {
         // We only do a shallow copy of RecordedSpeciesInfo here as SpeciesInfo objects are never modified.
-        var result = new PatchSnapshot
+        var result = new PatchSnapshot((BiomeConditions)Biome.Clone())
         {
             TimePeriod = TimePeriod,
             SpeciesInPatch = new Dictionary<Species, long>(SpeciesInPatch),
             RecordedSpeciesInfo = new Dictionary<Species, SpeciesInfo>(RecordedSpeciesInfo),
-            Biome = (BiomeConditions)Biome.Clone(),
+            EventsLog = new List<GameEventDescription>(EventsLog),
         };
 
         return result;

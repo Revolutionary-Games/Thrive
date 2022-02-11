@@ -112,6 +112,8 @@ public static class Constants
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
 
+    public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
+
     /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>
@@ -323,6 +325,15 @@ public static class Constants
     /// </summary>
     public const float CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.0033f;
 
+    public const float CHEMORECEPTOR_RANGE_MIN = 2;
+    public const float CHEMORECEPTOR_RANGE_MAX = 700;
+    public const float CHEMORECEPTOR_RANGE_DEFAULT = 350;
+    public const float CHEMORECEPTOR_AMOUNT_MIN = 1;
+    public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
+    public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
+    public const float CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL = 0.25f;
+    public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
+
     /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
@@ -496,6 +507,11 @@ public static class Constants
     public const int PATCH_HISTORY_RANGE = 10;
 
     /// <summary>
+    ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
+    /// </summary>
+    public const int GLOBAL_EVENT_LOG_CAP = 20;
+
+    /// <summary>
     ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
     ///   to see what small cells are.
     ///   Specifically for use with LengthSquared.
@@ -564,6 +580,8 @@ public static class Constants
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
     public const string GENERATE_SPAWN_SYSTEM_NOISE_IMAGE_PATH = "user://spawn_system_noise.bmp";
+
+    public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 
     /// <summary>
     ///   Internal Godot name for the default audio output device
@@ -658,6 +676,8 @@ public static class Constants
     ///   The radius of sectors around the player after which sectors are unloaded
     /// </summary>
     public const int SECTOR_UNLOAD_RADIUS = 7;
+
+    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

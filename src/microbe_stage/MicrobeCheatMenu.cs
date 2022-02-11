@@ -6,41 +6,41 @@
 public class MicrobeCheatMenu : CheatMenu
 {
     [Export]
-    public NodePath InfiniteCompoundsPath;
+    public NodePath InfiniteCompoundsPath = null!;
 
     [Export]
-    public NodePath GodModePath;
+    public NodePath GodModePath = null!;
 
     [Export]
-    public NodePath DisableAIPath;
+    public NodePath DisableAIPath = null!;
 
     [Export]
-    public NodePath SpeedSliderPath;
+    public NodePath SpeedSliderPath = null!;
 
     [Export]
-    public NodePath PlayerDividePath;
+    public NodePath PlayerDividePath = null!;
 
     [Export]
-    public NodePath SpawnEnemyPath;
+    public NodePath SpawnEnemyPath = null!;
 
     [Export]
-    public NodePath GenerateSpawnMapPath;
+    public NodePath GenerateSpawnMapPath = null!;
 
     [Export]
-    public NodePath CurrentSectorPath;
+    public NodePath CurrentSectorPath = null!;
 
     [Export]
-    public NodePath MicrobeStagePath;
+    public NodePath MicrobeStagePath = null!;
 
-    private CustomCheckBox infiniteCompounds;
-    private CustomCheckBox godMode;
-    private CustomCheckBox disableAI;
-    private Slider speed;
-    private Button playerDivide;
-    private Button spawnEnemy;
-    private Button generateSpawnMap;
-    private Label currentSector;
-    private MicrobeStage microbeStage;
+    private CustomCheckBox infiniteCompounds = null!;
+    private CustomCheckBox godMode = null!;
+    private CustomCheckBox disableAI = null!;
+    private Slider speed = null!;
+    private Button playerDivide = null!;
+    private Button spawnEnemy = null!;
+    private Button generateSpawnMap = null!;
+    private Label currentSector = null!;
+    private MicrobeStage microbeStage = null!;
 
     public override void _Ready()
     {

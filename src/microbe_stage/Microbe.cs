@@ -17,18 +17,18 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
-    public Vector3 LookAtPoint = new Vector3(0, 0, -1);
+    public Vector3 LookAtPoint = new(0, 0, -1);
 
     /// <summary>
     ///   The direction the microbe wants to move. Doesn't need to be normalized
     /// </summary>
-    public Vector3 MovementDirection = new Vector3(0, 0, 0);
+    public Vector3 MovementDirection = new(0, 0, 0);
 
-    private HybridAudioPlayer engulfAudio;
-    private AudioStreamPlayer3D bindingAudio;
-    private AudioStreamPlayer3D movementAudio;
-    private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
-    private List<AudioStreamPlayer> nonPositionalAudioPlayers = new List<AudioStreamPlayer>();
+    private HybridAudioPlayer engulfAudio = null!;
+    private AudioStreamPlayer3D bindingAudio = null!;
+    private HybridAudioPlayer movementAudio = null!;
+    private List<AudioStreamPlayer3D> otherAudioPlayers = new();
+    private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
 
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
@@ -36,10 +36,12 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     private bool onReadyCalled;
 
     private bool processesDirty = true;
-    private List<TweakedProcess> processes;
+    private List<TweakedProcess>? processes;
 
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
+
+    private float collisionForce;
 
     private Vector3 queuedMovementForce;
 
@@ -49,21 +51,24 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
 
     private float movementSoundCooldownTimer;
 
-    private Random random = new Random();
+    private Random random = new();
+
+    private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
 
     [JsonProperty]
-    private MicrobeAI ai;
+    private MicrobeAI? ai;
 
     /// <summary>
     ///   3d audio listener attached to this microbe if it is the player owned one.
     /// </summary>
-    private Listener listener;
+    private Listener? listener;
 
     /// <summary>
-    ///   The species of this microbe
+    ///   The species of this microbe. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
+    ///   random stuff in this instance won't work
     /// </summary>
     [JsonProperty]
-    public MicrobeSpecies Species { get; private set; }
+    public MicrobeSpecies Species { get; private set; } = null!;
 
     /// <summary>
     ///    True when this is the player's microbe
@@ -132,7 +137,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
         {
             if (processesDirty)
                 RefreshProcesses();
-            return processes;
+            return processes!;
         }
     }
 
@@ -140,13 +145,13 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     ///   Process running statistics for this cell. For now only computed for the player cell
     /// </summary>
     [JsonIgnore]
-    public ProcessStatistics ProcessStatistics { get; private set; }
+    public ProcessStatistics? ProcessStatistics { get; private set; }
 
     /// <summary>
     ///   For checking if the player is in freebuild mode or not
     /// </summary>
     [JsonProperty]
-    public GameProperties CurrentGame { get; private set; }
+    public GameProperties CurrentGame { get; private set; } = null!;
 
     /// <summary>
     ///   Needs access to the world for population changes
@@ -178,9 +183,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     public override void _Ready()
     {
         if (cloudSystem == null && !IsForPreviewOnly)
-        {
-            throw new Exception("Microbe not initialized");
-        }
+            throw new InvalidOperationException("Microbe not initialized");
 
         if (onReadyCalled)
             return;
@@ -189,18 +192,13 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
 
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
+        engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
-        movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
+        movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
-        engulfAudio = new HybridAudioPlayer(!IsPlayerMicrobe)
-        {
-            Stream = GD.Load<AudioStream>("res://assets/sounds/soundeffects/engulfment.ogg"),
-            Bus = "SFX",
-        };
-
-        AddChild(engulfAudio);
+        engulfAudio.Positional = movementAudio.Positional = !IsPlayerMicrobe;
 
         // You may notice that there are two separate ways that an audio is played in this class:
         // using pre-existing audio node e.g "bindingAudio", "movementAudio" and through method e.g "PlaySoundEffect",
@@ -237,6 +235,9 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
 
         if (IsLoadedFromSave)
         {
+            if (organelles == null)
+                throw new JsonException($"Loaded microbe is missing {nameof(organelles)} property");
+
             // Fix the tree of colonies
             if (ColonyChildren != null)
             {
@@ -304,7 +305,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     /// </summary>
     /// <param name="bodyShape">The shape that was hit</param>
     /// <returns>The actual microbe that was hit or null if the bodyShape was not found</returns>
-    public Microbe GetMicrobeFromShape(int bodyShape)
+    public Microbe? GetMicrobeFromShape(int bodyShape)
     {
         if (Colony == null)
             return this;
@@ -324,6 +325,11 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     public void AddMovementForce(Vector3 force)
     {
         queuedMovementForce += force;
+    }
+
+    public void ReportActiveChemereception(Compound compound, float range, float minAmount, Color colour)
+    {
+        activeCompoundDetections.Add((compound, range, minAmount, colour));
     }
 
     public void PlaySoundEffect(string effect, float volume = 1.0f)
@@ -399,6 +405,9 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
 
             if (IsForPreviewOnly)
             {
+                if (organelles == null)
+                    throw new InvalidOperationException("Preview microbe was not initialized with organelles list");
+
                 // Update once for the positioning of external organelles
                 foreach (var organelle in organelles.Organelles)
                     organelle.Update(delta);
@@ -450,7 +459,7 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
         HandleOsmoregulation(delta);
 
         // Let organelles do stuff (this for example gets the movement force from flagella)
-        foreach (var organelle in organelles.Organelles)
+        foreach (var organelle in organelles!.Organelles)
         {
             organelle.Update(delta);
         }
@@ -458,6 +467,8 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
         // Rotation is applied in the physics force callback as that's
         // the place where the body rotation can be directly set
         // without problems
+
+        HandleChemoreceptorLines(delta);
 
         HandleCompoundVenting(delta);
 
@@ -524,13 +535,13 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
 
         try
         {
-            ai.Think(delta, random, data);
+            ai!.Think(delta, random, data);
         }
 #pragma warning disable CA1031 // AI needs to be boxed good
         catch (Exception e)
 #pragma warning restore CA1031
         {
-            GD.PrintErr("Microbe AI failure! " + e);
+            GD.PrintErr("Microbe AI failure! ", e);
         }
     }
 
@@ -542,6 +553,18 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
         // TODO: should movement also be applied here?
 
         physicsState.Transform = GetNewPhysicsRotation(physicsState.Transform);
+
+        // Reset total sum from previous collisions
+        collisionForce = 0.0f;
+
+        // Sum impulses from all contact points
+        for (var i = 0; i < physicsState.GetContactCount(); ++i)
+        {
+            // TODO: Godot currently does not provide a convenient way to access a collision impulse, this
+            // for example is luckily available only in Bullet which makes things a bit easier. Would need
+            // proper handling for this in the future.
+            collisionForce += physicsState.GetContactImpulse(i);
+        }
     }
 
     /// <summary>
@@ -560,6 +583,9 @@ public partial class Microbe : SpawnedRigidBody, IProcessable, IMicrobeAI, ISave
     /// <returns>Returns relative translation and rotation</returns>
     private (Vector3 Translation, Vector3 Rotation) GetNewRelativeTransform()
     {
+        if (ColonyParent == null)
+            throw new InvalidOperationException("This microbe doesn't have colony parent set");
+
         // Gets the global rotation of the parent
         var globalParentRotation = ColonyParent.GlobalTransform.basis.GetEuler();
 

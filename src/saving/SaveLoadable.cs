@@ -11,7 +11,7 @@ public abstract class SaveLoadable<T> : ISaveLoadable
     ///   The data that a converter has loaded but hasn't been applied yet due to requiring certain ISaveContext items
     /// </summary>
     [JsonIgnore]
-    public T UnAppliedSaveData;
+    public T? UnAppliedSaveData;
 
     /// <summary>
     ///   Creates the unapplied data if missing and returns
@@ -21,7 +21,7 @@ public abstract class SaveLoadable<T> : ISaveLoadable
         return UnAppliedSaveData ??= new T();
     }
 
-    public void FinishLoading(ISaveContext context)
+    public void FinishLoading(ISaveContext? context)
     {
         if (UnAppliedSaveData == null)
             return;
@@ -31,5 +31,5 @@ public abstract class SaveLoadable<T> : ISaveLoadable
         UnAppliedSaveData = null;
     }
 
-    protected abstract void ApplyUnAppliedSaveData(T data, ISaveContext context);
+    protected abstract void ApplyUnAppliedSaveData(T data, ISaveContext? context);
 }

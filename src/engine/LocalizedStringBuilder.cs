@@ -18,7 +18,7 @@ using Newtonsoft.Json;
 public class LocalizedStringBuilder : IFormattable
 {
     [JsonProperty]
-    private readonly List<IFormattable> items = new List<IFormattable>();
+    private readonly List<IFormattable> items = new();
 
     private readonly StringBuilder stringBuilder;
     private string formatString = string.Empty;
@@ -35,7 +35,7 @@ public class LocalizedStringBuilder : IFormattable
     }
 
     [JsonProperty]
-    private string FormatString
+    private string? FormatString
     {
         get
         {
@@ -102,11 +102,11 @@ public class LocalizedStringBuilder : IFormattable
         return ToString(null, null);
     }
 
-    public string ToString(string format, IFormatProvider formatProvider)
+    public string ToString(string? format, IFormatProvider? formatProvider)
     {
         return string.Format(
             formatProvider ?? CultureInfo.CurrentCulture,
-            format ?? FormatString,
+            format ?? FormatString ?? string.Empty,
             items.ToArray<object>());
     }
 }

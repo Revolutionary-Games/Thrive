@@ -6,7 +6,7 @@
 /// </summary>
 public class FPSCounter : ControlWithInput
 {
-    private Label label;
+    private Label label = null!;
 
     public override void _Ready()
     {

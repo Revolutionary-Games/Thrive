@@ -9,24 +9,32 @@
 ///     Useful in cases where the playing of an audio stream must be able to fulfill both of these conditions.
 ///   </para>
 /// </remarks>
-public class HybridAudioPlayer : Node
+public class HybridAudioPlayer : Spatial
 {
-    private AudioStreamPlayer3D player3D;
-    private AudioStreamPlayer playerNonPositional;
+    private AudioStreamPlayer3D? player3D;
+    private AudioStreamPlayer? playerNonPositional;
 
-    private AudioStream stream;
-    private float volume;
-    private string bus;
+    private bool positional;
+    private AudioStream? stream;
+    private float volume = 1.0f;
+    private string bus = "SFX";
 
-    public HybridAudioPlayer(bool positional)
+    [Export]
+    public bool Positional
     {
-        Positional = positional;
-        Volume = 1.0f;
+        get => positional;
+        set
+        {
+            if (value == positional)
+                return;
+
+            positional = value;
+            ApplyPositionalType();
+        }
     }
 
-    public bool Positional { get; }
-
-    public AudioStream Stream
+    [Export]
+    public AudioStream? Stream
     {
         get => stream;
         set
@@ -36,11 +44,12 @@ public class HybridAudioPlayer : Node
         }
     }
 
-    public bool Playing => Positional ? player3D.Playing : playerNonPositional.Playing;
+    public bool Playing => Positional ? player3D!.Playing : playerNonPositional!.Playing;
 
     /// <summary>
     ///   Volume in linear scale.
     /// </summary>
+    [Export(PropertyHint.Range, "0,1")]
     public float Volume
     {
         get => volume;
@@ -51,6 +60,7 @@ public class HybridAudioPlayer : Node
         }
     }
 
+    [Export]
     public string Bus
     {
         get => bus;
@@ -63,29 +73,21 @@ public class HybridAudioPlayer : Node
 
     public override void _Ready()
     {
-        if (Positional)
-        {
-            player3D = new AudioStreamPlayer3D();
-            AddChild(player3D);
-        }
-        else
-        {
-            playerNonPositional = new AudioStreamPlayer();
-            AddChild(playerNonPositional);
-        }
-
-        ApplyAudioPlayerSettings();
+        ApplyPositionalType();
+        ApplyStream();
+        ApplyVolume();
+        ApplyBus();
     }
 
     public void Play(float fromPosition = 0)
     {
         if (Positional)
         {
-            player3D.Play(fromPosition);
+            player3D!.Play(fromPosition);
         }
         else
         {
-            playerNonPositional.Play(fromPosition);
+            playerNonPositional!.Play(fromPosition);
         }
     }
 
@@ -93,19 +95,38 @@ public class HybridAudioPlayer : Node
     {
         if (Positional)
         {
-            player3D.Stop();
+            player3D!.Stop();
         }
         else
         {
-            playerNonPositional.Stop();
+            playerNonPositional!.Stop();
         }
     }
 
-    private void ApplyAudioPlayerSettings()
+    private void ApplyPositionalType()
     {
-        ApplyStream();
-        ApplyVolume();
-        ApplyBus();
+        if (Positional)
+        {
+            if (playerNonPositional != null)
+            {
+                playerNonPositional.DetachAndQueueFree();
+                playerNonPositional = null;
+            }
+
+            player3D = new AudioStreamPlayer3D();
+            AddChild(player3D);
+        }
+        else
+        {
+            if (player3D != null)
+            {
+                player3D.DetachAndQueueFree();
+                player3D = null;
+            }
+
+            playerNonPositional = new AudioStreamPlayer();
+            AddChild(playerNonPositional);
+        }
     }
 
     private void ApplyStream()

@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public abstract class Spawner
 {
-    private float[] binomialValuesCache;
+    private float[]? binomialValuesCache;
 
     public virtual int BinomialN => 0;
     public virtual float BinomialP => 0;
@@ -78,7 +78,7 @@ public abstract class Spawner
     /// </summary>
     /// <param name="location">Location the spawn system wants to spawn a thing at</param>
     /// <returns>An enumerator which defines the instances of the object to spawn</returns>
-    public abstract IEnumerable<SpawnedRigidBody> Instantiate(Vector3 location);
+    public abstract IEnumerable<SpawnedRigidBody>? Instantiate(Vector3 location);
 
     /// <summary>
     ///   Used in <see cref="GetSpawnPoints"/> to determine how many spawns should occur in this sector and therefore
