@@ -26,11 +26,11 @@ public class PatchMapDrawer : Control
     [Export]
     public ShaderMaterial MonochromeMaterial = null!;
 
+    private readonly List<PatchMapNode> nodes = new();
+
     private PatchMap? map;
 
     private PackedScene nodeScene = null!;
-
-    private readonly List<PatchMapNode> nodes = new();
 
     private Patch? selectedPatch;
 
@@ -120,7 +120,7 @@ public class PatchMapDrawer : Control
     /// </summary>
     public void SetPatchEnabledStatus(Patch patch, bool enabled)
     {
-        var node = nodes.First(p => p.Patch.ID == patch.ID);
+        var node = nodes.First(p => p.Patch?.ID == patch.ID);
         node.Enabled = enabled;
         if (SelectedPatch == patch && !enabled)
             SelectedPatch = null;

@@ -537,6 +537,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void GoToNewPatch(Patch patch)
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Going to a new patch without a game setup");
+
         CurrentGame.GameWorld.Map.CurrentPatch = patch;
         UpdatePatchSettings();
         playerExtinctInCurrentPatch = false;
@@ -729,9 +732,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         HUD.HintText = string.Empty;
 
-        if (!CurrentGame.FreeBuild)
+        if (CurrentGame?.FreeBuild == false)
         {
-            if (GameWorld.Map.CurrentPatch.GetSpeciesPopulation(playerSpecies) <= 0)
+            if (GameWorld.Map.CurrentPatch?.GetSpeciesPopulation(playerSpecies) <= 0)
             {
                 // Decrease the population by the constant for the player dying out in a patch
                 GameWorld.AlterSpeciesPopulation(

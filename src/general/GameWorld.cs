@@ -285,7 +285,7 @@ public class GameWorld : ISaveLoadable
     /// <param name="coefficient">Change amount (coefficient part)</param>
     /// <param name="patch">The patch where this happened. Null to apply everywhere.</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description,
-        bool immediate = false, float coefficient = 1, Patch patch = null)
+        bool immediate = false, float coefficient = 1, Patch? patch = null)
     {
         if (constant == 0 || coefficient == 0)
             return;

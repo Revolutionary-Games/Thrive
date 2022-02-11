@@ -259,7 +259,7 @@ public class AutoEvoRun
     /// <param name="eventType">The external event type.</param>
     /// <param name="patch">The patch where this effect happened or null for a global event.</param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType,
-        Patch patch)
+        Patch? patch)
     {
         ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType, patch));
     }
@@ -270,7 +270,7 @@ public class AutoEvoRun
     /// <returns>The summary of external effects.</returns>
     public LocalizedStringBuilder MakeSummaryOfExternalEffects()
     {
-        var combinedExternalEffects = new Dictionary<(Species Species, string Event, Patch Patch), long>();
+        var combinedExternalEffects = new Dictionary<(Species Species, string Event, Patch? Patch), long>();
 
         foreach (var entry in ExternalEffects)
         {

@@ -5,82 +5,82 @@ using Godot;
 public class PatchDetailsPanel : PanelContainer
 {
     [Export]
-    public NodePath NothingSelectedPath;
+    public NodePath NothingSelectedPath = null!;
 
     [Export]
-    public NodePath DetailsPath;
+    public NodePath DetailsPath = null!;
 
     [Export]
-    public NodePath NamePath;
+    public NodePath NamePath = null!;
 
     [Export]
-    public NodePath PlayerHerePath;
+    public NodePath PlayerHerePath = null!;
 
     [Export]
-    public NodePath BiomePath;
+    public NodePath BiomePath = null!;
 
     [Export]
-    public NodePath DepthPath;
+    public NodePath DepthPath = null!;
 
     [Export]
-    public NodePath TemperaturePath;
+    public NodePath TemperaturePath = null!;
 
     [Export]
-    public NodePath PressurePath;
+    public NodePath PressurePath = null!;
 
     [Export]
-    public NodePath LightPath;
+    public NodePath LightPath = null!;
 
     [Export]
-    public NodePath OxygenPath;
+    public NodePath OxygenPath = null!;
 
     [Export]
-    public NodePath NitrogenPath;
+    public NodePath NitrogenPath = null!;
 
     [Export]
-    public NodePath CO2Path;
+    public NodePath CO2Path = null!;
 
     [Export]
-    public NodePath HydrogenSulfidePath;
+    public NodePath HydrogenSulfidePath = null!;
 
     [Export]
-    public NodePath AmmoniaPath;
+    public NodePath AmmoniaPath = null!;
 
     [Export]
-    public NodePath GlucosePath;
+    public NodePath GlucosePath = null!;
 
     [Export]
-    public NodePath PhosphatePath;
+    public NodePath PhosphatePath = null!;
 
     [Export]
-    public NodePath IronPath;
+    public NodePath IronPath = null!;
 
     [Export]
-    public NodePath SpeciesListBoxPath;
+    public NodePath SpeciesListBoxPath = null!;
 
     [Export]
-    public NodePath MoveToPatchButtonPath;
+    public NodePath MoveToPatchButtonPath = null!;
 
     [Export]
-    public NodePath TemperatureSituationPath;
+    public NodePath TemperatureSituationPath = null!;
 
     [Export]
-    public NodePath LightSituationPath;
+    public NodePath LightSituationPath = null!;
 
     [Export]
-    public NodePath HydrogenSulfideSituationPath;
+    public NodePath HydrogenSulfideSituationPath = null!;
 
     [Export]
-    public NodePath GlucoseSituationPath;
+    public NodePath GlucoseSituationPath = null!;
 
     [Export]
-    public NodePath IronSituationPath;
+    public NodePath IronSituationPath = null!;
 
     [Export]
-    public NodePath AmmoniaSituationPath;
+    public NodePath AmmoniaSituationPath = null!;
 
     [Export]
-    public NodePath PhosphateSituationPath;
+    public NodePath PhosphateSituationPath = null!;
 
     private readonly Compound ammoniaCompound = SimulationParameters.Instance.GetCompound("ammonia");
     private readonly Compound carbondioxideCompound = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -92,41 +92,41 @@ public class PatchDetailsPanel : PanelContainer
     private readonly Compound phosphatesCompound = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
 
-    private Control nothingSelected;
-    private Control details;
-    private Control playerHere;
-    private Label name;
-    private Label biome;
-    private Label depth;
-    private Label temperature;
-    private Label pressure;
-    private Label light;
-    private Label oxygen;
-    private Label nitrogen;
-    private Label co2;
-    private Label hydrogenSulfide;
-    private Label ammonia;
-    private Label glucose;
-    private Label phosphate;
-    private Label iron;
-    private CollapsibleList speciesListBox;
-    private Button moveToPatchButton;
-    private TextureRect temperatureSituation;
-    private TextureRect lightSituation;
-    private TextureRect hydrogenSulfideSituation;
-    private TextureRect glucoseSituation;
-    private TextureRect ironSituation;
-    private TextureRect ammoniaSituation;
-    private TextureRect phosphateSituation;
-    private Texture increaseIcon;
-    private Texture decreaseIcon;
+    private Control nothingSelected = null!;
+    private Control details = null!;
+    private Control playerHere = null!;
+    private Label name = null!;
+    private Label biome = null!;
+    private Label depth = null!;
+    private Label temperature = null!;
+    private Label pressure = null!;
+    private Label light = null!;
+    private Label oxygen = null!;
+    private Label nitrogen = null!;
+    private Label co2 = null!;
+    private Label hydrogenSulfide = null!;
+    private Label ammonia = null!;
+    private Label glucose = null!;
+    private Label phosphate = null!;
+    private Label iron = null!;
+    private CollapsibleList speciesListBox = null!;
+    private Button moveToPatchButton = null!;
+    private TextureRect temperatureSituation = null!;
+    private TextureRect lightSituation = null!;
+    private TextureRect hydrogenSulfideSituation = null!;
+    private TextureRect glucoseSituation = null!;
+    private TextureRect ironSituation = null!;
+    private TextureRect ammoniaSituation = null!;
+    private TextureRect phosphateSituation = null!;
+    private Texture increaseIcon = null!;
+    private Texture decreaseIcon = null!;
 
-    private Patch patch;
-    private Patch currentPatch;
+    private Patch? patch;
+    private Patch? currentPatch;
 
-    public Action<Patch> OnMoveToPatchClicked { get; set; }
+    public Action<Patch> OnMoveToPatchClicked { get; set; } = null!;
 
-    public Patch Patch
+    public Patch? Patch
     {
         get => patch;
         set
@@ -137,7 +137,7 @@ public class PatchDetailsPanel : PanelContainer
         }
     }
 
-    public Patch CurrentPatch
+    public Patch? CurrentPatch
     {
         get => currentPatch;
         set
@@ -259,7 +259,10 @@ public class PatchDetailsPanel : PanelContainer
 
     private void MoveToPatchClicked()
     {
-        OnMoveToPatchClicked?.Invoke(Patch);
+        if (Patch == null)
+            return;
+
+        OnMoveToPatchClicked.Invoke(Patch);
     }
 
     /// <remarks>
@@ -269,6 +272,9 @@ public class PatchDetailsPanel : PanelContainer
     /// </remarks>
     private void UpdateConditionDifferencesBetweenPatches()
     {
+        if (Patch == null || CurrentPatch == null)
+            return;
+
         var nextCompound = Patch.Biome.AverageTemperature;
 
         if (nextCompound > CurrentPatch.Biome.AverageTemperature)

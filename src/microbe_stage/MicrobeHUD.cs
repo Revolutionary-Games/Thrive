@@ -677,7 +677,7 @@ public class MicrobeHUD : Control
         winExtinctBoxHolder.RemoveChild(patchExtinctionBox);
         winExtinctBoxHolder.Hide();
         patchExtinctionBox = null;
-        stage.GoToNewPatch(patch);
+        stage!.GoToNewPatch(patch);
     }
 
     /// <summary>

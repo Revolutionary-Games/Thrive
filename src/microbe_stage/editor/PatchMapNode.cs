@@ -38,10 +38,12 @@ public class PatchMapNode : MarginContainer
     /// </summary>
     public bool Enabled
     {
-        get => iconRect.Material == null;
+        get => iconRect?.Material == null;
         set
         {
-            iconRect.Material = value ? null : MonochromeShader;
+            if (iconRect != null)
+                iconRect.Material = value ? null : MonochromeShader;
+
             if (!value)
                 Selected = false;
             UpdateSelectHighlightRing();

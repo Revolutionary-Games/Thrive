@@ -1675,7 +1675,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void MoveToPatchClicked(Patch patch)
     {
-        if (editor.IsPatchMoveValid(patch))
+        if (editor!.IsPatchMoveValid(patch))
             editor.SetPlayerPatch(patch);
 
         patchDetailsPanel.CurrentPatch = patch;
@@ -2004,7 +2004,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var patch = mapDrawer.SelectedPatch;
 
-        patchDetailsPanel.CurrentPatch = editor.CurrentPatch;
+        patchDetailsPanel.CurrentPatch = editor!.CurrentPatch;
         patchDetailsPanel.IsPatchMoveValid = editor.IsPatchMoveValid(patch);
         patchDetailsPanel.Patch = patch;
 

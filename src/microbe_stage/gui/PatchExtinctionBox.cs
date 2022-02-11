@@ -4,21 +4,21 @@ using Godot;
 public class PatchExtinctionBox : Control
 {
     [Export]
-    public NodePath PatchMapDrawerPath;
+    public NodePath PatchMapDrawerPath = null!;
 
     [Export]
-    public NodePath PatchDetailsPanelPath;
+    public NodePath PatchDetailsPanelPath = null!;
 
     [Export]
-    public NodePath AnimationPlayer;
+    public NodePath AnimationPlayer = null!;
 
-    private PatchMapDrawer patchMapDrawer;
-    private PatchDetailsPanel patchDetailsPanel;
-    private AnimationPlayer animationPlayer;
+    private PatchMapDrawer patchMapDrawer = null!;
+    private PatchDetailsPanel patchDetailsPanel = null!;
+    private AnimationPlayer animationPlayer = null!;
 
-    public PatchMap Map { get; set; }
-    public Species PlayerSpecies { get; set; }
-    public Action<Patch> GoToNewPatch { get; set; }
+    public PatchMap Map { get; set; } = null!;
+    public Species PlayerSpecies { get; set; } = null!;
+    public Action<Patch> GoToNewPatch { get; set; } = null!;
 
     public override void _Ready()
     {
@@ -47,7 +47,10 @@ public class PatchExtinctionBox : Control
 
     private void OnFadedToBlack()
     {
-        GoToNewPatch?.Invoke(patchDetailsPanel.Patch);
+        if (patchDetailsPanel.Patch == null)
+            throw new NullReferenceException("The patch must not be null at this point");
+
+        GoToNewPatch.Invoke(patchDetailsPanel.Patch);
 
         TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeIn, animationPlayer.CurrentAnimationLength,
             false);
