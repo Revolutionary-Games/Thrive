@@ -21,12 +21,12 @@ public class Save
     /// <summary>
     ///   Name of this save on disk
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = "invalid";
 
     /// <summary>
     ///   General information about this save
     /// </summary>
-    public SaveInformation Info { get; set; } = new SaveInformation();
+    public SaveInformation Info { get; set; } = new();
 
     /// <summary>
     ///   The state the game was in when it was saved
@@ -36,29 +36,29 @@ public class Save
     /// <summary>
     ///   The game properties of the saved game
     /// </summary>
-    public GameProperties SavedProperties { get; set; }
+    public GameProperties? SavedProperties { get; set; }
 
     /// <summary>
     ///   Microbe stage data for the save, if currently in the microbe stage
     /// </summary>
-    public MicrobeStage MicrobeStage { get; set; }
+    public MicrobeStage? MicrobeStage { get; set; }
 
     /// <summary>
     ///   Microbe editor data for the save, if GameStateName == MicrobeEditor
     /// </summary>
-    public MicrobeEditor MicrobeEditor { get; set; }
+    public MicrobeEditor? MicrobeEditor { get; set; }
 
     /// <summary>
     ///   Screenshot for this save
     /// </summary>
     [JsonIgnore]
-    public Image Screenshot { get; set; }
+    public Image? Screenshot { get; set; }
 
     /// <summary>
     ///   The scene object to switch to once this save is loaded
     /// </summary>
     [JsonIgnore]
-    public ILoadableGameState TargetScene
+    public ILoadableGameState? TargetScene
     {
         get
         {
@@ -82,14 +82,14 @@ public class Save
     ///   A callback that is called when reading data has finished and creating objects start.
     /// </param>
     /// <returns>The loaded save</returns>
-    public static Save LoadFromFile(string saveName, Action readFinished = null)
+    public static Save LoadFromFile(string saveName, Action? readFinished = null)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
         var (_, save, screenshot) = LoadFromFile(target, false, true, true, readFinished);
 
         // Info is already contained in save so it doesn't need to be loaded and assigned here
-        save.Screenshot = screenshot;
+        save!.Screenshot = screenshot;
 
         return save;
     }
@@ -102,7 +102,7 @@ public class Save
         {
             var (info, _, _) = LoadFromFile(target, true, false, false, null);
 
-            return info;
+            return info!;
         }
         catch (Exception e)
         {
@@ -121,7 +121,7 @@ public class Save
         {
             var (info, _, screenshot) = LoadFromFile(target, true, false, true, null);
 
-            save.Info = info;
+            save.Info = info!;
             save.Screenshot = screenshot;
         }
         catch (Exception e)
@@ -134,7 +134,7 @@ public class Save
         return save;
     }
 
-    public static (SaveInformation Info, JObject SaveObject, Image Screenshot) LoadJSONStructureFromFile(
+    public static (SaveInformation Info, JObject SaveObject, Image? Screenshot) LoadJSONStructureFromFile(
         string saveName)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
@@ -146,11 +146,12 @@ public class Save
         if (string.IsNullOrEmpty(saveStr))
             throw new IOException("couldn't find save content in save file");
 
-        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr);
+        var infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+            throw new JsonException("SaveInformation object was deserialized as null");
 
         // Don't use the normal deserialization as we don't want to actually create the game state, instead we want
         // a JSON structure
-        var saveResult = JObject.Parse(saveStr);
+        var saveResult = JObject.Parse(saveStr!);
 
         var imageResult = new Image();
 
@@ -162,7 +163,7 @@ public class Save
         return (infoResult, saveResult, imageResult);
     }
 
-    public static void WriteSaveJSONToFile(SaveInformation saveInfo, JObject saveStructure, Image screenshot,
+    public static void WriteSaveJSONToFile(SaveInformation saveInfo, JObject saveStructure, Image? screenshot,
         string saveName)
     {
         var serialized = saveStructure.ToString(Formatting.None);
@@ -195,7 +196,7 @@ public class Save
         MicrobeEditor = null;
     }
 
-    private static void WriteRawSaveDataToFile(SaveInformation saveInfo, string saveContent, Image screenshot,
+    private static void WriteRawSaveDataToFile(SaveInformation saveInfo, string saveContent, Image? screenshot,
         string saveName)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.SAVE_FOLDER);
@@ -203,7 +204,7 @@ public class Save
 
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(saveInfo);
 
-        string tempScreenshot = null;
+        string? tempScreenshot = null;
 
         if (screenshot != null)
         {
@@ -228,10 +229,14 @@ public class Save
         }
     }
 
-    private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string tempScreenshot)
+    private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string? tempScreenshot)
     {
         using var file = new File();
-        file.Open(target, File.ModeFlags.Write);
+        if (file.Open(target, File.ModeFlags.Write) != Error.Ok)
+        {
+            GD.PrintErr("Cannot open file for writing: ", target);
+            throw new IOException("Cannot open: " + target);
+        }
 
         using Stream gzoStream = new GZipOutputStream(new GodotFileStream(file));
         using var tar = new TarOutputStream(gzoStream, Encoding.UTF8);
@@ -240,7 +245,7 @@ public class Save
 
         if (tempScreenshot != null)
         {
-            byte[] data = null;
+            byte[]? data = null;
 
             using (var reader = new File())
             {
@@ -263,8 +268,8 @@ public class Save
         OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
     }
 
-    private static (SaveInformation Info, Save Save, Image Screenshot) LoadFromFile(string file, bool info,
-        bool save, bool screenshot, Action readFinished)
+    private static (SaveInformation? Info, Save? Save, Image? Screenshot) LoadFromFile(string file, bool info,
+        bool save, bool screenshot, Action? readFinished)
     {
         using (var directory = new Directory())
         {
@@ -276,9 +281,9 @@ public class Save
 
         readFinished?.Invoke();
 
-        SaveInformation infoResult = null;
-        Save saveResult = null;
-        Image imageResult = null;
+        SaveInformation? infoResult = null;
+        Save? saveResult = null;
+        Image? imageResult = null;
 
         if (info)
         {
@@ -287,7 +292,8 @@ public class Save
                 throw new IOException("couldn't find info content in save");
             }
 
-            infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr);
+            infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr!) ??
+                throw new JsonException("SaveInformation is null");
         }
 
         if (save)
@@ -298,7 +304,8 @@ public class Save
             }
 
             // This deserializes a huge tree of objects
-            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr);
+            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr!) ??
+                throw new JsonException("Save data is null");
         }
 
         if (screenshot)
@@ -316,12 +323,12 @@ public class Save
         return (infoResult, saveResult, imageResult);
     }
 
-    private static (string InfoStr, string SaveStr, byte[] Screenshot) LoadDataFromFile(string file, bool info,
+    private static (string? InfoStr, string? SaveStr, byte[]? Screenshot) LoadDataFromFile(string file, bool info,
         bool save, bool screenshot)
     {
-        string infoStr = null;
-        string saveStr = null;
-        byte[] screenshotData = null;
+        string? infoStr = null;
+        string? saveStr = null;
+        byte[]? screenshotData = null;
 
         // Used for early stop in reading
         int itemsToRead = 0;

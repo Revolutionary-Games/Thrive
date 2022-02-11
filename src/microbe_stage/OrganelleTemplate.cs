@@ -27,6 +27,11 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     /// </summary>
     public int Orientation { get; set; }
 
+    /// <summary>
+    ///   The upgrades this organelle will have when instantiated in a microbe
+    /// </summary>
+    public OrganelleUpgrades? Upgrades { get; set; }
+
 #pragma warning disable CA1033
     OrganelleDefinition IPositionedOrganelle.Definition => Definition;
 #pragma warning restore CA1033
@@ -34,8 +39,17 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     [JsonIgnore]
     public IEnumerable<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
 
+    public void SetCustomUpgradeObject(IComponentSpecificUpgrades upgrades)
+    {
+        Upgrades ??= new OrganelleUpgrades();
+        Upgrades.CustomUpgradeData = upgrades;
+    }
+
     public object Clone()
     {
-        return new OrganelleTemplate(Definition, Position, Orientation);
+        return new OrganelleTemplate(Definition, Position, Orientation)
+        {
+            Upgrades = (OrganelleUpgrades?)Upgrades?.Clone(),
+        };
     }
 }

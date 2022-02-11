@@ -17,57 +17,61 @@ public class MainMenu : NodeWithInput
     public uint CurrentMenuIndex;
 
     [Export]
-    public NodePath ThriveLogoPath;
+    public NodePath ThriveLogoPath = null!;
 
     [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
     [Export]
-    public List<Texture> MenuBackgrounds;
+    public List<Texture> MenuBackgrounds = null!;
 
     [Export]
-    public NodePath NewGameButtonPath;
+    public NodePath NewGameButtonPath = null!;
 
     [Export]
-    public NodePath FreebuildButtonPath;
+    public NodePath FreebuildButtonPath = null!;
 
     [Export]
-    public NodePath CreditsContainerPath;
+    public NodePath CreditsContainerPath = null!;
 
     [Export]
-    public NodePath CreditsScrollPath;
+    public NodePath CreditsScrollPath = null!;
 
     [Export]
-    public NodePath LicensesDisplayPath;
+    public NodePath LicensesDisplayPath = null!;
 
     [Export]
-    public NodePath GLES2PopupPath;
+    public NodePath GLES2PopupPath = null!;
 
     [Export]
-    public NodePath StoreLoggedInDisplayPath;
+    public NodePath ModLoadFailuresPath = null!;
 
     [Export]
-    public NodePath ModManagerPath;
+    public NodePath StoreLoggedInDisplayPath = null!;
 
-    public Array MenuArray;
-    public TextureRect Background;
+    [Export]
+    public NodePath ModManagerPath = null!;
+
+    public Array? MenuArray;
+    public TextureRect Background = null!;
 
     public bool IsReturningToMenu;
 
-    private TextureRect thriveLogo;
-    private OptionsMenu options;
-    private AnimationPlayer guiAnimations;
-    private SaveManagerGUI saves;
-    private ModManager modManager;
+    private TextureRect thriveLogo = null!;
+    private OptionsMenu options = null!;
+    private AnimationPlayer guiAnimations = null!;
+    private SaveManagerGUI saves = null!;
+    private ModManager modManager = null!;
 
-    private Control creditsContainer;
-    private CreditsScroll credits;
-    private LicensesDisplay licensesDisplay;
+    private Control creditsContainer = null!;
+    private CreditsScroll credits = null!;
+    private LicensesDisplay licensesDisplay = null!;
 
-    private Button newGameButton;
-    private Button freebuildButton;
+    private Button newGameButton = null!;
+    private Button freebuildButton = null!;
 
-    private Label storeLoggedInDisplay;
+    private Label storeLoggedInDisplay = null!;
 
-    private CustomConfirmationDialog gles2Popup;
+    private CustomConfirmationDialog gles2Popup = null!;
+    private ErrorDialog modLoadFailures = null!;
 
     public override void _Ready()
     {
@@ -77,9 +81,9 @@ public class MainMenu : NodeWithInput
         RunMenuSetup();
 
         // Start intro video
-        if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
+        if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu)
         {
-            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm", 0.65f);
+            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.ogv", 0.65f);
             TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
         }
         else
@@ -89,6 +93,8 @@ public class MainMenu : NodeWithInput
 
         // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
         TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
+
+        CheckModFailures();
     }
 
     public void StartMusic()
@@ -103,6 +109,9 @@ public class MainMenu : NodeWithInput
     /// <param name="slide">If false then the menu slide animation will not be played</param>
     public void SetCurrentMenu(uint index, bool slide = true)
     {
+        if (MenuArray == null)
+            throw new InvalidOperationException("Main menu has not been initialized");
+
         // Allow disabling all the menus for going to the options menu
         if (index > MenuArray.Count - 1 && index != uint.MaxValue)
         {
@@ -181,6 +190,7 @@ public class MainMenu : NodeWithInput
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
         gles2Popup = GetNode<CustomConfirmationDialog>(GLES2PopupPath);
+        modLoadFailures = GetNode<ErrorDialog>(ModLoadFailuresPath);
 
         // Set initial menu
         SwitchMenu();
@@ -243,7 +253,7 @@ public class MainMenu : NodeWithInput
     private void SwitchMenu()
     {
         // Hide other menus and only show the one of the current index
-        foreach (Control menu in MenuArray)
+        foreach (Control menu in MenuArray!)
         {
             menu.Hide();
 
@@ -251,6 +261,17 @@ public class MainMenu : NodeWithInput
             {
                 menu.Show();
             }
+        }
+    }
+
+    private void CheckModFailures()
+    {
+        var errors = ModLoader.Instance.GetAndClearModErrors();
+
+        if (errors.Count > 0)
+        {
+            modLoadFailures.ExceptionInfo = string.Join("\n", errors);
+            modLoadFailures.PopupCenteredShrink();
         }
     }
 
@@ -298,10 +319,10 @@ public class MainMenu : NodeWithInput
         // before the stage music starts)
         Jukebox.Instance.Stop();
 
-        if (Settings.Instance.PlayMicrobeIntroVideo)
+        if (Settings.Instance.PlayMicrobeIntroVideo && LaunchOptions.VideosEnabled)
         {
             TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.5f);
-            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm", 0.65f);
+            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.ogv", 0.65f);
         }
         else
         {
@@ -331,7 +352,7 @@ public class MainMenu : NodeWithInput
         // Disable the button to prevent it being executed again.
         freebuildButton.Disabled = true;
 
-        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.15f, false);
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.1f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 
@@ -450,7 +471,6 @@ public class MainMenu : NodeWithInput
 
         // Show the mods view
         modManager.Visible = true;
-        modManager.OnOpened();
 
         thriveLogo.Hide();
     }

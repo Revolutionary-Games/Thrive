@@ -17,190 +17,193 @@ public class OptionsMenu : ControlWithInput
     // Options control buttons.
 
     [Export]
-    public NodePath ResetButtonPath;
+    public NodePath ResetButtonPath = null!;
 
     [Export]
-    public NodePath SaveButtonPath;
+    public NodePath SaveButtonPath = null!;
 
     // Tab selector buttons.
     [Export]
-    public NodePath GraphicsButtonPath;
+    public NodePath GraphicsButtonPath = null!;
 
     [Export]
-    public NodePath SoundButtonPath;
+    public NodePath SoundButtonPath = null!;
 
     [Export]
-    public NodePath PerformanceButtonPath;
+    public NodePath PerformanceButtonPath = null!;
 
     [Export]
-    public NodePath InputsButtonPath;
+    public NodePath InputsButtonPath = null!;
 
     [Export]
-    public NodePath MiscButtonPath;
+    public NodePath MiscButtonPath = null!;
 
     // Graphics tab.
     [Export]
-    public NodePath GraphicsTabPath;
+    public NodePath GraphicsTabPath = null!;
 
     [Export]
-    public NodePath VSyncPath;
+    public NodePath VSyncPath = null!;
 
     [Export]
-    public NodePath FullScreenPath;
+    public NodePath FullScreenPath = null!;
 
     [Export]
-    public NodePath MSAAResolutionPath;
+    public NodePath MSAAResolutionPath = null!;
 
     [Export]
-    public NodePath ColourblindSettingPath;
+    public NodePath MaxFramesPerSecondPath = null!;
 
     [Export]
-    public NodePath ChromaticAberrationSliderPath;
+    public NodePath ColourblindSettingPath = null!;
 
     [Export]
-    public NodePath ChromaticAberrationTogglePath;
+    public NodePath ChromaticAberrationSliderPath = null!;
 
     [Export]
-    public NodePath DisplayAbilitiesBarTogglePath;
+    public NodePath ChromaticAberrationTogglePath = null!;
 
     [Export]
-    public NodePath GUILightEffectsTogglePath;
+    public NodePath DisplayAbilitiesBarTogglePath = null!;
+
+    [Export]
+    public NodePath GUILightEffectsTogglePath = null!;
 
     // Sound tab.
     [Export]
-    public NodePath SoundTabPath;
+    public NodePath SoundTabPath = null!;
 
     [Export]
-    public NodePath MasterVolumePath;
+    public NodePath MasterVolumePath = null!;
 
     [Export]
-    public NodePath MasterMutedPath;
+    public NodePath MasterMutedPath = null!;
 
     [Export]
-    public NodePath MusicVolumePath;
+    public NodePath MusicVolumePath = null!;
 
     [Export]
-    public NodePath MusicMutedPath;
+    public NodePath MusicMutedPath = null!;
 
     [Export]
-    public NodePath AmbianceVolumePath;
+    public NodePath AmbianceVolumePath = null!;
 
     [Export]
-    public NodePath AmbianceMutedPath;
+    public NodePath AmbianceMutedPath = null!;
 
     [Export]
-    public NodePath SFXVolumePath;
+    public NodePath SFXVolumePath = null!;
 
     [Export]
-    public NodePath SFXMutedPath;
+    public NodePath SFXMutedPath = null!;
 
     [Export]
-    public NodePath GUIVolumePath;
+    public NodePath GUIVolumePath = null!;
 
     [Export]
-    public NodePath GUIMutedPath;
+    public NodePath GUIMutedPath = null!;
 
     [Export]
-    public NodePath AudioOutputDeviceSelectionPath;
+    public NodePath AudioOutputDeviceSelectionPath = null!;
 
     [Export]
-    public NodePath LanguageSelectionPath;
+    public NodePath LanguageSelectionPath = null!;
 
     [Export]
-    public NodePath ResetLanguageButtonPath;
+    public NodePath ResetLanguageButtonPath = null!;
 
     [Export]
-    public NodePath LanguageProgressLabelPath;
+    public NodePath LanguageProgressLabelPath = null!;
 
     // Performance tab.
     [Export]
-    public NodePath PerformanceTabPath;
+    public NodePath PerformanceTabPath = null!;
 
     [Export]
-    public NodePath CloudIntervalPath;
+    public NodePath CloudIntervalPath = null!;
 
     [Export]
-    public NodePath CloudResolutionTitlePath;
+    public NodePath CloudResolutionTitlePath = null!;
 
     [Export]
-    public NodePath CloudResolutionPath;
+    public NodePath CloudResolutionPath = null!;
 
     [Export]
-    public NodePath RunAutoEvoDuringGameplayPath;
+    public NodePath RunAutoEvoDuringGameplayPath = null!;
 
     [Export]
-    public NodePath DetectedCPUCountPath;
+    public NodePath DetectedCPUCountPath = null!;
 
     [Export]
-    public NodePath ActiveThreadCountPath;
+    public NodePath ActiveThreadCountPath = null!;
 
     [Export]
-    public NodePath AssumeHyperthreadingPath;
+    public NodePath AssumeHyperthreadingPath = null!;
 
     [Export]
-    public NodePath UseManualThreadCountPath;
+    public NodePath UseManualThreadCountPath = null!;
 
     [Export]
-    public NodePath ThreadCountSliderPath;
+    public NodePath ThreadCountSliderPath = null!;
 
     // Inputs tab.
     [Export]
-    public NodePath InputsTabPath;
+    public NodePath InputsTabPath = null!;
 
     [Export]
-    public NodePath InputGroupListPath;
+    public NodePath InputGroupListPath = null!;
 
     // Misc tab.
     [Export]
-    public NodePath MiscTabPath;
+    public NodePath MiscTabPath = null!;
 
     [Export]
-    public NodePath PlayIntroPath;
+    public NodePath PlayIntroPath = null!;
 
     [Export]
-    public NodePath PlayMicrobeIntroPath;
+    public NodePath PlayMicrobeIntroPath = null!;
 
     [Export]
-    public NodePath TutorialsEnabledOnNewGamePath;
+    public NodePath TutorialsEnabledOnNewGamePath = null!;
 
     [Export]
-    public NodePath CheatsPath;
+    public NodePath CheatsPath = null!;
 
     [Export]
-    public NodePath AutoSavePath;
+    public NodePath AutoSavePath = null!;
 
     [Export]
-    public NodePath MaxAutoSavesPath;
+    public NodePath MaxAutoSavesPath = null!;
 
     [Export]
-    public NodePath MaxQuickSavesPath;
+    public NodePath MaxQuickSavesPath = null!;
 
     [Export]
-    public NodePath BackConfirmationBoxPath;
+    public NodePath BackConfirmationBoxPath = null!;
 
     [Export]
-    public NodePath TutorialsEnabledPath;
+    public NodePath TutorialsEnabledPath = null!;
 
     [Export]
-    public NodePath ScreenshotDirectoryWarningBoxPath;
+    public NodePath ScreenshotDirectoryWarningBoxPath = null!;
 
     [Export]
-    public NodePath DefaultsConfirmationBoxPath;
+    public NodePath DefaultsConfirmationBoxPath = null!;
 
     [Export]
-    public NodePath ErrorAcceptBoxPath;
+    public NodePath ErrorAcceptBoxPath = null!;
 
     [Export]
-    public NodePath CustomUsernameEnabledPath;
+    public NodePath CustomUsernameEnabledPath = null!;
 
     [Export]
-    public NodePath CustomUsernamePath;
+    public NodePath CustomUsernamePath = null!;
 
     [Export]
-    public NodePath JSONDebugModePath;
+    public NodePath JSONDebugModePath = null!;
 
     [Export]
-    public NodePath UnsavedProgressWarningPath;
+    public NodePath UnsavedProgressWarningPath = null!;
 
     private static readonly List<string> LanguagesCache = TranslationServer.GetLoadedLocales().Cast<string>()
         .OrderBy(i => i, StringComparer.InvariantCulture)
@@ -210,81 +213,82 @@ public class OptionsMenu : ControlWithInput
         .GetDeviceList().OfType<string>().Where(d => d != Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME)
         .Prepend(Constants.DEFAULT_AUDIO_OUTPUT_DEVICE_NAME).ToList();
 
-    private Button resetButton;
-    private Button saveButton;
+    private Button resetButton = null!;
+    private Button saveButton = null!;
 
     // Tab selector buttons
-    private Button graphicsButton;
-    private Button soundButton;
-    private Button performanceButton;
-    private Button inputsButton;
-    private Button miscButton;
+    private Button graphicsButton = null!;
+    private Button soundButton = null!;
+    private Button performanceButton = null!;
+    private Button inputsButton = null!;
+    private Button miscButton = null!;
 
     // Graphics tab
-    private Control graphicsTab;
-    private CustomCheckBox vsync;
-    private CustomCheckBox fullScreen;
-    private OptionButton msaaResolution;
-    private OptionButton colourblindSetting;
-    private CustomCheckBox chromaticAberrationToggle;
-    private Slider chromaticAberrationSlider;
-    private CustomCheckBox displayAbilitiesHotBarToggle;
-    private CustomCheckBox guiLightEffectsToggle;
+    private Control graphicsTab = null!;
+    private CustomCheckBox vsync = null!;
+    private CustomCheckBox fullScreen = null!;
+    private OptionButton msaaResolution = null!;
+    private OptionButton maxFramesPerSecond = null!;
+    private OptionButton colourblindSetting = null!;
+    private CustomCheckBox chromaticAberrationToggle = null!;
+    private Slider chromaticAberrationSlider = null!;
+    private CustomCheckBox displayAbilitiesHotBarToggle = null!;
+    private CustomCheckBox guiLightEffectsToggle = null!;
 
     // Sound tab
-    private Control soundTab;
-    private Slider masterVolume;
-    private CustomCheckBox masterMuted;
-    private Slider musicVolume;
-    private CustomCheckBox musicMuted;
-    private Slider ambianceVolume;
-    private CustomCheckBox ambianceMuted;
-    private Slider sfxVolume;
-    private CustomCheckBox sfxMuted;
-    private Slider guiVolume;
-    private CustomCheckBox guiMuted;
-    private OptionButton audioOutputDeviceSelection;
-    private OptionButton languageSelection;
-    private Button resetLanguageButton;
-    private Label languageProgressLabel;
+    private Control soundTab = null!;
+    private Slider masterVolume = null!;
+    private CustomCheckBox masterMuted = null!;
+    private Slider musicVolume = null!;
+    private CustomCheckBox musicMuted = null!;
+    private Slider ambianceVolume = null!;
+    private CustomCheckBox ambianceMuted = null!;
+    private Slider sfxVolume = null!;
+    private CustomCheckBox sfxMuted = null!;
+    private Slider guiVolume = null!;
+    private CustomCheckBox guiMuted = null!;
+    private OptionButton audioOutputDeviceSelection = null!;
+    private OptionButton languageSelection = null!;
+    private Button resetLanguageButton = null!;
+    private Label languageProgressLabel = null!;
 
     // Performance tab
-    private Control performanceTab;
-    private OptionButton cloudInterval;
-    private VBoxContainer cloudResolutionTitle;
-    private OptionButton cloudResolution;
-    private CustomCheckBox runAutoEvoDuringGameplay;
-    private Label detectedCPUCount;
-    private Label activeThreadCount;
-    private CustomCheckBox assumeHyperthreading;
-    private CustomCheckBox useManualThreadCount;
-    private Slider threadCountSlider;
+    private Control performanceTab = null!;
+    private OptionButton cloudInterval = null!;
+    private VBoxContainer cloudResolutionTitle = null!;
+    private OptionButton cloudResolution = null!;
+    private CustomCheckBox runAutoEvoDuringGameplay = null!;
+    private Label detectedCPUCount = null!;
+    private Label activeThreadCount = null!;
+    private CustomCheckBox assumeHyperthreading = null!;
+    private CustomCheckBox useManualThreadCount = null!;
+    private Slider threadCountSlider = null!;
 
     // Inputs tab
-    private Control inputsTab;
-    private InputGroupList inputGroupList;
+    private Control inputsTab = null!;
+    private InputGroupList inputGroupList = null!;
 
     // Misc tab
-    private Control miscTab;
-    private CustomCheckBox playIntro;
-    private CustomCheckBox playMicrobeIntro;
-    private CustomCheckBox cheats;
-    private CustomCheckBox tutorialsEnabledOnNewGame;
-    private CustomCheckBox autoSave;
-    private SpinBox maxAutoSaves;
-    private SpinBox maxQuickSaves;
-    private CustomCheckBox customUsernameEnabled;
-    private LineEdit customUsername;
-    private OptionButton jsonDebugMode;
+    private Control miscTab = null!;
+    private CustomCheckBox playIntro = null!;
+    private CustomCheckBox playMicrobeIntro = null!;
+    private CustomCheckBox cheats = null!;
+    private CustomCheckBox tutorialsEnabledOnNewGame = null!;
+    private CustomCheckBox autoSave = null!;
+    private SpinBox maxAutoSaves = null!;
+    private SpinBox maxQuickSaves = null!;
+    private CustomCheckBox customUsernameEnabled = null!;
+    private LineEdit customUsername = null!;
+    private OptionButton jsonDebugMode = null!;
 
-    private CustomCheckBox tutorialsEnabled;
-    private CustomCheckBox unsavedProgressWarningEnabled;
+    private CustomCheckBox tutorialsEnabled = null!;
+    private CustomCheckBox unsavedProgressWarningEnabled = null!;
 
     // Confirmation Boxes
-    private CustomConfirmationDialog screenshotDirectoryWarningBox;
-    private CustomDialog backConfirmationBox;
-    private CustomConfirmationDialog defaultsConfirmationBox;
-    private ErrorDialog errorAcceptBox;
+    private CustomConfirmationDialog screenshotDirectoryWarningBox = null!;
+    private CustomDialog backConfirmationBox = null!;
+    private CustomConfirmationDialog defaultsConfirmationBox = null!;
+    private ErrorDialog errorAcceptBox = null!;
 
     /*
       Misc
@@ -297,11 +301,11 @@ public class OptionsMenu : ControlWithInput
     ///   Copy of the settings object that should match what is saved to the configuration file,
     ///   used for comparing and restoring to previous state.
     /// </summary>
-    private Settings savedSettings;
+    private Settings savedSettings = null!;
 
     private bool savedTutorialsEnabled;
 
-    private GameProperties gameProperties;
+    private GameProperties? gameProperties;
 
     /*
       Signals
@@ -346,6 +350,7 @@ public class OptionsMenu : ControlWithInput
         vsync = GetNode<CustomCheckBox>(VSyncPath);
         fullScreen = GetNode<CustomCheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
+        maxFramesPerSecond = GetNode<OptionButton>(MaxFramesPerSecondPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
         chromaticAberrationToggle = GetNode<CustomCheckBox>(ChromaticAberrationTogglePath);
         chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
@@ -487,6 +492,7 @@ public class OptionsMenu : ControlWithInput
         vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        maxFramesPerSecond.Selected = MaxFPSValueToIndex(settings.MaxFramesPerSecond);
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
@@ -580,7 +586,7 @@ public class OptionsMenu : ControlWithInput
             case OptionsMode.InGame:
             {
                 // Current game tutorial option shouldn't be visible in freebuild mode.
-                if (!gameProperties.FreeBuild)
+                if (!gameProperties!.FreeBuild)
                     tutorialsEnabled.Show();
                 else
                     tutorialsEnabled.Hide();
@@ -769,6 +775,62 @@ public class OptionsMenu : ControlWithInput
         }
     }
 
+    private int MaxFPSValueToIndex(int value)
+    {
+        switch (value)
+        {
+            case 30:
+                return 0;
+            case 60:
+                return 1;
+            case 90:
+                return 2;
+            case 120:
+                return 3;
+            case 144:
+                return 4;
+            case 240:
+                return 5;
+            case 360:
+                return 6;
+            case 1000:
+                return 7;
+            case 0:
+                return 8;
+            default:
+                GD.PrintErr("invalid max frames per second value");
+                return 6;
+        }
+    }
+
+    private int MaxFPSIndexToValue(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return 30;
+            case 1:
+                return 60;
+            case 2:
+                return 90;
+            case 3:
+                return 120;
+            case 4:
+                return 144;
+            case 5:
+                return 240;
+            case 6:
+                return 360;
+            case 7:
+                return 1000;
+            case 8:
+                return 0;
+            default:
+                GD.PrintErr("invalid max frames per second index");
+                return 360;
+        }
+    }
+
     private int JSONDebugModeToIndex(JSONDebug.DebugMode mode)
     {
         switch (mode)
@@ -814,7 +876,7 @@ public class OptionsMenu : ControlWithInput
         // If we're in game we need to compare the tutorials enabled state as well.
         if (optionsMode == OptionsMode.InGame)
         {
-            if (gameProperties.TutorialState.Enabled != savedTutorialsEnabled)
+            if (gameProperties!.TutorialState.Enabled != savedTutorialsEnabled)
             {
                 return false;
             }
@@ -938,7 +1000,7 @@ public class OptionsMenu : ControlWithInput
 
         if (optionsMode == OptionsMode.InGame)
         {
-            gameProperties.TutorialState.Enabled = savedTutorialsEnabled;
+            gameProperties!.TutorialState.Enabled = savedTutorialsEnabled;
             tutorialsEnabled.Pressed = savedTutorialsEnabled;
         }
 
@@ -961,7 +1023,7 @@ public class OptionsMenu : ControlWithInput
         savedSettings = Settings.Instance.Clone();
 
         if (optionsMode == OptionsMode.InGame)
-            savedTutorialsEnabled = gameProperties.TutorialState.Enabled;
+            savedTutorialsEnabled = gameProperties!.TutorialState.Enabled;
 
         UpdateResetSaveButtonState();
     }
@@ -1001,7 +1063,7 @@ public class OptionsMenu : ControlWithInput
 
         if (optionsMode == OptionsMode.InGame)
         {
-            gameProperties.TutorialState.Enabled = savedTutorialsEnabled;
+            gameProperties!.TutorialState.Enabled = savedTutorialsEnabled;
             tutorialsEnabled.Pressed = savedTutorialsEnabled;
         }
 
@@ -1055,6 +1117,14 @@ public class OptionsMenu : ControlWithInput
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
+        Settings.Instance.ApplyGraphicsSettings();
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnMaxFramesPerSecondSelected(int index)
+    {
+        Settings.Instance.MaxFramesPerSecond.Value = MaxFPSIndexToValue(index);
         Settings.Instance.ApplyGraphicsSettings();
 
         UpdateResetSaveButtonState();
@@ -1295,6 +1365,12 @@ public class OptionsMenu : ControlWithInput
 
     private void OnTutorialsEnabledToggled(bool pressed)
     {
+        if (gameProperties == null)
+        {
+            GD.PrintErr("Game tutorials toggle signal received but game properties is null");
+            return;
+        }
+
         gameProperties.TutorialState.Enabled = pressed;
 
         UpdateResetSaveButtonState();

@@ -14,6 +14,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
     <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -24,17 +25,24 @@
     <Compile Include="simulation_parameters\GameCredits.cs" />
     <Compile Include="simulation_parameters\TranslationsInfo.cs" />
     <Compile Include="src\auto-evo\EditorAutoEvoRun.cs" />
+    <Compile Include="src\auto-evo\simulation\food_source\ChunkFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\CompoundFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\FoodSource.cs" />
-    <Compile Include="src\auto-evo\simulation\food_source\MarineSnowFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\HeterotrophicFoodSource.cs" />
     <Compile Include="src\auto-evo\simulation\food_source\EnvironmentalFoodSource.cs" />
+    <Compile Include="src\auto-evo\simulation\SimulationCache.cs" />
+    <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\InstanceNotLoadedYetException.cs" />
+    <Compile Include="src\engine\LaunchOptions.cs" />
+    <Compile Include="src\engine\LocalizedString.cs" />
+    <Compile Include="src\engine\LocalizedStringBuilder.cs" />
     <Compile Include="src\engine\ControlHelpers.cs" />
+    <Compile Include="src\engine\CollisionObjectHelpers.cs" />
     <Compile Include="src\engine\EntityReference.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\FileDropHandler.cs" />
@@ -69,6 +77,7 @@
     <Compile Include="src\engine\NodeHelpers.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
+    <Compile Include="src\engine\SceneTreeAttachRequired.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
@@ -78,6 +87,8 @@
     <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
+    <Compile Include="src\general\GameEventDescription.cs" />
+    <Compile Include="src\general\HybridAudioPlayer.cs" />
     <Compile Include="src\general\IEntity.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
     <Compile Include="src\general\PathUtils.cs" />
@@ -88,6 +99,8 @@
     <Compile Include="src\general\TranslationHelper.cs" />
     <Compile Include="src\general\TypeUtils.cs" />
     <Compile Include="src\general\ShuffleBag.cs" />
+    <Compile Include="src\gui_common\charts\ChartDataSet.cs" />
+    <Compile Include="src\gui_common\charts\IDataSetsLegend.cs" />
     <Compile Include="src\gui_common\charts\line\LineChart.cs" />
     <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\DataPoint.cs" />
@@ -147,7 +160,13 @@
     <Compile Include="src\microbe_stage\editor\action_data\RigidityChangeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\EditorActionHistory.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
+    <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
+    <Compile Include="src\microbe_stage\editor\TimelineTab.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\ChemoreceptorUpgradeGUI.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\IOrganelleUpgrader.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\OrganelleUpgradeGUI.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
+    <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />
     <Compile Include="src\microbe_stage\Microbe.Contact.cs" />
     <Compile Include="src\microbe_stage\MicrobeCheatMenu.cs" />
@@ -176,8 +195,10 @@
     <Compile Include="src\microbe_stage\MicrobeInternalCalculations.cs" />
     <Compile Include="src\general\SpeciesInfo.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
-    <Compile Include="src\microbe_stage\NucleusMesh.cs" />
+    <Compile Include="src\microbe_stage\OrganelleMeshWithChildren.cs" />
+    <Compile Include="src\microbe_stage\OrganelleUpgrades.cs" />
     <Compile Include="src\microbe_stage\organelle_components\BindingAgentComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\ChemoreceptorComponent.cs" />
     <Compile Include="src\microbe_stage\particles\CellBurstEffect.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerHoverInfo.cs" />

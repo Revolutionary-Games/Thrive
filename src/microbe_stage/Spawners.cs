@@ -77,7 +77,7 @@ public static class SpawnHelpers
         {
             // Clump
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
+                     Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
                 // Dont spawn them on top of each other because it
                 // causes them to bounce around and lag
@@ -95,7 +95,7 @@ public static class SpawnHelpers
             var line = random.Next(-5, 6) + random.Next(-5, 6);
 
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
+                     Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
             {
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
@@ -114,20 +114,11 @@ public static class SpawnHelpers
             // To prevent bacteria being spawned on top of each other
             var vertical = false;
 
-            var colony = new ColonySpawnInfo
-            {
-                Horizontal = false,
-                Random = random,
-                Species = species,
-                CloudSystem = cloudSystem,
-                CurrentGame = currentGame,
-                CurSpawn = curSpawn,
-                MicrobeScene = microbeScene,
-                WorldRoot = worldRoot,
-            };
+            var colony = new ColonySpawnInfo(false, random, species, cloudSystem, currentGame, curSpawn, microbeScene,
+                worldRoot);
 
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
-                Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
+                     Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
                 if (random.Next(0, 5) < 2 && !colony.Horizontal)
                 {
@@ -187,7 +178,8 @@ public static class SpawnHelpers
 
         // Settings need to be applied before adding it to the scene
         var selectedMesh = chunkType.Meshes.Random(random);
-        chunk.GraphicsScene = selectedMesh.LoadedScene;
+        chunk.GraphicsScene = selectedMesh.LoadedScene ??
+            throw new Exception("Chunk scene has not been loaded even though it should be loaded here");
         chunk.ConvexPhysicsMesh = selectedMesh.LoadedConvexShape;
 
         if (chunk.GraphicsScene == null)
@@ -265,7 +257,7 @@ public static class SpawnHelpers
     private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location)
     {
         for (int c = 0; c < colony.Random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-            Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+                 Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
         {
             // Dont spawn them on top of each other because
             // It causes them to bounce around and lag
@@ -297,6 +289,19 @@ public static class SpawnHelpers
         public Random Random;
         public CompoundCloudSystem CloudSystem;
         public GameProperties CurrentGame;
+
+        public ColonySpawnInfo(bool horizontal, Random random, Species species, CompoundCloudSystem cloudSystem,
+            GameProperties currentGame, Vector3 curSpawn, PackedScene microbeScene, Node worldRoot)
+        {
+            Horizontal = horizontal;
+            Random = random;
+            Species = species;
+            CloudSystem = cloudSystem;
+            CurrentGame = currentGame;
+            CurSpawn = curSpawn;
+            MicrobeScene = microbeScene;
+            WorldRoot = worldRoot;
+        }
     }
 }
 
@@ -322,7 +327,7 @@ public class MicrobeSpawner : Spawner
         random = new Random();
     }
 
-    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         // The true here is that this is AI controlled
         var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
@@ -335,7 +340,7 @@ public class MicrobeSpawner : Spawner
         if (first.Species.IsBacteria)
         {
             foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                cloudSystem, currentGame, random))
+                         cloudSystem, currentGame, random))
             {
                 yield return colonyMember;
 
@@ -361,7 +366,7 @@ public class CompoundCloudSpawner : Spawner
         this.amount = amount;
     }
 
-    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
 
@@ -377,7 +382,7 @@ public class ChunkSpawner : Spawner
 {
     private readonly PackedScene chunkScene;
     private readonly ChunkConfiguration chunkType;
-    private readonly Random random = new Random();
+    private readonly Random random = new();
     private readonly CompoundCloudSystem cloudSystem;
 
     public ChunkSpawner(ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
@@ -387,7 +392,7 @@ public class ChunkSpawner : Spawner
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
-    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned>? Spawn(Node worldNode, Vector3 location)
     {
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
             cloudSystem, random);

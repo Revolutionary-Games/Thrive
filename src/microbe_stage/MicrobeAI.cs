@@ -31,10 +31,10 @@ public class MicrobeAI
     private float previousAngle;
 
     [JsonProperty]
-    private Vector3 targetPosition = new Vector3(0, 0, 0);
+    private Vector3 targetPosition = new(0, 0, 0);
 
     [JsonIgnore]
-    private EntityReference<Microbe> focusedPrey = new EntityReference<Microbe>();
+    private EntityReference<Microbe> focusedPrey = new();
 
     [JsonProperty]
     private float pursuitThreshold;
@@ -159,9 +159,9 @@ public class MicrobeAI
         }
     }
 
-    private FloatingChunk GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes, Random random)
+    private FloatingChunk? GetNearestChunkItem(List<FloatingChunk> allChunks, List<Microbe> allMicrobes, Random random)
     {
-        FloatingChunk chosenChunk = null;
+        FloatingChunk? chosenChunk = null;
 
         // If the microbe cannot absorb, no need for this
         if (microbe.Membrane.Type.CellWall)
@@ -172,6 +172,9 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
+            if (chunk.ContainedCompounds == null)
+                continue;
+
             if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
                 && (chunk.Translation - microbe.Translation).LengthSquared()
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
@@ -240,7 +243,7 @@ public class MicrobeAI
     /// </summary>
     /// <returns>The nearest prey item.</returns>
     /// <param name="allMicrobes">All microbes.</param>
-    private Microbe GetNearestPreyItem(List<Microbe> allMicrobes)
+    private Microbe? GetNearestPreyItem(List<Microbe> allMicrobes)
     {
         var focused = focusedPrey.Value;
         if (focused != null)
@@ -264,7 +267,7 @@ public class MicrobeAI
             focusedPrey.Value = null;
         }
 
-        Microbe chosenPrey = null;
+        Microbe? chosenPrey = null;
 
         foreach (var otherMicrobe in allMicrobes)
         {
@@ -293,12 +296,12 @@ public class MicrobeAI
     ///   Building the predator list and setting the scariest one to be predator
     /// </summary>
     /// <param name="allMicrobes">All microbes.</param>
-    private Microbe GetNearestPredatorItem(List<Microbe> allMicrobes)
+    private Microbe? GetNearestPredatorItem(List<Microbe> allMicrobes)
     {
         var fleeThreshold = 3.0f - (2 *
             (SpeciesFear / Constants.MAX_SPECIES_FEAR) *
             (10 - (9 * microbe.Hitpoints / microbe.MaxHitpoints)));
-        Microbe predator = null;
+        Microbe? predator = null;
         foreach (var otherMicrobe in allMicrobes)
         {
             if (otherMicrobe == microbe)
@@ -470,8 +473,8 @@ public class MicrobeAI
 
         // If this microbe lacks vital compounds don't bother with ammonia and phosphate
         if (usefulCompounds.Any(
-            compound => IsVitalCompound(compound) &&
-                microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
+                compound => IsVitalCompound(compound) &&
+                    microbe.Compounds.GetCompoundAmount(compound) < 0.5f * microbe.Compounds.Capacity))
         {
             usefulCompounds = usefulCompounds.Where(x => x != ammonia && x != phosphates);
         }

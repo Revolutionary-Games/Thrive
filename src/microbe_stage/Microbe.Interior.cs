@@ -15,21 +15,21 @@ public partial class Microbe
     ///   The stored compounds in this microbe
     /// </summary>
     [JsonProperty]
-    public readonly CompoundBag Compounds = new CompoundBag(0.0f);
+    public readonly CompoundBag Compounds = new(0.0f);
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
-    [JsonProperty]
-    private CompoundCloudSystem cloudSystem;
+    private Compound atp = null!;
 
     [JsonProperty]
-    private Compound queuedToxinToEmit;
+    private CompoundCloudSystem? cloudSystem;
+
+    [JsonProperty]
+    private Compound? queuedToxinToEmit;
 
     /// <summary>
     ///   The organelles in this microbe
     /// </summary>
     [JsonProperty]
-    private OrganelleLayout<PlacedOrganelle> organelles;
+    private OrganelleLayout<PlacedOrganelle>? organelles;
 
     [JsonProperty]
     private float lastCheckedATPDamage;
@@ -56,6 +56,8 @@ public partial class Microbe
     /// </remarks>
     private bool allOrganellesDivided;
 
+    private float timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
     /// <summary>
     ///   True only when this cell has been killed to let know things
     ///   being engulfed by us that we are dead.
@@ -74,7 +76,7 @@ public partial class Microbe
     ///   All organelle nodes need to be added to this node to make scale work
     /// </summary>
     [JsonIgnore]
-    public Spatial OrganelleParent { get; private set; }
+    public Spatial OrganelleParent { get; private set; } = null!;
 
     [JsonIgnore]
     public CompoundBag ProcessCompoundStorage => Compounds;
@@ -83,7 +85,7 @@ public partial class Microbe
     ///   For use by the AI to do run and tumble to find compounds. Also used by player cell for tutorials
     /// </summary>
     [JsonProperty]
-    public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new();
 
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }
@@ -92,7 +94,14 @@ public partial class Microbe
     ///   Called when the reproduction status of this microbe changes
     /// </summary>
     [JsonProperty]
-    public Action<Microbe, bool> OnReproductionStatus { get; set; }
+    public Action<Microbe, bool>? OnReproductionStatus { get; set; }
+
+    /// <summary>
+    ///   Called periodically to report the chemoreception settings of the microbe
+    /// </summary>
+    [JsonProperty]
+    public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>?
+        OnCompoundChemoreceptionInfo { get; set; }
 
     /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
@@ -116,11 +125,9 @@ public partial class Microbe
 
         foreach (var entry in Species.Organelles.Organelles)
         {
-            var placed = new PlacedOrganelle
+            var placed = new PlacedOrganelle(entry.Definition, entry.Position, entry.Orientation)
             {
-                Definition = entry.Definition,
-                Position = entry.Position,
-                Orientation = entry.Orientation,
+                Upgrades = entry.Upgrades,
             };
 
             organelles.Add(placed);
@@ -132,6 +139,10 @@ public partial class Microbe
         // Unbind if a colony's master cell removed its binding agent.
         if (Colony != null && Colony.Master == this && !organelles.Any(p => p.IsBindingAgent))
             Colony.RemoveFromColony(this);
+
+        // Make chemoreception update happen immediately in case the settings changed so that new information is
+        // used earlier
+        timeUntilChemoreceptionUpdate = 0;
     }
 
     /// <summary>
@@ -141,6 +152,9 @@ public partial class Microbe
     {
         if (!IsForPreviewOnly)
             throw new InvalidOperationException("Microbe must be a preview-only type");
+
+        if (organelles == null)
+            throw new InvalidOperationException("Microbe must be initialized");
 
         foreach (var entry in organelles.Organelles)
         {
@@ -152,7 +166,7 @@ public partial class Microbe
     /// <summary>
     ///   Tries to fire a toxin if possible
     /// </summary>
-    public void EmitToxin(Compound agentType = null)
+    public void EmitToxin(Compound? agentType = null)
     {
         if (AgentEmissionCooldown > 0)
             return;
@@ -181,9 +195,7 @@ public partial class Microbe
         if (Species.IsBacteria)
             ejectionDistance *= 0.5f;
 
-        var props = new AgentProperties();
-        props.Compound = agentType;
-        props.Species = Species;
+        var props = new AgentProperties(Species, agentType);
 
         // Find the direction the microbe is facing
         var direction = (LookAtPoint - Translation).Normalized();
@@ -270,7 +282,7 @@ public partial class Microbe
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem!, CurrentGame);
 
         // Make it despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);
@@ -397,6 +409,9 @@ public partial class Microbe
     /// fraction done.  </summary>
     public Dictionary<Compound, float> CalculateTotalCompounds()
     {
+        if (organelles == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         var result = new Dictionary<Compound, float>();
 
         foreach (var organelle in organelles)
@@ -415,6 +430,9 @@ public partial class Microbe
     /// </summary>
     public Dictionary<Compound, float> CalculateAlreadyAbsorbedCompounds()
     {
+        if (organelles == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
         var result = new Dictionary<Compound, float>();
 
         foreach (var organelle in organelles)
@@ -441,7 +459,7 @@ public partial class Microbe
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
-        cloudSystem.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
+        cloudSystem!.AbsorbCompounds(GlobalTransform.origin, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
 
         if (IsPlayerMicrobe && CheatManager.InfiniteCompounds)
@@ -553,7 +571,7 @@ public partial class Microbe
         var organellesToAdd = new List<PlacedOrganelle>();
 
         // Grow all the organelles, except the nucleus which is given compounds last
-        foreach (var organelle in organelles.Organelles)
+        foreach (var organelle in organelles!.Organelles)
         {
             // Check if already done
             if (organelle.WasSplit)
@@ -561,8 +579,8 @@ public partial class Microbe
 
             // We are in G1 phase of the cell cycle, duplicate all organelles.
 
-            // Except the nucleus
-            if (organelle.Definition.InternalName == "nucleus")
+            // Except the unique organelles
+            if (organelle.Definition.Unique)
                 continue;
 
             // If Give it some compounds to make it larger.
@@ -643,8 +661,12 @@ public partial class Microbe
         var q = organelle.Position.Q;
         var r = organelle.Position.R;
 
-        var newOrganelle = new PlacedOrganelle();
-        newOrganelle.Definition = organelle.Definition;
+        // The position used here will be overridden with the right value when we manage to find a place
+        // for this organelle
+        var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(q, r), 0)
+        {
+            Upgrades = organelle.Upgrades,
+        };
 
         // Spiral search for space for the organelle
         int radius = 1;
@@ -652,8 +674,8 @@ public partial class Microbe
         {
             // Moves into the ring of radius "radius" and center the old organelle
             var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
-            q = q + radiusOffset.Q;
-            r = r + radiusOffset.R;
+            q += radiusOffset.Q;
+            r += radiusOffset.R;
 
             // Iterates in the ring
             for (int side = 1; side <= 6; ++side)
@@ -663,8 +685,8 @@ public partial class Microbe
                 // Moves "radius" times into each direction
                 for (int i = 1; i <= radius; ++i)
                 {
-                    q = q + offset.Q;
-                    r = r + offset.R;
+                    q += offset.Q;
+                    r += offset.R;
 
                     // Checks every possible rotation value.
                     for (int j = 0; j <= 5; ++j)
@@ -677,7 +699,7 @@ public partial class Microbe
                         // now fixed to actually try the different
                         // rotations.
                         newOrganelle.Orientation = j;
-                        if (organelles.CanPlace(newOrganelle))
+                        if (organelles!.CanPlace(newOrganelle))
                         {
                             organelles.Add(newOrganelle);
                             return newOrganelle;
@@ -738,6 +760,56 @@ public partial class Microbe
         Compounds.TakeCompound(atp, osmoregulationCost);
     }
 
+    private void HandleMovement(float delta)
+    {
+        if (MovementDirection != Vector3.Zero || queuedMovementForce != Vector3.Zero)
+        {
+            // Movement direction should not be normalized to allow different speeds
+            Vector3 totalMovement = Vector3.Zero;
+
+            if (MovementDirection != Vector3.Zero)
+            {
+                totalMovement += DoBaseMovementForce(delta);
+            }
+
+            totalMovement += queuedMovementForce;
+
+            ApplyMovementImpulse(totalMovement, delta);
+
+            var deltaAcceleration = (linearAcceleration - lastLinearAcceleration).LengthSquared();
+
+            if (movementSoundCooldownTimer > 0)
+                movementSoundCooldownTimer -= delta;
+
+            // The cell starts moving from a relatively idle velocity, so play the begin movement sound
+            // TODO: Account for cell turning, I can't figure out a reliable way to do that using the current
+            // calculation - Kasterisk
+            if (movementSoundCooldownTimer <= 0 && deltaAcceleration > lastLinearAcceleration.LengthSquared() &&
+                lastLinearVelocity.LengthSquared() <= 1)
+            {
+                movementSoundCooldownTimer = Constants.MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN;
+                PlaySoundEffect("res://assets/sounds/soundeffects/microbe-movement-1.ogg");
+            }
+
+            if (!movementAudio.Playing)
+                movementAudio.Play();
+
+            // Max volume is 0.4
+            if (movementAudio.Volume < 0.4f)
+                movementAudio.Volume += delta;
+        }
+        else
+        {
+            if (movementAudio.Playing)
+            {
+                movementAudio.Volume -= delta;
+
+                if (movementAudio.Volume <= 0)
+                    movementAudio.Stop();
+            }
+        }
+    }
+
     /// <summary>
     ///   Damage the microbe if its too low on ATP.
     /// </summary>
@@ -795,7 +867,7 @@ public partial class Microbe
     /// </summary>
     private void RecomputeOrganelleCapacity()
     {
-        organellesCapacity = organelles.Sum(o => o.StorageCapacity);
+        organellesCapacity = organelles!.Sum(o => o.StorageCapacity);
         Compounds.Capacity = organellesCapacity;
     }
 
@@ -816,7 +888,7 @@ public partial class Microbe
         if (amountToEject <= 0)
             return;
 
-        cloudSystem.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition());
+        cloudSystem!.AddCloud(compound, amountToEject, CalculateNearbyWorldPosition());
     }
 
     /// <summary>
@@ -857,5 +929,20 @@ public partial class Microbe
             membraneCoords.x * s + membraneCoords.z * c);
 
         return Translation + (ejectionDirection * ejectionDistance);
+    }
+
+    private void HandleChemoreceptorLines(float delta)
+    {
+        timeUntilChemoreceptionUpdate -= delta;
+
+        if (timeUntilChemoreceptionUpdate > 0 || Dead)
+            return;
+
+        timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
+
+        OnCompoundChemoreceptionInfo?.Invoke(this, activeCompoundDetections);
+
+        // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
+        activeCompoundDetections.Clear();
     }
 }

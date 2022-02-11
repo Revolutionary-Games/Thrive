@@ -9,14 +9,14 @@ using Newtonsoft.Json.Serialization;
 /// </summary>
 public class SerializationBinder : DefaultSerializationBinder
 {
-    public override Type BindToType(string assemblyName, string typeName)
+    public override Type BindToType(string? assemblyName, string typeName)
     {
         var type = base.BindToType(assemblyName, typeName);
 
         if (type.CustomAttributes.Any(attr =>
-            attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute) ||
-            attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
-            attr.AttributeType == typeof(SceneLoadedClassAttribute)))
+                attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute) ||
+                attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute) ||
+                attr.AttributeType == typeof(SceneLoadedClassAttribute)))
         {
             // Allowed type
             return type;

@@ -11,12 +11,12 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class Microbe
 {
-    private SphereShape engulfShape;
+    private SphereShape engulfShape = null!;
 
     /// <summary>
     ///   Contains the pili this microbe has for collision checking
     /// </summary>
-    private HashSet<uint> pilusPhysicsShapes = new HashSet<uint>();
+    private HashSet<uint> pilusPhysicsShapes = new();
 
     private bool membraneOrganellePositionsAreDirty = true;
 
@@ -25,7 +25,7 @@ public partial class Microbe
     private bool previousEngulfMode;
 
     [JsonProperty]
-    private EntityReference<Microbe> hostileEngulfer = new EntityReference<Microbe>();
+    private EntityReference<Microbe> hostileEngulfer = new();
 
     [JsonProperty]
     private bool wasBeingEngulfed;
@@ -33,17 +33,17 @@ public partial class Microbe
     /// <summary>
     ///   Tracks other Microbes that are within the engulf area and are ignoring collisions with this body.
     /// </summary>
-    private HashSet<Microbe> otherMicrobesInEngulfRange = new HashSet<Microbe>();
+    private HashSet<Microbe> otherMicrobesInEngulfRange = new();
 
     /// <summary>
     ///   Tracks microbes this is touching, for beginning engulfing
     /// </summary>
-    private HashSet<Microbe> touchedMicrobes = new HashSet<Microbe>();
+    private HashSet<Microbe> touchedMicrobes = new();
 
     /// <summary>
     ///   Microbes that this cell is actively trying to engulf
     /// </summary>
-    private HashSet<Microbe> attemptingToEngulf = new HashSet<Microbe>();
+    private HashSet<Microbe> attemptingToEngulf = new();
 
     [JsonProperty]
     private float escapeInterval;
@@ -59,7 +59,7 @@ public partial class Microbe
     private float flashDuration;
 
     [JsonProperty]
-    private Color flashColour = new Color(0, 0, 0, 0);
+    private Color flashColour = new(0, 0, 0, 0);
 
     /// <summary>
     ///   This determines how important the current flashing action is. This allows higher priority flash colours to
@@ -68,7 +68,7 @@ public partial class Microbe
     [JsonProperty]
     private int flashPriority;
 
-    private PackedScene cellBurstEffectScene;
+    private PackedScene cellBurstEffectScene = null!;
 
     [JsonProperty]
     private bool deathParticlesSpawned;
@@ -108,19 +108,19 @@ public partial class Microbe
     ///   </para>
     /// </remarks>
     [JsonProperty(Order = 1)]
-    public MicrobeColony Colony { get; set; }
+    public MicrobeColony? Colony { get; set; }
 
     [JsonProperty]
-    public Microbe ColonyParent { get; set; }
+    public Microbe? ColonyParent { get; set; }
 
     [JsonProperty]
-    public List<Microbe> ColonyChildren { get; set; }
+    public List<Microbe>? ColonyChildren { get; set; }
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
     [JsonIgnore]
-    public Membrane Membrane { get; private set; }
+    public Membrane Membrane { get; private set; } = null!;
 
     [JsonProperty]
     public float Hitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
@@ -132,7 +132,7 @@ public partial class Microbe
     public bool IsBeingEngulfed { get; private set; }
 
     [JsonIgnore]
-    public AliveMarker AliveMarker { get; } = new AliveMarker();
+    public AliveMarker AliveMarker { get; } = new();
 
     /// <summary>
     ///   The current state of the microbe. Shared across the colony
@@ -182,19 +182,19 @@ public partial class Microbe
     /// <summary>
     ///   Returns true when this microbe can enable binding mode
     /// </summary>
-    public bool CanBind => organelles.Any(p => p.IsBindingAgent) || Colony != null;
+    public bool CanBind => organelles?.Any(p => p.IsBindingAgent) == true || Colony != null;
 
     /// <summary>
     ///   Called when this Microbe dies
     /// </summary>
     [JsonProperty]
-    public Action<Microbe> OnDeath { get; set; }
+    public Action<Microbe>? OnDeath { get; set; }
 
     [JsonProperty]
-    public Action<Microbe> OnUnbindEnabled { get; set; }
+    public Action<Microbe>? OnUnbindEnabled { get; set; }
 
     [JsonProperty]
-    public Action<Microbe> OnUnbound { get; set; }
+    public Action<Microbe>? OnUnbound { get; set; }
 
     /// <summary>
     ///   Updates the intensity of wigglyness of this cell's membrane based on membrane type, taking
@@ -296,6 +296,13 @@ public partial class Microbe
 
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
+        else if (source == "ice")
+        {
+            PlayNonPositionalSoundEffect("res://assets/sounds/soundeffects/microbe-ice-damage.ogg", 0.5f);
+
+            // Divide damage by physical resistance
+            amount /= Species.MembraneType.PhysicalResistance;
+        }
 
         Hitpoints -= amount;
 
@@ -330,6 +337,38 @@ public partial class Microbe
     }
 
     /// <summary>
+    ///   Offset relative to the colony lead cell. Throws if this cell is not part of a colony
+    /// </summary>
+    /// <returns>The offset</returns>
+    public Vector3 GetOffsetRelativeToMaster()
+    {
+        return (GlobalTransform.origin - Colony!.Master.GlobalTransform.origin).Rotated(Vector3.Down,
+            Colony.Master.Rotation.y);
+    }
+
+    /// <summary>
+    ///  Public because it needs to be called by external organelles only.
+    ///  Not meant for other uses.
+    /// </summary>
+    public void SendOrganellePositionsToMembrane()
+    {
+        if (organelles == null)
+            throw new InvalidOperationException("Microbe must be initialized first");
+
+        var organellePositions = new List<Vector2>();
+
+        foreach (var entry in organelles.Organelles)
+        {
+            var cartesian = Hex.AxialToCartesian(entry.Position);
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+        }
+
+        Membrane.OrganellePositions = organellePositions;
+        Membrane.Dirty = true;
+        membraneOrganellePositionsAreDirty = false;
+    }
+
+    /// <summary>
     ///   Instantly kills this microbe and queues this entity to be destroyed
     /// </summary>
     public void Kill()
@@ -350,8 +389,6 @@ public partial class Microbe
         LinearVelocity = new Vector3(0, 0, 0);
         allOrganellesDivided = false;
 
-        var random = new Random();
-
         // Releasing all the agents.
         // To not completely deadlock in this there is a maximum limit
         int createdAgents = 0;
@@ -362,9 +399,7 @@ public partial class Microbe
 
             var amount = Compounds.GetCompoundAmount(oxytoxy);
 
-            var props = new AgentProperties();
-            props.Compound = oxytoxy;
-            props.Species = Species;
+            var props = new AgentProperties(Species, oxytoxy);
 
             var agentScene = SpawnHelpers.LoadAgentScene();
 
@@ -400,7 +435,7 @@ public partial class Microbe
         }
 
         // Eject some part of the build cost of all the organelles
-        foreach (var organelle in organelles)
+        foreach (var organelle in organelles!)
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
@@ -482,7 +517,10 @@ public partial class Microbe
 
             // Finally spawn a chunk with the settings
             var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetStageAsParent(),
-                chunkScene, cloudSystem, random);
+                chunkScene, cloudSystem!, random);
+
+            // Add to the spawn system to make these chunks limit possible number of entities
+            SpawnSystem.AddEntityToTrack(chunk);
 
             ModLoader.ModInterface.TriggerOnChunkSpawned(chunk, false);
         }
@@ -568,7 +606,7 @@ public partial class Microbe
         // TODO: if microbeRotation is the rotation of *this* instance we should use the variable here directly
         // An object doesn't need to be told its own member variable in a method...
         // https://github.com/Revolutionary-Games/Thrive/issues/2504
-        foreach (var organelle in organelles)
+        foreach (var organelle in organelles!)
             organelle.ReParentShapes(to, offset);
     }
 
@@ -576,6 +614,12 @@ public partial class Microbe
     {
         if (microbe == this)
         {
+            if (Colony == null)
+            {
+                throw new InvalidOperationException(
+                    $"{nameof(Colony)} must be set before calling {nameof(OnColonyMemberAdded)}");
+            }
+
             OnIGotAddedToColony();
 
             if (Colony.Master != this)
@@ -606,11 +650,11 @@ public partial class Microbe
             TranslationServer.Translate("SUCCESSFUL_KILL"));
     }
 
-    private Microbe GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
+    private Microbe? GetColonyMemberWithShapeOwner(uint ownerID, MicrobeColony colony)
     {
         foreach (var microbe in colony.ColonyMembers)
         {
-            if (microbe.organelles.Any(o => o.HasShape(ownerID)) || microbe.IsPilus(ownerID))
+            if (microbe.organelles!.Any(o => o.HasShape(ownerID)) || microbe.IsPilus(ownerID))
                 return microbe;
         }
 
@@ -623,12 +667,6 @@ public partial class Microbe
         // possibly bogus ownerID values that sometimes seem to come from Godot
         // https://github.com/Revolutionary-Games/Thrive/issues/2504
         throw new InvalidOperationException();
-    }
-
-    private Vector3 GetOffsetRelativeToMaster()
-    {
-        return (GlobalTransform.origin - Colony.Master.GlobalTransform.origin).Rotated(Vector3.Down,
-            Colony.Master.Rotation.y);
     }
 
     private void OnIGotAddedToColony()
@@ -763,13 +801,29 @@ public partial class Microbe
             if (!engulfAudio.Playing)
                 engulfAudio.Play();
 
+            // To balance loudness, here the engulfment audio's max volume is reduced to 0.6 in linear volume
+
+            if (engulfAudio.Volume < 0.6f)
+            {
+                engulfAudio.Volume += delta;
+            }
+            else if (engulfAudio.Volume >= 0.6f)
+            {
+                engulfAudio.Volume = 0.6f;
+            }
+
             // Flash the membrane blue.
             Flash(1, new Color(0.2f, 0.5f, 1.0f, 0.5f));
         }
         else
         {
-            if (engulfAudio.Playing)
-                engulfAudio.Stop();
+            if (engulfAudio.Playing && engulfAudio.Volume > 0)
+            {
+                engulfAudio.Volume -= delta;
+
+                if (engulfAudio.Volume <= 0)
+                    engulfAudio.Stop();
+            }
         }
 
         // Movement modifier
@@ -902,7 +956,7 @@ public partial class Microbe
             }
         }
 
-        foreach (var organelle in organelles)
+        foreach (var organelle in organelles!)
         {
             organelle.Hide();
         }
@@ -913,21 +967,6 @@ public partial class Microbe
         {
             this.DestroyDetachAndQueueFree();
         }
-    }
-
-    private void SendOrganellePositionsToMembrane()
-    {
-        var organellePositions = new List<Vector2>();
-
-        foreach (var entry in organelles.Organelles)
-        {
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
-        }
-
-        Membrane.OrganellePositions = organellePositions;
-        Membrane.Dirty = true;
-        membraneOrganellePositionsAreDirty = false;
     }
 
     private void ChangeNodeParent(Microbe parent)
@@ -945,6 +984,12 @@ public partial class Microbe
 
     private void RevertNodeParent()
     {
+        if (Colony == null)
+        {
+            throw new InvalidOperationException(
+                $"{nameof(RevertNodeParent)} can only be called on microbes in a colony");
+        }
+
         var pos = GlobalTransform;
 
         if (Colony.Master != this)
@@ -1014,6 +1059,12 @@ public partial class Microbe
             {
                 thisMicrobe.CheckStartEngulfingOnCandidates();
                 thisMicrobe.CheckBinding();
+            }
+
+            // Play bump sound if certain total collision impulse is reached (adjusted by mass)
+            if (thisMicrobe.collisionForce / Mass > Constants.CONTACT_IMPULSE_TO_BUMP_SOUND)
+            {
+                thisMicrobe.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-collision.ogg");
             }
         }
     }
@@ -1088,7 +1139,7 @@ public partial class Microbe
             return;
 
         // Invoke this on the next frame to avoid crashing when adding a third cell
-        Invoke.Instance.Perform(BeginBind);
+        Invoke.Instance.Queue(BeginBind);
     }
 
     private void BeginBind()

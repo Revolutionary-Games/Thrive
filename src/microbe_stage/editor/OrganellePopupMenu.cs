@@ -11,32 +11,40 @@ using Godot;
 public class OrganellePopupMenu : PopupPanel
 {
     [Export]
-    public NodePath SelectedOrganelleNameLabelPath;
+    public NodePath SelectedOrganelleNameLabelPath = null!;
 
     [Export]
-    public NodePath DeleteButtonPath;
+    public NodePath DeleteButtonPath = null!;
 
     [Export]
-    public NodePath MoveButtonPath;
+    public NodePath MoveButtonPath = null!;
 
     [Export]
-    public NodePath MicrobeEditorPath;
+    public NodePath ModifyButtonPath = null!;
 
-    private Label selectedOrganelleNameLabel;
-    private Button deleteButton;
-    private Button moveButton;
-    private MicrobeEditor microbeEditor;
+    [Export]
+    public NodePath MicrobeEditorPath = null!;
+
+    private Label? selectedOrganelleNameLabel;
+    private Button? deleteButton;
+    private Button? moveButton;
+    private Button? modifyButton;
+    private MicrobeEditor? microbeEditor;
 
     private bool showPopup;
-    private List<OrganelleTemplate> selectedOrganelles;
+    private List<OrganelleTemplate>? selectedOrganelles;
     private bool enableDelete = true;
     private bool enableMove = true;
+    private bool enableModify;
 
     [Signal]
     public delegate void DeletePressed();
 
     [Signal]
     public delegate void MovePressed();
+
+    [Signal]
+    public delegate void ModifyPressed();
 
     public bool ShowPopup
     {
@@ -66,12 +74,12 @@ public class OrganellePopupMenu : PopupPanel
     /// <summary>
     ///   The main organelle.
     /// </summary>
-    public OrganelleTemplate SelectedOrganelle { get; set; }
+    public OrganelleTemplate? SelectedOrganelle { get; set; }
 
     /// <summary>
     ///   The placed organelles to be shown options of.
     /// </summary>
-    public List<OrganelleTemplate> SelectedOrganelles
+    public List<OrganelleTemplate>? SelectedOrganelles
     {
         get => selectedOrganelles;
         set
@@ -101,16 +109,33 @@ public class OrganellePopupMenu : PopupPanel
         }
     }
 
+    public bool EnableModifyOption
+    {
+        get => enableModify;
+        set
+        {
+            enableModify = value;
+            UpdateModifyButton();
+        }
+    }
+
     public override void _Ready()
     {
         selectedOrganelleNameLabel = GetNode<Label>(SelectedOrganelleNameLabelPath);
         deleteButton = GetNode<Button>(DeleteButtonPath);
         moveButton = GetNode<Button>(MoveButtonPath);
         microbeEditor = GetNode<MicrobeEditor>(MicrobeEditorPath);
+        modifyButton = GetNode<Button>(ModifyButtonPath);
 
-        UpdateOrganelleNameLabel();
-        UpdateDeleteButton();
-        UpdateMoveButton();
+        // Skip things that use the organelle to work on if we aren't open (no selected organelle set)
+        if (selectedOrganelles != null)
+        {
+            UpdateOrganelleNameLabel();
+            UpdateDeleteButton();
+            UpdateMoveButton();
+        }
+
+        UpdateModifyButton();
     }
 
     public override void _EnterTree()
@@ -177,7 +202,11 @@ public class OrganellePopupMenu : PopupPanel
 
     private void OnModifyPressed()
     {
-        throw new NotImplementedException();
+        GUICommon.Instance.PlayButtonPressSound();
+
+        EmitSignal(nameof(ModifyPressed));
+
+        Hide();
     }
 
     private void UpdateButtonContentsColour(string optionName, bool pressed)
@@ -269,5 +298,13 @@ public class OrganellePopupMenu : PopupPanel
             mpCost.ToString(CultureInfo.CurrentCulture));
 
         moveButton.Disabled = !EnableMoveOption;
+    }
+
+    private void UpdateModifyButton()
+    {
+        if (modifyButton == null)
+            return;
+
+        modifyButton.Disabled = !enableModify;
     }
 }

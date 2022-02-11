@@ -33,7 +33,7 @@
 
         public static IReadOnlyDictionary<string, ISaveUpgradeStep> SupportedUpgrades => StoredSaveUpgradeSteps;
 
-        public static ISaveUpgradeStep GetUpgradeStepForVersion(string version)
+        public static ISaveUpgradeStep? GetUpgradeStepForVersion(string version)
         {
             if (!SupportedUpgrades.TryGetValue(version, out ISaveUpgradeStep step))
                 return null;
@@ -54,6 +54,9 @@
                 { "0.5.5.0", new UpgradeStep055To056() },
                 { "0.5.6.0-alpha", new UpgradeJustVersionNumber("0.5.6.0-rc1") },
                 { "0.5.6.0-rc1", new UpgradeJustVersionNumber("0.5.6.0") },
+                { "0.5.6.0", new UpgradeJustVersionNumber("0.5.6.1") },
+                { "0.5.6.1", new UpgradeStep0561To057() },
+                { "0.5.7.0-rc1", new UpgradeJustVersionNumber("0.5.7.0") },
             };
         }
     }
@@ -62,11 +65,11 @@
     {
         protected override string VersionAfter => "0.5.5.0-alpha";
 
-        protected override void RecursivelyUpdateObjectProperties(JObject jObject)
+        protected override void RecursivelyUpdateObjectProperties(JObject? jObject)
         {
             base.RecursivelyUpdateObjectProperties(jObject);
 
-            foreach (var entry in jObject.Properties())
+            foreach (var entry in jObject!.Properties())
             {
                 if (entry.Name == "DespawnRadiusSqr")
                 {
@@ -159,6 +162,19 @@
         }
     }
 
+    internal class UpgradeStep0561To057 : BaseRecursiveJSONWalkerStep
+    {
+        protected override string VersionAfter => "0.5.7.0-rc1";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            if (property.Name.Contains("GameWorld"))
+            {
+                ((JObject)property.Value).Add("eventsLog", new JObject());
+            }
+        }
+    }
+
     internal abstract class BaseRecursiveJSONWalkerStep : BaseJSONUpgradeStep
     {
         protected override void PerformUpgradeOnJSON(JObject saveData)
@@ -166,7 +182,7 @@
             RecursivelyUpdateObjectProperties(saveData);
         }
 
-        protected virtual void RecursivelyUpdateObjectProperties(JObject jObject)
+        protected virtual void RecursivelyUpdateObjectProperties(JObject? jObject)
         {
             if (jObject == null)
                 throw new JsonException("Null JSON object passed to looping properties");
@@ -182,8 +198,8 @@
         protected virtual void DetectAndUpdateKeysThatAreJSON(JObject jObject)
         {
             foreach (var entry in jObject.Properties().Where(e =>
-                e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
-                e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
+                         e.Name.StartsWith("{", StringComparison.InvariantCulture) &&
+                         e.Name.EndsWith("}", StringComparison.InvariantCulture)).ToList())
             {
                 UpdateJSONPropertyKey(entry);
             }
@@ -287,7 +303,7 @@
 
         private void CopySaveInfoToStructure(JObject saveData, SaveInformation saveInfo)
         {
-            var info = saveData[nameof(Save.Info)];
+            var info = saveData[nameof(Save.Info)] ?? throw new JsonException("Save is missing info field");
 
             foreach (var property in BaseThriveConverter.PropertiesOf(saveInfo))
             {

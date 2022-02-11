@@ -13,7 +13,7 @@ public static class SaveHelper
     ///   This is a list of known versions where save compatibility is very broken and loading needs to be prevented
     ///   (unless there exists a version converter)
     /// </summary>
-    private static readonly List<string> KnownSaveIncompatibilityPoints = new List<string>
+    private static readonly List<string> KnownSaveIncompatibilityPoints = new()
     {
         "0.5.3.0",
         "0.5.3.1",
@@ -203,6 +203,10 @@ public static class SaveHelper
                 if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
                     continue;
 
+                // Skip folders
+                if (!directory.FileExists(filename))
+                    continue;
+
                 result.Add(filename);
             }
 
@@ -236,17 +240,22 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int Count, long DiskSpace) CountSaves(string nameStartsWith = null)
+    public static (int Count, ulong DiskSpace) CountSaves(string? nameStartsWith = null)
     {
         int count = 0;
-        long totalSize = 0;
+        ulong totalSize = 0;
 
         using var file = new File();
         foreach (var save in CreateListOfSaves())
         {
             if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
             {
-                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                if (file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read) != Error.Ok)
+                {
+                    GD.PrintErr("Can't read size of save file: ", save);
+                    continue;
+                }
+
                 ++count;
                 totalSize += file.GetLen();
             }
@@ -373,7 +382,7 @@ public static class SaveHelper
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
-        Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
+        Action<Save> copyInfoToSave, Func<Node> stateRoot, string? saveName = null)
     {
         if (InProgressLoad.IsLoading || InProgressSave.IsSaving)
         {
@@ -406,6 +415,21 @@ public static class SaveHelper
 
     private static bool PreventSavingIfExtinct(InProgressSave inProgress, Save save)
     {
+        if (save.SavedProperties == null)
+        {
+            GD.PrintErr("Can't check extinction before saving because save is missing game properties");
+            try
+            {
+                throw new NullReferenceException();
+            }
+            catch (NullReferenceException e)
+            {
+                inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
+                    e.ToString(), true);
+                return true;
+            }
+        }
+
         if (!save.SavedProperties.GameWorld.PlayerSpecies.IsExtinct)
             return false;
 
@@ -429,7 +453,7 @@ public static class SaveHelper
                 throw;
 #pragma warning restore 162
 
-            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED"),
+            inProgress.ReportStatus(false, TranslationServer.Translate("SAVING_FAILED_WITH_EXCEPTION"),
                 e.ToString());
             return;
         }

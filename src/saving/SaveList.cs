@@ -23,51 +23,55 @@ public class SaveList : ScrollContainer
     public bool LoadableItems = true;
 
     [Export]
-    public NodePath LoadingItemPath;
+    public NodePath LoadingItemPath = null!;
 
     [Export]
-    public NodePath SavesListPath;
+    public NodePath NoSavesItemPath = null!;
 
     [Export]
-    public NodePath DeleteConfirmDialogPath;
+    public NodePath SavesListPath = null!;
 
     [Export]
-    public NodePath LoadNewerSaveDialogPath;
+    public NodePath DeleteConfirmDialogPath = null!;
 
     [Export]
-    public NodePath LoadOlderSaveDialogPath;
+    public NodePath LoadNewerSaveDialogPath = null!;
 
     [Export]
-    public NodePath LoadInvalidSaveDialogPath;
+    public NodePath LoadOlderSaveDialogPath = null!;
 
     [Export]
-    public NodePath LoadIncompatibleDialogPath;
+    public NodePath LoadInvalidSaveDialogPath = null!;
 
     [Export]
-    public NodePath UpgradeSaveDialogPath;
+    public NodePath LoadIncompatibleDialogPath = null!;
 
     [Export]
-    public NodePath UpgradeFailedDialogPath;
+    public NodePath UpgradeSaveDialogPath = null!;
 
-    private Control loadingItem;
-    private BoxContainer savesList;
-    private CustomConfirmationDialog deleteConfirmDialog;
-    private CustomConfirmationDialog loadNewerConfirmDialog;
-    private CustomConfirmationDialog loadOlderConfirmDialog;
-    private CustomConfirmationDialog loadInvalidConfirmDialog;
-    private CustomConfirmationDialog loadIncompatibleDialog;
-    private CustomConfirmationDialog upgradeSaveDialog;
-    private ErrorDialog upgradeFailedDialog;
+    [Export]
+    public NodePath UpgradeFailedDialogPath = null!;
 
-    private PackedScene listItemScene;
+    private Control loadingItem = null!;
+    private Control noSavesItem = null!;
+    private BoxContainer savesList = null!;
+    private CustomConfirmationDialog deleteConfirmDialog = null!;
+    private CustomConfirmationDialog loadNewerConfirmDialog = null!;
+    private CustomConfirmationDialog loadOlderConfirmDialog = null!;
+    private CustomConfirmationDialog loadInvalidConfirmDialog = null!;
+    private CustomConfirmationDialog loadIncompatibleDialog = null!;
+    private CustomConfirmationDialog upgradeSaveDialog = null!;
+    private ErrorDialog upgradeFailedDialog = null!;
+
+    private PackedScene listItemScene = null!;
 
     private bool refreshing;
     private bool refreshedAtLeastOnce;
 
-    private Task<List<string>> readSavesList;
+    private Task<List<string>>? readSavesList;
 
-    private string saveToBeDeleted;
-    private string saveToBeLoaded;
+    private string? saveToBeDeleted;
+    private string? saveToBeLoaded;
     private bool suppressSaveUpgradeClose;
 
     private bool wasVisible;
@@ -79,9 +83,13 @@ public class SaveList : ScrollContainer
     [Signal]
     public delegate void OnItemsChanged();
 
+    [Signal]
+    public delegate void OnConfirmed(SaveListItem item);
+
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
+        noSavesItem = GetNode<Control>(NoSavesItemPath);
         savesList = GetNode<BoxContainer>(SavesListPath);
         deleteConfirmDialog = GetNode<CustomConfirmationDialog>(DeleteConfirmDialogPath);
         loadOlderConfirmDialog = GetNode<CustomConfirmationDialog>(LoadOlderSaveDialogPath);
@@ -99,7 +107,7 @@ public class SaveList : ScrollContainer
         bool isCurrentlyVisible = IsVisibleInTree();
 
         if (isCurrentlyVisible && ((AutoRefreshOnFirstVisible && !refreshedAtLeastOnce) ||
-            (AutoRefreshOnBecomingVisible && !wasVisible)))
+                (AutoRefreshOnBecomingVisible && !wasVisible)))
         {
             Refresh();
             wasVisible = true;
@@ -112,34 +120,47 @@ public class SaveList : ScrollContainer
         if (!refreshing)
             return;
 
-        if (!readSavesList.IsCompleted)
+        if (!readSavesList!.IsCompleted)
             return;
 
         var saves = readSavesList.Result;
         readSavesList.Dispose();
         readSavesList = null;
 
-        foreach (var save in saves)
+        if (saves.Count > 0)
         {
-            var item = (SaveListItem)listItemScene.Instance();
-            item.Selectable = SelectableItems;
-            item.Loadable = LoadableItems;
+            noSavesItem.Visible = false;
 
-            if (SelectableItems)
-                item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
+            foreach (var save in saves)
+            {
+                var item = (SaveListItem)listItemScene.Instance();
+                item.Selectable = SelectableItems;
+                item.Loadable = LoadableItems;
 
-            item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
+                if (SelectableItems)
+                    item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
 
-            item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
+                item.Connect(nameof(SaveListItem.OnDoubleClicked), this, nameof(OnItemDoubleClicked),
+                    new Array { item });
 
-            // This can't use binds because we need an additional dynamic parameter from the list item here
-            item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded));
-            item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
-            item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
-            item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
+                item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
-            item.SaveName = save;
-            savesList.AddChild(item);
+                item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
+
+                // This can't use binds because we need an additional dynamic parameter from the list item here
+                item.Connect(nameof(SaveListItem.OnUpgradeableSaveLoaded), this, nameof(OnUpgradeableSaveLoaded));
+                item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
+                item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded),
+                    new Array { save });
+                item.Connect(nameof(SaveListItem.OnKnownIncompatibleLoaded), this, nameof(OnKnownIncompatibleLoaded));
+
+                item.SaveName = save;
+                savesList.AddChild(item);
+            }
+        }
+        else
+        {
+            noSavesItem.Visible = true;
         }
 
         loadingItem.Visible = false;
@@ -192,6 +213,12 @@ public class SaveList : ScrollContainer
     private void OnConfirmDelete()
     {
         GUICommon.Instance.PlayButtonPressSound();
+
+        if (saveToBeDeleted == null)
+        {
+            GD.PrintErr("Save to confirm delete is null");
+            return;
+        }
 
         GD.Print("Deleting save: ", saveToBeDeleted);
         SaveHelper.DeleteSave(saveToBeDeleted);
@@ -252,6 +279,13 @@ public class SaveList : ScrollContainer
     private void OnAcceptSaveUpgrade()
     {
         suppressSaveUpgradeClose = true;
+
+        if (saveToBeLoaded == null)
+        {
+            GD.PrintErr("Save to upgrade is null");
+            return;
+        }
+
         GD.Print("Save upgrade accepted by user on: ", saveToBeLoaded);
 
         var saveToUpgrade = saveToBeLoaded;
@@ -302,6 +336,12 @@ public class SaveList : ScrollContainer
                 }
                 else
                 {
+                    if (saveToBeLoaded == null)
+                    {
+                        GD.PrintErr("Save to load after upgrade is null");
+                        return;
+                    }
+
                     OnOldSaveLoaded(saveToBeLoaded);
                 }
             }
@@ -319,8 +359,19 @@ public class SaveList : ScrollContainer
         TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
     }
 
+    private void OnItemDoubleClicked(SaveListItem item)
+    {
+        EmitSignal(nameof(OnConfirmed), item);
+    }
+
     private void LoadSave()
     {
+        if (saveToBeLoaded == null)
+        {
+            GD.PrintErr("Save to load is null");
+            return;
+        }
+
         SaveHelper.LoadSave(saveToBeLoaded);
         saveToBeLoaded = null;
     }

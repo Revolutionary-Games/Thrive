@@ -31,7 +31,8 @@ for which version of Godot you need, as well as the version of the
 Godot documentation you should read.
 
 Please follow our [styleguide](doc/style_guide.md) when making your
-changes to Thrive.
+changes to Thrive. Note that our styleguide has a section on Git
+usage, which you should read!
 
 Once your changes are complete, then open a pull request (PR) to this repo
 and someone from the team will review your pull request. Note that

@@ -16,10 +16,10 @@ public enum ToolTipPositioning
     FollowMousePosition,
 
     /// <summary>
-    ///   Tooltip is positioned relative to the bottom right edge of a Control rect. Useful for tooltips
+    ///   Tooltip is positioned relative to the bottom right corner of a Control rect. Useful for tooltips
     ///   pertaining to items in a grid-based layout.
     /// </summary>
-    ControlBottomRightEdge,
+    ControlBottomRightCorner,
 }
 
 /// <summary>
@@ -57,7 +57,7 @@ public interface ICustomToolTip
     /// </summary>
     string DisplayName { get; set; }
 
-    string Description { get; set; }
+    string? Description { get; set; }
 
     /// <summary>
     ///   Used to delay how long it takes for this tooltip to appear. Set this to zero for no delay.

@@ -1,4 +1,5 @@
 ﻿using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Adds toxin shooting capability
@@ -31,8 +32,11 @@ public class AgentVacuoleComponent : IOrganelleComponent
 
 public class AgentVacuoleComponentFactory : IOrganelleComponentFactory
 {
-    public string Compound;
-    public string Process;
+    [JsonRequired]
+    public string Compound = null!;
+
+    [JsonRequired]
+    public string Process = null!;
 
     public IOrganelleComponent Create()
     {

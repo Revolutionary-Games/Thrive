@@ -10,13 +10,13 @@ public class ModInterface : IModInterface
         SceneTree = sceneTree;
     }
 
-    public event IModInterface.OnSceneChangedHandler OnSceneChanged;
-    public event IModInterface.OnDamageReceivedHandler OnDamageReceived;
-    public event IModInterface.OnPlayerMicrobeSpawnedHandler OnPlayerMicrobeSpawned;
-    public event IModInterface.OnMicrobeSpawnedHandler OnMicrobeSpawned;
-    public event IModInterface.OnChunkSpawnedHandler OnChunkSpawned;
-    public event IModInterface.OnToxinEmittedHandler OnToxinEmitted;
-    public event IModInterface.OnMicrobeDiedHandler OnMicrobeDied;
+    public event IModInterface.OnSceneChangedHandler? OnSceneChanged;
+    public event IModInterface.OnDamageReceivedHandler? OnDamageReceived;
+    public event IModInterface.OnPlayerMicrobeSpawnedHandler? OnPlayerMicrobeSpawned;
+    public event IModInterface.OnMicrobeSpawnedHandler? OnMicrobeSpawned;
+    public event IModInterface.OnChunkSpawnedHandler? OnChunkSpawned;
+    public event IModInterface.OnToxinEmittedHandler? OnToxinEmitted;
+    public event IModInterface.OnMicrobeDiedHandler? OnMicrobeDied;
 
     public SceneTree SceneTree { get; }
 

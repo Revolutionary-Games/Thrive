@@ -18,11 +18,11 @@ public class MicrobeEditorAction : ReversibleAction
     [JsonProperty]
     private readonly MicrobeEditor editor;
 
-    private MicrobeEditorActionData data;
+    private MicrobeEditorActionData data = null!;
 
     public MicrobeEditorAction(MicrobeEditor editor,
         Action<MicrobeEditorAction> redo,
-        Action<MicrobeEditorAction> undo, MicrobeEditorActionData data = null)
+        Action<MicrobeEditorAction> undo, MicrobeEditorActionData data)
     {
         this.editor = editor;
         this.redo = redo;

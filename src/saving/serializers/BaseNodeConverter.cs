@@ -66,7 +66,7 @@ public class BaseNodeConverter : BaseThriveConverter
     }
 
     protected override void ReadCustomExtraFields(JObject item, object instance, JsonReader reader, Type objectType,
-        object existingValue, JsonSerializer serializer)
+        object? existingValue, JsonSerializer serializer)
     {
         NodeGroupSaveHelper.ReadGroups(item, (Node)instance, reader, serializer);
     }

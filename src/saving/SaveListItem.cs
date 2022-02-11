@@ -15,55 +15,57 @@ public class SaveListItem : PanelContainer
     public bool Loadable = true;
 
     [Export]
-    public NodePath SaveNamePath;
+    public NodePath SaveNamePath = null!;
 
     [Export]
-    public NodePath ScreenshotPath;
+    public NodePath ScreenshotPath = null!;
 
     [Export]
-    public NodePath VersionPath;
+    public NodePath VersionPath = null!;
 
     [Export]
-    public NodePath VersionWarningPath;
+    public NodePath VersionWarningPath = null!;
 
     [Export]
-    public NodePath TypePath;
+    public NodePath TypePath = null!;
 
     [Export]
-    public NodePath CreatedAtPath;
+    public NodePath CreatedAtPath = null!;
 
     [Export]
-    public NodePath CreatedByPath;
+    public NodePath CreatedByPath = null!;
 
     [Export]
-    public NodePath CreatedOnPlatformPath;
+    public NodePath CreatedOnPlatformPath = null!;
 
     [Export]
-    public NodePath DescriptionPath;
+    public NodePath DescriptionPath = null!;
 
     [Export]
-    public NodePath LoadButtonPath;
+    public NodePath LoadButtonPath = null!;
 
     [Export]
-    public NodePath HighlightPath;
+    public NodePath HighlightPath = null!;
 
-    private Label saveNameLabel;
-    private TextureRect screenshot;
-    private Label version;
-    private Label versionWarning;
-    private Label type;
-    private Label createdAt;
-    private Label createdBy;
-    private Label createdOnPlatform;
-    private Label description;
-    private Button loadButton;
-    private Panel highlightPanel;
+    private static readonly object ResizeLock = new();
 
-    private string saveName;
+    private Label? saveNameLabel;
+    private TextureRect screenshot = null!;
+    private Label version = null!;
+    private Label versionWarning = null!;
+    private Label type = null!;
+    private Label createdAt = null!;
+    private Label createdBy = null!;
+    private Label createdOnPlatform = null!;
+    private Label description = null!;
+    private Button loadButton = null!;
+    private Panel? highlightPanel;
+
+    private string saveName = string.Empty;
     private int versionDifference;
 
     private bool loadingData;
-    private Task<Save> saveInfoLoadTask;
+    private Task<Save>? saveInfoLoadTask;
 
     private bool highlighted;
     private bool selected;
@@ -74,6 +76,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnSelectedChanged();
+
+    [Signal]
+    public delegate void OnDoubleClicked();
 
     [Signal]
     public delegate void OnDeleted();
@@ -138,6 +143,9 @@ public class SaveListItem : PanelContainer
 
     public override void _Ready()
     {
+        if (string.IsNullOrEmpty(SaveName))
+            throw new InvalidOperationException($"{nameof(SaveName)} is required");
+
         saveNameLabel = GetNode<Label>(SaveNamePath);
         screenshot = GetNode<TextureRect>(ScreenshotPath);
         version = GetNode<Label>(VersionPath);
@@ -161,7 +169,7 @@ public class SaveListItem : PanelContainer
         if (!loadingData)
             return;
 
-        if (!saveInfoLoadTask.IsCompleted)
+        if (!saveInfoLoadTask!.IsCompleted)
             return;
 
         var save = saveInfoLoadTask.Result;
@@ -217,12 +225,17 @@ public class SaveListItem : PanelContainer
 
     public override void _GuiInput(InputEvent @event)
     {
-        if (@event is InputEventMouseButton mouse)
+        if (@event is InputEventMouseButton { Pressed: true, ButtonIndex: (int)ButtonList.Left } mouse)
         {
-            if (mouse.Pressed && mouse.ButtonIndex == (int)ButtonList.Left)
+            AcceptEvent();
+
+            if (mouse.Doubleclick)
+            {
+                EmitSignal(nameof(OnDoubleClicked));
+            }
+            else
             {
                 OnSelect();
-                AcceptEvent();
             }
         }
     }
@@ -283,8 +296,15 @@ public class SaveListItem : PanelContainer
 
                 if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
                 {
-                    save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
-                        Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                    // TODO: this seems like a Godot bug, the game crashes often when loading the saves list without
+                    // this lock. See: https://github.com/godotengine/godot/issues/55528
+                    // Partly resolves: https://github.com/Revolutionary-Games/Thrive/issues/2078
+                    // but not for all people and save amounts
+                    lock (ResizeLock)
+                    {
+                        save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
+                            Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                    }
                 }
             }
 

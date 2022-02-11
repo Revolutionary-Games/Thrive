@@ -8,77 +8,77 @@ using Path = System.IO.Path;
 public class NewModGUI : Control
 {
     [Export]
-    public NodePath DialogPath;
+    public NodePath DialogPath = null!;
 
     [Export]
-    public NodePath InternalNamePath;
+    public NodePath InternalNamePath = null!;
 
     [Export]
-    public NodePath NamePath;
+    public NodePath NamePath = null!;
 
     [Export]
-    public NodePath AuthorPath;
+    public NodePath AuthorPath = null!;
 
     [Export]
-    public NodePath VersionPath;
+    public NodePath VersionPath = null!;
 
     [Export]
-    public NodePath DescriptionPath;
+    public NodePath DescriptionPath = null!;
 
     [Export]
-    public NodePath LongDescriptionPath;
+    public NodePath LongDescriptionPath = null!;
 
     [Export]
-    public NodePath IconFilePath;
+    public NodePath IconFilePath = null!;
 
     [Export]
-    public NodePath InfoUrlPath;
+    public NodePath InfoUrlPath = null!;
 
     [Export]
-    public NodePath LicensePath;
+    public NodePath LicensePath = null!;
 
     [Export]
-    public NodePath RecommendedThrivePath;
+    public NodePath RecommendedThrivePath = null!;
 
     [Export]
-    public NodePath MinimumThrivePath;
+    public NodePath MinimumThrivePath = null!;
 
     [Export]
-    public NodePath MaximumThrivePath;
+    public NodePath MaximumThrivePath = null!;
 
     [Export]
-    public NodePath PckNamePath;
+    public NodePath PckNamePath = null!;
 
     [Export]
-    public NodePath ModAssemblyPath;
+    public NodePath ModAssemblyPath = null!;
 
     [Export]
-    public NodePath AssemblyModClassPath;
+    public NodePath AssemblyModClassPath = null!;
 
     [Export]
-    public NodePath ErrorDisplayPath;
+    public NodePath ErrorDisplayPath = null!;
 
-    private CustomDialog dialog;
+    private CustomDialog dialog = null!;
 
-    private LineEdit internalName;
-    private LineEdit name;
-    private LineEdit author;
-    private LineEdit version;
-    private LineEdit description;
-    private TextEdit longDescription;
-    private LineEdit iconFile;
-    private LineEdit infoUrl;
-    private LineEdit license;
-    private LineEdit recommendedThrive;
-    private LineEdit minimumThrive;
-    private LineEdit maximumThrive;
-    private LineEdit pckName;
-    private LineEdit modAssembly;
-    private LineEdit assemblyModClass;
+    private LineEdit internalName = null!;
+    private LineEdit name = null!;
+    private LineEdit author = null!;
+    private LineEdit version = null!;
+    private LineEdit description = null!;
+    private TextEdit longDescription = null!;
+    private LineEdit iconFile = null!;
+    private LineEdit infoUrl = null!;
+    private LineEdit license = null!;
+    private LineEdit recommendedThrive = null!;
+    private LineEdit minimumThrive = null!;
+    private LineEdit maximumThrive = null!;
+    private LineEdit pckName = null!;
+    private LineEdit modAssembly = null!;
+    private LineEdit assemblyModClass = null!;
 
-    private Label errorDisplay;
+    private Label errorDisplay = null!;
 
-    private ModInfo editedInfo;
+    private ModInfo? editedInfo;
 
     [Signal]
     public delegate void OnCanceled();
@@ -132,6 +132,12 @@ public class NewModGUI : Control
 
     private void Create()
     {
+        if (editedInfo == null)
+        {
+            GD.PrintErr("Create called with edited info being null");
+            return;
+        }
+
         if (!ReadControlsToEditedInfo())
         {
             GUICommon.Instance.PlayButtonPressSound();
@@ -177,7 +183,7 @@ public class NewModGUI : Control
 
     private void ApplyEditedInfoToControls()
     {
-        name.Text = editedInfo.Name;
+        name.Text = editedInfo!.Name;
         internalName.Text = editedInfo.InternalName;
         author.Text = editedInfo.Author;
         version.Text = editedInfo.Version;
@@ -196,7 +202,7 @@ public class NewModGUI : Control
 
     private bool ReadControlsToEditedInfo()
     {
-        editedInfo.Name = name.Text;
+        editedInfo!.Name = name.Text;
         editedInfo.InternalName = internalName.Text;
         editedInfo.Author = author.Text;
         editedInfo.Version = version.Text;
@@ -231,11 +237,20 @@ public class NewModGUI : Control
         return true;
     }
 
-    private string ValidateFormData()
+    private string? ValidateFormData()
     {
+        if (editedInfo == null)
+            throw new InvalidOperationException("Validate form called without editing info");
+
         if (string.IsNullOrWhiteSpace(editedInfo.InternalName))
         {
             SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRED"));
+            return null;
+        }
+
+        if (!char.IsUpper(editedInfo.InternalName, 0))
+        {
+            SetError(TranslationServer.Translate("INTERNAL_NAME_REQUIRES_CAPITAL"));
             return null;
         }
 
@@ -247,11 +262,8 @@ public class NewModGUI : Control
 
         var serialized = new StringWriter();
 
-        var finalResult = new FullModDetails(editedInfo.InternalName)
-        {
-            Info = editedInfo,
-            Folder = Path.Combine(Constants.ModLocations[Constants.ModLocations.Count - 1], internalName.Text),
-        };
+        var finalResult = new FullModDetails(editedInfo.InternalName,
+            Path.Combine(Constants.ModLocations[Constants.ModLocations.Count - 1], internalName.Text), editedInfo);
 
         try
         {
@@ -278,7 +290,7 @@ public class NewModGUI : Control
         return serialized.ToString();
     }
 
-    private void SetError(string message)
+    private void SetError(string? message)
     {
         if (message == null)
         {

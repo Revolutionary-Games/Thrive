@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/microbe_stage/Membrane.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://shaders/Membrane.shader" type="Shader" id=4]
 [ext_resource path="res://src/microbe_stage/Microbe.cs" type="Script" id=5]
 [ext_resource path="res://assets/sounds/soundeffects/engulfment.ogg" type="AudioStream" id=6]
-[ext_resource path="res://assets/sounds/soundeffects/microbe-movement-1.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/sounds/soundeffects/microbe-movement-ambience.ogg" type="AudioStream" id=7]
+[ext_resource path="res://src/general/HybridAudioPlayer.cs" type="Script" id=8]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -45,11 +46,11 @@ MaterialToEdit = SubResource( 1 )
 
 [node name="OrganelleParent" type="Spatial" parent="."]
 
-[node name="EngulfAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 6 )
-unit_size = 50.0
-max_distance = 100.0
-bus = "SFX"
+[node name="EngulfAudio" type="Spatial" parent="."]
+script = ExtResource( 8 )
+Stream = ExtResource( 6 )
+Volume = 0.0
+Bus = "SFX"
 
 [node name="BindingAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
@@ -57,17 +58,17 @@ unit_size = 50.0
 max_distance = 100.0
 bus = "SFX"
 
-[node name="MovementAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource( 7 )
-unit_size = 50.0
-max_distance = 100.0
-bus = "SFX"
+[node name="MovementAudio" type="Spatial" parent="."]
+script = ExtResource( 8 )
+Stream = ExtResource( 7 )
+Volume = 0.0
+Bus = "SFX"
 
 [node name="EngulfDetector" type="Area" parent="."]
-input_ray_pickable = false
-monitorable = false
 collision_layer = 0
 collision_mask = 2
+input_ray_pickable = false
+monitorable = false
 
 [node name="EngulfShape" type="CollisionShape" parent="EngulfDetector"]
 shape = SubResource( 2 )

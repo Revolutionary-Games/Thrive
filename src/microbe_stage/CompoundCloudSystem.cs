@@ -14,11 +14,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     private int neededCloudsAtOnePosition;
 
     [JsonProperty]
-    private List<CompoundCloudPlane> clouds = new List<CompoundCloudPlane>();
+    private List<CompoundCloudPlane> clouds = new();
 
-    private PackedScene cloudScene;
-
-    private List<Compound> allCloudCompounds;
+    private PackedScene cloudScene = null!;
 
     /// <summary>
     ///   This is the point in the center of the middle cloud. This is
@@ -62,7 +60,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     /// </summary>
     public void Init(FluidSystem fluidSystem)
     {
-        allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
+        var allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 
         if (!IsLoadedFromSave)
         {
@@ -97,7 +95,7 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             {
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
-                cloud.Init(fluidSystem, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2],
+                cloud.Init(fluidSystem, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
                     cloud.Compounds[3]);
 
                 // Re-add the clouds as our children
@@ -110,9 +108,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         for (int i = 0; i < clouds.Count; ++i)
         {
             Compound cloud1;
-            Compound cloud2 = null;
-            Compound cloud3 = null;
-            Compound cloud4 = null;
+            Compound? cloud2 = null;
+            Compound? cloud3 = null;
+            Compound? cloud4 = null;
 
             int startOffset = (i % neededCloudsAtOnePosition) * Constants.CLOUDS_IN_ONE;
 
@@ -259,12 +257,12 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
 
             for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius);
-                x <= xEnd;
-                x += 1)
+                 x <= xEnd;
+                 x += 1)
             {
                 for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius);
-                    y <= yEnd;
-                    y += 1)
+                     y <= yEnd;
+                     y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
@@ -338,12 +336,12 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
             int yEnd = (int)Mathf.Round(cloudRelativeY + localRadius);
 
             for (int x = (int)Mathf.Round(cloudRelativeX - localRadius);
-                x <= xEnd;
-                x += 1)
+                 x <= xEnd;
+                 x += 1)
             {
                 for (int y = (int)Mathf.Round(cloudRelativeY - localRadius);
-                    y <= yEnd;
-                    y += 1)
+                     y <= yEnd;
+                     y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)

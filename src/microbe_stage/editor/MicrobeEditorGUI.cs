@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -14,302 +15,329 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 {
     // The labels to update are at really long relative paths, so they are set in the Godot editor
     [Export]
-    public NodePath MenuPath;
+    public NodePath MenuPath = null!;
 
     [Export]
-    public NodePath ReportTabButtonPath;
+    public NodePath ReportTabButtonPath = null!;
 
     [Export]
-    public NodePath PatchMapButtonPath;
+    public NodePath PatchMapButtonPath = null!;
 
     [Export]
-    public NodePath CellEditorButtonPath;
+    public NodePath CellEditorButtonPath = null!;
 
     [Export]
-    public NodePath StructureTabButtonPath;
+    public NodePath AutoEvoSubtabButtonPath = null!;
 
     [Export]
-    public NodePath AppearanceTabButtonPath;
+    public NodePath TimelineSubtabButtonPath = null!;
 
     [Export]
-    public NodePath BehaviourTabButtonPath;
+    public NodePath StructureTabButtonPath = null!;
 
     [Export]
-    public NodePath StructureTabPath;
+    public NodePath AppearanceTabButtonPath = null!;
 
     [Export]
-    public NodePath AppearanceTabPath;
+    public NodePath BehaviourTabButtonPath = null!;
 
     [Export]
-    public NodePath BehaviourTabPath;
+    public NodePath AutoEvoSubtabPath = null!;
 
     [Export]
-    public NodePath SizeLabelPath;
+    public NodePath TimelineSubtabPath = null!;
 
     [Export]
-    public NodePath OrganismStatisticsPath;
+    public NodePath TimelineEventsContainerPath = null!;
 
     [Export]
-    public NodePath SpeedLabelPath;
+    public NodePath StructureTabPath = null!;
 
     [Export]
-    public NodePath HpLabelPath;
+    public NodePath AppearanceTabPath = null!;
 
     [Export]
-    public NodePath GenerationLabelPath;
+    public NodePath BehaviourTabPath = null!;
 
     [Export]
-    public NodePath AutoEvoPredictionPanelPath;
+    public NodePath SizeLabelPath = null!;
 
     [Export]
-    public NodePath TotalPopulationLabelPath;
+    public NodePath OrganismStatisticsPath = null!;
 
     [Export]
-    public NodePath WorstPatchLabelPath;
+    public NodePath SpeedLabelPath = null!;
 
     [Export]
-    public NodePath BestPatchLabelPath;
+    public NodePath HpLabelPath = null!;
 
     [Export]
-    public NodePath CurrentMutationPointsLabelPath;
+    public NodePath GenerationLabelPath = null!;
 
     [Export]
-    public NodePath MutationPointsArrowPath;
+    public NodePath AutoEvoPredictionPanelPath = null!;
 
     [Export]
-    public NodePath ResultingMutationPointsLabelPath;
+    public NodePath TotalPopulationLabelPath = null!;
 
     [Export]
-    public NodePath BaseMutationPointsLabelPath;
+    public NodePath WorstPatchLabelPath = null!;
 
     [Export]
-    public NodePath MutationPointsBarPath;
+    public NodePath BestPatchLabelPath = null!;
 
     [Export]
-    public NodePath MutationPointsSubtractBarPath;
+    public NodePath CurrentMutationPointsLabelPath = null!;
 
     [Export]
-    public NodePath SpeciesNameEditPath;
+    public NodePath MutationPointsArrowPath = null!;
 
     [Export]
-    public NodePath MembraneColorPickerPath;
+    public NodePath ResultingMutationPointsLabelPath = null!;
 
     [Export]
-    public NodePath MenuButtonPath;
+    public NodePath BaseMutationPointsLabelPath = null!;
 
     [Export]
-    public NodePath HelpButtonPath;
+    public NodePath MutationPointsBarPath = null!;
 
     [Export]
-    public NodePath NewCellButtonPath;
+    public NodePath MutationPointsSubtractBarPath = null!;
 
     [Export]
-    public NodePath UndoButtonPath;
+    public NodePath SpeciesNameEditPath = null!;
 
     [Export]
-    public NodePath RedoButtonPath;
+    public NodePath MembraneColorPickerPath = null!;
 
     [Export]
-    public NodePath RandomizeSpeciesNameButtonPath;
+    public NodePath MenuButtonPath = null!;
 
     [Export]
-    public NodePath FinishButtonPath;
+    public NodePath HelpButtonPath = null!;
 
     [Export]
-    public NodePath CancelButtonPath;
+    public NodePath NewCellButtonPath = null!;
 
     [Export]
-    public NodePath SymmetryButtonPath;
+    public NodePath UndoButtonPath = null!;
 
     [Export]
-    public NodePath ATPBalanceLabelPath;
+    public NodePath RedoButtonPath = null!;
 
     [Export]
-    public NodePath ATPProductionLabelPath;
+    public NodePath RandomizeSpeciesNameButtonPath = null!;
 
     [Export]
-    public NodePath ATPConsumptionLabelPath;
+    public NodePath FinishButtonPath = null!;
 
     [Export]
-    public NodePath ATPProductionBarPath;
+    public NodePath CancelButtonPath = null!;
 
     [Export]
-    public NodePath ATPConsumptionBarPath;
+    public NodePath SymmetryButtonPath = null!;
 
     [Export]
-    public NodePath TimeIndicatorPath;
+    public NodePath ATPBalanceLabelPath = null!;
 
     [Export]
-    public NodePath PhysicalConditionsIconLegendPath;
+    public NodePath ATPProductionLabelPath = null!;
 
     [Export]
-    public NodePath TemperatureChartPath;
+    public NodePath ATPConsumptionLabelPath = null!;
 
     [Export]
-    public NodePath SunlightChartPath;
+    public NodePath ATPProductionBarPath = null!;
 
     [Export]
-    public NodePath AtmosphericGassesChartPath;
+    public NodePath ATPConsumptionBarPath = null!;
 
     [Export]
-    public NodePath CompoundsChartPath;
+    public NodePath TimeIndicatorPath = null!;
 
     [Export]
-    public NodePath SpeciesPopulationChartPath;
+    public NodePath PhysicalConditionsIconLegendPath = null!;
 
     [Export]
-    public NodePath GlucoseReductionLabelPath;
+    public NodePath TemperatureChartPath = null!;
 
     [Export]
-    public NodePath AutoEvoLabelPath;
+    public NodePath SunlightChartPath = null!;
 
     [Export]
-    public NodePath ExternalEffectsLabelPath;
+    public NodePath AtmosphericGassesChartPath = null!;
 
     [Export]
-    public NodePath MapDrawerPath;
+    public NodePath CompoundsChartPath = null!;
 
     [Export]
-    public NodePath PatchNothingSelectedPath;
+    public NodePath SpeciesPopulationChartPath = null!;
 
     [Export]
-    public NodePath PatchDetailsPath;
+    public NodePath GlucoseReductionLabelPath = null!;
 
     [Export]
-    public NodePath PatchNamePath;
+    public NodePath AutoEvoLabelPath = null!;
 
     [Export]
-    public NodePath ReportTabPatchNamePath;
+    public NodePath ExternalEffectsLabelPath = null!;
 
     [Export]
-    public NodePath PatchPlayerHerePath;
+    public NodePath MapDrawerPath = null!;
 
     [Export]
-    public NodePath PatchBiomePath;
+    public NodePath PatchNothingSelectedPath = null!;
 
     [Export]
-    public NodePath PatchDepthPath;
+    public NodePath PatchDetailsPath = null!;
 
     [Export]
-    public NodePath PatchTemperaturePath;
+    public NodePath PatchNamePath = null!;
 
     [Export]
-    public NodePath PatchPressurePath;
+    public NodePath ReportTabPatchNamePath = null!;
 
     [Export]
-    public NodePath PatchLightPath;
+    public NodePath ReportTabPatchSelectorPath = null!;
 
     [Export]
-    public NodePath PatchOxygenPath;
+    public NodePath PatchPlayerHerePath = null!;
 
     [Export]
-    public NodePath PatchNitrogenPath;
+    public NodePath PatchBiomePath = null!;
 
     [Export]
-    public NodePath PatchCO2Path;
+    public NodePath PatchDepthPath = null!;
 
     [Export]
-    public NodePath PatchHydrogenSulfidePath;
+    public NodePath PatchTemperaturePath = null!;
 
     [Export]
-    public NodePath PatchAmmoniaPath;
+    public NodePath PatchPressurePath = null!;
 
     [Export]
-    public NodePath PatchGlucosePath;
+    public NodePath PatchLightPath = null!;
 
     [Export]
-    public NodePath PatchPhosphatePath;
+    public NodePath PatchOxygenPath = null!;
 
     [Export]
-    public NodePath PatchIronPath;
+    public NodePath PatchNitrogenPath = null!;
 
     [Export]
-    public NodePath SpeciesCollapsibleBoxPath;
+    public NodePath PatchCO2Path = null!;
 
     [Export]
-    public NodePath MoveToPatchButtonPath;
+    public NodePath PatchHydrogenSulfidePath = null!;
 
     [Export]
-    public NodePath PatchTemperatureSituationPath;
+    public NodePath PatchAmmoniaPath = null!;
 
     [Export]
-    public NodePath PatchLightSituationPath;
+    public NodePath PatchGlucosePath = null!;
 
     [Export]
-    public NodePath PatchHydrogenSulfideSituationPath;
+    public NodePath PatchPhosphatePath = null!;
 
     [Export]
-    public NodePath PatchGlucoseSituationPath;
+    public NodePath PatchIronPath = null!;
 
     [Export]
-    public NodePath PatchIronSituationPath;
+    public NodePath SpeciesCollapsibleBoxPath = null!;
 
     [Export]
-    public NodePath PatchAmmoniaSituationPath;
+    public NodePath MoveToPatchButtonPath = null!;
 
     [Export]
-    public NodePath PatchPhosphateSituationPath;
+    public NodePath PatchTemperatureSituationPath = null!;
 
     [Export]
-    public NodePath SpeedIndicatorPath;
+    public NodePath PatchLightSituationPath = null!;
 
     [Export]
-    public NodePath HpIndicatorPath;
+    public NodePath PatchHydrogenSulfideSituationPath = null!;
 
     [Export]
-    public NodePath SizeIndicatorPath;
+    public NodePath PatchGlucoseSituationPath = null!;
 
     [Export]
-    public NodePath TotalPopulationIndicatorPath;
+    public NodePath PatchIronSituationPath = null!;
 
     [Export]
-    public NodePath RigiditySliderPath;
+    public NodePath PatchAmmoniaSituationPath = null!;
 
     [Export]
-    public NodePath AggressionSliderPath;
+    public NodePath PatchPhosphateSituationPath = null!;
 
     [Export]
-    public NodePath OpportunismSliderPath;
+    public NodePath SpeedIndicatorPath = null!;
 
     [Export]
-    public NodePath FearSliderPath;
+    public NodePath HpIndicatorPath = null!;
 
     [Export]
-    public NodePath ActivitySliderPath;
+    public NodePath SizeIndicatorPath = null!;
 
     [Export]
-    public NodePath FocusSliderPath;
+    public NodePath TotalPopulationIndicatorPath = null!;
 
     [Export]
-    public NodePath NegativeAtpPopupPath;
+    public NodePath RigiditySliderPath = null!;
 
     [Export]
-    public NodePath IslandErrorPath;
+    public NodePath AggressionSliderPath = null!;
 
     [Export]
-    public NodePath OrganelleMenuPath;
+    public NodePath OpportunismSliderPath = null!;
 
     [Export]
-    public NodePath SymmetryIconPath;
+    public NodePath FearSliderPath = null!;
 
     [Export]
-    public NodePath CompoundBalancePath;
+    public NodePath ActivitySliderPath = null!;
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
-    private readonly Compound nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-    private readonly Compound oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-    private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+    [Export]
+    public NodePath FocusSliderPath = null!;
+
+    [Export]
+    public NodePath NegativeAtpPopupPath = null!;
+
+    [Export]
+    public NodePath IslandErrorPath = null!;
+
+    [Export]
+    public NodePath OrganelleMenuPath = null!;
+
+    [Export]
+    public NodePath SymmetryIconPath = null!;
+
+    [Export]
+    public NodePath CompoundBalancePath = null!;
+
+    [Export]
+    public NodePath AutoEvoPredictionExplanationPopupPath = null!;
+
+    [Export]
+    public NodePath AutoEvoPredictionExplanationLabelPath = null!;
+
+    [Export]
+    public NodePath OrganelleUpgradeGUIPath = null!;
+
+    private Compound atp = null!;
+    private Compound ammonia = null!;
+    private Compound carbondioxide = null!;
+    private Compound glucose = null!;
+    private Compound hydrogensulfide = null!;
+    private Compound iron = null!;
+    private Compound nitrogen = null!;
+    private Compound oxygen = null!;
+    private Compound phosphates = null!;
+    private Compound sunlight = null!;
 
-    private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
-    private readonly OrganelleDefinition nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+    private OrganelleDefinition protoplasm = null!;
+    private OrganelleDefinition nucleus = null!;
 
-    private EnergyBalanceInfo energyBalanceInfo;
+    private EnergyBalanceInfo? energyBalanceInfo;
 
     [JsonProperty]
     private float initialCellSpeed;
@@ -324,152 +352,161 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private bool? autoEvoRunSuccessful;
 
     [JsonProperty]
-    private string bestPatchName;
+    private string? bestPatchName;
 
     [JsonProperty]
     private long bestPatchPopulation;
 
     [JsonProperty]
-    private string worstPatchName;
+    private string? worstPatchName;
 
     [JsonProperty]
     private long worstPatchPopulation;
 
-    private MicrobeEditor editor;
+    private MicrobeEditor? editor;
 
-    private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements =
-        new Dictionary<OrganelleDefinition, MicrobePartSelection>();
+    private Dictionary<OrganelleDefinition, MicrobePartSelection> placeablePartSelectionElements = new();
 
-    private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements =
-        new Dictionary<MembraneType, MicrobePartSelection>();
+    private Dictionary<MembraneType, MicrobePartSelection> membraneSelectionElements = new();
 
-    private PauseMenu menu;
+    private PauseMenu menu = null!;
 
     // Editor tab selector buttons
-    private Button reportTabButton;
-    private Button patchMapButton;
-    private Button cellEditorButton;
+    private Button reportTabButton = null!;
+    private Button patchMapButton = null!;
+    private Button cellEditorButton = null!;
+
+    private Button autoEvoSubtabButton = null!;
+    private Button timelineSubtabButton = null!;
 
     // Selection menu tab selector buttons
-    private Button structureTabButton;
-    private Button appearanceTabButton;
-    private Button behaviourTabButton;
+    private Button structureTabButton = null!;
+    private Button appearanceTabButton = null!;
+    private Button behaviourTabButton = null!;
 
-    private PanelContainer structureTab;
-    private PanelContainer appearanceTab;
-    private PanelContainer behaviourTab;
+    private PanelContainer autoEvoSubtab = null!;
+    private TimelineTab timelineSubtab = null!;
 
-    private Label sizeLabel;
-    private Label speedLabel;
-    private Label hpLabel;
-    private Label generationLabel;
-    private Label totalPopulationLabel;
-    private Label bestPatchLabel;
-    private Label worstPatchLabel;
+    private PanelContainer structureTab = null!;
+    private PanelContainer appearanceTab = null!;
+    private PanelContainer behaviourTab = null!;
 
-    private Control autoEvoPredictionPanel;
+    private Label sizeLabel = null!;
+    private Label speedLabel = null!;
+    private Label hpLabel = null!;
+    private Label generationLabel = null!;
+    private Label totalPopulationLabel = null!;
+    private Label bestPatchLabel = null!;
+    private Label worstPatchLabel = null!;
 
-    private Label currentMutationPointsLabel;
-    private TextureRect mutationPointsArrow;
-    private Label resultingMutationPointsLabel;
-    private Label baseMutationPointsLabel;
-    private ProgressBar mutationPointsBar;
-    private ProgressBar mutationPointsSubtractBar;
+    private Control autoEvoPredictionPanel = null!;
 
-    private Slider rigiditySlider;
-    private TweakedColourPicker membraneColorPicker;
+    private Label currentMutationPointsLabel = null!;
+    private TextureRect mutationPointsArrow = null!;
+    private Label resultingMutationPointsLabel = null!;
+    private Label baseMutationPointsLabel = null!;
+    private ProgressBar mutationPointsBar = null!;
+    private ProgressBar mutationPointsSubtractBar = null!;
 
-    private Slider aggressionSlider;
-    private Slider opportunismSlider;
-    private Slider fearSlider;
-    private Slider activitySlider;
-    private Slider focusSlider;
+    private Slider rigiditySlider = null!;
+    private TweakedColourPicker membraneColorPicker = null!;
 
-    private TextureButton undoButton;
-    private TextureButton redoButton;
-    private TextureButton newCellButton;
-    private LineEdit speciesNameEdit;
-    private TextureButton randomizeSpeciesNameButton;
+    private Slider aggressionSlider = null!;
+    private Slider opportunismSlider = null!;
+    private Slider fearSlider = null!;
+    private Slider activitySlider = null!;
+    private Slider focusSlider = null!;
 
-    private Button finishButton;
-    private Button cancelButton;
+    private TextureButton undoButton = null!;
+    private TextureButton redoButton = null!;
+    private TextureButton newCellButton = null!;
+    private LineEdit speciesNameEdit = null!;
+    private TextureButton randomizeSpeciesNameButton = null!;
+
+    private Button finishButton = null!;
+    private Button cancelButton = null!;
 
     // ReSharper disable once NotAccessedField.Local
-    private TextureButton symmetryButton;
-    private TextureRect symmetryIcon;
+    private TextureButton symmetryButton = null!;
+    private TextureRect symmetryIcon = null!;
 
-    private Label atpBalanceLabel;
-    private Label atpProductionLabel;
-    private Label atpConsumptionLabel;
-    private SegmentedBar atpProductionBar;
-    private SegmentedBar atpConsumptionBar;
+    private Label atpBalanceLabel = null!;
+    private Label atpProductionLabel = null!;
+    private Label atpConsumptionLabel = null!;
+    private SegmentedBar atpProductionBar = null!;
+    private SegmentedBar atpConsumptionBar = null!;
 
-    private Label timeIndicator;
-    private Label glucoseReductionLabel;
-    private Label autoEvoLabel;
-    private Label externalEffectsLabel;
-    private Label reportTabPatchNameLabel;
+    private Label timeIndicator = null!;
+    private Label glucoseReductionLabel = null!;
+    private Label autoEvoLabel = null!;
+    private Label externalEffectsLabel = null!;
+    private Label reportTabPatchName = null!;
+    private OptionButton reportTabPatchSelector = null!;
 
-    private HBoxContainer physicalConditionsIconLegends;
-    private LineChart temperatureChart;
-    private LineChart sunlightChart;
-    private LineChart atmosphericGassesChart;
-    private LineChart compoundsChart;
-    private LineChart speciesPopulationChart;
+    private HBoxContainer physicalConditionsIconLegends = null!;
+    private LineChart temperatureChart = null!;
+    private LineChart sunlightChart = null!;
+    private LineChart atmosphericGassesChart = null!;
+    private LineChart compoundsChart = null!;
+    private LineChart speciesPopulationChart = null!;
 
-    private PatchMapDrawer mapDrawer;
-    private Control patchNothingSelected;
-    private Control patchDetails;
-    private Control patchPlayerHere;
-    private Label patchName;
-    private Label patchBiome;
-    private Label patchDepth;
-    private Label patchTemperature;
-    private Label patchPressure;
-    private Label patchLight;
-    private Label patchOxygen;
-    private Label patchNitrogen;
-    private Label patchCO2;
-    private Label patchHydrogenSulfide;
-    private Label patchAmmonia;
-    private Label patchGlucose;
-    private Label patchPhosphate;
-    private Label patchIron;
-    private CollapsibleList speciesListBox;
-    private Button moveToPatchButton;
+    private PatchMapDrawer mapDrawer = null!;
+    private Control patchNothingSelected = null!;
+    private Control patchDetails = null!;
+    private Control patchPlayerHere = null!;
+    private Label patchName = null!;
+    private Label patchBiome = null!;
+    private Label patchDepth = null!;
+    private Label patchTemperature = null!;
+    private Label patchPressure = null!;
+    private Label patchLight = null!;
+    private Label patchOxygen = null!;
+    private Label patchNitrogen = null!;
+    private Label patchCO2 = null!;
+    private Label patchHydrogenSulfide = null!;
+    private Label patchAmmonia = null!;
+    private Label patchGlucose = null!;
+    private Label patchPhosphate = null!;
+    private Label patchIron = null!;
+    private CollapsibleList speciesListBox = null!;
+    private Button moveToPatchButton = null!;
 
-    private TextureRect patchTemperatureSituation;
-    private TextureRect patchLightSituation;
-    private TextureRect patchHydrogenSulfideSituation;
-    private TextureRect patchGlucoseSituation;
-    private TextureRect patchIronSituation;
-    private TextureRect patchAmmoniaSituation;
-    private TextureRect patchPhosphateSituation;
+    private TextureRect patchTemperatureSituation = null!;
+    private TextureRect patchLightSituation = null!;
+    private TextureRect patchHydrogenSulfideSituation = null!;
+    private TextureRect patchGlucoseSituation = null!;
+    private TextureRect patchIronSituation = null!;
+    private TextureRect patchAmmoniaSituation = null!;
+    private TextureRect patchPhosphateSituation = null!;
 
-    private TextureRect speedIndicator;
-    private TextureRect hpIndicator;
-    private TextureRect sizeIndicator;
-    private TextureRect totalPopulationIndicator;
+    private TextureRect speedIndicator = null!;
+    private TextureRect hpIndicator = null!;
+    private TextureRect sizeIndicator = null!;
+    private TextureRect totalPopulationIndicator = null!;
 
-    private Texture symmetryIconDefault;
-    private Texture symmetryIcon2X;
-    private Texture symmetryIcon4X;
-    private Texture symmetryIcon6X;
-    private Texture increaseIcon;
-    private Texture decreaseIcon;
-    private Texture questionIcon;
-    private AudioStream unableToPlaceHexSound;
-    private Texture temperatureIcon;
+    private Texture symmetryIconDefault = null!;
+    private Texture symmetryIcon2X = null!;
+    private Texture symmetryIcon4X = null!;
+    private Texture symmetryIcon6X = null!;
+    private Texture increaseIcon = null!;
+    private Texture decreaseIcon = null!;
+    private Texture questionIcon = null!;
+    private AudioStream unableToPlaceHexSound = null!;
+    private Texture temperatureIcon = null!;
 
-    private CustomConfirmationDialog negativeAtpPopup;
-    private CustomConfirmationDialog islandPopup;
+    private CustomConfirmationDialog negativeAtpPopup = null!;
+    private CustomConfirmationDialog islandPopup = null!;
 
-    private OrganellePopupMenu organelleMenu;
+    private OrganellePopupMenu organelleMenu = null!;
+    private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
-    private TextureButton menuButton;
-    private TextureButton helpButton;
+    private TextureButton menuButton = null!;
+    private TextureButton helpButton = null!;
 
-    private CompoundBalanceDisplay compoundBalance;
+    private CompoundBalanceDisplay compoundBalance = null!;
+
+    private CustomDialog autoEvoPredictionExplanationPopup = null!;
+    private Label autoEvoPredictionExplanationLabel = null!;
 
     private IEnumerable<(Hex Hex, int Orientation)> mouseHoverHexes;
 
@@ -477,17 +514,27 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private EditorTab selectedEditorTab = EditorTab.Report;
 
     [JsonProperty]
+    private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
+
+    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
-    private PendingAutoEvoPrediction waitingForPrediction;
+    private PendingAutoEvoPrediction? waitingForPrediction;
+    private LocalizedStringBuilder? predictionDetailsText;
 
     public enum EditorTab
     {
         Report,
         PatchMap,
         CellEditor,
+    }
+
+    public enum ReportSubtab
+    {
+        AutoEvo,
+        Timeline,
     }
 
     public enum SelectionMenuTab
@@ -521,6 +568,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         reportTabButton = GetNode<Button>(ReportTabButtonPath);
         patchMapButton = GetNode<Button>(PatchMapButtonPath);
         cellEditorButton = GetNode<Button>(CellEditorButtonPath);
+
+        autoEvoSubtab = GetNode<PanelContainer>(AutoEvoSubtabPath);
+        autoEvoSubtabButton = GetNode<Button>(AutoEvoSubtabButtonPath);
+
+        timelineSubtab = GetNode<TimelineTab>(TimelineSubtabPath);
+        timelineSubtabButton = GetNode<Button>(TimelineSubtabButtonPath);
 
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         structureTabButton = GetNode<Button>(StructureTabButtonPath);
@@ -574,7 +627,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
 
-        reportTabPatchNameLabel = GetNode<Label>(ReportTabPatchNamePath);
+        reportTabPatchName = GetNode<Label>(ReportTabPatchNamePath);
+        reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
@@ -634,16 +688,39 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
+        organelleUpgradeGUI = GetNode<OrganelleUpgradeGUI>(OrganelleUpgradeGUIPath);
+
+        // Hidden in the editor to make selecting other things easier
+        organelleUpgradeGUI.Visible = true;
 
         compoundBalance = GetNode<CompoundBalanceDisplay>(CompoundBalancePath);
+
+        autoEvoPredictionExplanationPopup = GetNode<CustomDialog>(AutoEvoPredictionExplanationPopupPath);
+        autoEvoPredictionExplanationLabel = GetNode<Label>(AutoEvoPredictionExplanationLabelPath);
 
         menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = _ => { UpdateShownPatchDetails(); };
 
+        reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
+
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        atp = SimulationParameters.Instance.GetCompound("atp");
+        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
+        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        glucose = SimulationParameters.Instance.GetCompound("glucose");
+        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        iron = SimulationParameters.Instance.GetCompound("iron");
+        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
+        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+        nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         SetupMicrobePartSelections();
         UpdateMicrobePartSelections();
@@ -668,6 +745,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Set the right tabs if they aren't the defaults
         ApplyEditorTab();
+        ApplyReportSubtab();
         ApplySelectionMenuTab();
     }
 
@@ -676,8 +754,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         mapDrawer.Map = map;
     }
 
-    public void UpdatePlayerPatch(Patch patch)
+    public void UpdatePlayerPatch(Patch? patch)
     {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         mapDrawer.PlayerPatch = patch ?? editor.CurrentPatch;
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
@@ -698,16 +779,27 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateTimeIndicator(double value)
     {
+        if (editor?.CurrentGame == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " "
             + TranslationServer.Translate("MEGA_YEARS");
 
-        ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
-                CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " "
-            + TranslationServer.Translate("YEARS");
+        var tooltip = ToolTipManager.Instance.GetToolTip("timeIndicator", "editor");
+
+        if (tooltip == null)
+            throw new InvalidOperationException("Could not find time indicator tooltip");
+
+        tooltip.Description = string.Format(
+            CultureInfo.CurrentCulture, TranslationServer.Translate("TIME_INDICATOR_TOOLTIP"),
+            editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
     public void SetInitialCellStats()
     {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         initialCellSpeed = editor.CalculateSpeed();
         initialCellHp = editor.CalculateHitpoints();
         initialCellSize = editor.MicrobeHexSize;
@@ -774,6 +866,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
 
+            if (tooltip == null)
+                throw new InvalidOperationException("Could not find process production tooltip");
+
             subBar.RegisterToolTipForControl(tooltip);
 
             tooltip.Description = string.Format(CultureInfo.CurrentCulture,
@@ -785,6 +880,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         foreach (var subBar in atpConsumptionBar.SubBars)
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesConsumption");
+
+            if (tooltip == null)
+                throw new InvalidOperationException("Could not find process consumption tooltip");
 
             subBar.RegisterToolTipForControl(tooltip);
 
@@ -830,7 +928,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             if (organelle == protoplasm.InternalName)
                 continue;
 
-            var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
+            var tooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(
                 SimulationParameters.Instance.GetOrganelleType(organelle).InternalName, "organelleSelection");
 
             tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
@@ -844,21 +942,32 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         compoundBalance.UpdateBalances(balances);
     }
 
+    /// <summary>
+    ///   Cancels the previous auto-evo prediction run if there is one
+    /// </summary>
+    public void CancelPreviousAutoEvoPrediction()
+    {
+        if (waitingForPrediction == null)
+            return;
+
+        GD.Print("Canceling previous auto-evo prediction run as it didn't manage to finish yet");
+        waitingForPrediction.AutoEvoRun.Abort();
+        waitingForPrediction = null;
+    }
+
     public void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, MicrobeSpecies playerSpeciesOriginal,
         MicrobeSpecies playerSpeciesNew)
     {
-        // Cancel previous one if there is one
-        waitingForPrediction?.AutoEvoRun.Abort();
+        if (waitingForPrediction != null)
+        {
+            GD.PrintErr(
+                $"{nameof(CancelPreviousAutoEvoPrediction)} has not been called before starting a new prediction");
+        }
 
         totalPopulationIndicator.Show();
         totalPopulationIndicator.Texture = questionIcon;
 
-        var prediction = new PendingAutoEvoPrediction
-        {
-            AutoEvoRun = startedRun,
-            PlayerSpeciesOriginal = playerSpeciesOriginal,
-            PlayerSpeciesNew = playerSpeciesNew,
-        };
+        var prediction = new PendingAutoEvoPrediction(startedRun, playerSpeciesOriginal, playerSpeciesNew);
 
         if (startedRun.Finished)
         {
@@ -873,6 +982,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     public void UpdateReportTabStatistics(Patch patch)
     {
+        if (editor?.CurrentGame == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         temperatureChart.ClearDataSets();
         sunlightChart.ClearDataSets();
         atmosphericGassesChart.ClearDataSets();
@@ -882,8 +994,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Initialize datasets
         var temperatureData = new LineChartData
         {
-            IconTexture = temperatureIcon,
-            DataColour = new Color(0.67f, 1, 0.24f),
+            Icon = temperatureIcon,
+            Colour = new Color(0.67f, 1, 0.24f),
         };
 
         temperatureChart.AddDataSet(TranslationServer.Translate("TEMPERATURE"), temperatureData);
@@ -894,8 +1006,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 var dataset = new LineChartData
                 {
-                    IconTexture = entry.Key.LoadedIcon,
-                    DataColour = entry.Key.Colour,
+                    Icon = entry.Key.LoadedIcon,
+                    Colour = entry.Key.Colour,
                 };
 
                 GetChartForCompound(entry.Key.InternalName)?.AddDataSet(entry.Key.Name, dataset);
@@ -903,18 +1015,24 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
             foreach (var entry in snapshot.SpeciesInPatch)
             {
-                var dataset = new LineChartData { DataColour = entry.Key.Colour };
+                var dataset = new LineChartData { Colour = entry.Key.Colour };
                 speciesPopulationChart.AddDataSet(entry.Key.FormattedName, dataset);
             }
         }
 
-        // Populate charts with data from patch history
-        foreach (var snapshot in patch.History)
+        var extinctSpecies = new List<KeyValuePair<string, ChartDataSet>>();
+        var extinctPoints =
+            new List<(string Name, DataPoint ExtinctPoint, double TimePeriod, bool ExtinctEverywhere)>();
+
+        // Populate charts with data from patch history. We use reverse loop here because the original collection is
+        // reversed (iterating from 500 myr to 100 myr) so it messes up any ordering dependent code
+        for (int i = patch.History.Count - 1; i >= 0; i--)
         {
-            temperatureData.AddPoint(new DataPoint
+            var snapshot = patch.History.ElementAt(i);
+
+            temperatureData.AddPoint(new DataPoint(snapshot.TimePeriod, snapshot.Biome.AverageTemperature)
             {
-                Value = new Vector2((float)snapshot.TimePeriod, snapshot.Biome.AverageTemperature),
-                MarkerColour = temperatureData.DataColour,
+                MarkerColour = temperatureData.Colour,
             });
 
             foreach (var entry in snapshot.Biome.Compounds)
@@ -924,11 +1042,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                 if (dataset == null)
                     continue;
 
-                var dataPoint = new DataPoint
+                var dataPoint = new DataPoint(snapshot.TimePeriod, Math.Round(GetCompoundAmount(
+                    patch, snapshot.Biome, entry.Key.InternalName), 3))
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, GetCompoundAmount(
-                        patch, snapshot.Biome, entry.Key.InternalName)),
-                    MarkerColour = dataset.DataColour,
+                    MarkerColour = dataset.Colour,
                 };
 
                 dataset.AddPoint(dataPoint);
@@ -937,6 +1054,12 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             foreach (var entry in snapshot.SpeciesInPatch)
             {
                 var dataset = speciesPopulationChart.GetDataSet(entry.Key.FormattedName);
+
+                if (dataset == null)
+                {
+                    GD.PrintErr("Could not find species population dataset for: ", entry.Key.FormattedName);
+                    continue;
+                }
 
                 var extinctInPatch = entry.Value <= 0;
                 var extinctEverywhere = false;
@@ -969,13 +1092,25 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
                     }
                 }
 
-                var dataPoint = new DataPoint
+                var dataPoint = new DataPoint(snapshot.TimePeriod, population)
                 {
-                    Value = new Vector2((float)snapshot.TimePeriod, population),
                     Size = iconSize,
                     IconType = iconType,
-                    MarkerColour = dataset.DataColour,
+                    MarkerColour = dataset.Colour,
                 };
+
+                if (extinctInPatch)
+                {
+                    extinctSpecies.Add(new KeyValuePair<string, ChartDataSet>(entry.Key.FormattedName, dataset));
+                    extinctPoints.Add((entry.Key.FormattedName, dataPoint, snapshot.TimePeriod, extinctEverywhere));
+                }
+
+                if (!extinctInPatch && extinctSpecies.Any(e =>
+                        e.Key == entry.Key.FormattedName && e.Value == dataset))
+                {
+                    // No longer extinct in later time period so remove it from the list
+                    extinctSpecies.RemoveAll(e => e.Key == entry.Key.FormattedName && e.Value == dataset);
+                }
 
                 dataset.AddPoint(dataPoint);
             }
@@ -987,21 +1122,64 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         atmosphericGassesChart.TooltipYAxisFormat = percentageFormat;
         compoundsChart.TooltipYAxisFormat = percentageFormat;
 
-        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5);
-        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5);
+        speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.DropDown;
+
+        SpeciesPopulationDatasetsLegend? speciesPopDatasetsLegend = null;
+
+        // The following operation might be expensive so we only do this if any extinction occured
+        if (extinctSpecies.Any())
+        {
+            var datasets = extinctSpecies.Distinct().ToList();
+            speciesPopDatasetsLegend = new SpeciesPopulationDatasetsLegend(datasets, speciesPopulationChart);
+            speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
+        }
+
+        sunlightChart.Plot(TranslationServer.Translate("YEARS"), "% lx", 5, null, null, null, 5);
+        temperatureChart.Plot(TranslationServer.Translate("YEARS"), "°C", 5, null, null, null, 5);
         atmosphericGassesChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"));
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("ATMOSPHERIC_GASSES"), null,
+            null, 5);
         speciesPopulationChart.Plot(
             TranslationServer.Translate("YEARS"), string.Empty, 5, TranslationServer.Translate("SPECIES_LIST"),
-            editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName);
+            speciesPopDatasetsLegend,
+            editor.CurrentGame.GameWorld.PlayerSpecies.FormattedName, 5);
         compoundsChart.Plot(
-            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"));
+            TranslationServer.Translate("YEARS"), "%", 5, TranslationServer.Translate("COMPOUNDS"), null, null, 5);
 
         OnPhysicalConditionsChartLegendPressed("temperature");
+
+        foreach (var point in extinctPoints)
+        {
+            var extinctionType = point.ExtinctEverywhere ?
+                TranslationServer.Translate("EXTINCT_FROM_THE_PLANET") :
+                TranslationServer.Translate("EXTINCT_FROM_PATCH");
+
+            // Override datapoint tooltip to show extinction type instead of just zero.
+            // Doesn't need to account for ToolTipAxesFormat as we don't have it for species pop graph
+            speciesPopulationChart.OverrideDataPointToolTipDescription(point.Name, point.ExtinctPoint,
+                $"{point.Name}\n{point.TimePeriod.FormatNumber()}\n{extinctionType}");
+        }
+
+        var cross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+        var skull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
+
+        speciesPopulationChart.AddIconLegend(cross, TranslationServer.Translate("EXTINCT_FROM_PATCH"));
+        speciesPopulationChart.AddIconLegend(skull, TranslationServer.Translate("EXTINCT_FROM_THE_PLANET"), 25);
+    }
+
+    public void UpdateTimeline(Patch? patch = null)
+    {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
+        timelineSubtab.UpdateTimeline(editor, mapDrawer, patch);
     }
 
     public void UpdateMutationPointsBar(bool tween = true)
     {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
@@ -1061,7 +1239,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Pass in a membrane that the values are taken as relative to
         foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes())
         {
-            var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
+            var tooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip(
                 membraneType.InternalName, "membraneSelection");
 
             tooltip?.WriteMembraneModifierList(referenceMembrane, membraneType);
@@ -1075,7 +1253,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-        var rigidityTooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor");
+        var rigidityTooltip = (SelectionMenuToolTip?)ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor");
+
+        if (rigidityTooltip == null)
+            throw new InvalidOperationException("Could not find rigidity tooltip");
 
         var healthModifier = rigidityTooltip.GetModifierInfo("health");
         var mobilityModifier = rigidityTooltip.GetModifierInfo("mobility");
@@ -1099,13 +1280,33 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         externalEffectsLabel.Text = external;
     }
 
-    public void UpdateReportTabPatchName(string patch)
+    public void UpdateReportTabPatchName(Patch patch)
     {
-        reportTabPatchNameLabel.Text = patch;
+        reportTabPatchName.Text = TranslationServer.Translate(patch.Name);
+    }
+
+    public void UpdateReportTabPatchSelector()
+    {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
+        UpdateReportTabPatchName(editor.CurrentPatch);
+
+        reportTabPatchSelector.Clear();
+
+        foreach (var patch in editor.CurrentPatch.GetClosestConnectedPatches())
+        {
+            reportTabPatchSelector.AddItem(TranslationServer.Translate(patch.Name), patch.ID);
+        }
+
+        reportTabPatchSelector.Select(editor.CurrentPatch.ID);
     }
 
     public void UpdateRigiditySliderState(int mutationPoints)
     {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelles == null)
         {
             rigiditySlider.Editable = true;
@@ -1121,6 +1322,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     /// </summary>
     public void UpdatePatchDetails(Patch patch)
     {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         patchName.Text = TranslationServer.Translate(patch.Name);
 
         // Biome: {0}
@@ -1169,7 +1373,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             speciesLabel.SizeFlagsHorizontal = (int)SizeFlags.ExpandFill;
             speciesLabel.Autowrap = true;
             speciesLabel.Text = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("WITH_POPULATION"), species.FormattedName,
+                TranslationServer.Translate("SPECIES_WITH_POPULATION"), species.FormattedName,
                 patch.GetSpeciesPopulation(species));
             speciesListBox.AddItem(speciesLabel);
         }
@@ -1178,7 +1382,9 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         UpdateReportTabStatistics(patch);
 
-        UpdateReportTabPatchName(TranslationServer.Translate(patch.Name));
+        UpdateTimeline();
+
+        UpdateReportTabPatchName(patch);
     }
 
     /// <summary>
@@ -1206,11 +1412,26 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     /// </summary>
     public void UpdateCancelButtonVisibility()
     {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         cancelButton.Visible = editor.CanCancelAction;
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationTranslationChanged)
+        {
+            UpdateAutoEvoPredictionTranslations();
+            UpdateAutoEvoPredictionDetailsText();
+        }
     }
 
     public void ShowOrganelleMenu(OrganelleTemplate main, List<OrganelleTemplate> selectedOrganelles)
     {
+        if (editor == null)
+            throw new InvalidOperationException("GUI not initialized");
+
         organelleMenu.SelectedOrganelle = main;
         organelleMenu.SelectedOrganelles = selectedOrganelles;
         organelleMenu.ShowPopup = true;
@@ -1227,27 +1448,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Move enabled only when microbe has more than one organelle
         organelleMenu.EnableMoveOption = editor.MicrobeSize > 1 + selectedOrganelles.Count;
-    }
-
-    public void OnMovePressed()
-    {
-        editor.StartOrganelleMove(organelleMenu.SelectedOrganelle.Position);
-
-        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
-        UpdateCancelButtonVisibility();
-    }
-
-    public void OnDeletePressed()
-    {
-        editor.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
-    }
-
-    public override void _Notification(int what)
-    {
-        if (what == NotificationTranslationChanged)
-        {
-            UpdateAutoEvoPredictionTranslations();
-        }
     }
 
     internal void SetSymmetryButtonStatus(bool enabled)
@@ -1267,29 +1467,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void NotifyFreebuild(bool freebuilding)
     {
-        if (freebuilding)
-        {
-            newCellButton.Disabled = false;
-        }
-        else
-        {
-            newCellButton.Disabled = true;
-        }
-    }
-
-    internal void OnNewCellClicked()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        editor.CreateNewMicrobe();
-    }
-
-    internal void OnInvalidHexLocationSelected()
-    {
-        if (selectedEditorTab != EditorTab.CellEditor)
-            return;
-
-        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
+        newCellButton.Disabled = !freebuilding;
     }
 
     internal void OnInsufficientMp(bool playSound = true)
@@ -1327,7 +1505,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     internal void OnOrganelleToPlaceSelected(string organelle)
     {
-        editor.ActiveActionName = organelle;
+        editor!.ActiveActionName = organelle;
 
         // Update the icon highlightings
         foreach (var element in placeablePartSelectionElements.Values)
@@ -1338,16 +1516,139 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         GD.Print("Editor action is now: " + editor.ActiveActionName);
     }
 
-    internal void OnCancelActionClicked()
+    internal void OnInvalidHexLocationSelected()
     {
-        GUICommon.Instance.PlayButtonPressSound();
-        editor.CancelCurrentAction();
+        if (selectedEditorTab != EditorTab.CellEditor)
+            return;
+
+        GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
-    internal void OnFinishEditingClicked()
+    internal void SetSymmetry(MicrobeEditor.MicrobeSymmetry newSymmetry)
+    {
+        symmetry = newSymmetry;
+        editor!.Symmetry = newSymmetry;
+
+        UpdateSymmetryIcon();
+    }
+
+    internal void ResetSymmetryButton()
+    {
+        symmetryIcon.Texture = symmetryIconDefault;
+        symmetry = 0;
+    }
+
+    internal void OnMembraneSelected(string membrane)
+    {
+        editor!.SetMembrane(membrane);
+    }
+
+    internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
+        float rigidity, BehaviourDictionary behaviour)
+    {
+        speciesNameEdit.Text = name;
+        membraneColorPicker.Color = colour;
+
+        // Callback is manually called because the function isn't called automatically here
+        OnSpeciesNameTextChanged(name);
+
+        UpdateMembraneButtons(membrane.InternalName);
+        SetMembraneTooltips(membrane);
+
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+
+        UpdateAllBehaviouralSliders(behaviour);
+    }
+
+    internal void UpdateMembraneButtons(string membrane)
+    {
+        // Update the icon highlightings
+        foreach (var selection in membraneSelectionElements.Values)
+        {
+            selection.Selected = selection.Name == membrane;
+        }
+    }
+
+    internal void UpdateBehaviourSlider(BehaviouralValueType type, float value)
+    {
+        switch (type)
+        {
+            case BehaviouralValueType.Activity:
+                activitySlider.Value = value;
+                break;
+            case BehaviouralValueType.Aggression:
+                aggressionSlider.Value = value;
+                break;
+            case BehaviouralValueType.Opportunism:
+                opportunismSlider.Value = value;
+                break;
+            case BehaviouralValueType.Fear:
+                fearSlider.Value = value;
+                break;
+            case BehaviouralValueType.Focus:
+                focusSlider.Value = value;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValueType {type} is not valid");
+        }
+    }
+
+    internal void UpdateRigiditySlider(int value)
+    {
+        rigiditySlider.Value = value;
+        SetRigiditySliderTooltip(value);
+    }
+
+    internal void SendUndoToTutorial(TutorialState tutorial)
+    {
+        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+
+        tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
+    }
+
+    private void OnMovePressed()
+    {
+        editor!.StartOrganelleMove(organelleMenu.SelectedOrganelle.Position);
+
+        // Once an organelle move has begun, the button visibility should be updated so it becomes visible
+        UpdateCancelButtonVisibility();
+    }
+
+    private void OnDeletePressed()
+    {
+        editor!.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
+    }
+
+    private void OnModifyPressed()
+    {
+        var upgradeGUI = organelleMenu.SelectedOrganelle.Definition.UpgradeGUI;
+
+        if (string.IsNullOrEmpty(upgradeGUI))
+        {
+            GD.PrintErr("Attempted to modify an organelle with no upgrade GUI known");
+            return;
+        }
+
+        organelleUpgradeGUI.OpenForOrganelle(organelleMenu.SelectedOrganelle, upgradeGUI!, editor!);
+    }
+
+    private void OnNewCellClicked()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        editor!.CreateNewMicrobe();
+    }
+
+    private void OnCancelActionClicked()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        editor!.CancelCurrentAction();
+    }
+
+    private void OnFinishEditingClicked()
     {
         // Prevent exiting when the transition hasn't finished
-        if (!editor.TransitionFinished)
+        if (!editor!.TransitionFinished)
         {
             return;
         }
@@ -1383,7 +1684,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
-    internal void ConfirmFinishEditingPressed()
+    private void ConfirmFinishEditingPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -1391,7 +1692,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
-    internal void OnSymmetryClicked()
+    private void OnSymmetryClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -1412,35 +1713,21 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             symmetry = MicrobeEditor.MicrobeSymmetry.SixWaySymmetry;
         }
 
-        editor.Symmetry = symmetry;
+        editor!.Symmetry = symmetry;
         UpdateSymmetryIcon();
     }
 
-    internal void OnSymmetryHold()
+    private void OnSymmetryHold()
     {
         symmetryIcon.Modulate = new Color(0, 0, 0);
     }
 
-    internal void OnSymmetryReleased()
+    private void OnSymmetryReleased()
     {
         symmetryIcon.Modulate = new Color(1, 1, 1);
     }
 
-    internal void ResetSymmetryButton()
-    {
-        symmetryIcon.Texture = symmetryIconDefault;
-        symmetry = 0;
-    }
-
-    internal void SetSymmetry(MicrobeEditor.MicrobeSymmetry newSymmetry)
-    {
-        symmetry = newSymmetry;
-        editor.Symmetry = newSymmetry;
-
-        UpdateSymmetryIcon();
-    }
-
-    internal void HelpButtonPressed()
+    private void HelpButtonPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
@@ -1448,80 +1735,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         menu.ShowHelpScreen();
     }
 
-    internal void OnMembraneSelected(string membrane)
-    {
-        editor.SetMembrane(membrane);
-    }
-
-    internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
-        float rigidity, BehaviourDictionary behaviour)
-    {
-        speciesNameEdit.Text = name;
-        membraneColorPicker.Color = colour;
-
-        // Callback is manually called because the function isn't called automatically here
-        OnSpeciesNameTextChanged(name);
-
-        UpdateMembraneButtons(membrane.InternalName);
-        SetMembraneTooltips(membrane);
-
-        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
-
-        UpdateAllBehaviouralSliders(behaviour);
-    }
-
-    internal void UpdateMembraneButtons(string membrane)
-    {
-        // Update the icon highlightings
-        foreach (var selection in membraneSelectionElements.Values)
-        {
-            selection.Selected = selection.Name == membrane;
-        }
-    }
-
-    internal void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
+    private void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
     {
         foreach (var pair in behaviour)
             UpdateBehaviourSlider(pair.Key, pair.Value);
-    }
-
-    internal void UpdateBehaviourSlider(BehaviouralValueType type, float value)
-    {
-        switch (type)
-        {
-            case BehaviouralValueType.Activity:
-                activitySlider.Value = value;
-                break;
-            case BehaviouralValueType.Aggression:
-                aggressionSlider.Value = value;
-                break;
-            case BehaviouralValueType.Opportunism:
-                opportunismSlider.Value = value;
-                break;
-            case BehaviouralValueType.Fear:
-                fearSlider.Value = value;
-                break;
-            case BehaviouralValueType.Focus:
-                focusSlider.Value = value;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, $"BehaviouralValueType {type} is not valid");
-        }
-    }
-
-    internal void UpdateRigiditySlider(int value)
-    {
-        rigiditySlider.Value = value;
-        SetRigiditySliderTooltip(value);
-    }
-
-    internal void SendUndoToTutorial(TutorialState tutorial)
-    {
-        if (tutorial.EditorUndoTutorial != null)
-            tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
-
-        if (tutorial.AutoEvoPrediction != null)
-            tutorial.AutoEvoPrediction.EditorAutoEvoPredictionPanel = autoEvoPredictionPanel;
     }
 
     /// <summary>
@@ -1529,7 +1746,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     /// </summary>
     private void OnCellEditorMouseEntered()
     {
-        editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
+        editor!.ShowHover = selectedEditorTab == EditorTab.CellEditor;
         UpdateMutationPointsBar();
     }
 
@@ -1538,7 +1755,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     /// </summary>
     private void OnCellEditorMouseExited()
     {
-        editor.ShowHover = false;
+        editor!.ShowHover = false;
         UpdateMutationPointsBar();
     }
 
@@ -1551,7 +1768,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     /// <param name="inputEvent">The event the user fired</param>
     private void OnCellEditorGuiInput(InputEvent inputEvent)
     {
-        if (!editor.ShowHover)
+        if (!editor!.ShowHover)
             return;
 
         InputManager.ForwardInput(inputEvent);
@@ -1655,24 +1872,24 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (!Enum.TryParse(behaviourName, out BehaviouralValueType behaviouralValueType))
             throw new ArgumentException($"{behaviourName} is not a valid BehaviouralValueType");
 
-        editor.SetBehaviouralValue(behaviouralValueType, value);
+        editor!.SetBehaviouralValue(behaviouralValueType, value);
     }
 
     private void OnRigidityChanged(int value)
     {
-        editor.SetRigidity(value);
+        editor!.SetRigidity(value);
     }
 
     private void OnColorChanged(Color color)
     {
-        editor.Colour = color;
+        editor!.Colour = color;
     }
 
     private void MoveToPatchClicked()
     {
         var target = mapDrawer.SelectedPatch;
 
-        if (editor.IsPatchMoveValid(target))
+        if (editor!.IsPatchMoveValid(target))
             editor.SetPlayerPatch(target);
     }
 
@@ -1689,7 +1906,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         ApplyEditorTab();
 
-        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
+        editor!.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void ApplyEditorTab()
@@ -1710,7 +1927,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 report.Show();
                 reportTabButton.Pressed = true;
-                editor.SetEditorCellVisibility(false);
+                editor!.SetEditorCellVisibility(false);
                 break;
             }
 
@@ -1718,7 +1935,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 patchMap.Show();
                 patchMapButton.Pressed = true;
-                editor.SetEditorCellVisibility(false);
+                editor!.SetEditorCellVisibility(false);
                 break;
             }
 
@@ -1726,12 +1943,46 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 cellEditor.Show();
                 cellEditorButton.Pressed = true;
-                editor.SetEditorCellVisibility(true);
+                editor!.SetEditorCellVisibility(true);
                 break;
             }
 
             default:
                 throw new Exception("Invalid editor tab");
+        }
+    }
+
+    private void SetReportSubtab(string tab)
+    {
+        var selection = (ReportSubtab)Enum.Parse(typeof(ReportSubtab), tab);
+
+        if (selection == selectedReportSubtab)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        selectedReportSubtab = selection;
+        ApplyReportSubtab();
+    }
+
+    private void ApplyReportSubtab()
+    {
+        autoEvoSubtab.Hide();
+        timelineSubtab.Hide();
+
+        switch (selectedReportSubtab)
+        {
+            case ReportSubtab.AutoEvo:
+                autoEvoSubtab.Show();
+                autoEvoSubtabButton.Pressed = true;
+                break;
+            case ReportSubtab.Timeline:
+                timelineSubtab.Show();
+                timelineSubtabButton.Pressed = true;
+                Invoke.Instance.Queue(timelineSubtab.TimelineAutoScrollToCurrentTimePeriod);
+                break;
+            default:
+                throw new Exception("Invalid report subtab");
         }
     }
 
@@ -1762,7 +2013,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 structureTab.Show();
                 structureTabButton.Pressed = true;
-                editor.MicrobePreviewMode = false;
+                editor!.MicrobePreviewMode = false;
                 break;
             }
 
@@ -1770,7 +2021,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
-                editor.MicrobePreviewMode = true;
+                editor!.MicrobePreviewMode = true;
                 break;
             }
 
@@ -1778,7 +2029,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 behaviourTab.Show();
                 behaviourTabButton.Pressed = true;
-                editor.MicrobePreviewMode = false;
+                editor!.MicrobePreviewMode = false;
                 break;
             }
 
@@ -1816,7 +2067,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         sizeIndicator.Show();
 
-        if (editor.MicrobeHexSize > initialCellSize)
+        if (editor!.MicrobeHexSize > initialCellSize)
         {
             sizeIndicator.Texture = increaseIcon;
         }
@@ -1902,7 +2153,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             return;
         }
 
-        var results = run.AutoEvoRun.Results;
+        var results = run.AutoEvoRun.Results ??
+            throw new Exception("Auto evo prediction has no results even though it succeeded");
 
         // Total population
         var newPopulation = results.GetGlobalPopulation(run.PlayerSpeciesNew);
@@ -1949,7 +2201,15 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             worstPatchName = null;
         }
 
+        CreateAutoEvoPredictionDetailsText(results.GetPatchEnergyResults(run.PlayerSpeciesNew),
+            run.PlayerSpeciesOriginal.FormattedName);
+
         UpdateAutoEvoPredictionTranslations();
+
+        if (autoEvoPredictionPanel.Visible)
+        {
+            UpdateAutoEvoPredictionDetailsText();
+        }
     }
 
     /// <remarks>
@@ -2069,7 +2329,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         var patch = mapDrawer.SelectedPatch;
 
-        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorPatchSelected, new PatchEventArgs(patch), this);
+        editor!.TutorialState.SendEvent(TutorialEventType.MicrobeEditorPatchSelected, new PatchEventArgs(patch), this);
 
         if (patch == null)
         {
@@ -2086,6 +2346,22 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
+
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patch.ID));
+    }
+
+    private void OnReportTabPatchListSelected(int index)
+    {
+        if (editor?.CurrentGame == null)
+        {
+            GD.PrintErr("Can't change selected tab because GUI is not initialized correctly");
+            return;
+        }
+
+        var patch = editor.CurrentGame.GameWorld.Map.GetPatch(reportTabPatchSelector.GetItemId(index));
+        UpdateReportTabStatistics(patch);
+        UpdateTimeline(patch);
+        UpdateReportTabPatchName(patch);
     }
 
     /// <summary>
@@ -2128,13 +2404,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
         }
 
-        editor.NewName = newText;
+        editor!.NewName = newText;
     }
 
     private void OnSpeciesNameTextEntered(string newText)
     {
         // In case the text is not stored
-        editor.NewName = newText;
+        editor!.NewName = newText;
 
         // Only defocus if the name is valid to indicate invalid namings to the player
         if (Regex.IsMatch(newText, Constants.SPECIES_NAME_REGEX))
@@ -2235,10 +2511,80 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
+    private void OpenAutoEvoPredictionDetails()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        UpdateAutoEvoPredictionDetailsText();
+
+        autoEvoPredictionExplanationPopup.PopupCenteredShrink();
+
+        editor!.TutorialState.SendEvent(TutorialEventType.MicrobeEditorAutoEvoPredictionOpened, EventArgs.Empty, this);
+    }
+
+    private void CloseAutoEvoPrediction()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        autoEvoPredictionExplanationPopup.Hide();
+    }
+
+    private void CreateAutoEvoPredictionDetailsText(
+        Dictionary<Patch, RunResults.SpeciesPatchEnergyResults> energyResults, string playerSpeciesName)
+    {
+        predictionDetailsText = new LocalizedStringBuilder(300);
+
+        double Round(float value)
+        {
+            if (value > 0.0005f)
+                return Math.Round(value, 3);
+
+            // Small values can get really small (and still be different from getting 0 energy due to fitness) so
+            // this is here for that reason
+            return Math.Round(value, 8);
+        }
+
+        // This loop shows all the patches the player species is in. Could perhaps just show the current one
+        foreach (var energyResult in energyResults)
+        {
+            predictionDetailsText.Append(new LocalizedString("ENERGY_IN_PATCH_FOR",
+                new LocalizedString(energyResult.Key.Name), playerSpeciesName));
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SUMMARY_LINE",
+                Round(energyResult.Value.TotalEnergyGathered), Round(energyResult.Value.IndividualCost),
+                energyResult.Value.UnadjustedPopulation));
+
+            predictionDetailsText.Append('\n');
+            predictionDetailsText.Append('\n');
+
+            predictionDetailsText.Append(new LocalizedString("ENERGY_SOURCES"));
+            predictionDetailsText.Append('\n');
+
+            foreach (var nicheInfo in energyResult.Value.PerNicheEnergy)
+            {
+                var data = nicheInfo.Value;
+                predictionDetailsText.Append(new LocalizedString("FOOD_SOURCE_ENERGY_INFO", nicheInfo.Key,
+                    Round(data.CurrentSpeciesEnergy), Round(data.CurrentSpeciesFitness),
+                    Round(data.TotalAvailableEnergy),
+                    Round(data.TotalFitness)));
+                predictionDetailsText.Append('\n');
+            }
+
+            predictionDetailsText.Append('\n');
+        }
+    }
+
+    private void UpdateAutoEvoPredictionDetailsText()
+    {
+        autoEvoPredictionExplanationLabel.Text = predictionDetailsText != null ?
+            predictionDetailsText.ToString() :
+            TranslationServer.Translate("NO_DATA_TO_SHOW");
+    }
+
     /// <summary>
     ///   Returns a chart which should contain the given compound.
     /// </summary>
-    private LineChart GetChartForCompound(string compoundName)
+    private LineChart? GetChartForCompound(string compoundName)
     {
         switch (compoundName)
         {
@@ -2340,6 +2686,13 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         public AutoEvoRun AutoEvoRun;
         public Species PlayerSpeciesOriginal;
         public Species PlayerSpeciesNew;
+
+        public PendingAutoEvoPrediction(AutoEvoRun autoEvoRun, Species playerSpeciesOriginal, Species playerSpeciesNew)
+        {
+            AutoEvoRun = autoEvoRun;
+            PlayerSpeciesOriginal = playerSpeciesOriginal;
+            PlayerSpeciesNew = playerSpeciesNew;
+        }
 
         public bool Finished => AutoEvoRun.Finished;
     }

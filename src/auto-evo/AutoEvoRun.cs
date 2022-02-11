@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
@@ -18,14 +17,14 @@ public class AutoEvoRun
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
     /// </summary>
-    private readonly RunResults results = new RunResults();
+    private readonly RunResults results = new();
 
     /// <summary>
     ///   Generated steps are stored here until they are executed
     /// </summary>
-    private readonly Queue<IRunStep> runSteps = new Queue<IRunStep>();
+    private readonly Queue<IRunStep> runSteps = new();
 
-    private readonly List<Task> concurrentStepTasks = new List<Task>();
+    private readonly List<Task> concurrentStepTasks = new();
 
     private volatile RunStage state = RunStage.GatheringInfo;
 
@@ -68,7 +67,7 @@ public class AutoEvoRun
     /// <summary>
     ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
     /// </summary>
-    public List<ExternalEffect> ExternalEffects { get; } = new List<ExternalEffect>();
+    public List<ExternalEffect> ExternalEffects { get; } = new();
 
     /// <summary>
     ///   True while running
@@ -120,13 +119,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return TranslationServer.Translate("ABORTED");
+                return TranslationServer.Translate("ABORTED_DOT");
 
             if (Finished)
-                return TranslationServer.Translate("FINISHED");
+                return TranslationServer.Translate("FINISHED_DOT");
 
             if (!Running)
-                return TranslationServer.Translate("NOT_RUNNING");
+                return TranslationServer.Translate("NOT_RUNNING_DOT");
 
             int total = totalSteps;
 
@@ -147,7 +146,7 @@ public class AutoEvoRun
     /// <summary>
     ///   Run results after this is finished
     /// </summary>
-    public RunResults Results
+    public RunResults? Results
     {
         get
         {
@@ -220,13 +219,23 @@ public class AutoEvoRun
         if (ExternalEffects.Count > 0)
         {
             // Effects are applied in the current patch
-            var currentPatch = Parameters.World.Map.CurrentPatch;
+            var currentPatch = Parameters.World.Map.CurrentPatch ??
+                throw new InvalidOperationException("Cannot apply external effects without current map patch");
 
             foreach (var entry in ExternalEffects)
             {
                 try
                 {
-                    long currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
+                    // It's possible for external effects to be added for extinct species (either completely extinct
+                    // or extinct in the current patch)
+                    if (!results.SpeciesHasResults(entry.Species))
+                    {
+                        GD.Print("Extinct species ", entry.Species.FormattedIdentifier,
+                            " had an external effect, ignoring the effect");
+                        continue;
+                    }
+
+                    long currentPop = results.GetPopulationInPatchIfExists(entry.Species, currentPatch) ?? 0;
 
                     results.AddPopulationResultForSpecies(
                         entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
@@ -257,7 +266,7 @@ public class AutoEvoRun
     ///   Makes a summary of external effects
     /// </summary>
     /// <returns>The summary of external effects.</returns>
-    public string MakeSummaryOfExternalEffects()
+    public LocalizedStringBuilder MakeSummaryOfExternalEffects()
     {
         var combinedExternalEffects = new Dictionary<Tuple<Species, string>, long>();
 
@@ -277,18 +286,17 @@ public class AutoEvoRun
             }
         }
 
-        var builder = new StringBuilder(300);
+        var builder = new LocalizedStringBuilder(300);
 
         foreach (var entry in combinedExternalEffects)
         {
             // entry.Value is the amount, Item2 is the reason string
-            builder.Append(string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("AUTO-EVO_POPULATION_CHANGED"),
+            builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED",
                 entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
             builder.Append('\n');
         }
 
-        return builder.ToString();
+        return builder;
     }
 
     /// <summary>
@@ -313,6 +321,10 @@ public class AutoEvoRun
             var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
             foreach (var speciesEntry in speciesInPatchCopy)
             {
+                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
+                if (speciesEntry.Key == null)
+                    throw new Exception("Species key in a patch is null");
+
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
 
@@ -324,13 +336,13 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    steps.Enqueue(new FindBestMutation(map, speciesEntry.Key,
+                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, map, speciesEntry.Key,
                         autoEvoConfiguration.MutationsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
                         autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
 
-                    steps.Enqueue(new FindBestMigration(map, speciesEntry.Key, random,
+                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, map, speciesEntry.Key, random,
                         autoEvoConfiguration.MoveAttemptsPerSpecies,
                         autoEvoConfiguration.AllowNoMigration));
                 }
@@ -358,7 +370,7 @@ public class AutoEvoRun
             if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
                 random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
             {
-                steps.Enqueue(new IncreaseBiodiversity(map, entry.Value, random, autoEvoConfiguration));
+                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, map, entry.Value, random));
             }
         }
 
@@ -367,7 +379,7 @@ public class AutoEvoRun
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
         // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(map) { CanRunConcurrently = false });
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, map) { CanRunConcurrently = false });
 
         // Due to species splitting migrations may end up being invalid
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
@@ -375,6 +387,8 @@ public class AutoEvoRun
         steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
+
+        steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
     }
 
     /// <summary>
@@ -387,8 +401,9 @@ public class AutoEvoRun
     ///   This is the species from which the previous populations are read through. If null
     ///   <see cref="playerSpecies"/> is used instead
     /// </param>
-    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map, Species playerSpecies,
-        Species previousPopulationFrom = null)
+    protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map,
+        Species? playerSpecies,
+        Species? previousPopulationFrom = null)
     {
         if (playerSpecies == null)
             return;

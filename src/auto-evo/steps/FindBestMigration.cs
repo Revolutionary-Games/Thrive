@@ -8,13 +8,15 @@
     /// </summary>
     public class FindBestMigration : VariantTryingStep
     {
+        private readonly AutoEvoConfiguration configuration;
         private readonly PatchMap map;
         private readonly Species species;
         private readonly Random random;
 
-        public FindBestMigration(PatchMap map, Species species, Random random, int migrationsToTry, bool
-            allowNoMigration) : base(migrationsToTry, allowNoMigration)
+        public FindBestMigration(AutoEvoConfiguration configuration, PatchMap map, Species species,
+            Random random, int migrationsToTry, bool allowNoMigration) : base(migrationsToTry, allowNoMigration)
         {
+            this.configuration = configuration;
             this.map = map;
             this.species = species;
             this.random = new Random(random.Next());
@@ -34,7 +36,9 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+
+            config.SetPatchesToRunBySpeciesPresence(species);
 
             PopulationSimulation.Simulate(config);
 
@@ -51,7 +55,12 @@
             if (migration == null)
                 return new AttemptResult(null, -1);
 
-            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(configuration, map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
+
+            config.SetPatchesToRunBySpeciesPresence(species);
+            config.PatchesToRun.Add(migration.From);
+            config.PatchesToRun.Add(migration.To);
+
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
             // TODO: this could be faster to just simulate the source and
@@ -75,7 +84,7 @@
         ///     migration (with the most resulting global population) is selected.
         ///   </para>
         /// </remarks>
-        private SpeciesMigration GetRandomMigration()
+        private SpeciesMigration? GetRandomMigration()
         {
             int attemptsLeft = 10;
 
@@ -123,13 +132,13 @@
 
         private class AttemptResult : IAttemptResult
         {
-            public AttemptResult(SpeciesMigration migration, long score)
+            public AttemptResult(SpeciesMigration? migration, long score)
             {
                 Migration = migration;
                 Score = score;
             }
 
-            public SpeciesMigration Migration { get; }
+            public SpeciesMigration? Migration { get; }
             public long Score { get; }
         }
     }

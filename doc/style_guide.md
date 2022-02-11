@@ -24,7 +24,8 @@ Code style rules
   descriptive. Avoid abbreviations. Do not shorten variable names just
   to save key strokes, it will be read far more often than it will be
   written. Single character variable names can be used in for
-  loops. They should be avoided everywhere else.
+  loops. They should be avoided everywhere else. LINQ is an exception
+  to this rule (see below for more info)
 
 - Some common short names are accepted (and even preferred): i, k, a,
   b used in loops (x, y, z used in loops that deal with coordinates or
@@ -45,7 +46,7 @@ Code style rules
   - `rect` (when related to class names and variables holding instances of those classes)
 
 - Variables and functions are camelCase or PascalCase depending on
-  their visibilty. Classes are PascalCase with leading upper
+  their visibility. Classes are PascalCase with leading upper
   case. StyleCop enforces these rules. Constants are all upper case
   with `SNAKE_CASE` (underscores). Enums may be PascalCase or
   `ALL_UPPER_CASE` (but PascalCase is very strongly preferred).
@@ -120,12 +121,57 @@ Code style rules
 - Start comments with a capital letter, unless it is a commented out
   code block or a keyword.
 
+- Comments may end in a period. However it is only really recommended
+  for comments that are multiple sentences long. For other comments
+  it's suggested to not end them with a period.
+
+- If there is any debate what a method / parameter means in pull
+  request comments, it *must* be documented. The discussion is proof
+  that it is not clear enough without a comment. Or a more descriptive
+  name may also help in this situation.
+
+- If you add a comment describing what an `if` checked (what the
+  result is), put that comment inside the `if`. Comments describing
+  what the `if` is checking should be put on a line before the if. For
+  example: "Make sure the player is alive" should be placed before the
+  `if` but a comment like "Player is alive" should be inside the
+  braces of the `if` statement.
+
 - The `returns` section of an XML can be omitted if it adds nothing
   valuable. For example a method like `public List<Organelle>
   GetOrganelles()` having documentation that it "returns a list of
   organelles" doesn't provide any useful information to the person
   reading the code that they couldn't see directly from the method
   signature.
+
+- For the main Thrive.csproj 
+  [nullable reference types](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) 
+  feature is turned on. All nullable reference warnings need to be 
+  fixed. In registry types and Node derived types we consider
+  the `_Ready` method and required JSON properties to be "constructor"
+  initialized, meaning we suppress those nullability warnings (when
+  the fields are never checked against null, see Godot usage section
+  for an example). Here's an example of the null suppression:
+  ```c#
+  [Export]
+  public NodePath ConflictDialogPath = null!;
+  
+  private CustomConfirmationDialog conflictDialog = null!;
+  
+  public override void _Ready()
+  {
+      conflictDialog = GetNode<CustomConfirmationDialog>(ConflictDialogPath);
+  }  
+  ```
+
+- Private and other methods that are called in controlled manner
+  may use nullability suppression for things that are checked
+  always higher up the callstack or in a Node `_Ready` method.
+  Other places are usually better to throw an `InvalidOperationException`
+  when they are tried to be used on a non-initialized instance.
+
+- For third party code, nullability should be disabled / enabled based
+  on whether the code uses nullable reference types or not.
 
 - Empty lines are encouraged between blocks of code to improve
   readability. Blank space is your friend, not your enemy. Separate
@@ -140,6 +186,11 @@ Code style rules
 - There should not be a line change in method declarations before the
   name of the method. Prefer adding a line break after the opening
   `(`
+
+- For method parameters, don't use the "chop" style for dividing them
+  on multiple lines, use the wrap style instead (ie. fill as many
+  parameters on each line as fits within the width limit, instead of
+  just one per line).
 
 - Switch statements should use braces when there is more than one line
   of code followed by a break/return or a variable is defined. Switch
@@ -185,6 +236,10 @@ Code style rules
   property should be preferred, even in the same class to avoid
   mistakes in skipping some logic by directly assigning a field.
 
+- Targeted new and `default` should be used without specifying type
+  when the type is evident from the context. When the type is not
+  clear the type needs to be specified.
+
 - Variables should be defined in the smallest possible scope. We
   aren't writing ancient C here.
 
@@ -204,7 +259,7 @@ Code style rules
   short should use that style bodies.
 
 - Prefer early returns in methods to avoid unnecessary
-  intendation. Check assumptions about the parameters of a method at
+  indentation. Check assumptions about the parameters of a method at
   the start and return early with an error if the inputs are not
   valid.
 
@@ -215,16 +270,29 @@ Code style rules
   chains. Use complex LINQ sparingly. If LINQ would need many nested
   statements in lambdas, normal code should be used instead
 
-- Prefer to use short form names in LINQ statements instead of one
-  letter names, or at least use a sensible letter and don't always use
-  x, instead use i for item, c for cells etc.
+- Prefer to use single letter variable names in LINQ statements, when
+  they are clear enough. Don't always use x or another generic
+  variable for these. Instead use the first letter that a more
+  descriptive name would have. For example use "i" for "item", "c" for
+  "cells" etc.
 
 - Don't add a `Dispose` method to classes that don't need it.
+
+- Base method calls should be at the start of the method, unless
+  something really has to happen before them. This is to make it
+  easier see that the base method is called and not forgotten. Often
+  it is better to call the base method even though it doesn't do
+  anything to guard against future bugs (if a new sub class is added /
+  the base class is changed).
 
 - Prefer using declarations (C# 8 feature) over using statement
   blocks. If you need to reduce the scope of the using variables,
   start a new block with curly braces and use the using declaration
   inside it.
+
+- Don't use async (C# feature). Instead use the `TaskExecutor` to run
+  background tasks. Godot APIs don't use async either and none of the
+  existing code does.
 
 - Continuous Integration (CI) will check if the formatting scripts and
   tools find some problems in your code. You should fix these if your
@@ -249,7 +317,7 @@ Code style rules
 - Finally you should attempt to reach the abstract goal of clean
   code. Here are some concepts that are indicative of good code (and
   breaking these can be bad code): Liskov substitution principle,
-  single purpose princible, logically putting same kind of code in the
+  single purpose principle, logically putting same kind of code in the
   same place, avoid repetition, avoid expensive operations in a loop,
   prefer simpler code to understand. Avoid anti-patterns, for example
   God class.
@@ -262,7 +330,7 @@ Godot usage
 
 - For spacing elements use either a spacer (that has a visual
   appearance) or for invisible space use an empty Control with rect
-  minsize set to the amount of blank you want.
+  `minsize` set to the amount of blank you want.
 
 - Node names should not contain spaces, instead use PascalCase naming.
 
@@ -290,9 +358,14 @@ Godot usage
   to be used multiple times, it is preferred to read out the value
   from it to a local variable first.
 
+- IEntity derived classes must call the OnDestroyed callback when they
+  are freed or queue freed otherwise things will break. If they don't
+  `EntityReference` won't function correctly and we'll have disposed
+  objects problems again.
+
 - The order of Godot overridden methods in a class should be in the
-  following order: (class constructor), _Ready, _ExitTree, _Process,
-  _Input, _UnhandledInput, (other callbacks)
+  following order: (class constructor), `_Ready`, `_ExitTree`, `_Process`,
+  `_Input`, `_UnhandledInput`, (other callbacks)
 
 - If you need to access parent objects, don't make a static public
   instance variables, instead pass callbacks etc. around to allow the
@@ -302,8 +375,68 @@ Godot usage
 - To remove all children of a Node use `FreeChildren` or
   `QueueFreeChildren` extension methods.
 
-- DO NOT DISPOSE Godot Node derived objects, call QueueFree or Free
-  instead.
+- DO NOT DISPOSE Godot Node derived objects, call `QueueFree` or `Free`
+  instead. Also don't override Dispose in Node derived types, instead
+  use the tree enter and exit callbacks to handle resources that need
+  releasing when removed (unless it is a game entity for which there's
+  a special mechanism, `IEntity` destroyed callbacks)
+
+- Avoid using a constructor to setup Godot resources, usually Node
+  derived types should mostly do Godot Node related, constructor-like
+  operations entirely in `_Ready`. Many resources are not ready yet when
+  a class is constructed or static variables are being initialized. If
+  this is not followed script variables may not show up correctly in
+  the Godot editor as that relies on creating an instance of the
+  class, and that can fail for example because SimulationParameters
+  are not initialized in the Godot editor. This needs especial care
+  when a class type is directly attached to a Godot scene.
+
+- Regarding nullability and Node references that are null before a Node
+  enters the scene. They can be used if you want to support setting a
+  property that affects a child Node before the Node is added to the scene.
+  For example the following shows how that can be structured:
+  ```c#
+  [Export]
+  public NodePath SpinnerPath = null!;
+  
+  private TextureRect? spinner;
+  
+  private bool showSpinner;
+  
+  public bool ShowSpinner
+  {
+      get => showSpinner;
+      set
+      {
+          showSpinner = value;
+          UpdateSpinner();
+      }
+  }
+  
+  public override void _Ready()
+  {
+      spinner = GetNode<TextureRect>(SpinnerPath);
+      UpdateSpinner();
+  }
+  
+  private void UpdateSpinner()
+  {
+      if (spinner != null)
+          spinner.Visible = ShowSpinner;
+  }
+  
+  private void SomeOperationValidAfterReady()
+  {
+      // Use nullability suppression here once a method is only valid after
+      // _Ready has been called
+      spinner!.Something();
+  }
+  ```
+
+- Related to the above point, throw `SceneTreeAttachRequired` if you write
+  an operation that may not be called before `_Ready` has ran, and it's
+  a public method or can be triggered that way and someone might call it 
+  too early.
 
 - When using `GD.PrintErr` don't use string concatenation, use the
   multi argument form instead, for example: `GD.PrintErr("My value is:
@@ -341,7 +474,7 @@ Godot usage
   `src/gui_common/fonts` folder and use that. This is needed because
   all fonts must have fallback fonts defined for translations that use
   character sets that aren't in the main fonts, for example
-  Chinese. All fonts should be truetype (`.ttf`) and stored in
+  Chinese. All fonts should be TrueType (`.ttf`) and stored in
   `assets/fonts`.
 
 - All images used in the GUI should have mipmaps on in the import
@@ -379,6 +512,23 @@ Other files
   reduce the amount of changes PRs contain, but also means that the
   reference line numbers are sometimes slightly out of date.
 
+Gameplay changes
+----------------
+
+When doing changes that impact existing gameplay or add new gameplay
+additional considerations regarding playability and understandability
+need to be taken into account.
+
+- When changing an existing mechanic that has tutorials, tooltips, help 
+  menu entries or other explanations, you must also update those texts
+  so that how we explain the game to the player doesn't get out of sync.
+  This is because if a gameplay changing PR is accepted it may take multiple
+  months for anyone to bother to update the help text meanwhile players don't
+  know about the new mechanics.
+
+- For new gameplay features it is recommended but not mandatory to write
+  new help text or tutorials to explain them.
+
 Git
 ---
 
@@ -392,6 +542,11 @@ Git
   joined the team) fork the Thrive repository and work in your fork
   and once done open a pull request.
 
+- Once you get invited to the main repository, you should make your
+  feature branches exclusively in that (and not use a fork). This is
+  so that it is easier for other team members to checkout your code
+  and help with it by committing to your branch.
+
 - If you haven't made many pull requests in the past, it is highly
   recommended to keep anything not directly needed in your PR away
   from it to make reviewing easier. Adding refactoring (other than
@@ -401,7 +556,7 @@ Git
 - If you are working on a GitHub issue, your feature branch's name
   should begin with the issue number, followed by an underscore,
   followed by a short, descriptive name in
-  lower_case_with_underscores. The name should be short, but
+  `lower_case_with_underscores`. The name should be short, but
   descriptive enough that you know what the feature branch is about
   without looking up the GitHub ticket. The second best is to have a
   descriptive name for a branch that uses underscores to separate
@@ -418,10 +573,11 @@ Git
   master, do a merge. Or if there is a merge conflict preventing your
   pull request from being merged. Quite often the master branch needs
   to be merged in before merging a pull request, this can be done
-  directly on Github if there aren't any conflicts. If you want you
+  directly on Github if there aren't any conflicts. If you want, you
   can alternatively rebase the feature branch onto master, but this is
   not required normally. In a case where a direct merge (not squash)
-  is wanted to master then a rebase needs to be performed.
+  is wanted to master then a rebase needs to be performed to clean up
+  the commits in the feature branch.
 
 - When a feature branch is done, open a pull request on GitHub so that
   others can review it. Chances are that during this review, there
@@ -451,14 +607,21 @@ Git
   some cases where someone does a small fix to get things ready for a
   merge.
 
-- An exception to the above rule are the automatic PRs from weblate,
-  those must be merged normally, otherwise weblate won't detect that
+- An exception to the above rule are the automatic PRs from
+  [Weblate](https://translate.revolutionarygamesstudio.com/), those
+  must be merged normally, otherwise weblate won't detect that
   correctly and fixing that requires a lot of manual merging. So merge
-  weblate PRs as separate commits, not squashed.
+  weblate PRs as separate commits, not squashed. If there is a merge
+  conflict with a Weblate PR or Weblate can't rebase on latest master
+  due to a conflict, a manual merge is needed. For this checkout
+  latest master locally, then fetch the Weblate remote to get the
+  latest code, and finally just merge `weblate/master` to `master` and
+  push the result to `origin/master`.
 
 - You should not leave the co-authored-by line in a squashed commit if
-  all you did was merge master into the branch to make the merge show
-  up as green on Github.
+  all that person did was merge master into the branch to make the
+  merge show up as green on Github or if it is a really tiny
+  suggestion like a simple typo fix.
 
 - For maintainers: When manually merging (which is something you
   should avoid) GitHub requires a merge commit to recognize the
@@ -470,4 +633,7 @@ Git
 
 - All team members are encouraged to review pull requests. However,
   you shouldn't go and merge PRs if you haven't discussed it with the
-  programming team lead yet / it isn't approved by them yet.
+  programming team lead yet / it isn't approved by them yet. Another
+  person with access can perform PR merges if the programming team
+  lead is not available, but in this case another team member should
+  also review the code beforehand.

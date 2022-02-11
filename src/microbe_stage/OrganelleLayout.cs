@@ -15,15 +15,15 @@ public class OrganelleLayout<T> : ICollection<T>
 #pragma warning restore CA1710
 {
     [JsonProperty]
-    public readonly List<T> Organelles = new List<T>();
+    public readonly List<T> Organelles = new();
 
     [JsonProperty]
-    private Action<T> onAdded;
+    private Action<T>? onAdded;
 
     [JsonProperty]
-    private Action<T> onRemoved;
+    private Action<T>? onRemoved;
 
-    public OrganelleLayout(Action<T> onAdded, Action<T> onRemoved = null)
+    public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null)
     {
         this.onAdded = onAdded;
         this.onRemoved = onRemoved;
@@ -103,7 +103,7 @@ public class OrganelleLayout<T> : ICollection<T>
         {
             var overlapping = GetOrganelleAt(hex + position);
             if (overlapping != null && (allowCytoplasmOverlap == false ||
-                overlapping.Definition.InternalName != "cytoplasm"))
+                    overlapping.Definition.InternalName != "cytoplasm"))
                 return false;
         }
 
@@ -174,7 +174,7 @@ public class OrganelleLayout<T> : ICollection<T>
     /// <summary>
     ///   Searches organelle list for an organelle at the specified hex
     /// </summary>
-    public T GetOrganelleAt(Hex location)
+    public T? GetOrganelleAt(Hex location)
     {
         foreach (var organelle in Organelles)
         {
@@ -314,7 +314,7 @@ public class OrganelleLayout<T> : ICollection<T>
         var set = new HashSet<Hex>();
 
         foreach (var hex in Organelles.SelectMany(o =>
-            o.Definition.GetRotatedHexes(o.Orientation).Select(h => h + o.Position)))
+                     o.Definition.GetRotatedHexes(o.Orientation).Select(h => h + o.Position)))
         {
             set.Add(hex);
         }

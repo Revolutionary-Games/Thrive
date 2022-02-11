@@ -21,6 +21,7 @@ FileUtils.mkdir_p 'builds'
 ALL_TARGETS = ['Linux/X11', 'Windows Desktop', 'Windows Desktop (32-bit)', 'Mac OSX'].freeze
 DEVBUILD_TARGETS = ['Linux/X11', 'Windows Desktop'].freeze
 BASE_BUILDS_FOLDER = File.realpath 'builds'
+EXPECTED_DATA_FOLDER = 'data_Thrive'
 
 README_FILE = 'builds/README.txt'
 REVISION_FILE = 'builds/revision.txt'
@@ -304,16 +305,19 @@ def devbuild_package(target, target_name, target_folder, target_file)
 
   pck = File.join(target_folder, 'Thrive.pck')
 
-  # Start by extracting the big files to be dehydrated
+  # Start by extracting the big files to be dehydrated, but ignore
+  # a list of well compressing / often changing files
   if runSystemSafe(pck_tool, '--action', 'extract', pck,
-                   '-o', extract_folder, '--min-size-filter',
-                   DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s) != 0
+                   '-o', extract_folder, '-q', '--min-size-filter',
+                   DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s,
+                   '--exclude-regex-filter', DEHYDRATE_IGNORE_FILE_TYPES) != 0
     onError 'Failed to run extract. Do you have the right godotpcktool version?'
   end
 
   # And remove them from the .pck
   if runSystemSafe(pck_tool, '--action', 'repack', File.join(target_folder, 'Thrive.pck'),
-                   '--max-size-filter', (DEHYDRATE_FILE_SIZE_THRESSHOLD - 1).to_s) != 0
+                   '--max-size-filter', (DEHYDRATE_FILE_SIZE_THRESSHOLD - 1).to_s,
+                   '--include-override-filter', DEHYDRATE_IGNORE_FILE_TYPES, '-q') != 0
     onError 'Failed to run repack'
   end
 
@@ -476,7 +480,8 @@ def perform_export(target)
   success = false
 
   (1..attempts).each do |attempt|
-    if runOpen3(godot, '--export', godot_template_name(target), target_file).success?
+    if runOpen3(godot, '--no-window', '--export', godot_template_name(target),
+                target_file).success?
       success = true
       break
     end
@@ -484,6 +489,15 @@ def perform_export(target)
     # Failed
     error 'Exporting failed.'
     puts 'Retrying...' if attempt < attempts
+  end
+
+  if target !~ /mac/i
+    data_folder = File.join target_folder, EXPECTED_DATA_FOLDER
+
+    unless File.exist? data_folder
+      onError "Expected data folder (#{data_folder}) was not created on export. "\
+              'Are export templates installed?'
+    end
   end
 
   if success

@@ -6,16 +6,16 @@ using Godot;
 /// </summary>
 public class SceneManager : Node
 {
-    private static SceneManager instance;
+    private static SceneManager? instance;
 
-    private Node internalRootNode;
+    private Node internalRootNode = null!;
 
     private SceneManager()
     {
         instance = this;
     }
 
-    public static SceneManager Instance => instance;
+    public static SceneManager Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
     {
@@ -36,7 +36,7 @@ public class SceneManager : Node
         SwitchToScene(LoadScene(scenePath).Instance());
     }
 
-    public Node SwitchToScene(Node newSceneRoot, bool keepOldRoot = false)
+    public Node? SwitchToScene(Node newSceneRoot, bool keepOldRoot = false)
     {
         var oldRoot = GetTree().CurrentScene;
         GetTree().CurrentScene = null;

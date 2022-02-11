@@ -8,99 +8,103 @@ using Path = System.IO.Path;
 public class ModUploader : Control
 {
     [Export]
-    public NodePath UploadDialogPath;
+    public NodePath UploadDialogPath = null!;
 
     [Export]
-    public NodePath ModSelectPath;
+    public NodePath ModSelectPath = null!;
 
     [Export]
-    public NodePath UnknownItemActionsPath;
+    public NodePath UnknownItemActionsPath = null!;
 
     [Export]
-    public NodePath CreateNewButtonPath;
+    public NodePath CreateNewButtonPath = null!;
 
     [Export]
-    public NodePath ShowManualEnterIdPath;
+    public NodePath ShowManualEnterIdPath = null!;
 
     [Export]
-    public NodePath ManualIdEntryPath;
+    public NodePath ManualIdEntryPath = null!;
 
     [Export]
-    public NodePath AcceptManualIdPath;
+    public NodePath AcceptManualIdPath = null!;
 
     [Export]
-    public NodePath ManualEnterIdSectionPath;
+    public NodePath ManualEnterIdSectionPath = null!;
 
     [Export]
-    public NodePath DetailsEditorPath;
+    public NodePath DetailsEditorPath = null!;
 
     [Export]
-    public NodePath EditedTitlePath;
+    public NodePath EditedTitlePath = null!;
 
     [Export]
-    public NodePath EditedDescriptionPath;
+    public NodePath EditedDescriptionPath = null!;
 
     [Export]
-    public NodePath EditedVisibilityPath;
+    public NodePath EditedVisibilityPath = null!;
 
     [Export]
-    public NodePath EditedTagsPath;
+    public NodePath EditedTagsPath = null!;
 
     [Export]
-    public NodePath PreviewImageRectPath;
+    public NodePath PreviewImageRectPath = null!;
 
     [Export]
-    public NodePath ToBeUploadedContentLocationPath;
+    public NodePath ToBeUploadedContentLocationPath = null!;
 
     [Export]
-    public NodePath ErrorDisplayPath;
+    public NodePath ErrorDisplayPath = null!;
 
     [Export]
-    public NodePath FileSelectDialogPath;
+    public NodePath FileSelectDialogPath = null!;
 
     [Export]
-    public NodePath WorkshopNoticePath;
+    public NodePath WorkshopNoticePath = null!;
 
     [Export]
-    public NodePath UploadSucceededDialogPath;
+    public NodePath ChangeNotesPath = null!;
 
     [Export]
-    public NodePath UploadSucceededTextPath;
+    public NodePath UploadSucceededDialogPath = null!;
 
-    private CustomConfirmationDialog uploadDialog;
+    [Export]
+    public NodePath UploadSucceededTextPath = null!;
 
-    private OptionButton modSelect;
+    private CustomConfirmationDialog uploadDialog = null!;
 
-    private Control unknownItemActions;
-    private Button createNewButton;
+    private OptionButton modSelect = null!;
 
-    private Button showManualEnterId;
-    private LineEdit manualIdEntry;
-    private Button acceptManualId;
-    private Control manualEnterIdSection;
+    private Control unknownItemActions = null!;
+    private Button createNewButton = null!;
 
-    private Control detailsEditor;
-    private LineEdit editedTitle;
-    private TextEdit editedDescription;
-    private CheckBox editedVisibility;
-    private LineEdit editedTags;
-    private TextureRect previewImageRect;
-    private Label toBeUploadedContentLocation;
+    private Button showManualEnterId = null!;
+    private LineEdit manualIdEntry = null!;
+    private Button acceptManualId = null!;
+    private Control manualEnterIdSection = null!;
 
-    private CustomDialog uploadSucceededDialog;
-    private CustomRichTextLabel uploadSucceededText;
+    private Control detailsEditor = null!;
+    private LineEdit editedTitle = null!;
+    private TextEdit editedDescription = null!;
+    private CheckBox editedVisibility = null!;
+    private LineEdit editedTags = null!;
+    private TextureRect previewImageRect = null!;
+    private Label toBeUploadedContentLocation = null!;
+    private TextEdit changeNotes = null!;
 
-    private FileDialog fileSelectDialog;
+    private CustomDialog uploadSucceededDialog = null!;
+    private CustomRichTextLabel uploadSucceededText = null!;
 
-    private CustomRichTextLabel workshopNotice;
-    private Label errorDisplay;
+    private FileDialog fileSelectDialog = null!;
 
-    private List<FullModDetails> mods;
+    private CustomRichTextLabel workshopNotice = null!;
+    private Label errorDisplay = null!;
 
-    private WorkshopData workshopData;
+    private List<FullModDetails>? mods;
 
-    private FullModDetails selectedMod;
-    private string toBeUploadedPreviewImagePath;
+    private WorkshopData? workshopData;
+
+    private FullModDetails? selectedMod;
+    private string? toBeUploadedPreviewImagePath;
 
     private bool manualEnterWorkshopId;
     private bool processing;
@@ -127,6 +131,7 @@ public class ModUploader : Control
         editedTags = GetNode<LineEdit>(EditedTagsPath);
         previewImageRect = GetNode<TextureRect>(PreviewImageRectPath);
         toBeUploadedContentLocation = GetNode<Label>(ToBeUploadedContentLocationPath);
+        changeNotes = GetNode<TextEdit>(ChangeNotesPath);
 
         workshopNotice = GetNode<CustomRichTextLabel>(WorkshopNoticePath);
         errorDisplay = GetNode<Label>(ErrorDisplayPath);
@@ -168,7 +173,7 @@ public class ModUploader : Control
     {
         modSelect.Clear();
 
-        foreach (var mod in mods)
+        foreach (var mod in mods!)
         {
             // When clicking the OptionButton the opened list doesn't scale down the icon sizes so we can't use icons
             // TODO: report the above bug to Godot and get this fixed
@@ -187,7 +192,7 @@ public class ModUploader : Control
         if (selectedMod == null)
             return false;
 
-        return workshopData.KnownModWorkshopIds.TryGetValue(selectedMod.InternalName, out _);
+        return workshopData!.KnownModWorkshopIds.TryGetValue(selectedMod.InternalName, out _);
     }
 
     private void UpdateLayout()
@@ -230,14 +235,41 @@ public class ModUploader : Control
         if (selectedMod == null)
             return;
 
-        editedTitle.Text = selectedMod.Info.Name;
-        editedDescription.Text = string.IsNullOrEmpty(selectedMod.Info.LongDescription) ?
-            selectedMod.Info.Description :
-            selectedMod.Info.LongDescription;
-        editedVisibility.Pressed = true;
-        editedTags.Text = string.Empty;
+        if (workshopData!.PreviouslyUploadedItemData.TryGetValue(selectedMod.InternalName, out var previousData))
+        {
+            editedTitle.Text = previousData.Title;
+            editedDescription.Text = previousData.Description;
+            editedVisibility.Pressed = previousData.Visibility == SteamItemVisibility.Public;
+            editedTags.Text = string.Join(",", previousData.Tags);
 
-        toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
+            toBeUploadedPreviewImagePath = previousData.PreviewImagePath;
+
+            changeNotes.Text = string.Empty;
+
+            ValidateForm();
+        }
+        else
+        {
+            editedTitle.Text = selectedMod.Info.Name;
+            editedDescription.Text = string.IsNullOrEmpty(selectedMod.Info.LongDescription) ?
+                selectedMod.Info.Description :
+                selectedMod.Info.LongDescription;
+            editedVisibility.Pressed = true;
+            editedTags.Text = string.Empty;
+
+            if (selectedMod.Info.Icon == null)
+            {
+                toBeUploadedPreviewImagePath = null;
+            }
+            else
+            {
+                toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
+            }
+
+            // TODO: this is not translated here as the default language to upload mods in, is English
+            // See: https://github.com/Revolutionary-Games/Thrive/issues/2828
+            changeNotes.Text = "Initial version";
+        }
 
         toBeUploadedContentLocation.Text = string.Format(CultureInfo.CurrentCulture,
             TranslationServer.Translate("CONTENT_UPLOADED_FROM"), ProjectSettings.GlobalizePath(selectedMod.Folder));
@@ -288,6 +320,12 @@ public class ModUploader : Control
             return false;
         }
 
+        if (changeNotes.Text.Length > 8000)
+        {
+            SetError(TranslationServer.Translate("CHANGE_DESCRIPTION_IS_TOO_LONG"));
+            return false;
+        }
+
         if (editedTags.Text is { Length: > 0 })
         {
             if (string.IsNullOrWhiteSpace(editedTags.Text))
@@ -307,11 +345,36 @@ public class ModUploader : Control
             }
         }
 
+        if (!string.IsNullOrEmpty(toBeUploadedPreviewImagePath))
+        {
+            using var file = new File();
+
+            if (!file.FileExists(toBeUploadedPreviewImagePath) ||
+                file.Open(toBeUploadedPreviewImagePath, File.ModeFlags.Read) != Error.Ok)
+            {
+                SetError(TranslationServer.Translate("PREVIEW_IMAGE_DOES_NOT_EXIST"));
+                return false;
+            }
+
+            // Let's hope Steam uses megabytes and not mebibytes as the limit
+            if (file.GetLen() >= 1000000)
+            {
+                SetError(TranslationServer.Translate("PREVIEW_IMAGE_IS_TOO_LARGE"));
+                return false;
+            }
+        }
+
         return true;
     }
 
     private void ModSelected(int index)
     {
+        if (mods == null)
+        {
+            GD.PrintErr("Mod selected but we haven't been initialized");
+            return;
+        }
+
         if (showManualEnterId.Pressed)
             showManualEnterId.Pressed = false;
 
@@ -341,14 +404,60 @@ public class ModUploader : Control
         UpdateLayout();
     }
 
+    private void OnManualIdEntered()
+    {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("Attempted to set ID for selected mod, but there is no selected mod");
+            return;
+        }
+
+        if (!ulong.TryParse(manualIdEntry.Text, out ulong id))
+        {
+            SetError(TranslationServer.Translate("ID_IS_NOT_A_NUMBER"));
+            return;
+        }
+
+        GD.Print($"Workshop item id manually set for \"{selectedMod.InternalName}\", to: ", id);
+        workshopData!.KnownModWorkshopIds[selectedMod.InternalName] = id;
+
+        ClearError();
+        UpdateLayout();
+        UpdateUploadButtonStatus();
+    }
+
+    private void OnForgetDataPressed()
+    {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("Can't forget a null mod");
+            return;
+        }
+
+        GD.Print("Forgetting local data about workshop mod: ", selectedMod.InternalName);
+
+        workshopData!.RemoveDataForMod(selectedMod.InternalName);
+
+        if (!SaveWorkshopData())
+            return;
+
+        ModSelected(modSelect.Selected);
+    }
+
     private void CreateNewPressed()
     {
+        if (selectedMod == null)
+        {
+            GD.PrintErr("Can't create a mod without any being selected");
+            return;
+        }
+
         GUICommon.Instance.PlayButtonPressSound();
 
         GD.Print("Create new workshop item button pressed");
         SetProcessingStatus(true);
 
-        SetError(TranslationServer.Translate("CREATING_DOT_DOT_DOT"));
+        errorDisplay.Text = TranslationServer.Translate("CREATING_DOT_DOT_DOT");
 
         SteamHandler.Instance.CreateWorkshopItem(result =>
         {
@@ -360,20 +469,17 @@ public class ModUploader : Control
                 return;
             }
 
-            GD.Print($"Workshop item create succeeded for \"{selectedMod.InternalName}\", saving the item ID");
-            workshopData.KnownModWorkshopIds[selectedMod.InternalName] = result.ItemId;
-            try
+            if (result.ItemId == null)
             {
-                workshopData.Save();
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr("Saving workshop data failed: ", e);
-                SetError(string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO"),
-                    e.Message));
+                SetError(TranslationServer.Translate("SUCCESS_BUT_MISSING_ID"));
                 return;
             }
+
+            GD.Print($"Workshop item create succeeded for \"{selectedMod.InternalName}\", saving the item ID");
+            workshopData!.KnownModWorkshopIds[selectedMod.InternalName] = result.ItemId.Value;
+
+            if (!SaveWorkshopData())
+                return;
 
             ClearError();
             UpdateLayout();
@@ -395,14 +501,12 @@ public class ModUploader : Control
 
         SetProcessingStatus(true);
 
-        var updateData = new WorkshopItemData
+        var updateData = new WorkshopItemData(workshopData!.KnownModWorkshopIds[selectedMod!.InternalName],
+            editedTitle.Text, ProjectSettings.GlobalizePath(selectedMod.Folder),
+            ProjectSettings.GlobalizePath(toBeUploadedPreviewImagePath))
         {
-            Id = workshopData.KnownModWorkshopIds[selectedMod.InternalName],
-            Title = editedTitle.Text,
             Description = editedDescription.Text,
             Visibility = editedVisibility.Pressed ? SteamItemVisibility.Public : SteamItemVisibility.Private,
-            ContentFolder = ProjectSettings.GlobalizePath(selectedMod.Folder),
-            PreviewImagePath = ProjectSettings.GlobalizePath(toBeUploadedPreviewImagePath),
         };
 
         if (!string.IsNullOrWhiteSpace(editedTags.Text))
@@ -412,15 +516,18 @@ public class ModUploader : Control
         }
 
         // TODO: proper progress bar
-        SetError(TranslationServer.Translate("UPLOADING_DOT_DOT_DOT"));
+        errorDisplay.Text = TranslationServer.Translate("UPLOADING_DOT_DOT_DOT");
 
-        // TODO: implement change notes text input
-        SteamHandler.Instance.UpdateWorkshopItem(updateData, null, result =>
+        string? notes = null;
+
+        if (!string.IsNullOrWhiteSpace(changeNotes.Text))
+        {
+            notes = changeNotes.Text;
+        }
+
+        SteamHandler.Instance.UpdateWorkshopItem(updateData, notes, result =>
         {
             SetProcessingStatus(false);
-
-            // TODO: save the details in workshopData so that the uploaded info can be pre-filled when
-            // uploading an update
 
             if (!result.Success)
             {
@@ -431,6 +538,12 @@ public class ModUploader : Control
             uploadedItemId = updateData.Id;
 
             GD.Print($"Workshop item updated for \"{selectedMod.InternalName}\"");
+
+            // Save the details in workshopData so that the uploaded info can be pre-filled when uploading an update
+            workshopData.PreviouslyUploadedItemData[selectedMod.InternalName] = updateData;
+
+            if (!SaveWorkshopData())
+                return;
 
             ClearError();
             uploadDialog.Hide();
@@ -467,7 +580,7 @@ public class ModUploader : Control
         fileSelectDialog.PopupCenteredClamped(new Vector2(700, 400));
     }
 
-    private void OnFileSelected(string selected)
+    private void OnFileSelected(string? selected)
     {
         if (selected == null)
         {
@@ -519,7 +632,25 @@ public class ModUploader : Control
         SteamHandler.Instance.OpenWorkshopItemInOverlayBrowser(uploadedItemId);
     }
 
-    private void SetError(string message)
+    private bool SaveWorkshopData()
+    {
+        try
+        {
+            workshopData!.Save();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Saving workshop data failed: ", e);
+            SetError(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("SAVING_DATA_FAILED_DUE_TO"),
+                e.Message));
+            return false;
+        }
+
+        return true;
+    }
+
+    private void SetError(string? message)
     {
         if (message == null)
         {

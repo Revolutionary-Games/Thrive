@@ -74,6 +74,8 @@ public static class Constants
 
     public const float CELL_BASE_THRUST = 50.6f;
 
+    public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
+
     public const int PROCESS_OBJECTS_PER_TASK = 50;
 
     public const int MICROBE_SPAWN_RADIUS = 170;
@@ -131,6 +133,8 @@ public static class Constants
     ///   Max number of concurrent audio players that may be spawned per entity.
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
 
     /// <summary>
     ///   Controls with how much force agents are fired
@@ -343,6 +347,15 @@ public static class Constants
     /// </summary>
     public const float CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.0033f;
 
+    public const float CHEMORECEPTOR_RANGE_MIN = 2;
+    public const float CHEMORECEPTOR_RANGE_MAX = 700;
+    public const float CHEMORECEPTOR_RANGE_DEFAULT = 350;
+    public const float CHEMORECEPTOR_AMOUNT_MIN = 1;
+    public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
+    public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
+    public const float CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL = 0.25f;
+    public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
+
     /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
@@ -444,23 +457,26 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
     public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 100000;
-    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 100;
-    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 50;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 1200;
+    public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
+    public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
     public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
     public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.35f;
+    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int MAX_SPAWNS_PER_FRAME = 2;
-    public const int MAX_DESPAWNS_PER_FRAME = 2;
+    // TODO: bump this back up once we resolve the performance bottleneck
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 110;
+    public const int MAX_SPAWNS_PER_FRAME = 1;
+    public const int MAX_DESPAWNS_PER_FRAME = 1;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
 
@@ -514,6 +530,11 @@ public static class Constants
     ///   Maximum amount of snapshots to store in patch history.
     /// </summary>
     public const int PATCH_HISTORY_RANGE = 10;
+
+    /// <summary>
+    ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
+    /// </summary>
+    public const int GLOBAL_EVENT_LOG_CAP = 20;
 
     /// <summary>
     ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
@@ -583,6 +604,8 @@ public static class Constants
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
 
+    public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
+
     /// <summary>
     ///   Internal Godot name for the default audio output device
     /// </summary>
@@ -603,6 +626,7 @@ public static class Constants
     /// </summary>
     public const int MAX_JSON_ERROR_LENGTH_FOR_CONSOLE = 20000;
 
+    public const string FILE_NAME_DISALLOWED_CHARACTERS = "<>:\"/\\|?*\0";
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
     public const string SAVE_BACKUP_SUFFIX = ".backup" + SAVE_EXTENSION_WITH_DOT;
@@ -655,7 +679,7 @@ public static class Constants
     /// <summary>
     ///   Regex for species name validation.
     /// </summary>
-    public const string SPECIES_NAME_REGEX = "^(?<genus>[^ ]+) (?<epithet>[^ ]+)$";
+    public const string SPECIES_NAME_REGEX = "^(?<genus>[a-zA-Z0-9]+) (?<epithet>[a-zA-Z0-9]+)$";
 
     public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
 
@@ -663,6 +687,8 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.
@@ -701,7 +727,7 @@ public static class Constants
 
 #pragma warning disable CA1823 // unused fields
 
-    // ReSharper disable UnreachableCode
+    // ReSharper disable UnreachableCode HeuristicUnreachableCode
     private const uint MinimumMovePopIsHigherThanMinimumViable =
         (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
             AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
@@ -711,7 +737,7 @@ public static class Constants
     private const uint MinimumRunnableProcessFractionIsAboveEpsilon =
         (MINIMUM_RUNNABLE_PROCESS_FRACTION > MathUtils.EPSILON) ? 0 : -42;
 
-    // ReSharper restore UnreachableCode
+    // ReSharper restore UnreachableCode HeuristicUnreachableCode
 #pragma warning restore CA1823
 
     /// <summary>
