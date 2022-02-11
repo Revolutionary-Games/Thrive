@@ -112,8 +112,6 @@ public class SpawnSystem
         unsafe
         {
             var ptr = (byte*)data.Scan0;
-            if (ptr == null)
-                return;
 
             for (var y = 0; y < size; y++)
             {
@@ -187,7 +185,7 @@ public class SpawnSystem
 
                 foreach (var spawnPoint in spawnPoints)
                 {
-                    queuedSpawns.Enqueue(new QueuedSpawn(spawner, spawnPoint));
+                    (queuedSpawns ??= new Queue<QueuedSpawn>()).Enqueue(new QueuedSpawn(spawner, spawnPoint));
                 }
             }
         }
@@ -217,6 +215,7 @@ public class SpawnSystem
             if (spawned == null)
             {
                 GD.PrintErr("A node has been put in the spawned group but it isn't derived from SpawnedRigidBody");
+                return;
             }
 
             spawned.DestroyDetachAndQueueFree();
@@ -226,7 +225,7 @@ public class SpawnSystem
     private void HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
         // Spawn from the queue
-        while (spawnsLeftThisFrame > 0 && queuedSpawns.Count > 0)
+        while (spawnsLeftThisFrame > 0 && queuedSpawns?.Count > 0)
         {
             var current = queuedSpawns.Dequeue();
             var instances = current.Spawner.Instantiate(current.Position);

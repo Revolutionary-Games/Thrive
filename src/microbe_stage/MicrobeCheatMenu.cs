@@ -62,10 +62,13 @@ public class MicrobeCheatMenu : CheatMenu
 
     public override void _Process(float delta)
     {
+        base._Process(delta);
+        if (microbeStage.Player == null)
+            return;
+
         var sector = microbeStage.Player.CurrentSector;
         var density = microbeStage.Spawner.GetSectorDensity(sector);
         currentSector.Text = $"{sector}: {density}";
-        base._Process(delta);
     }
 
     public override void ReloadGUI()
