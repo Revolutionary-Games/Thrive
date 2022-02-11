@@ -371,6 +371,11 @@ public class Membrane : MeshInstance
         if (MaterialToEdit == null)
             return;
 
+        // Don't apply wigglyness too early if this is dirty as getting the circle radius forces membrane position
+        // calculation, which we don't want to do twice when initializing a microbe
+        if (Dirty)
+            return;
+
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
@@ -380,6 +385,10 @@ public class Membrane : MeshInstance
     private void ApplyMovementWiggly()
     {
         if (MaterialToEdit == null)
+            return;
+
+        // See comment in ApplyWiggly
+        if (Dirty)
             return;
 
         float wigglyNessToApply =
