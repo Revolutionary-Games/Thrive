@@ -543,6 +543,9 @@ public static class Constants
     /// </summary>
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
 
+    public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
+    public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
+
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>

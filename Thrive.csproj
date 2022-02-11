@@ -37,6 +37,7 @@
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
+    <Compile Include="src\engine\ICacheableData.cs" />
     <Compile Include="src\engine\InstanceNotLoadedYetException.cs" />
     <Compile Include="src\engine\LaunchOptions.cs" />
     <Compile Include="src\engine\LocalizedString.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\NodeHelpers.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
+    <Compile Include="src\engine\ProceduralDataCache.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\SceneTreeAttachRequired.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
@@ -149,6 +151,7 @@
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
+    <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
     <Compile Include="src\microbe_stage\editor\TimelineTab.cs" />
