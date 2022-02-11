@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 15:37+0200\n"
+"POT-Creation-Date: 2022-02-11 18:53+0100\n"
 "PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: aleixcoma <aleixcoma@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -288,17 +288,17 @@ msgid "ABILITIES"
 msgstr "Habilitats"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2100
 msgid "FIRE_TOXIN"
 msgstr "Llançar les toxines"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2087
+#: ../src/microbe_stage/MicrobeStage.tscn:2088
 msgid "TOGGLE_ENGULF"
 msgstr "Activar el mode d'engolir"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2110
+#: ../src/microbe_stage/MicrobeStage.tscn:2111
 msgid "TOGGLE_BINDING"
 msgstr "Activar el mode d'unió"
 
@@ -2602,51 +2602,55 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "S'han esgotat els Punts de Mutació"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:529
+#: ../src/microbe_stage/Microbe.Contact.cs:531
 msgid "DEATH"
 msgstr "mort"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:640
+#: ../src/microbe_stage/Microbe.Contact.cs:642
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "acció carronyaire exitosa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:647
+#: ../src/microbe_stage/Microbe.Contact.cs:649
 msgid "SUCCESSFUL_KILL"
 msgstr "acció de caça exitosa"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:864
+#: ../src/microbe_stage/Microbe.Contact.cs:866
 msgid "ESCAPE_ENGULFING"
 msgstr "evasió d'un intent d'engolició"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:734
+#: ../src/microbe_stage/Microbe.Interior.cs:739
 msgid "REPRODUCED"
 msgstr "reproducció"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
 msgstr "Compostos infinits"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Mode Déu"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr "No IA"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
 msgid "PLAYER_SPEED"
 msgstr ""
 "Jugador\n"
 "Velocitat"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
 msgid "PLAYER_DUPLICATE"
 msgstr "Jugador Duplicat"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
 msgid "SPAWN_ENEMY"
 msgstr "Generar Enemic"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:103
+msgid "GENERATE_SPAWN_MAP"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:708
 msgid "STUFF_AT"
@@ -2684,15 +2688,15 @@ msgstr "poc"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "molt poc"
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:556
 msgid "PLAYER_REPRODUCED"
 msgstr "el jugador ha aconseguit reproduïr-se"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:645
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "No es pot fer servir el truc de generar un enemic ja que aquest medi no conté cap espècie enemiga"
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:710
 msgid "PLAYER_DIED"
 msgstr "el jugador ha mort"
 

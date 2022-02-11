@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 15:37+0200\n"
+"POT-Creation-Date: 2022-02-11 18:53+0100\n"
 "PO-Revision-Date: 2022-02-03 10:36+0000\n"
 "Last-Translator: Simone Nobili <simonenobili@yandex.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -288,17 +288,17 @@ msgid "ABILITIES"
 msgstr "Abilità"
 
 #: ../simulation_parameters/common/input_options.json:38
-#: ../src/microbe_stage/MicrobeStage.tscn:2099
+#: ../src/microbe_stage/MicrobeStage.tscn:2100
 msgid "FIRE_TOXIN"
 msgstr "Lancia tossina"
 
 #: ../simulation_parameters/common/input_options.json:42
-#: ../src/microbe_stage/MicrobeStage.tscn:2087
+#: ../src/microbe_stage/MicrobeStage.tscn:2088
 msgid "TOGGLE_ENGULF"
 msgstr "Attiva/disattiva fagocitosi"
 
 #: ../simulation_parameters/common/input_options.json:46
-#: ../src/microbe_stage/MicrobeStage.tscn:2110
+#: ../src/microbe_stage/MicrobeStage.tscn:2111
 msgid "TOGGLE_BINDING"
 msgstr "Attiva la modalità di legatura"
 
@@ -2602,51 +2602,55 @@ msgstr "Temperatura"
 msgid "N_A_MP"
 msgstr "N/A PM"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:529
+#: ../src/microbe_stage/Microbe.Contact.cs:531
 msgid "DEATH"
 msgstr "morte"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:640
+#: ../src/microbe_stage/Microbe.Contact.cs:642
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr "rovistamento riuscito"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:647
+#: ../src/microbe_stage/Microbe.Contact.cs:649
 msgid "SUCCESSFUL_KILL"
 msgstr "uccisione riuscita"
 
-#: ../src/microbe_stage/Microbe.Contact.cs:864
+#: ../src/microbe_stage/Microbe.Contact.cs:866
 msgid "ESCAPE_ENGULFING"
 msgstr "fuga dalla fagocitosi"
 
-#: ../src/microbe_stage/Microbe.Interior.cs:734
+#: ../src/microbe_stage/Microbe.Interior.cs:739
 msgid "REPRODUCED"
 msgstr "si è riprodotto"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:35
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:37
 msgid "INFINITE_COMPOUNDS"
 msgstr "Composti Infiniti"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:42
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:44
 msgid "GODMODE"
 msgstr "Modalità Dio"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:49
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:51
 msgid "NO_AI"
 msgstr "Disattiva AI"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:63
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:65
 msgid "PLAYER_SPEED"
 msgstr ""
 "Velocità\n"
 "Giocatore"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:84
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:86
 msgid "PLAYER_DUPLICATE"
 msgstr "Duplica Giocatore"
 
-#: ../src/microbe_stage/MicrobeCheatMenu.tscn:94
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:96
 msgid "SPAWN_ENEMY"
 msgstr "Genera Nemico"
+
+#: ../src/microbe_stage/MicrobeCheatMenu.tscn:103
+msgid "GENERATE_SPAWN_MAP"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:708
 msgid "STUFF_AT"
@@ -2684,15 +2688,15 @@ msgstr "un pizzico"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "una traccia"
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:556
 msgid "PLAYER_REPRODUCED"
 msgstr "il giocatore si è riprodotto"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:645
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Non puoi usare il trucco genera-nemici, perché questa zona non contiene alcuna specie nemica"
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:710
 msgid "PLAYER_DIED"
 msgstr "il giocatore è morto"
 
