@@ -84,7 +84,7 @@
         ///     migration (with the most resulting global population) is selected.
         ///   </para>
         /// </remarks>
-        private SpeciesMigration GetRandomMigration()
+        private SpeciesMigration? GetRandomMigration()
         {
             int attemptsLeft = 10;
 
@@ -132,13 +132,13 @@
 
         private class AttemptResult : IAttemptResult
         {
-            public AttemptResult(SpeciesMigration migration, long score)
+            public AttemptResult(SpeciesMigration? migration, long score)
             {
                 Migration = migration;
                 Score = score;
             }
 
-            public SpeciesMigration Migration { get; }
+            public SpeciesMigration? Migration { get; }
             public long Score { get; }
         }
     }

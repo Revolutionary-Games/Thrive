@@ -9,20 +9,20 @@ public class BioProcess : IRegistryType
     ///   User visible pretty name
     /// </summary>
     [TranslateFrom("untranslatedName")]
-    public string Name;
+    public string Name = null!;
 
     /// <summary>
     ///   Inputs the process needs. The keys are compound names and values are amounts
     /// </summary>
-    public Dictionary<Compound, float> Inputs;
+    public Dictionary<Compound, float> Inputs = null!;
 
-    public Dictionary<Compound, float> Outputs;
+    public Dictionary<Compound, float> Outputs = null!;
 
 #pragma warning disable 169 // Used through reflection
-    private string untranslatedName;
+    private string? untranslatedName;
 #pragma warning restore 169
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {

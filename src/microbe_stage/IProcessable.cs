@@ -18,5 +18,5 @@ public interface IProcessable
     /// <summary>
     ///   Optional statistics object to get data out of the process system on what processes it actually ran
     /// </summary>
-    ProcessStatistics ProcessStatistics { get; }
+    ProcessStatistics? ProcessStatistics { get; }
 }

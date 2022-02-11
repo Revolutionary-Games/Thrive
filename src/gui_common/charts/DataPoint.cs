@@ -2,38 +2,35 @@
 using Godot;
 
 /// <summary>
-///   Point / marker on a chart containing a single numerical data value (x, y).
+///   Data point / marker on a chart containing two immutable numerical value (x, y).
 ///   This inherits Control to make this interactable as well as for giving it a visual marker.
 /// </summary>
 /// <remarks>
 ///   <para>
+///     Note: May cause performance overhead for chart with lots of data points.
 ///     Note: Must be freed manually, like all Godot Node types.
 ///   </para>
 /// </remarks>
-public class DataPoint : Control
+public class DataPoint : Control, ICloneable, IEquatable<DataPoint>
 {
-    private Texture graphMarkerCircle;
-    private Texture graphMarkerCross;
-    private Texture graphMarkerSkull;
+    public readonly double X;
+    public readonly double Y;
+
+    private Texture graphMarkerCircle = null!;
+    private Texture graphMarkerCross = null!;
+    private Texture graphMarkerSkull = null!;
 
     private bool isMouseOver;
 
     private Vector2 coordinate;
-    private float size;
+    private float size = 7;
 
-    private Tween tween;
+    private Tween tween = new();
 
-    public DataPoint()
+    public DataPoint(double x, double y)
     {
-        Size = 7;
-        IconType = MarkerIcon.Circle;
-    }
-
-    public DataPoint(float xValue, float yValue)
-    {
-        Value = new Vector2(xValue, yValue);
-        Size = 7;
-        IconType = MarkerIcon.Circle;
+        X = x;
+        Y = y;
     }
 
     public enum MarkerIcon
@@ -46,12 +43,7 @@ public class DataPoint : Control
     /// <summary>
     ///   Visual shape of this point
     /// </summary>
-    public MarkerIcon IconType { get; set; }
-
-    /// <summary>
-    ///   Actual data this point represents
-    /// </summary>
-    public Vector2 Value { get; set; }
+    public MarkerIcon IconType { get; set; } = MarkerIcon.Circle;
 
     /// <summary>
     ///   The position of this point on a chart and is different from Value. This should be set in the
@@ -78,15 +70,13 @@ public class DataPoint : Control
         set
         {
             size = value;
-
-            // Increased by 10 for a more bigger cursor detection area
-            RectSize = new Vector2(value + 10, value + 10);
+            UpdateRectSize();
         }
     }
 
-    public Color MarkerFillerColour { get; set; } = new Color(0.0f, 0.13f, 0.14f);
+    public Color MarkerFillerColour { get; set; } = new(0.0f, 0.13f, 0.14f);
 
-    public Color MarkerFillerHighlightedColour { get; set; } = new Color(0.07f, 1.0f, 0.84f);
+    public Color MarkerFillerHighlightedColour { get; set; } = new(0.07f, 1.0f, 0.84f);
 
     public Color MarkerColour { get; set; }
 
@@ -95,18 +85,36 @@ public class DataPoint : Control
     /// </summary>
     public bool Draw { get; set; } = true;
 
+    public static bool operator ==(DataPoint? lhs, DataPoint? rhs)
+    {
+        if (lhs is null)
+        {
+            if (rhs is null)
+                return true;
+
+            return false;
+        }
+
+        return lhs.Equals(rhs);
+    }
+
+    public static bool operator !=(DataPoint? lhs, DataPoint? rhs)
+    {
+        return !(lhs == rhs);
+    }
+
     public override void _Ready()
     {
         graphMarkerCircle = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
         graphMarkerCross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
         graphMarkerSkull = GD.Load<Texture>("res://assets/textures/gui/bevel/SuicideIcon.png");
 
-        tween = new Tween();
         AddChild(tween);
 
         Connect("mouse_entered", this, nameof(OnMouseEnter));
         Connect("mouse_exited", this, nameof(OnMouseExit));
 
+        UpdateRectSize();
         Update();
     }
 
@@ -132,7 +140,7 @@ public class DataPoint : Control
                 }
 
                 DrawTextureRect(graphMarkerCircle, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, MarkerColour);
+                    RectSize / 2 - vectorSize / 2, vectorSize), false, MarkerColour);
 
                 break;
             }
@@ -145,7 +153,7 @@ public class DataPoint : Control
                     color = MarkerColour.Lightened(0.5f);
 
                 DrawTextureRect(graphMarkerCross, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, color);
+                    RectSize / 2 - vectorSize / 2, vectorSize), false, color);
                 break;
             }
 
@@ -157,7 +165,7 @@ public class DataPoint : Control
                     colour = MarkerColour.Lightened(0.5f);
 
                 DrawTextureRect(graphMarkerSkull, new Rect2(
-                    (RectSize / 2) - (vectorSize / 2), vectorSize), false, colour);
+                    RectSize / 2 - vectorSize / 2, vectorSize), false, colour);
                 break;
             }
 
@@ -179,21 +187,66 @@ public class DataPoint : Control
 
         coordinate = target;
 
-        if (!useTween || tween == null)
+        if (!useTween)
         {
-            RectPosition = coordinate - (RectSize / 2);
+            RectPosition = coordinate - RectSize / 2;
         }
         else
         {
             tween.InterpolateProperty(
-                this, "rect_position", RectPosition, coordinate - (RectSize / 2), duration, transitionType, easeType);
+                this, "rect_position", RectPosition, coordinate - RectSize / 2, duration, transitionType, easeType);
             tween.Start();
         }
     }
 
     public override string ToString()
     {
-        return $"Value: {Value.ToString()} Coord: {Coordinate.ToString()}";
+        return $"Value: {X}, {Y} Coord: {Coordinate}";
+    }
+
+    public object Clone()
+    {
+        var result = new DataPoint(X, Y)
+        {
+            IconType = IconType,
+            Coordinate = Coordinate,
+            Size = Size,
+            MarkerFillerColour = MarkerFillerColour,
+            MarkerFillerHighlightedColour = MarkerFillerHighlightedColour,
+            MarkerColour = MarkerColour,
+            Draw = Draw,
+        };
+
+        return result;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return Equals(obj as DataPoint);
+    }
+
+    public bool Equals(DataPoint? other)
+    {
+        if (ReferenceEquals(this, other))
+            return true;
+
+        return other != null &&
+            X == other.X &&
+            Y == other.Y;
+    }
+
+    public override int GetHashCode()
+    {
+        var hashCode = 1502939027;
+        hashCode = hashCode * -1521134295 + X.GetHashCode();
+        hashCode = hashCode * -1521134295 + Y.GetHashCode();
+        return hashCode;
+    }
+
+    private void UpdateRectSize()
+    {
+        // Increased by 10 for a more bigger cursor detection area
+        RectSize = new Vector2(size + 10, size + 10);
     }
 
     private void OnMouseEnter()

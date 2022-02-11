@@ -25,7 +25,7 @@ public class TutorialState : ITutorialInput
 
     private bool needsToApplyEvenIfDisabled;
 
-    private List<TutorialPhase> cachedTutorials;
+    private List<TutorialPhase>? cachedTutorials;
 
     public bool Enabled { get; set; } = Settings.Instance.TutorialsEnabled;
 

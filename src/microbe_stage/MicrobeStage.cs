@@ -13,42 +13,44 @@ using Newtonsoft.Json;
 public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
-    public NodePath GuidanceLinePath;
+    public NodePath GuidanceLinePath = null!;
 
     [Export]
-    public NodePath PauseMenuPath;
+    public NodePath PauseMenuPath = null!;
 
     [Export]
-    public NodePath HUDRootPath;
+    public NodePath HUDRootPath = null!;
 
-    private Compound glucose;
+    private Compound glucose = null!;
 
-    private Node world;
-    private Node rootOfDynamicallySpawned;
+    private Node world = null!;
+    private Node rootOfDynamicallySpawned = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private SpawnSystem spawner;
+    private SpawnSystem spawner = null!;
 
-    private MicrobeAISystem microbeAISystem;
+    private MicrobeAISystem microbeAISystem = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    private PatchManager patchManager;
+    private PatchManager patchManager = null!;
 
-    private DirectionalLight worldLight;
+    private DirectionalLight worldLight = null!;
 
-    private MicrobeTutorialGUI tutorialGUI;
-    private GuidanceLine guidanceLine;
+    private MicrobeTutorialGUI tutorialGUI = null!;
+    private GuidanceLine guidanceLine = null!;
     private Vector3? guidancePosition;
-    private PauseMenu pauseMenu;
+    private PauseMenu pauseMenu = null!;
     private bool transitionFinished;
 
-    private Control hudRoot;
+    private Control hudRoot = null!;
+
+    private List<GuidanceLine> chemoreceptionLines = new();
 
     // TODO: make this be saved (and preserve old save compatibility by creating this in on save loaded callback
     // if null)
-    private Random random = new Random();
+    private Random random = new();
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -87,47 +89,48 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    public CompoundCloudSystem Clouds { get; private set; }
+    public CompoundCloudSystem Clouds { get; private set; } = null!;
 
     [JsonIgnore]
-    public FluidSystem FluidSystem { get; private set; }
+    public FluidSystem FluidSystem { get; private set; } = null!;
 
     [JsonIgnore]
-    public TimedLifeSystem TimedLifeSystem { get; private set; }
+    public TimedLifeSystem TimedLifeSystem { get; private set; } = null!;
 
     [JsonIgnore]
-    public ProcessSystem ProcessSystem { get; private set; }
+    public ProcessSystem ProcessSystem { get; private set; } = null!;
 
     /// <summary>
     ///   The main camera, needs to be after anything with AssignOnlyChildItemsOnDeserialize due to load order
     /// </summary>
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    public MicrobeCamera Camera { get; private set; }
+    public MicrobeCamera Camera { get; private set; } = null!;
 
     [JsonIgnore]
-    public MicrobeHUD HUD { get; private set; }
+    public MicrobeHUD HUD { get; private set; } = null!;
 
     /// <summary>
     ///   The current player or null. Due to references on save load this needs to be after the systems
     /// </summary>
     [JsonProperty]
-    public Microbe Player { get; private set; }
+    public Microbe? Player { get; private set; }
 
     [JsonIgnore]
-    public PlayerHoverInfo HoverInfo { get; private set; }
+    public PlayerHoverInfo HoverInfo { get; private set; } = null!;
 
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
     [JsonProperty]
-    public GameProperties CurrentGame { get; set; }
+    public GameProperties? CurrentGame { get; set; }
 
     [JsonIgnore]
-    public GameWorld GameWorld => CurrentGame.GameWorld;
+    public GameWorld GameWorld => CurrentGame?.GameWorld ?? throw new InvalidOperationException("Game not started yet");
 
     [JsonIgnore]
-    public TutorialState TutorialState => CurrentGame.TutorialState;
+    public TutorialState TutorialState =>
+        CurrentGame?.TutorialState ?? throw new InvalidOperationException("Game not started yet");
 
     public Node GameStateRoot => this;
 
@@ -246,6 +249,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         if (what == NotificationTranslationChanged)
         {
+            if (CurrentGame?.GameWorld.Map.CurrentPatch == null)
+                throw new InvalidOperationException("Stage not initialized properly");
+
             HUD.UpdatePatchInfo(TranslationServer.Translate(CurrentGame.GameWorld.Map.CurrentPatch.Name));
         }
     }
@@ -283,14 +289,6 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     // Also begins a new game if one hasn't been started yet for easier debugging
     public void SetupStage()
     {
-        // Make sure simulation parameters is loaded
-        if (SimulationParameters.Instance == null)
-            GD.PrintErr("Something bad happened with SimulationParameters loading");
-
-        // Make sure settings is loaded
-        if (Settings.Instance == null)
-            GD.PrintErr("Settings load problem");
-
         if (!IsLoadedFromSave)
         {
             spawner.Init();
@@ -359,8 +357,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
 
         Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds,
-            CurrentGame);
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds, CurrentGame!);
         Player.AddToGroup("player");
 
         Player.OnDeath = OnPlayerDied;
@@ -370,6 +367,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         Player.OnUnbound = OnPlayerUnbound;
 
         Player.OnUnbindEnabled = OnPlayerUnbindEnabled;
+
+        Player.OnCompoundChemoreceptionInfo = HandlePlayerChemoreceptionDetection;
 
         Camera.ObjectToFollow = Player;
 
@@ -449,7 +448,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.Translation, glucose)),
+                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.GlobalTransform.origin,
+                            glucose)),
                         this);
                 }
 
@@ -459,7 +459,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             if (guidancePosition != null)
             {
                 guidanceLine.Visible = true;
-                guidanceLine.LineStart = Player.Translation;
+                guidanceLine.LineStart = Player.GlobalTransform.origin;
                 guidanceLine.LineEnd = guidancePosition.Value;
             }
             else
@@ -488,6 +488,8 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             }
         }
 
+        UpdateLinePlayerPosition();
+
         // Start auto-evo if stage entry finished, don't need to auto save,
         // settings have auto-evo be started during gameplay and auto-evo is not already started
         if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
@@ -498,6 +500,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // Save if wanted
         if (TransitionFinished && wantsToSave)
         {
+            if (CurrentGame == null)
+            {
+                throw new InvalidOperationException(
+                    "Stage doesn't have a game state even though it should be initialized");
+            }
+
             if (!CurrentGame.FreeBuild)
                 SaveHelper.AutoSave(this);
 
@@ -543,6 +551,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void MoveToEditor()
     {
+        if (Player?.Dead != false)
+        {
+            GD.PrintErr("Player object disappeared or died while transitioning to the editor");
+            return;
+        }
+
         // Might be related to saving but somehow the editor button can be enabled while in a colony
         // TODO: for now to prevent crashing, we just ignore that here, but this should be fixed by the button becoming
         // disabled properly
@@ -581,6 +595,9 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     /// </summary>
     public void OnReturnFromEditor()
     {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Returning to stage from editor without a game setup");
+
         UpdatePatchSettings();
 
         // Now the editor increases the generation so we don't do that here anymore
@@ -589,7 +606,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         SpawnPlayer();
 
         // Check win conditions
-        if (!CurrentGame.FreeBuild && Player.Species.Generation >= 20 &&
+        if (!CurrentGame.FreeBuild && Player!.Species.Generation >= 20 &&
             Player.Species.Population >= 300 && !wonOnce)
         {
             HUD.ToggleWinBox();
@@ -597,7 +614,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
 
         // Update the player's cell
-        Player.ApplySpecies(Player.Species);
+        Player!.ApplySpecies(Player.Species);
 
         // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
@@ -638,7 +655,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         if (Player == null)
             return;
 
-        var species = GameWorld.Map.CurrentPatch.SpeciesInPatch.Keys.Where(s => !s.PlayerSpecies).ToList();
+        var species = GameWorld.Map.CurrentPatch!.SpeciesInPatch.Keys.Where(s => !s.PlayerSpecies).ToList();
 
         // No enemy species to spawn in this patch
         if (species.Count == 0)
@@ -652,7 +669,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         SpawnHelpers.SpawnMicrobe(randomSpecies, Player.Translation + Vector3.Forward * 20,
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), true, Clouds,
-            CurrentGame);
+            CurrentGame!);
     }
 
     [DeserializedCallbackAllowed]
@@ -739,12 +756,12 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     {
         // TODO: would be nice to skip this if we are loading a save made in the editor as this gets called twice when
         // going back to the stage
-        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch) && promptPatchNameChange)
+        if (patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch!) && promptPatchNameChange)
         {
             HUD.PopupPatchInfo();
         }
 
-        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch.Name));
+        HUD.UpdatePatchInfo(TranslationServer.Translate(GameWorld.Map.CurrentPatch!.Name));
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         UpdateBackground();
@@ -753,11 +770,89 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
     private void UpdateBackground()
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(
-            GameWorld.Map.CurrentPatch.BiomeTemplate.Background));
+            GameWorld.Map.CurrentPatch!.BiomeTemplate.Background));
     }
 
     private void SaveGame(string name)
     {
         SaveHelper.Save(name, this);
+    }
+
+    /// <summary>
+    ///   Updates the chemoreception lines for stuff the player wants to detect
+    /// </summary>
+    [DeserializedCallbackAllowed]
+    private void HandlePlayerChemoreceptionDetection(Microbe microbe,
+        IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections)
+    {
+        if (microbe != Player)
+            GD.PrintErr("Chemoreception data reported for non-player cell");
+
+        int currentLineIndex = 0;
+        var position = microbe.GlobalTransform.origin;
+
+        // Update all lines (or create more if we don't have enough) to point to compounds (if found) they look for
+        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        {
+            var line = GetOrCreateGuidanceLine(currentLineIndex++);
+
+            // TODO: should we use threading to parallelize these compound location finds?
+            var target = Clouds.FindCompoundNearPoint(position, compound, range, minAmount);
+
+            if (target == null)
+            {
+                line.Visible = false;
+            }
+            else
+            {
+                line.Colour = colour;
+                line.LineStart = position;
+                line.LineEnd = target.Value;
+                line.Visible = true;
+            }
+        }
+
+        // Remove excess lines
+        while (currentLineIndex < chemoreceptionLines.Count)
+        {
+            var line = chemoreceptionLines[chemoreceptionLines.Count - 1];
+            chemoreceptionLines.RemoveAt(chemoreceptionLines.Count - 1);
+
+            RemoveChild(line);
+            line.QueueFree();
+        }
+    }
+
+    private void UpdateLinePlayerPosition()
+    {
+        if (Player == null || Player?.Dead == true)
+        {
+            foreach (var chemoreceptionLine in chemoreceptionLines)
+                chemoreceptionLine.Visible = false;
+
+            return;
+        }
+
+        var position = Player!.GlobalTransform.origin;
+
+        foreach (var chemoreceptionLine in chemoreceptionLines)
+        {
+            if (chemoreceptionLine.Visible)
+                chemoreceptionLine.LineStart = position;
+        }
+    }
+
+    private GuidanceLine GetOrCreateGuidanceLine(int index)
+    {
+        if (index >= chemoreceptionLines.Count)
+        {
+            // The lines are created here and added as children of the stage because if they were in the microbe
+            // then rotation and it moving cause implementation difficulties
+            var line = new GuidanceLine();
+            AddChild(line);
+            chemoreceptionLines.Add(line);
+        }
+
+        return chemoreceptionLines[index];
     }
 }

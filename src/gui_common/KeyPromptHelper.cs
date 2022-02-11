@@ -34,7 +34,7 @@ public static class KeyPromptHelper
     /// <summary>
     ///   Event triggered when the key icons change, any GUI
     /// </summary>
-    public static event EventHandler IconsChanged;
+    public static event EventHandler? IconsChanged;
 
     public enum ActiveInputMethod
     {

@@ -9,21 +9,21 @@ using Godot;
 public class NewSaveMenu : Control
 {
     [Export]
-    public NodePath SaveListPath;
+    public NodePath SaveListPath = null!;
 
     [Export]
-    public NodePath SaveNameBoxPath;
+    public NodePath SaveNameBoxPath = null!;
 
     [Export]
-    public NodePath OverwriteConfirmPath;
+    public NodePath OverwriteConfirmPath = null!;
 
     [Export]
-    public NodePath SaveButtonPath;
+    public NodePath SaveButtonPath = null!;
 
-    private SaveList saveList;
-    private LineEdit saveNameBox;
-    private Button saveButton;
-    private CustomConfirmationDialog overwriteConfirm;
+    private SaveList saveList = null!;
+    private LineEdit saveNameBox = null!;
+    private Button saveButton = null!;
+    private CustomConfirmationDialog overwriteConfirm = null!;
 
     private bool usingSelectedSaveName;
 
@@ -67,6 +67,15 @@ public class NewSaveMenu : Control
         return !string.IsNullOrWhiteSpace(name) && !name.Any(Constants.FILE_NAME_DISALLOWED_CHARACTERS.Contains);
     }
 
+    private void ShowOverwriteConfirm(string name)
+    {
+        // The chosen filename ({0}) already exists. Overwrite?
+        overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("CHOSEN_FILENAME_ALREADY_EXISTS"),
+            name);
+        overwriteConfirm.PopupCenteredShrink();
+    }
+
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -82,11 +91,7 @@ public class NewSaveMenu : Control
 
         if (FileHelpers.Exists(PathUtils.Join(Constants.SAVE_FOLDER, name)))
         {
-            // The chosen filename ({0}) already exists. Overwrite?
-            overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
-                name);
-            overwriteConfirm.PopupCenteredShrink();
+            ShowOverwriteConfirm(name);
         }
         else
         {
@@ -166,5 +171,11 @@ public class NewSaveMenu : Control
         {
             ToolTipManager.Instance.ShowPopup(TranslationServer.Translate("INVALID_SAVE_NAME_POPUP"), 2.5f);
         }
+    }
+
+    private void OnSaveListItemConfirmed(SaveListItem item)
+    {
+        saveNameBox.Text = item.SaveName;
+        ShowOverwriteConfirm(item.SaveName);
     }
 }

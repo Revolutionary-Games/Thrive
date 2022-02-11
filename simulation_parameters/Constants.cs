@@ -134,6 +134,8 @@ public static class Constants
     /// </summary>
     public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
 
+    public const float CONTACT_IMPULSE_TO_BUMP_SOUND = 8;
+
     /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>
@@ -347,6 +349,15 @@ public static class Constants
     /// </summary>
     public const float CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.0033f;
 
+    public const float CHEMORECEPTOR_RANGE_MIN = 2;
+    public const float CHEMORECEPTOR_RANGE_MAX = 700;
+    public const float CHEMORECEPTOR_RANGE_DEFAULT = 350;
+    public const float CHEMORECEPTOR_AMOUNT_MIN = 1;
+    public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
+    public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
+    public const float CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL = 0.25f;
+    public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
+
     /// <summary>
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
@@ -464,7 +475,8 @@ public static class Constants
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 300;
+    // TODO: bump this back up once we resolve the performance bottleneck
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 110;
     public const int MAX_SPAWNS_PER_FRAME = 1;
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 
@@ -520,6 +532,11 @@ public static class Constants
     ///   Maximum amount of snapshots to store in patch history.
     /// </summary>
     public const int PATCH_HISTORY_RANGE = 10;
+
+    /// <summary>
+    ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
+    /// </summary>
+    public const int GLOBAL_EVENT_LOG_CAP = 20;
 
     /// <summary>
     ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
@@ -588,6 +605,8 @@ public static class Constants
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
+
+    public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 
     /// <summary>
     ///   Internal Godot name for the default audio output device
@@ -670,6 +689,8 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

@@ -7,8 +7,11 @@ public class GodotBasisConverter : JsonConverter
 {
     public override bool CanRead => true;
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
+        if (value == null)
+            throw new JsonException("Basis can't be null as it is a value type");
+
         var basis = (Basis)value;
 
         writer.WriteStartObject();
@@ -25,7 +28,8 @@ public class GodotBasisConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object? existingValue,
+        JsonSerializer serializer)
     {
         if (reader.TokenType != JsonToken.StartObject)
         {
@@ -37,9 +41,9 @@ public class GodotBasisConverter : JsonConverter
         try
         {
             // ReSharper disable AssignNullToNotNullAttribute PossibleNullReferenceException
-            return new Basis(item["Column0"].ToObject<Vector3>(),
-                item["Column1"].ToObject<Vector3>(),
-                item["Column2"].ToObject<Vector3>());
+            return new Basis(item["Column0"]!.ToObject<Vector3>(),
+                item["Column1"]!.ToObject<Vector3>(),
+                item["Column2"]!.ToObject<Vector3>());
 
             // ReSharper restore AssignNullToNotNullAttribute PossibleNullReferenceException
         }

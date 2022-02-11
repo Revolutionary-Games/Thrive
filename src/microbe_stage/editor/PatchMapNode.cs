@@ -7,30 +7,30 @@ using Godot;
 public class PatchMapNode : MarginContainer
 {
     [Export]
-    public NodePath IconPath;
+    public NodePath IconPath = null!;
 
     [Export]
-    public NodePath HighlightPanelPath;
+    public NodePath HighlightPanelPath = null!;
 
     [Export]
-    public NodePath MarkPanelPath;
+    public NodePath MarkPanelPath = null!;
 
-    private TextureRect iconRect;
-    private Panel highlightPanel;
-    private Panel markPanel;
+    private TextureRect? iconRect;
+    private Panel? highlightPanel;
+    private Panel? markPanel;
 
     private bool highlighted;
     private bool selected;
     private bool marked;
 
-    private Texture patchIcon;
+    private Texture? patchIcon;
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
     /// </summary>
-    public Patch Patch { get; set; }
+    public Patch? Patch { get; set; }
 
-    public ShaderMaterial MonochromeShader { get; set; }
+    public ShaderMaterial? MonochromeShader { get; set; }
 
     /// <summary>
     ///   Display the icon in monochrome and make it not selectable or highlightable.
@@ -48,9 +48,9 @@ public class PatchMapNode : MarginContainer
         }
     }
 
-    public Action<PatchMapNode> SelectCallback { get; set; }
+    public Action<PatchMapNode>? SelectCallback { get; set; }
 
-    public Texture PatchIcon
+    public Texture? PatchIcon
     {
         get => patchIcon;
         set
@@ -95,6 +95,9 @@ public class PatchMapNode : MarginContainer
 
     public override void _Ready()
     {
+        if (Patch == null)
+            GD.PrintErr($"{nameof(PatchMapNode)} should have {nameof(Patch)} set");
+
         iconRect = GetNode<TextureRect>(IconPath);
         highlightPanel = GetNode<Panel>(HighlightPanelPath);
         markPanel = GetNode<Panel>(MarkPanelPath);

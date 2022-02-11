@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 public class CompoundBag : ICompoundStorage
 {
     [JsonProperty]
-    private readonly HashSet<Compound> usefulCompounds = new HashSet<Compound>();
+    private readonly HashSet<Compound> usefulCompounds = new();
 
     /// <summary>
     ///   Creates a new bag
@@ -34,7 +34,7 @@ public class CompoundBag : ICompoundStorage
     ///   Except if you want to ignore capacity...
     /// </summary>
     [JsonProperty]
-    public Dictionary<Compound, float> Compounds { get; private set; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> Compounds { get; private set; } = new();
 
     /// <summary>
     ///   Gets the capacity for a given compound

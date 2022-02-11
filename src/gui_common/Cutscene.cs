@@ -5,8 +5,8 @@
 /// </summary>
 public class Cutscene : CanvasLayer, ITransition
 {
-    private VideoPlayer cutsceneVideoPlayer;
-    private Control controlNode;
+    private VideoPlayer cutsceneVideoPlayer = null!;
+    private Control controlNode = null!;
 
     [Signal]
     public delegate void OnFinishedSignal();

@@ -11,29 +11,29 @@ public class HelpScreen : Control
     ///   (e.g. MicrobeStage, MicrobeEditor)
     /// </summary>
     [Export]
-    public string Category;
+    public string Category = null!;
 
     [Export]
-    public NodePath LeftColumnPath;
+    public NodePath LeftColumnPath = null!;
 
     [Export]
-    public NodePath RightColumnPath;
+    public NodePath RightColumnPath = null!;
 
     [Export]
-    public NodePath TipMessageLabelPath;
+    public NodePath TipMessageLabelPath = null!;
 
     [Export]
-    public PackedScene HelpBoxScene;
+    public PackedScene HelpBoxScene = null!;
 
     [Export]
-    public NodePath TimerPath;
+    public NodePath TimerPath = null!;
 
-    private VBoxContainer leftColumn;
-    private VBoxContainer rightColumn;
-    private Label tipMessageLabel;
-    private Timer timer;
+    private VBoxContainer leftColumn = null!;
+    private VBoxContainer rightColumn = null!;
+    private Label tipMessageLabel = null!;
+    private Timer timer = null!;
 
-    private Random random;
+    private Random random = null!;
 
     [Signal]
     public delegate void HelpScreenClosed();

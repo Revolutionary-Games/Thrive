@@ -17,7 +17,7 @@ public abstract class InputAttribute : Attribute
     /// <summary>
     ///   The method this Attribute is applied to
     /// </summary>
-    public MethodBase Method { get; private set; }
+    public MethodBase? Method { get; private set; }
 
     /// <summary>
     ///   Whether this method should be called even if the input was marked as handled.
@@ -67,7 +67,7 @@ public abstract class InputAttribute : Attribute
     ///   Sets the associated method. Called by InputManager.LoadAttributes().
     /// </summary>
     /// <param name="method">The method this attribute is associated with</param>
-    internal void Init(MethodBase method)
+    internal void Init(MethodBase? method)
     {
         Method = method;
     }

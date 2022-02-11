@@ -6,16 +6,16 @@
 public class ControlHighlight : Control
 {
     [Export]
-    public NodePath LeftPlanePath;
+    public NodePath LeftPlanePath = null!;
 
     [Export]
-    public NodePath TopPlanePath;
+    public NodePath TopPlanePath = null!;
 
     [Export]
-    public NodePath RightPlanePath;
+    public NodePath RightPlanePath = null!;
 
     [Export]
-    public NodePath BottomPlanePath;
+    public NodePath BottomPlanePath = null!;
 
     /// <summary>
     ///   When true the parent Control (this must be the child of a Control) is used as the window size.
@@ -24,15 +24,15 @@ public class ControlHighlight : Control
     [Export]
     public bool UseParentControlSizeAsWindowSize = true;
 
-    private Control leftPlane;
-    private Control topPlane;
-    private Control rightPlane;
-    private Control bottomPlane;
+    private Control leftPlane = null!;
+    private Control topPlane = null!;
+    private Control rightPlane = null!;
+    private Control bottomPlane = null!;
 
     /// <summary>
     ///   The control that is highlighted by this object
     /// </summary>
-    public Control TargetControl { get; set; }
+    public Control? TargetControl { get; set; }
 
     public override void _Ready()
     {
@@ -60,7 +60,7 @@ public class ControlHighlight : Control
             var screenHeight = screenSize.y;
             var screenWidth = screenSize.x;
 
-            var nonCoveredArea = TargetControl.GetGlobalRect();
+            var nonCoveredArea = TargetControl!.GetGlobalRect();
 
             leftPlane.RectGlobalPosition = new Vector2(0, 0);
             leftPlane.RectSize = new Vector2(Mathf.Ceil(nonCoveredArea.Position.x), screenHeight);

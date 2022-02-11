@@ -15,27 +15,30 @@ using Newtonsoft.Json;
 /// </remarks>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
-public class GameWorld
+public class GameWorld : ISaveLoadable
 {
     [JsonProperty]
     private uint speciesIdCounter;
 
     [JsonProperty]
-    private Mutations mutator = new Mutations();
+    private Mutations mutator = new();
 
     [JsonProperty]
-    private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
+    private Dictionary<uint, Species> worldSpecies = new();
+
+    [JsonProperty]
+    private Dictionary<double, List<GameEventDescription>> eventsLog = new();
 
     /// <summary>
     ///   This world's auto-evo run
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     TODO: Once saving is implemented this probably shouldn't be attempted to be saved. But the list of external
-    ///     population effects need to be saved.
+    ///     This isn't saved as this can be restarted after loading a save. But the contained external effects in the
+    ///     run are saved.
     ///   </para>
     /// </remarks>
-    private AutoEvoRun autoEvo;
+    private AutoEvoRun? autoEvo;
 
     /// <summary>
     ///   Creates a new world
@@ -72,10 +75,10 @@ public class GameWorld
     }
 
     [JsonProperty]
-    public Species PlayerSpecies { get; private set; }
+    public Species PlayerSpecies { get; private set; } = null!;
 
     [JsonProperty]
-    public PatchMap Map { get; private set; }
+    public PatchMap Map { get; private set; } = null!;
 
     /// <summary>
     ///   This probably needs to be changed to a huge precision number
@@ -91,7 +94,7 @@ public class GameWorld
     ///   The current external effects for the current auto-evo run. This is here to allow saving to work for them.
     ///   Don't add new effects through this, instead go through the run instead
     /// </summary>
-    public List<ExternalEffect> CurrentExternalEffects
+    public List<ExternalEffect>? CurrentExternalEffects
     {
         get
         {
@@ -115,7 +118,7 @@ public class GameWorld
 
             CreateRunIfMissing();
 
-            var effects = autoEvo.ExternalEffects;
+            var effects = autoEvo!.ExternalEffects;
 
             effects.Clear();
 
@@ -123,12 +126,15 @@ public class GameWorld
         }
     }
 
+    /// <summary>
+    ///   Returns log of game events pertaining to the whole world.
+    /// </summary>
+    public IReadOnlyDictionary<double, List<GameEventDescription>> EventsLog => eventsLog;
+
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
         species.IsBacteria = true;
         species.SetInitialCompoundsForDefault();
-        species.Genus = "Primum";
-        species.Epithet = "Thrivium";
 
         species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
 
@@ -139,9 +145,9 @@ public class GameWorld
     /// <summary>
     ///   Creates an empty species object
     /// </summary>
-    public MicrobeSpecies NewMicrobeSpecies()
+    public MicrobeSpecies NewMicrobeSpecies(string genus, string epithet)
     {
-        var species = new MicrobeSpecies(++speciesIdCounter);
+        var species = new MicrobeSpecies(++speciesIdCounter, genus, epithet);
 
         worldSpecies[species.ID] = species;
         return species;
@@ -152,7 +158,7 @@ public class GameWorld
     /// </summary>
     public MicrobeSpecies CreatePlayerSpecies()
     {
-        var species = NewMicrobeSpecies();
+        var species = NewMicrobeSpecies("Primum", "Thrivium");
         species.BecomePlayerSpecies();
 
         SetInitialSpeciesProperties(species);
@@ -177,7 +183,8 @@ public class GameWorld
                     random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
-                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies()), population);
+                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty)),
+                    population);
             }
         }
     }
@@ -200,7 +207,8 @@ public class GameWorld
         switch (species)
         {
             case MicrobeSpecies s:
-                return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
+                // Mutator will mutate the name
+                return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies(species.Genus, species.Epithet));
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
@@ -250,7 +258,7 @@ public class GameWorld
     {
         IsAutoEvoFinished();
 
-        return autoEvo;
+        return autoEvo ?? throw new Exception("Auto evo run starting did not work");
     }
 
     /// <summary>
@@ -309,7 +317,7 @@ public class GameWorld
 
         CreateRunIfMissing();
 
-        autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
+        autoEvo!.AddExternalPopulationEffect(species, constant, coefficient, description, patch);
     }
 
     public void AlterSpeciesPopulationInCurrentPatch(Species species, int constant, string description,
@@ -326,6 +334,38 @@ public class GameWorld
     public Species GetSpecies(uint id)
     {
         return worldSpecies[id];
+    }
+
+    /// <summary>
+    ///   Stores a description of a global event into the game world records.
+    /// </summary>
+    /// <param name="description">The event's description</param>
+    /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
+    /// <param name="iconPath">Resource path to the icon of the event</param>
+    public void LogEvent(LocalizedString description, bool highlight = false, string? iconPath = null)
+    {
+        if (eventsLog.Count > Constants.GLOBAL_EVENT_LOG_CAP)
+        {
+            var oldestKey = eventsLog.Keys.Min();
+            eventsLog.Remove(oldestKey);
+        }
+
+        if (!eventsLog.ContainsKey(TotalPassedTime))
+            eventsLog.Add(TotalPassedTime, new List<GameEventDescription>());
+
+        // Event already logged in timeline
+        if (eventsLog[TotalPassedTime].Any(entry => entry.Description.Equals(description)))
+        {
+            return;
+        }
+
+        eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight));
+    }
+
+    public void FinishLoading(ISaveContext? context)
+    {
+        if (Map == null || PlayerSpecies == null)
+            throw new InvalidOperationException("Map or player species was not loaded correctly for a saved world");
     }
 
     private void CreateRunIfMissing()

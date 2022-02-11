@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -6,12 +7,15 @@ using Godot;
 /// </summary>
 public class PilusComponent : ExternallyPositionedComponent
 {
-    private List<uint> addedChildShapes = new List<uint>();
+    private List<uint> addedChildShapes = new();
 
-    private Microbe currentShapesParent;
+    private Microbe? currentShapesParent;
 
     public override void OnShapeParentChanged(Microbe newShapeParent, Vector3 offset)
     {
+        if (currentShapesParent == null)
+            throw new InvalidOperationException("Pilus not attached to a microbe yet");
+
         // Check if the pilus exists
         if (NeedsUpdateAnyway())
         {
@@ -22,7 +26,7 @@ public class PilusComponent : ExternallyPositionedComponent
         else
         {
             // Firstly the rotation relative to the master.
-            var position = organelle.RotatedPositionInsideColony(lastCalculatedPosition);
+            var position = organelle!.RotatedPositionInsideColony(lastCalculatedPosition);
 
             // Then the position
             position += offset;
@@ -49,12 +53,16 @@ public class PilusComponent : ExternallyPositionedComponent
 
     protected override void CustomAttach()
     {
-        currentShapesParent = organelle.ParentMicrobe;
+        if (organelle?.OrganelleGraphics == null)
+            throw new InvalidOperationException("Pilus needs parent organelle to have graphics");
+
+        currentShapesParent = organelle!.ParentMicrobe;
     }
 
     protected override void CustomDetach()
     {
         DestroyShape();
+        currentShapesParent = null;
     }
 
     protected override bool NeedsUpdateAnyway()
@@ -65,20 +73,20 @@ public class PilusComponent : ExternallyPositionedComponent
     protected override void OnPositionChanged(Quat rotation, float angle,
         Vector3 membraneCoords)
     {
-        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+        organelle!.OrganelleGraphics!.Transform = new Transform(rotation, membraneCoords);
 
         Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
         Vector3 membranePointDirection = (membraneCoords - middle).Normalized();
 
         membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
 
-        if (organelle.ParentMicrobe.Species.IsBacteria)
+        if (organelle.ParentMicrobe!.Species.IsBacteria)
         {
             membraneCoords *= 0.5f;
         }
 
         var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
-        var parentMicrobe = currentShapesParent;
+        var parentMicrobe = currentShapesParent!;
 
         if (parentMicrobe.Colony != null && !NeedsUpdateAnyway())
         {
@@ -91,7 +99,7 @@ public class PilusComponent : ExternallyPositionedComponent
         if (NeedsUpdateAnyway())
             CreateShape(parentMicrobe);
 
-        currentShapesParent.ShapeOwnerSetTransform(addedChildShapes[0], transform);
+        parentMicrobe.ShapeOwnerSetTransform(addedChildShapes[0], transform);
     }
 
     private void CreateShape(Microbe parent)
@@ -99,7 +107,7 @@ public class PilusComponent : ExternallyPositionedComponent
         float pilusSize = 4.6f;
 
         // Scale the size down for bacteria
-        if (organelle.ParentMicrobe.Species.IsBacteria)
+        if (organelle!.ParentMicrobe!.Species.IsBacteria)
         {
             pilusSize *= 0.5f;
         }
@@ -124,7 +132,7 @@ public class PilusComponent : ExternallyPositionedComponent
         {
             foreach (var shape in addedChildShapes)
             {
-                currentShapesParent.RemovePilus(shape);
+                currentShapesParent!.RemovePilus(shape);
                 currentShapesParent.RemoveShapeOwner(shape);
             }
 
