@@ -31,7 +31,7 @@ public static class CacheableDataExtensions
         if (!currentParameters.MatchesCacheParameters(fetchedFromCache))
         {
             GD.PrintErr("Hash collision for procedural cache data. Losing performance due to recomputation! ",
-                "Multiple ", nameof(T), " have has of ", currentHash);
+                "Multiple ", typeof(T).Name, " have hash of ", currentHash);
             return null;
         }
 

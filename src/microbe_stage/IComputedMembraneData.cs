@@ -19,14 +19,16 @@ public static class MembraneComputationHelpers
 
         unchecked
         {
-            long hash = 31 * data.Type.InternalName.GetHashCode();
+            var nameHash = data.Type.InternalName.GetHashCode();
+            long hash = 1409 + nameHash + ((long)nameHash << 28);
 
-            hash += (positions.Count + 1) * 7793;
+            hash ^= (positions.Count + 1) * 7793;
             int hashMultiply = 1;
 
             foreach (var position in positions)
             {
-                hash ^= hashMultiply * (position.GetHashCode() + 5081);
+                var posHash = position.GetHashCode();
+                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash) << 32);
                 ++hashMultiply;
             }
 
@@ -43,6 +45,12 @@ public static class MembraneComputationHelpers
 /// <summary>
 ///   Final, computed data for a membrane. This is a separate class to support caching this
 /// </summary>
+/// <remarks>
+///   <para>
+///     TODO: check if this needs to dispose the GeneratedMesh. That'll be a bit difficult as existing membranes
+///     can still be using this object even when this is removed from the cache
+///   </para>
+/// </remarks>
 public class ComputedMembraneData : IComputedMembraneData
 {
     public ComputedMembraneData(List<Vector2> organellePositions, MembraneType type, List<Vector2> vertices2D,
