@@ -19,6 +19,8 @@ public abstract class ActionHistory<T>
     [JsonProperty]
     protected int actionIndex;
 
+    public List<T> Actions => actions;
+
     public bool CanRedo()
     {
         return actionIndex < actions.Count;

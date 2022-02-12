@@ -2316,6 +2316,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 {
                     hexNode.MaterialOverride = islandMaterial;
                 }
+                else if (PlacedThisSession(organelle))
+                {
+                    hexNode.MaterialOverride = validMaterial;
+                }
                 else
                 {
                     hexNode.MaterialOverride = oldMaterial;
@@ -2368,6 +2372,12 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             placedModels[placedModels.Count - 1].DetachAndQueueFree();
             placedModels.RemoveAt(placedModels.Count - 1);
         }
+    }
+
+    private bool PlacedThisSession(OrganelleTemplate organelle)
+    {
+        return History.Actions.SelectMany(a => a.Data).Any(a =>
+            a is PlacementActionData placementActionData && placementActionData.Organelle == organelle);
     }
 
     /// <summary>
