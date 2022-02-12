@@ -315,15 +315,12 @@
                 string targetWorldRef;
                 try
                 {
-                    // ReSharper disable PossibleNullReferenceException
-                    targetWorldRef = effectsArray[0]["targetWorld"]["$ref"].ToString();
-
-                    // ReSharper restore PossibleNullReferenceException
+                    targetWorldRef = effectsArray[0]["targetWorld"]!["$ref"]!.ToString();
                 }
                 catch (NullReferenceException)
                 {
                     throw new ArgumentException("Property " + property.Name +
-                        " did not match gas effect registration.");
+                        " did not match gas effect registration template.");
                 }
 
                 var typeTokenText = "'$type': '" + gasProductionEffectName + "'";
