@@ -273,27 +273,12 @@ public class TweakedColourPicker : ColorPicker
 
     public override void _Process(float delta)
     {
+        base._Process(delta);
+
         if (pickingColor)
         {
-            pickerTimeElapsed += delta;
-
-            if (pickerTimeElapsed < 0.2)
-                return;
-
-            var viewportTexture = GetViewport().GetTexture().GetData();
-            var viewportRect = GetViewportRect();
-            var scale = viewportRect.End.x / viewportTexture.GetSize().x;
-            var position = GetGlobalMousePosition() / scale;
-            position.y = viewportTexture.GetHeight() - position.y;
-
-            viewportTexture.Lock();
-            Color = viewportTexture.GetPixelv(position);
-            viewportTexture.Unlock();
-
-            pickerTimeElapsed = 0;
+            PickColour(delta);
         }
-
-        base._Process(delta);
     }
 
     public override void _Input(InputEvent @event)
@@ -519,6 +504,26 @@ public class TweakedColourPicker : ColorPicker
     {
         colorBeforePicking = Color;
         pickingColor = true;
+    }
+
+    private void PickColour(float delta)
+    {
+        pickerTimeElapsed += delta;
+
+        if (pickerTimeElapsed < 0.2)
+            return;
+
+        var viewportTexture = GetViewport().GetTexture().GetData();
+        var viewportRect = GetViewportRect();
+        var scale = viewportRect.End.x / viewportTexture.GetSize().x;
+        var position = GetGlobalMousePosition() / scale;
+        position.y = viewportTexture.GetHeight() - position.y;
+
+        viewportTexture.Lock();
+        Color = viewportTexture.GetPixelv(position);
+        viewportTexture.Unlock();
+
+        pickerTimeElapsed = 0;
     }
 
     private class TweakedColourPickerPreset : ColorRect
