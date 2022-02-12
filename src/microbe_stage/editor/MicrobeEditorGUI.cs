@@ -1436,7 +1436,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         selectedOrganelles.Remove(main);
         selectedOrganelles.Insert(0, main);
 
-        organelleMenu.SelectedOrganelles = selectedOrganelles;
+        organelleMenu.SelectedOrganelles = selectedOrganelles.Where(p => p != null).ToList()!;
         organelleMenu.ShowPopup = true;
 
         // Disable delete for nucleus or the last organelle.

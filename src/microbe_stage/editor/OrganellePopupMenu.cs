@@ -31,7 +31,7 @@ public class OrganellePopupMenu : PopupPanel
     private MicrobeEditor? microbeEditor;
 
     private bool showPopup;
-    private List<OrganelleTemplate?>? selectedOrganelles;
+    private List<OrganelleTemplate>? selectedOrganelles;
     private bool enableDelete = true;
     private bool enableMove = true;
     private bool enableModify;
@@ -78,7 +78,7 @@ public class OrganellePopupMenu : PopupPanel
     /// <summary>
     ///   The placed organelles to be shown options of.
     /// </summary>
-    public List<OrganelleTemplate?>? SelectedOrganelles
+    public List<OrganelleTemplate>? SelectedOrganelles
     {
         get => selectedOrganelles;
         set
