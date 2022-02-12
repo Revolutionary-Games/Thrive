@@ -277,7 +277,7 @@ public class TweakedColourPicker : ColorPicker
 
         if (pickingColor)
         {
-            PickColour(delta);
+            HandleActiveColourPicking(delta);
         }
     }
 
@@ -506,7 +506,7 @@ public class TweakedColourPicker : ColorPicker
         pickingColor = true;
     }
 
-    private void PickColour(float delta)
+    private void HandleActiveColourPicking(float delta)
     {
         pickerTimeElapsed += delta;
 
