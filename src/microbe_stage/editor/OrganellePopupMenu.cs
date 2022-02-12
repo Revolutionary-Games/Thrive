@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
@@ -21,14 +22,10 @@ public class OrganellePopupMenu : PopupPanel
     [Export]
     public NodePath ModifyButtonPath = null!;
 
-    [Export]
-    public NodePath MicrobeEditorPath = null!;
-
     private Label? selectedOrganelleNameLabel;
     private Button? deleteButton;
     private Button? moveButton;
     private Button? modifyButton;
-    private MicrobeEditor? microbeEditor;
 
     private bool showPopup;
     private List<OrganelleTemplate>? selectedOrganelles;
@@ -44,6 +41,8 @@ public class OrganellePopupMenu : PopupPanel
 
     [Signal]
     public delegate void ModifyPressed();
+
+    public Func<List<MicrobeEditorActionData>, int>? GetActionPrice { get; set; }
 
     public bool ShowPopup
     {
@@ -123,7 +122,6 @@ public class OrganellePopupMenu : PopupPanel
         selectedOrganelleNameLabel = GetNode<Label>(SelectedOrganelleNameLabelPath);
         deleteButton = GetNode<Button>(DeleteButtonPath);
         moveButton = GetNode<Button>(MoveButtonPath);
-        microbeEditor = GetNode<MicrobeEditor>(MicrobeEditorPath);
         modifyButton = GetNode<Button>(ModifyButtonPath);
 
         // Skip things that use the organelle to work on if we aren't open (no selected organelle set)
@@ -242,9 +240,13 @@ public class OrganellePopupMenu : PopupPanel
         var names = SelectedOrganelles.Where(p => p != null).Select(p => p!.Definition.Name).Distinct().ToList();
 
         if (names.Count == 1)
+        {
             selectedOrganelleNameLabel.Text = names[0];
+        }
         else
+        {
             selectedOrganelleNameLabel.Text = TranslationServer.Translate("MULTIPLE_ORGANELLES");
+        }
     }
 
     private void UpdateDeleteButton()
@@ -259,9 +261,10 @@ public class OrganellePopupMenu : PopupPanel
         }
         else
         {
-            mpCost = microbeEditor!.History.WhatWouldActionsCost(
+            mpCost = GetActionPrice?.Invoke(
                 SelectedOrganelles.Where(o => o != null)
-                    .Select(o => (MicrobeEditorActionData)new RemoveActionData(o!, o!.Position, o.Orientation)).ToList());
+                    .Select(o => (MicrobeEditorActionData)new RemoveActionData(o!, o!.Position, o.Orientation))
+                    .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
         }
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -284,10 +287,10 @@ public class OrganellePopupMenu : PopupPanel
         }
         else
         {
-            mpCost = microbeEditor!.History.WhatWouldActionsCost(SelectedOrganelles.Where(o => o != null).Select(o =>
+            mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Where(o => o != null).Select(o =>
                     (MicrobeEditorActionData)new MoveActionData(o!, o!.Position, o.Position, o.Orientation,
                         o.Orientation))
-                .ToList());
+                .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
         }
 
         var mpLabel = moveButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");

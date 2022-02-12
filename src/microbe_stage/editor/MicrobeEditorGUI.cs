@@ -742,6 +742,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     public void Init(MicrobeEditor editor)
     {
         this.editor = editor ?? throw new ArgumentNullException(nameof(editor));
+        organelleMenu.GetActionPrice = editor.History.WhatWouldActionsCost;
 
         // Set the right tabs if they aren't the defaults
         ApplyEditorTab();
