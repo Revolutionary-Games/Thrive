@@ -29,6 +29,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
     [JsonProperty]
     private float elapsed;
 
+    [JsonIgnore]
+    private float currentBrightness = 1.0f;
+
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
@@ -404,6 +407,19 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
         {
             cloudGridCenter = targetCenter;
             PositionClouds();
+        }
+    }
+
+    public void SetBrightnessModifier(float brightness)
+    {
+        if (Math.Abs(brightness - currentBrightness) < 0.001f)
+            return;
+
+        currentBrightness = brightness;
+
+        foreach (var cloud in clouds)
+        {
+            cloud.SetBrightness(currentBrightness);
         }
     }
 

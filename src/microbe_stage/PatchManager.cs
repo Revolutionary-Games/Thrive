@@ -105,6 +105,8 @@ public class PatchManager : IChildPropertiesLoadCallback
         // Change the lighting
         UpdateLight(currentPatch.BiomeTemplate);
 
+        compoundCloudSystem.SetBrightnessModifier(currentPatch.BiomeTemplate.CompoundCloudBrightness);
+
         return patchIsChanged;
     }
 
