@@ -42,10 +42,11 @@ public class TweakedColourPicker : ColorPicker
     private bool rawButtonEnabled = true;
     private bool presetsEditable = true;
     private bool presetsVisible = true;
+    private PickerMode mode;
+
     private bool pickingColor;
     private Color colorBeforePicking;
     private float pickerTimeElapsed;
-    private PickerMode mode;
 
     private PresetGroupStorage groupStorage = null!;
 
