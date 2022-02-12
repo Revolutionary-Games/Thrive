@@ -511,7 +511,7 @@ public class TweakedColourPicker : ColorPicker
     {
         pickerTimeElapsed += delta;
 
-        if (pickerTimeElapsed < 0.2)
+        if (pickerTimeElapsed < 0.2f)
             return;
 
         var viewportTexture = GetViewport().GetTexture().GetData();
