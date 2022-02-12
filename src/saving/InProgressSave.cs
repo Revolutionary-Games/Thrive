@@ -185,7 +185,7 @@ public class InProgressSave : IDisposable
                     ColourblindScreenFilter.Instance.Show();
                 }
 
-                SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING"),
+                SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING_DOT_DOT_DOT"),
                     Mathf.Inf);
 
                 state = State.SaveData;

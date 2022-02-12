@@ -474,7 +474,7 @@ public static class Constants
     public const float GLUCOSE_MIN = 0.0f;
 
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 90;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 110;
     public const int MAX_SPAWNS_PER_FRAME = 1;
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 
@@ -687,6 +687,8 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

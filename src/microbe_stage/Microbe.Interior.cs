@@ -85,7 +85,7 @@ public partial class Microbe
     ///   For use by the AI to do run and tumble to find compounds. Also used by player cell for tutorials
     /// </summary>
     [JsonProperty]
-    public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new();
 
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; }

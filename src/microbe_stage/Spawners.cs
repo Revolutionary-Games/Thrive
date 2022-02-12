@@ -382,7 +382,7 @@ public class ChunkSpawner : Spawner
 {
     private readonly PackedScene chunkScene;
     private readonly ChunkConfiguration chunkType;
-    private readonly Random random = new Random();
+    private readonly Random random = new();
     private readonly CompoundCloudSystem cloudSystem;
 
     public ChunkSpawner(ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)

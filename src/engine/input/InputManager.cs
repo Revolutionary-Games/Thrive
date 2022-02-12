@@ -14,7 +14,7 @@ using Godot;
 /// </remarks>
 public class InputManager : Node
 {
-    private static readonly List<WeakReference> DestroyedListeners = new List<WeakReference>();
+    private static readonly List<WeakReference> DestroyedListeners = new();
     private static InputManager? staticInstance;
 
     /// <summary>

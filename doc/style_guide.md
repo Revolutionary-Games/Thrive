@@ -236,6 +236,10 @@ Code style rules
   property should be preferred, even in the same class to avoid
   mistakes in skipping some logic by directly assigning a field.
 
+- Targeted new and `default` should be used without specifying type
+  when the type is evident from the context. When the type is not
+  clear the type needs to be specified.
+
 - Variables should be defined in the smallest possible scope. We
   aren't writing ancient C here.
 

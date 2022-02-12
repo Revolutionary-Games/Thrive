@@ -17,7 +17,7 @@ public class RunOnAxisAttribute : InputAttribute
     /// <summary>
     ///   All associated inputs for this axis
     /// </summary>
-    private Dictionary<RunOnKeyAttribute, MemberData> inputs = new Dictionary<RunOnKeyAttribute, MemberData>();
+    private Dictionary<RunOnKeyAttribute, MemberData> inputs = new();
 
     /// <summary>
     ///   Used to track order keys are pressed down

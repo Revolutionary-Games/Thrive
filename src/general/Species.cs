@@ -18,18 +18,18 @@ public abstract class Species : ICloneable
     ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
     [JsonProperty]
-    public readonly Dictionary<Compound, float> InitialCompounds = new Dictionary<Compound, float>();
+    public readonly Dictionary<Compound, float> InitialCompounds = new();
 
     public string Genus;
     public string Epithet;
 
-    public Color Colour = new Color(1, 1, 1);
+    public Color Colour = new(1, 1, 1);
 
     /// <summary>
     ///   This holds all behavioural values and defines how this species will behave in the environment.
     /// </summary>
     [JsonProperty]
-    public BehaviourDictionary Behaviour = new BehaviourDictionary();
+    public BehaviourDictionary Behaviour = new();
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
