@@ -31,7 +31,7 @@ public class OrganellePopupMenu : PopupPanel
     private MicrobeEditor? microbeEditor;
 
     private bool showPopup;
-    private List<OrganelleTemplate>? selectedOrganelles;
+    private List<OrganelleTemplate?>? selectedOrganelles;
     private bool enableDelete = true;
     private bool enableMove = true;
     private bool enableModify;
@@ -71,14 +71,14 @@ public class OrganellePopupMenu : PopupPanel
     }
 
     /// <summary>
-    ///   The main organelle.
+    ///   The organelle the user explicitly selected
     /// </summary>
-    public OrganelleTemplate? SelectedOrganelle { get; set; }
+    public OrganelleTemplate? MainOrganelle => selectedOrganelles?[0];
 
     /// <summary>
     ///   The placed organelles to be shown options of.
     /// </summary>
-    public List<OrganelleTemplate>? SelectedOrganelles
+    public List<OrganelleTemplate?>? SelectedOrganelles
     {
         get => selectedOrganelles;
         set
@@ -239,7 +239,7 @@ public class OrganellePopupMenu : PopupPanel
             return;
         }
 
-        var names = SelectedOrganelles.Select(p => p.Definition.Name).Distinct().ToList();
+        var names = SelectedOrganelles.Where(p => p != null).Select(p => p!.Definition.Name).Distinct().ToList();
 
         if (names.Count == 1)
             selectedOrganelleNameLabel.Text = names[0];
@@ -260,8 +260,8 @@ public class OrganellePopupMenu : PopupPanel
         else
         {
             mpCost = microbeEditor!.History.WhatWouldActionsCost(
-                SelectedOrganelles
-                    .Select(o => (MicrobeEditorActionData)new RemoveActionData(o, o.Position, o.Orientation)).ToList());
+                SelectedOrganelles.Where(o => o != null)
+                    .Select(o => (MicrobeEditorActionData)new RemoveActionData(o!, o!.Position, o.Orientation)).ToList());
         }
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -284,8 +284,8 @@ public class OrganellePopupMenu : PopupPanel
         }
         else
         {
-            mpCost = microbeEditor!.History.WhatWouldActionsCost(SelectedOrganelles.Select(o =>
-                    (MicrobeEditorActionData)new MoveActionData(o, o.Position, o.Position, o.Orientation,
+            mpCost = microbeEditor!.History.WhatWouldActionsCost(SelectedOrganelles.Where(o => o != null).Select(o =>
+                    (MicrobeEditorActionData)new MoveActionData(o!, o!.Position, o.Position, o.Orientation,
                         o.Orientation))
                 .ToList());
         }

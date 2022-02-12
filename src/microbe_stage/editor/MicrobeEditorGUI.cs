@@ -1183,7 +1183,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         // Update mutation points
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
-            editor.MutationPoints - editor.CalculateCurrentOrganelleCost(MouseHoverHexes);
+            editor.MutationPoints - editor.CalculateCurrentOrganelleCost(MouseHoverHexes?.ToList());
 
         if (tween)
         {
@@ -1427,27 +1427,24 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
     }
 
-    public void ShowOrganelleMenu(OrganelleTemplate main, List<OrganelleTemplate> selectedOrganelles)
+    public void ShowOrganelleMenu(OrganelleTemplate main, List<OrganelleTemplate?> selectedOrganelles)
     {
         if (editor == null)
             throw new InvalidOperationException("GUI not initialized");
 
-        organelleMenu.SelectedOrganelle = main;
+        // Put main organelle to the beginning
+        selectedOrganelles.Remove(main);
+        selectedOrganelles.Insert(0, main);
+
         organelleMenu.SelectedOrganelles = selectedOrganelles;
         organelleMenu.ShowPopup = true;
 
         // Disable delete for nucleus or the last organelle.
-        if (editor.MicrobeSize < 1 + selectedOrganelles.Count || selectedOrganelles.Any(o => o.Definition == nucleus))
-        {
-            organelleMenu.EnableDeleteOption = false;
-        }
-        else
-        {
-            organelleMenu.EnableDeleteOption = true;
-        }
+        organelleMenu.EnableDeleteOption = editor.MicrobeSize > selectedOrganelles.Count(p => p != null) &&
+            selectedOrganelles.All(o => o?.Definition != nucleus);
 
         // Move enabled only when microbe has more than one organelle
-        organelleMenu.EnableMoveOption = editor.MicrobeSize > 1 + selectedOrganelles.Count;
+        organelleMenu.EnableMoveOption = editor.MicrobeSize > selectedOrganelles.Count(o => o != null);
     }
 
     internal void SetSymmetryButtonStatus(bool enabled)
@@ -1608,10 +1605,10 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnMovePressed()
     {
-        if (organelleMenu.SelectedOrganelle == null)
+        if (organelleMenu.MainOrganelle == null)
             throw new ArgumentException("No Organelle selected when trying to move");
 
-        editor!.StartOrganelleMove(organelleMenu.SelectedOrganelle.Position);
+        editor!.StartOrganelleMove(organelleMenu.MainOrganelle.Position);
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelButtonVisibility();
@@ -1619,18 +1616,18 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnDeletePressed()
     {
-        if (organelleMenu.SelectedOrganelle == null)
+        if (organelleMenu.MainOrganelle == null)
             throw new ArgumentException("No Organelle selected when trying to delete");
 
-        editor!.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
+        editor!.RemoveOrganelle(organelleMenu.MainOrganelle.Position);
     }
 
     private void OnModifyPressed()
     {
-        if (organelleMenu.SelectedOrganelle == null)
+        if (organelleMenu.MainOrganelle == null)
             throw new ArgumentException("No Organelle selected when trying to modify");
 
-        var upgradeGUI = organelleMenu.SelectedOrganelle.Definition.UpgradeGUI;
+        var upgradeGUI = organelleMenu.MainOrganelle.Definition.UpgradeGUI;
 
         if (string.IsNullOrEmpty(upgradeGUI))
         {
@@ -1638,7 +1635,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             return;
         }
 
-        organelleUpgradeGUI.OpenForOrganelle(organelleMenu.SelectedOrganelle, upgradeGUI!, editor!);
+        organelleUpgradeGUI.OpenForOrganelle(organelleMenu.MainOrganelle, upgradeGUI!, editor!);
     }
 
     private void OnNewCellClicked()

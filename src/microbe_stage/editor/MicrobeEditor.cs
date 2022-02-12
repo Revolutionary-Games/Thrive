@@ -328,7 +328,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   May contain null when symmetry moving but there wasn't an organelle at a symmetry position
     /// </summary>
     [JsonProperty]
-    public List<OrganelleTemplate>? MovingOrganelles { get; private set; }
+    public List<OrganelleTemplate?>? MovingOrganelles { get; private set; }
 
     /// <summary>
     ///   When true nothing costs MP
@@ -696,7 +696,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane);
 
-        var action = new SingleMicrobeEditorAction(DoNewMicrobeAction, UndoNewMicrobeAction, data);
+        var action = new SingleMicrobeEditorAction<NewMicrobeActionData>(DoNewMicrobeAction, UndoNewMicrobeAction, data);
 
         EnqueueAction(action);
     }
@@ -856,7 +856,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (Membrane.Equals(membrane))
             return;
 
-        var action = new SingleMicrobeEditorAction(DoMembraneChangeAction, UndoMembraneChangeAction,
+        var action = new SingleMicrobeEditorAction<MembraneActionData>(DoMembraneChangeAction, UndoMembraneChangeAction,
             new MembraneActionData(Membrane, membrane));
 
         EnqueueAction(action);
@@ -877,7 +877,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
 
-        var action = new SingleMicrobeEditorAction(DoBehaviourChangeAction, UndoBehaviourChangeAction,
+        var action = new SingleMicrobeEditorAction<BehaviourChangeActionData>(DoBehaviourChangeAction, UndoBehaviourChangeAction,
             new BehaviourChangeActionData(oldValue, value, type));
 
         EnqueueAction(action);
@@ -914,7 +914,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new SingleMicrobeEditorAction(DoRigidityChangeAction, UndoRigidityChangeAction,
+        var action = new SingleMicrobeEditorAction<RigidityChangeActionData>(DoRigidityChangeAction, UndoRigidityChangeAction,
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
@@ -943,10 +943,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (organelle == null)
             return;
 
-        var hexes = GetHexesWithSymmetryMode(q, r);
+        var hexes = GetDistinctHexesWithSymmetryMode(q, r);
         var organelles = hexes.Select(p => editedMicrobeOrganelles.GetOrganelleAt(p.Hex)).ToList();
 
-        gui.ShowOrganelleMenu(organelle, organelles!);
+        gui.ShowOrganelleMenu(organelle, organelles);
     }
 
     public void StartOrganelleMove(Hex hex)
@@ -957,16 +957,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             throw new InvalidOperationException("Can't begin organelle move while another in progress");
         }
 
-        MovingOrganelles = new List<OrganelleTemplate>();
-        var hexes = GetHexesWithSymmetryMode(hex.Q, hex.R);
+        MovingOrganelles = new List<OrganelleTemplate?>();
+        var hexes = GetDistinctHexesWithSymmetryMode(hex.Q, hex.R);
         foreach (var (symmetryHex, _) in hexes)
         {
             var organelle = editedMicrobeOrganelles.GetOrganelleAt(symmetryHex);
-            if (organelle == null)
-                continue;
 
             MovingOrganelles.Add(organelle);
-            editedMicrobeOrganelles.Remove(organelle);
+            if (organelle != null)
+                editedMicrobeOrganelles.Remove(organelle);
         }
 
         if (MovingOrganelles.Count == 0)
@@ -1011,7 +1010,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (MovingOrganelles != null)
         {
             foreach (var movingOrganelle in MovingOrganelles)
-                editedMicrobeOrganelles.Add(movingOrganelle);
+                editedMicrobeOrganelles.Add(movingOrganelle!);
 
             MovingOrganelles = null;
             gui.UpdateCancelButtonVisibility();
@@ -1031,58 +1030,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         int q = hex.Q;
         int r = hex.R;
 
-        switch (Symmetry)
-        {
-            case MicrobeSymmetry.None:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-                break;
-            }
-
-            case MicrobeSymmetry.XAxisSymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                if (q != -1 * q || r != r + q)
-                {
-                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
-                }
-
-                break;
-            }
-
-            case MicrobeSymmetry.FourWaySymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                if (q != -1 * q || r != r + q)
-                {
-                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
-                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
-                }
-                else
-                {
-                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                }
-
-                break;
-            }
-
-            case MicrobeSymmetry.SixWaySymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                RemoveOrganelleAt(new Hex(-1 * r, r + q));
-                RemoveOrganelleAt(new Hex(-1 * (r + q), q));
-                RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                RemoveOrganelleAt(new Hex(r + q, -1 * q));
-
-                break;
-            }
-        }
+        var hexes = GetDistinctHexesWithSymmetryMode(q, r);
+        var action =
+            new MultiMicrobeEditorAction(
+                hexes.Select(pos => RemoveOrganelleAt(pos.Hex)).Where(a => a != null).ToArray()!);
+        EnqueueAction(action);
     }
 
     /// <summary>
@@ -1119,7 +1071,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <summary>
     ///   Returns the cost of the organelle that is about to be placed
     /// </summary>
-    public float CalculateCurrentOrganelleCost(IEnumerable<(Hex Hex, int Orientation)>? mouseHoverHexes)
+    public float CalculateCurrentOrganelleCost(List<(Hex Hex, int Orientation)>? mouseHoverHexes)
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !ShowHover)
             return 0;
@@ -1132,12 +1084,10 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var organelleTemplate = mouseHoverHexes
             .Select(hex => new OrganelleTemplate(organelleDefinition, hex.Hex, hex.Orientation)).ToList();
 
-        var placementActionData = organelleTemplate
-            .Select(p => (MicrobeEditorActionData)new PlacementActionData(p, p.Position, p.Orientation));
+        var moveOccupancies =
+            GetMultiActionWithOccupancies(mouseHoverHexes, MovingOrganelles ?? organelleTemplate!, MovingOrganelles != null);
 
-        var replacedCytoplasm = GetReplacedCytoplasmRemoveActionData(organelleTemplate);
-
-        return History.WhatWouldActionsCost(replacedCytoplasm.Concat(placementActionData).ToList());
+        return History.WhatWouldActionsCost(moveOccupancies.Data.ToList());
     }
 
     /// <summary>
@@ -1615,6 +1565,88 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         return mutationPointsCache.Value;
     }
 
+    /// <summary>
+    ///   Returns a list with hex, orientation, the organelle and whether or not this hex is
+    ///   already occupied by a higher-ranked organelle.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     An organelle is ranked higher if it costs more MP.
+    ///   </para>
+    /// </remarks>
+    private List<(Hex Hex, OrganelleTemplate? Organelle, int Orientation, bool Occupied)> GetOccupancies(
+        List<(Hex Hex, int Orientation)> hexes, List<OrganelleTemplate?> organelles)
+    {
+        var organellePositions = new List<(Hex Hex, OrganelleTemplate? Organelle, int Orientation, bool Occupied)>();
+
+        for (var i = 0; i < hexes.Count; i++)
+        {
+            var (hex, orientation) = hexes[i];
+            var organelle = organelles[i];
+            var oldOrganelle = organellePositions.FirstOrDefault(p => p.Hex == hex);
+            var occupied = false;
+            if (oldOrganelle != default && organelle != null)
+            {
+                if (organelle.Definition.MPCost > oldOrganelle.Organelle?.Definition.MPCost)
+                {
+                    organellePositions.Remove(oldOrganelle);
+                    oldOrganelle.Occupied = true;
+                    organellePositions.Add(oldOrganelle);
+                }
+                else
+                {
+                    occupied = true;
+                }
+            }
+
+            organellePositions.Add((hex, organelle, orientation, occupied));
+        }
+
+        return organellePositions;
+    }
+
+    private MultiMicrobeEditorAction GetMultiActionWithOccupancies(List<(Hex Hex, int Orientation)> hexes,
+        List<OrganelleTemplate?> organelles, bool moving)
+    {
+        var moveActionData = new List<MicrobeEditorAction>();
+        foreach (var (hex, organelle, orientation, occupied) in GetOccupancies(hexes, organelles))
+        {
+            if (organelle == null)
+                continue;
+
+            MicrobeEditorAction action;
+            if (occupied)
+            {
+                var data = new RemoveActionData(organelle, organelle.Position, organelle.Orientation)
+                {
+                    GotReplaced = organelle.Definition.InternalName == "cytoplasm",
+                };
+                action = new SingleMicrobeEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, data);
+            }
+            else
+            {
+                if (moving)
+                {
+                    var data = new MoveActionData(organelle, organelle.Position, hex, organelle.Orientation, orientation);
+                    action = new SingleMicrobeEditorAction<MoveActionData>(DoOrganelleMoveAction, UndoOrganelleMoveAction, data);
+                }
+                else
+                {
+                    var replacedHex = editedMicrobeOrganelles.GetOrganelleAt(hex);
+                    var data = new PlacementActionData(organelle, hex, orientation);
+                    if (replacedHex != null)
+                        data.ReplacedCytoplasm = new List<OrganelleTemplate> { replacedHex };
+
+                    action = new SingleMicrobeEditorAction<PlacementActionData>(DoOrganellePlaceAction, UndoOrganellePlaceAction, data);
+                }
+            }
+
+            moveActionData.Add(action);
+        }
+
+        return new MultiMicrobeEditorAction(moveActionData.ToArray());
+    }
+
     private void UpdateEditor(float delta)
     {
         _ = delta;
@@ -1664,7 +1696,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             GetMouseHex(out int q, out int r);
 
             var hexes = GetHexesWithSymmetryMode(q, r);
-
+            var distinctHexes = GetDistinctHexesWithSymmetryMode(hexes);
             if (MovingOrganelles == null)
             {
                 // Can place stuff at all?
@@ -1673,23 +1705,21 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
                 var shownOrganelle = SimulationParameters.Instance.GetOrganelleType(ActiveActionName);
 
-                foreach (var (hex, orientation) in hexes)
+                foreach (var (hex, orientation) in distinctHexes)
                 {
                     RenderHighlightedOrganelle(hex.Q, hex.R, orientation, shownOrganelle);
                 }
             }
             else
             {
-                for (var i = 0; i < hexes.Count; i++)
+                foreach (var (hex, organelle, orientation, occupied) in GetOccupancies(hexes, MovingOrganelles))
                 {
-                    var (hex, orientation) = hexes[i];
-                    var organelle = MovingOrganelles[i];
-                    if (organelle != null)
+                    if (organelle != null && !occupied)
                         RenderHighlightedOrganelle(hex.Q, hex.R, orientation, organelle.Definition);
                 }
             }
 
-            gui.MouseHoverHexes = hexes;
+            gui.MouseHoverHexes = distinctHexes;
         }
     }
 
@@ -1836,42 +1866,47 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         membraneOrganellePositionsAreDirty = false;
     }
 
+    private List<(Hex Hex, int Orientation)> GetDistinctHexesWithSymmetryMode(List<(Hex Hex, int Orientation)> hexes)
+    {
+        return hexes.GroupBy(p => p.Hex).Select(p => p.First()).ToList();
+    }
+
+    private List<(Hex Hex, int Orientation)> GetDistinctHexesWithSymmetryMode(int q, int r)
+    {
+        return GetDistinctHexesWithSymmetryMode(GetHexesWithSymmetryMode(q, r));
+    }
+
+    /// <summary>
+    ///   Returns the hexes with the current symmetry mode. May contains duplicates.
+    /// </summary>
     private List<(Hex Hex, int Orientation)> GetHexesWithSymmetryMode(int q, int r)
     {
-        var hexes = new List<(Hex Hex, int Orientation)>();
+        var hexes = new List<(Hex Hex, int Orientation)>
+        {
+            (new Hex(q, r), organelleRot),
+        };
 
         switch (Symmetry)
         {
             case MicrobeSymmetry.None:
             {
-                hexes.Add((new Hex(q, r), organelleRot));
                 break;
             }
 
             case MicrobeSymmetry.XAxisSymmetry:
             {
-                if (q != -1 * q || r != r + q)
-                {
-                    hexes.Add((new Hex(-1 * q, r + q), 6 + (-1 * organelleRot)));
-                }
+                hexes.Add((new Hex(-1 * q, r + q), 6 + (-1 * organelleRot)));
 
-                goto case MicrobeSymmetry.None;
+                break;
             }
 
             case MicrobeSymmetry.FourWaySymmetry:
             {
-                if (q != -1 * q || r != r + q)
-                {
-                    hexes.Add((new Hex(-1 * q, r + q), 6 + (-1 * organelleRot)));
-                    hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
-                    hexes.Add((new Hex(q, -1 * (r + q)), (9 + (-1 * organelleRot)) % 6));
-                }
-                else
-                {
-                    hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
-                }
+                hexes.Add((new Hex(-1 * q, r + q), 6 + (-1 * organelleRot)));
+                hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
+                hexes.Add((new Hex(q, -1 * (r + q)), (9 + (-1 * organelleRot)) % 6));
 
-                goto case MicrobeSymmetry.None;
+                break;
             }
 
             case MicrobeSymmetry.SixWaySymmetry:
@@ -1881,7 +1916,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
                 hexes.Add((new Hex(-1 * q, -1 * r), (organelleRot + 3) % 6));
                 hexes.Add((new Hex(r, -1 * (r + q)), (organelleRot + 4) % 6));
                 hexes.Add((new Hex(r + q, -1 * q), (organelleRot + 5) % 6));
-                goto case MicrobeSymmetry.None;
+                break;
             }
 
             default:
@@ -1927,21 +1962,19 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <returns>True when at least one organelle got placed</returns>
     private bool AddOrganelle(string organelleType)
     {
-        GetMouseHex(out int q, out int r);
+        GetMouseHex(out var q, out var r);
 
-        var hexes = GetHexesWithSymmetryMode(q, r);
+        var hexes = GetDistinctHexesWithSymmetryMode(q, r);
 
         var organelleDefinition = GetOrganelleDefinition(organelleType);
 
         var organelleTemplates = hexes
             .Select(hex => new OrganelleTemplate(organelleDefinition, hex.Hex, hex.Orientation)).ToList();
 
-        bool placedSomething = false;
+        var multiAction = new MultiMicrobeEditorAction(organelleTemplates.Select(PlaceIfPossible).Where(a => a != null)
+            .Select(a => (MicrobeEditorAction)a!).ToArray());
 
-        foreach (var ot in organelleTemplates)
-            PlaceIfPossible(ot, ref placedSomething);
-
-        return placedSomething;
+        return EnqueueAction(multiAction);
     }
 
     private IEnumerable<OrganelleTemplate> GetReplacedCytoplasm(IEnumerable<OrganelleTemplate> organelles)
@@ -1949,7 +1982,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         return organelles
             .Where(o => o.Definition.InternalName != "cytoplasm")
             .SelectMany(o => o.Definition.Hexes.Select(hex => hex + o.Position))
-            .Select(hex => editedMicrobeOrganelles.GetByHex(hex))
+            .Select(hex => editedMicrobeOrganelles.GetOrganelleAt(hex))
             .Where(o => o?.Definition.InternalName == "cytoplasm")!;
     }
 
@@ -1963,32 +1996,30 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             });
     }
 
-    private IEnumerable<MicrobeEditorAction> GetReplacedCytoplasmRemoveAction(IEnumerable<OrganelleTemplate> organelles)
+    private IEnumerable<SingleMicrobeEditorAction<RemoveActionData>> GetReplacedCytoplasmRemoveAction(
+        IEnumerable<OrganelleTemplate> organelles)
     {
         var replacedCytoplasmData = GetReplacedCytoplasmRemoveActionData(organelles);
         return replacedCytoplasmData.Select(o =>
-            new SingleMicrobeEditorAction(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
+            new SingleMicrobeEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
-    private void PlaceIfPossible(OrganelleTemplate organelle, ref bool placed)
+    private MultiMicrobeEditorAction? PlaceIfPossible(OrganelleTemplate organelle)
     {
         if (MicrobePreviewMode)
-            return;
+            return null;
 
         if (!IsValidPlacement(organelle))
         {
             // Play Sound
             gui.OnInvalidHexLocationSelected();
-            return;
+            return null;
         }
 
-        if (AddOrganelle(organelle))
-        {
-            placed = true;
-        }
+        return AddOrganelle(organelle);
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
@@ -2019,11 +2050,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganellePlaceAction(MicrobeEditorAction action)
+    private void DoOrganellePlaceAction(PlacementActionData data)
     {
-        var data = (PlacementActionData?)action.Data ??
-            throw new Exception($"{nameof(DoOrganellePlaceAction)} missing action data");
-
         data.ReplacedCytoplasm = new List<OrganelleTemplate>();
         var organelle = data.Organelle;
 
@@ -2054,11 +2082,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganellePlaceAction(MicrobeEditorAction action)
+    private void UndoOrganellePlaceAction(PlacementActionData data)
     {
-        var data = (PlacementActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoOrganellePlaceAction)} missing action data");
-
         editedMicrobeOrganelles.Remove(data.Organelle);
 
         if (data.ReplacedCytoplasm != null)
@@ -2073,63 +2098,53 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
     }
 
-    private bool AddOrganelle(OrganelleTemplate organelle)
+    private MultiMicrobeEditorAction? AddOrganelle(OrganelleTemplate organelle)
     {
         // 1 - you put a unique organelle (means only one instance allowed) but you already have it
         // 2 - you put an organelle that requires nucleus but you don't have one
         if ((organelle.Definition.Unique && HasOrganelle(organelle.Definition)) ||
             (organelle.Definition.RequiresNucleus && !HasNucleus))
-            return false;
+            return null;
 
-        var replacedCytoplasmActions = GetReplacedCytoplasmRemoveAction(new[] { organelle }).ToList();
+        var replacedCytoplasmActions =
+            GetReplacedCytoplasmRemoveAction(new[] { organelle }).OfType<MicrobeEditorAction>().ToList();
 
-        var action = new SingleMicrobeEditorAction(DoOrganellePlaceAction, UndoOrganellePlaceAction,
+        var action = new SingleMicrobeEditorAction<PlacementActionData>(DoOrganellePlaceAction, UndoOrganellePlaceAction,
             new PlacementActionData(organelle, organelle.Position, organelle.Orientation));
 
         replacedCytoplasmActions.Add(action);
-        var multiAction = new MultiMicrobeEditorAction(replacedCytoplasmActions.ToArray());
-
-        EnqueueAction(multiAction);
-        return true;
+        return new MultiMicrobeEditorAction(replacedCytoplasmActions.ToArray());
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleRemoveAction(MicrobeEditorAction action)
+    private void DoOrganelleRemoveAction(RemoveActionData data)
     {
-        var data = (RemoveActionData?)action.Data ??
-            throw new Exception($"{nameof(DoOrganelleRemoveAction)} missing action data");
         editedMicrobeOrganelles.Remove(data.Organelle);
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleRemoveAction(MicrobeEditorAction action)
+    private void UndoOrganelleRemoveAction(RemoveActionData data)
     {
-        var data = (RemoveActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoOrganelleRemoveAction)} missing action data");
         editedMicrobeOrganelles.Add(data.Organelle);
     }
 
-    private void RemoveOrganelleAt(Hex location)
+    private MicrobeEditorAction? RemoveOrganelleAt(Hex location)
     {
         var organelleHere = editedMicrobeOrganelles.GetOrganelleAt(location);
         if (organelleHere == null)
-            return;
+            return null;
 
         // Dont allow deletion of nucleus or the last organelle
         if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
-            return;
+            return null;
 
-        var action = new SingleMicrobeEditorAction(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
+        return new SingleMicrobeEditorAction<RemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
             new RemoveActionData(organelleHere, location, organelleHere.Orientation));
-
-        EnqueueAction(action);
     }
 
     [DeserializedCallbackAllowed]
-    private void DoOrganelleMoveAction(MicrobeEditorAction action)
+    private void DoOrganelleMoveAction(MoveActionData data)
     {
-        var data = (MoveActionData?)action.Data ??
-            throw new Exception($"{nameof(DoOrganelleMoveAction)} missing action data");
         data.Organelle.Position = data.NewLocation;
         data.Organelle.Orientation = data.NewRotation;
 
@@ -2149,10 +2164,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoOrganelleMoveAction(MicrobeEditorAction action)
+    private void UndoOrganelleMoveAction(MoveActionData data)
     {
-        var data = (MoveActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoOrganelleMoveAction)} missing action data");
         data.Organelle.Position = data.OldLocation;
         data.Organelle.Orientation = data.OldRotation;
 
@@ -2166,39 +2179,24 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     ///   Finishes an organelle move
     /// </summary>
     /// <returns>True if the organelle move succeeded.</returns>
-    private bool MoveOrganelle(List<OrganelleTemplate> organelles, Hex newLocation, int newRotation)
+    private bool MoveOrganelle(List<OrganelleTemplate?> organelles, Hex newLocation, int newRotation)
     {
         // Make sure placement is valid
         if (organelles.Any(o => o != null && !IsMoveTargetValid(newLocation, newRotation, o)))
             return false;
 
         var hexes = GetHexesWithSymmetryMode(newLocation.Q, newLocation.R);
-
-        var moveActionData = new List<MoveActionData>();
-        for (var i = 0; i < hexes.Count; i++)
-        {
-            var (hexPos, orientation) = hexes[i];
-            var organelle = organelles[i];
-            if (organelle == null)
-                continue;
-
-            moveActionData.Add(new MoveActionData(organelle, organelle.Position, hexPos, organelle.Orientation,
-                orientation));
-
-            if (editedMicrobeOrganelles.GetOrganelleAt(hexPos) != null)
-                return false;
-        }
+        var multiAction = GetMultiActionWithOccupancies(hexes, organelles, true);
 
         // Too low mutation points, cancel move
-        if (MutationPoints < History.WhatWouldActionsCost(moveActionData.OfType<MicrobeEditorActionData>().ToList()))
+        if (MutationPoints < History.WhatWouldActionsCost(multiAction.Data.ToList()))
         {
             CancelCurrentAction();
             gui.OnInsufficientMp(false);
             return false;
         }
 
-        moveActionData.ForEach(mad =>
-            EnqueueAction(new SingleMicrobeEditorAction(DoOrganelleMoveAction, UndoOrganelleMoveAction, mad)));
+        EnqueueAction(multiAction);
 
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingOrganelle may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingOrganelle to null
@@ -2207,7 +2205,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void DoNewMicrobeAction(MicrobeEditorAction action)
+    private void DoNewMicrobeAction(NewMicrobeActionData data)
     {
         // TODO: could maybe grab the current organelles and put them in the action here? This could be more safe
         // against weird situations where it might be possible if the undo / redo system is changed to restore
@@ -2222,11 +2220,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoNewMicrobeAction(MicrobeEditorAction action)
+    private void UndoNewMicrobeAction(NewMicrobeActionData data)
     {
-        var data = (NewMicrobeActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoNewMicrobeAction)} missing action data");
-
         editedMicrobeOrganelles.Clear();
         Membrane = data.OldMembrane;
 
@@ -2390,11 +2385,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void DoMembraneChangeAction(MicrobeEditorAction action)
+    private void DoMembraneChangeAction(MembraneActionData data)
     {
-        var data = (MembraneActionData?)action.Data ??
-            throw new Exception($"{nameof(DoMembraneChangeAction)} missing action data");
-
         var membrane = data.NewMembrane;
         GD.Print("Changing membrane to '", membrane.InternalName, "'");
         Membrane = membrane;
@@ -2417,10 +2409,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoMembraneChangeAction(MicrobeEditorAction action)
+    private void UndoMembraneChangeAction(MembraneActionData data)
     {
-        var data = (MembraneActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoMembraneChangeAction)} missing action data");
         Membrane = data.OldMembrane;
         GD.Print("Changing membrane back to '", Membrane.InternalName, "'");
         OnMembraneChanged();
@@ -2446,11 +2436,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void DoBehaviourChangeAction(MicrobeEditorAction action)
+    private void DoBehaviourChangeAction(BehaviourChangeActionData data)
     {
-        var data = (BehaviourChangeActionData?)action.Data ??
-            throw new Exception($"{nameof(DoBehaviourChangeAction)} missing action data");
-
         if (Behaviour == null)
             throw new InvalidOperationException($"Editor has no {nameof(Behaviour)} set for change action to use");
 
@@ -2459,11 +2446,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoBehaviourChangeAction(MicrobeEditorAction action)
+    private void UndoBehaviourChangeAction(BehaviourChangeActionData data)
     {
-        var data = (BehaviourChangeActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoBehaviourChangeAction)} missing action data");
-
         if (Behaviour == null)
             throw new InvalidOperationException($"Editor has no {nameof(Behaviour)} set for change action to use");
 
@@ -2472,11 +2456,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void DoRigidityChangeAction(MicrobeEditorAction action)
+    private void DoRigidityChangeAction(RigidityChangeActionData data)
     {
-        var data = (RigidityChangeActionData?)action.Data ??
-            throw new Exception($"{nameof(DoRigidityChangeAction)} missing action data");
-
         Rigidity = data.NewRigidity;
 
         // TODO: when rigidity affects auto-evo this also needs to re-run the prediction, though there should probably
@@ -2486,11 +2467,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoRigidityChangeAction(MicrobeEditorAction action)
+    private void UndoRigidityChangeAction(RigidityChangeActionData data)
     {
-        var data = (RigidityChangeActionData?)action.Data ??
-            throw new Exception($"{nameof(UndoRigidityChangeAction)} missing action data");
-
         Rigidity = data.PreviousRigidity;
         OnRigidityChanged();
     }
@@ -2510,11 +2488,11 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// <param name="action">The main action that will go into the history</param>
     private bool EnqueueAction(MicrobeEditorAction action)
     {
-        var actionData = action.MicrobeData;
+        var actionData = action.Data.ToList();
 
         // A sanity check to not let an action proceed if we don't have enough mutation points
         if (!(FreeBuilding || CheatManager.InfiniteMP) &&
-            History.WhatWouldActionCost(actionData) > MutationPoints)
+            History.WhatWouldActionsCost(actionData) > MutationPoints)
         {
             // Flash the MP bar and play sound
             gui.OnInsufficientMp();
@@ -2522,7 +2500,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         // Or if they are in the process of moving an organelle
-        if (MovingOrganelles != null && actionData is not MoveActionData)
+        if (MovingOrganelles != null && actionData.OfType<NewMicrobeActionData>().Any())
         {
             // Play sound
             gui.OnActionBlockedWhileMoving();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -10,23 +9,13 @@ public class MultiMicrobeEditorAction : MicrobeEditorAction
 {
     public MultiMicrobeEditorAction(params MicrobeEditorAction[] actions)
     {
-        if (actions.Length == 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(actions),
-                $"Cannot create a {nameof(MultiMicrobeEditorAction)} without any {nameof(MicrobeEditorAction)}s");
-        }
-
         Actions = actions;
     }
 
     [JsonProperty]
     public IReadOnlyList<MicrobeEditorAction> Actions { get; private set; }
 
-    public override MicrobeEditorActionData MicrobeData
-    {
-        get => Actions.Last().MicrobeData;
-        set => Actions.Last().MicrobeData = value;
-    }
+    public override IEnumerable<MicrobeEditorActionData> Data => Actions.SelectMany(a => a.Data);
 
     public override void DoAction()
     {
@@ -38,5 +27,10 @@ public class MultiMicrobeEditorAction : MicrobeEditorAction
     {
         foreach (var action in Actions.Reverse())
             action.UndoAction();
+    }
+
+    public override int CalculateCost()
+    {
+        return Actions.Sum(a => a.CalculateCost());
     }
 }

@@ -13,12 +13,6 @@ public abstract class ReversibleAction
     public bool Performed { get; private set; }
 
     /// <summary>
-    ///   Action specific data
-    /// </summary>
-    [JsonProperty]
-    public virtual ActionData Data { get; set; } = null!;
-
-    /// <summary>
     ///   Does this action
     /// </summary>
     public void Perform()

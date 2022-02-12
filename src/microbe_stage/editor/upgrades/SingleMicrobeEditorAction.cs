@@ -1,37 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class SingleMicrobeEditorAction : MicrobeEditorAction
+public class SingleMicrobeEditorAction<T> : MicrobeEditorAction
+    where T : MicrobeEditorActionData
 {
     [JsonProperty]
-    private readonly Action<SingleMicrobeEditorAction> redo;
+    private readonly Action<T> redo;
 
     [JsonProperty]
-    private readonly Action<SingleMicrobeEditorAction> undo;
+    private readonly Action<T> undo;
 
-    private MicrobeEditorActionData data;
-
-    public SingleMicrobeEditorAction(Action<SingleMicrobeEditorAction> redo, Action<SingleMicrobeEditorAction> undo,
-        MicrobeEditorActionData data)
+    public SingleMicrobeEditorAction(Action<T> redo, Action<T> undo, T data)
     {
         this.redo = redo;
         this.undo = undo;
-        this.data = data;
+        SingleData = data;
     }
 
-    public override MicrobeEditorActionData MicrobeData
+    public T SingleData { get; }
+    public override IEnumerable<MicrobeEditorActionData> Data => new[] { SingleData };
+
+    public static implicit operator SingleMicrobeEditorAction<MicrobeEditorActionData>(SingleMicrobeEditorAction<T> x)
     {
-        get => data;
-        set => data = value;
+        return new SingleMicrobeEditorAction<MicrobeEditorActionData>(data => x.redo((T)data), data => x.undo((T)data),
+            x.SingleData);
     }
 
     public override void DoAction()
     {
-        redo(this);
+        redo(SingleData);
     }
 
     public override void UndoAction()
     {
-        undo(this);
+        undo(SingleData);
+    }
+
+    public override int CalculateCost()
+    {
+        return SingleData.CalculateCost();
     }
 }
