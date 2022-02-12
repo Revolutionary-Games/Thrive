@@ -31,7 +31,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
             {
                 case MicrobeActionInterferenceMode.Combinable:
                     result -= cache[i].CalculateCost();
-                    action = action.Combine(cache[i]);
+                    action = (MicrobeEditorActionData)action.Combine(cache[i]);
                     break;
                 case MicrobeActionInterferenceMode.CancelsOut:
                     result -= cache[i].CalculateCost();
@@ -62,7 +62,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                     case MicrobeActionInterferenceMode.NoInterference:
                         break;
                     case MicrobeActionInterferenceMode.Combinable:
-                        var combinedValue = cache[compareIndex].Combine(cache[compareToIndex]);
+                        var combinedValue = (MicrobeEditorActionData)cache[compareIndex].Combine(cache[compareToIndex]);
                         cache.RemoveAt(compareIndex);
                         cache.RemoveAt(compareToIndex);
                         cache.Insert(compareToIndex, combinedValue);
@@ -109,9 +109,16 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
             throw new ArgumentException("Call Redo or Undo first");
 
         if (action.Data is NewMicrobeActionData)
+        {
             cache.Clear();
+        }
         else
-            cache.Add(action.Data);
+        {
+            if (action is MultiMicrobeEditorAction multi)
+                cache.AddRange(multi.Actions.Select(a => a.MicrobeData));
+            else
+                cache.Add(action.MicrobeData);
+        }
 
         base.AddAction(action);
     }
@@ -121,10 +128,10 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     /// </summary>
     private List<MicrobeEditorActionData> GetActionHistorySinceLastNewMicrobePress()
     {
-        var relevantActions = actions.Take(actionIndex).Select(p => p.Data).ToList();
+        var relevantActions = actions.Take(actionIndex).Select(p => (MicrobeEditorActionData)p.Data).ToList();
         var lastNewMicrobeActionIndex = relevantActions.FindLastIndex(p => p is NewMicrobeActionData);
         return lastNewMicrobeActionIndex == -1 ?
             relevantActions :
-            actions.Skip(lastNewMicrobeActionIndex).Select(p => p.Data).ToList();
+            actions.Skip(lastNewMicrobeActionIndex).Select(p => (MicrobeEditorActionData)p.Data).ToList();
     }
 }

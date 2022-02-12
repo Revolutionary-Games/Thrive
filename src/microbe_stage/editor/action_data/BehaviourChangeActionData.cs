@@ -14,7 +14,7 @@ public class BehaviourChangeActionData : MicrobeEditorActionData
         Type = type;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
     {
         if (other is BehaviourChangeActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
         {
@@ -38,7 +38,7 @@ public class BehaviourChangeActionData : MicrobeEditorActionData
         return 0;
     }
 
-    protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
+    protected override ActionData CombineGuaranteed(ActionData other)
     {
         var behaviourChangeActionData = (BehaviourChangeActionData)other;
         if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)

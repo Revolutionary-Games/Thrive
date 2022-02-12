@@ -21,7 +21,7 @@ public enum MicrobeActionInterferenceMode
 
     /// <summary>
     ///   The two actions can be combined to a whole different action.
-    ///   Call <see cref="MicrobeEditorActionData.Combine"/> to get this action.
+    ///   Call <see cref="ActionData.Combine"/> to get this action.
     /// </summary>
     Combinable,
 }

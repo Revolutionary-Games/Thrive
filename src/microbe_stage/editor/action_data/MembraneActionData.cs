@@ -10,7 +10,7 @@ public class MembraneActionData : MicrobeEditorActionData
         NewMembrane = newMembrane;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
     {
         if (other is MembraneActionData membraneActionData)
         {
@@ -31,7 +31,7 @@ public class MembraneActionData : MicrobeEditorActionData
         return NewMembrane.EditorCost;
     }
 
-    protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
+    protected override ActionData CombineGuaranteed(ActionData other)
     {
         var membraneActionData = (MembraneActionData)other;
         if (OldMembrane == membraneActionData.NewMembrane)

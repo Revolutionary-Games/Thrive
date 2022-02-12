@@ -12,7 +12,7 @@ public class NewMicrobeActionData : MicrobeEditorActionData
         OldMembrane = oldMembrane;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
     {
         return MicrobeActionInterferenceMode.NoInterference;
     }
@@ -22,7 +22,7 @@ public class NewMicrobeActionData : MicrobeEditorActionData
         return -Constants.BASE_MUTATION_POINTS;
     }
 
-    protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
+    protected override ActionData CombineGuaranteed(ActionData other)
     {
         throw new NotImplementedException();
     }

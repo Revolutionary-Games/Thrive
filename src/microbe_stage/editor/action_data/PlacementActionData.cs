@@ -15,7 +15,7 @@ public class PlacementActionData : MicrobeEditorActionData
         Orientation = orientation;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
     {
         // If this organelle got removed in this session
         if (other is RemoveActionData removeActionData && removeActionData.Organelle.Definition == Organelle.Definition)
@@ -28,7 +28,7 @@ public class PlacementActionData : MicrobeEditorActionData
             return MicrobeActionInterferenceMode.Combinable;
         }
 
-        if (other is MoveActionData moveActionData)
+        if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
         {
             if (moveActionData.OldLocation == Location)
                 return MicrobeActionInterferenceMode.Combinable;
@@ -49,7 +49,7 @@ public class PlacementActionData : MicrobeEditorActionData
         return Organelle.Definition.MPCost;
     }
 
-    protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
+    protected override ActionData CombineGuaranteed(ActionData other)
     {
         if (other is RemoveActionData removeActionData)
         {

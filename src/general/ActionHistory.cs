@@ -34,14 +34,7 @@ public abstract class ActionHistory<T>
         if (!CanRedo())
             return false;
 
-        // This do while loop is here to redo actions till a non-sub-action was redone
-        T action;
-        do
-        {
-            action = actions[actionIndex++];
-            action.Perform();
-        }
-        while (action.IsSubAction);
+        actions[actionIndex++].Perform();
 
         return true;
     }
@@ -51,14 +44,7 @@ public abstract class ActionHistory<T>
         if (!CanUndo())
             return false;
 
-        // This do while loop is here to undo actions till a non-sub-action was undone
-        T action;
-        do
-        {
-            action = actions[--actionIndex];
-            action.Undo();
-        }
-        while (actionIndex > 0 && actions[actionIndex - 1].IsSubAction);
+        actions[--actionIndex].Undo();
 
         return true;
     }

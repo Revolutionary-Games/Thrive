@@ -12,7 +12,7 @@ public class RigidityChangeActionData : MicrobeEditorActionData
         PreviousRigidity = previousRigidity;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
     {
         if (other is RigidityChangeActionData rigidityChangeActionData)
         {
@@ -36,7 +36,7 @@ public class RigidityChangeActionData : MicrobeEditorActionData
             Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
     }
 
-    protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
+    protected override ActionData CombineGuaranteed(ActionData other)
     {
         var rigidityChangeActionData = (RigidityChangeActionData)other;
 

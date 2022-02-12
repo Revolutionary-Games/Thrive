@@ -696,7 +696,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
         var data = new NewMicrobeActionData(oldEditedMicrobeOrganelles, oldMembrane);
 
-        var action = new MicrobeEditorAction(this, DoNewMicrobeAction, UndoNewMicrobeAction, data);
+        var action = new SingleMicrobeEditorAction(DoNewMicrobeAction, UndoNewMicrobeAction, data);
 
         EnqueueAction(action);
     }
@@ -856,8 +856,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (Membrane.Equals(membrane))
             return;
 
-        var action = new MicrobeEditorAction(this, DoMembraneChangeAction,
-            UndoMembraneChangeAction, new MembraneActionData(Membrane, membrane));
+        var action = new SingleMicrobeEditorAction(DoMembraneChangeAction, UndoMembraneChangeAction,
+            new MembraneActionData(Membrane, membrane));
 
         EnqueueAction(action);
 
@@ -877,7 +877,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
 
-        var action = new MicrobeEditorAction(this, DoBehaviourChangeAction, UndoBehaviourChangeAction,
+        var action = new SingleMicrobeEditorAction(DoBehaviourChangeAction, UndoBehaviourChangeAction,
             new BehaviourChangeActionData(oldValue, value, type));
 
         EnqueueAction(action);
@@ -914,7 +914,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new MicrobeEditorAction(this, DoRigidityChangeAction, UndoRigidityChangeAction,
+        var action = new SingleMicrobeEditorAction(DoRigidityChangeAction, UndoRigidityChangeAction,
             new RigidityChangeActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
@@ -1965,9 +1965,9 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private IEnumerable<MicrobeEditorAction> GetReplacedCytoplasmRemoveAction(IEnumerable<OrganelleTemplate> organelles)
     {
-        return GetReplacedCytoplasmRemoveActionData(organelles)
-            .Select(o => new MicrobeEditorAction(this, DoOrganelleRemoveAction,
-                UndoOrganelleRemoveAction, o));
+        var replacedCytoplasmData = GetReplacedCytoplasmRemoveActionData(organelles);
+        return replacedCytoplasmData.Select(o =>
+            new SingleMicrobeEditorAction(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
     /// <summary>
@@ -2081,13 +2081,15 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
             (organelle.Definition.RequiresNucleus && !HasNucleus))
             return false;
 
-        var replacedCytoplasm = GetReplacedCytoplasmRemoveAction(new[] { organelle });
+        var replacedCytoplasmActions = GetReplacedCytoplasmRemoveAction(new[] { organelle }).ToList();
 
-        var action = new MicrobeEditorAction(this,
-            DoOrganellePlaceAction, UndoOrganellePlaceAction, new PlacementActionData(organelle, organelle.Position,
-                organelle.Orientation));
+        var action = new SingleMicrobeEditorAction(DoOrganellePlaceAction, UndoOrganellePlaceAction,
+            new PlacementActionData(organelle, organelle.Position, organelle.Orientation));
 
-        EnqueueAction(action, replacedCytoplasm);
+        replacedCytoplasmActions.Add(action);
+        var multiAction = new MultiMicrobeEditorAction(replacedCytoplasmActions.ToArray());
+
+        EnqueueAction(multiAction);
         return true;
     }
 
@@ -2117,9 +2119,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
             return;
 
-        var action = new MicrobeEditorAction(this,
-            DoOrganelleRemoveAction, UndoOrganelleRemoveAction, new RemoveActionData(organelleHere, location,
-                organelleHere.Orientation));
+        var action = new SingleMicrobeEditorAction(DoOrganelleRemoveAction, UndoOrganelleRemoveAction,
+            new RemoveActionData(organelleHere, location, organelleHere.Orientation));
 
         EnqueueAction(action);
     }
@@ -2197,7 +2198,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         moveActionData.ForEach(mad =>
-            EnqueueAction(new MicrobeEditorAction(this, DoOrganelleMoveAction, UndoOrganelleMoveAction, mad)));
+            EnqueueAction(new SingleMicrobeEditorAction(DoOrganelleMoveAction, UndoOrganelleMoveAction, mad)));
 
         // It's assumed that the above enqueue can't fail, otherwise the reference to MovingOrganelle may be
         // permanently lost (as the code that calls this assumes it's safe to set MovingOrganelle to null
@@ -2507,14 +2508,13 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     /// </summary>
     /// <returns>True when the action was successful</returns>
     /// <param name="action">The main action that will go into the history</param>
-    /// <param name="sideActions">Actions to perform before the main action can be performed</param>
-    private bool EnqueueAction(MicrobeEditorAction action, IEnumerable<MicrobeEditorAction>? sideActions = null)
+    private bool EnqueueAction(MicrobeEditorAction action)
     {
-        var actions = (sideActions ?? new List<MicrobeEditorAction>()).Append(action).ToList();
+        var actionData = action.MicrobeData;
 
         // A sanity check to not let an action proceed if we don't have enough mutation points
         if (!(FreeBuilding || CheatManager.InfiniteMP) &&
-            History.WhatWouldActionsCost(actions.Select(p => p.Data).ToList()) > MutationPoints)
+            History.WhatWouldActionCost(actionData) > MutationPoints)
         {
             // Flash the MP bar and play sound
             gui.OnInsufficientMp();
@@ -2522,15 +2522,14 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         }
 
         // Or if they are in the process of moving an organelle
-        if (MovingOrganelles != null && !action.IsMoveAction)
+        if (MovingOrganelles != null && actionData is not MoveActionData)
         {
             // Play sound
             gui.OnActionBlockedWhileMoving();
             return false;
         }
 
-        foreach (var a in actions)
-            History.AddAction(a);
+        History.AddAction(action);
 
         DirtyMutationPointsCache();
 

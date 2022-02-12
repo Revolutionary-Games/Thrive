@@ -81,6 +81,7 @@
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
+    <Compile Include="src\general\ActionData.cs" />
     <Compile Include="src\general\AliveMarker.cs" />
     <Compile Include="src\general\BehaviouralValueType.cs" />
     <Compile Include="src\general\BehaviourDictionary.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="src\general\HybridAudioPlayer.cs" />
     <Compile Include="src\general\IEntity.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
+    <Compile Include="src\general\MicrobeActionInterferenceMode.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
@@ -151,7 +153,6 @@
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\BehaviourChangeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\MembraneActionData.cs" />
-    <Compile Include="src\microbe_stage\editor\action_data\MicrobeActionInterferenceMode.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\MicrobeEditorActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\MoveActionData.cs" />
     <Compile Include="src\microbe_stage\editor\action_data\NewMicrobeActionData.cs" />
@@ -160,11 +161,13 @@
     <Compile Include="src\microbe_stage\editor\action_data\RigidityChangeActionData.cs" />
     <Compile Include="src\microbe_stage\editor\EditorActionHistory.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
+    <Compile Include="src\microbe_stage\editor\MultiMicrobeEditorAction.cs" />
     <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
     <Compile Include="src\microbe_stage\editor\TimelineTab.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\ChemoreceptorUpgradeGUI.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\IOrganelleUpgrader.cs" />
     <Compile Include="src\microbe_stage\editor\upgrades\OrganelleUpgradeGUI.cs" />
+    <Compile Include="src\microbe_stage\editor\upgrades\SingleMicrobeEditorAction.cs" />
     <Compile Include="src\microbe_stage\gui\ExtinctionBox.cs" />
     <Compile Include="src\microbe_stage\IComponentSpecificUpgrades.cs" />
     <Compile Include="src\microbe_stage\Microbe.Interior.cs" />

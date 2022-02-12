@@ -13,11 +13,10 @@ public abstract class ReversibleAction
     public bool Performed { get; private set; }
 
     /// <summary>
-    ///   A sub-action is an action that was automatically performed with another action.
-    ///   Sub-actions should not be noticeable by the user.
+    ///   Action specific data
     /// </summary>
-    [JsonIgnore]
-    public abstract bool IsSubAction { get; }
+    [JsonProperty]
+    public virtual ActionData Data { get; set; } = null!;
 
     /// <summary>
     ///   Does this action

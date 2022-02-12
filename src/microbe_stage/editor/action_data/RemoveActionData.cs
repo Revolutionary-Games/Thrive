@@ -17,9 +17,7 @@ public class RemoveActionData : MicrobeEditorActionData
         Orientation = orientation;
     }
 
-    public override bool IsSubAction => GotReplaced;
-
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(MicrobeEditorActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
     {
         // If this organelle got placed in this session on the same position
         if (other is PlacementActionData placementActionData &&
@@ -47,7 +45,7 @@ public class RemoveActionData : MicrobeEditorActionData
         return GotReplaced ? 0 : Constants.ORGANELLE_REMOVE_COST;
     }
 
-    protected override MicrobeEditorActionData CombineGuaranteed(MicrobeEditorActionData other)
+    protected override ActionData CombineGuaranteed(ActionData other)
     {
         if (other is PlacementActionData placementActionData)
         {
