@@ -25,18 +25,21 @@ public class MoveActionData : MicrobeEditorActionData
         if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
         {
             // If this organelle got moved back and forth
-            if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation)
+            if (OldLocation == moveActionData.NewLocation && NewLocation == moveActionData.OldLocation &&
+                OldRotation == moveActionData.NewRotation && NewRotation == moveActionData.OldRotation)
                 return MicrobeActionInterferenceMode.CancelsOut;
 
             // If this organelle got moved twice
-            if (moveActionData.NewLocation == OldLocation || NewLocation == moveActionData.OldLocation)
+            if ((moveActionData.NewLocation == OldLocation && moveActionData.NewRotation == OldRotation) ||
+                (NewLocation == moveActionData.OldLocation && NewRotation == moveActionData.OldRotation))
                 return MicrobeActionInterferenceMode.Combinable;
         }
 
         // If this organelle got placed in this session
         if (other is PlacementActionData placementActionData &&
             placementActionData.Organelle.Definition == Organelle.Definition &&
-            placementActionData.Location == OldLocation)
+            placementActionData.Location == OldLocation &&
+            placementActionData.Orientation == OldRotation)
             return MicrobeActionInterferenceMode.Combinable;
 
         // If this organelle got removed in this session
@@ -50,6 +53,9 @@ public class MoveActionData : MicrobeEditorActionData
 
     public override int CalculateCost()
     {
+        if (OldLocation == NewLocation && OldRotation == NewRotation)
+            return 0;
+
         return Constants.ORGANELLE_MOVE_COST;
     }
 
