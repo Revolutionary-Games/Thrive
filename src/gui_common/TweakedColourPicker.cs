@@ -44,6 +44,7 @@ public class TweakedColourPicker : ColorPicker
     private bool presetsVisible = true;
     private bool pickingColor;
     private Color colorBeforePicking;
+    private float pickerTimeElapsed;
     private PickerMode mode;
 
     private PresetGroupStorage groupStorage = null!;
@@ -270,23 +271,36 @@ public class TweakedColourPicker : ColorPicker
         UpdateTooltips();
     }
 
+    public override void _Process(float delta)
+    {
+        if (pickingColor)
+        {
+            pickerTimeElapsed += delta;
+
+            if (pickerTimeElapsed < 0.2)
+                return;
+
+            var viewportTexture = GetViewport().GetTexture().GetData();
+            var viewportRect = GetViewportRect();
+            var scale = viewportRect.End.x / viewportTexture.GetSize().x;
+            var position = GetGlobalMousePosition() / scale;
+            position.y = viewportTexture.GetHeight() - position.y;
+
+            viewportTexture.Lock();
+            Color = viewportTexture.GetPixelv(position);
+            viewportTexture.Unlock();
+
+            pickerTimeElapsed = 0;
+        }
+
+        base._Process(delta);
+    }
+
     public override void _Input(InputEvent @event)
     {
         if (pickingColor)
         {
-            if (@event is InputEventMouseMotion)
-            {
-                var viewportTexture = GetViewport().GetTexture().GetData();
-                var viewportRect = GetViewportRect();
-                var scale = viewportRect.End.x / viewportTexture.GetSize().x;
-                var position = GetGlobalMousePosition() / scale;
-                position.y = viewportTexture.GetHeight() - position.y;
-
-                viewportTexture.Lock();
-                Color = viewportTexture.GetPixelv(position);
-                viewportTexture.Unlock();
-            }
-            else if (@event is InputEventMouse { ButtonMask: (int)ButtonList.Left })
+            if (@event is InputEventMouse { ButtonMask: (int)ButtonList.Left })
             {
                 // Confirm
                 pickingColor = false;
