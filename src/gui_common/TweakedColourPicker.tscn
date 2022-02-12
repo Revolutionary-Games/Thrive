@@ -9,10 +9,10 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-DemiBold-Smaller.tres" type="DynamicFont" id=7]
 
 [node name="TweakedColourPicker" type="ColorPicker"]
-margin_left = 28.0
-margin_top = 28.0
-margin_right = 28.0
-margin_bottom = 28.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 32.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -131,9 +131,14 @@ texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 5 )
 expand = true
 
+[node name="PickTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
 [connection signal="color_changed" from="." to="." method="OnColourChanged"]
 [connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/HSVCheckBox" to="." method="OnHSVButtonToggled"]
 [connection signal="toggled" from="MarginButtonsContainer/ButtonsContainer/RawCheckBox" to="." method="OnRawButtonToggled"]
 [connection signal="focus_exited" from="MarginButtonsContainer/ButtonsContainer/HtmlColourEdit" to="." method="OnHtmlColourEditFocusExited"]
 [connection signal="text_entered" from="MarginButtonsContainer/ButtonsContainer/HtmlColourEdit" to="." method="OnHtmlColourEditEntered"]
 [connection signal="pressed" from="PresetButtonContainer/AddPresetButton" to="." method="OnAddPresetButtonPressed"]
+[connection signal="timeout" from="PickTimer" to="." method="PickColour"]

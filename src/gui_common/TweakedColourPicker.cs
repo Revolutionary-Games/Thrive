@@ -37,12 +37,12 @@ public class TweakedColourPicker : ColorPicker
     private HSeparator separator = null!;
     private GridContainer? presetsContainer;
     private TextureButton? addPresetButton;
+    private Timer pickTimer = null!;
 
     private bool hsvButtonEnabled = true;
     private bool rawButtonEnabled = true;
     private bool presetsEditable = true;
     private bool presetsVisible = true;
-    private bool pickingColor;
     private Color colorBeforePicking;
     private PickerMode mode;
 
@@ -226,6 +226,7 @@ public class TweakedColourPicker : ColorPicker
         separator = GetNode<HSeparator>("Separator");
         presetsContainer = GetNode<GridContainer>("PresetContainer");
         addPresetButton = GetNode<TextureButton>("PresetButtonContainer/AddPresetButton");
+        pickTimer = GetNode<Timer>("PickTimer");
 
         // Picker button logic rewrite #3055
         // TODO: Revert this PR once https://github.com/godotengine/godot/issues/57343 is solved.
@@ -267,35 +268,25 @@ public class TweakedColourPicker : ColorPicker
         groupStorage.AddPresetDelegate += OnGroupAddPreset;
         groupStorage.ErasePresetDelegate += OnGroupErasePreset;
 
+        pickTimer.Paused = true;
+
         UpdateTooltips();
     }
 
     public override void _Input(InputEvent @event)
     {
-        if (pickingColor)
+        if (pickTimer.Paused == false)
         {
-            if (@event is InputEventMouseMotion)
-            {
-                var viewportTexture = GetViewport().GetTexture().GetData();
-                var viewportRect = GetViewportRect();
-                var scale = viewportRect.End.x / viewportTexture.GetSize().x;
-                var position = GetGlobalMousePosition() / scale;
-                position.y = viewportTexture.GetHeight() - position.y;
-
-                viewportTexture.Lock();
-                Color = viewportTexture.GetPixelv(position);
-                viewportTexture.Unlock();
-            }
-            else if (@event is InputEventMouse { ButtonMask: (int)ButtonList.Left })
+            if (@event is InputEventMouse { ButtonMask: (int)ButtonList.Left })
             {
                 // Confirm
-                pickingColor = false;
+                pickTimer.Paused = true;
             }
             else if (@event is InputEventKey { Scancode: (int)KeyList.Escape, Pressed: true }
                      or InputEventMouse { ButtonMask: (int)ButtonList.Right })
             {
                 // Cancel
-                pickingColor = false;
+                pickTimer.Paused = true;
                 Color = colorBeforePicking;
             }
 
@@ -504,7 +495,20 @@ public class TweakedColourPicker : ColorPicker
     private void OnPickerClicked()
     {
         colorBeforePicking = Color;
-        pickingColor = true;
+        pickTimer.Paused = false;
+    }
+
+    private void PickColour()
+    {
+        var viewportTexture = GetViewport().GetTexture().GetData();
+        var viewportRect = GetViewportRect();
+        var scale = viewportRect.End.x / viewportTexture.GetSize().x;
+        var position = GetGlobalMousePosition() / scale;
+        position.y = viewportTexture.GetHeight() - position.y;
+
+        viewportTexture.Lock();
+        Color = viewportTexture.GetPixelv(position);
+        viewportTexture.Unlock();
     }
 
     private class TweakedColourPickerPreset : ColorRect
