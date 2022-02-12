@@ -7,8 +7,11 @@ public class GodotColorConverter : JsonConverter
 {
     public override bool CanRead => true;
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
+        if (value == null)
+            throw new JsonException("Colour can't be null as it is a value type");
+
         var colour = (Color)value;
 
         writer.WriteStartObject();
@@ -28,7 +31,8 @@ public class GodotColorConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object ReadJson(JsonReader reader, Type objectType, object? existingValue,
+        JsonSerializer serializer)
     {
         if (reader.TokenType != JsonToken.StartObject)
         {
@@ -40,10 +44,10 @@ public class GodotColorConverter : JsonConverter
         try
         {
             // ReSharper disable AssignNullToNotNullAttribute
-            return new Color(item["r"].Value<float>(),
-                item["g"].Value<float>(),
-                item["b"].Value<float>(),
-                item["a"].Value<float>());
+            return new Color(item["r"]!.Value<float>(),
+                item["g"]!.Value<float>(),
+                item["b"]!.Value<float>(),
+                item["a"]!.Value<float>());
 
             // ReSharper restore AssignNullToNotNullAttribute
         }

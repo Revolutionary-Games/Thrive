@@ -48,13 +48,15 @@ public static class FileHelpers
     public static Error TryCreateWrite(string name)
     {
         using var file = new File();
-        var e = file.Open(name, File.ModeFlags.Write);
+        var e = file.Open(Constants.SAVE_FOLDER + "/" + name, File.ModeFlags.Write);
         if (e != Error.Ok)
             return e;
+
+        file.Store8(0);
 
         file.Close();
         DeleteFile(name);
 
-        return Error.Ok;
+        return file.GetError();
     }
 }

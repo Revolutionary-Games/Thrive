@@ -33,7 +33,7 @@
 
                 case TutorialEventType.MicrobeEditorTabChanged:
                 {
-                    string tab = ((StringEventArgs)args).Data;
+                    var tab = ((StringEventArgs)args).Data;
 
                     // Hide when switched to another tab
                     if (tab != reportTab)

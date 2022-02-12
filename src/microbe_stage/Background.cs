@@ -9,18 +9,20 @@ using Newtonsoft.Json;
 [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "This is a read-only type")]
 public class Background : IRegistryType
 {
-    public List<string> Textures;
+    [JsonRequired]
+    public List<string> Textures = null!;
 
-    public string ParticleEffect;
+    [JsonRequired]
+    public string ParticleEffect = null!;
 
     [JsonIgnore]
-    public PackedScene ParticleEffectScene;
+    public PackedScene ParticleEffectScene = null!;
 
-    public string InternalName { get; set; }
+    public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {
-        if (Textures.Count != 4)
+        if (Textures == null || Textures.Count != 4)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Background needs 4 layers");

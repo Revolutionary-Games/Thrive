@@ -11,8 +11,8 @@ public class EntityReference<T>
 {
     // TODO: should this be somehow set to null when we detect that the alive marker is no longer alive
     // Currently set to clear on fetch
-    private T currentInstance;
-    private AliveMarker currentAliveMarker;
+    private T? currentInstance;
+    private AliveMarker? currentAliveMarker;
 
     public EntityReference(T value)
     {
@@ -35,7 +35,7 @@ public class EntityReference<T>
     ///     and keep a normal reference around.
     ///   </para>
     /// </remarks>
-    public T Value
+    public T? Value
     {
         get
         {
@@ -81,7 +81,7 @@ public class EntityReference<T>
     [JsonIgnore]
     public bool IsAlive => currentAliveMarker is { Alive: true };
 
-    public static implicit operator T(EntityReference<T> value)
+    public static implicit operator T?(EntityReference<T> value)
     {
         return value.Value;
     }
@@ -96,11 +96,8 @@ public class EntityReference<T>
         return !(lhs == rhs);
     }
 
-    public static bool operator ==(EntityReference<T> lhs, T rhs)
+    public static bool operator ==(EntityReference<T> lhs, T? rhs)
     {
-        if (lhs == null)
-            return rhs == null;
-
         return lhs.Value == rhs;
     }
 
@@ -117,7 +114,7 @@ public class EntityReference<T>
         Value = null;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj == null)
         {

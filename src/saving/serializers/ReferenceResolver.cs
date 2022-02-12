@@ -12,8 +12,8 @@ using Newtonsoft.Json.Serialization;
 /// </remarks>
 public class ReferenceResolver : IReferenceResolver
 {
-    private readonly Dictionary<string, object> referenceToObject = new Dictionary<string, object>();
-    private readonly Dictionary<object, string> objectToReference = new Dictionary<object, string>();
+    private readonly Dictionary<string, object> referenceToObject = new();
+    private readonly Dictionary<object, string> objectToReference = new();
 
     private long referenceCounter;
 

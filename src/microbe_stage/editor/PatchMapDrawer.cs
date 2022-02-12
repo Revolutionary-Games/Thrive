@@ -20,32 +20,32 @@ public class PatchMapDrawer : Control
     public float PatchNodeHeight = 64.0f;
 
     [Export]
-    public Color ConnectionColour = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+    public Color ConnectionColour = new(1.0f, 1.0f, 1.0f, 1.0f);
 
-    private PatchMap map;
+    private readonly List<PatchMapNode> nodes = new();
+
+    private PatchMap? map;
     private bool dirty = true;
 
-    private PackedScene nodeScene;
+    private PackedScene nodeScene = null!;
 
-    private List<PatchMapNode> nodes = new List<PatchMapNode>();
+    private Patch? selectedPatch;
 
-    private Patch selectedPatch;
+    private Patch? playerPatch;
 
-    private Patch playerPatch;
-
-    public PatchMap Map
+    public PatchMap? Map
     {
         get => map;
         set
         {
-            map = value;
+            map = value ?? throw new ArgumentNullException();
             dirty = true;
 
-            playerPatch ??= Map.CurrentPatch;
+            playerPatch ??= map.CurrentPatch;
         }
     }
 
-    public Patch PlayerPatch
+    public Patch? PlayerPatch
     {
         get => playerPatch;
         set
@@ -59,7 +59,7 @@ public class PatchMapDrawer : Control
         }
     }
 
-    public Patch SelectedPatch
+    public Patch? SelectedPatch
     {
         get => selectedPatch;
         set
@@ -76,7 +76,7 @@ public class PatchMapDrawer : Control
     /// <summary>
     ///   Called when the currently shown patch properties should be looked up again
     /// </summary>
-    public Action<PatchMapDrawer> OnSelectedPatchChanged { get; set; }
+    public Action<PatchMapDrawer>? OnSelectedPatchChanged { get; set; }
 
     public override void _Ready()
     {

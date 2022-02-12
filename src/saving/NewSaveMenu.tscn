@@ -114,7 +114,7 @@ __meta__ = {
 
 [node name="OverwriteConfirm" parent="." instance=ExtResource( 3 )]
 rect_min_size = Vector2( 500, 0 )
-WindowTitle = "OVERWRITE_EXISTING_SAVE_TITLE"
+WindowTitle = "OVERWRITE_EXISTING_SAVE_PROMPT"
 
 [node name="AttemptWriteFailAccept" parent="." instance=ExtResource( 3 )]
 rect_min_size = Vector2( 500, 0 )
@@ -122,7 +122,6 @@ WindowTitle = "CANNOT_WRITE"
 Movable = false
 ShowCloseButton = false
 HideCancelButton = true
-DialogTextAlign = 0
 
 [connection signal="text_changed" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]

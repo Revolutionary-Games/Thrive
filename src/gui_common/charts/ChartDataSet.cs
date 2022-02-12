@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public class ChartDataSet : ICloneable
 {
-    private List<DataPoint> dataPoints = new List<DataPoint>();
+    private readonly List<DataPoint> dataPoints = new();
     private Color dataColour;
     private bool draw = true;
 
@@ -16,7 +16,7 @@ public class ChartDataSet : ICloneable
     /// </summary>
     public IReadOnlyCollection<DataPoint> DataPoints => dataPoints;
 
-    public Texture Icon { get; set; }
+    public Texture? Icon { get; set; }
 
     /// <summary>
     ///   Used to differentiate the data set's visual by color

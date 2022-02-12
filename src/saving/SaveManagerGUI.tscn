@@ -183,14 +183,14 @@ margin_top = 523.0
 margin_right = 1000.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 500, 0 )
-WindowTitle = "DELETE_SELECTED_SAVES"
+WindowTitle = "DELETE_SELECTED_SAVES_PROMPT"
 
 [node name="DeleteOldConfirmDialog" parent="CenterContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 523.0
 margin_right = 1000.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 550, 0 )
-WindowTitle = "DELETE_OLD_SAVES"
+WindowTitle = "DELETE_OLD_SAVES_PROMPT"
 
 [node name="SaveDirectoryWarning" parent="CenterContainer/VBoxContainer" instance=ExtResource( 4 )]
 margin_top = 503.0

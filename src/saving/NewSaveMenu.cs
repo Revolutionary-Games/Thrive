@@ -9,25 +9,25 @@ using Godot;
 public class NewSaveMenu : Control
 {
     [Export]
-    public NodePath SaveListPath;
+    public NodePath SaveListPath = null!;
 
     [Export]
-    public NodePath SaveNameBoxPath;
+    public NodePath SaveNameBoxPath = null!;
 
     [Export]
-    public NodePath OverwriteConfirmPath;
+    public NodePath OverwriteConfirmPath = null!;
 
     [Export]
-    public NodePath AttemptWriteFailAcceptPath;
+    public NodePath AttemptWriteFailAcceptPath = null!;
 
     [Export]
-    public NodePath SaveButtonPath;
+    public NodePath SaveButtonPath = null!;
 
-    private SaveList saveList;
-    private LineEdit saveNameBox;
-    private Button saveButton;
-    private CustomConfirmationDialog overwriteConfirm;
-    private CustomConfirmationDialog attemptWriteFailAccept;
+    private SaveList saveList = null!;
+    private LineEdit saveNameBox = null!;
+    private Button saveButton = null!;
+    private CustomConfirmationDialog overwriteConfirm = null!;
+    private CustomConfirmationDialog attemptWriteFailAccept = null!;
 
     private bool usingSelectedSaveName;
 

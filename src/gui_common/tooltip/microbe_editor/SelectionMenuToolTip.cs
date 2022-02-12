@@ -11,48 +11,48 @@ using Godot;
 public class SelectionMenuToolTip : Control, ICustomToolTip
 {
     [Export]
-    public NodePath NameLabelPath;
+    public NodePath NameLabelPath = null!;
 
     [Export]
-    public NodePath MpLabelPath;
+    public NodePath MpLabelPath = null!;
 
     [Export]
-    public NodePath DescriptionLabelPath;
+    public NodePath DescriptionLabelPath = null!;
 
     [Export]
-    public NodePath ProcessesDescriptionLabelPath;
+    public NodePath ProcessesDescriptionLabelPath = null!;
 
     [Export]
-    public NodePath ModifierListPath;
+    public NodePath ModifierListPath = null!;
 
     [Export]
-    public NodePath ProcessListPath;
-
-    private PackedScene modifierInfoScene;
-    private Font latoBoldFont;
-
-    private Label nameLabel;
-    private Label mpLabel;
-
-    private Label descriptionLabel;
-    private CustomRichTextLabel processesDescriptionLabel;
-    private VBoxContainer modifierInfoList;
-    private ProcessList processList;
-
-    private string displayName;
-    private string description;
-    private string processesDescription;
-    private int mpCost;
+    public NodePath ProcessListPath = null!;
 
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
     /// </summary>
-    private List<ModifierInfoLabel> modifierInfos = new List<ModifierInfoLabel>();
+    private readonly List<ModifierInfoLabel> modifierInfos = new();
+
+    private PackedScene modifierInfoScene = null!;
+    private Font latoBoldFont = null!;
+
+    private Label? nameLabel;
+    private Label? mpLabel;
+
+    private Label? descriptionLabel;
+    private CustomRichTextLabel? processesDescriptionLabel;
+    private VBoxContainer modifierInfoList = null!;
+    private ProcessList processList = null!;
+
+    private string? displayName;
+    private string? description;
+    private string processesDescription = string.Empty;
+    private int mpCost;
 
     [Export]
     public string DisplayName
     {
-        get => displayName;
+        get => displayName ?? "SelectionMenuToolTip_unset";
         set
         {
             displayName = value;
@@ -81,7 +81,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public string Description
+    public string? Description
     {
         get => description;
         set
@@ -162,7 +162,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     /// <summary>
     ///   Creates UI elements for the processes info in a specific patch
     /// </summary>
-    public void WriteOrganelleProcessList(List<ProcessSpeedInformation> processes)
+    public void WriteOrganelleProcessList(List<ProcessSpeedInformation>? processes)
     {
         if (processes == null || processes.Count <= 0)
         {

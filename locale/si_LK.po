@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-31 13:30+0800\n"
+"POT-Creation-Date: 2022-02-12 19:07+0800\n"
 "PO-Revision-Date: 2021-09-28 07:32+0000\n"
 "Last-Translator: helabasa <R45XvezA@pm.me>\n"
-"Language-Team: Sinhala <https://translate.revolutionarygamesstudio.com/"
-"projects/thrive/thrive-game/si/>\n"
+"Language-Team: Sinhala <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/si/>\n"
 "Language: si_LK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -724,15 +723,15 @@ msgid "CHEMORECEPTOR"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "ABORTED"
+msgid "ABORTED_DOT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "FINISHED"
+msgid "FINISHED_DOT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-msgid "NOT_RUNNING"
+msgid "NOT_RUNNING_DOT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:138
@@ -743,99 +742,103 @@ msgstr ""
 msgid "STARTING"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:293
+#: ../src/auto-evo/AutoEvoRun.cs:294
 msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:571
-msgid "POPULATION"
+#: ../src/auto-evo/RunResults.cs:554
+msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:580
+#: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:586
-msgid "PREVIOUS"
+#: ../src/auto-evo/RunResults.cs:569
+msgid "PREVIOUS_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:604
+#: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:617
+#: ../src/auto-evo/RunResults.cs:600
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:620
+#: ../src/auto-evo/RunResults.cs:603
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:637
+#: ../src/auto-evo/RunResults.cs:620
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:653
-msgid "RUN_RESULT_HAS_A_MUTATION"
+#: ../src/auto-evo/RunResults.cs:636
+msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:658
+#: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:669
-msgid "RUN_RESULT_SPREAD_TO_PATCHES"
+#: ../src/auto-evo/RunResults.cs:652
+msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:677
+#: ../src/auto-evo/RunResults.cs:660
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:696
-msgid "RUN_RESULT_POP_IN_PATCHES"
+#: ../src/auto-evo/RunResults.cs:679
+msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:803
+#: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:854
+#: ../src/auto-evo/RunResults.cs:843
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:864 ../src/auto-evo/RunResults.cs:886
+#: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:870 ../src/auto-evo/RunResults.cs:892
+#: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:878
+#: ../src/auto-evo/RunResults.cs:867
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:902
+#: ../src/auto-evo/RunResults.cs:891
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:896
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:913
+#: ../src/auto-evo/RunResults.cs:902
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:929
+#: ../src/auto-evo/RunResults.cs:921
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:935
+#: ../src/auto-evo/RunResults.cs:927
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:76
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
+msgid "NOT_FOUND_CHUNK"
+msgstr ""
+
+#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
@@ -855,11 +858,11 @@ msgstr ""
 msgid "LOADING"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:322
+#: ../src/engine/input/key_mapping/InputEventItem.cs:339
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputGroupList.cs:118
+#: ../src/engine/input/key_mapping/InputGroupList.cs:129
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
 
@@ -1267,11 +1270,11 @@ msgstr ""
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
-#: ../src/general/Gallery.cs:70
+#: ../src/general/Gallery.cs:73
 msgid "ARTWORK_TITLE"
 msgstr ""
 
-#: ../src/general/Gallery.cs:74
+#: ../src/general/Gallery.cs:77
 msgid "ART_BY"
 msgstr ""
 
@@ -1286,12 +1289,12 @@ msgid "CLOSE"
 msgstr ""
 
 #: ../src/general/IWorldEffect.cs:72 ../src/general/IWorldEffect.cs:91
-#: ../src/gui_common/CompoundAmount.cs:168
+#: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
-#: ../src/microbe_stage/MicrobeHUD.cs:659
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:748
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1076
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1280
+#: ../src/microbe_stage/MicrobeHUD.cs:629
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1322
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
@@ -1303,7 +1306,7 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:231
+#: ../src/general/MainMenu.cs:234
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -1311,12 +1314,12 @@ msgstr ""
 msgid "NEW_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:71
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:103
+#: ../src/general/MainMenu.tscn:191 ../src/general/PauseMenu.tscn:76
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:142
 msgid "LOAD_GAME"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:93
+#: ../src/general/MainMenu.tscn:202 ../src/general/PauseMenu.tscn:98
 msgid "OPTIONS"
 msgstr ""
 
@@ -1346,8 +1349,8 @@ msgstr ""
 
 #: ../src/general/MainMenu.tscn:337 ../src/general/MainMenu.tscn:414
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
-#: ../src/general/PauseMenu.tscn:133
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:143
+#: ../src/general/PauseMenu.tscn:138
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:110
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
@@ -1714,41 +1717,41 @@ msgstr ""
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:247
+#: ../src/general/PauseMenu.cs:271
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
-#: ../src/general/PauseMenu.cs:263
+#: ../src/general/PauseMenu.cs:287
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:57
+#: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:64
+#: ../src/general/PauseMenu.tscn:69
 msgid "SAVE_GAME"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:79
+#: ../src/general/PauseMenu.tscn:84
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2783
 msgid "STATISTICS"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:86
+#: ../src/general/PauseMenu.tscn:91
 msgid "HELP"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:100
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:112
+#: ../src/general/PauseMenu.tscn:105
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:151
 msgid "RETURN_TO_MENU"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:107
+#: ../src/general/PauseMenu.tscn:112
 msgid "EXIT"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:158
+#: ../src/general/PauseMenu.tscn:163
 msgid "CONFIRM_EXIT"
 msgstr ""
 
@@ -1764,217 +1767,217 @@ msgstr ""
 msgid "KILO_ABBREVIATION"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:139
-#: ../src/gui_common/ChemicalEquation.cs:179
+#: ../src/gui_common/ChemicalEquation.cs:141
+#: ../src/gui_common/ChemicalEquation.cs:184
 msgid "PER_SECOND_SLASH"
 msgstr ""
 
-#: ../src/gui_common/ChemicalEquation.cs:298
+#: ../src/gui_common/ChemicalEquation.cs:308
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:226
+#: ../src/gui_common/CreditsScroll.cs:223
 msgid "LEAD_DEVELOPERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:232
+#: ../src/gui_common/CreditsScroll.cs:229
 msgid "LEAD_PROGRAMMER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:233
+#: ../src/gui_common/CreditsScroll.cs:230
 msgid "LEAD_PROGRAMMERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:238
+#: ../src/gui_common/CreditsScroll.cs:235
 msgid "LEAD_THEORIST"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:239
+#: ../src/gui_common/CreditsScroll.cs:236
 msgid "LEAD_THEORISTS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:244
+#: ../src/gui_common/CreditsScroll.cs:241
 msgid "LEAD_ARTIST"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:245
+#: ../src/gui_common/CreditsScroll.cs:242
 msgid "LEAD_ARTISTS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:250
+#: ../src/gui_common/CreditsScroll.cs:247
 msgid "SOUND_TEAM_LEAD"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:251
+#: ../src/gui_common/CreditsScroll.cs:248
 msgid "SOUND_TEAM_LEADS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:256
+#: ../src/gui_common/CreditsScroll.cs:253
 msgid "LEAD_OUTREACH_PERSON"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:257
+#: ../src/gui_common/CreditsScroll.cs:254
 msgid "LEAD_OUTREACH_PEOPLE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:262
+#: ../src/gui_common/CreditsScroll.cs:259
 msgid "LEAD_GAME_DESIGNER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:263
+#: ../src/gui_common/CreditsScroll.cs:260
 msgid "LEAD_GAME_DESIGNERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:268
+#: ../src/gui_common/CreditsScroll.cs:265
 msgid "LEAD_TESTER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:269
+#: ../src/gui_common/CreditsScroll.cs:266
 msgid "LEAD_TESTERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:274
+#: ../src/gui_common/CreditsScroll.cs:271
 msgid "LEAD_PROJECT_MANAGER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:275
+#: ../src/gui_common/CreditsScroll.cs:272
 msgid "LEAD_PROJECT_MANAGERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:282
+#: ../src/gui_common/CreditsScroll.cs:279
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:298
+#: ../src/gui_common/CreditsScroll.cs:295
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:314
+#: ../src/gui_common/CreditsScroll.cs:311
 msgid "OUTSIDE_CONTRIBUTORS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:317
+#: ../src/gui_common/CreditsScroll.cs:314
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:332
+#: ../src/gui_common/CreditsScroll.cs:329
 msgid "PATRONS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:338
+#: ../src/gui_common/CreditsScroll.cs:335
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:355
+#: ../src/gui_common/CreditsScroll.cs:352
 msgid "DONATIONS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:378
+#: ../src/gui_common/CreditsScroll.cs:375
 msgid "TRANSLATORS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:392
+#: ../src/gui_common/CreditsScroll.cs:389
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:487
+#: ../src/gui_common/CreditsScroll.cs:484
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:496
+#: ../src/gui_common/CreditsScroll.cs:493
 msgid "PROGRAMMING_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:497
+#: ../src/gui_common/CreditsScroll.cs:494
 msgid "THEORY_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:498
+#: ../src/gui_common/CreditsScroll.cs:495
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:499
+#: ../src/gui_common/CreditsScroll.cs:496
 msgid "SOUND_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:500
+#: ../src/gui_common/CreditsScroll.cs:497
 msgid "OUTREACH_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:501
+#: ../src/gui_common/CreditsScroll.cs:498
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:502
+#: ../src/gui_common/CreditsScroll.cs:499
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:503
+#: ../src/gui_common/CreditsScroll.cs:500
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:504
+#: ../src/gui_common/CreditsScroll.cs:501
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:505
+#: ../src/gui_common/CreditsScroll.cs:502
 msgid "VIP_PATRONS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:506
+#: ../src/gui_common/CreditsScroll.cs:503
 msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:507
+#: ../src/gui_common/CreditsScroll.cs:504
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:508
+#: ../src/gui_common/CreditsScroll.cs:505
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:509
+#: ../src/gui_common/CreditsScroll.cs:506
 msgid "FEBRUARY"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:510
+#: ../src/gui_common/CreditsScroll.cs:507
 msgid "MARCH"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:511
+#: ../src/gui_common/CreditsScroll.cs:508
 msgid "APRIL"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:512
+#: ../src/gui_common/CreditsScroll.cs:509
 msgid "MAY"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:513
+#: ../src/gui_common/CreditsScroll.cs:510
 msgid "JUNE"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:514
+#: ../src/gui_common/CreditsScroll.cs:511
 msgid "JULY"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:515
+#: ../src/gui_common/CreditsScroll.cs:512
 msgid "AUGUST"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:516
+#: ../src/gui_common/CreditsScroll.cs:513
 msgid "SEPTEMBER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:517
+#: ../src/gui_common/CreditsScroll.cs:514
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/gui_common/CreditsScroll.cs:518
+#: ../src/gui_common/CreditsScroll.cs:515
 #, fuzzy
 msgid "NOVEMBER"
 msgstr "සංචලනය"
 
-#: ../src/gui_common/CreditsScroll.cs:519
+#: ../src/gui_common/CreditsScroll.cs:516
 msgid "DECEMBER"
 msgstr ""
 
@@ -1998,51 +2001,51 @@ msgstr ""
 msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:333
+#: ../src/gui_common/TweakedColourPicker.cs:344
 msgid "COLOUR_PICKER_PICK_COLOUR"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:334
+#: ../src/gui_common/TweakedColourPicker.cs:345
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:335
+#: ../src/gui_common/TweakedColourPicker.cs:346
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:336
+#: ../src/gui_common/TweakedColourPicker.cs:347
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:340
+#: ../src/gui_common/TweakedColourPicker.cs:351
 msgid "COLOUR_PICKER_H_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:341
+#: ../src/gui_common/TweakedColourPicker.cs:352
 msgid "COLOUR_PICKER_S_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:342
+#: ../src/gui_common/TweakedColourPicker.cs:353
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:346
+#: ../src/gui_common/TweakedColourPicker.cs:357
 msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:347
+#: ../src/gui_common/TweakedColourPicker.cs:358
 msgid "COLOUR_PICKER_G_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:348
+#: ../src/gui_common/TweakedColourPicker.cs:359
 msgid "COLOUR_PICKER_B_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:351
+#: ../src/gui_common/TweakedColourPicker.cs:362
 msgid "COLOUR_PICKER_A_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/TweakedColourPicker.cs:500
+#: ../src/gui_common/TweakedColourPicker.cs:511
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
 
@@ -2054,22 +2057,22 @@ msgstr ""
 msgid "RAW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:633
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2513
+#: ../src/gui_common/charts/line/LineChart.cs:636
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2559
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:637
+#: ../src/gui_common/charts/line/LineChart.cs:640
 msgid "INVALID_DATA_TO_PLOT"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:1104
-#: ../src/gui_common/charts/line/LineChart.cs:1190
+#: ../src/gui_common/charts/line/LineChart.cs:1110
+#: ../src/gui_common/charts/line/LineChart.cs:1202
 msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/gui_common/charts/line/LineChart.cs:1110
-#: ../src/gui_common/charts/line/LineChart.cs:1195
+#: ../src/gui_common/charts/line/LineChart.cs:1116
+#: ../src/gui_common/charts/line/LineChart.cs:1207
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
@@ -2489,7 +2492,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3587
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2909
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3305
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:964
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:982
 msgid "TEMPERATURE"
 msgstr ""
 
@@ -2498,23 +2501,23 @@ msgstr ""
 msgid "N_A_MP"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:524
+#: ../src/microbe_stage/Microbe.Contact.cs:532
 msgid "DEATH"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:629
+#: ../src/microbe_stage/Microbe.Contact.cs:643
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:636
+#: ../src/microbe_stage/Microbe.Contact.cs:650
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Contact.cs:853
+#: ../src/microbe_stage/Microbe.Contact.cs:867
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.Interior.cs:729
+#: ../src/microbe_stage/Microbe.Interior.cs:734
 msgid "REPRODUCED"
 msgstr ""
 
@@ -2542,51 +2545,51 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:704
+#: ../src/microbe_stage/MicrobeHUD.cs:708
 msgid "STUFF_AT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:737
+#: ../src/microbe_stage/MicrobeHUD.cs:741
 msgid "PLAYER_CELL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:754
+#: ../src/microbe_stage/MicrobeHUD.cs:758
 msgid "SPECIES_N_TIMES"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:799
+#: ../src/microbe_stage/MicrobeHUD.cs:803
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:801
+#: ../src/microbe_stage/MicrobeHUD.cs:805
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:803
+#: ../src/microbe_stage/MicrobeHUD.cs:807
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:805
+#: ../src/microbe_stage/MicrobeHUD.cs:809
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:807
+#: ../src/microbe_stage/MicrobeHUD.cs:811
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:809
+#: ../src/microbe_stage/MicrobeHUD.cs:813
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:538
+#: ../src/microbe_stage/MicrobeStage.cs:545
 msgid "PLAYER_REPRODUCED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:624
+#: ../src/microbe_stage/MicrobeStage.cs:634
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:688
+#: ../src/microbe_stage/MicrobeStage.cs:698
 msgid "PLAYER_DIED"
 msgstr ""
 
@@ -2626,7 +2629,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2973
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3007
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3612
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1104
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -2710,7 +2713,7 @@ msgstr ""
 msgid "PATCH_PANGONIAN_SEAFLOOR"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:117
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -2722,20 +2725,20 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:624
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1446
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:626
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1465
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:626
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:628
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2474
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2518
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2475
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:2519
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -2961,7 +2964,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2930
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2964
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3447
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1097
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
@@ -3006,119 +3009,119 @@ msgstr ""
 msgid "INFINITE_MP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:754
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:761
-#: ../src/microbe_stage/editor/TimelineTab.cs:184
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:767
+#: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:764
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:807
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:812
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:813
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:839
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:862
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:874
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:894
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1094
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1095
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1097
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1104
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1118
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1119
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
 msgid "YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
 msgid "SPECIES_LIST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1111
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1135
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1148
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1112
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1123
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1136
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1147
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1160
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1190
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1271
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1313
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1276
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1318
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1315
-msgid "WITH_POPULATION"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
+msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2057
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2063
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2075
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2102
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2114
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2069
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2081
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2108
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2120
 msgid "N_A"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2355
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2401
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2481
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2527
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2485
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2531
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2492
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2538
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2498
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2544
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:230
-#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:249
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237
+#: ../src/microbe_stage/editor/OrganellePopupMenu.cs:255
 msgid "MP_COST"
 msgstr ""
 
@@ -3138,7 +3141,7 @@ msgstr ""
 msgid "EXTINCT_SPECIES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/TimelineTab.cs:235
+#: ../src/microbe_stage/editor/TimelineTab.cs:244
 msgid "NO_EVENTS_RECORDED"
 msgstr ""
 
@@ -3162,19 +3165,19 @@ msgstr ""
 msgid "MODIFY_ORGANELLE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:82
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:121
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:91
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:130
 msgid "EXTINCTION_BOX_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/WinBox.tscn:53
+#: ../src/microbe_stage/gui/WinBox.tscn:56
 msgid "WIN_BOX_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/WinBox.tscn:62
+#: ../src/microbe_stage/gui/WinBox.tscn:65
 msgid "WIN_TEXT"
 msgstr ""
 
@@ -3214,36 +3217,36 @@ msgstr ""
 msgid "PCK_LOAD_FAILED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:292
+#: ../src/modding/ModManager.cs:293
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:306
+#: ../src/modding/ModManager.cs:307
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:318
+#: ../src/modding/ModManager.cs:319
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:544
+#: ../src/modding/ModManager.cs:549
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "තේරූ:"
 
-#: ../src/modding/ModManager.cs:869
+#: ../src/modding/ModManager.cs:885
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:870
+#: ../src/modding/ModManager.cs:886
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:926
+#: ../src/modding/ModManager.cs:940
 msgid "ERROR_CREATING_FOLDER"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:935
+#: ../src/modding/ModManager.cs:949
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
@@ -3415,71 +3418,75 @@ msgstr ""
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:268 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:298
+#: ../src/modding/ModUploader.cs:305
 msgid "MISSING_TITLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:304
+#: ../src/modding/ModUploader.cs:311
 msgid "MISSING_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:312
+#: ../src/modding/ModUploader.cs:319
 msgid "DESCRIPTION_TOO_LONG"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:318 ../src/steam/SteamClient.cs:209
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:326
+#: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:334
+#: ../src/modding/ModUploader.cs:341
 msgid "INVALID_TAG"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:348
+#: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:355
+#: ../src/modding/ModUploader.cs:362
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:398
+#: ../src/modding/ModUploader.cs:417
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:435
+#: ../src/modding/ModUploader.cs:460
 msgid "CREATING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:490
+#: ../src/modding/ModUploader.cs:474
+msgid "SUCCESS_BUT_MISSING_ID"
+msgstr ""
+
+#: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:527
+#: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:531
+#: ../src/modding/ModUploader.cs:560
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:591
+#: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:616
+#: ../src/modding/ModUploader.cs:645
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:631 ../src/modding/NewModGUI.cs:294
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -3567,31 +3574,31 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:169
+#: ../src/modding/NewModGUI.cs:175
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:226
+#: ../src/modding/NewModGUI.cs:232
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:238
+#: ../src/modding/NewModGUI.cs:247
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:244
+#: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:250
+#: ../src/modding/NewModGUI.cs:259
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:269
+#: ../src/modding/NewModGUI.cs:275
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:280
+#: ../src/modding/NewModGUI.cs:286
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
@@ -3611,53 +3618,53 @@ msgstr ""
 msgid "CREATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:98
-#: ../src/saving/InProgressLoad.cs:147
+#: ../src/saving/InProgressLoad.cs:79 ../src/saving/InProgressLoad.cs:99
+#: ../src/saving/InProgressLoad.cs:148
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:80
+#: ../src/saving/InProgressLoad.cs:81
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:100
+#: ../src/saving/InProgressLoad.cs:101
 msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:109
-msgid "AN_EXCEPTION_HAPPENED_WHILE_LOADING"
-msgstr ""
-
-#: ../src/saving/InProgressLoad.cs:135
-msgid "SAVE_IS_INVALID"
+#: ../src/saving/InProgressLoad.cs:110
+msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr ""
 
 #: ../src/saving/InProgressLoad.cs:136
+msgid "SAVE_IS_INVALID"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:137
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:149
+#: ../src/saving/InProgressLoad.cs:150
 msgid "PROCESSING_LOADED_OBJECTS"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:164
-msgid "AN_EXCEPTION_HAPPENED_WHILE_PROCESSING"
+#: ../src/saving/InProgressLoad.cs:165
+msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:170
+#: ../src/saving/InProgressLoad.cs:171
 msgid "LOAD_FINISHED"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:195
+#: ../src/saving/InProgressLoad.cs:196
 msgid "ERROR_LOADING"
 msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:227
+#: ../src/saving/InProgressLoad.cs:228
 msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ""
 
 #: ../src/saving/InProgressSave.cs:188
-msgid "SAVING"
+msgid "SAVING_DOT_DOT_DOT"
 msgstr ""
 
 #: ../src/saving/InProgressSave.cs:221
@@ -3668,15 +3675,15 @@ msgstr ""
 msgid "ERROR_SAVING"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:79
+#: ../src/saving/NewSaveMenu.cs:78
 msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:113
+#: ../src/saving/NewSaveMenu.cs:112
 msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:184
+#: ../src/saving/NewSaveMenu.cs:183
 msgid "INVALID_SAVE_NAME_POPUP"
 msgstr ""
 
@@ -3697,27 +3704,27 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:117
-msgid "OVERWRITE_EXISTING_SAVE_TITLE"
+msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:120
+#: ../src/saving/NewSaveMenu.tscn:121
 msgid "CANNOT_WRITE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:421
+#: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
+msgid "SAVING_FAILED_WITH_EXCEPTION"
+msgstr ""
+
+#: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:422
+#: ../src/saving/SaveHelper.cs:437
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
-#: ../src/saving/SaveHelper.cs:431
+#: ../src/saving/SaveHelper.cs:446
 msgid "SAVING_SUCCEEDED"
-msgstr ""
-
-#: ../src/saving/SaveHelper.cs:441
-msgid "SAVING_FAILED"
 msgstr ""
 
 #: ../src/saving/SaveInformation.cs:16
@@ -3745,15 +3752,15 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-msgid "LOADING_DOT"
+msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:283
-msgid "DELETE_THIS_SAVE"
+#: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
+msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-msgid "LOAD_INCOMPATIBLE_SAVE"
+msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:80
@@ -3765,7 +3772,7 @@ msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:95
-msgid "LOAD_INVALID_SAVE"
+msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:96
@@ -3773,7 +3780,7 @@ msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:103
-msgid "SELECTED_SAVE_IS_INCOMPATIBLE"
+msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:105
@@ -3781,18 +3788,18 @@ msgid "LOAD_INCOMPATIBLE_SAVE_WARNING"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:114
-msgid "SELECTED_SAVE_IS_UPGRADEABLE"
+msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:122
+#: ../src/saving/SaveList.tscn:121
 msgid "SAVE_UPGRADE_FAILED"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:123
+#: ../src/saving/SaveList.tscn:122
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 
@@ -3807,15 +3814,16 @@ msgid "DOT_DOT_DOT"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:151
-msgid "TYPE"
-msgstr ""
+#, fuzzy
+msgid "TYPE_COLON"
+msgstr "තේරූ:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:193
-msgid "VERSION"
+msgid "VERSION_COLON"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:222
@@ -3830,7 +3838,7 @@ msgstr ""
 msgid "LOAD"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:282
+#: ../src/saving/SaveListItem.tscn:283
 msgid "DELETE_SAVE_CONFIRMATION"
 msgstr ""
 
@@ -3867,11 +3875,11 @@ msgid "SELECTED_COLON"
 msgstr "තේරූ:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-msgid "DELETE_SELECTED_SAVES"
+msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-msgid "DELETE_OLD_SAVES"
+msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:200
@@ -3886,59 +3894,59 @@ msgstr ""
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:474
+#: ../src/steam/SteamClient.cs:462
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:476
+#: ../src/steam/SteamClient.cs:464
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:478
+#: ../src/steam/SteamClient.cs:466
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:480
+#: ../src/steam/SteamClient.cs:468
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:482
+#: ../src/steam/SteamClient.cs:470
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:484
+#: ../src/steam/SteamClient.cs:472
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:486
+#: ../src/steam/SteamClient.cs:474
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:488
+#: ../src/steam/SteamClient.cs:476
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:490
+#: ../src/steam/SteamClient.cs:478
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:492
+#: ../src/steam/SteamClient.cs:480
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:494
+#: ../src/steam/SteamClient.cs:482
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:496
+#: ../src/steam/SteamClient.cs:484
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:498
+#: ../src/steam/SteamClient.cs:486
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:500
+#: ../src/steam/SteamClient.cs:488
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
@@ -3966,23 +3974,23 @@ msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-msgid "EDITOR_TUTORIAL_PATCH_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-msgid "EDITOR_TUTORIAL_CELL_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-msgid "EDITOR_TUTORIAL_REMOVE_ORGANELLE_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-msgid "EDITOR_TUTORIAL_SELECT_ORGANELLE_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-msgid "EDITOR_TUTORIAL_ENDING_TEXT"
+msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:283
@@ -3990,11 +3998,11 @@ msgid "GOT_IT"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-msgid "EDITOR_TUTORIAL_AUTO-EVO_PREDICTION"
+msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-msgid "EDITOR_TUTORIAL_STAY_SMALL"
+msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:80
@@ -4022,21 +4030,21 @@ msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-msgid "MICROBE_STAGE_REPRODUCE_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-msgid "MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
+msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-msgid "MICROBE_STAGE_UNBIND_TEXT"
+msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-msgid "MICROBE_STAGE_HELP_MENU_AND_ZOOM"
+msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-msgid "VIEW_NOW"
+msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
