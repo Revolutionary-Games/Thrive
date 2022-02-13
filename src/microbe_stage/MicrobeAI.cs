@@ -37,7 +37,7 @@ public class MicrobeAI
     private EntityReference<Microbe> focusedPrey = new();
 
     [JsonIgnore]
-    private Vector3? lastSmelledCompoundPosition = null;
+    private Vector3? lastSmelledCompoundPosition;
 
     [JsonProperty]
     private float pursuitThreshold;
@@ -429,7 +429,8 @@ public class MicrobeAI
 
         var detections = microbe.GetDetectedCompounds(data.Clouds)
             .OrderBy(detection => compoundsSearchWeights.ContainsKey(detection.Compound) ?
-                compoundsSearchWeights[detection.Compound] : 0).ToList();
+                compoundsSearchWeights[detection.Compound] :
+                0).ToList();
 
         if (detections.Count > 0)
         {
