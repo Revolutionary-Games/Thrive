@@ -414,7 +414,7 @@ public class MicrobeAI
             }
             else
             {
-                lastSmelledCompoundPosition = null;
+                SmellForComounds(data);
             }
         }
         else
