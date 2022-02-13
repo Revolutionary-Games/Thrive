@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-12 19:07+0800\n"
+"POT-Creation-Date: 2022-02-13 13:31+0800\n"
 "PO-Revision-Date: 2022-02-10 06:38+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -3786,14 +3786,10 @@ msgstr "Невдале збереження"
 msgid "ERROR_SAVING"
 msgstr "Помилка збереження"
 
-#: ../src/saving/NewSaveMenu.cs:78
+#: ../src/saving/NewSaveMenu.cs:79
 #, fuzzy
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Обране файлове ім'я ({0}) уже існує. Переписати?"
-
-#: ../src/saving/NewSaveMenu.cs:112
-msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
-msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:183
 msgid "INVALID_SAVE_NAME_POPUP"
@@ -3824,6 +3820,10 @@ msgstr "Переписати наявне збереження:"
 #, fuzzy
 msgid "CANNOT_WRITE"
 msgstr "Неможливо поглинути"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
 #, fuzzy

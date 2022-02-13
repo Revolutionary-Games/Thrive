@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-12 19:07+0800\n"
+"POT-Creation-Date: 2022-02-13 13:31+0800\n"
 "PO-Revision-Date: 2022-01-10 18:11+0000\n"
 "Last-Translator: Andrei Tkachenko <gautierkatia2@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -3895,14 +3895,10 @@ msgstr "Sauvegarde Échouée"
 msgid "ERROR_SAVING"
 msgstr "Erreur de Sauvegarde"
 
-#: ../src/saving/NewSaveMenu.cs:78
+#: ../src/saving/NewSaveMenu.cs:79
 #, fuzzy
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "La sauvegarde sélectionnée ({0}) existe déjà. Réécrire par dessus?"
-
-#: ../src/saving/NewSaveMenu.cs:112
-msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
-msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:183
 #, fuzzy
@@ -3934,6 +3930,10 @@ msgstr "Réécriture sur la sauvegarde existante :"
 #, fuzzy
 msgid "CANNOT_WRITE"
 msgstr "Ne peut pas absorber"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
 #, fuzzy

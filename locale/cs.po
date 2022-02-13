@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-12 19:07+0800\n"
+"POT-Creation-Date: 2022-02-13 13:31+0800\n"
 "PO-Revision-Date: 2022-02-03 10:36+0000\n"
 "Last-Translator: Nicholas Stephens <jestrab.007.spy@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -3788,14 +3788,10 @@ msgstr "Chyba ukládání"
 msgid "ERROR_SAVING"
 msgstr "Chyba při ukládání"
 
-#: ../src/saving/NewSaveMenu.cs:78
+#: ../src/saving/NewSaveMenu.cs:79
 #, fuzzy
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Vybraný název ({0}) už existuje. Chceš ho nahradit?"
-
-#: ../src/saving/NewSaveMenu.cs:112
-msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
-msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:183
 msgid "INVALID_SAVE_NAME_POPUP"
@@ -3826,6 +3822,10 @@ msgstr "Nahradit existující uloženou pozici:"
 #, fuzzy
 msgid "CANNOT_WRITE"
 msgstr "Nedokáže pohlcovat"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
 #, fuzzy

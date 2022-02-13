@@ -122,6 +122,7 @@ WindowTitle = "CANNOT_WRITE"
 Movable = false
 ShowCloseButton = false
 HideCancelButton = true
+DialogText = "ATTEMPT_TO_WRITE_FILE_FAILED"
 
 [connection signal="text_changed" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextChanged"]
 [connection signal="text_entered" from="VBoxContainer/VBoxContainer/HBoxContainer/SaveName" to="." method="OnSaveNameTextEntered"]

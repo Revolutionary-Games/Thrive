@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-12 19:07+0800\n"
+"POT-Creation-Date: 2022-02-13 13:31+0800\n"
 "PO-Revision-Date: 2022-02-04 17:52+0000\n"
 "Last-Translator: César <cesariglesiasparente@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -3795,14 +3795,10 @@ msgstr "Guardado fallido"
 msgid "ERROR_SAVING"
 msgstr "Error al guardar"
 
-#: ../src/saving/NewSaveMenu.cs:78
+#: ../src/saving/NewSaveMenu.cs:79
 #, fuzzy
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "El nombre de archivo ({0}) ya existe. ¿Deseas sobreescribir?"
-
-#: ../src/saving/NewSaveMenu.cs:112
-msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
-msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:183
 msgid "INVALID_SAVE_NAME_POPUP"
@@ -3833,6 +3829,10 @@ msgstr "Sobrescribir partida existente:"
 #, fuzzy
 msgid "CANNOT_WRITE"
 msgstr "No puede engullir"
+
+#: ../src/saving/NewSaveMenu.tscn:125
+msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
+msgstr ""
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
 #, fuzzy

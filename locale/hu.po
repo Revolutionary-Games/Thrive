@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-12 19:07+0800\n"
+"POT-Creation-Date: 2022-02-13 13:31+0800\n"
 "PO-Revision-Date: 2021-12-30 18:28+0000\n"
 "Last-Translator: Undibundi <andras9334@citromail.hu>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -3800,14 +3800,10 @@ msgstr "Mentés sikertelen"
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
 
-#: ../src/saving/NewSaveMenu.cs:78
+#: ../src/saving/NewSaveMenu.cs:79
 #, fuzzy
-msgid "THE_CHOSEN_FILENAME_ALREADY_EXISTS"
+msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
-
-#: ../src/saving/NewSaveMenu.cs:112
-msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
-msgstr ""
 
 #: ../src/saving/NewSaveMenu.cs:183
 #, fuzzy
@@ -3837,6 +3833,10 @@ msgstr "Létező mentés felülírása:"
 
 #: ../src/saving/NewSaveMenu.tscn:121
 msgid "CANNOT_WRITE"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:125
+msgid "ATTEMPT_TO_WRITE_FILE_FAILED"
 msgstr ""
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
