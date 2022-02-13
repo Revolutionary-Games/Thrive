@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using File = Godot.File;
@@ -175,40 +176,15 @@ public class SimulationParameters : Node
     /// <summary>
     ///   Returns all compounds that are clouds
     /// </summary>
-    public List<Compound> GetCloudCompounds()
-    {
-        var result = new List<Compound>();
-
-        foreach (var entry in compounds)
-        {
-            if (entry.Value.IsCloud)
-            {
-                result.Add(entry.Value);
-            }
-        }
-
-        return result;
-    }
+    public List<Compound> GetCloudCompounds() => compounds.Values.Where(
+        c => c.IsCloud).ToList();
 
     /// <summary>
     ///   Returns all environmental *molecular* compounds that are dissolved in the environment, i.e. gas.
     /// </summary>
     /// <remarks>This excludes sunlight, and includes O2, CO2, N...</remarks>
-    public List<Compound> GetGasCompounds()
-    {
-        var result = new List<Compound>();
-
-        foreach (var entry in compounds)
-        {
-            // The ability to be distributed is a distinctive heuristic for molecular compounds
-            if (!entry.Value.IsCloud && entry.Value.IsEnvironmental && entry.Value.CanBeDistributed)
-            {
-                result.Add(entry.Value);
-            }
-        }
-
-        return result;
-    }
+    public List<Compound> GetGasCompounds() => compounds.Values.Where(
+        c => c.IsCloud && c.IsEnvironmental && c.CanBeDistributed).ToList();
 
     public Dictionary<string, MusicCategory> GetMusicCategories()
     {
