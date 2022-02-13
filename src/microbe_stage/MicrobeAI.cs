@@ -402,7 +402,10 @@ public class MicrobeAI
     {
         if (random.Next(20) == 0)
         {
-            var detections = microbe.GetDetectedCompounds(data.Clouds);
+            ComputeCompoundsSearchWeights();
+
+            var detections = microbe.GetDetectedCompounds(data.Clouds)
+                .OrderBy(detection => compoundsSearchWeights[detection.Compound]).ToList();
 
             if (detections.Count > 0)
             {
