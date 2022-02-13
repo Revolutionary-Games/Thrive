@@ -16,10 +16,6 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     {
         base.Update(elapsed);
 
-        // For now only player's chemoreceptor does anything during gameplay
-        if (!isActive)
-            return;
-
         organelle!.ParentMicrobe!.ReportActiveChemereception(targetCompound!, searchRange, searchAmount, lineColour);
     }
 
@@ -29,9 +25,6 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
             throw new InvalidOperationException("Chemoreceptor needs parent organelle to have graphics");
 
         isActive = organelle!.ParentMicrobe!.IsPlayerMicrobe;
-
-        if (!isActive)
-            return;
 
         var configuration = organelle.Upgrades?.CustomUpgradeData;
 
