@@ -202,6 +202,10 @@ public class GasProductionEffect : IWorldEffect
         }
     }
 
+    /// <summary>
+    ///   Computes the factor of over consumption, i.e. the factor by which the most limiting compound consumption
+    ///   should be diminished not to consume more than there is (including compounds that were just produced).
+    /// </summary>
     public float ComputeOverConsumptionFactor(Dictionary<Compound, float> compoundsProduced, Patch patch)
     {
         var overConsumptionScalingFactor = 1f;
@@ -231,7 +235,7 @@ public class GasProductionEffect : IWorldEffect
     }
 
     /// <summary>
-    ///   Reduce ALL compound production by a scaling factor if one compounds happen to be overproduced.
+    ///   Reduce ALL compound production by a scaling factor if one compounds happens to be overproduced.
     /// </summary>
     /// <remarks>
     ///   <para>
