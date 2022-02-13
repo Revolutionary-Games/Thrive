@@ -14,5 +14,5 @@ public class MicrobeAICommonData
 
     public List<Microbe> AllMicrobes { get; }
     public List<FloatingChunk> AllChunks { get; }
-    public CompoundCloudSystem Clouds { get;  }
+    public CompoundCloudSystem Clouds { get; }
 }
