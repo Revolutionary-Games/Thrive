@@ -751,13 +751,13 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         int currentLineIndex = 0;
         var position = microbe.GlobalTransform.origin;
 
-        foreach (var (compound, colour, target) in microbe.GetDetectedCompounds(Clouds))
+        foreach (var tuple in microbe.GetDetectedCompounds(Clouds))
         {
             var line = GetOrCreateGuidanceLine(currentLineIndex++);
 
-            line.Colour = colour;
+            line.Colour = tuple.Colour;
             line.LineStart = position;
-            line.LineEnd = target;
+            line.LineEnd = tuple.Target;
             line.Visible = true;
         }
 
