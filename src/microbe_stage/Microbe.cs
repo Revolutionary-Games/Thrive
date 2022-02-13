@@ -567,6 +567,22 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
     }
 
+    public List<(Compound Compound, Color Colour, Vector3 target)> GetDetectedCompounds(CompoundCloudSystem clouds)
+    {
+        var detections = new List<(Compound Compound, Color Colour, Vector3 target)>();
+        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        {
+            var detectedCompound = clouds.FindCompoundNearPoint(Translation, compound, range, minAmount);
+
+            if (detectedCompound != null)
+            {
+                detections.Add((compound, colour, (Vector3)detectedCompound));
+            }
+        }
+
+        return detections;
+    }
+
     /// <summary>
     ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
     ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
