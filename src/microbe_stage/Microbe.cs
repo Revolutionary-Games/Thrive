@@ -568,8 +568,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     }
 
     /// <summary>
-    ///   Returns a list of tuples, representing all possible compound targets. These are not all clouds that the microbe
-    ///   can smell; only the best candidate of each compound type.
+    ///   Returns a list of tuples, representing all possible compound targets. These are not all clouds that the
+    ///   microbe can smell; only the best candidate of each compound type.
     /// </summary>
     /// <param name="clouds">CompoundCloudSystem to scan</param>
     /// <returns>
