@@ -2,6 +2,7 @@
 using Godot;
 using Array = Godot.Collections.Array;
 using Object = Godot.Object;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
@@ -94,7 +95,7 @@ public class GUICommon : NodeWithInput
     /// </summary>
     public static Texture? LoadGuiTexture(string file)
     {
-        var assumedPath = PathUtils.Join(Constants.ASSETS_GUI_BEVEL_FOLDER, file);
+        var assumedPath = Path.Combine(Constants.ASSETS_GUI_BEVEL_FOLDER, file);
 
         if (ResourceLoader.Exists(assumedPath, "Texture"))
             return GD.Load<Texture>(assumedPath);
