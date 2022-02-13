@@ -45,18 +45,21 @@ public static class FileHelpers
         return directory.FileExists(path);
     }
 
-    public static Error TryCreateWrite(string name)
+    /// <summary>
+    ///   Try to create a file with write access
+    /// </summary>
+    /// <param name="path">Path to file</param>
+    /// <returns>File status</returns>
+    public static Error TryCreateWrite(string path)
     {
         using var file = new File();
-        var e = file.Open(Constants.SAVE_FOLDER + "/" + name, File.ModeFlags.Write);
+        var e = file.Open(path, File.ModeFlags.Write);
         if (e != Error.Ok)
             return e;
 
-        file.Store8(0);
-
         file.Close();
-        DeleteFile(name);
+        DeleteFile(path);
 
-        return file.GetError();
+        return Error.Ok;
     }
 }
