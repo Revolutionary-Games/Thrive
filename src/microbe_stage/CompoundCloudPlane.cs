@@ -540,6 +540,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
         }
     }
 
+    public void SetBrightness(float brightness)
+    {
+        var material = (ShaderMaterial)Material;
+        material.SetShaderParam("BrightnessMultiplier", brightness);
+    }
+
     /// <summary>
     ///   Calculates the multipliers for the old density to move to new locations
     /// </summary>
