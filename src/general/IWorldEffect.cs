@@ -121,7 +121,7 @@ public class GasProductionEffect : IWorldEffect
             // Here we consider species production only
             foreach (var species in patch.SpeciesInPatch.Keys)
             {
-                // TODO: only adapted for microbe species,
+                // TODO: this is only adapted for microbe species, and should be expended when other species will arise.
                 if (species is MicrobeSpecies microbeSpecies)
                 {
                     var individualCompoundProduction = ProcessSystem.ComputeEnvironmentalBalance(
@@ -153,12 +153,10 @@ public class GasProductionEffect : IWorldEffect
             constantCompoundsDissolvedIntake[carbonDioxide] = Constants.PATCH_CONSTANT_CARBON_DIOXYDE_INPUT;
             constantCompoundsDissolvedIntake[nitrogen] = Constants.PATCH_CONSTANT_NITROGEN_INPUT;
 
-            foreach (var compound in gasCompounds)
+            foreach (var compound in constantCompoundsDissolvedIntake.Keys)
             {
                 if (!compoundsProduced.ContainsKey(compound))
-                {
                     compoundsProduced[compound] = 0;
-                }
             }
 
             // End of temporary block
@@ -170,6 +168,7 @@ public class GasProductionEffect : IWorldEffect
 
                 if (patch.Biome.Compounds.TryGetValue(compound, out EnvironmentalCompoundProperties compoundValue))
                 {
+                    // TODO if capped here, use something to scale production
                     compoundValue.Dissolved = Math.Max(
                         compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume + perPatchConstantIntake,
                         Constants.DISSOLVED_MIN);
