@@ -473,9 +473,14 @@ public static class Constants
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
+    // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 110;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 150;
     public const int MAX_SPAWNS_PER_FRAME = 1;
+
+    /// <summary>
+    ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
+    /// </summary>
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
