@@ -117,6 +117,7 @@ public class GasProductionEffect : IWorldEffect
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
             // First, add the constant intake to the patch, since it will influence the available amount for species.
+            // TODO move to own effect
             AddConstantIntakeToPatch(patch);
 
             Dictionary<Compound, float> compoundsProduced = new Dictionary<Compound, float>(gasCompounds.Count);
@@ -135,9 +136,7 @@ public class GasProductionEffect : IWorldEffect
                         if (individualCompoundProduction.TryGetValue(compound, out CompoundBalance compoundProduction))
                         {
                             if (!compoundsProduced.ContainsKey(compound))
-                            {
                                 compoundsProduced[compound] = 0;
-                            }
 
                             compoundsProduced[compound] += compoundProduction.Balance * patch.SpeciesInPatch[species] *
                                 Constants.DISSOLVED_PRODUCTION_FACTOR;
