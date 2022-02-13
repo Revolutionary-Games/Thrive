@@ -43,7 +43,7 @@ public class SaveFileInfo
         if (name.StartsWith(Constants.EXPLICIT_PATH_PREFIX, StringComparison.InvariantCulture))
             return name.Substring(Constants.EXPLICIT_PATH_PREFIX.Length);
 
-        return PathUtils.Join(Constants.SAVE_FOLDER, name);
+        return System.IO.Path.Combine(Constants.SAVE_FOLDER, name);
     }
 
     /// <summary>
