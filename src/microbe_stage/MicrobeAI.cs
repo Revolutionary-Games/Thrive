@@ -37,7 +37,7 @@ public class MicrobeAI
     private EntityReference<Microbe> focusedPrey = new();
 
     [JsonIgnore]
-    private Vector3? lastSmelledCompoundPosition = new(0, 0, 0);
+    private Vector3? lastSmelledCompoundPosition = null;
 
     [JsonProperty]
     private float pursuitThreshold;
