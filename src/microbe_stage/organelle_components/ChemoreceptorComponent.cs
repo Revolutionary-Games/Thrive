@@ -10,7 +10,6 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     private float searchRange;
     private float searchAmount;
     private Color lineColour = Colors.White;
-    private bool isActive;
 
     public override void Update(float elapsed)
     {
@@ -23,8 +22,6 @@ public class ChemoreceptorComponent : ExternallyPositionedComponent
     {
         if (organelle?.OrganelleGraphics == null)
             throw new InvalidOperationException("Chemoreceptor needs parent organelle to have graphics");
-
-        isActive = organelle!.ParentMicrobe!.IsPlayerMicrobe;
 
         var configuration = organelle.Upgrades?.CustomUpgradeData;
 
