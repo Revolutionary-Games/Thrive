@@ -414,7 +414,7 @@ public class MicrobeAI
             }
         }
 
-        if (lastSmelledCompoundPosition == null)
+        if (lastSmelledCompoundPosition != null)
         {
             SetMoveSpeed(0.0f);
         }
