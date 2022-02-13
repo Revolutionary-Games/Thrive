@@ -106,7 +106,7 @@ public class NewSaveMenu : Control
 
     private void OnConfirmSaveName()
     {
-        // Verify name writable
+        // Verify name is writable
         var name = GetSaveName();
         if (FileHelpers.TryCreateWrite(name) != Error.Ok)
         {
