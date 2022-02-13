@@ -116,6 +116,9 @@ public class GasProductionEffect : IWorldEffect
 
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
+            // First, add the constant intake to the patch, since it will influence the available amount for species.
+            AddConstantIntakeToPatch(patch);
+
             Dictionary<Compound, float> compoundsProduced = new Dictionary<Compound, float>(gasCompounds.Count);
 
             // Here we consider species production only
@@ -143,34 +146,13 @@ public class GasProductionEffect : IWorldEffect
                 }
             }
 
-            // TODO: Temporary patch-wide constant addition of gaseous compounds for balance.
-            var constantCompoundsDissolvedIntake = new Dictionary<Compound, float>(gasCompounds.Count);
-            var oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-            var carbonDioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-            var nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-
-            constantCompoundsDissolvedIntake[oxygen] = Constants.PATCH_CONSTANT_OXYGEN_INPUT;
-            constantCompoundsDissolvedIntake[carbonDioxide] = Constants.PATCH_CONSTANT_CARBON_DIOXYDE_INPUT;
-            constantCompoundsDissolvedIntake[nitrogen] = Constants.PATCH_CONSTANT_NITROGEN_INPUT;
-
-            foreach (var compound in constantCompoundsDissolvedIntake.Keys)
-            {
-                if (!compoundsProduced.ContainsKey(compound))
-                    compoundsProduced[compound] = 0;
-            }
-
-            // End of temporary block
-
             foreach (var compound in compoundsProduced.Keys)
             {
-                // TODO: Temporary patch-wide constant addition of gaseous compounds for balance.
-                var perPatchConstantIntake = constantCompoundsDissolvedIntake[compound];
-
                 if (patch.Biome.Compounds.TryGetValue(compound, out EnvironmentalCompoundProperties compoundValue))
                 {
                     // TODO if capped here, use something to scale production
                     compoundValue.Dissolved = Math.Max(
-                        compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume + perPatchConstantIntake,
+                        compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume,
                         Constants.DISSOLVED_MIN);
                     patch.Biome.Compounds[compound] = compoundValue;
                 }
@@ -181,6 +163,39 @@ public class GasProductionEffect : IWorldEffect
                         Amount = 0, Density = 0, Dissolved = compoundsProduced[compound] / patch.Volume,
                     };
                 }
+            }
+        }
+    }
+
+    public void AddConstantIntakeToPatch(Patch patch)
+    {
+        var oxygen = SimulationParameters.Instance.GetCompound("oxygen");
+        var carbonDioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
+        var nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
+        var constantCompoundsDissolvedIntake = new Dictionary<Compound, float>(3);
+
+        constantCompoundsDissolvedIntake[oxygen] = Constants.PATCH_CONSTANT_OXYGEN_INPUT;
+        constantCompoundsDissolvedIntake[carbonDioxide] = Constants.PATCH_CONSTANT_CARBON_DIOXYDE_INPUT;
+        constantCompoundsDissolvedIntake[nitrogen] = Constants.PATCH_CONSTANT_NITROGEN_INPUT;
+
+        foreach (var intake in constantCompoundsDissolvedIntake)
+        {
+            if (patch.Biome.Compounds.TryGetValue(intake.Key, out EnvironmentalCompoundProperties compoundValue))
+            {
+                // TODO if capped here, use something to scale production
+                compoundValue.Dissolved = Math.Max(
+                    compoundValue.Dissolved + intake.Value,
+                    Constants.DISSOLVED_MIN);
+                patch.Biome.Compounds[intake.Key] = compoundValue;
+            }
+            else
+            {
+                patch.Biome.Compounds[intake.Key] = new EnvironmentalCompoundProperties
+                {
+                    Amount = 0,
+                    Density = 0,
+                    Dissolved = intake.Value / patch.Volume,
+                };
             }
         }
     }
