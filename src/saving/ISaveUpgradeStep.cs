@@ -105,7 +105,7 @@
         protected override void CheckAndUpdateProperty(JProperty property)
         {
             var children = property.Value.Children<JProperty>();
-            var childrenNames = children.Select(c => c.Name).ToList();
+            var childrenNames = children.Select(c => c.Name);
 
             if (property.Name != "Behaviour" && BehaviouralKeys.All(p => childrenNames.Contains(p)))
             {
