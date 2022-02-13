@@ -145,6 +145,8 @@ public class GasProductionEffect : IWorldEffect
                 }
             }
 
+            compoundsProduced = ScaleByOverconsumption(compoundsProduced, patch);
+
             foreach (var compound in compoundsProduced.Keys)
             {
                 if (patch.Biome.Compounds.TryGetValue(compound, out EnvironmentalCompoundProperties compoundValue))
@@ -197,5 +199,55 @@ public class GasProductionEffect : IWorldEffect
                 };
             }
         }
+    }
+
+    /// <summary>
+    ///   Reduce ALL compound production by a scaling factor if one compounds happen to be overproduced.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is a heuristic to prevent production of compounds from non-existing ones.
+    ///     A better yet more complicated approach would be to only limit the processes consuming the target compounds.
+    ///   </para>
+    /// </remarks>
+    public Dictionary<Compound, float> ScaleByOverconsumption(
+        Dictionary<Compound, float> compoundsProduced, Patch patch)
+    {
+        var overConsumptionScalingFactor = 1f;
+        foreach (var production in compoundsProduced)
+        {
+            var concentrationInput = production.Value / patch.Volume;
+            if (concentrationInput < 0)
+            {
+                if (patch.Biome.Compounds.TryGetValue(
+                        production.Key, out EnvironmentalCompoundProperties compoundValue))
+                {
+                    if (compoundValue.Dissolved > Constants.DISSOLVED_MIN)
+                    {
+                        overConsumptionScalingFactor = Math.Min(
+                            -concentrationInput / (compoundValue.Dissolved - Constants.DISSOLVED_MIN),
+                            overConsumptionScalingFactor);
+                    }
+                    else
+                    {
+                        overConsumptionScalingFactor = 0;
+                    }
+                }
+                else
+                {
+                    overConsumptionScalingFactor = 0;
+                }
+            }
+        }
+
+        if (overConsumptionScalingFactor < 1)
+        {
+            foreach (var production in compoundsProduced)
+            {
+                compoundsProduced[production.Key] = production.Value * overConsumptionScalingFactor;
+            }
+        }
+
+        return compoundsProduced;
     }
 }
