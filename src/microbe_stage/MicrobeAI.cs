@@ -400,7 +400,7 @@ public class MicrobeAI
 
     private void SeekCompounds(Random random, MicrobeAICommonData data)
     {
-        if (random.Next(20) == 0)
+        if (random.Next(Constants.AI_STEPS_PER_SMELL) == 0)
         {
             ComputeCompoundsSearchWeights();
 
