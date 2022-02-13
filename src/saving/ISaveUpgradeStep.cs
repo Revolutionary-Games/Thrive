@@ -313,7 +313,8 @@
                 }
 
                 string targetWorldRef = effectsArray[0]["targetWorld"]?["$ref"]?.ToString() ??
-                    throw new JsonException("Missing field from the first element of effect array: targetWorld or $ref!");
+                    throw new JsonException("Missing field from the first element of effect array: " +
+                        "targetWorld or its $ref!");
 
                 var typeTokenText = "'$type': '" + gasProductionEffectName + "'";
                 var targetWorldTokenText = "'targetWorld': { '$ref': '" + targetWorldRef + "' }";
