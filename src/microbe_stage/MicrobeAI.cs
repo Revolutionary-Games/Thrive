@@ -416,9 +416,10 @@ public class MicrobeAI
 
         if (lastSmelledCompoundPosition != null)
         {
-            if (DistanceFromMe(lastSmelledCompoundPosition.Value) > 1.0f)
+            if (DistanceFromMe(lastSmelledCompoundPosition.Value) > 3.0f)
             {
                 targetPosition = lastSmelledCompoundPosition.Value;
+                microbe.LookAtPoint = targetPosition;
             }
             else
             {
