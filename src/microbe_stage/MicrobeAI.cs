@@ -402,20 +402,7 @@ public class MicrobeAI
     {
         if (random.Next(Constants.AI_STEPS_PER_SMELL) == 0)
         {
-            ComputeCompoundsSearchWeights();
-
-            var detections = microbe.GetDetectedCompounds(data.Clouds)
-                .OrderBy(detection => compoundsSearchWeights.ContainsKey(detection.Compound) ?
-                compoundsSearchWeights[detection.Compound] : 0).ToList();
-
-            if (detections.Count > 0)
-            {
-                lastSmelledCompoundPosition = detections[0].target;
-            }
-            else
-            {
-                lastSmelledCompoundPosition = null;
-            }
+            SmellForComounds(data);
         }
 
         if (lastSmelledCompoundPosition != null)
@@ -433,6 +420,24 @@ public class MicrobeAI
         else
         {
             RunAndTumble(random);
+        }
+    }
+
+    private void SmellForComounds(MicrobeAICommonData data)
+    {
+        ComputeCompoundsSearchWeights();
+
+        var detections = microbe.GetDetectedCompounds(data.Clouds)
+            .OrderBy(detection => compoundsSearchWeights.ContainsKey(detection.Compound) ?
+            compoundsSearchWeights[detection.Compound] : 0).ToList();
+
+        if (detections.Count > 0)
+        {
+            lastSmelledCompoundPosition = detections[0].target;
+        }
+        else
+        {
+            lastSmelledCompoundPosition = null;
         }
     }
 
