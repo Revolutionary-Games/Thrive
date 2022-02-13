@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
 using Saving;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Holds data needed for an in-progress save action. And manages stepping through all the actions that need to happen
@@ -148,7 +149,7 @@ public class InProgressSave : IDisposable
                 if (found > highestNumber)
                     highestNumber = found;
 
-                var modified = file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, name));
+                var modified = file.GetModifiedTime(Path.Combine(Constants.SAVE_FOLDER, name));
 
                 if (modified < oldestModifiedTime)
                 {

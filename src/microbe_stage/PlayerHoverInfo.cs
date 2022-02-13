@@ -39,6 +39,9 @@ public class PlayerHoverInfo : Node
     public override void _Ready()
     {
         cloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
+
+        // This needs to be processed after Microbe, otherwise this can cause double membrane initialization
+        ProcessPriority = 10;
     }
 
     public void Init(MicrobeCamera camera, CompoundCloudSystem cloudSystem)

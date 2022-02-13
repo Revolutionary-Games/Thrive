@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Directory = Godot.Directory;
 using File = Godot.File;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   A class representing a single saved game
@@ -209,7 +210,7 @@ public class Save
         if (screenshot != null)
         {
             // TODO: if in the future Godot allows converting images to in-memory PNGs that should be used here
-            tempScreenshot = PathUtils.Join(Constants.SAVE_FOLDER, "tmp.png");
+            tempScreenshot = Path.Combine(Constants.SAVE_FOLDER, "tmp.png");
             if (screenshot.SavePng(tempScreenshot) != Error.Ok)
             {
                 GD.PrintErr("Failed to save screenshot for inclusion in save");
