@@ -42,7 +42,7 @@ public class OrganellePopupMenu : PopupPanel
     [Signal]
     public delegate void ModifyPressed();
 
-    public Func<List<MicrobeEditorActionData>, int>? GetActionPrice { get; set; }
+    public Func<List<MicrobeEditorCombinableActionData>, int>? GetActionPrice { get; set; }
 
     public bool ShowPopup
     {
@@ -263,7 +263,7 @@ public class OrganellePopupMenu : PopupPanel
         {
             mpCost = GetActionPrice?.Invoke(
                 SelectedOrganelles.Where(o => o != null)
-                    .Select(o => (MicrobeEditorActionData)new RemoveActionData(o!, o!.Position, o.Orientation))
+                    .Select(o => (MicrobeEditorCombinableActionData)new RemoveActionData(o!, o!.Position, o.Orientation))
                     .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
         }
 
@@ -288,7 +288,7 @@ public class OrganellePopupMenu : PopupPanel
         else
         {
             mpCost = GetActionPrice?.Invoke(SelectedOrganelles.Where(o => o != null).Select(o =>
-                    (MicrobeEditorActionData)new MoveActionData(o!, o!.Position, o.Position, o.Orientation,
+                    (MicrobeEditorCombinableActionData)new MoveActionData(o!, o!.Position, o.Position, o.Orientation,
                         o.Orientation))
                 .ToList()) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
         }

@@ -8,12 +8,12 @@ using System.Linq;
 /// </summary>
 public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 {
-    private List<MicrobeEditorActionData>? cache;
+    private List<MicrobeEditorCombinableActionData>? cache;
 
     /// <summary>
     ///   Calculates how much MP these actions would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionsCost(List<MicrobeEditorActionData> actions)
+    public int WhatWouldActionsCost(List<MicrobeEditorCombinableActionData> actions)
     {
         return actions.Sum(WhatWouldActionCost);
     }
@@ -21,17 +21,17 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     /// <summary>
     ///   Calculates how much MP this action would cost if performed on top of the current history.
     /// </summary>
-    public int WhatWouldActionCost(MicrobeEditorActionData action)
+    public int WhatWouldActionCost(MicrobeEditorCombinableActionData combinableAction)
     {
         int result = 0;
 
         for (var i = 0; i < (cache ??= GetActionHistorySinceLastNewMicrobePress()).Count; ++i)
         {
-            switch (action.GetInterferenceModeWith(cache[i]))
+            switch (combinableAction.GetInterferenceModeWith(cache[i]))
             {
                 case MicrobeActionInterferenceMode.Combinable:
                     result -= cache[i].CalculateCost();
-                    action = (MicrobeEditorActionData)action.Combine(cache[i]);
+                    combinableAction = (MicrobeEditorCombinableActionData)combinableAction.Combine(cache[i]);
                     break;
                 case MicrobeActionInterferenceMode.CancelsOut:
                     result -= cache[i].CalculateCost();
@@ -42,7 +42,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
             }
         }
 
-        result += action.CalculateCost();
+        result += combinableAction.CalculateCost();
         return result;
     }
 
@@ -61,7 +61,7 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
                     case MicrobeActionInterferenceMode.NoInterference:
                         break;
                     case MicrobeActionInterferenceMode.Combinable:
-                        var combinedValue = (MicrobeEditorActionData)cache[compareIndex].Combine(cache[compareToIndex]);
+                        var combinedValue = (MicrobeEditorCombinableActionData)cache[compareIndex].Combine(cache[compareToIndex]);
                         cache.RemoveAt(compareIndex);
                         cache.RemoveAt(compareToIndex);
                         cache.Insert(compareToIndex, combinedValue);
@@ -120,15 +120,20 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
         base.AddAction(action);
     }
 
+    public bool OrganellePlacedThisSession(OrganelleTemplate organelle)
+    {
+        return Actions.SelectMany(a => a.Data).OfType<PlacementActionData>().Any(a => a.Organelle == organelle);
+    }
+
     /// <summary>
     ///   Returns all actions since the last time the user performed the "New Microbe" action
     /// </summary>
-    private List<MicrobeEditorActionData> GetActionHistorySinceLastNewMicrobePress()
+    private List<MicrobeEditorCombinableActionData> GetActionHistorySinceLastNewMicrobePress()
     {
-        var relevantActions = actions.Take(actionIndex).SelectMany(p => p.Data).ToList();
+        var relevantActions = Actions.Take(ActionIndex).SelectMany(p => p.Data).ToList();
         var lastNewMicrobeActionIndex = relevantActions.FindLastIndex(p => p is NewMicrobeActionData);
         return lastNewMicrobeActionIndex == -1 ?
             relevantActions :
-            actions.Skip(lastNewMicrobeActionIndex).SelectMany(p => p.Data).ToList();
+            Actions.Skip(lastNewMicrobeActionIndex).SelectMany(p => p.Data).ToList();
     }
 }

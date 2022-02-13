@@ -1,22 +1,22 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class BehaviourChangeActionData : MicrobeEditorActionData
+public class BehaviourActionData : MicrobeEditorCombinableActionData
 {
     public float OldValue;
     public float NewValue;
     public BehaviouralValueType Type;
 
-    public BehaviourChangeActionData(float oldValue, float newValue, BehaviouralValueType type)
+    public BehaviourActionData(float oldValue, float newValue, BehaviouralValueType type)
     {
         OldValue = oldValue;
         NewValue = newValue;
         Type = type;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
-        if (other is BehaviourChangeActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
+        if (other is BehaviourActionData behaviourChangeActionData && behaviourChangeActionData.Type == Type)
         {
             // If the value has been changed back to a previous value
             if (Math.Abs(NewValue - behaviourChangeActionData.OldValue) < MathUtils.EPSILON &&
@@ -38,12 +38,12 @@ public class BehaviourChangeActionData : MicrobeEditorActionData
         return 0;
     }
 
-    protected override ActionData CombineGuaranteed(ActionData other)
+    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        var behaviourChangeActionData = (BehaviourChangeActionData)other;
+        var behaviourChangeActionData = (BehaviourActionData)other;
         if (Math.Abs(OldValue - behaviourChangeActionData.NewValue) < MathUtils.EPSILON)
-            return new BehaviourChangeActionData(behaviourChangeActionData.OldValue, NewValue, Type);
+            return new BehaviourActionData(behaviourChangeActionData.OldValue, NewValue, Type);
 
-        return new BehaviourChangeActionData(behaviourChangeActionData.NewValue, OldValue, Type);
+        return new BehaviourActionData(behaviourChangeActionData.NewValue, OldValue, Type);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class MoveActionData : MicrobeEditorActionData
+public class MoveActionData : MicrobeEditorCombinableActionData
 {
     public OrganelleTemplate Organelle;
     public Hex OldLocation;
@@ -19,7 +19,7 @@ public class MoveActionData : MicrobeEditorActionData
         NewRotation = newRotation;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         // If this organelle got moved in the same session again
         if (other is MoveActionData moveActionData && moveActionData.Organelle.Definition == Organelle.Definition)
@@ -59,7 +59,7 @@ public class MoveActionData : MicrobeEditorActionData
         return Constants.ORGANELLE_MOVE_COST;
     }
 
-    protected override ActionData CombineGuaranteed(ActionData other)
+    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
         return other switch
         {

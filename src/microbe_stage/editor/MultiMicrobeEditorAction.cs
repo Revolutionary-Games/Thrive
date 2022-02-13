@@ -15,7 +15,7 @@ public class MultiMicrobeEditorAction : MicrobeEditorAction
     [JsonProperty]
     public IReadOnlyList<MicrobeEditorAction> Actions { get; private set; }
 
-    public override IEnumerable<MicrobeEditorActionData> Data => Actions.SelectMany(a => a.Data);
+    public override IEnumerable<MicrobeEditorCombinableActionData> Data => Actions.SelectMany(a => a.Data);
 
     public override void DoAction()
     {

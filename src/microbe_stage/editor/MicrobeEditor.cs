@@ -878,8 +878,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         if (Math.Abs(value - oldValue) < MathUtils.EPSILON)
             return;
 
-        var action = new SingleMicrobeEditorAction<BehaviourChangeActionData>(DoBehaviourChangeAction,
-            UndoBehaviourChangeAction, new BehaviourChangeActionData(oldValue, value, type));
+        var action = new SingleMicrobeEditorAction<BehaviourActionData>(DoBehaviourChangeAction,
+            UndoBehaviourChangeAction, new BehaviourActionData(oldValue, value, type));
 
         EnqueueAction(action);
     }
@@ -915,8 +915,8 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
-        var action = new SingleMicrobeEditorAction<RigidityChangeActionData>(DoRigidityChangeAction,
-            UndoRigidityChangeAction, new RigidityChangeActionData(newRigidity, prevRigidity));
+        var action = new SingleMicrobeEditorAction<RigidityActionData>(DoRigidityChangeAction,
+            UndoRigidityChangeAction, new RigidityActionData(newRigidity, prevRigidity));
 
         EnqueueAction(action);
     }
@@ -2381,8 +2381,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
 
     private bool PlacedThisSession(OrganelleTemplate organelle)
     {
-        return History.Actions.SelectMany(a => a.Data).Any(a =>
-            a is PlacementActionData placementActionData && placementActionData.Organelle == organelle);
+        return History.OrganellePlacedThisSession(organelle);
     }
 
     /// <summary>
@@ -2451,7 +2450,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void DoBehaviourChangeAction(BehaviourChangeActionData data)
+    private void DoBehaviourChangeAction(BehaviourActionData data)
     {
         if (Behaviour == null)
             throw new InvalidOperationException($"Editor has no {nameof(Behaviour)} set for change action to use");
@@ -2461,7 +2460,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoBehaviourChangeAction(BehaviourChangeActionData data)
+    private void UndoBehaviourChangeAction(BehaviourActionData data)
     {
         if (Behaviour == null)
             throw new InvalidOperationException($"Editor has no {nameof(Behaviour)} set for change action to use");
@@ -2471,7 +2470,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void DoRigidityChangeAction(RigidityChangeActionData data)
+    private void DoRigidityChangeAction(RigidityActionData data)
     {
         Rigidity = data.NewRigidity;
 
@@ -2482,7 +2481,7 @@ public class MicrobeEditor : NodeWithInput, ILoadableGameState, IGodotEarlyNodeR
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoRigidityChangeAction(RigidityChangeActionData data)
+    private void UndoRigidityChangeAction(RigidityActionData data)
     {
         Rigidity = data.PreviousRigidity;
         OnRigidityChanged();

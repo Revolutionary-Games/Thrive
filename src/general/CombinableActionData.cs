@@ -1,6 +1,6 @@
 ﻿using System;
 
-public abstract class ActionData
+public abstract class CombinableActionData
 {
     /// <summary>
     ///   Does this action cancel out with the <paramref name="other"/> action?
@@ -9,7 +9,7 @@ public abstract class ActionData
     ///   Returns the interference mode with <paramref name="other"/>
     /// </returns>
     /// <para>Do not call with itself</para>
-    public abstract MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other);
+    public abstract MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other);
 
     /// <summary>
     ///   Combines two actions to one if possible.
@@ -19,7 +19,7 @@ public abstract class ActionData
     /// <param name="other">The action this should be combined with</param>
     /// <returns>Returns the combined action</returns>
     /// <exception cref="NotSupportedException">Thrown when combination is not possible</exception>
-    public ActionData Combine(ActionData other)
+    public CombinableActionData Combine(CombinableActionData other)
     {
         if (GetInterferenceModeWith(other) != MicrobeActionInterferenceMode.Combinable)
             throw new NotSupportedException();
@@ -32,5 +32,5 @@ public abstract class ActionData
     /// </summary>
     /// <param name="other">The action this should be combined with. Guaranteed to be combinable</param>
     /// <returns>Returns the combined action</returns>
-    protected abstract ActionData CombineGuaranteed(ActionData other);
+    protected abstract CombinableActionData CombineGuaranteed(CombinableActionData other);
 }

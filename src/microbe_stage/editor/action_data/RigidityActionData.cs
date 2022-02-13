@@ -1,20 +1,20 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class RigidityChangeActionData : MicrobeEditorActionData
+public class RigidityActionData : MicrobeEditorCombinableActionData
 {
     public float NewRigidity;
     public float PreviousRigidity;
 
-    public RigidityChangeActionData(float newRigidity, float previousRigidity)
+    public RigidityActionData(float newRigidity, float previousRigidity)
     {
         NewRigidity = newRigidity;
         PreviousRigidity = previousRigidity;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
-        if (other is RigidityChangeActionData rigidityChangeActionData)
+        if (other is RigidityActionData rigidityChangeActionData)
         {
             // If the value has been changed back to a previous value
             if (Math.Abs(NewRigidity - rigidityChangeActionData.PreviousRigidity) < MathUtils.EPSILON &&
@@ -36,13 +36,13 @@ public class RigidityChangeActionData : MicrobeEditorActionData
             Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
     }
 
-    protected override ActionData CombineGuaranteed(ActionData other)
+    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
-        var rigidityChangeActionData = (RigidityChangeActionData)other;
+        var rigidityChangeActionData = (RigidityActionData)other;
 
         if (Math.Abs(PreviousRigidity - rigidityChangeActionData.NewRigidity) < MathUtils.EPSILON)
-            return new RigidityChangeActionData(NewRigidity, rigidityChangeActionData.PreviousRigidity);
+            return new RigidityActionData(NewRigidity, rigidityChangeActionData.PreviousRigidity);
 
-        return new RigidityChangeActionData(rigidityChangeActionData.NewRigidity, PreviousRigidity);
+        return new RigidityActionData(rigidityChangeActionData.NewRigidity, PreviousRigidity);
     }
 }

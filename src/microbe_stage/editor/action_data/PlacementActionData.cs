@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 [JSONAlwaysDynamicType]
-public class PlacementActionData : MicrobeEditorActionData
+public class PlacementActionData : MicrobeEditorCombinableActionData
 {
     public List<OrganelleTemplate>? ReplacedCytoplasm;
     public OrganelleTemplate Organelle;
@@ -15,7 +15,7 @@ public class PlacementActionData : MicrobeEditorActionData
         Orientation = orientation;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         // If this organelle got removed in this session
         if (other is RemoveActionData removeActionData && removeActionData.Organelle.Definition == Organelle.Definition)
@@ -49,7 +49,7 @@ public class PlacementActionData : MicrobeEditorActionData
         return Organelle.Definition.MPCost;
     }
 
-    protected override ActionData CombineGuaranteed(ActionData other)
+    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
         if (other is RemoveActionData removeActionData)
         {

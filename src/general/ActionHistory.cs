@@ -6,29 +6,27 @@ using Newtonsoft.Json;
 ///   General implementation of an action history and undo / redo for use by editors
 /// </summary>
 /// <typeparam name="T">Type of actions to hold</typeparam>
-public abstract class ActionHistory<T>
+public class ActionHistory<T>
     where T : ReversibleAction
 {
-    [JsonProperty]
-    protected List<T> actions = new();
-
     /// <summary>
     ///   marks the last action that has been done (not undone, but
     ///   possibly redone), is 0 if there is none.
     /// </summary>
     [JsonProperty]
-    protected int actionIndex;
+    protected int ActionIndex { get; private set; }
 
-    public List<T> Actions => actions;
+    [JsonProperty]
+    protected List<T> Actions { get; private set; } = new();
 
     public bool CanRedo()
     {
-        return actionIndex < actions.Count;
+        return ActionIndex < Actions.Count;
     }
 
     public bool CanUndo()
     {
-        return actionIndex > 0;
+        return ActionIndex > 0;
     }
 
     public virtual bool Redo()
@@ -36,7 +34,7 @@ public abstract class ActionHistory<T>
         if (!CanRedo())
             return false;
 
-        actions[actionIndex++].Perform();
+        Actions[ActionIndex++].Perform();
 
         return true;
     }
@@ -46,7 +44,7 @@ public abstract class ActionHistory<T>
         if (!CanUndo())
             return false;
 
-        actions[--actionIndex].Undo();
+        Actions[--ActionIndex].Undo();
 
         return true;
     }
@@ -57,14 +55,14 @@ public abstract class ActionHistory<T>
     public virtual void AddAction(T action)
     {
         // Throw away old actions if we are not at the end of the action list
-        while (actionIndex < actions.Count)
-            actions.RemoveAt(actions.Count - 1);
+        while (ActionIndex < Actions.Count)
+            Actions.RemoveAt(Actions.Count - 1);
 
-        if (actionIndex != actions.Count)
+        if (ActionIndex != Actions.Count)
             throw new Exception("action history logic is wrong");
 
         action.Perform();
-        actions.Add(action);
-        ++actionIndex;
+        Actions.Add(action);
+        ++ActionIndex;
     }
 }

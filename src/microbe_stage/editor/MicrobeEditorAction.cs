@@ -5,6 +5,6 @@
 /// </summary>
 public abstract class MicrobeEditorAction : ReversibleAction
 {
-    public abstract IEnumerable<MicrobeEditorActionData> Data { get; }
+    public abstract IEnumerable<MicrobeEditorCombinableActionData> Data { get; }
     public abstract int CalculateCost();
 }

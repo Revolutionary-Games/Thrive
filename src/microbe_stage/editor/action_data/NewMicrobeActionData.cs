@@ -1,7 +1,7 @@
 ﻿using System;
 
 [JSONAlwaysDynamicType]
-public class NewMicrobeActionData : MicrobeEditorActionData
+public class NewMicrobeActionData : MicrobeEditorCombinableActionData
 {
     public OrganelleLayout<OrganelleTemplate> OldEditedMicrobeOrganelles;
     public MembraneType OldMembrane;
@@ -12,7 +12,7 @@ public class NewMicrobeActionData : MicrobeEditorActionData
         OldMembrane = oldMembrane;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         return MicrobeActionInterferenceMode.NoInterference;
     }
@@ -22,7 +22,7 @@ public class NewMicrobeActionData : MicrobeEditorActionData
         return -Constants.BASE_MUTATION_POINTS;
     }
 
-    protected override ActionData CombineGuaranteed(ActionData other)
+    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
         throw new NotImplementedException();
     }

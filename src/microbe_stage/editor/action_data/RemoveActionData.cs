@@ -1,5 +1,5 @@
 ﻿[JSONAlwaysDynamicType]
-public class RemoveActionData : MicrobeEditorActionData
+public class RemoveActionData : MicrobeEditorCombinableActionData
 {
     public OrganelleTemplate Organelle;
     public Hex Location;
@@ -17,7 +17,7 @@ public class RemoveActionData : MicrobeEditorActionData
         Orientation = orientation;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         // If this organelle got placed in this session on the same position
         if (other is PlacementActionData placementActionData &&
@@ -45,7 +45,7 @@ public class RemoveActionData : MicrobeEditorActionData
         return GotReplaced ? 0 : Constants.ORGANELLE_REMOVE_COST;
     }
 
-    protected override ActionData CombineGuaranteed(ActionData other)
+    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
         if (other is PlacementActionData placementActionData)
         {

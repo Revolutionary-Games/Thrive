@@ -1,5 +1,5 @@
 ﻿[JSONAlwaysDynamicType]
-public class MembraneActionData : MicrobeEditorActionData
+public class MembraneActionData : MicrobeEditorCombinableActionData
 {
     public MembraneType OldMembrane;
     public MembraneType NewMembrane;
@@ -10,7 +10,7 @@ public class MembraneActionData : MicrobeEditorActionData
         NewMembrane = newMembrane;
     }
 
-    public override MicrobeActionInterferenceMode GetInterferenceModeWith(ActionData other)
+    public override MicrobeActionInterferenceMode GetInterferenceModeWith(CombinableActionData other)
     {
         if (other is MembraneActionData membraneActionData)
         {
@@ -31,7 +31,7 @@ public class MembraneActionData : MicrobeEditorActionData
         return NewMembrane.EditorCost;
     }
 
-    protected override ActionData CombineGuaranteed(ActionData other)
+    protected override CombinableActionData CombineGuaranteed(CombinableActionData other)
     {
         var membraneActionData = (MembraneActionData)other;
         if (OldMembrane == membraneActionData.NewMembrane)
