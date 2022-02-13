@@ -751,25 +751,14 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         int currentLineIndex = 0;
         var position = microbe.GlobalTransform.origin;
 
-        // Update all lines (or create more if we don't have enough) to point to compounds (if found) they look for
-        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        foreach (var (compound, colour, target) in microbe.GetDetectedCompounds(Clouds))
         {
             var line = GetOrCreateGuidanceLine(currentLineIndex++);
 
-            // TODO: should we use threading to parallelize these compound location finds?
-            var target = Clouds.FindCompoundNearPoint(position, compound, range, minAmount);
-
-            if (target == null)
-            {
-                line.Visible = false;
-            }
-            else
-            {
-                line.Colour = colour;
-                line.LineStart = position;
-                line.LineEnd = target.Value;
-                line.Visible = true;
-            }
+            line.Colour = colour;
+            line.LineStart = position;
+            line.LineEnd = target;
+            line.Visible = true;
         }
 
         // Remove excess lines
