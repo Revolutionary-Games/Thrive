@@ -405,7 +405,8 @@ public class MicrobeAI
             ComputeCompoundsSearchWeights();
 
             var detections = microbe.GetDetectedCompounds(data.Clouds)
-                .OrderBy(detection => compoundsSearchWeights[detection.Compound]).ToList();
+                .OrderBy(detection => compoundsSearchWeights.ContainsKey(detection.Compound) ?
+                compoundsSearchWeights[detection.Compound] : 0).ToList();
 
             if (detections.Count > 0)
             {
