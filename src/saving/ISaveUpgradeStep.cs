@@ -312,16 +312,8 @@
                         " did not have registered tokens in array.");
                 }
 
-                string targetWorldRef;
-                try
-                {
-                    targetWorldRef = effectsArray[0]["targetWorld"]!["$ref"]!.ToString();
-                }
-                catch (NullReferenceException)
-                {
-                    throw new ArgumentException("Property " + property.Name +
-                        " did not match gas effect registration template.");
-                }
+                string targetWorldRef = effectsArray[0]["targetWorld"]?["$ref"]?.ToString() ??
+                    throw new JsonException("Missing field from the first element of effect array: targetWorld or $ref!");
 
                 var typeTokenText = "'$type': '" + gasProductionEffectName + "'";
                 var targetWorldTokenText = "'targetWorld': { '$ref': '" + targetWorldRef + "' }";
