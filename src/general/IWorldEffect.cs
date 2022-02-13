@@ -243,8 +243,8 @@ public class GasProductionEffect : IWorldEffect
     ///     A better yet more complicated approach would be to only limit the processes consuming the target compounds.
     ///   </para>
     /// </remarks>
-    public Dictionary<Compound, float> ScaleByOverconsumption(
-        Dictionary<Compound, float> compoundsProduced, Patch patch)
+    public Dictionary<Compound, float> ScaleByOverconsumption(Dictionary<Compound, float> compoundsProduced,
+        Patch patch)
     {
         var overConsumptionScalingFactor = ComputeOverConsumptionFactor(compoundsProduced, patch);
 

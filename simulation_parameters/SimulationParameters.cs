@@ -176,15 +176,19 @@ public class SimulationParameters : Node
     /// <summary>
     ///   Returns all compounds that are clouds
     /// </summary>
-    public List<Compound> GetCloudCompounds() => compounds.Values.Where(
-        c => c.IsCloud).ToList();
+    public List<Compound> GetCloudCompounds()
+    {
+        return compounds.Values.Where(c => c.IsCloud).ToList();
+    }
 
     /// <summary>
     ///   Returns all environmental *molecular* compounds that are dissolved in the environment, i.e. gas.
     /// </summary>
     /// <remarks>This excludes sunlight, and includes O2, CO2, N...</remarks>
-    public List<Compound> GetGasCompounds() => compounds.Values.Where(
-        c => c.IsCloud && c.IsEnvironmental && c.CanBeDistributed).ToList();
+    public List<Compound> GetGasCompounds()
+    {
+        return compounds.Values.Where(c => c.IsCloud && c.IsEnvironmental && c.CanBeDistributed).ToList();
+    }
 
     public Dictionary<string, MusicCategory> GetMusicCategories()
     {
