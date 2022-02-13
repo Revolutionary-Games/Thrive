@@ -395,6 +395,18 @@ public class MicrobeAI
         }
     }
 
+    private void SeekCompounds(Random random, MicrobeAICommonData data)
+    {
+        if (microbe.GetDetectedCompounds(data.Clouds).Count > 0)
+        {
+            SetMoveSpeed(0.0f);
+        }
+        else
+        {
+            RunAndTumble(random);
+        }
+    }
+
     // For doing run and tumble
     private void RunAndTumble(Random random)
     {
