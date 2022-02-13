@@ -150,7 +150,7 @@ public class MicrobeAI
         // Otherwise just wander around and look for compounds
         if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
         {
-            RunAndTumble(random);
+            SeekCompounds(random, data);
         }
         else
         {
