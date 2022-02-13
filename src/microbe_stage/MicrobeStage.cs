@@ -270,7 +270,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         // These need to be created here as well for child property save load to work
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
-        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
+        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned, Clouds);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
