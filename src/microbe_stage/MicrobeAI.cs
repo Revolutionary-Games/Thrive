@@ -433,7 +433,7 @@ public class MicrobeAI
 
         if (detections.Count > 0)
         {
-            lastSmelledCompoundPosition = detections[0].target;
+            lastSmelledCompoundPosition = detections[0].Target;
         }
         else
         {
