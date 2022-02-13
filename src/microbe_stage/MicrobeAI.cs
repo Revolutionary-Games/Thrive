@@ -36,6 +36,9 @@ public class MicrobeAI
     [JsonIgnore]
     private EntityReference<Microbe> focusedPrey = new();
 
+    [JsonIgnore]
+    private Vector3? lastSmelledCompoundPosition = new(0, 0, 0);
+
     [JsonProperty]
     private float pursuitThreshold;
 
@@ -397,7 +400,21 @@ public class MicrobeAI
 
     private void SeekCompounds(Random random, MicrobeAICommonData data)
     {
-        if (microbe.GetDetectedCompounds(data.Clouds).Count > 0)
+        if (random.Next(20) == 0)
+        {
+            var detections = microbe.GetDetectedCompounds(data.Clouds);
+
+            if (detections.Count > 0)
+            {
+                lastSmelledCompoundPosition = detections[0].target;
+            }
+            else
+            {
+                lastSmelledCompoundPosition = null;
+            }
+        }
+
+        if (lastSmelledCompoundPosition == null)
         {
             SetMoveSpeed(0.0f);
         }
