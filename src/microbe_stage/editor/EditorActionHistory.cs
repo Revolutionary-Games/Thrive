@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ICSharpCode.SharpZipLib;
 
 /// <summary>
 ///   Holds the action history for the microbe editor.
@@ -9,6 +10,9 @@ using System.Linq;
 public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 {
     private List<MicrobeEditorCombinableActionData>? cache;
+
+    private List<MicrobeEditorCombinableActionData> History =>
+        cache ??= GetActionHistorySinceLastNewMicrobePress();
 
     /// <summary>
     ///   Calculates how much MP these actions would cost if performed on top of the current history.
@@ -25,20 +29,28 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     {
         int result = 0;
 
-        for (var i = 0; i < (cache ??= GetActionHistorySinceLastNewMicrobePress()).Count; ++i)
+        for (var i = 0; i < History.Count; ++i)
         {
-            switch (combinableAction.GetInterferenceModeWith(cache[i]))
+            switch (combinableAction.GetInterferenceModeWith(History[i]))
             {
                 case MicrobeActionInterferenceMode.Combinable:
-                    result -= cache[i].CalculateCost();
-                    combinableAction = (MicrobeEditorCombinableActionData)combinableAction.Combine(cache[i]);
+                {
+                    result -= History[i].CalculateCost();
+                    combinableAction = (MicrobeEditorCombinableActionData)combinableAction.Combine(History[i]);
                     break;
+                }
+
                 case MicrobeActionInterferenceMode.CancelsOut:
-                    result -= cache[i].CalculateCost();
+                {
+                    result -= History[i].CalculateCost();
                     return result;
+                }
+
                 case MicrobeActionInterferenceMode.ReplacesOther:
-                    result -= cache[i].CalculateCost();
+                {
+                    result -= History[i].CalculateCost();
                     break;
+                }
             }
         }
 
@@ -51,41 +63,51 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
     /// </summary>
     public int CalculateMutationPointsLeft()
     {
-        var copyLength = (cache ??= GetActionHistorySinceLastNewMicrobePress()).Count;
+        var copyLength = History.Count;
         for (int compareToIndex = 0; compareToIndex < copyLength - 1; compareToIndex++)
         {
             for (int compareIndex = copyLength - 1; compareIndex > compareToIndex; compareIndex--)
             {
-                switch (cache[compareIndex].GetInterferenceModeWith(cache[compareToIndex]))
+                switch (History[compareIndex].GetInterferenceModeWith(History[compareToIndex]))
                 {
                     case MicrobeActionInterferenceMode.NoInterference:
                         break;
+
                     case MicrobeActionInterferenceMode.Combinable:
-                        var combinedValue = (MicrobeEditorCombinableActionData)cache[compareIndex].Combine(cache[compareToIndex]);
-                        cache.RemoveAt(compareIndex);
-                        cache.RemoveAt(compareToIndex);
-                        cache.Insert(compareToIndex, combinedValue);
+                    {
+                        var combinedValue = (MicrobeEditorCombinableActionData)History[compareIndex].Combine(History[compareToIndex]);
+                        History.RemoveAt(compareIndex);
+                        History.RemoveAt(compareToIndex);
+                        History.Insert(compareToIndex, combinedValue);
                         copyLength--;
                         compareIndex = copyLength;
                         break;
+                    }
+
                     case MicrobeActionInterferenceMode.ReplacesOther:
-                        cache.RemoveAt(compareToIndex);
+                    {
+                        History.RemoveAt(compareToIndex);
                         copyLength--;
                         compareIndex = copyLength;
                         break;
+                    }
+
                     case MicrobeActionInterferenceMode.CancelsOut:
-                        cache.RemoveAt(compareIndex);
-                        cache.RemoveAt(compareToIndex);
+                    {
+                        History.RemoveAt(compareIndex);
+                        History.RemoveAt(compareToIndex);
                         copyLength -= 2;
                         compareIndex = copyLength;
                         break;
+                    }
+
                     default:
-                        throw new NotImplementedException();
+                        throw new ArgumentOutOfRangeException();
                 }
             }
         }
 
-        return Constants.BASE_MUTATION_POINTS - cache.Sum(p => p.CalculateCost());
+        return Constants.BASE_MUTATION_POINTS - History.Sum(p => p.CalculateCost());
     }
 
     public override bool Redo()
@@ -104,17 +126,19 @@ public class EditorActionHistory : ActionHistory<MicrobeEditorAction>
 
     public override void AddAction(MicrobeEditorAction action)
     {
-        if (cache == null)
-            throw new ArgumentException("Call Redo or Undo first");
-
         switch (action)
         {
             case SingleMicrobeEditorAction<NewMicrobeActionData>:
-                cache.Clear();
+            {
+                History.Clear();
                 break;
+            }
+
             default:
-                cache.AddRange(action.Data);
+            {
+                History.AddRange(action.Data);
                 break;
+            }
         }
 
         base.AddAction(action);
