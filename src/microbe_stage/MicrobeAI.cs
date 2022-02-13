@@ -416,7 +416,15 @@ public class MicrobeAI
 
         if (lastSmelledCompoundPosition != null)
         {
-            SetMoveSpeed(0.0f);
+            if (DistanceFromMe(lastSmelledCompoundPosition.Value) > 1.0f)
+            {
+                targetPosition = lastSmelledCompoundPosition.Value;
+            }
+            else
+            {
+                lastSmelledCompoundPosition = null;
+            }
+
         }
         else
         {
