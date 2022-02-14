@@ -400,6 +400,16 @@ public class MicrobeAI
 
     private void SeekCompounds(Random random, MicrobeAICommonData data)
     {
+        // If we are still engulfing for some reason, stop
+        microbe.State = Microbe.MicrobeState.Normal;
+
+        // More active species just try to get distance to avoid over-clustering
+        if (RollCheck(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY + (Constants.MAX_SPECIES_ACTIVITY / 2), random))
+        {
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            return;
+        }
+
         if (random.Next(Constants.AI_STEPS_PER_SMELL) == 0)
         {
             SmellForComounds(data);
@@ -458,9 +468,6 @@ public class MicrobeAI
         // The scientifically accurate algorithm has been flipped to account for the compound
         // deposits being a lot smaller compared to the microbes
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
-
-        // If we are still engulfing for some reason, stop
-        microbe.State = Microbe.MicrobeState.Normal;
 
         ComputeCompoundsSearchWeights();
 
