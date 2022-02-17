@@ -140,6 +140,19 @@ public class PlayerMicrobeInput : NodeWithInput
         return true;
     }
 
+    [RunOnKeyDown("g_pack_commands")]
+    public bool ShowSignalingCommandsMenu()
+    {
+        GD.Print("TODO: show signaling commands");
+        return false;
+    }
+
+    [RunOnKeyUp("g_pack_commands")]
+    public void CloseSignalingCommandsMenu()
+    {
+        GD.Print("TODO: hide/select signaling command");
+    }
+
     [RunOnKeyDown("g_cheat_editor")]
     public void CheatEditor()
     {
