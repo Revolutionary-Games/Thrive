@@ -384,11 +384,11 @@ public class ModManager : Control
     /// <returns>The loaded icon or null if mod doesn't have icon set</returns>
     public static Texture? LoadModIcon(FullModDetails mod)
     {
-        if (string.IsNullOrEmpty(mod?.Info?.Icon))
+        if (string.IsNullOrEmpty(mod.Info.Icon))
             return null;
 
         var image = new Image();
-        image.Load(Path.Combine(mod?.Folder, mod?.Info?.Icon!));
+        image.Load(Path.Combine(mod.Folder, mod.Info.Icon!));
 
         var texture = new ImageTexture();
         texture.CreateFromImage(image);
@@ -435,9 +435,9 @@ public class ModManager : Control
     /// </summary>
     public static ModConfigItemInfo[] GetModConfigList(FullModDetails currentMod)
     {
-        if (FileHelpers.Exists(Path.Combine(currentMod?.Folder, currentMod?.Info?.ConfigToLoad)))
+        if (FileHelpers.Exists(Path.Combine(currentMod.Folder, currentMod.Info.ConfigToLoad ?? string.Empty)))
         {
-            var infoFile = Path.Combine(currentMod?.Folder, currentMod?.Info?.ConfigToLoad);
+            var infoFile = Path.Combine(currentMod.Folder, currentMod.Info.ConfigToLoad ?? string.Empty);
 
             using var file = new File();
 
@@ -686,7 +686,7 @@ public class ModManager : Control
             new Dictionary<string, Dictionary<string, object>>();
         foreach (FullModDetails currentMod in modConfigList)
         {
-            savedConfig.Add(currentMod.InternalName, currentMod?.CurrentConfiguration ?? new());
+            savedConfig.Add(currentMod.InternalName, currentMod.CurrentConfiguration ?? new Dictionary<string, object>());
         }
 
         file.StoreString(JsonConvert.SerializeObject(savedConfig, Formatting.Indented));
@@ -804,10 +804,10 @@ public class ModManager : Control
         foreach (var mod in notEnabledMods)
         {
             availableModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
-            if (!string.IsNullOrEmpty(mod.Info?.Description))
+            if (!string.IsNullOrEmpty(mod.Info.Description))
             {
                 availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1,
-                    mod.Info?.Description ?? mod.InternalName);
+                    string.IsNullOrEmpty(mod.Info.Description) ? mod.InternalName : mod.Info.Description);
             }
         }
 
@@ -866,7 +866,7 @@ public class ModManager : Control
         // TODO: It should only load mods that are actually loaded but I am not sure how...
         foreach (var currentMod in enabledMods)
         {
-            if (currentMod != null && currentMod?.Info != null)
+            if (currentMod != null)
             {
                 VerifyConfigFileExist(currentMod);
                 if (currentMod.CurrentConfiguration != null)
@@ -877,10 +877,10 @@ public class ModManager : Control
                     }
 
                     configModContainer.AddItem(currentMod.InternalName, LoadModIcon(currentMod));
-                    if (!string.IsNullOrEmpty(currentMod.Info?.Description))
+                    if (!string.IsNullOrEmpty(currentMod.Info.Description))
                     {
                         configModContainer.SetItemTooltip(configModContainer.GetItemCount() - 1,
-                            currentMod.Info?.Description ?? currentMod.InternalName);
+                            string.IsNullOrEmpty(currentMod.Info.Description) ? currentMod.InternalName : currentMod.Info.Description);
                     }
                 }
             }
@@ -915,9 +915,9 @@ public class ModManager : Control
                     currentItemInfo.Value = selectedMod.ConfigurationInfoList[index].Value;
                     if (selectedMod?.CurrentConfiguration != null)
                     {
-                        if (currentItemInfo.ID != null && selectedMod.CurrentConfiguration.TryGetValue(currentItemInfo.ID, out var current))
+                        if (currentItemInfo.ID != null)
                         {
-                            current = currentItemInfo.Value;
+                            selectedMod.CurrentConfiguration[currentItemInfo.ID] = currentItemInfo.Value;
                         }
                     }
                 }
@@ -949,20 +949,17 @@ public class ModManager : Control
 
         enabledModsContainer.Clear();
 
-        enabledMods = validMods.Where(IsModEnabled!).ToList();
+        enabledMods = validMods.Where(IsModEnabled).ToList();
 
         foreach (var mod in enabledMods)
         {
             if (mod != null)
             {
                 enabledModsContainer.AddItem(mod.InternalName, LoadModIcon(mod));
-                if (mod?.Info != null)
+                if (!string.IsNullOrEmpty(mod.Info.Description))
                 {
-                    if (!string.IsNullOrEmpty(mod?.Info.Description))
-                    {
-                        enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1,
-                            mod?.Info?.Description ?? mod?.InternalName);
-                    }
+                    enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1,
+                        mod.Info.Description ?? mod.InternalName);
                 }
             }
         }

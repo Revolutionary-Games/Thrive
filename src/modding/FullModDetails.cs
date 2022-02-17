@@ -17,10 +17,11 @@ public class FullModDetails : IEquatable<FullModDetails>
     {
         InternalName = internalName;
         Info = new ModInfo();
+        Folder = string.Empty;
     }
 
     public string InternalName { get; }
-    public string? Folder { get; set; }
+    public string Folder { get; set; }
 
     /// <summary>
     ///   Is the mod compatible with the current version of thrive?

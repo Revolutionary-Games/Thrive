@@ -250,23 +250,20 @@ public class ModUploader : Control
         }
         else
         {
-            if (selectedMod.Info != null)
-            {
-                editedTitle.Text = selectedMod.Info?.Name;
-                editedDescription.Text = string.IsNullOrEmpty(selectedMod.Info?.LongDescription) ?
-                    selectedMod.Info?.Description :
-                    selectedMod.Info?.LongDescription;
-                editedVisibility.Pressed = true;
-                editedTags.Text = string.Empty;
+            editedTitle.Text = selectedMod.Info.Name;
+            editedDescription.Text = string.IsNullOrEmpty(selectedMod.Info.LongDescription) ?
+                selectedMod.Info.Description :
+                selectedMod.Info.LongDescription;
+            editedVisibility.Pressed = true;
+            editedTags.Text = string.Empty;
 
-                if (selectedMod.Info?.Icon == null)
-                {
-                    toBeUploadedPreviewImagePath = null;
-                }
-                else
-                {
-                    toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
-                }
+            if (selectedMod.Info.Icon == null)
+            {
+                toBeUploadedPreviewImagePath = null;
+            }
+            else
+            {
+                toBeUploadedPreviewImagePath = Path.Combine(selectedMod.Folder, selectedMod.Info.Icon);
             }
 
             // TODO: this is not translated here as the default language to upload mods in, is English

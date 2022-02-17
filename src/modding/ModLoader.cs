@@ -466,14 +466,14 @@ public class ModLoader : Node
         bool loadedSomething = false;
 
         if (!string.IsNullOrEmpty(info.Info.PckToLoad) &&
-            FileHelpers.ExistsCaseSensitive(Path.Combine(info.Folder ?? string.Empty, info.Info.PckToLoad ?? string.Empty)))
+            FileHelpers.ExistsCaseSensitive(Path.Combine(info.Folder, info.Info.PckToLoad ?? string.Empty)))
         {
-            LoadPckFile(Path.Combine(info.Folder ?? string.Empty, info.Info.PckToLoad ?? string.Empty));
+            LoadPckFile(Path.Combine(info.Folder, info.Info.PckToLoad ?? string.Empty));
             loadedSomething = true;
         }
 
         // Loads the config file if it exists
-        if (info.Info.ConfigToLoad != null && FileHelpers.Exists(Path.Combine(info.Folder ?? string.Empty, info.Info.ConfigToLoad ?? string.Empty)))
+        if (info.Info.ConfigToLoad != null && FileHelpers.Exists(Path.Combine(info.Folder, info.Info.ConfigToLoad ?? string.Empty)))
         {
             var currentConfigList = ModManager.GetModConfigList(info);
             info.ConfigurationInfoList = currentConfigList;
@@ -487,29 +487,29 @@ public class ModLoader : Node
             Assembly modAssembly;
             try
             {
-                modAssembly = LoadCodeAssembly(Path.Combine(info.Folder, info.Info?.ModAssembly!));
+                modAssembly = LoadCodeAssembly(Path.Combine(info.Folder, info.Info.ModAssembly!));
             }
             catch (Exception e)
             {
                 GD.PrintErr("Could not load mod assembly due to exception: ", e);
-                modErrors.Add((info ?? new(string.Empty), string.Format(CultureInfo.CurrentCulture,
+                modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                     TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION"),
                     name, e)));
                 return;
             }
 
-            if (!CreateModInstance(name, info ?? new(string.Empty), modAssembly))
+            if (!CreateModInstance(name, info, modAssembly))
                 return;
 
             loadedSomething = true;
         }
 
-        CheckAndMarkIfModRequiresRestart(info ?? new(string.Empty));
+        CheckAndMarkIfModRequiresRestart(info);
 
         if (!loadedSomething)
         {
             GD.Print("A mod contained no loadable resources");
-            modErrors.Add((info ?? new(string.Empty), string.Format(CultureInfo.CurrentCulture,
+            modErrors.Add((info, string.Format(CultureInfo.CurrentCulture,
                 TranslationServer.Translate("MOD_HAS_NO_LOADABLE_RESOURCES"),
                 name)));
         }
@@ -560,13 +560,10 @@ public class ModLoader : Node
 
     private void CheckAndMarkIfModRequiresRestart(FullModDetails mod)
     {
-        if (mod.Info != null)
+        if (mod.Info.RequiresRestart)
         {
-            if (mod.Info.RequiresRestart)
-            {
-                GD.Print(mod.InternalName, " requires a restart");
-                RequiresRestart = true;
-            }
+            GD.Print(mod.InternalName, " requires a restart");
+            RequiresRestart = true;
         }
     }
 
@@ -607,7 +604,7 @@ public class ModLoader : Node
 
     private bool CreateModInstance(string name, FullModDetails info, Assembly assembly)
     {
-        if (info.Info == null || info.Info?.AssemblyModClass == null)
+        if (info.Info.AssemblyModClass == null)
         {
             return false;
         }
