@@ -16,7 +16,7 @@ public class FullModDetails : IEquatable<FullModDetails>
     public FullModDetails(string internalName)
     {
         InternalName = internalName;
-        Info = new();
+        Info = new ModInfo();
     }
 
     public string InternalName { get; }

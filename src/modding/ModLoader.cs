@@ -466,51 +466,42 @@ public class ModLoader : Node
         bool loadedSomething = false;
 
         if (!string.IsNullOrEmpty(info.Info.PckToLoad) &&
-            FileHelpers.ExistsCaseSensitive(Path.Combine(info?.Folder, info?.Info.PckToLoad)))
+            FileHelpers.ExistsCaseSensitive(Path.Combine(info.Folder ?? string.Empty, info.Info.PckToLoad ?? string.Empty)))
         {
-            LoadPckFile(Path.Combine(info?.Folder, info?.Info.PckToLoad ?? string.Empty));
+            LoadPckFile(Path.Combine(info.Folder ?? string.Empty, info.Info.PckToLoad ?? string.Empty));
             loadedSomething = true;
         }
 
         // Loads the config file if it exists
-        if (info?.Info?.ConfigToLoad != null && FileHelpers.Exists(Path.Combine(info.Folder, info?.Info.ConfigToLoad)))
+        if (info.Info.ConfigToLoad != null && FileHelpers.Exists(Path.Combine(info.Folder ?? string.Empty, info.Info.ConfigToLoad ?? string.Empty)))
         {
-            if (info != null)
-            {
-                var currentConfigList = ModManager.GetModConfigList(info);
-                info.ConfigurationInfoList = currentConfigList;
+            var currentConfigList = ModManager.GetModConfigList(info);
+            info.ConfigurationInfoList = currentConfigList;
 
-                var currentConfig = LoadModConfigs(info.InternalName);
-                if (currentConfig != null)
-                {
-                    info.CurrentConfiguration = currentConfig;
-                }
-            }
+            var currentConfig = LoadModConfigs(info.InternalName);
+            info.CurrentConfiguration = currentConfig;
         }
 
-        if (!string.IsNullOrEmpty(info?.Info?.ModAssembly))
+        if (!string.IsNullOrEmpty(info.Info.ModAssembly))
         {
-            if (info != null)
+            Assembly modAssembly;
+            try
             {
-                Assembly modAssembly;
-                try
-                {
-                    modAssembly = LoadCodeAssembly(Path.Combine(info?.Folder, info?.Info?.ModAssembly!));
-                }
-                catch (Exception e)
-                {
-                    GD.PrintErr("Could not load mod assembly due to exception: ", e);
-                    modErrors.Add((info ?? new(string.Empty), string.Format(CultureInfo.CurrentCulture,
-                        TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION"),
-                        name, e)));
-                    return;
-                }
-
-                if (!CreateModInstance(name, info ?? new(string.Empty), modAssembly))
-                    return;
-
-                loadedSomething = true;
+                modAssembly = LoadCodeAssembly(Path.Combine(info.Folder, info.Info?.ModAssembly!));
             }
+            catch (Exception e)
+            {
+                GD.PrintErr("Could not load mod assembly due to exception: ", e);
+                modErrors.Add((info ?? new(string.Empty), string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("MOD_ASSEMBLY_LOAD_EXCEPTION"),
+                    name, e)));
+                return;
+            }
+
+            if (!CreateModInstance(name, info ?? new(string.Empty), modAssembly))
+                return;
+
+            loadedSomething = true;
         }
 
         CheckAndMarkIfModRequiresRestart(info ?? new(string.Empty));
