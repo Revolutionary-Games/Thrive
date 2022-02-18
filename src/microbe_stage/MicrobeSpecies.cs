@@ -42,7 +42,7 @@ public class MicrobeSpecies : Species
 
     /// <summary>
     ///   This is the base size of this species. Meaning that this is the engulf size of microbes of this species when
-    ///   they haven't duplicated any organelles. This is related to <see cref="Microbe.EngulfSize"/> and the math
+    ///   they haven't duplicated any organelles. This is related to <see cref="Microbe.Size"/> and the math
     ///   should always match between these two.
     /// </summary>
     [JsonIgnore]

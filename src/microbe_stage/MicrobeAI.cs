@@ -140,7 +140,7 @@ public class MicrobeAI
         if (possiblePrey != null)
         {
             bool engulfPrey = microbe.CanEngulf(possiblePrey) &&
-                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.EngulfSize;
+                DistanceFromMe(possiblePrey.GlobalTransform.origin) < 10.0f * microbe.Size;
             Vector3? prey = possiblePrey.GlobalTransform.origin;
 
             EngagePrey(prey.Value, random, engulfPrey);
@@ -175,7 +175,7 @@ public class MicrobeAI
             if (chunk.ContainedCompounds == null)
                 continue;
 
-            if (microbe.EngulfSize > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
+            if (microbe.Size > chunk.Size * Constants.ENGULF_SIZE_RATIO_REQ
                 && (chunk.Translation - microbe.Translation).LengthSquared()
                 <= (20000.0 * SpeciesFocus / Constants.MAX_SPECIES_FOCUS) + 1500.0)
             {
@@ -310,7 +310,7 @@ public class MicrobeAI
             // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
             if (otherMicrobe.Species != microbe.Species
                 && !otherMicrobe.Dead
-                && otherMicrobe.EngulfSize > microbe.EngulfSize * fleeThreshold)
+                && otherMicrobe.Size > microbe.Size * fleeThreshold)
             {
                 if (predator == null || DistanceFromMe(predator.GlobalTransform.origin) >
                     DistanceFromMe(otherMicrobe.GlobalTransform.origin))
@@ -506,7 +506,7 @@ public class MicrobeAI
     {
         // Turn on engulf mode if close
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
-        if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.EngulfSize * 2.0f)
+        if ((microbe.Translation - targetPosition).LengthSquared() <= microbe.Size * 2.0f)
         {
             microbe.State = Microbe.MicrobeState.Engulf;
         }
@@ -554,7 +554,7 @@ public class MicrobeAI
 
     private bool CanTryToEatMicrobe(Microbe targetMicrobe)
     {
-        var sizeRatio = microbe.EngulfSize / targetMicrobe.EngulfSize;
+        var sizeRatio = microbe.Size / targetMicrobe.Size;
 
         return targetMicrobe.Species != microbe.Species && (
             (SpeciesOpportunism > Constants.MAX_SPECIES_OPPORTUNISM * 0.3f && CanShootToxin())

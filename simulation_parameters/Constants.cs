@@ -272,9 +272,9 @@ public static class Constants
     public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
 
     /// <summary>
-    ///   The speed reduction when a cell is being engulfed.
+    ///   The speed multiplier when a cell is getting pulled inside an engulfing cell.
     /// </summary>
-    public const float ENGULFED_MOVEMENT_DIVISION = 10.0f;
+    public const float ENGULFING_PULL_SPEED_MULTIPLIER = 2.5f;
 
     /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.

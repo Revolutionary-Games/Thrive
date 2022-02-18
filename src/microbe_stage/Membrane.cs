@@ -45,7 +45,9 @@ public class Membrane : MeshInstance, IComputedMembraneData
 
     private bool dirty = true;
     private bool radiusIsDirty = true;
+    private bool vertices3dIsDirty = true;
     private float cachedRadius;
+    private Vector3[] cachedVertices3D = null!;
 
     /// <summary>
     ///   Amount of segments on one side of the above described
@@ -62,7 +64,11 @@ public class Membrane : MeshInstance, IComputedMembraneData
         set
         {
             if (value)
+            {
                 radiusIsDirty = true;
+                vertices3dIsDirty = true;
+            }
+
             dirty = value;
         }
     }
@@ -77,6 +83,34 @@ public class Membrane : MeshInstance, IComputedMembraneData
     ///   </para>
     /// </remarks>
     public List<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
+
+    /// <summary>
+    ///   Returns a 3-Dimensional array from the generated <see cref="vertices2D"/>.
+    /// </summary>
+    public Vector3[] Vertices3D
+    {
+        get
+        {
+            if (vertices3dIsDirty)
+            {
+                if (Dirty)
+                    Update();
+
+                float height = 0.1f;
+
+                if (Type.CellWall)
+                    height = 0.05f;
+
+                cachedVertices3D = new Vector3[vertices2D.Count];
+                for (var i = 0; i < vertices2D.Count; ++i)
+                    cachedVertices3D[i] = new Vector3(vertices2D[i].x, height / 2, vertices2D[i].y);
+
+                vertices3dIsDirty = false;
+            }
+
+            return cachedVertices3D;
+        }
+    }
 
     /// <summary>
     ///   The type of the membrane.

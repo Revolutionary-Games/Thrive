@@ -551,8 +551,8 @@ public partial class Microbe
     {
 #pragma warning restore CA1801
 
-        // Dead cells can't reproduce
-        if (Dead)
+        // Dead or engulfed cells can't reproduce
+        if (Dead || IsEngulfed)
             return;
 
         if (allOrganellesDivided)
@@ -935,7 +935,7 @@ public partial class Microbe
     {
         timeUntilChemoreceptionUpdate -= delta;
 
-        if (timeUntilChemoreceptionUpdate > 0 || Dead)
+        if (timeUntilChemoreceptionUpdate > 0 || Dead || IsEngulfed)
             return;
 
         timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;

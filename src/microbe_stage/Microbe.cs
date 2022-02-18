@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -12,7 +13,7 @@ using Newtonsoft.Json;
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/Microbe.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
+public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked, IEngulfable
 {
     /// <summary>
     ///   The point towards which the microbe will move to point to
@@ -29,6 +30,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private HybridAudioPlayer movementAudio = null!;
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
+
+    private Area engulfedArea = null!;
 
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
@@ -195,6 +198,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
         movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
+        tween = GetNode<Tween>("Tween");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
@@ -226,6 +230,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
         engulfDetector.Connect("body_entered", this, nameof(OnBodyEnteredEngulfArea));
         engulfDetector.Connect("body_exited", this, nameof(OnBodyExitedEngulfArea));
+
+        engulfedArea = GetNode<Area>("EngulfedArea");
+
+        engulfedArea.Connect("area_entered", this, nameof(OnAreaEnteredEngulfedArea));
+        engulfedArea.Connect("body_entered", this, nameof(OnBodyEnteredEngulfedArea));
 
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, nameof(OnContactBegin));
@@ -418,6 +427,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsForPreviewOnly)
             return;
 
+        UpdateEngulfedAreaShape();
         CheckEngulfShapeSize();
 
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
@@ -530,7 +540,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
-        if (Dead)
+        if (Dead || IsEngulfed)
             return;
 
         try
@@ -634,6 +644,25 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         // Scale only the graphics parts to not have physics affected
         Membrane.Scale = scale;
         OrganelleParent.Scale = scale;
+    }
+
+    private void UpdateEngulfedAreaShape()
+    {
+        if (engulfedAreaShapeOwner == null)
+        {
+            var newShape = new ConvexPolygonShape();
+            engulfedAreaShapeOwner = engulfedArea.CreateShapeOwner(newShape);
+            engulfedArea.ShapeOwnerAddShape(engulfedAreaShapeOwner.Value, newShape);
+        }
+
+        var existingShape = (ConvexPolygonShape)engulfedArea.ShapeOwnerGetShape(engulfedAreaShapeOwner.Value, 0);
+
+        var wanted = Membrane.Vertices3D;
+        if (!existingShape.Points.SequenceEqual(wanted))
+        {
+            existingShape.Points = wanted;
+            engulfedArea.Scale = Membrane.Scale / 2 / Constants.ENGULF_SIZE_RATIO_REQ;
+        }
     }
 
     private Node GetStageAsParent()

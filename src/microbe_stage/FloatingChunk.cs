@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JSONAlwaysDynamicType]
 [SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
-public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
+public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfable
 {
     [Export]
     [JsonProperty]
@@ -254,6 +254,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
             if (microbe.Dead)
                 continue;
 
+            if (microbe.IsEngulfed)
+                continue;
+
             // Damage
             if (Damages > 0)
             {
@@ -267,31 +270,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
                 }
             }
 
-            bool disappear = false;
-
-            // Engulfing
-            if (Size > 0 && microbe.State == Microbe.MicrobeState.Engulf)
-            {
-                // Check can engulf based on the size of the chunk compared to the cell size
-                if (microbe.EngulfSize >= Size * Constants.ENGULF_SIZE_RATIO_REQ)
-                {
-                    // Can engulf
-                    if (ContainedCompounds != null)
-                    {
-                        foreach (var entry in ContainedCompounds)
-                        {
-                            var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
-                                Constants.CHUNK_ENGULF_COMPOUND_DIVISOR) * Constants.CHUNK_ENGULF_COMPOUND_DIVISOR;
-
-                            VentCompound(Translation, entry.Key, entry.Value - added);
-                        }
-                    }
-
-                    disappear = true;
-                }
-            }
-
-            if (DeleteOnTouch || disappear)
+            if (DeleteOnTouch)
             {
                 DissolveOrRemove();
                 break;
