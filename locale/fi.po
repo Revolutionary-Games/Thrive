@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 11:15-0600\n"
-"PO-Revision-Date: 2022-01-09 09:13+0000\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
+"PO-Revision-Date: 2022-02-10 15:03+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -27,7 +27,7 @@ msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jo
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Solusi käyttää ATP:tä energianlähteenä, jos se loppuu, kuolet."
+msgstr "Solusi käyttää [thrive:compound type=\"atp\"]ATP:tä[/thrive:compound] energianlähteenä, jos se loppuu, kuolet."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
@@ -194,7 +194,7 @@ msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Vinkki: voit niellä paloja, rautaisia tai muita."
+msgstr "Vinkki: voit niellä paloja, rautaisia ja muun tyyppisiä."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -345,9 +345,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Lisää soluelin"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Poista soluelin"
+msgstr "Avaa soluelimen valikko"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_LEFT"
@@ -375,14 +374,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Peruuta nykyinen toimenpide"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Lisää soluelin"
+msgstr "Poista soluelin"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Poista soluelin"
+msgstr "Siirrä soluelintä"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -408,7 +405,7 @@ msgstr "Luo fosfaattia"
 
 #: ../simulation_parameters/common/input_options.json:167
 msgid "CHEAT_MENU"
-msgstr "Huijauskoodit"
+msgstr "Huijausvalikko"
 
 #: ../simulation_parameters/common/input_options.json:176
 msgid "MISCELLANEOUS"
@@ -772,17 +769,14 @@ msgid "CHEMORECEPTOR"
 msgstr "Kemoplasti"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Peruutettu."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Valmis."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "Ei suoriteta."
 
@@ -799,41 +793,34 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} populaatio muuttui {1} syystä: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "{0} populaatio muuttui {1} syystä: {2}"
+msgstr "populaatio:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "katosi alueelta: {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Lajit:"
+msgstr "edellinen:"
 
 #: ../src/auto-evo/RunResults.cs:587
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "geneettinen koodi:"
+msgstr "erkani lajista: {0}"
 
 #: ../src/auto-evo/RunResults.cs:600
-#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "geneettinen koodi:"
+msgstr "ilmaantui täyttämään ekologisen lokeron"
 
 #: ../src/auto-evo/RunResults.cs:603
-#, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr "levisi alueille:"
+msgstr "syntyi eriävien valintapaineiden seurauksena"
 
 #: ../src/auto-evo/RunResults.cs:620
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "levisi alueille:"
+msgstr "populaatio joillain alueille jakaantui muodostamaan uuden lajin, {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "on saanut mutaation"
 
@@ -842,7 +829,6 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "geneettinen koodi:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "levisi alueille:"
 
@@ -851,9 +837,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} lähettämällä: {1} yksikköä populaatiota alueelta: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "POPULAATIO:"
+msgstr "populaatio alueilla:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -866,7 +851,7 @@ msgstr ""
 #: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Lajien populaatiot"
+msgstr "[u]{0}[/u] populaatio on kasvanut määrään {1}"
 
 #: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
 #, fuzzy
@@ -900,19 +885,17 @@ msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "levisi alueille:"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "Iso rautalohkare"
+msgstr "Virhe: lohkaretta ei löytynyt"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 #, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "Yhdistepilvet"
+msgstr "lohkareen, {0}, kulutus"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "Yhdistepilvet"
+msgstr "{0}:n kulutus"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -1353,7 +1336,7 @@ msgstr "Taidetta, jonka tekijä on {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
-#: ../src/modding/ModManager.tscn:1572
+#: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Sulje"
@@ -1421,7 +1404,7 @@ msgstr "Mikrobien vapaa rakentelu"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:1631 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Takaisin"
@@ -1467,9 +1450,8 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
 #: ../src/general/OptionsMenu.cs:940
-#, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Auta pelin kääntämisessä"
+msgstr "Tämä kieli on {0}% käännetty"
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
@@ -1520,9 +1502,8 @@ msgid "FOUR_TIMES"
 msgstr "4x"
 
 #: ../src/general/OptionsMenu.tscn:263
-#, fuzzy
 msgid "EIGHT_TIMES"
-msgstr "Hiiren oikea painike"
+msgstr "8x"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "SIXTEEN_TIMES"
@@ -1541,9 +1522,8 @@ msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
 
 #: ../src/general/OptionsMenu.tscn:316
-#, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
-msgstr "Maksimi kuvia sekunnissa:"
+msgstr "Rajoittamaton"
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
@@ -1566,14 +1546,12 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaattinen vääristymä:"
 
 #: ../src/general/OptionsMenu.tscn:389
-#, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Kyvyt"
+msgstr "Näytä kykypalkki"
 
 #: ../src/general/OptionsMenu.tscn:397
-#, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Ulkoiset vaikutukset:"
+msgstr "Käytä käyttöliittymän valoefektejä"
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
@@ -1610,7 +1588,6 @@ msgid "LANGUAGE"
 msgstr "Kieli:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
-#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "Kumoa muutokset"
 
@@ -1624,9 +1601,7 @@ msgstr "Yhdistepilvet"
 
 #: ../src/general/OptionsMenu.tscn:708
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-"Pienin pilvien päivitys\n"
-"aikajakso:"
+msgstr "Pienin pilvien päivitys aikajakso:"
 
 #: ../src/general/OptionsMenu.tscn:715 ../src/general/OptionsMenu.tscn:757
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1641,14 +1616,12 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Suorita auto-evo pelin aikana"
 
 #: ../src/general/OptionsMenu.tscn:811
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Valittu:"
+msgstr "Tunnistettu prosessoriytimien määrä:"
 
 #: ../src/general/OptionsMenu.tscn:828
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Tallenna ja jatka"
+msgstr "Nykyinen suorittajien määrä:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
@@ -1695,7 +1668,6 @@ msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näytä tutoriaalit (nykyisessä pelissä)"
 
 #: ../src/general/OptionsMenu.tscn:1081
-#, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
@@ -1781,7 +1753,7 @@ msgstr "Hylkää ja jatka"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:730
+#: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
 msgstr "Peruuta"
 
@@ -1804,14 +1776,16 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Ota ruudunkaappaus"
 
 #: ../src/general/PauseMenu.cs:271
-#, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
-msgstr "Palaa Päävalikkoon"
+msgstr ""
+"Haluatko varmasti palata päävalikkoon?\n"
+"Menetät tallentamattomat tiedot."
 
 #: ../src/general/PauseMenu.cs:287
-#, fuzzy
 msgid "QUIT_GAME_WARNING"
-msgstr "GLES2-moodi Varoitus"
+msgstr ""
+"Haluatko varmasti poistua pelistä?\n"
+"Menetät tallentamattomat tiedot."
 
 #: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
@@ -1840,9 +1814,8 @@ msgid "EXIT"
 msgstr "Poistu"
 
 #: ../src/general/PauseMenu.tscn:163
-#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "VAHVISTA"
+msgstr "Vahvista poistuminen"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1960,14 +1933,12 @@ msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Voit tukea Thriven jatkokehitystä Patreonissa."
 
 #: ../src/gui_common/CreditsScroll.cs:352
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Asetukset"
+msgstr "Lahjoitukset"
 
 #: ../src/gui_common/CreditsScroll.cs:375
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Auta pelin kääntämisessä"
+msgstr "Kääntäjät"
 
 #: ../src/gui_common/CreditsScroll.cs:389
 msgid "USED_LIBRARIES_LICENSES"
@@ -1989,14 +1960,12 @@ msgid "THEORY_TEAM"
 msgstr "Teoriatiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:495
-#, fuzzy
 msgid "GRAPHICS_TEAM"
-msgstr "Grafiikat"
+msgstr "Grafiikkatiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:496
-#, fuzzy
 msgid "SOUND_TEAM"
-msgstr "Ääni"
+msgstr "Äänitiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:497
 msgid "OUTREACH_TEAM"
@@ -2035,9 +2004,8 @@ msgid "JANUARY"
 msgstr "Tammikuu"
 
 #: ../src/gui_common/CreditsScroll.cs:506
-#, fuzzy
 msgid "FEBRUARY"
-msgstr "Estuaari"
+msgstr "helmikuu"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "MARCH"
@@ -2072,9 +2040,8 @@ msgid "OCTOBER"
 msgstr "Lokakuu"
 
 #: ../src/gui_common/CreditsScroll.cs:515
-#, fuzzy
 msgid "NOVEMBER"
-msgstr "Liikkuminen"
+msgstr "marraskuu"
 
 #: ../src/gui_common/CreditsScroll.cs:516
 msgid "DECEMBER"
@@ -2207,9 +2174,8 @@ msgid "GPL_LICENSE_HEADING"
 msgstr "GPL-lisenssin teksti:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
-#, fuzzy
 msgid "THRIVE_LICENSES"
-msgstr "Lisenssit"
+msgstr "Thriven lisenssit"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
@@ -2426,7 +2392,6 @@ msgid "SPEED"
 msgstr "Nopeus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
@@ -3350,528 +3315,343 @@ msgstr "OLET VOITTANUT!"
 msgid "WIN_TEXT"
 msgstr "Onnittelut, olet voittanyt tämän version Thrivesta! Halutessasi voit jatkaa pelaamistä tämän ikkunan sulkeuduttua, tai voit aloittaa uuden pelin uudessa maailmassa."
 
-#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:531
+#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:499
+#: ../src/modding/ModLoader.cs:235
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:516
+#: ../src/modding/ModLoader.cs:252
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:546
+#: ../src/modding/ModLoader.cs:279
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:554
+#: ../src/modding/ModLoader.cs:287
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:625
+#: ../src/modding/ModLoader.cs:351
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:638
+#: ../src/modding/ModLoader.cs:364
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:654
+#: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:670
+#: ../src/modding/ModLoader.cs:394
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "Lataus on valmistunut"
 
-#: ../src/modding/ModManager.cs:471
+#: ../src/modding/ModManager.cs:293
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:485
+#: ../src/modding/ModManager.cs:307
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:497
+#: ../src/modding/ModManager.cs:319
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:609
-msgid "MOD_LOADER_TAB"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:610
-msgid "MOD_ERRORS_TAB"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:611
-#, fuzzy
-msgid "MOD_CONFIGURATION_TAB"
-msgstr "Auto-evon suorittaminen epäonnistui"
-
-#: ../src/modding/ModManager.cs:987 ../src/modding/ModManager.cs:2049
-msgid "THIS_IS_WORKSHOP_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:988 ../src/modding/ModManager.cs:2050
-msgid "THIS_IS_LOCAL_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1055
+#: ../src/modding/ModManager.cs:549
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Valittu:"
 
-#: ../src/modding/ModManager.cs:1422
-#, fuzzy
-msgid "MOD_LOAD_ERROR_WARNING"
-msgstr ""
-"Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
-"Haluatko jatkaa?"
-
-#: ../src/modding/ModManager.cs:1424
-#, fuzzy
-msgid "ARE_YOU_SURE_TO_LOAD_MOD"
-msgstr "Haluatko varmasti korvata KAIKKI asetukset oletusarvoilla?"
-
-#: ../src/modding/ModManager.cs:1612 ../src/modding/ModManager.tscn:851
-#: ../src/modding/ModManager.tscn:1444 ../src/modding/NewModGUI.tscn:548
-msgid "MOD_DEPENDENCIES"
+#: ../src/modding/ModManager.cs:885
+msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1628
-msgid "NO_MOD_DEPENDENCIES"
+#: ../src/modding/ModManager.cs:886
+msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:1643 ../src/modding/ModManager.tscn:1466
-#: ../src/modding/NewModGUI.tscn:572
-msgid "MOD_REQUIRED_MODS"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1659
-#, fuzzy
-msgid "NO_REQUIRED_MODS"
-msgstr "Valittu:"
-
-#: ../src/modding/ModManager.cs:1674 ../src/modding/ModManager.tscn:869
-#, fuzzy
-msgid "INCOMPATIBLE_WITH"
-msgstr "Lataa epäyhteensopiva tallennus?"
-
-#: ../src/modding/ModManager.cs:1690
-#, fuzzy
-msgid "NO_MOD_INCOMPATIBLE"
-msgstr "Valittu tallennus ei ole yhteensopiva"
-
-#: ../src/modding/ModManager.cs:1705 ../src/modding/ModManager.tscn:878
-#, fuzzy
-msgid "LOAD_ORDER"
-msgstr "Lataa Peli"
-
-#: ../src/modding/ModManager.cs:1714 ../src/modding/ModManager.tscn:1510
-#: ../src/modding/NewModGUI.tscn:620
-#, fuzzy
-msgid "MOD_LOAD_AFTER"
-msgstr "Lataa rikkinäinen tallennus?"
-
-#: ../src/modding/ModManager.cs:1732 ../src/modding/ModManager.tscn:1488
-#: ../src/modding/NewModGUI.tscn:596
-#, fuzzy
-msgid "MOD_LOAD_BEFORE"
-msgstr "Lataa rikkinäinen tallennus?"
-
-#: ../src/modding/ModManager.cs:1744
-#, fuzzy
-msgid "MOD_NO_LOAD_ORDER"
-msgstr "Lataa rikkinäinen tallennus?"
-
-#: ../src/modding/ModManager.cs:2109
-msgid "MOD_LIST_CONTAIN_ERRORS"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2111
-#, fuzzy
-msgid "MOD_CHECK_AGAIN_WARNING"
-msgstr ""
-"Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
-"Haluatko jatkaa?"
-
-#: ../src/modding/ModManager.cs:2115 ../src/modding/ModManager.cs:2155
-#, fuzzy
-msgid "MOD_LIST_VALID"
-msgstr "Tallennus on virheellinen"
-
-#: ../src/modding/ModManager.cs:2138 ../src/modding/ModManager.cs:2149
-#: ../src/modding/ModManager.cs:2174 ../src/modding/ModManager.cs:2194
-#: ../src/modding/ModManager.cs:2199
-#, fuzzy
-msgid "UNKNOWN_MOD"
-msgstr "Tuntematon hiiren painike"
-
-#: ../src/modding/ModManager.cs:2158
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
-msgstr "Lataa epäyhteensopiva tallennus?"
-
-#: ../src/modding/ModManager.cs:2177
-msgid "MOD_ERROR_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2179
-msgid "MOD_ERROR_DEPENDENCIES_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2202
-msgid "MOD_ERROR_REQUIRED_MODS"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2204
-msgid "MOD_ERROR_REQUIRED_MODS_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2209
-msgid "MOD_ERROR_DEPENDENCIES_ORDER"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2211
-msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2215
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_MOD"
-msgstr "Lataa epäyhteensopiva tallennus?"
-
-#: ../src/modding/ModManager.cs:2217
-msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2220
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2222
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2226
-#, fuzzy
-msgid "MOD_ERROR_LOAD_ORDER_AFTER"
-msgstr "Lataa rikkinäinen tallennus?"
-
-#: ../src/modding/ModManager.cs:2228
-msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2270
+#: ../src/modding/ModManager.cs:940
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Virhe tallennettaessa"
 
-#: ../src/modding/ModManager.cs:2279
+#: ../src/modding/ModManager.cs:949
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:201
+#: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
-#, fuzzy
-msgid "LEFT_ARROW"
-msgstr "Hiiren vasen painike"
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Virkistä"
 
-#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
-#, fuzzy
-msgid "RIGHT_ARROW"
-msgstr "Hiiren oikea painike"
-
-#: ../src/modding/ModManager.tscn:271
-#, fuzzy
-msgid "ENABLED_MODS"
-msgstr "Avaa editorin lukitus"
-
-#: ../src/modding/ModManager.tscn:310
-#, fuzzy
-msgid "ENABLE_ALL"
-msgstr "Ei käytössä"
-
-#: ../src/modding/ModManager.tscn:316
+#: ../src/modding/ModManager.tscn:152
 #, fuzzy
 msgid "OPEN_FOLDER"
 msgstr "Avaa lokien kansio"
 
-#: ../src/modding/ModManager.tscn:322
+#: ../src/modding/ModManager.tscn:170
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "Hiiren oikea painike"
+
+#: ../src/modding/ModManager.tscn:183
+#, fuzzy
+msgid "LEFT_ARROW"
+msgstr "Hiiren vasen painike"
+
+#: ../src/modding/ModManager.tscn:195
+#, fuzzy
+msgid "ENABLED_MODS"
+msgstr "Avaa editorin lukitus"
+
+#: ../src/modding/ModManager.tscn:213
 #, fuzzy
 msgid "DISABLE_ALL"
 msgstr "Ei käytössä"
 
-#: ../src/modding/ModManager.tscn:339
+#: ../src/modding/ModManager.tscn:250
 #, fuzzy
-msgid "ONESHOT_LOADING"
-msgstr "Virhe ladattaessa"
+msgid "SELECTED_MOD"
+msgstr "Valittu:"
 
-#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:507
-#, fuzzy
-msgid "CLEAR"
-msgstr "Tyhjennä"
-
-#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1120
-#: ../src/modding/NewModGUI.tscn:158
+#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
+#: ../src/modding/NewModGUI.tscn:142
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1142
-#: ../src/modding/NewModGUI.tscn:181
+#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
+#: ../src/modding/NewModGUI.tscn:165
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Versio:"
 
-#: ../src/modding/ModManager.tscn:770
+#: ../src/modding/ModManager.tscn:371
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:415
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Versio:"
 
-#: ../src/modding/ModManager.tscn:804
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:860
-#, fuzzy
-msgid "REQUIRED_MODS"
-msgstr "Avaa editorin lukitus"
-
-#: ../src/modding/ModManager.tscn:887
-#, fuzzy
-msgid "OPEN_MOD_URL"
-msgstr "Avaa osoite"
-
-#: ../src/modding/ModManager.tscn:896
-msgid "MORE_INFO"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:968
-#, fuzzy
-msgid "CHECK_BUTTON_TOOLTIP"
-msgstr "Lisää uusi syöte"
-
-#: ../src/modding/ModManager.tscn:969
-msgid "CHECK_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Virkistä"
-
-#: ../src/modding/ModManager.tscn:989
-#, fuzzy
-msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Lataa rikkinäinen tallennus?"
-
-#: ../src/modding/ModManager.tscn:990
-msgid "APPLY_CHANGES"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:1005
-msgid "BROWSE_WORKSHOP"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
-#, fuzzy
-msgid "UPLOAD"
-msgstr "Lataa"
-
-#: ../src/modding/ModManager.tscn:1027
-msgid "NEW"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:1072 ../src/modding/NewModGUI.tscn:135
-#, fuzzy
-msgid "MOD_NAME"
-msgstr "Nimi:"
-
-#: ../src/modding/ModManager.tscn:1094 ../src/modding/NewModGUI.tscn:112
-msgid "MOD_INTERNAL_NAME"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:1164 ../src/modding/NewModGUI.tscn:204
+#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
+#: ../src/modding/NewModGUI.tscn:188
 #, fuzzy
 msgid "MOD_DESCRIPTION"
 msgstr "Kuvaus:"
 
-#: ../src/modding/ModManager.tscn:1186 ../src/modding/NewModGUI.tscn:227
+#: ../src/modding/ModManager.tscn:474
+msgid "MORE_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:482
+#, fuzzy
+msgid "OPEN_MOD_URL"
+msgstr "Avaa osoite"
+
+#: ../src/modding/ModManager.tscn:505
+msgid "BROWSE_WORKSHOP"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+#, fuzzy
+msgid "UPLOAD"
+msgstr "Lataa"
+
+#: ../src/modding/ModManager.tscn:519
+msgid "NEW"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:532
+#, fuzzy
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr "Lataa rikkinäinen tallennus?"
+
+#: ../src/modding/ModManager.tscn:559
+#, fuzzy
+msgid "ENABLE_ALL_COMPATIBLE"
+msgstr "Valittu tallennus ei ole yhteensopiva"
+
+#: ../src/modding/ModManager.tscn:568
+msgid "APPLY_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:579
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:580
+#, fuzzy
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
+
+#: ../src/modding/ModManager.tscn:581
+#, fuzzy
+msgid "DISCARD_CHANGES"
+msgstr "Hylkää ja jatka"
+
+#: ../src/modding/ModManager.tscn:588
+msgid "FULL_MOD_INFO"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#, fuzzy
+msgid "MOD_NAME"
+msgstr "Nimi:"
+
+#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+msgid "MOD_INTERNAL_NAME"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Jäykempi solukalvo kestää enemmän vahinkoa, mutta vaikeuttaa solun liikkumista."
 
-#: ../src/modding/ModManager.tscn:1224 ../src/modding/NewModGUI.tscn:251
+#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1246 ../src/modding/NewModGUI.tscn:291
-msgid "MOD_PREVIEW_IMAGE_FILE"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:1268 ../src/modding/NewModGUI.tscn:330
+#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1290 ../src/modding/NewModGUI.tscn:353
+#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "Lisenssit"
 
-#: ../src/modding/ModManager.tscn:1312 ../src/modding/NewModGUI.tscn:376
+#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1334 ../src/modding/NewModGUI.tscn:399
+#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1356 ../src/modding/NewModGUI.tscn:422
+#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1378 ../src/modding/NewModGUI.tscn:445
+#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Alueen nimi"
 
-#: ../src/modding/ModManager.tscn:1400 ../src/modding/NewModGUI.tscn:485
+#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1422 ../src/modding/NewModGUI.tscn:525
+#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1532 ../src/modding/NewModGUI.tscn:644
+#: ../src/modding/ModManager.tscn:979
 #, fuzzy
-msgid "MOD_INCOMPATIBLE_MODS"
-msgstr "Lataa epäyhteensopiva tallennus?"
-
-#: ../src/modding/ModManager.tscn:1554 ../src/modding/NewModGUI.tscn:668
-#, fuzzy
-msgid "MOD_CONFIG_FILE"
+msgid "MOD_CREATION_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/modding/ModManager.tscn:1585
+#: ../src/modding/ModManager.tscn:989
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Lataa rikkinäinen tallennus?"
 
-#: ../src/modding/ModManager.tscn:1590
+#: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:1592
+#: ../src/modding/ModManager.tscn:996
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Lataa rikkinäinen tallennus?"
 
-#: ../src/modding/ModManager.tscn:1607
-msgid "MOD_LOAD_ERROR_WARNING_TITLE"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:1609
-#, fuzzy
-msgid "YES"
-msgstr "vuotta"
-
-#: ../src/modding/ModManager.tscn:1610
-#, fuzzy
-msgid "NO"
-msgstr "Kumoa"
-
-#: ../src/modding/ModManager.tscn:1618 ../src/modding/ModManager.tscn:1621
-msgid "NULL"
-msgstr ""
-
-#: ../src/modding/ModUploader.cs:278 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:308
+#: ../src/modding/ModUploader.cs:305
 #, fuzzy
 msgid "MISSING_TITLE"
 msgstr "OLET VOITTANUT!"
 
-#: ../src/modding/ModUploader.cs:314
+#: ../src/modding/ModUploader.cs:311
 #, fuzzy
 msgid "MISSING_DESCRIPTION"
 msgstr "Kuvaus:"
 
-#: ../src/modding/ModUploader.cs:322
+#: ../src/modding/ModUploader.cs:319
 #, fuzzy
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Kuvaus:"
 
-#: ../src/modding/ModUploader.cs:328 ../src/steam/SteamClient.cs:207
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Kuvaus:"
 
-#: ../src/modding/ModUploader.cs:336
+#: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:344
+#: ../src/modding/ModUploader.cs:341
 #, fuzzy
 msgid "INVALID_TAG"
 msgstr "Lataa rikkinäinen tallennus?"
 
-#: ../src/modding/ModUploader.cs:358
+#: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:365
+#: ../src/modding/ModUploader.cs:362
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:420
+#: ../src/modding/ModUploader.cs:417
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:463
+#: ../src/modding/ModUploader.cs:460
 #, fuzzy
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Hae..."
 
-#: ../src/modding/ModUploader.cs:477
+#: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:522
+#: ../src/modding/ModUploader.cs:519
 #, fuzzy
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Ladataan..."
 
-#: ../src/modding/ModUploader.cs:559
+#: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:563
+#: ../src/modding/ModUploader.cs:560
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:623
+#: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:648
+#: ../src/modding/ModUploader.cs:645
 #, fuzzy
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Tallennus epäonnistui! Poikkeus tapahtui"
 
-#: ../src/modding/ModUploader.cs:663 ../src/modding/NewModGUI.cs:434
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Virhe tallennettaessa"
@@ -3905,6 +3685,10 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
+msgstr ""
+
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:168
@@ -3965,55 +3749,50 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Tallennus onnistui"
 
-#: ../src/modding/NewModGUI.cs:245
+#: ../src/modding/NewModGUI.cs:175
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
-#: ../src/modding/NewModGUI.cs:366
+#: ../src/modding/NewModGUI.cs:232
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:381
+#: ../src/modding/NewModGUI.cs:247
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:387
+#: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:393
+#: ../src/modding/NewModGUI.cs:259
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:409
+#: ../src/modding/NewModGUI.cs:275
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:420
+#: ../src/modding/NewModGUI.cs:286
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Auto-evon suorittaminen epäonnistui"
 
-#: ../src/modding/NewModGUI.tscn:51
+#: ../src/modding/NewModGUI.tscn:35
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "Luo uusi mikrobi"
 
-#: ../src/modding/NewModGUI.tscn:85
+#: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:92
+#: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:686
-#, fuzzy
-msgid "ENABLE_CONFIG"
-msgstr "Avaa editorin lukitus"
-
-#: ../src/modding/NewModGUI.tscn:723
+#: ../src/modding/NewModGUI.tscn:450
 #, fuzzy
 msgid "CREATE"
 msgstr "Luotu:"
@@ -4477,21 +4256,8 @@ msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Tutoriaali"
-
-#, fuzzy
-#~ msgid "SELECTED_MOD"
-#~ msgstr "Valittu:"
-
-#, fuzzy
-#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-#~ msgstr "Pistä muita soluja tällä."
-
-#, fuzzy
-#~ msgid "DISCARD_CHANGES"
-#~ msgstr "Hylkää ja jatka"
+msgstr "Katso nyt"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Ladataan..."

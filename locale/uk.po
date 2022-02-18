@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-10 11:15-0600\n"
-"PO-Revision-Date: 2022-02-10 06:38+0000\n"
+"POT-Creation-Date: 2022-02-10 15:37+0200\n"
+"PO-Revision-Date: 2022-02-11 07:40+0000\n"
 "Last-Translator: PanOlexMurzohan <oleksandrkurast@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -772,17 +772,14 @@ msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Перервано."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Завершено."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "Не тікайте."
 
@@ -799,18 +796,16 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} зміна населення {1} через зміну: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "Загальна популяція:"
+msgstr "популяція:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "вимерли в {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Види:"
+msgstr "попередній:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -829,16 +824,14 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "популяція на цих ділянках відокремилась, утворивши нові види {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
-msgstr "мутували"
+msgstr "має мутацію"
 
 #: ../src/auto-evo/RunResults.cs:641
 msgid "RUN_RESULT_GENE_CODE"
 msgstr "генетичний код:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "поширено в ділянці:"
 
@@ -847,9 +840,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} пермістилося: {1} популяція з {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} ({1})"
+msgstr "популяція в ділянці:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -1342,7 +1334,7 @@ msgstr "Малюнок від {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4195
-#: ../src/modding/ModManager.tscn:1572
+#: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Закрити"
@@ -1410,7 +1402,7 @@ msgstr "Режим творчого мікробного редактор"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:1631 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
@@ -1594,7 +1586,6 @@ msgid "LANGUAGE"
 msgstr "Мова:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
-#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "Скинути"
 
@@ -1758,7 +1749,7 @@ msgstr "Відмінити й продовжити"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:730
+#: ../src/modding/NewModGUI.tscn:457
 msgid "CANCEL"
 msgstr "Скасувати"
 
@@ -3192,9 +3183,8 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}м. нижче рівня моря"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "Видова Популяція"
+msgstr "{0} з популяції: {1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3292,514 +3282,310 @@ msgstr "ВИ ПРОЦВІТАЄТЕ!"
 msgid "WIN_TEXT"
 msgstr "Вітаємо, ви виграли в цій версії Thrive! Ви можете продожити грати, після закриття екрану, якщо бажаєте або почніть нову гру в новому світі."
 
-#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:531
+#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "Невдається завантажити інформацію про мод {0}"
 
-#: ../src/modding/ModLoader.cs:499
+#: ../src/modding/ModLoader.cs:235
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: Не вдалося завантажити збірку окрім: {1}"
 
-#: ../src/modding/ModLoader.cs:516
+#: ../src/modding/ModLoader.cs:252
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}: не містить ресурсів для завантаження"
 
-#: ../src/modding/ModLoader.cs:546
+#: ../src/modding/ModLoader.cs:279
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: метод відвантаження збірки модів невдалося викликати"
 
-#: ../src/modding/ModLoader.cs:554
+#: ../src/modding/ModLoader.cs:287
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: метод відвантаження збірки модів невдалося викликати, окрім: {1}"
 
-#: ../src/modding/ModLoader.cs:625
+#: ../src/modding/ModLoader.cs:351
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}: вказаний клас моду \"{1}\" не знайдено в збірці модів"
 
-#: ../src/modding/ModLoader.cs:638
+#: ../src/modding/ModLoader.cs:364
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: не вдалося викликати метод ініціалізації збірки модів"
 
-#: ../src/modding/ModLoader.cs:654
+#: ../src/modding/ModLoader.cs:380
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: не вдалося викликати метод ініціалізації збірки модів, окрім: {1}"
 
-#: ../src/modding/ModLoader.cs:670
+#: ../src/modding/ModLoader.cs:394
 msgid "PCK_LOAD_FAILED"
 msgstr "Завантаження pck файлу ({0}) невдалося"
 
-#: ../src/modding/ModManager.cs:471
+#: ../src/modding/ModManager.cs:293
 msgid "INVALID_ICON_PATH"
 msgstr "Недійсна доріжка іконки мода"
 
-#: ../src/modding/ModManager.cs:485
+#: ../src/modding/ModManager.cs:307
 msgid "INVALID_URL_SCHEME"
 msgstr "Недійсна схема URL"
 
-#: ../src/modding/ModManager.cs:497
+#: ../src/modding/ModManager.cs:319
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Потрібен клас збірки моду, коли її вказано"
 
-#: ../src/modding/ModManager.cs:609
-#, fuzzy
-msgid "MOD_LOADER_TAB"
-msgstr "Мод відвантажений"
-
-#: ../src/modding/ModManager.cs:610
-#, fuzzy
-msgid "MOD_ERRORS_TAB"
-msgstr "Помилка завантаження модифікації"
-
-#: ../src/modding/ModManager.cs:611
-#, fuzzy
-msgid "MOD_CONFIGURATION_TAB"
-msgstr "Невдалось створити мод"
-
-#: ../src/modding/ModManager.cs:987 ../src/modding/ModManager.cs:2049
-msgid "THIS_IS_WORKSHOP_MOD"
-msgstr "Цей мод завантажений з майстерні Steam"
-
-#: ../src/modding/ModManager.cs:988 ../src/modding/ModManager.cs:2050
-msgid "THIS_IS_LOCAL_MOD"
-msgstr "Цей мод локально встановлений"
-
-#: ../src/modding/ModManager.cs:1055
+#: ../src/modding/ModManager.cs:549
 msgid "NO_SELECTED_MOD"
 msgstr "Немає вибраного моду"
 
-#: ../src/modding/ModManager.cs:1422
-#, fuzzy
-msgid "MOD_LOAD_ERROR_WARNING"
-msgstr "Помилка завантаження модифікації"
+#: ../src/modding/ModManager.cs:885
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr "Цей мод завантажений з майстерні Steam"
 
-#: ../src/modding/ModManager.cs:1424
-#, fuzzy
-msgid "ARE_YOU_SURE_TO_LOAD_MOD"
-msgstr "Ви точно хочете скинути УСІ налаштування до замовчуваних?"
+#: ../src/modding/ModManager.cs:886
+msgid "THIS_IS_LOCAL_MOD"
+msgstr "Цей мод локально встановлений"
 
-#: ../src/modding/ModManager.cs:1612 ../src/modding/ModManager.tscn:851
-#: ../src/modding/ModManager.tscn:1444 ../src/modding/NewModGUI.tscn:548
-msgid "MOD_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1628
-msgid "NO_MOD_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1643 ../src/modding/ModManager.tscn:1466
-#: ../src/modding/NewModGUI.tscn:572
-msgid "MOD_REQUIRED_MODS"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:1659
-#, fuzzy
-msgid "NO_REQUIRED_MODS"
-msgstr "Немає вибраного моду"
-
-#: ../src/modding/ModManager.cs:1674 ../src/modding/ModManager.tscn:869
-#, fuzzy
-msgid "INCOMPATIBLE_WITH"
-msgstr ""
-"Про вибране збереження для завантаження відомо, що воно сумісне з цією версією Thrive.\n"
-"Та немає способу оновлення збережень для його оновлень.\n"
-"Оскільки Thrive все ще на початку розробки, то сумісність збереження не є пріоритетною, тому не існує засобу оновлення збережень для всіх версій."
-
-#: ../src/modding/ModManager.cs:1690
-#, fuzzy
-msgid "NO_MOD_INCOMPATIBLE"
-msgstr "Увімкнути всі сумісні моди"
-
-#: ../src/modding/ModManager.cs:1705 ../src/modding/ModManager.tscn:878
-#, fuzzy
-msgid "LOAD_ORDER"
-msgstr "Мод відвантажений"
-
-#: ../src/modding/ModManager.cs:1714 ../src/modding/ModManager.tscn:1510
-#: ../src/modding/NewModGUI.tscn:620
-#, fuzzy
-msgid "MOD_LOAD_AFTER"
-msgstr "Мод відвантажений"
-
-#: ../src/modding/ModManager.cs:1732 ../src/modding/ModManager.tscn:1488
-#: ../src/modding/NewModGUI.tscn:596
-#, fuzzy
-msgid "MOD_LOAD_BEFORE"
-msgstr "Помилка завантаження модифікації"
-
-#: ../src/modding/ModManager.cs:1744
-#, fuzzy
-msgid "MOD_NO_LOAD_ORDER"
-msgstr "Щоб правильно завантажити чи відвантажити один чи більше модів, потрібно перезавантажити гру"
-
-#: ../src/modding/ModManager.cs:2109
-#, fuzzy
-msgid "MOD_LIST_CONTAIN_ERRORS"
-msgstr "Помилка завантаження модифікації"
-
-#: ../src/modding/ModManager.cs:2111
-#, fuzzy
-msgid "MOD_CHECK_AGAIN_WARNING"
-msgstr ""
-"Ви маєте незбережені дії які будуть скасовані.\n"
-"Бажаєте продовжити?"
-
-#: ../src/modding/ModManager.cs:2115 ../src/modding/ModManager.cs:2155
-#, fuzzy
-msgid "MOD_LIST_VALID"
-msgstr "Помилка збереження"
-
-#: ../src/modding/ModManager.cs:2138 ../src/modding/ModManager.cs:2149
-#: ../src/modding/ModManager.cs:2174 ../src/modding/ModManager.cs:2194
-#: ../src/modding/ModManager.cs:2199
-#, fuzzy
-msgid "UNKNOWN_MOD"
-msgstr "Невідома миша"
-
-#: ../src/modding/ModManager.cs:2158
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
-msgstr ""
-"Про вибране збереження для завантаження відомо, що воно сумісне з цією версією Thrive.\n"
-"Та немає способу оновлення збережень для його оновлень.\n"
-"Оскільки Thrive все ще на початку розробки, то сумісність збереження не є пріоритетною, тому не існує засобу оновлення збережень для всіх версій."
-
-#: ../src/modding/ModManager.cs:2177
-msgid "MOD_ERROR_DEPENDENCIES"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2179
-msgid "MOD_ERROR_DEPENDENCIES_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2202
-msgid "MOD_ERROR_REQUIRED_MODS"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2204
-msgid "MOD_ERROR_REQUIRED_MODS_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2209
-msgid "MOD_ERROR_DEPENDENCIES_ORDER"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2211
-msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2215
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_MOD"
-msgstr "Завантажити не сумісне збереження?"
-
-#: ../src/modding/ModManager.cs:2217
-#, fuzzy
-msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
-msgstr ""
-"Про вибране збереження для завантаження відомо, що воно сумісне з цією версією Thrive.\n"
-"Та немає способу оновлення збережень для його оновлень.\n"
-"Оскільки Thrive все ще на початку розробки, то сумісність збереження не є пріоритетною, тому не існує засобу оновлення збережень для всіх версій."
-
-#: ../src/modding/ModManager.cs:2220
-#, fuzzy
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
-msgstr "Помилка завантаження модифікації"
-
-#: ../src/modding/ModManager.cs:2222
-msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2226
-#, fuzzy
-msgid "MOD_ERROR_LOAD_ORDER_AFTER"
-msgstr "Щоб правильно завантажити чи відвантажити один чи більше модів, потрібно перезавантажити гру"
-
-#: ../src/modding/ModManager.cs:2228
-msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
-msgstr ""
-
-#: ../src/modding/ModManager.cs:2270
+#: ../src/modding/ModManager.cs:940
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Помилка створення папки для моду"
 
-#: ../src/modding/ModManager.cs:2279
+#: ../src/modding/ModManager.cs:949
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "Помилка створення інформаційного файлу"
 
-#: ../src/modding/ModManager.tscn:201
+#: ../src/modding/ModManager.tscn:121
 msgid "AVAILABLE_MODS"
 msgstr "Доступні моди"
 
-#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
-msgid "LEFT_ARROW"
-msgstr "←"
-
-#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
-msgid "RIGHT_ARROW"
-msgstr "→"
-
-#: ../src/modding/ModManager.tscn:271
-msgid "ENABLED_MODS"
-msgstr "Увімкнути моди"
-
-#: ../src/modding/ModManager.tscn:310
-#, fuzzy
-msgid "ENABLE_ALL"
-msgstr "Відключити все"
-
-#: ../src/modding/ModManager.tscn:316
-msgid "OPEN_FOLDER"
-msgstr "Відкрити папку"
-
-#: ../src/modding/ModManager.tscn:322
-msgid "DISABLE_ALL"
-msgstr "Відключити все"
-
-#: ../src/modding/ModManager.tscn:339
-#, fuzzy
-msgid "ONESHOT_LOADING"
-msgstr "Помилка завантаження"
-
-#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "Застосувати"
-
-#: ../src/modding/ModManager.tscn:507
-#, fuzzy
-msgid "CLEAR"
-msgstr "очистити"
-
-#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1120
-#: ../src/modding/NewModGUI.tscn:158
-msgid "MOD_AUTHOR"
-msgstr "Автор моду:"
-
-#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1142
-#: ../src/modding/NewModGUI.tscn:181
-msgid "MOD_VERSION"
-msgstr "Версія моду:"
-
-#: ../src/modding/ModManager.tscn:770
-msgid "MINIMUM_VERSION"
-msgstr "Мінімум:"
-
-#: ../src/modding/ModManager.tscn:804
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "Рекомендовані Thrive:"
-
-#: ../src/modding/ModManager.tscn:860
-#, fuzzy
-msgid "REQUIRED_MODS"
-msgstr "Увімкнути моди"
-
-#: ../src/modding/ModManager.tscn:887
-msgid "OPEN_MOD_URL"
-msgstr "Відкрити інформацію про URL"
-
-#: ../src/modding/ModManager.tscn:896
-msgid "MORE_INFO"
-msgstr "Показати більше інформації"
-
-#: ../src/modding/ModManager.tscn:968
-#, fuzzy
-msgid "CHECK_BUTTON_TOOLTIP"
-msgstr "Допомога"
-
-#: ../src/modding/ModManager.tscn:969
-msgid "CHECK_MOD"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
 msgid "REFRESH"
 msgstr "Оновити"
 
-#: ../src/modding/ModManager.tscn:989
-msgid "MOD_LOAD_UNLOAD_CAVEATS"
-msgstr "Примітка: багато модів потребують перезавантаження гри, щоб правильно завантажити чи відвантажити. Завантажуйте лише моди яким, довіряєте, бо вони можуть виконуваний код."
+#: ../src/modding/ModManager.tscn:152
+msgid "OPEN_FOLDER"
+msgstr "Відкрити папку"
 
-#: ../src/modding/ModManager.tscn:990
-msgid "APPLY_CHANGES"
-msgstr "Застосувати зміни"
+#: ../src/modding/ModManager.tscn:170
+msgid "RIGHT_ARROW"
+msgstr "→"
 
-#: ../src/modding/ModManager.tscn:1005
-msgid "BROWSE_WORKSHOP"
-msgstr "Огляд в магазині"
+#: ../src/modding/ModManager.tscn:183
+msgid "LEFT_ARROW"
+msgstr "←"
 
-#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
-msgid "UPLOAD"
-msgstr "Завантажити"
+#: ../src/modding/ModManager.tscn:195
+msgid "ENABLED_MODS"
+msgstr "Увімкнути моди"
 
-#: ../src/modding/ModManager.tscn:1027
-msgid "NEW"
-msgstr "Новий"
+#: ../src/modding/ModManager.tscn:213
+msgid "DISABLE_ALL"
+msgstr "Відключити все"
 
-#: ../src/modding/ModManager.tscn:1072 ../src/modding/NewModGUI.tscn:135
-msgid "MOD_NAME"
-msgstr "Назва моду:"
+#: ../src/modding/ModManager.tscn:250
+msgid "SELECTED_MOD"
+msgstr "Вибраний мод:"
 
-#: ../src/modding/ModManager.tscn:1094 ../src/modding/NewModGUI.tscn:112
-msgid "MOD_INTERNAL_NAME"
-msgstr "Внутрішня (папкова) назва:"
+#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
+#: ../src/modding/NewModGUI.tscn:142
+msgid "MOD_AUTHOR"
+msgstr "Автор моду:"
 
-#: ../src/modding/ModManager.tscn:1164 ../src/modding/NewModGUI.tscn:204
+#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
+#: ../src/modding/NewModGUI.tscn:165
+msgid "MOD_VERSION"
+msgstr "Версія моду:"
+
+#: ../src/modding/ModManager.tscn:371
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "Рекомендовані Thrive:"
+
+#: ../src/modding/ModManager.tscn:415
+msgid "MINIMUM_VERSION"
+msgstr "Мінімум:"
+
+#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
+#: ../src/modding/NewModGUI.tscn:188
 msgid "MOD_DESCRIPTION"
 msgstr "Опис моду:"
 
-#: ../src/modding/ModManager.tscn:1186 ../src/modding/NewModGUI.tscn:227
+#: ../src/modding/ModManager.tscn:474
+msgid "MORE_INFO"
+msgstr "Показати більше інформації"
+
+#: ../src/modding/ModManager.tscn:482
+msgid "OPEN_MOD_URL"
+msgstr "Відкрити інформацію про URL"
+
+#: ../src/modding/ModManager.tscn:505
+msgid "BROWSE_WORKSHOP"
+msgstr "Огляд в магазині"
+
+#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+msgid "UPLOAD"
+msgstr "Завантажити"
+
+#: ../src/modding/ModManager.tscn:519
+msgid "NEW"
+msgstr "Новий"
+
+#: ../src/modding/ModManager.tscn:532
+msgid "MOD_LOAD_UNLOAD_CAVEATS"
+msgstr "Примітка: багато модів потребують перезавантаження гри, щоб правильно завантажити чи відвантажити. Завантажуйте лише моди яким, довіряєте, бо вони можуть виконуваний код."
+
+#: ../src/modding/ModManager.tscn:559
+msgid "ENABLE_ALL_COMPATIBLE"
+msgstr "Увімкнути всі сумісні моди"
+
+#: ../src/modding/ModManager.tscn:568
+msgid "APPLY_CHANGES"
+msgstr "Застосувати зміни"
+
+#: ../src/modding/ModManager.tscn:579
+msgid "UNAPPLIED_MOD_CHANGES"
+msgstr "Є незастосовані зміни"
+
+#: ../src/modding/ModManager.tscn:580
+msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+msgstr "Ви маєте застосувати зміни, щоб завантажити або відвантажити будь-які моди."
+
+#: ../src/modding/ModManager.tscn:581
+msgid "DISCARD_CHANGES"
+msgstr "Скасувати зміни"
+
+#: ../src/modding/ModManager.tscn:588
+msgid "FULL_MOD_INFO"
+msgstr "Уся інформація про мод"
+
+#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+msgid "MOD_NAME"
+msgstr "Назва моду:"
+
+#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+msgid "MOD_INTERNAL_NAME"
+msgstr "Внутрішня (папкова) назва:"
+
+#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Довгий опис моду:"
 
-#: ../src/modding/ModManager.tscn:1224 ../src/modding/NewModGUI.tscn:251
+#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
 msgid "MOD_ICON_FILE"
 msgstr "Іконка файлу:"
 
-#: ../src/modding/ModManager.tscn:1246 ../src/modding/NewModGUI.tscn:291
-#, fuzzy
-msgid "MOD_PREVIEW_IMAGE_FILE"
-msgstr "Файл зображення попереднього перегляду надто великий"
-
-#: ../src/modding/ModManager.tscn:1268 ../src/modding/NewModGUI.tscn:330
+#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
 msgid "MOD_INFO_URL"
 msgstr "Інформація про URL моду:"
 
-#: ../src/modding/ModManager.tscn:1290 ../src/modding/NewModGUI.tscn:353
+#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
 msgid "MOD_LICENSE"
 msgstr "Ліцензія на моду:"
 
-#: ../src/modding/ModManager.tscn:1312 ../src/modding/NewModGUI.tscn:376
+#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "Рекомендована версія Thrive:"
 
-#: ../src/modding/ModManager.tscn:1334 ../src/modding/NewModGUI.tscn:399
+#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "Мінімальна необхідна версія Thrive:"
 
-#: ../src/modding/ModManager.tscn:1356 ../src/modding/NewModGUI.tscn:422
+#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "Максимальна підтримувана версія Thrive:"
 
-#: ../src/modding/ModManager.tscn:1378 ../src/modding/NewModGUI.tscn:445
+#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
 msgid "MOD_PCK_NAME"
 msgstr ".pck файл моду:"
 
-#: ../src/modding/ModManager.tscn:1400 ../src/modding/NewModGUI.tscn:485
+#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
 msgid "MOD_ASSEMBLY"
 msgstr "Збірка модів:"
 
-#: ../src/modding/ModManager.tscn:1422 ../src/modding/NewModGUI.tscn:525
+#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Основний клас збірки модів:"
 
-#: ../src/modding/ModManager.tscn:1532 ../src/modding/NewModGUI.tscn:644
-#, fuzzy
-msgid "MOD_INCOMPATIBLE_MODS"
-msgstr "Завантажити не сумісне збереження?"
+#: ../src/modding/ModManager.tscn:979
+msgid "MOD_CREATION_FAILED"
+msgstr "Невдалось створити мод"
 
-#: ../src/modding/ModManager.tscn:1554 ../src/modding/NewModGUI.tscn:668
-#, fuzzy
-msgid "MOD_CONFIG_FILE"
-msgstr "Іконка файлу:"
-
-#: ../src/modding/ModManager.tscn:1585
+#: ../src/modding/ModManager.tscn:989
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Виникла помилка під час завантаження чи відвантаження моду. Журнали можуть містити додаткову інформацію."
 
-#: ../src/modding/ModManager.tscn:1590
+#: ../src/modding/ModManager.tscn:994
 msgid "RESTART_REQUIRED"
 msgstr "Потрібне перезавантаження"
 
-#: ../src/modding/ModManager.tscn:1592
+#: ../src/modding/ModManager.tscn:996
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Щоб правильно завантажити чи відвантажити один чи більше модів, потрібно перезавантажити гру"
 
-#: ../src/modding/ModManager.tscn:1607
-#, fuzzy
-msgid "MOD_LOAD_ERROR_WARNING_TITLE"
-msgstr "Виникла помилка коли завантажувалися кілька модифікацій. Додаткова інформація міститься у журналах."
-
-#: ../src/modding/ModManager.tscn:1609
-#, fuzzy
-msgid "YES"
-msgstr "роки"
-
-#: ../src/modding/ModManager.tscn:1610
-#, fuzzy
-msgid "NO"
-msgstr "Скасувати"
-
-#: ../src/modding/ModManager.tscn:1618 ../src/modding/ModManager.tscn:1621
-msgid "NULL"
-msgstr ""
-
-#: ../src/modding/ModUploader.cs:278 ../src/modding/ModUploader.tscn:272
+#: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Контент майстерні буде відвантажено з папки: {0}"
 
-#: ../src/modding/ModUploader.cs:308
+#: ../src/modding/ModUploader.cs:305
 msgid "MISSING_TITLE"
 msgstr "Назва відсутня"
 
-#: ../src/modding/ModUploader.cs:314
+#: ../src/modding/ModUploader.cs:311
 msgid "MISSING_DESCRIPTION"
 msgstr "Опис відсутній"
 
-#: ../src/modding/ModUploader.cs:322
+#: ../src/modding/ModUploader.cs:319
 msgid "DESCRIPTION_TOO_LONG"
 msgstr "Опис надто довгий"
 
-#: ../src/modding/ModUploader.cs:328 ../src/steam/SteamClient.cs:207
+#: ../src/modding/ModUploader.cs:325 ../src/steam/SteamClient.cs:207
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr "Нотатки змін надто довгі"
 
-#: ../src/modding/ModUploader.cs:336
+#: ../src/modding/ModUploader.cs:333
 msgid "TAGS_IS_WHITESPACE"
 msgstr "Теги містять лише пробіли"
 
-#: ../src/modding/ModUploader.cs:344
+#: ../src/modding/ModUploader.cs:341
 msgid "INVALID_TAG"
 msgstr "Вказаний \"{0}\" недійсний"
 
-#: ../src/modding/ModUploader.cs:358
+#: ../src/modding/ModUploader.cs:355
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr "Зображення попереднього поперегляду не існує"
 
-#: ../src/modding/ModUploader.cs:365
+#: ../src/modding/ModUploader.cs:362
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr "Файл зображення попереднього перегляду надто великий"
 
-#: ../src/modding/ModUploader.cs:420
+#: ../src/modding/ModUploader.cs:417
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID з недійсним номером"
 
-#: ../src/modding/ModUploader.cs:463
+#: ../src/modding/ModUploader.cs:460
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Створення..."
 
-#: ../src/modding/ModUploader.cs:477
+#: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
 msgstr "Результат показав успіх, але ID не повернуто"
 
-#: ../src/modding/ModUploader.cs:522
+#: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
 msgstr "Відвантажити..."
 
-#: ../src/modding/ModUploader.cs:559
+#: ../src/modding/ModUploader.cs:556
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Завантаження елемента до майстерні Steam вдалось, але вам потрібно прийняти в магазині [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement] умовами обслуговування [/url][/color]"
 
-#: ../src/modding/ModUploader.cs:563
+#: ../src/modding/ModUploader.cs:560
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Предмет відвантажено до майстерні Steam успішно"
 
-#: ../src/modding/ModUploader.cs:623
+#: ../src/modding/ModUploader.cs:620
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "При надсилані цього елементу ви погоджуєтесь з майстернею Steam [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement] його умовами обслуговування [/url][/color]"
 
-#: ../src/modding/ModUploader.cs:648
+#: ../src/modding/ModUploader.cs:645
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Інформацію невдалось зберегти, за винятком: {0}"
 
-#: ../src/modding/ModUploader.cs:663 ../src/modding/NewModGUI.cs:434
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Помилка: {0}"
 
@@ -3830,6 +3616,10 @@ msgstr "Введіть існуючий ID майстерні"
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "НомерID"
+
+#: ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "Застосувати"
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
@@ -3883,52 +3673,47 @@ msgstr "Вибрати зображення попереднього перег�
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Відвантаження виконано"
 
-#: ../src/modding/NewModGUI.cs:245
+#: ../src/modding/NewModGUI.cs:175
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Мій класний мод"
 
-#: ../src/modding/NewModGUI.cs:366
+#: ../src/modding/NewModGUI.cs:232
 msgid "INVALID_URL_FORMAT"
 msgstr "Недійсний URL формат"
 
-#: ../src/modding/NewModGUI.cs:381
+#: ../src/modding/NewModGUI.cs:247
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "Вимагається внутрішнє ім'я"
 
-#: ../src/modding/NewModGUI.cs:387
+#: ../src/modding/NewModGUI.cs:253
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "Внутрішнє ім'я має починатися з великої літери"
 
-#: ../src/modding/NewModGUI.cs:393
+#: ../src/modding/NewModGUI.cs:259
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "Існує мод з такою внутрішньою назвою"
 
-#: ../src/modding/NewModGUI.cs:409
+#: ../src/modding/NewModGUI.cs:275
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "Відсутній або недійсний формат обов'якового поля: {0}"
 
-#: ../src/modding/NewModGUI.cs:420
+#: ../src/modding/NewModGUI.cs:286
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Додаткові перевірки виявили проблему: {0}"
 
-#: ../src/modding/NewModGUI.tscn:51
+#: ../src/modding/NewModGUI.tscn:35
 msgid "CREATE_NEW_MOD"
 msgstr "Створити новий мод"
 
-#: ../src/modding/NewModGUI.tscn:85
+#: ../src/modding/NewModGUI.tscn:69
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Інструкції моифікацій доступні на"
 
-#: ../src/modding/NewModGUI.tscn:92
+#: ../src/modding/NewModGUI.tscn:76
 msgid "OUR_WIKI"
 msgstr "Наша Wiki"
 
-#: ../src/modding/NewModGUI.tscn:686
-#, fuzzy
-msgid "ENABLE_CONFIG"
-msgstr "Увімкнути моди"
-
-#: ../src/modding/NewModGUI.tscn:723
+#: ../src/modding/NewModGUI.tscn:450
 msgid "CREATE"
 msgstr "Створити"
 
@@ -3946,7 +3731,6 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Створені об'єкти зі збереження"
 
 #: ../src/saving/InProgressLoad.cs:110
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "З'явилося заперечення, коли завантажувались дані"
 
@@ -3963,7 +3747,6 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обробка завантаження об'єктів"
 
 #: ../src/saving/InProgressLoad.cs:165
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "З'явилося заперечення, під час обробки завантажених об'єктів"
 
@@ -3980,9 +3763,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Невдача при звільнені вже завантажені ресурсів: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Створення..."
+msgstr "Збереження..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3993,7 +3775,6 @@ msgid "ERROR_SAVING"
 msgstr "Помилка збереження"
 
 #: ../src/saving/NewSaveMenu.cs:74
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Обране файлове ім'я ({0}) уже існує. Переписати?"
 
@@ -4018,16 +3799,12 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Переписати наявне збереження:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Переписати наявне збереження:"
+msgstr "Переписати наявне збереження?"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"Оновити вказане збереження не вдалось через помилку:\n"
-"{0}"
+msgstr "Невдалось збереження! Сталося заперечення"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -4066,17 +3843,14 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "Збереження не знайдене"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
-msgstr "Відвантажити..."
+msgstr "Завантажити..."
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
-#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Видалити це збереження?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Завантажити не сумісне збереження?"
 
@@ -4095,7 +3869,6 @@ msgstr ""
 "Ви хочете спробувати завантажити його всеодно?"
 
 #: ../src/saving/SaveList.tscn:95
-#, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Невдалося завантажити збереження?"
 
@@ -4107,7 +3880,6 @@ msgstr ""
 "Ви хочете спробувати завантажити його всеодно?"
 
 #: ../src/saving/SaveList.tscn:103
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Вибране збереження несумісне"
 
@@ -4119,7 +3891,6 @@ msgstr ""
 "Оскільки Thrive все ще на початку розробки, то сумісність збереження не є пріоритетною, тому не існує засобу оновлення збережень для всіх версій."
 
 #: ../src/saving/SaveList.tscn:114
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Вибране збереження оновлене"
 
@@ -4152,18 +3923,16 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "Здоров'я:"
+msgstr "Тип:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Опис:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "Генерація:"
+msgstr "Версія:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4217,12 +3986,10 @@ msgid "SELECTED_COLON"
 msgstr "Вибрано:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Видалити вибрані збереження?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Видалити старі збереження?"
 
@@ -4324,29 +4091,27 @@ msgstr ""
 "Перейдіть в наступну вкладку редактора, натиснувши кнопку \"Далі\" справа знизу."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Ласкаво просимо до мікробного редактору.\n"
-"Тут ви можете перглянути, що сталося зі старту гри або коли ви ввостанє туди заходили. І потім зробіть зміни у своєму виді.\n"
+"Це мапа ділянок.\n"
+"Тут ви можете побачити різноманітні ділянки з мікробами, що там проживають.\n"
+"Ваша поточна ділянка підсвіжена.\n"
+"Ви можете клікнути на ділянку мишкою, щоб побачити деталі про неї справа знизу.\n"
 "\n"
-"У цій вкладці ви можете побачити звіт щодо вашого виду, де і яка у вас популяція. Ви можете побачити зміни в оточені.\n"
+"Якщо вибрати ближню ділянку поруч з вами, то можете натиснути кнопку справа, аби переміститися туди. Цедозволить поширювати популяцію на нові ділянки.\n"
 "\n"
-"Перейдіть в наступну вкладку редактора, натиснувши кнопку \"Далі\" справа знизу."
+"Виберіть ділянку, щоб продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Ласкаво просимо до мікробного редактору.\n"
-"Тут ви можете перглянути, що сталося зі старту гри або коли ви ввостанє туди заходили. І потім зробіть зміни у своєму виді.\n"
+"Це клітинний редактор, де ви можете додавати або видаляти органели вашого виду використовуючи очки мутуції (ОМ).\n"
 "\n"
-"У цій вкладці ви можете побачити звіт щодо вашого виду, де і яка у вас популяція. Ви можете побачити зміни в оточені.\n"
+"Ви також можете змінити й інші особливості свого виду у інших вкладках клітинного редактору.\n"
 "\n"
-"Перейдіть в наступну вкладку редактора, натиснувши кнопку \"Далі\" справа знизу."
+"Щоб продовжити, оберіть органелу на панелі зліва (цитоплазма є гарним вибором).Потім клацніть ЛКМ поруч із гексом(шестикутником), показаним посередині екрану, щоб додати цю органелу до вашого виду."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Переміщення органел також коштує ОМ, бо це мутація вашого виду, якщо вони не були в цьому місці редактора.\n"
@@ -4358,7 +4123,6 @@ msgstr ""
 "Натисніть кнопку скасування, щоб продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Коли обираєте органелу для додавання, зверніть увагу на підказки для органел, які процеси вони виконують, які сполуки споживають та продукують.\n"
@@ -4370,7 +4134,6 @@ msgstr ""
 "Натисніть кнопку повтору продовжити(поруч з кнопкою скасувати), аби продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Це основи редагування вашого виду. Ви можете глянути інші вкладки панелі клітинного редактора, щоб мати більше налаштувань.\n"
@@ -4386,7 +4149,6 @@ msgid "GOT_IT"
 msgstr "Зрозуміло"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Ця панель показує прогноз майбутнього вашої популяції. Ці цифри отримані з моделювання населення авто-ево.\n"
@@ -4398,7 +4160,6 @@ msgstr ""
 "Ви можете переглянути більш детальну інформацію про прогноз, натиснувши кнопку зі знаком питання на панелі. Натисніть її, щоб продовжити."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Ви повинні зосередитися на одному-двох джерелах енергії, щоб вам не потрібно було мати всі ресурси для вироблення достатньої кількості АТФ для виживання.\n"
@@ -4437,7 +4198,9 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Збирайте глюкозу(білі хмари) рухаючись по них.\n"
+"\n"
 "Вашій клітині необхідна глюкоза, щоб продукувати глюкозу для підтримки життя.\n"
+"\n"
 "Слідкуйте за лінією біля вашої клітини до глюкози поблизу."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
@@ -4449,14 +4212,12 @@ msgstr ""
 "Переконайтесь, що збираєте достатню кількість глюкози для продукування АТФ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Для розмноження потрібно подвоїти кожну свою органелу зібравши достатньо аміаку та фосфатів.\n"
 "Погляньте на індикатор знизу справа, аби бачити як багато вам треба."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Ви зібрали необхідну кількість ресурсів для поділу вашої клітини.\n"
@@ -4466,7 +4227,6 @@ msgstr ""
 "Для переходу в радактор натисніть блимаючу кнопку редактора знизу справа."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Ви перейшли до розв'язувального режиму. В цьому режимі ви можете натиснути на членів колонії для розв'язування з ними.\n"
@@ -4474,7 +4234,6 @@ msgstr ""
 "Аби повністю покинути колонію ви можете клікнути на свою клітину або натиснути клавішу для розв'язування."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Якщо ви, все ще, маєте складності з ігровими механіками, загляньте до меню допомоги. Ви можете відкрити його за допомогою кнопки із знаком питання знизу зліва.\n"
@@ -4482,24 +4241,8 @@ msgstr ""
 "Ще одна підказка: Ви можете міняти масштаб за допомогою колесика миші."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Туторіал"
-
-#~ msgid "SELECTED_MOD"
-#~ msgstr "Вибраний мод:"
-
-#~ msgid "UNAPPLIED_MOD_CHANGES"
-#~ msgstr "Є незастосовані зміни"
-
-#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-#~ msgstr "Ви маєте застосувати зміни, щоб завантажити або відвантажити будь-які моди."
-
-#~ msgid "DISCARD_CHANGES"
-#~ msgstr "Скасувати зміни"
-
-#~ msgid "FULL_MOD_INFO"
-#~ msgstr "Уся інформація про мод"
+msgstr "Переглянути зараз"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Завантаження..."
