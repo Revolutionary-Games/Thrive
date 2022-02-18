@@ -152,26 +152,31 @@ public class GasProductionEffect : IWorldEffect
 
             compoundsProduced = ScaleByOverconsumption(compoundsProduced, patch);
 
-            foreach (var compound in compoundsProduced.Keys)
+            foreach (var intake in compoundsProduced)
             {
-                if (!patch.Biome.Compounds.ContainsKey(compound))
-                {
-                    patch.Biome.Compounds[compound] = new EnvironmentalCompoundProperties
-                    {
-                        Amount = 0,
-                        Density = 0,
-                        Dissolved = 0,
-                    };
-                }
-
-                var compoundValue = patch.Biome.Compounds[compound];
-
-                // TODO: if capped here, use something to scale production
-                compoundValue.Dissolved = Math.Max(
-                    compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume, Constants.DISSOLVED_MIN);
-                patch.Biome.Compounds[compound] = compoundValue;
+                AddIntakeToPatch(patch, intake);
             }
         }
+    }
+
+    private void AddIntakeToPatch(Patch patch, KeyValuePair<Compound, float> intake)
+    {
+        if (!patch.Biome.Compounds.ContainsKey(intake.Key))
+        {
+            patch.Biome.Compounds[intake.Key] = new EnvironmentalCompoundProperties
+            {
+                Amount = 0,
+                Density = 0,
+                Dissolved = 0,
+            };
+        }
+
+        var compoundValue = patch.Biome.Compounds[intake.Key];
+
+        // TODO: if capped here, use something to scale production
+        compoundValue.Dissolved = Math.Max(
+            compoundValue.Dissolved + intake.Value / patch.Volume, Constants.DISSOLVED_MIN);
+        patch.Biome.Compounds[intake.Key] = compoundValue;
     }
 
     private void AddConstantIntakeToPatch(Patch patch)
@@ -188,23 +193,7 @@ public class GasProductionEffect : IWorldEffect
 
         foreach (var intake in constantCompoundsDissolvedIntake)
         {
-            if (patch.Biome.Compounds.TryGetValue(intake.Key, out EnvironmentalCompoundProperties compoundValue))
-            {
-                // TODO if capped here, use something to scale production
-                compoundValue.Dissolved = Math.Max(
-                    compoundValue.Dissolved + intake.Value,
-                    Constants.DISSOLVED_MIN);
-                patch.Biome.Compounds[intake.Key] = compoundValue;
-            }
-            else
-            {
-                patch.Biome.Compounds[intake.Key] = new EnvironmentalCompoundProperties
-                {
-                    Amount = 0,
-                    Density = 0,
-                    Dissolved = intake.Value / patch.Volume,
-                };
-            }
+            AddIntakeToPatch(patch, intake);
         }
     }
 
