@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-10 15:37+0200\n"
-"PO-Revision-Date: 2022-01-09 09:13+0000\n"
+"PO-Revision-Date: 2022-02-10 15:03+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -27,7 +27,7 @@ msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jo
 #: ../simulation_parameters/common/help_texts.json:10
 #: ../simulation_parameters/common/help_texts.json:88
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Solusi käyttää ATP:tä energianlähteenä, jos se loppuu, kuolet."
+msgstr "Solusi käyttää [thrive:compound type=\"atp\"]ATP:tä[/thrive:compound] energianlähteenä, jos se loppuu, kuolet."
 
 #: ../simulation_parameters/common/help_texts.json:14
 #: ../simulation_parameters/common/help_texts.json:91
@@ -194,7 +194,7 @@ msgstr "Vinkki: mitä enemmän siimoja sinulla on, sitä nopeammin liikut, vroom
 
 #: ../simulation_parameters/common/help_texts.json:168
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "Vinkki: voit niellä paloja, rautaisia tai muita."
+msgstr "Vinkki: voit niellä paloja, rautaisia ja muun tyyppisiä."
 
 #: ../simulation_parameters/common/help_texts.json:171
 msgid "EASTEREGG_MESSAGE_16"
@@ -345,9 +345,8 @@ msgid "PLACE_ORGANELLE"
 msgstr "Lisää soluelin"
 
 #: ../simulation_parameters/common/input_options.json:107
-#, fuzzy
 msgid "OPEN_ORGANELLE_MENU"
-msgstr "Poista soluelin"
+msgstr "Avaa soluelimen valikko"
 
 #: ../simulation_parameters/common/input_options.json:111
 msgid "PAN_CAMERA_LEFT"
@@ -375,14 +374,12 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "Peruuta nykyinen toimenpide"
 
 #: ../simulation_parameters/common/input_options.json:135
-#, fuzzy
 msgid "DELETE_ORGANELLE"
-msgstr "Lisää soluelin"
+msgstr "Poista soluelin"
 
 #: ../simulation_parameters/common/input_options.json:139
-#, fuzzy
 msgid "MOVE_ORGANELLE"
-msgstr "Poista soluelin"
+msgstr "Siirrä soluelintä"
 
 #: ../simulation_parameters/common/input_options.json:147
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:15
@@ -408,7 +405,7 @@ msgstr "Luo fosfaattia"
 
 #: ../simulation_parameters/common/input_options.json:167
 msgid "CHEAT_MENU"
-msgstr "Huijauskoodit"
+msgstr "Huijausvalikko"
 
 #: ../simulation_parameters/common/input_options.json:176
 msgid "MISCELLANEOUS"
@@ -772,17 +769,14 @@ msgid "CHEMORECEPTOR"
 msgstr "Kemoplasti"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Peruutettu."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Valmis."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "Ei suoriteta."
 
@@ -799,41 +793,34 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} populaatio muuttui {1} syystä: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "{0} populaatio muuttui {1} syystä: {2}"
+msgstr "populaatio:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "katosi alueelta: {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Lajit:"
+msgstr "edellinen:"
 
 #: ../src/auto-evo/RunResults.cs:587
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_FROM"
-msgstr "geneettinen koodi:"
+msgstr "erkani lajista: {0}"
 
 #: ../src/auto-evo/RunResults.cs:600
-#, fuzzy
 msgid "RUN_RESULT_NICHE_FILL"
-msgstr "geneettinen koodi:"
+msgstr "ilmaantui täyttämään ekologisen lokeron"
 
 #: ../src/auto-evo/RunResults.cs:603
-#, fuzzy
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
-msgstr "levisi alueille:"
+msgstr "syntyi eriävien valintapaineiden seurauksena"
 
 #: ../src/auto-evo/RunResults.cs:620
-#, fuzzy
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr "levisi alueille:"
+msgstr "populaatio joillain alueille jakaantui muodostamaan uuden lajin, {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "on saanut mutaation"
 
@@ -842,7 +829,6 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "geneettinen koodi:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "levisi alueille:"
 
@@ -851,9 +837,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0} lähettämällä: {1} yksikköä populaatiota alueelta: {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "POPULAATIO:"
+msgstr "populaatio alueilla:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -866,7 +851,7 @@ msgstr ""
 #: ../src/auto-evo/RunResults.cs:853 ../src/auto-evo/RunResults.cs:875
 #, fuzzy
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
-msgstr "Lajien populaatiot"
+msgstr "[u]{0}[/u] populaatio on kasvanut määrään {1}"
 
 #: ../src/auto-evo/RunResults.cs:859 ../src/auto-evo/RunResults.cs:881
 #, fuzzy
@@ -900,19 +885,17 @@ msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "levisi alueille:"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "Iso rautalohkare"
+msgstr "Virhe: lohkaretta ei löytynyt"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 #, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
-msgstr "Yhdistepilvet"
+msgstr "lohkareen, {0}, kulutus"
 
 #: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:42
-#, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
-msgstr "Yhdistepilvet"
+msgstr "{0}:n kulutus"
 
 #: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:38
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
@@ -1467,9 +1450,8 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "Tämä käännös on vielä kesken ({0}% valmis)"
 
 #: ../src/general/OptionsMenu.cs:940
-#, fuzzy
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
-msgstr "Auta pelin kääntämisessä"
+msgstr "Tämä kieli on {0}% käännetty"
 
 #: ../src/general/OptionsMenu.tscn:135
 msgid "GRAPHICS"
@@ -1520,9 +1502,8 @@ msgid "FOUR_TIMES"
 msgstr "4x"
 
 #: ../src/general/OptionsMenu.tscn:263
-#, fuzzy
 msgid "EIGHT_TIMES"
-msgstr "Hiiren oikea painike"
+msgstr "8x"
 
 #: ../src/general/OptionsMenu.tscn:263
 msgid "SIXTEEN_TIMES"
@@ -1541,9 +1522,8 @@ msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
 
 #: ../src/general/OptionsMenu.tscn:316
-#, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
-msgstr "Maksimi kuvia sekunnissa:"
+msgstr "Rajoittamaton"
 
 #: ../src/general/OptionsMenu.tscn:332
 msgid "COLOURBLIND_CORRECTION"
@@ -1566,14 +1546,12 @@ msgid "CHROMATIC_ABERRATION"
 msgstr "Kromaattinen vääristymä:"
 
 #: ../src/general/OptionsMenu.tscn:389
-#, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
-msgstr "Kyvyt"
+msgstr "Näytä kykypalkki"
 
 #: ../src/general/OptionsMenu.tscn:397
-#, fuzzy
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
-msgstr "Ulkoiset vaikutukset:"
+msgstr "Käytä käyttöliittymän valoefektejä"
 
 #: ../src/general/OptionsMenu.tscn:423
 msgid "MASTER_VOLUME"
@@ -1623,9 +1601,7 @@ msgstr "Yhdistepilvet"
 
 #: ../src/general/OptionsMenu.tscn:708
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
-"Pienin pilvien päivitys\n"
-"aikajakso:"
+msgstr "Pienin pilvien päivitys aikajakso:"
 
 #: ../src/general/OptionsMenu.tscn:715 ../src/general/OptionsMenu.tscn:757
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
@@ -1640,14 +1616,12 @@ msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr "Suorita auto-evo pelin aikana"
 
 #: ../src/general/OptionsMenu.tscn:811
-#, fuzzy
 msgid "DETECTED_CPU_COUNT"
-msgstr "Valittu:"
+msgstr "Tunnistettu prosessoriytimien määrä:"
 
 #: ../src/general/OptionsMenu.tscn:828
-#, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
-msgstr "Tallenna ja jatka"
+msgstr "Nykyinen suorittajien määrä:"
 
 #: ../src/general/OptionsMenu.tscn:842
 msgid "ASSUME_HYPERTHREADING"
@@ -1694,7 +1668,6 @@ msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr "Näytä tutoriaalit (nykyisessä pelissä)"
 
 #: ../src/general/OptionsMenu.tscn:1081
-#, fuzzy
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 "Sinulla on tallentamattomia muutoksia, jotka menetetään.\n"
@@ -1803,14 +1776,16 @@ msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Ota ruudunkaappaus"
 
 #: ../src/general/PauseMenu.cs:271
-#, fuzzy
 msgid "RETURN_TO_MENU_WARNING"
-msgstr "Palaa Päävalikkoon"
+msgstr ""
+"Haluatko varmasti palata päävalikkoon?\n"
+"Menetät tallentamattomat tiedot."
 
 #: ../src/general/PauseMenu.cs:287
-#, fuzzy
 msgid "QUIT_GAME_WARNING"
-msgstr "GLES2-moodi Varoitus"
+msgstr ""
+"Haluatko varmasti poistua pelistä?\n"
+"Menetät tallentamattomat tiedot."
 
 #: ../src/general/PauseMenu.tscn:62
 msgid "RESUME"
@@ -1839,9 +1814,8 @@ msgid "EXIT"
 msgstr "Poistu"
 
 #: ../src/general/PauseMenu.tscn:163
-#, fuzzy
 msgid "CONFIRM_EXIT"
-msgstr "VAHVISTA"
+msgstr "Vahvista poistuminen"
 
 #: ../src/general/StringUtils.cs:22
 msgid "BILLION_ABBREVIATION"
@@ -1959,14 +1933,12 @@ msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr "Voit tukea Thriven jatkokehitystä Patreonissa."
 
 #: ../src/gui_common/CreditsScroll.cs:352
-#, fuzzy
 msgid "DONATIONS"
-msgstr "Asetukset"
+msgstr "Lahjoitukset"
 
 #: ../src/gui_common/CreditsScroll.cs:375
-#, fuzzy
 msgid "TRANSLATORS"
-msgstr "Auta pelin kääntämisessä"
+msgstr "Kääntäjät"
 
 #: ../src/gui_common/CreditsScroll.cs:389
 msgid "USED_LIBRARIES_LICENSES"
@@ -1988,14 +1960,12 @@ msgid "THEORY_TEAM"
 msgstr "Teoriatiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:495
-#, fuzzy
 msgid "GRAPHICS_TEAM"
-msgstr "Grafiikat"
+msgstr "Grafiikkatiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:496
-#, fuzzy
 msgid "SOUND_TEAM"
-msgstr "Ääni"
+msgstr "Äänitiimi"
 
 #: ../src/gui_common/CreditsScroll.cs:497
 msgid "OUTREACH_TEAM"
@@ -2034,9 +2004,8 @@ msgid "JANUARY"
 msgstr "Tammikuu"
 
 #: ../src/gui_common/CreditsScroll.cs:506
-#, fuzzy
 msgid "FEBRUARY"
-msgstr "Estuaari"
+msgstr "helmikuu"
 
 #: ../src/gui_common/CreditsScroll.cs:507
 msgid "MARCH"
@@ -2071,9 +2040,8 @@ msgid "OCTOBER"
 msgstr "Lokakuu"
 
 #: ../src/gui_common/CreditsScroll.cs:515
-#, fuzzy
 msgid "NOVEMBER"
-msgstr "Liikkuminen"
+msgstr "marraskuu"
 
 #: ../src/gui_common/CreditsScroll.cs:516
 msgid "DECEMBER"
@@ -2206,9 +2174,8 @@ msgid "GPL_LICENSE_HEADING"
 msgstr "GPL-lisenssin teksti:"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:30
-#, fuzzy
 msgid "THRIVE_LICENSES"
-msgstr "Lisenssit"
+msgstr "Thriven lisenssit"
 
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
 msgid "LICENSES_COVERING_THRIVE"
@@ -2425,7 +2392,6 @@ msgid "SPEED"
 msgstr "Nopeus"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1100
-#, fuzzy
 msgid "PREDATORY_PILUS_PROCESSES_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
@@ -4290,9 +4256,8 @@ msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr "W,A,S,D ja hiiri ovat liikkumisen näppäimet. E ampuu happimyrkkyä, jos solussa on myrkkyvakuoli. G aloittaa tai lopettaa nielemisen."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Tutoriaali"
+msgstr "Katso nyt"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Ladataan..."
