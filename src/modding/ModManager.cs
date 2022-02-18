@@ -959,7 +959,7 @@ public class ModManager : Control
                 if (!string.IsNullOrEmpty(mod.Info.Description))
                 {
                     enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1,
-                        mod.Info.Description ?? mod.InternalName);
+                        string.IsNullOrEmpty(mod.Info.Description) ? mod.InternalName : mod.Info.Description);
                 }
             }
         }
@@ -972,7 +972,7 @@ public class ModManager : Control
 
     private void UpdateSelectedModInfo()
     {
-        if (selectedMod != null && selectedMod.Info != null)
+        if (selectedMod != null)
         {
             selectedModInfoBox.Visible = true;
 
@@ -1011,7 +1011,7 @@ public class ModManager : Control
             }
 
             List<ImageTexture> loadedPreviewImages = LoadModPreviewImages(selectedMod);
-            if (loadedPreviewImages != null && loadedPreviewImages.Count > 0)
+            if (loadedPreviewImages.Count > 0)
             {
                 selectedModGalleryContainer.Visible = true;
                 foreach (ImageTexture currentPreviewImage in loadedPreviewImages)
@@ -1070,7 +1070,7 @@ public class ModManager : Control
 
     private List<ImageTexture> LoadModPreviewImages(FullModDetails mod)
     {
-        if (mod.Info?.PreviewImages == null)
+        if (mod.Info.PreviewImages == null)
             return null!;
 
         var returnValue = new List<ImageTexture>();
@@ -1123,21 +1123,21 @@ public class ModManager : Control
             var compatibleVersionTest = 0;
 
             if (!string.IsNullOrEmpty(info.MinimumThriveVersion) &&
-                VersionUtils.Compare(Constants.Version, info?.MinimumThriveVersion ?? string.Empty) >= 0)
+                VersionUtils.Compare(Constants.Version, info.MinimumThriveVersion ?? string.Empty) >= 0)
             {
                 ++compatibleVersionTest;
             }
-            else if (!string.IsNullOrEmpty(info?.MinimumThriveVersion))
+            else if (!string.IsNullOrEmpty(info.MinimumThriveVersion))
             {
                 compatibleVersionTest--;
             }
 
-            if (!string.IsNullOrEmpty(info?.MaximumThriveVersion) &&
-                VersionUtils.Compare(Constants.Version, info?.MaximumThriveVersion ?? string.Empty) >= 0)
+            if (!string.IsNullOrEmpty(info.MaximumThriveVersion) &&
+                VersionUtils.Compare(Constants.Version, info.MaximumThriveVersion ?? string.Empty) >= 0)
             {
                 ++isCompatibleVersion;
             }
-            else if (!string.IsNullOrEmpty(info?.MaximumThriveVersion))
+            else if (!string.IsNullOrEmpty(info.MaximumThriveVersion))
             {
                 compatibleVersionTest--;
             }
@@ -1155,7 +1155,7 @@ public class ModManager : Control
                 isCompatibleVersion = -2;
             }
 
-            result.Add(new FullModDetails(name, modFolder, info ?? new()) { IsCompatibleVersion = isCompatibleVersion });
+            result.Add(new FullModDetails(name, modFolder, info) { IsCompatibleVersion = isCompatibleVersion });
         }
 
         var previousLength = result.Count;
@@ -1265,7 +1265,7 @@ public class ModManager : Control
         if (!string.IsNullOrEmpty(selectedMod.Info.Description))
         {
             enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1,
-                selectedMod.Info.Description ?? selectedMod.InternalName);
+                string.IsNullOrEmpty(selectedMod.Info.Description) ? selectedMod.InternalName : selectedMod.Info.Description);
         }
 
         notEnabledMods!.Remove(selectedMod);
@@ -1295,8 +1295,7 @@ public class ModManager : Control
         availableModsContainer.AddItem(selectedMod.InternalName, icon);
         if (!string.IsNullOrEmpty(selectedMod.Info.Description))
         {
-            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1,
-                selectedMod.Info.Description ?? selectedMod.InternalName);
+            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, string.IsNullOrEmpty(selectedMod.Info.Description) ? selectedMod.InternalName : selectedMod.Info.Description);
         }
 
         enabledMods!.Remove(selectedMod);
@@ -1427,9 +1426,14 @@ public class ModManager : Control
 
     private void LoadEnabledMods()
     {
+        if (notEnabledMods == null || enabledMods == null)
+        {
+            return;
+        }
+
         GD.Print("Applying changes to enabled mods");
 
-        Settings.Instance.EnabledMods.Value = enabledMods.Select(m => m.InternalName).ToList();
+        Settings.Instance.EnabledMods.Value = enabledMods?.Select(m => m.InternalName).ToList() ?? new List<string>();
 
         var modLoader = ModLoader.Instance;
         modLoader.LoadMods();
@@ -1535,7 +1539,7 @@ public class ModManager : Control
         leftArrow.Disabled = true;
         rightArrow.Disabled = true;
         configModContainer.UnselectAll();
-        errorInfoLabel.Text = (string)modErrorsContainer.GetItemMetadata(index) ?? "ERROR NOT FOUND.";
+        errorInfoLabel.Text = (string)modErrorsContainer.GetItemMetadata(index);
         errorInfoLabel.Show();
         configPanelContainer.Visible = false;
         moveModUpButton.Disabled = true;
@@ -1546,6 +1550,10 @@ public class ModManager : Control
     {
         var newName = enabledModsContainer.GetItemText(index);
         var newItem = validMods.FirstOrDefault(m => m.InternalName == newName);
+        if (newItem == null)
+        {
+            return;
+        }
 
         if (!Equals(selectedMod, newItem))
         {
@@ -1568,7 +1576,7 @@ public class ModManager : Control
 
         VerifyConfigFileExist(newItem);
 
-        if (newItem?.ConfigurationInfoList?.Length > 0)
+        if (newItem.ConfigurationInfoList?.Length > 0)
         {
             configPanelContainer.Visible = true;
             if (configContainer.GetChildCount() > 0)
@@ -1576,7 +1584,7 @@ public class ModManager : Control
                 configContainer.RemoveChildren();
             }
 
-            ConfigMenuSetup(newItem.ConfigurationInfoList, newItem?.CurrentConfiguration ?? new Dictionary<string, object>());
+            ConfigMenuSetup(newItem.ConfigurationInfoList, newItem.CurrentConfiguration ?? new Dictionary<string, object>());
         }
         else
         {
@@ -1752,15 +1760,10 @@ public class ModManager : Control
     {
         foreach (var currentItemInfo in modConfigList)
         {
-            if (currentItemInfo is null)
-            {
-                continue;
-            }
-
             HBoxContainer? currentItem;
-            modConfigDictionary.TryGetValue(currentItemInfo?.ID ?? string.Empty, out var configValue);
+            modConfigDictionary.TryGetValue(currentItemInfo.ID ?? string.Empty, out var configValue);
 
-            if (currentItemInfo?.ConfigNode == null)
+            if (currentItemInfo.ConfigNode == null)
             {
                 currentItem = ConfigItemScene.Instance() as HBoxContainer;
                 if (currentItem is null)
@@ -1773,12 +1776,12 @@ public class ModManager : Control
                 // Set the name and tooltip of the item
                 if (currentItemLabel != null)
                 {
-                    currentItemLabel.Text = (currentItemInfo?.DisplayName ?? currentItemInfo?.ID) + ":";
-                    currentItem.HintTooltip = currentItemInfo?.Description ?? string.Empty;
+                    currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
+                    currentItem.HintTooltip = currentItemInfo.Description ?? string.Empty;
                 }
 
                 // Setup the UI based on it type
-                switch (currentItemInfo?.Type?.ToLower(CultureInfo.CurrentCulture))
+                switch (currentItemInfo.Type?.ToLower(CultureInfo.CurrentCulture))
                 {
                     case "int":
                     case "integer":
@@ -1847,7 +1850,7 @@ public class ModManager : Control
                     case "t":
                         if (currentItemLabel != null)
                         {
-                            currentItemLabel.Text = currentItemInfo?.DisplayName ?? currentItemInfo?.ID ?? string.Empty;
+                            currentItemLabel.Text = currentItemInfo.DisplayName ?? currentItemInfo.ID ?? string.Empty;
                             currentItem.Alignment = BoxContainer.AlignMode.Center;
                         }
 
@@ -1871,7 +1874,7 @@ public class ModManager : Control
                         var regularColorPickerButton = new ColorPickerButton();
                         regularColorPickerButton.EditAlpha = false;
                         regularColorPickerButton.Color =
-                            new Color(Convert.ToString(configValue) ?? default(string));
+                            new Color(Convert.ToString(configValue));
                         regularColorPickerButton.Text = "Color";
                         currentItem.AddChild(regularColorPickerButton);
                         break;
@@ -1879,7 +1882,7 @@ public class ModManager : Control
                     case "alphacolour":
                     case "ac":
                         var colorAlphaPickerButton = new ColorPickerButton();
-                        colorAlphaPickerButton.Color = new Color(Convert.ToString(configValue) ?? default(string));
+                        colorAlphaPickerButton.Color = new Color(Convert.ToString(configValue));
                         colorAlphaPickerButton.Text = "Color";
                         currentItem.AddChild(colorAlphaPickerButton);
                         break;
@@ -1896,24 +1899,21 @@ public class ModManager : Control
             if (currentItemNodeInfo != null)
             {
                 // Set all of the data from current item to the node
-                if (currentItemInfo?.ID != null)
+                if (currentItemInfo.ID != null)
                 {
                     currentItemNodeInfo.Value = configValue;
                 }
 
-                currentItemNodeInfo.ID = currentItemInfo?.ID;
-                currentItemNodeInfo.DisplayName = currentItemInfo?.DisplayName;
-                currentItemNodeInfo.Description = currentItemInfo?.Description;
-                currentItemNodeInfo.MaximumValue = currentItemInfo?.MaximumValue ?? default(float);
-                currentItemNodeInfo.MinimumValue = currentItemInfo?.MinimumValue ?? default(float);
-                currentItemNodeInfo.Type = currentItemInfo?.Type;
-                currentItemNodeInfo.Options = currentItemInfo?.Options;
+                currentItemNodeInfo.ID = currentItemInfo.ID;
+                currentItemNodeInfo.DisplayName = currentItemInfo.DisplayName;
+                currentItemNodeInfo.Description = currentItemInfo.Description;
+                currentItemNodeInfo.MaximumValue = currentItemInfo.MaximumValue;
+                currentItemNodeInfo.MinimumValue = currentItemInfo.MinimumValue;
+                currentItemNodeInfo.Type = currentItemInfo.Type;
+                currentItemNodeInfo.Options = currentItemInfo.Options;
             }
 
-            if (currentItemInfo != null)
-            {
-                currentItemInfo.ConfigNode = currentItem;
-            }
+            currentItemInfo.ConfigNode = currentItem;
 
             // Finally adds to the SceneTree
             configContainer.AddChild(currentItem);
@@ -2122,7 +2122,7 @@ public class ModManager : Control
     private string CheckResultToString((int ErrorType, int ModIndex, int OtherModIndex) checkResult,
         List<FullModDetails> list)
     {
-        var result = string.Empty!;
+        var result = string.Empty;
 
         // The mod that is causing the error
         ModInfo offendingMod = new ModInfo();
@@ -2157,50 +2157,42 @@ public class ModManager : Control
                 break;
             case (int)ModLoader.CheckErrorStatus.DependencyNotFound:
                 string? otherModName = string.Empty;
-                if (offendingMod != null)
+                if (checkResult.OtherModIndex <= (offendingMod.Dependencies?.Count ?? default(int)))
                 {
-                    if (checkResult.OtherModIndex <= (offendingMod?.Dependencies?.Count ?? default(int)))
+                    if (offendingMod.Dependencies != null)
                     {
-                        if (offendingMod?.Dependencies != null)
-                        {
-                            otherModName = offendingMod?.Dependencies[checkResult.OtherModIndex];
-                        }
+                        otherModName = offendingMod.Dependencies[checkResult.OtherModIndex];
                     }
-                    else
-                    {
-                        otherModName = TranslationServer.Translate("UNKNOWN_MOD");
-                    }
-
-                    result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES"), offendingMod?.Name,
-                        otherModName) + "\n";
-                    result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
+                }
+                else
+                {
+                    otherModName = TranslationServer.Translate("UNKNOWN_MOD");
                 }
 
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES"), offendingMod.Name,
+                    otherModName) + "\n";
+                result += TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_FIX");
                 break;
             case (int)ModLoader.CheckErrorStatus.RequiredModsNotFound:
-                if (offendingMod != null)
+                if (checkResult.OtherModIndex <= (offendingMod.RequiredMods?.Count ?? default(int)))
                 {
-                    if (checkResult.OtherModIndex <= (offendingMod.RequiredMods?.Count ?? default(int)))
+                    if (offendingMod.RequiredMods != null)
                     {
-                        if (offendingMod?.RequiredMods != null)
-                        {
-                            otherModName = offendingMod.RequiredMods[checkResult.OtherModIndex];
-                        }
-                        else
-                        {
-                            otherModName = TranslationServer.Translate("UNKNOWN_MOD");
-                        }
+                        otherModName = offendingMod.RequiredMods[checkResult.OtherModIndex];
                     }
                     else
                     {
                         otherModName = TranslationServer.Translate("UNKNOWN_MOD");
                     }
-
-                    result += string.Format(TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS"), offendingMod?.Name,
-                        otherModName) + "\n";
-                    result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX");
+                }
+                else
+                {
+                    otherModName = TranslationServer.Translate("UNKNOWN_MOD");
                 }
 
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS"), offendingMod.Name,
+                    otherModName) + "\n";
+                result += TranslationServer.Translate("MOD_ERROR_REQUIRED_MODS_FIX");
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidDependencyOrder:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER"), offendingMod.Name,
@@ -2285,8 +2277,7 @@ public class ModManager : Control
         if (!string.IsNullOrWhiteSpace(parsedData.Info.ConfigToLoad))
         {
             GD.Print("Creating Config File");
-            if (file.Open(Path.Combine(parsedData.Folder, parsedData.Info.ConfigToLoad), File.ModeFlags.Write) ==
-                Error.Ok)
+            if (file.Open(Path.Combine(parsedData.Folder, parsedData.Info.ConfigToLoad ?? string.Empty), File.ModeFlags.Write) == Error.Ok)
             {
                 file.StoreString("[\n]");
             }
@@ -2299,7 +2290,7 @@ public class ModManager : Control
         }
 
         GD.Print("Mod folder created, trying to open: ", parsedData.Folder);
-        FolderHelpers.OpenFolder(parsedData.Folder ?? string.Empty);
+        FolderHelpers.OpenFolder(parsedData.Folder);
 
         RefreshAvailableMods();
     }
@@ -2311,29 +2302,26 @@ public class ModManager : Control
     private void VerifyConfigFileExist(FullModDetails checkedModInfo)
     {
         // Checks if it null or empty
-        if (checkedModInfo?.ConfigurationInfoList == null || checkedModInfo.ConfigurationInfoList.Length < 1)
+        if (checkedModInfo.ConfigurationInfoList == null || checkedModInfo.ConfigurationInfoList.Length < 1)
         {
-            if (checkedModInfo?.Info.ConfigToLoad != null &&
+            if (checkedModInfo.Info.ConfigToLoad != null &&
                 FileHelpers.Exists(Path.Combine(checkedModInfo.Folder, checkedModInfo.Info.ConfigToLoad)))
             {
                 checkedModInfo.ConfigurationInfoList = GetModConfigList(checkedModInfo);
             }
 
             ModConfigItemInfo[] currentConfigList =
-                checkedModInfo?.ConfigurationInfoList ?? Array.Empty<ModConfigItemInfo>();
+                checkedModInfo.ConfigurationInfoList ?? Array.Empty<ModConfigItemInfo>();
             Dictionary<string, object> tempDictionary = new Dictionary<string, object>();
             for (int index = 0; index < currentConfigList.Length; ++index)
             {
                 if (currentConfigList[index].ID != null && currentConfigList[index].Value != null)
                 {
-                    tempDictionary[currentConfigList[index].ID ?? string.Empty] = currentConfigList[index].Value ?? new();
+                    tempDictionary[currentConfigList[index].ID ?? string.Empty] = currentConfigList[index].Value ?? new Dictionary<string, object>();
                 }
             }
 
-            if (checkedModInfo != null)
-            {
-                checkedModInfo.CurrentConfiguration = tempDictionary;
-            }
+            checkedModInfo.CurrentConfiguration = tempDictionary;
         }
     }
 
@@ -2364,17 +2352,17 @@ public class ModManager : Control
 
                 if (selectedMod != null && selectedMod.CurrentConfiguration != null && currentItemInfo.ID != null)
                 {
-                    selectedMod.CurrentConfiguration[currentItemInfo.ID] = currentItemInfo?.Value ?? new();
+                    selectedMod.CurrentConfiguration[currentItemInfo.ID] = currentItemInfo.Value ?? new Dictionary<string, object>();
                 }
             }
         }
 
-        if (ModLoader.Instance.LoadedModAssemblies != null && selectedMod.CurrentConfiguration != null)
+        if (selectedMod?.CurrentConfiguration != null)
         {
             if (ModLoader.Instance.LoadedModAssemblies.ContainsKey(selectedMod?.InternalName ?? string.Empty))
             {
                 ModLoader.Instance.LoadedModAssemblies[selectedMod?.InternalName ?? string.Empty]
-                    ?.UpdatedConfiguration(selectedMod?.CurrentConfiguration ?? new());
+                    ?.UpdatedConfiguration(selectedMod?.CurrentConfiguration ?? new Dictionary<string, object>());
             }
         }
 
