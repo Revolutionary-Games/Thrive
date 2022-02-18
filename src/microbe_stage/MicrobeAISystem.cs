@@ -10,6 +10,8 @@ public class MicrobeAISystem
 
     private readonly Node worldRoot;
 
+    // Because this is run in a threaded environment (and because this is the AI), this should
+    // NEVER call a data changing method from this class
     private readonly CompoundCloudSystem clouds;
 
     public MicrobeAISystem(Node worldRoot, CompoundCloudSystem cloudSystem)
