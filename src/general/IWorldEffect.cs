@@ -144,6 +144,10 @@ public class GasProductionEffect : IWorldEffect
                         }
                     }
                 }
+                else
+                {
+                    throw new NotSupportedException("Only microbe species are supported!");
+                }
             }
 
             compoundsProduced = ScaleByOverconsumption(compoundsProduced, patch);
