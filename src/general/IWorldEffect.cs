@@ -178,11 +178,12 @@ public class GasProductionEffect : IWorldEffect
         var oxygen = SimulationParameters.Instance.GetCompound("oxygen");
         var carbonDioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
         var nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-        var constantCompoundsDissolvedIntake = new Dictionary<Compound, float>(3);
-
-        constantCompoundsDissolvedIntake[oxygen] = Constants.PATCH_CONSTANT_OXYGEN_INPUT;
-        constantCompoundsDissolvedIntake[carbonDioxide] = Constants.PATCH_CONSTANT_CARBON_DIOXYDE_INPUT;
-        constantCompoundsDissolvedIntake[nitrogen] = Constants.PATCH_CONSTANT_NITROGEN_INPUT;
+        var constantCompoundsDissolvedIntake = new Dictionary<Compound, float>
+        {
+            { oxygen, Constants.PATCH_CONSTANT_OXYGEN_INPUT },
+            { carbonDioxide, Constants.PATCH_CONSTANT_CARBON_DIOXYDE_INPUT },
+            { nitrogen, Constants.PATCH_CONSTANT_NITROGEN_INPUT },
+        };
 
         foreach (var intake in constantCompoundsDissolvedIntake)
         {
