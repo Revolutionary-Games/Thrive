@@ -143,14 +143,22 @@ public class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_pack_commands")]
     public bool ShowSignalingCommandsMenu()
     {
-        GD.Print("TODO: show signaling commands");
+        if (stage.Player?.HasSignalingAgent != true)
+            return false;
+
+        stage.HUD.ShowSignalingCommandsMenu(stage.Player);
+
+        // We need to not consume the input, otherwise the key up for this will not run
         return false;
     }
 
     [RunOnKeyUp("g_pack_commands")]
     public void CloseSignalingCommandsMenu()
     {
-        GD.Print("TODO: hide/select signaling command");
+        var command = stage.HUD.SelectSignalCommandIfOpen();
+
+        if (stage.Player != null)
+            stage.HUD.ApplySignalCommand(command, stage.Player);
     }
 
     [RunOnKeyDown("g_cheat_editor")]

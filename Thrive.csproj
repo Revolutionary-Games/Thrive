@@ -121,6 +121,7 @@
     <Compile Include="src\gui_common\dialogs\ErrorDialog.cs" />
     <Compile Include="src\gui_common\dialogs\LicensesDisplay.cs" />
     <Compile Include="src\gui_common\RadialMenu.cs" />
+    <Compile Include="src\gui_common\RadialPopup.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
@@ -188,6 +189,7 @@
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
     <Compile Include="src\microbe_stage\MicrobeInternalCalculations.cs" />
     <Compile Include="src\general\SpeciesInfo.cs" />
+    <Compile Include="src\microbe_stage\MicrobeSignalCommand.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\OrganelleMeshWithChildren.cs" />
     <Compile Include="src\microbe_stage\OrganelleUpgrades.cs" />

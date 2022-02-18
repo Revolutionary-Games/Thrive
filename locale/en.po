@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-18 10:37+0200\n"
-"PO-Revision-Date: 2022-02-17 11:10+0200\n"
+"PO-Revision-Date: 2022-02-18 10:40+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Poedit 3.0.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -2072,9 +2072,8 @@ msgid "SAVE_HAS_DIFFERENT_VERSION"
 msgstr "Save has different version"
 
 #: ../src/gui_common/RadialMenu.cs:63
-#, fuzzy
 msgid "SELECT_OPTION"
-msgstr "Selected:"
+msgstr "Select An Option"
 
 #: ../src/gui_common/TweakedColourPicker.cs:393
 msgid "COLOUR_PICKER_PICK_COLOUR"
@@ -2665,29 +2664,27 @@ msgstr "Spawn Enemy"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:447
 msgid "SIGNAL_COMMAND_NONE"
-msgstr ""
+msgstr "No Command"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:448
 msgid "SIGNAL_COMMAND_FOLLOW"
-msgstr ""
+msgstr "Follow Me"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:449
 msgid "SIGNAL_COMMAND_TO_ME"
-msgstr ""
+msgstr "Move To Me"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:450
 msgid "SIGNAL_COMMAND_FLEE"
-msgstr ""
+msgstr "Flee"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:451
-#, fuzzy
 msgid "SIGNAL_COMMAND_AGGRESSION"
-msgstr "Signaling Agent"
+msgstr "Become Aggressive"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:454
-#, fuzzy
 msgid "SIGNAL_TO_EMIT"
-msgstr "Signaling Agent"
+msgstr "Signal To Emit"
 
 #: ../src/microbe_stage/MicrobeHUD.cs:770
 msgid "STUFF_AT"

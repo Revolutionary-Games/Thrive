@@ -71,7 +71,11 @@ public class RadialMenu : CenterContainer
     public string CenterText
     {
         get => centerText;
-        set => centerText = value;
+        set
+        {
+            centerText = value;
+            UpdateCenterText();
+        }
     }
 
     public int? HoveredItem { get; private set; }
@@ -93,6 +97,20 @@ public class RadialMenu : CenterContainer
         {
             ShowWithItems(new[] { ("Item 1", 1), ("Item 2", 2), ("Third", 3), ("Item 4", 4), ("Last", 13) });
         }
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        InputManager.RegisterReceiver(this);
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        InputManager.UnregisterReceiver(this);
     }
 
     public override void _Process(float delta)
@@ -119,6 +137,14 @@ public class RadialMenu : CenterContainer
         {
             // Position is relative to us since we use _GuiInput
             relativeMousePosition = mouseMotion.Position;
+        }
+        else if (@event is InputEventMouseButton mouseButton)
+        {
+            if (mouseButton.Pressed && mouseButton.ButtonIndex == (int)ButtonList.Left)
+            {
+                if (AcceptHoveredItem())
+                    GetTree().SetInputAsHandled();
+            }
         }
     }
 
@@ -220,6 +246,21 @@ public class RadialMenu : CenterContainer
 
         Visible = true;
         RepositionLabels();
+    }
+
+    [RunOnKeyDown("ui_accept", Priority = 2)]
+    [RunOnKeyDown("e_primary", Priority = 2)]
+    public bool AcceptHoveredItem()
+    {
+        if (!Visible || HoveredItem == null)
+            return false;
+
+        // There seems to be a Godot bug here where when this is hidden the cursor stays in the clickable state
+        // until the cursor is moved. Seems like even overriding the cursor style here back to arrow doesn't work
+
+        EmitSignal(nameof(OnItemSelected), HoveredItem.Value);
+        Visible = false;
+        return true;
     }
 
     private void UpdateCenterText()
