@@ -121,7 +121,7 @@ public class GasProductionEffect : IWorldEffect
             // TODO move to own effect
             AddConstantIntakeToPatch(patch);
 
-            Dictionary<Compound, float> compoundsProduced = new Dictionary<Compound, float>(gasCompounds.Count);
+            var compoundsProduced = new Dictionary<Compound, float>(gasCompounds.Count);
 
             // Here we consider species production only
             foreach (var species in patch.SpeciesInPatch.Keys)
