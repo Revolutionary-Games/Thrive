@@ -412,7 +412,7 @@ public class MicrobeAI
 
         if (random.Next(Constants.AI_STEPS_PER_SMELL) == 0)
         {
-            SmellForComounds(data);
+            SmellForCompounds(data);
         }
 
         if (lastSmelledCompoundPosition != null)
@@ -424,7 +424,7 @@ public class MicrobeAI
             }
             else
             {
-                SmellForComounds(data);
+                SmellForCompounds(data);
             }
         }
         else
@@ -433,7 +433,7 @@ public class MicrobeAI
         }
     }
 
-    private void SmellForComounds(MicrobeAICommonData data)
+    private void SmellForCompounds(MicrobeAICommonData data)
     {
         ComputeCompoundsSearchWeights();
 

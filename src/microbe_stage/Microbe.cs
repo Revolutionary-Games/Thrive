@@ -585,7 +585,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
             if (detectedCompound != null)
             {
-                detections.Add((compound, colour, (Vector3)detectedCompound));
+                detections.Add((compound, colour, detectedCompound.Value));
             }
         }
 
