@@ -173,7 +173,7 @@ public class GasProductionEffect : IWorldEffect
         }
     }
 
-    public void AddConstantIntakeToPatch(Patch patch)
+    private void AddConstantIntakeToPatch(Patch patch)
     {
         var oxygen = SimulationParameters.Instance.GetCompound("oxygen");
         var carbonDioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
@@ -211,7 +211,7 @@ public class GasProductionEffect : IWorldEffect
     ///   Computes the factor of over consumption, i.e. the factor by which the most limiting compound consumption
     ///   should be diminished not to consume more than there is (including compounds that were just produced).
     /// </summary>
-    public float ComputeOverConsumptionFactor(Dictionary<Compound, float> compoundsProduced, Patch patch)
+    private float ComputeOverConsumptionFactor(Dictionary<Compound, float> compoundsProduced, Patch patch)
     {
         var overConsumptionScalingFactor = 1f;
         foreach (var production in compoundsProduced)
@@ -248,7 +248,7 @@ public class GasProductionEffect : IWorldEffect
     ///     A better yet more complicated approach would be to only limit the processes consuming the target compounds.
     ///   </para>
     /// </remarks>
-    public Dictionary<Compound, float> ScaleByOverconsumption(Dictionary<Compound, float> compoundsProduced,
+    private Dictionary<Compound, float> ScaleByOverconsumption(Dictionary<Compound, float> compoundsProduced,
         Patch patch)
     {
         var overConsumptionScalingFactor = ComputeOverConsumptionFactor(compoundsProduced, patch);
