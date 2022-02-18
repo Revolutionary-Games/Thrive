@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-10 15:37+0200\n"
-"PO-Revision-Date: 2022-02-10 06:38+0000\n"
+"PO-Revision-Date: 2022-02-11 07:40+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -304,15 +304,15 @@ msgstr "Bağ kurmayı aç"
 
 #: ../simulation_parameters/common/input_options.json:50
 msgid "TOGGLE_UNBINDING"
-msgstr "Bağ çözmeyi aç"
+msgstr "Bağ koparmayı aç"
 
 #: ../simulation_parameters/common/input_options.json:54
 msgid "UNBIND_ALL"
-msgstr "Hepsinin bağını çöz"
+msgstr "Hepsinin bağını kopar"
 
 #: ../simulation_parameters/common/input_options.json:58
 msgid "PERFORM_UNBINDING"
-msgstr "Bağ çözmeyi gerçekleştir"
+msgstr "Bağ koparmayı gerçekleştir"
 
 #: ../simulation_parameters/common/input_options.json:67
 msgid "CAMERA"
@@ -771,17 +771,14 @@ msgid "CHEMORECEPTOR"
 msgstr "Kemoreseptör"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Durduruldu."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Bitti."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "Çalışmıyor."
 
@@ -798,18 +795,16 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0} popülasyonu {1} defa değişti çünkü: {2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "Toplam Popülasyon:"
+msgstr "popülasyon:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "{0} arazisinde nesli tükendi"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Tür:"
+msgstr "önceki:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -828,7 +823,6 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "bazı arazilerdeki popülasyonlar, yeni türler oluşturmak için ayrıldı {0}:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "mutasyona sahip"
 
@@ -837,7 +831,6 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "gen kodu:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "yayıldığı araziler:"
 
@@ -846,9 +839,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "{0}: {1} popülasyon {2} adlı araziden göç etti"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} ({1})"
+msgstr "arazideki popülasyon:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -2432,7 +2424,7 @@ msgstr "Bağlanma modunu açmak için [thrive:input]g_toggle_binding[/thrive:inp
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1238
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu, çok hücrelilikte ilk adımdır. Hücren bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken editöre giremezsin. O yüzden hücreni bölmek için önce yeterli bileşik toplaman sonra bağı çözmen gerekir."
+msgstr "Diğer hücrelerle bağ kurmaya izin verir. Bu, çok hücrelilikte ilk adımdır. Hücren bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken editöre giremezsin. O yüzden hücreni bölmek için önce yeterli bileşik toplaman sonra koloniyle bağını koparman gerekir."
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1320
 msgid "NUCLEUS_SMALL_DESCRIPTION"
@@ -2817,7 +2809,7 @@ msgstr "Pangonik Deniz Tabanı"
 
 #: ../src/microbe_stage/PlayerMicrobeInput.cs:116
 msgid "UNBIND_HELP_TEXT"
-msgstr "Bağ Çözme Modu"
+msgstr "Bağ Koparma Modu"
 
 #: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
@@ -3190,9 +3182,8 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "Deniz seviyesinin {0}-{1}m altı"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "Tür Popülasyonu"
+msgstr "{0} türü {1} popülasyonla"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3739,7 +3730,6 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Kayıttan objeler oluşturuluyor"
 
 #: ../src/saving/InProgressLoad.cs:110
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Kayıt verisi yüklenirken bir sorun oluştu"
 
@@ -3756,7 +3746,6 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Yüklenen objeler işleniyor"
 
 #: ../src/saving/InProgressLoad.cs:165
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Yüklenen objeleri işlerken bir sorun oluştu"
 
@@ -3773,9 +3762,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr "Zaten yüklü olan kaynakları salma işlemi başarısız oldu: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Oluşturuluyor..."
+msgstr "Kaydediliyor..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3786,7 +3774,6 @@ msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
 #: ../src/saving/NewSaveMenu.cs:74
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
 
@@ -3811,16 +3798,12 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Mevcut kaydın üzerine yaz:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Mevcut kaydın üzerine yaz:"
+msgstr "Mevcut kaydın üzerine yazılsın mı?"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"Belirtilen kayıt aşağıdaki hatadan dolayı yükseltilemedi:\n"
-"{0}"
+msgstr "Kaydetme başarısız! Bir sorun oluştu"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3859,17 +3842,14 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "Hiçbir Kayıt Bulunamadı"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
-msgstr "Karşıya Yükleniyor..."
+msgstr "Yükleniyor..."
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
-#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
-msgstr "Bu Kayıt silinsin mi?"
+msgstr "Bu kayıt silinsin mi?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Uyumsuz kayıt yüklensin mi?"
 
@@ -3888,7 +3868,6 @@ msgstr ""
 "Yine de kaydı yüklemeyi denemek ister misin?"
 
 #: ../src/saving/SaveList.tscn:95
-#, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Geçersiz kayıt yüklensin mi?"
 
@@ -3900,7 +3879,6 @@ msgstr ""
 "Yine de kaydı yüklemeyi denemek ister misin?"
 
 #: ../src/saving/SaveList.tscn:103
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Seçilen kayıt uyumsuz"
 
@@ -3912,7 +3890,6 @@ msgstr ""
 "Thrive hala yapım aşamasında olduğu için kayıt uyumluluğu bu aşamada büyük bir öncelik değil. Bu böyle olduğu için, henüz bütün sürümler için kayıt yükseltici bulunmuyor."
 
 #: ../src/saving/SaveList.tscn:114
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Seçilen kayıt yükseltilebilir"
 
@@ -3945,18 +3922,16 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "HP:"
+msgstr "Tür:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Açıklama:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "Kuşak:"
+msgstr "Sürüm:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4010,14 +3985,12 @@ msgid "SELECTED_COLON"
 msgstr "Seçilen:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
-msgstr "Seçili Kayıtlar silinsin mi?"
+msgstr "Seçili kayıtlar silinsin mi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
-msgstr "Eski Kayıtlar silinsin mi?"
+msgstr "Eski kayıtlar silinsin mi?"
 
 #: ../src/saving/SaveManagerGUI.tscn:200
 msgid "NO_SAVE_DIRECTORY"
@@ -4117,41 +4090,38 @@ msgstr ""
 "Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Mikrop Editörü'ne hoşgeldin.\n"
-"Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
+"Bu arazi haritası.\n"
+"Burada mikropların yaşayabileceği farklı arazileri görebilirsin.\n"
+"Şu an bulunduğun arazi vurgulanmış halde.\n"
+"Arazileri seçmek ve sağ tarafta arazilerin detaylarını görmek için faren ile arazilerin üzerine tıklayabilirsin.\n"
 "\n"
-"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel değişiklikleri görebilirsin.\n"
+"Eğer şu an bulunduğun arazinin yanındaki bir araziyi seçersen, sağdaki butona basarak oraya gidebilirsin. Bu, türünün popülasyonunun yeni arazilere yayılmasını sağlar.\n"
 "\n"
-"Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
+"Devam etmek için bir arazi seç."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Mikrop Editörü'ne hoşgeldin.\n"
-"Burada oyunun başından beri neler olduğunu ve editörü en son ne zaman kullandığını görebilirsin. Sonrasında türünde değişiklikler yapabilirsin.\n"
+"Bu hücre editörü. Burada mutasyon puanları harcayarak (MP) türüne organeller ekleyebilir veya onları kaldırabilirsin.\n"
 "\n"
-"Bu sekmede ne türlerin var olduğunu, nerede olduklarını ve popülasyonlarının ne olduğunu gösteren bir rapor görebilirsin. Ayrıca üstte çevresel değişiklikleri görebilirsin.\n"
+"Ayrıca hücre editörünün diğer sekmelerinde, türünün diğer özelliklerini değiştirebilirsin.\n"
 "\n"
-"Bir sonraki editör sekmesine gitmek için sağ alttaki sonraki butonuna bas."
+"Devam etmek için soldaki panelden bir organel seç (sitoplazma iyi bir seçim). Daha sonra organeli türüne eklemek için ekranın ortasındaki altıgenin yanına sol tıkla."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Organeller mevcut mutasyon sürecinde yerleştirilmediyse, onları kaldırmak MP'ye mal olur çünkü bu, türünde mutasyona neden olur.\n"
 "\n"
-"Organelleri kaldırmak için üzerlerine sağ tıklayabilirsin.\n"
+"Organel menüsünü göstermek için organellere sağ tıklayabilir ve organelleri kaldırmak için silme seçeneğini seçebilirsin.\n"
 "\n"
 "Eğer editörde herhangi bir yanlışlık yaparsan, yaptığın değişikliği geri alabilirsin.\n"
 "\n"
 "Devam etmek için geri al butonuna bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Hangi organelleri ekleyeceğini seçerken, organellerin ne tür işlemler yaptığını, ne tür bileşikler kullandığını ve ürettiğini gösteren araç ipuçlarına dikkat et.\n"
@@ -4163,7 +4133,6 @@ msgstr ""
 "Devam etmek için yinele butonuna (geri al butonuna yakın) bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Bunlar türünü düzenlerken bilmen gereken önemli noktalar. Daha fazlası için hücre editörünün diğer sekmelerini inceleyebilirsin.\n"
@@ -4179,19 +4148,17 @@ msgid "GOT_IT"
 msgstr "Anladım"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Bu panel, senin gelecek popülasyonunun tahminini gösterir. Bu rakamlar, oto-evrimin popülasyon simülasyonundan gelir.\n"
 "\n"
-"Bunlar, senin bireysel performansını hesaba katmaz. Böylece mevcut arazinde editöre girdiğin zaman daha iyi performans sergilersin.\n"
+"Bunlar, senin bireysel performansını hesaba katmaz. Böylece editöre girdiğinde, bulunduğun arazide daha iyi performans sergileyebilirsin.\n"
 "\n"
 "Ama doğrudan dahil olmasan bile, kendi popülasyonunu yukarıda tutmaya çalışmalısın.\n"
 "\n"
-"Paneldeki soru işaretli butona basarak tahminin ardındaki detaylı bilgiyi inceleyebilirsin. Devam etmek için bu butona bas."
+"Paneldeki soru işaretli butona basarak oto-evrim tahmininin ardındaki detaylı bilgiyi inceleyebilirsin. Devam etmek için bu butona bas."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Bir ya da iki enerji kaynağına odaklanmalısın. Böylece hayatta kalmak için, bütün kaynaklara ihtiyaç duymadan, yeterli ATP üretebilirsin.\n"
@@ -4230,8 +4197,10 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Glukozu (beyaz bulutlar) üzerine gelerek topla.\n"
-"Hücren hayatta kalmak için enerji üretmeye yarayan glukoza ihtiyaç duyar.\n"
-"Yakınlardaki glukoza kadar uzanan bu çizgiyi takip et."
+"\n"
+"Hücren hayatta kalmak için enerji üretmeye yarayan glukoz kaynağına ihtiyaç duyar.\n"
+"\n"
+"Yakınlardaki bir glukoz kaynağına kadar uzanan bu çizgiyi takip et."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
 msgid "MICROBE_STAGE_HEALTH_TEXT"
@@ -4242,14 +4211,12 @@ msgstr ""
 "ATP üretmek için yeterli glukoz topladığından emin ol."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Hücreni çoğaltmak için yeterli miktarda amonyak ve fosfat toplayarak bütün organellerini ikiye katlaman gerekir.\n"
 "Ne kadarına ihtiyacın olduğunu görmek için sağ alttaki göstergeye bak."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Hücrenin bölünmesi için yeterince kaynak topladın.\n"
@@ -4259,15 +4226,13 @@ msgstr ""
 "Editöre girmek için sağ altta yanıp sönen editör butonuna bas."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
-"Bağ çözme moduna girdin. Bu modda, bağını çözmek istediğin koloni üyelerine tıklayabilirsin.\n"
+"Bağ koparma moduna girdin. Bu modda, bağını koparmak istediğin koloni üyelerine tıklayabilirsin.\n"
 "\n"
-"Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin bağını çöz\" tuşuna basabilirsin."
+"Koloniden tamamen ayrılmak için kendi hücrene tıklayabilir veya \"hepsinin bağını kopar\" tuşuna basabilirsin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Eğer hala oyun mekaniği ile ilgili sıkıntı yaşıyorsan, yardım menüsünü incele. Bu menüyü sol alttaki soru işaretli butona basarak açabilirsin.\n"
@@ -4275,9 +4240,8 @@ msgstr ""
 "Bir ipucu daha: Fare tekeri ile görüş alanını uzaklaştırabilirsin."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Oyun Rehberi"
+msgstr "Şimdi İncele"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Yükleniyor..."
