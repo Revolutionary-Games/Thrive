@@ -154,21 +154,22 @@ public class GasProductionEffect : IWorldEffect
 
             foreach (var compound in compoundsProduced.Keys)
             {
-                if (patch.Biome.Compounds.TryGetValue(compound, out EnvironmentalCompoundProperties compoundValue))
-                {
-                    // TODO if capped here, use something to scale production
-                    compoundValue.Dissolved = Math.Max(
-                        compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume,
-                        Constants.DISSOLVED_MIN);
-                    patch.Biome.Compounds[compound] = compoundValue;
-                }
-                else
+                if (!patch.Biome.Compounds.ContainsKey(compound))
                 {
                     patch.Biome.Compounds[compound] = new EnvironmentalCompoundProperties
                     {
-                        Amount = 0, Density = 0, Dissolved = compoundsProduced[compound] / patch.Volume,
+                        Amount = 0,
+                        Density = 0,
+                        Dissolved = 0,
                     };
                 }
+
+                var compoundValue = patch.Biome.Compounds[compound];
+
+                // TODO: if capped here, use something to scale production
+                compoundValue.Dissolved = Math.Max(
+                    compoundValue.Dissolved + compoundsProduced[compound] / patch.Volume, Constants.DISSOLVED_MIN);
+                patch.Biome.Compounds[compound] = compoundValue;
             }
         }
     }
