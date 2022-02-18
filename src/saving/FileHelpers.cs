@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using Godot;
 using Directory = Godot.Directory;
@@ -57,7 +57,8 @@ public static class FileHelpers
         string directoryPath = Path.GetDirectoryName(globlizedPath ?? string.Empty) ?? string.Empty;
         if (!string.IsNullOrEmpty(directoryPath) && !string.IsNullOrEmpty(globlizedPath))
         {
-            return Array.Exists(System.IO.Directory.GetFiles(directoryPath), s => s == Path.GetFullPath(globlizedPath ?? string.Empty));
+            return Array.Exists(System.IO.Directory.GetFiles(directoryPath),
+                s => s == Path.GetFullPath(globlizedPath ?? string.Empty));
         }
 
         return false;

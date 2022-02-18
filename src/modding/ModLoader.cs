@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -473,7 +473,8 @@ public class ModLoader : Node
         }
 
         // Loads the config file if it exists
-        if (info.Info.ConfigToLoad != null && FileHelpers.Exists(Path.Combine(info.Folder, info.Info.ConfigToLoad ?? string.Empty)))
+        if (info.Info.ConfigToLoad != null &&
+            FileHelpers.Exists(Path.Combine(info.Folder, info.Info.ConfigToLoad ?? string.Empty)))
         {
             var currentConfigList = ModManager.GetModConfigList(info);
             info.ConfigurationInfoList = currentConfigList;

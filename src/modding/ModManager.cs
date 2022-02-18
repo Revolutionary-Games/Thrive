@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -345,7 +345,7 @@ public class ModManager : Control
 
     private CustomDialog restartRequired = null!;
 
-    private FullModDetails? selectedMod = null!;
+    private FullModDetails? selectedMod;
 
     /// <summary>
     ///   Used to automatically refresh this object when it becomes visible after being invisible
@@ -686,7 +686,8 @@ public class ModManager : Control
             new Dictionary<string, Dictionary<string, object>>();
         foreach (FullModDetails currentMod in modConfigList)
         {
-            savedConfig.Add(currentMod.InternalName, currentMod.CurrentConfiguration ?? new Dictionary<string, object>());
+            savedConfig.Add(currentMod.InternalName,
+                currentMod.CurrentConfiguration ?? new Dictionary<string, object>());
         }
 
         file.StoreString(JsonConvert.SerializeObject(savedConfig, Formatting.Indented));
@@ -880,7 +881,9 @@ public class ModManager : Control
                     if (!string.IsNullOrEmpty(currentMod.Info.Description))
                     {
                         configModContainer.SetItemTooltip(configModContainer.GetItemCount() - 1,
-                            string.IsNullOrEmpty(currentMod.Info.Description) ? currentMod.InternalName : currentMod.Info.Description);
+                            string.IsNullOrEmpty(currentMod.Info.Description) ?
+                                currentMod.InternalName :
+                                currentMod.Info.Description);
                     }
                 }
             }
@@ -915,7 +918,7 @@ public class ModManager : Control
                     currentItemInfo.Value = selectedMod.ConfigurationInfoList[index].Value;
                     if (selectedMod?.CurrentConfiguration != null)
                     {
-                        if (currentItemInfo.ID != null)
+                        if (currentItemInfo.ID != null && currentItemInfo.Value != null)
                         {
                             selectedMod.CurrentConfiguration[currentItemInfo.ID] = currentItemInfo.Value;
                         }
@@ -1265,7 +1268,9 @@ public class ModManager : Control
         if (!string.IsNullOrEmpty(selectedMod.Info.Description))
         {
             enabledModsContainer.SetItemTooltip(enabledModsContainer.GetItemCount() - 1,
-                string.IsNullOrEmpty(selectedMod.Info.Description) ? selectedMod.InternalName : selectedMod.Info.Description);
+                string.IsNullOrEmpty(selectedMod.Info.Description) ?
+                    selectedMod.InternalName :
+                    selectedMod.Info.Description);
         }
 
         notEnabledMods!.Remove(selectedMod);
@@ -1295,7 +1300,10 @@ public class ModManager : Control
         availableModsContainer.AddItem(selectedMod.InternalName, icon);
         if (!string.IsNullOrEmpty(selectedMod.Info.Description))
         {
-            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1, string.IsNullOrEmpty(selectedMod.Info.Description) ? selectedMod.InternalName : selectedMod.Info.Description);
+            availableModsContainer.SetItemTooltip(availableModsContainer.GetItemCount() - 1,
+                string.IsNullOrEmpty(selectedMod.Info.Description) ?
+                    selectedMod.InternalName :
+                    selectedMod.Info.Description);
         }
 
         enabledMods!.Remove(selectedMod);
@@ -1584,7 +1592,8 @@ public class ModManager : Control
                 configContainer.RemoveChildren();
             }
 
-            ConfigMenuSetup(newItem.ConfigurationInfoList, newItem.CurrentConfiguration ?? new Dictionary<string, object>());
+            ConfigMenuSetup(newItem.ConfigurationInfoList,
+                newItem.CurrentConfiguration ?? new Dictionary<string, object>());
         }
         else
         {
@@ -2277,7 +2286,8 @@ public class ModManager : Control
         if (!string.IsNullOrWhiteSpace(parsedData.Info.ConfigToLoad))
         {
             GD.Print("Creating Config File");
-            if (file.Open(Path.Combine(parsedData.Folder, parsedData.Info.ConfigToLoad ?? string.Empty), File.ModeFlags.Write) == Error.Ok)
+            if (file.Open(Path.Combine(parsedData.Folder, parsedData.Info.ConfigToLoad ?? string.Empty),
+                    File.ModeFlags.Write) == Error.Ok)
             {
                 file.StoreString("[\n]");
             }
@@ -2317,7 +2327,8 @@ public class ModManager : Control
             {
                 if (currentConfigList[index].ID != null && currentConfigList[index].Value != null)
                 {
-                    tempDictionary[currentConfigList[index].ID ?? string.Empty] = currentConfigList[index].Value ?? new Dictionary<string, object>();
+                    tempDictionary[currentConfigList[index].ID ?? string.Empty] =
+                        currentConfigList[index].Value ?? new Dictionary<string, object>();
                 }
             }
 
@@ -2352,7 +2363,8 @@ public class ModManager : Control
 
                 if (selectedMod != null && selectedMod.CurrentConfiguration != null && currentItemInfo.ID != null)
                 {
-                    selectedMod.CurrentConfiguration[currentItemInfo.ID] = currentItemInfo.Value ?? new Dictionary<string, object>();
+                    selectedMod.CurrentConfiguration[currentItemInfo.ID] =
+                        currentItemInfo.Value ?? new Dictionary<string, object>();
                 }
             }
         }
