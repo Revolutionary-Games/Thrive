@@ -1123,7 +1123,7 @@ public partial class Microbe
 
     private void OnBodyEnteredEngulfArea(Node body)
     {
-        if (body == this || body !is IEngulfable)
+        if (body == this || body is not IEngulfable)
             return;
 
         // TODO: does this need to check for disposed exception?
@@ -1173,16 +1173,16 @@ public partial class Microbe
             IngestEngulfable(engulfable);
 
             // Can engulf
-            //if (ContainedCompounds != null)
-            //{
-            //    foreach (var entry in ContainedCompounds)
-            //    {
-            //        var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
-            //            Constants.CHUNK_ENGULF_COMPOUND_DIVISOR) * Constants.CHUNK_ENGULF_COMPOUND_DIVISOR;
+            // if (ContainedCompounds != null)
+            // {
+            //     foreach (var entry in ContainedCompounds)
+            //     {
+            //         var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
+            //             Constants.CHUNK_ENGULF_COMPOUND_DIVISOR) * Constants.CHUNK_ENGULF_COMPOUND_DIVISOR;
             //
-            //        VentCompound(Translation, entry.Key, entry.Value - added);
-            //    }
-            //}
+            //         VentCompound(Translation, entry.Key, entry.Value - added);
+            //     }
+            // }
         }
     }
 

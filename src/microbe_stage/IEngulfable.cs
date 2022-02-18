@@ -1,4 +1,4 @@
-public interface IEngulfable
+﻿public interface IEngulfable
 {
     float Size { get; }
 }
