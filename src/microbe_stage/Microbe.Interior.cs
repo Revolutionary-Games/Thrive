@@ -771,6 +771,7 @@ public partial class Microbe
             {
                 totalMovement += DoBaseMovementForce(delta);
             }
+
             if(IsPlayerMicrobe)
                 GD.Print(queuedMovementForce,totalMovement,"\n");
             totalMovement += queuedMovementForce;

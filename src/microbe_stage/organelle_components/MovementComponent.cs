@@ -106,7 +106,7 @@ public class MovementComponent : ExternallyPositionedComponent
         Vector3 direction = microbe.MovementDirection;
 
         // Real force the flagella applied to the colony (considering rotation)
-        var realForce = organelle.RotatedPositionInsideColony(force);
+        var realForce = organelle!.RotatedPositionInsideColony(force);
         var forceMagnitude = realForce.Dot(direction);
 
         if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
