@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -270,13 +271,7 @@ public class MainMenu : NodeWithInput
 
         if (errors.Count > 0)
         {
-            var text = string.Empty;
-            foreach ((FullModDetails, string ErrorMessage) currentError in errors)
-            {
-                text += currentError.ErrorMessage + "\n";
-            }
-
-            modLoadFailures.ExceptionInfo = text;
+            modLoadFailures.ExceptionInfo = string.Join("\n", errors.Select(e => e.ErrorMessage));
             modLoadFailures.PopupCenteredShrink();
         }
     }

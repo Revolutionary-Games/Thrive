@@ -53,6 +53,12 @@ public static class FileHelpers
     /// <returns>True if exists, false otherwise</returns>
     public static bool ExistsCaseSensitive(string path)
     {
+        // Checks if it exist first before checking case
+        if (!Exists(path))
+        {
+            return false;
+        }
+
         var globlizedPath = ProjectSettings.GlobalizePath(path);
         string directoryPath = Path.GetDirectoryName(globlizedPath ?? string.Empty) ?? string.Empty;
         if (!string.IsNullOrEmpty(directoryPath) && !string.IsNullOrEmpty(globlizedPath))

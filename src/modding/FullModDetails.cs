@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   An extended version of <see cref="ModInfo"/> that contains non-mod author controlled data
 /// </summary>
 public class FullModDetails : IEquatable<FullModDetails>
 {
+    [JsonConstructor]
     public FullModDetails(string internalName, string folder, ModInfo info)
     {
         InternalName = internalName;

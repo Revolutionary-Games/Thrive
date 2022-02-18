@@ -1450,13 +1450,7 @@ public class ModManager : Control
 
         if (errors.Count > 0)
         {
-            var text = string.Empty;
-            foreach ((FullModDetails, string ErrorMessage) currentError in errors)
-            {
-                text += currentError.ErrorMessage;
-            }
-
-            modErrorDialog.ExceptionInfo = text;
+            modErrorDialog.ExceptionInfo = string.Join("\n", errors.Select(e => e.ErrorMessage));
             modErrorDialog.PopupCenteredShrink();
         }
 
@@ -2205,20 +2199,23 @@ public class ModManager : Control
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidDependencyOrder:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER"), offendingMod.Name,
-                    otherMod.Name) + "\n";
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_DEPENDENCIES_ORDER_FIX"),
-                    offendingMod.Name, otherMod.Name);
+                    offendingMod.Name,
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.IncompatibleMod:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD"), offendingMod.Name,
-                    otherMod.Name) + "\n";
-                result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX"), otherMod.Name);
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
+                result += string.Format(TranslationServer.Translate("MOD_ERROR_INCOMPATIBLE_MOD_FIX"),
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderBefore:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE"), offendingMod.Name,
-                    otherMod.Name) + "\n";
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name) + "\n";
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_BEFORE_FIX"),
-                    offendingMod.Name, otherMod.Name);
+                    offendingMod.Name,
+                    string.IsNullOrWhiteSpace(otherMod.Name) ? otherMod.InternalName : otherMod.Name);
                 break;
             case (int)ModLoader.CheckErrorStatus.InvalidLoadOrderAfter:
                 result += string.Format(TranslationServer.Translate("MOD_ERROR_LOAD_ORDER_AFTER"), offendingMod.Name,
