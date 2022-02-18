@@ -56,6 +56,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
 
     private bool? hasSignalingAgent;
+
+    [JsonProperty]
     private MicrobeSignalCommand command = MicrobeSignalCommand.None;
 
     [JsonProperty]
@@ -141,7 +143,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     /// <summary>
     ///   Because AI is ran in parallel thread, if it wants to change the signaling, it needs to do it through this
     /// </summary>
-    [JsonIgnore]
+    [JsonProperty]
     public MicrobeSignalCommand? QueuedSignalingCommand { get; set; }
 
     /// <summary>

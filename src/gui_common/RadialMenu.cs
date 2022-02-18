@@ -155,7 +155,7 @@ public class RadialMenu : CenterContainer
         switch (what)
         {
             case NotificationResized:
-                if (centerLabel != null)
+                if (Visible && centerLabel != null && createdLabels.Count > 0)
                     RepositionLabels();
                 break;
         }
