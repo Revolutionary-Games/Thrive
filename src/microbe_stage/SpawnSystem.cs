@@ -25,20 +25,7 @@ public class SpawnSystem
     private ShuffleBag<Spawner> spawnTypes;
 
     [JsonProperty]
-    private Random random = new Random();
-
-    /// <summary>
-    ///   Delete a max of this many entities per step to reduce lag
-    ///   from deleting tons of entities at once.
-    /// </summary>
-    [JsonProperty]
-    private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
-
-    /// <summary>
-    ///   This limits the total number of things that can be spawned.
-    /// </summary>
-    [JsonProperty]
-    private int maxAliveEntities = Constants.DEFAULT_MAX_SPAWNED_ENTITIES;
+    private Random random = new();
 
     /// <summary>
     ///   This limits the number of things that can be spawned in a single spawn radius.
@@ -68,7 +55,7 @@ public class SpawnSystem
     ///     this object so much
     ///   </para>
     /// </remarks>
-    private QueuedSpawn queuedSpawns;
+    private QueuedSpawn? queuedSpawns;
 
     /// <summary>
     ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
@@ -189,13 +176,11 @@ public class SpawnSystem
         int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
 
         // If we have queued spawns to do spawn those
-        if (queuedSpawns != null)
-        {
-            spawnsLeftThisFrame = HandleQueuedSpawns(spawnsLeftThisFrame);
 
-            if (spawnsLeftThisFrame <= 0)
-                return;
-        }
+        spawnsLeftThisFrame = HandleQueuedSpawns(spawnsLeftThisFrame);
+
+        if (spawnsLeftThisFrame <= 0)
+            return;
 
         // This is now an if to make sure that the spawn system is
         // only ran once per frame to avoid spawning a bunch of stuff
@@ -215,8 +200,11 @@ public class SpawnSystem
 
     private int HandleQueuedSpawns(int spawnsLeftThisFrame)
     {
+        if (queuedSpawns == null)
+            return spawnsLeftThisFrame;
+
         // If we don't have room, just abandon spawning
-        if (estimateEntityCount >= maxAliveEntities)
+        if (estimateEntityCount >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
         {
             queuedSpawns.Spawns.Dispose();
             queuedSpawns = null;
@@ -224,7 +212,7 @@ public class SpawnSystem
         }
 
         // Spawn from the queue
-        while (estimateEntityCount < maxAliveEntities && spawnsLeftThisFrame > 0)
+        while (estimateEntityCount < Constants.DEFAULT_MAX_SPAWNED_ENTITIES && spawnsLeftThisFrame > 0)
         {
             if (!queuedSpawns.Spawns.MoveNext())
             {
@@ -235,7 +223,9 @@ public class SpawnSystem
             }
 
             // Next was spawned
-            ProcessSpawnedEntity(queuedSpawns.Spawns.Current, queuedSpawns.SpawnType);
+            ProcessSpawnedEntity(
+                queuedSpawns.Spawns.Current ?? throw new Exception("Queued spawn enumerator returned null"),
+                queuedSpawns.SpawnType);
 
             ++estimateEntityCount;
             --spawnsLeftThisFrame;
@@ -247,7 +237,7 @@ public class SpawnSystem
     private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
     {
         // If  there are already too many entities, don't spawn more
-        if (existing >= maxAliveEntities)
+        if (existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             return;
 
         // Here we want to check that the player moved to not basically spawn in circle around the player.
@@ -290,7 +280,7 @@ public class SpawnSystem
             numAttempts stores how many times the SpawnSystem attempts
             to spawn the given entity.
             */
-            int numAttempts = Mathf.Clamp(spawnType.SpawnFrequency * 2, 1, maxTriesPerSpawner);
+            int numAttempts = Mathf.Clamp(spawnType!.SpawnFrequency * 2, 1, maxTriesPerSpawner);
 
             for (int i = 0; i < numAttempts; i++)
             {
@@ -363,10 +353,8 @@ public class SpawnSystem
 
             // Check if we are out of quota for this frame
 
-            // TODO: this is a bit awkward if this
-            // stops compound clouds from spawning as
-            // well...
-            if (spawned + existing >= maxAliveEntities)
+            // TODO: this is a bit awkward if this stops compound clouds from spawning as well...
+            if (spawned + existing >= Constants.DEFAULT_MAX_SPAWNED_ENTITIES)
             {
                 // We likely couldn't spawn things next frame anyway if we are at the entity limit,
                 // so the spawner is not stored here
@@ -419,7 +407,7 @@ public class SpawnSystem
                 entitiesDeleted++;
                 spawned.DestroyDetachAndQueueFree();
 
-                if (entitiesDeleted >= maxEntitiesToDeletePerStep)
+                if (entitiesDeleted >= Constants.MAX_DESPAWNS_PER_FRAME)
                     break;
             }
         }

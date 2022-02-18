@@ -5,7 +5,7 @@
 /// </summary>
 public class CompoundLoader : BaseThriveConverter
 {
-    public CompoundLoader(ISaveContext context) : base(context)
+    public CompoundLoader(ISaveContext? context) : base(context)
     {
     }
 

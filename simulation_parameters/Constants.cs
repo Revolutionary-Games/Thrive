@@ -473,9 +473,14 @@ public static class Constants
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
     public const float GLUCOSE_MIN = 0.0f;
 
+    // These control how many game entities can exist at once and how fast they are allowed to spawn / despawn
     // TODO: bump this back up once we resolve the performance bottleneck
-    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 90;
+    public const int DEFAULT_MAX_SPAWNED_ENTITIES = 150;
     public const int MAX_SPAWNS_PER_FRAME = 1;
+
+    /// <summary>
+    ///   Delete a max of this many entities per step to reduce lag from deleting tons of entities at once.
+    /// </summary>
     public const int MAX_DESPAWNS_PER_FRAME = 1;
 
     public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
@@ -532,11 +537,19 @@ public static class Constants
     public const int PATCH_HISTORY_RANGE = 10;
 
     /// <summary>
+    ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
+    /// </summary>
+    public const int GLOBAL_EVENT_LOG_CAP = 20;
+
+    /// <summary>
     ///   Extra margin used to show cells that the player hovers over with the mouse. This is done to make it easier
     ///   to see what small cells are.
     ///   Specifically for use with LengthSquared.
     /// </summary>
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS_SQUARED = 2 * 2;
+
+    public const float PROCEDURAL_CACHE_CLEAN_INTERVAL = 9.3f;
+    public const float PROCEDURAL_CACHE_MEMBRANE_KEEP_TIME = 500;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
@@ -598,6 +611,8 @@ public static class Constants
     public const string GODOT_LICENSE_FILE = "res://doc/GodotLicense.txt";
     public const string OFL_LICENSE_FILE = "res://assets/OFL.txt";
     public const string GPL_LICENSE_FILE = "res://gpl.txt";
+
+    public const string ASSETS_GUI_BEVEL_FOLDER = "res://assets/textures/gui/bevel";
 
     /// <summary>
     ///   Internal Godot name for the default audio output device
@@ -680,6 +695,8 @@ public static class Constants
     ///   Minimum hex distance before the same render priority.
     /// </summary>
     public const int HEX_RENDER_PRIORITY_DISTANCE = 4;
+
+    public const string DISABLE_VIDEOS_LAUNCH_OPTION = "--thrive-disable-videos";
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.

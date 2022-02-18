@@ -6,12 +6,12 @@ using Godot;
 /// </summary>
 public class CustomCheckBox : Button
 {
-    private Texture unpressedNormal;
-    private Texture unpressedHovered;
-    private Texture unpressedClicked;
-    private Texture pressedNormal;
-    private Texture pressedHovered;
-    private Texture pressedClicked;
+    private Texture unpressedNormal = null!;
+    private Texture unpressedHovered = null!;
+    private Texture unpressedClicked = null!;
+    private Texture pressedNormal = null!;
+    private Texture pressedHovered = null!;
+    private Texture pressedClicked = null!;
 
     private bool pressing;
     private CheckState currentCheckState;

@@ -11,7 +11,7 @@ public class CallbackConverter : JsonConverter
 {
     public override bool CanRead => true;
 
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
     {
         string type;
         MethodInfo method;
@@ -46,12 +46,11 @@ public class CallbackConverter : JsonConverter
         writer.WriteEndObject();
     }
 
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+    public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue,
+        JsonSerializer serializer)
     {
         if (reader.TokenType != JsonToken.StartObject)
-        {
             return null;
-        }
 
         var item = JObject.Load(reader);
 
@@ -60,14 +59,14 @@ public class CallbackConverter : JsonConverter
 
         try
         {
-            // ReSharper disable PossibleNullReferenceException
-            type = item["CallbackType"].ToObject<string>();
-            targetTypeName = item["TargetType"].ToObject<string>();
+            if (item == null)
+                throw new JsonException("Object to read callback from is null");
+
+            type = item["CallbackType"]!.ToObject<string>() ?? throw new JsonException("missing CallbackType");
+            targetTypeName = item["TargetType"]!.ToObject<string>() ?? throw new JsonException("missing TargetType");
 
             if (targetTypeName == null)
                 throw new NullReferenceException();
-
-            // ReSharper restore PossibleNullReferenceException
         }
         catch (Exception e) when (
             e is NullReferenceException or ArgumentNullException)
@@ -95,14 +94,8 @@ public class CallbackConverter : JsonConverter
 
         try
         {
-            // ReSharper disable PossibleNullReferenceException
-            target = item["Target"].ToObject(targetType, serializer);
-            methodName = item["Method"]["Name"].ToObject<string>();
-
-            if (methodName == null)
-                throw new NullReferenceException();
-
-            // ReSharper restore PossibleNullReferenceException
+            target = item["Target"]!.ToObject(targetType, serializer) ?? throw new JsonException("missing Target");
+            methodName = item["Method"]!["Name"]!.ToObject<string>() ?? throw new JsonException("missing MethodName");
         }
         catch (Exception e) when (
             e is NullReferenceException or ArgumentNullException)

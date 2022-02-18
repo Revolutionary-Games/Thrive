@@ -11,26 +11,31 @@ using Vector3 = Godot.Vector3;
 public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 {
     /// <summary>
-    ///   The current densities of compounds. This uses custom writing so this is ignored
+    ///   The current densities of compounds. This uses custom writing so this is ignored.
     /// </summary>
-    public Vector4[,] Density;
+    /// <remarks>
+    ///   <para>
+    ///     Because this is such a high priority system this uses a bit more happily null suppressing than elsewhere
+    ///   </para>
+    /// </remarks>
+    public Vector4[,] Density = null!;
 
     [JsonIgnore]
-    public Vector4[,] OldDensity;
+    public Vector4[,] OldDensity = null!;
 
     [JsonProperty]
-    public Compound[] Compounds;
+    public Compound?[] Compounds = null!;
 
     // TODO: give each cloud a viscosity value in the
     // JSON file and use it instead.
     private const float VISCOSITY = 0.0525f;
 
-    private Image image;
-    private ImageTexture texture;
-    private FluidSystem fluidSystem;
+    private Image image = null!;
+    private ImageTexture texture = null!;
+    private FluidSystem? fluidSystem;
 
     [JsonProperty]
-    private Int2 position = new Int2(0, 0);
+    private Int2 position = new(0, 0);
 
     [JsonProperty]
     public int Resolution { get; private set; }
@@ -107,11 +112,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     /// <summary>
     ///   Initializes this cloud. cloud2 onwards can be null
     /// </summary>
-    public void Init(FluidSystem fluidSystem, Compound cloud1, Compound cloud2,
-        Compound cloud3, Compound cloud4)
+    public void Init(FluidSystem fluidSystem, Compound cloud1, Compound? cloud2,
+        Compound? cloud3, Compound? cloud4)
     {
         this.fluidSystem = fluidSystem;
-        Compounds = new Compound[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
+        Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
 
         // Setup colours
         var material = (ShaderMaterial)Material;
@@ -408,12 +413,13 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
     {
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
-            if (Compounds[i] == null)
+            var compound = Compounds[i];
+            if (compound == null)
                 break;
 
             float amount = HackyAddress(Density[x, y], i);
             if (amount > 0)
-                result[Compounds[i]] = amount;
+                result[compound] = amount;
         }
     }
 
@@ -479,11 +485,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
-            if (Compounds[i] == null)
+            var compound = Compounds[i];
+            if (compound == null)
                 break;
 
             // Skip if compound is non-useful
-            if (!storage.IsUseful(Compounds[i]))
+            if (!storage.IsUseful(compound))
                 continue;
 
             // Overestimate of how much compounds we get
@@ -494,7 +501,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             if (generousAmount < MathUtils.EPSILON)
                 continue;
 
-            float freeSpace = storage.Capacity - storage.GetCompoundAmount(Compounds[i]);
+            float freeSpace = storage.Capacity - storage.GetCompoundAmount(compound);
 
             float multiplier = 1.0f * rate;
 
@@ -504,19 +511,19 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 multiplier = freeSpace / generousAmount;
             }
 
-            float taken = TakeCompound(Compounds[i], localX, localY, fractionToTake * multiplier) *
+            float taken = TakeCompound(compound, localX, localY, fractionToTake * multiplier) *
                 Constants.ABSORPTION_RATIO;
 
-            storage.AddCompound(Compounds[i], taken);
+            storage.AddCompound(compound, taken);
 
             // Keep track of total compounds absorbed for the cell
-            if (!totals.ContainsKey(Compounds[i]))
+            if (!totals.ContainsKey(compound))
             {
-                totals.Add(Compounds[i], taken);
+                totals.Add(compound, taken);
             }
             else
             {
-                totals[Compounds[i]] += taken;
+                totals[compound] += taken;
             }
         }
     }
@@ -531,6 +538,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
                 OldDensity[x, y] = Vector4.Zero;
             }
         }
+    }
+
+    public void SetBrightness(float brightness)
+    {
+        var material = (ShaderMaterial)Material;
+        material.SetShaderParam("BrightnessMultiplier", brightness);
     }
 
     /// <summary>
@@ -599,7 +612,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem.VelocityAt(
+                    var velocity = fluidSystem!.VelocityAt(
                         pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
@@ -638,7 +651,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    var velocity = fluidSystem.VelocityAt(
+                    var velocity = fluidSystem!.VelocityAt(
                         pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds

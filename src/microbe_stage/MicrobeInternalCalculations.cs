@@ -73,7 +73,7 @@ public static class MicrobeInternalCalculations
                 leftDirectionFactor = -rightDirectionFactor;
 
                 float movementConstant = Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement.Momentum / 100.0f;
+                    * organelle.Definition.Components.Movement!.Momentum / 100.0f;
 
                 // We get the movement force for every direction as well
                 forwardsDirectionMovementForce += MovementForce(movementConstant, forwardDirectionFactor);

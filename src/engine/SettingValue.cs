@@ -18,7 +18,7 @@ public class SettingValue<TValueType> : IAssignableSetting
     /// </summary>
     public delegate void SettingValueChangedDelegate<TSettingValueType>(TSettingValueType value);
 
-    public event SettingValueChangedDelegate<TValueType> OnChanged;
+    public event SettingValueChangedDelegate<TValueType>? OnChanged;
 
     public TValueType Value
     {
@@ -39,7 +39,7 @@ public class SettingValue<TValueType> : IAssignableSetting
         return value.value;
     }
 
-    public static bool operator ==(SettingValue<TValueType> lhs, SettingValue<TValueType> rhs)
+    public static bool operator ==(SettingValue<TValueType>? lhs, SettingValue<TValueType>? rhs)
     {
         return Equals(lhs, rhs);
     }
@@ -49,7 +49,7 @@ public class SettingValue<TValueType> : IAssignableSetting
         return !(lhs == rhs);
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (obj == null)
         {
@@ -79,7 +79,7 @@ public class SettingValue<TValueType> : IAssignableSetting
 
     public override int GetHashCode()
     {
-        return 17 ^ value.GetHashCode();
+        return 17 ^ (value?.GetHashCode() ?? 9);
     }
 
     /// <summary>

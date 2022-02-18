@@ -2,13 +2,14 @@
 using Godot;
 using Array = Godot.Collections.Array;
 using Object = Godot.Object;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
 public class GUICommon : NodeWithInput
 {
-    private static GUICommon instance;
+    private static GUICommon? instance;
 
     private AudioStream buttonPressSound;
 
@@ -34,7 +35,7 @@ public class GUICommon : NodeWithInput
             "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
-    public static GUICommon Instance => instance;
+    public static GUICommon Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     /// <summary>
     ///   General purpose Tween node for use in various places.
@@ -90,6 +91,23 @@ public class GUICommon : NodeWithInput
     }
 
     /// <summary>
+    ///   Loads a Texture from predefined GUI asset texture folder path.
+    /// </summary>
+    public static Texture? LoadGuiTexture(string file)
+    {
+        var assumedPath = Path.Combine(Constants.ASSETS_GUI_BEVEL_FOLDER, file);
+
+        if (ResourceLoader.Exists(assumedPath, "Texture"))
+            return GD.Load<Texture>(assumedPath);
+
+        // Fail-safe if file itself is the absolute path
+        if (ResourceLoader.Exists(file, "Texture"))
+            return GD.Load<Texture>(file);
+
+        return GD.Load(file) as Texture;
+    }
+
+    /// <summary>
     ///   Closes any currently active exclusive modal popups.
     /// </summary>
     [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]
@@ -98,13 +116,12 @@ public class GUICommon : NodeWithInput
         var popup = GetCurrentlyActiveExclusivePopup();
         var customPopup = popup as ICustomPopup;
 
-        if (!IsAnyExclusivePopupActive || (customPopup != null &&
-                !customPopup.ExclusiveAllowCloseOnEscape))
+        if (!IsAnyExclusivePopupActive || customPopup is { ExclusiveAllowCloseOnEscape: false })
         {
             return false;
         }
 
-        popup.Hide();
+        popup!.Hide();
 
         return true;
     }
@@ -112,7 +129,7 @@ public class GUICommon : NodeWithInput
     /// <summary>
     ///   Returns the top-most exclusive popup in the current Viewport's modal stack. Null if there is none.
     /// </summary>
-    public Popup GetCurrentlyActiveExclusivePopup()
+    public Popup? GetCurrentlyActiveExclusivePopup()
     {
         if (GetViewport().GetModalStackTop() is Popup popup && popup.PopupExclusive)
             return popup;

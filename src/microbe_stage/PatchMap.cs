@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 /// </summary>
 public class PatchMap
 {
-    private Patch currentPatch;
+    private Patch? currentPatch;
 
     /// <summary>
     ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
     /// </summary>
     [JsonProperty]
-    public Dictionary<int, Patch> Patches { get; private set; } = new Dictionary<int, Patch>();
+    public Dictionary<int, Patch> Patches { get; private set; } = new();
 
     /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>
-    public Patch CurrentPatch
+    public Patch? CurrentPatch
     {
         get => currentPatch;
         set
@@ -152,7 +152,7 @@ public class PatchMap
     ///     looked up.
     ///   </para>
     /// </remarks>
-    public Species FindSpeciesByID(uint id)
+    public Species? FindSpeciesByID(uint id)
     {
         if (CurrentPatch != null)
         {
@@ -202,6 +202,21 @@ public class PatchMap
         {
             entry.Key.SetPopulationFromPatches(entry.Value);
         }
+    }
+
+    /// <summary>
+    ///   Gets the species population in all patches.
+    /// </summary>
+    public long GetSpeciesGlobalPopulation(Species species)
+    {
+        long sum = 0;
+
+        foreach (var entry in Patches.Values)
+        {
+            sum += entry.GetSpeciesPopulation(species);
+        }
+
+        return sum;
     }
 
     /// <summary>

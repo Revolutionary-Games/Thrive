@@ -2,13 +2,14 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Singleton handling screenshot taking
 /// </summary>
 public class ScreenShotTaker : NodeWithInput
 {
-    private static ScreenShotTaker instance;
+    private static ScreenShotTaker? instance;
     private bool isCurrentlyTakingScreenshot;
     private Step step;
 
@@ -24,7 +25,7 @@ public class ScreenShotTaker : NodeWithInput
         TakeAndSaveScreenshot,
     }
 
-    public static ScreenShotTaker Instance => instance;
+    public static ScreenShotTaker Instance => instance ?? throw new InstanceNotLoadedYetException();
 
     public override void _Ready()
     {
@@ -64,7 +65,7 @@ public class ScreenShotTaker : NodeWithInput
 
         var filename = DateTime.Now.ToString("yyyy-MM-dd_HH.mm.ss.ffff", CultureInfo.CurrentCulture) + ".png";
 
-        var path = PathUtils.Join(Constants.SCREENSHOT_FOLDER, filename);
+        var path = Path.Combine(Constants.SCREENSHOT_FOLDER, filename);
 
         var error = image.SavePng(path);
 

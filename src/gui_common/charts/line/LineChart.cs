@@ -13,34 +13,34 @@ using DataSetDictionary = System.Collections.Generic.Dictionary<string, ChartDat
 public class LineChart : VBoxContainer
 {
     [Export]
-    public NodePath HorizontalLabelPath;
+    public NodePath HorizontalLabelPath = null!;
 
     [Export]
-    public NodePath VerticalLabelPath;
+    public NodePath VerticalLabelPath = null!;
 
     [Export]
-    public NodePath VerticalTicksContainerPath;
+    public NodePath VerticalTicksContainerPath = null!;
 
     [Export]
-    public NodePath HorizontalTicksContainerPath;
+    public NodePath HorizontalTicksContainerPath = null!;
 
     [Export]
-    public NodePath DrawAreaPath;
+    public NodePath DrawAreaPath = null!;
 
     [Export]
-    public NodePath LegendsContainerPath;
+    public NodePath LegendsContainerPath = null!;
 
     [Export]
-    public NodePath ExtraLegendContainerPath;
+    public NodePath ExtraLegendContainerPath = null!;
 
     [Export]
-    public NodePath InspectButtonPath;
+    public NodePath InspectButtonPath = null!;
 
     /// <summary>
     ///   The translatable name identifier for this chart. Each chart instance should have a unique name.
     /// </summary>
     [Export]
-    public string ChartName;
+    public string ChartName = null!;
 
     /// <summary>
     ///   Number of scales to represent x axis values
@@ -82,7 +82,7 @@ public class LineChart : VBoxContainer
     ///     This will only be applied after calling Plot().
     ///   </para>
     /// </remarks>
-    public string TooltipXAxisFormat;
+    public string? TooltipXAxisFormat;
 
     /// <summary>
     ///   Specifies how the Y axis value display should be formatted on the datapoint tooltip.
@@ -94,7 +94,7 @@ public class LineChart : VBoxContainer
     ///     This will only be applied after calling Plot().
     ///   </para>
     /// </remarks>
-    public string TooltipYAxisFormat;
+    public string? TooltipYAxisFormat;
 
     /// <summary>
     ///   Datasets to be plotted on the chart. Key is the dataset's name
@@ -111,31 +111,31 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Fallback icon for the legend display mode using icons
     /// </summary>
-    private Texture defaultIconLegendTexture;
+    private Texture defaultIconLegendTexture = null!;
 
-    private Texture hLineTexture;
+    private Texture hLineTexture = null!;
 
     // ReSharper disable once NotAccessedField.Local
-    private Texture vLineTexture;
+    private Texture vLineTexture = null!;
 
-    private Label horizontalLabel;
-    private Label verticalLabel;
-    private VBoxContainer verticalLabelsContainer;
-    private HBoxContainer horizontalLabelsContainer;
-    private Control drawArea;
-    private HBoxContainer legendContainer;
-    private GridContainer extraLegendContainer;
-    private TextureButton inspectButton;
-    private CustomDialog chartPopup;
-    private LineChart childChart;
+    private Label? horizontalLabel;
+    private Label? verticalLabel;
+    private VBoxContainer verticalLabelsContainer = null!;
+    private HBoxContainer horizontalLabelsContainer = null!;
+    private Control drawArea = null!;
+    private HBoxContainer legendContainer = null!;
+    private GridContainer extraLegendContainer = null!;
+    private TextureButton inspectButton = null!;
+    private CustomDialog chartPopup = null!;
+    private LineChart? childChart;
 
     /// <summary>
     ///   Useful for any operations in the child chart involving the parent chart.
     /// </summary>
-    private LineChart parentChart;
+    private LineChart? parentChart;
 
-    private string xAxisName;
-    private string yAxisName;
+    private string xAxisName = "x";
+    private string yAxisName = "y";
 
     /// <summary>
     ///   If true this means that this chart is part of another parent chart.
@@ -194,7 +194,7 @@ public class LineChart : VBoxContainer
         Success,
     }
 
-    public IDataSetsLegend DataSetsLegend { get; private set; }
+    public IDataSetsLegend? DataSetsLegend { get; private set; }
 
     /// <summary>
     ///   The lowest data point value from all the datasets.
@@ -250,7 +250,7 @@ public class LineChart : VBoxContainer
     public override void _Ready()
     {
         if (string.IsNullOrEmpty(ChartName))
-            throw new Exception("Chart name must not be unset");
+            throw new InvalidOperationException($"{nameof(ChartName)} must not be unset");
 
         horizontalLabel = GetNode<Label>(HorizontalLabelPath);
         verticalLabel = GetNode<Label>(VerticalLabelPath);
@@ -277,7 +277,7 @@ public class LineChart : VBoxContainer
         dataSets[name] = dataset;
     }
 
-    public ChartDataSet GetDataSet(string name)
+    public ChartDataSet? GetDataSet(string name)
     {
         if (!dataSets.ContainsKey(name))
         {
@@ -331,7 +331,7 @@ public class LineChart : VBoxContainer
     ///   Overrides number of y scales in the expanded graph, leave this ro zero to use the default
     /// </param>
     public void Plot(string xAxisName, string yAxisName, int initialVisibleDataSets,
-        string legendTitle, IDataSetsLegend datasetsLegend = null, string defaultDataSet = null,
+        string? legendTitle, IDataSetsLegend? datasetsLegend = null, string? defaultDataSet = null,
         int expandedXTicks = 0, int expandedYTicks = 0)
     {
         ClearChart();
@@ -346,7 +346,7 @@ public class LineChart : VBoxContainer
         if (expandedYTicks > 0 && isChild)
             YAxisTicks = expandedYTicks;
 
-        if (dataSets == null || dataSets.Count <= 0)
+        if (dataSets.Count <= 0)
         {
             GD.PrintErr($"{ChartName} chart missing datasets, aborting plotting data");
             childChart?.ClearChart();
@@ -388,7 +388,7 @@ public class LineChart : VBoxContainer
             }
 
             // Initialize line
-            var dataLine = new DataLine(data.Value as LineChartData, data.Key == defaultDataSet, isChild ? 2 : 1);
+            var dataLine = new DataLine((LineChartData)data.Value, data.Key == defaultDataSet, isChild ? 2 : 1);
             dataLines[data.Key] = dataLine;
             drawArea.AddChild(dataLine);
 
@@ -406,12 +406,12 @@ public class LineChart : VBoxContainer
                 var xValueForm = string.IsNullOrEmpty(TooltipXAxisFormat) ?
                     $"{point.X.FormatNumber()} {XAxisName}" :
                     string.Format(CultureInfo.CurrentCulture,
-                        TooltipXAxisFormat, point.X);
+                        TooltipXAxisFormat!, point.X);
 
                 var yValueForm = string.IsNullOrEmpty(TooltipYAxisFormat) ?
                     $"{point.Y.FormatNumber()} {YAxisName}" :
                     string.Format(CultureInfo.CurrentCulture,
-                        TooltipYAxisFormat, point.Y);
+                        TooltipYAxisFormat!, point.Y);
 
                 toolTip.DisplayName = data.Key + point;
                 toolTip.Description = $"{data.Key}\n{xValueForm}\n{yValueForm}";
@@ -481,6 +481,9 @@ public class LineChart : VBoxContainer
 
         if (!isChild)
         {
+            if (childChart == null)
+                throw new Exception("Child chart is not initialized even though it should be");
+
             childChart.LegendMode = LegendMode;
             childChart.Plot(xAxisName, yAxisName, initialVisibleDataSets, legendTitle, datasetsLegend,
                 defaultDataSet, expandedXTicks, expandedYTicks);
@@ -628,7 +631,7 @@ public class LineChart : VBoxContainer
     private void RenderChart()
     {
         // Handle errors
-        if (dataSets == null || VisibleDataSets <= 0)
+        if (VisibleDataSets <= 0)
         {
             DrawErrorText(TranslationServer.Translate("NO_DATA_TO_SHOW"));
         }
@@ -1009,16 +1012,16 @@ public class LineChart : VBoxContainer
 
     public class DatasetsIconLegend : Reference, IDataSetsLegend
     {
-        protected LineChart chart;
-        protected DataSetDictionary datasets;
-        protected List<DatasetIcon> icons = new();
+        protected readonly LineChart chart;
+        protected readonly List<DatasetIcon> icons = new();
+        protected DataSetDictionary? datasets;
 
         public DatasetsIconLegend(LineChart chart)
         {
             this.chart = chart;
         }
 
-        public virtual Control CreateLegend(DataSetDictionary datasets, string title)
+        public virtual Control CreateLegend(DataSetDictionary datasets, string? title)
         {
             _ = title;
 
@@ -1038,7 +1041,7 @@ public class LineChart : VBoxContainer
                     fallbackIconIsUsed = true;
                 }
 
-                var icon = new DatasetIcon(data.Key, chart, data.Value as LineChartData, fallbackIconIsUsed);
+                var icon = new DatasetIcon(data.Key, chart, (LineChartData)data.Value, fallbackIconIsUsed);
                 icons.Add(icon);
 
                 hBox.AddChild(icon);
@@ -1067,6 +1070,9 @@ public class LineChart : VBoxContainer
 
         public virtual void OnDataSetVisibilityChange(bool visible, string dataset)
         {
+            if (datasets == null)
+                throw new InvalidOperationException("Datasets are not loaded");
+
             var icon = icons.Find(i => i.DataName == dataset);
 
             if (icon == null)
@@ -1122,9 +1128,9 @@ public class LineChart : VBoxContainer
             this.chart = chart;
         }
 
-        public CustomDropDown Dropdown { get; protected set; }
+        public CustomDropDown? Dropdown { get; protected set; }
 
-        public virtual Control CreateLegend(DataSetDictionary datasets, string title)
+        public virtual Control CreateLegend(DataSetDictionary datasets, string? title)
         {
             Dropdown = new CustomDropDown
             {
@@ -1148,6 +1154,9 @@ public class LineChart : VBoxContainer
 
         public virtual void OnDataSetVisibilityChange(bool visible, string dataset)
         {
+            if (Dropdown == null)
+                throw new InvalidOperationException("Legend is not created");
+
             var indices = Dropdown.GetItemIndex(dataset);
 
             foreach (var index in indices)
@@ -1161,6 +1170,9 @@ public class LineChart : VBoxContainer
 
         protected void AddSpeciesToList(KeyValuePair<string, ChartDataSet> data, string section = "default")
         {
+            if (Dropdown == null)
+                throw new InvalidOperationException("Legend is not created");
+
             // Use the default icon as a fallback if the data icon texture hasn't been set already
             data.Value.Icon ??= chart.defaultIconLegendTexture;
 
@@ -1176,7 +1188,7 @@ public class LineChart : VBoxContainer
 
         private void OnDropDownLegendItemSelected(int index)
         {
-            if (!Dropdown.Popup.IsItemCheckable(index))
+            if (Dropdown?.Popup.IsItemCheckable(index) != true)
                 return;
 
             var result = chart.UpdateDataSetVisibility(
@@ -1274,7 +1286,7 @@ public class LineChart : VBoxContainer
         /// </summary>
         public readonly bool Default;
 
-        public Dictionary<DataPoint, Control> CollisionBoxes = new Dictionary<DataPoint, Control>();
+        public Dictionary<DataPoint, Control> CollisionBoxes = new();
 
         private LineChartData data;
         private Tween tween;

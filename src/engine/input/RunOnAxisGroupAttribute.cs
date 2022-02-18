@@ -19,7 +19,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
     /// <summary>
     ///   All the axes that are managed by this Attribute
     /// </summary>
-    private readonly List<RunOnAxisAttribute> axes = new List<RunOnAxisAttribute>();
+    private readonly List<RunOnAxisAttribute> axes = new();
 
     /// <summary>
     ///   Should the method be invoked when all of the inputs are in their idle states

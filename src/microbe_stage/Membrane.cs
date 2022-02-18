@@ -6,56 +6,52 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Membrane for microbes
 /// </summary>
-public class Membrane : MeshInstance
+public class Membrane : MeshInstance, IComputedMembraneData
 {
     /// <summary>
-    ///   This must be big enough that no organelle can be at this position
+    ///   This must be big enough that no organelle can be at this position.
+    ///   TODO: maybe switching to nullable float would be a good alternative?
     /// </summary>
     public const float INVALID_FOUND_ORGANELLE = -999999.0f;
 
     [Export]
-    public ShaderMaterial MaterialToEdit;
+    public ShaderMaterial? MaterialToEdit;
 
-    public MembraneType Type;
+    private static readonly List<Vector2> PreviewMembraneOrganellePositions = new() { new Vector2(0, 0) };
 
-    // private ArrayMesh generatedMesh;
+    /// <summary>
+    ///   Stores the generated 2-Dimensional membrane. Needed for contains calculations
+    /// </summary>
+    private readonly List<Vector2> vertices2D = new();
+
+    // Work buffers used when generating membrane data
+    private List<Vector2> previousWorkBuffer = new();
+    private List<Vector2> nextWorkBuffer = new();
 
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
     private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.22f;
-    private Color tint = new Color(1, 1, 1, 1);
+    private Color tint = Colors.White;
     private float dissolveEffectValue;
 
-    private Texture albedoTexture;
-    private Texture normalTexture;
-    private Texture damagedTexture;
-    private Texture noiseTexture;
+    private MembraneType? type;
 
-    private string currentlyLoadedAlbedoTexture;
+    private Texture? albedoTexture;
+    private Texture noiseTexture = null!;
+
+    private string? currentlyLoadedAlbedoTexture;
 
     private bool dirty = true;
     private bool radiusIsDirty = true;
     private float cachedRadius;
 
     /// <summary>
-    ///   The length in pixels of a side of the square that bounds the
-    ///   membrane. Half the side length of the original square that
-    ///   is compressed to make the membrane.
-    /// </summary>
-    private int cellDimensions = 10;
-
-    /// <summary>
     ///   Amount of segments on one side of the above described
     ///   square. The amount of points on the side of the membrane.
     /// </summary>
     private int membraneResolution = Constants.MEMBRANE_RESOLUTION;
-
-    /// <summary>
-    ///   Stores the generated 2-Dimensional membrane. Needed for contains calculations
-    /// </summary>
-    private List<Vector2> vertices2D;
 
     /// <summary>
     ///   When true the mesh needs to be regenerated and material properties applied
@@ -74,7 +70,34 @@ public class Membrane : MeshInstance
     /// <summary>
     ///   Organelle positions of the microbe, needs to be set for the membrane to appear
     /// </summary>
-    public List<Vector2> OrganellePositions { get; set; }
+    /// <remarks>
+    ///   <para>
+    ///     The contents in this list should not be modified, a new list should be assigned.
+    ///     TODO: change the type here to be a readonly list
+    ///   </para>
+    /// </remarks>
+    public List<Vector2> OrganellePositions { get; set; } = PreviewMembraneOrganellePositions;
+
+    /// <summary>
+    ///   The type of the membrane.
+    /// </summary>
+    /// <exception cref="InvalidOperationException">When trying to read before this is initialized</exception>
+    /// <exception cref="ArgumentNullException">If value is attempted to be set to null</exception>
+    public MembraneType Type
+    {
+        get => type ?? throw new InvalidOperationException("Membrane type has not been set yet");
+        set
+        {
+            if (value == null)
+                throw new ArgumentNullException();
+
+            if (type == value)
+                return;
+
+            type = value;
+            dirty = true;
+        }
+    }
 
     /// <summary>
     ///   How healthy the cell is, mixes in a damaged texture. Range 0.0f - 1.0f
@@ -89,8 +112,7 @@ public class Membrane : MeshInstance
                 return;
 
             healthFraction = value;
-            if (MaterialToEdit != null)
-                ApplyHealth();
+            ApplyHealth();
         }
     }
 
@@ -103,8 +125,7 @@ public class Membrane : MeshInstance
         set
         {
             wigglyNess = Mathf.Clamp(value, 0.0f, 1.0f);
-            if (MaterialToEdit != null)
-                ApplyWiggly();
+            ApplyWiggly();
         }
     }
 
@@ -114,8 +135,7 @@ public class Membrane : MeshInstance
         set
         {
             movementWigglyNess = Mathf.Clamp(value, 0.0f, 1.0f);
-            if (MaterialToEdit != null)
-                ApplyMovementWiggly();
+            ApplyMovementWiggly();
         }
     }
 
@@ -138,8 +158,7 @@ public class Membrane : MeshInstance
             tint = value;
 
             // If we already have created a material we need to re-apply it
-            if (MaterialToEdit != null)
-                ApplyTint();
+            ApplyTint();
         }
     }
 
@@ -166,17 +185,18 @@ public class Membrane : MeshInstance
         set
         {
             dissolveEffectValue = value;
-            if (MaterialToEdit != null)
-                ApplyDissolveEffect();
+            ApplyDissolveEffect();
         }
     }
 
     public override void _Ready()
     {
-        Type ??= SimulationParameters.Instance.GetMembrane("single");
+        type ??= SimulationParameters.Instance.GetMembrane("single");
 
         if (MaterialToEdit == null)
             GD.PrintErr("MaterialToEdit on Membrane is not set");
+
+        noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
         Dirty = true;
     }
@@ -262,8 +282,7 @@ public class Membrane : MeshInstance
     }
 
     /// <summary>
-    ///   Return the position of the closest organelle to the target
-    ///   point if it is less then a certain threshold away.
+    ///   Return the position of the closest organelle to the target point if it is less then a certain threshold away.
     /// </summary>
     public Vector2 FindClosestOrganelles(Vector2 target)
     {
@@ -283,6 +302,19 @@ public class Membrane : MeshInstance
         }
 
         return closest;
+    }
+
+    public bool MatchesCacheParameters(ICacheableData cacheData)
+    {
+        if (cacheData is IComputedMembraneData data)
+            return this.MembraneDataFieldsEqual(data);
+
+        return false;
+    }
+
+    public long ComputeCacheHash()
+    {
+        return this.ComputeMembraneDataHash();
     }
 
     /// <summary>
@@ -348,6 +380,14 @@ public class Membrane : MeshInstance
 
     private void ApplyWiggly()
     {
+        if (MaterialToEdit == null)
+            return;
+
+        // Don't apply wigglyness too early if this is dirty as getting the circle radius forces membrane position
+        // calculation, which we don't want to do twice when initializing a microbe
+        if (Dirty)
+            return;
+
         float wigglyNessToApply =
             WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
@@ -356,6 +396,13 @@ public class Membrane : MeshInstance
 
     private void ApplyMovementWiggly()
     {
+        if (MaterialToEdit == null)
+            return;
+
+        // See comment in ApplyWiggly
+        if (Dirty)
+            return;
+
         float wigglyNessToApply =
             MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
@@ -364,30 +411,26 @@ public class Membrane : MeshInstance
 
     private void ApplyHealth()
     {
-        MaterialToEdit.SetShaderParam("healthFraction", HealthFraction);
+        MaterialToEdit?.SetShaderParam("healthFraction", HealthFraction);
     }
 
     private void ApplyTint()
     {
-        MaterialToEdit.SetShaderParam("tint", Tint);
+        MaterialToEdit?.SetShaderParam("tint", Tint);
     }
 
     private void ApplyTextures()
     {
-        // We must update the texture on already-existing membranes,
-        // due to the membrane texture changing for the player microbe.
+        // We must update the texture on already-existing membranes, due to the membrane texture changing
+        // for the player microbe.
         if (albedoTexture != null && currentlyLoadedAlbedoTexture == Type.AlbedoTexture)
             return;
 
         albedoTexture = Type.LoadedAlbedoTexture;
-        normalTexture = Type.LoadedNormalTexture;
-        damagedTexture = Type.LoadedDamagedTexture;
 
-        noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
-
-        MaterialToEdit.SetShaderParam("albedoTexture", albedoTexture);
-        MaterialToEdit.SetShaderParam("normalTexture", normalTexture);
-        MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);
+        MaterialToEdit!.SetShaderParam("albedoTexture", albedoTexture);
+        MaterialToEdit.SetShaderParam("normalTexture", Type.LoadedNormalTexture);
+        MaterialToEdit.SetShaderParam("damagedTexture", Type.LoadedDamagedTexture);
         MaterialToEdit.SetShaderParam("dissolveTexture", noiseTexture);
 
         currentlyLoadedAlbedoTexture = Type.AlbedoTexture;
@@ -395,7 +438,7 @@ public class Membrane : MeshInstance
 
     private void ApplyDissolveEffect()
     {
-        MaterialToEdit.SetShaderParam("dissolveValue", DissolveEffectValue);
+        MaterialToEdit?.SetShaderParam("dissolveValue", DissolveEffectValue);
     }
 
     /// <summary>
@@ -403,8 +446,18 @@ public class Membrane : MeshInstance
     /// </summary>
     private void InitializeMesh()
     {
-        // For preview scenes, add just one organelle
-        OrganellePositions ??= new List<Vector2> { new Vector2(0, 0) };
+        // First try to get from cache as it's very expensive to generate the membrane
+        var cached = this.FetchDataFromCache(ProceduralDataCache.Instance.ReadMembraneData);
+
+        if (cached != null)
+        {
+            CopyMeshFromCache(cached);
+            return;
+        }
+
+        // The length in pixels (probably not accurate?) of a side of the square that bounds the membrane.
+        // Half the side length of the original square that is compressed to make the membrane.
+        int cellDimensions = 10;
 
         foreach (var pos in OrganellePositions)
         {
@@ -419,44 +472,66 @@ public class Membrane : MeshInstance
             }
         }
 
-        vertices2D = new List<Vector2>();
+        previousWorkBuffer.Capacity = vertices2D.Capacity;
+        nextWorkBuffer.Capacity = previousWorkBuffer.Capacity;
 
         for (int i = membraneResolution; i > 0; i--)
         {
-            vertices2D.Add(new Vector2(-cellDimensions,
+            previousWorkBuffer.Add(new Vector2(-cellDimensions,
                 cellDimensions - 2 * cellDimensions / membraneResolution * i));
         }
 
         for (int i = membraneResolution; i > 0; i--)
         {
-            vertices2D.Add(new Vector2(
+            previousWorkBuffer.Add(new Vector2(
                 cellDimensions - 2 * cellDimensions / membraneResolution * i,
                 cellDimensions));
         }
 
         for (int i = membraneResolution; i > 0; i--)
         {
-            vertices2D.Add(new Vector2(cellDimensions,
+            previousWorkBuffer.Add(new Vector2(cellDimensions,
                 -cellDimensions + 2 * cellDimensions / membraneResolution * i));
         }
 
         for (int i = membraneResolution; i > 0; i--)
         {
-            vertices2D.Add(new Vector2(
+            previousWorkBuffer.Add(new Vector2(
                 -cellDimensions + 2 * cellDimensions / membraneResolution * i,
                 -cellDimensions));
         }
 
-        // This needs to actually run a bunch of times as the points
-        // moving towards the organelles is iterative. Right now this
-        // wastes a bunch of allocations by reallocating a second list
-        // each function call.
+        // This needs to actually run a bunch of times as the points moving towards the organelles is iterative.
+        // We use rotating work buffers to save time on skipping useless copies
         for (int i = 0; i < 40 * cellDimensions; i++)
         {
-            DrawCorrectMembrane();
+            DrawCorrectMembrane(cellDimensions, previousWorkBuffer, nextWorkBuffer);
+
+            (previousWorkBuffer, nextWorkBuffer) = (nextWorkBuffer, previousWorkBuffer);
         }
 
+        // Copy final vertex data from the work buffer
+        vertices2D.Clear();
+
+        // The work buffer not being pointed to as the next, is the one we should read the result from
+        vertices2D.AddRange(previousWorkBuffer);
+
+        previousWorkBuffer.Clear();
+        nextWorkBuffer.Clear();
+
         BuildMesh();
+    }
+
+    private void CopyMeshFromCache(ComputedMembraneData cached)
+    {
+        // TODO: check if it would be better for us to just keep readonly data in the membrane cache so we could
+        // just copy a reference here
+        vertices2D.Clear();
+        vertices2D.AddRange(cached.Vertices2D);
+
+        // Apply the mesh to us
+        Mesh = cached.GeneratedMesh;
+        SetSurfaceMaterial(cached.SurfaceIndex, MaterialToEdit);
     }
 
     /// <summary>
@@ -517,6 +592,8 @@ public class Membrane : MeshInstance
         // Apply the mesh to us
         Mesh = generatedMesh;
         SetSurfaceMaterial(surfaceIndex, MaterialToEdit);
+
+        ProceduralDataCache.Instance.WriteMembraneData(CreateDataForCache(generatedMesh, surfaceIndex));
     }
 
     private int InitializeCorrectMembrane(int writeIndex, Vector3[] vertices,
@@ -558,76 +635,76 @@ public class Membrane : MeshInstance
         return writeIndex;
     }
 
-    private void DrawCorrectMembrane()
+    private void DrawCorrectMembrane(float cellDimensions, List<Vector2> sourceBuffer, List<Vector2> targetBuffer)
     {
         if (Type.CellWall)
         {
-            DrawMembrane(GetMovementForCellWall);
+            DrawMembrane(cellDimensions, sourceBuffer, targetBuffer, GetMovementForCellWall);
         }
         else
         {
-            DrawMembrane(GetMovement);
+            DrawMembrane(cellDimensions, sourceBuffer, targetBuffer, GetMovement);
         }
     }
 
-    private void DrawMembrane(Func<Vector2, Vector2, Vector2> movementFunc)
+    private void DrawMembrane(float cellDimensions, List<Vector2> sourceBuffer, List<Vector2> targetBuffer,
+        Func<Vector2, Vector2, Vector2> movementFunc)
     {
-        // Stores the temporary positions of the membrane.
-        var newPositions = new List<Vector2>(vertices2D);
+        while (targetBuffer.Count < sourceBuffer.Count)
+            targetBuffer.Add(new Vector2(0, 0));
 
-        // Loops through all the points in the membrane and relocates them as
-        // necessary.
-        for (int i = 0, end = newPositions.Count; i < end; i++)
+        // TODO: check that this is actually needed, and if triggered does the right thing
+        while (targetBuffer.Count > sourceBuffer.Count)
+            targetBuffer.RemoveAt(targetBuffer.Count - 1);
+
+        // Loops through all the points in the membrane and relocates them as necessary.
+        for (int i = 0, end = sourceBuffer.Count; i < end; ++i)
         {
-            var closestOrganelle = FindClosestOrganelles(vertices2D[i]);
+            var closestOrganelle = FindClosestOrganelles(sourceBuffer[i]);
             if (closestOrganelle ==
                 new Vector2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE))
             {
-                newPositions[i] =
-                    (vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /
-                    2;
+                targetBuffer[i] = (sourceBuffer[(end + i - 1) % end] + sourceBuffer[(i + 1) % end]) / 2;
             }
             else
             {
-                var movementDirection = movementFunc(vertices2D[i], closestOrganelle);
+                var movementDirection = movementFunc(sourceBuffer[i], closestOrganelle);
 
-                newPositions[i] = new Vector2(newPositions[i].x - movementDirection.x,
-                    newPositions[i].y - movementDirection.y);
+                targetBuffer[i] = new Vector2(sourceBuffer[i].x - movementDirection.x,
+                    sourceBuffer[i].y - movementDirection.y);
             }
         }
 
         // Allows for the addition and deletion of points in the membrane.
-        for (int i = 0; i < newPositions.Count - 1; i++)
+        for (int i = 0; i < targetBuffer.Count - 1; ++i)
         {
-            // Check to see if the gap between two points in the membrane is too
-            // big.
-            if ((newPositions[i] - newPositions[(i + 1) % newPositions.Count])
-                .Length() > (float)cellDimensions / membraneResolution)
+            // Check to see if the gap between two points in the membrane is too big.
+            if ((targetBuffer[i] - targetBuffer[(i + 1) % targetBuffer.Count]).Length() >
+                cellDimensions / membraneResolution)
             {
                 // Add an element after the ith term that is the average of the
                 // i and i+1 term.
-                var tempPoint =
-                    (newPositions[(i + 1) % newPositions.Count] +
-                        newPositions[i]) /
-                    2;
+                var tempPoint = (targetBuffer[(i + 1) % targetBuffer.Count] + targetBuffer[i]) / 2;
 
-                newPositions.Insert(i + 1, tempPoint);
-                i++;
+                targetBuffer.Insert(i + 1, tempPoint);
+                ++i;
             }
 
-            // Check to see if the gap between two points in the membrane is too
-            // small.
-            if ((newPositions[(i + 1) % newPositions.Count] -
-                    newPositions[(i + newPositions.Count - 1) % newPositions.Count])
-                .Length() < (float)cellDimensions / membraneResolution)
+            // Check to see if the gap between two points in the membrane is too small.
+            if ((targetBuffer[(i + 1) % targetBuffer.Count] -
+                    targetBuffer[(i + targetBuffer.Count - 1) % targetBuffer.Count]).Length() <
+                cellDimensions / membraneResolution)
             {
                 // Delete the ith term.
-                newPositions.RemoveAt(i);
+                targetBuffer.RemoveAt(i);
             }
         }
+    }
 
-        // Replace the old vertex data with the new data. This may be
-        // faster than copying the data back
-        vertices2D = newPositions;
+    private ComputedMembraneData CreateDataForCache(ArrayMesh mesh, int surfaceIndex)
+    {
+        // Need to copy our data here when caching it as if we get new organelles and change we would pollute the
+        // cache entry
+        return new ComputedMembraneData(OrganellePositions, Type, new List<Vector2>(vertices2D), mesh, surfaceIndex);
     }
 }

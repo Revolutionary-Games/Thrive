@@ -43,7 +43,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     /// <summary>
     ///   The upgrades this organelle will have when instantiated in a microbe
     /// </summary>
-    public OrganelleUpgrades Upgrades { get; set; }
+    public OrganelleUpgrades? Upgrades { get; set; }
 
 #pragma warning disable CA1033
     OrganelleDefinition IPositionedOrganelle.Definition => Definition;
@@ -62,7 +62,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     {
         return new OrganelleTemplate(Definition, Position, Orientation, NumberOfTimesMoved)
         {
-            Upgrades = (OrganelleUpgrades)Upgrades?.Clone(),
+            Upgrades = (OrganelleUpgrades?)Upgrades?.Clone(),
         };
     }
 }

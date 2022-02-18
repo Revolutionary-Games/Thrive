@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -10,36 +11,43 @@ public class PlayerHoverInfo : Node
     ///   Used to query the real hovered compound values.
     ///   This is a member variable to reduce GC pressure.
     /// </summary>
-    private readonly Dictionary<Compound, float> currentHoveredCompounds = new Dictionary<Compound, float>();
+    private readonly Dictionary<Compound, float> currentHoveredCompounds = new();
 
-    private readonly Dictionary<Compound, float> compoundDelayTimer = new Dictionary<Compound, float>();
-    private MicrobeCamera camera;
-    private CompoundCloudSystem cloudSystem;
+    private readonly Dictionary<Compound, float> compoundDelayTimer = new();
+    private MicrobeCamera? camera;
+    private CompoundCloudSystem? cloudSystem;
 
     private Vector3? lastCursorWorldPos;
 
     /// <summary>
     ///   List off all cloud compounds to iterate.
     /// </summary>
-    private List<Compound> cloudCompounds;
+    private List<Compound> cloudCompounds = null!;
 
     /// <summary>
     ///   All compounds the user is hovering over with delay to reduce flickering.
     /// </summary>
-    public Dictionary<Compound, float> HoveredCompounds { get; } = new Dictionary<Compound, float>();
+    public Dictionary<Compound, float> HoveredCompounds { get; } = new();
 
     /// <summary>
     ///   All microbes the user is hovering over.
     /// </summary>
-    public List<Microbe> HoveredMicrobes { get; } = new List<Microbe>();
+    public List<Microbe> HoveredMicrobes { get; } = new();
 
     public bool IsHoveringOverAnything => HoveredCompounds.Count > 0 || HoveredMicrobes.Count > 0;
+
+    public override void _Ready()
+    {
+        cloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
+
+        // This needs to be processed after Microbe, otherwise this can cause double membrane initialization
+        ProcessPriority = 10;
+    }
 
     public void Init(MicrobeCamera camera, CompoundCloudSystem cloudSystem)
     {
         this.camera = camera;
         this.cloudSystem = cloudSystem;
-        cloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
     }
 
     public override void _Process(float delta)
@@ -47,6 +55,9 @@ public class PlayerHoverInfo : Node
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
         if (delta <= 0)
             return;
+
+        if (camera == null || cloudSystem == null)
+            throw new InvalidOperationException($"{nameof(PlayerHoverInfo)} was not initialized");
 
         cloudSystem.GetAllAvailableAt(camera.CursorWorldPos, currentHoveredCompounds);
 

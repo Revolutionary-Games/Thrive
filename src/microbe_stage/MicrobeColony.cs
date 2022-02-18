@@ -60,13 +60,16 @@ public class MicrobeColony
         ColonyCompounds.DistributeCompoundSurplus();
     }
 
-    public void RemoveFromColony(Microbe microbe)
+    public void RemoveFromColony(Microbe? microbe)
     {
         if (microbe?.Colony == null)
             throw new ArgumentException("Microbe null or not a member of a colony");
 
         if (!Equals(microbe.Colony, this))
             throw new ArgumentException("Cannot remove a colony member who isn't a member");
+
+        if (microbe.ColonyChildren == null)
+            throw new ArgumentException("Invalid microbe with no colony children setup on it");
 
         if (State == Microbe.MicrobeState.Unbinding)
             State = Microbe.MicrobeState.Normal;
@@ -104,7 +107,7 @@ public class MicrobeColony
         Master.Mass += microbe.Mass;
 
         microbe.ColonyParent = master;
-        master.ColonyChildren.Add(microbe);
+        master.ColonyChildren!.Add(microbe);
         microbe.Colony = this;
         microbe.ColonyChildren = new List<Microbe>();
 

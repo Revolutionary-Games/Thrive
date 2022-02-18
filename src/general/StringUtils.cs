@@ -46,6 +46,15 @@ public static class StringUtils
     }
 
     /// <summary>
+    ///   Truncates large numbers with suffix added (e.g. M for million).
+    ///   Adapted from https://stackoverflow.com/a/30181106 to allow negatives and translation.
+    /// </summary>
+    public static string FormatNumber(this long number, bool withSuffix = true)
+    {
+        return ((double)number).FormatNumber();
+    }
+
+    /// <summary>
     ///   Splits string into different chunks by whitespace.
     /// </summary>
     /// <remarks>
@@ -105,7 +114,7 @@ public static class StringUtils
     ///   A dictionary of key and value string pairs collected from input. If input string list is null,
     ///   the return value is an empty dictionary.
     /// </returns>
-    public static Dictionary<string, string> ParseKeyValuePairs(List<string> input)
+    public static Dictionary<string, string> ParseKeyValuePairs(List<string>? input)
     {
         var result = new Dictionary<string, string>();
 

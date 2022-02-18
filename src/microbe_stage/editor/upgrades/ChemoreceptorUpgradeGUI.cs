@@ -4,24 +4,24 @@ using Godot;
 public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {
     [Export]
-    public NodePath CompoundsPath;
+    public NodePath CompoundsPath = null!;
 
     [Export]
-    public NodePath MaximumDistancePath;
+    public NodePath MaximumDistancePath = null!;
 
     [Export]
-    public NodePath MinimumAmountPath;
+    public NodePath MinimumAmountPath = null!;
 
     [Export]
-    public NodePath ColourPath;
+    public NodePath ColourPath = null!;
 
-    private OptionButton compounds;
-    private Slider maximumDistance;
-    private Slider minimumAmount;
-    private TweakedColourPicker colour;
+    private OptionButton compounds = null!;
+    private Slider maximumDistance = null!;
+    private Slider minimumAmount = null!;
+    private TweakedColourPicker colour = null!;
 
-    private List<Compound> shownChoices;
-    private OrganelleTemplate storedOrganelle;
+    private List<Compound>? shownChoices;
+    private OrganelleTemplate? storedOrganelle;
 
     public override void _Ready()
     {
@@ -75,17 +75,18 @@ public class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public void ApplyChanges(MicrobeEditor editor)
     {
+        if (storedOrganelle == null || shownChoices == null)
+        {
+            GD.PrintErr("Chemoreceptor upgrade GUI was not opened properly");
+            return;
+        }
+
         // Force some compound to be selected
         if (compounds.Selected == -1)
             compounds.Selected = 0;
 
         // TODO: make an undoable action
-        storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades
-        {
-            TargetCompound = shownChoices[compounds.Selected],
-            SearchRange = (float)maximumDistance.Value,
-            SearchAmount = (float)minimumAmount.Value,
-            LineColour = colour.Color,
-        });
+        storedOrganelle.SetCustomUpgradeObject(new ChemoreceptorUpgrades(shownChoices[compounds.Selected],
+            (float)maximumDistance.Value, (float)minimumAmount.Value, colour.Color));
     }
 }

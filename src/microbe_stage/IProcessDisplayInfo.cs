@@ -38,5 +38,5 @@ public interface IProcessDisplayInfo
     /// <summary>
     ///   The limiting compounds in speed. Or null if not set
     /// </summary>
-    public IReadOnlyList<Compound> LimitingCompounds { get; }
+    public IReadOnlyList<Compound>? LimitingCompounds { get; }
 }
