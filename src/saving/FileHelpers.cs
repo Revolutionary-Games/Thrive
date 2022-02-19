@@ -46,10 +46,10 @@ public static class FileHelpers
     }
 
     /// <summary>
-    ///   Try to create a file with write access
+    ///   Tests if it is possible to create/write a file on the given path
     /// </summary>
     /// <param name="path">Path to file</param>
-    /// <returns>File status</returns>
+    /// <returns>File write access status, <see cref="Error.Ok"/> if successful</returns>
     public static Error TryCreateWrite(string path)
     {
         using var file = new File();
