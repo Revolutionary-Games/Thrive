@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-10 15:37+0200\n"
-"PO-Revision-Date: 2022-02-10 06:38+0000\n"
+"PO-Revision-Date: 2022-02-11 07:40+0000\n"
 "Last-Translator: Georgi Georgiev (RacerBG) <g.georgiev.shumen@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -771,17 +771,14 @@ msgid "CHEMORECEPTOR"
 msgstr "Хеморецептор"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
 msgstr "Прекратена."
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "Завършена."
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "Не се изпълнява."
 
@@ -798,18 +795,16 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "популацията на „{0}“ се промени с {1} индивида поради {2} на създанията"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "Обща популация:"
+msgstr "популация:"
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "изчезнаха от {0}"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "Има създания:"
+msgstr "предишна:"
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -828,7 +823,6 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "от популацията в следните зони се отделиха „{0}“:"
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "претърпяха мутация"
 
@@ -837,7 +831,6 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "генен код:"
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
 
@@ -846,9 +839,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "към {0} се преселиха {1} индивида от популацията в {2}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} ({1})"
+msgstr "текуща популация в зоните:"
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -3190,9 +3182,8 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1} м. под морското равнище"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "Популация на създанията"
+msgstr "{0}: {1} индивида"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3739,7 +3730,6 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "Създаване на обектите от записа"
 
 #: ../src/saving/InProgressLoad.cs:110
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "Грешка по време на зареждането на запазените данни"
 
@@ -3756,7 +3746,6 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "Обработка на заредените обекти"
 
 #: ../src/saving/InProgressLoad.cs:165
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "Грешка по време на обработката на заредените обекти"
 
@@ -3773,9 +3762,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". Неуспешно освобождаване на заредените ресурси: {0}"
 
 #: ../src/saving/InProgressSave.cs:188
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "Създаване..."
+msgstr "Запазване..."
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3786,7 +3774,6 @@ msgid "ERROR_SAVING"
 msgstr "Грешка по време на запазването"
 
 #: ../src/saving/NewSaveMenu.cs:74
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "Наименованието „{0}“ вече съществува. Презаписване?"
 
@@ -3811,16 +3798,12 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "Предишни записи:"
 
 #: ../src/saving/NewSaveMenu.tscn:116
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "Предишни записи:"
+msgstr "Презаписване на съществуващия запис?"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"Надграждането на записа е неуспешно поради следната грешка:\n"
-"{0}"
+msgstr "Запазването е неуспешно! Възникна грешка"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3859,17 +3842,14 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "Няма създадени записи"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
-msgstr "Качване..."
+msgstr "Зареждане..."
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
-#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "Изтриване на този запис?"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "Зареждане на несъвместим запис?"
 
@@ -3888,7 +3868,6 @@ msgstr ""
 "Искате ли да го заредите въпреки това?"
 
 #: ../src/saving/SaveList.tscn:95
-#, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "Зареждане на невалиден запис?"
 
@@ -3900,7 +3879,6 @@ msgstr ""
 "Искате ли да го заредите въпреки това?"
 
 #: ../src/saving/SaveList.tscn:103
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "Избраният запис е несъвместим"
 
@@ -3912,7 +3890,6 @@ msgstr ""
 "Понеже играта е в начален етап на разработка и съвместимостта не е приоритет, някои записи не могат да бъдат надградени."
 
 #: ../src/saving/SaveList.tscn:114
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr "Избраният запис може да бъде надграден"
 
@@ -3945,18 +3922,16 @@ msgid "DOT_DOT_DOT"
 msgstr "..."
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "ТЗ:"
+msgstr "Тип:"
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "Описание:"
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "Поколение:"
+msgstr "Версия:"
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4010,12 +3985,10 @@ msgid "SELECTED_COLON"
 msgstr "Избрани:"
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "Изтриване на избраните записи?"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "Изтриване на старите записи?"
 
@@ -4117,29 +4090,27 @@ msgstr ""
 "За да преминете в следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"Добре дошли в микробния редактор.\n"
-"Тук може да видите какво се е случило от началото на играта или от Вашето последно влизане в редактора.\n"
+"Това е картата на зоните.\n"
+"Тук може да видите различните зони, в които живеят микробите.\n"
+"Вашето местообитание е подчертано.\n"
+"Изберете дадена зона с мишката за повече подробности.\n"
 "\n"
-"В този раздел може да разгледате отчета за различните създания. Също така, може да наблюдавате промените в околната среда.\n"
+"Ако изберете зона, съседна на Вашата, може да натиснете бутона „Преселване“ за да се придвижите в нея. По този начин, Вашата популация се разпространява в различните зони.\n"
 "\n"
-"За да преминете в следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
+"Изберете зона за да продължите."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Добре дошли в микробния редактор.\n"
-"Тук може да видите какво се е случило от началото на играта или от Вашето последно влизане в редактора.\n"
+"Това е микробният редактор, тук може да добавяте или премахвате органели от Вашите създания, чрез наличните мутационни точки (МТ).\n"
 "\n"
-"В този раздел може да разгледате отчета за различните създания. Също така, може да наблюдавате промените в околната среда.\n"
+"Също така, може да променяте и другите характеристики по Вашите създания, чрез останалите раздели в редактора.\n"
 "\n"
-"За да преминете в следващия раздел, натиснете бутона „НАПРЕД“, който се намира долу вдясно."
+"За да продължите, изберете органел от панела вляво (например цитоплазмата). След това, натиснете с мишката до шестоъгълника за да го добавите към Вашето създание."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "Премахването на органели също струва МТ, освен ако не са добавени в текущата сесия на редактора.\n"
@@ -4151,7 +4122,6 @@ msgstr ""
 "Натиснете бутона „Отмяна“ за да продължите."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "Важно е да разберете какви ефекти има даден органел върху Вашата клетка, преди да го поставите.\n"
@@ -4163,7 +4133,6 @@ msgstr ""
 "Натиснете бутона „Възстановяване“ (до бутона „Отмяна“) за да продължите."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "Това е основната информация за микробния редактор. Може да разгледате и останалите раздели в редактора за повече опции.\n"
@@ -4179,7 +4148,6 @@ msgid "GOT_IT"
 msgstr "Разбрах"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Това е прогнозата за бъдещата популация на Вашите създания. Тези стойности са изчислени на база симулацията от автоматичната еволюция.\n"
@@ -4191,7 +4159,6 @@ msgstr ""
 "За да продължите, натиснете бутона с въпросителния знак долу вдясно."
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "Трябва да се съсредоточите върху един или два източника на енергия, така че да не е необходимо да събирате всички хранителни вещества, за да може Вашата клетка да създава достатъчно АТФ за да оцелее.\n"
@@ -4230,7 +4197,9 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "Събирайте глюкоза (белите облаци), като се движите през нея.\n"
+"\n"
 "Вашата клетка се нуждае от глюкоза за да оцелее.\n"
+"\n"
 "Следвайте напътствията за да намерите глюкозата."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
@@ -4242,14 +4211,12 @@ msgstr ""
 "Събирайте глюкоза за да произвеждате АТФ."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "За възпроизвеждане, органелите на клетката трябва да се удвоят. За да го направят те се нуждаят от амоняк и фосфат.\n"
 "Наблюдавайте показателите долу вдясно."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "Събрахте достатъчно хранителни вещества за възпроизвеждането на Вашата клетка.\n"
@@ -4259,7 +4226,6 @@ msgstr ""
 "Натиснете бутона на редактора, който се намира долу вдясно."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "Вие сте в режим на отделяне. В този режим, може да натиснете с мишката върху членовете на клетъчната колония за да ги отделите от нея.\n"
@@ -4267,7 +4233,6 @@ msgstr ""
 "За разпадане на цялата клетъчна колония, може да натиснете с мишката върху Вашата клетка или да натиснете съответния клавиш."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "Ако все още изпитвате затруднения, отворете ръководството (въпросителния знак) долу вляво.\n"
@@ -4275,9 +4240,8 @@ msgstr ""
 "Още един съвет — може да промените размера на изгледа с колелцето на мишката."
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "Упътване"
+msgstr "Преглед"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Зареждане..."

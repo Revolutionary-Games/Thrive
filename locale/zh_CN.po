@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-10 15:37+0200\n"
-"PO-Revision-Date: 2022-01-30 12:44+0000\n"
-"Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
+"PO-Revision-Date: 2022-02-11 07:40+0000\n"
+"Last-Translator: fgdfgfthgr-fox <fgdfgfthgr@126.com>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 #: ../simulation_parameters/common/help_texts.json:6
@@ -769,17 +769,14 @@ msgid "CHEMORECEPTOR"
 msgstr "化学感受器"
 
 #: ../src/auto-evo/AutoEvoRun.cs:122
-#, fuzzy
 msgid "ABORTED_DOT"
-msgstr "取消。"
+msgstr "中止。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:125
-#, fuzzy
 msgid "FINISHED_DOT"
 msgstr "完成。"
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
-#, fuzzy
 msgid "NOT_RUNNING_DOT"
 msgstr "未运行。"
 
@@ -796,18 +793,16 @@ msgid "AUTO-EVO_POPULATION_CHANGED"
 msgstr "{0}种群数量变化了{1}，原因：{2}"
 
 #: ../src/auto-evo/RunResults.cs:554
-#, fuzzy
 msgid "POPULATION_COLON"
-msgstr "种群数量总数："
+msgstr "种群数量："
 
 #: ../src/auto-evo/RunResults.cs:563
 msgid "WENT_EXTINCT_IN"
 msgstr "在 {0} 中灭绝"
 
 #: ../src/auto-evo/RunResults.cs:569
-#, fuzzy
 msgid "PREVIOUS_COLON"
-msgstr "物种："
+msgstr "之前："
 
 #: ../src/auto-evo/RunResults.cs:587
 msgid "RUN_RESULT_SPLIT_FROM"
@@ -826,7 +821,6 @@ msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr "在一些地区的种群分支成了新的物种{0}："
 
 #: ../src/auto-evo/RunResults.cs:636
-#, fuzzy
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "有变异"
 
@@ -835,7 +829,6 @@ msgid "RUN_RESULT_GENE_CODE"
 msgstr "基因编码："
 
 #: ../src/auto-evo/RunResults.cs:652
-#, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "传播到的地区："
 
@@ -844,9 +837,8 @@ msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr "通过由{2}派出的{1}个生物扩散到了：{0}"
 
 #: ../src/auto-evo/RunResults.cs:679
-#, fuzzy
 msgid "POPULATION_IN_PATCHES"
-msgstr "{0} （{1}）"
+msgstr "地区中的种群数量："
 
 #: ../src/auto-evo/RunResults.cs:789
 msgid "WENT_EXTINCT_FROM_PLANET"
@@ -889,9 +881,8 @@ msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr "[u]{0}[/u]从[u]{1}[/u]中分裂出来，成为了一个新的物种，原因是演化压力"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:81
-#, fuzzy
 msgid "NOT_FOUND_CHUNK"
-msgstr "大铁块"
+msgstr "错误：区块未找到"
 
 #: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:79
 msgid "CHUNK_FOOD_SOURCE"
@@ -3191,9 +3182,8 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "在海平面下方{0}-{1}米处"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
-#, fuzzy
 msgid "SPECIES_WITH_POPULATION"
-msgstr "该物种的种群数量"
+msgstr "{0}的种群数量：{1}"
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
 msgid "FAILED"
@@ -3572,7 +3562,7 @@ msgstr "创建中……"
 
 #: ../src/modding/ModUploader.cs:474
 msgid "SUCCESS_BUT_MISSING_ID"
-msgstr ""
+msgstr "结果显示成功但是没有返回ID"
 
 #: ../src/modding/ModUploader.cs:519
 msgid "UPLOADING_DOT_DOT_DOT"
@@ -3740,7 +3730,6 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr "从存档数据中创建物体"
 
 #: ../src/saving/InProgressLoad.cs:110
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_WHILE_LOADING"
 msgstr "加载存档数据时发生异常"
 
@@ -3757,7 +3746,6 @@ msgid "PROCESSING_LOADED_OBJECTS"
 msgstr "处理载入的物体中"
 
 #: ../src/saving/InProgressLoad.cs:165
-#, fuzzy
 msgid "EXCEPTION_HAPPENED_PROCESSING_SAVE"
 msgstr "处理载入的对象时发生异常"
 
@@ -3774,9 +3762,8 @@ msgid "SAVE_LOAD_ALREADY_LOADED_FREE_FAILURE"
 msgstr ". 未能释放已加载的资源：{0}"
 
 #: ../src/saving/InProgressSave.cs:188
-#, fuzzy
 msgid "SAVING_DOT_DOT_DOT"
-msgstr "创建中……"
+msgstr "保存中……"
 
 #: ../src/saving/InProgressSave.cs:221
 msgid "SAVE_FAILED"
@@ -3787,7 +3774,6 @@ msgid "ERROR_SAVING"
 msgstr "存档时出错"
 
 #: ../src/saving/NewSaveMenu.cs:74
-#, fuzzy
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr "目标文件名{0}已存在。确定要覆盖吗？"
 
@@ -3812,16 +3798,12 @@ msgid "OVERWRITE_EXISTING_SAVE"
 msgstr "覆写已有的存档："
 
 #: ../src/saving/NewSaveMenu.tscn:116
-#, fuzzy
 msgid "OVERWRITE_EXISTING_SAVE_PROMPT"
-msgstr "覆写已有的存档："
+msgstr "覆写已有的存档？"
 
 #: ../src/saving/SaveHelper.cs:427 ../src/saving/SaveHelper.cs:456
-#, fuzzy
 msgid "SAVING_FAILED_WITH_EXCEPTION"
-msgstr ""
-"更新此存档失败，错误：\n"
-"{0}"
+msgstr "保存失败！发生了一个异常"
 
 #: ../src/saving/SaveHelper.cs:436
 msgid "SAVING_NOT_POSSIBLE"
@@ -3860,17 +3842,14 @@ msgid "NO_SAVEGAMES_FOUND"
 msgstr "未找到存档"
 
 #: ../src/saving/SaveList.tscn:61 ../src/saving/SaveListItem.tscn:105
-#, fuzzy
 msgid "LOADING_DOT_DOT_DOT"
-msgstr "上传中……"
+msgstr "载入中……"
 
 #: ../src/saving/SaveList.tscn:72 ../src/saving/SaveListItem.tscn:282
-#, fuzzy
 msgid "DELETE_THIS_SAVE_PROMPT"
 msgstr "删除这个存档？"
 
 #: ../src/saving/SaveList.tscn:79 ../src/saving/SaveList.tscn:87
-#, fuzzy
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
 msgstr "载入不兼容的存档？"
 
@@ -3889,7 +3868,6 @@ msgstr ""
 "你确定要强行载入这个存档吗？"
 
 #: ../src/saving/SaveList.tscn:95
-#, fuzzy
 msgid "LOAD_INVALID_SAVE_PROMPT"
 msgstr "载入无效的存档？"
 
@@ -3901,7 +3879,6 @@ msgstr ""
 "你确定要强行载入这个存档吗？"
 
 #: ../src/saving/SaveList.tscn:103
-#, fuzzy
 msgid "SELECTED_SAVE_IS_INCOMPATIBLE_PROMPT"
 msgstr "选择的存档不兼容"
 
@@ -3913,9 +3890,8 @@ msgstr ""
 "由于Thrive尚在早期开发中，存档兼容性并不是首要目标。目前的存档转换器也不能支持所有版本的存档。"
 
 #: ../src/saving/SaveList.tscn:114
-#, fuzzy
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
-msgstr "选中的存档无法更新"
+msgstr "选中的存档可以更新"
 
 #: ../src/saving/SaveList.tscn:115
 msgid "SAVE_IS_UPGRADEABLE_DESCRIPTION"
@@ -3946,18 +3922,16 @@ msgid "DOT_DOT_DOT"
 msgstr "…"
 
 #: ../src/saving/SaveListItem.tscn:151
-#, fuzzy
 msgid "TYPE_COLON"
-msgstr "生命上限："
+msgstr "类型："
 
 #: ../src/saving/SaveListItem.tscn:170
 msgid "DESCRIPTION"
 msgstr "描述："
 
 #: ../src/saving/SaveListItem.tscn:193
-#, fuzzy
 msgid "VERSION_COLON"
-msgstr "世代："
+msgstr "版本："
 
 #: ../src/saving/SaveListItem.tscn:222
 msgid "BY"
@@ -4011,12 +3985,10 @@ msgid "SELECTED_COLON"
 msgstr "选中的："
 
 #: ../src/saving/SaveManagerGUI.tscn:186
-#, fuzzy
 msgid "DELETE_SELECTED_SAVES_PROMPT"
 msgstr "删除选中的存档？"
 
 #: ../src/saving/SaveManagerGUI.tscn:193
-#, fuzzy
 msgid "DELETE_OLD_SAVES_PROMPT"
 msgstr "删除旧存档？"
 
@@ -4118,29 +4090,27 @@ msgstr ""
 "要进入下一个编辑器选项卡，请按右下角的下一个按钮。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:105
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
-"欢迎来到微生物编辑器。\n"
-"在这里，你可以回顾自游戏开始或上一次进入编辑器以来发生的状况。 并对你的物种进行更改。\n"
+"这里是地区图。\n"
+"在这里你可以看到微生物可生存的不同的地区。\n"
+"你当前所在的地区会被突出显示。\n"
+"你可以用鼠标点击地区来选择它们，在右边可以看到它们的细节。\n"
 "\n"
-"在这个选项卡中，你可以看到有哪些物种存在，在哪里，以及它们的种群数量的报告。你还可以在顶部看到环境变化。\n"
+"如果你选择了你目前所在的地区旁边的一个地区，你可以按右边的按钮移动到那里。这允许你的种群扩散到新的地区。\n"
 "\n"
-"要进入下一个编辑器选项卡，请按右下角的下一个按钮。"
+"选择一个地区来继续。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:140
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"欢迎来到微生物编辑器。\n"
-"在这里，你可以回顾自游戏开始或上一次进入编辑器以来发生的状况。 并对你的物种进行更改。\n"
+"这是细胞编辑器，你可以通过花费变异点（MP）从你的物种中添加或删除细胞器。\n"
 "\n"
-"在这个选项卡中，你可以看到有哪些物种存在，在哪里，以及它们的种群数量的报告。你还可以在顶部看到环境变化。\n"
+"你还可以在细胞编辑器的其他标签中改变你的物种的其它属性。\n"
 "\n"
-"要进入下一个编辑器选项卡，请按右下角的下一个按钮。"
+"要继续，从左边的面板上选择一个细胞器（细胞质是一个不错的选择）。然后左键点击屏幕中间显示的六角形旁边，将该细胞器添加到你的物种中。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:180
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
 "移除细胞器也需要消耗变异点，除非这些细胞器是在当代内添加的。\n"
@@ -4152,7 +4122,6 @@ msgstr ""
 "按撤销按钮以继续。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:222
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
 "当选择要添加的细胞器时，请注意用于细胞器的工具提示，它们的功能以及使用和产生的化合物。\n"
@@ -4164,7 +4133,6 @@ msgstr ""
 "按下重做按钮（和撤销按钮在一起）以继续。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:266
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
 msgstr ""
 "这些就是改变物种的基础操作了。你可以自己试试看其它选项卡里提供的选项。\n"
@@ -4180,7 +4148,6 @@ msgid "GOT_IT"
 msgstr "明白了"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:330
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "这个面板显示对你未来种群数量的预测。auto-evo的人口模拟提供了这些数字。\n"
@@ -4192,7 +4159,6 @@ msgstr ""
 "你可以通过按面板上的问号按钮查看预测背后的更多详细信息。按下它以继续。"
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:374
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_STAY_SMALL"
 msgstr ""
 "你应该专注于一种或两种能量来源，这样你就不需要拥有所有资源才能产生足够的ATP来生存。\n"
@@ -4231,7 +4197,9 @@ msgstr ""
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
 "通过移动到白色的云上来收集葡萄糖。\n"
+"\n"
 "你需要葡萄糖才能产生能量并存活。\n"
+"\n"
 "请跟随显示的线到最近的葡萄糖云中。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:271
@@ -4243,14 +4211,12 @@ msgstr ""
 "所以要确保总是有足够的葡萄糖来产出ATP。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:309
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "繁殖需要你收集足够的氨和磷酸盐以将所有细胞器都复制一份。\n"
 "右下角的指示器会显示你需要多少氨和磷酸盐。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:347
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_EDITOR_BUTTON_TUTORIAL"
 msgstr ""
 "你已经收集了足够让你的细胞分裂的资源。\n"
@@ -4260,7 +4226,6 @@ msgstr ""
 "按右下角闪烁的编辑器按钮以进入编辑器。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:381
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
@@ -4268,7 +4233,6 @@ msgstr ""
 "为了离开细胞群你可以点击你自己的细胞或点击“解除所有连接”键。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:422
-#, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_HELP_MENU_AND_ZOOM"
 msgstr ""
 "如果你还在纠结于游戏机制，请查看帮助菜单。你可以用左下角的问号按钮打开它。\n"
@@ -4276,9 +4240,8 @@ msgstr ""
 "还有一个提示：你可以用滚轮放大你的视野。"
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:431
-#, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
-msgstr "教程"
+msgstr "现在就查看"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "载入中……"
