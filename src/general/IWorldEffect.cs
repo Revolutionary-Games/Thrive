@@ -203,7 +203,7 @@ public class GasProductionEffect : IWorldEffect
     /// </summary>
     private float ComputeOverConsumptionFactor(Dictionary<Compound, float> compoundsProduced, Patch patch)
     {
-        var overConsumptionScalingFactor = 1f;
+        var overConsumptionScalingFactor = 1.0f;
         foreach (var production in compoundsProduced)
         {
             var concentrationInput = production.Value / patch.Volume;
