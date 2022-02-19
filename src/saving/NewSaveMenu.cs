@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Path = System.IO.Path;
 
 /// <summary>
 ///   Menu for managing making a new save
@@ -94,7 +95,7 @@ public class NewSaveMenu : Control
 
         var name = GetSaveName();
 
-        if (FileHelpers.Exists(PathUtils.Join(Constants.SAVE_FOLDER, name)))
+        if (FileHelpers.Exists(Path.Combine(Constants.SAVE_FOLDER, name)))
         {
             ShowOverwriteConfirm(name);
         }
@@ -108,7 +109,7 @@ public class NewSaveMenu : Control
     {
         // Verify name is writable
         var name = GetSaveName();
-        var path = System.IO.Path.Combine(Constants.SAVE_FOLDER, name);
+        var path = Path.Combine(Constants.SAVE_FOLDER, name);
         if (!FileHelpers.Exists(path) && FileHelpers.TryCreateWrite(path) != Error.Ok)
         {
             attemptWriteFailAccept.PopupCenteredShrink();
