@@ -316,12 +316,15 @@
                     throw new JsonException("Missing field from the first element of effect array: " +
                         "targetWorld or its $ref!");
 
-                var typeTokenText = "'$type': '" + gasProductionEffectName + "'";
-                var targetWorldTokenText = "'targetWorld': { '$ref': '" + targetWorldRef + "' }";
-                var effectTokenText = "{" + typeTokenText + "," + targetWorldTokenText + "}";
-                var effectToken = JToken.Parse(effectTokenText);
+                var effectObject = new JObject();
+                effectObject.Add("$type", gasProductionEffectName);
 
-                effectsArray.Add(effectToken);
+                var targetWorldObject = new JObject();
+                targetWorldObject.Add("$ref", targetWorldRef);
+                effectObject.Add("targetWorld", targetWorldObject);
+
+                effectsArray.Add(effectObject);
+
                 property.Value = effectsArray;
             }
             else
