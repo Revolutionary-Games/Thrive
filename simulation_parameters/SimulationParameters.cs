@@ -182,9 +182,13 @@ public class SimulationParameters : Node
     }
 
     /// <summary>
-    ///   Returns all environmental *molecular* compounds that are dissolved in the environment, i.e. gas.
+    ///   Returns compounds that are dissolved in the environment (that aren't clouds)
     /// </summary>
-    /// <remarks>This excludes sunlight, and includes O2, CO2, N...</remarks>
+    /// <remarks>
+    ///   <para>
+    ///     This excludes sunlight, and includes O2, CO2, N...
+    ///   </para>
+    /// </remarks>
     public List<Compound> GetGasCompounds()
     {
         return compounds.Values.Where(c => c.IsCloud && c.IsEnvironmental && c.CanBeDistributed).ToList();
