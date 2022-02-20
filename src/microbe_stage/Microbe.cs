@@ -689,7 +689,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         }
 
         if (IsPlayerMicrobe)
-            force *= CheatManager.Speed;
+            force *= Mass * CheatManager.Speed;
 
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -
