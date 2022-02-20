@@ -272,9 +272,14 @@ public static class Constants
     public const float ENGULFING_MOVEMENT_DIVISION = 1.7f;
 
     /// <summary>
-    ///   The speed multiplier when a cell is getting pulled inside an engulfing cell.
+    ///   The speed reduction when a cell is being engulfed.
     /// </summary>
-    public const float ENGULFING_PULL_SPEED_MULTIPLIER = 2.5f;
+    public const float ENGULFED_MOVEMENT_DIVISION = 2.0f;
+
+    /// <summary>
+    ///   The force multiplier when a cell is getting pulled inside an engulfing cell.
+    /// </summary>
+    public const float ENGULFING_PULL_SPEED = 15.5f;
 
     /// <summary>
     ///   The minimum size ratio between a cell and a possible engulfing victim.
@@ -282,9 +287,9 @@ public static class Constants
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
     /// <summary>
-    ///   The amount of hp per second of damage when being engulfed
+    ///   How much compounds a cell can absorb per second from engulfables.
     /// </summary>
-    public const float ENGULF_DAMAGE = 45.0f;
+    public const float ENGULF_COMPUND_ABSORBING_PER_SECOND = 0.3f;
 
     /// <summary>
     ///   How much ATP does binding mode cost per second

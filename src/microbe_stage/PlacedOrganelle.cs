@@ -13,9 +13,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
     private readonly List<uint> shapes = new();
 
     private bool needsColourUpdate = true;
+    private bool needsDissolveEffectUpdate = true;
 
     [JsonProperty]
     private Color colour = Colors.White;
+
+    [JsonProperty]
+    private float dissolveEffectValue;
 
     private bool growthValueDirty = true;
     private float growthValue;
@@ -88,6 +92,17 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
             if (growthValueDirty)
                 RecalculateGrowthValue();
             return growthValue;
+        }
+    }
+
+    [JsonIgnore]
+    public float DissolveEffectValue
+    {
+        get => dissolveEffectValue;
+        set
+        {
+            dissolveEffectValue = value;
+            needsDissolveEffectUpdate = true;
         }
     }
 
@@ -273,6 +288,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         {
             UpdateColour();
         }
+
+        if (needsDissolveEffectUpdate)
+            UpdateDissolveEffect();
     }
 
     /// <summary>
@@ -590,6 +608,18 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         organelleMaterial?.SetShaderParam("tint", color);
 
         needsColourUpdate = false;
+    }
+
+    private void UpdateDissolveEffect()
+    {
+        if (organelleSceneInstance is OrganelleMeshWithChildren organelleMeshWithChildren)
+        {
+            organelleMeshWithChildren.SetDissolveEffectOfChildren(dissolveEffectValue);
+        }
+
+        organelleMaterial?.SetShaderParam("dissolveValue", dissolveEffectValue);
+
+        needsDissolveEffectUpdate = false;
     }
 
     private void SetupOrganelleGraphics()

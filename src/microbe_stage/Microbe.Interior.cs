@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main script on each cell in the game.
 ///   Partial class: Compounds, ATP, Reproduction
-///   Divide, Organelles, Toxin
+///   Divide, Organelles, Toxin, Digestion
 /// </summary>
 public partial class Microbe
 {
@@ -33,6 +33,9 @@ public partial class Microbe
 
     [JsonProperty]
     private float lastCheckedATPDamage;
+
+    [JsonProperty]
+    private float dissolveEffectValue;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
@@ -102,6 +105,20 @@ public partial class Microbe
     [JsonProperty]
     public Action<Microbe, IEnumerable<(Compound Compound, float Range, float MinAmount, Color Colour)>>?
         OnCompoundChemoreceptionInfo { get; set; }
+
+    [JsonProperty]
+    public float TotalAvailableCompoundsOnEngulfed { get; set; }
+
+    [JsonIgnore]
+    public float DissolveEffectValue
+    {
+        get => dissolveEffectValue;
+        set
+        {
+            dissolveEffectValue = value;
+            UpdateDissolveEffect();
+        }
+    }
 
     /// <summary>
     ///   Resets the organelles in this microbe to match the species definition
@@ -454,6 +471,35 @@ public partial class Microbe
         return result;
     }
 
+    public Dictionary<Compound, float> CalculateEngulfableCompounds()
+    {
+        var result = new Dictionary<Compound, float>();
+
+        // TODO: Remove these constants once digestion organelles were added?
+
+        foreach (var compound in Compounds)
+        {
+            result.Add(compound.Key, compound.Value * (compound.Key.IsCloud ?
+                Constants.COMPOUND_RELEASE_PERCENTAGE : 1));
+        }
+
+        // Add some part of the build cost of all the organelles
+        foreach (var organelle in organelles!)
+        {
+            foreach (var entry in organelle.Definition.InitialComposition)
+            {
+                var existing = 0.0f;
+
+                if (result.ContainsKey(entry.Key))
+                    existing = result[entry.Key];
+
+                result[entry.Key] = existing + (entry.Value * Constants.COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
+            }
+        }
+
+        return result;
+    }
+
     private void HandleCompoundAbsorbing(float delta)
     {
         // max here buffs compound absorbing for the smallest cells
@@ -552,7 +598,7 @@ public partial class Microbe
 #pragma warning restore CA1801
 
         // Dead or engulfed cells can't reproduce
-        if (Dead || IsEngulfed)
+        if (Dead)
             return;
 
         if (allOrganellesDivided)
@@ -935,7 +981,7 @@ public partial class Microbe
     {
         timeUntilChemoreceptionUpdate -= delta;
 
-        if (timeUntilChemoreceptionUpdate > 0 || Dead || IsEngulfed)
+        if (timeUntilChemoreceptionUpdate > 0 || Dead)
             return;
 
         timeUntilChemoreceptionUpdate = Constants.CHEMORECEPTOR_COMPOUND_UPDATE_INTERVAL;
@@ -944,5 +990,60 @@ public partial class Microbe
 
         // TODO: should this be cleared each time or only when the chemoreception update interval has elapsed?
         activeCompoundDetections.Clear();
+    }
+
+    private void HandleDigestion(float delta)
+    {
+        for (int i = engulfedObjects.Count - 1; i >= 0; i--)
+        {
+            var engulfed = engulfedObjects[i];
+
+            if (engulfed.CachedEngulfableCompounds == null)
+                continue;
+
+            for (var c = 0; c < engulfed.CachedEngulfableCompounds.Count; ++c)
+            {
+                var compound = engulfed.CachedEngulfableCompounds.ElementAt(c);
+
+                if (compound.Value <= 0)
+                    continue;
+
+                var amount = Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND * delta;
+
+                var taken = Math.Min(compound.Value, amount);
+                engulfed.CachedEngulfableCompounds[compound.Key] -= amount;
+
+                var added = Compounds.AddCompound(compound.Key, taken);
+                SpawnEjectedCompound(compound.Key, taken - added);
+            }
+
+            var totalAmount = engulfed.CachedEngulfableCompounds.Sum(compound => compound.Value);
+            engulfed.Engulfable.DissolveEffectValue = 1 - (totalAmount / engulfed.TotalInitialEngulfableCompounds);
+
+            if (totalAmount <= 0 || engulfed.Engulfable.DissolveEffectValue <= 0)
+            {
+                engulfedSize -= engulfed.Engulfable.Size;
+                engulfedObjects.RemoveAt(i);
+
+                if (engulfed.Engulfable is Node node)
+                    node.DetachAndQueueFree();
+            }
+        }
+    }
+
+    private void UpdateDissolveEffect()
+    {
+        if (Membrane == null || organelles == null)
+            return;
+
+        Membrane.DissolveEffectValue = dissolveEffectValue;
+
+        foreach (var organelle in organelles)
+        {
+            organelle.DissolveEffectValue = dissolveEffectValue;
+
+            if (IsForPreviewOnly || IsCompletelyEngulfed)
+                organelle.Update(0);
+        }
     }
 }

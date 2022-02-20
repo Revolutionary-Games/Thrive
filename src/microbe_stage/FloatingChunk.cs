@@ -111,6 +111,26 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
 
+    [JsonProperty]
+    public bool IsBeingEngulfed { get; set; }
+
+    [JsonProperty]
+    public bool IsCompletelyEngulfed { get; set; }
+
+    [JsonProperty]
+    public EntityReference<Microbe> HostileEngulfer { get; private set; } = new();
+
+    [JsonIgnore]
+    public float DissolveEffectValue
+    {
+        get => dissolveEffectValue;
+        set
+        {
+            dissolveEffectValue = value;
+            ApplyDissolveEffect();
+        }
+    }
+
     /// <summary>
     ///   Grabs data from the type to initialize this
     /// </summary>
@@ -228,6 +248,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
 
         InitPhysics();
+        ApplyDissolveEffect();
     }
 
     public override void _Process(float delta)
@@ -237,6 +258,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
         if (delta <= 0)
+            return;
+
+        if (IsCompletelyEngulfed)
             return;
 
         VentCompounds(delta);
@@ -252,9 +276,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         {
             // TODO: is it possible that this throws the disposed exception?
             if (microbe.Dead)
-                continue;
-
-            if (microbe.IsEngulfed)
                 continue;
 
             // Damage
@@ -295,6 +316,21 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
     public void OnDestroyed()
     {
         AliveMarker.Alive = false;
+    }
+
+    public Dictionary<Compound, float> CalculateEngulfableCompounds()
+    {
+        var result = new Dictionary<Compound, float>();
+
+        if (ContainedCompounds == null)
+            return result;
+
+        foreach (var entry in ContainedCompounds)
+        {
+            result.Add(entry.Key, entry.Value / Constants.CHUNK_ENGULF_COMPOUND_DIVISOR);
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -352,26 +388,37 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         CollisionLayer = 0;
         CollisionMask = 0;
 
-        var material = (ShaderMaterial)chunkMesh.MaterialOverride;
+        DissolveEffectValue += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
 
-        dissolveEffectValue += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
-
-        material.SetShaderParam("dissolveValue", dissolveEffectValue);
-
-        if (dissolveEffectValue >= 1)
+        if (DissolveEffectValue >= 1)
         {
             this.DestroyDetachAndQueueFree();
         }
+    }
+
+    private void ApplyDissolveEffect()
+    {
+        if (chunkMesh == null)
+            return;
+
+        var material = (ShaderMaterial)chunkMesh.MaterialOverride;
+        material?.SetShaderParam("dissolveValue", dissolveEffectValue);
     }
 
     private void InitPhysics()
     {
         // Apply physics shape
         var shape = GetNode<CollisionShape>("CollisionShape");
+        var engulfableArea = GetNode<Area>("EngulfableArea");
 
         if (ConvexPhysicsMesh == null)
         {
-            shape.Shape = new SphereShape { Radius = Radius };
+            var sphereShape = new SphereShape { Radius = Radius };
+            shape.Shape = sphereShape;
+
+            var engulfableRadius = Radius / 2 / Constants.ENGULF_SIZE_RATIO_REQ;
+            engulfableArea.ShapeOwnerAddShape(engulfableArea.CreateShapeOwner(sphereShape), sphereShape);
+            engulfableArea.Scale = new Vector3(engulfableRadius, engulfableRadius, engulfableRadius);
         }
         else
         {
@@ -380,6 +427,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
             shape.Shape = ConvexPhysicsMesh;
             shape.Transform = chunkMesh.Transform;
+
+            engulfableArea.ShapeOwnerAddShape(engulfableArea.CreateShapeOwner(ConvexPhysicsMesh), ConvexPhysicsMesh);
+            engulfableArea.Scale = GetNode<Spatial>("NodeToScale").Scale / 2 / Constants.ENGULF_SIZE_RATIO_REQ;
         }
 
         // Needs physics callback when this is engulfable or damaging

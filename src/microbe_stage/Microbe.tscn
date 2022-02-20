@@ -73,8 +73,6 @@ monitorable = false
 [node name="EngulfShape" type="CollisionShape" parent="EngulfDetector"]
 shape = SubResource( 2 )
 
-[node name="EngulfedArea" type="Area" parent="."]
+[node name="EngulfableArea" type="Area" parent="."]
 collision_layer = 3
 collision_mask = 3
-
-[node name="Tween" type="Tween" parent="."]

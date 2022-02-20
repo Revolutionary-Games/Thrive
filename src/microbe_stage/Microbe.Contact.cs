@@ -13,8 +13,6 @@ public partial class Microbe
 {
     private SphereShape engulfShape = null!;
 
-    private Tween tween = null!;
-
     /// <summary>
     ///   Contains the pili this microbe has for collision checking
     /// </summary>
@@ -48,6 +46,9 @@ public partial class Microbe
     ///   Engulfables that this cell is actively trying to engulf
     /// </summary>
     private HashSet<IEngulfable> attemptingToEngulf = new();
+
+    [JsonProperty]
+    private List<EngulfedObject> engulfedObjects = new();
 
     [JsonProperty]
     private float escapeInterval;
@@ -135,11 +136,15 @@ public partial class Microbe
     [JsonProperty]
     public float MaxHitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
 
+    // Properties for engulfing
     [JsonProperty]
-    public bool IsBeingEngulfed { get; private set; }
+    public bool IsBeingEngulfed { get; set; }
 
     [JsonProperty]
-    public bool IsEngulfed { get; private set; }
+    public bool IsCompletelyEngulfed { get; set; }
+
+    [JsonIgnore]
+    public EntityReference<Microbe> HostileEngulfer => hostileEngulfer;
 
     [JsonIgnore]
     public AliveMarker AliveMarker { get; } = new();
@@ -609,9 +614,9 @@ public partial class Microbe
             return;
         }
 
-        if (hostileEngulfer != microbe)
+        if (HostileEngulfer != microbe)
             microbe.RemoveCollisionExceptionWith(this);
-        if (microbe.hostileEngulfer != this)
+        if (microbe.HostileEngulfer != this)
             RemoveCollisionExceptionWith(microbe);
     }
 
@@ -850,9 +855,11 @@ public partial class Microbe
         {
             // Microbe is now getting absorbed into the engulfer
 
+            MovementFactor /= Constants.ENGULFED_MOVEMENT_DIVISION;
+
             wasBeingEngulfed = true;
         }
-        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsEngulfed)
+        else if (wasBeingEngulfed && !IsBeingEngulfed && !IsCompletelyEngulfed)
         {
             // Else If we were but are no longer, being engulfed
             wasBeingEngulfed = false;
@@ -882,13 +889,13 @@ public partial class Microbe
         }
 
         // Check whether we should not be being engulfed anymore
-        var hostile = hostileEngulfer.Value;
+        var hostile = HostileEngulfer.Value;
         if (hostile != null)
         {
-            // Dead and engulfed things can't engulf us
-            if (hostile.Dead || hostile.IsEngulfed)
+            // Dead or engulfed things can't engulf us
+            if (hostile.Dead || hostile.IsCompletelyEngulfed)
             {
-                hostileEngulfer.Value = null;
+                HostileEngulfer.Value = null;
                 IsBeingEngulfed = false;
             }
         }
@@ -902,7 +909,7 @@ public partial class Microbe
 
     private void ProcessPhysicsForEngulfing(float delta)
     {
-        if (State != MicrobeState.Engulf)
+        if (State != MicrobeState.Engulf || engulfedSize >= Size)
         {
             // Reset the engulfing ignores and potential targets
             foreach (var body in attemptingToEngulf)
@@ -922,18 +929,18 @@ public partial class Microbe
         // Apply engulf effect to the objects we are engulfing
         foreach (var engulfable in attemptingToEngulf)
         {
+            if (engulfable.IsCompletelyEngulfed)
+                return;
+
             if (engulfable is RigidBody body)
             {
                 // Pull nearby bodies into our cell
                 var direction = body.GlobalTransform.origin.DirectionTo(GlobalTransform.origin);
-                body.ApplyCentralImpulse(direction * Constants.ENGULFING_PULL_SPEED_MULTIPLIER * delta);
+                body.AddCentralForce(direction * body.Mass * Constants.ENGULFING_PULL_SPEED);
             }
 
-            if (engulfable is Microbe microbe)
-            {
-                microbe.hostileEngulfer.Value = this;
-                microbe.IsBeingEngulfed = true;
-            }
+            engulfable.HostileEngulfer.Value = this;
+            engulfable.IsBeingEngulfed = true;
         }
     }
 
@@ -944,13 +951,13 @@ public partial class Microbe
         wasBeingEngulfed = false;
         IsBeingEngulfed = false;
 
-        if (hostileEngulfer.Value != null)
+        if (HostileEngulfer.Value != null)
         {
             // Currently unused
             // hostileEngulfer.isCurrentlyEngulfing = false;
         }
 
-        hostileEngulfer.Value = null;
+        HostileEngulfer.Value = null;
     }
 
     /// <summary>
@@ -1050,11 +1057,8 @@ public partial class Microbe
 
             // TODO: does this need to check for disposed exception?
             // https://github.com/Revolutionary-Games/Thrive/issues/2504
-            if (touchedMicrobe.Dead || touchedMicrobe.IsEngulfed ||
-                (Colony != null && Colony == touchedMicrobe.Colony))
-            {
+            if (touchedMicrobe.Dead || (Colony != null && Colony == touchedMicrobe.Colony))
                 return;
-            }
 
             bool otherIsPilus = touchedMicrobe.IsPilus(touchedOwnerId);
             bool oursIsPilus = thisMicrobe.IsPilus(thisOwnerId);
@@ -1096,7 +1100,9 @@ public partial class Microbe
         else if (body is IEngulfable engulfable)
         {
             if (touchedEngulfables.Add(engulfable))
+            {
                 CheckStartEngulfingOnCandidates();
+            }
         }
     }
 
@@ -1123,7 +1129,7 @@ public partial class Microbe
 
     private void OnBodyEnteredEngulfArea(Node body)
     {
-        if (body == this || body is not IEngulfable)
+        if (body == this || !(body is IEngulfable))
             return;
 
         // TODO: does this need to check for disposed exception?
@@ -1147,67 +1153,53 @@ public partial class Microbe
         }
     }
 
-    private void OnAreaEnteredEngulfedArea(Area area)
+    private void OnAreaEnteredEngulfableArea(Area area)
     {
-        if (area == engulfedArea || State != MicrobeState.Engulf)
+        if (area == engulfableArea || State != MicrobeState.Engulf)
             return;
 
-        // Perform cell ingestion
-        if (area.GetParent() is Microbe microbe && CanEngulf(microbe) && microbe.GetParent() != this)
-        {
-            microbe.IsEngulfed = true;
-            microbe.IsBeingEngulfed = false;
-
-            IngestEngulfable(microbe);
-        }
-    }
-
-    private void OnBodyEnteredEngulfedArea(Node body)
-    {
-        // Microbes already handled by Area enter callback. TODO: use collision masks?
-        if (body is Microbe || State != MicrobeState.Engulf)
-            return;
-
-        if (body is IEngulfable engulfable && CanEngulf(engulfable) && body.GetParent() != this)
-        {
+        if (area.GetParent() is IEngulfable engulfable && CanEngulf(engulfable))
             IngestEngulfable(engulfable);
-
-            // Can engulf
-            // if (ContainedCompounds != null)
-            // {
-            //     foreach (var entry in ContainedCompounds)
-            //     {
-            //         var added = microbe.Compounds.AddCompound(entry.Key, entry.Value /
-            //             Constants.CHUNK_ENGULF_COMPOUND_DIVISOR) * Constants.CHUNK_ENGULF_COMPOUND_DIVISOR;
-            //
-            //         VentCompound(Translation, entry.Key, entry.Value - added);
-            //     }
-            // }
-        }
     }
 
     /// <summary>
-    ///   Ingests (finishes engulfment of) the target into this microbe
+    ///   Ingests (finishes engulfment of) the target into this microbe. Does not check whether the target
+    ///   can be engulfed or not.
     /// </summary>
     private void IngestEngulfable(IEngulfable target)
     {
+        if (target.IsCompletelyEngulfed)
+            return;
+
+        var body = target as RigidBody;
+        if (body == null)
+        {
+            // Engulfable must be of rigidbody type to be ingested
+            return;
+        }
+
+        target.IsCompletelyEngulfed = true;
+        target.IsBeingEngulfed = false;
+
         engulfedSize += target.Size;
 
-        if (target is RigidBody body)
-        {
-            body.Mode = ModeEnum.Static;
+        body.Mode = ModeEnum.Static;
 
-            // Disable collisions
-            body.CollisionLayer = 0;
-            body.CollisionMask = 0;
+        // Disable collisions
+        body.CollisionLayer = 0;
+        body.CollisionMask = 0;
 
-            var temp = body.GlobalTransform;
-            body.ReParent(this);
-            body.GlobalTransform = temp;
+        var temp = body.GlobalTransform;
+        body.ReParent(this);
+        body.GlobalTransform = temp;
 
-            tween.InterpolateProperty(body, "scale", null, body.Scale / 2, 2.0f);
-            tween.Start();
-        }
+        var tween = new Tween();
+        body.AddChild(tween);
+        tween.Connect("tween_all_completed", this, nameof(OnIngestAnimationFinished),
+            new Godot.Collections.Array { body });
+
+        tween.InterpolateProperty(body, "scale", null, body.Scale / 2, 2.0f);
+        tween.Start();
     }
 
     private bool CanBindToMicrobe(IEngulfable other)
@@ -1287,9 +1279,7 @@ public partial class Microbe
         if (State != MicrobeState.Engulf)
             return;
 
-        // In the case that the microbe first comes into engulf range, we don't want to start engulfing yet
-        // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
-        foreach (var engulfable in touchedEngulfables)
+        foreach (var engulfable in touchedEngulfables.Concat(otherEngulfablesInEngulfRange))
         {
             if (!attemptingToEngulf.Contains(engulfable) && CanEngulf(engulfable))
             {
@@ -1310,36 +1300,53 @@ public partial class Microbe
 
     private void StartEngulfingTarget(IEngulfable target)
     {
-        var body = target as RigidBody;
-        if (body == null)
-            return;
-
-        AddCollisionExceptionWith(body);
-
-        if (body is Microbe microbe)
+        if (target is RigidBody body)
         {
-            microbe.hostileEngulfer.Value = this;
-            microbe.IsBeingEngulfed = true;
+            target.IsBeingEngulfed = true;
+            target.HostileEngulfer.Value = this;
+            AddCollisionExceptionWith(body);
         }
     }
 
     private void StopEngulfingOnTarget(IEngulfable target)
     {
-        var body = target as RigidBody;
-        if (body == null)
-            return;
+        target.HostileEngulfer.Value = null;
 
-        if (IsInstanceValid(body))
+        if (target is RigidBody body && IsInstanceValid(body))
         {
-            if (body is Microbe microbe)
+            if (body is Microbe microbe && (Colony == null || Colony != microbe.Colony))
             {
-                microbe.hostileEngulfer.Value = null;
-
-                if (Colony != null || Colony == microbe.Colony)
-                    return;
+                RemoveCollisionExceptionWith(microbe);
             }
-
-            RemoveCollisionExceptionWith(body);
+            else if (!(body is Microbe))
+            {
+                RemoveCollisionExceptionWith(body);
+            }
         }
+    }
+
+    private void OnIngestAnimationFinished(RigidBody target)
+    {
+        var engulfable = (IEngulfable)target;
+
+        engulfedObjects.Add(new EngulfedObject(engulfable, engulfable.CalculateEngulfableCompounds()));
+
+        otherEngulfablesInEngulfRange.Remove(engulfable);
+        touchedEngulfables.Remove(engulfable);
+        attemptingToEngulf.Remove(engulfable);
+    }
+
+    private class EngulfedObject
+    {
+        public EngulfedObject(IEngulfable engulfable, Dictionary<Compound, float> cachedEngulfableCompounds)
+        {
+            Engulfable = engulfable;
+            CachedEngulfableCompounds = new Dictionary<Compound, float>(cachedEngulfableCompounds);
+            TotalInitialEngulfableCompounds = CachedEngulfableCompounds.Sum(c => c.Value);
+        }
+
+        public IEngulfable Engulfable { get; }
+        public float TotalInitialEngulfableCompounds { get; }
+        public Dictionary<Compound, float> CachedEngulfableCompounds { get; }
     }
 }

@@ -31,7 +31,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     private List<AudioStreamPlayer3D> otherAudioPlayers = new();
     private List<AudioStreamPlayer> nonPositionalAudioPlayers = new();
 
-    private Area engulfedArea = null!;
+    private Area engulfableArea = null!;
 
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
@@ -125,7 +125,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     /// <summary>
     ///   If true this shifts the purpose of this cell for visualizations-only
-    ///   (stops the normal functioning of the cell).
+    ///   (Completely stops the normal functioning of the cell).
     /// </summary>
     [JsonIgnore]
     public bool IsForPreviewOnly { get; set; }
@@ -198,7 +198,6 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         engulfAudio = GetNode<HybridAudioPlayer>("EngulfAudio");
         bindingAudio = GetNode<AudioStreamPlayer3D>("BindingAudio");
         movementAudio = GetNode<HybridAudioPlayer>("MovementAudio");
-        tween = GetNode<Tween>("Tween");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurstEffect.tscn");
 
@@ -231,10 +230,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         engulfDetector.Connect("body_entered", this, nameof(OnBodyEnteredEngulfArea));
         engulfDetector.Connect("body_exited", this, nameof(OnBodyExitedEngulfArea));
 
-        engulfedArea = GetNode<Area>("EngulfedArea");
-
-        engulfedArea.Connect("area_entered", this, nameof(OnAreaEnteredEngulfedArea));
-        engulfedArea.Connect("body_entered", this, nameof(OnBodyEnteredEngulfedArea));
+        engulfableArea = GetNode<Area>("EngulfableArea");
+        engulfableArea.Connect("area_entered", this, nameof(OnAreaEnteredEngulfableArea));
 
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, nameof(OnContactBegin));
@@ -423,8 +420,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             }
         }
 
-        // The code below starting from here is not needed for a display-only cell
-        if (IsForPreviewOnly)
+        // Disable membrane wigglyness if this cell got engulfed
+        if (IsCompletelyEngulfed && Membrane.WigglyNess > 0)
+            Membrane.WigglyNess = 0;
+
+        // The code below starting from here is not needed for a display-only and engulfed cell
+        if (IsForPreviewOnly || IsCompletelyEngulfed)
             return;
 
         UpdateEngulfedAreaShape();
@@ -455,6 +456,8 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         HandleFlashing(delta);
         HandleHitpointsRegeneration(delta);
         HandleReproduction(delta);
+
+        HandleDigestion(delta);
 
         // Handles engulfing related stuff as well as modifies the
         // movement factor. This needs to be done before Update is
@@ -514,7 +517,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         linearAcceleration = (LinearVelocity - lastLinearVelocity) / delta;
 
         // Movement
-        if (ColonyParent == null && !IsForPreviewOnly)
+        if (ColonyParent == null && (!IsForPreviewOnly || !IsCompletelyEngulfed))
             HandleMovement(delta);
 
         lastLinearVelocity = LinearVelocity;
@@ -540,7 +543,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsPlayerMicrobe)
             throw new InvalidOperationException("AI can't run on the player microbe");
 
-        if (Dead || IsEngulfed)
+        if (Dead || IsForPreviewOnly || IsCompletelyEngulfed)
             return;
 
         try
@@ -651,17 +654,17 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (engulfedAreaShapeOwner == null)
         {
             var newShape = new ConvexPolygonShape();
-            engulfedAreaShapeOwner = engulfedArea.CreateShapeOwner(newShape);
-            engulfedArea.ShapeOwnerAddShape(engulfedAreaShapeOwner.Value, newShape);
+            engulfedAreaShapeOwner = engulfableArea.CreateShapeOwner(newShape);
+            engulfableArea.ShapeOwnerAddShape(engulfedAreaShapeOwner.Value, newShape);
         }
 
-        var existingShape = (ConvexPolygonShape)engulfedArea.ShapeOwnerGetShape(engulfedAreaShapeOwner.Value, 0);
+        var existingShape = (ConvexPolygonShape)engulfableArea.ShapeOwnerGetShape(engulfedAreaShapeOwner.Value, 0);
 
         var wanted = Membrane.Vertices3D;
         if (!existingShape.Points.SequenceEqual(wanted))
         {
             existingShape.Points = wanted;
-            engulfedArea.Scale = Membrane.Scale / 2 / Constants.ENGULF_SIZE_RATIO_REQ;
+            engulfableArea.Scale = Membrane.Scale / 2 / Constants.ENGULF_SIZE_RATIO_REQ;
         }
     }
 
