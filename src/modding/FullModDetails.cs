@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Godot;
 
 /// <summary>
 ///   An extended version of <see cref="ModInfo"/> that contains non-mod author controlled data
@@ -45,6 +46,8 @@ public class FullModDetails : IEquatable<FullModDetails>
     public Dictionary<string, object>? CurrentConfiguration { get; set; }
 
     public ModInfo Info { get; set; }
+    
+    public Control? configNodes { get; set; }
 
     /// <summary>
     ///   Mod is from the workshop / downloaded

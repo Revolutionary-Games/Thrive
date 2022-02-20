@@ -836,7 +836,7 @@ public class ModManager : Control
 
         modErrorsContainer.Clear();
 
-        var modErrors = ModLoader.Instance.GetModErrors();
+        var modErrors = ModLoader.Instance.GetAndClearModErrors();
         var index = 0;
         foreach (var currentError in modErrors)
         {
@@ -894,7 +894,7 @@ public class ModManager : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        foreach (var currentItem in configContainer.GetChildren())
+        foreach (var currentItem in configContainer.GetChild(0).GetChildren())
         {
             var currentItemInfo = currentItem as ModConfigItemInfo;
             currentItemInfo?.UpdateUI();
@@ -905,7 +905,7 @@ public class ModManager : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        var configItemArray = configContainer.GetChildren();
+        var configItemArray = configContainer.GetChild(0).GetChildren();
 
         int index = 0;
         foreach (ModConfigItemInfo currentItemInfo in configItemArray)
@@ -1074,7 +1074,7 @@ public class ModManager : Control
     private List<ImageTexture> LoadModPreviewImages(FullModDetails mod)
     {
         if (mod.Info.PreviewImages == null)
-            return null!;
+            return new List<ImageTexture>();
 
         var returnValue = new List<ImageTexture>();
         foreach (string currentImagePath in mod.Info.PreviewImages)
@@ -1583,11 +1583,18 @@ public class ModManager : Control
             configPanelContainer.Visible = true;
             if (configContainer.GetChildCount() > 0)
             {
-                configContainer.RemoveChildren();
+                configContainer.RemoveChild(configContainer.GetChild(0));
             }
 
-            ConfigMenuSetup(newItem.ConfigurationInfoList,
-                newItem.CurrentConfiguration ?? new Dictionary<string, object>());
+            if (newItem.configNodes == null)
+            {
+                newItem.configNodes = ConfigMenuSetup(newItem.ConfigurationInfoList,
+                    newItem.CurrentConfiguration ?? new Dictionary<string, object>());
+            }
+            else
+            {
+                configContainer.AddChild(newItem.configNodes);
+            }
         }
         else
         {
@@ -1759,141 +1766,137 @@ public class ModManager : Control
     /// <summary>
     ///   Fills the ConfigContainer with all of ConfigItems
     /// </summary>
-    private void ConfigMenuSetup(ModConfigItemInfo[] modConfigList, Dictionary<string, object> modConfigDictionary)
+    private Control ConfigMenuSetup(ModConfigItemInfo[] modConfigList, Dictionary<string, object> modConfigDictionary)
     {
+        // Holder of all the config item for easier removal
+        VBoxContainer? configTreeNode = new VBoxContainer();
+
         foreach (var currentItemInfo in modConfigList)
         {
             HBoxContainer? currentItem;
             modConfigDictionary.TryGetValue(currentItemInfo.ID ?? string.Empty, out var configValue);
 
-            if (currentItemInfo.ConfigNode == null)
+            currentItem = ConfigItemScene.Instance() as HBoxContainer;
+            if (currentItem is null)
             {
-                currentItem = ConfigItemScene.Instance() as HBoxContainer;
-                if (currentItem is null)
-                {
-                    continue;
-                }
-
-                var currentItemLabel = currentItem.GetChild(0) as Label;
-
-                // Set the name and tooltip of the item
-                if (currentItemLabel != null)
-                {
-                    currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
-                    currentItem.HintTooltip = currentItemInfo.Description ?? string.Empty;
-                }
-
-                // Setup the UI based on it type
-                switch (currentItemInfo.Type?.ToLower(CultureInfo.CurrentCulture))
-                {
-                    case "int":
-                    case "integer":
-                    case "i":
-                        var intNumberSpinner = new SpinBox();
-                        intNumberSpinner.Rounded = true;
-                        intNumberSpinner.MinValue = currentItemInfo.MinimumValue;
-                        intNumberSpinner.Value = Convert.ToInt32(configValue ?? default(int),
-                            CultureInfo.CurrentCulture);
-                        intNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
-                        currentItem.AddChild(intNumberSpinner);
-                        break;
-                    case "float":
-                    case "f":
-                        var floatNumberSpinner = new SpinBox();
-                        floatNumberSpinner.Rounded = false;
-                        floatNumberSpinner.Step = 0.1;
-                        floatNumberSpinner.MinValue = currentItemInfo.MinimumValue;
-                        floatNumberSpinner.Value = Convert.ToDouble(configValue ?? default(double),
-                            CultureInfo.CurrentCulture);
-                        floatNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
-                        currentItem.AddChild(floatNumberSpinner);
-                        break;
-                    case "int range":
-                    case "integer range":
-                    case "ir":
-                        var intNumberSlider = new HSlider();
-                        intNumberSlider.Rounded = true;
-                        intNumberSlider.MinValue = currentItemInfo.MinimumValue;
-                        intNumberSlider.Value = Convert.ToInt32(configValue ?? default(int),
-                            CultureInfo.CurrentCulture);
-                        intNumberSlider.MaxValue = currentItemInfo.MaximumValue;
-                        intNumberSlider.SizeFlagsHorizontal = 3;
-                        currentItem.AddChild(intNumberSlider);
-                        break;
-                    case "float range":
-                    case "fr":
-                        var floatNumberSlider = new HSlider();
-                        floatNumberSlider.Rounded = false;
-                        floatNumberSlider.Step = 0.1;
-                        floatNumberSlider.MinValue = currentItemInfo.MinimumValue;
-                        floatNumberSlider.Value = Convert.ToDouble(configValue ?? default(double),
-                            CultureInfo.CurrentCulture);
-                        floatNumberSlider.MaxValue = currentItemInfo.MaximumValue;
-                        floatNumberSlider.SizeFlagsHorizontal = 3;
-                        currentItem.AddChild(floatNumberSlider);
-                        break;
-                    case "bool":
-                    case "boolean":
-                    case "b":
-                        var booleanCheckbutton = new CheckButton();
-                        booleanCheckbutton.Pressed =
-                            Convert.ToBoolean(configValue ?? default(bool), CultureInfo.CurrentCulture);
-                        booleanCheckbutton.Flat = true;
-                        currentItem.AddChild(booleanCheckbutton);
-                        break;
-                    case "string":
-                    case "s":
-                        var stringLineEdit = new LineEdit();
-                        stringLineEdit.SizeFlagsHorizontal = 3;
-                        stringLineEdit.Text = (string?)(configValue ?? default(string));
-                        stringLineEdit.MaxLength = (int)currentItemInfo.MaximumValue;
-                        currentItem.AddChild(stringLineEdit);
-                        break;
-                    case "title":
-                    case "t":
-                        if (currentItemLabel != null)
-                        {
-                            currentItemLabel.Text = currentItemInfo.DisplayName ?? currentItemInfo.ID ?? string.Empty;
-                            currentItem.Alignment = BoxContainer.AlignMode.Center;
-                        }
-
-                        break;
-                    case "option":
-                    case "enum":
-                    case "o":
-                        var optionButton = new OptionButton();
-                        foreach (var optionItem in currentItemInfo.GetAllOptions())
-                        {
-                            optionButton.AddItem(optionItem);
-                        }
-
-                        optionButton.Selected = Convert.ToInt32(configValue ?? default(int),
-                            CultureInfo.CurrentCulture);
-                        currentItem.AddChild(optionButton);
-                        break;
-                    case "color":
-                    case "colour":
-                    case "c":
-                        var regularColorPickerButton = new ColorPickerButton();
-                        regularColorPickerButton.EditAlpha = false;
-                        regularColorPickerButton.Color =
-                            new Color(Convert.ToString(configValue));
-                        regularColorPickerButton.Text = "Color";
-                        currentItem.AddChild(regularColorPickerButton);
-                        break;
-                    case "alphacolor":
-                    case "alphacolour":
-                    case "ac":
-                        var colorAlphaPickerButton = new ColorPickerButton();
-                        colorAlphaPickerButton.Color = new Color(Convert.ToString(configValue));
-                        colorAlphaPickerButton.Text = "Color";
-                        currentItem.AddChild(colorAlphaPickerButton);
-                        break;
-                }
+                continue;
             }
-            else
+
+            var currentItemLabel = currentItem.GetChild(0) as Label;
+
+            // Set the name and tooltip of the item
+            if (currentItemLabel != null)
             {
-                currentItem = currentItemInfo.ConfigNode as HBoxContainer;
+                currentItemLabel.Text = (currentItemInfo.DisplayName ?? currentItemInfo.ID) + ":";
+                currentItem.HintTooltip = currentItemInfo.Description ?? string.Empty;
+            }
+
+            // Setup the UI based on it type
+            switch (currentItemInfo.Type?.ToLower(CultureInfo.CurrentCulture))
+            {
+                case "int":
+                case "integer":
+                case "i":
+                    var intNumberSpinner = new SpinBox();
+                    intNumberSpinner.Rounded = true;
+                    intNumberSpinner.MinValue = currentItemInfo.MinimumValue;
+                    intNumberSpinner.Value = Convert.ToInt32(configValue ?? default(int),
+                        CultureInfo.CurrentCulture);
+                    intNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
+                    currentItem.AddChild(intNumberSpinner);
+                    break;
+                case "float":
+                case "f":
+                    var floatNumberSpinner = new SpinBox();
+                    floatNumberSpinner.Rounded = false;
+                    floatNumberSpinner.Step = 0.1;
+                    floatNumberSpinner.MinValue = currentItemInfo.MinimumValue;
+                    floatNumberSpinner.Value = Convert.ToDouble(configValue ?? default(double),
+                        CultureInfo.CurrentCulture);
+                    floatNumberSpinner.MaxValue = currentItemInfo.MaximumValue;
+                    currentItem.AddChild(floatNumberSpinner);
+                    break;
+                case "int range":
+                case "integer range":
+                case "ir":
+                    var intNumberSlider = new HSlider();
+                    intNumberSlider.Rounded = true;
+                    intNumberSlider.MinValue = currentItemInfo.MinimumValue;
+                    intNumberSlider.Value = Convert.ToInt32(configValue ?? default(int),
+                        CultureInfo.CurrentCulture);
+                    intNumberSlider.MaxValue = currentItemInfo.MaximumValue;
+                    intNumberSlider.SizeFlagsHorizontal = 3;
+                    currentItem.AddChild(intNumberSlider);
+                    break;
+                case "float range":
+                case "fr":
+                    var floatNumberSlider = new HSlider();
+                    floatNumberSlider.Rounded = false;
+                    floatNumberSlider.Step = 0.1;
+                    floatNumberSlider.MinValue = currentItemInfo.MinimumValue;
+                    floatNumberSlider.Value = Convert.ToDouble(configValue ?? default(double),
+                        CultureInfo.CurrentCulture);
+                    floatNumberSlider.MaxValue = currentItemInfo.MaximumValue;
+                    floatNumberSlider.SizeFlagsHorizontal = 3;
+                    currentItem.AddChild(floatNumberSlider);
+                    break;
+                case "bool":
+                case "boolean":
+                case "b":
+                    var booleanCheckbutton = new CheckButton();
+                    booleanCheckbutton.Pressed =
+                        Convert.ToBoolean(configValue ?? default(bool), CultureInfo.CurrentCulture);
+                    booleanCheckbutton.Flat = true;
+                    currentItem.AddChild(booleanCheckbutton);
+                    break;
+                case "string":
+                case "s":
+                    var stringLineEdit = new LineEdit();
+                    stringLineEdit.SizeFlagsHorizontal = 3;
+                    stringLineEdit.Text = (string?)(configValue ?? default(string));
+                    stringLineEdit.MaxLength = (int)currentItemInfo.MaximumValue;
+                    currentItem.AddChild(stringLineEdit);
+                    break;
+                case "title":
+                case "t":
+                    if (currentItemLabel != null)
+                    {
+                        currentItemLabel.Text = currentItemInfo.DisplayName ?? currentItemInfo.ID ?? string.Empty;
+                        currentItem.Alignment = BoxContainer.AlignMode.Center;
+                    }
+
+                    break;
+                case "option":
+                case "enum":
+                case "o":
+                    var optionButton = new OptionButton();
+                    foreach (var optionItem in currentItemInfo.GetAllOptions())
+                    {
+                        optionButton.AddItem(optionItem);
+                    }
+
+                    optionButton.Selected = Convert.ToInt32(configValue ?? default(int),
+                        CultureInfo.CurrentCulture);
+                    currentItem.AddChild(optionButton);
+                    break;
+                case "color":
+                case "colour":
+                case "c":
+                    var regularColorPickerButton = new ColorPickerButton();
+                    regularColorPickerButton.EditAlpha = false;
+                    regularColorPickerButton.Color =
+                        new Color(Convert.ToString(configValue));
+                    regularColorPickerButton.Text = "Color";
+                    currentItem.AddChild(regularColorPickerButton);
+                    break;
+                case "alphacolor":
+                case "alphacolour":
+                case "ac":
+                    var colorAlphaPickerButton = new ColorPickerButton();
+                    colorAlphaPickerButton.Color = new Color(Convert.ToString(configValue));
+                    colorAlphaPickerButton.Text = "Color";
+                    currentItem.AddChild(colorAlphaPickerButton);
+                    break;
             }
 
             // Get the script from the current item
@@ -1916,11 +1919,13 @@ public class ModManager : Control
                 currentItemNodeInfo.Options = currentItemInfo.Options;
             }
 
-            currentItemInfo.ConfigNode = currentItem;
-
-            // Finally adds to the SceneTree
-            configContainer.AddChild(currentItem);
+            // Add it to the container
+            configTreeNode.AddChild(currentItem);
         }
+
+        // Finally adds everything to the SceneTree
+        configContainer.AddChild(configTreeNode);
+        return configTreeNode;
     }
 
     private void GalleryRightArrowPressed()
@@ -2350,7 +2355,7 @@ public class ModManager : Control
             return;
         }
 
-        var configItemArray = configContainer.GetChildren();
+        var configItemArray = configContainer.GetChild(0).GetChildren();
         foreach (ModConfigItemInfo currentItemInfo in configItemArray)
         {
             if (currentItemInfo != null)

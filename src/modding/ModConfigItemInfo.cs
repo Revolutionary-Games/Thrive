@@ -24,8 +24,6 @@ public class ModConfigItemInfo : HBoxContainer
 
     public object? Value { get; set; }
 
-    public Control? ConfigNode { get; set; }
-
     [JsonProperty("Min")]
     public float MinimumValue { get; set; }
 
