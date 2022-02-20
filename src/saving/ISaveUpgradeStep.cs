@@ -308,7 +308,7 @@
             {
                 if (effectsArray.Count == 0)
                 {
-                    throw new ArgumentException("Property " + property.Name +
+                    throw new JsonException("Property " + property.Name +
                         " did not have registered tokens in array.");
                 }
 
@@ -329,7 +329,7 @@
             }
             else
             {
-                throw new ArgumentException("Property " + property.Name + " did not match an effect array!");
+                throw new JsonException("Property " + property.Name + " did not match an effect array!");
             }
         }
     }
