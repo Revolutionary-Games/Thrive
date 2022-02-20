@@ -428,7 +428,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         if (IsForPreviewOnly || IsCompletelyEngulfed)
             return;
 
-        UpdateEngulfedAreaShape();
+        UpdateEngulfableAreaShape();
         CheckEngulfShapeSize();
 
         // https://github.com/Revolutionary-Games/Thrive/issues/1976
@@ -649,7 +649,7 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         OrganelleParent.Scale = scale;
     }
 
-    private void UpdateEngulfedAreaShape()
+    private void UpdateEngulfableAreaShape()
     {
         if (engulfedAreaShapeOwner == null)
         {

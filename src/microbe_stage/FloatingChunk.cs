@@ -36,6 +36,8 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
     private MeshInstance? chunkMesh;
 
+    private bool needsDissolveEffectUpdate = true;
+
     [JsonProperty]
     private bool isDissolving;
 
@@ -127,7 +129,7 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         set
         {
             dissolveEffectValue = value;
-            ApplyDissolveEffect();
+            needsDissolveEffectUpdate = true;
         }
     }
 
@@ -248,7 +250,6 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
 
         InitPhysics();
-        ApplyDissolveEffect();
     }
 
     public override void _Process(float delta)
@@ -267,6 +268,9 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
 
         if (isDissolving)
             HandleDissolving(delta);
+
+        if (needsDissolveEffectUpdate)
+            UpdateDissolveEffect();
 
         if (UsesDespawnTimer)
             DespawnTimer += delta;
@@ -396,13 +400,15 @@ public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked, IEngulfabl
         }
     }
 
-    private void ApplyDissolveEffect()
+    private void UpdateDissolveEffect()
     {
         if (chunkMesh == null)
-            return;
+            throw new InvalidOperationException("Chunk without a mesh can't dissolve");
 
         var material = (ShaderMaterial)chunkMesh.MaterialOverride;
-        material?.SetShaderParam("dissolveValue", dissolveEffectValue);
+        material.SetShaderParam("dissolveValue", dissolveEffectValue);
+
+        needsDissolveEffectUpdate = false;
     }
 
     private void InitPhysics()

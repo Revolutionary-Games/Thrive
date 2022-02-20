@@ -998,9 +998,6 @@ public partial class Microbe
         {
             var engulfed = engulfedObjects[i];
 
-            if (engulfed.CachedEngulfableCompounds == null)
-                continue;
-
             for (var c = 0; c < engulfed.CachedEngulfableCompounds.Count; ++c)
             {
                 var compound = engulfed.CachedEngulfableCompounds.ElementAt(c);
@@ -1033,12 +1030,9 @@ public partial class Microbe
 
     private void UpdateDissolveEffect()
     {
-        if (Membrane == null || organelles == null)
-            return;
-
         Membrane.DissolveEffectValue = dissolveEffectValue;
 
-        foreach (var organelle in organelles)
+        foreach (var organelle in organelles!)
         {
             organelle.DissolveEffectValue = dissolveEffectValue;
 

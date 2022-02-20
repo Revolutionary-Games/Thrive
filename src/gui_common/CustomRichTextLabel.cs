@@ -343,7 +343,8 @@ public class CustomRichTextLabel : RichTextLabel
 
                     case "ENGULF_COMPUND_ABSORBING_PER_SECOND":
                     {
-                        output = Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND.ToString(format, CultureInfo.CurrentCulture);
+                        output = Constants.ENGULF_COMPUND_ABSORBING_PER_SECOND.ToString(
+                            format, CultureInfo.CurrentCulture);
                         break;
                     }
 

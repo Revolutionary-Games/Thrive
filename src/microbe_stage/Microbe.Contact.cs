@@ -1129,7 +1129,7 @@ public partial class Microbe
 
     private void OnBodyEnteredEngulfArea(Node body)
     {
-        if (body == this || !(body is IEngulfable))
+        if (!(body is IEngulfable engulfable) || engulfable == this)
             return;
 
         // TODO: does this need to check for disposed exception?
