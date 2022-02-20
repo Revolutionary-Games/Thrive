@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-18 10:37+0200\n"
+"POT-Creation-Date: 2022-02-20 16:40-0600\n"
 "PO-Revision-Date: 2022-01-30 12:44+0000\n"
 "Last-Translator: ShadowMoon <szetosunny@yahoo.com.hk>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1352,7 +1352,7 @@ msgstr "由{0}創作"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4203
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1572
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "關閉"
@@ -1375,7 +1375,7 @@ msgstr "{0} 濃度降低了 {1}"
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr "葡萄糖濃度急劇下降！"
 
-#: ../src/general/MainMenu.cs:234
+#: ../src/general/MainMenu.cs:235
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登錄為：{0}"
 
@@ -1420,7 +1420,7 @@ msgstr "微生物階段自由編輯器"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1631 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "返回"
@@ -1604,6 +1604,7 @@ msgid "LANGUAGE"
 msgstr "語言："
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "重置"
 
@@ -1767,7 +1768,7 @@ msgstr "取消並繼續"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:730
 msgid "CANCEL"
 msgstr "取消"
 
@@ -3344,240 +3345,444 @@ msgstr "你已經茁壯繁盛了!"
 msgid "WIN_TEXT"
 msgstr "恭喜你贏得了這個版本的 \"茁壯成長\"! 如果你願意，你可以在這個屏幕關閉後繼續遊戲，或者在一個新的世界開始新的遊戲。"
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:529
 msgid "CANT_LOAD_MOD_INFO"
 msgstr "無法加載{0}的mod信息"
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:497
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}：彙編加載失敗，出現異常。 {1}"
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:514
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr "{0}：沒有可加載的資源"
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:544
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: mod的裝配卸載方法調用失敗"
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:552
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod的裝配卸載方法調用失敗，出現異常。 {1}"
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:620
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr "{0}：在mod的裝配中沒有找到指定的mod類\"{1}\""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:633
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: mod的裝配初始化方法調用失敗"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:649
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr "{0}: mod的裝配初始化方法調用失敗，出現異常。 {1}"
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:665
 msgid "PCK_LOAD_FAILED"
 msgstr "加载pck文件（{0}）失败"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:471
 msgid "INVALID_ICON_PATH"
 msgstr "無效的MOD圖標路徑"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:485
 msgid "INVALID_URL_SCHEME"
 msgstr "無效的URL方案"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:497
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "當指定裝配時，需要Mod裝配類"
 
-#: ../src/modding/ModManager.cs:549
-msgid "NO_SELECTED_MOD"
-msgstr "沒有被選取的MOD"
+#: ../src/modding/ModManager.cs:609
+#, fuzzy
+msgid "MOD_LOADER_TAB"
+msgstr "Mod上傳工具"
 
-#: ../src/modding/ModManager.cs:885
+#: ../src/modding/ModManager.cs:610
+#, fuzzy
+msgid "MOD_ERRORS_TAB"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:611
+#, fuzzy
+msgid "MOD_CONFIGURATION_TAB"
+msgstr "Mod創建失敗"
+
+#: ../src/modding/ModManager.cs:987 ../src/modding/ModManager.cs:2054
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr "這個MOD是在Steam工作坊下載的"
 
-#: ../src/modding/ModManager.cs:886
+#: ../src/modding/ModManager.cs:988 ../src/modding/ModManager.cs:2055
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "這是一個本地安裝的MOD"
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:1055
+msgid "NO_SELECTED_MOD"
+msgstr "沒有被選取的MOD"
+
+#: ../src/modding/ModManager.cs:1426
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:1428
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr "你確定要把「所有」設置都重置為默認值嗎？"
+
+#: ../src/modding/ModManager.cs:1627 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.tscn:1444 ../src/modding/NewModGUI.tscn:548
+msgid "MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1643
+msgid "NO_MOD_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1658 ../src/modding/ModManager.tscn:1466
+#: ../src/modding/NewModGUI.tscn:572
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1674
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "沒有被選取的MOD"
+
+#: ../src/modding/ModManager.cs:1689 ../src/modding/ModManager.tscn:869
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
+#: ../src/modding/ModManager.cs:1705
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "啟用所有兼容Mods"
+
+#: ../src/modding/ModManager.cs:1720 ../src/modding/ModManager.tscn:878
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "Mod上傳工具"
+
+#: ../src/modding/ModManager.cs:1729 ../src/modding/ModManager.tscn:1510
+#: ../src/modding/NewModGUI.tscn:620
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "Mod上傳工具"
+
+#: ../src/modding/ModManager.cs:1747 ../src/modding/ModManager.tscn:1488
+#: ../src/modding/NewModGUI.tscn:596
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:1759
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
+
+#: ../src/modding/ModManager.cs:2114
+#, fuzzy
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:2116
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"未保存的更改將被丟棄。\n"
+"你想繼續嗎？"
+
+#: ../src/modding/ModManager.cs:2120 ../src/modding/ModManager.cs:2160
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "存檔無效"
+
+#: ../src/modding/ModManager.cs:2143 ../src/modding/ModManager.cs:2154
+#: ../src/modding/ModManager.cs:2177 ../src/modding/ModManager.cs:2193
+#: ../src/modding/ModManager.cs:2198
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "鼠標未知鍵"
+
+#: ../src/modding/ModManager.cs:2163
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
+#: ../src/modding/ModManager.cs:2180
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2182
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2201
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2203
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2206
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2208
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2213
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "載入不兼容的存檔？"
+
+#: ../src/modding/ModManager.cs:2215
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr ""
+"選取的存檔已知會跟這個版本的Thrive不兼容。\n"
+"而且也沒有適用的存檔更新器。\n"
+"由於Thrive尚在早期開發中，存檔兼容性並不是首要目標。目前的存檔轉換器也不能支持所有版本的存檔。"
+
+#: ../src/modding/ModManager.cs:2219
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr "Mod加載錯誤"
+
+#: ../src/modding/ModManager.cs:2221
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2226
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
+
+#: ../src/modding/ModManager.cs:2228
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2270
 msgid "ERROR_CREATING_FOLDER"
 msgstr "為mod創建文件夾時出錯"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:2279
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr "創建MOD信息文件出錯"
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:201
 msgid "AVAILABLE_MODS"
 msgstr "可用的MOD"
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "刷新"
-
-#: ../src/modding/ModManager.tscn:152
-msgid "OPEN_FOLDER"
-msgstr "打開文件夾"
-
-#: ../src/modding/ModManager.tscn:170
-msgid "RIGHT_ARROW"
-msgstr "→"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
 msgid "LEFT_ARROW"
 msgstr "←"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
+msgid "RIGHT_ARROW"
+msgstr "→"
+
+#: ../src/modding/ModManager.tscn:271
 msgid "ENABLED_MODS"
 msgstr "啟用MODs"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "禁用所有"
+
+#: ../src/modding/ModManager.tscn:316
+msgid "OPEN_FOLDER"
+msgstr "打開文件夾"
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr "禁用所有"
 
-#: ../src/modding/ModManager.tscn:250
-msgid "SELECTED_MOD"
-msgstr "被選取Mod："
+#: ../src/modding/ModManager.tscn:339
+#, fuzzy
+msgid "ONESHOT_LOADING"
+msgstr "加載時出錯"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr "應用"
+
+#: ../src/modding/ModManager.tscn:507
+#, fuzzy
+msgid "CLEAR"
+msgstr "Clear"
+
+#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1120
+#: ../src/modding/NewModGUI.tscn:158
 msgid "MOD_AUTHOR"
 msgstr "MOD作者："
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1142
+#: ../src/modding/NewModGUI.tscn:181
 msgid "MOD_VERSION"
 msgstr "MOD版本："
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr "推薦Thrive："
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:770
 msgid "MINIMUM_VERSION"
 msgstr "最低："
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-msgid "MOD_DESCRIPTION"
-msgstr "Mod 描述："
+#: ../src/modding/ModManager.tscn:804
+msgid "RECOMMENDED_THRIVE_VERSION"
+msgstr "推薦Thrive："
 
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
-msgstr "顯示更多信息"
+#: ../src/modding/ModManager.tscn:860
+#, fuzzy
+msgid "REQUIRED_MODS"
+msgstr "啟用MODs"
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:887
 msgid "OPEN_MOD_URL"
 msgstr "打開信息網址"
 
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
-msgstr "瀏覽工作坊"
+#: ../src/modding/ModManager.tscn:896
+msgid "MORE_INFO"
+msgstr "顯示更多信息"
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
-msgid "UPLOAD"
-msgstr "上傳"
+#: ../src/modding/ModManager.tscn:968
+#, fuzzy
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "幫助"
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
-msgstr "新增"
+#: ../src/modding/ModManager.tscn:969
+msgid "CHECK_MOD"
+msgstr ""
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "刷新"
+
+#: ../src/modding/ModManager.tscn:989
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "注意：許多mods需要重新啟動遊戲才能正常加載或卸載。只加載你信任的mods，因為它們可能包含可執行的問題代碼。"
 
-#: ../src/modding/ModManager.tscn:559
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "啟用所有兼容Mods"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:990
 msgid "APPLY_CHANGES"
 msgstr "應用變更"
 
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
-msgstr "有未應用的變更"
+#: ../src/modding/ModManager.tscn:1005
+msgid "BROWSE_WORKSHOP"
+msgstr "瀏覽工作坊"
 
-#: ../src/modding/ModManager.tscn:580
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "你需要應用你的變更來加載或卸載任何mods。"
+#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
+msgid "UPLOAD"
+msgstr "上傳"
 
-#: ../src/modding/ModManager.tscn:581
-msgid "DISCARD_CHANGES"
-msgstr "放棄變更"
+#: ../src/modding/ModManager.tscn:1027
+msgid "NEW"
+msgstr "新增"
 
-#: ../src/modding/ModManager.tscn:588
-msgid "FULL_MOD_INFO"
-msgstr "完整的Mod信息"
-
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:1072 ../src/modding/NewModGUI.tscn:135
 msgid "MOD_NAME"
 msgstr "Mod名字："
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:1094 ../src/modding/NewModGUI.tscn:112
 msgid "MOD_INTERNAL_NAME"
 msgstr "內部（文件夾）名稱："
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1164 ../src/modding/NewModGUI.tscn:204
+msgid "MOD_DESCRIPTION"
+msgstr "Mod 描述："
+
+#: ../src/modding/ModManager.tscn:1186 ../src/modding/NewModGUI.tscn:227
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Mod的完整描述："
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1224 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_ICON_FILE"
 msgstr "圖標文件："
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1246 ../src/modding/NewModGUI.tscn:291
+#, fuzzy
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr "預覽圖像文件太大"
+
+#: ../src/modding/ModManager.tscn:1268 ../src/modding/NewModGUI.tscn:330
 msgid "MOD_INFO_URL"
 msgstr "Mod信息URL："
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1290 ../src/modding/NewModGUI.tscn:353
 msgid "MOD_LICENSE"
 msgstr "Mod許可："
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1312 ../src/modding/NewModGUI.tscn:376
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr "推薦的Thrive 版本："
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1334 ../src/modding/NewModGUI.tscn:399
 msgid "MOD_MINIMUM_THRIVE"
 msgstr "最低要求的Thrive版本："
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1356 ../src/modding/NewModGUI.tscn:422
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr "最高要求的Thrive 版本："
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1378 ../src/modding/NewModGUI.tscn:445
 msgid "MOD_PCK_NAME"
 msgstr "Mod .pck 文件："
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1400 ../src/modding/NewModGUI.tscn:485
 msgid "MOD_ASSEMBLY"
 msgstr "Mod組裝："
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1422 ../src/modding/NewModGUI.tscn:525
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr "Mod Assembly Main Class:"
 
-#: ../src/modding/ModManager.tscn:979
-msgid "MOD_CREATION_FAILED"
-msgstr "Mod創建失敗"
+#: ../src/modding/ModManager.tscn:1532 ../src/modding/NewModGUI.tscn:644
+#, fuzzy
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "載入不兼容的存檔？"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1554 ../src/modding/NewModGUI.tscn:668
+#, fuzzy
+msgid "MOD_CONFIG_FILE"
+msgstr "圖標文件："
+
+#: ../src/modding/ModManager.tscn:1585
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "在加載或卸載一個或多個mod時發生錯誤。日誌可能包含其他信息。"
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1590
 msgid "RESTART_REQUIRED"
 msgstr "需要重新啟動"
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1592
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "一個或多個mod需要重新啟動遊戲才能正常加載或卸載"
+
+#: ../src/modding/ModManager.tscn:1607
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr "在加載一個或多個mods時發生錯誤。日誌可能包含其他信息。"
+
+#: ../src/modding/ModManager.tscn:1609
+#, fuzzy
+msgid "YES"
+msgstr "年"
+
+#: ../src/modding/ModManager.tscn:1610
+#, fuzzy
+msgid "NO"
+msgstr "撤回"
+
+#: ../src/modding/ModManager.tscn:1618 ../src/modding/ModManager.tscn:1621
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3647,7 +3852,7 @@ msgstr "通過提交此項目，你表示你同意Steam創意工坊的[color=#37
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "由於異常，保存信息失敗：{0}"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:434
 msgid "FORM_ERROR_MESSAGE"
 msgstr "錯誤：{0}"
 
@@ -3678,10 +3883,6 @@ msgstr "輸入已有的創意工坊編號"
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
 msgstr "編號"
-
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
-msgstr "應用"
 
 #: ../src/modding/ModUploader.tscn:168
 msgid "WORKSHOP_ITEM_TITLE"
@@ -3735,47 +3936,52 @@ msgstr "選擇預覽圖像"
 msgid "UPLOAD_SUCCEEDED"
 msgstr "上傳成功"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:245
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "我極好的Mod"
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:366
 msgid "INVALID_URL_FORMAT"
 msgstr "無效的網址格式"
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:381
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "需要內部名稱"
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:387
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr "內部名稱應以大寫字母開頭"
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:393
 msgid "INTERNAL_NAME_IN_USE"
 msgstr "已經有一個內部名稱相同的mod了"
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:409
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr "缺少或無效的必填字段的格式：{0}"
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:420
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "額外驗證檢測到了一個問題：{0}"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:51
 msgid "CREATE_NEW_MOD"
 msgstr "創建新Mod"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:85
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr "Mod製作說明在"
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:92
 msgid "OUR_WIKI"
 msgstr "我們的Wiki"
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:686
+#, fuzzy
+msgid "ENABLE_CONFIG"
+msgstr "啟用MODs"
+
+#: ../src/modding/NewModGUI.tscn:723
 msgid "CREATE"
 msgstr "創建"
 
@@ -4332,6 +4538,21 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "教學"
+
+#~ msgid "SELECTED_MOD"
+#~ msgstr "被選取Mod："
+
+#~ msgid "UNAPPLIED_MOD_CHANGES"
+#~ msgstr "有未應用的變更"
+
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr "你需要應用你的變更來加載或卸載任何mods。"
+
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "放棄變更"
+
+#~ msgid "FULL_MOD_INFO"
+#~ msgstr "完整的Mod信息"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "加載中..."

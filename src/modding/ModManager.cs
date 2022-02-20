@@ -1586,14 +1586,14 @@ public class ModManager : Control
                 configContainer.RemoveChild(configContainer.GetChild(0));
             }
 
-            if (newItem.configNodes == null)
+            if (newItem.ConfigNodes == null)
             {
-                newItem.configNodes = ConfigMenuSetup(newItem.ConfigurationInfoList,
+                newItem.ConfigNodes = ConfigMenuSetup(newItem.ConfigurationInfoList,
                     newItem.CurrentConfiguration ?? new Dictionary<string, object>());
             }
             else
             {
-                configContainer.AddChild(newItem.configNodes);
+                configContainer.AddChild(newItem.ConfigNodes);
             }
         }
         else
@@ -1769,7 +1769,7 @@ public class ModManager : Control
     private Control ConfigMenuSetup(ModConfigItemInfo[] modConfigList, Dictionary<string, object> modConfigDictionary)
     {
         // Holder of all the config item for easier removal
-        VBoxContainer? configTreeNode = new VBoxContainer();
+        VBoxContainer configTreeNode = new VBoxContainer();
 
         foreach (var currentItemInfo in modConfigList)
         {

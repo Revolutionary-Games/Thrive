@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-18 10:37+0200\n"
+"POT-Creation-Date: 2022-02-20 16:40-0600\n"
 "PO-Revision-Date: 2021-11-24 16:56+0000\n"
 "Last-Translator: doomlightning <tamirt500@gmail.com>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1357,7 +1357,7 @@ msgstr "ציור מאת {0}"
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4203
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1572
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "סגור"
@@ -1380,7 +1380,7 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:234
+#: ../src/general/MainMenu.cs:235
 msgid "STORE_LOGGED_IN_AS"
 msgstr "התחבר כ:{0}"
 
@@ -1425,7 +1425,7 @@ msgstr "עורך ארגז חול המיקרובי"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1631 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "חזור"
@@ -1610,6 +1610,7 @@ msgid "LANGUAGE"
 msgstr "שפה:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "איפוס"
 
@@ -1773,7 +1774,7 @@ msgstr "מחק והמשך"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:730
 msgid "CANCEL"
 msgstr "ביטול"
 
@@ -3362,266 +3363,462 @@ msgstr "אתה שגשגת!"
 msgid "WIN_TEXT"
 msgstr "כל הכבוד על הזכייה בגרסה זו של Thrive! אתה יכול להמשיך לשחק אחרי סגירת מסך זה אם תרצה, או תוכל להתחיל עולם חדש במשחק חדש."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:529
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:497
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:514
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:544
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:552
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:620
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:633
 #, fuzzy
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "אתחול ספריית Steam נכשל"
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:649
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:665
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "טעינה הסתיימה"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:471
 msgid "INVALID_ICON_PATH"
 msgstr "נתיב סמליל מוד לא חוקית"
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:485
 msgid "INVALID_URL_SCHEME"
 msgstr "סכימת כתובת URL לא חוקית"
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:497
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:549
+#: ../src/modding/ModManager.cs:609
+msgid "MOD_LOADER_TAB"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:610
+msgid "MOD_ERRORS_TAB"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:611
+#, fuzzy
+msgid "MOD_CONFIGURATION_TAB"
+msgstr "אתחול ספריית Steam נכשל"
+
+#: ../src/modding/ModManager.cs:987 ../src/modding/ModManager.cs:2054
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:988 ../src/modding/ModManager.cs:2055
+msgid "THIS_IS_LOCAL_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1055
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "נבחרו:"
 
-#: ../src/modding/ModManager.cs:885
-msgid "THIS_IS_WORKSHOP_MOD"
+#: ../src/modding/ModManager.cs:1426
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr ""
+"מידע משמירה זו אינו ניתנת לקריאה.\n"
+"יתכן ששמירה זו משובשת או שהפורמט הקריאה אינו מובנת בגרסה זו של Thrive.\n"
+"האם בכל זאת לנסות לטעון שמירה זו?"
+
+#: ../src/modding/ModManager.cs:1428
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr "האם אתה בטוח שברצונך לאפס את כל הגדרות לברירת מחדל?"
+
+#: ../src/modding/ModManager.cs:1627 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.tscn:1444 ../src/modding/NewModGUI.tscn:548
+msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:886
-msgid "THIS_IS_LOCAL_MOD"
+#: ../src/modding/ModManager.cs:1643
+msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:1658 ../src/modding/ModManager.tscn:1466
+#: ../src/modding/NewModGUI.tscn:572
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1674
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "נבחרו:"
+
+#: ../src/modding/ModManager.cs:1689 ../src/modding/ModManager.tscn:869
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr ""
+"השמירה שנבחרה לטעינה ידועה שלא מתאימה לגרסה זו של Thrive.\n"
+"ואין שדרוג שמירה לשמירה זו.\n"
+"בגלל שThrive עדין בשלבי פיתוח ראשונים, התאמה שמירות אינו בעדיפות גבוהה, ובשל כך ,אין שדרוג שמירה לכל הגרסאות."
+
+#: ../src/modding/ModManager.cs:1705
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "השמירה שנבחרה אינו תואמת לגרסה זו"
+
+#: ../src/modding/ModManager.cs:1720 ../src/modding/ModManager.tscn:878
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "טען שמירה"
+
+#: ../src/modding/ModManager.cs:1729 ../src/modding/ModManager.tscn:1510
+#: ../src/modding/NewModGUI.tscn:620
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "לטעון שמירה לא תקפה?"
+
+#: ../src/modding/ModManager.cs:1747 ../src/modding/ModManager.tscn:1488
+#: ../src/modding/NewModGUI.tscn:596
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "לטעון שמירה לא תקפה?"
+
+#: ../src/modding/ModManager.cs:1759
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "לטעון שמירה לא תקפה?"
+
+#: ../src/modding/ModManager.cs:2114
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2116
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"ישנם שינויים שלא נשמרו שיימחקו.\n"
+"האם ברצונך להמשיך?"
+
+#: ../src/modding/ModManager.cs:2120 ../src/modding/ModManager.cs:2160
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "השמירה אינו תקפה"
+
+#: ../src/modding/ModManager.cs:2143 ../src/modding/ModManager.cs:2154
+#: ../src/modding/ModManager.cs:2177 ../src/modding/ModManager.cs:2193
+#: ../src/modding/ModManager.cs:2198
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "לחצן עכבר לא יודע"
+
+#: ../src/modding/ModManager.cs:2163
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"השמירה שנבחרה לטעינה ידועה שלא מתאימה לגרסה זו של Thrive.\n"
+"ואין שדרוג שמירה לשמירה זו.\n"
+"בגלל שThrive עדין בשלבי פיתוח ראשונים, התאמה שמירות אינו בעדיפות גבוהה, ובשל כך ,אין שדרוג שמירה לכל הגרסאות."
+
+#: ../src/modding/ModManager.cs:2180
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2182
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2201
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2203
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2206
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2208
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2213
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "האם לעלות שמירה שלא תואמת לגרסה זו?"
+
+#: ../src/modding/ModManager.cs:2215
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr ""
+"השמירה שנבחרה לטעינה ידועה שלא מתאימה לגרסה זו של Thrive.\n"
+"ואין שדרוג שמירה לשמירה זו.\n"
+"בגלל שThrive עדין בשלבי פיתוח ראשונים, התאמה שמירות אינו בעדיפות גבוהה, ובשל כך ,אין שדרוג שמירה לכל הגרסאות."
+
+#: ../src/modding/ModManager.cs:2219
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2221
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2226
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "לטעון שמירה לא תקפה?"
+
+#: ../src/modding/ModManager.cs:2228
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2270
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "שומר שגיאה"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:2279
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:201
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "רענן"
-
-#: ../src/modding/ModManager.tscn:152
-#, fuzzy
-msgid "OPEN_FOLDER"
-msgstr "פתח תקיית קבצי לוג"
-
-#: ../src/modding/ModManager.tscn:170
-#, fuzzy
-msgid "RIGHT_ARROW"
-msgstr "לחצן עכבר הימני"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "לחצן עכבר השמאלי"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "לחצן עכבר הימני"
+
+#: ../src/modding/ModManager.tscn:271
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "הפעל את העורך"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "כבוי"
+
+#: ../src/modding/ModManager.tscn:316
+#, fuzzy
+msgid "OPEN_FOLDER"
+msgstr "פתח תקיית קבצי לוג"
+
+#: ../src/modding/ModManager.tscn:322
 #, fuzzy
 msgid "DISABLE_ALL"
 msgstr "כבוי"
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:339
 #, fuzzy
-msgid "SELECTED_MOD"
-msgstr "נבחרו:"
+msgid "ONESHOT_LOADING"
+msgstr "טוען שגיאה"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:507
+#, fuzzy
+msgid "CLEAR"
+msgstr "מקש Clear"
+
+#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1120
+#: ../src/modding/NewModGUI.tscn:158
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1142
+#: ../src/modding/NewModGUI.tscn:181
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "גרסה:"
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:770
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "גרסה:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-#, fuzzy
-msgid "MOD_DESCRIPTION"
-msgstr "תיאור:"
-
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
+#: ../src/modding/ModManager.tscn:804
+msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:860
+#, fuzzy
+msgid "REQUIRED_MODS"
+msgstr "הפעל את העורך"
+
+#: ../src/modding/ModManager.tscn:887
 #, fuzzy
 msgid "OPEN_MOD_URL"
 msgstr "מקש פתח URL"
 
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
+#: ../src/modding/ModManager.tscn:896
+msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:968
 #, fuzzy
-msgid "UPLOAD"
-msgstr "טען"
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "עזרה"
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
+#: ../src/modding/ModManager.tscn:969
+msgid "CHECK_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "רענן"
+
+#: ../src/modding/ModManager.tscn:989
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "לטעון שמירה לא תקפה?"
 
-#: ../src/modding/ModManager.tscn:559
-#, fuzzy
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "השמירה שנבחרה אינו תואמת לגרסה זו"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:990
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
+#: ../src/modding/ModManager.tscn:1005
+msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "הצורה הבסיסית ביותר של הקרום, מספק מעט הגנה מפני נזק וצריך יותר אנרגיה כדי לא לעוות. היתרון בכך שהוא מאפשר לתא לנוע ולקלוט חומרים מזינים במהירות גדולה יותר."
+msgid "UPLOAD"
+msgstr "טען"
 
-#: ../src/modding/ModManager.tscn:581
-#, fuzzy
-msgid "DISCARD_CHANGES"
-msgstr "מחק והמשך"
-
-#: ../src/modding/ModManager.tscn:588
-msgid "FULL_MOD_INFO"
+#: ../src/modding/ModManager.tscn:1027
+msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:1072 ../src/modding/NewModGUI.tscn:135
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "שם:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:1094 ../src/modding/NewModGUI.tscn:112
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1164 ../src/modding/NewModGUI.tscn:204
+#, fuzzy
+msgid "MOD_DESCRIPTION"
+msgstr "תיאור:"
+
+#: ../src/modding/ModManager.tscn:1186 ../src/modding/NewModGUI.tscn:227
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש בחנקן גזי ובאנרגיה תאית בצורת ATP כדי לייצר אמוניה, מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה קיבוע חנקן אנאירובי. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע גליקוליזה ברמה מסוימת."
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1224 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1246 ../src/modding/NewModGUI.tscn:291
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1268 ../src/modding/NewModGUI.tscn:330
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1290 ../src/modding/NewModGUI.tscn:353
 #, fuzzy
 msgid "MOD_LICENSE"
 msgstr "רישיונות"
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1312 ../src/modding/NewModGUI.tscn:376
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1334 ../src/modding/NewModGUI.tscn:399
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1356 ../src/modding/NewModGUI.tscn:422
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1378 ../src/modding/NewModGUI.tscn:445
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "שם האזור"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1400 ../src/modding/NewModGUI.tscn:485
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1422 ../src/modding/NewModGUI.tscn:525
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:1532 ../src/modding/NewModGUI.tscn:644
 #, fuzzy
-msgid "MOD_CREATION_FAILED"
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "האם לעלות שמירה שלא תואמת לגרסה זו?"
+
+#: ../src/modding/ModManager.tscn:1554 ../src/modding/NewModGUI.tscn:668
+#, fuzzy
+msgid "MOD_CONFIG_FILE"
 msgstr "אתחול ספריית Steam נכשל"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1585
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "לטעון שמירה לא תקפה?"
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1590
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1592
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "לטעון שמירה לא תקפה?"
+
+#: ../src/modding/ModManager.tscn:1607
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1609
+#, fuzzy
+msgid "YES"
+msgstr "שנים"
+
+#: ../src/modding/ModManager.tscn:1610
+#, fuzzy
+msgid "NO"
+msgstr "בטל"
+
+#: ../src/modding/ModManager.tscn:1618 ../src/modding/ModManager.tscn:1621
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3699,7 +3896,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "השמירה נכשלה! קרה משהו חריג"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:434
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "שומר שגיאה"
@@ -3733,10 +3930,6 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
-
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:168
@@ -3797,50 +3990,55 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr "נשמר בהצלחה"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:245
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "הכימופלסט הוא אברון בעל קרום כפול המכיל חלבונים המסוגלים להמיר מימן גופרתי, מים ופחמן דו חמצני לגלוקוז בתהליך הנקרא כימוסינתזה מימן גופרתי. קצב ייצור הגלוקוז שלו משתנה עם ריכוז פחמן הדו חמצני."
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:366
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:381
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:387
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:393
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:409
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:420
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:51
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "צור מיקרוב חדש"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:85
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:92
 msgid "OUR_WIKI"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:686
+#, fuzzy
+msgid "ENABLE_CONFIG"
+msgstr "הפעל את העורך"
+
+#: ../src/modding/NewModGUI.tscn:723
 #, fuzzy
 msgid "CREATE"
 msgstr "נוצר ב:"
@@ -4400,6 +4598,18 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "מדריך"
+
+#, fuzzy
+#~ msgid "SELECTED_MOD"
+#~ msgstr "נבחרו:"
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr "הצורה הבסיסית ביותר של הקרום, מספק מעט הגנה מפני נזק וצריך יותר אנרגיה כדי לא לעוות. היתרון בכך שהוא מאפשר לתא לנוע ולקלוט חומרים מזינים במהירות גדולה יותר."
+
+#, fuzzy
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "מחק והמשך"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "טוען..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-18 10:37+0200\n"
+"POT-Creation-Date: 2022-02-20 16:40-0600\n"
 "PO-Revision-Date: 2021-02-25 13:33+0000\n"
 "Last-Translator: icedjuro <milandjurovic625@gmail.com>\n"
 "Language-Team: Serbian (cyrillic) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
@@ -1393,7 +1393,7 @@ msgstr ""
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:4203
-#: ../src/modding/ModManager.tscn:972
+#: ../src/modding/ModManager.tscn:1572
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
 msgstr "Затвори"
@@ -1416,7 +1416,7 @@ msgstr ""
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:234
+#: ../src/general/MainMenu.cs:235
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
@@ -1461,7 +1461,7 @@ msgstr "Слободна-Градња Уређивач Микроба"
 #: ../src/general/MainMenu.tscn:452 ../src/general/OptionsMenu.tscn:1184
 #: ../src/general/PauseMenu.tscn:138
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
-#: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:109
+#: ../src/modding/ModManager.tscn:1631 ../src/saving/NewSaveMenu.tscn:109
 #: ../src/saving/SaveManagerGUI.tscn:120
 msgid "BACK"
 msgstr "Назад"
@@ -1649,6 +1649,7 @@ msgid "LANGUAGE"
 msgstr "Језик:"
 
 #: ../src/general/OptionsMenu.tscn:649 ../src/general/OptionsMenu.tscn:1195
+#: ../src/modding/ModManager.tscn:516 ../src/modding/ModManager.tscn:958
 msgid "RESET"
 msgstr "Ресетовати"
 
@@ -1819,7 +1820,7 @@ msgstr "Одбаци и настави"
 
 #: ../src/general/OptionsMenu.tscn:1324
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:52
-#: ../src/modding/NewModGUI.tscn:457
+#: ../src/modding/NewModGUI.tscn:730
 msgid "CANCEL"
 msgstr "Отказати"
 
@@ -3443,261 +3444,453 @@ msgstr "ВИ СТЕ ПРОСПЕРИРАЛИ!"
 msgid "WIN_TEXT"
 msgstr "Честитамо, освојили сте ову верзију Thrive! Ако желите, можете наставити да играте и након затварања овог екрана или започети нову игру у новом свету."
 
-#: ../src/modding/ModLoader.cs:211 ../src/modding/ModLoader.cs:264
+#: ../src/modding/ModLoader.cs:461 ../src/modding/ModLoader.cs:529
 msgid "CANT_LOAD_MOD_INFO"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:235
+#: ../src/modding/ModLoader.cs:497
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:252
+#: ../src/modding/ModLoader.cs:514
 msgid "MOD_HAS_NO_LOADABLE_RESOURCES"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:279
+#: ../src/modding/ModLoader.cs:544
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:287
+#: ../src/modding/ModLoader.cs:552
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:351
+#: ../src/modding/ModLoader.cs:620
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:364
+#: ../src/modding/ModLoader.cs:633
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:380
+#: ../src/modding/ModLoader.cs:649
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
 msgstr ""
 
-#: ../src/modding/ModLoader.cs:394
+#: ../src/modding/ModLoader.cs:665
 #, fuzzy
 msgid "PCK_LOAD_FAILED"
 msgstr "Учитавање завршено"
 
-#: ../src/modding/ModManager.cs:293
+#: ../src/modding/ModManager.cs:471
 msgid "INVALID_ICON_PATH"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:307
+#: ../src/modding/ModManager.cs:485
 msgid "INVALID_URL_SCHEME"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:319
+#: ../src/modding/ModManager.cs:497
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:549
+#: ../src/modding/ModManager.cs:609
+msgid "MOD_LOADER_TAB"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:610
+msgid "MOD_ERRORS_TAB"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:611
+#, fuzzy
+msgid "MOD_CONFIGURATION_TAB"
+msgstr "Аутоматска-еволуција није успела"
+
+#: ../src/modding/ModManager.cs:987 ../src/modding/ModManager.cs:2054
+msgid "THIS_IS_WORKSHOP_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:988 ../src/modding/ModManager.cs:2055
+msgid "THIS_IS_LOCAL_MOD"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1055
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Одабрано:"
 
-#: ../src/modding/ModManager.cs:885
-msgid "THIS_IS_WORKSHOP_MOD"
+#: ../src/modding/ModManager.cs:1426
+#, fuzzy
+msgid "MOD_LOAD_ERROR_WARNING"
+msgstr ""
+"Учитавање података из ове датотеке није успело.\n"
+"Овај сачување је највероватније оштећено или новији формат који ова верзија Thrive не разуме.\n"
+"Да ли желите да ипак покушате да учитате чување?"
+
+#: ../src/modding/ModManager.cs:1428
+#, fuzzy
+msgid "ARE_YOU_SURE_TO_LOAD_MOD"
+msgstr "Да ли сте сигурни да желите да вратите СВА подешавања на подразумеване вредности?"
+
+#: ../src/modding/ModManager.cs:1627 ../src/modding/ModManager.tscn:851
+#: ../src/modding/ModManager.tscn:1444 ../src/modding/NewModGUI.tscn:548
+msgid "MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:886
-msgid "THIS_IS_LOCAL_MOD"
+#: ../src/modding/ModManager.cs:1643
+msgid "NO_MOD_DEPENDENCIES"
 msgstr ""
 
-#: ../src/modding/ModManager.cs:940
+#: ../src/modding/ModManager.cs:1658 ../src/modding/ModManager.tscn:1466
+#: ../src/modding/NewModGUI.tscn:572
+msgid "MOD_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:1674
+#, fuzzy
+msgid "NO_REQUIRED_MODS"
+msgstr "Одабрано:"
+
+#: ../src/modding/ModManager.cs:1689 ../src/modding/ModManager.tscn:869
+#, fuzzy
+msgid "INCOMPATIBLE_WITH"
+msgstr ""
+"Познато је да је изабрано чување за учитавање некомпатибилно са овом верзијом Thrive.\n"
+"Како је Thrive још увек у раној фази развој компатибилност спремања није висок приоритет, јер као такав не постоји уграђени конвертор за спремање за надоградњу старих спремања."
+
+#: ../src/modding/ModManager.cs:1705
+#, fuzzy
+msgid "NO_MOD_INCOMPATIBLE"
+msgstr "Изабрано чување је некомпатибилно"
+
+#: ../src/modding/ModManager.cs:1720 ../src/modding/ModManager.tscn:878
+#, fuzzy
+msgid "LOAD_ORDER"
+msgstr "Учитајте Игру"
+
+#: ../src/modding/ModManager.cs:1729 ../src/modding/ModManager.tscn:1510
+#: ../src/modding/NewModGUI.tscn:620
+#, fuzzy
+msgid "MOD_LOAD_AFTER"
+msgstr "Учитати неважеће чување?"
+
+#: ../src/modding/ModManager.cs:1747 ../src/modding/ModManager.tscn:1488
+#: ../src/modding/NewModGUI.tscn:596
+#, fuzzy
+msgid "MOD_LOAD_BEFORE"
+msgstr "Учитати неважеће чување?"
+
+#: ../src/modding/ModManager.cs:1759
+#, fuzzy
+msgid "MOD_NO_LOAD_ORDER"
+msgstr "Учитати неважеће чување?"
+
+#: ../src/modding/ModManager.cs:2114
+msgid "MOD_LIST_CONTAIN_ERRORS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2116
+#, fuzzy
+msgid "MOD_CHECK_AGAIN_WARNING"
+msgstr ""
+"Имате несачуване промене које ће бити одбачене.\n"
+"Да ли желите да наставите?"
+
+#: ../src/modding/ModManager.cs:2120 ../src/modding/ModManager.cs:2160
+#, fuzzy
+msgid "MOD_LIST_VALID"
+msgstr "Сачувај неважеће"
+
+#: ../src/modding/ModManager.cs:2143 ../src/modding/ModManager.cs:2154
+#: ../src/modding/ModManager.cs:2177 ../src/modding/ModManager.cs:2193
+#: ../src/modding/ModManager.cs:2198
+#, fuzzy
+msgid "UNKNOWN_MOD"
+msgstr "Непознати миш"
+
+#: ../src/modding/ModManager.cs:2163
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_VERSION"
+msgstr ""
+"Познато је да је изабрано чување за учитавање некомпатибилно са овом верзијом Thrive.\n"
+"Како је Thrive још увек у раној фази развој компатибилност спремања није висок приоритет, јер као такав не постоји уграђени конвертор за спремање за надоградњу старих спремања."
+
+#: ../src/modding/ModManager.cs:2180
+msgid "MOD_ERROR_DEPENDENCIES"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2182
+msgid "MOD_ERROR_DEPENDENCIES_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2201
+msgid "MOD_ERROR_REQUIRED_MODS"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2203
+msgid "MOD_ERROR_REQUIRED_MODS_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2206
+msgid "MOD_ERROR_DEPENDENCIES_ORDER"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2208
+msgid "MOD_ERROR_DEPENDENCIES_ORDER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2213
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD"
+msgstr "Учитати некомпатибилно чување?"
+
+#: ../src/modding/ModManager.cs:2215
+#, fuzzy
+msgid "MOD_ERROR_INCOMPATIBLE_MOD_FIX"
+msgstr ""
+"Познато је да је изабрано чување за учитавање некомпатибилно са овом верзијом Thrive.\n"
+"Како је Thrive још увек у раној фази развој компатибилност спремања није висок приоритет, јер као такав не постоји уграђени конвертор за спремање за надоградњу старих спремања."
+
+#: ../src/modding/ModManager.cs:2219
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2221
+msgid "MOD_ERROR_LOAD_ORDER_BEFORE_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2226
+#, fuzzy
+msgid "MOD_ERROR_LOAD_ORDER_AFTER"
+msgstr "Учитати неважеће чување?"
+
+#: ../src/modding/ModManager.cs:2228
+msgid "MOD_ERROR_LOAD_ORDER_AFTER_FIX"
+msgstr ""
+
+#: ../src/modding/ModManager.cs:2270
 #, fuzzy
 msgid "ERROR_CREATING_FOLDER"
 msgstr "Грешка при чувању"
 
-#: ../src/modding/ModManager.cs:949
+#: ../src/modding/ModManager.cs:2279
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:121
+#: ../src/modding/ModManager.tscn:201
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:144 ../src/saving/SaveManagerGUI.tscn:69
-msgid "REFRESH"
-msgstr "Освјежи"
-
-#: ../src/modding/ModManager.tscn:152
-msgid "OPEN_FOLDER"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:170
-#, fuzzy
-msgid "RIGHT_ARROW"
-msgstr "Десни миш"
-
-#: ../src/modding/ModManager.tscn:183
+#: ../src/modding/ModManager.tscn:229 ../src/modding/ModManager.tscn:581
 #, fuzzy
 msgid "LEFT_ARROW"
 msgstr "Леви миш"
 
-#: ../src/modding/ModManager.tscn:195
+#: ../src/modding/ModManager.tscn:257 ../src/modding/ModManager.tscn:615
+#, fuzzy
+msgid "RIGHT_ARROW"
+msgstr "Десни миш"
+
+#: ../src/modding/ModManager.tscn:271
 #, fuzzy
 msgid "ENABLED_MODS"
 msgstr "Омогућите уређивач"
 
-#: ../src/modding/ModManager.tscn:213
+#: ../src/modding/ModManager.tscn:310
+#, fuzzy
+msgid "ENABLE_ALL"
+msgstr "Изабрано чување је некомпатибилно"
+
+#: ../src/modding/ModManager.tscn:316
+msgid "OPEN_FOLDER"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:322
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:250
+#: ../src/modding/ModManager.tscn:339
 #, fuzzy
-msgid "SELECTED_MOD"
-msgstr "Одабрано:"
+msgid "ONESHOT_LOADING"
+msgstr "Грешка при учитавању"
 
-#: ../src/modding/ModManager.tscn:284 ../src/modding/ModManager.tscn:672
-#: ../src/modding/NewModGUI.tscn:142
+#: ../src/modding/ModManager.tscn:498 ../src/modding/ModUploader.tscn:158
+msgid "APPLY"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:507
+msgid "CLEAR"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:664 ../src/modding/ModManager.tscn:1120
+#: ../src/modding/NewModGUI.tscn:158
 msgid "MOD_AUTHOR"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:315 ../src/modding/ModManager.tscn:694
-#: ../src/modding/NewModGUI.tscn:165
+#: ../src/modding/ModManager.tscn:689 ../src/modding/ModManager.tscn:1142
+#: ../src/modding/NewModGUI.tscn:181
 #, fuzzy
 msgid "MOD_VERSION"
 msgstr "Верзија:"
 
-#: ../src/modding/ModManager.tscn:371
-msgid "RECOMMENDED_THRIVE_VERSION"
-msgstr ""
-
-#: ../src/modding/ModManager.tscn:415
+#: ../src/modding/ModManager.tscn:770
 #, fuzzy
 msgid "MINIMUM_VERSION"
 msgstr "Верзија:"
 
-#: ../src/modding/ModManager.tscn:442 ../src/modding/ModManager.tscn:716
-#: ../src/modding/NewModGUI.tscn:188
-#, fuzzy
-msgid "MOD_DESCRIPTION"
-msgstr "Опис:"
-
-#: ../src/modding/ModManager.tscn:474
-msgid "MORE_INFO"
+#: ../src/modding/ModManager.tscn:804
+msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:482
+#: ../src/modding/ModManager.tscn:860
+#, fuzzy
+msgid "REQUIRED_MODS"
+msgstr "Омогућите уређивач"
+
+#: ../src/modding/ModManager.tscn:887
 msgid "OPEN_MOD_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:505
-msgid "BROWSE_WORKSHOP"
+#: ../src/modding/ModManager.tscn:896
+msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:512 ../src/modding/ModUploader.tscn:45
+#: ../src/modding/ModManager.tscn:968
 #, fuzzy
-msgid "UPLOAD"
-msgstr "Учитавање"
+msgid "CHECK_BUTTON_TOOLTIP"
+msgstr "Додајте ново везивање тастера"
 
-#: ../src/modding/ModManager.tscn:519
-msgid "NEW"
+#: ../src/modding/ModManager.tscn:969
+msgid "CHECK_MOD"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:532
+#: ../src/modding/ModManager.tscn:979 ../src/saving/SaveManagerGUI.tscn:69
+msgid "REFRESH"
+msgstr "Освјежи"
+
+#: ../src/modding/ModManager.tscn:989
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_CAVEATS"
 msgstr "Учитати неважеће чување?"
 
-#: ../src/modding/ModManager.tscn:559
-#, fuzzy
-msgid "ENABLE_ALL_COMPATIBLE"
-msgstr "Изабрано чување је некомпатибилно"
-
-#: ../src/modding/ModManager.tscn:568
+#: ../src/modding/ModManager.tscn:990
 msgid "APPLY_CHANGES"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:579
-msgid "UNAPPLIED_MOD_CHANGES"
+#: ../src/modding/ModManager.tscn:1005
+msgid "BROWSE_WORKSHOP"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:580
+#: ../src/modding/ModManager.tscn:1016 ../src/modding/ModUploader.tscn:45
 #, fuzzy
-msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr "Најосновнији облик мембране, има малу заштиту од оштећења. Такође му је потребно више енергије да се не би деформисао. Предност је у томе што омогућава ћелији да се брзо креће и апсорбује хранљиве материје."
+msgid "UPLOAD"
+msgstr "Учитавање"
 
-#: ../src/modding/ModManager.tscn:581
-#, fuzzy
-msgid "DISCARD_CHANGES"
-msgstr "Одбаци и настави"
-
-#: ../src/modding/ModManager.tscn:588
-msgid "FULL_MOD_INFO"
+#: ../src/modding/ModManager.tscn:1027
+msgid "NEW"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:629 ../src/modding/NewModGUI.tscn:119
+#: ../src/modding/ModManager.tscn:1072 ../src/modding/NewModGUI.tscn:135
 #, fuzzy
 msgid "MOD_NAME"
 msgstr "Име:"
 
-#: ../src/modding/ModManager.tscn:651 ../src/modding/NewModGUI.tscn:96
+#: ../src/modding/ModManager.tscn:1094 ../src/modding/NewModGUI.tscn:112
 msgid "MOD_INTERNAL_NAME"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:738 ../src/modding/NewModGUI.tscn:211
+#: ../src/modding/ModManager.tscn:1164 ../src/modding/NewModGUI.tscn:204
+#, fuzzy
+msgid "MOD_DESCRIPTION"
+msgstr "Опис:"
+
+#: ../src/modding/ModManager.tscn:1186 ../src/modding/NewModGUI.tscn:227
 #, fuzzy
 msgid "MOD_EXTENDED_DESCRIPTION"
 msgstr "Нитрогеназа је протеин у стању да користи гасовити азот и ћелијску енергију у облику ATP за производњу амонијака, кључног хранљивог састојка за раст ћелија. Ово је процес који се назива анаеробна фиксација азота. Пошто је нитрогеназа суспендована директно у цитоплазми, околна течност врши ферментацију."
 
-#: ../src/modding/ModManager.tscn:776 ../src/modding/NewModGUI.tscn:235
+#: ../src/modding/ModManager.tscn:1224 ../src/modding/NewModGUI.tscn:251
 msgid "MOD_ICON_FILE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:798 ../src/modding/NewModGUI.tscn:258
+#: ../src/modding/ModManager.tscn:1246 ../src/modding/NewModGUI.tscn:291
+msgid "MOD_PREVIEW_IMAGE_FILE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1268 ../src/modding/NewModGUI.tscn:330
 msgid "MOD_INFO_URL"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:820 ../src/modding/NewModGUI.tscn:281
+#: ../src/modding/ModManager.tscn:1290 ../src/modding/NewModGUI.tscn:353
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:842 ../src/modding/NewModGUI.tscn:304
+#: ../src/modding/ModManager.tscn:1312 ../src/modding/NewModGUI.tscn:376
 msgid "MOD_RECOMMENDED_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:864 ../src/modding/NewModGUI.tscn:327
+#: ../src/modding/ModManager.tscn:1334 ../src/modding/NewModGUI.tscn:399
 msgid "MOD_MINIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:886 ../src/modding/NewModGUI.tscn:350
+#: ../src/modding/ModManager.tscn:1356 ../src/modding/NewModGUI.tscn:422
 msgid "MOD_MAXIMUM_THRIVE"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:908 ../src/modding/NewModGUI.tscn:373
+#: ../src/modding/ModManager.tscn:1378 ../src/modding/NewModGUI.tscn:445
 #, fuzzy
 msgid "MOD_PCK_NAME"
 msgstr "Назив Зоне"
 
-#: ../src/modding/ModManager.tscn:930 ../src/modding/NewModGUI.tscn:396
+#: ../src/modding/ModManager.tscn:1400 ../src/modding/NewModGUI.tscn:485
 msgid "MOD_ASSEMBLY"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:952 ../src/modding/NewModGUI.tscn:419
+#: ../src/modding/ModManager.tscn:1422 ../src/modding/NewModGUI.tscn:525
 msgid "MOD_ASSEMBLY_CLASS"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:979
+#: ../src/modding/ModManager.tscn:1532 ../src/modding/NewModGUI.tscn:644
 #, fuzzy
-msgid "MOD_CREATION_FAILED"
+msgid "MOD_INCOMPATIBLE_MODS"
+msgstr "Учитати некомпатибилно чување?"
+
+#: ../src/modding/ModManager.tscn:1554 ../src/modding/NewModGUI.tscn:668
+#, fuzzy
+msgid "MOD_CONFIG_FILE"
 msgstr "Аутоматска-еволуција није успела"
 
-#: ../src/modding/ModManager.tscn:989
+#: ../src/modding/ModManager.tscn:1585
 #, fuzzy
 msgid "MOD_LOAD_OR_UNLOAD_ERRORS_OCCURRED"
 msgstr "Учитати неважеће чување?"
 
-#: ../src/modding/ModManager.tscn:994
+#: ../src/modding/ModManager.tscn:1590
 msgid "RESTART_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModManager.tscn:996
+#: ../src/modding/ModManager.tscn:1592
 #, fuzzy
 msgid "MOD_LOAD_UNLOAD_RESTART"
 msgstr "Учитати неважеће чување?"
+
+#: ../src/modding/ModManager.tscn:1607
+msgid "MOD_LOAD_ERROR_WARNING_TITLE"
+msgstr ""
+
+#: ../src/modding/ModManager.tscn:1609
+#, fuzzy
+msgid "YES"
+msgstr "године"
+
+#: ../src/modding/ModManager.tscn:1610
+#, fuzzy
+msgid "NO"
+msgstr "Поништи"
+
+#: ../src/modding/ModManager.tscn:1618 ../src/modding/ModManager.tscn:1621
+msgid "NULL"
+msgstr ""
 
 #: ../src/modding/ModUploader.cs:275 ../src/modding/ModUploader.tscn:272
 msgid "CONTENT_UPLOADED_FROM"
@@ -3775,7 +3968,7 @@ msgstr ""
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "Чување није успело! Догоди се изузетак"
 
-#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:300
+#: ../src/modding/ModUploader.cs:660 ../src/modding/NewModGUI.cs:434
 #, fuzzy
 msgid "FORM_ERROR_MESSAGE"
 msgstr "Грешка при чувању"
@@ -3809,10 +4002,6 @@ msgstr ""
 
 #: ../src/modding/ModUploader.tscn:152
 msgid "ID_NUMBER"
-msgstr ""
-
-#: ../src/modding/ModUploader.tscn:158
-msgid "APPLY"
 msgstr ""
 
 #: ../src/modding/ModUploader.tscn:168
@@ -3873,50 +4062,55 @@ msgstr ""
 msgid "UPLOAD_SUCCEEDED"
 msgstr "Чување је успело"
 
-#: ../src/modding/NewModGUI.cs:175
+#: ../src/modding/NewModGUI.cs:245
 #, fuzzy
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr "Хемопласт је двострука мембранска структура која садржи протеине који су способни да претворе водоник-сулфид, воду и гасовити угљен-диоксид у глукозу у процесу који се назива Хемосинтеза водоник-сулфида. Стопа његове производње глукозе скалира се са концентрацијом воде и угљен-диоксида."
 
-#: ../src/modding/NewModGUI.cs:232
+#: ../src/modding/NewModGUI.cs:366
 msgid "INVALID_URL_FORMAT"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:247
+#: ../src/modding/NewModGUI.cs:381
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:253
+#: ../src/modding/NewModGUI.cs:387
 msgid "INTERNAL_NAME_REQUIRES_CAPITAL"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:259
+#: ../src/modding/NewModGUI.cs:393
 msgid "INTERNAL_NAME_IN_USE"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:275
+#: ../src/modding/NewModGUI.cs:409
 msgid "MISSING_OR_INVALID_REQUIRED_FIELD"
 msgstr ""
 
-#: ../src/modding/NewModGUI.cs:286
+#: ../src/modding/NewModGUI.cs:420
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Аутоматска-еволуција није успела"
 
-#: ../src/modding/NewModGUI.tscn:35
+#: ../src/modding/NewModGUI.tscn:51
 #, fuzzy
 msgid "CREATE_NEW_MOD"
 msgstr "Направите нови микроб"
 
-#: ../src/modding/NewModGUI.tscn:69
+#: ../src/modding/NewModGUI.tscn:85
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:76
+#: ../src/modding/NewModGUI.tscn:92
 msgid "OUR_WIKI"
 msgstr ""
 
-#: ../src/modding/NewModGUI.tscn:450
+#: ../src/modding/NewModGUI.tscn:686
+#, fuzzy
+msgid "ENABLE_CONFIG"
+msgstr "Омогућите уређивач"
+
+#: ../src/modding/NewModGUI.tscn:723
 #, fuzzy
 msgid "CREATE"
 msgstr "Направљено у:"
@@ -4474,6 +4668,18 @@ msgstr "W, A, S, D и миш за кретање. Е да пуцате Окси�
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Приручник"
+
+#, fuzzy
+#~ msgid "SELECTED_MOD"
+#~ msgstr "Одабрано:"
+
+#, fuzzy
+#~ msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
+#~ msgstr "Најосновнији облик мембране, има малу заштиту од оштећења. Такође му је потребно више енергије да се не би деформисао. Предност је у томе што омогућава ћелији да се брзо креће и апсорбује хранљиве материје."
+
+#, fuzzy
+#~ msgid "DISCARD_CHANGES"
+#~ msgstr "Одбаци и настави"
 
 #~ msgid "LOADING_DOT"
 #~ msgstr "Учитавање..."
