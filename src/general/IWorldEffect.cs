@@ -161,19 +161,9 @@ public class GasProductionEffect : IWorldEffect
 
     private void AddIntakeToPatch(Patch patch, KeyValuePair<Compound, float> intake)
     {
-        if (!patch.Biome.Compounds.ContainsKey(intake.Key))
-        {
-            patch.Biome.Compounds[intake.Key] = new EnvironmentalCompoundProperties
-            {
-                Amount = 0,
-                Density = 0,
-                Dissolved = 0,
-            };
-        }
-
         if (!patch.Biome.Compounds.TryGetValue(intake.Key, out var compoundValue))
         {
-           compoundValue = new EnvironmentalCompoundProperties
+            compoundValue = new EnvironmentalCompoundProperties
             {
                 Amount = 0,
                 Density = 0,
