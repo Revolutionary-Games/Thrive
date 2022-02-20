@@ -76,8 +76,11 @@ public class MicrobeAISystem
         if (ai.TimeUntilNextAIUpdate > 0)
             return;
 
+        // TODO: would be nice to add a tiny bit of randomness to the times here so that not all cells think at once
         ai.TimeUntilNextAIUpdate = Constants.MICROBE_AI_THINK_INTERVAL;
 
-        ai.AIThink(delta, random, data);
+        // As the AI think interval is made constant, we pass that value as the delta to make time keeping be actually
+        // (mostly) consistent in the AI code
+        ai.AIThink(Constants.MICROBE_AI_THINK_INTERVAL, random, data);
     }
 }

@@ -113,6 +113,12 @@ public static class Constants
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
+    /// <summary>
+    ///   This is how often the AI microbes look for emitted signaling agent signals from members of their species.
+    ///   This is set pretty high to reduce the performance impact.
+    /// </summary>
+    public const float MICROBE_AI_SIGNAL_REACT_INTERVAL = 1.2f;
+
     public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
 
     public const int INITIAL_SPECIES_POPULATION = 100;
@@ -423,6 +429,9 @@ public static class Constants
     public const float AI_BASE_MOVEMENT = 1.0f;
     public const float AI_FOCUSED_MOVEMENT = 1.0f;
     public const float AI_ENGULF_STOP_DISTANCE = 0.8f;
+
+    public const float AI_FOLLOW_DISTANCE_SQUARED = 60 * 60;
+    public const float AI_FLEE_DISTANCE_SQUARED = 85 * 85;
 
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 40.0f;
