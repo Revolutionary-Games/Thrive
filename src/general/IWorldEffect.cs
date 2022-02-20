@@ -118,7 +118,7 @@ public class GasProductionEffect : IWorldEffect
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
             // First, add the constant intake to the patch, since it will influence the available amount for species.
-            // TODO move to own effect
+            // TODO: move to own effect
             AddConstantIntakeToPatch(patch);
 
             var compoundsProduced = new Dictionary<Compound, float>(gasCompounds.Count);
@@ -211,7 +211,7 @@ public class GasProductionEffect : IWorldEffect
     /// </summary>
     private float ComputeOverConsumptionFactor(Dictionary<Compound, float> compoundsProduced, Patch patch)
     {
-        var overConsumptionScalingFactor = 1f;
+        var overConsumptionScalingFactor = 1.0f;
         foreach (var production in compoundsProduced)
         {
             var concentrationInput = production.Value / patch.Volume;
