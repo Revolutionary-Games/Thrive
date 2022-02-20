@@ -45,8 +45,8 @@ void fragment(){
 
     vec4 dissolveTex = texture(dissolveTexture, UV);
 
-    float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
-        float(-0.8 + clamp(dissolveValue, 0, 1));
+    float cutoff = dot(dissolveTex.rgb, vec3(0.6, 0.6, 0.6)) -
+        float(-0.15 + clamp(dissolveValue, 0, 1));
 
     ALBEDO = final.rgb;
     NORMAL = (CAMERA_MATRIX * (WORLD_MATRIX * vec4(normals, 0.0))).xyz;
