@@ -51,7 +51,7 @@ public static class Constants
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
     public const float CLOUD_NOISE_UV_OFFSET_MULTIPLIER = 2.5f;
 
-    public const float CLOUD_CHEAT_DENSITY = 16000.0f;
+    public const float CLOUD_CHEAT_DENSITY = 1600000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
 
