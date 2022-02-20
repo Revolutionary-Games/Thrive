@@ -171,7 +171,15 @@ public class GasProductionEffect : IWorldEffect
             };
         }
 
-        var compoundValue = patch.Biome.Compounds[intake.Key];
+        if (!patch.Biome.Compounds.TryGetValue(intake.Key, out var compoundValue))
+        {
+           compoundValue = new EnvironmentalCompoundProperties
+            {
+                Amount = 0,
+                Density = 0,
+                Dissolved = 0,
+            };
+        }
 
         // TODO: if capped here, use something to scale production
         compoundValue.Dissolved = Math.Max(
