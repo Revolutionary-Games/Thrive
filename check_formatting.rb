@@ -780,9 +780,14 @@ def run_cleanup_code
   params = ['dotnet', 'tool', 'run', 'jb', 'cleanupcode', 'Thrive.sln',
             '--profile=full_no_xml', "--caches-home=#{JET_BRAINS_CACHE}"]
 
+  # TODO: we could probably split the includes into 4 groups to speed up things as the
+  # cleanup tool doesn't run in parallel by default (so we could run 4 processes at once)
   params.append "--include=#{@includes.join(';')}" if @includes
 
-  runOpen3Checked(*params)
+  # Sometimes the code inspections fails completely and caches bad data if ran at the same time
+  BUILD_MUTEX.synchronize do
+    runOpen3Checked(*params)
+  end
 
   new_diff = runOpen3CaptureOutput 'git', '-c', 'core.safecrlf=false', 'diff', '--stat'
 
