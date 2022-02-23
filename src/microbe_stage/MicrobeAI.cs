@@ -491,6 +491,7 @@ public class MicrobeAI
             }
             else
             {
+                SetMoveSpeed(0.0f);
                 SmellForCompounds(data);
             }
         }
