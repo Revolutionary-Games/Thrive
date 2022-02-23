@@ -55,6 +55,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
 
+    private bool? hasSignalingAgent;
+
+    [JsonProperty]
+    private MicrobeSignalCommand command = MicrobeSignalCommand.None;
+
     [JsonProperty]
     private MicrobeAI? ai;
 
@@ -110,6 +115,36 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return radius;
         }
     }
+
+    [JsonIgnore]
+    public bool HasSignalingAgent
+    {
+        get
+        {
+            if (hasSignalingAgent != null)
+                return hasSignalingAgent.Value;
+
+            return CheckHasSignalingAgent();
+        }
+    }
+
+    [JsonIgnore]
+    public MicrobeSignalCommand SignalCommand
+    {
+        get
+        {
+            if (!CheckHasSignalingAgent() || Dead)
+                return MicrobeSignalCommand.None;
+
+            return command;
+        }
+    }
+
+    /// <summary>
+    ///   Because AI is ran in parallel thread, if it wants to change the signaling, it needs to do it through this
+    /// </summary>
+    [JsonProperty]
+    public MicrobeSignalCommand? QueuedSignalingCommand { get; set; }
 
     /// <summary>
     ///   Returns a squared value of <see cref="Radius"/>.
@@ -462,6 +497,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
         foreach (var organelle in organelles!.Organelles)
         {
             organelle.Update(delta);
+        }
+
+        if (QueuedSignalingCommand != null)
+        {
+            command = QueuedSignalingCommand.Value;
+            QueuedSignalingCommand = null;
         }
 
         // Rotation is applied in the physics force callback as that's

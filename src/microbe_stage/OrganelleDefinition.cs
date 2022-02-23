@@ -393,6 +393,7 @@ public class OrganelleDefinition : IRegistryType
         public MovementComponentFactory? Movement;
         public PilusComponentFactory? Pilus;
         public ChemoreceptorComponentFactory? Chemoreceptor;
+        public SignalingAgentComponentFactory? SignalingAgent;
 
         private readonly List<IOrganelleComponentFactory> allFactories = new();
 
@@ -459,6 +460,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 Chemoreceptor.Check(name);
                 allFactories.Add(Chemoreceptor);
+                ++count;
+            }
+
+            if (SignalingAgent != null)
+            {
+                SignalingAgent.Check(name);
+                allFactories.Add(SignalingAgent);
                 ++count;
             }
         }
