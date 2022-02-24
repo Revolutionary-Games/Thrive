@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 /// </remarks>
 public class MicrobeEditorAction : ReversibleAction
 {
+    // TODO: split this to a separate class / interface (I'm not doing it here due to the open dynamic MP PR
+    // -hhyyrylainen)
     [JsonProperty]
     public readonly int Cost;
 

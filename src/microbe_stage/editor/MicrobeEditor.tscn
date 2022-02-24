@@ -1,10 +1,10 @@
-[gd_scene load_steps=133 format=2]
+[gd_scene load_steps=123 format=2]
 
-[ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorWorld.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
 [ext_resource path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=4]
-[ext_resource path="res://assets/models/EditorArrow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorTabButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/clockButton.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/undoButton.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/bevel/redoButton.png" type="Texture" id=8]
@@ -12,12 +12,10 @@
 [ext_resource path="res://assets/textures/gui/bevel/parts/BioluminescentIcon.png" type="Texture" id=10]
 [ext_resource path="res://assets/textures/gui/bevel/parts/ThermoplastIcon.png" type="Texture" id=11]
 [ext_resource path="res://src/microbe_stage/editor/MicrobePartSelection.tscn" type="PackedScene" id=12]
-[ext_resource path="res://shaders/EditorHexGrid.shader" type="Shader" id=13]
 [ext_resource path="res://src/gui_common/TweakedColourPicker.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-Small.tres" type="DynamicFont" id=15]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonActive.png" type="Texture" id=16]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonDisabled.png" type="Texture" id=17]
-[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture" id=18]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButtonHover.png" type="Texture" id=19]
 [ext_resource path="res://assets/textures/gui/bevel/randomizeButton.png" type="Texture" id=20]
 [ext_resource path="res://assets/textures/gui/bevel/scrollPanelVerticalFade.png" type="Texture" id=21]
@@ -26,11 +24,6 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Tiny.tres" type="DynamicFont" id=24]
 [ext_resource path="res://src/microbe_stage/editor/TimelineTab.cs" type="Script" id=25]
 [ext_resource path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" type="PackedScene" id=26]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=27]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=28]
-[ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=29]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButton.png" type="Texture" id=30]
-[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonActive.png" type="Texture" id=31]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonDisabled.png" type="Texture" id=32]
 [ext_resource path="res://assets/textures/gui/bevel/clockButtonDisabled.png" type="Texture" id=33]
 [ext_resource path="res://assets/textures/gui/bevel/1xSymmetry.png" type="Texture" id=34]
@@ -92,17 +85,6 @@
 [ext_resource path="res://src/gui_common/fonts/Lato-Regular-Smaller.tres" type="DynamicFont" id=102]
 [ext_resource path="res://src/gui_common/charts/line/LineChart.tscn" type="PackedScene" id=103]
 [ext_resource path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" type="PackedScene" id=107]
-
-[sub_resource type="PlaneMesh" id=1]
-size = Vector2( 15, 15 )
-
-[sub_resource type="ShaderMaterial" id=2]
-render_priority = -2
-shader = ExtResource( 13 )
-shader_param/color = Color( 0.745098, 0.745098, 0.745098, 1 )
-shader_param/lineWidth = 0.02
-shader_param/edgeLength = 1.299
-shader_param/maskTexture = ExtResource( 18 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.294118, 0.152941, 0.356863, 1 )
@@ -377,8 +359,6 @@ default_font = ExtResource( 81 )
 texture = ExtResource( 89 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
-[sub_resource type="ButtonGroup" id=35]
-
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
 script = ExtResource( 2 )
@@ -387,34 +367,7 @@ __meta__ = {
 }
 PauseMenuPath = NodePath("PauseMenu")
 
-[node name="World" type="Node" parent="."]
-
-[node name="PrimaryCamera" parent="World" instance=ExtResource( 1 )]
-DefaultCameraHeight = 10.0
-MaxCameraHeight = 40.0
-DisableBackgroundParticles = true
-InterpolateSpeed = 1.0
-
-[node name="CameraLookAt" type="Spatial" parent="World"]
-__meta__ = {
-"_editor_description_": "Just something to make the microbe camera look at the right place"
-}
-
-[node name="EditorArrow" parent="World" instance=ExtResource( 5 )]
-transform = Transform( -0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0 )
-
-[node name="Grid" type="MeshInstance" parent="World"]
-mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
-
-[node name="EditorLight" type="OmniLight" parent="World"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
-light_energy = 0.5
-shadow_enabled = true
-omni_range = 100.0
-omni_attenuation = 0.420448
-
-[node name="DynamicallySpawned" type="Spatial" parent="World"]
+[node name="EditorWorld" parent="." instance=ExtResource( 1 )]
 
 [node name="MicrobeEditorGUI" type="Control" parent="."]
 pause_mode = 2
@@ -429,9 +382,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 MenuPath = NodePath("../PauseMenu")
-ReportTabButtonPath = NodePath("TopLeft/HBoxContainer/ReportButton")
-PatchMapButtonPath = NodePath("TopLeft/HBoxContainer/PatchMapButton")
-CellEditorButtonPath = NodePath("TopLeft/HBoxContainer/CellEditorButton")
+ReportTabButtonPath = NodePath("MicrobeEditorTabButtons/HBoxContainer/ReportButton")
+PatchMapButtonPath = NodePath("MicrobeEditorTabButtons/HBoxContainer/PatchMapButton")
+CellEditorButtonPath = NodePath("MicrobeEditorTabButtons/HBoxContainer/CellEditorButton")
 AutoEvoSubtabButtonPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton")
 TimelineSubtabButtonPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
 StructureTabButtonPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tab/Structure")
@@ -460,8 +413,8 @@ MutationPointsBarPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/M
 MutationPointsSubtractBarPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarSubtract")
 SpeciesNameEditPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SpeciesName")
 MembraneColorPickerPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker")
-MenuButtonPath = NodePath("BottomButtons/HBoxContainer/MenuButton")
-HelpButtonPath = NodePath("BottomButtons/HBoxContainer/HelpButton")
+MenuButtonPath = NodePath("EditorCommonBottomLeftButtons/HBoxContainer/MenuButton")
+HelpButtonPath = NodePath("EditorCommonBottomLeftButtons/HBoxContainer/HelpButton")
 NewCellButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/NewButton")
 UndoButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/UndoButton")
 RedoButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/RedoButton")
@@ -1016,7 +969,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 381.0
 margin_right = 302.0
-margin_bottom = 508.0
+margin_bottom = 615.0
 DisplayName = "EXTERNAL"
 Columns = 3
 TitleLabelPath = NodePath("../External/HBoxContainer/Title")
@@ -1040,7 +993,7 @@ margin_right = 302.0
 
 [node name="Clip" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External" index="1"]
 margin_right = 302.0
-margin_bottom = 127.0
+margin_bottom = 234.0
 
 [node name="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip" index="0"]
 margin_right = 302.0
@@ -1057,13 +1010,14 @@ margin_right = 200.0
 SelectionGroup = SubResource( 15 )
 
 [node name="chemoreceptor" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="2" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
-margin_left = 102.0
-margin_right = 200.0
+margin_left = 204.0
+margin_right = 302.0
 SelectionGroup = SubResource( 15 )
 
 [node name="cilia" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/External/Clip/GridContainer" index="3" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
-margin_left = 204.0
-margin_right = 302.0
+margin_top = 107.0
+margin_right = 98.0
+margin_bottom = 210.0
 MPCost = 40
 PartIcon = ExtResource( 9 )
 PartName = "CILIA"
@@ -1073,9 +1027,9 @@ SelectionGroup = SubResource( 15 )
 [node name="Organelle" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection" instance=ExtResource( 80 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 518.0
+margin_top = 625.0
 margin_right = 302.0
-margin_bottom = 966.0
+margin_bottom = 1073.0
 DisplayName = "ORGANELLES"
 Columns = 3
 TitleLabelPath = NodePath("../Organelle/HBoxContainer/Title")
@@ -1165,15 +1119,15 @@ margin_bottom = 317.0
 SelectionGroup = SubResource( 15 )
 
 [node name="signalingAgent" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="9" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
-margin_left = 204.0
-margin_top = 214.0
-margin_right = 302.0
-margin_bottom = 317.0
+margin_top = 321.0
+margin_right = 98.0
+margin_bottom = 424.0
 SelectionGroup = SubResource( 15 )
 
 [node name="bioluminescentVacuole" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Organelle/Clip/GridContainer" index="10" groups=["PlaceablePartSelectionElement"] instance=ExtResource( 12 )]
+margin_left = 102.0
 margin_top = 321.0
-margin_right = 98.0
+margin_right = 200.0
 margin_bottom = 424.0
 PartIcon = ExtResource( 10 )
 PartName = "BIOLUMINESCENT_VACUOLE"
@@ -1375,10 +1329,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 16 )
 
 [node name="TweakedColourPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" instance=ExtResource( 14 )]
-margin_left = 44.0
-margin_top = 69.0
-margin_right = 360.0
-margin_bottom = 659.0
+margin_left = 92.0
+margin_top = 117.0
+margin_right = 408.0
+margin_bottom = 707.0
 RawButtonEnabled = false
 
 [node name="Behaviour" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
@@ -3966,162 +3920,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TopLeft" type="MarginContainer" parent="MicrobeEditorGUI"]
-margin_right = 353.0
-margin_bottom = 45.0
-custom_constants/margin_right = 5
-custom_constants/margin_top = 10
-custom_constants/margin_left = 15
-custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="MicrobeEditorTabButtons" parent="MicrobeEditorGUI" instance=ExtResource( 5 )]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/TopLeft"]
-margin_left = 15.0
-margin_top = 10.0
-margin_right = 348.0
-margin_bottom = 40.0
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ReportButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_right = 104.0
-margin_bottom = 30.0
-focus_mode = 0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 15 )
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/disabled = SubResource( 11 )
-custom_styles/normal = SubResource( 12 )
-toggle_mode = true
-pressed = true
-action_mode = 0
-group = SubResource( 35 )
-text = "REPORT"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PatchMapButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_left = 114.0
-margin_right = 218.0
-margin_bottom = 30.0
-focus_mode = 0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 15 )
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/disabled = SubResource( 11 )
-custom_styles/normal = SubResource( 12 )
-toggle_mode = true
-action_mode = 0
-group = SubResource( 35 )
-text = "PATCH_MAP"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CellEditorButton" type="Button" parent="MicrobeEditorGUI/TopLeft/HBoxContainer"]
-margin_left = 228.0
-margin_right = 333.0
-margin_bottom = 30.0
-focus_mode = 0
-mouse_filter = 1
-size_flags_horizontal = 3
-custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-custom_fonts/font = ExtResource( 15 )
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/disabled = SubResource( 11 )
-custom_styles/normal = SubResource( 12 )
-toggle_mode = true
-action_mode = 0
-group = SubResource( 35 )
-text = "EDITOR"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BottomButtons" type="MarginContainer" parent="MicrobeEditorGUI"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -55.0
-margin_right = 155.0
-custom_constants/margin_top = 5
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/BottomButtons"]
-margin_left = 10.0
-margin_top = 5.0
-margin_right = 155.0
-margin_bottom = 50.0
-custom_constants/separation = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MenuButton" type="TextureButton" parent="MicrobeEditorGUI/BottomButtons/HBoxContainer"]
-margin_top = 5.0
-margin_right = 50.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 35 )
-focus_mode = 0
-mouse_filter = 1
-size_flags_vertical = 4
-texture_normal = ExtResource( 28 )
-texture_pressed = ExtResource( 29 )
-texture_hover = ExtResource( 27 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StatisticsButton" type="TextureButton" parent="MicrobeEditorGUI/BottomButtons/HBoxContainer"]
-margin_left = 55.0
-margin_top = 5.0
-margin_right = 90.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
-focus_mode = 0
-mouse_filter = 1
-size_flags_vertical = 4
-disabled = true
-texture_normal = ExtResource( 30 )
-texture_pressed = ExtResource( 31 )
-texture_hover = ExtResource( 4 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HelpButton" type="TextureButton" parent="MicrobeEditorGUI/BottomButtons/HBoxContainer"]
-margin_left = 95.0
-margin_top = 5.0
-margin_right = 130.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 35, 35 )
-focus_mode = 0
-mouse_filter = 1
-size_flags_vertical = 4
-texture_normal = ExtResource( 44 )
-texture_pressed = ExtResource( 37 )
-texture_hover = ExtResource( 41 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="EditorCommonBottomLeftButtons" parent="MicrobeEditorGUI" instance=ExtResource( 4 )]
 
 [node name="OrganellePopupMenu" parent="MicrobeEditorGUI" instance=ExtResource( 107 )]
 anchor_right = 0.15625
@@ -4265,18 +4066,14 @@ HelpCategory = "MicrobeEditor"
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox/HBoxContainer/Buttons/plusButton" to="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox" method="ExpandButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/StatisticsPanel/VBoxContainer/MarginContainer2/MoveToPatchButton" to="MicrobeEditorGUI" method="MoveToPatchClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MarginContainer2/NextTabButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
-[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "Report" ]]
-[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
-[connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
-[connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
-[connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/HelpButton" to="MicrobeEditorGUI" method="HelpButtonPressed"]
+[connection signal="OnTabSelected" from="MicrobeEditorGUI/MicrobeEditorTabButtons" to="MicrobeEditorGUI" method="SetEditorTab"]
+[connection signal="OnOpenHelp" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditorToHelp"]
+[connection signal="OnOpenMenu" from="MicrobeEditorGUI/EditorCommonBottomLeftButtons" to="PauseMenu" method="OpenFromEditor"]
 [connection signal="DeletePressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="MicrobeEditorGUI" method="OnDeletePressed"]
 [connection signal="ModifyPressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="MicrobeEditorGUI" method="OnModifyPressed"]
 [connection signal="MovePressed" from="MicrobeEditorGUI/OrganellePopupMenu" to="MicrobeEditorGUI" method="OnMovePressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PredictionExplanation/VBoxContainer/Close" to="MicrobeEditorGUI" method="CloseAutoEvoPrediction"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
-[connection signal="OnClosed" from="PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
-[connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]
 
 [editable path="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Structural"]
 [editable path="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/PartsSelection/Protein"]

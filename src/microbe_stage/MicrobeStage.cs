@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/MicrobeStage.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
+public class MicrobeStage : NodeWithInput, IReturnableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath GuidanceLinePath = null!;
@@ -538,12 +538,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             return;
         }
 
-        // Increase the population by the constant for the player reproducing
-        var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulation(
-            playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
-            TranslationServer.Translate("PLAYER_REPRODUCED"),
-            false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
+        GiveReproductionPopulationBonus();
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
 
@@ -551,6 +546,43 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         editor.CurrentGame = CurrentGame;
         editor.ReturnToStage = this;
+
+        // We don't free this here as the editor will return to this scene
+        if (SceneManager.Instance.SwitchToScene(editor, true) != this)
+        {
+            throw new Exception("failed to keep the current scene root");
+        }
+
+        MovingToEditor = false;
+    }
+
+    /// <summary>
+    ///   Moves to the multicellular editor (the first time)
+    /// </summary>
+    public void MoveToMulticellular()
+    {
+        if (Player?.Dead != false || Player.Colony == null)
+        {
+            GD.PrintErr("Player object disappeared or died (or not in a colony) while trying to become multicellular");
+            return;
+        }
+
+        GD.Print("Disbanding colony and becoming multicellular");
+
+        // Move to multicellular always happens when the player is in a colony, so we force disband that here before
+        // proceeding
+        Player.UnbindAll();
+
+        GiveReproductionPopulationBonus();
+
+        var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+
+        var editor = (EarlyMulticellularEditor)scene.Instance();
+
+        editor.CurrentGame = CurrentGame;
+        editor.ReturnToStage = this;
+
+        GD.Print("Switching to multicellular editor");
 
         // We don't free this here as the editor will return to this scene
         if (SceneManager.Instance.SwitchToScene(editor, true) != this)
@@ -619,6 +651,18 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         TransitionFinished = true;
         TutorialState.SendEvent(
             TutorialEventType.EnteredMicrobeStage, new CallbackEventArgs(HUD.PopupPatchInfo), this);
+    }
+
+    /// <summary>
+    ///   Increases the population by the constant for the player reproducing
+    /// </summary>
+    private void GiveReproductionPopulationBonus()
+    {
+        var playerSpecies = GameWorld.PlayerSpecies;
+        GameWorld.AlterSpeciesPopulation(
+            playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
+            TranslationServer.Translate("PLAYER_REPRODUCED"),
+            false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
     }
 
     private void OnSpawnEnemyCheatUsed(object sender, EventArgs e)

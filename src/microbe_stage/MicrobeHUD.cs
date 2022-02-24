@@ -1104,6 +1104,9 @@ public class MicrobeHUD : Control
 
     private void UpdateMulticellularButton(Microbe player)
     {
+        if (stage == null)
+            throw new InvalidOperationException("Can't update multicellular button without stage set");
+
         if (player.Colony == null)
         {
             multicellularButton.Visible = false;
@@ -1114,7 +1117,14 @@ public class MicrobeHUD : Control
 
         var newColonySize = player.Colony.ColonyMembers.Count;
 
-        multicellularButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
+        if (stage.MovingToEditor)
+        {
+            multicellularButton.Disabled = true;
+        }
+        else
+        {
+            multicellularButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
+        }
 
         if (newColonySize != playerColonySize)
         {
@@ -1278,7 +1288,19 @@ public class MicrobeHUD : Control
         GD.Print("Becoming multicellular. NOTE: game is moving to prototype parts of the game, " +
             "expect non-finished and buggy things!");
 
-        // TODO: switch to multicellular editor
+        // To prevent being clicked twice
+        multicellularButton.Disabled = true;
+
+        // Make sure the game is unpaused
+        if (GetTree().Paused)
+        {
+            PauseButtonPressed();
+        }
+
+        TransitionManager.Instance.AddScreenFade(ScreenFade.FadeType.FadeOut, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToMulticellular));
+
+        stage.MovingToEditor = true;
     }
 
     private class HoveredCompoundControl : HBoxContainer

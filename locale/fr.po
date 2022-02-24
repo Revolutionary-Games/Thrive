@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-24 12:05+0200\n"
+"POT-Creation-Date: 2022-02-24 19:52+0200\n"
 "PO-Revision-Date: 2022-01-10 18:11+0000\n"
 "Last-Translator: Andrei Tkachenko <gautierkatia2@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -330,7 +330,7 @@ msgid "ZOOM_IN"
 msgstr "Zoomer"
 
 #: ../simulation_parameters/common/input_options.json:87
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4048
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:150
 msgid "EDITOR"
 msgstr "Éditeur"
 
@@ -593,25 +593,25 @@ msgstr "ATP"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
 #: ../src/microbe_stage/MicrobeStage.tscn:1295
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3695
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3649
 msgid "AMMONIA"
 msgstr "Ammoniaque"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:31
 #: ../src/microbe_stage/MicrobeStage.tscn:1347
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3766
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3720
 msgid "PHOSPHATE"
 msgstr "Phosphate"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:45
 #: ../src/microbe_stage/MicrobeStage.tscn:1399
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3660
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3614
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfure d'Hydrogène"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:59
 #: ../src/microbe_stage/MicrobeStage.tscn:1243
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3730
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3684
 msgid "GLUCOSE"
 msgstr "Glucose"
 
@@ -622,29 +622,29 @@ msgstr "OxyToxy NT"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:87
 #: ../src/microbe_stage/MicrobeStage.tscn:1451
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3801
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3755
 msgid "IRON"
 msgstr "Fer"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:101
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3496
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3450
 msgid "OXYGEN"
 msgstr "Oxygène"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:115
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3550
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3504
 msgid "CARBON_DIOXIDE"
 msgstr "Gaz carbonique"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3523
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3477
 msgid "NITROGEN"
 msgstr "Azote"
 
 #: ../simulation_parameters/microbe_stage/compounds.json:143
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3695
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2928
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3376
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2882
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3330
 msgid "SUNLIGHT"
 msgstr "Lumière du soleil"
 
@@ -1344,6 +1344,10 @@ msgstr "Spécial 2 souris"
 msgid "UNKNOWN_MOUSE"
 msgstr "Souris inconnue"
 
+#: ../src/general/EditorBase.cs:199
+msgid "WAITING_FOR_AUTO_EVO"
+msgstr "Attente pour l'auto-évo :"
+
 #: ../src/general/Gallery.cs:73
 msgid "ARTWORK_TITLE"
 msgstr "\"{0}\" - {1}"
@@ -1356,7 +1360,7 @@ msgstr "Œuvre de {0}"
 #: ../src/gui_common/charts/line/LineChart.tscn:261
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:109
 #: ../src/microbe_stage/ProcessPanel.tscn:72
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4203
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4004
 #: ../src/modding/ModManager.tscn:972
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:391
 msgid "CLOSE"
@@ -1366,9 +1370,9 @@ msgstr "Fermer"
 #: ../src/gui_common/CompoundAmount.cs:171
 #: ../src/gui_common/tooltip/microbe_editor/SelectionMenuToolTip.cs:236
 #: ../src/microbe_stage/MicrobeHUD.cs:713
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:751
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1100
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1322
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:744
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1093
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1315
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
 
@@ -1801,13 +1805,13 @@ msgstr "Pas de dossier de captures d'écrans trouvé"
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr "Essayez de prendre une capture d'écran!"
 
-#: ../src/general/PauseMenu.cs:271
+#: ../src/general/PauseMenu.cs:306
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 "Voulez-vous vraiment retourner au menu principal ?\n"
 "Vous perdrez toute progression non sauvegardée."
 
-#: ../src/general/PauseMenu.cs:287
+#: ../src/general/PauseMenu.cs:322
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Voulez-vous vraiment quitter le jeu ?\n"
@@ -1822,7 +1826,7 @@ msgid "SAVE_GAME"
 msgstr "Sauvegarder"
 
 #: ../src/general/PauseMenu.tscn:84
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2745
 msgid "STATISTICS"
 msgstr "Statistiques"
 
@@ -2180,7 +2184,7 @@ msgid "RAW"
 msgstr "%"
 
 #: ../src/gui_common/charts/line/LineChart.cs:636
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2559
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2519
 msgid "NO_DATA_TO_SHOW"
 msgstr "Aucune donnée à afficher"
 
@@ -2667,9 +2671,9 @@ msgstr ""
 "Voulez-vous continuer ?"
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:3690
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2917
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3313
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:982
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2871
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3267
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:975
 msgid "TEMPERATURE"
 msgstr "Température"
 
@@ -2786,20 +2790,20 @@ msgstr "en faible quantité"
 msgid "CATEGORY_VERY_LITTLE"
 msgstr "en très faible quantité"
 
-#: ../src/microbe_stage/MicrobeHUD.cs:1131
+#: ../src/microbe_stage/MicrobeHUD.cs:1141
 #: ../src/microbe_stage/MicrobeStage.tscn:1767
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:545
+#: ../src/microbe_stage/MicrobeStage.cs:664
 msgid "PLAYER_REPRODUCED"
 msgstr "le joueur s'est reproduit"
 
-#: ../src/microbe_stage/MicrobeStage.cs:634
+#: ../src/microbe_stage/MicrobeStage.cs:678
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr "Impossible d'invoquer une espèce ennemie, car ce milieu ne contient que la vôtre"
 
-#: ../src/microbe_stage/MicrobeStage.cs:698
+#: ../src/microbe_stage/MicrobeStage.cs:742
 msgid "PLAYER_DIED"
 msgstr "le joueur est mort"
 
@@ -2836,10 +2840,10 @@ msgid "PRESSURE_SHORT"
 msgstr "Press."
 
 #: ../src/microbe_stage/MicrobeStage.tscn:1145
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2981
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3015
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3620
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2969
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3574
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
 msgid "COMPOUNDS"
 msgstr "Composés"
 
@@ -2940,293 +2944,280 @@ msgstr "Processus cellulaires"
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Équilibre des composants"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:626
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1465
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:226
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Chargement de l'Éditeur de Microbes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:628
-msgid "WAITING_FOR_AUTO_EVO"
-msgstr "Attente pour l'auto-évo :"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2518
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:601
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-évo n'a pas pu se lancer"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:2519
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:602
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "état de lancement :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:672
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:625
 msgid "MUTATION_POINTS"
 msgstr "Points de mutation"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:807
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:760
 msgid "STRUCTURE"
 msgstr "Structure"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:829
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:782
 msgid "MEMBRANE"
 msgstr "Membrane"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:851
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:804
 msgid "BEHAVIOUR"
 msgstr "Comportement"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:903
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:856
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr "Rechercher..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:863
 msgid "STRUCTURAL"
 msgstr "Structure"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:950
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:903
 msgid "PROTEINS"
 msgstr "Protéines"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1020
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:973
 msgid "EXTERNAL"
 msgstr "Externe"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1079
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1033
 msgid "ORGANELLES"
 msgstr "Organites"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1221
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1175
 msgid "MEMBRANE_TYPES"
 msgstr "Types de Membranes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1300
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1254
 msgid "FLUIDITY_RIGIDITY"
 msgstr "Fluidité / Rigidité"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1320
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1274
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1333
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1287
 msgid "RIGID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1366
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1320
 msgid "COLOUR"
 msgstr "Couleur"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1431
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1385
 msgid "PEACEFUL"
 msgstr "Pacifique"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1448
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1402
 msgid "AGGRESSIVE"
 msgstr "Agressif"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1484
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1438
 #, fuzzy
 msgid "CAUTIOUS"
 msgstr "Prudent"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1502
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1456
 msgid "OPPORTUNISTIC"
 msgstr "opportuniste"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1538
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1492
 msgid "BRAVE"
 msgstr "Audacieux"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1555
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1509
 msgid "FEARFUL"
 msgstr "Craintif"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1591
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1545
 msgid "SESSILE"
 msgstr "Sessile"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1608
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1562
 msgid "ACTIVE"
 msgstr "Motile"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1644
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1598
 #, fuzzy
 msgid "RESPONSIVE"
 msgstr "Réactif"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1661
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1615
 #, fuzzy
 msgid "FOCUSED"
 msgstr "Monomaniaque"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1729
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1683
 msgid "ORGANISM_STATISTICS"
 msgstr "Statistiques de l'Organisme"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1791
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1745
 msgid "SPEED_COLON"
 msgstr "Vitesse :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1821
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1775
 msgid "HP_COLON"
 msgstr "PV :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1851
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1805
 msgid "SIZE_COLON"
 msgstr "Taille :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1872
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1826
 msgid "GENERATION_COLON"
 msgstr "Génération :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1914
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1868
 msgid "ATP_BALANCE"
 msgstr "Niveau d'ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2027
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1981
 #, fuzzy
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 "Ce panneau affiche la population prédite par l'algorithme d'auto-évo pour l'espèce éditée.\n"
 "L'auto-évo régit la simulation d'évolution des populations qui est, avec votre propre performance, l'un des deux facteurs qui affectent votre population en jeu."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2031
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4145
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1985
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3946
 msgid "AUTO-EVO_PREDICTION"
 msgstr "Prédiction de l'auto-évo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2039
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1993
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr "Voir les informations détaillées sur la prédiction"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2109
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2063
 msgid "TOTAL_POPULATION_COLON"
 msgstr "Population totale :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2133
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2087
 msgid "BEST_PATCH_COLON"
 msgstr "Meilleur biome :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2112
 msgid "WORST_PATCH_COLON"
 msgstr "Pire biome :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2304
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2258
 msgid "SPECIES_NAME_DOT_DOT_DOT"
 msgstr "Nom de l’espèce..."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2358
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2312
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr "ANNULER L'ACTION"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2372
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2326
 msgid "CONFIRM_CAPITAL"
 msgstr "ACCEPTER"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2335
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr "Quantité d'ATP Négative"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2382
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2336
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 "Votre microbe ne produit pas assez d'ATP pour survivre!\n"
 "Voulez-vous continuer?"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2388
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2342
 msgid "DISCONNECTED_ORGANELLES"
 msgstr "Organites Déconnectés"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2390
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2344
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 "Il y a des organites placées qui ne sont pas connectés au reste.\n"
 "Veuillez connecter toutes les organites placées avec les autres ou annulez vos changements."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2507
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2461
 msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2521
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2475
 msgid "FOOD_CHAIN"
 msgstr "Chaîne Alimentaire"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2534
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2488
 msgid "TIMELINE"
 msgstr "Chronologie"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2587
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2541
 msgid "AUTO_EVO_RESULTS"
 msgstr "Résultats de l'auto-évo :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2606
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2560
 msgid "EXTERNAL_EFFECTS"
 msgstr "Effets externes :"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2703
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2657
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2709
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2663
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2716
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2670
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2723
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2677
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2800
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2828
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2754
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2782
 msgid "SPECIES_POPULATION"
 msgstr "Espèces"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2838
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3272
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2792
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3226
 msgid "PHYSICAL_CONDITIONS"
 msgstr "Conditions Physique"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2938
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2972
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3455
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2892
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2926
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3409
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1114
 msgid "ATMOSPHERIC_GASSES"
 msgstr "Gaz Atmosphériques"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3041
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3964
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2995
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3918
 msgid "NEXT_CAPITAL"
 msgstr "SUIVANT"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3154
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3108
 msgid "SELECT_A_PATCH"
 msgstr "Choisir une parcelle pour voir ses détails ici"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3143
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr "POSITION ACTUELLE"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3349
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3303
 msgid "PRESSURE"
 msgstr "Pression"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3880
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3834
 msgid "SPECIES_PRESENT"
 msgstr "Espèces Présentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3937
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3891
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Se Déplacer vers Cette Parcelle"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4006
-msgid "REPORT"
-msgstr "Rapport"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4027
-msgid "PATCH_MAP"
-msgstr "Carte de Parcelles"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4194
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3995
 #, fuzzy
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédiction. L'énergie totale que peut accaparer une espèce, et le coût de survie pour chacun de ses individus, détermine la population finale. L'auto-évo utilise un modèle simplifié de la réalité pour calculer à quel point une espèce est adaptée à son milieu, en fonction de l'énergie qu'elle parvient à capturer. La quantité d'énergie qu'une source de nourriture fournit à l'espèce est ainsi affichée à côté de la quantité totale d'énergie que chacune d'entre elles est en mesure d'offrir. La fraction ainsi obtenue de cette énergie totale est calculée à partir de la valeur sélective de l'espèce, c'est-à-dire de sa capacité à utiliser cette source, rapportée à la valeur sélective totale de toutes les espèces."
@@ -3235,118 +3226,131 @@ msgstr "Ce panneau affiche les données qu'utilise l'auto-évo pour sa prédicti
 msgid "INFINITE_MP"
 msgstr "MP illimités"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:757
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:750
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr "La quantité de glucose a été réduite a {0} se sa valeur précédente."
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:767
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:760
 #: ../src/microbe_stage/editor/TimelineTab.cs:187
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:775
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:768
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:821
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:826
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:814
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:819
 msgid "ATP_PRODUCTION"
 msgstr "Production d'ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:827
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:820
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr "LA PRODUCTION D'ATP EST TROP FAIBLE!"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:856
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:849
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}: +{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:876
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:869
 msgid "OSMOREGULATION"
 msgstr "Osmorégulation"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:882
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:875
 msgid "BASE_MOVEMENT"
 msgstr "Mouvement de Base"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:894
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:887
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1118
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1119
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1111
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1112
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1114
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1117
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1121
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
 msgid "YEARS"
 msgstr "années"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1124
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1117
 msgid "SPECIES_LIST"
 msgstr "Espèces Présentes"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1135
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1148
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1128
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1141
 #, fuzzy
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr "a disparu de la planète"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1136
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1147
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1129
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1140
 #, fuzzy
 msgid "EXTINCT_FROM_PATCH"
 msgstr "a disparu de la planète"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1190
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1183
 msgid "FREEBUILDING"
 msgstr "Construction Libre"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1313
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1306
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1318
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1311
 msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m sous la mer"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1357
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1350
 #, fuzzy
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Espèces"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2096
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2056
 msgid "FAILED"
 msgstr "Échec"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2102
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2114
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2062
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2074
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2108
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2120
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2068
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2080
 msgid "N_A"
 msgstr "Aucun"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2401
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2361
 msgid "INVALID_SPECIES_NAME_POPUP"
 msgstr "Le nom d'espèce doit respecter la nomenclature binomiale (genre et épithète) !"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2527
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2487
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "Énergie du biome {0} pour la source : {1}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2531
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2491
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "{0} unités d'énergie ont été récoltées au total, avec un coût de {1} par individu, résultant en une population non-ajustée de {2}"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2538
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2498
 msgid "ENERGY_SOURCES"
 msgstr "Sources d'énergie :"
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2544
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:2504
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr "Unités d'énergie pour la source « {0} » : {1} (valeur sélective : {2}) énergie totale disponible : {3} (valeur totale : {4})"
+
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:110
+msgid "REPORT"
+msgstr "Rapport"
+
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:130
+msgid "PATCH_MAP"
+msgstr "Carte de Parcelles"
+
+#: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:170
+#, fuzzy
+msgid "CELL"
+msgstr "Cellulose"
 
 #: ../src/microbe_stage/editor/MicrobePartSelection.cs:112
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:237

@@ -517,17 +517,11 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
-    private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
+    private HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry symmetry =
+        HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry.None;
 
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
-
-    public enum EditorTab
-    {
-        Report,
-        PatchMap,
-        CellEditor,
-    }
 
     public enum ReportSubtab
     {
@@ -1288,7 +1282,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         if (editor == null)
             throw new InvalidOperationException("GUI not initialized");
 
-        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingOrganelle == null)
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP && editor.MovingPlacedHex == null)
         {
             rigiditySlider.Editable = true;
         }
@@ -1502,7 +1496,8 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         GUICommon.Instance.PlayCustomSound(unableToPlaceHexSound, 0.4f);
     }
 
-    internal void SetSymmetry(MicrobeEditor.MicrobeSymmetry newSymmetry)
+    internal void SetSymmetry(
+        HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry newSymmetry)
     {
         symmetry = newSymmetry;
         editor!.Symmetry = newSymmetry;
@@ -1586,7 +1581,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnMovePressed()
     {
-        editor!.StartOrganelleMove(organelleMenu.SelectedOrganelle);
+        editor!.StartHexMove(organelleMenu.SelectedOrganelle);
 
         // Once an organelle move has begun, the button visibility should be updated so it becomes visible
         UpdateCancelButtonVisibility();
@@ -1594,7 +1589,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
 
     private void OnDeletePressed()
     {
-        editor!.RemoveOrganelle(organelleMenu.SelectedOrganelle.Position);
+        editor!.RemoveHex(organelleMenu.SelectedOrganelle.Position);
     }
 
     private void OnModifyPressed()
@@ -1632,7 +1627,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
         }
 
         // Can't finish an organism edit if an organelle is being moved
-        if (editor.MovingOrganelle != null)
+        if (editor.MovingPlacedHex != null)
         {
             OnActionBlockedWhileMoving();
             return;
@@ -1674,21 +1669,26 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (symmetry == MicrobeEditor.MicrobeSymmetry.SixWaySymmetry)
+        if (symmetry == HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry
+                .SixWaySymmetry)
         {
             ResetSymmetryButton();
         }
-        else if (symmetry == MicrobeEditor.MicrobeSymmetry.None)
+        else if (symmetry == HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry.None)
         {
-            symmetry = MicrobeEditor.MicrobeSymmetry.XAxisSymmetry;
+            symmetry = HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry.XAxisSymmetry;
         }
-        else if (symmetry == MicrobeEditor.MicrobeSymmetry.XAxisSymmetry)
+        else if (symmetry == HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry
+                     .XAxisSymmetry)
         {
-            symmetry = MicrobeEditor.MicrobeSymmetry.FourWaySymmetry;
+            symmetry = HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry
+                .FourWaySymmetry;
         }
-        else if (symmetry == MicrobeEditor.MicrobeSymmetry.FourWaySymmetry)
+        else if (symmetry == HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry
+                     .FourWaySymmetry)
         {
-            symmetry = MicrobeEditor.MicrobeSymmetry.SixWaySymmetry;
+            symmetry = HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry
+                .SixWaySymmetry;
         }
 
         editor!.Symmetry = symmetry;
@@ -1703,14 +1703,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     private void OnSymmetryReleased()
     {
         symmetryIcon.Modulate = new Color(1, 1, 1);
-    }
-
-    private void HelpButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        OpenMenu();
-        menu.ShowHelpScreen();
     }
 
     private void UpdateAllBehaviouralSliders(BehaviourDictionary behaviour)
@@ -1756,16 +1748,16 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
     {
         switch (symmetry)
         {
-            case MicrobeEditor.MicrobeSymmetry.None:
+            case HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry.None:
                 symmetryIcon.Texture = symmetryIconDefault;
                 break;
-            case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
+            case HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry.XAxisSymmetry:
                 symmetryIcon.Texture = symmetryIcon2X;
                 break;
-            case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
+            case HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry.FourWaySymmetry:
                 symmetryIcon.Texture = symmetryIcon4X;
                 break;
-            case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
+            case HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>.EditorSymmetry.SixWaySymmetry:
                 symmetryIcon.Texture = symmetryIcon6X;
                 break;
         }
@@ -1871,20 +1863,14 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             editor.SetPlayerPatch(target);
     }
 
-    private void SetEditorTab(string tab)
+    private void SetEditorTab(EditorTab tab)
     {
-        var selection = (EditorTab)Enum.Parse(typeof(EditorTab), tab);
-
-        if (selection == selectedEditorTab)
-            return;
-
-        GUICommon.Instance.PlayButtonPressSound();
-
-        selectedEditorTab = selection;
+        selectedEditorTab = tab;
 
         ApplyEditorTab();
 
-        editor!.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
+        editor!.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab.ToString()),
+            this);
     }
 
     private void ApplyEditorTab()
@@ -1905,7 +1891,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 report.Show();
                 reportTabButton.Pressed = true;
-                editor!.SetEditorCellVisibility(false);
+                editor!.SetEditorObjectVisibility(false);
                 break;
             }
 
@@ -1913,7 +1899,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 patchMap.Show();
                 patchMapButton.Pressed = true;
-                editor!.SetEditorCellVisibility(false);
+                editor!.SetEditorObjectVisibility(false);
                 break;
             }
 
@@ -1921,7 +1907,7 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             {
                 cellEditor.Show();
                 cellEditorButton.Pressed = true;
-                editor!.SetEditorCellVisibility(true);
+                editor!.SetEditorObjectVisibility(true);
                 break;
             }
 
@@ -2014,25 +2000,6 @@ public class MicrobeEditorGUI : Control, ISaveLoadedTracked
             default:
                 throw new Exception("Invalid selection menu tab");
         }
-    }
-
-    private void MenuButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        OpenMenu();
-    }
-
-    private void OpenMenu()
-    {
-        menu.Show();
-        GetTree().Paused = true;
-    }
-
-    private void CloseMenu()
-    {
-        menu.Hide();
-        GetTree().Paused = false;
     }
 
     private void ExitPressed()

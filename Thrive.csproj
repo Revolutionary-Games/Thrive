@@ -34,6 +34,8 @@
     <Compile Include="src\auto-evo\steps\ForceExtinction.cs" />
     <Compile Include="src\auto-evo\steps\IncreaseBiodiversity.cs" />
     <Compile Include="src\auto-evo\steps\RemoveInvalidMigrations.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditor.cs" />
+    <Compile Include="src\early_multicellular_stage\editor\EarlyMulticellularEditorGUI.cs" />
     <Compile Include="src\engine\CheatManager.cs" />
     <Compile Include="src\engine\ChildObjectCache.cs" />
     <Compile Include="src\engine\ChromaticFilter.cs" />
@@ -84,14 +86,18 @@
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
     <Compile Include="src\general\AliveMarker.cs" />
+    <Compile Include="src\general\EditorBase.cs" />
     <Compile Include="src\general\BehaviouralValueType.cs" />
     <Compile Include="src\general\BehaviourDictionary.cs" />
     <Compile Include="src\general\ColorUtils.cs" />
     <Compile Include="src\general\Gallery.cs" />
     <Compile Include="src\general\EnumHelper.cs" />
     <Compile Include="src\general\GameEventDescription.cs" />
+    <Compile Include="src\general\EditorWithPatchesBase.cs" />
+    <Compile Include="src\general\HexEditorBase.cs" />
     <Compile Include="src\general\HybridAudioPlayer.cs" />
     <Compile Include="src\general\IEntity.cs" />
+    <Compile Include="src\general\IReturnableGameState.cs" />
     <Compile Include="src\general\JSONHelpers.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
@@ -152,6 +158,9 @@
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\BiomeConditions.cs" />
+    <Compile Include="src\microbe_stage\editor\EditorCommonBottomLeftButtons.cs" />
+    <Compile Include="src\microbe_stage\editor\EditorTab.cs" />
+    <Compile Include="src\microbe_stage\editor\MicrobeEditorTabButtons.cs" />
     <Compile Include="src\microbe_stage\IComputedMembraneData.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorCheatMenu.cs" />
     <Compile Include="src\microbe_stage\editor\SpeciesPopulationDatasetsLegend.cs" />
