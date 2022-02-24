@@ -58,6 +58,12 @@ public class MicrobeHUD : Control
     public NodePath EditorButtonPath = null!;
 
     [Export]
+    public NodePath MulticellularButtonPath = null!;
+
+    [Export]
+    public NodePath MulticellularConfirmPopupPath = null!;
+
+    [Export]
     public NodePath EnvironmentPanelPath = null!;
 
     [Export]
@@ -244,6 +250,9 @@ public class MicrobeHUD : Control
     private Label patchLabel = null!;
     private AnimationPlayer patchOverlayAnimator = null!;
     private TextureButton editorButton = null!;
+    private Button multicellularButton = null!;
+    private CustomDialog multicellularConfirmPopup = null!;
+
     private CustomDialog? extinctionBox;
     private CustomDialog? winBox;
     private Tween panelsTween = null!;
@@ -290,6 +299,8 @@ public class MicrobeHUD : Control
     ///   If not null the signaling agent radial menu is open for the given microbe, which should be the player
     /// </summary>
     private Microbe? signalingAgentMenuOpenForMicrobe;
+
+    private int? playerColonySize;
 
     /// <summary>
     ///   Gets and sets the text that appears at the upper HUD.
@@ -347,6 +358,8 @@ public class MicrobeHUD : Control
         patchLabel = GetNode<Label>(PatchLabelPath);
         patchOverlayAnimator = GetNode<AnimationPlayer>(PatchOverlayAnimatorPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+        multicellularButton = GetNode<Button>(MulticellularButtonPath);
+        multicellularConfirmPopup = GetNode<CustomDialog>(MulticellularConfirmPopupPath);
         hintText = GetNode<Label>(HintTextPath);
         hotBar = GetNode<HBoxContainer>(HotBarPath);
 
@@ -383,6 +396,8 @@ public class MicrobeHUD : Control
         oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
         phosphates = SimulationParameters.Instance.GetCompound("phosphates");
         sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
+        multicellularButton.Visible = false;
     }
 
     public void OnEnterStageTransition(bool longerDuration)
@@ -407,6 +422,11 @@ public class MicrobeHUD : Control
             UpdateCompoundBars();
             UpdateReproductionProgress(stage.Player);
             UpdateAbilitiesHotBar(stage.Player);
+            UpdateMulticellularButton(stage.Player);
+        }
+        else
+        {
+            multicellularButton.Visible = false;
         }
 
         UpdateATP(delta);
@@ -431,6 +451,8 @@ public class MicrobeHUD : Control
             {
                 hoveredCompoundControl.Value.UpdateTranslation();
             }
+
+            UpdateColonySizeForMulticellular();
         }
     }
 
@@ -1080,6 +1102,36 @@ public class MicrobeHUD : Control
         fireToxinHotkey.Pressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
     }
 
+    private void UpdateMulticellularButton(Microbe player)
+    {
+        if (player.Colony == null)
+        {
+            multicellularButton.Visible = false;
+            return;
+        }
+
+        multicellularButton.Visible = true;
+
+        var newColonySize = player.Colony.ColonyMembers.Count;
+
+        multicellularButton.Disabled = newColonySize < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR;
+
+        if (newColonySize != playerColonySize)
+        {
+            playerColonySize = newColonySize;
+            UpdateColonySizeForMulticellular();
+        }
+    }
+
+    private void UpdateColonySizeForMulticellular()
+    {
+        if (playerColonySize == null)
+            return;
+
+        multicellularButton.Text = string.Format(TranslationServer.Translate("BECOME_MULTICELLULAR"), playerColonySize,
+            Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR);
+    }
+
     /// <summary>
     ///   Received for button that opens the menu inside the Microbe Stage.
     /// </summary>
@@ -1204,6 +1256,29 @@ public class MicrobeHUD : Control
         }
 
         GD.PrintErr("Unexpected radial menu item selection signal");
+    }
+
+    private void OnBecomeMulticellularPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        multicellularConfirmPopup.PopupCenteredShrink();
+    }
+
+    private void OnBecomeMulticellularConfirmed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (stage?.Player == null || playerColonySize is null or < Constants.COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR)
+        {
+            GD.Print("Player is no longer eligible to move to multicellular stage");
+            return;
+        }
+
+        GD.Print("Becoming multicellular. NOTE: game is moving to prototype parts of the game, " +
+            "expect non-finished and buggy things!");
+
+        // TODO: switch to multicellular editor
     }
 
     private class HoveredCompoundControl : HBoxContainer

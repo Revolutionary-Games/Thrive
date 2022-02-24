@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=2]
+[gd_scene load_steps=126 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -87,6 +87,7 @@
 [ext_resource path="res://src/gui_common/fonts/Jura-Regular-HugePlus.tres" type="DynamicFont" id=85]
 [ext_resource path="res://src/gui_common/fonts/EmptyFont.tres" type="DynamicFont" id=86]
 [ext_resource path="res://src/gui_common/RadialPopup.tscn" type="PackedScene" id=87]
+[ext_resource path="res://src/gui_common/dialogs/StagePrototypeConfirm.tscn" type="PackedScene" id=88]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 80 )
@@ -418,6 +419,8 @@ PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
 PatchLabelPath = NodePath("../PatchNameOverlay/VBoxContainer/PatchLabel")
 PatchOverlayAnimatorPath = NodePath("../PatchNameOverlay/AnimationPlayer")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
+MulticellularButtonPath = NodePath("BottomRight/Multicellular")
+MulticellularConfirmPopupPath = NodePath("StagePrototypeConfirm")
 EnvironmentPanelPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel")
 OxygenBarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
 Co2BarPath = NodePath("BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide")
@@ -1749,6 +1752,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Multicellular" type="Button" parent="MicrobeHUD/BottomRight"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -263.0
+margin_top = -320.0
+margin_right = -5.0
+margin_bottom = -285.0
+grow_horizontal = 0
+grow_vertical = 0
+hint_tooltip = "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
+text = "BECOME_MULTICELLULAR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PopulationData" type="HBoxContainer" parent="MicrobeHUD/BottomRight"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -2125,6 +2145,9 @@ __meta__ = {
 "_editor_description_": "PLACEHOLDER"
 }
 
+[node name="StagePrototypeConfirm" parent="MicrobeHUD" instance=ExtResource( 88 )]
+rect_min_size = Vector2( 450, 0 )
+
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
 visible = false
 
@@ -2197,6 +2220,7 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/ChemicalButton" to="MicrobeHUD" method="ProcessPanelButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
+[connection signal="pressed" from="MicrobeHUD/BottomRight/Multicellular" to="MicrobeHUD" method="OnBecomeMulticellularPressed"]
 [connection signal="mouse_entered" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
@@ -2204,6 +2228,7 @@ anims/FadeInOut = SubResource( 37 )
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/Engulfment" to="PlayerMicrobeInput" method="ToggleEngulf"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/FireToxin" to="PlayerMicrobeInput" method="EmitToxin"]
 [connection signal="pressed" from="MicrobeHUD/ScrollContainer/HotBar/BindingMode" to="PlayerMicrobeInput" method="ToggleBinding"]
+[connection signal="Confirmed" from="MicrobeHUD/StagePrototypeConfirm" to="MicrobeHUD" method="OnBecomeMulticellularConfirmed"]
 [connection signal="OnHelpMenuOpenRequested" from="TutorialGUI" to="MicrobeHUD" method="HelpButtonPressed"]
 [connection signal="OnItemSelected" from="RadialPopup" to="MicrobeHUD" method="OnRadialItemSelected"]
 [connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]

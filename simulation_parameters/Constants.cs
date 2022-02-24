@@ -521,6 +521,8 @@ public static class Constants
     public const float DEFAULT_PROCESS_SPINNER_SPEED = 365.0f;
     public const float DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL = 0.4f;
 
+    public const int COLONY_SIZE_REQUIRED_FOR_MULTICELLULAR = 5;
+
     /// <summary>
     ///   Main menu cancel priority. Main menu handles the cancel action for sub menus that don't have special needs
     ///   regarding exiting them <see cref="PAUSE_MENU_CANCEL_PRIORITY"/>
