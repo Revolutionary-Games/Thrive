@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   One step more specialized editor that supports patch migrations
 /// </summary>
 public abstract class EditorWithPatchesBase<TGUI, TAction, TStage> : EditorBase<TGUI, TAction, TStage>, IEditorWithPatches
-    where TGUI : class, IEditorGUI
+    where TGUI : class, IEditorWithPatchesGUI
     where TAction : MicrobeEditorAction
     where TStage : Node, IReturnableGameState
 {
@@ -101,6 +101,16 @@ public abstract class EditorWithPatchesBase<TGUI, TAction, TStage> : EditorBase<
             // Add the edited species to that patch to allow the species to gain population there
             // TODO: Log player species' migration
             CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(EditedBaseSpecies, 0);
+        }
+    }
+
+    protected override void InitEditor()
+    {
+        base.InitEditor();
+
+        if (IsLoadedFromSave)
+        {
+            GUI.UpdatePlayerPatch(targetPatch);
         }
     }
 

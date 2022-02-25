@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 ///   this needs to inherit the patch handling.
 /// </summary>
 public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWithPatchesBase<TGUI, TAction, TStage>, IHexEditor
-    where TGUI : class, IHexEditorGUI
+    where TGUI : class, IHexEditorGUI, IEditorWithPatchesGUI
     where TAction : MicrobeEditorAction
     where TStage : Node, IReturnableGameState
     where THexMove : class
@@ -403,6 +403,11 @@ public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWit
         if (!IsLoadedFromSave)
         {
             Symmetry = 0;
+            GUI.ResetSymmetryButton();
+        }
+        else
+        {
+            GUI.SetSymmetry(Symmetry);
         }
 
         UpdatePatchBackgroundImage();

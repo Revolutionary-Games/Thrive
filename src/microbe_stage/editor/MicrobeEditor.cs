@@ -225,7 +225,6 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorGUI, MicrobeEditorAction
         base._Ready();
 
         tutorialGUI.Visible = true;
-
     }
 
     protected override void InitConcreteGUI()
@@ -507,16 +506,6 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorGUI, MicrobeEditorAction
     {
         base.InitEditor();
 
-        if (!IsLoadedFromSave)
-        {
-            GUI.ResetSymmetryButton();
-        }
-        else
-        {
-            GUI.SetSymmetry(Symmetry);
-            GUI.UpdatePlayerPatch(targetPatch);
-        }
-
         if (editedSpecies == null)
             throw new Exception($"Editor setup which was just ran didn't setup {nameof(editedSpecies)}");
 
@@ -602,11 +591,6 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorGUI, MicrobeEditorAction
 
         base.OnEditorReady();
 
-        GD.Print("Elapsing time on editor entry");
-
-        // TODO: select which units will be used for the master elapsed time counter
-        CurrentGame!.GameWorld.OnTimePassed(1);
-
         GUI.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
         if (autoEvoSummary != null && autoEvoExternal != null)
@@ -616,6 +600,12 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorGUI, MicrobeEditorAction
 
         GUI.UpdateReportTabStatistics(CurrentPatch);
         GUI.UpdateTimeline();
+    }
+
+    protected override void ElapseEditorEntryTime()
+    {
+        // TODO: select which units will be used for the master elapsed time counter
+        CurrentGame!.GameWorld.OnTimePassed(1);
     }
 
     protected override GameProperties StartNewGameForEditor()

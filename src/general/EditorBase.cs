@@ -19,7 +19,8 @@ using Newtonsoft.Json;
 ///     </code>
 ///   </para>
 /// </remarks>
-public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState, IGodotEarlyNodeResolve
+public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState,
+    IGodotEarlyNodeResolve
     where TGUI : class, IEditorGUI
     where TAction : MicrobeEditorAction
     where TStage : Node, IReturnableGameState
@@ -421,6 +422,9 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
         Ready = true;
         LoadingScreen.Instance.Hide();
 
+        GD.Print("Elapsing time on editor entry");
+        ElapseEditorEntryTime();
+
         // Get summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame!.GameWorld.GetAutoEvoRun();
 
@@ -477,6 +481,8 @@ public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor
     protected virtual void OnRedoPerformed()
     {
     }
+
+    protected abstract void ElapseEditorEntryTime();
 
     protected abstract void ResolveDerivedTypeNodeReferences();
     protected abstract void UpdateEditor(float delta);

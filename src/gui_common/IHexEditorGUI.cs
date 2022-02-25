@@ -3,5 +3,6 @@
 /// </summary>
 public interface IHexEditorGUI : IEditorGUI
 {
-
+    void ResetSymmetryButton();
+    void SetSymmetry(HexEditorSymmetry newSymmetry);
 }

@@ -42,7 +42,7 @@ public abstract class HexEditorGUIBase<TEditor> : EditorWithPatchesGUIBase<TEdit
         islandPopup = GetNode<CustomConfirmationDialog>(IslandErrorPath);
     }
 
-    internal void SetSymmetry(HexEditorSymmetry newSymmetry)
+    public void SetSymmetry(HexEditorSymmetry newSymmetry)
     {
         symmetry = newSymmetry;
         editor!.Symmetry = newSymmetry;
@@ -50,7 +50,7 @@ public abstract class HexEditorGUIBase<TEditor> : EditorWithPatchesGUIBase<TEdit
         UpdateSymmetryIcon();
     }
 
-    internal void ResetSymmetryButton()
+    public void ResetSymmetryButton()
     {
         symmetryIcon.Texture = symmetryIconDefault;
         symmetry = 0;

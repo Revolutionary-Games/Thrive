@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Editor GUI base that adds patch map functionality
 /// </summary>
-public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>
+public abstract class EditorWithPatchesGUIBase<TEditor> : EditorGUIBase<TEditor>, IEditorWithPatchesGUI
     where TEditor : Godot.Object, IEditorWithPatches
 {
     [Export]
