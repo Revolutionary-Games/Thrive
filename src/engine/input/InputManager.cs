@@ -332,6 +332,11 @@ public class InputManager : Node
             // foreach type in the specified assemblies
             foreach (var type in assembly.GetTypes())
             {
+                // Skip abstract classes as those can't be instantiated and their methods will be detected for the
+                // derived types
+                if (type.IsAbstract)
+                    continue;
+
                 // foreach method in the classes
                 foreach (var methodInfo in type.GetMethods())
                 {
@@ -354,6 +359,8 @@ public class InputManager : Node
                         }
                         else
                         {
+                            // TODO: it seems likely that if a class with input attributes is inherited a duplicate
+                            // key error will be raised in here
                             // Give the attribute a reference to the method it is placed on
                             attribute.Init(methodInfo);
 
