@@ -110,7 +110,7 @@ public class MovementComponent : ExternallyPositionedComponent
         var forceMagnitude = realForce.Dot(direction);
 
         if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
-            force.LengthSquared() < MathUtils.EPSILON)
+            realForce.LengthSquared() < MathUtils.EPSILON)
         {
             if (movingTail)
             {
@@ -143,8 +143,11 @@ public class MovementComponent : ExternallyPositionedComponent
             forceMagnitude / 100.0f;
 
         // Rotate the 'thrust' based on our orientation
+        if (microbe.Colony?.Master == null)
         direction = microbe.Transform.basis.Xform(direction);
-
+        else
+        direction = microbe.Colony.Master.Transform.basis.Xform(direction);
+        
         SetSpeedFactor(animationSpeed);
 
         return direction * impulseMagnitude;
