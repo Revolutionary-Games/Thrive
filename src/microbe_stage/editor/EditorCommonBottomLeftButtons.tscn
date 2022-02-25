@@ -23,6 +23,8 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+MenuButtonPath = NodePath("HBoxContainer/MenuButton")
+HelpButtonPath = NodePath("HBoxContainer/HelpButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 10.0

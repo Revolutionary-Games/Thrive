@@ -80,6 +80,9 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+ReportTabButtonPath = NodePath("HBoxContainer/ReportButton")
+PatchMapButtonPath = NodePath("HBoxContainer/PatchMapButton")
+CellEditorButtonPath = NodePath("HBoxContainer/CellEditorButton")
 CellTypeTabPath = NodePath("HBoxContainer/CellTypeEditorButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]

@@ -5,7 +5,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   One step more specialized editor that supports patch migrations
 /// </summary>
-public abstract class EditorWithPatchesBase<TAction, TStage> : EditorBase<TAction, TStage>
+public abstract class EditorWithPatchesBase<TGUI, TAction, TStage> : EditorBase<TGUI, TAction, TStage>, IEditorWithPatches
+    where TGUI : class, IEditorGUI
     where TAction : MicrobeEditorAction
     where TStage : Node, IReturnableGameState
 {
@@ -31,10 +32,6 @@ public abstract class EditorWithPatchesBase<TAction, TStage> : EditorBase<TActio
     [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
-    /// <summary>
-    ///   Returns true when the player is allowed to move to the specified patch
-    /// </summary>
-    /// <returns>True if the patch move requested is valid. False otherwise</returns>
     public bool IsPatchMoveValid(Patch? patch)
     {
         if (patch == null)
@@ -66,6 +63,28 @@ public abstract class EditorWithPatchesBase<TAction, TStage> : EditorBase<TActio
         }
 
         return false;
+    }
+
+    public virtual void SetPlayerPatch(Patch? patch)
+    {
+        if (!IsPatchMoveValid(patch))
+            throw new ArgumentException("can't move to the specified patch");
+
+        // One move per editor cycle allowed, unless freebuilding
+        if (!FreeBuilding)
+            canStillMove = false;
+
+        if (patch == playerPatchOnEntry)
+        {
+            targetPatch = null;
+
+            // Undoing the move, restores the move
+            canStillMove = true;
+        }
+        else
+        {
+            targetPatch = patch;
+        }
     }
 
     public override void OnFinishEditing()

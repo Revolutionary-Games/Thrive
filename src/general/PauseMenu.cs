@@ -289,6 +289,9 @@ public class PauseMenu : CustomDialog
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnClosed));
+
+        if (IsEditorPauseMenu)
+            CloseFromEditor();
     }
 
     private void ReturnToMenuPressed()

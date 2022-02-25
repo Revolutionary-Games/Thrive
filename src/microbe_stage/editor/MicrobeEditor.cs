@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
 [DeserializedCallbackTarget]
-public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, OrganelleTemplate>
+public class MicrobeEditor : HexEditorBase<MicrobeEditorGUI, MicrobeEditorAction, MicrobeStage, OrganelleTemplate>
 {
     /// <summary>
     ///   The new to set on the species after exiting
@@ -24,10 +24,6 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
     ///   the microbe class for the cell preview.
     /// </summary>
     private Microbe? previewMicrobe;
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private MicrobeEditorGUI gui = null!;
 
     private MicrobeEditorTutorialGUI tutorialGUI = null!;
 
@@ -212,10 +208,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
     ///   If true an editor action is active and can be cancelled. Currently only checks for organelle move.
     /// </summary>
     [JsonIgnore]
-    public bool CanCancelAction => CanCancelMove;
-
-    [JsonIgnore]
-    public override Control GUI => gui;
+    public override bool CanCancelAction => CanCancelMove;
 
     protected override Species EditedBaseSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
@@ -232,7 +225,12 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         base._Ready();
 
         tutorialGUI.Visible = true;
-        gui.Init(this);
+
+    }
+
+    protected override void InitConcreteGUI()
+    {
+        GUI.Init(this);
     }
 
     public override void OnFinishEditing()
@@ -298,14 +296,14 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         {
             CalculateOrganelleEffectivenessInPatch(CurrentPatch);
             UpdatePatchDependentBalanceData();
-            gui.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
-            gui.UpdateTimeIndicator(CurrentGame!.GameWorld.TotalPassedTime);
-            gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
-            gui.UpdatePatchDetails(CurrentPatch);
-            gui.UpdateMicrobePartSelections();
-            gui.UpdateMutationPointsBar();
-            gui.UpdateTimeline();
-            gui.UpdateReportTabPatchSelector();
+            GUI.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
+            GUI.UpdateTimeIndicator(CurrentGame!.GameWorld.TotalPassedTime);
+            GUI.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+            GUI.UpdatePatchDetails(CurrentPatch);
+            GUI.UpdateMicrobePartSelections();
+            GUI.UpdateMutationPointsBar();
+            GUI.UpdateTimeline();
+            GUI.UpdateReportTabPatchSelector();
         }
     }
 
@@ -346,12 +344,12 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         EnqueueAction(action);
 
         // In case the action failed, we need to make sure the membrane buttons are updated properly
-        gui.UpdateMembraneButtons(Membrane.InternalName);
+        GUI.UpdateMembraneButtons(Membrane.InternalName);
     }
 
     public void SetBehaviouralValue(BehaviouralValueType type, float value)
     {
-        gui.UpdateBehaviourSlider(type, value);
+        GUI.UpdateBehaviourSlider(type, value);
 
         if (Behaviour == null)
             throw new Exception($"{nameof(Behaviour)} is not set for editor");
@@ -373,8 +371,8 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
         if (MovingPlacedHex != null)
         {
-            gui.OnActionBlockedWhileMoving();
-            gui.UpdateRigiditySlider(intRigidity);
+            GUI.OnActionBlockedWhileMoving();
+            GUI.UpdateRigiditySlider(intRigidity);
             return;
         }
 
@@ -388,7 +386,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
             int stepsLeft = MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
             if (stepsLeft < 1)
             {
-                gui.UpdateRigiditySlider(intRigidity);
+                GUI.UpdateRigiditySlider(intRigidity);
                 return;
             }
 
@@ -417,7 +415,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         // Can't open organelle popup menu while moving something
         if (MovingPlacedHex != null)
         {
-            gui.OnActionBlockedWhileMoving();
+            GUI.OnActionBlockedWhileMoving();
             return;
         }
 
@@ -428,7 +426,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         if (organelle == null)
             return;
 
-        gui.ShowOrganelleMenu(organelle);
+        GUI.ShowOrganelleMenu(organelle);
     }
 
     public float CalculateSpeed()
@@ -447,7 +445,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
     /// <summary>
     ///   Returns the cost of the organelle that is about to be placed
     /// </summary>
-    public float CalculateCurrentOrganelleCost()
+    public override float CalculateCurrentActionCost()
     {
         if (string.IsNullOrEmpty(ActiveActionName) || !ShowHover)
             return 0;
@@ -456,13 +454,13 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
         switch (Symmetry)
         {
-            case EditorSymmetry.XAxisSymmetry:
+            case HexEditorSymmetry.XAxisSymmetry:
                 cost *= 2;
                 break;
-            case EditorSymmetry.FourWaySymmetry:
+            case HexEditorSymmetry.FourWaySymmetry:
                 cost *= 4;
                 break;
-            case EditorSymmetry.SixWaySymmetry:
+            case HexEditorSymmetry.SixWaySymmetry:
                 cost *= 6;
                 break;
         }
@@ -474,7 +472,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
     {
         base.SetPlayerPatch(patch);
 
-        gui.UpdatePlayerPatch(targetPatch);
+        GUI.UpdatePlayerPatch(targetPatch);
         CalculateOrganelleEffectivenessInPatch(targetPatch);
         UpdatePatchDependentBalanceData();
     }
@@ -483,7 +481,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
     {
         base.ResolveDerivedTypeNodeReferences();
 
-        gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
+        GUI = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
     }
 
@@ -511,12 +509,12 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
         if (!IsLoadedFromSave)
         {
-            gui.ResetSymmetryButton();
+            GUI.ResetSymmetryButton();
         }
         else
         {
-            gui.SetSymmetry(Symmetry);
-            gui.UpdatePlayerPatch(targetPatch);
+            GUI.SetSymmetry(Symmetry);
+            GUI.UpdatePlayerPatch(targetPatch);
         }
 
         if (editedSpecies == null)
@@ -535,30 +533,30 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
         UpdateArrow(false);
 
-        gui.UpdateMutationPointsBar(false);
+        GUI.UpdateMutationPointsBar(false);
 
         // Send freebuild value to GUI
-        gui.NotifyFreebuild(FreeBuilding);
+        GUI.NotifyFreebuild(FreeBuilding);
 
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch(CurrentPatch);
 
-        gui.SetMap(CurrentGame!.GameWorld.Map);
+        GUI.SetMap(CurrentGame!.GameWorld.Map);
 
-        gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+        GUI.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
 
-        gui.UpdateReportTabPatchSelector();
+        GUI.UpdateReportTabPatchSelector();
 
-        gui.UpdateRigiditySliderState(MutationPoints);
+        GUI.UpdateRigiditySliderState(MutationPoints);
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;
         pauseMenu.GameProperties = CurrentGame;
 
         // Send undo button to the tutorial system
-        gui.SendUndoToTutorial(TutorialState);
+        GUI.SendUndoToTutorial(TutorialState);
 
-        gui.UpdateCancelButtonVisibility();
+        GUI.UpdateCancelButtonVisibility();
     }
 
     protected override void InitEditorFresh()
@@ -583,12 +581,12 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         base.InitEditorSaved();
 
         // The error conditions here probably shouldn't be able to trigger at all
-        gui.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
+        GUI.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
 
-        gui.UpdateTimeIndicator(CurrentGame!.GameWorld.TotalPassedTime);
+        GUI.UpdateTimeIndicator(CurrentGame!.GameWorld.TotalPassedTime);
 
-        gui.UpdateReportTabStatistics(CurrentPatch);
-        gui.UpdateTimeline();
+        GUI.UpdateReportTabStatistics(CurrentPatch);
+        GUI.UpdateTimeline();
     }
 
     protected override void OnEditorReady()
@@ -598,7 +596,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
         if (run.Results == null)
         {
-            gui.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
+            GUI.UpdateAutoEvoResults(TranslationServer.Translate("AUTO_EVO_FAILED"),
                 TranslationServer.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
         }
 
@@ -609,15 +607,15 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         // TODO: select which units will be used for the master elapsed time counter
         CurrentGame!.GameWorld.OnTimePassed(1);
 
-        gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
+        GUI.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
         if (autoEvoSummary != null && autoEvoExternal != null)
         {
-            gui.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
+            GUI.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        gui.UpdateReportTabStatistics(CurrentPatch);
-        gui.UpdateTimeline();
+        GUI.UpdateReportTabStatistics(CurrentPatch);
+        GUI.UpdateTimeline();
     }
 
     protected override GameProperties StartNewGameForEditor()
@@ -656,25 +654,25 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
             {
                 isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), organelleRot, MovingPlacedHex);
                 shownOrganelle = MovingPlacedHex.Definition;
-                effectiveSymmetry = EditorSymmetry.None;
+                effectiveSymmetry = HexEditorSymmetry.None;
             }
 
             switch (effectiveSymmetry)
             {
-                case EditorSymmetry.None:
+                case HexEditorSymmetry.None:
                 {
                     RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
                     break;
                 }
 
-                case EditorSymmetry.XAxisSymmetry:
+                case HexEditorSymmetry.XAxisSymmetry:
                 {
                     RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
                     break;
                 }
 
-                case EditorSymmetry.FourWaySymmetry:
+                case HexEditorSymmetry.FourWaySymmetry:
                 {
                     RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot), shownOrganelle);
@@ -683,7 +681,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
                     break;
                 }
 
-                case EditorSymmetry.SixWaySymmetry:
+                case HexEditorSymmetry.SixWaySymmetry:
                 {
                     RenderHighlightedOrganelle(q, r, organelleRot, shownOrganelle);
                     RenderHighlightedOrganelle(-1 * r, r + q, (organelleRot + 1) % 6, shownOrganelle);
@@ -713,19 +711,19 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         {
             // Move succeeded; Update the cancel button visibility so it's hidden because the move has completed
             MovingPlacedHex = null;
-            gui.UpdateCancelButtonVisibility();
+            GUI.UpdateCancelButtonVisibility();
 
             // Update rigidity slider in case it was disabled
             // TODO: could come up with a bit nicer design here
             int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
-            gui.UpdateRigiditySlider(intRigidity);
+            GUI.UpdateRigiditySlider(intRigidity);
 
             // Re-enable undo/redo button
             UpdateUndoRedoButtons();
         }
         else
         {
-            gui.PlayInvalidActionSound();
+            GUI.PlayInvalidActionSound();
         }
     }
 
@@ -743,7 +741,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
     protected override void OnCurrentActionCanceled()
     {
         editedMicrobeOrganelles.Add(MovingPlacedHex!);
-        gui.UpdateCancelButtonVisibility();
+        GUI.UpdateCancelButtonVisibility();
     }
 
     protected override void OnMoveActionStarted()
@@ -789,12 +787,12 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
     protected override void OnInsufficientMP()
     {
-        gui.OnInsufficientMp();
+        GUI.OnInsufficientMp();
     }
 
     protected override void OnActionBlockedWhileMoving()
     {
-        gui.OnActionBlockedWhileMoving();
+        GUI.OnActionBlockedWhileMoving();
     }
 
     protected override void PerformAutoSave()
@@ -809,19 +807,19 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
     protected override void OnMutationPointsChanged()
     {
-        gui.UpdateMutationPointsBar();
-        gui.UpdateRigiditySliderState(MutationPoints);
+        GUI.UpdateMutationPointsBar();
+        GUI.UpdateRigiditySliderState(MutationPoints);
     }
 
     protected override void UpdateUndoRedoButtons()
     {
-        gui.SetUndoButtonStatus(history.CanUndo() && MovingPlacedHex == null);
-        gui.SetRedoButtonStatus(history.CanRedo() && MovingPlacedHex == null);
+        GUI.SetUndoButtonStatus(history.CanUndo() && MovingPlacedHex == null);
+        GUI.SetRedoButtonStatus(history.CanRedo() && MovingPlacedHex == null);
     }
 
     protected override void UpdateCancelState()
     {
-        gui.UpdateCancelButtonVisibility();
+        GUI.UpdateCancelButtonVisibility();
     }
 
     private bool HasOrganelle(OrganelleDefinition organelleDefinition)
@@ -881,7 +879,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
         var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
 
-        gui.UpdateOrganelleEfficiencies(result);
+        GUI.UpdateOrganelleEfficiencies(result);
     }
 
     private void StartAutoEvoPrediction()
@@ -897,7 +895,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
         // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object
         // which may cause occasional background task errors
-        gui.CancelPreviousAutoEvoPrediction();
+        GUI.CancelPreviousAutoEvoPrediction();
 
         if (editedSpecies == null)
             throw new InvalidOperationException("Editor has not been setup correctly, missing edited species");
@@ -909,7 +907,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         var run = new EditorAutoEvoRun(CurrentGame!.GameWorld, editedSpecies, cachedAutoEvoPredictionSpecies);
         run.Start();
 
-        gui.UpdateAutoEvoPrediction(run, editedSpecies, cachedAutoEvoPredictionSpecies);
+        GUI.UpdateAutoEvoPrediction(run, editedSpecies, cachedAutoEvoPredictionSpecies);
     }
 
     /// <summary>
@@ -920,7 +918,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
     {
         patch ??= CurrentPatch;
 
-        gui.UpdateEnergyBalance(
+        GUI.UpdateEnergyBalance(
             ProcessSystem.ComputeEnergyBalance(organelles, patch.Biome, membrane));
     }
 
@@ -931,7 +929,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         var result = ProcessSystem
             .ComputeCompoundBalance(organelles, patch.Biome);
 
-        gui.UpdateCompoundBalances(result);
+        GUI.UpdateCompoundBalances(result);
     }
 
     private void SetupEditedSpecies(MicrobeSpecies species)
@@ -971,7 +969,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         species.Generation += 1;
 
         // Only when not loaded from save are these properties fetched
-        gui.SetInitialCellStats();
+        GUI.SetInitialCellStats();
 
         UpdateGUIAfterLoadingSpecies(species);
     }
@@ -982,15 +980,15 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
             " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
-        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
+        GUI.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         // Reset to cytoplasm if nothing is selected
-        gui.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
+        GUI.OnOrganelleToPlaceSelected(ActiveActionName ?? "cytoplasm");
 
-        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity,
+        GUI.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity,
             Behaviour ?? throw new Exception($"Editor doesn't have {nameof(Behaviour)} setup"));
-        gui.UpdateGeneration(species.Generation);
-        gui.UpdateHitpoints(CalculateHitpoints());
+        GUI.UpdateGeneration(species.Generation);
+        GUI.UpdateHitpoints(CalculateHitpoints());
     }
 
     private void CreateMutatedSpeciesCopy(Species species)
@@ -1164,13 +1162,13 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
         switch (Symmetry)
         {
-            case EditorSymmetry.None:
+            case HexEditorSymmetry.None:
             {
                 PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
                 break;
             }
 
-            case EditorSymmetry.XAxisSymmetry:
+            case HexEditorSymmetry.XAxisSymmetry:
             {
                 PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
 
@@ -1182,7 +1180,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
                 break;
             }
 
-            case EditorSymmetry.FourWaySymmetry:
+            case HexEditorSymmetry.FourWaySymmetry:
             {
                 PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
 
@@ -1200,7 +1198,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
                 break;
             }
 
-            case EditorSymmetry.SixWaySymmetry:
+            case HexEditorSymmetry.SixWaySymmetry:
             {
                 PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
 
@@ -1238,7 +1236,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         if (!IsValidPlacement(organelle))
         {
             // Play Sound
-            gui.OnInvalidHexLocationSelected();
+            GUI.OnInvalidHexLocationSelected();
             return;
         }
 
@@ -1408,7 +1406,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         if (!isFreeToMove && MutationPoints < Constants.ORGANELLE_MOVE_COST)
         {
             CancelCurrentAction();
-            gui.OnInsufficientMp(false);
+            GUI.OnInsufficientMp(false);
             return false;
         }
 
@@ -1471,9 +1469,9 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
     private void OnPostNewMicrobeChange()
     {
-        gui.UpdateMembraneButtons(Membrane.InternalName);
-        gui.UpdateSpeed(CalculateSpeed());
-        gui.UpdateHitpoints(CalculateHitpoints());
+        GUI.UpdateMembraneButtons(Membrane.InternalName);
+        GUI.UpdateSpeed(CalculateSpeed());
+        GUI.UpdateHitpoints(CalculateHitpoints());
 
         StartAutoEvoPrediction();
     }
@@ -1499,13 +1497,13 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         UpdateArrow();
 
         // Send to gui current status of cell
-        gui.UpdateSize(MicrobeHexSize);
+        GUI.UpdateSize(MicrobeHexSize);
 
-        gui.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
+        GUI.UpdatePartsAvailability(PlacedUniqueOrganelles.ToList());
 
         UpdatePatchDependentBalanceData();
 
-        gui.UpdateSpeed(CalculateSpeed());
+        GUI.UpdateSpeed(CalculateSpeed());
 
         UpdateCellVisualization();
 
@@ -1633,12 +1631,12 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
         var membrane = data.NewMembrane;
         GD.Print("Changing membrane to '", membrane.InternalName, "'");
         Membrane = membrane;
-        gui.UpdateMembraneButtons(Membrane.InternalName);
-        gui.UpdateSpeed(CalculateSpeed());
-        gui.UpdateHitpoints(CalculateHitpoints());
+        GUI.UpdateMembraneButtons(Membrane.InternalName);
+        GUI.UpdateSpeed(CalculateSpeed());
+        GUI.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
-        gui.SetMembraneTooltips(Membrane);
+        GUI.SetMembraneTooltips(Membrane);
 
         StartAutoEvoPrediction();
 
@@ -1657,12 +1655,12 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
             throw new Exception($"{nameof(UndoMembraneChangeAction)} missing action data");
         Membrane = data.OldMembrane;
         GD.Print("Changing membrane back to '", Membrane.InternalName, "'");
-        gui.UpdateMembraneButtons(Membrane.InternalName);
-        gui.UpdateSpeed(CalculateSpeed());
-        gui.UpdateHitpoints(CalculateHitpoints());
+        GUI.UpdateMembraneButtons(Membrane.InternalName);
+        GUI.UpdateSpeed(CalculateSpeed());
+        GUI.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
-        gui.SetMembraneTooltips(Membrane);
+        GUI.SetMembraneTooltips(Membrane);
 
         StartAutoEvoPrediction();
 
@@ -1684,7 +1682,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
             throw new InvalidOperationException($"Editor has no {nameof(Behaviour)} set for change action to use");
 
         Behaviour[data.Type] = data.NewValue;
-        gui.UpdateBehaviourSlider(data.Type, data.NewValue);
+        GUI.UpdateBehaviourSlider(data.Type, data.NewValue);
     }
 
     [DeserializedCallbackAllowed]
@@ -1697,7 +1695,7 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
             throw new InvalidOperationException($"Editor has no {nameof(Behaviour)} set for change action to use");
 
         Behaviour[data.Type] = data.OldValue;
-        gui.UpdateBehaviourSlider(data.Type, data.OldValue);
+        GUI.UpdateBehaviourSlider(data.Type, data.OldValue);
     }
 
     [DeserializedCallbackAllowed]
@@ -1726,10 +1724,10 @@ public class MicrobeEditor : HexEditorBase<MicrobeEditorAction, MicrobeStage, Or
 
     private void OnRigidityChanged()
     {
-        gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+        GUI.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
-        gui.UpdateSpeed(CalculateSpeed());
-        gui.UpdateHitpoints(CalculateHitpoints());
+        GUI.UpdateSpeed(CalculateSpeed());
+        GUI.UpdateHitpoints(CalculateHitpoints());
     }
 
     private void SaveGame(string name)

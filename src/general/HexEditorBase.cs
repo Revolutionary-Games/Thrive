@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 ///   More specialized editor base type that supports hex based editors. Due to C# not supporting multiple inheritance
 ///   this needs to inherit the patch handling.
 /// </summary>
-public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatchesBase<TAction, TStage>
+public abstract class HexEditorBase<TGUI, TAction, TStage, THexMove> : EditorWithPatchesBase<TGUI, TAction, TStage>, IHexEditor
+    where TGUI : class, IHexEditorGUI
     where TAction : MicrobeEditorAction
     where TStage : Node, IReturnableGameState
     where THexMove : class
@@ -78,7 +79,7 @@ public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatch
     [JsonProperty]
     protected int organelleRot;
 
-    protected EditorSymmetry symmetry = EditorSymmetry.None;
+    protected HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
     /// <summary>
     ///   Where the user started panning with the mouse. Null if the user is not panning with the mouse
@@ -86,45 +87,13 @@ public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatch
     protected Vector3? mousePanningStart;
 
     /// <summary>
-    ///   The Symmetry setting of the hex based Editor.
-    /// </summary>
-    public enum EditorSymmetry
-    {
-        /// <summary>
-        /// No symmetry in the editor.
-        /// </summary>
-        None,
-
-        /// <summary>
-        /// Symmetry across the X-Axis in the editor.
-        /// </summary>
-        XAxisSymmetry,
-
-        /// <summary>
-        /// Symmetry across both the X and the Y axis in the editor.
-        /// </summary>
-        FourWaySymmetry,
-
-        /// <summary>
-        /// Symmetry across the X and Y axis, as well as across center, in the editor.
-        /// </summary>
-        SixWaySymmetry,
-    }
-
-    /// <summary>
     ///   The symmetry setting of the editor.
     /// </summary>
-    public EditorSymmetry Symmetry
+    public HexEditorSymmetry Symmetry
     {
         get => symmetry;
         set => symmetry = value;
     }
-
-    /// <summary>
-    ///   Hover hexes and models are only shown if this is true. This is saved to make this work better when the player
-    ///   was in the cell editor tab and saved.
-    /// </summary>
-    public bool ShowHover { get; set; }
 
     /// <summary>
     ///   Hex that is in the process of being moved but a new location hasn't been selected yet.
@@ -148,10 +117,10 @@ public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatch
 
     public override void _Ready()
     {
-        base._Ready();
-
         LoadHexMaterials();
         LoadScenes();
+
+        base._Ready();
 
         if (!IsLoadedFromSave)
             camera.ObjectToFollow = cameraFollow;
@@ -165,26 +134,9 @@ public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatch
         editorGrid.Visible = shown;
     }
 
-    public virtual void SetPlayerPatch(Patch? patch)
+    public override void SetPlayerPatch(Patch? patch)
     {
-        if (!IsPatchMoveValid(patch))
-            throw new ArgumentException("can't move to the specified patch");
-
-        // One move per editor cycle allowed, unless freebuilding
-        if (!FreeBuilding)
-            canStillMove = false;
-
-        if (patch == playerPatchOnEntry)
-        {
-            targetPatch = null;
-
-            // Undoing the move, restores the move
-            canStillMove = true;
-        }
-        else
-        {
-            targetPatch = patch;
-        }
+        base.SetPlayerPatch(patch);
 
         UpdatePatchBackgroundImage();
     }
@@ -256,7 +208,7 @@ public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatch
     /// </summary>
     /// <returns>True when the input is consumed</returns>
     [RunOnKeyDown("e_cancel_current_action", Priority = 1)]
-    public bool CancelCurrentAction()
+    public override bool CancelCurrentAction()
     {
         if (MovingPlacedHex != null)
         {
@@ -321,13 +273,13 @@ public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatch
 
         switch (Symmetry)
         {
-            case EditorSymmetry.None:
+            case HexEditorSymmetry.None:
             {
                 TryRemoveHexAt(new Hex(q, r));
                 break;
             }
 
-            case EditorSymmetry.XAxisSymmetry:
+            case HexEditorSymmetry.XAxisSymmetry:
             {
                 TryRemoveHexAt(new Hex(q, r));
 
@@ -339,7 +291,7 @@ public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatch
                 break;
             }
 
-            case EditorSymmetry.FourWaySymmetry:
+            case HexEditorSymmetry.FourWaySymmetry:
             {
                 TryRemoveHexAt(new Hex(q, r));
 
@@ -357,7 +309,7 @@ public abstract class HexEditorBase<TAction, TStage, THexMove> : EditorWithPatch
                 break;
             }
 
-            case EditorSymmetry.SixWaySymmetry:
+            case HexEditorSymmetry.SixWaySymmetry:
             {
                 TryRemoveHexAt(new Hex(q, r));
 

@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Base common class with shared editor functionality
 /// </summary>
+/// <typeparam name="TGUI">Class of the editor GUI to use</typeparam>
 /// <typeparam name="TAction">Editor action type the action history uses in this editor</typeparam>
 /// <typeparam name="TStage">Class of the stage this editor returns to</typeparam>
 /// <remarks>
@@ -18,7 +19,8 @@ using Newtonsoft.Json;
 ///     </code>
 ///   </para>
 /// </remarks>
-public abstract class EditorBase<TAction, TStage> : NodeWithInput, ILoadableGameState, IGodotEarlyNodeResolve
+public abstract class EditorBase<TGUI, TAction, TStage> : NodeWithInput, IEditor, ILoadableGameState, IGodotEarlyNodeResolve
+    where TGUI : class, IEditorGUI
     where TAction : MicrobeEditorAction
     where TStage : Node, IReturnableGameState
 {
@@ -55,21 +57,12 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, ILoadableGame
     /// </summary>
     protected bool wantsToSave;
 
-    /// <summary>
-    ///   True once fade transition is finished when entering editor
-    /// </summary>
     [JsonIgnore]
     public bool TransitionFinished { get; protected set; }
 
-    /// <summary>
-    ///   The number of mutation points left
-    /// </summary>
     [JsonProperty]
     public int MutationPoints { get; protected set; }
 
-    /// <summary>
-    ///   When true nothing costs MP
-    /// </summary>
     [JsonProperty]
     public bool FreeBuilding { get; protected set; }
 
@@ -86,8 +79,21 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, ILoadableGame
     [JsonProperty]
     public TStage? ReturnToStage { get; set; }
 
-    [JsonIgnore]
-    public abstract Control GUI { get; }
+    /// <summary>
+    ///   True when the editor view is active and the user can perform an action (for example place an organelle)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Hover hexes and models are only shown if this is true. This is saved to make this work better when the
+    ///     player was in the cell editor tab and saved.
+    ///   </para>
+    /// </remarks>
+    [JsonProperty]
+    public bool ShowHover { get; set; }
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    public TGUI GUI { get; protected set; } = null!;
 
     [JsonIgnore]
     public Node GameStateRoot => this;
@@ -106,6 +112,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, ILoadableGame
             pauseMenu.GameLoading = !value;
         }
     }
+
+    [JsonIgnore]
+    public abstract bool CanCancelAction { get; }
 
     protected abstract Species EditedBaseSpecies { get; }
 
@@ -295,6 +304,9 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, ILoadableGame
         GUI.Visible = !GUI.Visible;
     }
 
+    public abstract float CalculateCurrentActionCost();
+    public abstract bool CancelCurrentAction();
+
     /// <summary>
     ///   Changes the number of mutation points left. Should only be called by editor actions
     /// </summary>
@@ -307,6 +319,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, ILoadableGame
 
         OnMutationPointsChanged();
     }
+
+    protected abstract void InitConcreteGUI();
 
     /// <summary>
     ///   Sets up the editor when entering
@@ -338,6 +352,8 @@ public abstract class EditorBase<TAction, TStage> : NodeWithInput, ILoadableGame
 
     protected virtual void InitEditor()
     {
+        InitConcreteGUI();
+
         if (!IsLoadedFromSave)
         {
             // Auto save is wanted once possible
