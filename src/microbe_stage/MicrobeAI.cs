@@ -325,7 +325,7 @@ public class MicrobeAI
                 if (distanceToFocusedPrey < pursuitThreshold)
                 {
                     // Keep chasing, but expect to keep getting closer
-                    pursuitThreshold *= 0.95f;
+                    LowerPursuitThreshold();
                     return focused;
                 }
 
@@ -484,7 +484,18 @@ public class MicrobeAI
 
         if (lastSmelledCompoundPosition != null)
         {
-            if (DistanceFromMe(lastSmelledCompoundPosition.Value) > 3.0f)
+            var distance = DistanceFromMe(lastSmelledCompoundPosition.Value);
+
+            // If the compound isn't getting closer, either something else has taken it, or we're stuck
+            LowerPursuitThreshold();
+            if (distance > pursuitThreshold)
+            {
+                lastSmelledCompoundPosition = null;
+                RunAndTumble(random);
+                return;
+            }
+
+            if (distance > 3.0f)
             {
                 targetPosition = lastSmelledCompoundPosition.Value;
                 microbe.LookAtPoint = targetPosition;
@@ -513,6 +524,7 @@ public class MicrobeAI
         if (detections.Count > 0)
         {
             lastSmelledCompoundPosition = detections[0].Target;
+            pursuitThreshold = DistanceFromMe(lastSmelledCompoundPosition.Value);
         }
         else
         {
@@ -718,6 +730,11 @@ public class MicrobeAI
     private void SetMoveSpeed(float speed)
     {
         microbe.MovementDirection = new Vector3(0, 0, -speed);
+    }
+
+    private void LowerPursuitThreshold()
+    {
+        pursuitThreshold *= 0.95f;
     }
 
     private bool CanTryToEatMicrobe(Microbe targetMicrobe)
