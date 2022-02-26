@@ -524,7 +524,8 @@ public class MicrobeAI
         if (detections.Count > 0)
         {
             lastSmelledCompoundPosition = detections[0].Target;
-            pursuitThreshold = DistanceFromMe(lastSmelledCompoundPosition.Value) * (1 + (SpeciesFocus / Constants.MAX_SPECIES_FOCUS));
+            pursuitThreshold = DistanceFromMe(lastSmelledCompoundPosition.Value)
+                * (1 + (SpeciesFocus / Constants.MAX_SPECIES_FOCUS));
         }
         else
         {
