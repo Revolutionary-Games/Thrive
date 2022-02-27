@@ -36,6 +36,9 @@ public class MicrobeAI
     [JsonIgnore]
     private EntityReference<Microbe> focusedPrey = new();
 
+    [JsonIgnore]
+    private Vector3? lastSmelledCompoundPosition;
+
     [JsonProperty]
     private float pursuitThreshold;
 
@@ -217,7 +220,7 @@ public class MicrobeAI
         // Otherwise just wander around and look for compounds
         if (SpeciesActivity > Constants.MAX_SPECIES_ACTIVITY / 10)
         {
-            RunAndTumble(random);
+            SeekCompounds(random, data);
         }
         else
         {
@@ -322,7 +325,7 @@ public class MicrobeAI
                 if (distanceToFocusedPrey < pursuitThreshold)
                 {
                     // Keep chasing, but expect to keep getting closer
-                    pursuitThreshold *= 0.95f;
+                    LowerPursuitThreshold();
                     return focused;
                 }
 
@@ -462,6 +465,75 @@ public class MicrobeAI
         }
     }
 
+    private void SeekCompounds(Random random, MicrobeAICommonData data)
+    {
+        // If we are still engulfing for some reason, stop
+        microbe.State = Microbe.MicrobeState.Normal;
+
+        // More active species just try to get distance to avoid over-clustering
+        if (RollCheck(SpeciesActivity, Constants.MAX_SPECIES_ACTIVITY + (Constants.MAX_SPECIES_ACTIVITY / 2), random))
+        {
+            SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            return;
+        }
+
+        if (random.Next(Constants.AI_STEPS_PER_SMELL) == 0)
+        {
+            SmellForCompounds(data);
+        }
+
+        if (lastSmelledCompoundPosition != null)
+        {
+            var distance = DistanceFromMe(lastSmelledCompoundPosition.Value);
+
+            // If the compound isn't getting closer, either something else has taken it, or we're stuck
+            LowerPursuitThreshold();
+            if (distance > pursuitThreshold)
+            {
+                lastSmelledCompoundPosition = null;
+                RunAndTumble(random);
+                return;
+            }
+
+            if (distance > 3.0f)
+            {
+                targetPosition = lastSmelledCompoundPosition.Value;
+                microbe.LookAtPoint = targetPosition;
+            }
+            else
+            {
+                SetMoveSpeed(0.0f);
+                SmellForCompounds(data);
+            }
+        }
+        else
+        {
+            RunAndTumble(random);
+        }
+    }
+
+    private void SmellForCompounds(MicrobeAICommonData data)
+    {
+        ComputeCompoundsSearchWeights();
+
+        var detections = microbe.GetDetectedCompounds(data.Clouds)
+            .OrderBy(detection => compoundsSearchWeights.ContainsKey(detection.Compound) ?
+                compoundsSearchWeights[detection.Compound] :
+                0).ToList();
+
+        if (detections.Count > 0)
+        {
+            lastSmelledCompoundPosition = detections[0].Target;
+            pursuitThreshold = DistanceFromMe(lastSmelledCompoundPosition.Value)
+                * (1 + (SpeciesFocus / Constants.MAX_SPECIES_FOCUS));
+        }
+        else
+        {
+            lastSmelledCompoundPosition = null;
+        }
+    }
+
+    // For doing run and tumble
     /// <summary>
     ///   For doing run and tumble
     /// </summary>
@@ -481,9 +553,6 @@ public class MicrobeAI
         // The scientifically accurate algorithm has been flipped to account for the compound
         // deposits being a lot smaller compared to the microbes
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
-
-        // If we are still engulfing for some reason, stop
-        microbe.State = Microbe.MicrobeState.Normal;
 
         ComputeCompoundsSearchWeights();
 
@@ -662,6 +731,11 @@ public class MicrobeAI
     private void SetMoveSpeed(float speed)
     {
         microbe.MovementDirection = new Vector3(0, 0, -speed);
+    }
+
+    private void LowerPursuitThreshold()
+    {
+        pursuitThreshold *= 0.95f;
     }
 
     private bool CanTryToEatMicrobe(Microbe targetMicrobe)

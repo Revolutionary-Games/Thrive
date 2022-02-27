@@ -609,6 +609,31 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
     }
 
     /// <summary>
+    ///   Returns a list of tuples, representing all possible compound targets. These are not all clouds that the
+    ///   microbe can smell; only the best candidate of each compound type.
+    /// </summary>
+    /// <param name="clouds">CompoundCloudSystem to scan</param>
+    /// <returns>
+    ///   A list of tuples. Each tuple contains the type of compound, the color of the line (if any needs to be drawn),
+    ///   and the location where the compound is located.
+    /// </returns>
+    public List<(Compound Compound, Color Colour, Vector3 Target)> GetDetectedCompounds(CompoundCloudSystem clouds)
+    {
+        var detections = new List<(Compound Compound, Color Colour, Vector3 Target)>();
+        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        {
+            var detectedCompound = clouds.FindCompoundNearPoint(Translation, compound, range, minAmount);
+
+            if (detectedCompound != null)
+            {
+                detections.Add((compound, colour, detectedCompound.Value));
+            }
+        }
+
+        return detections;
+    }
+
+    /// <summary>
     ///   This method calculates the relative rotation and translation this microbe should have to its microbe parent.
     ///   <a href="https://randomthrivefiles.b-cdn.net/documentation/fixed_colony_rotation_explanation_image.png">
     ///     Visual explanation

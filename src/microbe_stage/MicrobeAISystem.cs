@@ -10,9 +10,16 @@ public class MicrobeAISystem
 
     private readonly Node worldRoot;
 
-    public MicrobeAISystem(Node worldRoot)
+    /// <summary>
+    ///   Because this is run in a threaded environment (and because this is the AI), this should
+    ///   NEVER call a data changing method from this class
+    /// </summary>
+    private readonly CompoundCloudSystem clouds;
+
+    public MicrobeAISystem(Node worldRoot, CompoundCloudSystem cloudSystem)
     {
         this.worldRoot = worldRoot;
+        clouds = cloudSystem;
     }
 
     public void Process(float delta)
@@ -27,7 +34,7 @@ public class MicrobeAISystem
         var allChunks = worldRoot.GetTree().GetNodesInGroup(Constants.AI_TAG_CHUNK);
 
         var data = new MicrobeAICommonData(allMicrobes.Cast<Microbe>().ToList(),
-            allChunks.Cast<FloatingChunk>().ToList());
+            allChunks.Cast<FloatingChunk>().ToList(), clouds);
 
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
