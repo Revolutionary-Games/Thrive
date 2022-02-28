@@ -10,9 +10,16 @@ public class MicrobeAISystem
 
     private readonly Node worldRoot;
 
-    public MicrobeAISystem(Node worldRoot)
+    /// <summary>
+    ///   Because this is run in a threaded environment (and because this is the AI), this should
+    ///   NEVER call a data changing method from this class
+    /// </summary>
+    private readonly CompoundCloudSystem clouds;
+
+    public MicrobeAISystem(Node worldRoot, CompoundCloudSystem cloudSystem)
     {
         this.worldRoot = worldRoot;
+        clouds = cloudSystem;
     }
 
     public void Process(float delta)
@@ -27,7 +34,7 @@ public class MicrobeAISystem
         var allChunks = worldRoot.GetTree().GetNodesInGroup(Constants.AI_TAG_CHUNK);
 
         var data = new MicrobeAICommonData(allMicrobes.Cast<Microbe>().ToList(),
-            allChunks.Cast<FloatingChunk>().ToList());
+            allChunks.Cast<FloatingChunk>().ToList(), clouds);
 
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
@@ -76,8 +83,11 @@ public class MicrobeAISystem
         if (ai.TimeUntilNextAIUpdate > 0)
             return;
 
+        // TODO: would be nice to add a tiny bit of randomness to the times here so that not all cells think at once
         ai.TimeUntilNextAIUpdate = Constants.MICROBE_AI_THINK_INTERVAL;
 
-        ai.AIThink(delta, random, data);
+        // As the AI think interval is made constant, we pass that value as the delta to make time keeping be actually
+        // (mostly) consistent in the AI code
+        ai.AIThink(Constants.MICROBE_AI_THINK_INTERVAL, random, data);
     }
 }

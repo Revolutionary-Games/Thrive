@@ -55,6 +55,11 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
 
     private HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)> activeCompoundDetections = new();
 
+    private bool? hasSignalingAgent;
+
+    [JsonProperty]
+    private MicrobeSignalCommand command = MicrobeSignalCommand.None;
+
     [JsonProperty]
     private MicrobeAI? ai;
 
@@ -110,6 +115,36 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             return radius;
         }
     }
+
+    [JsonIgnore]
+    public bool HasSignalingAgent
+    {
+        get
+        {
+            if (hasSignalingAgent != null)
+                return hasSignalingAgent.Value;
+
+            return CheckHasSignalingAgent();
+        }
+    }
+
+    [JsonIgnore]
+    public MicrobeSignalCommand SignalCommand
+    {
+        get
+        {
+            if (!CheckHasSignalingAgent() || Dead)
+                return MicrobeSignalCommand.None;
+
+            return command;
+        }
+    }
+
+    /// <summary>
+    ///   Because AI is ran in parallel thread, if it wants to change the signaling, it needs to do it through this
+    /// </summary>
+    [JsonProperty]
+    public MicrobeSignalCommand? QueuedSignalingCommand { get; set; }
 
     /// <summary>
     ///   Returns a squared value of <see cref="Radius"/>.
@@ -471,6 +506,12 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             organelle.Update(delta);
         }
 
+        if (QueuedSignalingCommand != null)
+        {
+            command = QueuedSignalingCommand.Value;
+            QueuedSignalingCommand = null;
+        }
+
         // Rotation is applied in the physics force callback as that's
         // the place where the body rotation can be directly set
         // without problems
@@ -578,6 +619,31 @@ public partial class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, IS
             // proper handling for this in the future.
             collisionForce += physicsState.GetContactImpulse(i);
         }
+    }
+
+    /// <summary>
+    ///   Returns a list of tuples, representing all possible compound targets. These are not all clouds that the
+    ///   microbe can smell; only the best candidate of each compound type.
+    /// </summary>
+    /// <param name="clouds">CompoundCloudSystem to scan</param>
+    /// <returns>
+    ///   A list of tuples. Each tuple contains the type of compound, the color of the line (if any needs to be drawn),
+    ///   and the location where the compound is located.
+    /// </returns>
+    public List<(Compound Compound, Color Colour, Vector3 Target)> GetDetectedCompounds(CompoundCloudSystem clouds)
+    {
+        var detections = new List<(Compound Compound, Color Colour, Vector3 Target)>();
+        foreach (var (compound, range, minAmount, colour) in activeCompoundDetections)
+        {
+            var detectedCompound = clouds.FindCompoundNearPoint(Translation, compound, range, minAmount);
+
+            if (detectedCompound != null)
+            {
+                detections.Add((compound, colour, detectedCompound.Value));
+            }
+        }
+
+        return detections;
     }
 
     /// <summary>
