@@ -57,6 +57,7 @@
                 { "0.5.6.0", new UpgradeJustVersionNumber("0.5.6.1") },
                 { "0.5.6.1", new UpgradeStep0561To057() },
                 { "0.5.7.0-rc1", new UpgradeJustVersionNumber("0.5.7.0") },
+                { "0.5.7.0", new UpgradeStep057To058Alpha() },
             };
         }
     }
@@ -172,6 +173,42 @@
             {
                 ((JObject)property.Value).Add("eventsLog", new JObject());
             }
+        }
+    }
+
+    internal class UpgradeStep057To058Alpha : BaseRecursiveJSONWalkerStep
+    {
+        protected override string VersionAfter => "0.5.8.0-alpha";
+
+        protected override void CheckAndUpdateProperty(JProperty property)
+        {
+            if (property.Name.Contains("ObjectToFollow"))
+            {
+
+                var colonyMembers = property.Children<JProperty>().First(p => p.Name == "Colony").
+                    Children<JProperty>().First(p => p.Name == "ColonyMembers").Value<JEnumerable<JProperty>>();
+                var colonyMasterMass = property.Children<JProperty>().First(p => p.Name == "Mass");
+                if (colonyMembers.Count() > 0)
+                {
+                    colonyMasterMass.Value = colonyMasterMass.Value<float>() +
+                        ColonyMembersMass (colonyMasterMass, colonyMembers);
+                }
+            }
+        }
+
+        private float ColonyMembersMass (JProperty property, JEnumerable<JProperty> children)
+        {
+            float mass = 0f;
+            foreach (var child in children)
+            {
+                var propertiesOfChild = child.Children<JProperty>();
+                if (propertiesOfChild.Any(p => p.Name == "Mass"))
+                {
+                    mass += propertiesOfChild.Where(p => p.Name == "Mass").First().Value<float>();
+                }
+            }
+
+            return mass;
         }
     }
 
