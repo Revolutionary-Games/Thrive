@@ -184,19 +184,17 @@
         {
             if (property.Name.Contains("ObjectToFollow"))
             {
-
-                var colonyMembers = property.Children<JProperty>().First(p => p.Name == "Colony").
-                    Children<JProperty>().First(p => p.Name == "ColonyMembers").Value<JEnumerable<JProperty>>();
+                var colonyMembers = property.Children<JProperty>().First(p => p.Name == "Colony").Children<JProperty>()
+                    .First(p => p.Name == "ColonyMembers").Value<JEnumerable<JProperty>>();
                 var colonyMasterMass = property.Children<JProperty>().First(p => p.Name == "Mass");
                 if (colonyMembers.Count() > 0)
                 {
-                    colonyMasterMass.Value = colonyMasterMass.Value<float>() +
-                        ColonyMembersMass (colonyMasterMass, colonyMembers);
+                    UpdateColonyMasterMass(colonyMasterMass, colonyMembers);
                 }
             }
         }
 
-        private float ColonyMembersMass (JProperty property, JEnumerable<JProperty> children)
+        private void UpdateColonyMasterMass(JProperty property, JEnumerable<JProperty> children)
         {
             float mass = 0f;
             foreach (var child in children)
@@ -208,7 +206,7 @@
                 }
             }
 
-            return mass;
+            property.Value = property.Value<float>() + mass;
         }
     }
 
