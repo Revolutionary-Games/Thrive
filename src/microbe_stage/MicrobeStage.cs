@@ -653,7 +653,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
             TranslationServer.Translate("PLAYER_DIED"),
             true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
 
-        if (GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild)
+        if (IsGameOver())
         {
             Jukebox.Instance.PlayCategory("Extinction");
         }
@@ -703,7 +703,7 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         HUD.HintText = string.Empty;
 
         // Respawn if not extinct (or freebuild)
-        if (GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild)
+        if (IsGameOver())
         {
             gameOver = true;
         }
@@ -805,5 +805,10 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
         }
 
         return chemoreceptionLines[index];
+    }
+
+    private bool IsGameOver()
+    {
+        return GameWorld.PlayerSpecies.Population <= 0 && !CurrentGame!.FreeBuild;
     }
 }
